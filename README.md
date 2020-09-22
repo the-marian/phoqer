@@ -13,3 +13,6 @@ docker-compose up -d --build
 ```
 
 4.Фсё
+
+# Wiki
+Чтобы заглянуть в логи нужно ввести в консоль `docker-compose logs -f`
