@@ -59,7 +59,7 @@ COPY ./entrypoint.prod.sh $SHARE_HOME
 COPY . $SHARE_HOME
 
 # chown all the files to the share_app user
-RUN chown -R share:share $APP_HOME
+RUN chown -R share:share $SHARE_HOME
 
 # change to the share_app user
 USER share
