@@ -10,9 +10,12 @@ jobs:
   build:
     name: Build Docker Images
     runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/dev'
     steps:
-      - name: Checkout master
-        uses: actions/checkout@v1
+      - name: Checkout dev
+        uses: actions/checkout@v2
+        with:
+          ref: dev
       - name: Add environment variables to .env.dev
         run: |
           echo DEBUG=1 >> .env.dev
@@ -45,9 +48,12 @@ jobs:
     name: Deploy to Vultr VPS
     runs-on: ubuntu-latest
     needs: build
+    if: github.ref == 'refs/heads/dev'
     steps:
-      - name: Checkout master
-        uses: actions/checkout@v1
+      - name: Checkout dev
+        uses: actions/checkout@v2
+        with:
+          ref: dev
       - name: Add environment variables to .env.dev
         run: |
           echo SECRET_KEY=${{ secrets.SECRET_KEY }} >> .env.dev
