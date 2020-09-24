@@ -1,0 +1,84 @@
+name: Continuous Integration and Delivery
+
+on: [push]
+
+env:
+  WEB_IMAGE: docker.pkg.github.com/$GITHUB_REPOSITORY/web
+
+jobs:
+
+  build:
+    name: Build Docker Images
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout master
+        uses: actions/checkout@v1
+      - name: Add environment variables to .env.dev
+        run: |
+          echo DEBUG=1 >> .env.dev
+          echo POSTGRES_ENGINE=django.db.backends.postgresql >> .env.dev
+          echo DATABASE=postgres >> .env.dev
+          echo SECRET_KEY=${{ secrets.SECRET_KEY }} >> .env.dev
+          echo POSTGRES_DB=${{ secrets.POSTGRES_DB }} >> .env.dev
+          echo POSTGRES_USER=${{ secrets.POSTGRES_USER }} >> .env.dev
+          echo POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }} >> .env.dev
+          echo POSTGRES_HOST=${{ secrets.POSTGRES_HOST }} >> .env.dev
+          echo POSTGRES_PORT=${{ secrets.POSTGRES_PORT }} >> .env.dev
+      - name: Set environment variables
+        run: |
+          echo ::set-env name=WEB_IMAGE::$(echo ${{ env.WEB_IMAGE }} | tr '[:upper:]' '[:lower:]')
+      - name: Log in to GitHub Packages
+        run: echo ${GITHUB_TOKEN} | docker login -u ${GITHUB_ACTOR} --password-stdin docker.pkg.github.com
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Pull images
+        run: |
+          docker pull ${{ env.WEB_IMAGE }} || true
+      - name: Build images
+        run: |
+          docker-compose -f docker-compose.yml build
+      - name: Push images
+        run: |
+          docker push ${{ env.WEB_IMAGE }}
+
+  deploy:
+    name: Deploy to Vultr VPS
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Checkout master
+        uses: actions/checkout@v1
+      - name: Add environment variables to .env.dev
+        run: |
+          echo SECRET_KEY=${{ secrets.SECRET_KEY }} >> .env.dev
+          echo DEBUG=1 >> .env.dev
+          echo DJANGO_ALLOWED_HOSTS=${{ secrets.DJANGO_ALLOWED_HOSTS }} >> .env.dev
+          echo POSTGRES_ENGINE=django.db.backends.postgresql >> .env.dev
+          echo DATABASE=postgres >> .env.dev
+          echo POSTGRES_DB=${{ secrets.POSTGRES_DB }} >> .env.dev
+          echo POSTGRES_USER=${{ secrets.POSTGRES_USER }} >> .env.dev
+          echo POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }} >> .env.dev
+          echo POSTGRES_HOST=${{ secrets.POSTGRES_HOST }} >> .env.dev
+          echo POSTGRES_PORT=${{ secrets.POSTGRES_PORT }} >> .env.dev
+          echo WEB_IMAGE=${{ env.WEB_IMAGE }} >> .env.dev
+          echo NGINX_IMAGE=${{ env.NGINX_IMAGE }} >> .env.dev
+      - name: Add the private SSH key to the ssh-agent
+        env:
+          SSH_AUTH_SOCK: /tmp/ssh_agent.sock
+        run: |
+          mkdir -p ~/.ssh
+          ssh-agent -a $SSH_AUTH_SOCK > /dev/null
+          ssh-keyscan github.com >> ~/.ssh/known_hosts
+          ssh-add - <<< "${{ secrets.PRIVATE_KEY }}"
+      - name: Build and deploy images on Vultr VPS
+        env:
+          SSH_AUTH_SOCK: /tmp/ssh_agent.sock
+        run: |
+          scp  -o StrictHostKeyChecking=no -r ./.env.dev ./docker-compose.yml root@${{ secrets.VPS_IP_ADDRESS }}:~/share
+          ssh -o StrictHostKeyChecking=no root@${{ secrets.VPS_IP_ADDRESS }} << 'ENDSSH'
+            cd ~/share
+            source .env.dev
+            docker login docker.pkg.github.com -u ${{ secrets.USERNAME }} -p ${{ secrets.TOKEN }}
+            docker pull $(echo $WEB_IMAGE | tr '[:upper:]' '[:lower:]')
+            docker-compose -f docker-compose.yml up -d
+          ENDSSH
