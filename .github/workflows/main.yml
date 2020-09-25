@@ -42,7 +42,7 @@ jobs:
           docker pull ${{ env.NGINX_IMAGE }} || true
       - name: Build images
         run: |
-          docker-compose -f docker-compose.yml build
+          docker-compose -f docker-compose.ci.yml --env-file ./.env.dev build
       - name: Push images
         run: |
           docker push ${{ env.BACKEND_IMAGE }}
@@ -70,8 +70,8 @@ jobs:
           echo POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }} >> .env.dev
           echo POSTGRES_HOST=${{ secrets.POSTGRES_HOST }} >> .env.dev
           echo POSTGRES_PORT=${{ secrets.POSTGRES_PORT }} >> .env.dev
-          echo BACKEND_IMAGE=${{ env.BACKEND_IMAGE }} >> .env.dev
-          echo NGINX_IMAGE=${{ env.NGINX_IMAGE }} >> .env.dev
+          echo BACKEND_IMAGE=$(echo ${{ env.BACKEND_IMAGE }} | tr '[:upper:]' '[:lower:]') >> .env.dev
+          echo NGINX_IMAGE=$(echo ${{ env.NGINX_IMAGE }} | tr '[:upper:]' '[:lower:]') >> .env.dev
       - name: Add the private SSH key to the ssh-agent
         env:
           SSH_AUTH_SOCK: /tmp/ssh_agent.sock
@@ -84,11 +84,12 @@ jobs:
         env:
           SSH_AUTH_SOCK: /tmp/ssh_agent.sock
         run: |
-          scp  -o StrictHostKeyChecking=no -r ./.env.dev ./docker-compose.yml root@${{ secrets.VPS_IP_ADDRESS }}:~/share
+          scp  -o StrictHostKeyChecking=no -r ./.env.dev ./docker-compose.yml root@${{ secrets.VPS_IP_ADDRESS }}:/home
           ssh -o StrictHostKeyChecking=no root@${{ secrets.VPS_IP_ADDRESS }} << 'ENDSSH'
-            cd ~/share
+            cd /home
             source .env.dev
             docker login docker.pkg.github.com -u ${{ secrets.USERNAME }} -p ${{ secrets.TOKEN }}
-            docker pull $(echo $BACKEND_IMAGE | tr '[:upper:]' '[:lower:]')
-            docker-compose -f docker-compose.yml up -d
+            docker pull $BACKEND_IMAGE
+            docker pull $NGINX_IMAGE
+            docker-compose -f docker-compose.yml --env-file ./.env.dev up -d
           ENDSSH

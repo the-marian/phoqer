@@ -9,13 +9,16 @@
 3. Ввести в терминале
 
 ```console
-docker-compose -f docker-compose.yml up -d --build
+docker-compose -f docker-compose.dev.yml up -d --build
 ```
 
 4.Фсё
 
 # Wiki
 Чтобы заглянуть в логи нужно ввести в консоль `docker-compose logs -f`
+или можно посмотреть логи с конкретного контейнера, пример для контейнера с сервером Django `docker-compose logs -f backend`
+
+Вот так можно вводить команды внутри контейнеров `docker-compose -f docker-compose.yml exec backend python manage.py migrate`
 
 Если по какой-то причине хочется запустить Django без NGINX в виде прохи и сервера для статики то такая возможность тоже учтена
 

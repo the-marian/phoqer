@@ -12,8 +12,11 @@ ENV PYTHONUNBUFFERED 1
 RUN apk update \
     && apk add postgresql-dev gcc python3-dev musl-dev
 
+# copy entrypoint-prod.sh
+COPY ./entrypoint.sh /home/share/backend/entrypoint.sh
+
 # copy project
-COPY . .
+COPY . /home/share/backend
 
 # lint
 RUN pip install --upgrade pip

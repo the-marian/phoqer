@@ -2,15 +2,18 @@ version: '3.7'
 
 services:
   backend:
-    image: "${BACKEND_IMAGE}"
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
     command: python manage.py runserver 0.0.0.0:8000
     volumes:
       - static_volume:/home/share/backend/staticfiles/
+      - ./backend/:/home/share/backend/
       - media_volume:/home/share/backend/mediafiles/
-    ports:
-      - 8000:8000
+    expose:
+      - 8000
     env_file:
-      - .env.dev
+      - ./.env.dev
     depends_on:
       - db
   db:
@@ -18,14 +21,14 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data/
     env_file:
-      - .env.dev
+      - ./.env.dev
   nginx:
-    image: "${NGINX_IMAGE}"
+    build: ./nginx
     volumes:
       - static_volume:/home/share/backend/staticfiles/
       - media_volume:/home/share/backend/mediafiles/
     ports:
-      - 80:80
+      - 1337:80
     depends_on:
       - backend
 
