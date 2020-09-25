@@ -9,10 +9,28 @@
 3. Ввести в терминале
 
 ```console
-docker-compose up -d --build
+docker-compose -f docker-compose.yml up -d --build
 ```
 
 4.Фсё
 
 # Wiki
 Чтобы заглянуть в логи нужно ввести в консоль `docker-compose logs -f`
+
+Если по какой-то причине хочется запустить Django без NGINX в виде прохи и сервера для статики то такая возможность тоже учтена
+
+просто из директории `backend` нужно сделать следующее
+
+```console
+docker build -f ./Dockerfile -t backend:latest . 
+
+Successfully built bla-bla-bla
+Successfully tagged backend:latest
+
+docker run -d \
+    -p 8006:8000 \
+    -e "SECRET_KEY=please_change_me" -e "DEBUG=1" -e "DJANGO_ALLOWED_HOSTS=*" \
+    backend python /home/share/backend/manage.py runserver 0.0.0.0:8000
+```
+
+после чего сервер будет доступен по адресу http://127.0.0.1:8006/

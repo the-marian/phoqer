@@ -1,7 +1,7 @@
 version: '3.7'
 
 services:
-  backend :
+  backend:
     build:
       context: ./backend
       dockerfile: Dockerfile
@@ -9,6 +9,7 @@ services:
     volumes:
       - static_volume:/home/share/backend/staticfiles/
       - ./backend/:/home/share/backend/
+      - media_volume:/home/share/backend/mediafiles/
     expose:
       - 8000
     env_file:
@@ -25,6 +26,7 @@ services:
     build: ./nginx
     volumes:
       - static_volume:/home/share/backend/staticfiles/
+      - media_volume:/home/share/backend/mediafiles/
     ports:
       - 1337:80
     depends_on:
@@ -33,3 +35,4 @@ services:
 volumes:
   postgres_data:
   static_volume:
+  media_volume:

@@ -18,14 +18,11 @@ COPY . .
 # lint
 RUN pip install --upgrade pip
 RUN pip install flake8
-RUN flake8 --ignore=E501 .
+RUN flake8 --ignore=E501,F401 .
 
 # install dependencies
 COPY ./requirements.txt .
 RUN pip install -r requirements.txt
-
-# copy entrypoint.sh
-#COPY ./entrypoint.sh .
 
 # run entrypoint.sh
 ENTRYPOINT ["/home/share/backend/entrypoint.sh"]
