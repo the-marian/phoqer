@@ -141,3 +141,23 @@ dmypy.json
 
 #idea
 .idea
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# production
+/frontend/build
+
+# dependencies
+/frontend/node_modules
+/frontend/.pnp
+.pnp.js
+
+# testing
+/frontend/coverage
+
+# next.js
+/frontend/.next/
+/frontend/out/
