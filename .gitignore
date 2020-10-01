@@ -161,3 +161,9 @@ yarn-error.log*
 # next.js
 /frontend/.next/
 /frontend/out/
+
+#staticfiles
+backend/staticfiles/*
+
+#mediafiles
+backend/mediafiles/*

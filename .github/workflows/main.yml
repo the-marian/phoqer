@@ -3,7 +3,8 @@ name: Continuous Integration and Delivery
 on: [push]
 
 env:
-  WEB_IMAGE: docker.pkg.github.com/$GITHUB_REPOSITORY/web
+  BACKEND_IMAGE: docker.pkg.github.com/$GITHUB_REPOSITORY/backend
+  NGINX_IMAGE: docker.pkg.github.com/$GITHUB_REPOSITORY/nginx
 
 jobs:
 
@@ -29,20 +30,23 @@ jobs:
           echo POSTGRES_PORT=${{ secrets.POSTGRES_PORT }} >> .env.dev
       - name: Set environment variables
         run: |
-          echo ::set-env name=WEB_IMAGE::$(echo ${{ env.WEB_IMAGE }} | tr '[:upper:]' '[:lower:]')
+          echo ::set-env name=BACKEND_IMAGE::$(echo ${{ env.BACKEND_IMAGE }} | tr '[:upper:]' '[:lower:]')
+          echo ::set-env name=NGINX_IMAGE::$(echo ${{ env.NGINX_IMAGE }} | tr '[:upper:]' '[:lower:]')
       - name: Log in to GitHub Packages
         run: echo ${GITHUB_TOKEN} | docker login -u ${GITHUB_ACTOR} --password-stdin docker.pkg.github.com
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Pull images
         run: |
-          docker pull ${{ env.WEB_IMAGE }} || true
+          docker pull ${{ env.BACKEND_IMAGE }} || true
+          docker pull ${{ env.NGINX_IMAGE }} || true
       - name: Build images
         run: |
-          docker-compose -f docker-compose.yml build
+          docker-compose -f docker-compose.ci.yml --env-file ./.env.dev build
       - name: Push images
         run: |
-          docker push ${{ env.WEB_IMAGE }}
+          docker push ${{ env.BACKEND_IMAGE }}
+          docker push ${{ env.NGINX_IMAGE }}
 
   deploy:
     name: Deploy to Vultr VPS
@@ -66,8 +70,8 @@ jobs:
           echo POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }} >> .env.dev
           echo POSTGRES_HOST=${{ secrets.POSTGRES_HOST }} >> .env.dev
           echo POSTGRES_PORT=${{ secrets.POSTGRES_PORT }} >> .env.dev
-          echo WEB_IMAGE=${{ env.WEB_IMAGE }} >> .env.dev
-          echo NGINX_IMAGE=${{ env.NGINX_IMAGE }} >> .env.dev
+          echo BACKEND_IMAGE=$(echo ${{ env.BACKEND_IMAGE }} | tr '[:upper:]' '[:lower:]') >> .env.dev
+          echo NGINX_IMAGE=$(echo ${{ env.NGINX_IMAGE }} | tr '[:upper:]' '[:lower:]') >> .env.dev
       - name: Add the private SSH key to the ssh-agent
         env:
           SSH_AUTH_SOCK: /tmp/ssh_agent.sock
@@ -80,11 +84,12 @@ jobs:
         env:
           SSH_AUTH_SOCK: /tmp/ssh_agent.sock
         run: |
-          scp  -o StrictHostKeyChecking=no -r ./.env.dev ./docker-compose.yml root@${{ secrets.VPS_IP_ADDRESS }}:~/share
+          scp  -o StrictHostKeyChecking=no -r ./.env.dev ./docker-compose.yml root@${{ secrets.VPS_IP_ADDRESS }}:/home
           ssh -o StrictHostKeyChecking=no root@${{ secrets.VPS_IP_ADDRESS }} << 'ENDSSH'
-            cd ~/share
+            cd /home
             source .env.dev
             docker login docker.pkg.github.com -u ${{ secrets.USERNAME }} -p ${{ secrets.TOKEN }}
-            docker pull $(echo $WEB_IMAGE | tr '[:upper:]' '[:lower:]')
-            docker-compose -f docker-compose.yml up -d
+            docker pull $BACKEND_IMAGE
+            docker pull $NGINX_IMAGE
+            docker-compose -f docker-compose.yml --env-file ./.env.dev up -d
           ENDSSH
