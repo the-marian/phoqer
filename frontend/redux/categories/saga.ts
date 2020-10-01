@@ -5,8 +5,8 @@ import { ICategories } from '../../interfaces';
 
 function* getCategories() {
   try {
-    const { status, data }: { status: number; data: ICategories  } = yield call(
-      api.categories.get
+    const { status, data }: { status: number; data: ICategories } = yield call(
+      api.categories.get,
     );
     if (status < 200 || status >= 300) throw new Error('Something went wrong');
     yield put({ type: types.GET_CATEGORIES_SUCCESS, payload: data });

@@ -1,4 +1,4 @@
-import { ICategories } from "../interfaces";
+import { ICategories } from '../interfaces';
 
 const categories: ICategories[] = [
   {
@@ -12,7 +12,7 @@ const categories: ICategories[] = [
   {
     name: 'Lorem2',
     img: 'lorem2',
-  }
+  },
 ];
 
 export default categories;
