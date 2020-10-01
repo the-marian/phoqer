@@ -1,13 +1,9 @@
-from django.urls import path, include
+from django.urls import path
 from . import views
-from rest_framework import routers
 
-
-categories_router = routers.DefaultRouter()
-categories_router.register('parent-categories', views.ParentCategoryViewSet, basename='parent-categories')
-categories_router.register('child-categories', views.ChildCategoryViewSet, basename='child-categories')
 app_name = 'categories'
 
 urlpatterns = [
-    path('', include(categories_router.urls))
+    path('parent-categories/', views.ParentCategoryView.as_view(), name='parent-categories'),
+    path('child-categories/', views.ChildCategoryView.as_view(), name='child-categories'),
 ]

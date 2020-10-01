@@ -5,7 +5,7 @@ from .models import ParentCategories, ChildCategories
 class ChildCategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = ChildCategories
-        fields = ['name',]
+        fields = ['name']
 
 
 class ParentCategorySerializer(serializers.ModelSerializer):
@@ -13,4 +13,4 @@ class ParentCategorySerializer(serializers.ModelSerializer):
 
     class Meta:
         model = ParentCategories
-        fields = ['sub_categories', 'name', 'is_active', 'priority',]
+        fields = ['name', 'is_active', 'priority', 'sub_categories']
