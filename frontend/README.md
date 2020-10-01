@@ -41,6 +41,7 @@ yarn start
 
 > npm run build потом npm start, только такая последовательность
 
+
 Открывайте [http://localhost:3000](http://localhost:3000) в браузере
 
 
