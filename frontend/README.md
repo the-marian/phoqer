@@ -1,67 +1,47 @@
-## Very simple chat room with five chatbots
+## Как запустить проект?
 
-```You can open live page by folowing this link``` - https://chat-bot-five.vercel.app/
+- [ ] Установить новую версию [Noed.js](https://nodejs.org/uk/)
+- [ ] Склонить проект себе на компуктер
+- [ ] Зайта в директорию проекта ```/share/frontend```
+- [ ] Установить node_modules прописав в терминале:
 
-## Technology Stack:
-
-```
-- next.js
-- react
-- redux
-- saga
-- typescript
-- node.js
-- firebase
+```bash
+npm i
+# или
+yarn install
 ```
 
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/zeit/next.js/tree/canary/packages/create-next-app).
-
-## Description
-
-Each of the five bots responds with random phrases 1 - 5 seconds after your message.  
-It was planned that the robots would respond with phrases from this API ```https://alexwohlbruck.github.io/cat-facts/docs/```  
-But it seems there are some server issues right now.    
-So if cat-facts API respond with error, robots respond with such phrases:  
-
-> My wife is really mad at the fact that I have no sense of direction. So I packed up my stuff and right!  
-
-> How do you get a squirrel to like you? Act like a nut.  
-
-> Why don't eggs tell jokes? They'd crack each other up.  
-
-> I don't trust stairs. They're always up to something.  
-
-> What do you call someone with no body and no nose? Nobody knows.  
-
-> Did you hear the rumor about butter? Well, I'm not going to spread it!  
-
-> Why couldn't the bicycle stand up by itself? It was two tired.  
-
-> "Dad, can you put my shoes on?" "No, I don't think they'll fit me."  
-
-> Why can't a nose be 12 inches long? Because then it would be a foot.  
-
-> This graveyard looks overcrowded. People must be dying to get in.  
+> npm - установится с node.js   
+> yarn - это как npm только чуть-чуть лучше, если решите устанавливать, то оно того не стоит
 
 
-
-## If you whoul like to open this project on the localhost, folow next steps:
-
-First, download this project into your pc  
-Next, open project folder and run the development server:
+- [ ] Чтобы запустить dev версию проекта, прописать в терминале:
 
 ```bash
 npm run dev
-# or
+# или
 yarn run dev
 ```
 
-Open [http://localhost:4000](http://localhost:4000) with your browser to see the result.
+- [ ] Чтобы склепать prod версию:
 
-## Vercel
+```bash
+npm run build
+# или
+yarn run build
+```
 
-This project is hosts on [vercel](https://vercel.com/)
+- [ ] Чтобы запустить prod версию:
 
-## More
+```bash
+npm start
+# или
+yarn start
+```
 
-Still have questions? Feel free to ask them by this mail ```igot.c.m@ukr.net```
+> npm run build потом npm start, только такая последовательность
+
+Открывайте [http://localhost:3000](http://localhost:3000) в браузере
+
+
+<img width="400" src="https://i.pinimg.com/originals/1e/b6/62/1eb6625adf1d63d969a72bd80cc593ba.jpg">

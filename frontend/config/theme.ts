@@ -3,14 +3,19 @@ export interface Theme {
   box: {
     two: (vert: number, horiz: number) => string;
     three: (vert1: number, horiz: number, vert2: number) => string;
-    four: (vert1: number, horiz1: number, vert2: number, horiz2: number) => string;
+    four: (
+      vert1: number,
+      horiz1: number,
+      vert2: number,
+      horiz2: number,
+    ) => string;
   };
   radius: number;
   shadow: string[];
   palette: {
     white: '#FFFFFF';
     black: '#242424';
-    gray: '#EEEEEE'
+    gray: '#EEEEEE';
   };
   text: {
     color: {
@@ -19,16 +24,22 @@ export interface Theme {
     };
     fontFamily: string;
     fontWeight: [200, 300, 400, 500, 600, 700];
-  }
-  transitions: string[],
+  };
+  transitions: string[];
 }
 
 export const theme: Theme = {
   rem: (value: number): string => `${value}rem`,
   box: {
     two: (vert: number, horiz: number): string => `${vert}rem ${horiz}rem`,
-    three: (vert1: number, horiz: number, vert2: number): string => `${vert1}rem ${horiz}rem ${vert2}rem`,
-    four: (vert1: number, horiz1: number, vert2: number, horiz2: number): string => `${vert1}rem ${horiz1}rem ${vert2}rem ${horiz2}rem`,
+    three: (vert1: number, horiz: number, vert2: number): string =>
+      `${vert1}rem ${horiz}rem ${vert2}rem`,
+    four: (
+      vert1: number,
+      horiz1: number,
+      vert2: number,
+      horiz2: number,
+    ): string => `${vert1}rem ${horiz1}rem ${vert2}rem ${horiz2}rem`,
   },
   radius: 4,
   shadow: [
@@ -41,7 +52,7 @@ export const theme: Theme = {
   palette: {
     white: '#FFFFFF',
     black: '#242424',
-    gray: '#EEEEEE'
+    gray: '#EEEEEE',
   },
   text: {
     color: {

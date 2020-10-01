@@ -5,7 +5,7 @@ import { ICategories } from '../../interfaces';
 
 const user = (
   state: ICategories = null,
-  { type, payload }: AnyAction
+  { type, payload }: AnyAction,
 ): ICategories => {
   switch (type) {
     case HYDRATE:

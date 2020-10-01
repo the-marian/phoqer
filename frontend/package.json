@@ -4,8 +4,11 @@
   "proxy": "http://localhost:3000",
   "scripts": {
     "dev": "next",
+    "preBuild": "eslint --fix . && prettier --write './**/*.{js,jsx,ts,tsx,css,json}' --config ./.prettierrc",
     "build": "next build",
     "start": "next start",
+    "lint": "eslint --fix .",
+    "format": "prettier --write './**/*.{js,jsx,ts,tsx,css,json}' --config ./.prettierrc",
     "type-check": "tsc"
   },
   "dependencies": {
