@@ -1,0 +1,89 @@
+@charset "UTF-8";
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 10px;
+  font-family: 'Montserrat', sans-serif;
+}
+
+body {
+  scroll-behavior: smooth;
+  text-rendering: optimizeSpeed;
+  line-height: 1.5;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+}
+
+picture {
+  display: block;
+}
+
+img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+audio,
+canvas,
+iframe,
+img,
+svg,
+video,
+textarea {
+  vertical-align: middle;
+}
+
+textarea {
+  resize: none;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  box-shadow: 0 0 0.2rem 0.1rem rgb(54, 159, 255);
+}
+
+input,
+select,
+textarea,
+button,
+a {
+  outline: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+p {
+  margin-bottom: 2rem;
+}
+
+a {
+  text-decoration: none;
+}
