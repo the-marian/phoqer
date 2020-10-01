@@ -10,20 +10,21 @@ export interface Theme {
       horiz2: number,
     ) => string;
   };
-  radius: number;
+  radius: string;
   shadow: string[];
   palette: {
     white: '#FFFFFF';
     black: '#242424';
     gray: '#EEEEEE';
+    modalBack: string;
   };
   text: {
     color: {
       white: '#FFFFFF';
       black: '#242424';
     };
-    fontFamily: string;
-    fontWeight: [200, 300, 400, 500, 600, 700];
+    family: string;
+    weight: [200, 300, 400, 500, 600, 700];
   };
   transitions: string[];
 }
@@ -41,7 +42,7 @@ export const theme: Theme = {
       horiz2: number,
     ): string => `${vert1}rem ${horiz1}rem ${vert2}rem ${horiz2}rem`,
   },
-  radius: 4,
+  radius: '0.4rem',
   shadow: [
     '0 0.1rem 0.3rem rgba(0,0,0,0.12), 0 0.1rem 0.2rem rgba(0,0,0,0.24)',
     '0 0.3rem 0.6rem rgba(0,0,0,0.16), 0 0.3rem 0.6rem rgba(0,0,0,0.23)',
@@ -53,14 +54,15 @@ export const theme: Theme = {
     white: '#FFFFFF',
     black: '#242424',
     gray: '#EEEEEE',
+    modalBack: 'rgba(0, 0, 0, 0.5)',
   },
   text: {
     color: {
       white: '#FFFFFF',
       black: '#242424',
     },
-    fontFamily: 'Montserrat, sans-serif',
-    fontWeight: [200, 300, 400, 500, 600, 700],
+    family: 'Montserrat, sans-serif',
+    weight: [200, 300, 400, 500, 600, 700],
   },
   transitions: ['3s cubic-bezier(0.4, 0, 0.2, 1)'],
 };

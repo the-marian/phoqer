@@ -1,24 +1,40 @@
-import React from 'react';
-import { createUseStyles, useTheme, ThemeProvider } from 'react-jss';
+import Link from 'next/link';
+import React, { ReactElement } from 'react';
+import { createUseStyles } from 'react-jss';
+
 import { Theme } from '../../config/theme';
+import UserInfo from './UserInfo';
 
 const useStyles = createUseStyles((theme: Theme) => ({
   header: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
     width: '100%',
-    padding: theme.box.two(3, 4),
+    marginBottom: theme.rem(4),
+    padding: theme.box.two(1, 4),
     background: theme.palette.gray,
+  },
+  logo: {
+    width: 'auto',
+    height: theme.rem(4),
+  },
+  img: {
+    height: '100%',
+    width: 'auto',
   },
 }));
 
-const Header = () => {
+const Header = (): ReactElement => {
   const css = useStyles();
   return (
     <header className={css.header}>
-      <div>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis ea
-        excepturi eaque sint amet odit est atque. Tenetur nemo laborum, ratione
-        dolores, corrupti ut at quis dolorem eius illum neque?
-      </div>
+      <Link href="/">
+        <a className={css.logo}>
+          <img className={css.img} src="/logo.png" alt="logo" />
+        </a>
+      </Link>
+      <UserInfo />
     </header>
   );
 };
