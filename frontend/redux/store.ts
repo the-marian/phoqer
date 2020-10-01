@@ -1,9 +1,11 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
+import { createWrapper } from 'next-redux-wrapper';
 import { applyMiddleware, createStore } from 'redux';
 import createSagaMiddleware, { SagaMiddleware } from 'redux-saga';
-import { createWrapper } from 'next-redux-wrapper';
+
+import { IStore } from '../interfaces';
 import rootReducer from './reducers';
 import rootSaga from './sagas';
-import { IStore } from '../interfaces';
 
 const bindMiddleware = (middleware: SagaMiddleware[]) => {
   if (process.env.NODE_ENV !== 'production') {
@@ -13,7 +15,7 @@ const bindMiddleware = (middleware: SagaMiddleware[]) => {
   return applyMiddleware(...middleware);
 };
 
-export const makeStore = () => {
+export const makeStore = (): IStore => {
   const sagaMiddleware = createSagaMiddleware();
   const store: IStore = createStore(
     rootReducer,

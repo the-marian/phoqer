@@ -1,14 +1,13 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import { END } from 'redux-saga';
-import types from '../redux/types';
-import { wrapper } from '../redux/store';
-import { IStore } from '../interfaces';
-import Header from '../components/Header';
 
-const Index = () => {
+import { IStore } from '../interfaces';
+import { wrapper } from '../redux/store';
+import types from '../redux/types';
+
+const Index = (): ReactElement => {
   return (
     <>
-      <Header />
       <main className="main">
         Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sequi ullam
         quis quaerat aliquid similique est esse, assumenda illo excepturi cumque

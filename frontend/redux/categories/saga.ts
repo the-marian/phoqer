@@ -1,7 +1,8 @@
-import { call, put, takeLatest } from 'redux-saga/effects';
-import types from '../types';
+import { call, ForkEffect, put, takeLatest } from 'redux-saga/effects';
+
 import api from '../../config/api';
 import { ICategories } from '../../interfaces';
+import types from '../types';
 
 function* getCategories() {
   try {
@@ -15,6 +16,6 @@ function* getCategories() {
   }
 }
 
-export function* watcherCategories() {
+export function* watcherCategories(): Generator<ForkEffect<never>> {
   yield takeLatest(types.GET_CATEGORIES_START, getCategories);
 }

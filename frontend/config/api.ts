@@ -1,5 +1,7 @@
 import axios, { AxiosResponse } from 'axios';
 
+import { ICategories } from '../interfaces';
+
 axios.defaults.baseURL =
   process.env.NODE_ENV !== 'production'
     ? process.env.DEV_URL
@@ -7,13 +9,14 @@ axios.defaults.baseURL =
 
 export interface IApi {
   categories: {
-    get: <T>() => Promise<AxiosResponse<T>>;
+    get: () => Promise<AxiosResponse<ICategories>>;
   };
 }
 
 const api: IApi = {
   categories: {
-    get: () => axios.get('/api/categories'),
+    get: (): Promise<AxiosResponse<ICategories>> =>
+      axios.get('/api/categories'),
   },
 };
 

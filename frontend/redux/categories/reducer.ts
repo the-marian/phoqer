@@ -1,7 +1,8 @@
-import { AnyAction } from 'redux';
 import { HYDRATE } from 'next-redux-wrapper';
-import types from '../types';
+import { AnyAction } from 'redux';
+
 import { ICategories } from '../../interfaces';
+import types from '../types';
 
 const user = (
   state: ICategories = null,

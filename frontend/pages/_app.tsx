@@ -1,32 +1,33 @@
-import React from 'react';
-import { AppProps } from 'next/app';
-import { NextComponentType, NextPageContext } from 'next';
-import {
-  ThemeProvider,
-  JssProvider,
-  SheetsRegistry,
-  createGenerateId,
-} from 'react-jss';
-import { wrapper } from '../redux/store';
-import { theme } from '../config/theme';
-
 import '../styles/fonts.css';
 import '../styles/normalize.css';
 import '../styles/styles.css';
 
-interface IProps {
-  Component: NextComponentType<NextPageContext, {}, any>;
-  pageProps: AppProps;
-}
+import { AppProps } from 'next/app';
+import React from 'react';
+import {
+  createGenerateId,
+  JssProvider,
+  SheetsRegistry,
+  ThemeProvider,
+} from 'react-jss';
 
-const App = ({ Component, pageProps }: IProps) => {
+import Modal from '../components/common/Modal';
+import Footer from '../components/Footer';
+import Header from '../components/Header';
+import { theme } from '../config/theme';
+import { wrapper } from '../redux/store';
+
+const App = ({ Component, pageProps }: AppProps) => {
   const sheets = new SheetsRegistry();
   const generateId = createGenerateId();
 
   return (
     <JssProvider registry={sheets} generateId={generateId}>
       <ThemeProvider theme={theme}>
+        <Modal />
+        <Header />
         <Component {...pageProps} />
+        <Footer />
       </ThemeProvider>
     </JssProvider>
   );
