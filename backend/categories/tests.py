@@ -1,24 +1,160 @@
-from rest_framework.test import APITestCase
-from django.urls import reverse
 from rest_framework import status
-from .models import ParentCategories
-# Create your tests here.
+from rest_framework.test import APITestCase
 
+from .models import ParentCategories, ChildCategories
 
-class ParentCategoriesTests(APITestCase):
+sport_img_url = 'https://example.com/sport.jpeg'
+books_img_url = 'https://example.com/books.jpeg'
+toys_img_url = 'https://example.com/toys.jpeg'
+categories_endpoint_url = '/categories/'
+
+class CategoriesTests(APITestCase):
+    list_categories_expected_response = [
+        {
+            'name': 'Sport',
+            'image': sport_img_url,
+            'sub_categories': [
+                {
+                    'name': 'Bicycle'
+                },
+                {
+                    'name': 'Jet Ski'
+                },
+            ]
+        },
+        {
+            'name': 'Books',
+            'image': books_img_url,
+            'sub_categories': [
+                {
+                    'name': 'Bible'
+                },
+                {
+                    'name': 'Alphabet'
+                },
+            ]
+        },
+        {
+            'name': 'Toys',
+            'image': toys_img_url,
+            'sub_categories': [
+                {
+                    'name': 'Yo-yo'
+                },
+                {
+                    'name': 'Chess'
+                },
+            ]
+        },
+    ]
+
+    list_categories_without_toys = [
+        {
+            'name': 'Sport',
+            'image': sport_img_url,
+            'sub_categories': [
+                {
+                    'name': 'Bicycle'
+                },
+                {
+                    'name': 'Jet Ski'
+                },
+            ]
+        },
+        {
+            'name': 'Books',
+            'image': books_img_url,
+            'sub_categories': [
+                {
+                    'name': 'Bible'
+                },
+                {
+                    'name': 'Alphabet'
+                },
+            ]
+        },
+    ]
+
+    list_categories_ordered_by_priority = [
+        {
+            'name': 'Toys',
+            'image': toys_img_url,
+            'sub_categories': [
+                {
+                    'name': 'Yo-yo'
+                },
+                {
+                    'name': 'Chess'
+                },
+            ]
+        },
+        {
+            'name': 'Books',
+            'image': books_img_url,
+            'sub_categories': [
+                {
+                    'name': 'Bible'
+                },
+                {
+                    'name': 'Alphabet'
+                },
+            ]
+        },
+        {
+            'name': 'Sport',
+            'image': sport_img_url,
+            'sub_categories': [
+                {
+                    'name': 'Bicycle'
+                },
+                {
+                    'name': 'Jet Ski'
+                },
+            ]
+        },
+    ]
+
     def setUp(self):
-        ParentCategories.objects.create(name="Music", is_active="True", priority="2")
-        ParentCategories.objects.create(name="Books", is_active="True", priority="10")
-        ParentCategories.objects.create(name="Toys", is_active="False", priority="7")
+        sport = ParentCategories.objects.create(name='Sport', image=sport_img_url, is_active=True,
+                                                priority=1)
+        books = ParentCategories.objects.create(name='Books', image=books_img_url, is_active=True,
+                                                priority=2)
+        toys = ParentCategories.objects.create(name='Toys', image=toys_img_url, is_active=True,
+                                               priority=3)
+        ChildCategories.objects.create(name='Bicycle', parent=sport)
+        ChildCategories.objects.create(name='Jet Ski', parent=sport)
+        ChildCategories.objects.create(name='Bible', parent=books)
+        ChildCategories.objects.create(name='Alphabet', parent=books)
+        ChildCategories.objects.create(name='Yo-yo', parent=toys)
+        ChildCategories.objects.create(name='Chess', parent=toys)
 
-    def test_parent_categories_response(self):
-        response = self.client.get(reverse('api-categories:parent-categories'))
+    def test_list_categories(self):
+        response = self.client.get(categories_endpoint_url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-
-    def test_priority(self):
-        music = ParentCategories.objects.get(name="Music")
-        books = ParentCategories.objects.get(name="Books")
-        self.assertLess(music.priority, books.priority)
+        self.assertEqual(response.data, self.list_categories_expected_response)
 
     def test_is_active(self):
-        pass
+        response = self.client.get(categories_endpoint_url)
+        self.assertEqual(response.data, self.list_categories_expected_response)
+
+        toys = ParentCategories.objects.get(name='Toys')
+        toys.is_active = False
+        toys.save()
+
+        response = self.client.get(categories_endpoint_url)
+        self.assertEqual(response.data, self.list_categories_without_toys)
+
+    def test_priority(self):
+        response = self.client.get(categories_endpoint_url)
+        self.assertEqual(response.data, self.list_categories_expected_response)
+
+        sport = ParentCategories.objects.get(name='Sport')
+        sport.priority = 3
+        sport.save()
+
+        toys = ParentCategories.objects.get(name='Toys')
+        toys.priority = 1
+        toys.save()
+
+        response = self.client.get(categories_endpoint_url)
+        self.assertEqual(response.data, self.list_categories_ordered_by_priority)
