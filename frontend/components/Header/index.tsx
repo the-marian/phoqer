@@ -3,6 +3,8 @@ import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
 import { Theme } from '../../config/theme';
+import Logo from '../common/Logo';
+import Lang from '../Lang';
 import UserInfo from './UserInfo';
 
 const useStyles = createUseStyles((theme: Theme) => ({
@@ -12,16 +14,12 @@ const useStyles = createUseStyles((theme: Theme) => ({
     alignItems: 'center',
     width: '100%',
     marginBottom: theme.rem(4),
-    padding: theme.box.two(1, 4),
+    padding: theme.box.two(1, 8),
     background: theme.palette.gray,
   },
-  logo: {
-    width: 'auto',
-    height: theme.rem(4),
-  },
-  img: {
-    height: '100%',
-    width: 'auto',
+  wrp: {
+    display: 'flex',
+    alignItems: 'center',
   },
 }));
 
@@ -29,11 +27,11 @@ const Header = (): ReactElement => {
   const css = useStyles();
   return (
     <header className={css.header}>
-      <Link href="/">
-        <a className={css.logo}>
-          <img className={css.img} src="/logo.png" alt="logo" />
-        </a>
-      </Link>
+      <div className={css.wrp}>
+        <Logo />
+        <Lang />
+      </div>
+
       <UserInfo />
     </header>
   );

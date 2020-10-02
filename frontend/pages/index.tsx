@@ -7,13 +7,12 @@ import types from '../redux/types';
 
 const Index = (): ReactElement => {
   return (
-    <>
-      <main className="main">
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sequi ullam
-        quis quaerat aliquid similique est esse, assumenda illo excepturi cumque
-        dolore illum, in a deserunt nihil, id consequatur laboriosam animi?
-      </main>
-    </>
+    <main className="main">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi nam
+      perferendis consectetur voluptate rem natus asperiores cupiditate eligendi
+      minima facilis? Eum at voluptates deserunt quaerat iure nulla soluta
+      fugiat dignissimos.
+    </main>
   );
 };
 
