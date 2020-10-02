@@ -13,4 +13,4 @@ class ParentCategorySerializer(serializers.ModelSerializer):
 
     class Meta:
         model = ParentCategories
-        fields = ['name', 'is_active', 'priority', 'sub_categories']
+        fields = ['name', 'image', 'sub_categories']
