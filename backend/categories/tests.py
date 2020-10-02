@@ -8,6 +8,7 @@ books_img_url = 'https://example.com/books.jpeg'
 toys_img_url = 'https://example.com/toys.jpeg'
 categories_endpoint_url = '/categories/'
 
+
 class CategoriesTests(APITestCase):
     list_categories_expected_response = [
         {
