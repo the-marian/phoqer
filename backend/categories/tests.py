@@ -15,19 +15,10 @@ class ParentCategoriesTests(APITestCase):
         response = self.client.get(reverse('api-categories:parent-categories'))
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
-    def test_child_categories_response(self):
-        response = self.client.get(reverse('api-categories:child-categories'))
-        self.assertEqual(response.status_code, status.HTTP_200_OK)
-
     def test_priority(self):
         music = ParentCategories.objects.get(name="Music")
         books = ParentCategories.objects.get(name="Books")
         self.assertLess(music.priority, books.priority)
 
     def test_is_active(self):
-        music = ParentCategories.objects.get(name="Music")
-        toys = ParentCategories.objects.get(name="Toys")
-        if music.is_active == toys.is_active:
-            self.assertEqual(music.is_active, toys.is_active)
-        else:
-            self.assertNotEqual(music.is_active, toys.is_active)
+        pass
