@@ -103,15 +103,6 @@ celerybeat.pid
 
 # Environments
 .env
-.venv
-env/
-venv/
-ENV/
-env.bak/
-venv.bak/
-
-# Environments
-.env
 .env.dev
 .env.prod
 .venv
@@ -161,6 +152,13 @@ yarn-error.log*
 # next.js
 /frontend/.next/
 /frontend/out/
+
+# vercel
+.vercel
+
+# misc
+.DS_Store
+*.pem
 
 #staticfiles
 backend/staticfiles/*
