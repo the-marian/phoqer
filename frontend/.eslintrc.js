@@ -26,7 +26,7 @@ module.exports = {
     'plugin:react/recommended',
     'plugin:jsx-a11y/recommended',
     'prettier/@typescript-eslint',
-    'plugin:prettier/recommended', // Make sure this is always the last element in the array.
+    'plugin:prettier/recommended',
   ],
   rules: {
     'prettier/prettier': ['error', {}, { usePrettierrc: true }],

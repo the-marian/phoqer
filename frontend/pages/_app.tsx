@@ -17,7 +17,7 @@ import Header from '../components/Header';
 import { theme } from '../config/theme';
 import { wrapper } from '../redux/store';
 
-const App = ({ Component, pageProps }: AppProps) => {
+const MyApp = ({ Component, pageProps }: AppProps) => {
   const sheets = new SheetsRegistry();
   const generateId = createGenerateId();
 
@@ -33,4 +33,4 @@ const App = ({ Component, pageProps }: AppProps) => {
   );
 };
 
-export default wrapper.withRedux(App);
+export default wrapper.withRedux(MyApp);
