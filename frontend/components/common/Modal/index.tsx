@@ -34,7 +34,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     position: 'absolute',
     top: 0,
     right: 0,
-    padding: theme.box.two(1, 1.5),
+    padding: theme.rem(1, 1.5),
     fontSize: theme.rem(1.2),
   },
 }));

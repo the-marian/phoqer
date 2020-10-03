@@ -50,7 +50,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     fontSize: theme.rem(1.2),
     fontWeight: theme.text.weight[3],
     color: theme.text.color.black,
-    lineHeight: 3,
+    lineHeight: 4,
     '&:hover': {
       textDecoration: 'underline',
     },

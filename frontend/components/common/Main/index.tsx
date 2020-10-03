@@ -4,8 +4,8 @@ import { createUseStyles } from 'react-jss';
 import { Theme } from '../../../config/theme';
 
 const useStyles = createUseStyles((theme: Theme) => ({
-  container: {
-    margin: theme.rem(0, 8),
+  main: {
+    margin: theme.rem(15, 0, 25),
   },
 }));
 
@@ -13,9 +13,9 @@ interface Props {
   children: JSX.Element[] | JSX.Element;
 }
 
-const Container = ({ children }: Props): ReactElement => {
+const Main = ({ children }: Props): ReactElement => {
   const css = useStyles();
-  return <div className={css.container}>{children}</div>;
+  return <main className={css.main}>{children}</main>;
 };
 
-export default Container;
+export default Main;

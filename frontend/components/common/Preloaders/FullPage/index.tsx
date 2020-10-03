@@ -15,6 +15,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     justifyContent: 'center',
     alignItems: 'center',
     background: theme.palette.modal,
+    zIndex: 1000,
   },
   img: {
     height: theme.rem(4),
