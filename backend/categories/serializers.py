@@ -1,11 +1,15 @@
 from rest_framework import serializers
+
 from .models import ParentCategories, ChildCategories
 
 
 class ChildCategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = ChildCategories
-        fields = ['name']
+        fields = [
+            'name',
+            'slug',
+        ]
 
 
 class ParentCategorySerializer(serializers.ModelSerializer):
@@ -13,4 +17,9 @@ class ParentCategorySerializer(serializers.ModelSerializer):
 
     class Meta:
         model = ParentCategories
-        fields = ['name', 'image', 'sub_categories']
+        fields = [
+            'image',
+            'name',
+            'slug',
+            'sub_categories',
+        ]
