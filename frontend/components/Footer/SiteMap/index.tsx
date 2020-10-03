@@ -46,10 +46,11 @@ const useStyles = createUseStyles((theme: Theme) => ({
     width: '50%',
   },
   link: {
+    display: 'block',
     fontSize: theme.rem(1.2),
     fontWeight: theme.text.weight[3],
     color: theme.text.color.black,
-    lineHeight: 4,
+    lineHeight: 3,
     '&:hover': {
       textDecoration: 'underline',
     },

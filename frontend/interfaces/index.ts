@@ -3,7 +3,8 @@ import { AnyAction, Store } from 'redux';
 
 export interface ICategories {
   name: string;
-  img: string;
+  image: string;
+  sub_categories?: { name: string }[];
 }
 
 export interface IModal {

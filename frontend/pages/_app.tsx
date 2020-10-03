@@ -12,6 +12,7 @@ import {
 } from 'react-jss';
 
 import Modal from '../components/common/Modal';
+import FullPage from '../components/common/Preloaders/FullPage';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 import { theme } from '../config/theme';
@@ -25,6 +26,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
     <JssProvider registry={sheets} generateId={generateId}>
       <ThemeProvider theme={theme}>
         <Modal />
+        <FullPage />
         <Header />
         <Component {...pageProps} />
         <Footer />
