@@ -7,7 +7,7 @@ import { Theme } from '../../../config/theme';
 const useStyles = createUseStyles((theme: Theme) => ({
   logo: {
     display: 'block',
-    width: 'auto',
+    width: 'max-content',
     height: theme.rem(4),
     marginRight: theme.rem(2),
   },

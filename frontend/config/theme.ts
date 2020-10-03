@@ -1,5 +1,6 @@
 export interface Theme {
   rem: (value: number) => string;
+  fr: (value: number) => string;
   box: {
     two: (vert: number, horiz: number) => string;
     three: (vert1: number, horiz: number, vert2: number) => string;
@@ -15,8 +16,8 @@ export interface Theme {
   palette: {
     white: '#FFFFFF';
     black: '#242424';
-    gray: '#EEEEEE';
-    modalBack: string;
+    gray: string[];
+    modal: string;
   };
   text: {
     color: {
@@ -31,6 +32,7 @@ export interface Theme {
 
 export const theme: Theme = {
   rem: (value: number): string => `${value}rem`,
+  fr: (value: number): string => Array(value).fill('1fr').join(' '),
   box: {
     two: (vert: number, horiz: number): string => `${vert}rem ${horiz}rem`,
     three: (vert1: number, horiz: number, vert2: number): string =>
@@ -53,8 +55,8 @@ export const theme: Theme = {
   palette: {
     white: '#FFFFFF',
     black: '#242424',
-    gray: '#EEEEEE',
-    modalBack: 'rgba(0, 0, 0, 0.5)',
+    gray: ['#EEEEEE', '#C4C4C4'],
+    modal: 'rgba(0, 0, 0, 0.5)',
   },
   text: {
     color: {
@@ -64,5 +66,5 @@ export const theme: Theme = {
     family: 'Montserrat, sans-serif',
     weight: [200, 300, 400, 500, 600, 700],
   },
-  transitions: ['3s cubic-bezier(0.4, 0, 0.2, 1)'],
+  transitions: ['0.3s cubic-bezier(0.4, 0, 0.2, 1)'],
 };

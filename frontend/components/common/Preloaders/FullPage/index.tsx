@@ -1,4 +1,5 @@
-import React, { ReactElement } from 'react';
+import Router from 'next/router';
+import React, { ReactElement, useState } from 'react';
 import { createUseStyles } from 'react-jss';
 
 import { Theme } from '../../../../config/theme';
@@ -13,7 +14,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    background: theme.palette.modalBack,
+    background: theme.palette.modal,
   },
   img: {
     height: theme.rem(4),
@@ -23,10 +24,21 @@ const useStyles = createUseStyles((theme: Theme) => ({
 
 const FullPage = (): ReactElement => {
   const css = useStyles();
+  const [loader, setLoader] = useState(false);
+
+  Router.events.on('routeChangeStart', () => {
+    setLoader(true);
+  });
+
+  Router.events.on('routeChangeComplete', () => {
+    setLoader(false);
+  });
   return (
-    <div className={css.wrp}>
-      <img className={css.img} src="/spinner.gif" alt="spinner" />
-    </div>
+    loader && (
+      <div className={css.wrp}>
+        <img className={css.img} src="/spinner.gif" alt="spinner" />
+      </div>
+    )
   );
 };
 

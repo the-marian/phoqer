@@ -18,7 +18,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    background: theme.palette.modalBack,
+    background: theme.palette.modal,
     zIndex: 1000,
   },
   inner: {

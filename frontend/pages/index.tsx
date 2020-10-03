@@ -1,18 +1,27 @@
+import Head from 'next/head';
 import React, { ReactElement } from 'react';
 import { END } from 'redux-saga';
 
+import Categories from '../components/Categories';
+import Container from '../components/common/Container';
+import Search from '../components/common/Search';
 import { IStore } from '../interfaces';
 import { wrapper } from '../redux/store';
 import types from '../redux/types';
 
 const Index = (): ReactElement => {
   return (
-    <main className="main">
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi nam
-      perferendis consectetur voluptate rem natus asperiores cupiditate eligendi
-      minima facilis? Eum at voluptates deserunt quaerat iure nulla soluta
-      fugiat dignissimos.
-    </main>
+    <>
+      <Head>
+        <title>Fucking project</title>
+      </Head>
+      <main className="main">
+        <Container>
+          <Search />
+          <Categories />
+        </Container>
+      </main>
+    </>
   );
 };
 
