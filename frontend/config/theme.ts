@@ -1,16 +1,8 @@
 export interface Theme {
-  rem: (value: number) => string;
   fr: (value: number) => string;
-  box: {
-    two: (vert: number, horiz: number) => string;
-    three: (vert1: number, horiz: number, vert2: number) => string;
-    four: (
-      vert1: number,
-      horiz1: number,
-      vert2: number,
-      horiz2: number,
-    ) => string;
-  };
+  border: (value: number, color: string) => string;
+  rem: (one: number, two?: number, three?: number, four?: number) => string;
+  em: (one: number, two?: number, three?: number, four?: number) => string;
   radius: string;
   shadow: string[];
   palette: {
@@ -31,32 +23,29 @@ export interface Theme {
 }
 
 export const theme: Theme = {
-  rem: (value: number): string => `${value}rem`,
   fr: (value: number): string => Array(value).fill('1fr').join(' '),
-  box: {
-    two: (vert: number, horiz: number): string => `${vert}rem ${horiz}rem`,
-    three: (vert1: number, horiz: number, vert2: number): string =>
-      `${vert1}rem ${horiz}rem ${vert2}rem`,
-    four: (
-      vert1: number,
-      horiz1: number,
-      vert2: number,
-      horiz2: number,
-    ): string => `${vert1}rem ${horiz1}rem ${vert2}rem ${horiz2}rem`,
-  },
+  border: (value: number, color: string) => `${value}rem solid ${color}`,
+  rem: (one: number, two?: number, three?: number, four?: number): string =>
+    `${one}rem${two || two === 0 ? ` ${two}rem` : ''}${
+      three || three === 0 ? ` ${three}rem` : ''
+    }${four || four === 0 ? ` ${four}rem` : ''}`,
+  em: (one: number, two?: number, three?: number, four?: number): string =>
+    `${one}em${two || two === 0 ? ` ${two}em` : ''}${
+      three || three === 0 ? ` ${three}em` : ''
+    }${four || four === 0 ? ` ${four}em` : ''}`,
   radius: '0.4rem',
   shadow: [
     '0 0.1rem 0.3rem rgba(0,0,0,0.12), 0 0.1rem 0.2rem rgba(0,0,0,0.24)',
     '0 0.3rem 0.6rem rgba(0,0,0,0.16), 0 0.3rem 0.6rem rgba(0,0,0,0.23)',
     '0 1rem 2rem rgba(0,0,0,0.19), 0 0.6rem 0.6rem rgba(0,0,0,0.23)',
-    '0 1.4rem 2.8rem rgba(0,0,0,0.25), 0 1rem 1rem rgba(0,0,0,0.22)',
+    '0 1.4rem 2.8rem rgba(0,0,0,0.05), 0 1rem 1rem rgba(0,0,0,0.02)',
     '0 1.9rem 3.8rem rgba(0,0,0,0.30), 0 1.5rem 1.2rem rgba(0,0,0,0.22)',
   ],
   palette: {
     white: '#FFFFFF',
     black: '#242424',
-    gray: ['#EEEEEE', '#C4C4C4'],
-    modal: 'rgba(0, 0, 0, 0.5)',
+    gray: ['#EEEEEE', '#C4C4C4', '#999999', '#444444'],
+    modal: 'rgba(0, 0, 0, 0.8)',
   },
   text: {
     color: {

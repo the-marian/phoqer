@@ -9,8 +9,7 @@ import SiteMap from './SiteMap';
 
 const useStyles = createUseStyles((theme: Theme) => ({
   footer: {
-    marginTop: theme.rem(8),
-    padding: theme.box.two(6, 0),
+    padding: theme.rem(18, 0),
     background: theme.palette.gray[0],
   },
   wrp: {

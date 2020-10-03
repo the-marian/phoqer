@@ -10,8 +10,7 @@ import UserInfo from './UserInfo';
 const useStyles = createUseStyles((theme: Theme) => ({
   header: {
     width: '100%',
-    marginBottom: theme.rem(4),
-    padding: theme.box.two(1, 0),
+    padding: theme.rem(1, 0),
     background: theme.palette.gray[0],
   },
   flex: {
