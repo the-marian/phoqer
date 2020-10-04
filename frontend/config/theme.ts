@@ -9,6 +9,9 @@ export interface Theme {
     white: '#FFFFFF';
     black: '#242424';
     gray: string[];
+    red: string[];
+    green: string[];
+    yellow: string[];
     modal: string;
   };
   text: {
@@ -45,6 +48,9 @@ export const theme: Theme = {
     white: '#FFFFFF',
     black: '#242424',
     gray: ['#EEEEEE', '#C4C4C4', '#999999', '#444444'],
+    red: ['#c92804'],
+    green: ['#00c798'],
+    yellow: ['#edbf18'],
     modal: 'rgba(0, 0, 0, 0.8)',
   },
   text: {
