@@ -57,6 +57,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
     color: theme.text.color.white,
     borderRadius: theme.radius,
   },
+  icon: {
+    fontSize: theme.rem(1.4),
+  },
 }));
 
 const formateCatList = (data: ICategories[]): IDropList[] =>
@@ -75,7 +78,9 @@ const Search = (): ReactElement => {
   return (
     <div className={css.wrp}>
       <form action="#" method="post" className={css.serach}>
-        <FontAwesomeIcon icon={faSearch} />
+        <span className={css.icon}>
+          <FontAwesomeIcon icon={faSearch} />
+        </span>
         <input className={css.input} type="text" placeholder="Что вы ищите?" />
         <div className={css.cat}>
           {!!categories?.length && (

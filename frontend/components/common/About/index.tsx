@@ -5,7 +5,7 @@ import { Theme } from '../../../config/theme';
 
 const useStyles = createUseStyles((theme: Theme) => ({
   wrp: {
-    margin: theme.rem(40, 0, 30),
+    margin: theme.rem(20, 0, 30),
   },
   img: {
     height: theme.rem(75),

@@ -30,14 +30,15 @@ const useStyles = createUseStyles((theme: Theme) => ({
 
 interface Props {
   href: string;
+  children: string;
 }
 
-const LinkArrow = ({ href }: Props): ReactElement => {
+const LinkArrow = ({ href, children }: Props): ReactElement => {
   const css = useStyles();
   return (
     <Link href={href}>
       <a className={css.link}>
-        <span className={css.text}>Сдать вещи в аренду</span>
+        <span className={css.text}>{children}</span>
         <span className={css.icon}>
           <FontAwesomeIcon icon={faChevronRight} />
         </span>

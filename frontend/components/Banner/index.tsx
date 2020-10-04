@@ -28,7 +28,7 @@ const Banner = (): ReactElement => {
     <div className={css.root}>
       <h2 className={css.title}>#Делитесь с другими и зарабатывайте</h2>
       <div className={css.link}>
-        <LinkArrow href="/new_product" />
+        <LinkArrow href="/new_product">Сдать вещи в аренду</LinkArrow>
       </div>
     </div>
   );
