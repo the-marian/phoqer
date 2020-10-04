@@ -18,6 +18,21 @@ export interface IDropList {
   sub?: { name: string }[];
 }
 
+export interface IProduct {
+  id: string | number;
+  title: string;
+  text: string;
+  image: string;
+  categories?: string[];
+  type: 'top' | 'recent' | 'none';
+  view: string | number;
+  date: string;
+  favorite: boolean;
+  price: number;
+  currency: string;
+  per: string;
+}
+
 export interface IState {
   categories: ICategories[] | null;
   modal: IModal;

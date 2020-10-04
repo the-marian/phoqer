@@ -5,10 +5,11 @@ import { useSelector } from 'react-redux';
 
 import { Theme } from '../../config/theme';
 import { ICategories, IState } from '../../interfaces';
+import SectionTitle from '../common/SectionTitle';
 
 const useStyles = createUseStyles((theme: Theme) => ({
   root: {
-    margin: theme.rem(10, 0),
+    margin: theme.rem(10, 0, 6),
   },
   wrp: {
     display: 'grid',
@@ -27,11 +28,6 @@ const useStyles = createUseStyles((theme: Theme) => ({
     borderRadius: theme.radius,
     objectFit: 'cover',
   },
-  title: {
-    marginBottom: theme.rem(4),
-    fontSize: theme.rem(2),
-    fontWeight: theme.text.weight[3],
-  },
   text: {
     marginTop: theme.rem(1.5),
     fontSize: theme.rem(1.2),
@@ -45,7 +41,7 @@ const Categories = (): ReactElement => {
   );
   return (
     <div className={css.root}>
-      <h2 className={css.title}>Арендуйте здесь и сейчас</h2>
+      <SectionTitle>Арендуйте здесь и сейчас</SectionTitle>
       <div className={css.wrp}>
         {categories?.map(({ name, image }) => (
           <Link key={name} href="/search?category=">

@@ -5,7 +5,7 @@ import { Theme } from '../../../config/theme';
 
 const useStyles = createUseStyles((theme: Theme) => ({
   main: {
-    margin: theme.rem(15, 0, 25),
+    margin: theme.rem(10, 0, 25),
   },
 }));
 
