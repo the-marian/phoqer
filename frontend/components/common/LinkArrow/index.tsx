@@ -11,6 +11,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     display: 'flex',
     alignItems: 'center',
     fontSize: 'inherit',
+    width: 'max-content',
     color: 'inherit',
     '&:hover': {
       textDecoration: 'underline',

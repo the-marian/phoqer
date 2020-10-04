@@ -2,8 +2,11 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
+import { useSelector } from 'react-redux';
 
 import { Theme } from '../../../config/theme';
+import { ICategories, IDropList, IState } from '../../../interfaces';
+import DropDown from '../DropDown';
 
 const useStyles = createUseStyles((theme: Theme) => ({
   wrp: {
@@ -22,6 +25,20 @@ const useStyles = createUseStyles((theme: Theme) => ({
     fontSize: theme.rem(1.2),
     borderRadius: theme.radius,
     border: theme.border(0.1, theme.palette.gray[1]),
+  },
+  cat: {
+    position: 'relative',
+    width: theme.rem(50),
+    '&::before': {
+      content: '""',
+      position: 'absolute',
+      top: '50%',
+      left: 0,
+      transform: 'translateY(-50%)',
+      height: '70%',
+      width: theme.rem(0.1),
+      background: theme.palette.gray[1],
+    },
   },
   input: {
     display: 'block',
@@ -42,13 +59,33 @@ const useStyles = createUseStyles((theme: Theme) => ({
   },
 }));
 
+const formateCatList = (data: ICategories[]): IDropList[] =>
+  data.map(
+    (item: ICategories): IDropList =>
+      item.sub_categories
+        ? { name: item.name, sub: item.sub_categories }
+        : item,
+  );
+
 const Search = (): ReactElement => {
   const css = useStyles();
+  const categories = useSelector<IState, ICategories[]>(
+    state => state.categories,
+  );
   return (
     <div className={css.wrp}>
       <form action="#" method="post" className={css.serach}>
         <FontAwesomeIcon icon={faSearch} />
         <input className={css.input} type="text" placeholder="Что вы ищите?" />
+        <div className={css.cat}>
+          <DropDown
+            value={formateCatList(categories)}
+            onSubmit={console.log}
+            height={6.8}
+            transparent
+            toRight
+          />
+        </div>
       </form>
       <button className={css.btn}>Найти</button>
     </div>
