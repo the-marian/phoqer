@@ -1,5 +1,8 @@
 import { faEye, faHeart } from '@fortawesome/free-regular-svg-icons';
-import { faHeart as faSolidHeart } from '@fortawesome/free-solid-svg-icons';
+import {
+  faHeart as faSolidHeart,
+  faStar,
+} from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Link from 'next/link';
 import React, { ReactElement } from 'react';
@@ -16,10 +19,24 @@ const useStyles = createUseStyles((theme: Theme) => ({
       textDecoration: 'underline',
     },
   },
+  imgWrp: {
+    position: 'relative',
+  },
   img: {
     height: theme.rem(25),
     borderRadius: theme.radius,
     objectFit: 'cover',
+  },
+  top: {
+    position: 'absolute',
+    top: theme.rem(1),
+    right: theme.rem(1),
+    padding: theme.rem(0.5, 0.8),
+    background: theme.palette.white,
+    borderRadius: theme.radius,
+    color: theme.palette.yellow[0],
+    fontSize: theme.rem(1),
+    boxShadow: theme.shadow[0],
   },
   title: {
     margin: theme.rem(2, 0),
@@ -57,10 +74,11 @@ const useStyles = createUseStyles((theme: Theme) => ({
     padding: theme.rem(1.5, 3),
     fontSize: theme.rem(1.2),
     borderRadius: theme.radius,
-    background: theme.palette.gray[1],
+    background: theme.palette.gray[0],
   },
   favorite: {
     marginLeft: theme.rem(2),
+    color: theme.palette.red[0],
   },
   price: {
     margin: 0,
@@ -87,7 +105,12 @@ const Product = ({
     <div>
       <Link href={`/products/${id}`}>
         <a className={css.link}>
-          <img className={css.img} src={image} alt={title} />
+          <div className={css.imgWrp}>
+            <div className={css.top}>
+              <FontAwesomeIcon icon={faStar} />
+            </div>
+            <img className={css.img} src={image} alt={title} />
+          </div>
           <h3 className={css.title}>{title}</h3>
           <p className={css.desc}>{text}</p>
         </a>

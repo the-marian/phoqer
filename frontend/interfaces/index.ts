@@ -24,7 +24,7 @@ export interface IProduct {
   text: string;
   image: string;
   categories?: string[];
-  type: 'top' | 'recent' | 'none';
+  type: ('top' | 'recent' | 'none')[];
   view: string | number;
   date: string;
   favorite: boolean;
