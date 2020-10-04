@@ -60,7 +60,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
 }));
 
 const formateCatList = (data: ICategories[]): IDropList[] =>
-  data.map(
+  data?.map(
     (item: ICategories): IDropList =>
       item.sub_categories
         ? { name: item.name, sub: item.sub_categories }
@@ -78,13 +78,15 @@ const Search = (): ReactElement => {
         <FontAwesomeIcon icon={faSearch} />
         <input className={css.input} type="text" placeholder="Что вы ищите?" />
         <div className={css.cat}>
-          <DropDown
-            value={formateCatList(categories)}
-            onSubmit={console.log}
-            height={6.8}
-            transparent
-            toRight
-          />
+          {!!categories?.length && (
+            <DropDown
+              value={formateCatList(categories)}
+              onSubmit={console.log}
+              height={6.8}
+              transparent
+              toRight
+            />
+          )}
         </div>
       </form>
       <button className={css.btn}>Найти</button>
