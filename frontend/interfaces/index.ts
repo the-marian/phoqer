@@ -13,6 +13,11 @@ export interface IModal {
   modal: boolean;
 }
 
+export interface IDropList {
+  name: string;
+  sub?: { name: string }[];
+}
+
 export interface IState {
   categories: ICategories[] | null;
   modal: IModal;
