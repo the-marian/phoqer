@@ -1,3 +1,4 @@
+import Link from 'next/link';
 // import Link from 'next/link';
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
@@ -16,6 +17,23 @@ const useStyles = createUseStyles((theme: Theme) => ({
     display: 'grid',
     gridTemplateColumns: theme.fr(4),
     gridGap: theme.rem(8, 3),
+    '@media (max-width: 1500px)': {
+      gridTemplateColumns: theme.fr(3),
+    },
+    '@media (max-width: 1140px)': {
+      gridTemplateColumns: theme.fr(2),
+    },
+  },
+  btn: {
+    display: 'block',
+    width: theme.rem(25),
+    margin: '15rem auto 0',
+    padding: theme.rem(1.5, 3),
+    textAlign: 'center',
+    fontSize: theme.rem(1.4),
+    color: theme.text.color.black,
+    borderRadius: theme.radius,
+    background: theme.palette.gray[0],
   },
 }));
 
@@ -23,7 +41,7 @@ const Products = (): ReactElement => {
   const css = useStyles();
   return (
     <div className={css.root}>
-      <SectionTitle link="Смотреть все" href="/search?type=popular">
+      <SectionTitle link="Смотреть все" href="/products?type=popular">
         Популярные товары
       </SectionTitle>
 
@@ -32,6 +50,10 @@ const Products = (): ReactElement => {
           <Product key={product.id} {...product} />
         ))}
       </div>
+
+      <Link href="/products">
+        <a className={css.btn}>Смотреть все</a>
+      </Link>
     </div>
   );
 };

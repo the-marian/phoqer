@@ -1,12 +1,16 @@
-import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { faMapMarkerAlt, faSearch } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useRouter } from 'next/router';
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { Theme } from '../../../config/theme';
 import { ICategories, IDropList, IState } from '../../../interfaces';
+import { openModal } from '../../../redux/modal/actions';
 import DropDown from '../DropDown';
+import LinkArrow from '../LinkArrow';
+import LocationModal from './LocationModal';
 
 const useStyles = createUseStyles((theme: Theme) => ({
   wrp: {
@@ -60,6 +64,26 @@ const useStyles = createUseStyles((theme: Theme) => ({
   icon: {
     fontSize: theme.rem(1.4),
   },
+  location: {
+    marginBottom: theme.rem(1),
+    fontSize: theme.rem(1.2),
+    color: theme.palette.black,
+    '&:hover': {
+      textDecoration: 'underline',
+    },
+    '& span': {
+      marginLeft: theme.rem(1),
+    },
+  },
+  toHome: {
+    marginBottom: theme.rem(1),
+    fontSize: theme.rem(1.2),
+    fontWeight: theme.text.weight[3],
+    color: theme.palette.black,
+    '&:hover': {
+      textDecoration: 'underline',
+    },
+  },
 }));
 
 const formateCatList = (data: ICategories[]): IDropList[] =>
@@ -72,30 +96,57 @@ const formateCatList = (data: ICategories[]): IDropList[] =>
 
 const Search = (): ReactElement => {
   const css = useStyles();
+  const { pathname } = useRouter();
+  const dispatch = useDispatch();
+
   const categories = useSelector<IState, ICategories[]>(
     state => state.categories,
   );
+
+  const handleLoginModal = () => {
+    dispatch(openModal({ dom: <LocationModal /> }));
+  };
+
   return (
-    <div className={css.wrp}>
-      <form action="#" method="post" className={css.serach}>
-        <span className={css.icon}>
-          <FontAwesomeIcon icon={faSearch} />
-        </span>
-        <input className={css.input} type="text" placeholder="Что вы ищите?" />
-        <div className={css.cat}>
-          {!!categories?.length && (
-            <DropDown
-              value={formateCatList(categories)}
-              onSubmit={console.log}
-              height={6.8}
-              transparent
-              toRight
-            />
-          )}
+    <>
+      {pathname === '/' ? (
+        <button className={css.location} onClick={handleLoginModal}>
+          <FontAwesomeIcon icon={faMapMarkerAlt} />
+          <span>Вы находитесь в Украина, Киев?</span>
+        </button>
+      ) : (
+        <div className={css.toHome}>
+          <LinkArrow href="/" toLeft>
+            На главную
+          </LinkArrow>
         </div>
-      </form>
-      <button className={css.btn}>Найти</button>
-    </div>
+      )}
+
+      <div className={css.wrp}>
+        <form action="#" method="post" className={css.serach}>
+          <span className={css.icon}>
+            <FontAwesomeIcon icon={faSearch} />
+          </span>
+          <input
+            className={css.input}
+            type="text"
+            placeholder="Что вы ищите?"
+          />
+          <div className={css.cat}>
+            {!!categories?.length && (
+              <DropDown
+                value={formateCatList(categories)}
+                onSubmit={console.log}
+                height={6.8}
+                transparent
+                toRight
+              />
+            )}
+          </div>
+        </form>
+        <button className={css.btn}>Найти</button>
+      </div>
+    </>
   );
 };
 

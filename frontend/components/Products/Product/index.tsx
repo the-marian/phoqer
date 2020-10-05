@@ -26,6 +26,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     height: theme.rem(25),
     borderRadius: theme.radius,
     objectFit: 'cover',
+    boxShadow: theme.shadow[3],
   },
   top: {
     position: 'absolute',
@@ -94,6 +95,7 @@ const Product = ({
   text,
   image,
   view,
+  type,
   date,
   per,
   price,
@@ -103,12 +105,14 @@ const Product = ({
   const css = useStyles();
   return (
     <div>
-      <Link href={`/products/${id}`}>
+      <Link href="/products/:productId" as={`/products/${id}`}>
         <a className={css.link}>
           <div className={css.imgWrp}>
-            <div className={css.top}>
-              <FontAwesomeIcon icon={faStar} />
-            </div>
+            {type.includes('top') && (
+              <div className={css.top}>
+                <FontAwesomeIcon icon={faStar} />
+              </div>
+            )}
             <img className={css.img} src={image} alt={title} />
           </div>
           <h3 className={css.title}>{title}</h3>

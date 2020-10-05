@@ -3,14 +3,15 @@ import { END } from 'redux-saga';
 
 import Container from '../../components/common/Container';
 import Main from '../../components/common/Main';
+import Search from '../../components/common/Search';
 import { IStore } from '../../interfaces';
 import { wrapper } from '../../redux/store';
 import types from '../../redux/types';
 
-const Search = (): ReactElement => (
+const NewProduct = (): ReactElement => (
   <Main>
     <Container>
-      <p>Hello frome search page</p>
+      <Search />
     </Container>
   </Main>
 );
@@ -23,4 +24,4 @@ export const getStaticProps = wrapper.getStaticProps(
   },
 );
 
-export default Search;
+export default NewProduct;
