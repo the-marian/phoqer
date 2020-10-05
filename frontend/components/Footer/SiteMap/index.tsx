@@ -39,7 +39,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
   list: {
     display: 'flex',
     flexWrap: 'wrap',
-    width: '75%',
+    width: '60%',
   },
   item: {
     display: 'block',

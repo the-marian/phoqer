@@ -9,13 +9,13 @@ import SiteMap from './SiteMap';
 
 const useStyles = createUseStyles((theme: Theme) => ({
   footer: {
-    padding: theme.rem(18, 0),
+    padding: theme.rem(8, 0),
     background: theme.palette.gray[0],
   },
   wrp: {
     display: 'flex',
     justifyContent: 'space-between',
-    marginTop: theme.rem(8),
+    marginTop: theme.rem(4),
   },
 }));
 

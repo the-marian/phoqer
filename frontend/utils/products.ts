@@ -122,7 +122,7 @@ const products: IProduct[] = [
     per: 'день',
   },
   {
-    id: 8,
+    id: 9,
     title: 'Поплавок Balsa Wood 240 мм светодиодный',
     text:
       'Поплавок Balsa Wood 240 мм светодиодны Попла вок Balsa одиодный Поплавок Balsa Wood 240  ...',
@@ -137,7 +137,7 @@ const products: IProduct[] = [
     per: 'день',
   },
   {
-    id: 9,
+    id: 10,
     title: 'Поплавок Balsa Wood 240 мм светодиодный',
     text:
       'Поплавок Balsa Wood 240 мм светодиодны Попла вок Balsa одиодный Поплавок Balsa Wood 240  ...',
@@ -152,7 +152,7 @@ const products: IProduct[] = [
     per: 'день',
   },
   {
-    id: 10,
+    id: 11,
     title: 'Поплавок Balsa Wood 240 мм светодиодный',
     text:
       'Поплавок Balsa Wood 240 мм светодиодны Попла вок Balsa одиодный Поплавок Balsa Wood 240  ...',
@@ -167,7 +167,7 @@ const products: IProduct[] = [
     per: 'день',
   },
   {
-    id: 11,
+    id: 12,
     title: 'Поплавок Balsa Wood 240 мм светодиодный',
     text:
       'Поплавок Balsa Wood 240 мм светодиодны Попла вок Balsa одиодный Поплавок Balsa Wood 240  ...',

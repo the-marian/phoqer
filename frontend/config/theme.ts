@@ -38,11 +38,11 @@ export const theme: Theme = {
     }${four || four === 0 ? ` ${four}em` : ''}`,
   radius: '0.4rem',
   shadow: [
-    '0 0.1rem 0.3rem rgba(0,0,0,0.12), 0 0.1rem 0.2rem rgba(0,0,0,0.24)',
-    '0 0.3rem 0.6rem rgba(0,0,0,0.16), 0 0.3rem 0.6rem rgba(0,0,0,0.23)',
-    '0 1rem 2rem rgba(0,0,0,0.19), 0 0.6rem 0.6rem rgba(0,0,0,0.23)',
-    '0 1.4rem 2.8rem rgba(0,0,0,0.05), 0 1rem 1rem rgba(0,0,0,0.02)',
-    '0 1.9rem 3.8rem rgba(0,0,0,0.30), 0 1.5rem 1.2rem rgba(0,0,0,0.22)',
+    '0 0.2rem 0.4rem rgba(0,0,0,0.04), 0 0.2rem 0.4rem rgba(0,0,0,0.08)',
+    '0 0.3rem 0.6rem rgba(0,0,0,0.06), 0 0.3rem 0.6rem rgba(0,0,0,0.1)',
+    '0 1rem 2rem rgba(0,0,0,0.08), 0 0.6rem 0.6rem rgba(0,0,0,0.1)',
+    '0 1.4rem 2.8rem rgba(0,0,0,0.08), 0 1rem 1rem rgba(0,0,0,0.12)',
+    '0 1.9rem 3.8rem rgba(0,0,0,0.1), 0 1.5rem 1.2rem rgba(0,0,0,0.12)',
   ],
   palette: {
     white: '#FFFFFF',
