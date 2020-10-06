@@ -5,7 +5,6 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ('categories', '0003_auto_20200930_1850'),
     ]
@@ -14,6 +13,7 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='parentcategories',
             name='priority',
-            field=models.IntegerField(validators=[django.core.validators.MinValueValidator(1), django.core.validators.MaxValueValidator(3)]),
+            field=models.IntegerField(
+                validators=[django.core.validators.MinValueValidator(1), django.core.validators.MaxValueValidator(3)]),
         ),
     ]

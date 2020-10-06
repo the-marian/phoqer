@@ -1,6 +1,7 @@
 from rest_framework.generics import ListAPIView
-from .models import ParentCategories, ChildCategories
-from .serializers import ParentCategorySerializer, ChildCategorySerializer
+
+from .models import ParentCategories
+from .serializers import ParentCategorySerializer
 
 
 class CategoriesView(ListAPIView):
