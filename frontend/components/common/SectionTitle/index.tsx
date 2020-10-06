@@ -15,6 +15,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
     fontSize: theme.rem(2),
     fontWeight: theme.text.weight[3],
   },
+  link: {
+    color: theme.palette.blue[0],
+  },
 }));
 
 interface Props {
@@ -28,7 +31,9 @@ const SectionTitle = ({ children, link, href }: Props): ReactElement => {
   return (
     <div className={css.wrp}>
       <h2 className={css.title}>{children}</h2>
-      {!!link && !!href && <LinkArrow href={href}>{link}</LinkArrow>}
+      <div className={css.link}>
+        {!!link && !!href && <LinkArrow href={href}>{link}</LinkArrow>}
+      </div>
     </div>
   );
 };

@@ -1,6 +1,8 @@
+// import 'rc-slider/assets/index.css';
 import '../styles/fonts.css';
 import '../styles/normalize.css';
 import '../styles/styles.css';
+import '../styles/range.css';
 
 import { AppProps } from 'next/app';
 import React from 'react';

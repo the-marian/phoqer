@@ -7,18 +7,20 @@ import LinkArrow from '../common/LinkArrow';
 const useStyles = createUseStyles((theme: Theme) => ({
   root: {
     margin: theme.rem(8, 0),
-    padding: theme.rem(6, 6, 18),
+    padding: theme.rem(6, 6),
     borderRadius: theme.radius,
-    background: theme.palette.gray[3],
-    color: theme.text.color.white,
+    background: theme.palette.yellow[1],
+    color: theme.palette.black[0],
   },
   title: {
-    marginBottom: theme.rem(2),
-    fontSize: theme.rem(4),
+    marginBottom: theme.rem(1.5),
+    fontSize: theme.rem(3),
     fontWeight: theme.text.weight[3],
   },
   link: {
-    fontSize: theme.rem(2),
+    fontSize: theme.rem(1.8),
+    fontWeight: theme.text.weight[3],
+    color: theme.palette.blue[0],
   },
 }));
 

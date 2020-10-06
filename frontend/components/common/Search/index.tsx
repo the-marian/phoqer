@@ -6,11 +6,12 @@ import { createUseStyles } from 'react-jss';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { Theme } from '../../../config/theme';
-import { ICategories, IDropList, IState } from '../../../interfaces';
+import { ICategories, IState } from '../../../interfaces';
 import { openModal } from '../../../redux/modal/actions';
+import { formateCatList } from '../../../utils/helpers';
 import DropDown from '../DropDown';
 import LinkArrow from '../LinkArrow';
-import LocationModal from './LocationModal';
+import RegionModal from '../RegionModal';
 
 const useStyles = createUseStyles((theme: Theme) => ({
   wrp: {
@@ -25,10 +26,10 @@ const useStyles = createUseStyles((theme: Theme) => ({
     height: theme.rem(7),
     width: '100%',
     paddingLeft: theme.rem(2.5),
-    background: theme.palette.gray[0],
-    fontSize: theme.rem(1.2),
+    background: theme.palette.blue[2],
+    fontSize: theme.rem(1.6),
     borderRadius: theme.radius,
-    border: theme.border(0.1, theme.palette.gray[1]),
+    border: theme.border(0.1, theme.palette.blue[0]),
   },
   cat: {
     position: 'relative',
@@ -41,7 +42,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
       transform: 'translateY(-50%)',
       height: '70%',
       width: theme.rem(0.1),
-      background: theme.palette.gray[1],
+      background: theme.palette.blue[0],
     },
   },
   input: {
@@ -54,20 +55,20 @@ const useStyles = createUseStyles((theme: Theme) => ({
   },
   btn: {
     height: theme.rem(7),
-    width: theme.rem(30),
+    width: theme.rem(40),
     marginLeft: theme.rem(2),
-    background: theme.palette.gray[3],
-    fontSize: theme.rem(1.2),
-    color: theme.text.color.white,
+    background: theme.palette.blue[0],
+    fontSize: theme.rem(1.6),
+    color: theme.palette.white,
     borderRadius: theme.radius,
   },
   icon: {
     fontSize: theme.rem(1.4),
   },
   location: {
-    marginBottom: theme.rem(1),
-    fontSize: theme.rem(1.2),
-    color: theme.palette.black,
+    marginBottom: theme.rem(2),
+    fontSize: theme.rem(1.6),
+    color: theme.palette.blue[0],
     '&:hover': {
       textDecoration: 'underline',
     },
@@ -76,23 +77,15 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
   },
   toHome: {
-    marginBottom: theme.rem(1),
-    fontSize: theme.rem(1.2),
+    marginBottom: theme.rem(2),
+    fontSize: theme.rem(1.6),
     fontWeight: theme.text.weight[3],
-    color: theme.palette.black,
+    color: theme.palette.blue[0],
     '&:hover': {
       textDecoration: 'underline',
     },
   },
 }));
-
-const formateCatList = (data: ICategories[]): IDropList[] =>
-  data?.map(
-    (item: ICategories): IDropList =>
-      item.sub_categories
-        ? { name: item.name, sub: item.sub_categories }
-        : item,
-  );
 
 const Search = (): ReactElement => {
   const css = useStyles();
@@ -103,14 +96,14 @@ const Search = (): ReactElement => {
     state => state.categories,
   );
 
-  const handleLoginModal = () => {
-    dispatch(openModal({ dom: <LocationModal /> }));
+  const handleRegionModal = () => {
+    dispatch(openModal({ dom: <RegionModal /> }));
   };
 
   return (
     <>
       {pathname === '/' ? (
-        <button className={css.location} onClick={handleLoginModal}>
+        <button className={css.location} onClick={handleRegionModal}>
           <FontAwesomeIcon icon={faMapMarkerAlt} />
           <span>Вы находитесь в Украина, Киев?</span>
         </button>

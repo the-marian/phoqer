@@ -11,7 +11,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
   btn: {
     padding: theme.rem(1.2),
     fontWeight: theme.text.weight[3],
-    fontSize: theme.rem(1.2),
+    fontSize: theme.rem(1.6),
   },
 }));
 

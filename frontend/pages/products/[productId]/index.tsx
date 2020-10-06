@@ -8,7 +8,7 @@ import { IStore } from '../../../interfaces';
 import { wrapper } from '../../../redux/store';
 import types from '../../../redux/types';
 
-const SingleProduct = (): ReactElement => (
+const SingleProductPage = (): ReactElement => (
   <Main>
     <Container>
       <Search />
@@ -34,4 +34,4 @@ export const getStaticPaths = async (): Promise<Value> => ({
   fallback: true,
 });
 
-export default SingleProduct;
+export default SingleProductPage;

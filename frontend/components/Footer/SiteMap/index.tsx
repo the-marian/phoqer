@@ -49,7 +49,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     display: 'block',
     fontSize: theme.rem(1.2),
     fontWeight: theme.text.weight[3],
-    color: theme.text.color.black,
+    color: theme.palette.black[0],
     lineHeight: 4,
     '&:hover': {
       textDecoration: 'underline',
