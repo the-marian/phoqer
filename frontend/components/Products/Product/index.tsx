@@ -14,7 +14,7 @@ import { IProduct } from '../../../interfaces';
 const useStyles = createUseStyles((theme: Theme) => ({
   link: {
     cursor: 'pointer',
-    color: theme.text.color.black,
+    color: theme.palette.black[0],
     '&:hover h3': {
       textDecoration: 'underline',
     },
@@ -41,11 +41,11 @@ const useStyles = createUseStyles((theme: Theme) => ({
   },
   title: {
     margin: theme.rem(2, 0),
-    fontSize: theme.rem(1.4),
+    fontSize: theme.rem(1.6),
     fontWeight: theme.text.weight[3],
   },
   desc: {
-    fontSize: theme.rem(1.2),
+    fontSize: theme.rem(1.4),
     fontWeight: theme.text.weight[2],
   },
   info: {
@@ -55,9 +55,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
   },
   text: {
     margin: 0,
-    color: theme.palette.gray[2],
+    color: theme.palette.gray[3],
     fontWeight: theme.text.weight[2],
-    fontSize: theme.rem(1.2),
+    fontSize: theme.rem(1.4),
   },
   view: {
     paddingLeft: theme.rem(1),
@@ -73,9 +73,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
   },
   btn: {
     padding: theme.rem(1.5, 3),
-    fontSize: theme.rem(1.2),
+    fontSize: theme.rem(1.4),
     borderRadius: theme.radius,
-    background: theme.palette.gray[0],
+    background: theme.palette.grayblue[0],
   },
   favorite: {
     marginLeft: theme.rem(2),
@@ -85,7 +85,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     margin: 0,
     fontSize: theme.rem(1.6),
     fontWeight: theme.text.weight[5],
-    color: theme.text.color.black,
+    color: theme.palette.black[0],
   },
 }));
 
@@ -133,6 +133,7 @@ const Product = ({
           <button type="button" className={css.btn}>
             Арендовать
           </button>
+
           <button type="button" className={css.favorite}>
             {favorite ? (
               <FontAwesomeIcon icon={faSolidHeart} />

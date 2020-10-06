@@ -6,19 +6,17 @@ export interface Theme {
   radius: string;
   shadow: string[];
   palette: {
-    white: '#FFFFFF';
-    black: '#242424';
+    white: string;
+    black: string[];
     gray: string[];
     red: string[];
     green: string[];
     yellow: string[];
+    grayblue: string[];
+    blue: string[];
     modal: string;
   };
   text: {
-    color: {
-      white: '#FFFFFF';
-      black: '#242424';
-    };
     family: string;
     weight: [200, 300, 400, 500, 600, 700];
   };
@@ -46,18 +44,16 @@ export const theme: Theme = {
   ],
   palette: {
     white: '#FFFFFF',
-    black: '#242424',
-    gray: ['#EEEEEE', '#C4C4C4', '#999999', '#444444'],
-    red: ['#c92804'],
-    green: ['#00c798'],
-    yellow: ['#edbf18'],
+    black: ['#222222', '#242424'],
+    gray: ['#F9F9F9', '#EEEEEE', '#C4C4C4', '#999999', '#444444'],
+    red: ['#DB162F'],
+    green: ['#218380'],
+    yellow: ['#EDBF18', '#FAF0CA'],
+    grayblue: ['#DFE6E6'],
+    blue: ['#2D728F', '#003459', '#FCFEFF'],
     modal: 'rgba(0, 0, 0, 0.8)',
   },
   text: {
-    color: {
-      white: '#FFFFFF',
-      black: '#242424',
-    },
     family: 'Montserrat, sans-serif',
     weight: [200, 300, 400, 500, 600, 700],
   },

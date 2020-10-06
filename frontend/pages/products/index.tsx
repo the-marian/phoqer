@@ -4,14 +4,24 @@ import { END } from 'redux-saga';
 import Container from '../../components/common/Container';
 import Main from '../../components/common/Main';
 import Search from '../../components/common/Search';
+import Filters from '../../components/Filters';
+import ProductsList from '../../components/Products/ProductsList';
+import TopProducts from '../../components/Products/TopProducts';
 import { IStore } from '../../interfaces';
 import { wrapper } from '../../redux/store';
 import types from '../../redux/types';
 
-const Products = (): ReactElement => (
+const ProductsPage = (): ReactElement => (
   <Main>
     <Container>
       <Search />
+      <Filters />
+    </Container>
+
+    <TopProducts />
+
+    <Container>
+      <ProductsList />
     </Container>
   </Main>
 );
@@ -24,4 +34,4 @@ export const getStaticProps = wrapper.getStaticProps(
   },
 );
 
-export default Products;
+export default ProductsPage;

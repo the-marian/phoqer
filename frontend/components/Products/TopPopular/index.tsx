@@ -1,12 +1,11 @@
 import Link from 'next/link';
-// import Link from 'next/link';
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
-import { Theme } from '../../config/theme';
-import products from '../../utils/products';
-import SectionTitle from '../common/SectionTitle';
-import Product from './Product';
+import { Theme } from '../../../config/theme';
+import products from '../../../utils/products';
+import SectionTitle from '../../common/SectionTitle';
+import Product from '../Product';
 
 const useStyles = createUseStyles((theme: Theme) => ({
   root: {
@@ -16,7 +15,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
   grid: {
     display: 'grid',
     gridTemplateColumns: theme.fr(4),
-    gridGap: theme.rem(8, 3),
+    gridGap: theme.rem(10, 6),
     '@media (max-width: 1500px)': {
       gridTemplateColumns: theme.fr(3),
     },
@@ -27,17 +26,17 @@ const useStyles = createUseStyles((theme: Theme) => ({
   btn: {
     display: 'block',
     width: theme.rem(25),
-    margin: '15rem auto 0',
-    padding: theme.rem(1.5, 3),
+    margin: '10rem auto 0',
+    padding: theme.rem(2, 4),
     textAlign: 'center',
     fontSize: theme.rem(1.4),
-    color: theme.text.color.black,
+    color: theme.palette.white,
     borderRadius: theme.radius,
-    background: theme.palette.gray[0],
+    background: theme.palette.blue[0],
   },
 }));
 
-const Products = (): ReactElement => {
+const TopPopular = (): ReactElement => {
   const css = useStyles();
   return (
     <div className={css.root}>
@@ -58,4 +57,4 @@ const Products = (): ReactElement => {
   );
 };
 
-export default Products;
+export default TopPopular;

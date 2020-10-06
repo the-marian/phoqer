@@ -5,7 +5,7 @@ import { Theme } from '../../config/theme';
 
 const useStyles = createUseStyles((theme: Theme) => ({
   btn: {
-    fontSize: theme.rem(1.2),
+    fontSize: theme.rem(1.4),
     padding: theme.rem(1),
     textTransform: 'uppercase',
   },

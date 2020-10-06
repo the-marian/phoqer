@@ -7,7 +7,7 @@ import Categories from '../components/Categories';
 import Container from '../components/common/Container';
 import Main from '../components/common/Main';
 import Search from '../components/common/Search';
-import Products from '../components/Products';
+import TopPopular from '../components/Products/TopPopular';
 import { IStore } from '../interfaces';
 import { wrapper } from '../redux/store';
 import types from '../redux/types';
@@ -20,9 +20,9 @@ const Index = (): ReactElement => (
     <Main>
       <Container>
         <Search />
-        <Banner />
         <Categories />
-        <Products />
+        <Banner />
+        <TopPopular />
       </Container>
     </Main>
   </>

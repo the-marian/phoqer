@@ -39,7 +39,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
   },
   text: {
     marginTop: theme.rem(1.5),
-    fontSize: theme.rem(1.2),
+    fontSize: theme.rem(1.6),
   },
 }));
 

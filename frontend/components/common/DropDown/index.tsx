@@ -15,8 +15,8 @@ const useStyles = createUseStyles((theme: Theme) => ({
   wrp: {
     position: 'relative',
     width: '100%',
-    background: theme.palette.gray[0],
-    border: theme.border(0.1, theme.palette.gray[1]),
+    background: theme.palette.blue[2],
+    border: theme.border(0.1, theme.palette.blue[0]),
     borderRadius: theme.radius,
     userSelect: 'none',
     outline: 'none',
@@ -37,21 +37,22 @@ const useStyles = createUseStyles((theme: Theme) => ({
     margin: 0,
     padding: theme.rem(2),
     cursor: 'pointer',
-    fontSize: theme.rem(1.2),
+    fontSize: theme.rem(1.6),
   },
   box: {
     position: 'absolute',
     top: '100%',
     left: 0,
     width: '100%',
-    maxHeight: theme.rem(30),
+    maxHeight: theme.rem(40),
     marginTop: theme.rem(1),
     padding: theme.rem(2, 0),
     background: theme.palette.white,
     borderRadius: theme.radius,
-    border: theme.border(0.1, theme.palette.gray[1]),
-    fontSize: theme.rem(1.2),
+    border: theme.border(0.1, theme.palette.blue[0]),
+    fontSize: theme.rem(1.6),
     overflowY: 'scroll',
+    zIndex: 10,
   },
   sub: {
     position: 'absolute',
@@ -61,16 +62,17 @@ const useStyles = createUseStyles((theme: Theme) => ({
     left: (props: StyleProp): string =>
       props.toRight ? 'uset' : 'calc(100% + 1rem)',
     width: '100%',
-    maxHeight: theme.rem(30),
+    maxHeight: theme.rem(40),
     marginTop: theme.rem(1),
+    zIndex: 10,
   },
   subBox: {
-    maxHeight: theme.rem(30),
+    maxHeight: theme.rem(40),
     padding: theme.rem(2, 0),
     background: theme.palette.white,
     borderRadius: theme.radius,
-    border: theme.border(0.1, theme.palette.gray[1]),
-    fontSize: theme.rem(1.2),
+    border: theme.border(0.1, theme.palette.blue[0]),
+    fontSize: theme.rem(1.6),
     overflowY: 'scroll',
   },
   item: {
@@ -96,7 +98,7 @@ interface Props {
 }
 
 const DropDown = ({
-  height = 4.5,
+  height = 5,
   value,
   onSubmit,
   toRight = false,
