@@ -25,7 +25,8 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     # REST-FRAMEWORK URLS
     path('api/v1/categories/', include('categories.urls', namespace='categories')),
-    path('api/v1/offers/', include('offers.urls', namespace='offers'))
+    path('api/v1/offers/', include('offers.urls', namespace='offers')),
+    # path('api/v1/users/', include('users.urls', namespace='users'))
 ]
 
 if bool(settings.DEBUG):

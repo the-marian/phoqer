@@ -20,29 +20,38 @@ class Offer(models.Model):
         UAH = 'UAH', _('Hryvnia')
         PLN = 'PLN', _('Złoty')
 
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    class Status(models.TextChoices):
+        NEW = 'NEW', _('New')
+        REVIEW = 'REVIEW', _('Review')
+        ACTIVE = 'ACTIVE', _('Active')
+        REJECTED = 'REJECTED', _('Rejected')
+        INACTIVE = 'INACTIVE', _('Inactive')
+        ARCHIVED = 'ARCHIVED', _('Archived')
+        FROZEN = 'FROZEN', _('Frozen')
+
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     category = models.OneToOneField(ParentCategories, on_delete=models.PROTECT)
     city = models.CharField(max_length=50)
+    cover_image = models.URLField()
     currency = models.CharField(max_length=3, choices=Currency.choices)
-    deposit_val = models.PositiveIntegerField()
+    deposit_val = models.PositiveIntegerField(blank=True, null=True)
     description = models.TextField()
     doc_needed = models.BooleanField()
-    cover_image = models.URLField()
+    extra_requirements = models.TextField(blank=True, null=True)
+    favourite = models.ManyToManyField(settings.AUTH_USER_MODEL, blank=True, related_name='favourite_offers')
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     max_rent_per = models.CharField(max_length=5, choices=Per.choices, blank=True, null=True)
-    min_rent_per = models.CharField(max_length=5, choices=Per.choices, blank=True, null=True)
     max_rent_value = models.SmallIntegerField(blank=True, null=True)
+    min_rent_per = models.CharField(max_length=5, choices=Per.choices, blank=True, null=True)
     min_rent_value = models.SmallIntegerField(blank=True, null=True)
     per = models.CharField(max_length=5, choices=Per.choices)
     price = models.PositiveIntegerField()
     promote_til_date = models.DateField(blank=True, null=True)
     pud_date = models.DateField(auto_now=True)
-    extra_requirements = models.TextField(blank=True, null=True)
-    status = models.CharField(max_length=50)
+    status = models.CharField(max_length=8, choices=Status.choices, default=Status.NEW)
     sub_category = models.OneToOneField(ChildCategories, on_delete=models.PROTECT)
     title = models.CharField(max_length=120)
     views = models.PositiveIntegerField(default=0)
-    favourite = models.ManyToManyField(settings.AUTH_USER_MODEL, blank=True, related_name='user_favourite')
 
     def __str__(self):
         return self.title
@@ -50,7 +59,11 @@ class Offer(models.Model):
     class Meta:
         ordering = ['pud_date']
 
+
 class OfferImages(models.Model):
+    name = models.CharField(max_length=50)
     offer = models.ForeignKey(Offer, related_name='offer_images', on_delete=models.CASCADE)
     url = models.URLField()
-    name = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.name
