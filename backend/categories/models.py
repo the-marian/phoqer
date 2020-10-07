@@ -7,7 +7,7 @@ class ParentCategories(models.Model):
     is_active = models.BooleanField()
     name = models.CharField(max_length=50)
     priority = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(3)])
-    slug = models.SlugField()
+    slug = models.SlugField(primary_key=True, unique=True)
 
     def __str__(self):
         return self.name
