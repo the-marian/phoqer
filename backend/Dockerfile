@@ -20,8 +20,6 @@ COPY . /home/share/backend
 
 # lint
 RUN pip install --upgrade pip
-RUN pip install flake8
-RUN flake8 --ignore=E501,F401 .
 
 # install dependencies
 COPY ./requirements.txt .
