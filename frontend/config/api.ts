@@ -15,7 +15,7 @@ export interface IApi {
 
 const api: IApi = {
   categories: {
-    get: (): Promise<AxiosResponse<ICategories>> => axios.get('/categories'),
+    get: (): Promise<AxiosResponse<ICategories>> => axios.get('/api/v1/categories'),
   },
 };
 
