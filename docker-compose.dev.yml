@@ -16,6 +16,16 @@ services:
       - ./.env.dev
     depends_on:
       - db
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    expose:
+      - 3000
+    env_file:
+      - ./.env.dev
+    depends_on:
+      - backend
   db:
     image: postgres:12.0-alpine
     volumes:
@@ -28,9 +38,10 @@ services:
       - static_volume:/home/share/backend/staticfiles/
       - media_volume:/home/share/backend/mediafiles/
     ports:
-      - 1337:80
+      - 80:80
     depends_on:
       - backend
+      - frontend
 
 volumes:
   postgres_data:
