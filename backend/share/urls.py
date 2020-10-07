@@ -24,8 +24,8 @@ urlpatterns = [
     path("upload/", image_upload, name="upload"),
     path("admin/", admin.site.urls),
     # REST-FRAMEWORK URLS
-    path('api/v1/categories/', include('categories.urls', namespace='categories')),
-    path('api/v1/offers/', include('offers.urls', namespace='offers')),
+    path('v1/categories/', include('categories.urls', namespace='categories')),
+    path('v1/offers/', include('offers.urls', namespace='offers')),
     # path('api/v1/users/', include('users.urls', namespace='users'))
 ]
 
