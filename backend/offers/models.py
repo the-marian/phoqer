@@ -25,31 +25,32 @@ class Offer(models.Model):
     category = models.OneToOneField(ParentCategories, on_delete=models.PROTECT)
     city = models.CharField(max_length=50)
     currency = models.CharField(max_length=3, choices=Currency.choices)
-    deposit_needed = models.BooleanField()
     deposit_val = models.PositiveIntegerField()
     description = models.TextField()
     doc_needed = models.BooleanField()
     cover_image = models.URLField()
-    max_rent_per = models.CharField(max_length=5, choices=Per.choices)
-    min_rent_per = models.CharField(max_length=5, choices=Per.choices)
-    max_rent_value = models.SmallIntegerField()
-    min_rent_value = models.SmallIntegerField()
+    max_rent_per = models.CharField(max_length=5, choices=Per.choices, blank=True, null=True)
+    min_rent_per = models.CharField(max_length=5, choices=Per.choices, blank=True, null=True)
+    max_rent_value = models.SmallIntegerField(blank=True, null=True)
+    min_rent_value = models.SmallIntegerField(blank=True, null=True)
     per = models.CharField(max_length=5, choices=Per.choices)
     price = models.PositiveIntegerField()
     promote_til_date = models.DateField(blank=True, null=True)
     pud_date = models.DateField(auto_now=True)
-    extra_requirements = models.TextField(max_length=50)
+    extra_requirements = models.TextField(blank=True, null=True)
     status = models.CharField(max_length=50)
     sub_category = models.OneToOneField(ChildCategories, on_delete=models.PROTECT)
-    title = models.CharField(max_length=50)
+    title = models.CharField(max_length=120)
     views = models.PositiveIntegerField(default=0)
     favourite = models.ManyToManyField(settings.AUTH_USER_MODEL, blank=True, related_name='user_favourite')
 
     def __str__(self):
-        return self.name
+        return self.title
 
     class Meta:
         ordering = ['pud_date']
 
 class OfferImages(models.Model):
-    offer = models.ForeignKey(Offer, related_name='images', on_delete=models.CASCADE)
+    offer = models.ForeignKey(Offer, related_name='offer_images', on_delete=models.CASCADE)
+    url = models.URLField()
+    name = models.CharField(max_length=50)

@@ -19,7 +19,7 @@ class ParentCategories(models.Model):
 class ChildCategories(models.Model):
     name = models.CharField(max_length=50)
     parent = models.ForeignKey(ParentCategories, related_name='sub_categories', on_delete=models.CASCADE)
-    slug = models.SlugField()
+    slug = models.SlugField(primary_key=True, unique=True)
 
     def __str__(self):
         return self.name
