@@ -6,7 +6,7 @@ from .models import ParentCategories, ChildCategories
 sport_img_url = 'https://example.com/sport.jpeg'
 books_img_url = 'https://example.com/books.jpeg'
 toys_img_url = 'https://example.com/toys.jpeg'
-categories_endpoint_url = '/categories/'
+categories_endpoint_url = '/api/v1/categories/'
 
 list_categories_expected_response = [
     {
