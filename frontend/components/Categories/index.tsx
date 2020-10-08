@@ -52,8 +52,8 @@ const Categories = (): ReactElement => {
     <div className={css.root}>
       <SectionTitle>Арендуйте здесь и сейчас</SectionTitle>
       <div className={css.wrp}>
-        {categories?.map(({ name, image }) => (
-          <Link key={name} href="/products?category=sss">
+        {categories?.map(({ name, image, slug }) => (
+          <Link key={name} href={`/products?category=${slug}`}>
             <div className={css.cat}>
               <img className={css.img} src={image} alt={name} />
               <p className={css.text}>{name}</p>

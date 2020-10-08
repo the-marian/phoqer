@@ -107,16 +107,16 @@ const DropDown = ({
   const css = useStyles({ height, toRight });
   const [drop, setDrop] = useState<boolean>(false);
   const [hover, setHover] = useState<number | null>(null);
-  const [selected, setSelected] = useState(value[0].name);
+  const [selected, setSelected] = useState<string>(value[0].name);
 
   const handleClick = (): void => {
     setDrop(!drop);
     setHover(null);
   };
 
-  const handleSelect = (value: string): void => {
+  const handleSelect = (value: string, slug: string): void => {
     setDrop(!drop);
-    onSubmit(value);
+    onSubmit(slug);
     setSelected(value);
   };
 
@@ -148,13 +148,13 @@ const DropDown = ({
         <>
           <div className={css.box}>
             <ul>
-              {value?.map(({ name, sub }, index) => (
+              {value?.map(({ name, slug, sub }, index) => (
                 <li
                   className={css.item}
-                  key={name}
+                  key={slug}
                   aria-hidden
                   onClick={() => {
-                    handleSelect(name);
+                    handleSelect(name, slug);
                   }}
                   onMouseMove={() => {
                     setHover(sub ? index : null);
@@ -179,13 +179,13 @@ const DropDown = ({
                   >
                     <div className={css.subBox}>
                       <ul>
-                        {sub?.map(({ name }) => (
+                        {sub?.map(({ name, slug }) => (
                           <li
                             className={css.item}
-                            key={name}
+                            key={slug}
                             aria-hidden
                             onClick={() => {
-                              handleSelect(name);
+                              handleSelect(name, slug);
                             }}
                           >
                             <span>{name}</span>

@@ -1,10 +1,8 @@
-import { all, AllEffect, fork, ForkEffect } from 'redux-saga/effects';
+import { all, fork } from 'redux-saga/effects';
 
-import { IStore } from '../interfaces';
 import { watcherCategories } from './categories/saga';
+import { watcherOffers } from './offers/saga';
 
-export default function* rootSaga(): Generator<
-  ForkEffect<IStore> | AllEffect<unknown>
-> {
-  yield all([yield fork(watcherCategories)]);
+export default function* rootSaga(): Generator {
+  yield all([yield fork(watcherCategories), yield fork(watcherOffers)]);
 }

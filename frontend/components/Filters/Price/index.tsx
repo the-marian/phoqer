@@ -33,7 +33,11 @@ const useStyles = createUseStyles((theme: Theme) => ({
   },
 }));
 
-const CURRENCY: IDropList[] = [{ name: 'грн' }, { name: '$' }, { name: '€' }];
+const CURRENCY: IDropList[] = [
+  { name: 'грн', slug: 'uah' },
+  { name: '$', slug: 'usd' },
+  { name: '€', slug: 'eur' },
+];
 
 const PriceFilter = (): ReactElement => {
   const css = useStyles();
