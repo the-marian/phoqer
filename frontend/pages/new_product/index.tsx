@@ -19,6 +19,7 @@ const NewProduct = (): ReactElement => (
 export const getStaticProps = wrapper.getStaticProps(
   async ({ store }: { store: IStore }): Promise<void> => {
     store.dispatch({ type: types.GET_CATEGORIES_START });
+    store.dispatch({ type: types.GET_POPULAR_OFFERS_START });
     store.dispatch(END);
     await store.sagaTask.toPromise();
   },

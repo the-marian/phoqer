@@ -4,7 +4,8 @@ import { AnyAction, Store } from 'redux';
 export interface ICategories {
   name: string;
   image: string;
-  sub_categories?: { name: string }[];
+  slug: string;
+  sub_categories?: { name: string; slug: string }[];
 }
 
 export interface IModal {
@@ -15,27 +16,32 @@ export interface IModal {
 
 export interface IDropList {
   name: string;
-  sub?: { name: string }[];
+  slug: string;
+  sub?: { name: string; slug: string }[];
 }
 
-export interface IProduct {
-  id: string | number;
-  title: string;
-  text: string;
-  image: string;
-  categories?: string[];
-  type: ('top' | 'recent' | 'none')[];
-  view: string | number;
-  date: string;
-  favorite: boolean;
-  price: number;
+export interface PopularOffer {
+  id: string;
+  cover_image: string;
   currency: string;
-  per: string;
+  is_favorite: boolean;
+  per: 'DAY' | 'MONTH' | 'YEAR' | 'HOUR';
+  price: number;
+  date: string;
+  title: string;
+  view: number;
+  description: string;
+  type?: ('top' | 'recent' | 'none')[];
+}
+
+export interface IOffer {
+  popular: PopularOffer[] | null;
 }
 
 export interface IState {
-  categories: ICategories[] | null;
   modal: IModal;
+  categories: ICategories[] | null;
+  offers: IOffer;
 }
 
 export interface IStore extends Store<IState, AnyAction> {

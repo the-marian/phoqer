@@ -14,6 +14,6 @@ export const formateCatList = (data: ICategories[]): IDropList[] =>
   data?.map(
     (item: ICategories): IDropList =>
       item.sub_categories
-        ? { name: item.name, sub: item.sub_categories }
+        ? { name: item.name, slug: item.slug, sub: item.sub_categories }
         : item,
   );

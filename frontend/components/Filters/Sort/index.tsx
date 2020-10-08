@@ -14,11 +14,11 @@ const useStyles = createUseStyles((theme: Theme) => ({
 }));
 
 const FILTERS: IDropList[] = [
-  { name: 'Самые популярные' },
-  { name: 'От старых к новым' },
-  { name: 'От новых к старым' },
-  { name: 'От дешевых к дорогим' },
-  { name: 'От дорогих к дешевым' },
+  { name: 'Самые популярные', slug: 'popular' },
+  { name: 'От старых к новым', slug: 'new' },
+  { name: 'От новых к старым', slug: 'old' },
+  { name: 'От дешевых к дорогим', slug: 'cheap' },
+  { name: 'От дорогих к дешевым', slug: 'expensive' },
 ];
 
 const Sort = (): ReactElement => {
