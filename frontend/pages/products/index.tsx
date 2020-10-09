@@ -5,8 +5,8 @@ import Container from '../../components/common/Container';
 import Main from '../../components/common/Main';
 import Search from '../../components/common/Search';
 import Filters from '../../components/Filters';
-import ProductsList from '../../components/Products/ProductsList';
-import TopProducts from '../../components/Products/TopProducts';
+import OffersList from '../../components/Offers/OffersList';
+import TopOffers from '../../components/Offers/TopOffers';
 import { IStore } from '../../interfaces';
 import { wrapper } from '../../redux/store';
 import types from '../../redux/types';
@@ -18,10 +18,10 @@ const ProductsPage = (): ReactElement => (
       <Filters />
     </Container>
 
-    <TopProducts />
+    <TopOffers />
 
     <Container>
-      <ProductsList />
+      <OffersList />
     </Container>
   </Main>
 );

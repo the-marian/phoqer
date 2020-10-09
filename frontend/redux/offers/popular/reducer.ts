@@ -1,13 +1,13 @@
 import { HYDRATE } from 'next-redux-wrapper';
 import { AnyAction } from 'redux';
 
-import { PopularOffer } from '../../../interfaces';
+import { IOfferCard } from '../../../interfaces';
 import types from '../../types';
 
 const popular = (
-  state: PopularOffer[] = null,
+  state: IOfferCard[] = null,
   { type, payload }: AnyAction,
-): PopularOffer[] => {
+): IOfferCard[] => {
   switch (type) {
     case HYDRATE:
       return payload.offers.popular;

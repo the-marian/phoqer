@@ -1,12 +1,12 @@
 import { all, AllEffect, fork, ForkEffect } from 'redux-saga/effects';
 
-import { IOffer, PopularOffer } from '../../interfaces';
+import { IOffers, IOfferCard } from '../../interfaces';
 import { watcherPopularOffers } from './popular/saga';
 
 export function* watcherOffers(): Generator<
-  ForkEffect<PopularOffer[]> | AllEffect<IOffer>,
+  ForkEffect<IOfferCard[]> | AllEffect<IOffers>,
   void,
-  IOffer
+  IOffers
 > {
   yield all([yield fork(watcherPopularOffers)]);
 }

@@ -7,7 +7,7 @@ import Categories from '../components/Categories';
 import Container from '../components/common/Container';
 import Main from '../components/common/Main';
 import Search from '../components/common/Search';
-import TopPopular from '../components/Products/TopPopular';
+import TopPopular from '../components/Offers/TopPopular';
 import { IStore } from '../interfaces';
 import { wrapper } from '../redux/store';
 import types from '../redux/types';

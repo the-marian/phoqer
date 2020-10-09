@@ -1,12 +1,12 @@
 import { call, ForkEffect, put, takeLatest } from 'redux-saga/effects';
 
 import api from '../../../config/api';
-import { IOffer } from '../../../interfaces';
+import { IOffers } from '../../../interfaces';
 import types from '../../types';
 
 function* getPopularOffers() {
   try {
-    const { status, data }: { status: number; data: IOffer } = yield call(
+    const { status, data }: { status: number; data: IOffers } = yield call(
       api.offers.popular.get,
     );
     if (status < 200 || status >= 300) throw new Error('Something went wrong');

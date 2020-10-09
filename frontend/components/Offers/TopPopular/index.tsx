@@ -1,11 +1,12 @@
 import Link from 'next/link';
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
+import { useSelector } from 'react-redux';
 
 import { Theme } from '../../../config/theme';
-import products from '../../../utils/products';
+import { IOfferCard, IState } from '../../../interfaces';
 import SectionTitle from '../../common/SectionTitle';
-import Product from '../Product';
+import OfferCard from '../OfferCard';
 
 const useStyles = createUseStyles((theme: Theme) => ({
   root: {
@@ -38,6 +39,10 @@ const useStyles = createUseStyles((theme: Theme) => ({
 
 const TopPopular = (): ReactElement => {
   const css = useStyles();
+  const popular = useSelector<IState, IOfferCard[]>(
+    state => state.offers.popular,
+  );
+
   return (
     <div className={css.root}>
       <SectionTitle link="Смотреть все" href="/products?type=popular">
@@ -45,8 +50,8 @@ const TopPopular = (): ReactElement => {
       </SectionTitle>
 
       <div className={css.grid}>
-        {products.map(product => (
-          <Product key={product.id} {...product} />
+        {popular?.map(product => (
+          <OfferCard key={product.id} {...product} />
         ))}
       </div>
 
