@@ -20,7 +20,7 @@ export interface IDropList {
   sub?: { name: string; slug: string }[];
 }
 
-export interface PopularOffer {
+export interface IOfferCard {
   id: string;
   cover_image: string;
   currency: string;
@@ -34,14 +34,14 @@ export interface PopularOffer {
   type?: ('top' | 'recent' | 'none')[];
 }
 
-export interface IOffer {
-  popular: PopularOffer[] | null;
+export interface IOffers {
+  popular: IOfferCard[] | null;
 }
 
 export interface IState {
   modal: IModal;
   categories: ICategories[] | null;
-  offers: IOffer;
+  offers: IOffers;
 }
 
 export interface IStore extends Store<IState, AnyAction> {

@@ -1,9 +1,10 @@
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
+import { useSelector } from 'react-redux';
 
 import { Theme } from '../../../config/theme';
-import products from '../../../utils/products';
-import Product from '../Product';
+import { IOfferCard, IState } from '../../../interfaces';
+import OfferCard from '../OfferCard';
 
 const useStyles = createUseStyles((theme: Theme) => ({
   root: {
@@ -23,17 +24,21 @@ const useStyles = createUseStyles((theme: Theme) => ({
   },
 }));
 
-const ProductsList = (): ReactElement => {
+const OffersList = (): ReactElement => {
   const css = useStyles();
+  const popular = useSelector<IState, IOfferCard[]>(
+    state => state.offers.popular,
+  );
+
   return (
     <div className={css.root}>
       <div className={css.grid}>
-        {products.map(product => (
-          <Product key={product.id} {...product} />
+        {popular?.map(product => (
+          <OfferCard key={product.id} {...product} />
         ))}
       </div>
     </div>
   );
 };
 
-export default ProductsList;
+export default OffersList;

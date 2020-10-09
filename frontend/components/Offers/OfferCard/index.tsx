@@ -9,10 +9,17 @@ import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
 import { Theme } from '../../../config/theme';
-import { IProduct } from '../../../interfaces';
+import { IOfferCard } from '../../../interfaces';
+
+const MAX_LENGTH = 85;
 
 const useStyles = createUseStyles((theme: Theme) => ({
+  root: {
+    display: 'flex',
+    flexDirection: 'column',
+  },
   link: {
+    flexGrow: 2,
     cursor: 'pointer',
     color: theme.palette.black[0],
     '&:hover h3': {
@@ -45,13 +52,14 @@ const useStyles = createUseStyles((theme: Theme) => ({
     fontWeight: theme.text.weight[3],
   },
   desc: {
+    margin: 0,
     fontSize: theme.rem(1.4),
     fontWeight: theme.text.weight[2],
   },
   info: {
     display: 'flex',
     justifyContent: 'space-between',
-    margin: theme.rem(3, 0),
+    margin: theme.rem(2, 0, 3),
   },
   text: {
     margin: 0,
@@ -89,34 +97,38 @@ const useStyles = createUseStyles((theme: Theme) => ({
   },
 }));
 
-const Product = ({
+const OfferCard = ({
   id,
   title,
-  text,
-  image,
+  description,
+  cover_image,
+  is_favorite,
   view,
-  type,
   date,
   per,
+  type,
   price,
   currency,
-  favorite,
-}: IProduct): ReactElement => {
+}: IOfferCard): ReactElement => {
   const css = useStyles();
   return (
-    <div>
+    <div className={css.root}>
       <Link href="/products/:productId" as={`/products/${id}`}>
         <a className={css.link}>
           <div className={css.imgWrp}>
-            {type.includes('top') && (
+            {type?.includes('top') && (
               <div className={css.top}>
                 <FontAwesomeIcon icon={faStar} />
               </div>
             )}
-            <img className={css.img} src={image} alt={title} />
+            <img className={css.img} src={cover_image} alt={title} />
           </div>
           <h3 className={css.title}>{title}</h3>
-          <p className={css.desc}>{text}</p>
+          <p className={css.desc}>
+            {description.length > MAX_LENGTH
+              ? `${description.slice(0, MAX_LENGTH - 3)}...`
+              : description}
+          </p>
         </a>
       </Link>
 
@@ -135,7 +147,7 @@ const Product = ({
           </button>
 
           <button type="button" className={css.favorite}>
-            {favorite ? (
+            {is_favorite ? (
               <FontAwesomeIcon icon={faSolidHeart} />
             ) : (
               <FontAwesomeIcon icon={faHeart} />
@@ -144,11 +156,11 @@ const Product = ({
         </div>
 
         <p className={css.price}>
-          {price} {currency}/{per}
+          {price} {currency} / {per}
         </p>
       </div>
     </div>
   );
 };
 
-export default Product;
+export default OfferCard;
