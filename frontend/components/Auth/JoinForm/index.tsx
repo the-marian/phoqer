@@ -1,6 +1,5 @@
 import { faEye, faEyeSlash } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import Link from 'next/link';
 import React, { FormEvent, ReactElement, useState } from 'react';
 import { createUseStyles } from 'react-jss';
 
@@ -55,6 +54,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
   },
   btn: {
     display: 'block',
+    minWidth: theme.rem(20),
     margin: '3rem auto 2rem',
     padding: theme.rem(1.5, 2),
     fontWeight: theme.text.weight[4],
@@ -140,10 +140,6 @@ const LoginForm = (): ReactElement => {
           />
         </div>
       </label>
-
-      <Link href="/forgot_pass">
-        <a className={css.pass}>Забыли пароль?</a>
-      </Link>
 
       <button className={css.btn} type="submit">
         ЗАРЕГИСТРИРОВАТЬСЯ
