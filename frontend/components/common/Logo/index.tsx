@@ -8,8 +8,8 @@ const useStyles = createUseStyles((theme: Theme) => ({
   logo: {
     display: 'block',
     width: 'max-content',
-    height: theme.rem(6),
-    marginRight: theme.rem(2),
+    height: theme.rem(5),
+    marginRight: theme.rem(1),
   },
   img: {
     height: '100%',

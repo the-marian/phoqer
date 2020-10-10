@@ -29,7 +29,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     background: theme.palette.blue[2],
     fontSize: theme.rem(1.6),
     borderRadius: theme.radius,
-    border: theme.border(0.1, theme.palette.blue[0]),
+    border: theme.border(0.1, theme.palette.gray[3]),
   },
   cat: {
     position: 'relative',
@@ -42,7 +42,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
       transform: 'translateY(-50%)',
       height: '70%',
       width: theme.rem(0.1),
-      background: theme.palette.blue[0],
+      background: theme.palette.gray[3],
     },
   },
   input: {
@@ -57,7 +57,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     height: theme.rem(7),
     width: theme.rem(40),
     marginLeft: theme.rem(2),
-    background: theme.palette.blue[0],
+    background: theme.palette.red[0],
     fontSize: theme.rem(1.6),
     color: theme.palette.white,
     borderRadius: theme.radius,

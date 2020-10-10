@@ -20,7 +20,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     padding: theme.rem(1, 1.5),
     fontSize: theme.rem(1.6),
     borderRadius: theme.radius,
-    border: theme.border(0.1, theme.palette.blue[0]),
+    border: theme.border(0.1, theme.palette.gray[3]),
     background: theme.palette.blue[2],
   },
   title: {

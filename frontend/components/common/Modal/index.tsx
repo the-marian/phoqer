@@ -77,7 +77,7 @@ const Modal = (): ReactElement => {
   };
 
   return modal ? (
-    <div className={css.wrp} onClick={handleBackDrop} aria-hidden>
+    <div className={css.wrp} onMouseDown={handleBackDrop} aria-hidden>
       <div className={css.inner} style={{ maxWidth: SIZE[size] }}>
         <button type="button" className={css.button} onClick={handleClose}>
           <FontAwesomeIcon icon={faTimes} />

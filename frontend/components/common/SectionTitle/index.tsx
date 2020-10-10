@@ -16,7 +16,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     fontWeight: theme.text.weight[3],
   },
   link: {
-    color: theme.palette.blue[0],
+    color: theme.palette.red[0],
   },
 }));
 
