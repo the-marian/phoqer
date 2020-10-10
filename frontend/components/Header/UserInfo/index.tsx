@@ -4,8 +4,8 @@ import { useDispatch } from 'react-redux';
 
 import { Theme } from '../../../config/theme';
 import { openModal } from '../../../redux/modal/actions';
-import LoginModal from '../LoginModal';
-import RegisterModal from '../RegisterModal';
+import JoinForm from '../../Auth/JoinForm';
+import LoginForm from '../../Auth/LoginForm';
 
 const useStyles = createUseStyles((theme: Theme) => ({
   btn: {
@@ -20,10 +20,10 @@ const UserInfo = (): ReactElement => {
   const dispatch = useDispatch();
 
   const handleLoginModal = () => {
-    dispatch(openModal({ dom: <LoginModal /> }));
+    dispatch(openModal({ dom: <LoginForm /> }));
   };
   const handleRegisterModal = () => {
-    dispatch(openModal({ dom: <RegisterModal /> }));
+    dispatch(openModal({ dom: <JoinForm /> }));
   };
 
   return (
