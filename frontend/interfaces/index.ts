@@ -27,9 +27,9 @@ export interface IOfferCard {
   is_favorite: boolean;
   per: 'DAY' | 'MONTH' | 'YEAR' | 'HOUR';
   price: number;
-  date: string;
+  pud_date: string;
   title: string;
-  view: number;
+  views: number;
   description: string;
   type?: ('top' | 'recent' | 'none')[];
 }

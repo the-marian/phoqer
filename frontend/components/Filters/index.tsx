@@ -46,7 +46,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
   close: {
     marginLeft: theme.rem(2.5),
     fontSize: theme.rem(1.4),
-    color: theme.palette.blue[0],
+    color: theme.palette.red[0],
     '&:hover': {
       textDecoration: 'underline',
     },

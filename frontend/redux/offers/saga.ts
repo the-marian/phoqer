@@ -1,6 +1,6 @@
 import { all, AllEffect, fork, ForkEffect } from 'redux-saga/effects';
 
-import { IOffers, IOfferCard } from '../../interfaces';
+import { IOfferCard, IOffers } from '../../interfaces';
 import { watcherPopularOffers } from './popular/saga';
 
 export function* watcherOffers(): Generator<

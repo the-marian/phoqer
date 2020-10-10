@@ -103,8 +103,8 @@ const OfferCard = ({
   description,
   cover_image,
   is_favorite,
-  view,
-  date,
+  views,
+  pud_date,
   per,
   type,
   price,
@@ -135,9 +135,9 @@ const OfferCard = ({
       <div className={css.info}>
         <p className={css.text}>
           <FontAwesomeIcon icon={faEye} />
-          <span className={css.view}>{view}</span>
+          <span className={css.view}>{views}</span>
         </p>
-        <p className={css.text}>Опубликовано: {date}</p>
+        <p className={css.text}>Опубликовано: {pud_date}</p>
       </div>
 
       <div className={css.action}>
