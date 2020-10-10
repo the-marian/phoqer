@@ -1,5 +1,4 @@
 import { faEye, faEyeSlash } from '@fortawesome/free-regular-svg-icons';
-import { faKey, faUser } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Link from 'next/link';
 import React, { FormEvent, ReactElement, useState } from 'react';
@@ -14,14 +13,22 @@ const useStyles = createUseStyles((theme: Theme) => ({
     textAlign: 'center',
   },
   wrp: {
-    position: 'relative',
+    display: 'block',
     margin: theme.rem(2, 0),
+  },
+  inner: {
+    position: 'relative',
+  },
+  label: {
+    margin: 0,
+    fontSize: theme.rem(1.2),
+    fontWeight: theme.text.weight[3],
   },
   input: {
     display: 'block',
     width: '100%',
     height: theme.rem(5),
-    paddingLeft: theme.rem(4),
+    padding: theme.rem(1),
     paddingRight: theme.rem(5),
     background: theme.palette.blue[2],
     border: theme.border(0.1, theme.palette.gray[3]),
@@ -29,14 +36,6 @@ const useStyles = createUseStyles((theme: Theme) => ({
     fontSize: theme.rem(1.4),
     lineHeight: 1,
     outline: 'none',
-  },
-  icon: {
-    position: 'absolute',
-    top: '52%',
-    left: theme.rem(1.5),
-    transform: 'translateY(-50%)',
-    fontSize: theme.rem(1.2),
-    color: theme.palette.gray[3],
   },
   eye: {
     position: 'absolute',
@@ -113,37 +112,41 @@ const LoginForm = (): ReactElement => {
     <form action="#" method="post" onSubmit={handleSubmit}>
       <h2 className={css.title}>Бобро пожаловать, засранец.</h2>
 
-      <div className={css.wrp}>
-        <div className={css.icon}>
-          <FontAwesomeIcon icon={faUser} />
-        </div>
-        <input type="email" name="email" className={css.input} />
-      </div>
+      <label className={css.wrp}>
+        <p className={css.label}>Full Name</p>
+        <input type="text" name="full_name" className={css.input} />
+      </label>
 
-      <div className={css.wrp}>
-        <div className={css.icon}>
-          <FontAwesomeIcon icon={faKey} />
+      <label className={css.wrp}>
+        <p className={css.label}>Email</p>
+        <input type="email" name="email" className={css.input} />
+      </label>
+
+      <label className={css.wrp}>
+        <p className={css.label}>Password</p>
+
+        <div className={css.inner}>
+          <button className={css.eye} onClick={hadleClick} type="button">
+            {password ? (
+              <FontAwesomeIcon icon={faEyeSlash} />
+            ) : (
+              <FontAwesomeIcon icon={faEye} />
+            )}
+          </button>
+          <input
+            type={password ? 'password' : 'text'}
+            name="password"
+            className={css.input}
+          />
         </div>
-        <button className={css.eye} onClick={hadleClick} type="button">
-          {password ? (
-            <FontAwesomeIcon icon={faEyeSlash} />
-          ) : (
-            <FontAwesomeIcon icon={faEye} />
-          )}
-        </button>
-        <input
-          type={password ? 'password' : 'text'}
-          name="password"
-          className={css.input}
-        />
-      </div>
+      </label>
 
       <Link href="/forgot_pass">
         <a className={css.pass}>Забыли пароль?</a>
       </Link>
 
       <button className={css.btn} type="submit">
-        ВОЙТИ
+        ЗАРЕГИСТРИРОВАТЬСЯ
       </button>
 
       <p className={css.text}>
