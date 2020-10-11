@@ -34,7 +34,7 @@ class Offer(models.Model):
     city = models.CharField(max_length=50)
     cover_image = models.URLField()
     currency = models.CharField(max_length=3, choices=Currency.choices)
-    deposit_val = models.PositiveIntegerField(blank=True, null=True)
+    deposit_val = models.PositiveIntegerField(default=0)
     description = models.TextField()
     doc_needed = models.BooleanField()
     extra_requirements = models.TextField(blank=True, null=True)

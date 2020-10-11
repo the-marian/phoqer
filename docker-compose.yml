@@ -13,6 +13,14 @@ services:
       - .env.dev
     depends_on:
       - db
+  frontend:
+    image: "${FRONTEND_IMAGE}"
+    expose:
+      - 3000
+    env_file:
+      - ./.env.dev
+    depends_on:
+      - backend
   db:
     image: postgres:12.0-alpine
     volumes:
