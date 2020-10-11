@@ -7,3 +7,7 @@ pytest-django==3.10.0
 pytest-dotenv==0.5.2
 pytest-flake8==1.0.6
 pytest-cov==2.10.1
+django-filter==2.4.0
+django-stubs==1.6.0
+djangorestframework-stubs==1.2.0
+django-filter-stubs==0.1.1
