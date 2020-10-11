@@ -28,7 +28,6 @@ class SearchOffersView(ListAPIView):
     ]
     filterset_fields = [
         'category',
-        'status',
         'city',
         'sub_category',
     ]

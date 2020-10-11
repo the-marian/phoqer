@@ -1,0 +1,13 @@
+# .coveragerc to control coverage.py
+[run]
+branch = True
+
+omit =
+    */migrations/*
+    */__init__.py
+    */apps.py
+    */admin.py
+    manage.py
+    share/settings.py
+    share/wsgi.py
+    share/asgi.py
