@@ -113,7 +113,7 @@ const OfferCard = ({
   const css = useStyles();
   return (
     <div className={css.root}>
-      <Link href="/products/:productId" as={`/products/${id}`}>
+      <Link href="/offers/:offerId" as={`/products/${id}`}>
         <a className={css.link}>
           <div className={css.imgWrp}>
             {type?.includes('top') && (

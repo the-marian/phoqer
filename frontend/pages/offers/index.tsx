@@ -1,5 +1,6 @@
 import React, { ReactElement } from 'react';
 import { END } from 'redux-saga';
+import About from '../../components/common/About';
 
 import Container from '../../components/common/Container';
 import Main from '../../components/common/Main';
@@ -11,7 +12,7 @@ import { IStore } from '../../interfaces';
 import { wrapper } from '../../redux/store';
 import types from '../../redux/types';
 
-const ProductsPage = (): ReactElement => (
+const OffersPage = (): ReactElement => (
   <Main>
     <Container>
       <Search />
@@ -23,16 +24,17 @@ const ProductsPage = (): ReactElement => (
     <Container>
       <OffersList />
     </Container>
+
+    <About />
   </Main>
 );
 
 export const getStaticProps = wrapper.getStaticProps(
   async ({ store }: { store: IStore }): Promise<void> => {
     store.dispatch({ type: types.GET_CATEGORIES_START });
-    store.dispatch({ type: types.GET_POPULAR_OFFERS_START });
     store.dispatch(END);
     await store.sagaTask.toPromise();
   },
 );
 
-export default ProductsPage;
+export default OffersPage;

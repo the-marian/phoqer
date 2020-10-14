@@ -7,10 +7,15 @@ import LinkArrow from '../common/LinkArrow';
 const useStyles = createUseStyles((theme: Theme) => ({
   root: {
     margin: theme.rem(8, 0),
-    padding: theme.rem(6, 6),
+    padding: theme.rem(6),
     borderRadius: theme.radius,
     background: theme.palette.yellow[1],
     color: theme.palette.black[0],
+
+    '@media (max-width: 550px)': {
+      margin: theme.rem(4, 0),
+      padding: theme.rem(3),
+    },
   },
   title: {
     marginBottom: theme.rem(1.5),

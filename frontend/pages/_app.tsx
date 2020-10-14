@@ -13,7 +13,6 @@ import {
   ThemeProvider,
 } from 'react-jss';
 
-import About from '../components/common/About';
 import Modal from '../components/common/Modal';
 import FullPage from '../components/common/Preloaders/FullPage';
 import Footer from '../components/Footer';
@@ -32,7 +31,6 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
         <FullPage />
         <Header />
         <Component {...pageProps} />
-        <About />
         <Footer />
       </ThemeProvider>
     </JssProvider>

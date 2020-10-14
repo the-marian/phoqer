@@ -34,8 +34,13 @@ export interface IOfferCard {
   type?: ('top' | 'recent' | 'none')[];
 }
 
+export interface IOfferPopular {
+  data: IOfferCard[] | null;
+  loading: boolean;
+}
+
 export interface IOffers {
-  popular: IOfferCard[] | null;
+  popular: IOfferPopular;
 }
 
 export interface IState {

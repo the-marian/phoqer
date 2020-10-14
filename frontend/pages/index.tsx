@@ -4,6 +4,7 @@ import { END } from 'redux-saga';
 
 import Banner from '../components/Banner';
 import Categories from '../components/Categories';
+import About from '../components/common/About';
 import Container from '../components/common/Container';
 import Main from '../components/common/Main';
 import Search from '../components/common/Search';
@@ -24,12 +25,15 @@ const Index = (): ReactElement => (
         <Banner />
         <TopPopular />
       </Container>
+
+      <About />
     </Main>
   </>
 );
 
 export const getStaticProps = wrapper.getStaticProps(
   async ({ store }: { store: IStore }): Promise<void> => {
+    console.log(store);
     store.dispatch({ type: types.GET_CATEGORIES_START });
     store.dispatch({ type: types.GET_POPULAR_OFFERS_START });
     store.dispatch(END);

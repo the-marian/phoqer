@@ -1,23 +1,21 @@
-import { HYDRATE } from 'next-redux-wrapper';
 import { AnyAction } from 'redux';
 
-import { IOfferCard } from '../../../interfaces';
+import { IOfferPopular } from '../../../interfaces';
 import types from '../../types';
 
 const popular = (
-  state: IOfferCard[] = null,
+  state: IOfferPopular = { data: null, loading: true },
   { type, payload }: AnyAction,
-): IOfferCard[] => {
+): IOfferPopular => {
   switch (type) {
-    case HYDRATE:
-      return payload.offers.popular;
-
     case types.GET_POPULAR_OFFERS_SUCCESS:
-      return payload;
+      return { data: payload, loading: false };
 
     case types.GET_POPULAR_OFFERS_START:
+      return { ...state, loading: true };
+
     case types.GET_POPULAR_OFFERS_ERROR:
-      return state;
+      return { ...state, loading: false };
 
     default:
       return state;
