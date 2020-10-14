@@ -41,7 +41,7 @@ const Region = (): ReactElement => {
 
   return (
     <div>
-      <h4 className={css.title}>Cортировать</h4>
+      <h4 className={css.title}>Регион</h4>
       <button type="button" className={css.input} onClick={handleRegionModal}>
         <FontAwesomeIcon icon={faChevronDown} />
         <span>Киев, Киевская область</span>

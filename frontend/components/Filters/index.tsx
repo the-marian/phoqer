@@ -9,6 +9,7 @@ import Checkbox from './Checkbox';
 import PriceFilter from './Price';
 import Region from './Region';
 import Sort from './Sort';
+import Time from './Time';
 
 const useStyles = createUseStyles((theme: Theme) => ({
   root: {
@@ -21,11 +22,29 @@ const useStyles = createUseStyles((theme: Theme) => ({
     display: 'grid',
     gridTemplateColumns: theme.fr(4),
     gridGap: theme.rem(5),
+
+    '@media (max-width: 1380px)': {
+      gridTemplateColumns: theme.fr(3),
+    },
+
+    '@media (max-width: 1100px)': {
+      gridTemplateColumns: theme.fr(2),
+      gridGap: theme.rem(3, 2),
+    },
+
+    '@media (max-width: 768px)': {
+      gridTemplateColumns: theme.fr(1),
+      gridGap: theme.rem(2),
+    },
   },
   list: {
     display: 'grid',
     gridTemplateColumns: theme.fr(2),
     gridGap: theme.rem(1.5, 6),
+
+    '@media (max-width: 550px)': {
+      gridTemplateColumns: theme.fr(1),
+    },
   },
   link: {
     fontSize: theme.rem(1.4),
@@ -104,6 +123,7 @@ const Filters = (): ReactElement => {
               <Categories />
               <Sort />
               <Region />
+              <Time />
             </div>
 
             <Checkbox />

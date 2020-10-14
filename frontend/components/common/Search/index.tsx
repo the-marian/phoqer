@@ -1,14 +1,18 @@
-import { faMapMarkerAlt, faSearch } from '@fortawesome/free-solid-svg-icons';
+import {
+  faMapMarkerAlt,
+  faSearch,
+  faThLarge,
+} from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useRouter } from 'next/router';
-import React, { ReactElement } from 'react';
+import React, { ReactElement, useEffect, useState } from 'react';
 import { createUseStyles } from 'react-jss';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { Theme } from '../../../config/theme';
 import { ICategories, IState } from '../../../interfaces';
 import { openModal } from '../../../redux/modal/actions';
-import { formateCatList } from '../../../utils/helpers';
+import * as helpers from '../../../utils/helpers';
 import DropDown from '../DropDown';
 import LinkArrow from '../LinkArrow';
 import RegionModal from '../RegionModal';
@@ -18,6 +22,10 @@ const useStyles = createUseStyles((theme: Theme) => ({
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
+
+    '@media (max-width: 960px)': {
+      display: 'block',
+    },
   },
   serach: {
     display: 'flex',
@@ -44,6 +52,11 @@ const useStyles = createUseStyles((theme: Theme) => ({
       width: theme.rem(0.1),
       background: theme.palette.gray[3],
     },
+
+    '@media (max-width: 900px)': {
+      height: '100%',
+      width: theme.rem(8),
+    },
   },
   input: {
     display: 'block',
@@ -61,6 +74,25 @@ const useStyles = createUseStyles((theme: Theme) => ({
     fontSize: theme.rem(1.6),
     color: theme.palette.white,
     borderRadius: theme.radius,
+
+    '@media (max-width: 960px)': {
+      width: '100%',
+      margin: theme.rem(2, 0),
+    },
+  },
+  catWrp: {
+    '@media (max-width: 900px)': {
+      display: 'none',
+    },
+  },
+  catBtn: {
+    display: 'none',
+    width: '100%',
+    height: '100%',
+
+    '@media (max-width: 900px)': {
+      display: 'block',
+    },
   },
   icon: {
     fontSize: theme.rem(1.4),
@@ -89,12 +121,38 @@ const useStyles = createUseStyles((theme: Theme) => ({
 
 const Search = (): ReactElement => {
   const css = useStyles();
-  const { pathname } = useRouter();
   const dispatch = useDispatch();
 
-  const categories = useSelector<IState, ICategories[]>(
-    state => state.categories,
-  );
+  const { pathname, query } = useRouter();
+  const { category, sub_category } = query;
+
+  const [categoryName, setCategoryName] = useState<string | null>(null);
+  const [subCategoryName, setSubCategoryName] = useState<string | null>(null);
+
+  const data = useSelector<IState, ICategories[]>(state => state.categories);
+  const categories = helpers.formateCatList(data);
+
+  useEffect(() => {
+    if (category) {
+      setCategoryName(
+        helpers.findCategory(
+          data,
+          typeof category === 'string' ? category : category[0],
+        ),
+      );
+    }
+  }, [category]);
+
+  useEffect(() => {
+    if (sub_category) {
+      setSubCategoryName(
+        helpers.findSubCategory(
+          data,
+          typeof sub_category === 'string' ? sub_category : sub_category[0],
+        ),
+      );
+    }
+  }, [sub_category]);
 
   const handleRegionModal = () => {
     dispatch(openModal({ dom: <RegionModal /> }));
@@ -126,18 +184,28 @@ const Search = (): ReactElement => {
             placeholder="Что вы ищите?"
           />
           <div className={css.cat}>
-            {!!categories?.length && (
-              <DropDown
-                value={formateCatList(categories)}
-                onSubmit={console.log}
-                height={6.8}
-                transparent
-                toRight
-              />
-            )}
+            <div className={css.catWrp}>
+              {!!categories?.length && (
+                <DropDown
+                  value={categories}
+                  onSubmit={console.log}
+                  height={6.8}
+                  defaultValue={categoryName || subCategoryName}
+                  transparent
+                  toRight
+                />
+              )}
+            </div>
+
+            <button type="button" className={css.catBtn}>
+              <FontAwesomeIcon icon={faThLarge} />
+            </button>
           </div>
         </form>
-        <button className={css.btn}>Найти</button>
+
+        <button type="submit" className={css.btn}>
+          Найти
+        </button>
       </div>
     </>
   );

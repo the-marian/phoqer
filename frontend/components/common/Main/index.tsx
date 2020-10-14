@@ -6,6 +6,10 @@ import { Theme } from '../../../config/theme';
 const useStyles = createUseStyles((theme: Theme) => ({
   main: {
     margin: theme.rem(10, 0, 25),
+
+    '@media (max-width: 900px)': {
+      margin: theme.rem(6, 0, 8),
+    },
   },
 }));
 

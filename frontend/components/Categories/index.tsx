@@ -10,11 +10,14 @@ import SectionTitle from '../common/SectionTitle';
 const useStyles = createUseStyles((theme: Theme) => ({
   root: {
     margin: theme.rem(10, 0, 6),
+    '@media (max-width: 550px)': {
+      margin: theme.rem(4, 0),
+    },
   },
   wrp: {
     display: 'grid',
     gridTemplateColumns: theme.fr(7),
-    gridGap: theme.rem(3),
+    gridGap: theme.rem(4, 3),
     '@media (max-width: 1200px)': {
       gridTemplateColumns: theme.fr(5),
     },
@@ -24,9 +27,12 @@ const useStyles = createUseStyles((theme: Theme) => ({
     '@media (max-width: 780px)': {
       gridTemplateColumns: theme.fr(3),
     },
+    '@media (max-width: 550px)': {
+      gridTemplateColumns: theme.fr(2),
+      gridGap: theme.rem(2, 1.5),
+    },
   },
   cat: {
-    marginBottom: theme.rem(2),
     cursor: 'pointer',
     '&:hover': {
       textDecoration: 'underline',
@@ -51,9 +57,10 @@ const Categories = (): ReactElement => {
   return (
     <div className={css.root}>
       <SectionTitle>Арендуйте здесь и сейчас</SectionTitle>
+
       <div className={css.wrp}>
         {categories?.map(({ name, image, slug }) => (
-          <Link key={name} href={`/products?category=${slug}`}>
+          <Link key={name} href={`/offers?category=${slug}`}>
             <div className={css.cat}>
               <img className={css.img} src={image} alt={name} />
               <p className={css.text}>{name}</p>

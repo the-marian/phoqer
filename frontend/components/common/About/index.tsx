@@ -5,11 +5,22 @@ import { Theme } from '../../../config/theme';
 
 const useStyles = createUseStyles((theme: Theme) => ({
   wrp: {
-    margin: theme.rem(20, 0, 30),
+    margin: theme.rem(10, 0, 20),
+
+    '@media (max-width: 500px)': {
+      margin: theme.rem(8, 0),
+    },
   },
   img: {
     height: theme.rem(75),
     objectFit: 'cover',
+
+    '@media (max-width: 1200px)': {
+      height: theme.rem(55),
+    },
+    '@media (max-width: 500px)': {
+      height: theme.rem(40),
+    },
   },
   title: {
     textTransform: 'uppercase',
@@ -17,15 +28,27 @@ const useStyles = createUseStyles((theme: Theme) => ({
     textAlign: 'center',
     fontSize: theme.rem(2),
     fontWeight: theme.text.weight[3],
+
+    '@media (max-width: 500px)': {
+      margin: theme.rem(5, 0, 3),
+    },
   },
   content: {
     width: '60%',
     margin: '0 auto',
+
+    '@media (max-width: 500px)': {
+      width: '80%',
+    },
   },
   text: {
     margin: theme.rem(3, 0),
     fontSize: theme.rem(1.4),
     textAlign: 'center',
+
+    '@media (max-width: 500px)': {
+      margin: theme.rem(2, 0),
+    },
   },
 }));
 

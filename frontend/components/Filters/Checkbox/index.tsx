@@ -6,13 +6,14 @@ import { Theme } from '../../../config/theme';
 const useStyles = createUseStyles((theme: Theme) => ({
   root: {
     display: 'flex',
-    marginTop: theme.rem(7),
+    marginTop: theme.rem(5),
     fontSize: theme.rem(1.4),
+    flexWrap: 'wrap',
   },
   btn: {
     display: 'flex',
     alignItems: 'center',
-    marginRight: theme.rem(5),
+    margin: theme.rem(1, 4, 1, 0),
   },
   label: {
     display: 'inline-block',

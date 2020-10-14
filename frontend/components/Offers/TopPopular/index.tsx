@@ -1,10 +1,12 @@
 import Link from 'next/link';
-import React, { ReactElement } from 'react';
+import React, { ReactElement, useEffect } from 'react';
 import { createUseStyles } from 'react-jss';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { Theme } from '../../../config/theme';
-import { IOfferCard, IState } from '../../../interfaces';
+import { IOfferPopular, IState } from '../../../interfaces';
+import types from '../../../redux/types';
+import OffersLoader from '../../common/Preloaders/OffersLoader';
 import SectionTitle from '../../common/SectionTitle';
 import OfferCard from '../OfferCard';
 
@@ -17,11 +19,20 @@ const useStyles = createUseStyles((theme: Theme) => ({
     display: 'grid',
     gridTemplateColumns: theme.fr(4),
     gridGap: theme.rem(10, 6),
+
     '@media (max-width: 1500px)': {
       gridTemplateColumns: theme.fr(3),
     },
     '@media (max-width: 1140px)': {
       gridTemplateColumns: theme.fr(2),
+    },
+    '@media (max-width: 960px)': {
+      gridGap: theme.rem(6, 3),
+    },
+    '@media (max-width: 560px)': {
+      gridTemplateColumns: theme.fr(1),
+      maxWidth: theme.rem(40),
+      margin: '0 auto',
     },
   },
   btn: {
@@ -39,23 +50,31 @@ const useStyles = createUseStyles((theme: Theme) => ({
 
 const TopPopular = (): ReactElement => {
   const css = useStyles();
-  const popular = useSelector<IState, IOfferCard[]>(
+  const dispatch = useDispatch();
+  const { data, loading } = useSelector<IState, IOfferPopular>(
     state => state.offers.popular,
   );
 
+  useEffect(() => {
+    dispatch({ type: types.GET_POPULAR_OFFERS_START });
+  }, [dispatch]);
+
   return (
     <div className={css.root}>
-      <SectionTitle link="Смотреть все" href="/products?type=popular">
+      <SectionTitle link="Смотреть все" href="/offers?type=popular">
         Популярные товары
       </SectionTitle>
 
       <div className={css.grid}>
-        {popular?.map(product => (
-          <OfferCard key={product.id} {...product} />
-        ))}
+        {loading ? (
+          !!data &&
+          data.map(product => <OfferCard key={product.id} {...product} />)
+        ) : (
+          <OffersLoader />
+        )}
       </div>
 
-      <Link href="/products">
+      <Link href="/offers">
         <a className={css.btn}>Смотреть все</a>
       </Link>
     </div>

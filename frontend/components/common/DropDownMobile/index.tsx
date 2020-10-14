@@ -44,7 +44,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     top: '100%',
     left: 0,
     width: '100%',
-    maxHeight: theme.rem(40),
+    maxHeight: theme.rem(60),
     marginTop: theme.rem(1),
     padding: theme.rem(2, 0),
     background: theme.palette.white,
@@ -53,35 +53,35 @@ const useStyles = createUseStyles((theme: Theme) => ({
     fontSize: theme.rem(1.6),
     overflowY: 'scroll',
     zIndex: 10,
-  },
-  sub: {
-    position: 'absolute',
-    top: '100%',
-    right: (props: StyleProp): string =>
-      props.toRight ? 'calc(100% + 1rem)' : 'uset',
-    left: (props: StyleProp): string =>
-      props.toRight ? 'uset' : 'calc(100% + 1rem)',
-    width: '100%',
-    maxHeight: theme.rem(40),
-    marginTop: theme.rem(1),
-    zIndex: 10,
-  },
-  subBox: {
-    maxHeight: theme.rem(40),
-    padding: theme.rem(2, 0),
-    background: theme.palette.white,
-    borderRadius: theme.radius,
-    border: theme.border(0.1, theme.palette.gray[3]),
-    fontSize: theme.rem(1.6),
-    overflowY: 'scroll',
   },
   item: {
-    padding: theme.rem(1, 3),
-    cursor: 'pointer',
-    '&:hover': {
-      background: theme.palette.red[0],
-      color: theme.palette.white,
+    margin: theme.rem(1, 0),
+    padding: theme.rem(1, 2),
+    fontWeight: theme.text.weight[3],
+    '& > button': {
+      display: 'block',
+      height: theme.rem(2.5),
+      width: '100%',
+      textAlign: 'left',
     },
+  },
+  sub: {
+    position: 'relative',
+    padding: theme.rem(1, 2),
+    fontWeight: theme.text.weight[1],
+    '&::before': {
+      content: '""',
+      position: 'absolute',
+      top: '50%',
+      left: 0,
+      transform: 'translateY(-50%)',
+      height: '60%',
+      width: theme.rem(0.2),
+      background: theme.palette.gray[2],
+    },
+  },
+  subList: {
+    margin: theme.rem(0.5, 0.1),
   },
   icon: {
     marginTop: theme.em(0.4),
@@ -103,7 +103,7 @@ interface Props {
   ) => void;
 }
 
-const DropDown = ({
+const DropDownMobile = ({
   height = 5,
   value,
   onSubmit,
@@ -112,8 +112,8 @@ const DropDown = ({
   transparent = false,
 }: Props): ReactElement => {
   const css = useStyles({ height, toRight });
+
   const [drop, setDrop] = useState<boolean>(false);
-  const [hover, setHover] = useState<number | null>(null);
   const [selected, setSelected] = useState<string>(
     defaultValue || value[0].name,
   );
@@ -126,7 +126,6 @@ const DropDown = ({
 
   const handleClick = (): void => {
     setDrop(!drop);
-    setHover(null);
   };
 
   const handleSelect = (
@@ -141,7 +140,6 @@ const DropDown = ({
 
   const handleBlur = () => {
     setDrop(false);
-    setHover(null);
   };
 
   return (
@@ -164,61 +162,40 @@ const DropDown = ({
       </p>
 
       {drop && (
-        <>
-          <div className={css.box}>
-            <ul>
-              {value?.map(({ name, slug, sub }, index) => (
-                <li
-                  className={css.item}
-                  key={slug}
-                  aria-hidden
+        <div className={css.box}>
+          <ul>
+            {value?.map(({ name, slug, sub }) => (
+              <li className={css.item} key={slug}>
+                <button
+                  type="button"
                   onClick={() => {
                     handleSelect(name, slug, 'category');
                   }}
-                  onMouseMove={() => {
-                    setHover(sub ? index : null);
-                  }}
                 >
-                  <span>{name}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
+                  {name}
+                </button>
 
-          {value &&
-            value?.map(
-              ({ name, sub }, index) =>
-                sub && (
-                  <div
-                    key={name}
-                    className={css.sub}
-                    style={{
-                      visibility: hover === index ? 'visible' : 'hidden',
-                    }}
-                  >
-                    <div className={css.subBox}>
-                      <ul>
-                        {sub?.map(({ name, slug }) => (
-                          <li
-                            className={css.item}
-                            key={slug}
-                            aria-hidden
-                            onClick={() => {
-                              handleSelect(name, slug, 'sub_category');
-                            }}
-                          >
-                            <span>{name}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
-                ),
-            )}
-        </>
+                <ul className={css.subList}>
+                  {sub?.map(({ name, slug }) => (
+                    <li
+                      className={css.sub}
+                      key={slug}
+                      aria-hidden
+                      onClick={() => {
+                        handleSelect(name, slug, 'sub_category');
+                      }}
+                    >
+                      <span>{name}</span>
+                    </li>
+                  ))}
+                </ul>
+              </li>
+            ))}
+          </ul>
+        </div>
       )}
     </div>
   );
 };
 
-export default DropDown;
+export default DropDownMobile;

@@ -1,11 +1,11 @@
 import axios, { AxiosResponse } from 'axios';
 
-import { ICategories, IOffer } from '../interfaces';
+import { ICategories, IOffers } from '../interfaces';
 
 axios.defaults.baseURL =
   process.env.NODE_ENV !== 'production'
-    ? process.env.DEV_URL
-    : process.env.PROD_URL;
+    ? process.env.NEXT_PUBLIC_DEV_URL
+    : process.env.NEXT_PUBLIC_PROD_URL;
 
 export interface IApi {
   categories: {
@@ -13,7 +13,7 @@ export interface IApi {
   };
   offers: {
     popular: {
-      get: () => Promise<AxiosResponse<IOffer>>;
+      get: () => Promise<AxiosResponse<IOffers>>;
     };
   };
 }
@@ -24,7 +24,7 @@ const api: IApi = {
   },
   offers: {
     popular: {
-      get: (): Promise<AxiosResponse<IOffer>> => axios.get('/offers/popular/'),
+      get: (): Promise<AxiosResponse<IOffers>> => axios.get('/offers/popular/'),
     },
   },
 };

@@ -10,6 +10,7 @@ export const numberValidation = (text: string): boolean => {
   return true;
 };
 
+// formate category list frome beckend
 export const formateCatList = (data: ICategories[]): IDropList[] =>
   data?.map(
     (item: ICategories): IDropList =>
@@ -17,3 +18,23 @@ export const formateCatList = (data: ICategories[]): IDropList[] =>
         ? { name: item.name, slug: item.slug, sub: item.sub_categories }
         : item,
   );
+
+// find categoty name
+export const findCategory = (
+  data: IDropList[],
+  slug: string,
+): string | null => {
+  const category: IDropList | undefined = data.find(item => item.slug === slug);
+  return category ? category.name : null;
+};
+
+// find sub categoty name
+export const findSubCategory = (
+  data: IDropList[],
+  slug: string,
+): string | null => {
+  const category: IDropList | undefined = data
+    .filter(item => item.sub)
+    .find(item => item.slug === slug);
+  return category ? category.name : null;
+};
