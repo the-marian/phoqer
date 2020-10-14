@@ -27,6 +27,7 @@ urlpatterns = [
     # REST-FRAMEWORK URLS
     path('api/v1/categories/', include('categories.urls', namespace='categories')),
     path('api/v1/offers/', include('offers.urls', namespace='offers')),
+    path('auth/', include('rest_framework_social_oauth2.urls')),
     # path('api/v1/users/', include('users.urls', namespace='users'))
     # SWAGGER URL
     re_path(r'^swagger(?P<format>\.json|\.yaml)$', schema_view.without_ui(cache_timeout=0), name='schema-json'),
