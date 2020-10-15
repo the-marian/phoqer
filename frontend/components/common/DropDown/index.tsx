@@ -33,7 +33,6 @@ const useStyles = createUseStyles((theme: Theme) => ({
   inner: {
     display: 'flex',
     alignItems: 'center',
-    height: (props: StyleProp): string => theme.rem(props.height),
     margin: 0,
     padding: theme.rem(2),
     cursor: 'pointer',
@@ -57,10 +56,6 @@ const useStyles = createUseStyles((theme: Theme) => ({
   sub: {
     position: 'absolute',
     top: '100%',
-    right: (props: StyleProp): string =>
-      props.toRight ? 'calc(100% + 1rem)' : 'uset',
-    left: (props: StyleProp): string =>
-      props.toRight ? 'uset' : 'calc(100% + 1rem)',
     width: '100%',
     maxHeight: theme.rem(40),
     marginTop: theme.rem(1),
@@ -157,7 +152,12 @@ const DropDown = ({
       tabIndex={-1}
       onBlur={handleBlur}
     >
-      <p className={css.inner} onClick={handleClick} aria-hidden>
+      <p
+        className={css.inner}
+        style={{ height }}
+        onClick={handleClick}
+        aria-hidden
+      >
         {drop ? (
           <span className={css.icon}>
             <FontAwesomeIcon icon={faChevronUp} />
@@ -202,6 +202,8 @@ const DropDown = ({
                     className={css.sub}
                     style={{
                       visibility: hover === index ? 'visible' : 'hidden',
+                      right: toRight ? 'calc(100% + 1rem)' : 'uset',
+                      left: toRight ? 'uset' : 'calc(100% + 1rem)',
                     }}
                   >
                     <div className={css.subBox}>

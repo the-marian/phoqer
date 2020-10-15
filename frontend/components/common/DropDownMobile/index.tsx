@@ -6,11 +6,6 @@ import { createUseStyles } from 'react-jss';
 import { Theme } from '../../../config/theme';
 import { IDropList } from '../../../interfaces';
 
-interface StyleProp {
-  height: number;
-  toRight: boolean;
-}
-
 const useStyles = createUseStyles((theme: Theme) => ({
   wrp: {
     position: 'relative',
@@ -33,7 +28,6 @@ const useStyles = createUseStyles((theme: Theme) => ({
   inner: {
     display: 'flex',
     alignItems: 'center',
-    height: (props: StyleProp): string => theme.rem(props.height),
     margin: 0,
     padding: theme.rem(2),
     cursor: 'pointer',
@@ -144,7 +138,12 @@ const DropDownMobile = ({
       tabIndex={-1}
       onBlur={handleBlur}
     >
-      <p className={css.inner} onClick={handleClick} aria-hidden>
+      <p
+        className={css.inner}
+        style={{ height }}
+        onClick={handleClick}
+        aria-hidden
+      >
         {drop ? (
           <span className={css.icon}>
             <FontAwesomeIcon icon={faChevronUp} />
