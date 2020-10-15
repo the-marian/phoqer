@@ -55,33 +55,29 @@ const useStyles = createUseStyles((theme: Theme) => ({
     zIndex: 10,
   },
   item: {
-    margin: theme.rem(1, 0),
-    padding: theme.rem(1, 2),
     fontWeight: theme.text.weight[3],
     '& > button': {
       display: 'block',
-      height: theme.rem(2.5),
       width: '100%',
+      padding: theme.rem(1, 2),
       textAlign: 'left',
     },
   },
   sub: {
     position: 'relative',
+    marginLeft: theme.rem(2),
     padding: theme.rem(1, 2),
     fontWeight: theme.text.weight[1],
     '&::before': {
       content: '""',
       position: 'absolute',
-      top: '50%',
+      top: '60%',
       left: 0,
       transform: 'translateY(-50%)',
       height: '60%',
       width: theme.rem(0.2),
       background: theme.palette.gray[2],
     },
-  },
-  subList: {
-    margin: theme.rem(0.5, 0.1),
   },
   icon: {
     marginTop: theme.em(0.4),
@@ -146,7 +142,7 @@ const DropDownMobile = ({
     <div
       className={transparent ? css.wrpTransparent : css.wrp}
       tabIndex={-1}
-      onBlur={handleBlur}
+      // onBlur={handleBlur}
     >
       <p className={css.inner} onClick={handleClick} aria-hidden>
         {drop ? (
@@ -175,7 +171,7 @@ const DropDownMobile = ({
                   {name}
                 </button>
 
-                <ul className={css.subList}>
+                <ul>
                   {sub?.map(({ name, slug }) => (
                     <li
                       className={css.sub}

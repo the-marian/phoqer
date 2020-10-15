@@ -29,6 +29,10 @@ const useStyles = createUseStyles((theme: Theme) => ({
     paddingTop: theme.rem(3),
     borderRadius: theme.radius,
     background: theme.palette.white,
+
+    '@media (max-width: 500px)': {
+      width: '90%',
+    },
   },
   button: {
     position: 'absolute',

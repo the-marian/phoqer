@@ -40,19 +40,33 @@ const useStyles = createUseStyles((theme: Theme) => ({
     display: 'flex',
     flexWrap: 'wrap',
     width: '60%',
+
+    '@media (max-width: 640px)': {
+      width: '100%',
+      marginBottom: theme.rem(5),
+    },
   },
   item: {
     display: 'block',
-    width: '50%',
+    width: '48%',
+
+    '@media (max-width: 640px)': {
+      width: '100%',
+    },
   },
   link: {
     display: 'block',
+    margin: theme.rem(2, 0),
     fontSize: theme.rem(1.2),
     fontWeight: theme.text.weight[3],
     color: theme.palette.black[0],
-    lineHeight: 4,
+    lineHeight: 1,
     '&:hover': {
       textDecoration: 'underline',
+    },
+
+    '@media (max-width: 640px)': {
+      margin: theme.rem(1, 0),
     },
   },
 }));

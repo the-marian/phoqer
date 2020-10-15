@@ -1,5 +1,6 @@
 import { useRouter } from 'next/router';
 import React, { ReactElement, useEffect, useState } from 'react';
+import { BrowserView, MobileView } from 'react-device-detect';
 import { createUseStyles } from 'react-jss';
 import { useSelector } from 'react-redux';
 
@@ -14,18 +15,6 @@ const useStyles = createUseStyles((theme: Theme) => ({
     marginBottom: theme.rem(1),
     fontSize: theme.rem(1.6),
     fontWeight: theme.text.weight[2],
-  },
-  mobile: {
-    display: 'none',
-
-    '@media (max-width: 900px)': {
-      display: 'block',
-    },
-  },
-  desktop: {
-    '@media (max-width: 900px)': {
-      display: 'none',
-    },
   },
 }));
 
@@ -66,24 +55,23 @@ const Categories = (): ReactElement => {
   return (
     <div>
       <h4 className={css.title}>Категория</h4>
-
-      <div className={css.desktop}>
+      <BrowserView>
         <DropDown
           value={categories}
           onSubmit={console.log}
           defaultValue={categoryName || subCategoryName}
           toRight
         />
-      </div>
+      </BrowserView>
 
-      <div className={css.mobile}>
+      <MobileView>
         <DropDownMobile
           value={categories}
           onSubmit={console.log}
           defaultValue={categoryName || subCategoryName}
           toRight
         />
-      </div>
+      </MobileView>
     </div>
   );
 };

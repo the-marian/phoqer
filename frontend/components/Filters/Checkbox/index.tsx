@@ -9,6 +9,10 @@ const useStyles = createUseStyles((theme: Theme) => ({
     marginTop: theme.rem(5),
     fontSize: theme.rem(1.4),
     flexWrap: 'wrap',
+
+    '@media (max-width: 550px)': {
+      marginTop: theme.rem(3),
+    },
   },
   btn: {
     display: 'flex',

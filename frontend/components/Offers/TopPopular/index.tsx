@@ -45,6 +45,10 @@ const useStyles = createUseStyles((theme: Theme) => ({
     color: theme.palette.white,
     borderRadius: theme.radius,
     background: theme.palette.blue[0],
+
+    '@media (max-width: 550px)': {
+      margin: '4rem auto 0',
+    },
   },
 }));
 

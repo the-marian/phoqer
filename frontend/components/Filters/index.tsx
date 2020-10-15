@@ -17,6 +17,10 @@ const useStyles = createUseStyles((theme: Theme) => ({
   },
   form: {
     margin: theme.rem(4, 0, 6),
+
+    '@media (max-width: 550px)': {
+      margin: theme.rem(2, 0, 6),
+    },
   },
   formInner: {
     display: 'grid',
@@ -76,6 +80,10 @@ const useStyles = createUseStyles((theme: Theme) => ({
     fontSize: theme.rem(1.4),
     borderRadius: theme.radius,
     background: theme.palette.grayblue[0],
+
+    '@media (max-width: 550px)': {
+      marginTop: theme.rem(3),
+    },
   },
 }));
 
