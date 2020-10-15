@@ -45,5 +45,4 @@ class OfferListItemSerializer(serializers.ModelSerializer):
     def get_is_promoted(self, offer):
         if datetime.date.today() > offer.promote_til_date:
             return False
-        else:
-            return True
+        return True

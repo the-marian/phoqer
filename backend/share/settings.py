@@ -11,7 +11,6 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
-import dj_database_url
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -43,7 +42,6 @@ INSTALLED_APPS = [
     'oauth2_provider',
     'social_django',
     'rest_framework_social_oauth2',
-    'django_extensions',
     'upload',
     'users',
     'drf_yasg',
@@ -98,8 +96,8 @@ SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE = ['email']
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = os.environ.get('GOOGLE_SECRET_ID')
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = os.environ.get('GOOGLE_SECRET_KEY')
 
-LOGIN_REDIRECT_URL = 'http://127.0.0.1:8000/'
-LOGOUT_REDIRECT_URL = 'http://127.0.0.1:8000/'
+LOGIN_REDIRECT_URL = os.environ.get('LOGIN_REDIRECT_URL', 'localhost')
+LOGOUT_REDIRECT_URL = os.environ.get('LOGOUT_REDIRECT_URL', 'localhost')
 
 
 AUTHENTICATION_BACKENDS = (
@@ -140,7 +138,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+# TIME_ZONE = 'UTC'
 
 USE_I18N = True
 
@@ -159,4 +157,4 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "mediafiles")
 
 AUTH_USER_MODEL = 'users.User'
 
-SESSION_COOKIE_SECURE=False
+SESSION_COOKIE_SECURE=os.environ.get('SESSION_COOKIE_SECURE', 'False')
