@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react';
 import { END } from 'redux-saga';
-import About from '../../components/common/About';
 
+import About from '../../components/common/About';
 import Container from '../../components/common/Container';
 import Main from '../../components/common/Main';
 import Search from '../../components/common/Search';

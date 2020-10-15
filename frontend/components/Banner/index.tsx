@@ -9,7 +9,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     margin: theme.rem(8, 0),
     padding: theme.rem(6),
     borderRadius: theme.radius,
-    background: theme.palette.yellow[1],
+    background: theme.palette.grayblue[0],
     color: theme.palette.black[0],
 
     '@media (max-width: 550px)': {

@@ -55,6 +55,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     zIndex: 10,
   },
   item: {
+<<<<<<< HEAD
     margin: theme.rem(1, 0),
     padding: theme.rem(1, 2),
     fontWeight: theme.text.weight[3],
@@ -62,17 +63,32 @@ const useStyles = createUseStyles((theme: Theme) => ({
       display: 'block',
       height: theme.rem(2.5),
       width: '100%',
+=======
+    fontWeight: theme.text.weight[3],
+    '& > button': {
+      display: 'block',
+      width: '100%',
+      padding: theme.rem(1, 2),
+>>>>>>> homepage
       textAlign: 'left',
     },
   },
   sub: {
     position: 'relative',
+<<<<<<< HEAD
+=======
+    marginLeft: theme.rem(2),
+>>>>>>> homepage
     padding: theme.rem(1, 2),
     fontWeight: theme.text.weight[1],
     '&::before': {
       content: '""',
       position: 'absolute',
+<<<<<<< HEAD
       top: '50%',
+=======
+      top: '60%',
+>>>>>>> homepage
       left: 0,
       transform: 'translateY(-50%)',
       height: '60%',
@@ -80,9 +96,12 @@ const useStyles = createUseStyles((theme: Theme) => ({
       background: theme.palette.gray[2],
     },
   },
+<<<<<<< HEAD
   subList: {
     margin: theme.rem(0.5, 0.1),
   },
+=======
+>>>>>>> homepage
   icon: {
     marginTop: theme.em(0.4),
     marginRight: theme.rem(1.5),
@@ -175,7 +194,11 @@ const DropDownMobile = ({
                   {name}
                 </button>
 
+<<<<<<< HEAD
                 <ul className={css.subList}>
+=======
+                <ul>
+>>>>>>> homepage
                   {sub?.map(({ name, slug }) => (
                     <li
                       className={css.sub}

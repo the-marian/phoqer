@@ -75,9 +75,14 @@ const useStyles = createUseStyles((theme: Theme) => ({
     fontSize: theme.rem(1.6),
     overflowY: 'scroll',
   },
-  item: {
+  button: {
+    display: 'block',
+    width: '100%',
     padding: theme.rem(1, 3),
     cursor: 'pointer',
+    borderRadius: 0,
+    textAlign: 'left',
+
     '&:hover': {
       background: theme.palette.red[0],
       color: theme.palette.white,
@@ -140,8 +145,10 @@ const DropDown = ({
   };
 
   const handleBlur = () => {
-    setDrop(false);
-    setHover(null);
+    setTimeout(() => {
+      setDrop(false);
+      setHover(null);
+    }, 200);
   };
 
   return (
@@ -168,18 +175,19 @@ const DropDown = ({
           <div className={css.box}>
             <ul>
               {value?.map(({ name, slug, sub }, index) => (
-                <li
-                  className={css.item}
-                  key={slug}
-                  aria-hidden
-                  onClick={() => {
-                    handleSelect(name, slug, 'category');
-                  }}
-                  onMouseMove={() => {
-                    setHover(sub ? index : null);
-                  }}
-                >
-                  <span>{name}</span>
+                <li key={slug}>
+                  <button
+                    type="button"
+                    className={css.button}
+                    onClick={() => {
+                      handleSelect(name, slug, 'category');
+                    }}
+                    onMouseMove={() => {
+                      setHover(sub ? index : null);
+                    }}
+                  >
+                    {name}
+                  </button>
                 </li>
               ))}
             </ul>
@@ -199,15 +207,16 @@ const DropDown = ({
                     <div className={css.subBox}>
                       <ul>
                         {sub?.map(({ name, slug }) => (
-                          <li
-                            className={css.item}
-                            key={slug}
-                            aria-hidden
-                            onClick={() => {
-                              handleSelect(name, slug, 'sub_category');
-                            }}
-                          >
-                            <span>{name}</span>
+                          <li key={slug}>
+                            <button
+                              className={css.button}
+                              type="button"
+                              onClick={() => {
+                                handleSelect(name, slug, 'sub_category');
+                              }}
+                            >
+                              {name}
+                            </button>
                           </li>
                         ))}
                       </ul>

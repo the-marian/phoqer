@@ -26,7 +26,11 @@ services:
         - "${FRONTEND_IMAGE}"
     image: "${FRONTEND_IMAGE}"
     expose:
+<<<<<<< HEAD
       - 4000
+=======
+      - 3000
+>>>>>>> homepage
     env_file:
       - ./.env.dev
     depends_on:

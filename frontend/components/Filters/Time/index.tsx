@@ -24,7 +24,7 @@ const Time = (): ReactElement => {
   const css = useStyles();
   return (
     <div>
-      <h4 className={css.title}>Минимальный срок аренды</h4>
+      <h4 className={css.title}>Оплата за</h4>
       <DropDown value={FILTERS} onSubmit={console.log} />
     </div>
   );
