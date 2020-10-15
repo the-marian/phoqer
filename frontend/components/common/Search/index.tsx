@@ -1,19 +1,8 @@
-<<<<<<< HEAD
-import {
-  faMapMarkerAlt,
-  faSearch,
-  faThLarge,
-} from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useRouter } from 'next/router';
-import React, { ReactElement, useEffect, useState } from 'react';
-=======
 import { faMapMarkerAlt, faSearch } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useRouter } from 'next/router';
 import React, { ReactElement, useEffect, useState } from 'react';
 import { BrowserView, MobileView } from 'react-device-detect';
->>>>>>> homepage
 import { createUseStyles } from 'react-jss';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -22,10 +11,7 @@ import { ICategories, IState } from '../../../interfaces';
 import { openModal } from '../../../redux/modal/actions';
 import * as helpers from '../../../utils/helpers';
 import DropDown from '../DropDown';
-<<<<<<< HEAD
-=======
 import DropDownMobile from '../DropDownMobile';
->>>>>>> homepage
 import LinkArrow from '../LinkArrow';
 import RegionModal from '../RegionModal';
 
@@ -39,12 +25,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
       display: 'block',
     },
   },
-<<<<<<< HEAD
-=======
   form: {
     width: '100%',
   },
->>>>>>> homepage
   serach: {
     display: 'flex',
     justifyContent: 'space-between',
@@ -98,23 +81,6 @@ const useStyles = createUseStyles((theme: Theme) => ({
       margin: theme.rem(2, 0),
     },
   },
-<<<<<<< HEAD
-  catWrp: {
-    '@media (max-width: 900px)': {
-      display: 'none',
-    },
-  },
-  catBtn: {
-    display: 'none',
-    width: '100%',
-    height: '100%',
-
-    '@media (max-width: 900px)': {
-      display: 'block',
-    },
-  },
-=======
->>>>>>> homepage
   icon: {
     fontSize: theme.rem(1.4),
   },
@@ -138,12 +104,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
       textDecoration: 'underline',
     },
   },
-<<<<<<< HEAD
-=======
   mobileCat: {
     marginTop: theme.rem(1),
   },
->>>>>>> homepage
 }));
 
 const Search = (): ReactElement => {
@@ -201,35 +164,6 @@ const Search = (): ReactElement => {
       )}
 
       <div className={css.wrp}>
-<<<<<<< HEAD
-        <form action="#" method="post" className={css.serach}>
-          <span className={css.icon}>
-            <FontAwesomeIcon icon={faSearch} />
-          </span>
-          <input
-            className={css.input}
-            type="text"
-            placeholder="Что вы ищите?"
-          />
-          <div className={css.cat}>
-            <div className={css.catWrp}>
-              {!!categories?.length && (
-                <DropDown
-                  value={categories}
-                  onSubmit={console.log}
-                  height={6.8}
-                  defaultValue={categoryName || subCategoryName}
-                  transparent
-                  toRight
-                />
-              )}
-            </div>
-
-            <button type="button" className={css.catBtn}>
-              <FontAwesomeIcon icon={faThLarge} />
-            </button>
-          </div>
-=======
         <form className={css.form} action="#" method="post">
           <div className={css.serach}>
             <span className={css.icon}>
@@ -271,7 +205,6 @@ const Search = (): ReactElement => {
               )}
             </MobileView>
           )}
->>>>>>> homepage
         </form>
 
         <button type="submit" className={css.btn}>

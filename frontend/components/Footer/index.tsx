@@ -16,13 +16,10 @@ const useStyles = createUseStyles((theme: Theme) => ({
     display: 'flex',
     justifyContent: 'space-between',
     marginTop: theme.rem(4),
-<<<<<<< HEAD
-=======
 
     '@media (max-width: 640px)': {
       display: 'block',
     },
->>>>>>> homepage
   },
 }));
 

@@ -24,7 +24,10 @@ const api: IApi = {
   },
   offers: {
     popular: {
-      get: (): Promise<AxiosResponse<IOffers>> => axios.get('/offers/popular/'),
+      get: (): Promise<AxiosResponse<IOffers>> => {
+        console.log('СМОТРИ СЮДА ->', axios.defaults.baseURL + '/offers/popular/');
+        return axios.get('/offers/popular/');
+      },
     },
   },
 };

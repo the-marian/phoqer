@@ -15,8 +15,6 @@ const useStyles = createUseStyles((theme: Theme) => ({
     padding: theme.rem(1.2),
     fontWeight: theme.text.weight[3],
     fontSize: theme.rem(1.6),
-<<<<<<< HEAD
-=======
   },
   menuWrp: {
     position: 'relative',
@@ -43,7 +41,6 @@ const useStyles = createUseStyles((theme: Theme) => ({
     bottom: 0,
     background: theme.palette.modal,
     zIndex: 99,
->>>>>>> homepage
   },
 }));
 
@@ -57,17 +54,11 @@ const UserInfo = (): ReactElement => {
   };
 
   const handleLoginModal = () => {
-<<<<<<< HEAD
-    dispatch(openModal({ dom: <LoginForm /> }));
-  };
-  const handleRegisterModal = () => {
-=======
     setDrop(false);
     dispatch(openModal({ dom: <LoginForm /> }));
   };
   const handleRegisterModal = () => {
     setDrop(false);
->>>>>>> homepage
     dispatch(openModal({ dom: <JoinForm /> }));
   };
 
