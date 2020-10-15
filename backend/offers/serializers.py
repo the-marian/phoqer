@@ -19,6 +19,7 @@ class OfferListItemSerializer(serializers.ModelSerializer):
     is_favorite = serializers.SerializerMethodField()
     is_promoted = serializers.SerializerMethodField()
 
+
     class Meta:
         model = Offer
         fields = [
@@ -26,8 +27,8 @@ class OfferListItemSerializer(serializers.ModelSerializer):
             'currency',
             'description',
             'id',
-            'is_favorite',
             'images',
+            'is_favorite',
             'is_promoted',
             'per',
             'price',
