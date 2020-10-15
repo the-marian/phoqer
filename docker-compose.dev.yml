@@ -21,7 +21,7 @@ services:
       context: ./frontend
       dockerfile: Dockerfile
     expose:
-      - 3000
+      - 4000
     env_file:
       - ./.env.dev
     depends_on:
