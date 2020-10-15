@@ -142,7 +142,7 @@ const DropDownMobile = ({
     <div
       className={transparent ? css.wrpTransparent : css.wrp}
       tabIndex={-1}
-      // onBlur={handleBlur}
+      onBlur={handleBlur}
     >
       <p className={css.inner} onClick={handleClick} aria-hidden>
         {drop ? (

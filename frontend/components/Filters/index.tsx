@@ -128,10 +128,10 @@ const Filters = (): ReactElement => {
           >
             <div className={css.formInner}>
               <PriceFilter />
+              <Time />
               <Categories />
               <Sort />
               <Region />
-              <Time />
             </div>
 
             <Checkbox />

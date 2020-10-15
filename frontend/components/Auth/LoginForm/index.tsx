@@ -194,13 +194,6 @@ const LoginForm = (): ReactElement => {
             </svg>
           </button>
         </li>
-        <li>
-          <button
-            className={`${css.socials}`}
-            type="button"
-            onClick={handleSubmit}
-          ></button>
-        </li>
       </ul>
     </form>
   );

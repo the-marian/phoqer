@@ -145,8 +145,10 @@ const DropDown = ({
   };
 
   const handleBlur = () => {
-    setDrop(false);
-    setHover(null);
+    setTimeout(() => {
+      setDrop(false);
+      setHover(null);
+    }, 200);
   };
 
   return (

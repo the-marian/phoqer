@@ -52,7 +52,7 @@ const Categories = (): ReactElement => {
     }
   }, [sub_category]);
 
-  return (
+  return categories?.length ? (
     <div>
       <h4 className={css.title}>Категория</h4>
       <BrowserView>
@@ -73,7 +73,7 @@ const Categories = (): ReactElement => {
         />
       </MobileView>
     </div>
-  );
+  ) : null;
 };
 
 export default Categories;

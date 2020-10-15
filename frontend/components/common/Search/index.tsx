@@ -25,6 +25,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
       display: 'block',
     },
   },
+  form: {
+    width: '100%',
+  },
   serach: {
     display: 'flex',
     justifyContent: 'space-between',
@@ -161,7 +164,7 @@ const Search = (): ReactElement => {
       )}
 
       <div className={css.wrp}>
-        <form action="#" method="post">
+        <form className={css.form} action="#" method="post">
           <div className={css.serach}>
             <span className={css.icon}>
               <FontAwesomeIcon icon={faSearch} />
@@ -172,8 +175,8 @@ const Search = (): ReactElement => {
               placeholder="Что вы ищите?"
             />
             <BrowserView>
-              <div className={css.cat}>
-                {!!categories?.length && (
+              {!!categories?.length && (
+                <div className={css.cat}>
                   <DropDown
                     value={categories}
                     onSubmit={console.log}
@@ -182,15 +185,15 @@ const Search = (): ReactElement => {
                     transparent
                     toRight
                   />
-                )}
-              </div>
+                </div>
+              )}
             </BrowserView>
           </div>
 
           {pathname === '/' && (
             <MobileView>
-              <div className={css.mobileCat}>
-                {!!categories?.length && (
+              {!!categories?.length && (
+                <div className={css.mobileCat}>
                   <DropDownMobile
                     value={categories}
                     onSubmit={console.log}
@@ -198,8 +201,8 @@ const Search = (): ReactElement => {
                     defaultValue={categoryName || subCategoryName}
                     toRight
                   />
-                )}
-              </div>
+                </div>
+              )}
             </MobileView>
           )}
         </form>

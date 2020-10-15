@@ -91,7 +91,7 @@ const UserInfo = (): ReactElement => {
 
           {drop && (
             <>
-              <div className={css.back} onClick={handleDropClick} />
+              <div className={css.back} onClick={handleDropClick} aria-hidden />
               <div className={css.drop}>
                 <button
                   className={css.btn}
