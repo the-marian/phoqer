@@ -1,6 +1,7 @@
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React, { MouseEvent, ReactElement, useEffect } from 'react';
+import { Router } from 'next/router';
+import React, { MouseEvent, ReactElement, TouchEvent, useEffect } from 'react';
 import { createUseStyles } from 'react-jss';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -60,6 +61,10 @@ const Modal = (): ReactElement => {
     dispatch(closeModal());
   };
 
+  Router.events.on('routeChangeComplete', () => {
+    dispatch(closeModal());
+  });
+
   useEffect(() => {
     const handleEvent = (event: KeyboardEvent): void => {
       if (event.code === 'Escape') {
@@ -74,14 +79,21 @@ const Modal = (): ReactElement => {
     };
   }, []);
 
-  const handleBackDrop = (event: MouseEvent<HTMLDivElement>): void => {
+  const handleBackDrop = (
+    event: MouseEvent<HTMLDivElement> | TouchEvent<HTMLDivElement>,
+  ): void => {
     if (event.target === event.currentTarget) {
       dispatch(closeModal());
     }
   };
 
   return modal ? (
-    <div className={css.wrp} onMouseDown={handleBackDrop} aria-hidden>
+    <div
+      className={css.wrp}
+      onMouseDown={handleBackDrop}
+      onTouchStart={handleBackDrop}
+      aria-hidden
+    >
       <div className={css.inner} style={{ maxWidth: SIZE[size] }}>
         <button type="button" className={css.button} onClick={handleClose}>
           <FontAwesomeIcon icon={faTimes} />

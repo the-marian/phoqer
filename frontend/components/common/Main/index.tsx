@@ -5,10 +5,10 @@ import { Theme } from '../../../config/theme';
 
 const useStyles = createUseStyles((theme: Theme) => ({
   main: {
-    margin: theme.rem(10, 0, 25),
+    margin: theme.rem(8, 0, 16),
 
     '@media (max-width: 900px)': {
-      margin: theme.rem(6, 0, 8),
+      margin: theme.rem(3, 0, 6),
     },
   },
 }));

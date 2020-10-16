@@ -50,10 +50,10 @@ const OffersList = (): ReactElement => {
     <div className={css.root}>
       <div className={css.grid}>
         {loading ? (
+          <OffersLoader />
+        ) : (
           !!data &&
           data.map(product => <OfferCard key={product.id} {...product} />)
-        ) : (
-          <OffersLoader />
         )}
       </div>
     </div>

@@ -6,17 +6,18 @@ import { Theme } from '../../../config/theme';
 const useStyles = createUseStyles((theme: Theme) => ({
   root: {
     display: 'flex',
-    marginTop: theme.rem(5),
+    marginTop: theme.rem(3.5),
     fontSize: theme.rem(1.4),
     flexWrap: 'wrap',
 
     '@media (max-width: 550px)': {
-      marginTop: theme.rem(3),
+      marginTop: theme.rem(2.5),
     },
   },
   btn: {
     display: 'flex',
     alignItems: 'center',
+    borderRadius: 'none',
     margin: theme.rem(1, 4, 1, 0),
   },
   label: {

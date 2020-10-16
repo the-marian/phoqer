@@ -65,10 +65,10 @@ const TopProducts = (): ReactElement => {
 
         <div className={css.grid}>
           {loading ? (
+            <OffersLoader />
+          ) : (
             !!data &&
             data.map(product => <OfferCard key={product.id} {...product} />)
-          ) : (
-            <OffersLoader />
           )}
         </div>
       </Container>

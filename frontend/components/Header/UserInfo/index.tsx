@@ -1,7 +1,6 @@
 import { faBars, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { ReactElement, useState } from 'react';
-import { BrowserView, MobileView } from 'react-device-detect';
 import { createUseStyles } from 'react-jss';
 import { useDispatch } from 'react-redux';
 
@@ -9,6 +8,7 @@ import { Theme } from '../../../config/theme';
 import { openModal } from '../../../redux/modal/actions';
 import JoinForm from '../../Auth/JoinForm';
 import LoginForm from '../../Auth/LoginForm';
+import { Desktop, Mobile } from '../../common/Media';
 
 const useStyles = createUseStyles((theme: Theme) => ({
   btn: {
@@ -64,7 +64,7 @@ const UserInfo = (): ReactElement => {
 
   return (
     <>
-      <BrowserView>
+      <Desktop>
         <div>
           <button className={css.btn} type="button" onClick={handleLoginModal}>
             Войти
@@ -77,9 +77,9 @@ const UserInfo = (): ReactElement => {
             Зарегистрироватся
           </button>
         </div>
-      </BrowserView>
+      </Desktop>
 
-      <MobileView>
+      <Mobile>
         <div className={css.menuWrp}>
           <button className={css.menu} onClick={handleDropClick}>
             {drop ? (
@@ -111,7 +111,7 @@ const UserInfo = (): ReactElement => {
             </>
           )}
         </div>
-      </MobileView>
+      </Mobile>
     </>
   );
 };

@@ -140,7 +140,7 @@ const DropDownMobile = ({
     >
       <p
         className={css.inner}
-        style={{ height }}
+        style={{ height: height + 'rem' }}
         onClick={handleClick}
         aria-hidden
       >

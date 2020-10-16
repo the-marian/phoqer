@@ -5,7 +5,7 @@ import { Theme } from '../../../config/theme';
 
 const useStyles = createUseStyles((theme: Theme) => ({
   container: {
-    margin: theme.rem(0, 8),
+    margin: theme.rem(0, 10),
 
     '@media (max-width: 1100px)': {
       margin: theme.rem(0, 4),

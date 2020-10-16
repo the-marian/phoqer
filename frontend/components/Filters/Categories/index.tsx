@@ -1,6 +1,5 @@
 import { useRouter } from 'next/router';
 import React, { ReactElement, useEffect, useState } from 'react';
-import { BrowserView, MobileView } from 'react-device-detect';
 import { createUseStyles } from 'react-jss';
 import { useSelector } from 'react-redux';
 
@@ -9,6 +8,7 @@ import { ICategories, IState } from '../../../interfaces';
 import * as helpers from '../../../utils/helpers';
 import DropDown from '../../common/DropDown';
 import DropDownMobile from '../../common/DropDownMobile';
+import { Desktop, Mobile } from '../../common/Media';
 
 const useStyles = createUseStyles((theme: Theme) => ({
   title: {
@@ -55,23 +55,23 @@ const Categories = (): ReactElement => {
   return categories?.length ? (
     <div>
       <h4 className={css.title}>Категория</h4>
-      <BrowserView>
+      <Desktop>
         <DropDown
           value={categories}
           onSubmit={console.log}
           defaultValue={categoryName || subCategoryName}
           toRight
         />
-      </BrowserView>
+      </Desktop>
 
-      <MobileView>
+      <Mobile>
         <DropDownMobile
           value={categories}
           onSubmit={console.log}
           defaultValue={categoryName || subCategoryName}
           toRight
         />
-      </MobileView>
+      </Mobile>
     </div>
   ) : null;
 };

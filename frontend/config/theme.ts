@@ -51,7 +51,7 @@ export const theme: Theme = {
     yellow: ['#EDBF18', '#FAF0CA'],
     grayblue: ['#DFE6E6'],
     blue: ['#2D728F', '#003459', '#FCFEFF'],
-    modal: 'rgba(0, 0, 0, 0.8)',
+    modal: 'rgba(0, 0, 0, 0.5)',
   },
   text: {
     family: 'Montserrat, sans-serif',

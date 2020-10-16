@@ -9,9 +9,9 @@ import SectionTitle from '../common/SectionTitle';
 
 const useStyles = createUseStyles((theme: Theme) => ({
   root: {
-    margin: theme.rem(10, 0, 6),
+    margin: theme.rem(5, 0),
     '@media (max-width: 550px)': {
-      margin: theme.rem(4, 0),
+      margin: theme.rem(2, 0),
     },
   },
   wrp: {

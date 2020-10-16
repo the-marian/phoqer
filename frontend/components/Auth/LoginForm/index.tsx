@@ -48,9 +48,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
     fontSize: theme.rem(1.2),
     color: theme.palette.gray[3],
   },
-  pass: {
+  link: {
     display: 'block',
-    textAlign: 'right',
+    textAlign: 'center',
     fontSize: theme.rem(1.4),
     color: theme.palette.blue[0],
   },
@@ -140,7 +140,7 @@ const LoginForm = (): ReactElement => {
       </div>
 
       <Link href="/forgot_pass">
-        <a className={css.pass}>Забыли пароль?</a>
+        <a className={css.link}>Забыли пароль?</a>
       </Link>
 
       <button className={css.btn} type="submit">

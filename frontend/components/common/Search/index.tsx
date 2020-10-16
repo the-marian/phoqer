@@ -2,7 +2,6 @@ import { faMapMarkerAlt, faSearch } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useRouter } from 'next/router';
 import React, { ReactElement, useEffect, useState } from 'react';
-import { BrowserView, MobileView } from 'react-device-detect';
 import { createUseStyles } from 'react-jss';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -13,6 +12,7 @@ import * as helpers from '../../../utils/helpers';
 import DropDown from '../DropDown';
 import DropDownMobile from '../DropDownMobile';
 import LinkArrow from '../LinkArrow';
+import { Desktop, Mobile } from '../Media';
 import RegionModal from '../RegionModal';
 
 const useStyles = createUseStyles((theme: Theme) => ({
@@ -42,7 +42,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
   },
   cat: {
     position: 'relative',
-    width: theme.rem(50),
+    width: theme.rem(35),
     '&::before': {
       content: '""',
       position: 'absolute',
@@ -174,7 +174,7 @@ const Search = (): ReactElement => {
               type="text"
               placeholder="Что вы ищите?"
             />
-            <BrowserView>
+            <Desktop>
               {!!categories?.length && (
                 <div className={css.cat}>
                   <DropDown
@@ -187,11 +187,11 @@ const Search = (): ReactElement => {
                   />
                 </div>
               )}
-            </BrowserView>
+            </Desktop>
           </div>
 
           {pathname === '/' && (
-            <MobileView>
+            <Mobile>
               {!!categories?.length && (
                 <div className={css.mobileCat}>
                   <DropDownMobile
@@ -203,7 +203,7 @@ const Search = (): ReactElement => {
                   />
                 </div>
               )}
-            </MobileView>
+            </Mobile>
           )}
         </form>
 

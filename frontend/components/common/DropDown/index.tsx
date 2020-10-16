@@ -6,10 +6,7 @@ import { createUseStyles } from 'react-jss';
 import { Theme } from '../../../config/theme';
 import { IDropList } from '../../../interfaces';
 
-interface StyleProp {
-  height: number;
-  toRight: boolean;
-}
+const SELECTED_LENGTH = 20;
 
 const useStyles = createUseStyles((theme: Theme) => ({
   wrp: {
@@ -143,7 +140,7 @@ const DropDown = ({
     setTimeout(() => {
       setDrop(false);
       setHover(null);
-    }, 200);
+    }, 100);
   };
 
   return (
@@ -154,7 +151,7 @@ const DropDown = ({
     >
       <p
         className={css.inner}
-        style={{ height }}
+        style={{ height: height + 'rem' }}
         onClick={handleClick}
         aria-hidden
       >
@@ -167,7 +164,11 @@ const DropDown = ({
             <FontAwesomeIcon icon={faChevronDown} />
           </span>
         )}
-        <span>{selected}</span>
+        <span>
+          {selected.length > SELECTED_LENGTH
+            ? `${selected.slice(0, SELECTED_LENGTH - 1)}...`
+            : selected}
+        </span>
       </p>
 
       {drop && (
@@ -196,7 +197,7 @@ const DropDown = ({
           {value &&
             value?.map(
               ({ name, sub }, index) =>
-                sub && (
+                !!sub?.length && (
                   <div
                     key={name}
                     className={css.sub}
@@ -208,7 +209,7 @@ const DropDown = ({
                   >
                     <div className={css.subBox}>
                       <ul>
-                        {sub?.map(({ name, slug }) => (
+                        {sub.map(({ name, slug }) => (
                           <li key={slug}>
                             <button
                               className={css.button}

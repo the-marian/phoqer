@@ -16,16 +16,12 @@ const useStyles = createUseStyles((theme: Theme) => ({
     margin: theme.rem(4, 0),
   },
   form: {
-    margin: theme.rem(4, 0, 6),
-
-    '@media (max-width: 550px)': {
-      margin: theme.rem(2, 0, 6),
-    },
+    margin: theme.rem(2, 0, 4),
   },
   formInner: {
     display: 'grid',
     gridTemplateColumns: theme.fr(4),
-    gridGap: theme.rem(5),
+    gridGap: theme.rem(3, 2),
 
     '@media (max-width: 1380px)': {
       gridTemplateColumns: theme.fr(3),
@@ -75,15 +71,11 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
   },
   btn: {
-    marginTop: theme.rem(6),
+    marginTop: theme.rem(3),
     padding: theme.rem(1.5, 3),
     fontSize: theme.rem(1.4),
     borderRadius: theme.radius,
     background: theme.palette.grayblue[0],
-
-    '@media (max-width: 550px)': {
-      marginTop: theme.rem(3),
-    },
   },
 }));
 
@@ -148,7 +140,7 @@ const Filters = (): ReactElement => {
         <ul className={css.list}>
           {POPULAR.map(query => (
             <li key={query}>
-              <Link href={`products?q=${query}`}>
+              <Link href={`/offers?q=${query}`}>
                 <a className={css.link}>{query}</a>
               </Link>
             </li>

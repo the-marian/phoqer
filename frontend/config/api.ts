@@ -2,10 +2,10 @@ import axios, { AxiosResponse } from 'axios';
 
 import { ICategories, IOffers } from '../interfaces';
 
-axios.defaults.baseURL =
-  process.env.NODE_ENV !== 'production'
-    ? process.env.NEXT_PUBLIC_DEV_URL
-    : process.env.NEXT_PUBLIC_PROD_URL;
+const PROD = process.env.PROD_URL || process.env.NEXT_PUBLIC_PROD_URL;
+const DEV = process.env.DEV_URL || process.env.NEXT_PUBLIC_DEV_URL;
+
+axios.defaults.baseURL = process.env.NODE_ENV === 'production' ? PROD : DEV;
 
 export interface IApi {
   categories: {
@@ -25,7 +25,6 @@ const api: IApi = {
   offers: {
     popular: {
       get: (): Promise<AxiosResponse<IOffers>> => {
-        console.log('СМОТРИ СЮДА ->', axios.defaults.baseURL + '/offers/popular/');
         return axios.get('/offers/popular/');
       },
     },
