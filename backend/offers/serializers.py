@@ -1,5 +1,6 @@
-from rest_framework import serializers
 import datetime
+
+from rest_framework import serializers
 
 from users.models import User
 from .models import Offer, OfferImages
@@ -18,7 +19,6 @@ class OfferListItemSerializer(serializers.ModelSerializer):
     images = OfferImageSerializer(many=True, read_only=True)
     is_favorite = serializers.SerializerMethodField()
     is_promoted = serializers.SerializerMethodField()
-
 
     class Meta:
         model = Offer
@@ -47,3 +47,11 @@ class OfferListItemSerializer(serializers.ModelSerializer):
         if datetime.date.today() > offer.promote_til_date:
             return False
         return True
+
+
+class OfferSerializer(serializers.ModelSerializer):
+    images = OfferImageSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = Offer
+        fields = '__all__'
