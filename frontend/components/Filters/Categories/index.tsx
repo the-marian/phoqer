@@ -13,7 +13,7 @@ import { Desktop, Mobile } from '../../common/Media';
 const useStyles = createUseStyles((theme: Theme) => ({
   title: {
     marginBottom: theme.rem(1),
-    fontSize: theme.rem(1.6),
+    fontSize: theme.rem(1.4),
     fontWeight: theme.text.weight[2],
   },
 }));
@@ -52,28 +52,30 @@ const Categories = (): ReactElement => {
     }
   }, [sub_category]);
 
-  return categories?.length ? (
-    <div>
-      <h4 className={css.title}>Категория</h4>
-      <Desktop>
-        <DropDown
-          value={categories}
-          onSubmit={console.log}
-          defaultValue={categoryName || subCategoryName}
-          toRight
-        />
-      </Desktop>
+  return (
+    !!categories?.length && (
+      <div>
+        <h4 className={css.title}>Категория</h4>
+        <Desktop>
+          <DropDown
+            value={categories}
+            onSubmit={console.log}
+            defaultValue={categoryName || subCategoryName}
+            toRight
+          />
+        </Desktop>
 
-      <Mobile>
-        <DropDownMobile
-          value={categories}
-          onSubmit={console.log}
-          defaultValue={categoryName || subCategoryName}
-          toRight
-        />
-      </Mobile>
-    </div>
-  ) : null;
+        <Mobile>
+          <DropDownMobile
+            value={categories}
+            onSubmit={console.log}
+            defaultValue={categoryName || subCategoryName}
+            toRight
+          />
+        </Mobile>
+      </div>
+    )
+  );
 };
 
 export default Categories;

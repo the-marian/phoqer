@@ -62,7 +62,7 @@ const ForgotPass = (): ReactElement => {
       <Main>
         <Container>
           <div className={css.root}>
-            <img className={css.img} src="/join.jpg" alt="" />
+            <img className={css.img} src="/forgot_pass.jpg" alt="" />
             <div className={css.form}>
               <ForgotPassForm />
             </div>

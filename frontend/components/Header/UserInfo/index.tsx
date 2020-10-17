@@ -14,7 +14,10 @@ const useStyles = createUseStyles((theme: Theme) => ({
   btn: {
     padding: theme.rem(1.2),
     fontWeight: theme.text.weight[3],
-    fontSize: theme.rem(1.6),
+    fontSize: theme.rem(1.3),
+    '&:hover': {
+      color: theme.palette.blue[0],
+    },
   },
   menuWrp: {
     position: 'relative',

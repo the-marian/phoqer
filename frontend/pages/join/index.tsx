@@ -19,7 +19,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
   },
   form: {
     width: theme.rem(40),
-    marginLeft: theme.rem(4),
+    marginRight: theme.rem(4),
 
     '@media (max-width: 1000px)': {
       margin: 0,
@@ -32,7 +32,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
   img: {
     height: '70vh',
     width: theme.rem(70),
-    marginRight: theme.rem(4),
+    marginLeft: theme.rem(4),
     borderRadius: theme.radius,
     objectFit: 'cover',
 
@@ -62,10 +62,10 @@ const Login = (): ReactElement => {
       <Main>
         <Container>
           <div className={css.root}>
-            <img className={css.img} src="/join.jpg" alt="" />
             <div className={css.form}>
               <JoinForm />
             </div>
+            <img className={css.img} src="/join.jpg" alt="" />
           </div>
         </Container>
       </Main>

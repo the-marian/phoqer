@@ -11,6 +11,9 @@ export interface Theme {
     gray: string[];
     red: string[];
     green: string[];
+    soft: string[];
+    grad: string[];
+    violet: string[];
     yellow: string[];
     grayblue: string[];
     blue: string[];
@@ -47,10 +50,24 @@ export const theme: Theme = {
     black: ['#222222', '#242424'],
     gray: ['#F9F9F9', '#EEEEEE', '#C4C4C4', '#999999', '#444444'],
     red: ['#DB162F'],
-    green: ['#218380'],
+    green: ['#22cc52'],
+    soft: [
+      'linear-gradient(154deg,#fff8e0,#fbddd7)',
+      'linear-gradient(172deg,#faffd4,#88e4b8)',
+      'linear-gradient(168deg,#f9ecff,#ddfcf8)',
+      'linear-gradient(159deg,#e9c4ff,#ffd0d0)',
+      'linear-gradient(168deg,#ddf9ff,#cfc6ff)',
+      'linear-gradient(168deg,#e9ffea,#d1ddf7)',
+    ],
+    grad: [
+      'linear-gradient(90deg, #007CF0, #00DFD8)',
+      'linear-gradient(90deg, #7928CA, #FF0080)',
+      'linear-gradient(90deg, #FF4D4D, #F9CB28)',
+    ],
+    violet: ['#7928CA'],
     yellow: ['#EDBF18', '#FAF0CA'],
     grayblue: ['#DFE6E6'],
-    blue: ['#2D728F', '#003459', '#FCFEFF'],
+    blue: ['#0A72EF', '#2D728F', '#FCFEFF'],
     modal: 'rgba(0, 0, 0, 0.5)',
   },
   text: {

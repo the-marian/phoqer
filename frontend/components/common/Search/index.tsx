@@ -32,13 +32,13 @@ const useStyles = createUseStyles((theme: Theme) => ({
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
-    height: theme.rem(7),
+    height: theme.rem(6),
     width: '100%',
     paddingLeft: theme.rem(2.5),
-    background: theme.palette.blue[2],
+    background: theme.palette.gray[1],
     fontSize: theme.rem(1.6),
     borderRadius: theme.radius,
-    border: theme.border(0.1, theme.palette.gray[3]),
+    border: 'none',
   },
   cat: {
     position: 'relative',
@@ -68,10 +68,10 @@ const useStyles = createUseStyles((theme: Theme) => ({
     border: 'none',
   },
   btn: {
-    height: theme.rem(7),
+    height: theme.rem(6),
     width: theme.rem(40),
     marginLeft: theme.rem(2),
-    background: theme.palette.red[0],
+    background: theme.palette.blue[0],
     fontSize: theme.rem(1.6),
     color: theme.palette.white,
     borderRadius: theme.radius,
@@ -87,7 +87,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
   location: {
     marginBottom: theme.rem(2),
     fontSize: theme.rem(1.6),
-    color: theme.palette.blue[0],
+    color: theme.palette.blue[1],
     '&:hover': {
       textDecoration: 'underline',
     },
@@ -99,7 +99,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     marginBottom: theme.rem(2),
     fontSize: theme.rem(1.6),
     fontWeight: theme.text.weight[3],
-    color: theme.palette.blue[0],
+    color: theme.palette.blue[1],
     '&:hover': {
       textDecoration: 'underline',
     },

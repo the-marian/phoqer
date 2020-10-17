@@ -8,7 +8,7 @@ import DropDown from '../../common/DropDown';
 const useStyles = createUseStyles((theme: Theme) => ({
   title: {
     marginBottom: theme.rem(1),
-    fontSize: theme.rem(1.6),
+    fontSize: theme.rem(1.4),
     fontWeight: theme.text.weight[2],
   },
 }));

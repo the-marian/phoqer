@@ -7,6 +7,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
   list: {
     display: 'flex',
     marginTop: theme.rem(2),
+    marginLeft: theme.rem(-1.4),
   },
   title: {
     fontSize: theme.rem(1.2),
@@ -16,18 +17,19 @@ const useStyles = createUseStyles((theme: Theme) => ({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    height: theme.rem(3),
-    width: theme.rem(3),
+    height: theme.rem(4),
+    width: theme.rem(4),
     marginRight: theme.rem(1.5),
-    background: theme.palette.gray[1],
     transition: theme.transitions[0],
     '&:hover': {
       transform: 'translateY(-0.2rem)',
+      fill: theme.palette.blue[0],
     },
   },
   svg: {
-    height: theme.rem(1.2),
-    width: theme.rem(1.2),
+    height: theme.rem(1.4),
+    width: theme.rem(1.4),
+    fill: 'inherit',
   },
 }));
 

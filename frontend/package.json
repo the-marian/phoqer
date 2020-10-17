@@ -20,7 +20,7 @@
     "axios": "^0.20.0",
     "clsx": "^1.1.1",
     "dotenv": "^8.2.0",
-    "formik": "^2.1.4",
+    "formik": "^2.2.0",
     "next": "latest",
     "next-redux-wrapper": "^6.0.2",
     "rc-slider": "^9.5.1",

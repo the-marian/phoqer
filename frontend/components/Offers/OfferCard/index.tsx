@@ -87,7 +87,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
   },
   favorite: {
     marginLeft: theme.rem(2),
-    color: theme.palette.red[0],
+    color: theme.palette.blue[0],
   },
   price: {
     margin: 0,

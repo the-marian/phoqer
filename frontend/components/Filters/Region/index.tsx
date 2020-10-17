@@ -11,22 +11,22 @@ import RegionModal from '../../common/RegionModal';
 const useStyles = createUseStyles((theme: Theme) => ({
   title: {
     marginBottom: theme.rem(1),
-    fontSize: theme.rem(1.6),
+    fontSize: theme.rem(1.4),
     fontWeight: theme.text.weight[2],
   },
   input: {
     display: 'flex',
     alignItems: 'center',
-    height: theme.rem(5),
+    height: theme.rem(6),
     width: '100%',
     padding: theme.rem(1, 2),
-    background: theme.palette.blue[2],
-    border: theme.border(0.1, theme.palette.gray[3]),
+    background: theme.palette.gray[1],
+    border: 'none',
     borderRadius: theme.radius,
     fontSize: theme.rem(1.2),
     '& span': {
       marginLeft: theme.rem(1.5),
-      fontSize: theme.rem(1.6),
+      fontSize: theme.rem(1.3),
     },
   },
 }));

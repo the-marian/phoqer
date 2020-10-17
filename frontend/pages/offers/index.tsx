@@ -1,3 +1,4 @@
+import Head from 'next/head';
 import React, { ReactElement } from 'react';
 import { END } from 'redux-saga';
 
@@ -13,20 +14,25 @@ import { wrapper } from '../../redux/store';
 import types from '../../redux/types';
 
 const OffersPage = (): ReactElement => (
-  <Main>
-    <Container>
-      <Search />
-      <Filters />
-    </Container>
+  <>
+    <Head>
+      <title>Search roducts | Fucking project</title>
+    </Head>
+    <Main>
+      <Container>
+        <Search />
+        <Filters />
+      </Container>
 
-    <TopOffers />
+      <TopOffers />
 
-    <Container>
-      <OffersList />
-    </Container>
+      <Container>
+        <OffersList />
+      </Container>
 
-    <About />
-  </Main>
+      <About />
+    </Main>
+  </>
 );
 
 export const getStaticProps = wrapper.getStaticProps(

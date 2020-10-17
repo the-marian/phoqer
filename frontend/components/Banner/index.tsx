@@ -9,7 +9,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     margin: theme.rem(8, 0),
     padding: theme.rem(6),
     borderRadius: theme.radius,
-    background: theme.palette.grayblue[0],
+    background: theme.palette.soft[0],
     color: theme.palette.black[0],
 
     '@media (max-width: 550px)': {
@@ -18,14 +18,14 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
   },
   title: {
+    color: theme.palette.black[0],
     marginBottom: theme.rem(1.5),
     fontSize: theme.rem(3),
-    fontWeight: theme.text.weight[3],
+    fontWeight: theme.text.weight[5],
   },
   link: {
     fontSize: theme.rem(1.8),
     fontWeight: theme.text.weight[3],
-    color: theme.palette.blue[0],
   },
 }));
 
@@ -33,9 +33,9 @@ const Banner = (): ReactElement => {
   const css = useStyles();
   return (
     <div className={css.root}>
-      <h2 className={css.title}>#Делитесь с другими и зарабатывайте</h2>
+      <h2 className={css.title}>Делитесь с другими и зарабатывайте</h2>
       <div className={css.link}>
-        <LinkArrow href="/new_product">Сдать вещи в аренду</LinkArrow>
+        <LinkArrow href="/new_offer/1">Сдать вещи в аренду</LinkArrow>
       </div>
     </div>
   );

@@ -1,5 +1,6 @@
 import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import clsx from 'clsx';
 import React, { ReactElement, useEffect, useState } from 'react';
 import { createUseStyles } from 'react-jss';
 
@@ -12,20 +13,17 @@ const useStyles = createUseStyles((theme: Theme) => ({
   wrp: {
     position: 'relative',
     width: '100%',
-    background: theme.palette.blue[2],
-    border: theme.border(0.1, theme.palette.gray[3]),
-    borderRadius: theme.radius,
-    userSelect: 'none',
-    outline: 'none',
-  },
-  wrpTransparent: {
-    position: 'relative',
-    width: '100%',
-    background: 'none',
+    background: theme.palette.gray[1],
     border: 'none',
     borderRadius: theme.radius,
     userSelect: 'none',
     outline: 'none',
+  },
+  transparent: {
+    background: 'none',
+  },
+  white: {
+    background: theme.palette.white,
   },
   inner: {
     display: 'flex',
@@ -33,7 +31,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     margin: 0,
     padding: theme.rem(2),
     cursor: 'pointer',
-    fontSize: theme.rem(1.6),
+    fontSize: theme.rem(1.3),
   },
   box: {
     position: 'absolute',
@@ -46,7 +44,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     background: theme.palette.white,
     borderRadius: theme.radius,
     border: theme.border(0.1, theme.palette.gray[3]),
-    fontSize: theme.rem(1.6),
+    fontSize: theme.rem(1.3),
     overflowY: 'scroll',
     zIndex: 10,
   },
@@ -64,7 +62,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     background: theme.palette.white,
     borderRadius: theme.radius,
     border: theme.border(0.1, theme.palette.gray[3]),
-    fontSize: theme.rem(1.6),
+    fontSize: theme.rem(1.3),
     overflowY: 'scroll',
   },
   button: {
@@ -76,8 +74,8 @@ const useStyles = createUseStyles((theme: Theme) => ({
     textAlign: 'left',
 
     '&:hover': {
-      background: theme.palette.red[0],
-      color: theme.palette.white,
+      background: theme.palette.gray[0],
+      color: theme.palette.blue[0],
     },
   },
   icon: {
@@ -93,6 +91,7 @@ interface Props {
   defaultValue?: string;
   toRight?: boolean;
   transparent?: boolean;
+  white?: boolean;
   onSubmit: (
     value: string,
     slug: string,
@@ -101,12 +100,13 @@ interface Props {
 }
 
 const DropDown = ({
-  height = 5,
+  height = 6,
   value,
   onSubmit,
   defaultValue,
-  toRight = false,
-  transparent = false,
+  toRight,
+  white,
+  transparent,
 }: Props): ReactElement => {
   const css = useStyles({ height, toRight });
   const [drop, setDrop] = useState<boolean>(false);
@@ -145,7 +145,11 @@ const DropDown = ({
 
   return (
     <div
-      className={transparent ? css.wrpTransparent : css.wrp}
+      className={clsx(
+        css.wrp,
+        transparent && css.transparent,
+        white && css.white,
+      )}
       tabIndex={-1}
       onBlur={handleBlur}
     >

@@ -1,5 +1,6 @@
 import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import clsx from 'clsx';
 import React, { ReactElement, useEffect, useState } from 'react';
 import { createUseStyles } from 'react-jss';
 
@@ -10,20 +11,17 @@ const useStyles = createUseStyles((theme: Theme) => ({
   wrp: {
     position: 'relative',
     width: '100%',
-    background: theme.palette.blue[2],
-    border: theme.border(0.1, theme.palette.gray[3]),
-    borderRadius: theme.radius,
-    userSelect: 'none',
-    outline: 'none',
-  },
-  wrpTransparent: {
-    position: 'relative',
-    width: '100%',
-    background: 'none',
+    background: theme.palette.gray[1],
     border: 'none',
     borderRadius: theme.radius,
     userSelect: 'none',
     outline: 'none',
+  },
+  transparent: {
+    background: 'none',
+  },
+  white: {
+    background: theme.palette.white,
   },
   inner: {
     display: 'flex',
@@ -86,6 +84,7 @@ interface Props {
   defaultValue?: string;
   toRight?: boolean;
   transparent?: boolean;
+  white?: boolean;
   onSubmit: (
     value: string,
     slug: string,
@@ -94,12 +93,13 @@ interface Props {
 }
 
 const DropDownMobile = ({
-  height = 5,
+  height = 6,
   value,
   onSubmit,
   defaultValue,
-  toRight = false,
-  transparent = false,
+  toRight,
+  transparent,
+  white,
 }: Props): ReactElement => {
   const css = useStyles({ height, toRight });
 
@@ -134,7 +134,11 @@ const DropDownMobile = ({
 
   return (
     <div
-      className={transparent ? css.wrpTransparent : css.wrp}
+      className={clsx(
+        css.wrp,
+        transparent && css.transparent,
+        white && css.white,
+      )}
       tabIndex={-1}
       onBlur={handleBlur}
     >

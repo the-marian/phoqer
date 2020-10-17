@@ -29,8 +29,8 @@ const useStyles = createUseStyles((theme: Theme) => ({
     height: theme.rem(5),
     padding: theme.rem(1),
     paddingRight: theme.rem(5),
-    background: theme.palette.blue[2],
-    border: theme.border(0.1, theme.palette.gray[3]),
+    background: theme.palette.gray[1],
+    border: 'none',
     borderRadius: theme.radius,
     fontSize: theme.rem(1.4),
     lineHeight: 1,
@@ -44,7 +44,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     width: theme.rem(5),
     transform: 'translateY(-50%)',
     fontSize: theme.rem(1.2),
-    color: theme.palette.gray[3],
+    color: theme.palette.gray[4],
   },
   pass: {
     display: 'block',
@@ -61,7 +61,8 @@ const useStyles = createUseStyles((theme: Theme) => ({
     textAlign: 'center',
     fontSize: theme.rem(1.4),
     borderRadius: theme.radius,
-    background: theme.palette.grayblue[0],
+    background: theme.palette.blue[0],
+    color: theme.palette.white,
   },
   text: {
     marginBottom: theme.rem(2),
@@ -80,18 +81,19 @@ const useStyles = createUseStyles((theme: Theme) => ({
     margin: theme.rem(1),
     padding: theme.rem(1),
     borderRadius: '50%',
-    background: theme.palette.gray[1],
   },
   facebook: {
-    background: theme.palette.blue[0],
+    background: theme.palette.soft[4],
+    fill: theme.palette.black,
   },
   google: {
-    background: theme.palette.red[0],
+    background: theme.palette.soft[0],
+    fill: theme.palette.black,
   },
   svg: {
     height: theme.rem(2),
     width: theme.rem(1.5),
-    fill: theme.palette.white,
+    fill: 'inherrit',
   },
 }));
 

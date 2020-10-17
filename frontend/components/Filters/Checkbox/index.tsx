@@ -35,8 +35,8 @@ const useStyles = createUseStyles((theme: Theme) => ({
     height: theme.rem(2.5),
     width: theme.rem(2.5),
     marginRight: theme.rem(1.5),
-    background: theme.palette.red[0],
-    border: theme.border(0.1, theme.palette.red[0]),
+    background: theme.palette.blue[0],
+    border: theme.border(0.1, theme.palette.blue[0]),
     borderRadius: theme.radius,
     '&::before': {
       content: '""',

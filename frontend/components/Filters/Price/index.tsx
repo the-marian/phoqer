@@ -18,14 +18,14 @@ const useStyles = createUseStyles((theme: Theme) => ({
     display: 'block',
     width: '100%',
     padding: theme.rem(1, 1.5),
-    fontSize: theme.rem(1.6),
+    fontSize: theme.rem(1.3),
     borderRadius: theme.radius,
-    border: theme.border(0.1, theme.palette.gray[3]),
-    background: theme.palette.blue[2],
+    border: 'none',
+    background: theme.palette.gray[1],
   },
   title: {
     marginBottom: theme.rem(1),
-    fontSize: theme.rem(1.6),
+    fontSize: theme.rem(1.4),
     fontWeight: theme.text.weight[2],
   },
   range: {

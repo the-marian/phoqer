@@ -63,6 +63,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     lineHeight: 1,
     '&:hover': {
       textDecoration: 'underline',
+      color: theme.palette.blue[0],
     },
 
     '@media (max-width: 640px)': {
