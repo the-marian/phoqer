@@ -29,8 +29,6 @@ jobs:
           echo POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }} >> .env.dev
           echo POSTGRES_HOST=${{ secrets.POSTGRES_HOST }} >> .env.dev
           echo POSTGRES_PORT=${{ secrets.POSTGRES_PORT }} >> .env.dev
-          echo NEXT_PUBLIC_DEV_URL=${{ secrets.NEXT_PUBLIC_DEV_URL }} >> .env.dev
-          echo DEV_URL=${{ secrets.DEV_URL }} >> .env.dev
       - name: Set environment variables
         run: |
           echo ::set-env name=BACKEND_IMAGE::$(echo ${{ env.BACKEND_IMAGE }} | tr '[:upper:]' '[:lower:]')
@@ -70,12 +68,13 @@ jobs:
           echo DEBUG=1 >> .env.dev
           echo DJANGO_ALLOWED_HOSTS=${{ secrets.DJANGO_ALLOWED_HOSTS }} >> .env.dev
           echo POSTGRES_ENGINE=django.db.backends.postgresql >> .env.dev
-          echo DATABASE=postgres >> .env.dev
           echo POSTGRES_DB=${{ secrets.POSTGRES_DB }} >> .env.dev
           echo POSTGRES_USER=${{ secrets.POSTGRES_USER }} >> .env.dev
           echo POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }} >> .env.dev
           echo POSTGRES_HOST=${{ secrets.POSTGRES_HOST }} >> .env.dev
           echo POSTGRES_PORT=${{ secrets.POSTGRES_PORT }} >> .env.dev
+          echo NEXT_PUBLIC_DEV_URL=${{ secrets.NEXT_PUBLIC_DEV_URL }} >> .env.dev
+          echo DEV_URL=${{ secrets.DEV_URL }} >> .env.dev
           echo BACKEND_IMAGE=$(echo ${{ env.BACKEND_IMAGE }} | tr '[:upper:]' '[:lower:]') >> .env.dev
           echo FRONTEND_IMAGE=$(echo ${{ env.FRONTEND_IMAGE }} | tr '[:upper:]' '[:lower:]') >> .env.dev
           echo NGINX_IMAGE=$(echo ${{ env.NGINX_IMAGE }} | tr '[:upper:]' '[:lower:]') >> .env.dev
