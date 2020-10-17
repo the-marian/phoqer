@@ -30,6 +30,7 @@ class OfferListItemSerializer(serializers.ModelSerializer):
             'images',
             'is_favorite',
             'is_promoted',
+            'is_deliverable',
             'per',
             'price',
             'pud_date',
@@ -44,7 +45,9 @@ class OfferListItemSerializer(serializers.ModelSerializer):
         return False
 
     def get_is_promoted(self, offer):
-        if datetime.date.today() > offer.promote_til_date:
+        if offer.promote_til_date is None:
+            return False
+        elif datetime.date.today() > offer.promote_til_date:
             return False
         return True
 

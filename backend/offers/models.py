@@ -21,16 +21,17 @@ class Offer(models.Model):
         PLN = 'PLN', _('Złoty')
 
     class Status(models.TextChoices):
-        NEW = 'NEW', _('New')
+        DRAFT = 'DRAFT', _('Draft')
         REVIEW = 'REVIEW', _('Review')
         ACTIVE = 'ACTIVE', _('Active')
         REJECTED = 'REJECTED', _('Rejected')
         INACTIVE = 'INACTIVE', _('Inactive')
+        IN_RENT = 'IN_RENT', _('In rent')
         ARCHIVED = 'ARCHIVED', _('Archived')
         FROZEN = 'FROZEN', _('Frozen')
 
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    category = models.OneToOneField(ParentCategories, on_delete=models.PROTECT)
+    category = models.ForeignKey(ParentCategories, on_delete=models.PROTECT)
     city = models.CharField(max_length=50)
     cover_image = models.URLField()
     currency = models.CharField(max_length=3, choices=Currency.choices)
@@ -40,6 +41,7 @@ class Offer(models.Model):
     extra_requirements = models.TextField(blank=True, null=True)
     favourite = models.ManyToManyField(settings.AUTH_USER_MODEL, blank=True, related_name='favourite_offers')
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    is_deliverable = models.BooleanField()
     max_rent_per = models.CharField(max_length=5, choices=Per.choices, blank=True, null=True)
     max_rent_value = models.SmallIntegerField(blank=True, null=True)
     min_rent_per = models.CharField(max_length=5, choices=Per.choices, blank=True, null=True)
@@ -48,8 +50,8 @@ class Offer(models.Model):
     price = models.PositiveIntegerField()
     promote_til_date = models.DateField(blank=True, null=True)
     pud_date = models.DateField(auto_now=True)
-    status = models.CharField(max_length=8, choices=Status.choices, default=Status.NEW)
-    sub_category = models.OneToOneField(ChildCategories, on_delete=models.PROTECT)
+    status = models.CharField(max_length=8, choices=Status.choices, default=Status.DRAFT)
+    sub_category = models.ForeignKey(ChildCategories, on_delete=models.PROTECT)
     title = models.CharField(max_length=120)
     views = models.PositiveIntegerField(default=0)
 
