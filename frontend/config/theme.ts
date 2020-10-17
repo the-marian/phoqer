@@ -37,7 +37,7 @@ export const theme: Theme = {
     `${one}em${two || two === 0 ? ` ${two}em` : ''}${
       three || three === 0 ? ` ${three}em` : ''
     }${four || four === 0 ? ` ${four}em` : ''}`,
-  radius: '0.4rem',
+  radius: '0.8rem',
   shadow: [
     '0 0.2rem 0.4rem rgba(0,0,0,0.04), 0 0.2rem 0.4rem rgba(0,0,0,0.08)',
     '0 0.3rem 0.6rem rgba(0,0,0,0.06), 0 0.3rem 0.6rem rgba(0,0,0,0.1)',
@@ -68,7 +68,7 @@ export const theme: Theme = {
     yellow: ['#EDBF18', '#FAF0CA'],
     grayblue: ['#DFE6E6'],
     blue: ['#0A72EF', '#2D728F', '#FCFEFF'],
-    modal: 'rgba(0, 0, 0, 0.5)',
+    modal: 'rgba(0, 0, 0, 0.3)',
   },
   text: {
     family: 'Montserrat, sans-serif',
