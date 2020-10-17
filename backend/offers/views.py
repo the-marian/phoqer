@@ -5,6 +5,8 @@ from rest_framework.generics import ListAPIView, CreateAPIView, RetrieveUpdateAP
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from rest_framework.request import Request
 from rest_framework.response import Response
+from django.db.models import Q
+from rest_framework.viewsets import ModelViewSet
 
 from .models import Offer
 from .serializers import OfferListItemSerializer, OfferSerializer
@@ -12,7 +14,7 @@ from .serializers import OfferListItemSerializer, OfferSerializer
 
 class PopularOffersView(ListAPIView):
     serializer_class = OfferListItemSerializer
-    queryset = Offer.objects.filter(status='ACTIVE').order_by('-promote_til_date', 'views')
+    queryset = Offer.objects.filter(Q(status='ACTIVE') | Q(status='IN_RENT')).order_by('-promote_til_date', 'views')
 
     def list(self, request: Request, *args, **kwargs) -> Response:
         queryset = self.get_queryset()
@@ -31,6 +33,8 @@ class SearchOffersView(ListAPIView):
         'category',
         'city',
         'sub_category',
+        'status',
+        'is_deliverable',
     ]
     search_fields = [
         'description',

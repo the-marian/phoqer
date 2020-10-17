@@ -9,6 +9,11 @@ api/v1/offers/search/
 - category=spor (any category slug)
 - sub_category=bicycles (any sub_category slug)
 - city=Киев (пока-что это просто text_field)
+- is_deliverable=true (true тогда API вернет только обьявления, в которых автор указал, что возможна доставка)
+- status=(DRAFT|REVIEW|ACTIVE|REJECTED|INACTIVE|IN_RENT|ARCHIVED|FROZEN)
+- max_price/min_price=1/100
+- max_deposit/min_deposit=1/100
+- no_deposit (true тогда API вернет только обьявления, в которых не требуется залога)
 
     *Ordering*
 
