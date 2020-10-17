@@ -14,3 +14,4 @@ django-filter-stubs==0.1.1
 drf-yasg==1.17.1
 django-cors-headers==3.5.0
 djangorestframework-simplejwt==4.4.0
+djoser==2.0.5

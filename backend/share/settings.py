@@ -41,6 +41,7 @@ DJANGO_CORE_APPS = [
 THIRD_PARTY_APPS = [
     'corsheaders',
     'django_filters',
+    'djoser',
     'drf_yasg',
     'rest_framework',
 ]
@@ -131,6 +132,12 @@ SIMPLE_JWT = {
     'SLIDING_TOKEN_REFRESH_EXP_CLAIM': 'refresh_exp',
     'SLIDING_TOKEN_LIFETIME': timedelta(minutes=5),
     'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=1),
+}
+
+DJOSER = {
+    'USER_ID_FIELD': 'email',
+    'SEND_ACTIVATION_EMAIL': False,
+    'ACTIVATION_URL': 'api/v1/auth/users/activation/{uid}/{token}',
 }
 
 # Password validation

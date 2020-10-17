@@ -1,11 +1,10 @@
 from django.db.models import QuerySet
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import filters
-from rest_framework.generics import ListAPIView
+from rest_framework.generics import ListAPIView, CreateAPIView, RetrieveUpdateAPIView
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from rest_framework.request import Request
 from rest_framework.response import Response
-from rest_framework.viewsets import ModelViewSet
 
 from .models import Offer
 from .serializers import OfferListItemSerializer, OfferSerializer
@@ -68,7 +67,13 @@ class SearchOffersView(ListAPIView):
         return Offer.objects.filter(**_filters)
 
 
-class OfferViewSet(ModelViewSet):
+class OfferView(RetrieveUpdateAPIView):
+    serializer_class = OfferSerializer
+    queryset = Offer.objects.all()
+    permission_classes = [IsAuthenticatedOrReadOnly]
+
+
+class CreateOfferView(CreateAPIView):
     serializer_class = OfferSerializer
     queryset = Offer.objects.all()
     permission_classes = [IsAuthenticatedOrReadOnly]
