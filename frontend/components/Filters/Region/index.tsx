@@ -23,7 +23,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     background: theme.palette.gray[1],
     border: 'none',
     borderRadius: theme.radius,
-    fontSize: theme.rem(1.2),
+    fontSize: theme.rem(0.91),
     '& span': {
       marginLeft: theme.rem(1.5),
       fontSize: theme.rem(1.3),

@@ -49,9 +49,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
       top: '50%',
       left: 0,
       transform: 'translateY(-50%)',
-      height: '70%',
+      height: '50%',
       width: theme.rem(0.1),
-      background: theme.palette.gray[3],
+      background: theme.palette.gray[2],
     },
 
     '@media (max-width: 900px)': {
@@ -87,7 +87,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
   location: {
     marginBottom: theme.rem(2),
     fontSize: theme.rem(1.6),
-    color: theme.palette.blue[1],
+    color: theme.palette.blue[0],
     '&:hover': {
       textDecoration: 'underline',
     },
@@ -99,7 +99,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     marginBottom: theme.rem(2),
     fontSize: theme.rem(1.6),
     fontWeight: theme.text.weight[3],
-    color: theme.palette.blue[1],
+    color: theme.palette.blue[0],
     '&:hover': {
       textDecoration: 'underline',
     },

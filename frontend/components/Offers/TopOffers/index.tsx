@@ -14,7 +14,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
   root: {
     marginBottom: theme.rem(8),
     padding: theme.rem(5, 0, 8),
-    background: theme.palette.soft[5],
+    background: theme.palette.gray[0],
     fontSize: theme.rem(1.5),
     fontWeight: theme.text.weight[3],
 

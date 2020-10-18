@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import React, { ReactElement } from 'react';
+import React, { ReactElement, useEffect, useState } from 'react';
 import { createUseStyles } from 'react-jss';
 import { END } from 'redux-saga';
 
@@ -26,6 +26,15 @@ const useStyles = createUseStyles((theme: Theme) => ({
     '-webkit-text-fill-color': 'transparent',
     background: theme.palette.grad[2],
   },
+  red: {
+    color: theme.palette.red[0],
+  },
+  text: {
+    maxWidth: theme.rem(80),
+    margin: '3rem auto 5rem',
+    color: theme.palette.gray[3],
+    fontSize: theme.rem(1.3),
+  },
 }));
 
 const STEPS = {
@@ -40,6 +49,13 @@ const STEPS_TITLE = ['О товаре', 'Описание', 'Фото'];
 const NewOffer = (): ReactElement => {
   const css = useStyles();
   const { query } = useRouter();
+  const [index, setIndex] = useState<number>(1);
+
+  useEffect(() => {
+    if (query.step) {
+      setIndex(typeof query.step === 'string' ? +query.step : +query.step[0]);
+    }
+  }, [query.step]);
 
   return (
     <>
@@ -50,13 +66,13 @@ const NewOffer = (): ReactElement => {
         <Container>
           <h1 className={css.title}>#Делитесь с другими и зарабатывайте</h1>
 
-          <Stepper title={STEPS_TITLE} />
+          <Stepper title={STEPS_TITLE} current={+index} />
 
-          {query.step !== undefined &&
-            (STEPS[
-              typeof query.step === 'string' ? query.step : query.step[0]
-            ] ||
-              STEPS['1'])}
+          {query.step !== undefined && (STEPS[index] || STEPS[1])}
+
+          <p className={css.text}>
+            <span className={css.red}>*</span> Обязательное поле
+          </p>
         </Container>
       </Main>
     </>

@@ -1,24 +1,19 @@
-import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import clsx from 'clsx';
 import { useRouter } from 'next/router';
-import React, { FormEvent, ReactElement } from 'react';
+import React, { ChangeEvent, FormEvent, ReactElement, useState } from 'react';
 import { createUseStyles } from 'react-jss';
-import { useDispatch, useSelector } from 'react-redux';
 
 import { Theme } from '../../../config/theme';
-import { ICategories, IDropList, IState } from '../../../interfaces';
-import { openModal } from '../../../redux/modal/actions';
-import * as helpers from '../../../utils/helpers';
+import { IDropList } from '../../../interfaces';
+import { numberValidation } from '../../../utils/helpers';
+import CheckTitle from '../../common/CheckTitle';
 import DropDown from '../../common/DropDown';
-import DropDownMobile from '../../common/DropDownMobile';
-import { Desktop, Mobile } from '../../common/Media';
-import RegionModal from '../../common/RegionModal';
 
 const useStyles = createUseStyles((theme: Theme) => ({
   form: {
     padding: theme.rem(3, 10),
     borderRadius: theme.radius,
-    background: theme.palette.gray[0],
+    background: theme.palette.soft[5],
     maxWidth: theme.rem(80),
     margin: '0 auto',
 
@@ -29,6 +24,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
   inner: {
     margin: theme.rem(3, 0),
   },
+  red: {
+    color: theme.palette.red[0],
+  },
   title: {
     marginBottom: theme.rem(1),
     fontSize: theme.rem(1.4),
@@ -37,11 +35,11 @@ const useStyles = createUseStyles((theme: Theme) => ({
   input: {
     display: 'flex',
     alignItems: 'center',
-    height: theme.rem(5),
+    height: theme.rem(6),
     width: '100%',
     padding: theme.rem(1, 2),
-    background: theme.palette.blue[2],
-    border: theme.border(0.1, theme.palette.gray[3]),
+    background: theme.palette.white,
+    border: 'none',
     borderRadius: theme.radius,
     fontSize: theme.rem(1.2),
     '& span': {
@@ -49,19 +47,31 @@ const useStyles = createUseStyles((theme: Theme) => ({
       fontSize: theme.rem(1.3),
     },
   },
+  textarea: {
+    height: theme.rem(18),
+  },
   wrp: {
     display: 'grid',
     gridTemplateColumns: theme.fr(3),
     gridGap: theme.rem(1),
-    marginBottom: theme.rem(2.5),
 
     '@media (max-width: 500px)': {
       gridTemplateColumns: theme.fr(1),
     },
   },
+  inputWrp: {
+    display: 'grid',
+    gridTemplateColumns: theme.fr(2),
+    gridGap: theme.rem(0, 2),
+  },
+  inactive: {
+    pointerEvents: 'none',
+    opacity: 0.4,
+  },
   btnWrp: {
     display: 'flex',
     justifyContent: 'flex-end',
+    margin: theme.rem(6, 0, 4),
 
     '@media (max-width: 470px)': {
       flexDirection: 'column',
@@ -70,7 +80,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
   next: {
     padding: theme.rem(1, 4),
     marginLeft: theme.rem(2),
-    background: theme.palette.grad[0],
+    background: theme.palette.blue[0],
     fontSize: theme.rem(1.4),
     color: theme.palette.white,
     borderRadius: theme.radius,
@@ -81,9 +91,10 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
   },
   btn: {
+    height: theme.rem(6),
     padding: theme.rem(1, 4),
     marginLeft: theme.rem(2),
-    background: theme.palette.grayblue[0],
+    background: theme.palette.white,
     fontSize: theme.rem(1.4),
     color: theme.palette.black,
     borderRadius: theme.radius,
@@ -102,22 +113,35 @@ const CURRENCY: IDropList[] = [
 ];
 
 const TIME: IDropList[] = [
-  { name: 'За 1 час', slug: 'hour' },
-  { name: 'За 1 день', slug: 'day' },
-  { name: 'За 1 неделю', slug: 'week' },
-  { name: 'За 1 месяц', slug: 'month' },
+  { name: 'Час', slug: 'hour' },
+  { name: 'День', slug: 'day' },
+  { name: 'Неделя', slug: 'week' },
+  { name: 'Месяц', slug: 'month' },
 ];
 
 const StepTwo = (): ReactElement => {
   const css = useStyles();
-  const dispatch = useDispatch();
   const router = useRouter();
 
-  const data = useSelector<IState, ICategories[]>(state => state.categories);
-  const categories = helpers.formateCatList(data);
+  const [pledgeInput, setPledgeInput] = useState(true);
+  const [minInput, setMinInput] = useState(true);
+  const [maxInput, setMaxInput] = useState(true);
 
-  const handleRegionModal = () => {
-    dispatch(openModal({ dom: <RegionModal /> }));
+  const [pledge, setPledge] = useState('');
+  const [min, setMin] = useState('');
+  const [max, setMax] = useState('');
+
+  const handlePledge = (event: ChangeEvent<HTMLInputElement>): void => {
+    if (!numberValidation(event.target.value)) return;
+    setPledge(event.target.value);
+  };
+  const handleMin = (event: ChangeEvent<HTMLInputElement>): void => {
+    if (!numberValidation(event.target.value)) return;
+    setMin(event.target.value);
+  };
+  const handleMax = (event: ChangeEvent<HTMLInputElement>): void => {
+    if (!numberValidation(event.target.value)) return;
+    setMax(event.target.value);
   };
 
   const handleBack = () => {
@@ -132,43 +156,68 @@ const StepTwo = (): ReactElement => {
   return (
     <form className={css.form} onSubmit={handleSubmit}>
       <div className={css.inner}>
-        <h4 className={css.title}>Придумайте название объявления *</h4>
-        <input
-          className={css.input}
-          name="name"
-          type="text"
-          placeholder="Название"
+        <h4 className={css.title}>
+          Описание товара <span className={css.red}>*</span>
+        </h4>
+        <textarea
+          className={clsx(css.input, css.textarea)}
+          name="description"
+          placeholder="Описание"
         />
       </div>
 
       <div className={css.inner}>
-        <h4 className={css.title}>Укажите ваше местоположение *</h4>
-        <button type="button" className={css.input} onClick={handleRegionModal}>
-          <FontAwesomeIcon icon={faChevronDown} />
-          <span>Киев, Киевская область</span>
-        </button>
+        <CheckTitle onChange={setPledgeInput}>Залоговая сума</CheckTitle>
+        <div className={clsx(css.inputWrp, pledgeInput || css.inactive)}>
+          <input
+            value={pledge}
+            onChange={handlePledge}
+            className={css.input}
+            name="description"
+            placeholder="Введите число"
+            readOnly={!pledgeInput}
+          />
+          <DropDown white value={CURRENCY} onSubmit={console.log} />
+        </div>
       </div>
 
-      {!!categories?.length && (
-        <div className={css.inner}>
-          <h4 className={css.title}>Выберите категорию товара *</h4>
-          <Desktop>
-            <DropDown value={categories} onSubmit={console.log} toRight />
-          </Desktop>
-
-          <Mobile>
-            <DropDownMobile value={categories} onSubmit={console.log} toRight />
-          </Mobile>
+      <div className={css.inner}>
+        <CheckTitle onChange={setMinInput}>Минимальный срок аренды</CheckTitle>
+        <div className={clsx(css.inputWrp, minInput || css.inactive)}>
+          <input
+            value={min}
+            onChange={handleMin}
+            className={css.input}
+            name="description"
+            placeholder="Введите число"
+            readOnly={!minInput}
+          />
+          <DropDown white value={TIME} onSubmit={console.log} />
         </div>
-      )}
+      </div>
 
       <div className={css.inner}>
-        <h4 className={css.title}>Цена *</h4>
-        <div className={css.wrp}>
-          <input className={css.input} type="text" placeholder="Цена" />
-          <DropDown value={CURRENCY} onSubmit={console.log} />
-          <DropDown value={TIME} onSubmit={console.log} />
+        <CheckTitle onChange={setMaxInput}>Максимальный срок аренды</CheckTitle>
+        <div className={clsx(css.inputWrp, maxInput || css.inactive)}>
+          <input
+            value={max}
+            onChange={handleMax}
+            className={css.input}
+            name="description"
+            placeholder="Введите число"
+            readOnly={!maxInput}
+          />
+          <DropDown white value={TIME} onSubmit={console.log} />
         </div>
+      </div>
+
+      <div className={css.inner}>
+        <h4 className={css.title}>Дополнительные требования</h4>
+        <textarea
+          className={clsx(css.input, css.textarea)}
+          name="description"
+          placeholder="Дополнительно"
+        />
       </div>
 
       <div className={css.btnWrp}>

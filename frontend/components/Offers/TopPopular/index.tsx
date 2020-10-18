@@ -36,15 +36,18 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
   },
   btn: {
-    display: 'block',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
     width: theme.rem(25),
+    height: theme.rem(6),
     margin: '10rem auto 0',
-    padding: theme.rem(2, 4),
+    padding: theme.rem(1, 4),
     textAlign: 'center',
     fontSize: theme.rem(1.4),
     color: theme.palette.white,
     borderRadius: theme.radius,
-    background: theme.palette.grad[2],
+    background: theme.palette.blue[0],
 
     '@media (max-width: 550px)': {
       margin: '4rem auto 0',

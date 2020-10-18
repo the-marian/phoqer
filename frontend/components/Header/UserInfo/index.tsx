@@ -23,6 +23,8 @@ const useStyles = createUseStyles((theme: Theme) => ({
     position: 'relative',
   },
   menu: {
+    position: 'relative',
+    zIndex: 101,
     padding: theme.rem(0, 1),
     fontSize: theme.rem(2),
   },
@@ -42,6 +44,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     left: 0,
     right: 0,
     bottom: 0,
+    backdropFilter: 'blur(8px)',
     background: theme.palette.modal,
     zIndex: 99,
   },

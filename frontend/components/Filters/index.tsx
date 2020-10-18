@@ -48,9 +48,10 @@ const useStyles = createUseStyles((theme: Theme) => ({
   },
   link: {
     fontSize: theme.rem(1.4),
-    color: theme.palette.blue[1],
+    color: theme.palette.black[0],
     '&:hover': {
       textDecoration: 'underline',
+      color: theme.palette.blue[0],
     },
   },
   wrp: {

@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 import React, { MouseEvent, ReactElement, useState } from 'react';
 import { createUseStyles } from 'react-jss';
 
@@ -21,23 +22,17 @@ const useStyles = createUseStyles((theme: Theme) => ({
     margin: theme.rem(1, 4, 1, 0),
   },
   label: {
-    display: 'inline-block',
     height: theme.rem(2.5),
     width: theme.rem(2.5),
+    display: 'inline-block',
     marginRight: theme.rem(1.5),
+    border: theme.border(0.1, theme.palette.blue[0]),
     background: theme.palette.blue[2],
     borderRadius: theme.radius,
-    border: theme.border(0.1, theme.palette.blue[0]),
   },
   active: {
     position: 'relative',
-    display: 'inline-block',
-    height: theme.rem(2.5),
-    width: theme.rem(2.5),
-    marginRight: theme.rem(1.5),
     background: theme.palette.blue[0],
-    border: theme.border(0.1, theme.palette.blue[0]),
-    borderRadius: theme.radius,
     '&::before': {
       content: '""',
       position: 'absolute',
@@ -81,7 +76,7 @@ const Checkbox = (): ReactElement => {
         className={css.btn}
         onClick={handleClick}
       >
-        <span className={state.top ? css.active : css.label} />
+        <span className={clsx(css.label, !state.top || css.active)} />
         <span>Только ТОП объявления</span>
       </button>
 
@@ -91,7 +86,7 @@ const Checkbox = (): ReactElement => {
         className={css.btn}
         onClick={handleClick}
       >
-        <span className={state.checked ? css.active : css.label} />
+        <span className={clsx(css.label, !state.checked || css.active)} />
         <span>Проверенные</span>
       </button>
 
@@ -101,7 +96,7 @@ const Checkbox = (): ReactElement => {
         className={css.btn}
         onClick={handleClick}
       >
-        <span className={state.pledge ? css.active : css.label} />
+        <span className={clsx(css.label, !state.pledge || css.active)} />
         <span>Без залога</span>
       </button>
     </div>

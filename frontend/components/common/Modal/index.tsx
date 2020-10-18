@@ -19,7 +19,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    backdropFilter: 'blur(12px)',
+    backdropFilter: 'blur(8px)',
     background: theme.palette.modal,
     zIndex: 1000,
   },

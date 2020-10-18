@@ -11,7 +11,6 @@ import { openModal } from '../../../redux/modal/actions';
 import * as helpers from '../../../utils/helpers';
 import DropDown from '../../common/DropDown';
 import DropDownMobile from '../../common/DropDownMobile';
-import { Desktop, Mobile } from '../../common/Media';
 import RegionModal from '../../common/RegionModal';
 
 const useStyles = createUseStyles((theme: Theme) => ({
@@ -25,6 +24,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
     '@media (max-width: 580px)': {
       padding: theme.rem(3),
     },
+  },
+  red: {
+    color: theme.palette.red[0],
   },
   inner: {
     margin: theme.rem(3, 0),
@@ -43,11 +45,11 @@ const useStyles = createUseStyles((theme: Theme) => ({
     background: theme.palette.white,
     border: 'none',
     borderRadius: theme.radius,
-    fontSize: theme.rem(1.2),
-    '& span': {
-      marginLeft: theme.rem(1.5),
-      fontSize: theme.rem(1.3),
-    },
+    fontSize: theme.rem(1.3),
+  },
+  icon: {
+    fontSize: theme.rem(0.91),
+    marginRight: theme.rem(1.5),
   },
   wrp: {
     display: 'grid',
@@ -129,7 +131,9 @@ const StepThree = (): ReactElement => {
   return (
     <form className={css.form} onSubmit={handleSubmit}>
       <div className={css.inner}>
-        <h4 className={css.title}>Придумайте название объявления *</h4>
+        <h4 className={css.title}>
+          Придумайте название объявления <span className={css.red}>*</span>
+        </h4>
         <input
           className={css.input}
           name="name"
@@ -139,33 +143,36 @@ const StepThree = (): ReactElement => {
       </div>
 
       <div className={css.inner}>
-        <h4 className={css.title}>Укажите ваше местоположение *</h4>
+        <h4 className={css.title}>
+          Укажите ваше местоположение <span className={css.red}>*</span>
+        </h4>
         <button type="button" className={css.input} onClick={handleRegionModal}>
-          <FontAwesomeIcon icon={faChevronDown} />
+          <span className={css.icon}>
+            <FontAwesomeIcon icon={faChevronDown} />
+          </span>
           <span>Киев, Киевская область</span>
         </button>
       </div>
 
       {!!categories?.length && (
         <div className={css.inner}>
-          <h4 className={css.title}>Выберите категорию товара *</h4>
-          <Desktop>
-            <DropDown white value={categories} onSubmit={console.log} toRight />
-          </Desktop>
+          <h4 className={css.title}>
+            Выберите категорию товара <span className={css.red}>*</span>
+          </h4>
 
-          <Mobile>
-            <DropDownMobile
-              white
-              value={categories}
-              onSubmit={console.log}
-              toRight
-            />
-          </Mobile>
+          <DropDownMobile
+            white
+            value={categories}
+            onSubmit={console.log}
+            toRight
+          />
         </div>
       )}
 
       <div className={css.inner}>
-        <h4 className={css.title}>Цена *</h4>
+        <h4 className={css.title}>
+          Цена <span className={css.red}>*</span>
+        </h4>
         <div className={css.wrp}>
           <input className={css.input} type="text" placeholder="Цена" />
           <DropDown white value={CURRENCY} onSubmit={console.log} />

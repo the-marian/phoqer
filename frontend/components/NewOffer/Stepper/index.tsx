@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import clsx from 'clsx';
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
@@ -31,6 +31,11 @@ const useStyles = createUseStyles((theme: Theme) => ({
       borderTop: '0.1rem dashed ' + theme.palette.gray[2],
     },
   },
+  activeWrp: {
+    '&:not(:nth-last-of-type(1))::after': {
+      borderTop: '0.1rem solid #F9CB28',
+    },
+  },
   numWrp: {
     position: 'relative',
     zIndex: 2,
@@ -50,6 +55,11 @@ const useStyles = createUseStyles((theme: Theme) => ({
     fontWeight: theme.text.weight[5],
     color: theme.palette.blue[0],
   },
+  active: {
+    border: 'none',
+    background: theme.palette.grad[2],
+    color: theme.palette.white,
+  },
   text: {
     marginTop: theme.rem(1.5),
     fontSize: theme.rem(1.3),
@@ -59,21 +69,26 @@ const useStyles = createUseStyles((theme: Theme) => ({
 
 interface Props {
   title: string[];
+  current: number;
 }
 
-const Stepper = ({ title }: Props): ReactElement => {
+const Stepper = ({ title, current }: Props): ReactElement => {
   const css = useStyles();
+
   return (
     <div className={css.root}>
       {title.map((item, index) => (
-        <Link key={item} href={`/new_offer/${index + 1}`}>
-          <div key={item} className={css.wrp}>
-            <span className={css.numWrp}>
-              <span className={css.num}>{index + 1}</span>
+        <div
+          key={item}
+          className={clsx(css.wrp, current - 1 > index && css.activeWrp)}
+        >
+          <span className={css.numWrp}>
+            <span className={clsx(css.num, current > index && css.active)}>
+              {index + 1}
             </span>
-            <p className={css.text}>{item}</p>
-          </div>
-        </Link>
+          </span>
+          <p className={css.text}>{item}</p>
+        </div>
       ))}
     </div>
   );

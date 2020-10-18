@@ -29,7 +29,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     margin: 0,
     padding: theme.rem(2),
     cursor: 'pointer',
-    fontSize: theme.rem(1.6),
+    fontSize: theme.rem(1.4),
   },
   box: {
     position: 'absolute',
@@ -42,7 +42,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     background: theme.palette.white,
     borderRadius: theme.radius,
     border: theme.border(0.1, theme.palette.gray[3]),
-    fontSize: theme.rem(1.6),
+    fontSize: theme.rem(1.4),
     overflowY: 'scroll',
     zIndex: 10,
   },
@@ -53,22 +53,21 @@ const useStyles = createUseStyles((theme: Theme) => ({
       width: '100%',
       padding: theme.rem(1, 2),
       textAlign: 'left',
+
+      '&:hover': {
+        background: theme.palette.gray[1],
+        color: theme.palette.blue[0],
+      },
     },
   },
   sub: {
     position: 'relative',
-    marginLeft: theme.rem(2),
-    padding: theme.rem(1, 2),
+    padding: theme.rem(1, 3),
     fontWeight: theme.text.weight[1],
-    '&::before': {
-      content: '""',
-      position: 'absolute',
-      top: '60%',
-      left: 0,
-      transform: 'translateY(-50%)',
-      height: '60%',
-      width: theme.rem(0.2),
-      background: theme.palette.gray[2],
+
+    '&:hover': {
+      background: theme.palette.gray[0],
+      color: theme.palette.blue[0],
     },
   },
   icon: {
@@ -129,7 +128,9 @@ const DropDownMobile = ({
   };
 
   const handleBlur = () => {
-    setDrop(false);
+    setTimeout(() => {
+      setDrop(false);
+    }, 50);
   };
 
   return (
