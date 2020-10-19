@@ -22,7 +22,7 @@ schema_view = get_schema_view(
 )
 
 urlpatterns = [
-    path("upload/", image_upload, name="upload"),
+    path("api/upload/", image_upload, name="upload"),
     path("admin/", admin.site.urls),
 
     # REST-FRAMEWORK URLS
@@ -34,7 +34,7 @@ urlpatterns = [
     path('api/v1/users/', include('users.urls', namespace='users')),
 
     # SWAGGER URL
-    path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='swagger'),
+    path('api/swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='swagger'),
 
     # AUTH
     path('api/v1/auth/', include('djoser.urls.authtoken')),
