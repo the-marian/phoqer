@@ -24,6 +24,8 @@ jobs:
           echo POSTGRES_ENGINE=django.db.backends.postgresql >> .env.dev
           echo DATABASE=postgres >> .env.dev
           echo SECRET_KEY=${{ secrets.SECRET_KEY }} >> .env.dev
+          echo EMAIL_HOST_USER=${{ secrets.EMAIL_HOST_USER }} >> .env.dev
+          echo EMAIL_HOST_PASSWORD=${{ secrets.EMAIL_HOST_PASSWORD }} >> .env.dev
           echo POSTGRES_DB=${{ secrets.POSTGRES_DB }} >> .env.dev
           echo POSTGRES_USER=${{ secrets.POSTGRES_USER }} >> .env.dev
           echo POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }} >> .env.dev
@@ -67,6 +69,8 @@ jobs:
           echo SECRET_KEY=${{ secrets.SECRET_KEY }} >> .env.dev
           echo DEBUG=1 >> .env.dev
           echo DJANGO_ALLOWED_HOSTS=${{ secrets.DJANGO_ALLOWED_HOSTS }} >> .env.dev
+          echo EMAIL_HOST_USER=${{ secrets.EMAIL_HOST_USER }} >> .env.dev
+          echo EMAIL_HOST_PASSWORD=${{ secrets.EMAIL_HOST_PASSWORD }} >> .env.dev
           echo POSTGRES_ENGINE=django.db.backends.postgresql >> .env.dev
           echo POSTGRES_DB=${{ secrets.POSTGRES_DB }} >> .env.dev
           echo POSTGRES_USER=${{ secrets.POSTGRES_USER }} >> .env.dev
