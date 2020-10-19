@@ -40,7 +40,9 @@ urlpatterns = [
     # JWT login
     path('api/v1/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/v1/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
-    re_path(r'^api/v1/auth/', include('djoser.urls')),
+    path('api/v1/auth/', include('djoser.urls')),
+    path('api/v1/auth/', include('djoser.urls.authtoken')),
+    path('api/v1/auth/', include('djoser.urls.jwt')),
 ]
 
 if bool(settings.DEBUG):

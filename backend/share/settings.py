@@ -44,6 +44,7 @@ THIRD_PARTY_APPS = [
     'djoser',
     'drf_yasg',
     'rest_framework',
+    'rest_framework.authtoken',
 ]
 
 MY_APPS = [
@@ -102,6 +103,7 @@ DATABASES = {
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
         'rest_framework_simplejwt.authentication.JWTAuthentication',
         'rest_framework.authentication.SessionAuthentication',
         'rest_framework.authentication.BasicAuthentication'
@@ -120,7 +122,7 @@ SIMPLE_JWT = {
     'AUDIENCE': None,
     'ISSUER': None,
 
-    'AUTH_HEADER_TYPES': ('Bearer',),
+    'AUTH_HEADER_TYPES': ('JWT',),
     'USER_ID_FIELD': 'email',
     'USER_ID_CLAIM': 'user_email',
 
