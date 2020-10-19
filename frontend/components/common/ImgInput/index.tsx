@@ -12,13 +12,17 @@ const useStyles = createUseStyles((theme: Theme) => ({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    width: '100%',
     height: theme.rem(15),
+    width: theme.rem(20),
+    margin: '3rem auto',
     borderRadius: theme.radius,
     background: theme.palette.white,
     transition: theme.transitions[0],
     fontSize: theme.rem(3),
     color: theme.palette.gray[2],
+    '&:hover': {
+      color: theme.palette.blue[0],
+    },
   },
   input: {
     position: 'absolute',
@@ -31,13 +35,17 @@ const useStyles = createUseStyles((theme: Theme) => ({
   },
 }));
 
-const ImgInput = (): ReactElement => {
+interface Props {
+  onChange: (value: File[]) => void;
+}
+
+const ImgInput = ({ onChange }: Props): ReactElement => {
   const css = useStyles();
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>): void => {
     const { files } = event.target;
-    console.log(files);
     if (!files || !files.length) return;
+    onChange(Object.values(files));
   };
 
   return (
@@ -49,6 +57,7 @@ const ImgInput = (): ReactElement => {
         onChange={handleChange}
         name="img"
         accept=".jpg, .jpeg, .png, .webp"
+        multiple={true}
       />
     </div>
   );

@@ -28,7 +28,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     width: '100%',
     maxHeight: '95vh',
     padding: theme.rem(2),
-    paddingTop: theme.rem(3),
+    paddingTop: theme.rem(5),
     borderRadius: theme.radius,
     background: theme.palette.white,
 
@@ -40,8 +40,8 @@ const useStyles = createUseStyles((theme: Theme) => ({
     position: 'absolute',
     top: 0,
     right: 0,
-    padding: theme.rem(1, 1.5),
-    fontSize: theme.rem(1.2),
+    padding: theme.rem(1.2, 1.8),
+    fontSize: theme.rem(1.6),
   },
 }));
 

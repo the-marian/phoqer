@@ -1,9 +1,10 @@
 import { useRouter } from 'next/router';
-import React, { FormEvent, ReactElement } from 'react';
+import React, { FormEvent, ReactElement, useState } from 'react';
 import { createUseStyles } from 'react-jss';
 
 import { Theme } from '../../../config/theme';
 import ImgInput from '../../common/ImgInput';
+import DnDImages from './DnDImages';
 
 const useStyles = createUseStyles((theme: Theme) => ({
   form: {
@@ -21,12 +22,6 @@ const useStyles = createUseStyles((theme: Theme) => ({
     margin: theme.rem(3, 0, 1),
     fontSize: theme.rem(1.4),
     fontWeight: theme.text.weight[2],
-  },
-  imgWrp: {
-    display: 'grid',
-    gridTemplateColumns: theme.fr(3),
-    gridGap: theme.rem(2),
-    margin: theme.rem(3, 0),
   },
   btnWrp: {
     display: 'flex',
@@ -69,6 +64,11 @@ const useStyles = createUseStyles((theme: Theme) => ({
 const StepThree = (): ReactElement => {
   const css = useStyles();
   const router = useRouter();
+  const [images, setImages] = useState<string[]>([]);
+
+  const handleImgChange = (value: File[]): void => {
+    setImages([...images, ...value.map(URL.createObjectURL)]);
+  };
 
   const handleBack = () => {
     router.push('/new_offer/2');
@@ -84,9 +84,9 @@ const StepThree = (): ReactElement => {
       <h4 className={css.title}>Добавьте фото вашего товара</h4>
       <p>Не больше 3мб (.png .jpg .jpeg)</p>
 
-      <div className={css.imgWrp}>
-        <ImgInput />
-      </div>
+      {!!images.length && <DnDImages images={images} onChange={setImages} />}
+
+      <ImgInput onChange={handleImgChange} />
 
       <div className={css.btnWrp}>
         <button type="button" className={css.btn}>
