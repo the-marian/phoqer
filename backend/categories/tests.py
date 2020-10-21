@@ -145,7 +145,7 @@ def api_client():
 
 
 @pytest.fixture
-def db_test_data():
+def db_test_data(db):
     sport = ParentCategories.objects.create(name='Sport', slug='sport', image=sport_img_url, is_active=True,
                                             priority=1)
     books = ParentCategories.objects.create(name='Books', slug='books', image=books_img_url, is_active=True,
@@ -160,14 +160,12 @@ def db_test_data():
     ChildCategories.objects.create(name='Chess', slug='chess', parent=toys)
 
 
-@pytest.mark.django_db
 def test_list_categories(api_client, db_test_data):
     response = api_client.get(categories_endpoint_url)
-    assert response.status_code, status.HTTP_200_OK
+    assert response.status_code == status.HTTP_200_OK
     assert response.json() == list_categories_expected_response
 
 
-@pytest.mark.django_db
 def test_is_active(api_client, db_test_data):
     response = api_client.get(categories_endpoint_url)
     assert response.json() == list_categories_expected_response
@@ -180,7 +178,6 @@ def test_is_active(api_client, db_test_data):
     assert response.json() == list_categories_without_toys
 
 
-@pytest.mark.django_db
 def test_priority(api_client, db_test_data):
     response = api_client.get(categories_endpoint_url)
     assert response.json() == list_categories_expected_response

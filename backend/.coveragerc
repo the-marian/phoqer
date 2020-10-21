@@ -7,7 +7,11 @@ omit =
     */__init__.py
     */apps.py
     */admin.py
+    */tests.py
+    */urls.py
     manage.py
     share/settings.py
     share/wsgi.py
     share/asgi.py
+    upload/models.py
+    users/views.py
