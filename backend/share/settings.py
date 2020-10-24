@@ -140,6 +140,9 @@ DJOSER = {
     'USER_ID_FIELD': 'email',
     'SEND_ACTIVATION_EMAIL': True,
     'ACTIVATION_URL': 'api/v1/auth/users/activation/{uid}/{token}',
+    'SERIALIZERS': {
+        'token': 'users.serializers.TokenSerializer',
+    }
 }
 
 # Password validation
