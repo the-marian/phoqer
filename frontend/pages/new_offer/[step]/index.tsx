@@ -1,9 +1,12 @@
+import axios from 'axios';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import React, { ReactElement, useEffect, useState } from 'react';
 import { createUseStyles } from 'react-jss';
+import { useSelector } from 'react-redux';
 import { END } from 'redux-saga';
 
+import AppWrp from '../../../components/common/AppWrp';
 import Container from '../../../components/common/Container';
 import Main from '../../../components/common/Main';
 import StepOne from '../../../components/NewOffer/StepOne';
@@ -12,7 +15,7 @@ import StepThree from '../../../components/NewOffer/StepThree';
 import StepTwo from '../../../components/NewOffer/StepTwo';
 import Success from '../../../components/NewOffer/Success';
 import { Theme } from '../../../config/theme';
-import { IStore } from '../../../interfaces';
+import { IAuth, IState, IStore } from '../../../interfaces';
 import { wrapper } from '../../../redux/store';
 import types from '../../../redux/types';
 
@@ -41,15 +44,23 @@ const STEPS = {
   1: <StepOne />,
   2: <StepTwo />,
   3: <StepThree />,
-  done: <Success />,
+  4: <Success />,
 };
 
 const STEPS_TITLE = ['О товаре', 'Описание', 'Фото'];
 
 const NewOffer = (): ReactElement => {
   const css = useStyles();
-  const { query } = useRouter();
+  const { query, push } = useRouter();
   const [index, setIndex] = useState<number>(1);
+  const { auth_token } = useSelector<IState, IAuth>(state => state.auth);
+  const isLogin = auth_token && axios.defaults.headers.common.Authorization;
+
+  useEffect(() => {
+    if (!isLogin) {
+      push('/');
+    }
+  }, []);
 
   useEffect(() => {
     if (query.step) {
@@ -58,7 +69,7 @@ const NewOffer = (): ReactElement => {
   }, [query.step]);
 
   return (
-    <>
+    <AppWrp>
       <Head>
         <title>New product | Fucking project</title>
       </Head>
@@ -66,16 +77,18 @@ const NewOffer = (): ReactElement => {
         <Container>
           <h1 className={css.title}>#Делитесь с другими и зарабатывайте</h1>
 
-          <Stepper title={STEPS_TITLE} current={+index} />
+          {index < 4 && <Stepper title={STEPS_TITLE} current={+index} />}
 
           {query.step !== undefined && (STEPS[index] || STEPS[1])}
 
-          <p className={css.text}>
-            <span className={css.red}>*</span> Обязательное поле
-          </p>
+          {index < 3 && (
+            <p className={css.text}>
+              <span className={css.red}>*</span> Обязательное поле
+            </p>
+          )}
         </Container>
       </Main>
-    </>
+    </AppWrp>
   );
 };
 

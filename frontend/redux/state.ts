@@ -1,6 +1,9 @@
 import { IState } from '../interfaces';
 
 const initState: IState = {
+  auth: {
+    auth_token: null,
+  },
   categories: null,
   offers: {
     popular: {

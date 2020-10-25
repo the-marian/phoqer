@@ -5,10 +5,10 @@ import React, { ReactElement, useEffect, useState } from 'react';
 import { createUseStyles } from 'react-jss';
 import { useDispatch, useSelector } from 'react-redux';
 
+import * as helpers from '../../../config/helpers';
 import { Theme } from '../../../config/theme';
 import { ICategories, IState } from '../../../interfaces';
 import { openModal } from '../../../redux/modal/actions';
-import * as helpers from '../../../utils/helpers';
 import DropDown from '../DropDown';
 import DropDownMobile from '../DropDownMobile';
 import LinkArrow from '../LinkArrow';
@@ -54,6 +54,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
       background: theme.palette.gray[2],
     },
 
+    '@media (max-width: 1200px)': {
+      width: theme.rem(28),
+    },
     '@media (max-width: 900px)': {
       height: '100%',
       width: theme.rem(8),
@@ -197,7 +200,7 @@ const Search = (): ReactElement => {
                   <DropDownMobile
                     value={categories}
                     onSubmit={console.log}
-                    height={6.8}
+                    height={6}
                     defaultValue={categoryName || subCategoryName}
                     toRight
                   />

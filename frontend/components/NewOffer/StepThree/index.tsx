@@ -76,7 +76,7 @@ const StepThree = (): ReactElement => {
 
   const handleSubmit = (event: FormEvent): void => {
     event.preventDefault();
-    router.push('/new_offer/done');
+    router.push('/new_offer/4');
   };
 
   return (

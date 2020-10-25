@@ -92,7 +92,7 @@ const Modal = (): ReactElement => {
     <div
       className={css.wrp}
       onMouseDown={handleBackDrop}
-      onTouchStart={handleBackDrop}
+      onTouchEnd={handleBackDrop}
       aria-hidden
     >
       <div className={css.inner} style={{ maxWidth: SIZE[size] }}>

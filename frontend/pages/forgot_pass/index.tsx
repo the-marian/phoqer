@@ -3,6 +3,7 @@ import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
 import ForgotPassForm from '../../components/Auth/ForgotPassForm';
+import AppWrp from '../../components/common/AppWrp';
 import Container from '../../components/common/Container';
 import Main from '../../components/common/Main';
 import { Theme } from '../../config/theme';
@@ -55,7 +56,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
 const ForgotPass = (): ReactElement => {
   const css = useStyles();
   return (
-    <>
+    <AppWrp>
       <Head>
         <title>Reset password | Fucking project</title>
       </Head>
@@ -69,7 +70,7 @@ const ForgotPass = (): ReactElement => {
           </div>
         </Container>
       </Main>
-    </>
+    </AppWrp>
   );
 };
 

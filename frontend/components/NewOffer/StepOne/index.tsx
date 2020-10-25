@@ -5,10 +5,10 @@ import React, { FormEvent, ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 import { useDispatch, useSelector } from 'react-redux';
 
+import * as helpers from '../../../config/helpers';
 import { Theme } from '../../../config/theme';
 import { ICategories, IDropList, IState } from '../../../interfaces';
 import { openModal } from '../../../redux/modal/actions';
-import * as helpers from '../../../utils/helpers';
 import DropDown from '../../common/DropDown';
 import DropDownMobile from '../../common/DropDownMobile';
 import RegionModal from '../../common/RegionModal';

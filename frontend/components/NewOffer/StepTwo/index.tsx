@@ -3,11 +3,9 @@ import { useRouter } from 'next/router';
 import React, { ChangeEvent, FormEvent, ReactElement, useState } from 'react';
 import { createUseStyles } from 'react-jss';
 
+import { numberValidation } from '../../../config/helpers';
 import { Theme } from '../../../config/theme';
-import { IDropList } from '../../../interfaces';
-import { numberValidation } from '../../../utils/helpers';
 import CheckTitle from '../../common/CheckTitle';
-import DropDown from '../../common/DropDown';
 
 const useStyles = createUseStyles((theme: Theme) => ({
   form: {
@@ -60,9 +58,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
   },
   inputWrp: {
-    display: 'grid',
-    gridTemplateColumns: theme.fr(2),
-    gridGap: theme.rem(0, 2),
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
   inactive: {
     pointerEvents: 'none',
@@ -105,19 +103,6 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
   },
 }));
-
-const CURRENCY: IDropList[] = [
-  { name: 'грн', slug: 'uah' },
-  { name: '$', slug: 'usd' },
-  { name: '€', slug: 'eur' },
-];
-
-const TIME: IDropList[] = [
-  { name: 'Час', slug: 'hour' },
-  { name: 'День', slug: 'day' },
-  { name: 'Неделя', slug: 'week' },
-  { name: 'Месяц', slug: 'month' },
-];
 
 const StepTwo = (): ReactElement => {
   const css = useStyles();
@@ -177,7 +162,6 @@ const StepTwo = (): ReactElement => {
             placeholder="Введите число"
             readOnly={!pledgeInput}
           />
-          <DropDown white value={CURRENCY} onSubmit={console.log} />
         </div>
       </div>
 
@@ -192,7 +176,6 @@ const StepTwo = (): ReactElement => {
             placeholder="Введите число"
             readOnly={!minInput}
           />
-          <DropDown white value={TIME} onSubmit={console.log} />
         </div>
       </div>
 
@@ -207,7 +190,6 @@ const StepTwo = (): ReactElement => {
             placeholder="Введите число"
             readOnly={!maxInput}
           />
-          <DropDown white value={TIME} onSubmit={console.log} />
         </div>
       </div>
 

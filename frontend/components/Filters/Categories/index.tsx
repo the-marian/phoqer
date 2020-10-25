@@ -3,9 +3,9 @@ import React, { ReactElement, useEffect, useState } from 'react';
 import { createUseStyles } from 'react-jss';
 import { useSelector } from 'react-redux';
 
+import * as helpers from '../../../config/helpers';
 import { Theme } from '../../../config/theme';
 import { ICategories, IState } from '../../../interfaces';
-import * as helpers from '../../../utils/helpers';
 import DropDown from '../../common/DropDown';
 import DropDownMobile from '../../common/DropDownMobile';
 import { Desktop, Mobile } from '../../common/Media';

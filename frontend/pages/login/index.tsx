@@ -3,6 +3,7 @@ import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
 import LoginForm from '../../components/Auth/LoginForm';
+import AppWrp from '../../components/common/AppWrp';
 import Container from '../../components/common/Container';
 import Main from '../../components/common/Main';
 import { Theme } from '../../config/theme';
@@ -55,7 +56,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
 const Login = (): ReactElement => {
   const css = useStyles();
   return (
-    <>
+    <AppWrp>
       <Head>
         <title>Login | Fucking project</title>
       </Head>
@@ -69,7 +70,7 @@ const Login = (): ReactElement => {
           </div>
         </Container>
       </Main>
-    </>
+    </AppWrp>
   );
 };
 

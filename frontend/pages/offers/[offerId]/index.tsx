@@ -1,6 +1,7 @@
 import React, { ReactElement } from 'react';
 import { END } from 'redux-saga';
 
+import AppWrp from '../../../components/common/AppWrp';
 import Container from '../../../components/common/Container';
 import Main from '../../../components/common/Main';
 import Search from '../../../components/common/Search';
@@ -9,11 +10,13 @@ import { wrapper } from '../../../redux/store';
 import types from '../../../redux/types';
 
 const SingleProductPage = (): ReactElement => (
-  <Main>
-    <Container>
-      <Search />
-    </Container>
-  </Main>
+  <AppWrp>
+    <Main>
+      <Container>
+        <Search />
+      </Container>
+    </Main>
+  </AppWrp>
 );
 
 export const getStaticProps = wrapper.getStaticProps(

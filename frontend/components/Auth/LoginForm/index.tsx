@@ -2,10 +2,13 @@ import { faEye, faEyeSlash } from '@fortawesome/free-regular-svg-icons';
 import { faKey, faUser } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Link from 'next/link';
-import React, { FormEvent, ReactElement, useState } from 'react';
+import React, { ChangeEvent, FormEvent, ReactElement, useState } from 'react';
 import { createUseStyles } from 'react-jss';
+import { useDispatch } from 'react-redux';
 
 import { Theme } from '../../../config/theme';
+import { Login } from '../../../interfaces';
+import types from '../../../redux/types';
 
 const useStyles = createUseStyles((theme: Theme) => ({
   title: {
@@ -101,15 +104,22 @@ const useStyles = createUseStyles((theme: Theme) => ({
 
 const LoginForm = (): ReactElement => {
   const css = useStyles();
-  const [password, setPassword] = useState(true);
+  const dispatch = useDispatch();
+
+  const [unhide, setUnhide] = useState(true);
+  const [payload, setPayload] = useState<Login>({ password: '', email: '' });
+
+  const handleChange = (event: ChangeEvent<HTMLInputElement>): void => {
+    setPayload({ ...payload, [event.target.name]: event.target.value });
+  };
 
   const hadleClick = () => {
-    setPassword(!password);
+    setUnhide(!unhide);
   };
 
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
-    alert('fuck you!');
+    dispatch({ type: types.LOGIN_START, payload });
   };
 
   return (
@@ -120,7 +130,12 @@ const LoginForm = (): ReactElement => {
         <div className={css.icon}>
           <FontAwesomeIcon icon={faUser} />
         </div>
-        <input type="email" name="email" className={css.input} />
+        <input
+          type="email"
+          onChange={handleChange}
+          name="email"
+          className={css.input}
+        />
       </div>
 
       <div className={css.wrp}>
@@ -128,15 +143,16 @@ const LoginForm = (): ReactElement => {
           <FontAwesomeIcon icon={faKey} />
         </div>
         <button className={css.eye} onClick={hadleClick} type="button">
-          {password ? (
+          {unhide ? (
             <FontAwesomeIcon icon={faEyeSlash} />
           ) : (
             <FontAwesomeIcon icon={faEye} />
           )}
         </button>
         <input
-          type={password ? 'password' : 'text'}
+          type={unhide ? 'password' : 'text'}
           name="password"
+          onChange={handleChange}
           className={css.input}
         />
       </div>

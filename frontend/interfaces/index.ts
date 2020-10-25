@@ -43,7 +43,18 @@ export interface IOffers {
   popular: IOfferPopular;
 }
 
+export interface Login {
+  email: string;
+  password: string;
+}
+
+export interface IAuth {
+  auth_token: string | null;
+  user: string | null;
+}
+
 export interface IState {
+  auth: IAuth;
   modal: IModal;
   categories: ICategories[] | null;
   offers: IOffers;

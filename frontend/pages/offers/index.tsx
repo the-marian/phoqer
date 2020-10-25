@@ -3,6 +3,7 @@ import React, { ReactElement } from 'react';
 import { END } from 'redux-saga';
 
 import About from '../../components/common/About';
+import AppWrp from '../../components/common/AppWrp';
 import Container from '../../components/common/Container';
 import Main from '../../components/common/Main';
 import Search from '../../components/common/Search';
@@ -14,7 +15,7 @@ import { wrapper } from '../../redux/store';
 import types from '../../redux/types';
 
 const OffersPage = (): ReactElement => (
-  <>
+  <AppWrp>
     <Head>
       <title>Search roducts | Fucking project</title>
     </Head>
@@ -32,7 +33,7 @@ const OffersPage = (): ReactElement => (
 
       <About />
     </Main>
-  </>
+  </AppWrp>
 );
 
 export const getStaticProps = wrapper.getStaticProps(

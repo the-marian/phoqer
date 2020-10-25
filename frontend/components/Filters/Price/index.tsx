@@ -2,9 +2,9 @@ import { Range } from 'rc-slider';
 import React, { ChangeEvent, ReactElement, useState } from 'react';
 import { createUseStyles } from 'react-jss';
 
+import { numberValidation } from '../../../config/helpers';
 import { Theme } from '../../../config/theme';
 import { IDropList } from '../../../interfaces';
-import { numberValidation } from '../../../utils/helpers';
 import DropDown from '../../common/DropDown';
 
 const useStyles = createUseStyles((theme: Theme) => ({

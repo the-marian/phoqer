@@ -10,10 +10,21 @@ const useStyles = createUseStyles((theme: Theme) => ({
     width: 'max-content',
     height: theme.rem(5),
     marginRight: theme.rem(1),
+
+    '@media (max-width: 500px)': {
+      display: 'flex',
+      alignItems: 'center',
+      marginRight: theme.rem(0.5),
+    },
   },
   img: {
     height: '100%',
     width: 'auto',
+
+    '@media (max-width: 500px)': {
+      height: 'auto',
+      width: theme.rem(12),
+    },
   },
 }));
 
