@@ -1,7 +1,6 @@
 {
-  "name": "with-typescript",
+  "name": "fucking-project",
   "version": "1.0.0",
-  "proxy": "http://localhost:3000",
   "scripts": {
     "dev": "next -p 4000",
     "build": "next build",

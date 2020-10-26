@@ -4,6 +4,7 @@ import '../styles/styles.css';
 import '../styles/range.css';
 
 import { AppProps } from 'next/app';
+import Head from 'next/head';
 import { useRouter } from 'next/router';
 import React, { ReactElement } from 'react';
 import {
@@ -27,7 +28,8 @@ const MyApp = ({ Component, pageProps }: AppProps): ReactElement => {
   const history = useRouter();
   const sheets = new SheetsRegistry();
   const generateId = createGenerateId();
-  const persistor = persistStore(store, {}, function () {
+
+  const persistor = persistStore(store, {}, () => {
     persistor.persist();
   });
   interceptors({ history });
@@ -38,6 +40,12 @@ const MyApp = ({ Component, pageProps }: AppProps): ReactElement => {
         <ThemeProvider theme={theme}>
           <Modal />
           <FullPage />
+          <Head>
+            <meta
+              name="viewport"
+              content="width=device-width,initial-scale=1"
+            />
+          </Head>
           <Component {...pageProps} />
         </ThemeProvider>
       </JssProvider>

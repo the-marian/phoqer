@@ -15,6 +15,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
   img: {
     height: theme.rem(15),
     borderRadius: theme.radius,
+    objectFit: 'cover',
     cursor: 'grab',
   },
   dalete: {

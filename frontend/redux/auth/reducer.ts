@@ -17,8 +17,13 @@ const auth = (
     case types.GET_USER_SUCCESS:
       return { ...state, ...payload };
 
+    case types.LOGOUT_SUCCESS:
+      return { ...state, auth_token: null };
+
     case types.GET_USER_START:
     case types.GET_USER_ERROR:
+    case types.LOGOUT_START:
+    case types.LOGOUT_ERROR:
     case types.LOGIN_START:
     case types.LOGIN_ERROR:
       return state;

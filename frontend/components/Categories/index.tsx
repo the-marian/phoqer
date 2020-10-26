@@ -35,7 +35,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
   cat: {
     cursor: 'pointer',
     '&:hover': {
-      textDecoration: 'underline',
+      color: theme.palette.blue[0],
     },
   },
   img: {

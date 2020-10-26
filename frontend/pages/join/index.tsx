@@ -5,6 +5,7 @@ import { createUseStyles } from 'react-jss';
 import JoinForm from '../../components/Auth/JoinForm';
 import AppWrp from '../../components/common/AppWrp';
 import Container from '../../components/common/Container';
+import LoginWrap from '../../components/common/LoginWrap';
 import Main from '../../components/common/Main';
 import { Theme } from '../../config/theme';
 
@@ -55,22 +56,25 @@ const useStyles = createUseStyles((theme: Theme) => ({
 
 const Login = (): ReactElement => {
   const css = useStyles();
+
   return (
-    <AppWrp>
-      <Head>
-        <title>Join | Fucking project</title>
-      </Head>
-      <Main>
-        <Container>
-          <div className={css.root}>
-            <div className={css.form}>
-              <JoinForm />
+    <LoginWrap>
+      <AppWrp>
+        <Head>
+          <title>Join | Fucking project</title>
+        </Head>
+        <Main>
+          <Container>
+            <div className={css.root}>
+              <div className={css.form}>
+                <JoinForm />
+              </div>
+              <img className={css.img} src="/join.jpg" alt="" />
             </div>
-            <img className={css.img} src="/join.jpg" alt="" />
-          </div>
-        </Container>
-      </Main>
-    </AppWrp>
+          </Container>
+        </Main>
+      </AppWrp>
+    </LoginWrap>
   );
 };
 

@@ -114,6 +114,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
 
 const Search = (): ReactElement => {
   const css = useStyles();
+  const history = useRouter();
   const dispatch = useDispatch();
 
   const { pathname, query } = useRouter();
@@ -173,6 +174,7 @@ const Search = (): ReactElement => {
               <FontAwesomeIcon icon={faSearch} />
             </span>
             <input
+              defaultValue={history?.query?.q}
               className={css.input}
               type="text"
               placeholder="Что вы ищите?"

@@ -5,6 +5,7 @@ import { createUseStyles } from 'react-jss';
 import ForgotPassForm from '../../components/Auth/ForgotPassForm';
 import AppWrp from '../../components/common/AppWrp';
 import Container from '../../components/common/Container';
+import LoginWrap from '../../components/common/LoginWrap';
 import Main from '../../components/common/Main';
 import { Theme } from '../../config/theme';
 
@@ -56,21 +57,23 @@ const useStyles = createUseStyles((theme: Theme) => ({
 const ForgotPass = (): ReactElement => {
   const css = useStyles();
   return (
-    <AppWrp>
-      <Head>
-        <title>Reset password | Fucking project</title>
-      </Head>
-      <Main>
-        <Container>
-          <div className={css.root}>
-            <img className={css.img} src="/forgot_pass.jpg" alt="" />
-            <div className={css.form}>
-              <ForgotPassForm />
+    <LoginWrap>
+      <AppWrp>
+        <Head>
+          <title>Reset password | Fucking project</title>
+        </Head>
+        <Main>
+          <Container>
+            <div className={css.root}>
+              <img className={css.img} src="/forgot_pass.jpg" alt="" />
+              <div className={css.form}>
+                <ForgotPassForm />
+              </div>
             </div>
-          </div>
-        </Container>
-      </Main>
-    </AppWrp>
+          </Container>
+        </Main>
+      </AppWrp>
+    </LoginWrap>
   );
 };
 
