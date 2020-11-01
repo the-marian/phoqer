@@ -18,7 +18,7 @@ class Offer(models.Model):
         EUR = 'EUR', _('Euro')
         USD = 'USD', _('Dollar')
         UAH = 'UAH', _('Hryvnia')
-        PLN = 'PLN', _('Złoty')
+        PLN = 'PLN', _('Zloty')
 
     class Status(models.TextChoices):
         DRAFT = 'DRAFT', _('Draft')
@@ -55,7 +55,7 @@ class Offer(models.Model):
     title = models.CharField(max_length=120)
     views = models.PositiveIntegerField(default=0)
 
-    def __str__(self):
+    def __str__(self) -> str:
         return self.title
 
     class Meta:
@@ -67,5 +67,5 @@ class OfferImages(models.Model):
     offer = models.ForeignKey(Offer, related_name='offer_images', on_delete=models.CASCADE)
     url = models.URLField()
 
-    def __str__(self):
+    def __str__(self) -> str:
         return self.name

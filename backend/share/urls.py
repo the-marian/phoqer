@@ -24,6 +24,9 @@ urlpatterns = [
 
     # AUTH
     path('api/v1/auth/', include('djoser.urls.authtoken')),
+
+    # COMMENTS
+    path('api/v1/comments/', include('comments.urls', namespace='comments'))
 ]
 
 if bool(settings.DEBUG):
