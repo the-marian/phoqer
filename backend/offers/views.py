@@ -13,7 +13,7 @@ from .serializers import OfferListItemSerializer, OfferSerializer
 
 class PopularOffersView(ListAPIView):
     serializer_class = OfferListItemSerializer
-    queryset = Offer.objects.filter(Q(status='ACTIVE') | Q(status='IN_RENT')).order_by('-promote_til_date', 'views')
+    queryset = Offer.objects.filter(Q(status='ACTIVE') | Q(status='IN_RENT')).order_by('-promote_til_date', '-views')
 
     def list(self, request: Request, *args, **kwargs) -> Response:
         queryset = self.get_queryset()
@@ -55,7 +55,7 @@ class SearchOffersView(ListAPIView):
         min_deposit = query_params.get('min_deposit')
 
         # because of "shadow name 'filters' from outer scope" warning, I name it '_filters'
-        _filters = {'status': 'ACTIVE'}
+        _filters = {}
         if max_price:
             _filters['price__lte'] = max_price
         if min_price:
@@ -67,7 +67,7 @@ class SearchOffersView(ListAPIView):
         if min_deposit:
             _filters['deposit_val__gte'] = min_deposit
 
-        return Offer.objects.filter(**_filters)
+        return Offer.objects.filter(Q(status='ACTIVE') | Q(status='IN_RENT'), **_filters)
 
 
 class OfferView(RetrieveUpdateAPIView):

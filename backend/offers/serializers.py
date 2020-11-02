@@ -39,8 +39,9 @@ class OfferListItemSerializer(serializers.ModelSerializer):
         ]
 
     def get_is_favorite(self, offer):
-        if user_query_param := self.context['request'].query_params.get('user', None):
-            user = User.objects.get(username=user_query_param)
+        user_query_param = self.context['request'].query_params.get('user', None)
+        if user_query_param:
+            user = User.objects.get(email=user_query_param)
             return offer in user.favourite_offers.all()
         return False
 
