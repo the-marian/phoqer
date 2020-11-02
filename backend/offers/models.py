@@ -49,7 +49,7 @@ class Offer(models.Model):
     per = models.CharField(max_length=5, choices=Per.choices)
     price = models.PositiveIntegerField()
     promote_til_date = models.DateField(blank=True, null=True)
-    pud_date = models.DateField(auto_now=True)
+    pud_date = models.DateField(auto_now_add=True)
     status = models.CharField(max_length=8, choices=Status.choices, default=Status.DRAFT)
     sub_category = models.ForeignKey(ChildCategories, on_delete=models.PROTECT)
     title = models.CharField(max_length=120)
