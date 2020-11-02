@@ -21,7 +21,6 @@ class CommentView(ListCreateAPIView):
 
 
 class CommentVoteView(UpdateAPIView):
-    lookup_field = 'offer'
     permission_classes = [IsAuthenticated]
     queryset = Comment.objects.all()
     serializer_class = CommentVoteSerializer
