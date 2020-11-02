@@ -1,14 +1,13 @@
 from django.urls import path
 
-from .views import CommentsView, CreateCommentView
+from .views import CommentView
 
 app_name = 'comments'
 
 urlpatterns = [
-    path('<uuid:offer>/', CommentsView.as_view(), name='offer-comments'),
-    path('', CreateCommentView.as_view(), name='comment-create'),
-    path('<int:pk>/like', CommentsView.as_view(), name='comment-like'),
-    path('<int:pk>/dislike', CommentsView.as_view(), name='comment-dislike'),
-    path('<int:pk>/reply', CommentsView.as_view(), name='comment-reply'),
+    path('<uuid:offer>/', CommentView.as_view(), name='comment-list-create'),
+    # path('<int:pk>/like', CommentVoteView.as_view(), name='comment-like'),
+    # path('<int:pk>/dislike', CommentVoteView.as_view(), name='comment-dislike'),
+    # path('<int:pk>/reply', CommentsView.as_view(), name='comment-reply'),
 
 ]
