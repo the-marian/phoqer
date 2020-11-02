@@ -35,10 +35,10 @@ class CommentSerializer(serializers.ModelSerializer):
         ]
 
     def get_likes(self, comment):
-        return comment.comment_like.all().count()
+        return comment.comment_likes.all().count()
 
     def get_dislikes(self, comment):
-        return comment.comment_dislike.all().count()
+        return comment.comment_dislikes.all().count()
 
     def get_fields(self):
         fields = super(CommentSerializer, self).get_fields()
@@ -59,8 +59,13 @@ class CommentCreateSerializer(serializers.ModelSerializer):
         ]
 
     def create(self, validated_data: dict) -> Comment:
-        offer_id = self.context['view'].kwargs['offer']
-        validated_data['offer'] = Offer.objects.get(pk=offer_id)
+        url_params = self.context['view'].kwargs
+        if offer_id := url_params.get('offer'):
+            validated_data['offer'] = Offer.objects.get(pk=offer_id)
+        elif parent_comment_id := url_params.get('pk'):
+            parent_comment = Comment.objects.get(pk=parent_comment_id)
+            validated_data['replies'] = parent_comment
+            validated_data['offer'] = parent_comment.offer
         return self.Meta.model.objects.create(**validated_data)
 
 

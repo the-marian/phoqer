@@ -1,5 +1,5 @@
 # Create your views here.
-from rest_framework.generics import UpdateAPIView, ListCreateAPIView
+from rest_framework.generics import UpdateAPIView, ListCreateAPIView, CreateAPIView, DestroyAPIView
 from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly
 
 from comments.models import Comment
@@ -24,3 +24,15 @@ class CommentVoteView(UpdateAPIView):
     permission_classes = [IsAuthenticated]
     queryset = Comment.objects.all()
     serializer_class = CommentVoteSerializer
+
+
+class CommentReplyView(CreateAPIView):
+    permission_classes = [IsAuthenticated]
+    queryset = Comment.objects.all()
+    serializer_class = CommentCreateSerializer
+
+
+class CommentDestroyView(DestroyAPIView):
+    permission_classes = [IsAuthenticated]
+    queryset = Comment.objects.all()
+    serializer_class = CommentSerializer
