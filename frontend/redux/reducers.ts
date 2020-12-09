@@ -8,8 +8,8 @@ import modal from './modal/reducer';
 import offers from './offers/reducer';
 
 export default combineReducers<Reducer<IState, AnyAction>>({
-  auth,
-  modal,
-  offers,
-  categories,
+    auth,
+    modal,
+    offers,
+    categories,
 });

@@ -5,9 +5,5 @@ import { watcherLogout } from './logout/saga';
 import { watcherUser } from './user/saga';
 
 export function* watcherAuth(): Generator {
-  yield all([
-    yield fork(watcherLogin),
-    yield fork(watcherLogout),
-    yield fork(watcherUser),
-  ]);
+    yield all([yield fork(watcherLogin), yield fork(watcherLogout), yield fork(watcherUser)]);
 }

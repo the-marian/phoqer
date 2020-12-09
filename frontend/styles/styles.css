@@ -1,56 +1,56 @@
 *,
 *::before,
 *::after {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 * {
-  margin: 0;
-  padding: 0;
+    margin: 0;
+    padding: 0;
 }
 
 html {
-  font-size: 10px;
-  font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    font-family: 'Montserrat', sans-serif;
 }
 
 @media (max-width: 900px) {
-  html {
-    font-size: 8px;
-  }
+    html {
+        font-size: 8px;
+    }
 }
 
 body {
-  height: 100vh;
-  scroll-behavior: smooth;
-  text-rendering: optimizeSpeed;
-  line-height: 1.5;
+    height: 100vh;
+    scroll-behavior: smooth;
+    text-rendering: optimizeSpeed;
+    line-height: 1.5;
 }
 
 ul,
 ol {
-  list-style: none;
+    list-style: none;
 }
 
 a:not([class]) {
-  text-decoration-skip-ink: auto;
+    text-decoration-skip-ink: auto;
 }
 
 picture {
-  display: block;
+    display: block;
 }
 
 img {
-  width: 100%;
-  height: auto;
-  display: block;
+    width: 100%;
+    height: auto;
+    display: block;
 }
 
 input,
 button,
 textarea,
 select {
-  font: inherit;
+    font: inherit;
 }
 
 audio,
@@ -60,11 +60,11 @@ img,
 svg,
 video,
 textarea {
-  vertical-align: middle;
+    vertical-align: middle;
 }
 
 textarea {
-  resize: none;
+    resize: none;
 }
 
 input,
@@ -72,15 +72,15 @@ select,
 textarea,
 button,
 a {
-  outline: none;
+    outline: none;
 }
 
 button {
-  background: none;
-  border: none;
-  cursor: pointer;
+    background: none;
+    border: none;
+    cursor: pointer;
 }
 
 a {
-  text-decoration: none;
+    text-decoration: none;
 }
