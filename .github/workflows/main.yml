@@ -3,9 +3,9 @@ name: Continuous Integration and Delivery
 on: [push]
 
 env:
-  BACKEND_IMAGE: docker.pkg.github.com/$GITHUB_REPOSITORY/backend
-  FRONTEND_IMAGE: docker.pkg.github.com/$GITHUB_REPOSITORY/frontend
-  NGINX_IMAGE: docker.pkg.github.com/$GITHUB_REPOSITORY/nginx
+  BACKEND_IMAGE: ${{ secrets.BACKEND_IMAGE }}
+  FRONTEND_IMAGE: ${{ secrets.FRONTEND_IMAGE }}
+  NGINX_IMAGE: ${{ secrets.NGINX_IMAGE }}
 
 jobs:
 
@@ -31,11 +31,6 @@ jobs:
           echo POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }} >> .env.dev
           echo POSTGRES_HOST=${{ secrets.POSTGRES_HOST }} >> .env.dev
           echo POSTGRES_PORT=${{ secrets.POSTGRES_PORT }} >> .env.dev
-      - name: Set environment variables
-        run: |
-          echo ::set-env name=BACKEND_IMAGE::$(echo ${{ env.BACKEND_IMAGE }} | tr '[:upper:]' '[:lower:]')
-          echo ::set-env name=FRONTEND_IMAGE::$(echo ${{ env.FRONTEND_IMAGE }} | tr '[:upper:]' '[:lower:]')
-          echo ::set-env name=NGINX_IMAGE::$(echo ${{ env.NGINX_IMAGE }} | tr '[:upper:]' '[:lower:]')
       - name: Log in to GitHub Packages
         run: echo ${GITHUB_TOKEN} | docker login -u ${GITHUB_ACTOR} --password-stdin docker.pkg.github.com
         env:
