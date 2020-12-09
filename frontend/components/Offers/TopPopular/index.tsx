@@ -73,12 +73,12 @@ const TopPopular = (): ReactElement => {
       </SectionTitle>
 
       <div className={css.grid}>
-        {/*{popular.loading ? (*/}
-        {/*  <OffersLoader />*/}
-        {/*) : (*/}
-        {/*  !!popular.data?.length &&*/}
-        {/*  popular.data?.map(product => <OfferCard key={product.id} {...product} />)*/}
-        {/*)}*/}
+        {popular.loading ? (
+          <OffersLoader />
+        ) : (
+          !!popular.data?.length &&
+          popular.data?.map(product => <OfferCard key={product.id} {...product} />)
+        )}
       </div>
 
       <Link href="/offers">
