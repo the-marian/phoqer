@@ -15,6 +15,7 @@ import {
 } from 'react-jss';
 import { useStore } from 'react-redux';
 import { persistStore } from 'redux-persist';
+import { Persistor } from 'redux-persist/es/types';
 import { PersistGate } from 'redux-persist/integration/react';
 
 import Modal from '../components/common/Modal';
@@ -29,13 +30,13 @@ const MyApp = ({ Component, pageProps }: AppProps): ReactElement => {
   const sheets = new SheetsRegistry();
   const generateId = createGenerateId();
 
-  const persistor = persistStore(store, {}, () => {
-    persistor.persist();
+  const resistor: Persistor = persistStore(store, {}, () => {
+    resistor.persist();
   });
   interceptors({ history });
 
   return (
-    <PersistGate loading={null} persistor={persistor}>
+    <PersistGate loading={null} persistor={resistor}>
       <JssProvider registry={sheets} generateId={generateId}>
         <ThemeProvider theme={theme}>
           <Modal />

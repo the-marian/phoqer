@@ -32,7 +32,7 @@ const api: IApi = {
       axios.post('/auth/token/logout/'),
   },
   categories: {
-    get: (): Promise<AxiosResponse<ICategories>> => axios.get('/categories'),
+    get: (): Promise<AxiosResponse<ICategories>> => axios.get('/categories/'),
   },
   offers: {
     popular: {

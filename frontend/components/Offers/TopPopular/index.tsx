@@ -58,7 +58,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
 const TopPopular = (): ReactElement => {
   const css = useStyles();
   const dispatch = useDispatch();
-  const { data, loading } = useSelector<IState, IOfferPopular>(
+  const popular = useSelector<IState, IOfferPopular>(
     state => state.offers.popular,
   );
 
@@ -73,12 +73,12 @@ const TopPopular = (): ReactElement => {
       </SectionTitle>
 
       <div className={css.grid}>
-        {loading ? (
-          <OffersLoader />
-        ) : (
-          !!data &&
-          data.map(product => <OfferCard key={product.id} {...product} />)
-        )}
+        {/*{popular.loading ? (*/}
+        {/*  <OffersLoader />*/}
+        {/*) : (*/}
+        {/*  !!popular.data?.length &&*/}
+        {/*  popular.data?.map(product => <OfferCard key={product.id} {...product} />)*/}
+        {/*)}*/}
       </div>
 
       <Link href="/offers">
