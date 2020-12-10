@@ -73,8 +73,8 @@ jobs:
           echo POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }} >> .env.dev
           echo POSTGRES_HOST=${{ secrets.POSTGRES_HOST }} >> .env.dev
           echo POSTGRES_PORT=${{ secrets.POSTGRES_PORT }} >> .env.dev
-          echo NEXT_PUBLIC_DEV_URL=${{ secrets.NEXT_PUBLIC_DEV_URL }} >> .env.dev
-          echo DEV_URL=${{ secrets.DEV_URL }} >> .env.dev
+          echo NEXT_PUBLIC_PROD_URL=${{ secrets.NEXT_PUBLIC_PROD_URL }} >> .env.dev
+          echo PROD_URL=${{ secrets.PROD_URL }} >> .env.dev
           echo BACKEND_IMAGE=$(echo ${{ env.BACKEND_IMAGE }} | tr '[:upper:]' '[:lower:]') >> .env.dev
           echo FRONTEND_IMAGE=$(echo ${{ env.FRONTEND_IMAGE }} | tr '[:upper:]' '[:lower:]') >> .env.dev
           echo NGINX_IMAGE=$(echo ${{ env.NGINX_IMAGE }} | tr '[:upper:]' '[:lower:]') >> .env.dev
