@@ -15,6 +15,7 @@ services:
       - db
   frontend:
     image: "${FRONTEND_IMAGE}"
+    command: yarn start
     expose:
       - 4000
     env_file:
