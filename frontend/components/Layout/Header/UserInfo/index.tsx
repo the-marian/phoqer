@@ -7,7 +7,7 @@ import { Router } from 'next/router';
 import React, { ReactElement, useState } from 'react';
 import { createUseStyles } from 'react-jss';
 
-import { Theme } from '../../../../config/theme';
+import { Theme } from '../../../../assets/theme';
 import NotifNumber from '../../../Common/NotifNumber';
 import DropWindow from './DropWindow';
 

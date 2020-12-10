@@ -2,7 +2,7 @@ import { useRouter } from 'next/router';
 import React, { FormEvent, ReactElement, useState } from 'react';
 import { createUseStyles } from 'react-jss';
 
-import { Theme } from '../../../../config/theme';
+import { Theme } from '../../../../assets/theme';
 import ImgInput from '../../../Common/ImgInput';
 import DnDImages from './DnDImages';
 

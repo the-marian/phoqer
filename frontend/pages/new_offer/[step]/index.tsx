@@ -11,7 +11,7 @@ import Stepper from '../../../components/Pages/NewOffer/Stepper';
 import StepThree from '../../../components/Pages/NewOffer/StepThree';
 import StepTwo from '../../../components/Pages/NewOffer/StepTwo';
 import Success from '../../../components/Pages/NewOffer/Success';
-import { Theme } from '../../../config/theme';
+import { Theme } from '../../../assets/theme';
 import { IStore } from '../../../interfaces';
 import { wrapper } from '../../../redux/store';
 import types from '../../../redux/types';

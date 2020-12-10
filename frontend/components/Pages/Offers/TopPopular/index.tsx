@@ -1,11 +1,10 @@
 import Link from 'next/link';
-import React, { ReactElement, useEffect } from 'react';
+import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
-import { Theme } from '../../../../config/theme';
+import { Theme } from '../../../../assets/theme';
 import { IOfferPopular, IState } from '../../../../interfaces';
-import types from '../../../../redux/types';
 import OfferCard from '../../../Common/OfferCard';
 import OffersLoader from '../../../Common/Preloaders/OffersLoader';
 import SectionTitle from '../../../Layout/SectionTitle';
@@ -57,12 +56,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
 
 const TopPopular = (): ReactElement => {
     const css = useStyles();
-    const dispatch = useDispatch();
     const { data, loading } = useSelector<IState, IOfferPopular>(state => state.offers.popular);
-
-    useEffect(() => {
-        dispatch({ type: types.GET_POPULAR_OFFERS_START });
-    }, [dispatch]);
 
     return (
         <div className={css.root}>

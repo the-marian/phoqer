@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
-import { Theme } from '../../../../../config/theme';
+import { Theme } from '../../../../../assets/theme';
 import { IDropList } from '../../../../../interfaces';
 import DropDown from '../../../../Common/DropDown';
 

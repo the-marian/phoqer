@@ -3,8 +3,8 @@ import React, { ReactElement, useEffect, useState } from 'react';
 import { createUseStyles } from 'react-jss';
 import { useSelector } from 'react-redux';
 
-import * as helpers from '../../../../../config/helpers';
-import { Theme } from '../../../../../config/theme';
+import * as helpers from '../../../../../assets/helpers';
+import { Theme } from '../../../../../assets/theme';
 import { ICategories, IState } from '../../../../../interfaces';
 import DropDown from '../../../../Common/DropDown';
 import DropDownMobile from '../../../../Common/DropDownMobile';

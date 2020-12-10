@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { ReactElement, useState } from 'react';
 import { createUseStyles } from 'react-jss';
 
-import { Theme } from '../../../../config/theme';
+import { Theme } from '../../../../assets/theme';
 import JoinForm from '../../../Common/Auth/JoinForm';
 import LoginForm from '../../../Common/Auth/LoginForm';
 import { Desktop, Mobile } from '../../../Common/Media';

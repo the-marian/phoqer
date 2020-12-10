@@ -3,7 +3,7 @@ import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 import { useSelector } from 'react-redux';
 
-import { Theme } from '../../../../config/theme';
+import { Theme } from '../../../../assets/theme';
 import { ICategories, IState } from '../../../../interfaces';
 import SectionTitle from '../../../Layout/SectionTitle';
 

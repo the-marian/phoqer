@@ -3,8 +3,8 @@ import { useRouter } from 'next/router';
 import React, { ChangeEvent, FormEvent, ReactElement, useState } from 'react';
 import { createUseStyles } from 'react-jss';
 
-import { numberValidation } from '../../../../config/helpers';
-import { Theme } from '../../../../config/theme';
+import { numberValidation } from '../../../../assets/helpers';
+import { Theme } from '../../../../assets/theme';
 import CheckTitle from '../../../Common/CheckTitle';
 
 const useStyles = createUseStyles((theme: Theme) => ({

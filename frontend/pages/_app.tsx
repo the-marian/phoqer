@@ -15,8 +15,8 @@ import { PersistGate } from 'redux-persist/integration/react';
 import ModalComponent from '../components/Common/Modal';
 import FullPage from '../components/Common/Preloaders/FullPage';
 import AppWrp from '../components/Layout/AppWrp';
-import interceptors from '../config/interceptors';
-import { theme } from '../config/theme';
+import interceptors from '../assets/interceptors';
+import { theme } from '../assets/theme';
 import { wrapper } from '../redux/store';
 
 const MyApp = ({ Component, pageProps }: AppProps): ReactElement => {

@@ -6,7 +6,7 @@ import React, { ChangeEvent, FormEvent, ReactElement, useState } from 'react';
 import { createUseStyles } from 'react-jss';
 import { useDispatch } from 'react-redux';
 
-import { Theme } from '../../../../config/theme';
+import { Theme } from '../../../../assets/theme';
 import { Login } from '../../../../interfaces';
 import types from '../../../../redux/types';
 

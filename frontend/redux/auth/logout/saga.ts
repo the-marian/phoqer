@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { call, put, takeLatest } from 'redux-saga/effects';
 
-import api from '../../../config/api';
+import api from '../../../assets/api';
 import types from '../../types';
 
 function* logoutUser() {

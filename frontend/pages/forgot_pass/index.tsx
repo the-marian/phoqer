@@ -5,7 +5,7 @@ import { createUseStyles } from 'react-jss';
 import ForgotPassForm from '../../components/Common/Auth/ForgotPassForm';
 import Container from '../../components/Layout/Container';
 import Main from '../../components/Layout/Main';
-import { Theme } from '../../config/theme';
+import { Theme } from '../../assets/theme';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     root: {

@@ -5,7 +5,7 @@ import React, { ReactElement, useRef } from 'react';
 import { DropTargetMonitor, useDrag, useDrop } from 'react-dnd';
 import { createUseStyles } from 'react-jss';
 
-import { Theme } from '../../../../../../config/theme';
+import { Theme } from '../../../../../../assets/theme';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     wrp: {

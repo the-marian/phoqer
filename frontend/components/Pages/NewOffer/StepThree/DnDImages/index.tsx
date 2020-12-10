@@ -4,7 +4,7 @@ import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import { createUseStyles } from 'react-jss';
 
-import { Theme } from '../../../../../config/theme';
+import { Theme } from '../../../../../assets/theme';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     wrp: {

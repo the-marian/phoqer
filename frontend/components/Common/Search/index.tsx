@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
-import { Theme } from '../../../config/theme';
+import { Theme } from '../../../assets/theme';
 import LinkArrow from '../LinkArrow';
 import { Desktop } from '../Media';
 import { modal } from '../Modal';
@@ -27,35 +27,13 @@ const useStyles = createUseStyles((theme: Theme) => ({
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',
-        height: theme.rem(6),
+        height: theme.rem(8),
         width: '100%',
         paddingLeft: theme.rem(2.5),
         background: theme.palette.gray[1],
         fontSize: theme.rem(1.6),
         borderRadius: theme.radius,
         border: 'none',
-    },
-    cat: {
-        position: 'relative',
-        width: theme.rem(35),
-        '&::before': {
-            content: '""',
-            position: 'absolute',
-            top: '50%',
-            left: 0,
-            transform: 'translateY(-50%)',
-            height: '50%',
-            width: theme.rem(0.1),
-            background: theme.palette.gray[2],
-        },
-
-        '@media (max-width: 1200px)': {
-            width: theme.rem(28),
-        },
-        '@media (max-width: 900px)': {
-            height: '100%',
-            width: theme.rem(8),
-        },
     },
     input: {
         display: 'block',
@@ -66,7 +44,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         border: 'none',
     },
     btn: {
-        height: theme.rem(6),
+        height: theme.rem(8),
         width: theme.rem(40),
         marginLeft: theme.rem(2),
         background: theme.palette.blue[0],
@@ -90,9 +68,6 @@ const useStyles = createUseStyles((theme: Theme) => ({
         '&:hover': {
             textDecoration: 'underline',
         },
-    },
-    mobileCat: {
-        marginTop: theme.rem(1),
     },
 }));
 
@@ -120,23 +95,25 @@ const Search = (): ReactElement => {
                         <span className={css.icon}>
                             <FontAwesomeIcon icon={faSearch} />
                         </span>
+
                         <input defaultValue={history?.query?.q} className={css.input} type="text" placeholder="Что вы ищите?" />
-                        <Desktop>
-                            <button type="button" className={css.input} onClick={handleRegionModal}>
-                                <FontAwesomeIcon icon={faChevronDown} />
-                                <span>Киев, Киевская область</span>
-                            </button>
-                        </Desktop>
+
+                        <div>
+                            <Desktop>
+                                <button type="button" className={css.input} onClick={handleRegionModal}>
+                                    <FontAwesomeIcon icon={faChevronDown} />
+                                    <span>Киев, Киевская область</span>
+                                </button>
+                            </Desktop>
+                        </div>
                     </div>
 
-                    {/*{history.pathname === '/' && (*/}
                     {/*    <Mobile>*/}
                     {/*        <button type="button" className={css.input} onClick={handleRegionModal}>*/}
                     {/*            <FontAwesomeIcon icon={faChevronDown} />*/}
                     {/*            <span>Киев, Киевская область</span>*/}
                     {/*        </button>*/}
                     {/*    </Mobile>*/}
-                    {/*)}*/}
                 </form>
 
                 <button type="submit" className={css.btn}>

@@ -6,7 +6,7 @@ import React, { CSSProperties, ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 import { useDispatch } from 'react-redux';
 
-import { Theme } from '../../../../../config/theme';
+import { Theme } from '../../../../../assets/theme';
 import types from '../../../../../redux/types';
 import NotifNumber from '../../../../Common/NotifNumber';
 

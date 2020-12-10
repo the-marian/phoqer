@@ -2,7 +2,7 @@ import React, { ReactElement, useEffect } from 'react';
 import { createUseStyles } from 'react-jss';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { Theme } from '../../../../config/theme';
+import { Theme } from '../../../../assets/theme';
 import { IOfferPopular, IState } from '../../../../interfaces';
 import types from '../../../../redux/types';
 import OfferCard from '../../../Common/OfferCard';

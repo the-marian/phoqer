@@ -2,8 +2,8 @@ import { Range } from 'rc-slider';
 import React, { ChangeEvent, ReactElement, useState } from 'react';
 import { createUseStyles } from 'react-jss';
 
-import { numberValidation } from '../../../../../config/helpers';
-import { Theme } from '../../../../../config/theme';
+import { numberValidation } from '../../../../../assets/helpers';
+import { Theme } from '../../../../../assets/theme';
 import { IDropList } from '../../../../../interfaces';
 import DropDown from '../../../../Common/DropDown';
 

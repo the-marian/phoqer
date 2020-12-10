@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { ChangeEvent, ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
-import { Theme } from '../../../config/theme';
+import { Theme } from '../../../assets/theme';
 
 //camera-retro
 const useStyles = createUseStyles((theme: Theme) => ({

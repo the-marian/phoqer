@@ -2,7 +2,7 @@ import Link from 'next/link';
 import React, { FormEvent, ReactElement, useState } from 'react';
 import { createUseStyles } from 'react-jss';
 
-import { Theme } from '../../../../config/theme';
+import { Theme } from '../../../../assets/theme';
 import SectionTitle from '../../../Layout/SectionTitle';
 import Categories from './Categories';
 import Checkbox from './Checkbox';
