@@ -3,7 +3,7 @@ version: '3.7'
 services:
   backend:
     image: "${BACKEND_IMAGE}"
-    command: gunicorn share.wsgi:application --bind 0.0.0.0:8000
+    command: gunicorn share.wsgi:application --bind 0.0.0.0:8000 --access-logfile - --error-logfile -
     volumes:
       - static_volume:/home/share/backend/staticfiles/
       - media_volume:/home/share/backend/mediafiles/
@@ -15,6 +15,7 @@ services:
       - db
   frontend:
     image: "${FRONTEND_IMAGE}"
+    command: yarn start
     expose:
       - 4000
     env_file:
