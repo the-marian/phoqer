@@ -7,8 +7,6 @@ const DEV = process.env.DEV_URL || process.env.NEXT_PUBLIC_DEV_URL;
 
 axios.defaults.baseURL = process.env.NODE_ENV === 'production' ? PROD : DEV;
 
-console.log('base url', axios.defaults.baseURL);
-
 const api = {
     auth: {
         user: (): Promise<AxiosResponse> => axios.get('/users/me/'),
