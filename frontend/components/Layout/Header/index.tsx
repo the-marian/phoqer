@@ -30,7 +30,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
             width: '100%',
             height: '100%',
             background:
-                'linear-gradient(90deg, rgba(250,250,250,0.98) 15%, rgba(250,250,250,0.8) 50%, rgba(250,250,250,0.98) 80%)',
+                'linear-gradient(90deg, rgba(253,253,253,0.99) 20%, rgba(253,253,253,0.95) 50%, rgba(253,253,253,0.99) 80%)',
         },
     },
     flex: {

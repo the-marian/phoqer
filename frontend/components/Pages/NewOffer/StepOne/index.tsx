@@ -11,7 +11,6 @@ import { ICategories, IDropList, IState } from '../../../../interfaces';
 import DropDown from '../../../Common/DropDown';
 import DropDownMobile from '../../../Common/DropDownMobile';
 import { modal } from '../../../Common/Modal';
-import SmallModalWrp from '../../../Common/Modal/SmallModalWrp';
 import RegionModal from '../../../Common/RegionModal';
 
 const useStyles = createUseStyles((theme: Theme) => ({

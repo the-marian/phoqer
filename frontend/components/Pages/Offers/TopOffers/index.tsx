@@ -62,11 +62,11 @@ const TopProducts = (): ReactElement => {
                 </SectionTitle>
 
                 <div className={css.grid}>
-                    <OffersLoader loading={loading} isEmpty={!data?.length}>
-                        {data?.map(product => (
-                            <OfferCard key={product.id} product={product} />
-                        ))}
-                    </OffersLoader>
+                    {/*<OffersLoader loading={loading} isEmpty={!data?.length}>*/}
+                    {/*    {data?.map(product => (*/}
+                    {/*        <OfferCard key={product.id} product={product} />*/}
+                    {/*    ))}*/}
+                    {/*</OffersLoader>*/}
                 </div>
             </Container>
         </div>

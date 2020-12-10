@@ -1,17 +1,12 @@
-import { faMapMarkerAlt, faSearch } from '@fortawesome/free-solid-svg-icons';
+import {faChevronDown, faSearch} from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useRouter } from 'next/router';
-import React, { ReactElement, useEffect, useState } from 'react';
+import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
-import { useSelector } from 'react-redux';
 
-import * as helpers from '../../../config/helpers';
 import { Theme } from '../../../config/theme';
-import { ICategories, IState } from '../../../interfaces';
-import DropDown from '../DropDown';
-import DropDownMobile from '../DropDownMobile';
 import LinkArrow from '../LinkArrow';
-import { Desktop, Mobile } from '../Media';
+import { Desktop } from '../Media';
 import { modal } from '../Modal';
 import RegionModal from '../RegionModal';
 
@@ -28,7 +23,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     form: {
         width: '100%',
     },
-    serach: {
+    search: {
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',
@@ -87,17 +82,6 @@ const useStyles = createUseStyles((theme: Theme) => ({
     icon: {
         fontSize: theme.rem(1.4),
     },
-    location: {
-        marginBottom: theme.rem(2),
-        fontSize: theme.rem(1.6),
-        color: theme.palette.blue[0],
-        '&:hover': {
-            textDecoration: 'underline',
-        },
-        '& span': {
-            marginLeft: theme.rem(1),
-        },
-    },
     toHome: {
         marginBottom: theme.rem(2),
         fontSize: theme.rem(1.6),
@@ -116,39 +100,13 @@ const Search = (): ReactElement => {
     const css = useStyles();
     const history = useRouter();
 
-    const { pathname, query } = useRouter();
-    const { category, sub_category } = query;
-
-    const [categoryName, setCategoryName] = useState<string | null>(null);
-    const [subCategoryName, setSubCategoryName] = useState<string | null>(null);
-
-    const data = useSelector<IState, ICategories[]>(state => state.categories);
-    const categories = helpers.formatCatList(data);
-
-    useEffect(() => {
-        if (category) {
-            setCategoryName(helpers.findCategory(data, typeof category === 'string' ? category : category[0]));
-        }
-    }, [category]);
-
-    useEffect(() => {
-        if (sub_category) {
-            setSubCategoryName(helpers.findSubCategory(data, typeof sub_category === 'string' ? sub_category : sub_category[0]));
-        }
-    }, [sub_category]);
-
     const handleRegionModal = () => {
         modal.open(<RegionModal />);
     };
 
     return (
         <>
-            {pathname === '/' ? (
-                <button className={css.location} onClick={handleRegionModal}>
-                    <FontAwesomeIcon icon={faMapMarkerAlt} />
-                    <span>Вы находитесь в Украина, Киев?</span>
-                </button>
-            ) : (
+            {history.pathname !== '/' && (
                 <div className={css.toHome}>
                     <LinkArrow href="/" toLeft>
                         На главную
@@ -158,42 +116,27 @@ const Search = (): ReactElement => {
 
             <div className={css.wrp}>
                 <form className={css.form} action="#" method="post">
-                    <div className={css.serach}>
+                    <div className={css.search}>
                         <span className={css.icon}>
                             <FontAwesomeIcon icon={faSearch} />
                         </span>
                         <input defaultValue={history?.query?.q} className={css.input} type="text" placeholder="Что вы ищите?" />
                         <Desktop>
-                            {!!categories?.length && (
-                                <div className={css.cat}>
-                                    <DropDown
-                                        value={categories}
-                                        onSubmit={console.log}
-                                        height={6.8}
-                                        defaultValue={categoryName || subCategoryName}
-                                        transparent
-                                        toRight
-                                    />
-                                </div>
-                            )}
+                            <button type="button" className={css.input} onClick={handleRegionModal}>
+                                <FontAwesomeIcon icon={faChevronDown} />
+                                <span>Киев, Киевская область</span>
+                            </button>
                         </Desktop>
                     </div>
 
-                    {pathname === '/' && (
-                        <Mobile>
-                            {!!categories?.length && (
-                                <div className={css.mobileCat}>
-                                    <DropDownMobile
-                                        value={categories}
-                                        onSubmit={console.log}
-                                        height={6}
-                                        defaultValue={categoryName || subCategoryName}
-                                        toRight
-                                    />
-                                </div>
-                            )}
-                        </Mobile>
-                    )}
+                    {/*{history.pathname === '/' && (*/}
+                    {/*    <Mobile>*/}
+                    {/*        <button type="button" className={css.input} onClick={handleRegionModal}>*/}
+                    {/*            <FontAwesomeIcon icon={faChevronDown} />*/}
+                    {/*            <span>Киев, Киевская область</span>*/}
+                    {/*        </button>*/}
+                    {/*    </Mobile>*/}
+                    {/*)}*/}
                 </form>
 
                 <button type="submit" className={css.btn}>
