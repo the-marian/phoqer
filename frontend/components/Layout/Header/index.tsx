@@ -29,7 +29,8 @@ const useStyles = createUseStyles((theme: Theme) => ({
             zIndex: 10,
             width: '100%',
             height: '100%',
-            background: 'rgba(252, 252, 252, 0.95)',
+            background:
+                'linear-gradient(90deg, rgba(250,250,250,0.98) 15%, rgba(250,250,250,0.8) 50%, rgba(250,250,250,0.98) 80%)',
         },
     },
     flex: {

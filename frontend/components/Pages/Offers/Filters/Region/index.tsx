@@ -5,7 +5,6 @@ import { createUseStyles } from 'react-jss';
 
 import { Theme } from '../../../../../config/theme';
 import { modal } from '../../../../Common/Modal';
-import SmallModalWrp from '../../../../Common/Modal/SmallModalWrp';
 import RegionModal from '../../../../Common/RegionModal';
 
 const useStyles = createUseStyles((theme: Theme) => ({
@@ -35,11 +34,7 @@ const Region = (): ReactElement => {
     const css = useStyles();
 
     const handleRegionModal = () => {
-        modal.open(
-            <SmallModalWrp>
-                <RegionModal />
-            </SmallModalWrp>,
-        );
+        modal.open(<RegionModal />);
     };
 
     return (
