@@ -6,8 +6,8 @@ const ababagalamaga = 'a-b-a-b-a-g-a-l-a-m-a-g-a';
 export const encryptor = createTransform(
     inboundState => {
         if (!inboundState) return inboundState;
-        const cryptedText = CryptoJS.AES.encrypt(JSON.stringify(inboundState), ababagalamaga);
-        return cryptedText.toString();
+        const encryptedText = CryptoJS.AES.encrypt(JSON.stringify(inboundState), ababagalamaga);
+        return encryptedText.toString();
     },
 
     outboundState => {

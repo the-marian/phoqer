@@ -2,9 +2,8 @@ import Head from 'next/head';
 import React, { ReactElement } from 'react';
 import { END } from 'redux-saga';
 
-import Search from '../../components/Base/Search';
+import Search from '../../components/Common/Search';
 import About from '../../components/Layout/About';
-import AppWrp from '../../components/Layout/AppWrp';
 import Container from '../../components/Layout/Container';
 import Main from '../../components/Layout/Main';
 import Filters from '../../components/Pages/Offers/Filters';
@@ -15,9 +14,9 @@ import { wrapper } from '../../redux/store';
 import types from '../../redux/types';
 
 const OffersPage = (): ReactElement => (
-    <AppWrp>
+    <>
         <Head>
-            <title>Search roducts | Fucking project</title>
+            <title>Search products | Fucking project</title>
         </Head>
         <Main>
             <Container>
@@ -33,7 +32,7 @@ const OffersPage = (): ReactElement => (
 
             <About />
         </Main>
-    </AppWrp>
+    </>
 );
 
 export const getStaticProps = wrapper.getStaticProps(

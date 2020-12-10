@@ -5,8 +5,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Theme } from '../../../../config/theme';
 import { IOfferPopular, IState } from '../../../../interfaces';
 import types from '../../../../redux/types';
-import OfferCard from '../../../Base/OfferCard';
-import OffersLoader from '../../../Base/Preloaders/OffersLoader';
+import OfferCard from '../../../Common/OfferCard';
+import OffersLoader from '../../../Common/Preloaders/OffersLoader';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     root: {
@@ -47,11 +47,11 @@ const OffersList = (): ReactElement => {
     return (
         <div className={css.root}>
             <div className={css.grid}>
-                {loading ? (
-                    <OffersLoader />
-                ) : (
-                    !!data && data.map(product => <OfferCard key={product.id} {...product} />)
-                )}
+                <OffersLoader loading={loading} isEmpty={!data?.length}>
+                    {data?.map(product => (
+                        <OfferCard key={product.id} product={product} />
+                    ))}
+                </OffersLoader>
             </div>
         </div>
     );

@@ -2,13 +2,13 @@ import { faBars, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { ReactElement, useState } from 'react';
 import { createUseStyles } from 'react-jss';
-import { useDispatch } from 'react-redux';
 
 import { Theme } from '../../../../config/theme';
-import { openModal } from '../../../../redux/modal/actions';
-import { Desktop, Mobile } from '../../../Base/Media';
-import JoinForm from '../../../Pages/Auth/JoinForm';
-import LoginForm from '../../../Pages/Auth/LoginForm';
+import JoinForm from '../../../Common/Auth/JoinForm';
+import LoginForm from '../../../Common/Auth/LoginForm';
+import { Desktop, Mobile } from '../../../Common/Media';
+import { modal } from '../../../Common/Modal';
+import SmallModalWrp from '../../../Common/Modal/SmallModalWrp';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     btn: {
@@ -52,7 +52,6 @@ const useStyles = createUseStyles((theme: Theme) => ({
 
 const GeneralInfo = (): ReactElement => {
     const css = useStyles();
-    const dispatch = useDispatch();
     const [drop, setDrop] = useState(false);
 
     const handleDropClick = () => {
@@ -61,11 +60,19 @@ const GeneralInfo = (): ReactElement => {
 
     const handleLoginModal = () => {
         setDrop(false);
-        dispatch(openModal({ dom: <LoginForm /> }));
+        modal.open(
+            <SmallModalWrp>
+                <LoginForm />
+            </SmallModalWrp>,
+        );
     };
     const handleRegisterModal = () => {
         setDrop(false);
-        dispatch(openModal({ dom: <JoinForm /> }));
+        modal.open(
+            <SmallModalWrp>
+                <JoinForm />
+            </SmallModalWrp>,
+        );
     };
 
     return (

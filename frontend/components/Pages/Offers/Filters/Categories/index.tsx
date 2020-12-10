@@ -6,9 +6,9 @@ import { useSelector } from 'react-redux';
 import * as helpers from '../../../../../config/helpers';
 import { Theme } from '../../../../../config/theme';
 import { ICategories, IState } from '../../../../../interfaces';
-import DropDown from '../../../../Base/DropDown';
-import DropDownMobile from '../../../../Base/DropDownMobile';
-import { Desktop, Mobile } from '../../../../Base/Media';
+import DropDown from '../../../../Common/DropDown';
+import DropDownMobile from '../../../../Common/DropDownMobile';
+import { Desktop, Mobile } from '../../../../Common/Media';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     title: {
@@ -28,7 +28,7 @@ const Categories = (): ReactElement => {
     const [subCategoryName, setSubCategoryName] = useState<string | null>(null);
 
     const data = useSelector<IState, ICategories[]>(state => state.categories);
-    const categories = helpers.formateCatList(data);
+    const categories = helpers.formatCatList(data);
 
     useEffect(() => {
         if (category) {
@@ -38,9 +38,7 @@ const Categories = (): ReactElement => {
 
     useEffect(() => {
         if (sub_category) {
-            setSubCategoryName(
-                helpers.findSubCategory(data, typeof sub_category === 'string' ? sub_category : sub_category[0]),
-            );
+            setSubCategoryName(helpers.findSubCategory(data, typeof sub_category === 'string' ? sub_category : sub_category[0]));
         }
     }, [sub_category]);
 
@@ -49,12 +47,7 @@ const Categories = (): ReactElement => {
             <div>
                 <h4 className={css.title}>Категория</h4>
                 <Desktop>
-                    <DropDown
-                        value={categories}
-                        onSubmit={console.log}
-                        defaultValue={categoryName || subCategoryName}
-                        toRight
-                    />
+                    <DropDown value={categories} onSubmit={console.log} defaultValue={categoryName || subCategoryName} toRight />
                 </Desktop>
 
                 <Mobile>

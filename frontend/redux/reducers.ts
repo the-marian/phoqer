@@ -1,15 +1,23 @@
-import { Reducer } from 'react';
-import { AnyAction, combineReducers } from 'redux';
+import { combineReducers } from 'redux';
+import { persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
 
-import { IState } from '../interfaces';
+import { encryptor } from '../config/encryptor';
 import auth from './auth/reducer';
 import categories from './categories/reducer';
-import modal from './modal/reducer';
 import offers from './offers/reducer';
 
-export default combineReducers<Reducer<IState, AnyAction>>({
+const rootReducer = combineReducers({
     auth,
-    modal,
     offers,
     categories,
 });
+
+const config = {
+    storage,
+    key: 'blog_auth',
+    white: ['token'],
+    transforms: [encryptor],
+};
+
+export default persistReducer(config, rootReducer);

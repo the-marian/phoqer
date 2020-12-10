@@ -6,18 +6,35 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Theme } from '../../../config/theme';
 import { IAuth, IState } from '../../../interfaces';
 import types from '../../../redux/types';
-import Logo from '../../Base/Logo';
-import Lang from '../../Lang';
+import Logo from '../../Common/Logo';
 import Container from '../Container';
+import Lang from '../Lang';
 import GeneralInfo from './GeneralInfo';
 import UserInfo from './UserInfo';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     header: {
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        zIndex: 10,
         width: '100%',
         padding: theme.rem(1.4, 0),
+
+        '&::after': {
+            content: '""',
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            zIndex: 10,
+            width: '100%',
+            height: '100%',
+            background: 'rgba(252, 252, 252, 0.95)',
+        },
     },
     flex: {
+        position: 'relative',
+        zIndex: 11,
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',
@@ -39,6 +56,18 @@ const Header = (): ReactElement => {
             dispatch({ type: types.GET_USER_START });
         }
     }, [dispatch, isLogin]);
+
+    // useEffect(() => {
+    //     const handleScroll = (e: Window): void => {
+    //         console.log(e);
+    //     }
+    //
+    //     window.addEventListener('scroll', handleScroll);
+    //
+    //     return () => {
+    //         window.removeEventListener('scroll', handleScroll);
+    //     }
+    // }, [])
 
     return (
         <header className={css.header}>

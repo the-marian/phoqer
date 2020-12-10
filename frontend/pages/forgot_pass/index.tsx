@@ -2,11 +2,9 @@ import Head from 'next/head';
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
-import LoginWrap from '../../components/Base/LoginWrap';
-import AppWrp from '../../components/Layout/AppWrp';
+import ForgotPassForm from '../../components/Common/Auth/ForgotPassForm';
 import Container from '../../components/Layout/Container';
 import Main from '../../components/Layout/Main';
-import ForgotPassForm from '../../components/Pages/Auth/ForgotPassForm';
 import { Theme } from '../../config/theme';
 
 const useStyles = createUseStyles((theme: Theme) => ({
@@ -57,23 +55,21 @@ const useStyles = createUseStyles((theme: Theme) => ({
 const ForgotPass = (): ReactElement => {
     const css = useStyles();
     return (
-        <LoginWrap>
-            <AppWrp>
-                <Head>
-                    <title>Reset password | Fucking project</title>
-                </Head>
-                <Main>
-                    <Container>
-                        <div className={css.root}>
-                            <img className={css.img} src="/forgot_pass.jpg" alt="" />
-                            <div className={css.form}>
-                                <ForgotPassForm />
-                            </div>
+        <>
+            <Head>
+                <title>Reset password | Fucking project</title>
+            </Head>
+            <Main>
+                <Container>
+                    <div className={css.root}>
+                        <img className={css.img} src="/forgot_pass.jpg" alt="" />
+                        <div className={css.form}>
+                            <ForgotPassForm />
                         </div>
-                    </Container>
-                </Main>
-            </AppWrp>
-        </LoginWrap>
+                    </div>
+                </Container>
+            </Main>
+        </>
     );
 };
 

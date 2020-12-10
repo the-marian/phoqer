@@ -40,9 +40,15 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
 }));
 
-const OffersLoader = (): ReactElement => {
+interface IProps {
+    loading: boolean;
+    isEmpty: boolean;
+    children: JSX.Element | JSX.Element[];
+}
+
+const OffersLoader = ({ loading, isEmpty, children }: IProps): ReactElement => {
     const css = useStyles();
-    return (
+    return loading ? (
         <>
             <div>
                 <div className={css.img} />
@@ -72,6 +78,10 @@ const OffersLoader = (): ReactElement => {
                 <div className={css.textShort} />
             </div>
         </>
+    ) : isEmpty ? (
+        <div>Empty</div>
+    ) : (
+        <>{children}</>
     );
 };
 

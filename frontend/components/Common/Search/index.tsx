@@ -3,16 +3,16 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useRouter } from 'next/router';
 import React, { ReactElement, useEffect, useState } from 'react';
 import { createUseStyles } from 'react-jss';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 import * as helpers from '../../../config/helpers';
 import { Theme } from '../../../config/theme';
 import { ICategories, IState } from '../../../interfaces';
-import { openModal } from '../../../redux/modal/actions';
 import DropDown from '../DropDown';
 import DropDownMobile from '../DropDownMobile';
 import LinkArrow from '../LinkArrow';
 import { Desktop, Mobile } from '../Media';
+import { modal } from '../Modal';
 import RegionModal from '../RegionModal';
 
 const useStyles = createUseStyles((theme: Theme) => ({
@@ -115,7 +115,6 @@ const useStyles = createUseStyles((theme: Theme) => ({
 const Search = (): ReactElement => {
     const css = useStyles();
     const history = useRouter();
-    const dispatch = useDispatch();
 
     const { pathname, query } = useRouter();
     const { category, sub_category } = query;
@@ -124,7 +123,7 @@ const Search = (): ReactElement => {
     const [subCategoryName, setSubCategoryName] = useState<string | null>(null);
 
     const data = useSelector<IState, ICategories[]>(state => state.categories);
-    const categories = helpers.formateCatList(data);
+    const categories = helpers.formatCatList(data);
 
     useEffect(() => {
         if (category) {
@@ -134,14 +133,12 @@ const Search = (): ReactElement => {
 
     useEffect(() => {
         if (sub_category) {
-            setSubCategoryName(
-                helpers.findSubCategory(data, typeof sub_category === 'string' ? sub_category : sub_category[0]),
-            );
+            setSubCategoryName(helpers.findSubCategory(data, typeof sub_category === 'string' ? sub_category : sub_category[0]));
         }
     }, [sub_category]);
 
     const handleRegionModal = () => {
-        dispatch(openModal({ dom: <RegionModal /> }));
+        modal.open(<RegionModal />);
     };
 
     return (
@@ -165,12 +162,7 @@ const Search = (): ReactElement => {
                         <span className={css.icon}>
                             <FontAwesomeIcon icon={faSearch} />
                         </span>
-                        <input
-                            defaultValue={history?.query?.q}
-                            className={css.input}
-                            type="text"
-                            placeholder="Что вы ищите?"
-                        />
+                        <input defaultValue={history?.query?.q} className={css.input} type="text" placeholder="Что вы ищите?" />
                         <Desktop>
                             {!!categories?.length && (
                                 <div className={css.cat}>

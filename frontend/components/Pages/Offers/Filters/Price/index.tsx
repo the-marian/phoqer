@@ -5,7 +5,7 @@ import { createUseStyles } from 'react-jss';
 import { numberValidation } from '../../../../../config/helpers';
 import { Theme } from '../../../../../config/theme';
 import { IDropList } from '../../../../../interfaces';
-import DropDown from '../../../../Base/DropDown';
+import DropDown from '../../../../Common/DropDown';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     wrp: {

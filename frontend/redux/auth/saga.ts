@@ -1,9 +1,9 @@
 import { all, fork } from 'redux-saga/effects';
 
-import { watcherLogin } from './login/saga';
-import { watcherLogout } from './logout/saga';
-import { watcherUser } from './user/saga';
+import login from './login/saga';
+import logout from './logout/saga';
+import user from './user/saga';
 
 export function* watcherAuth(): Generator {
-    yield all([yield fork(watcherLogin), yield fork(watcherLogout), yield fork(watcherUser)]);
+    yield all([fork(login), fork(logout), fork(user)]);
 }

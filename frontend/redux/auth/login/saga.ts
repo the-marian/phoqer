@@ -4,9 +4,9 @@ import { call, put, takeLatest } from 'redux-saga/effects';
 import api from '../../../config/api';
 import types from '../../types';
 
-function* login({ payload }: AnyAction) {
+function* loginUser({ payload }: AnyAction) {
     try {
-        const { status, data }: { status: number; data: { auth_token: string } } = yield call(api.auth.login, payload);
+        const { status, data } = yield call(api.auth.login, payload);
         if (status < 200 || status >= 300) throw new Error('Something went wrong');
         yield put({ type: types.LOGIN_SUCCESS, payload: data });
     } catch (error) {
@@ -14,6 +14,6 @@ function* login({ payload }: AnyAction) {
     }
 }
 
-export function* watcherLogin(): Generator {
-    yield takeLatest(types.LOGIN_START, login);
+export default function* login(): Generator {
+    yield takeLatest(types.LOGIN_START, loginUser);
 }

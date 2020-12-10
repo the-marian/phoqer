@@ -3,7 +3,7 @@ import React, { FormEvent, ReactElement, useState } from 'react';
 import { createUseStyles } from 'react-jss';
 
 import { Theme } from '../../../../config/theme';
-import ImgInput from '../../../Base/ImgInput';
+import ImgInput from '../../../Common/ImgInput';
 import DnDImages from './DnDImages';
 
 const useStyles = createUseStyles((theme: Theme) => ({

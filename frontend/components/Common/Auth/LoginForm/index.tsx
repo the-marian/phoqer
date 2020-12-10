@@ -140,12 +140,7 @@ const LoginForm = (): ReactElement => {
                 <button className={css.eye} onClick={hadleClick} type="button">
                     {unhide ? <FontAwesomeIcon icon={faEyeSlash} /> : <FontAwesomeIcon icon={faEye} />}
                 </button>
-                <input
-                    type={unhide ? 'password' : 'text'}
-                    name="password"
-                    onChange={handleChange}
-                    className={css.input}
-                />
+                <input type={unhide ? 'password' : 'text'} name="password" onChange={handleChange} className={css.input} />
             </div>
 
             <Link href="/forgot_pass">

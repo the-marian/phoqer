@@ -2,7 +2,7 @@ import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
 import { Theme } from '../../../config/theme';
-import LinkArrow from '../../Base/LinkArrow';
+import LinkArrow from '../../Common/LinkArrow';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     root: {

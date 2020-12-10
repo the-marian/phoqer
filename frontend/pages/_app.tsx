@@ -10,11 +10,11 @@ import React, { ReactElement } from 'react';
 import { createGenerateId, JssProvider, SheetsRegistry, ThemeProvider } from 'react-jss';
 import { useStore } from 'react-redux';
 import { persistStore } from 'redux-persist';
-import { Persistor } from 'redux-persist/es/types';
 import { PersistGate } from 'redux-persist/integration/react';
 
-import Modal from '../components/Base/Modal';
-import FullPage from '../components/Base/Preloaders/FullPage';
+import ModalComponent from '../components/Common/Modal';
+import FullPage from '../components/Common/Preloaders/FullPage';
+import AppWrp from '../components/Layout/AppWrp';
 import interceptors from '../config/interceptors';
 import { theme } from '../config/theme';
 import { wrapper } from '../redux/store';
@@ -25,21 +25,24 @@ const MyApp = ({ Component, pageProps }: AppProps): ReactElement => {
     const sheets = new SheetsRegistry();
     const generateId = createGenerateId();
 
-    const resistor: Persistor = persistStore(store, {}, () => {
-        resistor.persist();
+    const persist = persistStore(store, {}, () => {
+        persist.persist();
     });
     interceptors({ history });
 
     return (
-        <PersistGate loading={null} persistor={resistor}>
+        <PersistGate loading={null} persistor={persist}>
             <JssProvider registry={sheets} generateId={generateId}>
                 <ThemeProvider theme={theme}>
-                    <Modal />
-                    <FullPage />
-                    <Head>
-                        <meta name="viewport" content="width=device-width,initial-scale=1" />
-                    </Head>
-                    <Component {...pageProps} />
+                    <AppWrp>
+                        <ModalComponent />
+                        <FullPage />
+                        <Head>
+                            <title>Phocker</title>
+                            <meta name="viewport" content="width=device-width,initial-scale=1" />
+                        </Head>
+                        <Component {...pageProps} />
+                    </AppWrp>
                 </ThemeProvider>
             </JssProvider>
         </PersistGate>

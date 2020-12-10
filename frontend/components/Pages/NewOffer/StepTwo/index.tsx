@@ -5,7 +5,7 @@ import { createUseStyles } from 'react-jss';
 
 import { numberValidation } from '../../../../config/helpers';
 import { Theme } from '../../../../config/theme';
-import CheckTitle from '../../../Base/CheckTitle';
+import CheckTitle from '../../../Common/CheckTitle';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     form: {

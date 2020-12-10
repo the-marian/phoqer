@@ -4,9 +4,9 @@ import { call, put, takeLatest } from 'redux-saga/effects';
 import api from '../../../config/api';
 import types from '../../types';
 
-function* logout() {
+function* logoutUser() {
     try {
-        const { status }: { status: number } = yield call(api.auth.logout);
+        const { status } = yield call(api.auth.logout);
         if (status < 200 || status >= 300) throw new Error('Something went wrong');
         yield put({ type: types.LOGOUT_SUCCESS });
         delete axios.defaults.headers.common.Authorization;
@@ -15,6 +15,6 @@ function* logout() {
     }
 }
 
-export function* watcherLogout(): Generator {
-    yield takeLatest(types.LOGOUT_START, logout);
+export default function* logout(): Generator {
+    yield takeLatest(types.LOGOUT_START, logoutUser);
 }

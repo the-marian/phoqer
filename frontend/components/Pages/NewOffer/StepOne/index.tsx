@@ -3,15 +3,16 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useRouter } from 'next/router';
 import React, { FormEvent, ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 import * as helpers from '../../../../config/helpers';
 import { Theme } from '../../../../config/theme';
 import { ICategories, IDropList, IState } from '../../../../interfaces';
-import { openModal } from '../../../../redux/modal/actions';
-import DropDown from '../../../Base/DropDown';
-import DropDownMobile from '../../../Base/DropDownMobile';
-import RegionModal from '../../../Base/RegionModal';
+import DropDown from '../../../Common/DropDown';
+import DropDownMobile from '../../../Common/DropDownMobile';
+import { modal } from '../../../Common/Modal';
+import SmallModalWrp from '../../../Common/Modal/SmallModalWrp';
+import RegionModal from '../../../Common/RegionModal';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     form: {
@@ -113,14 +114,13 @@ const TIME: IDropList[] = [
 
 const StepThree = (): ReactElement => {
     const css = useStyles();
-    const dispatch = useDispatch();
     const router = useRouter();
 
     const data = useSelector<IState, ICategories[]>(state => state.categories);
-    const categories = helpers.formateCatList(data);
+    const categories = helpers.formatCatList(data);
 
     const handleRegionModal = () => {
-        dispatch(openModal({ dom: <RegionModal /> }));
+        modal.open(<RegionModal />);
     };
 
     const handleSubmit = (event: FormEvent): void => {

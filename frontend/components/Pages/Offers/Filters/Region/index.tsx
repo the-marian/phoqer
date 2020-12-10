@@ -2,11 +2,11 @@ import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
-import { useDispatch } from 'react-redux';
 
 import { Theme } from '../../../../../config/theme';
-import { openModal } from '../../../../../redux/modal/actions';
-import RegionModal from '../../../../Base/RegionModal';
+import { modal } from '../../../../Common/Modal';
+import SmallModalWrp from '../../../../Common/Modal/SmallModalWrp';
+import RegionModal from '../../../../Common/RegionModal';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     title: {
@@ -33,10 +33,13 @@ const useStyles = createUseStyles((theme: Theme) => ({
 
 const Region = (): ReactElement => {
     const css = useStyles();
-    const dispatch = useDispatch();
 
     const handleRegionModal = () => {
-        dispatch(openModal({ dom: <RegionModal /> }));
+        modal.open(
+            <SmallModalWrp>
+                <RegionModal />
+            </SmallModalWrp>,
+        );
     };
 
     return (

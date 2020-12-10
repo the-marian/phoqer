@@ -87,15 +87,7 @@ interface Props {
     onSubmit: (value: string, slug: string, type: 'category' | 'sub_category') => void;
 }
 
-const DropDownMobile = ({
-    height = 6,
-    value,
-    onSubmit,
-    defaultValue,
-    toRight,
-    transparent,
-    white,
-}: Props): ReactElement => {
+const DropDownMobile = ({ height = 6, value, onSubmit, defaultValue, toRight, transparent, white }: Props): ReactElement => {
     const css = useStyles({ height, toRight });
 
     const [drop, setDrop] = useState<boolean>(false);
@@ -124,11 +116,7 @@ const DropDownMobile = ({
     };
 
     return (
-        <div
-            className={clsx(css.wrp, transparent && css.transparent, white && css.white)}
-            tabIndex={-1}
-            onBlur={handleBlur}
-        >
+        <div className={clsx(css.wrp, transparent && css.transparent, white && css.white)} tabIndex={-1} onBlur={handleBlur}>
             <p className={css.inner} style={{ height: height + 'rem' }} onClick={handleClick} aria-hidden>
                 {drop ? (
                     <span className={css.icon}>

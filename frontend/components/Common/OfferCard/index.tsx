@@ -94,20 +94,14 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
 }));
 
-const OfferCard = ({
-    id,
-    title,
-    description,
-    cover_image,
-    is_favorite,
-    views,
-    pud_date,
-    per,
-    type,
-    price,
-    currency,
-}: IOfferCard): ReactElement => {
+interface IProps {
+    product: IOfferCard;
+}
+
+const OfferCard = ({ product }: IProps): ReactElement => {
     const css = useStyles();
+    const { id, title, description, cover_image, is_favorite, views, pud_date, per, type, price, currency } = product;
+
     return (
         <div className={css.root}>
             <Link href="/offers/:offerId" as={`/offers/${id}`}>

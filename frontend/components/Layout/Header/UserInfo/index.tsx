@@ -8,7 +8,7 @@ import React, { ReactElement, useState } from 'react';
 import { createUseStyles } from 'react-jss';
 
 import { Theme } from '../../../../config/theme';
-import NotifNumber from '../../../Base/NotifNumber';
+import NotifNumber from '../../../Common/NotifNumber';
 import DropWindow from './DropWindow';
 
 const useStyles = createUseStyles((theme: Theme) => ({

@@ -126,11 +126,7 @@ const DropDown = ({ height = 6, value, onSubmit, defaultValue, toRight, white, t
     };
 
     return (
-        <div
-            className={clsx(css.wrp, transparent && css.transparent, white && css.white)}
-            tabIndex={-1}
-            onBlur={handleBlur}
-        >
+        <div className={clsx(css.wrp, transparent && css.transparent, white && css.white)} tabIndex={-1} onBlur={handleBlur}>
             <p className={css.inner} style={{ height: height + 'rem' }} onClick={handleClick} aria-hidden>
                 {drop ? (
                     <span className={css.icon}>
@@ -141,9 +137,7 @@ const DropDown = ({ height = 6, value, onSubmit, defaultValue, toRight, white, t
                         <FontAwesomeIcon icon={faChevronDown} />
                     </span>
                 )}
-                <span>
-                    {selected.length > SELECTED_LENGTH ? `${selected.slice(0, SELECTED_LENGTH - 1)}...` : selected}
-                </span>
+                <span>{selected.length > SELECTED_LENGTH ? `${selected.slice(0, SELECTED_LENGTH - 1)}...` : selected}</span>
             </p>
 
             {drop && (

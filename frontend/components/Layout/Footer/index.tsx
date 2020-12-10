@@ -2,7 +2,7 @@ import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
 import { Theme } from '../../../config/theme';
-import Logo from '../../Base/Logo';
+import Logo from '../../Common/Logo';
 import Socials from '../../Pages/Socials';
 import Container from '../Container';
 import SiteMap from './SiteMap';

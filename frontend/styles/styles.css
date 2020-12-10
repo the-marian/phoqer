@@ -84,3 +84,27 @@ button {
 a {
     text-decoration: none;
 }
+
+.react-modal-backdrop {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.5);
+    box-sizing: border-box;
+}
+
+.react-modal-scroll {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: auto;
+    max-height: 100vh;
+    overflow-y: auto;
+    box-sizing: border-box;
+}

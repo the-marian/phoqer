@@ -1,16 +1,20 @@
 import { HYDRATE } from 'next-redux-wrapper';
-import { AnyAction } from 'redux';
 
-import { ICategories } from '../../interfaces';
+import { ICategories, IState } from '../../interfaces';
 import types from '../types';
 
-const user = (state: ICategories = null, { type, payload }: AnyAction): ICategories => {
+interface IAction {
+    type: typeof types.GET_CATEGORIES_START | typeof types.GET_CATEGORIES_ERROR | typeof types.GET_CATEGORIES_SUCCESS;
+    payload: IState | ICategories[] | null;
+}
+
+const user = (state: ICategories[] = [], { type, payload }: IAction): ICategories[] => {
     switch (type) {
         case HYDRATE:
-            return payload.categories;
+            return (payload as IState).categories;
 
         case types.GET_CATEGORIES_SUCCESS:
-            return payload;
+            return payload as ICategories[];
 
         case types.GET_CATEGORIES_START:
         case types.GET_CATEGORIES_ERROR:

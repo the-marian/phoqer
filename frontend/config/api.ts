@@ -7,36 +7,18 @@ const DEV = process.env.DEV_URL || process.env.NEXT_PUBLIC_DEV_URL;
 
 axios.defaults.baseURL = process.env.NODE_ENV === 'production' ? PROD : DEV;
 
-export interface IApi {
+const api = {
     auth: {
-        user: () => Promise<AxiosResponse<unknown>>;
-        login: (data: Login) => Promise<AxiosResponse<{ auth_token: string }>>;
-        logout: () => Promise<AxiosResponse<unknown>>;
-    };
-    categories: {
-        get: () => Promise<AxiosResponse<ICategories>>;
-    };
-    offers: {
-        popular: {
-            get: () => Promise<AxiosResponse<IOffers>>;
-        };
-    };
-}
-
-const api: IApi = {
-    auth: {
-        user: (): Promise<AxiosResponse<unknown>> => axios.get('/users/me/'),
-        login: (body: Login): Promise<AxiosResponse<{ auth_token: string }>> => axios.post('/auth/token/login/', body),
-        logout: (): Promise<AxiosResponse<unknown>> => axios.post('/auth/token/logout/'),
+        user: (): Promise<AxiosResponse> => axios.get('/users/me/'),
+        login: (body: Login): Promise<AxiosResponse> => axios.post('/auth/token/login/', body),
+        logout: (): Promise<AxiosResponse> => axios.post('/auth/token/logout/'),
     },
     categories: {
-        get: (): Promise<AxiosResponse<ICategories>> => axios.get('/categories/'),
+        get: (): Promise<AxiosResponse<ICategories>> => axios.get('/categories'),
     },
     offers: {
         popular: {
-            get: (): Promise<AxiosResponse<IOffers>> => {
-                return axios.get('/offers/popular/');
-            },
+            get: (): Promise<AxiosResponse<IOffers>> => axios.get('/offers/popular'),
         },
     },
 };

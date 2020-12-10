@@ -2,11 +2,9 @@ import Head from 'next/head';
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
-import LoginWrap from '../../components/Base/LoginWrap';
-import AppWrp from '../../components/Layout/AppWrp';
+import JoinForm from '../../components/Common/Auth/JoinForm';
 import Container from '../../components/Layout/Container';
 import Main from '../../components/Layout/Main';
-import JoinForm from '../../components/Pages/Auth/JoinForm';
 import { Theme } from '../../config/theme';
 
 const useStyles = createUseStyles((theme: Theme) => ({
@@ -58,23 +56,21 @@ const Login = (): ReactElement => {
     const css = useStyles();
 
     return (
-        <LoginWrap>
-            <AppWrp>
-                <Head>
-                    <title>Join | Fucking project</title>
-                </Head>
-                <Main>
-                    <Container>
-                        <div className={css.root}>
-                            <div className={css.form}>
-                                <JoinForm />
-                            </div>
-                            <img className={css.img} src="/join.jpg" alt="" />
+        <>
+            <Head>
+                <title>Join | Fucking project</title>
+            </Head>
+            <Main>
+                <Container>
+                    <div className={css.root}>
+                        <div className={css.form}>
+                            <JoinForm />
                         </div>
-                    </Container>
-                </Main>
-            </AppWrp>
-        </LoginWrap>
+                        <img className={css.img} src="/join.jpg" alt="" />
+                    </div>
+                </Container>
+            </Main>
+        </>
     );
 };
 

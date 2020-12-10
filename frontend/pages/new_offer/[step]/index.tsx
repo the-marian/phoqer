@@ -4,8 +4,6 @@ import React, { ReactElement, useEffect, useState } from 'react';
 import { createUseStyles } from 'react-jss';
 import { END } from 'redux-saga';
 
-import AuthWrap from '../../../components/Base/AuthWrap';
-import AppWrp from '../../../components/Layout/AppWrp';
 import Container from '../../../components/Layout/Container';
 import Main from '../../../components/Layout/Main';
 import StepOne from '../../../components/Pages/NewOffer/StepOne';
@@ -60,47 +58,35 @@ const NewOffer = (): ReactElement => {
     }, [query.step]);
 
     return (
-        <AuthWrap>
-            <AppWrp>
-                <Head>
-                    <title>New product | Fucking project</title>
-                </Head>
-                <Main>
-                    <Container>
-                        <h1 className={css.title}>#Делитесь с другими и зарабатывайте</h1>
+        <>
+            <Head>
+                <title>New product | Fucking project</title>
+            </Head>
+            <Main>
+                <Container>
+                    <h1 className={css.title}>#Делитесь с другими и зарабатывайте</h1>
 
-                        {index < 4 && <Stepper title={STEPS_TITLE} current={+index} />}
+                    {index < 4 && <Stepper title={STEPS_TITLE} current={+index} />}
 
-                        {query.step !== undefined && (STEPS[index] || STEPS[1])}
+                    {query.step !== undefined && (STEPS[index] || STEPS[1])}
 
-                        {index < 3 && (
-                            <p className={css.text}>
-                                <span className={css.red}>*</span> Обязательное поле
-                            </p>
-                        )}
-                    </Container>
-                </Main>
-            </AppWrp>
-        </AuthWrap>
+                    {index < 3 && (
+                        <p className={css.text}>
+                            <span className={css.red}>*</span> Обязательное поле
+                        </p>
+                    )}
+                </Container>
+            </Main>
+        </>
     );
 };
 
-export const getStaticProps = wrapper.getStaticProps(
+export const getServerSideProps = wrapper.getServerSideProps(
     async ({ store }: { store: IStore }): Promise<void> => {
         store.dispatch({ type: types.GET_CATEGORIES_START });
         store.dispatch(END);
         await store.sagaTask.toPromise();
     },
 );
-
-interface Value {
-    paths: Array<string | { params: { [key: string]: string } }>;
-    fallback: boolean;
-}
-
-export const getStaticPaths = async (): Promise<Value> => ({
-    paths: ['/new_offer/:step'],
-    fallback: true,
-});
 
 export default NewOffer;

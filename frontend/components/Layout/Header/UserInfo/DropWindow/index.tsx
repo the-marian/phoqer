@@ -8,7 +8,7 @@ import { useDispatch } from 'react-redux';
 
 import { Theme } from '../../../../../config/theme';
 import types from '../../../../../redux/types';
-import NotifNumber from '../../../../Base/NotifNumber';
+import NotifNumber from '../../../../Common/NotifNumber';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     wrp: {

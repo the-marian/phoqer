@@ -12,11 +12,6 @@ const initState: IState = {
             loading: true,
         },
     },
-    modal: {
-        dom: null,
-        size: 's',
-        modal: false,
-    },
 };
 
 export default initState;

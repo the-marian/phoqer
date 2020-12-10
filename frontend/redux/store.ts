@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 import { createWrapper } from 'next-redux-wrapper';
-import { applyMiddleware, createStore } from 'redux';
+import { applyMiddleware, createStore, Store } from 'redux';
 import createSagaMiddleware, { SagaMiddleware } from 'redux-saga';
 
 import { IStore } from '../interfaces';
@@ -15,7 +15,7 @@ const bindMiddleware = (middleware: SagaMiddleware[]) => {
     return applyMiddleware(...middleware);
 };
 
-export const makeStore = (): IStore => {
+export const makeStore = (): Store => {
     const sagaMiddleware = createSagaMiddleware();
     const store: IStore = createStore(rootReducer, bindMiddleware([sagaMiddleware]));
     store.sagaTask = sagaMiddleware.run(rootSaga);

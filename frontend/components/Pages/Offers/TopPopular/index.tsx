@@ -6,8 +6,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Theme } from '../../../../config/theme';
 import { IOfferPopular, IState } from '../../../../interfaces';
 import types from '../../../../redux/types';
-import OfferCard from '../../../Base/OfferCard';
-import OffersLoader from '../../../Base/Preloaders/OffersLoader';
+import OfferCard from '../../../Common/OfferCard';
+import OffersLoader from '../../../Common/Preloaders/OffersLoader';
 import SectionTitle from '../../../Layout/SectionTitle';
 
 const useStyles = createUseStyles((theme: Theme) => ({
@@ -58,7 +58,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
 const TopPopular = (): ReactElement => {
     const css = useStyles();
     const dispatch = useDispatch();
-    const popular = useSelector<IState, IOfferPopular>(state => state.offers.popular);
+    const { data, loading } = useSelector<IState, IOfferPopular>(state => state.offers.popular);
 
     useEffect(() => {
         dispatch({ type: types.GET_POPULAR_OFFERS_START });
@@ -71,11 +71,11 @@ const TopPopular = (): ReactElement => {
             </SectionTitle>
 
             <div className={css.grid}>
-                {popular.loading ? (
-                    <OffersLoader />
-                ) : (
-                    !!popular.data?.length && popular.data?.map(product => <OfferCard key={product.id} {...product} />)
-                )}
+                <OffersLoader loading={loading} isEmpty={!data?.length}>
+                    {data?.map(product => (
+                        <OfferCard key={product.id} product={product} />
+                    ))}
+                </OffersLoader>
             </div>
 
             <Link href="/offers">
