@@ -30,6 +30,12 @@ const types = {
     GET_POPULAR_OFFERS_START: 'GET_POPULAR_OFFERS_START',
     GET_POPULAR_OFFERS_SUCCESS: 'GET_POPULAR_OFFERS_SUCCESS',
     GET_POPULAR_OFFERS_ERROR: 'GET_POPULAR_OFFERS_ERROR',
+
+    /**
+     * NEW OFFER
+     * */
+    //
+    _START: '_START',
 };
 
 export default types;
