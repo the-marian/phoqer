@@ -51,6 +51,15 @@ const useStyles = createUseStyles((theme: Theme) => ({
         background: 'none',
         border: 'none',
 
+        '&::before': {
+            content: '""',
+            display: 'block',
+            height: theme.rem(5),
+            width: theme.rem(0.2),
+            marginRight: theme.rem(2),
+            background: theme.palette.gray[2],
+        },
+
         '@media (max-width: 900px)': {
             width: '100%',
             height: theme.rem(8),
@@ -147,7 +156,10 @@ const Search = (): ReactElement => {
                     <Mobile>
                         <button type="button" className={css.locationInput} onClick={handleRegionModal}>
                             <img className={css.map} src="/emoji/map.png" alt="" />
-                            <span>Киев, Киевская область Киев, Киевская область Киев, Киевская область Киевская область Киев, Киевская область</span>
+                            <span>
+                                Киев, Киевская область Киев, Киевская область Киев, Киевская область Киевская область Киев,
+                                Киевская область
+                            </span>
                         </button>
                     </Mobile>
                 </form>

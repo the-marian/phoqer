@@ -3,7 +3,10 @@ import { NextRouter } from 'next/router';
 
 const interceptors = ({ history }: { history: NextRouter }): void => {
     axios.interceptors.request.use(
-        config => config,
+        config => {
+            console.log(config);
+            return config;
+        },
         error => Promise.reject(error),
     );
     axios.interceptors.response.use(
