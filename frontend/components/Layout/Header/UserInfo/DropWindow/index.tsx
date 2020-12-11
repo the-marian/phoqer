@@ -27,7 +27,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     root: {
         position: 'absolute',
         top: theme.rem(7),
-        right: theme.rem(9),
+        right: 0,
         zIndex: 101,
         padding: theme.rem(2, 4),
         background: theme.palette.white,
@@ -35,10 +35,6 @@ const useStyles = createUseStyles((theme: Theme) => ({
 
         '@media (max-width: 1100px)': {
             top: theme.rem(6),
-            right: theme.rem(3),
-        },
-        '@media (max-width: 768px)': {
-            right: theme.rem(2),
         },
     },
     item: {

@@ -23,6 +23,13 @@ const useStyles = createUseStyles((theme: Theme) => ({
         fontSize: theme.rem(3),
         fontWeight: theme.text.weight[5],
     },
+    imgWrp: {
+        display: 'flex',
+    },
+    img: {
+        width: theme.rem(8),
+        margin: theme.rem(2),
+    },
     link: {
         fontSize: theme.rem(1.8),
         fontWeight: theme.text.weight[3],
@@ -33,6 +40,12 @@ const Banner = (): ReactElement => {
     const css = useStyles();
     return (
         <div className={css.root}>
+            <div className={css.imgWrp}>
+                <img className={css.img} src="/emoji/monay2.png" alt="" />
+                <img className={css.img} src="/emoji/monay.png" alt="" />
+                <img className={css.img} src="/emoji/monay1.png" alt="" />
+            </div>
+
             <h2 className={css.title}>Делитесь с другими и зарабатывайте</h2>
             <div className={css.link}>
                 <LinkArrow href="/new_offer/1">Сдать вещи в аренду</LinkArrow>

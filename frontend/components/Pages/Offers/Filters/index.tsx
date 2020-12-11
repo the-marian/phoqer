@@ -7,7 +7,6 @@ import SectionTitle from '../../../Layout/SectionTitle';
 import Categories from './Categories';
 import Checkbox from './Checkbox';
 import PriceFilter from './Price';
-import Region from './Region';
 import Sort from './Sort';
 import Time from './Time';
 
@@ -121,7 +120,6 @@ const Filters = (): ReactElement => {
                             <Time />
                             <Categories />
                             <Sort />
-                            <Region />
                         </div>
 
                         <Checkbox />

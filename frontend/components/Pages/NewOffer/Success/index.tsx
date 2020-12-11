@@ -106,7 +106,7 @@ const Success = (): ReactElement => {
             </div>
 
             <div className={css.top}>
-                <img className={css.img} src="/top.png" alt="" />
+                <img className={css.img} src="/emoji/top.png" alt="" />
                 <h1 className={css.topTitle}>Выводите товар в топ на месяц абсолютно бесплатно</h1>
                 <p className={css.text}>
                     Ляля тополя ляля тополя тополя ляля тополя тополя ляля тополя тополя ляля тополя. Тополя ляля тополя тополя

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { ReactElement, useEffect } from 'react';
+import React, { ReactElement, useEffect, useState } from 'react';
 import { createUseStyles } from 'react-jss';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -20,6 +20,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         zIndex: 10,
         width: '100%',
         padding: theme.rem(1.4, 0),
+        transition: theme.transitions,
 
         '&::after': {
             content: '""',
@@ -29,8 +30,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
             zIndex: 10,
             width: '100%',
             height: '100%',
-            background:
-                'linear-gradient(90deg, rgba(250,250,250,0.98) 15%, rgba(250,250,250,0.8) 50%, rgba(250,250,250,0.98) 80%)',
+            background: 'linear-gradient(90deg, rgba(250,250,250,1) 25%, rgba(250,250,250,0.8) 50%, rgba(250,250,250,1) 75%)',
         },
     },
     flex: {
@@ -46,9 +46,13 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
 }));
 
+let prev = 0;
+
 const Header = (): ReactElement => {
     const css = useStyles();
     const dispatch = useDispatch();
+    const [delta, setDelta] = useState<boolean>(true);
+
     const { auth_token } = useSelector<IState, IAuth>(state => state.auth);
     const isLogin = auth_token && axios.defaults.headers.common.Authorization;
 
@@ -58,20 +62,33 @@ const Header = (): ReactElement => {
         }
     }, [dispatch, isLogin]);
 
-    // useEffect(() => {
-    //     const handleScroll = (e: Window): void => {
-    //         console.log(e);
-    //     }
-    //
-    //     window.addEventListener('scroll', handleScroll);
-    //
-    //     return () => {
-    //         window.removeEventListener('scroll', handleScroll);
-    //     }
-    // }, [])
+    useEffect(() => {
+        const handleScroll = (): void => {
+            if (window.scrollY < 500 && !delta) {
+                setDelta(true);
+                prev = 0;
+                return;
+            }
+
+            if (window.scrollY < 0 && !delta) {
+                setDelta(true);
+                prev = 0;
+                return;
+            }
+
+            setDelta(prev > window.scrollY);
+            prev = window.scrollY;
+        };
+
+        window.addEventListener('scroll', handleScroll);
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, []);
 
     return (
-        <header className={css.header}>
+        <header className={css.header} style={delta ? {} : { transform: 'translateY(-100%)' }}>
             <Container>
                 <div className={css.flex}>
                     <div className={css.wrp}>

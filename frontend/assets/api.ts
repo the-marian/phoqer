@@ -15,11 +15,11 @@ const api = {
         logout: (): Promise<AxiosResponse> => axios.post('/auth/token/logout/'),
     },
     categories: {
-        get: (): Promise<AxiosResponse<ICategories>> => axios.get('/categories'),
+        get: (): Promise<AxiosResponse<ICategories>> => axios.get('/categories/'),
     },
     offers: {
         popular: {
-            get: (): Promise<AxiosResponse<IOffers>> => axios.get('/offers/popular'),
+            get: (): Promise<AxiosResponse<IOffers>> => axios.get('/offers/popular/'),
         },
     },
 };

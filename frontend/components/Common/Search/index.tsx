@@ -1,4 +1,4 @@
-import { faChevronDown, faSearch } from '@fortawesome/free-solid-svg-icons';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useRouter } from 'next/router';
 import React, { ReactElement } from 'react';
@@ -6,7 +6,7 @@ import { createUseStyles } from 'react-jss';
 
 import { Theme } from '../../../assets/theme';
 import LinkArrow from '../LinkArrow';
-import { Desktop } from '../Media';
+import { Desktop, Mobile } from '../Media';
 import { modal } from '../Modal';
 import RegionModal from '../RegionModal';
 
@@ -37,11 +37,47 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
     input: {
         display: 'block',
-        width: '100%',
+        flexGrow: 2,
         height: '100%',
         padding: theme.rem(2),
         background: 'none',
         border: 'none',
+    },
+    locationInput: {
+        display: 'flex',
+        alignItems: 'center',
+        height: '100%',
+        padding: theme.rem(2),
+        background: 'none',
+        border: 'none',
+
+        '@media (max-width: 900px)': {
+            width: '100%',
+            height: theme.rem(8),
+            margin: theme.rem(4, 0, 2, 0),
+            background: theme.palette.gray[1],
+            borderRadius: theme.radius,
+            textAlign: 'left',
+            fontSize: theme.rem(1.4),
+        },
+
+        '& span': {
+            width: theme.rem(30),
+            marginLeft: theme.rem(1),
+            whiteSpace: 'nowrap',
+            overflow: 'hidden',
+            textOverflow: 'ellipsis',
+
+            '@media (max-width: 900px)': {
+                width: '100%',
+            },
+        },
+    },
+    location: {
+        width: theme.rem(40),
+    },
+    map: {
+        width: theme.rem(3),
     },
     btn: {
         height: theme.rem(8),
@@ -98,22 +134,22 @@ const Search = (): ReactElement => {
 
                         <input defaultValue={history?.query?.q} className={css.input} type="text" placeholder="Что вы ищите?" />
 
-                        <div>
+                        <div className={css.location}>
                             <Desktop>
-                                <button type="button" className={css.input} onClick={handleRegionModal}>
-                                    <FontAwesomeIcon icon={faChevronDown} />
-                                    <span>Киев, Киевская область</span>
+                                <button type="button" className={css.locationInput} onClick={handleRegionModal}>
+                                    <img className={css.map} src="/emoji/map.png" alt="" />
+                                    <span>Киев, Киевская область Киев, Киевская область Киев, Киевская область</span>
                                 </button>
                             </Desktop>
                         </div>
                     </div>
 
-                    {/*    <Mobile>*/}
-                    {/*        <button type="button" className={css.input} onClick={handleRegionModal}>*/}
-                    {/*            <FontAwesomeIcon icon={faChevronDown} />*/}
-                    {/*            <span>Киев, Киевская область</span>*/}
-                    {/*        </button>*/}
-                    {/*    </Mobile>*/}
+                    <Mobile>
+                        <button type="button" className={css.locationInput} onClick={handleRegionModal}>
+                            <img className={css.map} src="/emoji/map.png" alt="" />
+                            <span>Киев, Киевская область Киев, Киевская область Киев, Киевская область Киевская область Киев, Киевская область</span>
+                        </button>
+                    </Mobile>
                 </form>
 
                 <button type="submit" className={css.btn}>
