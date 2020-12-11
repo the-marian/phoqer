@@ -2,11 +2,11 @@ import React, { ReactElement, useEffect } from 'react';
 import { createUseStyles } from 'react-jss';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { Theme } from '../../../../assets/theme';
-import { IOfferPopular, IState } from '../../../../interfaces';
-import types from '../../../../redux/types';
-import OfferCard from '../../../Common/OfferCard';
-import OffersLoader from '../../../Common/Preloaders/OffersLoader';
+import { Theme } from '../../../assets/theme';
+import { IOfferPopular, IState } from '../../../interfaces';
+import types from '../../../redux/types';
+import OfferCard from '../OfferCard';
+import OffersLoader from '../Preloaders/OffersLoader';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     root: {
@@ -15,8 +15,8 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
     grid: {
         display: 'grid',
-        gridTemplateColumns: theme.fr(4),
-        gridGap: theme.rem(10, 6),
+        gridTemplateColumns: theme.fr(3),
+        gridGap: theme.rem(8),
 
         '@media (max-width: 1500px)': {
             gridTemplateColumns: theme.fr(3),

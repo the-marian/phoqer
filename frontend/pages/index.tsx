@@ -8,7 +8,7 @@ import Banner from '../components/Layout/Banner';
 import Container from '../components/Layout/Container';
 import Main from '../components/Layout/Main';
 import Categories from '../components/Pages/Home/Categories';
-import TopPopular from '../components/Pages/Offers/TopPopular';
+import TopPopular from '../components/Common/TopPopular';
 import { IStore } from '../interfaces';
 import { wrapper } from '../redux/store';
 import types from '../redux/types';
