@@ -11,6 +11,4 @@ COPY . /home/share/frontend
 RUN yarn install
 
 # start app
-RUN yarn build
-
-CMD yarn start
+CMD yarn run dev
