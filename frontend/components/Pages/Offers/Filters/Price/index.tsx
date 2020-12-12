@@ -34,9 +34,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
 }));
 
 const CURRENCY: IDropList[] = [
-    { name: 'грн', slug: 'uah' },
-    { name: '$', slug: 'usd' },
-    { name: '€', slug: 'eur' },
+    { name: 'uah', slug: 'uah' },
+    { name: 'usd', slug: 'usd' },
+    { name: 'eur', slug: 'eur' },
 ];
 
 const PriceFilter = (): ReactElement => {
@@ -59,7 +59,7 @@ const PriceFilter = (): ReactElement => {
 
     return (
         <div>
-            <h4 className={css.title}>Цена</h4>
+            <h4 className={css.title}>Цена за час</h4>
             <div className={css.wrp}>
                 <input className={css.input} type="text" placeholder="min" value={min} onChange={handleMin} />
                 <input className={css.input} type="text" placeholder="max" value={max} onChange={handleMax} />

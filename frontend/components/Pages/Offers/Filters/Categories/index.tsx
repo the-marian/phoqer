@@ -7,8 +7,6 @@ import * as helpers from '../../../../../assets/helpers';
 import { Theme } from '../../../../../assets/theme';
 import { ICategories, IState } from '../../../../../interfaces';
 import DropDown from '../../../../Common/DropDown';
-import DropDownMobile from '../../../../Common/DropDownMobile';
-import { Desktop, Mobile } from '../../../../Common/Media';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     title: {
@@ -46,18 +44,7 @@ const Categories = (): ReactElement => {
         !!categories?.length && (
             <div>
                 <h4 className={css.title}>Категория</h4>
-                <Desktop>
-                    <DropDown value={categories} onSubmit={console.log} defaultValue={categoryName || subCategoryName} toRight />
-                </Desktop>
-
-                <Mobile>
-                    <DropDownMobile
-                        value={categories}
-                        onSubmit={console.log}
-                        defaultValue={categoryName || subCategoryName}
-                        toRight
-                    />
-                </Mobile>
+                <DropDown value={categories} onSubmit={console.log} defaultValue={categoryName || subCategoryName} withSub />
             </div>
         )
     );

@@ -7,6 +7,10 @@ const useStyles = createUseStyles((theme: Theme) => ({
     container: {
         margin: theme.rem(0, 20),
 
+        '@media (max-width: 1480px)': {
+            margin: theme.rem(0, 10),
+        },
+
         '@media (max-width: 1100px)': {
             margin: theme.rem(0, 4),
         },

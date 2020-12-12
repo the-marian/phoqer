@@ -9,7 +9,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'flex-end',
-        marginBottom: theme.rem(4),
+        marginBottom: theme.rem(2),
     },
     title: {
         fontSize: theme.rem(2),

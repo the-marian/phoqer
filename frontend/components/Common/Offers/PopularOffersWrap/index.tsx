@@ -3,36 +3,15 @@ import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 import { useSelector } from 'react-redux';
 
-import { Theme } from '../../../assets/theme';
-import { IOfferPopular, IState } from '../../../interfaces';
-import OfferCard from '../OfferCard';
-import OffersLoader from '../Preloaders/OffersLoader';
-import SectionTitle from '../../Layout/SectionTitle';
+import { Theme } from '../../../../assets/theme';
+import { IOfferPopular, IState } from '../../../../interfaces';
+import SectionTitle from '../../../Layout/SectionTitle';
+import OffersList from '../OffersList';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     root: {
         fontSize: theme.rem(1.5),
         fontWeight: theme.text.weight[3],
-    },
-    grid: {
-        display: 'grid',
-        gridTemplateColumns: theme.fr(3),
-        gridGap: theme.rem(8),
-
-        '@media (max-width: 1500px)': {
-            gridTemplateColumns: theme.fr(3),
-        },
-        '@media (max-width: 1140px)': {
-            gridTemplateColumns: theme.fr(2),
-        },
-        '@media (max-width: 960px)': {
-            gridGap: theme.rem(6, 3),
-        },
-        '@media (max-width: 560px)': {
-            gridTemplateColumns: theme.fr(1),
-            maxWidth: theme.rem(40),
-            margin: '0 auto',
-        },
     },
     btn: {
         display: 'flex',
@@ -64,13 +43,7 @@ const TopPopular = (): ReactElement => {
                 Популярные товары
             </SectionTitle>
 
-            <div className={css.grid}>
-                <OffersLoader loading={loading} isEmpty={!data?.length}>
-                    {data?.map(product => (
-                        <OfferCard key={product.id} product={product} />
-                    ))}
-                </OffersLoader>
-            </div>
+            <OffersList data={data} loading={loading} />
 
             <Link href="/offers">
                 <a className={css.btn}>Смотреть все</a>

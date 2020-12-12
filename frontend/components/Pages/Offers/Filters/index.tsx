@@ -1,14 +1,16 @@
 import Link from 'next/link';
-import React, { FormEvent, ReactElement, useState } from 'react';
+import React, { FormEvent, ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { Theme } from '../../../../assets/theme';
+import { IState } from '../../../../interfaces';
+import types from '../../../../redux/types';
 import SectionTitle from '../../../Layout/SectionTitle';
 import Categories from './Categories';
 import Checkbox from './Checkbox';
 import PriceFilter from './Price';
 import Sort from './Sort';
-import Time from './Time';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     root: {
@@ -40,6 +42,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         display: 'grid',
         gridTemplateColumns: theme.fr(2),
         gridGap: theme.rem(1.5, 6),
+        marginTop: theme.rem(3),
 
         '@media (max-width: 550px)': {
             gridTemplateColumns: theme.fr(1),
@@ -92,10 +95,11 @@ const POPULAR: string[] = [
 
 const Filters = (): ReactElement => {
     const css = useStyles();
-    const [close, setClose] = useState<boolean>(false);
+    const dispatch = useDispatch();
+    const open = useSelector<IState, boolean>(state => state.filters.open);
 
     const handleClose = () => {
-        setClose(!close);
+        dispatch({ type: types.SEARCH_FILTERS, payload: { open: !open } });
     };
 
     const handleSubmit = (event: FormEvent): void => {
@@ -109,15 +113,15 @@ const Filters = (): ReactElement => {
                 <div className={css.wrp}>
                     <h2 className={css.title}>Фильтры</h2>
                     <button type="button" className={css.close} onClick={handleClose}>
-                        {close ? 'Показать фильтры' : 'Скрыть фильтры'}
+                        {open ? 'Показать фильтры' : 'Скрыть фильтры'}
                     </button>
                 </div>
+                <hr />
 
-                {!close && (
+                {!open && (
                     <form action="#" method="post" className={css.form} onSubmit={handleSubmit}>
                         <div className={css.formInner}>
                             <PriceFilter />
-                            <Time />
                             <Categories />
                             <Sort />
                         </div>
@@ -133,6 +137,7 @@ const Filters = (): ReactElement => {
 
             <div className={css.root}>
                 <SectionTitle>Популярные запросы</SectionTitle>
+                <hr />
                 <ul className={css.list}>
                     {POPULAR.map(query => (
                         <li key={query}>

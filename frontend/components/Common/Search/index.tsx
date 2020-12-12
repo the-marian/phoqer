@@ -27,11 +27,11 @@ const useStyles = createUseStyles((theme: Theme) => ({
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',
-        height: theme.rem(8),
+        height: theme.rem(7),
         width: '100%',
         paddingLeft: theme.rem(2.5),
         background: theme.palette.gray[1],
-        fontSize: theme.rem(1.6),
+        fontSize: theme.rem(1.4),
         borderRadius: theme.radius,
         border: 'none',
     },
@@ -50,12 +50,13 @@ const useStyles = createUseStyles((theme: Theme) => ({
         padding: theme.rem(2),
         background: 'none',
         border: 'none',
+        color: theme.palette.gray[3],
 
         '&::before': {
             content: '""',
             display: 'block',
-            height: theme.rem(5),
-            width: theme.rem(0.2),
+            height: theme.rem(3),
+            width: theme.rem(0.1),
             marginRight: theme.rem(2),
             background: theme.palette.gray[2],
         },
@@ -71,7 +72,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         },
 
         '& span': {
-            width: theme.rem(30),
+            width: theme.rem(20),
             marginLeft: theme.rem(1),
             whiteSpace: 'nowrap',
             overflow: 'hidden',
@@ -83,14 +84,14 @@ const useStyles = createUseStyles((theme: Theme) => ({
         },
     },
     location: {
-        width: theme.rem(40),
+        width: theme.rem(30),
     },
     map: {
-        width: theme.rem(3),
+        width: theme.rem(2.4),
     },
     btn: {
-        height: theme.rem(8),
-        width: theme.rem(40),
+        height: theme.rem(7),
+        width: theme.rem(30),
         marginLeft: theme.rem(2),
         background: theme.palette.blue[0],
         fontSize: theme.rem(1.6),

@@ -9,18 +9,18 @@ import { AnyAction, Store } from 'redux';
  * 5 REDUX STORE
  * */
 
-// -------------------------------------
+// =====================================
 // GENERAL
-// -------------------------------------
+// =====================================
 export interface IDropList {
     name: string;
     slug: string;
     sub?: { name: string; slug: string }[];
 }
 
-// -------------------------------------
+// =====================================
 // AUTH
-// -------------------------------------
+// =====================================
 export interface Login {
     email: string;
     password: string;
@@ -31,9 +31,9 @@ export interface IAuth {
     user: string | null;
 }
 
-// -------------------------------------
+// =====================================
 // CATEGORIES
-// -------------------------------------
+// =====================================
 export interface ICategories {
     name: string;
     image: string;
@@ -41,21 +41,21 @@ export interface ICategories {
     sub_categories?: { name: string; slug: string }[];
 }
 
-// -------------------------------------
+// =====================================
 // OFFERS
-// -------------------------------------
+// =====================================
 export interface IOfferCard {
     id: string;
     cover_image: string;
     currency: string;
     is_favorite: boolean;
-    per: 'DAY' | 'MONTH' | 'YEAR' | 'HOUR';
+    is_promoted: boolean;
+    is_deliverable: boolean;
     price: number;
     pud_date: string;
     title: string;
     views: number;
     description: string;
-    type?: ('top' | 'recent' | 'none')[];
 }
 
 export interface IOfferPopular {
@@ -67,11 +67,12 @@ export interface IOffers {
     popular: IOfferPopular;
 }
 
-// -------------------------------------
+// =====================================
 // REDUX STORE
-// -------------------------------------
+// =====================================
 export interface IState {
     auth: IAuth;
+    filters: { open: boolean };
     categories: ICategories[] | null;
     offers: IOffers;
 }

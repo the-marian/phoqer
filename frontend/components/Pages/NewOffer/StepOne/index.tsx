@@ -9,7 +9,6 @@ import * as helpers from '../../../../assets/helpers';
 import { Theme } from '../../../../assets/theme';
 import { ICategories, IDropList, IState } from '../../../../interfaces';
 import DropDown from '../../../Common/DropDown';
-import DropDownMobile from '../../../Common/DropDownMobile';
 import { modal } from '../../../Common/Modal';
 import RegionModal from '../../../Common/RegionModal';
 
@@ -46,19 +45,47 @@ const useStyles = createUseStyles((theme: Theme) => ({
         border: 'none',
         borderRadius: theme.radius,
         fontSize: theme.rem(1.3),
+
+        '& span': {
+            width: '88%',
+            marginLeft: theme.rem(1),
+            whiteSpace: 'nowrap',
+            overflow: 'hidden',
+            textOverflow: 'ellipsis',
+            textAlign: 'left',
+
+            '@media (max-width: 900px)': {
+                width: '100%',
+            },
+        },
     },
     icon: {
         fontSize: theme.rem(0.91),
         marginRight: theme.rem(1.5),
     },
+    flex: {
+        display: 'flex',
+        justifyContent: 'space-between',
+
+        '& > div': {
+            flexBasis: '48%',
+        },
+
+        '@media (max-width: 500px)': {
+            display: 'block',
+        },
+    },
     wrp: {
         display: 'grid',
-        gridTemplateColumns: theme.fr(3),
+        gridTemplateColumns: theme.fr(2),
         gridGap: theme.rem(1),
 
         '@media (max-width: 500px)': {
             gridTemplateColumns: theme.fr(1),
         },
+    },
+    map: {
+        width: theme.rem(2.4),
     },
     btnWrp: {
         display: 'flex',
@@ -99,16 +126,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
 }));
 
 const CURRENCY: IDropList[] = [
-    { name: 'грн', slug: 'uah' },
-    { name: '$', slug: 'usd' },
-    { name: '€', slug: 'eur' },
-];
-
-const TIME: IDropList[] = [
-    { name: 'За 1 час', slug: 'hour' },
-    { name: 'За 1 день', slug: 'day' },
-    { name: 'За 1 неделю', slug: 'week' },
-    { name: 'За 1 месяц', slug: 'month' },
+    { name: 'uah', slug: 'uah' },
+    { name: 'usd', slug: 'usd' },
+    { name: 'eur', slug: 'eur' },
 ];
 
 const StepThree = (): ReactElement => {
@@ -141,31 +161,33 @@ const StepThree = (): ReactElement => {
                     Укажите ваше местоположение <span className={css.red}>*</span>
                 </h4>
                 <button type="button" className={css.input} onClick={handleRegionModal}>
-                    <span className={css.icon}>
-                        <FontAwesomeIcon icon={faChevronDown} />
+                    <img className={css.map} src="/emoji/map.png" alt="" />
+                    <span>
+                        Киев, Киевская область Киев, Киевская область Киев, Киевская область Киев, Киевская область Киев, Киевская
+                        область
                     </span>
-                    <span>Киев, Киевская область</span>
                 </button>
             </div>
 
-            {!!categories?.length && (
+            <div className={css.flex}>
+                {!!categories?.length && (
+                    <div className={css.inner}>
+                        <h4 className={css.title}>
+                            Выберите категорию товара <span className={css.red}>*</span>
+                        </h4>
+
+                        <DropDown white value={categories} onSubmit={console.log} withSub />
+                    </div>
+                )}
+
                 <div className={css.inner}>
                     <h4 className={css.title}>
-                        Выберите категорию товара <span className={css.red}>*</span>
+                        Цена (за 1 час) <span className={css.red}>*</span>
                     </h4>
-
-                    <DropDownMobile white value={categories} onSubmit={console.log} toRight />
-                </div>
-            )}
-
-            <div className={css.inner}>
-                <h4 className={css.title}>
-                    Цена <span className={css.red}>*</span>
-                </h4>
-                <div className={css.wrp}>
-                    <input className={css.input} type="text" placeholder="Цена" />
-                    <DropDown white value={CURRENCY} onSubmit={console.log} />
-                    <DropDown white value={TIME} onSubmit={console.log} />
+                    <div className={css.wrp}>
+                        <input className={css.input} type="text" placeholder="Цена" />
+                        <DropDown white value={CURRENCY} onSubmit={console.log} />
+                    </div>
                 </div>
             </div>
 

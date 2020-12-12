@@ -1,7 +1,22 @@
 const types = {
     /**
-     * AUTH
+     * DOCS
+     * 1 GENERAL
+     * 2 AUTH
+     * 3 CATEGORIES
+     * 4 OFFERS
+     * 5 NEW OFFER
      * */
+
+    // ========================
+    // GENERAL
+    // ========================
+    // SEARCH_FILTERS
+    SEARCH_FILTERS: 'SEARCH_FILTERS',
+
+    // ========================
+    // AUTH
+    // ========================
     // LOGIN
     LOGIN_START: 'LOGIN_START',
     LOGIN_SUCCESS: 'LOGIN_SUCCESS',
@@ -15,27 +30,27 @@ const types = {
     GET_USER_SUCCESS: 'GET_USER_SUCCESS',
     GET_USER_ERROR: 'GET_USER_ERROR',
 
-    /**
-     * CATEGORIES
-     * */
+    // ========================
+    // CATEGORIES
+    // ========================
     // GET_CATEGORIES
     GET_CATEGORIES_START: 'GET_CATEGORIES_START',
     GET_CATEGORIES_SUCCESS: 'GET_CATEGORIES_SUCCESS',
     GET_CATEGORIES_ERROR: 'GET_CATEGORIES_ERROR',
 
-    /**
-     * OFFERS
-     * */
+    // ========================
+    // OFFERS
+    // ========================
     // GET_POPULAR_OFFERS
     GET_POPULAR_OFFERS_START: 'GET_POPULAR_OFFERS_START',
     GET_POPULAR_OFFERS_SUCCESS: 'GET_POPULAR_OFFERS_SUCCESS',
     GET_POPULAR_OFFERS_ERROR: 'GET_POPULAR_OFFERS_ERROR',
 
-    /**
-     * NEW OFFER
-     * */
-    //
-    _START: '_START',
+    // ========================
+    // NEW OFFER
+    // ========================
+    // NEW_OFFER_SAVE
+    NEW_OFFER_FORM: 'NEW_OFFER_FORM',
 };
 
 export default types;

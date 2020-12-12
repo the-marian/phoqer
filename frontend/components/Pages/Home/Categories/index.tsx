@@ -3,6 +3,7 @@ import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 import { useSelector } from 'react-redux';
 
+import config from '../../../../assets/config';
 import { Theme } from '../../../../assets/theme';
 import { ICategories, IState } from '../../../../interfaces';
 import SectionTitle from '../../../Layout/SectionTitle';
@@ -16,19 +17,13 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
     wrp: {
         display: 'grid',
-        gridTemplateColumns: theme.fr(7),
+        gridTemplateColumns: theme.fr(config.category.grid.desktop),
         gridGap: theme.rem(4, 3),
         '@media (max-width: 1200px)': {
-            gridTemplateColumns: theme.fr(5),
-        },
-        '@media (max-width: 1000px)': {
-            gridTemplateColumns: theme.fr(4),
-        },
-        '@media (max-width: 780px)': {
-            gridTemplateColumns: theme.fr(3),
+            gridTemplateColumns: theme.fr(config.category.grid.tablet),
         },
         '@media (max-width: 550px)': {
-            gridTemplateColumns: theme.fr(2),
+            gridTemplateColumns: theme.fr(config.category.grid.mobile),
             gridGap: theme.rem(2, 1.5),
         },
     },

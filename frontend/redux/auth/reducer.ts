@@ -1,3 +1,7 @@
+import { persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
+
+import { encryptor } from '../../assets/encryptor';
 import { IAuth } from '../../interfaces';
 import types from '../types';
 
@@ -43,4 +47,11 @@ const auth = (state: IAuth = INIT, { type, payload }: IAction): IAuth => {
     }
 };
 
-export default auth;
+const config = {
+    storage,
+    key: 'phoqer_auth',
+    white: ['token'],
+    transforms: [encryptor],
+};
+
+export default persistReducer(config, auth);

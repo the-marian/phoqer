@@ -30,7 +30,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
             zIndex: 10,
             width: '100%',
             height: '100%',
-            background: 'linear-gradient(90deg, rgba(250,250,250,1) 25%, rgba(250,250,250,0.8) 50%, rgba(250,250,250,1) 75%)',
+            background: 'linear-gradient(90deg, rgba(250,250,250,1) 25%, rgba(250,250,250,0.9) 50%, rgba(250,250,250,1) 75%)',
         },
     },
     flex: {
@@ -64,13 +64,13 @@ const Header = (): ReactElement => {
 
     useEffect(() => {
         const handleScroll = (): void => {
-            if (window.scrollY < 500 && !delta) {
+            if (window.scrollY < 300 && delta) {
                 setDelta(true);
                 prev = 0;
                 return;
             }
 
-            if (window.scrollY < 0 && !delta) {
+            if (window.scrollY < 0 && delta) {
                 setDelta(true);
                 prev = 0;
                 return;

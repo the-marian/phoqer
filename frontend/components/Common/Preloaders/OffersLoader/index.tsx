@@ -79,7 +79,7 @@ const OffersLoader = ({ loading, isEmpty, children }: IProps): ReactElement => {
             </div>
         </>
     ) : isEmpty ? (
-        <div>Empty</div>
+        <div>Nothing to show</div>
     ) : (
         <>{children}</>
     );

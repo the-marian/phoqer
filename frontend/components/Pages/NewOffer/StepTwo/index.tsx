@@ -162,7 +162,7 @@ const StepTwo = (): ReactElement => {
             </div>
 
             <div className={css.inner}>
-                <CheckTitle onChange={setMinInput}>Минимальный срок аренды</CheckTitle>
+                <CheckTitle onChange={setMinInput}>Минимальный срок аренды (за час)</CheckTitle>
                 <div className={clsx(css.inputWrp, minInput || css.inactive)}>
                     <input
                         value={min}
@@ -176,7 +176,7 @@ const StepTwo = (): ReactElement => {
             </div>
 
             <div className={css.inner}>
-                <CheckTitle onChange={setMaxInput}>Максимальный срок аренды</CheckTitle>
+                <CheckTitle onChange={setMaxInput}>Максимальный срок аренды (часов)</CheckTitle>
                 <div className={clsx(css.inputWrp, maxInput || css.inactive)}>
                     <input
                         value={max}

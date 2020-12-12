@@ -5,6 +5,7 @@ const initState: IState = {
         user: null,
         auth_token: null,
     },
+    filters: { open: true },
     categories: null,
     offers: {
         popular: {

@@ -6,7 +6,7 @@ import LinkArrow from '../../Common/LinkArrow';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     root: {
-        margin: theme.rem(8, 0),
+        margin: theme.rem(14, 0),
         padding: theme.rem(6),
         borderRadius: theme.radius,
         background: theme.palette.soft[0],

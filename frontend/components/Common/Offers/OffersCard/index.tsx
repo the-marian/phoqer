@@ -1,14 +1,12 @@
 import { faEye, faHeart } from '@fortawesome/free-regular-svg-icons';
-import { faHeart as faSolidHeart, faStar } from '@fortawesome/free-solid-svg-icons';
+import { faHeart as faSolidHeart, faStar, faTruck } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Link from 'next/link';
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
-import { Theme } from '../../../assets/theme';
-import { IOfferCard } from '../../../interfaces';
-
-const MAX_LENGTH = 85;
+import { Theme } from '../../../../assets/theme';
+import { IOfferCard } from '../../../../interfaces';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     root: {
@@ -27,21 +25,30 @@ const useStyles = createUseStyles((theme: Theme) => ({
         position: 'relative',
     },
     img: {
-        height: theme.rem(25),
-        borderRadius: theme.radius,
+        height: theme.rem(20),
         objectFit: 'cover',
+        objectPosition: 'top',
+        borderRadius: theme.radius,
         boxShadow: theme.shadow[3],
     },
-    top: {
+    topWrp: {
         position: 'absolute',
         top: theme.rem(1),
         right: theme.rem(1),
+        display: 'flex',
+    },
+    top: {
+        margin: theme.rem(0, 0.5),
         padding: theme.rem(0.5, 0.8),
         background: theme.palette.white,
         borderRadius: theme.radius,
         color: theme.palette.yellow[0],
         fontSize: theme.rem(1),
         boxShadow: theme.shadow[0],
+
+        '&:nth-of-type(1)': {
+            color: theme.palette.green,
+        },
     },
     title: {
         margin: theme.rem(2, 0),
@@ -56,7 +63,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     info: {
         display: 'flex',
         justifyContent: 'space-between',
-        margin: theme.rem(2, 0, 3),
+        margin: theme.rem(2, 0),
     },
     text: {
         margin: 0,
@@ -87,12 +94,24 @@ const useStyles = createUseStyles((theme: Theme) => ({
         color: theme.palette.blue[0],
     },
     price: {
+        display: 'flex',
+        flexDirection: 'column',
         margin: 0,
         fontSize: theme.rem(1.6),
-        fontWeight: theme.text.weight[5],
+        fontWeight: theme.text.weight[3],
         color: theme.palette.black[0],
+        textTransform: 'lowercase',
+        textAlign: 'right',
+
+        '& small': {
+            fontWeight: theme.text.weight[2],
+            fontSize: theme.rem(1.2),
+            color: theme.palette.gray[3],
+        },
     },
 }));
+
+const MAX_LENGTH = 85;
 
 interface IProps {
     product: IOfferCard;
@@ -100,18 +119,37 @@ interface IProps {
 
 const OfferCard = ({ product }: IProps): ReactElement => {
     const css = useStyles();
-    const { id, title, description, cover_image, is_favorite, views, pud_date, per, type, price, currency } = product;
+    const {
+        id,
+        title,
+        description,
+        cover_image,
+        is_promoted,
+        is_deliverable,
+        is_favorite,
+        views,
+        pud_date,
+        price,
+        currency,
+    } = product;
 
     return (
         <div className={css.root}>
             <Link href="/offers/:offerId" as={`/offers/${id}`}>
                 <a className={css.link}>
                     <div className={css.imgWrp}>
-                        {type?.includes('top') && (
-                            <div className={css.top}>
-                                <FontAwesomeIcon icon={faStar} />
-                            </div>
-                        )}
+                        <div className={css.topWrp}>
+                            {is_deliverable && (
+                                <div className={css.top}>
+                                    <FontAwesomeIcon icon={faTruck} />
+                                </div>
+                            )}
+                            {is_promoted && (
+                                <div className={css.top}>
+                                    <FontAwesomeIcon icon={faStar} />
+                                </div>
+                            )}
+                        </div>
                         <img className={css.img} src={cover_image} alt={title} />
                     </div>
                     <h3 className={css.title}>{title}</h3>
@@ -126,7 +164,7 @@ const OfferCard = ({ product }: IProps): ReactElement => {
                     <FontAwesomeIcon icon={faEye} />
                     <span className={css.view}>{views}</span>
                 </p>
-                <p className={css.text}>Опубликовано: {pud_date}</p>
+                <p className={css.text}>Дата: {pud_date}</p>
             </div>
 
             <div className={css.action}>
@@ -141,7 +179,10 @@ const OfferCard = ({ product }: IProps): ReactElement => {
                 </div>
 
                 <p className={css.price}>
-                    {price} {currency} / {per}
+                    <span>
+                        {price} {currency}
+                    </span>
+                    <small>*per hour</small>
                 </p>
             </div>
         </div>
