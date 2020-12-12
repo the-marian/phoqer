@@ -64,10 +64,10 @@ export const theme: Theme = {
             'linear-gradient(90deg, #7928CA, #FF0080)',
             'linear-gradient(90deg, #FF4D4D, #F9CB28)',
         ],
-        violet: ['#7928CA'],
+        violet: ['#cda0f8'],
         yellow: ['#EDBF18', '#FAF0CA'],
         grayblue: ['#DFE6E6'],
-        blue: ['#0A72EF', '#2D728F', '#FCFEFF'],
+        blue: ['#0A72EF', '#2771A3', '#FCFEFF'],
         modal: 'rgba(0, 0, 0, 0.3)',
     },
     text: {

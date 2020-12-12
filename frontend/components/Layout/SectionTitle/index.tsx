@@ -9,11 +9,12 @@ const useStyles = createUseStyles((theme: Theme) => ({
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'flex-end',
-        marginBottom: theme.rem(2),
+        marginBottom: theme.rem(2.5),
     },
     title: {
         fontSize: theme.rem(2),
-        fontWeight: theme.text.weight[3],
+        fontWeight: theme.text.weight[4],
+        color: theme.palette.blue[1],
     },
     link: {
         color: theme.palette.blue[0],

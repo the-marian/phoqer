@@ -19,7 +19,7 @@ const OffersPage = (): ReactElement => {
     return (
         <>
             <Head>
-                <title>Search products | Fucking project</title>
+                <title>Search products | Phoqer</title>
             </Head>
             <Main>
                 <Container>

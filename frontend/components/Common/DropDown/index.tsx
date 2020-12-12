@@ -37,15 +37,16 @@ const useStyles = createUseStyles((theme: Theme) => ({
         paddingTop: theme.rem(1),
     },
     box: {
-        maxHeight: theme.rem(60),
+        maxHeight: theme.rem(40),
         padding: theme.rem(2, 0),
         background: theme.palette.white,
         borderRadius: theme.radius,
         border: theme.border(0.1, theme.palette.gray[3]),
         fontSize: theme.rem(1.4),
-        overflowY: 'scroll',
+        overflowY: 'auto',
     },
     item: {
+        cursor: 'pointer',
         '& > button': {
             display: 'block',
             width: '100%',
@@ -109,8 +110,18 @@ const DropDown = ({ height = 6, value, onSubmit, defaultValue, withSub, transpar
         setDrop(!drop);
     };
 
+    const handleBlur = (): void => {
+        setTimeout(() => {
+            setDrop(false);
+        }, 200);
+    };
+
     const handleOpen = (): void => {
         setDrop(true);
+    };
+
+    const handleClose = () => {
+        setDrop(false);
     };
 
     const handleSelect = (value: string, slug: string, type: 'category' | 'sub_category'): void => {
@@ -119,18 +130,11 @@ const DropDown = ({ height = 6, value, onSubmit, defaultValue, withSub, transpar
         setSelected(value);
     };
 
-    const handleClose = () => {
-        setTimeout(() => {
-            setDrop(false);
-        }, 150);
-    };
-
     return (
-        <div className={css.wrp} tabIndex={-1} onMouseLeave={handleClose} onBlur={handleClose}>
+        <div className={css.wrp} tabIndex={-1} onMouseLeave={handleClose} onMouseEnter={handleOpen} onBlur={handleBlur}>
             <p
                 className={clsx(css.inner, transparent && css.transparent, white && css.white)}
                 style={{ height: height + 'rem' }}
-                onMouseEnter={handleOpen}
                 onClick={handleClick}
                 aria-hidden
             >

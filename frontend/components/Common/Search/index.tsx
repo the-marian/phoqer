@@ -4,6 +4,7 @@ import { useRouter } from 'next/router';
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
+import router from '../../../assets/router';
 import { Theme } from '../../../assets/theme';
 import LinkArrow from '../LinkArrow';
 import { Desktop, Mobile } from '../Media';
@@ -129,7 +130,7 @@ const Search = (): ReactElement => {
         <>
             {history.pathname !== '/' && (
                 <div className={css.toHome}>
-                    <LinkArrow href="/" toLeft>
+                    <LinkArrow href={router.root} toLeft>
                         На главную
                     </LinkArrow>
                 </div>

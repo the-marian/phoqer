@@ -1,11 +1,9 @@
-import Head from 'next/head';
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
-import LoginForm from '../../components/Common/Auth/LoginForm';
-import Container from '../../components/Layout/Container';
-import Main from '../../components/Layout/Main';
-import { Theme } from '../../assets/theme';
+import { Theme } from '../../../../assets/theme';
+import Container from '../../../Layout/Container';
+import Main from '../../../Layout/Main';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     root: {
@@ -52,26 +50,23 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
 }));
 
-const Login = (): ReactElement => {
+interface IProps {
+    children: JSX.Element | JSX.Element[];
+}
+
+const AuthContainer = ({ children }: IProps): ReactElement => {
     const css = useStyles();
 
     return (
-        <>
-            <Head>
-                <title>Login | Fucking project</title>
-            </Head>
-            <Main>
-                <Container>
-                    <div className={css.root}>
-                        <img className={css.img} src="/login.jpg" alt="" />
-                        <div className={css.form}>
-                            <LoginForm />
-                        </div>
-                    </div>
-                </Container>
-            </Main>
-        </>
+        <Main>
+            <Container>
+                <div className={css.root}>
+                    <img className={css.img} src="/login.jpg" alt="" />
+                    <div className={css.form}>{children}</div>
+                </div>
+            </Container>
+        </Main>
     );
 };
 
-export default Login;
+export default AuthContainer;

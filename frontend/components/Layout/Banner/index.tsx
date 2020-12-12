@@ -1,6 +1,7 @@
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
+import router from '../../../assets/router';
 import { Theme } from '../../../assets/theme';
 import LinkArrow from '../../Common/LinkArrow';
 
@@ -48,7 +49,7 @@ const Banner = (): ReactElement => {
 
             <h2 className={css.title}>Делитесь с другими и зарабатывайте</h2>
             <div className={css.link}>
-                <LinkArrow href="/new_offer/1">Сдать вещи в аренду</LinkArrow>
+                <LinkArrow href={`${router.new_offer}/1`}>Сдать вещи в аренду</LinkArrow>
             </div>
         </div>
     );

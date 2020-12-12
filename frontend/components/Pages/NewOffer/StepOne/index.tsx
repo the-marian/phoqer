@@ -1,5 +1,3 @@
-import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useRouter } from 'next/router';
 import React, { FormEvent, ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';

@@ -2,12 +2,13 @@ import Link from 'next/link';
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
+import router from '../../../assets/router';
 import { Theme } from '../../../assets/theme';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     logo: {
-        display: 'block',
-        width: 'max-content',
+        display: 'flex',
+        alignItems: 'center',
         height: theme.rem(5),
         marginRight: theme.rem(1),
 
@@ -18,12 +19,11 @@ const useStyles = createUseStyles((theme: Theme) => ({
         },
     },
     img: {
-        height: '100%',
-        width: 'auto',
+        height: 'auto',
+        width: theme.rem(8.6),
 
         '@media (max-width: 500px)': {
             height: 'auto',
-            width: theme.rem(12),
         },
     },
 }));
@@ -31,7 +31,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
 const Logo = (): ReactElement => {
     const css = useStyles();
     return (
-        <Link href="/">
+        <Link href={router.root}>
             <a className={css.logo}>
                 <img className={css.img} src="/logo.png" alt="logo" />
             </a>

@@ -2,33 +2,28 @@ import Head from 'next/head';
 import React, { ReactElement } from 'react';
 import { END } from 'redux-saga';
 
+import TopPopular from '../components/Common/Offers/PopularOffersWrap';
 import Search from '../components/Common/Search';
 import About from '../components/Layout/About';
 import Banner from '../components/Layout/Banner';
 import Container from '../components/Layout/Container';
 import Main from '../components/Layout/Main';
 import Categories from '../components/Pages/Home/Categories';
-import TopPopular from '../components/Common/Offers/PopularOffersWrap';
 import { IStore } from '../interfaces';
 import { wrapper } from '../redux/store';
 import types from '../redux/types';
 
 const Index = (): ReactElement => (
-    <>
-        <Head>
-            <title>Fucking project</title>
-        </Head>
-        <Main>
-            <Container>
-                <Search />
-                <Categories />
-                <Banner />
-                <TopPopular />
-            </Container>
+    <Main>
+        <Container>
+            <Search />
+            <Categories />
+            <Banner />
+            <TopPopular />
+        </Container>
 
-            <About />
-        </Main>
-    </>
+        <About />
+    </Main>
 );
 
 export const getStaticProps = wrapper.getStaticProps(

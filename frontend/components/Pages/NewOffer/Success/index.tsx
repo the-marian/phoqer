@@ -2,6 +2,7 @@ import Link from 'next/link';
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
+import router from '../../../../assets/router';
 import { Theme } from '../../../../assets/theme';
 
 const useStyles = createUseStyles((theme: Theme) => ({
@@ -100,7 +101,7 @@ const Success = (): ReactElement => {
                     в личном кабинете.
                 </p>
 
-                <Link href="/">
+                <Link href={router.root}>
                     <a className={css.link}>Перейти в личный кабинет</a>
                 </Link>
             </div>

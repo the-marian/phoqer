@@ -5,6 +5,7 @@ import Link from 'next/link';
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
+import router from '../../../../assets/router';
 import { Theme } from '../../../../assets/theme';
 import { IOfferCard } from '../../../../interfaces';
 
@@ -29,7 +30,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         objectFit: 'cover',
         objectPosition: 'top',
         borderRadius: theme.radius,
-        boxShadow: theme.shadow[3],
+        boxShadow: theme.shadow[1],
     },
     topWrp: {
         position: 'absolute',
@@ -47,7 +48,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         boxShadow: theme.shadow[0],
 
         '&:nth-of-type(1)': {
-            color: theme.palette.green,
+            color: theme.palette.violet,
         },
     },
     title: {
@@ -84,7 +85,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         alignItems: 'center',
     },
     btn: {
-        padding: theme.rem(1.5, 3),
+        padding: theme.rem(1.5, 2),
         fontSize: theme.rem(1.4),
         borderRadius: theme.radius,
         background: theme.palette.grayblue[0],
@@ -135,7 +136,7 @@ const OfferCard = ({ product }: IProps): ReactElement => {
 
     return (
         <div className={css.root}>
-            <Link href="/offers/:offerId" as={`/offers/${id}`}>
+            <Link href={`${router.offers}/:offerId`} as={`/offers/${id}`}>
                 <a className={css.link}>
                     <div className={css.imgWrp}>
                         <div className={css.topWrp}>

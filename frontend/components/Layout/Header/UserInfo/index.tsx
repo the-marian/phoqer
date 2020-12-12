@@ -7,6 +7,7 @@ import { Router } from 'next/router';
 import React, { ReactElement, useState } from 'react';
 import { createUseStyles } from 'react-jss';
 
+import router from '../../../../assets/router';
 import { Theme } from '../../../../assets/theme';
 import NotifNumber from '../../../Common/NotifNumber';
 import DropWindow from './DropWindow';
@@ -57,7 +58,7 @@ const UserInfo = (): ReactElement => {
     return (
         <ul className={css.flex}>
             <li className={css.item}>
-                <Link href="/new_offer/1">
+                <Link href={`${router.new_offer}/1`}>
                     <a className={css.link}>
                         <FontAwesomeIcon icon={faPlus} />
                         <span className={css.text}>Сдать в аренду</span>
@@ -65,7 +66,7 @@ const UserInfo = (): ReactElement => {
                 </Link>
             </li>
             <li className={css.item}>
-                <Link href="/selected">
+                <Link href={router.favorite}>
                     <a className={css.link}>
                         <FontAwesomeIcon icon={faHeart} />
                         <span className={css.text}>Избранное</span>

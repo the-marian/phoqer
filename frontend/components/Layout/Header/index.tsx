@@ -1,11 +1,10 @@
-import axios from 'axios';
+import clsx from 'clsx';
 import React, { ReactElement, useEffect, useState } from 'react';
 import { createUseStyles } from 'react-jss';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 import { Theme } from '../../../assets/theme';
 import { IAuth, IState } from '../../../interfaces';
-import types from '../../../redux/types';
 import Logo from '../../Common/Logo';
 import Container from '../Container';
 import Lang from '../Lang';
@@ -20,18 +19,15 @@ const useStyles = createUseStyles((theme: Theme) => ({
         zIndex: 10,
         width: '100%',
         padding: theme.rem(1.4, 0),
+        background: theme.palette.white,
         transition: theme.transitions,
-
-        '&::after': {
-            content: '""',
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            zIndex: 10,
-            width: '100%',
-            height: '100%',
-            background: 'linear-gradient(90deg, rgba(250,250,250,1) 25%, rgba(250,250,250,0.9) 50%, rgba(250,250,250,1) 75%)',
-        },
+    },
+    transform: {
+        transform: 'translateY(-100%)',
+    },
+    scrolled: {
+        background:
+            'linear-gradient(90deg, rgba(250, 250, 250, 1) 25%, rgba(250, 250, 250, 0.97) 50%, rgba(250, 250, 250, 1) 75%)',
     },
     flex: {
         position: 'relative',
@@ -50,33 +46,24 @@ let prev = 0;
 
 const Header = (): ReactElement => {
     const css = useStyles();
-    const dispatch = useDispatch();
-    const [delta, setDelta] = useState<boolean>(true);
-
+    const [delta, setDelta] = useState<boolean>(false);
+    const [scrolled, setScrolled] = useState<boolean>(false);
     const { auth_token } = useSelector<IState, IAuth>(state => state.auth);
-    const isLogin = auth_token && axios.defaults.headers.common.Authorization;
-
-    useEffect(() => {
-        if (isLogin) {
-            dispatch({ type: types.GET_USER_START });
-        }
-    }, [dispatch, isLogin]);
 
     useEffect(() => {
         const handleScroll = (): void => {
-            if (window.scrollY < 300 && delta) {
-                setDelta(true);
+            if (window.scrollY < 100 && scrolled) {
+                setScrolled(false);
+            }
+
+            if (window.scrollY < 300 && !delta) {
+                setDelta(false);
                 prev = 0;
                 return;
             }
 
-            if (window.scrollY < 0 && delta) {
-                setDelta(true);
-                prev = 0;
-                return;
-            }
-
-            setDelta(prev > window.scrollY);
+            setDelta(prev < window.scrollY);
+            setScrolled(true);
             prev = window.scrollY;
         };
 
@@ -88,7 +75,7 @@ const Header = (): ReactElement => {
     }, []);
 
     return (
-        <header className={css.header} style={delta ? {} : { transform: 'translateY(-100%)' }}>
+        <header className={clsx(css.header, delta && css.transform, scrolled && css.scrolled)}>
             <Container>
                 <div className={css.flex}>
                     <div className={css.wrp}>
@@ -96,7 +83,7 @@ const Header = (): ReactElement => {
                         <Lang />
                     </div>
 
-                    {isLogin ? <UserInfo /> : <GeneralInfo />}
+                    {auth_token ? <UserInfo /> : <GeneralInfo />}
                 </div>
             </Container>
         </header>

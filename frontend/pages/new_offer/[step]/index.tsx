@@ -4,6 +4,7 @@ import React, { ReactElement, useEffect, useState } from 'react';
 import { createUseStyles } from 'react-jss';
 import { END } from 'redux-saga';
 
+import { Theme } from '../../../assets/theme';
 import Container from '../../../components/Layout/Container';
 import Main from '../../../components/Layout/Main';
 import StepOne from '../../../components/Pages/NewOffer/StepOne';
@@ -11,7 +12,6 @@ import Stepper from '../../../components/Pages/NewOffer/Stepper';
 import StepThree from '../../../components/Pages/NewOffer/StepThree';
 import StepTwo from '../../../components/Pages/NewOffer/StepTwo';
 import Success from '../../../components/Pages/NewOffer/Success';
-import { Theme } from '../../../assets/theme';
 import { IStore } from '../../../interfaces';
 import { wrapper } from '../../../redux/store';
 import types from '../../../redux/types';
@@ -60,7 +60,7 @@ const NewOffer = (): ReactElement => {
     return (
         <>
             <Head>
-                <title>New product | Fucking project</title>
+                <title>New product | Phoqer</title>
             </Head>
             <Main>
                 <Container>

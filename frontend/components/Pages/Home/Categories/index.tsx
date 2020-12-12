@@ -4,13 +4,14 @@ import { createUseStyles } from 'react-jss';
 import { useSelector } from 'react-redux';
 
 import config from '../../../../assets/config';
+import router from '../../../../assets/router';
 import { Theme } from '../../../../assets/theme';
 import { ICategories, IState } from '../../../../interfaces';
 import SectionTitle from '../../../Layout/SectionTitle';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     root: {
-        margin: theme.rem(5, 0),
+        margin: theme.rem(8, 0, 4),
         '@media (max-width: 550px)': {
             margin: theme.rem(2, 0),
         },
@@ -53,7 +54,7 @@ const Categories = (): ReactElement => {
 
             <div className={css.wrp}>
                 {categories?.map(({ name, image, slug }) => (
-                    <Link key={name} href={`/offers?category=${slug}`}>
+                    <Link key={name} href={`${router.offers}?category=${slug}`}>
                         <div className={css.cat}>
                             <img className={css.img} src={image} alt={name} />
                             <p className={css.text}>{name}</p>

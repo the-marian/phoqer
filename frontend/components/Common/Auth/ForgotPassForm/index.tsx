@@ -4,6 +4,7 @@ import Link from 'next/link';
 import React, { FormEvent, ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
+import router from '../../../../assets/router';
 import { Theme } from '../../../../assets/theme';
 
 const useStyles = createUseStyles((theme: Theme) => ({
@@ -84,13 +85,13 @@ const ForgotPassForm = (): ReactElement => {
                 ВОСТАНОВИТЬ ПАРОЛЬ
             </button>
 
-            <Link href="/login">
+            <Link href={router.auth.login}>
                 <a className={css.link}>Войти в личный кабинет</a>
             </Link>
 
             <p className={css.text}>или</p>
 
-            <Link href="/join">
+            <Link href={router.auth.join}>
                 <a className={css.link}>Зарегистрироваться</a>
             </Link>
         </form>

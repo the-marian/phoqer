@@ -3,6 +3,7 @@ import React, { FormEvent, ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 import { useDispatch, useSelector } from 'react-redux';
 
+import router from '../../../../assets/router';
 import { Theme } from '../../../../assets/theme';
 import { IState } from '../../../../interfaces';
 import types from '../../../../redux/types';
@@ -63,7 +64,8 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
     title: {
         fontSize: theme.rem(2),
-        fontWeight: theme.text.weight[3],
+        fontWeight: theme.text.weight[4],
+        color: theme.palette.blue[1],
     },
     close: {
         marginLeft: theme.rem(2.5),
@@ -141,7 +143,7 @@ const Filters = (): ReactElement => {
                 <ul className={css.list}>
                     {POPULAR.map(query => (
                         <li key={query}>
-                            <Link href={`/offers?q=${query}`}>
+                            <Link href={`${router.offers}?q=${query}`}>
                                 <a className={css.link}>{query}</a>
                             </Link>
                         </li>

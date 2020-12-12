@@ -1,11 +1,9 @@
-import React, { ReactElement, useEffect } from 'react';
+import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
-import { useDispatch } from 'react-redux';
 
 import config from '../../../../assets/config';
 import { Theme } from '../../../../assets/theme';
 import { IOfferPopular } from '../../../../interfaces';
-import types from '../../../../redux/types';
 import OffersLoader from '../../Preloaders/OffersLoader';
 import OfferCard from '../OffersCard';
 
@@ -33,11 +31,6 @@ const useStyles = createUseStyles((theme: Theme) => ({
 
 const OffersList = ({ data, loading }: IOfferPopular): ReactElement => {
     const css = useStyles();
-    const dispatch = useDispatch();
-
-    useEffect(() => {
-        dispatch({ type: types.GET_POPULAR_OFFERS_START });
-    }, [dispatch]);
 
     return (
         <div className={css.grid}>

@@ -2,6 +2,7 @@ import React, { ReactElement, useEffect } from 'react';
 import { createUseStyles } from 'react-jss';
 import { useDispatch, useSelector } from 'react-redux';
 
+import router from '../../../../assets/router';
 import { Theme } from '../../../../assets/theme';
 import { IOfferPopular, IState } from '../../../../interfaces';
 import types from '../../../../redux/types';
@@ -36,7 +37,7 @@ const TopProducts = (): ReactElement => {
     return (
         <div className={css.root}>
             <Container>
-                <SectionTitle link="Смотреть все" href="/offers?type=popular">
+                <SectionTitle link="Смотреть все" href={`${router.offers}?type=popular`}>
                     TOП Объявления
                 </SectionTitle>
 

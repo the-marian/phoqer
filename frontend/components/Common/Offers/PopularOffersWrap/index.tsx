@@ -3,6 +3,7 @@ import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 import { useSelector } from 'react-redux';
 
+import router from '../../../../assets/router';
 import { Theme } from '../../../../assets/theme';
 import { IOfferPopular, IState } from '../../../../interfaces';
 import SectionTitle from '../../../Layout/SectionTitle';
@@ -39,13 +40,13 @@ const TopPopular = (): ReactElement => {
 
     return (
         <div className={css.root}>
-            <SectionTitle link="Смотреть все" href="/offers?type=popular">
+            <SectionTitle link="Смотреть все" href={`${router.offers}?type=popular`}>
                 Популярные товары
             </SectionTitle>
 
             <OffersList data={data} loading={loading} />
 
-            <Link href="/offers">
+            <Link href={router.offers}>
                 <a className={css.btn}>Смотреть все</a>
             </Link>
         </div>
