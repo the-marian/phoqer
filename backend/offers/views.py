@@ -40,7 +40,7 @@ class SearchOffersView(ListAPIView):
         'title',
     ]
     ordering_fields = [
-        'pud_date',
+        'pub_date',
         'views',
         'price',
         'deposit_val',

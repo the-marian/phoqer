@@ -30,7 +30,7 @@ class Offer(models.Model):
         ARCHIVED = 'ARCHIVED', _('Archived')
         FROZEN = 'FROZEN', _('Frozen')
 
-    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='author_offers')
     category = models.ForeignKey(ParentCategories, on_delete=models.PROTECT)
     city = models.CharField(max_length=50)
     cover_image = models.URLField()
@@ -49,7 +49,7 @@ class Offer(models.Model):
     per = models.CharField(max_length=5, choices=Per.choices)
     price = models.PositiveIntegerField()
     promote_til_date = models.DateField(blank=True, null=True)
-    pud_date = models.DateField(auto_now_add=True)
+    pub_date = models.DateField(auto_now_add=True)
     status = models.CharField(max_length=8, choices=Status.choices, default=Status.DRAFT)
     sub_category = models.ForeignKey(ChildCategories, on_delete=models.PROTECT)
     title = models.CharField(max_length=120)
@@ -59,7 +59,7 @@ class Offer(models.Model):
         return self.title
 
     class Meta:
-        ordering = ['pud_date']
+        ordering = ['pub_date']
 
 
 class OfferImages(models.Model):

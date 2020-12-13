@@ -1,4 +1,5 @@
 from rest_framework import serializers
+from rest_framework.generics import get_object_or_404
 
 from offers.models import Offer
 from .models import Comment, CommentImage, Like, Dislike
@@ -63,7 +64,7 @@ class CommentCreateSerializer(serializers.ModelSerializer):
         if offer_id := url_params.get('offer'):
             validated_data['offer'] = Offer.objects.get(pk=offer_id)
         elif parent_comment_id := url_params.get('pk'):
-            parent_comment = Comment.objects.get(pk=parent_comment_id)
+            parent_comment = get_object_or_404(Comment, pk=parent_comment_id)
             validated_data['replies'] = parent_comment
             validated_data['offer'] = parent_comment.offer
         return self.Meta.model.objects.create(**validated_data)

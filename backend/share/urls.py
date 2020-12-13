@@ -15,8 +15,8 @@ urlpatterns = [
     path('api/v1/offers/', include('offers.urls', namespace='offers')),
 
     # Users
-    path('api/v1/', include('djoser.urls')),
     path('api/v1/users/', include('users.urls', namespace='users')),
+    path('api/v1/', include('djoser.urls')),
 
     # SWAGGER URL
     path('api/schema/', SpectacularAPIView.as_view(), name='schema'),

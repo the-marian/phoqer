@@ -35,7 +35,7 @@ class OfferListItemSerializer(serializers.ModelSerializer):
             'is_deliverable',
             'per',
             'price',
-            'pud_date',
+            'pub_date',
             'title',
             'views',
         ]

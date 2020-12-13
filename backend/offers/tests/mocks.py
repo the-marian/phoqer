@@ -38,7 +38,7 @@ list_offers_expected_response = [
         "is_deliverable": True,
         "per": "DAY",
         "price": 499,
-        "pud_date": "2020-10-29",
+        "pub_date": "2020-10-29",
         "title": "Iphone 12",
         "views": 0
     },
@@ -52,7 +52,7 @@ list_offers_expected_response = [
         "is_deliverable": False,
         "per": "WEEK",
         "price": 399,
-        "pud_date": "2020-10-29",
+        "pub_date": "2020-10-29",
         "title": "Iphone 11",
         "views": 0
     },
@@ -66,7 +66,7 @@ list_offers_expected_response = [
         "is_deliverable": True,
         "per": "MONTH",
         "price": 299,
-        "pud_date": "2020-10-29",
+        "pub_date": "2020-10-29",
         "title": "Iphone 10",
         "views": 0
     },
@@ -83,7 +83,7 @@ list_offers_without_iphone10 = [
         "is_deliverable": True,
         "per": "DAY",
         "price": 499,
-        "pud_date": "2020-10-29",
+        "pub_date": "2020-10-29",
         "title": "Iphone 12",
         "views": 0
     },
@@ -97,7 +97,7 @@ list_offers_without_iphone10 = [
         "is_deliverable": False,
         "per": "WEEK",
         "price": 399,
-        "pud_date": "2020-10-29",
+        "pub_date": "2020-10-29",
         "title": "Iphone 11",
         "views": 0
     },
@@ -113,7 +113,7 @@ iphone11_is_promoted_True = [
         "is_deliverable": False,
         "per": "WEEK",
         "price": 399,
-        "pud_date": "2020-10-29",
+        "pub_date": "2020-10-29",
         "title": "Iphone 11",
         "views": 0
     },
@@ -127,7 +127,7 @@ iphone11_is_promoted_True = [
         "is_deliverable": True,
         "per": "DAY",
         "price": 499,
-        "pud_date": "2020-10-29",
+        "pub_date": "2020-10-29",
         "title": "Iphone 12",
         "views": 0
     },
@@ -141,7 +141,7 @@ iphone11_is_promoted_True = [
         "is_deliverable": True,
         "per": "MONTH",
         "price": 299,
-        "pud_date": "2020-10-29",
+        "pub_date": "2020-10-29",
         "title": "Iphone 10",
         "views": 0
     },
@@ -158,7 +158,7 @@ iphone11_is_promoted_False = [
         "is_deliverable": False,
         "per": "WEEK",
         "price": 399,
-        "pud_date": "2020-10-29",
+        "pub_date": "2020-10-29",
         "title": "Iphone 11",
         "views": 0
     },
@@ -172,7 +172,7 @@ iphone11_is_promoted_False = [
         "is_deliverable": True,
         "per": "DAY",
         "price": 499,
-        "pud_date": "2020-10-29",
+        "pub_date": "2020-10-29",
         "title": "Iphone 12",
         "views": 0
     },
@@ -186,7 +186,7 @@ iphone11_is_promoted_False = [
         "is_deliverable": True,
         "per": "MONTH",
         "price": 299,
-        "pud_date": "2020-10-29",
+        "pub_date": "2020-10-29",
         "title": "Iphone 10",
         "views": 0
     },
@@ -203,7 +203,7 @@ list_ordered_by_promotion = [
         "is_promoted": True,
         "per": "MONTH",
         "price": 299,
-        "pud_date": "2020-10-29",
+        "pub_date": "2020-10-29",
         "title": "Iphone 10",
         "views": 0
     },
@@ -217,7 +217,7 @@ list_ordered_by_promotion = [
         "is_promoted": True,
         "per": "WEEK",
         "price": 399,
-        "pud_date": "2020-10-29",
+        "pub_date": "2020-10-29",
         "title": "Iphone 11",
         "views": 0
     },
@@ -231,7 +231,7 @@ list_ordered_by_promotion = [
         "is_promoted": True,
         "per": "DAY",
         "price": 499,
-        "pud_date": "2020-10-29",
+        "pub_date": "2020-10-29",
         "title": "Iphone 12",
         "views": 0
     },
@@ -248,7 +248,7 @@ list_ordered_by_views = [
         "is_promoted": False,
         "per": "WEEK",
         "price": 399,
-        "pud_date": "2020-10-29",
+        "pub_date": "2020-10-29",
         "title": "Iphone 11",
         "views": 1290
     },
@@ -262,7 +262,7 @@ list_ordered_by_views = [
         "is_promoted": False,
         "per": "MONTH",
         "price": 299,
-        "pud_date": "2020-10-29",
+        "pub_date": "2020-10-29",
         "title": "Iphone 10",
         "views": 376
     },
@@ -276,7 +276,7 @@ list_ordered_by_views = [
         "is_promoted": False,
         "per": "DAY",
         "price": 499,
-        "pud_date": "2020-10-29",
+        "pub_date": "2020-10-29",
         "title": "Iphone 12",
         "views": 128
     },
@@ -293,7 +293,7 @@ list_order_mixed = [
         "is_deliverable": True,
         "per": "MONTH",
         "price": 299,
-        "pud_date": "2020-10-29",
+        "pub_date": "2020-10-29",
         "title": "Iphone 10",
         "views": 257
     },
@@ -307,7 +307,7 @@ list_order_mixed = [
         "is_deliverable": False,
         "per": "WEEK",
         "price": 399,
-        "pud_date": "2020-10-29",
+        "pub_date": "2020-10-29",
         "title": "Iphone 11",
         "views": 674
     },
@@ -321,7 +321,7 @@ list_order_mixed = [
         "is_deliverable": True,
         "per": "DAY",
         "price": 499,
-        "pud_date": "2020-10-29",
+        "pub_date": "2020-10-29",
         "title": "Iphone 12",
         "views": 238
     },
@@ -340,7 +340,7 @@ search_filter_city_mock = [
         "is_deliverable": True,
         "per": "DAY",
         "price": 499,
-        "pud_date": "2020-10-29",
+        "pub_date": "2020-10-29",
         "title": "Iphone 12",
         "views": 0
     },
@@ -357,7 +357,7 @@ search_filter_status_active_mock = [
         "is_deliverable": True,
         "per": "DAY",
         "price": 499,
-        "pud_date": "2020-10-29",
+        "pub_date": "2020-10-29",
         "title": "Iphone 12",
         "views": 0
     },
@@ -371,7 +371,7 @@ search_filter_status_active_mock = [
         "is_deliverable": False,
         "per": "WEEK",
         "price": 399,
-        "pud_date": "2020-10-29",
+        "pub_date": "2020-10-29",
         "title": "Iphone 11",
         "views": 0
     },
@@ -388,7 +388,7 @@ search_filter_status_in_rent_mock = [
         "is_deliverable": True,
         "per": "MONTH",
         "price": 299,
-        "pud_date": "2020-10-29",
+        "pub_date": "2020-10-29",
         "title": "Iphone 10",
         "views": 0
     },
@@ -405,7 +405,7 @@ search_filter_is_deliverable_mock = [
         "is_deliverable": True,
         "per": "DAY",
         "price": 499,
-        "pud_date": "2020-10-29",
+        "pub_date": "2020-10-29",
         "title": "Iphone 12",
         "views": 0
     },
@@ -419,7 +419,7 @@ search_filter_is_deliverable_mock = [
         "is_deliverable": True,
         "per": "MONTH",
         "price": 299,
-        "pud_date": "2020-10-29",
+        "pub_date": "2020-10-29",
         "title": "Iphone 10",
         "views": 0
     },
@@ -436,7 +436,7 @@ search_test_description_mock = [
         "is_deliverable": False,
         "per": "WEEK",
         "price": 399,
-        "pud_date": "2020-10-29",
+        "pub_date": "2020-10-29",
         "title": "Iphone 11",
         "views": 0
     },
@@ -450,7 +450,7 @@ search_test_description_mock = [
         "is_deliverable": True,
         "per": "MONTH",
         "price": 299,
-        "pud_date": "2020-10-29",
+        "pub_date": "2020-10-29",
         "title": "Iphone 10",
         "views": 0
     },
@@ -467,7 +467,7 @@ ascending_price_ordering_mock = [
         "is_deliverable": True,
         "per": "MONTH",
         "price": 299,
-        "pud_date": "2020-10-29",
+        "pub_date": "2020-10-29",
         "title": "Iphone 10",
         "views": 0
     },
@@ -481,7 +481,7 @@ ascending_price_ordering_mock = [
         "is_deliverable": False,
         "per": "WEEK",
         "price": 399,
-        "pud_date": "2020-10-29",
+        "pub_date": "2020-10-29",
         "title": "Iphone 11",
         "views": 0
     },
@@ -495,7 +495,7 @@ ascending_price_ordering_mock = [
         "is_deliverable": True,
         "per": "DAY",
         "price": 499,
-        "pud_date": "2020-10-29",
+        "pub_date": "2020-10-29",
         "title": "Iphone 12",
         "views": 0
     }
@@ -512,7 +512,7 @@ ascending_deposit_ordering_mock = [
         "is_deliverable": True,
         "per": "MONTH",
         "price": 299,
-        "pud_date": "2020-10-29",
+        "pub_date": "2020-10-29",
         "title": "Iphone 10",
         "views": 0
     },
@@ -526,7 +526,7 @@ ascending_deposit_ordering_mock = [
         "is_deliverable": True,
         "per": "DAY",
         "price": 499,
-        "pud_date": "2020-10-29",
+        "pub_date": "2020-10-29",
         "title": "Iphone 12",
         "views": 0
     },
@@ -540,7 +540,7 @@ ascending_deposit_ordering_mock = [
         "is_deliverable": False,
         "per": "WEEK",
         "price": 399,
-        "pud_date": "2020-10-29",
+        "pub_date": "2020-10-29",
         "title": "Iphone 11",
         "views": 0
     }
@@ -557,7 +557,7 @@ descending_deposit_ordering_mock = [
         "is_deliverable": False,
         "per": "WEEK",
         "price": 399,
-        "pud_date": "2020-10-29",
+        "pub_date": "2020-10-29",
         "title": "Iphone 11",
         "views": 0
     },
@@ -571,7 +571,7 @@ descending_deposit_ordering_mock = [
         "is_deliverable": True,
         "per": "DAY",
         "price": 499,
-        "pud_date": "2020-10-29",
+        "pub_date": "2020-10-29",
         "title": "Iphone 12",
         "views": 0
     },
@@ -585,7 +585,7 @@ descending_deposit_ordering_mock = [
         "is_deliverable": True,
         "per": "MONTH",
         "price": 299,
-        "pud_date": "2020-10-29",
+        "pub_date": "2020-10-29",
         "title": "Iphone 10",
         "views": 0
     }
@@ -602,7 +602,7 @@ min_price_order_mock = [
         "is_deliverable": True,
         "per": "DAY",
         "price": 499,
-        "pud_date": "2020-10-29",
+        "pub_date": "2020-10-29",
         "title": "Iphone 12",
         "views": 0
     },
@@ -616,7 +616,7 @@ min_price_order_mock = [
         "is_deliverable": False,
         "per": "WEEK",
         "price": 399,
-        "pud_date": "2020-10-29",
+        "pub_date": "2020-10-29",
         "title": "Iphone 11",
         "views": 0
     }
@@ -633,7 +633,7 @@ max_price_order_mock = [
         "is_deliverable": True,
         "per": "MONTH",
         "price": 299,
-        "pud_date": "2020-10-29",
+        "pub_date": "2020-10-29",
         "title": "Iphone 10",
         "views": 0
     }
@@ -650,7 +650,7 @@ no_deposit_true_mock = [
         "is_deliverable": True,
         "per": "DAY",
         "price": 499,
-        "pud_date": "2020-10-29",
+        "pub_date": "2020-10-29",
         "title": "Iphone 12",
         "views": 0
     },
@@ -664,7 +664,7 @@ no_deposit_true_mock = [
         "is_deliverable": True,
         "per": "MONTH",
         "price": 299,
-        "pud_date": "2020-10-29",
+        "pub_date": "2020-10-29",
         "title": "Iphone 10",
         "views": 0
     }
@@ -681,7 +681,7 @@ max_deposit_filter_mock = [
         "is_deliverable": True,
         "per": "DAY",
         "price": 499,
-        "pud_date": "2020-10-29",
+        "pub_date": "2020-10-29",
         "title": "Iphone 12",
         "views": 0
     },
@@ -695,7 +695,7 @@ max_deposit_filter_mock = [
         "is_deliverable": False,
         "per": "WEEK",
         "price": 399,
-        "pud_date": "2020-10-29",
+        "pub_date": "2020-10-29",
         "title": "Iphone 11",
         "views": 0
     }
@@ -712,7 +712,7 @@ min_deposit_filter_mock = [
         "is_deliverable": True,
         "per": "MONTH",
         "price": 299,
-        "pud_date": "2020-10-29",
+        "pub_date": "2020-10-29",
         "title": "Iphone 10",
         "views": 0
     }

@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.contrib.auth.base_user import BaseUserManager
 from django.contrib.auth.models import AbstractUser
 from django.db import models
@@ -32,6 +33,7 @@ class UserManager(BaseUserManager):
 class User(AbstractUser):
     username = None
     bio = models.TextField(max_length=500, blank=True)
+    profile_img = models.URLField(null=True, blank=True)
     location = models.CharField(max_length=30, blank=True)
     birth_date = models.DateField(null=True, blank=True)
     email = models.EmailField(_('email address'), unique=True)
@@ -40,3 +42,25 @@ class User(AbstractUser):
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['last_name', 'first_name']
+
+
+class UserLike(models.Model):
+    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, related_name='user_likes', on_delete=models.CASCADE)
+
+
+class UserDislike(models.Model):
+    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, related_name='user_dislikes', on_delete=models.CASCADE)
+
+
+class CommunicationRating(models.Model):
+    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, related_name='communication_rating', on_delete=models.CASCADE)
+    mark = models.PositiveSmallIntegerField()
+
+
+class DescriptionRating(models.Model):
+    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, related_name='description_rating', on_delete=models.CASCADE)
+    mark = models.PositiveSmallIntegerField()
