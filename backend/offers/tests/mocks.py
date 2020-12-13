@@ -1,4 +1,3 @@
-from freezegun import freeze_time
 offers_endpoint_url = '/api/v1/offers/popular/'
 search_endpoint_url = '/api/v1/offers/search/'
 
