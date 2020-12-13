@@ -77,14 +77,16 @@ export interface IOffers {
 // =====================================
 // 5 NEW OFFER
 // =====================================
-export interface IStepOne {
+
+export interface INewOffer {
+    // step one
     title: string;
     price: number | null;
     category: IDropValue | null;
     currency: IDropValue | null;
-}
-
-export interface IStepTwo {
+    is_deliverable: boolean;
+    // step two
+    doc_needed: boolean;
     description: string;
     deposit_val: number | null;
     min_rent_value: number | null;
@@ -95,9 +97,13 @@ export interface IStepTwo {
         min_rent_value: boolean;
         max_rent_value: boolean;
     };
+    // is done
+    isDone: {
+        one: boolean;
+        two: boolean;
+        three: boolean;
+    };
 }
-
-export type INewOffer = IStepOne & IStepTwo;
 
 // =====================================
 // REDUX STORE

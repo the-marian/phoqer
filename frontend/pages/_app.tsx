@@ -33,10 +33,7 @@ const App = ({ Component, pageProps }: AppProps): ReactElement => {
 
     Router.events.on('routeChangeComplete', () => {
         logger();
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth',
-        });
+        window.scrollTo({ top: 0, behavior: 'smooth' });
         modal.close();
     });
 

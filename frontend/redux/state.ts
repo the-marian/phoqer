@@ -1,5 +1,4 @@
 import { IState } from '../interfaces';
-import newOffer from './new_offer/reducer';
 
 const initState: IState = {
     auth: {
@@ -20,16 +19,24 @@ const initState: IState = {
         price: null,
         category: null,
         currency: null,
+        is_deliverable: false,
         // step 2
+        doc_needed: false,
         description: '',
         deposit_val: null,
         min_rent_value: null,
         max_rent_value: null,
         extra_requirements: '',
         optional: {
-            deposit_val: true,
-            min_rent_value: true,
-            max_rent_value: true,
+            deposit_val: false,
+            min_rent_value: false,
+            max_rent_value: false,
+        },
+        // is done
+        isDone: {
+            one: false,
+            two: false,
+            three: false,
         },
     },
 };

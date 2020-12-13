@@ -1,131 +1,18 @@
+import clsx from 'clsx';
 import { useRouter } from 'next/router';
 import React, { ChangeEvent, FormEvent, ReactElement, useState } from 'react';
-import { createUseStyles } from 'react-jss';
 import { useDispatch, useSelector } from 'react-redux';
 
 import * as helpers from '../../../../assets/helpers';
 import { numberValidation } from '../../../../assets/helpers';
-import { Theme } from '../../../../assets/theme';
 import { ICategories, IDropList, IDropValue, INewOffer, IState } from '../../../../interfaces';
-import state from '../../../../redux/state';
 import types from '../../../../redux/types';
+import CheckTitle from '../../../Common/CheckTitle';
 import DropDown from '../../../Common/DropDown';
+import { modal } from '../../../Common/Modal';
+import SaveModal from '../SaveModal';
 import Region from './Region';
-
-const useStyles = createUseStyles((theme: Theme) => ({
-    form: {
-        padding: theme.rem(3, 10),
-        borderRadius: theme.radius,
-        background: theme.palette.soft[0],
-        maxWidth: theme.rem(80),
-        margin: '0 auto',
-
-        '& > p': {
-            marginTop: theme.rem(4),
-            fontSize: theme.rem(1.4),
-        },
-
-        '@media (max-width: 580px)': {
-            padding: theme.rem(3),
-        },
-    },
-    red: {
-        color: theme.palette.red[0],
-    },
-    inner: {
-        margin: theme.rem(3, 0),
-    },
-    title: {
-        marginBottom: theme.rem(1),
-        fontSize: theme.rem(1.4),
-        fontWeight: theme.text.weight[2],
-    },
-    input: {
-        display: 'flex',
-        alignItems: 'center',
-        height: theme.rem(6),
-        width: '100%',
-        padding: theme.rem(1, 2),
-        background: theme.palette.white,
-        border: 'none',
-        borderRadius: theme.radius,
-        fontSize: theme.rem(1.3),
-
-        '& span': {
-            width: '88%',
-            marginLeft: theme.rem(1),
-            whiteSpace: 'nowrap',
-            overflow: 'hidden',
-            textOverflow: 'ellipsis',
-            textAlign: 'left',
-
-            '@media (max-width: 900px)': {
-                width: '100%',
-            },
-        },
-    },
-    icon: {
-        fontSize: theme.rem(0.91),
-        marginRight: theme.rem(1.5),
-    },
-    flex: {
-        display: 'flex',
-        justifyContent: 'space-between',
-
-        '& > div': {
-            flexBasis: '48%',
-        },
-
-        '@media (max-width: 500px)': {
-            display: 'block',
-        },
-    },
-    wrp: {
-        display: 'grid',
-        gridTemplateColumns: theme.fr(2),
-        gridGap: theme.rem(1),
-
-        '@media (max-width: 500px)': {
-            gridTemplateColumns: theme.fr(1),
-        },
-    },
-    btnWrp: {
-        display: 'flex',
-        justifyContent: 'flex-end',
-        margin: theme.rem(6, 0, 4),
-
-        '@media (max-width: 470px)': {
-            flexDirection: 'column',
-        },
-    },
-    next: {
-        padding: theme.rem(1, 4),
-        marginLeft: theme.rem(2),
-        background: theme.palette.blue[0],
-        fontSize: theme.rem(1.4),
-        color: theme.palette.white,
-        borderRadius: theme.radius,
-
-        '@media (max-width: 470px)': {
-            margin: theme.rem(2, 0, 0),
-            padding: theme.rem(2, 4),
-        },
-    },
-    btn: {
-        height: theme.rem(6),
-        padding: theme.rem(1, 4),
-        marginLeft: theme.rem(2),
-        background: theme.palette.white,
-        fontSize: theme.rem(1.4),
-        color: theme.palette.black,
-        borderRadius: theme.radius,
-
-        '@media (max-width: 470px)': {
-            margin: theme.rem(1.6, 0, 0),
-            padding: theme.rem(1.6, 4),
-        },
-    },
-}));
+import useStyles from './StepOne.styles';
 
 const CURRENCY: IDropList[] = [
     { name: 'uah', slug: 'uah' },
@@ -133,20 +20,33 @@ const CURRENCY: IDropList[] = [
     { name: 'eur', slug: 'eur' },
 ];
 
+interface IError {
+    title?: string;
+    price?: string;
+}
+
 const StepThree = (): ReactElement => {
     const css = useStyles();
     const router = useRouter();
     const dispatch = useDispatch();
 
+    const [errors, setErrors] = useState<IError>({});
     const init = useSelector<IState, INewOffer>(state => state.newOffer);
     const [value, setValue] = useState<INewOffer>(init);
 
+    // event handlers
+    const handleDelivery = (is_deliverable: boolean): void => {
+        setValue({ ...value, is_deliverable });
+        setErrors({});
+    };
     const handleTitle = (event: ChangeEvent<HTMLInputElement>): void => {
         setValue({ ...value, title: event.target.value });
+        setErrors({});
     };
     const handlePrice = (event: ChangeEvent<HTMLInputElement>): void => {
         if (numberValidation(event.target.value)) return;
-        setValue({ ...value, price: +event.target.value || null });
+        setValue({ ...value, price: event.target.value === '' ? null : +event.target.value });
+        setErrors({});
     };
     const handleCategory = (category: IDropValue): void => {
         setValue({ ...value, category });
@@ -155,18 +55,65 @@ const StepThree = (): ReactElement => {
         setValue({ ...value, currency });
     };
 
+    // on complete
     const data = useSelector<IState, ICategories[]>(state => state.categories);
     const categories = helpers.formatCatList(data);
 
     const handleSubmit = (event: FormEvent): void => {
         event.preventDefault();
-        dispatch({ type: types.NEW_OFFER_FORM, payload: value });
+
+        if (!value.title.trim()) {
+            setErrors({ title: 'Это обязательное поле' });
+            dispatch({ type: types.NEW_OFFER_FORM, payload: { ...value, isDone: { ...value.isDone, one: false } } });
+            return;
+        }
+
+        if (!value.price && value.price !== 0) {
+            setErrors({ price: 'Это обязательное поле' });
+            dispatch({ type: types.NEW_OFFER_FORM, payload: { ...value, isDone: { ...value.isDone, one: false } } });
+            return;
+        }
+
+        dispatch({
+            type: types.NEW_OFFER_FORM,
+            payload: {
+                ...value,
+                category: value.category ? value.category : categories[0],
+                currency: value.currency ? value.currency : CURRENCY[0],
+                isDone: { ...value.isDone, one: true },
+            },
+        });
         router.push('/new_offer/2');
     };
 
     const handleClear = (): void => {
-        setValue(state.newOffer);
-        dispatch({ type: types.NEW_OFFER_FORM, payload: state.newOffer });
+        const reset: INewOffer = {
+            ...value,
+            title: '',
+            is_deliverable: false,
+            price: null,
+            category: null,
+            currency: null,
+            isDone: {
+                one: false,
+                two: false,
+                three: false,
+            },
+        };
+        setValue(reset);
+        dispatch({ type: types.NEW_OFFER_FORM, payload: reset });
+    };
+
+    const handleSave = (): void => {
+        modal.open(<SaveModal />);
+        dispatch({
+            type: types.NEW_OFFER_FORM,
+            payload: {
+                ...value,
+                category: value.category ? value.category : categories[0],
+                currency: value.currency ? value.currency : CURRENCY[0],
+            },
+        });
     };
 
     return (
@@ -178,14 +125,19 @@ const StepThree = (): ReactElement => {
                 <input
                     value={value.title}
                     onChange={handleTitle}
-                    className={css.input}
+                    className={clsx(css.input, errors.title && css.errors)}
                     name="name"
                     type="text"
                     placeholder="Название"
                 />
+                {errors.title && <small className={css.errorsText}>{errors.title}</small>}
             </div>
 
             <Region />
+
+            <CheckTitle value={value.is_deliverable} onChange={handleDelivery}>
+                Укажите возможность доставки вашего товара в другой город
+            </CheckTitle>
 
             <div className={css.flex}>
                 {!!categories?.length && (
@@ -204,14 +156,15 @@ const StepThree = (): ReactElement => {
                     </h4>
                     <div className={css.wrp}>
                         <input
-                            value={value.price || ''}
+                            value={value.price !== null ? value.price : ''}
                             onChange={handlePrice}
-                            className={css.input}
+                            className={clsx(css.input, errors.price && css.errors)}
                             type="text"
                             placeholder="Цена"
                         />
                         <DropDown white data={CURRENCY} defaultValue={init.currency} onChange={handleCurrency} />
                     </div>
+                    {errors.price && <small className={css.errorsText}>{errors.price}</small>}
                 </div>
             </div>
 
@@ -219,10 +172,16 @@ const StepThree = (): ReactElement => {
                 Вы можете прервать заполнение формы и продолжить в любое удобное время. Вся информация останется на своих местах
             </p>
 
-            <div className={css.btnWrp}>
-                <button type="button" className={css.btn} onClick={handleClear}>
-                    Очистить
+            <div className={css.saveWrp}>
+                <button type="button" className={css.save} onClick={handleSave}>
+                    Сохранить
                 </button>
+                <button type="button" className={css.btn} onClick={handleClear}>
+                    Очистить форму
+                </button>
+            </div>
+
+            <div className={css.btnWrp}>
                 <button type="submit" className={css.next}>
                     Далее
                 </button>

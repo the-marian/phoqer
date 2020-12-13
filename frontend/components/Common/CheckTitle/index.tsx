@@ -11,6 +11,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         borderRadius: 'none',
         margin: theme.rem(1, 4, 1, 0),
         '& span': {
+            textAlign: 'left',
             fontSize: theme.rem(1.4),
         },
     },
@@ -41,7 +42,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
 }));
 
 interface Props {
-    children: string;
+    children: JSX.Element | string;
     value?: boolean;
     onChange: (value: boolean) => void;
 }

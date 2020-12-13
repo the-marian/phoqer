@@ -2,13 +2,13 @@ import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
 import { encryptor } from '../../assets/encryptor';
-import { INewOffer, IStepOne, IStepTwo } from '../../interfaces';
+import { INewOffer } from '../../interfaces';
 import initState from '../state';
 import types from '../types';
 
 interface IAction {
     type: typeof types.SEARCH_FILTERS;
-    payload: IStepOne | IStepTwo | INewOffer;
+    payload: INewOffer;
 }
 
 const newOffer = (state: INewOffer = initState.newOffer, { type, payload }: IAction): INewOffer => {

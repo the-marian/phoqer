@@ -1,6 +1,7 @@
 import { faEye, faHeart } from '@fortawesome/free-regular-svg-icons';
 import { faHeart as faSolidHeart, faStar, faTruck } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import clsx from 'clsx';
 import Link from 'next/link';
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
@@ -43,13 +44,12 @@ const useStyles = createUseStyles((theme: Theme) => ({
         padding: theme.rem(0.5, 0.8),
         background: theme.palette.white,
         borderRadius: theme.radius,
-        color: theme.palette.yellow[0],
         fontSize: theme.rem(1),
         boxShadow: theme.shadow[0],
-
-        '&:nth-of-type(1)': {
-            color: theme.palette.violet,
-        },
+        color: theme.palette.yellow[0],
+    },
+    delivery: {
+        color: theme.palette.blue[0],
     },
     title: {
         margin: theme.rem(2, 0),
@@ -140,14 +140,14 @@ const OfferCard = ({ product }: IProps): ReactElement => {
                 <a className={css.link}>
                     <div className={css.imgWrp}>
                         <div className={css.topWrp}>
-                            {is_deliverable && (
-                                <div className={css.top}>
-                                    <FontAwesomeIcon icon={faTruck} />
-                                </div>
-                            )}
                             {is_promoted && (
                                 <div className={css.top}>
                                     <FontAwesomeIcon icon={faStar} />
+                                </div>
+                            )}
+                            {is_deliverable && (
+                                <div className={clsx(css.top, css.delivery)}>
+                                    <FontAwesomeIcon icon={faTruck} />
                                 </div>
                             )}
                         </div>

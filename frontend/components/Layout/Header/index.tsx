@@ -52,9 +52,9 @@ const Header = (): ReactElement => {
 
     useEffect(() => {
         const handleScroll = (): void => {
-            if (window.scrollY < 50 && scrolled) {
+            if (window.scrollY < 150 && scrolled) {
                 setScrolled(false);
-            } else if (window.scrollY > 50) {
+            } else {
                 setScrolled(true);
             }
 
