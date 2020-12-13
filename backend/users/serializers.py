@@ -64,10 +64,10 @@ class UserDetailsSerializer(serializers.ModelSerializer):
             return 0
 
     def get_communication_rate(self, user):
-        return round(CommunicationRating.objects.filter(user=user).aggregate(Avg('mark'))['mark__avg'], 1)
+        return round(CommunicationRating.objects.filter(user=user).aggregate(Avg('mark'))['mark__avg'] or 0, 1)
 
     def get_description_rate(self, user):
-        return round(DescriptionRating.objects.filter(user=user).aggregate(Avg('mark'))['mark__avg'], 1)
+        return round(DescriptionRating.objects.filter(user=user).aggregate(Avg('mark'))['mark__avg'] or 0, 1)
 
     def get_response_rate(self, user):
         return 56
