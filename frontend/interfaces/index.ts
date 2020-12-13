@@ -6,11 +6,12 @@ import { AnyAction, Store } from 'redux';
  * 2 AUTH
  * 3 CATEGORIES
  * 4 OFFERS
- * 5 REDUX STORE
+ * 5 NEW OFFER
+ * 6 REDUX STORE
  * */
 
 // =====================================
-// GENERAL
+// 1 GENERAL
 // =====================================
 export interface IDropList {
     name: string;
@@ -18,8 +19,14 @@ export interface IDropList {
     sub?: { name: string; slug: string }[];
 }
 
+export interface IDropValue {
+    name: string;
+    slug: string;
+    type: 'main' | 'sub';
+}
+
 // =====================================
-// AUTH
+// 2 AUTH
 // =====================================
 export interface Login {
     email: string;
@@ -32,7 +39,7 @@ export interface IAuth {
 }
 
 // =====================================
-// CATEGORIES
+// 3 CATEGORIES
 // =====================================
 export interface ICategories {
     name: string;
@@ -42,7 +49,7 @@ export interface ICategories {
 }
 
 // =====================================
-// OFFERS
+// 4 OFFERS
 // =====================================
 export interface IOfferCard {
     id: string;
@@ -68,6 +75,31 @@ export interface IOffers {
 }
 
 // =====================================
+// 5 NEW OFFER
+// =====================================
+export interface IStepOne {
+    title: string;
+    price: number | null;
+    category: IDropValue | null;
+    currency: IDropValue | null;
+}
+
+export interface IStepTwo {
+    description: string;
+    deposit_val: number | null;
+    min_rent_value: number | null;
+    max_rent_value: number | null;
+    extra_requirements: string;
+    optional: {
+        deposit_val: boolean;
+        min_rent_value: boolean;
+        max_rent_value: boolean;
+    };
+}
+
+export type INewOffer = IStepOne & IStepTwo;
+
+// =====================================
 // REDUX STORE
 // =====================================
 export interface IState {
@@ -75,6 +107,7 @@ export interface IState {
     filters: { open: boolean };
     categories: ICategories[] | null;
     offers: IOffers;
+    newOffer: INewOffer;
 }
 
 export interface IStore extends Store<IState, AnyAction> {

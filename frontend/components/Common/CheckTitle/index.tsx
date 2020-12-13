@@ -42,21 +42,20 @@ const useStyles = createUseStyles((theme: Theme) => ({
 
 interface Props {
     children: string;
+    value?: boolean;
     onChange: (value: boolean) => void;
 }
 
-const CheckTitle = ({ children, onChange }: Props): ReactElement => {
+const CheckTitle = ({ children, value, onChange }: Props): ReactElement => {
     const css = useStyles();
-    const [state, setState] = useState(true);
 
     const handleClick = () => {
-        setState(!state);
-        onChange(!state);
+        onChange(!value);
     };
 
     return (
         <button type="button" name="checked" className={css.btn} onClick={handleClick}>
-            <span className={clsx(css.label, !state || css.active)} />
+            <span className={clsx(css.label, !value || css.active)} />
             <span>{children}</span>
         </button>
     );

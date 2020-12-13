@@ -1,14 +1,16 @@
 import { useRouter } from 'next/router';
-import React, { FormEvent, ReactElement } from 'react';
+import React, { ChangeEvent, FormEvent, ReactElement, useState } from 'react';
 import { createUseStyles } from 'react-jss';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import * as helpers from '../../../../assets/helpers';
+import { numberValidation } from '../../../../assets/helpers';
 import { Theme } from '../../../../assets/theme';
-import { ICategories, IDropList, IState } from '../../../../interfaces';
+import { ICategories, IDropList, IDropValue, INewOffer, IState } from '../../../../interfaces';
+import state from '../../../../redux/state';
+import types from '../../../../redux/types';
 import DropDown from '../../../Common/DropDown';
-import { modal } from '../../../Common/Modal';
-import RegionModal from '../../../Common/RegionModal';
+import Region from './Region';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     form: {
@@ -17,6 +19,11 @@ const useStyles = createUseStyles((theme: Theme) => ({
         background: theme.palette.soft[0],
         maxWidth: theme.rem(80),
         margin: '0 auto',
+
+        '& > p': {
+            marginTop: theme.rem(4),
+            fontSize: theme.rem(1.4),
+        },
 
         '@media (max-width: 580px)': {
             padding: theme.rem(3),
@@ -82,9 +89,6 @@ const useStyles = createUseStyles((theme: Theme) => ({
             gridTemplateColumns: theme.fr(1),
         },
     },
-    map: {
-        width: theme.rem(2.4),
-    },
     btnWrp: {
         display: 'flex',
         justifyContent: 'flex-end',
@@ -132,17 +136,37 @@ const CURRENCY: IDropList[] = [
 const StepThree = (): ReactElement => {
     const css = useStyles();
     const router = useRouter();
+    const dispatch = useDispatch();
+
+    const init = useSelector<IState, INewOffer>(state => state.newOffer);
+    const [value, setValue] = useState<INewOffer>(init);
+
+    const handleTitle = (event: ChangeEvent<HTMLInputElement>): void => {
+        setValue({ ...value, title: event.target.value });
+    };
+    const handlePrice = (event: ChangeEvent<HTMLInputElement>): void => {
+        if (numberValidation(event.target.value)) return;
+        setValue({ ...value, price: +event.target.value || null });
+    };
+    const handleCategory = (category: IDropValue): void => {
+        setValue({ ...value, category });
+    };
+    const handleCurrency = (currency: IDropValue): void => {
+        setValue({ ...value, currency });
+    };
 
     const data = useSelector<IState, ICategories[]>(state => state.categories);
     const categories = helpers.formatCatList(data);
 
-    const handleRegionModal = () => {
-        modal.open(<RegionModal />);
-    };
-
     const handleSubmit = (event: FormEvent): void => {
         event.preventDefault();
+        dispatch({ type: types.NEW_OFFER_FORM, payload: value });
         router.push('/new_offer/2');
+    };
+
+    const handleClear = (): void => {
+        setValue(state.newOffer);
+        dispatch({ type: types.NEW_OFFER_FORM, payload: state.newOffer });
     };
 
     return (
@@ -151,21 +175,17 @@ const StepThree = (): ReactElement => {
                 <h4 className={css.title}>
                     Придумайте название объявления <span className={css.red}>*</span>
                 </h4>
-                <input className={css.input} name="name" type="text" placeholder="Название" />
+                <input
+                    value={value.title}
+                    onChange={handleTitle}
+                    className={css.input}
+                    name="name"
+                    type="text"
+                    placeholder="Название"
+                />
             </div>
 
-            <div className={css.inner}>
-                <h4 className={css.title}>
-                    Укажите ваше местоположение <span className={css.red}>*</span>
-                </h4>
-                <button type="button" className={css.input} onClick={handleRegionModal}>
-                    <img className={css.map} src="/emoji/map.png" alt="" />
-                    <span>
-                        Киев, Киевская область Киев, Киевская область Киев, Киевская область Киев, Киевская область Киев, Киевская
-                        область
-                    </span>
-                </button>
-            </div>
+            <Region />
 
             <div className={css.flex}>
                 {!!categories?.length && (
@@ -174,7 +194,7 @@ const StepThree = (): ReactElement => {
                             Выберите категорию товара <span className={css.red}>*</span>
                         </h4>
 
-                        <DropDown white value={categories} onSubmit={console.log} withSub />
+                        <DropDown white defaultValue={init.category} data={categories} onChange={handleCategory} withSub />
                     </div>
                 )}
 
@@ -183,15 +203,25 @@ const StepThree = (): ReactElement => {
                         Цена (за 1 час) <span className={css.red}>*</span>
                     </h4>
                     <div className={css.wrp}>
-                        <input className={css.input} type="text" placeholder="Цена" />
-                        <DropDown white value={CURRENCY} onSubmit={console.log} />
+                        <input
+                            value={value.price || ''}
+                            onChange={handlePrice}
+                            className={css.input}
+                            type="text"
+                            placeholder="Цена"
+                        />
+                        <DropDown white data={CURRENCY} defaultValue={init.currency} onChange={handleCurrency} />
                     </div>
                 </div>
             </div>
 
+            <p>
+                Вы можете прервать заполнение формы и продолжить в любое удобное время. Вся информация останется на своих местах
+            </p>
+
             <div className={css.btnWrp}>
-                <button type="button" className={css.btn}>
-                    Сохранить
+                <button type="button" className={css.btn} onClick={handleClear}>
+                    Очистить
                 </button>
                 <button type="submit" className={css.next}>
                     Далее

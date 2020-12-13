@@ -52,8 +52,10 @@ const Header = (): ReactElement => {
 
     useEffect(() => {
         const handleScroll = (): void => {
-            if (window.scrollY < 100 && scrolled) {
+            if (window.scrollY < 50 && scrolled) {
                 setScrolled(false);
+            } else if (window.scrollY > 50) {
+                setScrolled(true);
             }
 
             if (window.scrollY < 300 && !delta) {
@@ -63,7 +65,6 @@ const Header = (): ReactElement => {
             }
 
             setDelta(prev < window.scrollY);
-            setScrolled(true);
             prev = window.scrollY;
         };
 

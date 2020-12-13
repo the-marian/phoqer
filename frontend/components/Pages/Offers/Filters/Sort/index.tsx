@@ -26,7 +26,7 @@ const Sort = (): ReactElement => {
     return (
         <div>
             <h4 className={css.title}>Cортировать</h4>
-            <DropDown value={FILTERS} onSubmit={console.log} />
+            <DropDown data={FILTERS} onChange={console.log} />
         </div>
     );
 };

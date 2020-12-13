@@ -63,7 +63,7 @@ const PriceFilter = (): ReactElement => {
             <div className={css.wrp}>
                 <input className={css.input} type="text" placeholder="min" value={min} onChange={handleMin} />
                 <input className={css.input} type="text" placeholder="max" value={max} onChange={handleMax} />
-                <DropDown value={CURRENCY} onSubmit={console.log} />
+                <DropDown data={CURRENCY} onChange={console.log} />
             </div>
 
             <div className={css.range}>

@@ -8,6 +8,12 @@ import { modal } from '../../../../Common/Modal';
 import RegionModal from '../../../../Common/RegionModal';
 
 const useStyles = createUseStyles((theme: Theme) => ({
+    map: {
+        width: theme.rem(2.4),
+    },
+    inner: {
+        margin: theme.rem(3, 0),
+    },
     title: {
         marginBottom: theme.rem(1),
         fontSize: theme.rem(1.4),
@@ -19,14 +25,26 @@ const useStyles = createUseStyles((theme: Theme) => ({
         height: theme.rem(6),
         width: '100%',
         padding: theme.rem(1, 2),
-        background: theme.palette.gray[1],
+        background: theme.palette.white,
         border: 'none',
         borderRadius: theme.radius,
-        fontSize: theme.rem(0.91),
+        fontSize: theme.rem(1.3),
+
         '& span': {
-            marginLeft: theme.rem(1.5),
-            fontSize: theme.rem(1.3),
+            width: '88%',
+            marginLeft: theme.rem(1),
+            whiteSpace: 'nowrap',
+            overflow: 'hidden',
+            textOverflow: 'ellipsis',
+            textAlign: 'left',
+
+            '@media (max-width: 900px)': {
+                width: '100%',
+            },
         },
+    },
+    red: {
+        color: theme.palette.red[0],
     },
 }));
 
@@ -38,11 +56,16 @@ const Region = (): ReactElement => {
     };
 
     return (
-        <div>
-            <h4 className={css.title}>Регион</h4>
+        <div className={css.inner}>
+            <h4 className={css.title}>
+                Укажите ваше местоположение <span className={css.red}>*</span>
+            </h4>
             <button type="button" className={css.input} onClick={handleRegionModal}>
-                <FontAwesomeIcon icon={faChevronDown} />
-                <span>Киев, Киевская область</span>
+                <img className={css.map} src="/emoji/map.png" alt="" />
+                <span>
+                    Киев, Киевская область Киев, Киевская область Киев, Киевская область Киев, Киевская область Киев, Киевская
+                    область
+                </span>
             </button>
         </div>
     );

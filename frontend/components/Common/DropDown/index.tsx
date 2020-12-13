@@ -5,7 +5,7 @@ import React, { ReactElement, useEffect, useState } from 'react';
 import { createUseStyles } from 'react-jss';
 
 import { Theme } from '../../../assets/theme';
-import { IDropList } from '../../../interfaces';
+import { IDropList, IDropValue } from '../../../interfaces';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     wrp: {
@@ -86,23 +86,23 @@ const useStyles = createUseStyles((theme: Theme) => ({
 
 interface Props {
     height?: number;
-    value: IDropList[];
-    defaultValue?: string;
+    data: IDropList[];
+    defaultValue?: IDropValue | null;
     withSub?: boolean;
     transparent?: boolean;
     white?: boolean;
-    onSubmit: (value: string, slug: string, type: 'category' | 'sub_category') => void;
+    onChange: (value: IDropValue) => void;
 }
 
-const DropDown = ({ height = 6, value, onSubmit, defaultValue, withSub, transparent, white }: Props): ReactElement => {
+const DropDown = ({ height = 6, data, onChange, defaultValue, withSub, transparent, white }: Props): ReactElement => {
     const css = useStyles();
 
     const [drop, setDrop] = useState<boolean>(false);
-    const [selected, setSelected] = useState<string>(defaultValue || value[0].name);
+    const [selected, setSelected] = useState<string>(defaultValue?.name || data[0].name);
 
     useEffect(() => {
         if (defaultValue) {
-            setSelected(defaultValue);
+            setSelected(defaultValue.name);
         }
     }, [defaultValue]);
 
@@ -124,10 +124,10 @@ const DropDown = ({ height = 6, value, onSubmit, defaultValue, withSub, transpar
         setDrop(false);
     };
 
-    const handleSelect = (value: string, slug: string, type: 'category' | 'sub_category'): void => {
+    const handleSelect = (name: string, slug: string, type: 'main' | 'sub'): void => {
         setDrop(!drop);
-        onSubmit(value, slug, type);
-        setSelected(value);
+        onChange({ name, slug, type });
+        setSelected(name);
     };
 
     return (
@@ -154,12 +154,12 @@ const DropDown = ({ height = 6, value, onSubmit, defaultValue, withSub, transpar
                 <div className={css.container}>
                     <div className={css.box}>
                         <ul>
-                            {value?.map(({ name, slug, sub }) => (
+                            {data?.map(({ name, slug, sub }) => (
                                 <li className={clsx(css.item, withSub && css.itemEmpty)} key={slug}>
                                     <button
                                         type="button"
                                         onClick={() => {
-                                            handleSelect(name, slug, 'category');
+                                            handleSelect(name, slug, 'main');
                                         }}
                                     >
                                         {name}
@@ -172,7 +172,7 @@ const DropDown = ({ height = 6, value, onSubmit, defaultValue, withSub, transpar
                                                 key={slug}
                                                 aria-hidden
                                                 onClick={() => {
-                                                    handleSelect(name, slug, 'sub_category');
+                                                    handleSelect(name, slug, 'sub');
                                                 }}
                                             >
                                                 <span>{name}</span>

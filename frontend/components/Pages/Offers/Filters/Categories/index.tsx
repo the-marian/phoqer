@@ -44,7 +44,7 @@ const Categories = (): ReactElement => {
         !!categories?.length && (
             <div>
                 <h4 className={css.title}>Категория</h4>
-                <DropDown value={categories} onSubmit={console.log} defaultValue={categoryName || subCategoryName} withSub />
+                <DropDown data={categories} onChange={console.log} withSub />
             </div>
         )
     );
