@@ -8,12 +8,6 @@ from categories.models import ChildCategories, ParentCategories
 
 
 class Offer(models.Model):
-    class Per(models.TextChoices):
-        HOUR = 'HOUR', _('Hour')
-        DAY = 'DAY', _('Day')
-        WEEK = 'WEEK', _('Week')
-        MONTH = 'MONTH', _('Month')
-
     class Currency(models.TextChoices):
         EUR = 'EUR', _('Euro')
         USD = 'USD', _('Dollar')
@@ -42,16 +36,15 @@ class Offer(models.Model):
     favourite = models.ManyToManyField(settings.AUTH_USER_MODEL, blank=True, related_name='favourite_offers')
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     is_deliverable = models.BooleanField()
-    max_rent_per = models.CharField(max_length=5, choices=Per.choices, blank=True, null=True)
+    max_rent = models.PositiveSmallIntegerField(blank=True, null=True)
     max_rent_value = models.SmallIntegerField(blank=True, null=True)
-    min_rent_per = models.CharField(max_length=5, choices=Per.choices, blank=True, null=True)
+    min_rent = models.PositiveSmallIntegerField(blank=True, null=True)
     min_rent_value = models.SmallIntegerField(blank=True, null=True)
-    per = models.CharField(max_length=5, choices=Per.choices)
     price = models.PositiveIntegerField()
     promote_til_date = models.DateField(blank=True, null=True)
     pub_date = models.DateField(auto_now_add=True)
     status = models.CharField(max_length=8, choices=Status.choices, default=Status.DRAFT)
-    sub_category = models.ForeignKey(ChildCategories, on_delete=models.PROTECT)
+    sub_category = models.ForeignKey(ChildCategories, on_delete=models.PROTECT, blank=True, null=True)
     title = models.CharField(max_length=120)
     views = models.PositiveIntegerField(default=0)
 
