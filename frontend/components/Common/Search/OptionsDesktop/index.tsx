@@ -22,6 +22,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         width: '50%',
         height: '100%',
         padding: theme.rem(2),
+        fontSize: theme.rem(1.4),
         background: 'none',
         border: 'none',
         color: theme.palette.blue[1],
@@ -35,25 +36,12 @@ const useStyles = createUseStyles((theme: Theme) => ({
             background: theme.palette.gray[2],
         },
 
-        '@media (max-width: 900px)': {
-            width: '100%',
-            height: theme.rem(8),
-            background: theme.palette.gray[1],
-            borderRadius: theme.radius,
-            textAlign: 'left',
-            fontSize: theme.rem(1.4),
-        },
-
         '& span': {
             width: theme.rem(20),
             marginLeft: theme.rem(1),
             whiteSpace: 'nowrap',
             overflow: 'hidden',
             textOverflow: 'ellipsis',
-
-            '@media (max-width: 900px)': {
-                width: '100%',
-            },
         },
     },
     icon: {

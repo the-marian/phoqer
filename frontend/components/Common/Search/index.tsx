@@ -22,10 +22,6 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
     form: {
         width: '100%',
-
-        '@media (max-width: 1100px)': {
-            width: '70%',
-        },
     },
     search: {
         display: 'flex',
@@ -55,7 +51,11 @@ const useStyles = createUseStyles((theme: Theme) => ({
         color: theme.palette.white,
         borderRadius: theme.radius,
 
-        '@media (max-width: 960px)': {
+        '@media (max-width: 1100px)': {
+            width: '31%',
+        },
+
+        '@media (max-width: 550px)': {
             width: '100%',
             margin: theme.rem(2, 0),
         },
@@ -76,8 +76,16 @@ const useStyles = createUseStyles((theme: Theme) => ({
         width: theme.rem(30),
         marginLeft: theme.rem(2),
 
-        '@media (max-width: 900px)': {
+        '@media (max-width: 1100px)': {
+            display: 'flex',
+            justifyContent: 'space-between',
             width: '100%',
+            margin: theme.rem(3, 0),
+        },
+
+        '@media (max-width: 550px)': {
+            margin: theme.rem(2, 0),
+            flexDirection: 'column',
         },
     },
 }));

@@ -14,34 +14,28 @@ const useStyles = createUseStyles((theme: Theme) => ({
     root: {
         display: 'flex',
         alignItems: 'center',
+
+        '@media (max-width: 1100px)': {
+            justifyContent: 'space-between',
+            width: '66%',
+        },
+
+        '@media (max-width: 550px)': {
+            justifyContent: 'space-between',
+            width: '100%',
+        },
     },
     location: {
         display: 'flex',
         alignItems: 'center',
-        height: '100%',
+        height: theme.rem(7),
+        width: '48%',
         padding: theme.rem(2),
-        background: theme.palette.gray[0],
+        fontSize: theme.rem(1.4),
+        background: theme.palette.gray[1],
+        borderRadius: theme.radius,
         border: 'none',
-        color: theme.palette.gray[3],
-
-        '&::before': {
-            content: '""',
-            display: 'block',
-            height: theme.rem(3),
-            width: theme.rem(0.1),
-            marginRight: theme.rem(0.5),
-            background: theme.palette.gray[2],
-        },
-
-        '@media (max-width: 900px)': {
-            width: '100%',
-            height: theme.rem(8),
-            margin: theme.rem(4, 0, 2, 0),
-            background: theme.palette.gray[1],
-            borderRadius: theme.radius,
-            textAlign: 'left',
-            fontSize: theme.rem(1.4),
-        },
+        color: theme.palette.blue[1],
 
         '& span': {
             width: theme.rem(20),
@@ -49,14 +43,13 @@ const useStyles = createUseStyles((theme: Theme) => ({
             whiteSpace: 'nowrap',
             overflow: 'hidden',
             textOverflow: 'ellipsis',
-
-            '@media (max-width: 900px)': {
-                width: '100%',
-            },
         },
     },
     icon: {
         width: theme.rem(2.4),
+    },
+    drop: {
+        width: '48%',
     },
 }));
 
@@ -78,7 +71,9 @@ const OptionsMobile = (): ReactElement => {
                 </span>
             </button>
 
-            <DropDown data={categories} onChange={console.log} withSub transparent />
+            <div className={css.drop}>
+                <DropDown data={categories} onChange={console.log} withSub transparent height={7} />
+            </div>
         </Media>
     );
 };

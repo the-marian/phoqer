@@ -7,7 +7,9 @@ interface Props {
 }
 
 const Media = ({ children, size = 900, mobile = false, className }: Props): ReactElement => {
-    const [media, setMedia] = useState(process.browser ? (mobile ? window.innerWidth < size : window.innerWidth > size) : true);
+    const [media, setMedia] = useState<boolean>(
+        process.browser ? (mobile ? window.innerWidth < size : window.innerWidth > size) : true,
+    );
 
     useEffect(() => {
         const handleResize = (): void => {
