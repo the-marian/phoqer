@@ -1,3 +1,10 @@
+// TEMP - rebase to styles folder
+// from this
+import '@uppy/core/dist/style.css';
+import '@uppy/status-bar/dist/style.css';
+import '@uppy/dashboard/dist/style.css';
+import '@uppy/drag-drop/dist/style.css';
+// to this moment
 import '../styles/fonts.css';
 import '../styles/normalize.css';
 import '../styles/styles.css';

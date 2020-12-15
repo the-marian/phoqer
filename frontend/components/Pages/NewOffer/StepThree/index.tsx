@@ -3,6 +3,7 @@ import React, { FormEvent, ReactElement, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
 import { INewOffer, IState } from '../../../../interfaces';
+import ImgUploader from './ImgUploader';
 import useStyles from './StepThree.styles';
 
 const StepThree = (): ReactElement => {
@@ -28,7 +29,9 @@ const StepThree = (): ReactElement => {
     return (
         <form className={css.form} onSubmit={handleSubmit}>
             <h4 className={css.title}>Добавьте фото вашего товара</h4>
-            <p>Не больше 3мб (.png .jpg .jpeg)</p>
+            <p className={css.text}>Не больше 3мб (.png .jpg .jpeg)</p>
+
+            <ImgUploader />
 
             <div className={css.btnWrp}>
                 <button type="button" className={css.btn} onClick={handleBack}>

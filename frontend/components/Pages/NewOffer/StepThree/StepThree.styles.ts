@@ -28,6 +28,10 @@ const useStyles = createUseStyles((theme: Theme) => ({
             flexDirection: 'column',
         },
     },
+    text: {
+        fontSize: theme.rem(1.2),
+        marginBottom: theme.rem(2),
+    },
     next: {
         padding: theme.rem(1, 4),
         marginLeft: theme.rem(2),
