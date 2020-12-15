@@ -37,7 +37,7 @@ export const theme: Theme = {
         `${one}em${two || two === 0 ? ` ${two}em` : ''}${three || three === 0 ? ` ${three}em` : ''}${
             four || four === 0 ? ` ${four}em` : ''
         }`,
-    radius: '0.8rem',
+    radius: '0.6rem',
     shadow: [
         '0 0.2rem 0.4rem rgba(0,0,0,0.04), 0 0.2rem 0.4rem rgba(0,0,0,0.08)',
         '0 0.3rem 0.6rem rgba(0,0,0,0.06), 0 0.3rem 0.6rem rgba(0,0,0,0.1)',

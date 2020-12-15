@@ -7,9 +7,8 @@ import { createUseStyles } from 'react-jss';
 import router from '../../../assets/router';
 import { Theme } from '../../../assets/theme';
 import LinkArrow from '../LinkArrow';
-import { Desktop, Mobile } from '../Media';
-import { modal } from '../Modal';
-import RegionModal from '../RegionModal';
+import OptionsDesktop from './OptionsDesktop';
+import OptionsMobile from './OptionsMobile';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     wrp: {
@@ -17,12 +16,16 @@ const useStyles = createUseStyles((theme: Theme) => ({
         justifyContent: 'space-between',
         alignItems: 'center',
 
-        '@media (max-width: 960px)': {
+        '@media (max-width: 1100px)': {
             display: 'block',
         },
     },
     form: {
         width: '100%',
+
+        '@media (max-width: 1100px)': {
+            width: '70%',
+        },
     },
     search: {
         display: 'flex',
@@ -44,56 +47,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
         background: 'none',
         border: 'none',
     },
-    locationInput: {
-        display: 'flex',
-        alignItems: 'center',
-        height: '100%',
-        padding: theme.rem(2),
-        background: 'none',
-        border: 'none',
-        color: theme.palette.gray[3],
-
-        '&::before': {
-            content: '""',
-            display: 'block',
-            height: theme.rem(3),
-            width: theme.rem(0.1),
-            marginRight: theme.rem(2),
-            background: theme.palette.gray[2],
-        },
-
-        '@media (max-width: 900px)': {
-            width: '100%',
-            height: theme.rem(8),
-            margin: theme.rem(4, 0, 2, 0),
-            background: theme.palette.gray[1],
-            borderRadius: theme.radius,
-            textAlign: 'left',
-            fontSize: theme.rem(1.4),
-        },
-
-        '& span': {
-            width: theme.rem(20),
-            marginLeft: theme.rem(1),
-            whiteSpace: 'nowrap',
-            overflow: 'hidden',
-            textOverflow: 'ellipsis',
-
-            '@media (max-width: 900px)': {
-                width: '100%',
-            },
-        },
-    },
-    location: {
-        width: theme.rem(30),
-    },
-    map: {
-        width: theme.rem(2.4),
-    },
     btn: {
         height: theme.rem(7),
-        width: theme.rem(30),
-        marginLeft: theme.rem(2),
+        width: '100%',
         background: theme.palette.blue[0],
         fontSize: theme.rem(1.6),
         color: theme.palette.white,
@@ -116,18 +72,22 @@ const useStyles = createUseStyles((theme: Theme) => ({
             textDecoration: 'underline',
         },
     },
+    mobile: {
+        width: theme.rem(30),
+        marginLeft: theme.rem(2),
+
+        '@media (max-width: 900px)': {
+            width: '100%',
+        },
+    },
 }));
 
 const Search = (): ReactElement => {
     const css = useStyles();
     const history = useRouter();
 
-    const handleRegionModal = () => {
-        modal.open(<RegionModal />);
-    };
-
     return (
-        <>
+        <form action="#" method="post">
             {history.pathname !== '/' && (
                 <div className={css.toHome}>
                     <LinkArrow href={router.root} toLeft>
@@ -137,7 +97,7 @@ const Search = (): ReactElement => {
             )}
 
             <div className={css.wrp}>
-                <form className={css.form} action="#" method="post">
+                <div className={css.form}>
                     <div className={css.search}>
                         <span className={css.icon}>
                             <FontAwesomeIcon icon={faSearch} />
@@ -145,32 +105,18 @@ const Search = (): ReactElement => {
 
                         <input defaultValue={history?.query?.q} className={css.input} type="text" placeholder="Что вы ищите?" />
 
-                        <div className={css.location}>
-                            <Desktop>
-                                <button type="button" className={css.locationInput} onClick={handleRegionModal}>
-                                    <img className={css.map} src="/emoji/map.png" alt="" />
-                                    <span>Киев, Киевская область Киев, Киевская область Киев, Киевская область</span>
-                                </button>
-                            </Desktop>
-                        </div>
+                        <OptionsDesktop />
                     </div>
+                </div>
 
-                    <Mobile>
-                        <button type="button" className={css.locationInput} onClick={handleRegionModal}>
-                            <img className={css.map} src="/emoji/map.png" alt="" />
-                            <span>
-                                Киев, Киевская область Киев, Киевская область Киев, Киевская область Киевская область Киев,
-                                Киевская область
-                            </span>
-                        </button>
-                    </Mobile>
-                </form>
-
-                <button type="submit" className={css.btn}>
-                    Найти
-                </button>
+                <div className={css.mobile}>
+                    <OptionsMobile />
+                    <button type="submit" className={css.btn}>
+                        Найти
+                    </button>
+                </div>
             </div>
-        </>
+        </form>
     );
 };
 

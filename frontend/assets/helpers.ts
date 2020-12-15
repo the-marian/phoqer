@@ -26,7 +26,7 @@ export const findSubCategory = (data: IDropList[], slug: string): string | null 
     return category ? category.name : null;
 };
 
-export const logger = () => {
+export const logger = (): void => {
     console.clear();
     console.log(
         '%c Phoqer',

@@ -2,7 +2,6 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import React, { ReactElement, useEffect, useState } from 'react';
 import { createUseStyles } from 'react-jss';
-import { useSelector } from 'react-redux';
 import { END } from 'redux-saga';
 
 import { Theme } from '../../../assets/theme';
@@ -13,7 +12,7 @@ import Stepper from '../../../components/Pages/NewOffer/Stepper';
 import StepThree from '../../../components/Pages/NewOffer/StepThree';
 import StepTwo from '../../../components/Pages/NewOffer/StepTwo';
 import Success from '../../../components/Pages/NewOffer/Success';
-import { INewOffer, IState, IStore } from '../../../interfaces';
+import { IStore } from '../../../interfaces';
 import { wrapper } from '../../../redux/store';
 import types from '../../../redux/types';
 

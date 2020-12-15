@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import React, { ReactElement, useState } from 'react';
+import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
 import { Theme } from '../../../assets/theme';

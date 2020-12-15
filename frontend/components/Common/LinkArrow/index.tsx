@@ -34,14 +34,15 @@ const useStyles = createUseStyles((theme: Theme) => ({
 
 interface Props {
     href: string;
+    as?: string;
     children: string;
     toLeft?: boolean;
 }
 
-const LinkArrow = ({ href, children, toLeft = false }: Props): ReactElement => {
+const LinkArrow = ({ href, as = null, children, toLeft = false }: Props): ReactElement => {
     const css = useStyles();
     return (
-        <Link href={href}>
+        <Link href={href} as={as}>
             {toLeft ? (
                 <a className={css.link}>
                     <span className={css.leftIcon}>

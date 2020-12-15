@@ -5,18 +5,13 @@ import { Theme } from '../../../assets/theme';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     container: {
-        margin: theme.rem(0, 20),
+        width: '100%',
+        maxWidth: theme.rem(120),
+        margin: '0 auto',
 
-        '@media (max-width: 1480px)': {
-            margin: theme.rem(0, 10),
-        },
-
-        '@media (max-width: 1100px)': {
-            margin: theme.rem(0, 4),
-        },
-
-        '@media (max-width: 768px)': {
-            margin: theme.rem(0, 2),
+        '@media (max-width: 1300px)': {
+            width: '90%',
+            maxWidth: 'unset',
         },
     },
 }));

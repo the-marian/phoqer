@@ -1,5 +1,4 @@
-import { useRouter } from 'next/router';
-import React, { ReactElement, useEffect, useState } from 'react';
+import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 import { useSelector } from 'react-redux';
 
@@ -19,26 +18,8 @@ const useStyles = createUseStyles((theme: Theme) => ({
 const Categories = (): ReactElement => {
     const css = useStyles();
 
-    const { query } = useRouter();
-    const { category, sub_category } = query;
-
-    const [categoryName, setCategoryName] = useState<string | null>(null);
-    const [subCategoryName, setSubCategoryName] = useState<string | null>(null);
-
     const data = useSelector<IState, ICategories[]>(state => state.categories);
     const categories = helpers.formatCatList(data);
-
-    useEffect(() => {
-        if (category) {
-            setCategoryName(helpers.findCategory(data, typeof category === 'string' ? category : category[0]));
-        }
-    }, [category]);
-
-    useEffect(() => {
-        if (sub_category) {
-            setSubCategoryName(helpers.findSubCategory(data, typeof sub_category === 'string' ? sub_category : sub_category[0]));
-        }
-    }, [sub_category]);
 
     return (
         !!categories?.length && (

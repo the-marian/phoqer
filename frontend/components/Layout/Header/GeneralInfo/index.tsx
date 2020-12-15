@@ -6,7 +6,7 @@ import { createUseStyles } from 'react-jss';
 import { Theme } from '../../../../assets/theme';
 import JoinForm from '../../../Common/Auth/JoinForm';
 import LoginForm from '../../../Common/Auth/LoginForm';
-import { Desktop, Mobile } from '../../../Common/Media';
+import Media from '../../../Common/Media';
 import { modal } from '../../../Common/Modal';
 import SmallModalWrp from '../../../Common/Modal/SmallModalWrp';
 
@@ -77,7 +77,7 @@ const GeneralInfo = (): ReactElement => {
 
     return (
         <>
-            <Desktop>
+            <Media>
                 <div>
                     <button className={css.btn} type="button" onClick={handleLoginModal}>
                         Войти
@@ -86,9 +86,9 @@ const GeneralInfo = (): ReactElement => {
                         Зарегистрироватся
                     </button>
                 </div>
-            </Desktop>
+            </Media>
 
-            <Mobile>
+            <Media mobile>
                 <div className={css.menuWrp}>
                     <button className={css.menu} onClick={handleDropClick}>
                         {drop ? <FontAwesomeIcon icon={faTimes} /> : <FontAwesomeIcon icon={faBars} />}
@@ -108,7 +108,7 @@ const GeneralInfo = (): ReactElement => {
                         </>
                     )}
                 </div>
-            </Mobile>
+            </Media>
         </>
     );
 };

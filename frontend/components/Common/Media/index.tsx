@@ -1,40 +1,25 @@
-import clsx from 'clsx';
-import React, { ReactElement } from 'react';
-import { createUseStyles } from 'react-jss';
-
-const useStyles = createUseStyles({
-    mobile: {
-        display: 'none',
-        visibility: 'hidden',
-
-        '@media (max-width: 900px)': {
-            display: 'block',
-            visibility: 'visible',
-        },
-    },
-
-    desktop: {
-        display: 'block',
-        visibility: 'visible',
-
-        '@media (max-width: 900px)': {
-            display: 'none',
-            visibility: 'hidden',
-        },
-    },
-});
-
+import React, { ReactElement, useEffect, useState } from 'react';
 interface Props {
+    size?: number;
+    mobile?: boolean;
     children: JSX.Element[] | JSX.Element;
     className?: string;
 }
 
-export const Mobile = ({ children, className }: Props): ReactElement => {
-    const css = useStyles();
-    return <div className={clsx(className, css.mobile)}>{children}</div>;
+const Media = ({ children, size = 900, mobile = false, className }: Props): ReactElement => {
+    const [media, setMedia] = useState(process.browser ? (mobile ? window.innerWidth < size : window.innerWidth > size) : true);
+
+    useEffect(() => {
+        const handleResize = (): void => {
+            setMedia(process.browser ? (mobile ? window.innerWidth < size : window.innerWidth > size) : true);
+        };
+        window.addEventListener('resize', handleResize);
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
+
+    return media && <div className={className}>{children}</div>;
 };
 
-export const Desktop = ({ children, className }: Props): ReactElement => {
-    const css = useStyles();
-    return <div className={clsx(className, css.desktop)}>{children}</div>;
-};
+export default Media;

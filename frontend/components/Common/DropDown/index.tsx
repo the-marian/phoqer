@@ -28,6 +28,12 @@ const useStyles = createUseStyles((theme: Theme) => ({
         cursor: 'pointer',
         fontSize: theme.rem(1.4),
     },
+    text: {
+        width: '100%',
+        whiteSpace: 'nowrap',
+        overflow: 'hidden',
+        textOverflow: 'ellipsis',
+    },
     container: {
         position: 'absolute',
         top: '100%',
@@ -147,7 +153,7 @@ const DropDown = ({ height = 6, data, onChange, defaultValue, withSub, transpare
                         <FontAwesomeIcon icon={faChevronDown} />
                     </span>
                 )}
-                <span>{selected}</span>
+                <span className={css.text}>{selected}</span>
             </p>
 
             {drop && (
