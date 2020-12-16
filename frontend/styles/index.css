@@ -1,0 +1,7 @@
+@import './libs/normalize.css';
+@import './fonts.css';
+@import './styles.css';
+@import './range.css';
+@import './libs/uppy.core.css';
+@import './libs/uppy.dashboard.css';
+@import './libs/uppy.status-bar.css';

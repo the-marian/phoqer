@@ -3,10 +3,7 @@ import axios, { AxiosResponse } from 'axios';
 import { ICategories, IOffers, Login } from '../interfaces';
 import config from './config';
 
-const PROD = config.baseUrl.prod;
-const DEV = config.baseUrl.dev;
-
-axios.defaults.baseURL = process.env.NODE_ENV === 'production' ? PROD : DEV;
+axios.defaults.baseURL = config.baseUrl;
 
 const api = {
     auth: {
