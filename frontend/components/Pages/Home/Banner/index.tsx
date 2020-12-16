@@ -28,10 +28,10 @@ const useStyles = createUseStyles((theme: Theme) => ({
         display: 'flex',
     },
     img: {
-        width: theme.rem(8),
+        width: theme.rem(10),
         margin: theme.rem(0, 2, 2, 0),
 
-        '@media (max-width: 550px)': {
+        '@media (max-width: 650px)': {
             width: theme.rem(4.5),
         },
     },
@@ -46,9 +46,9 @@ const Banner = (): ReactElement => {
     return (
         <div className={css.root}>
             <div className={css.imgWrp}>
-                <img className={css.img} src="/emoji/monay2.png" alt="" />
                 <img className={css.img} src="/emoji/monay.png" alt="" />
-                <img className={css.img} src="/emoji/monay1.png" alt="" />
+                <img className={css.img} src="/emoji/monay.png" alt="" />
+                <img className={css.img} src="/emoji/monay.png" alt="" />
             </div>
 
             <h2 className={css.title}>Делитесь с другими и зарабатывайте</h2>

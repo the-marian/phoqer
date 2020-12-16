@@ -6,8 +6,8 @@ import { useSelector } from 'react-redux';
 import router from '../../../../assets/router';
 import { Theme } from '../../../../assets/theme';
 import { IOfferPopular, IState } from '../../../../interfaces';
-import SectionTitle from '../../SectionTitle';
-import OffersList from '../OffersList';
+import OffersList from '../../../Common/Offers/OffersList';
+import SectionTitle from '../../../Common/SectionTitle';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     root: {
@@ -34,7 +34,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
 }));
 
-const TopPopular = (): ReactElement => {
+const PopularOffers = (): ReactElement => {
     const css = useStyles();
     const { data, loading } = useSelector<IState, IOfferPopular>(state => state.offers.popular);
 
@@ -53,4 +53,4 @@ const TopPopular = (): ReactElement => {
     );
 };
 
-export default TopPopular;
+export default PopularOffers;

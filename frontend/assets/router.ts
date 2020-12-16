@@ -7,7 +7,7 @@ const router = {
     },
     offers: '/offers',
     new_offer: '/new_offer',
-    favorite: 'favorite',
+    favorite: '/favorite',
 };
 
 export default router;

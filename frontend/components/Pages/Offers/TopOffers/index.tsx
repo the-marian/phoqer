@@ -1,14 +1,13 @@
-import React, { ReactElement, useEffect } from 'react';
+import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 import router from '../../../../assets/router';
 import { Theme } from '../../../../assets/theme';
 import { IOfferPopular, IState } from '../../../../interfaces';
-import types from '../../../../redux/types';
+import OffersList from '../../../Common/Offers/OffersList';
+import SectionTitle from '../../../Common/SectionTitle';
 import Container from '../../../Layout/Container';
-import SectionTitle from '../../SectionTitle';
-import OffersList from '../OffersList';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     root: {
@@ -25,14 +24,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
 }));
 
-const TopProducts = (): ReactElement => {
+const TopOffers = (): ReactElement => {
     const css = useStyles();
-    const dispatch = useDispatch();
     const { data, loading } = useSelector<IState, IOfferPopular>(state => state.offers.popular);
-
-    useEffect(() => {
-        dispatch({ type: types.GET_POPULAR_OFFERS_START });
-    }, [dispatch]);
 
     return (
         <div className={css.root}>
@@ -47,4 +41,4 @@ const TopProducts = (): ReactElement => {
     );
 };
 
-export default TopProducts;
+export default TopOffers;

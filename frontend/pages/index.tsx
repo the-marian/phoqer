@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react';
 import { END } from 'redux-saga';
 
-import TopPopular from '../components/Common/Offers/PopularOffersWrap';
+import TopPopular from '../components/Pages/Home/PopularOffers';
 import Search from '../components/Common/Search';
 import About from '../components/Layout/About';
 import Banner from '../components/Pages/Home/Banner';

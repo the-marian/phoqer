@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import { END } from 'redux-saga';
 
 import OffersList from '../../components/Common/Offers/OffersList';
-import TopOffers from '../../components/Common/Offers/TopOffersWrap';
+import TopOffers from '../../components/Pages/Offers/TopOffers';
 import Search from '../../components/Common/Search';
 import About from '../../components/Layout/About';
 import Container from '../../components/Layout/Container';
