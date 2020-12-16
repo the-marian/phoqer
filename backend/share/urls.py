@@ -4,10 +4,10 @@ from django.contrib import admin
 from django.urls import path, include
 from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView
 
-from upload.views import image_upload
+from upload.views import ImageUpload
 
 urlpatterns = [
-    path("api/upload/", image_upload, name="upload"),
+    path("api/upload/", ImageUpload.as_view(), name="upload"),
     path("admin/", admin.site.urls),
 
     # REST-FRAMEWORK URLS
