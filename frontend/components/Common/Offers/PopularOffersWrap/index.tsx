@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 import router from '../../../../assets/router';
 import { Theme } from '../../../../assets/theme';
 import { IOfferPopular, IState } from '../../../../interfaces';
-import SectionTitle from '../../../Layout/SectionTitle';
+import SectionTitle from '../../SectionTitle';
 import OffersList from '../OffersList';
 
 const useStyles = createUseStyles((theme: Theme) => ({

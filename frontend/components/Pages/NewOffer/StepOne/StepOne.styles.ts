@@ -138,6 +138,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
     errors: {
         border: theme.border(0.1, theme.palette.red[0]),
+        borderRadius: theme.radius,
     },
     errorsText: {
         marginTop: theme.rem(1),

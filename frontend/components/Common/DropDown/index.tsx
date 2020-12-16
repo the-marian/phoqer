@@ -34,6 +34,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
         overflow: 'hidden',
         textOverflow: 'ellipsis',
     },
+    placeholder: {
+        color: theme.palette.gray[3],
+    },
     container: {
         position: 'absolute',
         top: '100%',
@@ -94,23 +97,37 @@ interface Props {
     height?: number;
     data: IDropList[];
     defaultValue?: IDropValue | null;
+    placeholder?: string;
     withSub?: boolean;
     transparent?: boolean;
     white?: boolean;
     onChange: (value: IDropValue) => void;
 }
 
-const DropDown = ({ height = 6, data, onChange, defaultValue, withSub, transparent, white }: Props): ReactElement => {
+const DropDown = ({
+    height = 6,
+    data,
+    onChange,
+    defaultValue,
+    placeholder,
+    withSub,
+    transparent,
+    white,
+}: Props): ReactElement => {
     const css = useStyles();
 
     const [drop, setDrop] = useState<boolean>(false);
-    const [selected, setSelected] = useState<string>(defaultValue?.name || data[0].name);
+    const [selected, setSelected] = useState<string>(defaultValue?.name || placeholder || data[0].name);
 
     useEffect(() => {
         if (defaultValue) {
-            setSelected(defaultValue.name);
+            setSelected(defaultValue.name || placeholder);
         }
-    }, [defaultValue]);
+
+        if (!defaultValue && placeholder) {
+            setSelected(placeholder);
+        }
+    }, [defaultValue, placeholder]);
 
     const handleClick = (): void => {
         setDrop(!drop);
@@ -139,7 +156,12 @@ const DropDown = ({ height = 6, data, onChange, defaultValue, withSub, transpare
     return (
         <div className={css.wrp} tabIndex={-1} onMouseLeave={handleClose} onMouseEnter={handleOpen} onBlur={handleBlur}>
             <p
-                className={clsx(css.inner, transparent && css.transparent, white && css.white)}
+                className={clsx(
+                    css.inner,
+                    transparent && css.transparent,
+                    white && css.white,
+                    placeholder === selected && css.placeholder,
+                )}
                 style={{ height: height + 'rem' }}
                 onClick={handleClick}
                 aria-hidden

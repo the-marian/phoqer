@@ -4,7 +4,7 @@ import { END } from 'redux-saga';
 import TopPopular from '../components/Common/Offers/PopularOffersWrap';
 import Search from '../components/Common/Search';
 import About from '../components/Layout/About';
-import Banner from '../components/Layout/Banner';
+import Banner from '../components/Pages/Home/Banner';
 import Container from '../components/Layout/Container';
 import Main from '../components/Layout/Main';
 import Categories from '../components/Pages/Home/Categories';

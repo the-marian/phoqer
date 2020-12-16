@@ -28,8 +28,8 @@ const App = ({ Component, pageProps }: AppProps): ReactElement => {
     const persist = persistStore(store);
     interceptors({ history });
 
+    logger();
     Router.events.on('routeChangeComplete', () => {
-        logger();
         window.scrollTo({ top: 0, behavior: 'smooth' });
         modal.close();
     });

@@ -17,7 +17,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
     label: {
         height: theme.rem(2.5),
-        width: theme.rem(2.5),
+        minWidth: theme.rem(2.5),
         display: 'inline-block',
         marginRight: theme.rem(1.5),
         border: theme.border(0.1, theme.palette.blue[0]),

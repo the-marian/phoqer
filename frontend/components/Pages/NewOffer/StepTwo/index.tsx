@@ -228,7 +228,7 @@ const StepTwo = (): ReactElement => {
 
             <div className={css.saveWrp}>
                 <button type="button" className={css.save} onClick={handleSave}>
-                    Сохранить
+                    Сохранить и прервать заполение
                 </button>
                 <button type="button" className={css.btn} onClick={handleClear}>
                     Очистить форму

@@ -64,16 +64,22 @@ const OptionsMobile = (): ReactElement => {
 
     return (
         <Media className={css.root} size={1100} mobile>
+            <div className={css.drop}>
+                <DropDown
+                    data={categories}
+                    placeholder="Выберите категорию"
+                    onChange={console.log}
+                    height={7}
+                    withSub
+                    transparent
+                />
+            </div>
             <button type="button" className={css.location} onClick={handleRegionModal}>
                 <img className={css.icon} src="/emoji/map.png" alt="" />
                 <span>
                     Киев, Киевская область Киев, Киевская область Киев, Киевская область Киевская область Киев, Киевская область
                 </span>
             </button>
-
-            <div className={css.drop}>
-                <DropDown data={categories} onChange={console.log} withSub transparent height={7} />
-            </div>
         </Media>
     );
 };

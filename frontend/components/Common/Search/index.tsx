@@ -110,9 +110,7 @@ const Search = (): ReactElement => {
                         <span className={css.icon}>
                             <FontAwesomeIcon icon={faSearch} />
                         </span>
-
                         <input defaultValue={history?.query?.q} className={css.input} type="text" placeholder="Что вы ищите?" />
-
                         <OptionsDesktop />
                     </div>
                 </div>

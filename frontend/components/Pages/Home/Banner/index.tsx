@@ -1,9 +1,9 @@
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
-import router from '../../../assets/router';
-import { Theme } from '../../../assets/theme';
-import LinkArrow from '../../Common/LinkArrow';
+import router from '../../../../assets/router';
+import { Theme } from '../../../../assets/theme';
+import LinkArrow from '../../../Common/LinkArrow';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     root: {
@@ -29,7 +29,11 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
     img: {
         width: theme.rem(8),
-        margin: theme.rem(2),
+        margin: theme.rem(0, 2, 2, 0),
+
+        '@media (max-width: 550px)': {
+            width: theme.rem(4.5),
+        },
     },
     link: {
         fontSize: theme.rem(1.8),

@@ -20,10 +20,11 @@ const uppy = Uppy<Uppy.StrictTypes>({
 uppy.use(Tus, { endpoint: config.uploadsUrl });
 
 const ImgUploader = (): ReactElement => {
+    const height = process.browser ? (window.innerWidth < 900 ? 350 : 500) : 500;
     return (
         <div>
-            <StatusBar uppy={uppy} hideUploadButton hideAfterFinish={false} showProgressDetails />
-            <Dashboard uppy={uppy} />
+            <StatusBar uppy={uppy} hideAfterFinish={false} showProgressDetails />
+            <Dashboard uppy={uppy} height={height} />
         </div>
     );
 };

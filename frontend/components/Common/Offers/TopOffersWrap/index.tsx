@@ -7,7 +7,7 @@ import { Theme } from '../../../../assets/theme';
 import { IOfferPopular, IState } from '../../../../interfaces';
 import types from '../../../../redux/types';
 import Container from '../../../Layout/Container';
-import SectionTitle from '../../../Layout/SectionTitle';
+import SectionTitle from '../../SectionTitle';
 import OffersList from '../OffersList';
 
 const useStyles = createUseStyles((theme: Theme) => ({

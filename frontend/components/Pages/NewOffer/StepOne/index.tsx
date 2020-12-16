@@ -2,6 +2,7 @@ import clsx from 'clsx';
 import { useRouter } from 'next/router';
 import React, { ChangeEvent, FormEvent, ReactElement, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Dispatch } from 'redux';
 
 import * as helpers from '../../../../assets/helpers';
 import { numberValidation } from '../../../../assets/helpers';
@@ -23,7 +24,12 @@ const CURRENCY: IDropList[] = [
 interface IError {
     title?: string;
     price?: string;
+    category?: string;
 }
+
+const notDone = (value: INewOffer, dispatch: Dispatch): void => {
+    dispatch({ type: types.NEW_OFFER_FORM, payload: { ...value, isDone: { ...value.isDone, one: false } } });
+};
 
 const StepThree = (): ReactElement => {
     const css = useStyles();
@@ -37,7 +43,6 @@ const StepThree = (): ReactElement => {
     // event handlers
     const handleDelivery = (is_deliverable: boolean): void => {
         setValue({ ...value, is_deliverable });
-        setErrors({});
     };
     const handleTitle = (event: ChangeEvent<HTMLInputElement>): void => {
         setValue({ ...value, title: event.target.value });
@@ -50,6 +55,7 @@ const StepThree = (): ReactElement => {
     };
     const handleCategory = (category: IDropValue): void => {
         setValue({ ...value, category });
+        setErrors({});
     };
     const handleCurrency = (currency: IDropValue): void => {
         setValue({ ...value, currency });
@@ -64,13 +70,19 @@ const StepThree = (): ReactElement => {
 
         if (!value.title.trim()) {
             setErrors({ title: 'Это обязательное поле' });
-            dispatch({ type: types.NEW_OFFER_FORM, payload: { ...value, isDone: { ...value.isDone, one: false } } });
+            notDone(value, dispatch);
+            return;
+        }
+
+        if (!value.category) {
+            setErrors({ category: 'Это обязательное поле' });
+            notDone(value, dispatch);
             return;
         }
 
         if (!value.price && value.price !== 0) {
             setErrors({ price: 'Это обязательное поле' });
-            dispatch({ type: types.NEW_OFFER_FORM, payload: { ...value, isDone: { ...value.isDone, one: false } } });
+            notDone(value, dispatch);
             return;
         }
 
@@ -78,7 +90,6 @@ const StepThree = (): ReactElement => {
             type: types.NEW_OFFER_FORM,
             payload: {
                 ...value,
-                category: value.category ? value.category : categories[0],
                 currency: value.currency ? value.currency : CURRENCY[0],
                 isDone: { ...value.isDone, one: true },
             },
@@ -110,7 +121,6 @@ const StepThree = (): ReactElement => {
             type: types.NEW_OFFER_FORM,
             payload: {
                 ...value,
-                category: value.category ? value.category : categories[0],
                 currency: value.currency ? value.currency : CURRENCY[0],
             },
         });
@@ -145,8 +155,17 @@ const StepThree = (): ReactElement => {
                         <h4 className={css.title}>
                             Выберите категорию товара <span className={css.red}>*</span>
                         </h4>
-
-                        <DropDown white defaultValue={init.category} data={categories} onChange={handleCategory} withSub />
+                        <div className={clsx(errors.category && css.errors)}>
+                            <DropDown
+                                data={categories}
+                                defaultValue={value.category}
+                                placeholder="Выберите категорию"
+                                onChange={handleCategory}
+                                withSub
+                                white
+                            />
+                        </div>
+                        {errors.category && <small className={css.errorsText}>{errors.category}</small>}
                     </div>
                 )}
 
@@ -174,10 +193,10 @@ const StepThree = (): ReactElement => {
 
             <div className={css.saveWrp}>
                 <button type="button" className={css.save} onClick={handleSave}>
-                    Сохранить
+                    Сохранить и прервать заполение
                 </button>
                 <button type="button" className={css.btn} onClick={handleClear}>
-                    Очистить форму
+                    Очистить
                 </button>
             </div>
 

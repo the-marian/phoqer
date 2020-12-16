@@ -26,13 +26,26 @@ export const findSubCategory = (data: IDropList[], slug: string): string | null 
     return category ? category.name : null;
 };
 
+type IFunction = (...args) => void;
+export const throttle = (func: IFunction, time: number): IFunction => {
+    let timeout = true;
+    return (...args) => {
+        if (timeout) {
+            timeout = false;
+            setTimeout(() => {
+                timeout = true;
+                func(...args);
+            }, time);
+        }
+    };
+};
+
+// custom console log for site identity
 export const logger = (): void => {
     console.clear();
     console.log(
-        '%c Phoqer',
-        'padding: 6px 15px; border-radius: 10px; background: #eee; text-transform: uppercase; color: #2771A3;' +
-            'font-size: 2rem; font-weight: 600; font-family: Montserrat, sans-serif',
+        '%c Phoqer | %c Made with love ...',
+        'padding: 6px 15px; border-radius: 10px; background: #eee; text-transform: uppercase; color: #2771A3; font-size: 1rem; font-weight: 600; font-family: Montserrat, sans-serif',
+        'color: #DB162F; font-size: 0.8rem;',
     );
-
-    console.log('%c   ', 'font-size:250px; background:url("http://140.82.39.245/mediafiles/console%20(1).jpg") no-repeat;');
 };

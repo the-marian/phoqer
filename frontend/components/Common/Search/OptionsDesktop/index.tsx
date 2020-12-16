@@ -27,15 +27,6 @@ const useStyles = createUseStyles((theme: Theme) => ({
         border: 'none',
         color: theme.palette.blue[1],
 
-        '&::before': {
-            content: '""',
-            display: 'block',
-            height: theme.rem(3),
-            width: theme.rem(0.1),
-            marginRight: theme.rem(1.5),
-            background: theme.palette.gray[2],
-        },
-
         '& span': {
             width: theme.rem(20),
             marginLeft: theme.rem(1),
@@ -51,14 +42,13 @@ const useStyles = createUseStyles((theme: Theme) => ({
         display: 'flex',
         alignItems: 'center',
         width: '50%',
-
-        '&::before': {
-            content: '""',
-            display: 'block',
-            height: theme.rem(3),
-            width: theme.rem(0.1),
-            background: theme.palette.gray[2],
-        },
+    },
+    line: {
+        display: 'block',
+        height: theme.rem(3),
+        width: theme.rem(0.1),
+        marginRight: theme.rem(0.1),
+        background: theme.palette.gray[2],
     },
 }));
 
@@ -73,14 +63,22 @@ const OptionsDesktop = (): ReactElement => {
 
     return (
         <Media className={css.container} size={1100}>
+            <span className={css.line} />
+            <div className={css.categories}>
+                <DropDown
+                    data={categories}
+                    placeholder="Выберите категорию"
+                    onChange={console.log}
+                    height={7}
+                    withSub
+                    transparent
+                />
+            </div>
+            <span className={css.line} />
             <button type="button" className={css.location} onClick={handleRegionModal}>
                 <img className={css.icon} src="/emoji/map.png" alt="" />
                 <span>Киев, Киевская область Киев, Киевская область Киев, Киевская область</span>
             </button>
-
-            <div className={css.categories}>
-                <DropDown data={categories} onChange={console.log} withSub transparent />
-            </div>
         </Media>
     );
 };

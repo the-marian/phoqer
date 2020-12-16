@@ -3,6 +3,7 @@ import React, { ReactElement, useEffect, useState } from 'react';
 import { createUseStyles } from 'react-jss';
 import { useSelector } from 'react-redux';
 
+import { throttle } from '../../../assets/helpers';
 import { Theme } from '../../../assets/theme';
 import { IAuth, IState } from '../../../interfaces';
 import Logo from '../../Common/Logo';
@@ -16,7 +17,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         position: 'fixed',
         top: 0,
         left: 0,
-        zIndex: 10,
+        zIndex: 100,
         width: '100%',
         padding: theme.rem(1.4, 0),
         background: theme.palette.white,
@@ -24,10 +25,6 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
     transform: {
         transform: 'translateY(-100%)',
-    },
-    scrolled: {
-        background:
-            'linear-gradient(90deg, rgba(250, 250, 250, 1) 25%, rgba(250, 250, 250, 0.97) 50%, rgba(250, 250, 250, 1) 75%)',
     },
     flex: {
         position: 'relative',
@@ -51,22 +48,18 @@ const Header = (): ReactElement => {
     const { auth_token } = useSelector<IState, IAuth>(state => state.auth);
 
     useEffect(() => {
-        const handleScroll = (): void => {
-            if (window.scrollY < 150 && scrolled) {
-                setScrolled(false);
-            } else {
-                setScrolled(true);
-            }
-
+        const handleScroll = throttle((): void => {
             if (window.scrollY < 300 && !delta) {
+                setScrolled(false);
                 setDelta(false);
                 prev = 0;
                 return;
             }
 
+            setScrolled(true);
             setDelta(prev < window.scrollY);
             prev = window.scrollY;
-        };
+        }, 300);
 
         window.addEventListener('scroll', handleScroll);
 
@@ -76,7 +69,10 @@ const Header = (): ReactElement => {
     }, []);
 
     return (
-        <header className={clsx(css.header, delta && css.transform, scrolled && css.scrolled)}>
+        <header
+            className={clsx(css.header, delta && css.transform)}
+            style={scrolled ? { background: 'rgba(250, 250, 250, 0.99)' } : {}}
+        >
             <Container>
                 <div className={css.flex}>
                     <div className={css.wrp}>

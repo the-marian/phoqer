@@ -2,7 +2,7 @@ import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
 import { Theme } from '../../../assets/theme';
-import LinkArrow from '../../Common/LinkArrow';
+import LinkArrow from '../LinkArrow';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     wrp: {

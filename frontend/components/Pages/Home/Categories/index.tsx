@@ -7,7 +7,7 @@ import config from '../../../../assets/config';
 import router from '../../../../assets/router';
 import { Theme } from '../../../../assets/theme';
 import { ICategories, IState } from '../../../../interfaces';
-import SectionTitle from '../../../Layout/SectionTitle';
+import SectionTitle from '../../../Common/SectionTitle';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     root: {
