@@ -2,7 +2,6 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import React, { ReactElement, useEffect, useState } from 'react';
 import { createUseStyles } from 'react-jss';
-import { END } from 'redux-saga';
 
 import { Theme } from '../../../assets/theme';
 import Container from '../../../components/Layout/Container';
@@ -12,9 +11,6 @@ import Stepper from '../../../components/Pages/NewOffer/Stepper';
 import StepThree from '../../../components/Pages/NewOffer/StepThree';
 import StepTwo from '../../../components/Pages/NewOffer/StepTwo';
 import Success from '../../../components/Pages/NewOffer/Success';
-import { IStore } from '../../../interfaces';
-import { wrapper } from '../../../redux/store';
-import types from '../../../redux/types';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     title: {
@@ -51,6 +47,7 @@ const NewOffer = (): ReactElement => {
 
     const css = useStyles();
     const [index, setIndex] = useState<number>(1);
+
     useEffect(() => {
         if (query.step) {
             setIndex(typeof query.step === 'string' ? +query.step : +query.step[0]);
@@ -80,13 +77,5 @@ const NewOffer = (): ReactElement => {
         </>
     );
 };
-
-export const getServerSideProps = wrapper.getServerSideProps(
-    async ({ store }: { store: IStore }): Promise<void> => {
-        store.dispatch({ type: types.GET_CATEGORIES_START });
-        store.dispatch(END);
-        await store.sagaTask.toPromise();
-    },
-);
 
 export default NewOffer;

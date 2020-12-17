@@ -17,7 +17,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         position: 'fixed',
         top: 0,
         left: 0,
-        zIndex: 100,
+        zIndex: 10000,
         width: '100%',
         padding: theme.rem(1.4, 0),
         background: theme.palette.white,
@@ -28,7 +28,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
     flex: {
         position: 'relative',
-        zIndex: 11,
+        zIndex: 10001,
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',

@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import { useRouter } from 'next/router';
-import React, { ChangeEvent, FormEvent, ReactElement, useState } from 'react';
+import React, { ChangeEvent, FormEvent, ReactElement, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Dispatch } from 'redux';
 
@@ -39,6 +39,10 @@ const StepThree = (): ReactElement => {
     const [errors, setErrors] = useState<IError>({});
     const init = useSelector<IState, INewOffer>(state => state.newOffer);
     const [value, setValue] = useState<INewOffer>(init);
+
+    useEffect(() => {
+        dispatch({ type: types.GET_CATEGORIES_START });
+    }, [dispatch]);
 
     // event handlers
     const handleDelivery = (is_deliverable: boolean): void => {

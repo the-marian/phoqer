@@ -1457,6 +1457,15 @@
     abortcontroller-polyfill "^1.4.0"
     lodash.throttle "^4.1.1"
 
+"@uppy/xhr-upload@^1.6.7":
+  version "1.6.7"
+  resolved "https://registry.yarnpkg.com/@uppy/xhr-upload/-/xhr-upload-1.6.7.tgz#ed712a1406256e7f825e43cd67b67358bdb41496"
+  integrity sha512-15qOhG4InMWf8bpalqJLIXLU19UtrXNB07X6x6uXS1mZOizKIJONDvsTv+XZwMOc2KkWFIhgZn2w8TjkxEEk2Q==
+  dependencies:
+    "@uppy/companion-client" "^1.6.1"
+    "@uppy/utils" "^3.2.5"
+    cuid "^2.1.1"
+
 "@webassemblyjs/ast@1.9.0":
   version "1.9.0"
   resolved "https://registry.yarnpkg.com/@webassemblyjs/ast/-/ast-1.9.0.tgz#bd850604b4042459a5a41cd7d338cbed695ed964"

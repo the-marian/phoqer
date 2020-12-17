@@ -1,12 +1,12 @@
 import Uppy from '@uppy/core';
 import { Dashboard, StatusBar } from '@uppy/react';
-import Tus from '@uppy/tus';
+import XHRUpload from '@uppy/xhr-upload';
 import { useRouter } from 'next/router';
-import React, { FormEvent, ReactElement, useEffect } from 'react';
+import React, { FormEvent, ReactElement, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 
 import config from '../../../../assets/config';
-import { INewOffer, IState } from '../../../../interfaces';
+import { IAuth, INewOffer, IState } from '../../../../interfaces';
 import useStyles from './StepThree.styles';
 
 const uppy = Uppy<Uppy.StrictTypes>({
@@ -21,14 +21,28 @@ const uppy = Uppy<Uppy.StrictTypes>({
     },
 });
 
-uppy.use(Tus, { endpoint: config.uploadsUrl });
-
 const StepThree = (): ReactElement => {
     const css = useStyles();
     const router = useRouter();
 
+    const [xhr, setXhr] = useState<null | unknown>(null);
+
+    const { auth_token } = useSelector<IState, IAuth>(state => state.auth);
     const value = useSelector<IState, INewOffer>(state => state.newOffer);
     const height = process.browser ? (window.innerWidth < 900 ? 350 : 500) : 500;
+
+    useEffect(() => {
+        if (!xhr) {
+            const id = uppy.use(XHRUpload, {
+                endpoint: config.uploadsUrl,
+                headers: {
+                    Authorization: `Token ${auth_token}`,
+                },
+            });
+
+            setXhr(id);
+        }
+    }, [xhr]);
 
     useEffect(() => {
         if (!value.isDone.one || !value.isDone.two) {
