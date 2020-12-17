@@ -34,31 +34,13 @@ const StepThree = (): ReactElement => {
     );
 
     useEffect(() => {
-        // const handleFileMeta = (file): void => {
-        //     uppy.setFileState(file.id, {
-        //         xhrUpload: {
-        //             ...file.xhrUpload,
-        //             headers: {
-        //                 'Access-Control-Allow-Origin': '',
-        //                 'Content-Disposition': `attachment; filename="${file.name}"`,
-        //                 Authorization: `Token ${auth_token}`,
-        //             },
-        //         },
-        //     });
-        // };
-
         uppy.use(XHRUpload, {
             endpoint: config.uploadsUrl,
             headers: {
                 Authorization: `Token ${auth_token}`,
             },
         });
-        // uppy.on('file-added', handleFileMeta);
-
-        return () => {
-            // uppy.off('file-added', handleFileMeta);
-            uppy.close();
-        };
+        return () => uppy.close();
     }, []);
 
     const handleBack = () => {
