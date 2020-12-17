@@ -8,8 +8,8 @@ import { Theme } from '../../../assets/theme';
 import { IAuth, IState } from '../../../interfaces';
 import Logo from '../../Common/Logo';
 import Container from '../Container';
-import Lang from '../Lang';
 import GeneralInfo from './GeneralInfo';
+import Lang from './Lang';
 import UserInfo from './UserInfo';
 
 const useStyles = createUseStyles((theme: Theme) => ({

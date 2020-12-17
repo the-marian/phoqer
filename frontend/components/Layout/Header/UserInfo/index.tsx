@@ -20,7 +20,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     item: {
         marginLeft: theme.rem(2),
         '@media (max-width: 500px)': {
-            marginLeft: theme.rem(1.2),
+            marginLeft: theme.rem(2),
         },
     },
     text: {
@@ -35,6 +35,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
         color: theme.palette.black[0],
         '&:hover': {
             color: theme.palette.blue[0],
+        },
+        '@media (max-width: 600px)': {
+            fontSize: theme.rem(1.7),
         },
     },
     user: {

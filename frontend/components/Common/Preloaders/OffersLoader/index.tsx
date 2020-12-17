@@ -73,6 +73,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         marginBottom: theme.rem(2),
         fontSize: theme.rem(1.6),
         color: theme.palette.gray[3],
+        textAlign: 'center',
     },
     link: {
         fontSize: theme.rem(1.6),

@@ -2,53 +2,64 @@ import Uppy from '@uppy/core';
 import { Dashboard, StatusBar } from '@uppy/react';
 import XHRUpload from '@uppy/xhr-upload';
 import { useRouter } from 'next/router';
-import React, { FormEvent, ReactElement, useEffect, useState } from 'react';
+import React, { FormEvent, ReactElement, useEffect, useMemo, useState } from 'react';
 import { useSelector } from 'react-redux';
 
 import config from '../../../../assets/config';
 import { IAuth, INewOffer, IState } from '../../../../interfaces';
 import useStyles from './StepThree.styles';
 
-const uppy = Uppy<Uppy.StrictTypes>({
-    id: 'offer_img',
-    autoProceed: false,
-    allowMultipleUploads: true,
-    meta: { type: 'avatar' },
-    restrictions: {
-        maxFileSize: 3145728, // 3 megabytes in bytes
-        allowedFileTypes: ['.jpg', '.jpeg', '.png'],
-        maxNumberOfFiles: 20,
-    },
-});
-
 const StepThree = (): ReactElement => {
     const css = useStyles();
     const router = useRouter();
 
-    const [xhr, setXhr] = useState<null | unknown>(null);
-
     const { auth_token } = useSelector<IState, IAuth>(state => state.auth);
     const value = useSelector<IState, INewOffer>(state => state.newOffer);
-    const height = process.browser ? (window.innerWidth < 900 ? 350 : 500) : 500;
+    if (!value.isDone.one || !value.isDone.two) router.push('/new_offer/1');
 
-    useEffect(() => {
-        if (!xhr) {
-            const id = uppy.use(XHRUpload, {
-                endpoint: config.uploadsUrl,
-                headers: {
-                    Authorization: `Token ${auth_token}`,
+    const uppy = useMemo(
+        () =>
+            Uppy<Uppy.StrictTypes>({
+                id: 'offer_img',
+                autoProceed: false,
+                allowMultipleUploads: true,
+                meta: { type: 'offer_img' },
+                restrictions: {
+                    maxFileSize: 3145728, // 3 megabytes in bytes
+                    allowedFileTypes: ['.jpg', '.jpeg', '.png'],
+                    maxNumberOfFiles: 20,
                 },
-            });
-
-            setXhr(id);
-        }
-    }, [xhr]);
+            }),
+        [],
+    );
 
     useEffect(() => {
-        if (!value.isDone.one || !value.isDone.two) {
-            router.push('/new_offer/1');
-        }
-    }, [value]);
+        // const handleFileMeta = (file): void => {
+        //     uppy.setFileState(file.id, {
+        //         xhrUpload: {
+        //             ...file.xhrUpload,
+        //             headers: {
+        //                 'Access-Control-Allow-Origin': '',
+        //                 'Content-Disposition': `attachment; filename="${file.name}"`,
+        //                 Authorization: `Token ${auth_token}`,
+        //             },
+        //         },
+        //     });
+        // };
+
+        uppy.use(XHRUpload, {
+            endpoint: config.uploadsUrl,
+            headers: {
+                Authorization: `Token ${auth_token}`,
+            },
+        });
+        // uppy.on('file-added', handleFileMeta);
+
+        return () => {
+            // uppy.off('file-added', handleFileMeta);
+            uppy.close();
+        };
+    }, []);
 
     const handleBack = () => {
         router.push('/new_offer/2');
@@ -56,7 +67,6 @@ const StepThree = (): ReactElement => {
 
     const handleSubmit = async (event: FormEvent): Promise<void> => {
         event.preventDefault();
-
         if (!uppy.getFiles()?.length) return;
 
         try {
@@ -67,6 +77,8 @@ const StepThree = (): ReactElement => {
             console.log(error);
         }
     };
+
+    const height = process.browser ? (window.innerWidth < 900 ? 350 : 500) : 500;
 
     return (
         <form className={css.form} onSubmit={handleSubmit}>

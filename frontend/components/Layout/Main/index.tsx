@@ -8,7 +8,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         margin: theme.rem(16, 0),
 
         '@media (max-width: 900px)': {
-            margin: theme.rem(16, 0),
+            margin: theme.rem(12, 0),
         },
     },
 }));
