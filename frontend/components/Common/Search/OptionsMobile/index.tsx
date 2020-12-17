@@ -65,14 +65,7 @@ const OptionsMobile = (): ReactElement => {
     return (
         <Media className={css.root} size={1100} mobile>
             <div className={css.drop}>
-                <DropDown
-                    data={categories}
-                    placeholder="Выберите категорию"
-                    onChange={console.log}
-                    height={7}
-                    withSub
-                    transparent
-                />
+                <DropDown data={categories} placeholder="Выберите категорию" onChange={console.log} height={7} withSub />
             </div>
             <button type="button" className={css.location} onClick={handleRegionModal}>
                 <img className={css.icon} src="/emoji/map.png" alt="" />

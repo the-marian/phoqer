@@ -16,13 +16,13 @@ const useStyles = createUseStyles((theme: Theme) => ({
         outline: 'none',
     },
     transparent: {
-        background: 'none',
+        background: 'none !important',
     },
     inner: {
         display: 'flex',
         alignItems: 'center',
         margin: 0,
-        padding: theme.rem(2),
+        padding: theme.rem(1.8),
         background: theme.palette.gray[1],
         borderRadius: theme.radius,
         cursor: 'pointer',
