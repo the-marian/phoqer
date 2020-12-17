@@ -1,13 +1,13 @@
 import React, { ReactElement } from 'react';
 import { END } from 'redux-saga';
 
-import TopPopular from '../components/Pages/Home/PopularOffers';
 import Search from '../components/Common/Search';
 import About from '../components/Layout/About';
-import Banner from '../components/Pages/Home/Banner';
 import Container from '../components/Layout/Container';
 import Main from '../components/Layout/Main';
+import Banner from '../components/Pages/Home/Banner';
 import Categories from '../components/Pages/Home/Categories';
+import TopPopular from '../components/Pages/Home/PopularOffers';
 import { IStore } from '../interfaces';
 import { wrapper } from '../redux/store';
 import types from '../redux/types';

@@ -4,12 +4,12 @@ import { useSelector } from 'react-redux';
 import { END } from 'redux-saga';
 
 import OffersList from '../../components/Common/Offers/OffersList';
-import TopOffers from '../../components/Pages/Offers/TopOffers';
 import Search from '../../components/Common/Search';
 import About from '../../components/Layout/About';
 import Container from '../../components/Layout/Container';
 import Main from '../../components/Layout/Main';
 import Filters from '../../components/Pages/Offers/Filters';
+import TopOffers from '../../components/Pages/Offers/TopOffers';
 import { IOfferPopular, IState, IStore } from '../../interfaces';
 import { wrapper } from '../../redux/store';
 import types from '../../redux/types';
