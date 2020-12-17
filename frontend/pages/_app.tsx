@@ -40,7 +40,7 @@ const App = ({ Component, pageProps }: AppProps): ReactElement => {
                 <ThemeProvider theme={theme}>
                     <Head>
                         <title>Phoqer</title>
-                        <meta name="viewport" content="width=device-width,initial-scale=1" />
+                        <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
                     </Head>
                     <AuthHOC>
                         <Header />
