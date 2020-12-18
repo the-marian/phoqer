@@ -9,7 +9,7 @@ import { Theme } from '../../../../assets/theme';
 const useStyles = createUseStyles((theme: Theme) => ({
     '@keyframes loader': {
         '0%': { background: theme.palette.gray[1] },
-        '50%': { background: theme.palette.grayblue[0] },
+        '50%': { background: theme.palette.secondary[0] },
         '100%': { background: theme.palette.gray[1] },
     },
     grid: {
@@ -77,7 +77,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
     link: {
         fontSize: theme.rem(1.6),
-        color: theme.palette.blue[0],
+        color: theme.palette.primary[0],
         fontWeight: theme.text.weight[3],
 
         '&:hover': {

@@ -35,7 +35,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         background: theme.palette.gray[1],
         borderRadius: theme.radius,
         border: 'none',
-        color: theme.palette.blue[1],
+        color: theme.palette.primary[0],
 
         '& span': {
             width: theme.rem(20),

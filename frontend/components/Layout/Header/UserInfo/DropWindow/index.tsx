@@ -46,7 +46,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         margin: theme.rem(1.4, 0),
 
         '&:hover': {
-            color: theme.palette.blue[0],
+            color: theme.palette.primary[0],
         },
     },
     text: {

@@ -15,29 +15,38 @@ import DropWindow from './DropWindow';
 const useStyles = createUseStyles((theme: Theme) => ({
     flex: {
         display: 'flex',
-        fontSize: theme.rem(1.2),
+        fontSize: theme.rem(1.4),
     },
     item: {
-        marginLeft: theme.rem(2),
+        marginLeft: theme.rem(4.5),
+
         '@media (max-width: 500px)': {
             marginLeft: theme.rem(2),
+        },
+
+        '@media (max-width: 450px)': {
+            marginLeft: theme.rem(2.5),
         },
     },
     text: {
         position: 'relative',
         marginLeft: theme.rem(1),
-        '@media (max-width: 600px)': {
+
+        '@media (max-width: 750px)': {
             fontSize: 0,
+            marginLeft: 0,
         },
     },
     link: {
         position: 'relative',
         color: theme.palette.black[0],
+
         '&:hover': {
-            color: theme.palette.blue[0],
+            color: theme.palette.primary[0],
         },
-        '@media (max-width: 600px)': {
-            fontSize: theme.rem(1.7),
+
+        '@media (max-width: 750px)': {
+            fontSize: theme.rem(2),
         },
     },
     user: {

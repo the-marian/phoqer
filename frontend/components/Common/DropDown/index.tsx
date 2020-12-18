@@ -65,7 +65,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
 
             '&:hover': {
                 background: theme.palette.gray[1],
-                color: theme.palette.blue[0],
+                color: theme.palette.primary[0],
             },
         },
     },
@@ -80,7 +80,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
 
         '&:hover': {
             background: theme.palette.gray[0],
-            color: theme.palette.blue[0],
+            color: theme.palette.primary[0],
         },
     },
     white: {
@@ -139,22 +139,20 @@ const DropDown = ({
         }, 200);
     };
 
-    const handleOpen = (): void => {
-        setDrop(true);
-    };
-
-    const handleClose = () => {
-        setDrop(false);
+    const handleMouseLeave = () => {
+        setTimeout(() => {
+            setDrop(false);
+        }, 200);
     };
 
     const handleSelect = (name: string, slug: string, type: 'main' | 'sub'): void => {
-        setDrop(!drop);
         onChange({ name, slug, type });
         setSelected(name);
+        setDrop(!drop);
     };
 
     return (
-        <div className={css.wrp} tabIndex={-1} onMouseLeave={handleClose} onMouseEnter={handleOpen} onBlur={handleBlur}>
+        <div className={css.wrp} tabIndex={-1} onMouseLeave={handleMouseLeave} onBlur={handleBlur}>
             <p
                 className={clsx(
                     css.inner,

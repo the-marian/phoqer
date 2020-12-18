@@ -53,7 +53,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         borderRadius: '50%',
         border: theme.border(0.1, theme.palette.gray[2]),
         fontWeight: theme.text.weight[5],
-        color: theme.palette.blue[0],
+        color: theme.palette.primary[0],
     },
     active: {
         border: 'none',

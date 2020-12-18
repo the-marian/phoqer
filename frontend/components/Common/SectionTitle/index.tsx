@@ -14,10 +14,10 @@ const useStyles = createUseStyles((theme: Theme) => ({
     title: {
         fontSize: theme.rem(2),
         fontWeight: theme.text.weight[4],
-        color: theme.palette.blue[1],
+        color: theme.palette.primary[0],
     },
     link: {
-        color: theme.palette.blue[0],
+        color: theme.palette.primary[0],
     },
 }));
 

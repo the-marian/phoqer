@@ -23,7 +23,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         transition: theme.transitions[0],
         '&:hover': {
             transform: 'translateY(-0.2rem)',
-            fill: theme.palette.blue[0],
+            fill: theme.palette.primary[0],
         },
     },
     svg: {

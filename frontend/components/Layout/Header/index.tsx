@@ -44,19 +44,19 @@ let prev = 0;
 const Header = (): ReactElement => {
     const css = useStyles();
     const [delta, setDelta] = useState<boolean>(false);
-    const [scrolled, setScrolled] = useState<boolean>(false);
+    const [scrolled] = useState<boolean>(true);
     const { auth_token } = useSelector<IState, IAuth>(state => state.auth);
 
     useEffect(() => {
         const handleScroll = throttle((): void => {
-            if (window.scrollY < 300 && !delta) {
-                setScrolled(false);
+            if (window.scrollY < 100 && !delta) {
+                // setScrolled(false);
                 setDelta(false);
                 prev = 0;
                 return;
             }
 
-            setScrolled(true);
+            // setScrolled(true);
             setDelta(prev < window.scrollY);
             prev = window.scrollY;
         }, 300);
@@ -71,7 +71,7 @@ const Header = (): ReactElement => {
     return (
         <header
             className={clsx(css.header, delta && css.transform)}
-            style={scrolled ? { background: 'rgba(250, 250, 250, 0.99)' } : {}}
+            style={scrolled ? { background: 'linear-gradient(93.4deg, #EDFBC9 0%, #E5F4BF 23.83%, #CCDD9F 100%)' } : {}}
         >
             <Container>
                 <div className={css.flex}>

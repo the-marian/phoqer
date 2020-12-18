@@ -112,7 +112,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         height: theme.rem(6),
         padding: theme.rem(1, 4),
         marginLeft: theme.rem(2),
-        background: theme.palette.blue[0],
+        background: theme.palette.primary[0],
         fontSize: theme.rem(1.4),
         color: theme.palette.white,
         borderRadius: theme.radius,

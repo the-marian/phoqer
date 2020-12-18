@@ -6,7 +6,7 @@ import { Theme } from '../../../../assets/theme';
 const useStyles = createUseStyles((theme: Theme) => ({
     '@keyframes loader': {
         '0%': { background: theme.palette.gray[1] },
-        '50%': { background: theme.palette.grayblue[0] },
+        '50%': { background: theme.palette.secondary[0] },
         '100%': { background: theme.palette.gray[1] },
     },
     wrp: {

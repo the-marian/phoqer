@@ -31,7 +31,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     cat: {
         cursor: 'pointer',
         '&:hover': {
-            color: theme.palette.blue[0],
+            color: theme.palette.primary[0],
         },
     },
     img: {

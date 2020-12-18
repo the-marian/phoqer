@@ -37,7 +37,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     link: {
         margin: theme.rem(3),
         fontSize: theme.rem(1.2),
-        color: theme.palette.blue[0],
+        color: theme.palette.primary[0],
         '&:hover': {
             textDecoration: 'underline',
         },
@@ -56,7 +56,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         height: theme.rem(6),
         padding: theme.rem(1, 4),
         margin: theme.rem(5, 0, 0),
-        background: theme.palette.blue[0],
+        background: theme.palette.primary[0],
         fontSize: theme.rem(1.4),
         color: theme.palette.white,
         borderRadius: theme.radius,

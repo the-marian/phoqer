@@ -13,10 +13,9 @@ export interface Theme {
         green: string[];
         soft: string[];
         grad: string[];
-        violet: string[];
         yellow: string[];
-        grayblue: string[];
-        blue: string[];
+        primary: string[];
+        secondary: string[];
         modal: string;
     };
     text: {
@@ -64,10 +63,9 @@ export const theme: Theme = {
             'linear-gradient(90deg, #7928CA, #FF0080)',
             'linear-gradient(90deg, #FF4D4D, #F9CB28)',
         ],
-        violet: ['#cda0f8'],
         yellow: ['#EDBF18', '#FAF0CA'],
-        grayblue: ['#DFE6E6'],
-        blue: ['#0A72EF', '#2771A3', '#FCFEFF'],
+        primary: ['#764A8D', '#C39ADA', 'linear-gradient(93.32deg, #C39ADA 0%, #764A8D 100%)'],
+        secondary: ['#EDFBC9', '#CCDD9F', 'linear-gradient(93.4deg, #EDFBC9 0%, #E5F4BF 23.83%, #CCDD9F 100%)'],
         modal: 'rgba(0, 0, 0, 0.3)',
     },
     text: {

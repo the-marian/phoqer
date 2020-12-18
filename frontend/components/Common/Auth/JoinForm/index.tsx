@@ -50,7 +50,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         display: 'block',
         textAlign: 'right',
         fontSize: theme.rem(1.4),
-        color: theme.palette.blue[0],
+        color: theme.palette.primary[0],
     },
     btn: {
         display: 'block',
@@ -61,7 +61,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         textAlign: 'center',
         fontSize: theme.rem(1.4),
         borderRadius: theme.radius,
-        background: theme.palette.blue[0],
+        background: theme.palette.primary[0],
         color: theme.palette.white,
     },
     text: {

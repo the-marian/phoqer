@@ -54,7 +54,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         color: theme.palette.black[0],
         '&:hover': {
             textDecoration: 'underline',
-            color: theme.palette.blue[0],
+            color: theme.palette.primary[0],
         },
     },
     wrp: {
@@ -65,12 +65,12 @@ const useStyles = createUseStyles((theme: Theme) => ({
     title: {
         fontSize: theme.rem(2),
         fontWeight: theme.text.weight[4],
-        color: theme.palette.blue[1],
+        color: theme.palette.primary[0],
     },
     close: {
         marginLeft: theme.rem(2.5),
         fontSize: theme.rem(1.4),
-        color: theme.palette.blue[0],
+        color: theme.palette.primary[0],
         '&:hover': {
             textDecoration: 'underline',
         },
@@ -81,7 +81,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         padding: theme.rem(1.5, 3),
         fontSize: theme.rem(1.4),
         borderRadius: theme.radius,
-        background: theme.palette.blue[0],
+        background: theme.palette.primary[0],
         color: theme.palette.white,
     },
 }));

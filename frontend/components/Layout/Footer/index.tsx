@@ -10,7 +10,7 @@ import SiteMap from './SiteMap';
 const useStyles = createUseStyles((theme: Theme) => ({
     footer: {
         padding: theme.rem(8, 0),
-        background: theme.palette.soft[2],
+        background: theme.palette.secondary[2],
     },
     wrp: {
         display: 'flex',
@@ -23,7 +23,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
 }));
 
-const Fotter = (): ReactElement => {
+const Footer = (): ReactElement => {
     const css = useStyles();
     return (
         <footer className={css.footer}>
@@ -38,4 +38,4 @@ const Fotter = (): ReactElement => {
     );
 };
 
-export default Fotter;
+export default Footer;

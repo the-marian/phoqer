@@ -25,7 +25,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         fontSize: theme.rem(1.4),
         background: 'none',
         border: 'none',
-        color: theme.palette.blue[1],
+        color: theme.palette.primary[0],
 
         '& span': {
             width: theme.rem(20),

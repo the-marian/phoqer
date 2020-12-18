@@ -46,7 +46,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     btn: {
         height: theme.rem(7),
         width: '100%',
-        background: theme.palette.blue[0],
+        background: theme.palette.primary[0],
         fontSize: theme.rem(1.6),
         color: theme.palette.white,
         borderRadius: theme.radius,
@@ -67,7 +67,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         marginBottom: theme.rem(2),
         fontSize: theme.rem(1.6),
         fontWeight: theme.text.weight[3],
-        color: theme.palette.blue[0],
+        color: theme.palette.primary[0],
         '&:hover': {
             textDecoration: 'underline',
         },

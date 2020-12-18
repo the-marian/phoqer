@@ -49,7 +49,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         color: theme.palette.yellow[0],
     },
     delivery: {
-        color: theme.palette.blue[0],
+        color: theme.palette.primary[0],
     },
     title: {
         margin: theme.rem(2, 0),
@@ -88,11 +88,11 @@ const useStyles = createUseStyles((theme: Theme) => ({
         padding: theme.rem(1.5, 2),
         fontSize: theme.rem(1.4),
         borderRadius: theme.radius,
-        background: theme.palette.grayblue[0],
+        background: theme.palette.secondary[0],
     },
     favorite: {
         marginLeft: theme.rem(2),
-        color: theme.palette.blue[0],
+        color: theme.palette.primary[0],
     },
     price: {
         display: 'flex',

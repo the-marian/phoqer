@@ -26,13 +26,13 @@ const useStyles = createUseStyles((theme: Theme) => ({
         width: theme.rem(2.5),
         display: 'inline-block',
         marginRight: theme.rem(1.5),
-        border: theme.border(0.1, theme.palette.blue[0]),
-        background: theme.palette.blue[2],
+        border: theme.border(0.1, theme.palette.primary[0]),
+        background: theme.palette.white,
         borderRadius: theme.radius,
     },
     active: {
         position: 'relative',
-        background: theme.palette.blue[0],
+        background: theme.palette.primary[0],
         '&::before': {
             content: '""',
             position: 'absolute',

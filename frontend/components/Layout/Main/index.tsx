@@ -5,6 +5,7 @@ import { Theme } from '../../../assets/theme';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     main: {
+        minHeight: '50vh',
         margin: theme.rem(16, 0),
 
         '@media (max-width: 900px)': {
