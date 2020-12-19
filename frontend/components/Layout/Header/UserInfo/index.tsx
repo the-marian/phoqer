@@ -46,7 +46,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         },
 
         '@media (max-width: 750px)': {
-            fontSize: theme.rem(2),
+            fontSize: theme.rem(2.2),
         },
     },
     user: {
