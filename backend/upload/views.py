@@ -1,12 +1,12 @@
 from django.core.files.storage import FileSystemStorage
-from rest_framework.parsers import FileUploadParser
+from rest_framework.parsers import MultiPartParser
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
 
 class ImageUpload(APIView):
-    parser_classes = [FileUploadParser]
+    parser_classes = [MultiPartParser]
     permission_classes = [IsAuthenticated]
 
     def post(self, request):

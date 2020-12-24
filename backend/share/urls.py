@@ -7,8 +7,8 @@ from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView
 from upload.views import ImageUpload
 
 urlpatterns = [
-    path("api/upload/", ImageUpload.as_view(), name="upload"),
-    path("admin/", admin.site.urls),
+    path('api/v1/upload/', ImageUpload.as_view(), name='upload'),
+    path('admin/', admin.site.urls),
 
     # REST-FRAMEWORK URLS
     path('api/v1/categories/', include('categories.urls', namespace='categories')),
