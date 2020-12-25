@@ -47,6 +47,7 @@ const App = ({ Component, pageProps }: AppProps): ReactElement => {
                         <ModalComponent />
                         <FullPage />
                         <Component {...pageProps} />
+                        <AuthPublicPage />
                         <Footer />
                     </AuthHOC>
                 </ThemeProvider>
