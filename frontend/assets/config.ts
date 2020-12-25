@@ -1,6 +1,6 @@
 const config = {
-    baseUrl: process.env.NODE_ENV === 'production' ? 'http://140.82.39.245/api/v1' : 'http://140.82.39.245/api/v1',
-    uploadsUrl: 'http://140.82.39.245/api/upload/',
+    baseUrl: 'http://140.82.39.245/api/v1',
+    uploadsUrl: 'http://140.82.39.245/api/v1/upload/',
     offers: {
         grid: {
             desktop: 4,

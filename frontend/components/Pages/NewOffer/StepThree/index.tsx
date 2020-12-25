@@ -2,7 +2,7 @@ import Uppy from '@uppy/core';
 import { Dashboard, StatusBar } from '@uppy/react';
 import XHRUpload from '@uppy/xhr-upload';
 import { useRouter } from 'next/router';
-import React, { FormEvent, ReactElement, useEffect, useMemo, useState } from 'react';
+import React, { FormEvent, ReactElement, useEffect, useMemo } from 'react';
 import { useSelector } from 'react-redux';
 
 import config from '../../../../assets/config';
@@ -20,10 +20,10 @@ const StepThree = (): ReactElement => {
     const uppy = useMemo(
         () =>
             Uppy<Uppy.StrictTypes>({
-                id: 'offer_img',
+                id: 'file',
                 autoProceed: false,
                 allowMultipleUploads: true,
-                meta: { type: 'offer_img' },
+                meta: { type: 'file' },
                 restrictions: {
                     maxFileSize: 3145728, // 3 megabytes in bytes
                     allowedFileTypes: ['.jpg', '.jpeg', '.png'],
@@ -36,8 +36,10 @@ const StepThree = (): ReactElement => {
     useEffect(() => {
         uppy.use(XHRUpload, {
             endpoint: config.uploadsUrl,
+            fieldName: 'file',
             headers: {
                 Authorization: `Token ${auth_token}`,
+                // 'Content-Type': 'multipart/form-data; boundary=<calculated when request is sent>',
             },
         });
         return () => uppy.close();
