@@ -18,6 +18,7 @@ import AuthHOC from '../components/HOC/AuthHOC';
 import Footer from '../components/Layout/Footer';
 import Header from '../components/Layout/Header';
 import { wrapper } from '../redux/store';
+import AuthPublicPage from './publicPage';
 
 const App = ({ Component, pageProps }: AppProps): ReactElement => {
     const store = useStore();

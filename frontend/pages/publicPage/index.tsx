@@ -10,18 +10,23 @@ import { Theme } from '../../assets/theme';
 const useStyles = createUseStyles((theme: Theme) => ({
     container: {
         display: 'flex',
-        width: '100%',
+        width: '90%',
         maxWidth: theme.rem(120),
         margin: '0 auto',
 
-        '@media (max-width: 1300px)': {
-            width: '90%',
-            maxWidth: 'unset',
+        '@media (max-width: 950px)': {
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center'
         },
     },
     userWrp: {
         width: '35%',
-        display: 'flex'
+        display: 'flex',
+        '@media (max-width: 950px)': {
+            width: '100%',
+            marginBottom: theme.rem(5)
+        },
     },
     userImg: {
         width: '100px',
@@ -51,13 +56,20 @@ const useStyles = createUseStyles((theme: Theme) => ({
     userInfo: {
         width: '65%',
         display: 'flex',
-        flexWrap: 'wrap'
+        flexWrap: 'wrap',
+        '@media (max-width: 950px)': {
+            paddingLeft: theme.rem(3),
+            width: '100%'
+        },
     },
     infoItems: {
         display: 'flex',
         width: '100%',
         justifyContent: 'space-between',
-        marginBottom: theme.rem(1)
+        marginBottom: theme.rem(1),
+        '@media (max-width: 520px)': {
+            flexDirection: 'column'
+        },
     },
     infoGoods: {
         color: '#999999'
