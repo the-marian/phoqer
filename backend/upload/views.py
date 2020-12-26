@@ -10,9 +10,10 @@ class ImageUpload(APIView):
     permission_classes = [IsAuthenticated]
 
     def post(self, request):
-        image_file = request.data['file']
+        image_file_list = request.FILES.getlist('file')
         fs = FileSystemStorage()
-        filename = fs.save(image_file.name, image_file)
-        image_url = fs.url(filename)
-        print(image_url)
-        return Response({"image_url": image_url}, status=201)
+        images_url = []
+        for image in image_file_list:
+            filename = fs.save(image.name, image)
+            images_url.append(fs.url(filename))
+        return Response({"images_url": images_url}, status=201)
