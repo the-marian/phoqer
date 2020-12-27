@@ -33,7 +33,6 @@ class OfferListItemSerializer(serializers.ModelSerializer):
             'is_favorite',
             'is_promoted',
             'is_deliverable',
-            'per',
             'price',
             'pub_date',
             'title',

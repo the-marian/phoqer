@@ -2,7 +2,7 @@
 FROM python:3.8.3-alpine
 
 # set work directory
-WORKDIR /home/share/backend
+WORKDIR /home/phoqer/backend
 
 # set environment variables
 ENV PYTHONDONTWRITEBYTECODE 1
@@ -13,10 +13,10 @@ RUN apk update \
     && apk add postgresql-dev gcc python3-dev musl-dev
 
 # copy entrypoint-prod.sh
-COPY ./entrypoint.sh /home/share/backend/entrypoint.sh
+COPY ./entrypoint.sh /home/phoqer/backend/entrypoint.sh
 
 # copy project
-COPY . /home/share/backend
+COPY . /home/phoqer/backend
 
 # lint
 RUN pip install --upgrade pip
@@ -26,4 +26,4 @@ COPY ./requirements.txt .
 RUN pip install -r requirements.txt
 
 # run entrypoint.sh
-ENTRYPOINT ["/home/share/backend/entrypoint.sh"]
+ENTRYPOINT ["/home/phoqer/backend/entrypoint.sh"]

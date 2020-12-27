@@ -3,10 +3,10 @@ version: '3.7'
 services:
   backend:
     image: "${BACKEND_IMAGE}"
-    command: gunicorn share.wsgi:application --bind 0.0.0.0:8000 --access-logfile - --error-logfile -
+    command: gunicorn phoqer.wsgi:application --bind 0.0.0.0:8000 --access-logfile - --error-logfile -
     volumes:
-      - static_volume:/home/share/backend/staticfiles/
-      - media_volume:/home/share/backend/mediafiles/
+      - static_volume:/home/phoqer/backend/staticfiles/
+      - media_volume:/home/phoqer/backend/mediafiles/
     ports:
       - 8000:8000
     env_file:
@@ -30,8 +30,8 @@ services:
   nginx:
     image: "${NGINX_IMAGE}"
     volumes:
-      - static_volume:/home/share/backend/staticfiles/
-      - media_volume:/home/share/backend/mediafiles/
+      - static_volume:/home/phoqer/backend/staticfiles/
+      - media_volume:/home/phoqer/backend/mediafiles/
     ports:
       - 80:80
     depends_on:
