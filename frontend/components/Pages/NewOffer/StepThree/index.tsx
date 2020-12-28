@@ -2,7 +2,7 @@ import Uppy from '@uppy/core';
 import { Dashboard, StatusBar } from '@uppy/react';
 import XHRUpload from '@uppy/xhr-upload';
 import { useRouter } from 'next/router';
-import React, { FormEvent, ReactElement, useEffect, useMemo, useState } from 'react';
+import React, { FormEvent, ReactElement, useEffect, useMemo } from 'react';
 import { useSelector } from 'react-redux';
 
 import config from '../../../../assets/config';
