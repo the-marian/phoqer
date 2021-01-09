@@ -4,7 +4,7 @@ from .models import Notifications
 
 class NotificationsSerializer(serializers.ModelSerializer):
     recipient = serializers.CharField(source="recipient.email")
-    # pub_date = serializers.CharField(source="pub_date_display")
+    pub_date = serializers.CharField(source="pub_date_display")
 
     class Meta:
         model = Notifications
@@ -12,5 +12,4 @@ class NotificationsSerializer(serializers.ModelSerializer):
             'recipient',
             'body',
             'pub_date',
-            'pub_date_display',
         ]
