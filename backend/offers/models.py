@@ -37,7 +37,7 @@ class Offer(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     is_deliverable = models.BooleanField(blank=True, null=True)
     max_rent_period = models.PositiveSmallIntegerField(blank=True, null=True)
-    mix_rent_period = models.PositiveSmallIntegerField(blank=True, null=True)
+    min_rent_period = models.PositiveSmallIntegerField(blank=True, null=True)
     price = models.PositiveIntegerField(blank=True, null=True)
     promote_til_date = models.DateField(blank=True, null=True)
     pub_date = models.DateField(auto_now_add=True)
@@ -55,7 +55,7 @@ class Offer(models.Model):
 
 class OfferImages(models.Model):
     name = models.CharField(max_length=50)
-    offer = models.ForeignKey(Offer, related_name='offer_images', on_delete=models.CASCADE, null=True)
+    offer = models.ForeignKey(Offer, related_name='offer_images', on_delete=models.CASCADE)
     url = models.URLField()
 
     def __str__(self) -> str:
