@@ -55,8 +55,44 @@ class OfferListItemSerializer(serializers.ModelSerializer):
 
 
 class OfferSerializer(serializers.ModelSerializer):
-    images = OfferImageSerializer(many=True, read_only=True)
+    author = serializers.HiddenField(
+        default=serializers.CurrentUserDefault()
+    )
 
     class Meta:
         model = Offer
-        fields = '__all__'
+        fields = [
+            'author',
+            'category',
+            'city',
+            'cover_image',
+            'currency',
+            'deposit_val',
+            'description',
+            'description',
+            'doc_needed',
+            'extra_requirements',
+            'id',
+            'is_deliverable',
+            'max_rent_period',
+            'mix_rent_period',
+            'sub_category',
+            'title',
+            'price',
+        ]
+        extra_kwargs = {
+            "category": {"required": False},
+            "city": {"required": False},
+            "cover_image": {"required": False},
+            "currency": {"required": False},
+            "deposit_val": {"required": False},
+            "description": {"required": False},
+            "doc_needed": {"required": False},
+            "extra_requirements": {"required": False},
+            "is_deliverable": {"required": False},
+            "max_rent_period": {"required": False},
+            "mix_rent_period": {"required": False},
+            "sub_category": {"required": False},
+            "title": {"required": False},
+            "price": {"required": False},
+        }
