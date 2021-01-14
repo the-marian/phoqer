@@ -30,6 +30,9 @@ urlpatterns = [
 
     # NOTIFICATIONS
     path('api/v1/notifications/', include('notifications.urls', namespace='notifications')),
+
+    # FAVOURITE
+    path('api/v1/favourite/', include('favourite.urls', namespace='favourite')),
 ]
 
 if bool(settings.DEBUG):
