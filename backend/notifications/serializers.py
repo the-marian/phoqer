@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Notifications
+from .models import Notification
 
 
 class NotificationsSerializer(serializers.ModelSerializer):
@@ -7,9 +7,10 @@ class NotificationsSerializer(serializers.ModelSerializer):
     pub_date = serializers.CharField(source="pub_date_display")
 
     class Meta:
-        model = Notifications
+        model = Notification
         fields = [
             'recipient',
             'body',
             'pub_date',
+            'viewed',
         ]

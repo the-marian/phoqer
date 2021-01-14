@@ -1,6 +1,6 @@
 import pytest
 from rest_framework.test import APIClient
-from notifications.models import Notifications
+from notifications.models import Notification
 from users.models import User
 from freezegun import freeze_time
 
@@ -11,38 +11,52 @@ def api_client():
     return APIClient()
 
 
-@pytest.fixture()
-def test_user_1(db_test_data):
-    user = User.objects.get(email='maric0naric@gmail.com')
+@pytest.fixture
+def user_1(db):
+    return User.objects.create_user(first_name='Marian', last_name='Zozulia', email='maric0naric@gmail.com',
+                                      password='bla bla bla 123')
+
+
+@pytest.fixture
+def user_2(db):
+    return User.objects.create_user(first_name='Egor', last_name='Fray', email='qwerty12345@gmail.com',
+                                      password='123erw')
+
+
+@pytest.fixture
+def user_3(db):
+    return User.objects.create_user(first_name='Igor', last_name='Michylechenko', email='jstop@gmail.com',
+                                      password='jstop')
+
+
+@pytest.fixture
+def authenticated_user1(db, user_1):
     client = APIClient()
-    client.force_authenticate(user=user)
+    client.login(username='maric0naric@gmail.com', password='bla bla bla 123')
     return client
 
 
-@pytest.fixture()
-def test_user_2(db_test_data):
-    user = User.objects.get(email='qwerty12345@gmail.com')
+@pytest.fixture
+def authenticated_user2(db, user_2):
     client = APIClient()
-    client.force_authenticate(user=user)
+    client.login(username='qwerty12345@gmail.com', password='123erw')
     return client
 
 
-@pytest.fixture()
-def test_user_3(db_test_data):
-    user = User.objects.get(email='jstop@gmail.com')
+@pytest.fixture
+def authenticated_user3(db, user_3):
     client = APIClient()
-    client.force_authenticate(user=user)
+    client.login(username='jstop@gmail.com', password='jstop')
     return client
 
 
 @pytest.fixture
 @freeze_time("2020-10-14 12:00:01")
-def db_test_data(db):
-    user_1 = User.objects.create_user(first_name='Marian', last_name='Zozulia', email='maric0naric@gmail.com',
-                                      password='bla bla bla 123')
-    user_2 = User.objects.create_user(first_name='Egor', last_name='Fray', email='qwerty12345@gmail.com',
-                                      password='123erw')
-    user_3 = User.objects.create_user(first_name='Igor', last_name='Michylechenko', email='jstop@gmail.com',
-                                      password='jstop')
-    Notifications.objects.create(recipient=user_1, body='some text', viewed=True)
-    Notifications.objects.create(recipient=user_2, body='some cool text', viewed=False)
+def notification_1(db, user_1):
+    return Notification.objects.create(recipient=user_1, body='some text', viewed=True)
+
+
+@pytest.fixture
+@freeze_time("2020-10-14 12:00:01")
+def notification_2(db, user_2):
+    return Notification.objects.create(recipient=user_2, body='some cool text', viewed=False)
