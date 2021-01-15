@@ -58,7 +58,7 @@ const About = (): ReactElement => {
         <div className={css.wrp}>
             <img className={css.img} src="/about.jpg" alt="about" />
 
-            <h2 className={css.title}>fucking project</h2>
+            <h2 className={css.title}>phoqer</h2>
             <div className={css.content}>
                 <p className={css.text}>
                     Ты – это то, что тебя окружает. Мы полностью согласны с этой фразой. Вещи, которые мы покупаем, формируют
