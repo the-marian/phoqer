@@ -73,8 +73,12 @@ def db_test_data(db):
         title='Iphone 10')
 
 
-
 @pytest.fixture
 def sport_category(db):
-    return ParentCategories.objects.create(name='Sport', slug='sport', image=phones_image_url, is_active=True,
-                                             priority=2)
+    return ParentCategories.objects.create(
+        name='Sport',
+        slug='sport',
+        image=phones_image_url,
+        is_active=True,
+        priority=2
+    )

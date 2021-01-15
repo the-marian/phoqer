@@ -14,19 +14,19 @@ def api_client():
 @pytest.fixture
 def user_1(db):
     return User.objects.create_user(first_name='Marian', last_name='Zozulia', email='maric0naric@gmail.com',
-                                      password='bla bla bla 123')
+                                    password='bla bla bla 123')
 
 
 @pytest.fixture
 def user_2(db):
     return User.objects.create_user(first_name='Egor', last_name='Fray', email='qwerty12345@gmail.com',
-                                      password='123erw')
+                                    password='123erw')
 
 
 @pytest.fixture
 def user_3(db):
     return User.objects.create_user(first_name='Igor', last_name='Michylechenko', email='jstop@gmail.com',
-                                      password='jstop')
+                                    password='jstop')
 
 
 @pytest.fixture

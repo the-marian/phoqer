@@ -10,5 +10,3 @@ class NotificationsView(ListAPIView):
 
     def get_queryset(self):
         return Notification.objects.filter(recipient=self.request.user)
-
-
