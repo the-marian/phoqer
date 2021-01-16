@@ -1,6 +1,6 @@
 import pytest
-from freezegun import freeze_time
 
+from freezegun import freeze_time
 from categories.models import ParentCategories, ChildCategories
 from comments.models import Comment
 from offers.models import Offer
@@ -56,7 +56,6 @@ def offer(db, author_1, category, sub_category):
         id='1b261f53-8e3b-4c14-abe6-5824c5d8b66c',
         doc_needed=False,
         is_deliverable=True,
-        per='DAY',
         price='499',
         status='ACTIVE',
         sub_category=sub_category,

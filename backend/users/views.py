@@ -1,6 +1,5 @@
-# Create your views here.
 from rest_framework.generics import RetrieveAPIView, UpdateAPIView
-from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticated
+from rest_framework.permissions import IsAuthenticated
 
 from users.models import User
 from users.serializers import UserDetailsSerializer, UserVoteSerializer
