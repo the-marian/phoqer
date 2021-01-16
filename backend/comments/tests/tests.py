@@ -231,8 +231,8 @@ def test_comments_like_dislike_logic_5(api_client, authenticated_client, comment
 def test_comments_like_dislike_logic_6(api_client, authenticated_client, comment_2):
     """
     what do we have   --> perform dislike-->   what do we expect
-    likes 1                                 likes 0
-    dislikes 0                              dislikes 1
+    likes 1                                    likes 0
+    dislikes 0                                 dislikes 1
     """
     authenticated_client.patch('/api/v1/comments/1/like/')
     response = api_client.get('/api/v1/comments/1b261f53-8e3b-4c14-abe6-5824c5d8b66c/')
