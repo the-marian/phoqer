@@ -157,9 +157,9 @@ def test_comments_like_dislike_logic_1(api_client, authenticated_client, comment
 
 def test_comments_like_dislike_logic_2(api_client, authenticated_client, comment_2):
     """
-    what do we have   --> perform like-->   what do we expect
-    likes 1                                 likes 0
-    dislikes 0                              dislikes 0
+    what do we have   --> perform like-->  what do we expect
+    likes 1                                likes 0
+    dislikes 0                             dislikes 0
     """
     authenticated_client.patch('/api/v1/comments/1/like/')
 
