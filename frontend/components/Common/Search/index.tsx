@@ -96,7 +96,7 @@ const Search = (): ReactElement => {
 
     return (
         <form action="#" method="post">
-            {history.pathname !== '/' && (
+            {history.pathname !== router.root && (
                 <div className={css.toHome}>
                     <LinkArrow href={router.root} toLeft>
                         На главную

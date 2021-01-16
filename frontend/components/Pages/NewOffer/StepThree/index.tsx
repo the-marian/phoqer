@@ -1,16 +1,18 @@
-import Uppy from '@uppy/core';
+import Uppy, { UploadedUppyFile } from '@uppy/core';
 import { Dashboard, StatusBar } from '@uppy/react';
 import XHRUpload from '@uppy/xhr-upload';
 import { useRouter } from 'next/router';
 import React, { FormEvent, ReactElement, useEffect, useMemo } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import config from '../../../../assets/config';
 import { IAuth, INewOffer, IState } from '../../../../interfaces';
+import types from '../../../../redux/types';
 import useStyles from './StepThree.styles';
 
 const StepThree = (): ReactElement => {
     const css = useStyles();
+    const dispatch = useDispatch();
     const router = useRouter();
 
     const { auth_token } = useSelector<IState, IAuth>(state => state.auth);
@@ -39,7 +41,6 @@ const StepThree = (): ReactElement => {
             fieldName: 'file',
             headers: {
                 Authorization: `Token ${auth_token}`,
-                // 'Content-Type': 'multipart/form-data; boundary=<calculated when request is sent>',
             },
         });
         return () => uppy.close();
@@ -55,8 +56,14 @@ const StepThree = (): ReactElement => {
 
         try {
             const result = await uppy.upload();
-            if (result.failed.length > 0) throw new Error('Failed');
-            console.log('success');
+            if (result.failed.length > 0) throw new Error();
+
+            dispatch({
+                type: types.POST_OFFER_START,
+                payload: result?.successful?.map(
+                    (item: UploadedUppyFile<string, { images_url: [string] }>) => item?.response?.body?.images_url?.[0],
+                ),
+            });
         } catch (error) {
             console.log(error);
         }

@@ -70,7 +70,7 @@ const UserInfo = (): ReactElement => {
     return (
         <ul className={css.flex}>
             <li className={css.item}>
-                <Link href={`${router.new_offer}/1`}>
+                <Link href={`${router.new_offer}/:step`} as={`${router.new_offer}/1`}>
                     <a className={css.link}>
                         <FontAwesomeIcon icon={faPlus} />
                         <span className={css.text}>Сдать в аренду</span>

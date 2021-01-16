@@ -24,13 +24,13 @@ const initState: IState = {
         doc_needed: false,
         description: '',
         deposit_val: null,
-        min_rent_value: null,
-        max_rent_value: null,
+        min_rent_period: null,
+        max_rent_period: null,
         extra_requirements: '',
         optional: {
             deposit_val: false,
-            min_rent_value: false,
-            max_rent_value: false,
+            min_rent_period: false,
+            max_rent_period: false,
         },
         // is done
         isDone: {

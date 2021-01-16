@@ -1,7 +1,3 @@
-import { persistReducer } from 'redux-persist';
-import storage from 'redux-persist/lib/storage';
-
-import { encryptor } from '../../assets/encryptor';
 import types from '../types';
 
 interface IState {
@@ -23,11 +19,4 @@ const filters = (state: IState = { open: true }, { type, payload }: IAction): IS
     }
 };
 
-const config = {
-    storage,
-    key: 'phoqer_filter',
-    white: ['open'],
-    transforms: [encryptor],
-};
-
-export default persistReducer(config, filters);
+export default filters;

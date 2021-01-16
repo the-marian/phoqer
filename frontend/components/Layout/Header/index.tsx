@@ -20,7 +20,8 @@ const useStyles = createUseStyles((theme: Theme) => ({
         zIndex: 10000,
         width: '100%',
         padding: theme.rem(1.4, 0),
-        background: theme.palette.white,
+        background: theme.palette.glass,
+        backdropFilter: 'blur(3px)',
         transition: theme.transitions,
     },
     transform: {
@@ -44,19 +45,16 @@ let prev = 0;
 const Header = (): ReactElement => {
     const css = useStyles();
     const [delta, setDelta] = useState<boolean>(false);
-    const [scrolled, setScrolled] = useState<boolean>(true);
     const { auth_token } = useSelector<IState, IAuth>(state => state.auth);
 
     useEffect(() => {
         const handleScroll = throttle((): void => {
             if (window.scrollY < 100 && !delta) {
-                setScrolled(false);
                 setDelta(false);
                 prev = 0;
                 return;
             }
 
-            setScrolled(true);
             setDelta(prev < window.scrollY);
             prev = window.scrollY;
         }, 300);
@@ -69,10 +67,7 @@ const Header = (): ReactElement => {
     }, []);
 
     return (
-        <header
-            className={clsx(css.header, delta && css.transform)}
-            style={scrolled ? { background: 'rgba(252, 252, 252, 0.99)' } : {}}
-        >
+        <header className={clsx(css.header, delta && css.transform)}>
             <Container>
                 <div className={css.flex}>
                     <div className={css.wrp}>

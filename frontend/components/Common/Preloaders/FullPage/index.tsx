@@ -23,7 +23,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
 }));
 
-const FullPage = (): ReactElement => {
+const FullPageLoader = (): ReactElement => {
     const css = useStyles();
     const [loader, setLoader] = useState(false);
 
@@ -43,4 +43,4 @@ const FullPage = (): ReactElement => {
     );
 };
 
-export default FullPage;
+export default FullPageLoader;
