@@ -70,7 +70,6 @@ list_offers_expected_response = [
         "views": 0
     },
 ]
-
 list_offers_without_iphone10 = [
     {
         "cover_image": image_iphone_url,
