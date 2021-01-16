@@ -1,54 +1,7 @@
 import pytest
 
 from datetime import datetime
-from freezegun import freeze_time
-from offers.models import Offer
-from rest_framework import status
-from offers.tests.mocks import (
-    offers_endpoint_url,
-    popular_url_with_user_in_query,
-    offers_empty_list,
-    list_offers_expected_response,
-    list_offers_without_iphone10,
-    list_ordered_by_promotion,
-    list_ordered_by_views,
-    list_order_mixed,
-    iphone11_is_promoted_True,
-    iphone11_is_promoted_False,
-    # SEARCH
-    search_endpoint_url,
-    search_filter_category,
-    search_filter_sub_category,
-    search_filter_city,
-    search_filter_city_mock,
-    search_filter_status_active,
-    search_filter_status_in_rent,
-    search_filter_status_active_mock,
-    search_filter_status_in_rent_mock,
-    search_filter_is_deliverable,
-    search_filter_is_deliverable_mock,
-    search_test_title,
-    search_test_description,
-    search_test_description_mock,
-
-    ascending_price_ordering,
-    descending_price_ordering,
-    ascending_price_ordering_mock,
-    ascending_deposit_ordering,
-    ascending_deposit_ordering_mock,
-    descending_deposit_ordering,
-    descending_deposit_ordering_mock,
-    min_price_order,
-    min_price_order_mock,
-    max_price_order,
-    max_price_order_mock,
-    no_deposit_true,
-    no_deposit_true_mock,
-    max_deposit_filter,
-    max_deposit_filter_mock,
-    min_deposit_filter,
-    min_deposit_filter_mock
-)
+from offers.tests.mocks import *
 
 
 def test_list_offers(api_client, db_test_data):

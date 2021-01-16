@@ -32,6 +32,7 @@ MY_APPS = [
     'upload',
     'users',
     'comments',
+    'notifications',
 ]
 
 INSTALLED_APPS = DJANGO_CORE_APPS + THIRD_PARTY_APPS + MY_APPS
