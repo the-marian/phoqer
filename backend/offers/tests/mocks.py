@@ -25,7 +25,6 @@ offers_create_endpoint_url = 'api/v1/offers'
 image_iphone_url = 'https://example.com/iphone.jpeg'
 phones_image_url = 'https://example.com/phone.jpeg'
 
-
 list_offers_expected_response = [
     {
         "cover_image": image_iphone_url,
@@ -70,6 +69,7 @@ list_offers_expected_response = [
         "views": 0
     },
 ]
+
 list_offers_without_iphone10 = [
     {
         "cover_image": image_iphone_url,
@@ -100,6 +100,7 @@ list_offers_without_iphone10 = [
         "views": 0
     },
 ]
+
 iphone11_is_promoted_True = [
     {
         "cover_image": image_iphone_url,

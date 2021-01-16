@@ -105,6 +105,7 @@ class OfferSerializer(BaseOfferSerializer):
             'title': {'required': False},
             'views': {'required': False, 'read_only': True},
         }
+
     def update(self, instance, validated_data):
         offer_obj = super(OfferSerializer, self).update(instance, validated_data)
         images = validated_data.get('offer_images')
