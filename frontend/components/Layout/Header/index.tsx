@@ -1,11 +1,10 @@
 import clsx from 'clsx';
 import React, { ReactElement, useEffect, useState } from 'react';
 import { createUseStyles } from 'react-jss';
-import { useSelector } from 'react-redux';
 
 import { throttle } from '../../../assets/helpers';
 import { Theme } from '../../../assets/theme';
-import { IAuth, IState } from '../../../interfaces';
+import useAuth from '../../../hooks/auth.hook';
 import Logo from '../../Common/Logo';
 import Container from '../Container';
 import GeneralInfo from './GeneralInfo';
@@ -43,9 +42,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
 let prev = 0;
 
 const Header = (): ReactElement => {
+    const auth = useAuth();
     const css = useStyles();
     const [delta, setDelta] = useState<boolean>(false);
-    const { auth_token } = useSelector<IState, IAuth>(state => state.auth);
 
     useEffect(() => {
         const handleScroll = throttle((): void => {
@@ -75,11 +74,11 @@ const Header = (): ReactElement => {
                         <Lang />
                     </div>
 
-                    {auth_token ? <UserInfo /> : <GeneralInfo />}
+                    {auth?.auth_token ? <UserInfo /> : <GeneralInfo />}
                 </div>
             </Container>
         </header>
     );
 };
 
-export default Header;
+export default React.memo(Header);

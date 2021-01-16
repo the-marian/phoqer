@@ -6,16 +6,17 @@ import React, { FormEvent, ReactElement, useEffect, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import config from '../../../../assets/config';
-import { IAuth, INewOffer, IState } from '../../../../interfaces';
+import { INewOffer, IState } from '../../../../interfaces';
 import types from '../../../../redux/types';
 import useStyles from './StepThree.styles';
+import useAuth from '../../../../hooks/auth.hook';
 
 const StepThree = (): ReactElement => {
     const css = useStyles();
+    const auth = useAuth();
     const dispatch = useDispatch();
     const router = useRouter();
 
-    const { auth_token } = useSelector<IState, IAuth>(state => state.auth);
     const value = useSelector<IState, INewOffer>(state => state.newOffer);
     if (!value.isDone.one || !value.isDone.two) router.push('/new_offer/1');
 
@@ -40,7 +41,7 @@ const StepThree = (): ReactElement => {
             endpoint: config.uploadsUrl,
             fieldName: 'file',
             headers: {
-                Authorization: `Token ${auth_token}`,
+                Authorization: `Token ${auth?.auth_token}`,
             },
         });
         return () => uppy.close();

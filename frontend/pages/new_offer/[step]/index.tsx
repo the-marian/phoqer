@@ -1,9 +1,9 @@
-import Head from 'next/head';
 import { useRouter } from 'next/router';
 import React, { ReactElement, useEffect, useState } from 'react';
 import { createUseStyles } from 'react-jss';
 
 import { Theme } from '../../../assets/theme';
+import Meta from '../../../components/Common/Meta';
 import Container from '../../../components/Layout/Container';
 import Main from '../../../components/Layout/Main';
 import StepOne from '../../../components/Pages/NewOffer/StepOne';
@@ -56,9 +56,7 @@ const NewOffer = (): ReactElement => {
 
     return (
         <>
-            <Head>
-                <title>New product | Phoqer</title>
-            </Head>
+            <Meta title="New product | Phoqer" />
             <Main>
                 <Container>
                     <h1 className={css.title}>#Делитесь с другими и зарабатывайте</h1>

@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import clsx from 'clsx';
 import Link from 'next/link';
 import { Router } from 'next/router';
-import React, { ReactElement, useState } from 'react';
+import React, { ReactElement, useEffect, useState } from 'react';
 import { createUseStyles } from 'react-jss';
 
 import router from '../../../../assets/router';
@@ -59,9 +59,16 @@ const UserInfo = (): ReactElement => {
     const css = useStyles();
     const [drop, setDrop] = useState<boolean>(false);
 
-    Router.events.on('routeChangeComplete', () => {
-        setDrop(false);
-    });
+    useEffect(() => {
+        const handleClose = (): void => {
+            setDrop(false);
+        };
+        Router.events.on('routeChangeComplete', handleClose);
+
+        return () => {
+            Router.events.off('routeChangeComplete', handleClose);
+        };
+    }, []);
 
     const handleClick = () => {
         setDrop(!drop);

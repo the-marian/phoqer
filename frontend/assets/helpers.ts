@@ -44,7 +44,7 @@ export const throttle = (func: IFunction, time: number): IFunction => {
 export const decode = (cookie = ''): string => decodeURI(cookie).replace(/\\"/gi, '');
 
 // parse cookie on server
-export const parseCookie = (cookie = '', key = 'phoqer_auth='): { [key: string]: string } | null => {
+export const parseCookie = <T>(cookie = '', key = 'blog_auth='): T | null => {
     try {
         return JSON.parse(decode(cookie).replace(/\+/g, ' ').replace(/%2C/gi, ',').split(key)[1]);
     } catch (error) {
