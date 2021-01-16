@@ -19,7 +19,7 @@ const LINKS: { text: string; href: string }[] = [
     },
     {
         text: 'Политика конфиденциальности',
-        href: '/polici',
+        href: '/politic',
     },
     {
         text: 'FAQ',

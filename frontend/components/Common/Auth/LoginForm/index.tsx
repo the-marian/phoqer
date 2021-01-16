@@ -107,15 +107,15 @@ const LoginForm = (): ReactElement => {
     const css = useStyles();
     const dispatch = useDispatch();
 
-    const [unhide, setUnhide] = useState(true);
+    const [unhidden, setUnhidden] = useState(true);
     const [payload, setPayload] = useState<Login>({ password: '', email: '' });
 
     const handleChange = (event: ChangeEvent<HTMLInputElement>): void => {
         setPayload({ ...payload, [event.target.name]: event.target.value });
     };
 
-    const hadleClick = () => {
-        setUnhide(!unhide);
+    const handleClick = () => {
+        setUnhidden(!unhidden);
     };
 
     const handleSubmit = (event: FormEvent) => {
@@ -138,10 +138,10 @@ const LoginForm = (): ReactElement => {
                 <div className={css.icon}>
                     <FontAwesomeIcon icon={faKey} />
                 </div>
-                <button className={css.eye} onClick={hadleClick} type="button">
-                    {unhide ? <FontAwesomeIcon icon={faEyeSlash} /> : <FontAwesomeIcon icon={faEye} />}
+                <button className={css.eye} onClick={handleClick} type="button">
+                    {unhidden ? <FontAwesomeIcon icon={faEyeSlash} /> : <FontAwesomeIcon icon={faEye} />}
                 </button>
-                <input type={unhide ? 'password' : 'text'} name="password" onChange={handleChange} className={css.input} />
+                <input type={unhidden ? 'password' : 'text'} name="password" onChange={handleChange} className={css.input} />
             </div>
 
             <Link href={router.auth.forgot_pass}>

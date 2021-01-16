@@ -51,6 +51,10 @@ const types = {
     // ========================
     // NEW_OFFER_SAVE
     NEW_OFFER_FORM: 'NEW_OFFER_FORM',
+    // POST_OFFER
+    POST_OFFER_START: 'POST_OFFER_START',
+    POST_OFFER_SUCCESS: 'POST_OFFER_SUCCESS',
+    POST_OFFER_ERROR: 'POST_OFFER_ERROR',
 };
 
 export default types;

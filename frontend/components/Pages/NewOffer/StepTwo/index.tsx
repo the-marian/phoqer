@@ -14,8 +14,8 @@ import useStyles from './StepTwo.styles';
 interface IError {
     description?: string;
     deposit_val?: string;
-    min_rent_value?: string;
-    max_rent_value?: string;
+    min_rent_period?: string;
+    max_rent_period?: string;
 }
 
 const StepTwo = (): ReactElement => {
@@ -42,20 +42,20 @@ const StepTwo = (): ReactElement => {
             optional: { ...value.optional, deposit_val },
         });
     };
-    const handleMin = (min_rent_value: boolean): void => {
+    const handleMin = (min_rent_period: boolean): void => {
         setErrors({});
         setValue({
             ...value,
-            min_rent_value: null,
-            optional: { ...value.optional, min_rent_value },
+            min_rent_period: null,
+            optional: { ...value.optional, min_rent_period },
         });
     };
-    const handleMax = (max_rent_value: boolean): void => {
+    const handleMax = (max_rent_period: boolean): void => {
         setErrors({});
         setValue({
             ...value,
-            max_rent_value: null,
-            optional: { ...value.optional, max_rent_value },
+            max_rent_period: null,
+            optional: { ...value.optional, max_rent_period },
         });
     };
 
@@ -85,13 +85,13 @@ const StepTwo = (): ReactElement => {
             doc_needed: false,
             description: '',
             deposit_val: null,
-            min_rent_value: null,
-            max_rent_value: null,
+            min_rent_period: null,
+            max_rent_period: null,
             extra_requirements: '',
             optional: {
                 deposit_val: false,
-                min_rent_value: false,
-                max_rent_value: false,
+                min_rent_period: false,
+                max_rent_period: false,
             },
             isDone: {
                 one: true,
@@ -119,15 +119,15 @@ const StepTwo = (): ReactElement => {
             return;
         }
 
-        if (value.optional.min_rent_value && !value.min_rent_value) {
-            setErrors({ min_rent_value: 'Введите данные или отключите это поле' });
+        if (value.optional.min_rent_period && !value.min_rent_period) {
+            setErrors({ min_rent_period: 'Введите данные или отключите это поле' });
             window.scrollTo({ top: 200, behavior: 'smooth' });
             dispatch({ type: types.NEW_OFFER_FORM, payload: { ...value, isDone: { ...value.isDone, two: false } } });
             return;
         }
 
-        if (value.optional.max_rent_value && !value.max_rent_value) {
-            setErrors({ max_rent_value: 'Введите данные или отключите это поле' });
+        if (value.optional.max_rent_period && !value.max_rent_period) {
+            setErrors({ max_rent_period: 'Введите данные или отключите это поле' });
             dispatch({ type: types.NEW_OFFER_FORM, payload: { ...value, isDone: { ...value.isDone, two: false } } });
             return;
         }
@@ -178,37 +178,37 @@ const StepTwo = (): ReactElement => {
             </div>
 
             <div className={css.inner}>
-                <CheckTitle value={value.optional.min_rent_value} onChange={handleMin}>
+                <CheckTitle value={value.optional.min_rent_period} onChange={handleMin}>
                     Минимальный срок аренды (часов)
                 </CheckTitle>
-                <div className={clsx(css.inputWrp, value.optional.min_rent_value || css.inactive)}>
+                <div className={clsx(css.inputWrp, value.optional.min_rent_period || css.inactive)}>
                     <input
-                        value={value.min_rent_value !== null ? value.min_rent_value : ''}
+                        value={value.min_rent_period !== null ? value.min_rent_period : ''}
                         onChange={handleNumber}
-                        className={clsx(css.input, errors.min_rent_value && css.errors)}
-                        name="min_rent_value"
+                        className={clsx(css.input, errors.min_rent_period && css.errors)}
+                        name="min_rent_period"
                         placeholder="Введите число"
-                        readOnly={!value.optional.min_rent_value}
+                        readOnly={!value.optional.min_rent_period}
                     />
                 </div>
-                {errors.min_rent_value && <small className={css.errorsText}>{errors.min_rent_value}</small>}
+                {errors.min_rent_period && <small className={css.errorsText}>{errors.min_rent_period}</small>}
             </div>
 
             <div className={css.inner}>
-                <CheckTitle value={value.optional.max_rent_value} onChange={handleMax}>
+                <CheckTitle value={value.optional.max_rent_period} onChange={handleMax}>
                     Максимальный срок аренды (часов)
                 </CheckTitle>
-                <div className={clsx(css.inputWrp, value.optional.max_rent_value || css.inactive)}>
+                <div className={clsx(css.inputWrp, value.optional.max_rent_period || css.inactive)}>
                     <input
-                        value={value.max_rent_value !== null ? value.max_rent_value : ''}
+                        value={value.max_rent_period !== null ? value.max_rent_period : ''}
                         onChange={handleNumber}
-                        className={clsx(css.input, errors.max_rent_value && css.errors)}
-                        name="max_rent_value"
+                        className={clsx(css.input, errors.max_rent_period && css.errors)}
+                        name="max_rent_period"
                         placeholder="Введите число"
-                        readOnly={!value.optional.max_rent_value}
+                        readOnly={!value.optional.max_rent_period}
                     />
                 </div>
-                {errors.max_rent_value && <small className={css.errorsText}>{errors.max_rent_value}</small>}
+                {errors.max_rent_period && <small className={css.errorsText}>{errors.max_rent_period}</small>}
             </div>
 
             <div className={css.inner}>
