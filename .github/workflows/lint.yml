@@ -19,4 +19,5 @@ jobs:
       - name: Install flake8 and plugins
         run: pip install flake8 flake8-pytest-style
       - name: Run flake8
-        run: flake8 --config=./backend/setup.cfg
+        run: flake8
+        working-directory: ./backend
