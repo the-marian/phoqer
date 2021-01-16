@@ -1,6 +1,7 @@
 const config = {
     baseUrl: 'http://140.82.39.245/api/v1',
     uploadsUrl: 'http://140.82.39.245/api/v1/upload/',
+    host: 'http://phoqer.com/',
     img: 'http://phoqer.com/',
     offers: {
         grid: {

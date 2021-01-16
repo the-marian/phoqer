@@ -48,6 +48,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
 const Categories = (): ReactElement => {
     const css = useStyles();
     const categories = useSelector<IState, ICategories[]>(state => state.categories);
+
     return (
         <div className={css.root}>
             <SectionTitle>Арендуйте здесь и сейчас</SectionTitle>

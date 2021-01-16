@@ -1,6 +1,7 @@
 import React, { ReactElement } from 'react';
 import { END } from 'redux-saga';
 
+import Meta from '../../../components/Common/Meta';
 import Search from '../../../components/Common/Search';
 import Container from '../../../components/Layout/Container';
 import Main from '../../../components/Layout/Main';
@@ -9,11 +10,14 @@ import { wrapper } from '../../../redux/store';
 import types from '../../../redux/types';
 
 const SingleProductPage = (): ReactElement => (
-    <Main>
-        <Container>
-            <Search />
-        </Container>
-    </Main>
+    <>
+        <Meta />
+        <Main>
+            <Container>
+                <Search />
+            </Container>
+        </Main>
+    </>
 );
 
 export const getServerSideProps = wrapper.getServerSideProps(

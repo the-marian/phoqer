@@ -6,6 +6,7 @@ import { createUseStyles } from 'react-jss';
 
 import router from '../../../assets/router';
 import { Theme } from '../../../assets/theme';
+import useMedia from '../../../hooks/media.hook';
 import LinkArrow from '../LinkArrow';
 import OptionsDesktop from './OptionsDesktop';
 import OptionsMobile from './OptionsMobile';
@@ -92,6 +93,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
 
 const Search = (): ReactElement => {
     const css = useStyles();
+    const mobile = useMedia(1100);
     const history = useRouter();
 
     return (
@@ -111,12 +113,12 @@ const Search = (): ReactElement => {
                             <FontAwesomeIcon icon={faSearch} />
                         </span>
                         <input defaultValue={history?.query?.q} className={css.input} type="text" placeholder="Что вы ищите?" />
-                        <OptionsDesktop />
+                        {mobile && <OptionsDesktop />}
                     </div>
                 </div>
 
                 <div className={css.mobile}>
-                    <OptionsMobile />
+                    {!mobile && <OptionsMobile />}
                     <button type="submit" className={css.btn}>
                         Найти
                     </button>

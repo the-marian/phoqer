@@ -6,7 +6,6 @@ import { formatCatList } from '../../../../assets/helpers';
 import { Theme } from '../../../../assets/theme';
 import { ICategories, IState } from '../../../../interfaces';
 import DropDown from '../../DropDown';
-import Media from '../../Media';
 import { modal } from '../../Modal';
 import RegionModal from '../../RegionModal';
 
@@ -62,7 +61,7 @@ const OptionsDesktop = (): ReactElement => {
     };
 
     return (
-        <Media className={css.container} size={1100}>
+        <div className={css.container}>
             <span className={css.line} />
             <div className={css.categories}>
                 <DropDown
@@ -79,7 +78,7 @@ const OptionsDesktop = (): ReactElement => {
                 <img className={css.icon} src="/emoji/map.png" alt="" />
                 <span>Киев, Киевская область Киев, Киевская область Киев, Киевская область</span>
             </button>
-        </Media>
+        </div>
     );
 };
 

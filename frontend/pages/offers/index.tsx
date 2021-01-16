@@ -1,8 +1,8 @@
-import Head from 'next/head';
 import React, { ReactElement } from 'react';
 import { useSelector } from 'react-redux';
 import { END } from 'redux-saga';
 
+import Meta from '../../components/Common/Meta';
 import OffersList from '../../components/Common/Offers/OffersList';
 import Search from '../../components/Common/Search';
 import About from '../../components/Layout/About';
@@ -18,9 +18,7 @@ const OffersPage = (): ReactElement => {
     const { data, loading } = useSelector<IState, IOfferPopular>(state => state.offers.popular);
     return (
         <>
-            <Head>
-                <title>Search products | Phoqer</title>
-            </Head>
+            <Meta />
             <Main>
                 <Container>
                     <Search />
