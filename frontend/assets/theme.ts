@@ -47,7 +47,7 @@ export const theme: Theme = {
     ],
     palette: {
         white: '#FFFFFF',
-        glass: 'hsla(0, 0%, 100%, .4)',
+        glass: 'rgba(255, 255, 255, 0.5)',
         black: ['#222222', '#242424'],
         gray: ['#F9F9F9', '#EEEEEE', '#C4C4C4', '#999999', '#444444'],
         red: ['#DB162F'],

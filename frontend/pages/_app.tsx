@@ -10,17 +10,18 @@ import interceptors from '../assets/interceptors';
 import { theme } from '../assets/theme';
 import { modal } from '../components/Common/Modal';
 import AuthProvider from '../components/HOC/Auth/AuthContext';
+import MediaProvider from '../components/HOC/Media';
 import PageLayout from '../components/Layout/PageLayout';
 import { IAuth } from '../interfaces';
 import { wrapper } from '../redux/store';
 
-const MyApp = ({ Component, pageProps, auth }: AppProps & { auth: IAuth }): ReactElement => {
+const MyApp = ({ Component, pageProps, width, auth }: AppProps & { width: number; auth: IAuth }): ReactElement => {
     const history = useRouter();
     const sheets = new SheetsRegistry();
     const generateId = createGenerateId();
 
     interceptors({ history });
-    // logger();
+    logger();
 
     useEffect(() => {
         const handleClear = () => {
@@ -38,9 +39,11 @@ const MyApp = ({ Component, pageProps, auth }: AppProps & { auth: IAuth }): Reac
         <JssProvider registry={sheets} generateId={generateId}>
             <ThemeProvider theme={theme}>
                 <AuthProvider authServer={auth}>
-                    <PageLayout>
-                        <Component {...pageProps} />
-                    </PageLayout>
+                    <MediaProvider width={width}>
+                        <PageLayout>
+                            <Component {...pageProps} />
+                        </PageLayout>
+                    </MediaProvider>
                 </AuthProvider>
             </ThemeProvider>
         </JssProvider>
@@ -48,8 +51,11 @@ const MyApp = ({ Component, pageProps, auth }: AppProps & { auth: IAuth }): Reac
 };
 
 MyApp.getInitialProps = async appContext => {
+    const toMatch = [/Android/i, /webOS/i, /iPhone/i, /iPad/i, /iPod/i, /BlackBerry/i, /Windows Phone/i];
+    const isMobile = toMatch.some(toMatchItem => appContext?.ctx?.req?.headers?.['user-agent']?.match(toMatchItem)) || false;
+
     const props = await App.getInitialProps(appContext);
-    return { ...props, token: parseCookie<IAuth>(appContext?.ctx?.req?.headers?.cookie) };
+    return { ...props, width: isMobile ? 760 : 1400, token: parseCookie<IAuth>(appContext?.ctx?.req?.headers?.cookie) };
 };
 
 export default wrapper.withRedux(MyApp);

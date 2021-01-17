@@ -1,22 +1,22 @@
 import axios from 'axios';
 import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
+import { IState } from '../../../../interfaces';
 import types from '../../../../redux/types';
-import useAuth from '../../../../hooks/auth.hook';
 
 const AuthInterceptor = (): null => {
     const dispatch = useDispatch();
-    const auth = useAuth();
+    const token = useSelector<IState, string | null>(state => state.auth.auth_token);
 
     useEffect(() => {
-        if (auth?.auth_token) {
-            axios.defaults.headers.common.Authorization = `Token ${auth?.auth_token}`;
+        if (token) {
+            axios.defaults.headers.common.Authorization = `Token ${token}`;
             dispatch({ type: types.GET_USER_START });
         } else {
             delete axios.defaults.headers.common.Authorization;
         }
-    }, [auth]);
+    }, [token]);
 
     return null;
 };

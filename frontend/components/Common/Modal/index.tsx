@@ -68,8 +68,8 @@ export default class ModalComponent extends Component<unknown, IState> {
         const { dom } = this.state;
         return (
             !!dom && (
-                <div className="react-modal-backdrop" onClick={this.handleClickClose} aria-hidden>
-                    <div className="react-modal-scroll" onClick={this.handleClickClose} aria-hidden>
+                <div className="react-modal-backdrop" onMouseDown={this.handleClickClose} aria-hidden>
+                    <div className="react-modal-scroll" onMouseDown={this.handleClickClose} aria-hidden>
                         {dom}
                     </div>
                 </div>
