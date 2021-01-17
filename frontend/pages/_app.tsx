@@ -3,7 +3,7 @@ import '../styles/index.css';
 import App, { AppProps } from 'next/app';
 import Router, { useRouter } from 'next/router';
 import React, { ReactElement, useEffect } from 'react';
-import { createGenerateId, JssProvider, SheetsRegistry, ThemeProvider } from 'react-jss';
+import { ThemeProvider } from 'react-jss';
 
 import { logger, parseCookie } from '../assets/helpers';
 import interceptors from '../assets/interceptors';
@@ -17,8 +17,6 @@ import { wrapper } from '../redux/store';
 
 const MyApp = ({ Component, pageProps, width, auth }: AppProps & { width: number; auth: IAuth }): ReactElement => {
     const history = useRouter();
-    const sheets = new SheetsRegistry();
-    const generateId = createGenerateId();
 
     interceptors({ history });
     logger();
@@ -36,17 +34,15 @@ const MyApp = ({ Component, pageProps, width, auth }: AppProps & { width: number
     }, []);
 
     return (
-        <JssProvider registry={sheets} generateId={generateId}>
-            <ThemeProvider theme={theme}>
-                <AuthProvider authServer={auth}>
-                    <MediaProvider width={width}>
-                        <PageLayout>
-                            <Component {...pageProps} />
-                        </PageLayout>
-                    </MediaProvider>
-                </AuthProvider>
-            </ThemeProvider>
-        </JssProvider>
+        <ThemeProvider theme={theme}>
+            <AuthProvider authServer={auth}>
+                <MediaProvider width={width}>
+                    <PageLayout>
+                        <Component {...pageProps} />
+                    </PageLayout>
+                </MediaProvider>
+            </AuthProvider>
+        </ThemeProvider>
     );
 };
 

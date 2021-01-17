@@ -102,6 +102,7 @@ const StepTwo = (): ReactElement => {
         setValue(reset);
         dispatch({ type: types.NEW_OFFER_FORM, payload: reset });
     };
+
     const handleSubmit = (event: FormEvent): void => {
         event.preventDefault();
 

@@ -7,7 +7,7 @@ import { createUseStyles } from 'react-jss';
 import router from '../../../assets/router';
 import { Theme } from '../../../assets/theme';
 import useMedia from '../../../hooks/media.hook';
-import LinkArrow from '../LinkArrow';
+import LinkArrow from '../../Layout/LinkArrow';
 import OptionsDesktop from './OptionsDesktop';
 import OptionsMobile from './OptionsMobile';
 
@@ -63,6 +63,11 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
     icon: {
         fontSize: theme.rem(1.4),
+
+        '& svg': {
+            height: theme.rem(1.4),
+            width: theme.rem(1.4),
+        },
     },
     toHome: {
         marginBottom: theme.rem(2),

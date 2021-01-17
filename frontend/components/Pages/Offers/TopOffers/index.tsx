@@ -6,7 +6,7 @@ import router from '../../../../assets/router';
 import { Theme } from '../../../../assets/theme';
 import { IOfferPopular, IState } from '../../../../interfaces';
 import OffersList from '../../../Common/Offers/OffersList';
-import SectionTitle from '../../../Common/SectionTitle';
+import SectionTitle from '../../../Layout/SectionTitle';
 import Container from '../../../Layout/Container';
 
 const useStyles = createUseStyles((theme: Theme) => ({
