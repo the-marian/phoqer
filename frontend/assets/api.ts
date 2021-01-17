@@ -1,8 +1,8 @@
 import axios, { AxiosResponse } from 'axios';
 
 import { ICategories, IOffers, Login } from '../interfaces';
-import config from './config';
 import { IBody } from '../redux/new_offer/saga';
+import config from './config';
 
 axios.defaults.baseURL = config.baseUrl;
 

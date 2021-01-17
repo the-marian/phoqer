@@ -6,10 +6,10 @@ import React, { FormEvent, ReactElement, useEffect, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import config from '../../../../assets/config';
+import useAuth from '../../../../hooks/auth.hook';
 import { INewOffer, IState } from '../../../../interfaces';
 import types from '../../../../redux/types';
 import useStyles from './StepThree.styles';
-import useAuth from '../../../../hooks/auth.hook';
 
 const StepThree = (): ReactElement => {
     const css = useStyles();
