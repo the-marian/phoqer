@@ -18,12 +18,12 @@ const Meta = ({ title, description, keywords, icon }: IProps): ReactElement => (
             name="description"
             content={
                 description ||
-                'Read and share ideas. A website that combines the features of a social network and a collective blog, created to publish news, analytical articles, opinions related to information technology, business and the Internet.'
+                'PHOQER is an online advertising platform that brings people together to share goods and services. PHOQER - here you will find what you are looking for! By clicking the Submit Ad button, you will be able to place ads on any topic easily and quickly.'
             }
         />
-        <meta name="keywords" content={`blog network socials read ${keywords}`} />
-        <title>{title || 'Blog Application'}</title>
-        <meta name="title" content={title || 'Blog Application'} />
+        <meta name="keywords" content={`phoqer share goods services ad ${keywords}`} />
+        <title>{title || 'Phoqer'}</title>
+        <meta name="title" content={title || 'Phoqer'} />
         <meta name="robots" content="index,follow" />
 
         <meta name="twitter:card" content="summary_large_image" />
@@ -31,23 +31,23 @@ const Meta = ({ title, description, keywords, icon }: IProps): ReactElement => (
             name="twitter:description"
             content={
                 description ||
-                'Read and share ideas. A website that combines the features of a social network and a collective blog, created to publish news, analytical articles, opinions related to information technology, business and the Internet.'
+                'PHOQER is an online advertising platform that brings people together to share goods and services. PHOQER - here you will find what you are looking for! By clicking the Submit Ad button, you will be able to place ads on any topic easily and quickly.'
             }
         />
         <meta name="twitter:image:src" content={icon || config.host + '/about.jpg'} />
-        <meta name="twitter:site" content="@BlogApp" />
-        <meta name="twitter:title" content={title || 'Blog Application'} />
+        <meta name="twitter:site" content="@Phoqer" />
+        <meta name="twitter:title" content={title || 'Phoqer'} />
 
         <meta
             property="og:description"
             content={
                 description ||
-                'Read and share ideas. A website that combines the features of a social network and a collective blog, created to publish news, analytical articles, opinions related to information technology, business and the Internet.'
+                'PHOQER is an online advertising platform that brings people together to share goods and services. PHOQER - here you will find what you are looking for! By clicking the Submit Ad button, you will be able to place ads on any topic easily and quickly.'
             }
         />
         <meta property="og:image" content={icon || config.host + '/about.jpg'} />
-        <meta property="og:site_name" content="BlogApp" />
-        <meta property="og:title" content={title || 'Blog Application'} />
+        <meta property="og:site_name" content="Phoqer" />
+        <meta property="og:title" content={title || 'Phoqer'} />
         <meta property="og:type" content="website" />
         <meta property="og:url" content={config.host} />
 
