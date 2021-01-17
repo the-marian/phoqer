@@ -63,6 +63,11 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
     icon: {
         fontSize: theme.rem(1.4),
+
+        '& svg': {
+            height: theme.rem(1.4),
+            width: theme.rem(1.4),
+        },
     },
     toHome: {
         marginBottom: theme.rem(2),
