@@ -15,5 +15,4 @@ psycopg2-binary==2.8.5
 pytest-cov==2.10.1
 pytest-django==3.10.0
 pytest-dotenv==0.5.2
-pytest-flake8==1.0.6
 pytest==6.1.0

@@ -1,6 +1,10 @@
-import pytest
-
 from datetime import datetime
+
+import pytest
+from freezegun import freeze_time
+from rest_framework import status
+
+from offers.models import Offer
 from offers.tests.mocks import *
 
 
@@ -397,6 +401,7 @@ def test_offer_image_delete(authed_api_client, offer_image):
     # after delete
     response = authed_api_client.get('/api/v1/offers/1b261f53-8e3b-4c14-abe6-5824c5d8b12e/')
     assert response.json()['images'] == []
+
 
 def test_offer_image_delete_no_authed(api_client, offer_image):
     response = api_client.delete('/api/v1/offers/image/1/')
