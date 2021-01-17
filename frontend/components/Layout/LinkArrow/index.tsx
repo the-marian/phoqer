@@ -51,22 +51,20 @@ interface Props {
 const LinkArrow = ({ href, as = null, children, toLeft = false }: Props): ReactElement => {
     const css = useStyles();
     return (
-        <Link href={href} as={as}>
-            {toLeft ? (
-                <a className={css.link}>
+        <Link href={href} as={as} passHref>
+            <a className={css.link}>
+                {toLeft && (
                     <span className={css.leftIcon}>
                         <FontAwesomeIcon icon={faChevronLeft} />
                     </span>
-                    <span className={css.text}>{children}</span>
-                </a>
-            ) : (
-                <a className={css.link}>
-                    <span className={css.text}>{children}</span>
+                )}
+                <span className={css.text}>{children}</span>
+                {!toLeft && (
                     <span className={css.icon}>
                         <FontAwesomeIcon icon={faChevronRight} />
                     </span>
-                </a>
-            )}
+                )}
+            </a>
         </Link>
     );
 };
