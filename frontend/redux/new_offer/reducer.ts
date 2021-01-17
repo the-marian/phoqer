@@ -1,7 +1,3 @@
-import { persistReducer } from 'redux-persist';
-import storage from 'redux-persist/lib/storage';
-
-import { encryptor } from '../../assets/encryptor';
 import { INewOffer } from '../../interfaces';
 import initState from '../state';
 import types from '../types';
@@ -21,11 +17,4 @@ const newOffer = (state: INewOffer = initState.newOffer, { type, payload }: IAct
     }
 };
 
-const config = {
-    storage,
-    key: 'phoqer_new_offer',
-    white: ['newOffer'],
-    transforms: [encryptor],
-};
-
-export default persistReducer(config, newOffer);
+export default newOffer;

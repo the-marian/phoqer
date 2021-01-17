@@ -7,6 +7,7 @@ export interface Theme {
     shadow: string[];
     palette: {
         white: string;
+        glass: string;
         black: string[];
         gray: string[];
         red: string[];
@@ -46,6 +47,7 @@ export const theme: Theme = {
     ],
     palette: {
         white: '#FFFFFF',
+        glass: 'rgba(255, 255, 255, 0.5)',
         black: ['#222222', '#242424'],
         gray: ['#F9F9F9', '#EEEEEE', '#C4C4C4', '#999999', '#444444'],
         red: ['#DB162F'],
@@ -66,7 +68,7 @@ export const theme: Theme = {
         yellow: ['#EDBF18', '#FAF0CA'],
         primary: ['#764A8D', '#C39ADA', 'linear-gradient(93.32deg, #C39ADA 0%, #764A8D 100%)'],
         secondary: ['#EDFBC9', '#CCDD9F', 'linear-gradient(93.4deg, #EDFBC9 0%, #E5F4BF 23.83%, #CCDD9F 100%)'],
-        modal: 'rgba(0, 0, 0, 0.3)',
+        modal: 'rgba(0, 0, 0, 0.7)',
     },
     text: {
         family: 'Montserrat, sans-serif',

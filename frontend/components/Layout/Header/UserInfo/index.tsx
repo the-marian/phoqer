@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import clsx from 'clsx';
 import Link from 'next/link';
 import { Router } from 'next/router';
-import React, { ReactElement, useState } from 'react';
+import React, { ReactElement, useEffect, useState } from 'react';
 import { createUseStyles } from 'react-jss';
 
 import router from '../../../../assets/router';
@@ -45,6 +45,11 @@ const useStyles = createUseStyles((theme: Theme) => ({
             color: theme.palette.primary[0],
         },
 
+        '& svg': {
+            height: theme.rem(1.4),
+            width: theme.rem(1.4),
+        },
+
         '@media (max-width: 750px)': {
             fontSize: theme.rem(2.2),
         },
@@ -59,9 +64,16 @@ const UserInfo = (): ReactElement => {
     const css = useStyles();
     const [drop, setDrop] = useState<boolean>(false);
 
-    Router.events.on('routeChangeComplete', () => {
-        setDrop(false);
-    });
+    useEffect(() => {
+        const handleClose = (): void => {
+            setDrop(false);
+        };
+        Router.events.on('routeChangeComplete', handleClose);
+
+        return () => {
+            Router.events.off('routeChangeComplete', handleClose);
+        };
+    }, []);
 
     const handleClick = () => {
         setDrop(!drop);
@@ -70,7 +82,7 @@ const UserInfo = (): ReactElement => {
     return (
         <ul className={css.flex}>
             <li className={css.item}>
-                <Link href={`${router.new_offer}/1`}>
+                <Link href={`${router.new_offer}/:step`} as={`${router.new_offer}/1`}>
                     <a className={css.link}>
                         <FontAwesomeIcon icon={faPlus} />
                         <span className={css.text}>Сдать в аренду</span>

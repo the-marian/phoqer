@@ -1,6 +1,7 @@
 import axios, { AxiosResponse } from 'axios';
 
 import { ICategories, IOffers, Login } from '../interfaces';
+import { IBody } from '../redux/new_offer/saga';
 import config from './config';
 
 axios.defaults.baseURL = config.baseUrl;
@@ -17,6 +18,9 @@ const api = {
     offers: {
         popular: {
             get: (): Promise<AxiosResponse<IOffers>> => axios.get('/offers/popular/'),
+        },
+        new: {
+            post: (body: IBody): Promise<AxiosResponse<void>> => axios.post('/offers/', body),
         },
     },
 };

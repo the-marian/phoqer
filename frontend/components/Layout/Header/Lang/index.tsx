@@ -18,6 +18,6 @@ const LANGS: IDropList[] = [
     },
 ];
 
-const Lang = (): ReactElement => <DropDown height={3} data={LANGS} onChange={console.log} />;
+const Lang = (): ReactElement => <DropDown height={3} data={LANGS} onChange={console.log} white />;
 
 export default Lang;
