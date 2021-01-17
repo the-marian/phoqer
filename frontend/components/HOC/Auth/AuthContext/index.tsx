@@ -13,7 +13,6 @@ interface IProps {
 const AuthProvider = ({ authServer = null, children }: IProps): ReactElement => {
     const [value, setValue] = useState<IAuth | null>(null);
     const auth = useSelector<IState, IAuth>(state => state.auth);
-    console.log(auth);
 
     useEffect(() => {
         setValue(auth || authServer);

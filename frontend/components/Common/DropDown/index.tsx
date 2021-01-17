@@ -90,6 +90,11 @@ const useStyles = createUseStyles((theme: Theme) => ({
         marginTop: theme.em(0.4),
         marginRight: theme.rem(1.5),
         fontSize: theme.em(0.7),
+
+        '& svg': {
+            width: theme.rem(1),
+            height: theme.rem(1),
+        },
     },
 }));
 
@@ -139,20 +144,25 @@ const DropDown = ({
         }, 200);
     };
 
-    const handleMouseLeave = () => {
-        setTimeout(() => {
-            setDrop(false);
-        }, 200);
-    };
-
     const handleSelect = (name: string, slug: string, type: 'main' | 'sub'): void => {
         onChange({ name, slug, type });
         setSelected(name);
         setDrop(!drop);
     };
 
+    useEffect(() => {
+        const handleClose = (): void => {
+            if (!drop) setDrop(false);
+        };
+
+        window.addEventListener('scroll', handleClose);
+        return () => {
+            window.removeEventListener('scroll', handleClose);
+        };
+    }, []);
+
     return (
-        <div className={css.wrp} tabIndex={-1} onMouseLeave={handleMouseLeave} onBlur={handleBlur}>
+        <div className={css.wrp} tabIndex={-1} onBlur={handleBlur}>
             <p
                 className={clsx(
                     css.inner,

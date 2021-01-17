@@ -1,8 +1,9 @@
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 
 import router from '../../../../assets/router';
-import useAuth from '../../../../hooks/auth.hook';
+import { IState } from '../../../../interfaces';
 
 interface IProps {
     path?: string;
@@ -11,13 +12,13 @@ interface IProps {
 
 const AuthRedirect = ({ path, reverse = false }: IProps): null => {
     const history = useRouter();
-    const auth = useAuth();
+    const token = useSelector<IState, string | null>(state => state.auth.auth_token);
 
     useEffect(() => {
-        if (reverse ? auth?.auth_token : !auth?.auth_token) {
+        if (reverse ? token : !token) {
             history.replace(path || router.root);
         }
-    }, [auth?.auth_token]);
+    }, [token]);
 
     return null;
 };

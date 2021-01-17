@@ -45,6 +45,11 @@ const useStyles = createUseStyles((theme: Theme) => ({
             color: theme.palette.primary[0],
         },
 
+        '& svg': {
+            height: theme.rem(1.4),
+            width: theme.rem(1.4),
+        },
+
         '@media (max-width: 750px)': {
             fontSize: theme.rem(2.2),
         },

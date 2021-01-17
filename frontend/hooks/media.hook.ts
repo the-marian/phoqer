@@ -1,23 +1,10 @@
-import { useEffect, useState } from 'react';
+import { useContext } from 'react';
 
-const useMedia = (width = 768): boolean => {
-    if (process.browser) {
-        const [media, setMedia] = useState<boolean>(window.innerWidth > width);
+import { Media } from '../components/HOC/Media';
 
-        useEffect(() => {
-            const handleResize = (): void => {
-                setMedia(window.innerWidth > width);
-            };
-
-            window.addEventListener('resize', handleResize);
-            return () => {
-                window.removeEventListener('resize', handleResize);
-            };
-        }, []);
-        return media;
-    }
-
-    return true;
+const useMedia = (width: number): boolean => {
+    const [media] = useContext(Media);
+    return width < media;
 };
 
 export default useMedia;

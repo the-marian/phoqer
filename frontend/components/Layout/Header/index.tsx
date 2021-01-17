@@ -20,8 +20,11 @@ const useStyles = createUseStyles((theme: Theme) => ({
         width: '100%',
         padding: theme.rem(1.4, 0),
         background: theme.palette.glass,
-        backdropFilter: 'blur(3px)',
+        backdropFilter: 'blur(5px)',
         transition: theme.transitions,
+    },
+    shadow: {
+        boxShadow: '0 2rem 2.6rem rgba(0,0,0,0.015)',
     },
     transform: {
         transform: 'translateY(-100%)',
@@ -44,16 +47,20 @@ let prev = 0;
 const Header = (): ReactElement => {
     const auth = useAuth();
     const css = useStyles();
+
+    const [shadow, setShadow] = useState<boolean>(true);
     const [delta, setDelta] = useState<boolean>(false);
 
     useEffect(() => {
         const handleScroll = throttle((): void => {
             if (window.scrollY < 100 && !delta) {
+                setShadow(false);
                 setDelta(false);
                 prev = 0;
                 return;
             }
 
+            setShadow(true);
             setDelta(prev < window.scrollY);
             prev = window.scrollY;
         }, 300);
@@ -66,7 +73,7 @@ const Header = (): ReactElement => {
     }, []);
 
     return (
-        <header className={clsx(css.header, delta && css.transform)}>
+        <header className={clsx(css.header, delta && css.transform, shadow && css.shadow)}>
             <Container>
                 <div className={css.flex}>
                     <div className={css.wrp}>
