@@ -7,7 +7,7 @@ import { createUseStyles } from 'react-jss';
 import router from '../../../assets/router';
 import { Theme } from '../../../assets/theme';
 import useMedia from '../../../hooks/media.hook';
-import LinkArrow from '../LinkArrow';
+import LinkArrow from '../../Layout/LinkArrow';
 import OptionsDesktop from './OptionsDesktop';
 import OptionsMobile from './OptionsMobile';
 

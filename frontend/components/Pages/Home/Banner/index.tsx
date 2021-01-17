@@ -3,7 +3,7 @@ import { createUseStyles } from 'react-jss';
 
 import router from '../../../../assets/router';
 import { Theme } from '../../../../assets/theme';
-import LinkArrow from '../../../Common/LinkArrow';
+import LinkArrow from '../../../Layout/LinkArrow';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     root: {

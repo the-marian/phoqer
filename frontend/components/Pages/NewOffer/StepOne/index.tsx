@@ -73,18 +73,21 @@ const StepThree = (): ReactElement => {
         event.preventDefault();
 
         if (!value.title.trim()) {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
             setErrors({ title: 'Это обязательное поле' });
             notDone(value, dispatch);
             return;
         }
 
         if (!value.category) {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
             setErrors({ category: 'Это обязательное поле' });
             notDone(value, dispatch);
             return;
         }
 
         if (!value.price && value.price !== 0) {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
             setErrors({ price: 'Это обязательное поле' });
             notDone(value, dispatch);
             return;
