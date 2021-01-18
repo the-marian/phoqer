@@ -115,7 +115,8 @@ def offer_1(db, sport_category, user, bike_subcategory):
         price='1',
         status='ACTIVE',
         sub_category=bike_subcategory,
-        title='Pixel 5')
+        title='Pixel 5'
+    )
 
 
 @pytest.fixture
