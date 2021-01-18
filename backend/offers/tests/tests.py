@@ -1,7 +1,11 @@
-from rest_framework import status
-from offers.models import Offer
-from freezegun import freeze_time
+import pytest
+
 from datetime import datetime
+
+from freezegun import freeze_time
+from rest_framework import status
+
+from offers.models import Offer
 from offers.tests.mocks import *
 
 
@@ -131,7 +135,7 @@ def test_is_favorite(api_client, user, db_test_data):
     assert response.json() == list_offers_expected_response
 
     iphone_10 = Offer.objects.get(title='Iphone 10')
-    iphone_10.favourite.add(user)
+    iphone_10.favorite.add(user)
     iphone_10.save()
     response = api_client.get(popular_url_with_user_in_query)
     assert response.data[2]['is_favorite'] is True
@@ -294,3 +298,111 @@ def test_min_deposit(api_client, db_test_data):
 
     response = api_client.get(min_deposit_filter)
     assert response.json() == min_deposit_filter_mock
+
+
+def test_offer_detail_view(api_client, db_test_data):
+    response = api_client.get('/api/v1/offers/1b261f53-8e3b-4c14-abe6-5824c5d8b66c/')
+    assert response.json() == {
+        'category': 'phones',
+        'city': 'Kiev',
+        'cover_image': 'https://example.com/iphone.jpeg',
+        'currency': 'UAH',
+        'deposit_val': 0,
+        'description': 'New Phone',
+        'doc_needed': False,
+        'extra_requirements': None,
+        'id': 36087098541470811203172639304561768044,
+        'images': [],
+        'is_deliverable': True,
+        'is_favorite': False,
+        'is_promoted': False,
+        'max_rent_period': None,
+        'min_rent_period': None,
+        'price': 499,
+        'pub_date': '2020-10-29',
+        'sub_category': 'iphones',
+        'title': 'Iphone 12',
+        'views': 0,
+    }
+
+
+def test_offer_not_auth_update(api_client, db_test_data):
+    data = {'price': 111}
+    response = api_client.patch('/api/v1/offers/1b261f53-8e3b-4c14-abe6-5824c5d8b66c/', data)
+    assert response.status_code == 401
+
+
+@pytest.mark.parametrize(
+    "update_field,update_date",
+    [
+        ('price', 111),
+        ('max_rent_period', 111),
+        ('category', 'sport'),
+        ('city', 'Warsaw'),
+        ('cover_image', 'https://example.com/dic_pic.jpg'),
+        ('currency', 'USD'),
+        ('deposit_val', 1000),
+        ('description', 'Old Phone'),
+        ('doc_needed', False),
+        ('extra_requirements', 'I require delivery'),
+        ('is_deliverable', True),
+        ('max_rent_period', 12),
+        ('min_rent_period', 10),
+        ('sub_category', 'bike'),
+        ('title', 'Iphone 13'),
+    ],
+)
+def test_offer_partial_update(
+        authed_api_client,
+        db_test_data,
+        sport_category,
+        bike_subcategory,
+        update_field,
+        update_date
+):
+    response = authed_api_client.get('/api/v1/offers/1b261f53-8e3b-4c14-abe6-5824c5d8b66c/')
+    # before update
+    assert response.json() == {
+        'category': 'phones',
+        'city': 'Kiev',
+        'cover_image': 'https://example.com/iphone.jpeg',
+        'currency': 'UAH',
+        'deposit_val': 0,
+        'description': 'New Phone',
+        'doc_needed': False,
+        'extra_requirements': None,
+        'id': 36087098541470811203172639304561768044,
+        'images': [],
+        'is_deliverable': True,
+        'is_favorite': False,
+        'is_promoted': False,
+        'max_rent_period': None,
+        'min_rent_period': None,
+        'price': 499,
+        'pub_date': '2020-10-29',
+        'sub_category': 'iphones',
+        'title': 'Iphone 12',
+        'views': 0,
+    }
+    # perform partial update
+    data = {update_field: update_date}
+    response = authed_api_client.patch('/api/v1/offers/1b261f53-8e3b-4c14-abe6-5824c5d8b66c/', data)
+    assert response.json()[update_field] == update_date
+
+
+def test_offer_image_delete(authed_api_client, offer_image):
+    # before delete
+    response = authed_api_client.get('/api/v1/offers/1b261f53-8e3b-4c14-abe6-5824c5d8b12e/')
+    assert response.json()['images'] == [{'id': 1, 'url': 'https://example.com/iphone.jpeg'}]
+
+    # perform delete
+    response = authed_api_client.delete('/api/v1/offers/image/1/')
+    assert response.status_code == 204
+
+    # after delete
+    response = authed_api_client.get('/api/v1/offers/1b261f53-8e3b-4c14-abe6-5824c5d8b12e/')
+    assert response.json()['images'] == []
+
+def test_offer_image_delete_no_authed(api_client, offer_image):
+    response = api_client.delete('/api/v1/offers/image/1/')
+    assert response.status_code == 401

@@ -1,6 +1,9 @@
 name: Continuous Integration and Delivery
 
-on: [push]
+on:
+  push:
+    branches:
+      - dev
 
 env:
   BACKEND_IMAGE: ${{ secrets.BACKEND_IMAGE }}
@@ -12,7 +15,6 @@ jobs:
   build:
     name: Build Docker Images
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/dev'
     steps:
       - name: Checkout dev
         uses: actions/checkout@v2

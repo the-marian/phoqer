@@ -1,14 +1,15 @@
+from .models import Offer, OfferImages
+from .serializers import OfferListItemSerializer, OfferSerializer, OfferImageSerializer
+
+from django.db.models import Q
 from django.db.models import QuerySet
 from django_filters.rest_framework import DjangoFilterBackend
+
 from rest_framework import filters
-from rest_framework.generics import ListAPIView, CreateAPIView, RetrieveUpdateAPIView
-from rest_framework.permissions import IsAuthenticatedOrReadOnly
+from rest_framework.generics import ListAPIView, CreateAPIView, RetrieveUpdateAPIView, DestroyAPIView
+from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticated
 from rest_framework.request import Request
 from rest_framework.response import Response
-from django.db.models import Q
-
-from .models import Offer
-from .serializers import OfferListItemSerializer, OfferSerializer
 
 
 class PopularOffersView(ListAPIView):
@@ -80,3 +81,9 @@ class CreateOfferView(CreateAPIView):
     serializer_class = OfferSerializer
     queryset = Offer.objects.all()
     permission_classes = [IsAuthenticatedOrReadOnly]
+
+
+class DeleteOfferImageView(DestroyAPIView):
+    serializer_class = OfferImageSerializer
+    queryset = OfferImages.objects.all()
+    permission_classes = [IsAuthenticated]

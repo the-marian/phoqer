@@ -1,4 +1,3 @@
-# Create your views here.
 from rest_framework.generics import RetrieveAPIView, UpdateAPIView
 from rest_framework.permissions import IsAuthenticated
 
