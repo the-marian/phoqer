@@ -1,7 +1,7 @@
 import pytest
-
-from categories.models import ParentCategories, ChildCategories
 from freezegun import freeze_time
+
+from categories.models import ChildCategories, ParentCategories
 from offers.models import Offer, OfferImages
 from offers.tests.mocks import image_iphone_url, phones_image_url
 from users.models import User
