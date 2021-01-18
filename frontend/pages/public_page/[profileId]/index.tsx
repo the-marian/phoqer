@@ -18,8 +18,8 @@ const useStyles = createUseStyles(() => ({
 
 const PublicProfilePage = (): ReactElement => {
     const css = useStyles();
-    const router = useRouter();
-    console.log(router.query.profileId);
+    const history = useRouter();
+    console.log(history.query.profileId);
     return (
         <Main>
             <Container>

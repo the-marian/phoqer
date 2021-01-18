@@ -3,7 +3,7 @@ import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
 import config from '../../../../assets/config';
-import router from '../../../../assets/router';
+import routes from '../../../../assets/routes';
 import { Theme } from '../../../../assets/theme';
 
 const useStyles = createUseStyles((theme: Theme) => ({
@@ -96,6 +96,7 @@ interface IProps {
 
 const OffersLoader = ({ loading, isEmpty, emptyText, children }: IProps): ReactElement => {
     const css = useStyles();
+
     return loading ? (
         <div className={css.grid}>
             <div>
@@ -131,7 +132,7 @@ const OffersLoader = ({ loading, isEmpty, emptyText, children }: IProps): ReactE
             <img className={css.emoji} src="/emoji/thinking.png" alt="" />
             <p className={css.emptyText}>{emptyText || 'Кадется здесь пусто. Создайте свое объявление, не тяните резину'}</p>
 
-            <Link href={router.new_offer}>
+            <Link href={routes.new_offer(1)}>
                 <a className={css.link}>Создать обьявление</a>
             </Link>
         </div>

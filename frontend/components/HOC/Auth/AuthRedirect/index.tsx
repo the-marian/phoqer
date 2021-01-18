@@ -2,7 +2,7 @@ import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
-import router from '../../../../assets/router';
+import routes from '../../../../assets/routes';
 import { IState } from '../../../../interfaces';
 
 interface IProps {
@@ -16,7 +16,7 @@ const AuthRedirect = ({ path, reverse = false }: IProps): null => {
 
     useEffect(() => {
         if (reverse ? token : !token) {
-            history.replace(path || router.root);
+            history.replace(path || routes.root);
         }
     }, [token]);
 

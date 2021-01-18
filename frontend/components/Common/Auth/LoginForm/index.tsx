@@ -6,7 +6,7 @@ import React, { ChangeEvent, FormEvent, ReactElement, useState } from 'react';
 import { createUseStyles } from 'react-jss';
 import { useDispatch } from 'react-redux';
 
-import router from '../../../../assets/router';
+import routes from '../../../../assets/routes';
 import { Theme } from '../../../../assets/theme';
 import { Login } from '../../../../interfaces';
 import types from '../../../../redux/types';
@@ -144,7 +144,7 @@ const LoginForm = (): ReactElement => {
                 <input type={unhidden ? 'password' : 'text'} name="password" onChange={handleChange} className={css.input} />
             </div>
 
-            <Link href={router.auth.forgot_pass}>
+            <Link href={routes.auth.forgot_pass}>
                 <a className={css.link}>Забыли пароль?</a>
             </Link>
 

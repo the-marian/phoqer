@@ -4,7 +4,7 @@ import { createUseStyles } from 'react-jss';
 import { useSelector } from 'react-redux';
 
 import config from '../../../../assets/config';
-import router from '../../../../assets/router';
+import routes from '../../../../assets/routes';
 import { Theme } from '../../../../assets/theme';
 import { ICategories, IState } from '../../../../interfaces';
 import SectionTitle from '../../../Layout/SectionTitle';
@@ -55,7 +55,7 @@ const Categories = (): ReactElement => {
 
             <div className={css.wrp}>
                 {categories?.map(({ name, image, slug }) => (
-                    <Link key={name} href={`${router.offers}?category=${slug}`}>
+                    <Link key={name} href={routes.offers.single(`?category=${slug}`)}>
                         <div className={css.cat}>
                             <img className={css.img} src={image} alt={name} />
                             <p className={css.text}>{name}</p>

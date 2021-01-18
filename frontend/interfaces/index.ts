@@ -79,11 +79,11 @@ export interface IOffers {
 // =====================================
 
 export interface INewOffer {
+    id?: string | null;
     // step one
     title: string;
     price: number | null;
     category: IDropValue | null;
-    currency: IDropValue | null;
     is_deliverable: boolean;
     // step two
     doc_needed: boolean;

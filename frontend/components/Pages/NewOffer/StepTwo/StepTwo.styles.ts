@@ -47,6 +47,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
     textarea: {
         height: theme.rem(18),
+        resize: 'vertical',
     },
     wrp: {
         display: 'grid',

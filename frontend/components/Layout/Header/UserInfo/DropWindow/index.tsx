@@ -7,7 +7,7 @@ import ReactDOM from 'react-dom';
 import { createUseStyles } from 'react-jss';
 import { useDispatch } from 'react-redux';
 
-import router from '../../../../../assets/router';
+import routes from '../../../../../assets/routes';
 import { Theme } from '../../../../../assets/theme';
 import types from '../../../../../redux/types';
 import NotifNumber from '../../../../Common/NotifNumber';
@@ -101,7 +101,7 @@ const DropWindow = ({ onClose }: Props): ReactElement => {
             <div className={css.wrp} onClick={onClose} aria-hidden />
             <ul className={css.root}>
                 <li>
-                    <Link href={router.root}>
+                    <Link href={routes.root}>
                         <a className={css.item}>
                             <FontAwesomeIcon icon={faBullhorn} />
                             <span className={css.text}>Мои объявления</span>
@@ -109,7 +109,7 @@ const DropWindow = ({ onClose }: Props): ReactElement => {
                     </Link>
                 </li>
                 <li>
-                    <Link href={router.root}>
+                    <Link href={routes.root}>
                         <a className={css.item}>
                             <FontAwesomeIcon icon={faEnvelope} />
                             <span className={css.text}>Мои сообщения</span>
@@ -119,7 +119,7 @@ const DropWindow = ({ onClose }: Props): ReactElement => {
                     </Link>
                 </li>
                 <li>
-                    <Link href={router.root}>
+                    <Link href={routes.root}>
                         <a className={css.item}>
                             <FontAwesomeIcon icon={faCommentAlt} />
                             <span className={css.text}>Отзывы</span>
@@ -129,7 +129,7 @@ const DropWindow = ({ onClose }: Props): ReactElement => {
                     </Link>
                 </li>
                 <li>
-                    <Link href={router.root}>
+                    <Link href={routes.root}>
                         <a className={css.item}>
                             <FontAwesomeIcon icon={faSlidersH} />
                             <span className={css.text}>Настройки</span>
@@ -137,7 +137,7 @@ const DropWindow = ({ onClose }: Props): ReactElement => {
                     </Link>
                 </li>
                 <li>
-                    <Link href={router.root}>
+                    <Link href={routes.root}>
                         <a className={css.item}>
                             <FontAwesomeIcon icon={faUserPlus} />
                             <span className={css.text}>Пригласить друзей</span>

@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { NextRouter } from 'next/router';
 
-import router from './router';
+import routes from './routes';
 
 const interceptors = ({ history }: { history: NextRouter }): void => {
     axios.interceptors.request.use(
@@ -13,7 +13,7 @@ const interceptors = ({ history }: { history: NextRouter }): void => {
             if (response.config.url === '/Auth/token/login/') {
                 const bearerToken = response.data.auth_token;
                 if (bearerToken) axios.defaults.headers.common.Authorization = `Token ${bearerToken}`;
-                history.replace(router.root);
+                history.replace(routes.root);
             }
             return response;
         },

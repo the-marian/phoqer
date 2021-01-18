@@ -6,19 +6,28 @@ import React, { FormEvent, ReactElement, useEffect, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import config from '../../../../assets/config';
+import routes from '../../../../assets/routes';
 import useAuth from '../../../../hooks/auth.hook';
+import useMedia from '../../../../hooks/media.hook';
 import { INewOffer, IState } from '../../../../interfaces';
 import types from '../../../../redux/types';
+import notifications from '../../../Common/Notifications';
 import useStyles from './StepThree.styles';
 
 const StepThree = (): ReactElement => {
     const css = useStyles();
     const auth = useAuth();
     const dispatch = useDispatch();
-    const router = useRouter();
+    const history = useRouter();
+
+    const media = useMedia(900);
+    const height = media ? 500 : 350;
 
     const value = useSelector<IState, INewOffer>(state => state.newOffer);
-    if (!value.isDone.one || !value.isDone.two) router.push('/new_offer/1');
+    if (!value.isDone.one || !value.isDone.two) {
+        history.replace(routes.new_offer(1));
+        return;
+    }
 
     const uppy = useMemo(
         () =>
@@ -37,6 +46,23 @@ const StepThree = (): ReactElement => {
     );
 
     useEffect(() => {
+        const handleUploaded = (res): void => {
+            dispatch({
+                type: types.POST_OFFER_START,
+                history,
+                payload: res?.successful?.map((item: UploadedUppyFile<string, { images_url: [string] }>) => ({
+                    url: config.img + item?.response?.body?.images_url?.[0],
+                })),
+            });
+        };
+
+        uppy.on('complete', handleUploaded);
+        return () => {
+            uppy.off('complete', handleUploaded);
+        };
+    }, []);
+
+    useEffect(() => {
         uppy.use(XHRUpload, {
             endpoint: config.uploadsUrl,
             fieldName: 'file',
@@ -48,7 +74,7 @@ const StepThree = (): ReactElement => {
     }, []);
 
     const handleBack = () => {
-        router.push('/new_offer/2');
+        history.push(routes.new_offer(2));
     };
 
     const handleSubmit = async (event: FormEvent): Promise<void> => {
@@ -56,21 +82,20 @@ const StepThree = (): ReactElement => {
         if (!uppy.getFiles()?.length) return;
 
         try {
-            const result = await uppy.upload();
-            if (result.failed.length > 0) throw new Error();
+            const res = await uppy.upload();
+            if (res.failed.length > 0) throw new Error();
 
             dispatch({
                 type: types.POST_OFFER_START,
-                payload: result?.successful?.map(
-                    (item: UploadedUppyFile<string, { images_url: [string] }>) => item?.response?.body?.images_url?.[0],
-                ),
+                history,
+                payload: res?.successful?.map((item: UploadedUppyFile<string, { images_url: [string] }>) => ({
+                    url: config.img + item?.response?.body?.images_url?.[0],
+                })),
             });
         } catch (error) {
-            console.log(error);
+            notifications('error');
         }
     };
-
-    const height = process.browser ? (window.innerWidth < 900 ? 350 : 500) : 500;
 
     return (
         <form className={css.form} onSubmit={handleSubmit}>

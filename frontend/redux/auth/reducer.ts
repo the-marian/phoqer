@@ -1,4 +1,6 @@
-import { IAuth } from '../../interfaces';
+import { HYDRATE } from 'next-redux-wrapper';
+
+import { IAuth, IState } from '../../interfaces';
 import types from '../types';
 
 type Type =
@@ -14,15 +16,18 @@ type Type =
 
 interface IAction {
     type: Type;
-    payload?: IAuth | null;
+    payload?: IAuth | IState | null;
 }
 
 const INIT: IAuth = { auth_token: null, user: null };
 
 const auth = (state: IAuth = INIT, { type, payload }: IAction): IAuth => {
     switch (type) {
+        case HYDRATE:
+            return (payload as IState).auth;
+
         case types.LOGIN_SUCCESS:
-            return { ...payload };
+            return payload as IAuth;
 
         case types.GET_USER_SUCCESS:
             return { ...state, ...payload };
