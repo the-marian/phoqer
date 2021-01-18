@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
-import router from '../../../assets/router';
+import routes from '../../../assets/routes';
 import { Theme } from '../../../assets/theme';
 import useMedia from '../../../hooks/media.hook';
 import LinkArrow from '../../Layout/LinkArrow';
@@ -103,9 +103,9 @@ const Search = (): ReactElement => {
 
     return (
         <form action="#" method="post">
-            {history.pathname !== router.root && (
+            {history.pathname !== routes.root && (
                 <div className={css.toHome}>
-                    <LinkArrow href={router.root} toLeft>
+                    <LinkArrow href={routes.root} toLeft>
                         На главную
                     </LinkArrow>
                 </div>

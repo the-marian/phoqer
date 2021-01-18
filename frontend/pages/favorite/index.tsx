@@ -4,9 +4,9 @@ import { END } from 'redux-saga';
 
 import Meta from '../../components/Common/Meta';
 import OffersList from '../../components/Common/Offers/OffersList';
-import SectionTitle from '../../components/Layout/SectionTitle';
 import Container from '../../components/Layout/Container';
 import Main from '../../components/Layout/Main';
+import SectionTitle from '../../components/Layout/SectionTitle';
 import { IOfferPopular, IState, IStore } from '../../interfaces';
 import { wrapper } from '../../redux/store';
 import types from '../../redux/types';

@@ -7,7 +7,7 @@ import { Router } from 'next/router';
 import React, { ReactElement, useEffect, useState } from 'react';
 import { createUseStyles } from 'react-jss';
 
-import router from '../../../../assets/router';
+import routes from '../../../../assets/routes';
 import { Theme } from '../../../../assets/theme';
 import NotifNumber from '../../../Common/NotifNumber';
 import DropWindow from './DropWindow';
@@ -82,7 +82,7 @@ const UserInfo = (): ReactElement => {
     return (
         <ul className={css.flex}>
             <li className={css.item}>
-                <Link href={`${router.new_offer}/:step`} as={`${router.new_offer}/1`}>
+                <Link href={routes.new_offer()} as={routes.new_offer(1)}>
                     <a className={css.link}>
                         <FontAwesomeIcon icon={faPlus} />
                         <span className={css.text}>Сдать в аренду</span>
@@ -90,7 +90,7 @@ const UserInfo = (): ReactElement => {
                 </Link>
             </li>
             <li className={css.item}>
-                <Link href={router.favorite}>
+                <Link href={routes.favorite}>
                     <a className={css.link}>
                         <FontAwesomeIcon icon={faHeart} />
                         <span className={css.text}>Избранное</span>

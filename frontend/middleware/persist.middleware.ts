@@ -3,9 +3,11 @@ import { HYDRATE } from 'next-redux-wrapper';
 import { Middleware } from 'redux';
 
 import notifications from '../components/Common/Notifications';
+import { IAuth, INewOffer } from '../interfaces';
+import initState from '../redux/state';
 import types from '../redux/types';
 
-const Persist: Middleware = store => next => action => {
+const Persist: Middleware = () => next => action => {
     // console.dir(action);
 
     if (process.browser) {
@@ -16,8 +18,8 @@ const Persist: Middleware = store => next => action => {
             try {
                 Cookies.set('auth', JSON.stringify(action.payload));
             } catch (error) {
-                notifications('error', 'Oops, Something went wrong. Please, reload your browser and try again');
-                next(action);
+                notifications('error');
+                return next(action);
             }
         }
 
@@ -25,8 +27,17 @@ const Persist: Middleware = store => next => action => {
             try {
                 Cookies.set('auth', JSON.stringify(action.payload));
             } catch (error) {
-                notifications('error', 'Oops, Something went wrong. Please, reload your browser and try again');
-                next(action);
+                notifications('error');
+                return next(action);
+            }
+        }
+
+        if (types.NEW_OFFER_FORM === action.type) {
+            try {
+                localStorage.setItem('new_offer', JSON.stringify(action.payload));
+            } catch (error) {
+                notifications('error');
+                return next(action);
             }
         }
 
@@ -35,11 +46,23 @@ const Persist: Middleware = store => next => action => {
          * */
         if (HYDRATE === action.type) {
             try {
-                const payload = JSON.parse(Cookies.get('auth'));
-                store.dispatch({ type: types.LOGIN_SUCCESS, payload });
+                const auth: IAuth = JSON.parse(Cookies.get('auth')) || initState.auth;
+                const newOffer: INewOffer = JSON.parse(localStorage.getItem('new_offer')) || initState.newOffer;
+
+                return next({
+                    type: HYDRATE,
+                    payload: {
+                        ...action.payload,
+                        auth,
+                        newOffer: {
+                            ...action.payload.newOffer,
+                            ...newOffer,
+                        },
+                    },
+                });
             } catch (error) {
-                notifications('error', 'Oops, Something went wrong. Please, reload your browser and try again');
-                next(action);
+                notifications('error');
+                return next(action);
             }
         }
     }

@@ -19,7 +19,7 @@ const MyApp = ({ Component, pageProps, width, auth }: AppProps & { width: number
     const history = useRouter();
 
     interceptors({ history });
-    logger();
+    // logger();
 
     useEffect(() => {
         const handleClear = () => {
@@ -47,7 +47,7 @@ const MyApp = ({ Component, pageProps, width, auth }: AppProps & { width: number
 };
 
 MyApp.getInitialProps = async appContext => {
-    const toMatch = [/Android/i, /webOS/i, /iPhone/i, /iPad/i, /iPod/i, /BlackBerry/i, /Windows Phone/i];
+    const toMatch = [/Android/gi, /webOS/gi, /iPhone/gi, /iPad/gi, /iPod/gi, /BlackBerry/gi, /Windows Phone/gi];
     const isMobile = toMatch.some(toMatchItem => appContext?.ctx?.req?.headers?.['user-agent']?.match(toMatchItem)) || false;
 
     const props = await App.getInitialProps(appContext);

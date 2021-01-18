@@ -18,7 +18,6 @@ const initState: IState = {
         title: '',
         price: null,
         category: null,
-        currency: null,
         is_deliverable: false,
         // step 2
         doc_needed: false,

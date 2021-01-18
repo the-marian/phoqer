@@ -6,20 +6,15 @@ import { Dispatch } from 'redux';
 
 import * as helpers from '../../../../assets/helpers';
 import { numberValidation } from '../../../../assets/helpers';
-import { ICategories, IDropList, IDropValue, INewOffer, IState } from '../../../../interfaces';
+import routes from '../../../../assets/routes';
+import { ICategories, IDropValue, INewOffer, IState } from '../../../../interfaces';
 import types from '../../../../redux/types';
-import CheckTitle from '../../../Common/CheckTitle';
+import CheckYesNo from '../../../Common/CheckYesNo';
 import DropDown from '../../../Common/DropDown';
 import { modal } from '../../../Common/Modal';
 import SaveModal from '../SaveModal';
 import Region from './Region';
 import useStyles from './StepOne.styles';
-
-const CURRENCY: IDropList[] = [
-    { name: 'uah', slug: 'uah' },
-    { name: 'usd', slug: 'usd' },
-    { name: 'eur', slug: 'eur' },
-];
 
 interface IError {
     title?: string;
@@ -61,9 +56,6 @@ const StepThree = (): ReactElement => {
         setValue({ ...value, category });
         setErrors({});
     };
-    const handleCurrency = (currency: IDropValue): void => {
-        setValue({ ...value, currency });
-    };
 
     // on complete
     const data = useSelector<IState, ICategories[]>(state => state.categories);
@@ -97,11 +89,10 @@ const StepThree = (): ReactElement => {
             type: types.NEW_OFFER_FORM,
             payload: {
                 ...value,
-                currency: value.currency ? value.currency : CURRENCY[0],
                 isDone: { ...value.isDone, one: true },
             },
         });
-        router.push('/new_offer/2');
+        router.push(routes.new_offer(2));
     };
 
     const handleClear = (): void => {
@@ -111,7 +102,6 @@ const StepThree = (): ReactElement => {
             is_deliverable: false,
             price: null,
             category: null,
-            currency: null,
             isDone: {
                 one: false,
                 two: false,
@@ -126,10 +116,7 @@ const StepThree = (): ReactElement => {
         modal.open(<SaveModal />);
         dispatch({
             type: types.NEW_OFFER_FORM,
-            payload: {
-                ...value,
-                currency: value.currency ? value.currency : CURRENCY[0],
-            },
+            payload: value,
         });
     };
 
@@ -152,9 +139,9 @@ const StepThree = (): ReactElement => {
 
             <Region />
 
-            <CheckTitle value={value.is_deliverable} onChange={handleDelivery}>
+            <CheckYesNo value={value.is_deliverable} onChange={handleDelivery}>
                 Укажите возможность доставки вашего товара в другой город
-            </CheckTitle>
+            </CheckYesNo>
 
             <div className={css.flex}>
                 {!!categories?.length && (
@@ -178,18 +165,15 @@ const StepThree = (): ReactElement => {
 
                 <div className={css.inner}>
                     <h4 className={css.title}>
-                        Цена (за 1 час) <span className={css.red}>*</span>
+                        Цена (грн/день) <span className={css.red}>*</span>
                     </h4>
-                    <div className={css.wrp}>
-                        <input
-                            value={value.price !== null ? value.price : ''}
-                            onChange={handlePrice}
-                            className={clsx(css.input, errors.price && css.errors)}
-                            type="text"
-                            placeholder="Цена"
-                        />
-                        <DropDown white data={CURRENCY} defaultValue={init.currency} onChange={handleCurrency} />
-                    </div>
+                    <input
+                        value={value.price !== null ? value.price : ''}
+                        onChange={handlePrice}
+                        className={clsx(css.input, errors.price && css.errors)}
+                        type="text"
+                        placeholder="Цена"
+                    />
                     {errors.price && <small className={css.errorsText}>{errors.price}</small>}
                 </div>
             </div>
