@@ -23,10 +23,10 @@ const StepThree = (): ReactElement => {
     const media = useMedia(900);
     const height = media ? 500 : 350;
 
-    const value = useSelector<IState, INewOffer>(state => state.newOffer);
+    const value = useSelector<IState, INewOffer>(state => state.offers.newOffer);
     if (!value.isDone.one || !value.isDone.two) {
         history.replace(routes.new_offer(1));
-        return;
+        return null;
     }
 
     const uppy = useMemo(

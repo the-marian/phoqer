@@ -39,8 +39,8 @@ export const theme: Theme = {
         }`,
     radius: '0.6rem',
     shadow: [
-        '0 0.2rem 0.4rem rgba(0,0,0,0.04), 0 0.2rem 0.4rem rgba(0,0,0,0.08)',
-        '0 0.3rem 0.6rem rgba(0,0,0,0.06), 0 0.3rem 0.6rem rgba(0,0,0,0.1)',
+        '0 2rem 2.6rem rgba(0,0,0,0.015)',
+        '0 0.1rem 0.2rem rgba(0,0,0,0.08)',
         '0 1rem 2rem rgba(0,0,0,0.08), 0 0.6rem 0.6rem rgba(0,0,0,0.1)',
         '0 1.4rem 2.8rem rgba(0,0,0,0.08), 0 1rem 1rem rgba(0,0,0,0.12)',
         '0 1.9rem 3.8rem rgba(0,0,0,0.1), 0 1.5rem 1.2rem rgba(0,0,0,0.12)',

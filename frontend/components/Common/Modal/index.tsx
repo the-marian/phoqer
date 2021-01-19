@@ -16,11 +16,13 @@ class ModalManagement extends EventEmitter {
 
     open(dom: Element): void {
         this.dom = dom;
+        if (process.browser) document.body.style.overflow = 'hidden';
         this.emitChange();
     }
 
     close(): void {
         this.dom = null;
+        if (process.browser) document.body.style.overflow = 'auto';
         this.emitChange();
     }
 

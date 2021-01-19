@@ -3,71 +3,90 @@ import { HYDRATE } from 'next-redux-wrapper';
 import { Middleware } from 'redux';
 
 import notifications from '../components/Common/Notifications';
-import { IAuth, INewOffer } from '../interfaces';
+import { IAuth, INewOffer, IState } from '../interfaces';
 import initState from '../redux/state';
 import types from '../redux/types';
 
-const Persist: Middleware = () => next => action => {
-    // console.dir(action);
-
+const Persist: Middleware = store => next => action => {
     if (process.browser) {
         /**
-         * SET DATA TO STORAGE
+         * REGULAR ACTIONS
          * */
-        if (types.LOGIN_SUCCESS === action.type) {
+        if (types.LOGIN_SUCCESS === action.type || types.GET_USER_SUCCESS === action.type) {
             try {
-                Cookies.set('auth', JSON.stringify(action.payload));
+                const authStr: string | null = Cookies.get('auth') || null;
+                const auth: IAuth = authStr ? JSON.parse(authStr) : initState.auth;
+
+                Cookies.set('auth', JSON.stringify({ ...auth, ...action.payload }));
+                next(action);
+                return;
             } catch (error) {
                 notifications('error');
-                return next(action);
+                next(action);
+                return;
             }
         }
 
-        if (types.LOGOUT_SUCCESS === action.type) {
+        if (types.LOGOUT_SUCCESS === action.type || types.LOGOUT_ERROR === action.type) {
             try {
-                Cookies.set('auth', JSON.stringify(action.payload));
+                Cookies.set('auth', JSON.stringify(initState.auth));
+                next(action);
+                return;
             } catch (error) {
                 notifications('error');
-                return next(action);
+                next(action);
+                return;
             }
         }
 
-        if (types.NEW_OFFER_FORM === action.type) {
+        if (types.NEW_OFFER_FORM === action.type || types.POST_OFFER_SUCCESS === action.type) {
             try {
-                localStorage.setItem('new_offer', JSON.stringify(action.payload));
+                const state: IState = store.getState();
+                localStorage.setItem('new_offer', JSON.stringify({ ...state.offers.newOffer, ...action.payload }));
+                next(action);
+                return;
             } catch (error) {
                 notifications('error');
-                return next(action);
+                next(action);
+                return;
             }
         }
 
         /**
-         * DISPATCH ACTIONS
+         * HYDRATE ACTION
          * */
         if (HYDRATE === action.type) {
             try {
-                const auth: IAuth = JSON.parse(Cookies.get('auth')) || initState.auth;
-                const newOffer: INewOffer = JSON.parse(localStorage.getItem('new_offer')) || initState.newOffer;
+                const authStr: string | null = Cookies.get('auth') || null;
+                const auth: IAuth = authStr ? JSON.parse(authStr) : initState.auth;
 
-                return next({
+                const newOfferStr: string | null = localStorage.getItem('new_offer') || null;
+                const newOffer: INewOffer = newOfferStr ? JSON.parse(newOfferStr) : initState.offers.newOffer;
+
+                next({
                     type: HYDRATE,
                     payload: {
                         ...action.payload,
                         auth,
-                        newOffer: {
-                            ...action.payload.newOffer,
-                            ...newOffer,
+                        offers: {
+                            ...action.payload.offers,
+                            newOffer: {
+                                ...action.payload.offers.newOffer,
+                                ...newOffer,
+                            },
                         },
                     },
                 });
+                return;
             } catch (error) {
                 notifications('error');
-                return next(action);
+                next(action);
+                return;
             }
         }
     }
-    // Do stuff
-    return next(action);
+
+    next(action);
 };
 
 export default Persist;

@@ -20,6 +20,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         },
     },
     inner: {
+        position: 'relative',
         margin: theme.rem(3, 0),
     },
     red: {
@@ -46,8 +47,22 @@ const useStyles = createUseStyles((theme: Theme) => ({
         },
     },
     textarea: {
-        height: theme.rem(18),
-        resize: 'vertical',
+        width: '100%',
+        height: theme.rem(15),
+        padding: theme.rem(2),
+    },
+    resize: {
+        position: 'absolute',
+        bottom: theme.rem(1),
+        right: theme.rem(1),
+        padding: theme.rem(1),
+        borderRadius: theme.radius,
+        background: theme.palette.gray[1],
+
+        '& svg': {
+            height: theme.rem(1.2),
+            width: theme.rem(1.4),
+        },
     },
     wrp: {
         display: 'grid',

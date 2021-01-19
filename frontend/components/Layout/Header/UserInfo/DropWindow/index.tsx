@@ -1,16 +1,18 @@
-import { faCommentAlt, faEnvelope } from '@fortawesome/free-regular-svg-icons';
+import { faCommentAlt, faEnvelope, faUser } from '@fortawesome/free-regular-svg-icons';
 import { faBullhorn, faSignOutAlt, faSlidersH, faUserPlus } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Link from 'next/link';
-import React, { CSSProperties, ReactElement, useEffect } from 'react';
+import React, { CSSProperties, ReactElement, useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
 import { createUseStyles } from 'react-jss';
 import { useDispatch } from 'react-redux';
 
 import routes from '../../../../../assets/routes';
 import { Theme } from '../../../../../assets/theme';
+import useAuth from '../../../../../hooks/auth.hook';
 import types from '../../../../../redux/types';
 import NotifNumber from '../../../../Common/NotifNumber';
+import Spinner from '../../../../Common/Preloaders/Spinner';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     wrp: {
@@ -59,6 +61,11 @@ const useStyles = createUseStyles((theme: Theme) => ({
         '&:hover': {
             color: theme.palette.primary[0],
         },
+
+        '& svg': {
+            height: theme.rem(1.6),
+            width: theme.rem(1.6),
+        },
     },
     text: {
         marginLeft: theme.rem(1),
@@ -77,10 +84,14 @@ const style: CSSProperties = {
 
 const DropWindow = ({ onClose }: Props): ReactElement => {
     const css = useStyles();
+    const auth = useAuth();
     const dispatch = useDispatch();
+
+    const [loading, setLoading] = useState(false);
     const body = document.querySelector('body');
 
     const handleLogout = () => {
+        setLoading(true);
         dispatch({ type: types.LOGOUT_START });
     };
 
@@ -100,6 +111,14 @@ const DropWindow = ({ onClose }: Props): ReactElement => {
         <>
             <div className={css.wrp} onClick={onClose} aria-hidden />
             <ul className={css.root}>
+                <li>
+                    <Link href={routes.profile.single()} as={routes.profile.single(auth.user?.id)}>
+                        <a className={css.item}>
+                            <FontAwesomeIcon icon={faUser} />
+                            <span className={css.text}>Мой профиль</span>
+                        </a>
+                    </Link>
+                </li>
                 <li>
                     <Link href={routes.root}>
                         <a className={css.item}>
@@ -150,6 +169,11 @@ const DropWindow = ({ onClose }: Props): ReactElement => {
                         <span className={css.text}>Выйти</span>
                     </button>
                 </li>
+                {loading && (
+                    <li>
+                        <Spinner />
+                    </li>
+                )}
             </ul>
         </>,
         body,

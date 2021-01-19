@@ -1,10 +1,10 @@
 import { NextRouter } from 'next/router';
 import { call, put, select, takeLatest } from 'redux-saga/effects';
 
-import api from '../../assets/api';
-import routes from '../../assets/routes';
-import { INewOffer, IState } from '../../interfaces';
-import types from '../types';
+import api from '../../../assets/api';
+import routes from '../../../assets/routes';
+import { INewOffer, IState } from '../../../interfaces';
+import types from '../../types';
 
 interface IAction {
     type: typeof types.POST_OFFER_START | typeof types.POST_OFFER_SUCCESS | typeof types.POST_OFFER_ERROR;
@@ -32,7 +32,7 @@ export interface IBody {
 
 function* postOffer({ payload, history }: IAction) {
     try {
-        const form = yield select<(state: IState) => INewOffer>(state => state.newOffer);
+        const form = yield select<(state: IState) => INewOffer>(state => state.offers.newOffer);
 
         const {
             title,

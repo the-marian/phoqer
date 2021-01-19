@@ -5,6 +5,9 @@ const routes = {
         join: '/auth/join',
         forgot_pass: '/auth/forgot_pass',
     },
+    profile: {
+        single: (id: string | number = ':profileId'): string => `/profile/${id}`,
+    },
     offers: {
         single: (id: string | number = ':offerId'): string => `/offers/${id}`,
         list: '/offers',

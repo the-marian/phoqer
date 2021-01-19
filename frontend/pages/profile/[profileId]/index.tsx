@@ -2,7 +2,7 @@ import { useRouter } from 'next/router';
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
-import ProfileCard from '../../../components/Common/Profile/Public/ProfileCard';
+import ProfileCard from '../../../components/Common/ProfileCard';
 import Container from '../../../components/Layout/Container';
 import Main from '../../../components/Layout/Main';
 import ProfileInfo from '../../../components/Pages/Profile/Public/ProfileInfo';
@@ -24,7 +24,7 @@ const PublicProfilePage = (): ReactElement => {
         <Main>
             <Container>
                 <div className={css.wrp}>
-                    <ProfileCard />
+                    <ProfileCard firstName="Влад" lastName="Василенко" />
                     <ProfileInfo />
                 </div>
             </Container>
