@@ -1,6 +1,12 @@
 from django.contrib import admin
 
-from users.models import User, UserLike, UserDislike, CommunicationRating, DescriptionRating
+from users.models import (
+    CommunicationRating,
+    DescriptionRating,
+    User,
+    UserDislike,
+    UserLike,
+)
 
 admin.site.register(User)
 admin.site.register(UserLike)

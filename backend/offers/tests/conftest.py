@@ -1,7 +1,7 @@
 import pytest
-
-from categories.models import ParentCategories, ChildCategories
 from freezegun import freeze_time
+
+from categories.models import ChildCategories, ParentCategories
 from offers.models import Offer, OfferImages
 from offers.tests.mocks import image_iphone_url, phones_image_url
 from users.models import User
@@ -76,7 +76,8 @@ def db_test_data(db):
         price='299',
         status='IN_RENT',
         sub_category=iphones,
-        title='Iphone 10')
+        title='Iphone 10'
+    )
 
 
 @pytest.fixture

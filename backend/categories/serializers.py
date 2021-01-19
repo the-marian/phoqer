@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from .models import ParentCategories, ChildCategories
+from .models import ChildCategories, ParentCategories
 
 
 class ChildCategorySerializer(serializers.ModelSerializer):
