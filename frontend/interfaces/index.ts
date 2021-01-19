@@ -6,8 +6,7 @@ import { AnyAction, Store } from 'redux';
  * 2 AUTH
  * 3 CATEGORIES
  * 4 OFFERS
- * 5 NEW OFFER
- * 6 REDUX STORE
+ * REDUX STORE
  * */
 
 // =====================================
@@ -34,8 +33,13 @@ export interface Login {
 }
 
 export interface IAuth {
+    id?: number;
     auth_token: string | null;
-    user: string | null;
+    birth_date?: string | null;
+    email?: string;
+    location?: string | null;
+    last_name?: string;
+    first_name?: string;
 }
 
 // =====================================
@@ -53,30 +57,31 @@ export interface ICategories {
 // =====================================
 export interface IOfferCard {
     id: string;
+    category?: string | null;
+    sub_category?: string | null;
+    deposit_val?: number | null;
+    min_rent_period?: number | null;
+    max_rent_period?: number | null;
+    pub_date?: string;
     cover_image: string;
+    images?: { id?: number; url: string }[];
     currency: string;
     is_favorite: boolean;
     is_promoted: boolean;
     is_deliverable: boolean;
+    doc_needed: boolean;
     price: number;
     pud_date: string;
     title: string;
     views: number;
     description: string;
+    extra_requirements?: string;
 }
 
 export interface IOfferPopular {
     data: IOfferCard[] | null;
     loading: boolean;
 }
-
-export interface IOffers {
-    popular: IOfferPopular;
-}
-
-// =====================================
-// 5 NEW OFFER
-// =====================================
 
 export interface INewOffer {
     id?: string | null;
@@ -105,6 +110,12 @@ export interface INewOffer {
     };
 }
 
+export interface IOffers {
+    popular: IOfferPopular;
+    single: IOfferCard;
+    newOffer: INewOffer;
+}
+
 // =====================================
 // REDUX STORE
 // =====================================
@@ -113,7 +124,6 @@ export interface IState {
     filters: { open: boolean };
     categories: ICategories[] | null;
     offers: IOffers;
-    newOffer: INewOffer;
 }
 
 export interface IStore extends Store<IState, AnyAction> {

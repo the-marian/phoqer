@@ -24,7 +24,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         transition: theme.transitions,
     },
     shadow: {
-        boxShadow: '0 2rem 2.6rem rgba(0,0,0,0.015)',
+        boxShadow: theme.shadow[0],
     },
     transform: {
         transform: 'translateY(-100%)',

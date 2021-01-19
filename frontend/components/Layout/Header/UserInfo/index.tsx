@@ -9,6 +9,7 @@ import { createUseStyles } from 'react-jss';
 
 import routes from '../../../../assets/routes';
 import { Theme } from '../../../../assets/theme';
+import useAuth from '../../../../hooks/auth.hook';
 import NotifNumber from '../../../Common/NotifNumber';
 import DropWindow from './DropWindow';
 
@@ -62,6 +63,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
 
 const UserInfo = (): ReactElement => {
     const css = useStyles();
+    const auth = useAuth();
     const [drop, setDrop] = useState<boolean>(false);
 
     useEffect(() => {
@@ -100,7 +102,7 @@ const UserInfo = (): ReactElement => {
             <li className={css.item}>
                 <button type="button" className={clsx(css.link, drop && css.user)} onClick={handleClick}>
                     <FontAwesomeIcon icon={faUser} />
-                    <span className={css.text}>Влад Василенко</span>
+                    <span className={css.text}>{auth?.first_name + ' ' + auth?.last_name}</span>
                     <NotifNumber>14</NotifNumber>
                 </button>
                 {drop && <DropWindow onClose={handleClick} />}

@@ -9,10 +9,10 @@ function* logoutUser() {
         const { status } = yield call(api.auth.logout);
         if (status < 200 || status >= 300) throw new Error();
         yield put({ type: types.LOGOUT_SUCCESS });
-        delete axios.defaults.headers.common.Authorization;
     } catch (error) {
-        if (error?.response?.status === 401) return;
         yield put({ type: types.LOGOUT_ERROR });
+    } finally {
+        delete axios.defaults.headers.common.Authorization;
     }
 }
 

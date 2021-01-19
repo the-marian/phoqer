@@ -1,4 +1,3 @@
-import { use } from 'ast-types';
 import clsx from 'clsx';
 import Link from 'next/link';
 import Router, { useRouter } from 'next/router';
@@ -94,20 +93,20 @@ const Success = (): ReactElement => {
     const history = useRouter();
     const dispatch = useDispatch();
 
-    const value = useSelector<IState, INewOffer>(state => state.newOffer);
+    const value = useSelector<IState, INewOffer>(state => state.offers.newOffer);
     if (!value.isDone.one || !value.isDone.two) {
         history.replace(routes.new_offer(1));
-        return;
+        return null;
     }
 
     useEffect(() => {
         const handleClear = () => {
-            dispatch({ type: types.NEW_OFFER_FORM, payload: initState.newOffer });
+            dispatch({ type: types.NEW_OFFER_FORM, payload: initState.offers.newOffer });
         };
-        Router.events.on('routeChangeStart', handleClear);
+        Router.events.on('routeChangeComplete', handleClear);
 
         return () => {
-            Router.events.off('routeChangeStart', handleClear);
+            Router.events.off('routeChangeComplete', handleClear);
         };
     }, []);
 

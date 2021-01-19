@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Dispatch } from 'redux';
 
 import * as helpers from '../../../../assets/helpers';
-import { numberValidation } from '../../../../assets/helpers';
+import { moneyFormat, numberValidation } from '../../../../assets/helpers';
 import routes from '../../../../assets/routes';
 import { ICategories, IDropValue, INewOffer, IState } from '../../../../interfaces';
 import types from '../../../../redux/types';
@@ -32,7 +32,7 @@ const StepThree = (): ReactElement => {
     const dispatch = useDispatch();
 
     const [errors, setErrors] = useState<IError>({});
-    const init = useSelector<IState, INewOffer>(state => state.newOffer);
+    const init = useSelector<IState, INewOffer>(state => state.offers.newOffer);
     const [value, setValue] = useState<INewOffer>(init);
 
     useEffect(() => {
@@ -48,8 +48,9 @@ const StepThree = (): ReactElement => {
         setErrors({});
     };
     const handlePrice = (event: ChangeEvent<HTMLInputElement>): void => {
-        if (numberValidation(event.target.value)) return;
-        setValue({ ...value, price: event.target.value === '' ? null : +event.target.value });
+        const price = event.target.value.replace(/ /gi, '').trim();
+        if (numberValidation(price)) return;
+        setValue({ ...value, price: price === '' ? null : +price });
         setErrors({});
     };
     const handleCategory = (category: IDropValue): void => {
@@ -168,7 +169,7 @@ const StepThree = (): ReactElement => {
                         Цена (грн/день) <span className={css.red}>*</span>
                     </h4>
                     <input
-                        value={value.price !== null ? value.price : ''}
+                        value={moneyFormat(value.price)}
                         onChange={handlePrice}
                         className={clsx(css.input, errors.price && css.errors)}
                         type="text"

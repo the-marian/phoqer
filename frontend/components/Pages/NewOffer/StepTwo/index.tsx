@@ -1,15 +1,16 @@
 import clsx from 'clsx';
 import { useRouter } from 'next/router';
-import React, { ChangeEvent, FormEvent, ReactElement, useEffect, useState } from 'react';
+import React, { ChangeEvent, FormEvent, ReactElement, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { numberValidation } from '../../../../assets/helpers';
+import { moneyFormat, numberValidation } from '../../../../assets/helpers';
 import routes from '../../../../assets/routes';
 import { INewOffer, IState } from '../../../../interfaces';
 import types from '../../../../redux/types';
 import CheckTitle from '../../../Common/CheckTitle';
 import CheckYesNo from '../../../Common/CheckYesNo';
 import { modal } from '../../../Common/Modal';
+import TextareaResize from '../../../Common/TextareaResize';
 import SaveModal from '../SaveModal';
 import useStyles from './StepTwo.styles';
 
@@ -26,12 +27,12 @@ const StepTwo = (): ReactElement => {
     const dispatch = useDispatch();
 
     const [errors, setErrors] = useState<IError>({});
-    const init = useSelector<IState, INewOffer>(state => state.newOffer);
+    const init = useSelector<IState, INewOffer>(state => state.offers.newOffer);
     const [value, setValue] = useState<INewOffer>(init);
 
     if (!value.isDone.one) {
         history.replace(routes.new_offer(1));
-        return;
+        return null;
     }
 
     // OPTIONAL
@@ -63,8 +64,9 @@ const StepTwo = (): ReactElement => {
     // TYPING
     const handleNumber = (event: ChangeEvent<HTMLInputElement>): void => {
         setErrors({});
-        if (numberValidation(event.target.value)) return;
-        setValue({ ...value, [event.target.name]: event.target.value === '' ? null : +event.target.value });
+        const num = event.target.value.replace(/ /gi, '').trim();
+        if (numberValidation(num)) return;
+        setValue({ ...value, [event.target.name]: num === '' ? null : +num });
     };
     const handleText = (event: ChangeEvent<HTMLTextAreaElement>): void => {
         setErrors({});
@@ -152,7 +154,7 @@ const StepTwo = (): ReactElement => {
                 <h4 className={css.title}>
                     Описание товара <span className={css.red}>*</span>
                 </h4>
-                <textarea
+                <TextareaResize
                     value={value.description}
                     onChange={handleText}
                     className={clsx(css.input, css.textarea, errors.description && css.errors)}
@@ -168,7 +170,7 @@ const StepTwo = (): ReactElement => {
                 </CheckTitle>
                 <div className={clsx(css.inputWrp, value.optional.deposit_val || css.inactive)}>
                     <input
-                        value={value.deposit_val !== null ? value.deposit_val : ''}
+                        value={moneyFormat(value.deposit_val)}
                         onChange={handleNumber}
                         className={clsx(css.input, errors.deposit_val && css.errors)}
                         name="deposit_val"
@@ -181,11 +183,11 @@ const StepTwo = (): ReactElement => {
 
             <div className={css.inner}>
                 <CheckTitle value={value.optional.min_rent_period} onChange={handleMin}>
-                    Минимальный срок аренды (часов)
+                    Минимальный срок аренды (дней)
                 </CheckTitle>
                 <div className={clsx(css.inputWrp, value.optional.min_rent_period || css.inactive)}>
                     <input
-                        value={value.min_rent_period !== null ? value.min_rent_period : ''}
+                        value={moneyFormat(value.min_rent_period)}
                         onChange={handleNumber}
                         className={clsx(css.input, errors.min_rent_period && css.errors)}
                         name="min_rent_period"
@@ -198,11 +200,11 @@ const StepTwo = (): ReactElement => {
 
             <div className={css.inner}>
                 <CheckTitle value={value.optional.max_rent_period} onChange={handleMax}>
-                    Максимальный срок аренды (часов)
+                    Максимальный срок аренды (дней)
                 </CheckTitle>
                 <div className={clsx(css.inputWrp, value.optional.max_rent_period || css.inactive)}>
                     <input
-                        value={value.max_rent_period !== null ? value.max_rent_period : ''}
+                        value={moneyFormat(value.max_rent_period)}
                         onChange={handleNumber}
                         className={clsx(css.input, errors.max_rent_period && css.errors)}
                         name="max_rent_period"
@@ -215,7 +217,7 @@ const StepTwo = (): ReactElement => {
 
             <div className={css.inner}>
                 <h4 className={css.title}>Дополнительные требования</h4>
-                <textarea
+                <TextareaResize
                     value={value.extra_requirements}
                     onChange={handleText}
                     className={clsx(css.input, css.textarea)}

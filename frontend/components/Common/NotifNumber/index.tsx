@@ -6,16 +6,16 @@ import { Theme } from '../../../assets/theme';
 const useStyles = createUseStyles((theme: Theme) => ({
     num: {
         position: 'absolute',
-        top: theme.rem(-1.2),
+        top: theme.rem(-2),
         right: theme.rem(-1.2),
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        padding: theme.rem(0.2, 0.6),
+        padding: theme.rem(0.1, 0.6),
         background: theme.palette.red[0],
-        borderRadius: theme.radius,
+        borderRadius: theme.rem(2),
         color: theme.palette.white,
-        fontSize: theme.rem(0.8),
+        fontSize: theme.rem(1.2),
         fontWeight: theme.text.weight[4],
 
         '@media (max-width: 600px)': {
