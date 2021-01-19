@@ -1,8 +1,6 @@
-import { persistReducer } from 'redux-persist';
-import storage from 'redux-persist/lib/storage';
+import { HYDRATE } from 'next-redux-wrapper';
 
-import { encryptor } from '../../assets/encryptor';
-import { IAuth } from '../../interfaces';
+import { IAuth, IState } from '../../interfaces';
 import types from '../types';
 
 type Type =
@@ -18,15 +16,18 @@ type Type =
 
 interface IAction {
     type: Type;
-    payload?: IAuth | null;
+    payload?: IAuth | IState | null;
 }
 
 const INIT: IAuth = { auth_token: null, user: null };
 
 const auth = (state: IAuth = INIT, { type, payload }: IAction): IAuth => {
     switch (type) {
+        case HYDRATE:
+            return (payload as IState).auth;
+
         case types.LOGIN_SUCCESS:
-            return { ...payload };
+            return payload as IAuth;
 
         case types.GET_USER_SUCCESS:
             return { ...state, ...payload };
@@ -47,11 +48,4 @@ const auth = (state: IAuth = INIT, { type, payload }: IAction): IAuth => {
     }
 };
 
-const config = {
-    storage,
-    key: 'phoqer_auth',
-    white: ['token'],
-    transforms: [encryptor],
-};
-
-export default persistReducer(config, auth);
+export default auth;

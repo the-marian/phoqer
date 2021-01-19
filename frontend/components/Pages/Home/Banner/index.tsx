@@ -1,9 +1,9 @@
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
-import router from '../../../../assets/router';
+import routes from '../../../../assets/routes';
 import { Theme } from '../../../../assets/theme';
-import LinkArrow from '../../../Common/LinkArrow';
+import LinkArrow from '../../../Layout/LinkArrow';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     root: {
@@ -53,7 +53,7 @@ const Banner = (): ReactElement => {
 
             <h2 className={css.title}>Делитесь с другими и зарабатывайте</h2>
             <div className={css.link}>
-                <LinkArrow href={`${router.new_offer}/[step]`} as={`${router.new_offer}/1`}>
+                <LinkArrow href={routes.new_offer()} as={routes.new_offer(1)}>
                     Сдать вещи в аренду
                 </LinkArrow>
             </div>

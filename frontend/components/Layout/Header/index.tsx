@@ -1,11 +1,10 @@
 import clsx from 'clsx';
 import React, { ReactElement, useEffect, useState } from 'react';
 import { createUseStyles } from 'react-jss';
-import { useSelector } from 'react-redux';
 
 import { throttle } from '../../../assets/helpers';
 import { Theme } from '../../../assets/theme';
-import { IAuth, IState } from '../../../interfaces';
+import useAuth from '../../../hooks/auth.hook';
 import Logo from '../../Common/Logo';
 import Container from '../Container';
 import GeneralInfo from './GeneralInfo';
@@ -20,8 +19,12 @@ const useStyles = createUseStyles((theme: Theme) => ({
         zIndex: 10000,
         width: '100%',
         padding: theme.rem(1.4, 0),
-        background: theme.palette.white,
+        background: theme.palette.glass,
+        backdropFilter: 'blur(5px)',
         transition: theme.transitions,
+    },
+    shadow: {
+        boxShadow: '0 2rem 2.6rem rgba(0,0,0,0.015)',
     },
     transform: {
         transform: 'translateY(-100%)',
@@ -42,21 +45,22 @@ const useStyles = createUseStyles((theme: Theme) => ({
 let prev = 0;
 
 const Header = (): ReactElement => {
+    const auth = useAuth();
     const css = useStyles();
+
+    const [shadow, setShadow] = useState<boolean>(true);
     const [delta, setDelta] = useState<boolean>(false);
-    const [scrolled, setScrolled] = useState<boolean>(true);
-    const { auth_token } = useSelector<IState, IAuth>(state => state.auth);
 
     useEffect(() => {
         const handleScroll = throttle((): void => {
             if (window.scrollY < 100 && !delta) {
-                setScrolled(false);
+                setShadow(false);
                 setDelta(false);
                 prev = 0;
                 return;
             }
 
-            setScrolled(true);
+            setShadow(true);
             setDelta(prev < window.scrollY);
             prev = window.scrollY;
         }, 300);
@@ -69,10 +73,7 @@ const Header = (): ReactElement => {
     }, []);
 
     return (
-        <header
-            className={clsx(css.header, delta && css.transform)}
-            style={scrolled ? { background: 'rgba(252, 252, 252, 0.99)' } : {}}
-        >
+        <header className={clsx(css.header, delta && css.transform, shadow && css.shadow)}>
             <Container>
                 <div className={css.flex}>
                     <div className={css.wrp}>
@@ -80,11 +81,11 @@ const Header = (): ReactElement => {
                         <Lang />
                     </div>
 
-                    {auth_token ? <UserInfo /> : <GeneralInfo />}
+                    {auth?.auth_token ? <UserInfo /> : <GeneralInfo />}
                 </div>
             </Container>
         </header>
     );
 };
 
-export default Header;
+export default React.memo(Header);

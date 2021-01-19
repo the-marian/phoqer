@@ -134,7 +134,7 @@ def test_is_favorite(api_client, user, db_test_data):
     assert response.json() == list_offers_expected_response
 
     iphone_10 = Offer.objects.get(title='Iphone 10')
-    iphone_10.favourite.add(user)
+    iphone_10.favorite.add(user)
     iphone_10.save()
 
     response = api_client.get(popular_url_with_user_in_query)

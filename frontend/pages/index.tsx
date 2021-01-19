@@ -1,6 +1,7 @@
 import React, { ReactElement } from 'react';
 import { END } from 'redux-saga';
 
+import Meta from '../components/Common/Meta';
 import Search from '../components/Common/Search';
 import About from '../components/Layout/About';
 import Container from '../components/Layout/Container';
@@ -13,16 +14,19 @@ import { wrapper } from '../redux/store';
 import types from '../redux/types';
 
 const Index = (): ReactElement => (
-    <Main>
-        <Container>
-            <Search />
-            <Categories />
-            <Banner />
-            <TopPopular />
-        </Container>
+    <>
+        <Meta />
+        <Main>
+            <Container>
+                <Search />
+                <Categories />
+                <Banner />
+                <TopPopular />
+            </Container>
 
-        <About />
-    </Main>
+            <About />
+        </Main>
+    </>
 );
 
 export const getStaticProps = wrapper.getStaticProps(

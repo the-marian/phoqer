@@ -79,23 +79,23 @@ export interface IOffers {
 // =====================================
 
 export interface INewOffer {
+    id?: string | null;
     // step one
     title: string;
     price: number | null;
     category: IDropValue | null;
-    currency: IDropValue | null;
     is_deliverable: boolean;
     // step two
     doc_needed: boolean;
     description: string;
     deposit_val: number | null;
-    min_rent_value: number | null;
-    max_rent_value: number | null;
+    min_rent_period: number | null;
+    max_rent_period: number | null;
     extra_requirements: string;
     optional: {
         deposit_val: boolean;
-        min_rent_value: boolean;
-        max_rent_value: boolean;
+        min_rent_period: boolean;
+        max_rent_period: boolean;
     };
     // is done
     isDone: {

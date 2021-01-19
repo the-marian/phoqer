@@ -4,7 +4,6 @@ import { createUseStyles } from 'react-jss';
 import { Theme } from '../../../../../assets/theme';
 
 const useStyles = createUseStyles((theme: Theme) => ({
-
     wrp: {
         width: '35%',
         display: 'flex',
@@ -21,7 +20,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         width: '100px',
         height: '100px',
         borderRadius: '50%',
-        backgroundColor: theme.palette.gray[2]
+        backgroundColor: theme.palette.gray[2],
     },
     content: {
         marginLeft: theme.rem(2),
@@ -54,11 +53,11 @@ const ProfileCard = (): ReactElement => {
                 <div className={css.name}>Влад Василенко </div>
                 <div className={css.info}>
                     зарегистрирован с января 1970 года
-                        <p> был онлайн 2 часа назад</p>
+                    <p> был онлайн 2 часа назад</p>
                 </div>
                 <button className={css.btn} type="button">
                     Написать автору
-                    </button>
+                </button>
             </div>
         </div>
     );

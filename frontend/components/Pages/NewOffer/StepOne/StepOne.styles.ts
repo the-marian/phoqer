@@ -70,15 +70,6 @@ const useStyles = createUseStyles((theme: Theme) => ({
             display: 'block',
         },
     },
-    wrp: {
-        display: 'grid',
-        gridTemplateColumns: theme.fr(2),
-        gridGap: theme.rem(1),
-
-        '@media (max-width: 500px)': {
-            gridTemplateColumns: theme.fr(1),
-        },
-    },
     saveWrp: {
         display: 'flex',
         margin: theme.rem(2, 0),

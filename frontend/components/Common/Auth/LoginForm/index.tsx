@@ -6,7 +6,7 @@ import React, { ChangeEvent, FormEvent, ReactElement, useState } from 'react';
 import { createUseStyles } from 'react-jss';
 import { useDispatch } from 'react-redux';
 
-import router from '../../../../assets/router';
+import routes from '../../../../assets/routes';
 import { Theme } from '../../../../assets/theme';
 import { Login } from '../../../../interfaces';
 import types from '../../../../redux/types';
@@ -107,15 +107,15 @@ const LoginForm = (): ReactElement => {
     const css = useStyles();
     const dispatch = useDispatch();
 
-    const [unhide, setUnhide] = useState(true);
+    const [unhidden, setUnhidden] = useState(true);
     const [payload, setPayload] = useState<Login>({ password: '', email: '' });
 
     const handleChange = (event: ChangeEvent<HTMLInputElement>): void => {
         setPayload({ ...payload, [event.target.name]: event.target.value });
     };
 
-    const hadleClick = () => {
-        setUnhide(!unhide);
+    const handleClick = () => {
+        setUnhidden(!unhidden);
     };
 
     const handleSubmit = (event: FormEvent) => {
@@ -138,13 +138,13 @@ const LoginForm = (): ReactElement => {
                 <div className={css.icon}>
                     <FontAwesomeIcon icon={faKey} />
                 </div>
-                <button className={css.eye} onClick={hadleClick} type="button">
-                    {unhide ? <FontAwesomeIcon icon={faEyeSlash} /> : <FontAwesomeIcon icon={faEye} />}
+                <button className={css.eye} onClick={handleClick} type="button">
+                    {unhidden ? <FontAwesomeIcon icon={faEyeSlash} /> : <FontAwesomeIcon icon={faEye} />}
                 </button>
-                <input type={unhide ? 'password' : 'text'} name="password" onChange={handleChange} className={css.input} />
+                <input type={unhidden ? 'password' : 'text'} name="password" onChange={handleChange} className={css.input} />
             </div>
 
-            <Link href={router.auth.forgot_pass}>
+            <Link href={routes.auth.forgot_pass}>
                 <a className={css.link}>Забыли пароль?</a>
             </Link>
 

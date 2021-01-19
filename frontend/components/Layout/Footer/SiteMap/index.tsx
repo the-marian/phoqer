@@ -19,7 +19,7 @@ const LINKS: { text: string; href: string }[] = [
     },
     {
         text: 'Политика конфиденциальности',
-        href: '/polici',
+        href: '/politic',
     },
     {
         text: 'FAQ',
@@ -78,7 +78,7 @@ const SiteMap = (): ReactElement => {
         <ul className={css.list}>
             {LINKS.map(({ text, href }) => (
                 <li key={href} className={css.item}>
-                    <Link href={href}>
+                    <Link href={href} passHref>
                         <a className={css.link}>{text}</a>
                     </Link>
                 </li>

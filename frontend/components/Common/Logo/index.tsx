@@ -2,7 +2,7 @@ import Link from 'next/link';
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
-import router from '../../../assets/router';
+import routes from '../../../assets/routes';
 import { Theme } from '../../../assets/theme';
 
 const useStyles = createUseStyles((theme: Theme) => ({
@@ -34,7 +34,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
 const Logo = (): ReactElement => {
     const css = useStyles();
     return (
-        <Link href={router.root}>
+        <Link href={routes.root}>
             <a className={css.logo}>
                 <img className={css.img} src="/logo.png" alt="logo" />
             </a>
