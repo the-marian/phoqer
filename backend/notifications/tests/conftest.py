@@ -1,8 +1,9 @@
 import pytest
+from freezegun import freeze_time
 from rest_framework.test import APIClient
+
 from notifications.models import Notification
 from users.models import User
-from freezegun import freeze_time
 
 
 @pytest.fixture

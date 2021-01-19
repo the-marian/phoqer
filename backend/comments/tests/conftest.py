@@ -1,7 +1,7 @@
 import pytest
-
 from freezegun import freeze_time
-from categories.models import ParentCategories, ChildCategories
+
+from categories.models import ChildCategories, ParentCategories
 from comments.models import Comment
 from offers.models import Offer
 from users.models import User

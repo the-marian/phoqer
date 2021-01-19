@@ -1,5 +1,8 @@
-from drf_spectacular.extensions import OpenApiAuthenticationExtension, OpenApiViewExtension
-from drf_spectacular.utils import extend_schema, OpenApiParameter
+from drf_spectacular.extensions import (
+    OpenApiAuthenticationExtension,
+    OpenApiViewExtension,
+)
+from drf_spectacular.utils import OpenApiParameter, extend_schema
 
 from users.serializers import TokenSerializer
 
