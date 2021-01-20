@@ -1,6 +1,7 @@
 from django.urls import path
 
-from .views import CreateOfferView, OfferView, SearchOffersView, PopularOffersView, DeleteOfferImageView
+from .views import (CreateOfferView, DeleteOfferImageView, OfferView,
+                    PopularOffersView, SearchOffersView)
 
 app_name = 'offers'
 

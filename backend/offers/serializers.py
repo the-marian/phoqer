@@ -1,7 +1,9 @@
 import datetime
 
 from rest_framework import serializers
+
 from users.models import User
+
 from .models import Offer, OfferImages
 
 
@@ -23,9 +25,9 @@ class BaseOfferSerializer(serializers.ModelSerializer):
     is_promoted = serializers.SerializerMethodField()
 
     def get_is_favorite(self, offer):
-        user_query_param = self.context['request'].query_params.get('user', None)
-        if user_query_param:
-            user = User.objects.get(email=user_query_param)
+        user_request = self.context['request'].user
+        if user_request:
+            user = User.objects.get(email=user_request)
             return offer in user.favourite_offers.all()
         return False
 

@@ -2,7 +2,8 @@ from rest_framework import serializers
 from rest_framework.generics import get_object_or_404
 
 from offers.models import Offer
-from .models import Comment, CommentImage, Like, Dislike
+
+from .models import Comment, CommentImage, Dislike, Like
 
 
 class CommentImageSerializer(serializers.ModelSerializer):

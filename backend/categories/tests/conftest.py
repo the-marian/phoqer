@@ -1,7 +1,7 @@
 import pytest
 
-from categories.models import ParentCategories, ChildCategories
-from categories.tests.mocks import toys_img_url, books_img_url, sport_img_url
+from categories.models import ChildCategories, ParentCategories
+from categories.tests.mocks import books_img_url, sport_img_url, toys_img_url
 
 
 @pytest.fixture

@@ -1,15 +1,16 @@
-from .models import Offer, OfferImages
-from .serializers import OfferListItemSerializer, OfferSerializer, OfferImageSerializer
-
-from django.db.models import Q
-from django.db.models import QuerySet
+from django.db.models import Q, QuerySet
 from django_filters.rest_framework import DjangoFilterBackend
-
 from rest_framework import filters
-from rest_framework.generics import ListAPIView, CreateAPIView, RetrieveUpdateAPIView, DestroyAPIView
-from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticated
+from rest_framework.generics import (CreateAPIView, DestroyAPIView,
+                                     ListAPIView, RetrieveUpdateAPIView)
+from rest_framework.permissions import (IsAuthenticated,
+                                        IsAuthenticatedOrReadOnly)
 from rest_framework.request import Request
 from rest_framework.response import Response
+
+from .models import Offer, OfferImages
+from .serializers import (OfferImageSerializer, OfferListItemSerializer,
+                          OfferSerializer)
 
 
 class PopularOffersView(ListAPIView):
