@@ -32,7 +32,7 @@ urlpatterns = [
     path('api/v1/notifications/', include('notifications.urls', namespace='notifications')),
 
     # FAVOURITE
-    path('api/v1/favourite/', include('favourite.urls', namespace='favourite')),
+    path('api/v1/favorite/', include('favorite.urls', namespace='favorite')),
 ]
 
 if bool(settings.DEBUG):

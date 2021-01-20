@@ -4,10 +4,10 @@ from rest_framework.permissions import IsAuthenticated
 from offers.serializers import OfferListItemSerializer
 
 
-class FavouriteListOffersView(ListAPIView):
+class FavoriteListOffersView(ListAPIView):
     permission_classes = [IsAuthenticated]
     serializer_class = OfferListItemSerializer
 
     def get_queryset(self):
         client = self.request.user
-        return client.favourite_offers.all()
+        return client.favorite_offers.all()

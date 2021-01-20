@@ -45,7 +45,7 @@ class BaseOfferSerializer(serializers.ModelSerializer):
         user_query_param = self.context['request'].query_params.get('user', None)
         if user_query_param:
             user = User.objects.get(email=user_query_param)
-            return offer in user.favourite_offers.all()
+            return offer in user.favorite_offers.all()
         return False
 
     @extend_schema_field(OpenApiTypes.BOOL)

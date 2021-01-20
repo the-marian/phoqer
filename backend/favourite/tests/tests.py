@@ -4,10 +4,10 @@ from offers.models import Offer
 
 def test_favorite_for_user_1(api_client, author_1, authenticated_client_1, offer_1):
     iphone_12 = Offer.objects.get(title='Iphone 12')
-    iphone_12.favourite.add(author_1)
+    iphone_12.favorite.add(author_1)
     iphone_12.save()
 
-    response = authenticated_client_1.get('/api/v1/favourite/')
+    response = authenticated_client_1.get('/api/v1/favorite/')
     assert response.status_code == status.HTTP_200_OK
     assert response.json() == [
         {
@@ -28,14 +28,14 @@ def test_favorite_for_user_1(api_client, author_1, authenticated_client_1, offer
 
 def test_favorite_for_user_2(api_client, author_2, authenticated_client_2, offer_1, offer_2):
     iphone_12 = Offer.objects.get(title='Iphone 12')
-    iphone_12.favourite.add(author_2)
+    iphone_12.favorite.add(author_2)
     iphone_12.save()
 
     ps5 = Offer.objects.get(title='PS5')
-    ps5.favourite.add(author_2)
+    ps5.favorite.add(author_2)
     ps5.save()
 
-    response = authenticated_client_2.get('/api/v1/favourite/')
+    response = authenticated_client_2.get('/api/v1/favorite/')
     assert response.status_code == status.HTTP_200_OK
     assert response.json() == [
         {
@@ -68,7 +68,7 @@ def test_favorite_for_user_2(api_client, author_2, authenticated_client_2, offer
 
 
 def test_unauthorized_favorite(api_client):
-    response = api_client.get('/api/v1/favourite/')
+    response = api_client.get('/api/v1/favorite/')
     assert response.status_code == status.HTTP_401_UNAUTHORIZED
 
 
