@@ -1,12 +1,18 @@
 # Create your views here.
-from rest_framework.generics import (CreateAPIView, DestroyAPIView,
-                                     ListCreateAPIView, UpdateAPIView)
-from rest_framework.permissions import (IsAuthenticated,
-                                        IsAuthenticatedOrReadOnly)
+from rest_framework.generics import (
+    CreateAPIView,
+    DestroyAPIView,
+    ListCreateAPIView,
+    UpdateAPIView,
+)
+from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly
 
 from comments.models import Comment
-from comments.serializers import (CommentCreateSerializer, CommentSerializer,
-                                  CommentVoteSerializer)
+from comments.serializers import (
+    CommentCreateSerializer,
+    CommentSerializer,
+    CommentVoteSerializer,
+)
 
 
 class CommentView(ListCreateAPIView):

@@ -6,7 +6,6 @@ from offers.models import Offer
 from users.models import User
 
 
-
 @pytest.fixture
 def api_client():
     from rest_framework.test import APIClient
@@ -63,7 +62,7 @@ def authenticated_client_2(db, author_2):
 def authenticated_client_3(db, author_2):
     from rest_framework.test import APIClient
     client = APIClient()
-    client.login(username='qwerty123@gmail.com', password='123')
+    client.login(username='jstop@gmail.com', password='jstop')
     return client
 
 

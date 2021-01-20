@@ -1,10 +1,12 @@
 from rest_framework import status
 
 from categories.models import ParentCategories
-from categories.tests.mocks import (categories_endpoint_url,
-                                    list_categories_expected_response,
-                                    list_categories_ordered_by_priority,
-                                    list_categories_without_toys)
+from categories.tests.mocks import (
+    categories_endpoint_url,
+    list_categories_expected_response,
+    list_categories_ordered_by_priority,
+    list_categories_without_toys,
+)
 
 
 def test_list_categories(api_client, db_test_data):

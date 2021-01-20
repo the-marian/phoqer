@@ -1,5 +1,11 @@
 from rest_framework import status
+
 from offers.models import Offer
+
+
+def test_empty_favorite_list(api_client, author_3, authenticated_client_3):
+    response = authenticated_client_3.get('/api/v1/favorite/')
+    assert response.json() == []
 
 
 def test_favorite_for_user_1(api_client, author_1, authenticated_client_1, offer_1):
@@ -12,7 +18,8 @@ def test_favorite_for_user_1(api_client, author_1, authenticated_client_1, offer
     assert response.json() == [
         {
             'cover_image': 'https://example.com/phone.jpeg',
-            'currency': 'UAH','description': 'New Phone',
+            'currency': 'UAH',
+            'description': 'New Phone',
             'id': '1b261f53-8e3b-4c14-abe6-5824c5d8b66c',
             'images': [],
             'is_deliverable': True,
@@ -40,7 +47,8 @@ def test_favorite_for_user_2(api_client, author_2, authenticated_client_2, offer
     assert response.json() == [
         {
             'cover_image': 'https://example.com/phone.jpeg',
-            'currency': 'UAH','description': 'New Phone',
+            'currency': 'UAH',
+            'description': 'New Phone',
             'id': '1b261f53-8e3b-4c14-abe6-5824c5d8b66c',
             'images': [],
             'is_deliverable': True,
@@ -53,7 +61,8 @@ def test_favorite_for_user_2(api_client, author_2, authenticated_client_2, offer
         },
         {
             'cover_image': 'https://example.com/phone.jpeg',
-            'currency': 'UAH', 'description': 'New PS5',
+            'currency': 'UAH',
+            'description': 'New PS5',
             'id': '1b261f53-8e3b-4c14-abe6-5824c5d8b66b',
             'images': [],
             'is_deliverable': True,
@@ -70,9 +79,3 @@ def test_favorite_for_user_2(api_client, author_2, authenticated_client_2, offer
 def test_unauthorized_favorite(api_client):
     response = api_client.get('/api/v1/favorite/')
     assert response.status_code == status.HTTP_401_UNAUTHORIZED
-
-
-def empty_favorite_list()
-
-
-
