@@ -112,7 +112,7 @@ const DropWindow = ({ onClose }: Props): ReactElement => {
             <div className={css.wrp} onClick={onClose} aria-hidden />
             <ul className={css.root}>
                 <li>
-                    <Link href={routes.profile.single()} as={routes.profile.single(auth.user?.id)}>
+                    <Link href={routes.profile.single()} as={routes.profile.single(auth.first_name)}>
                         <a className={css.item}>
                             <FontAwesomeIcon icon={faUser} />
                             <span className={css.text}>Мой профиль</span>
