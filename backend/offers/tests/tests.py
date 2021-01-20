@@ -1,7 +1,12 @@
+import json
+
 from datetime import datetime
 
 import pytest
+from freezegun import freeze_time
+from rest_framework import status
 
+from offers.models import Offer
 from offers.tests.mocks import *
 
 
@@ -36,7 +41,7 @@ def test_status(api_client, db_test_data):
     assert response.json() == offers_empty_list
 
 
-@freeze_time("2020-10-29")
+@freeze_time('2020-10-29')
 def test_is_promoted(api_client, db_test_data):
     response = api_client.get(offers_endpoint_url)
     assert response.json() == list_offers_expected_response
@@ -75,9 +80,9 @@ def test_order_by_promotion(api_client, db_test_data):
     iphone_12 = Offer.objects.get(title='Iphone 12')
     iphone_11 = Offer.objects.get(title='Iphone 11')
     iphone_10 = Offer.objects.get(title='Iphone 10')
-    iphone_12.promote_til_date = "2021-10-31"
-    iphone_11.promote_til_date = "2021-11-01"
-    iphone_10.promote_til_date = "2021-11-02"
+    iphone_12.promote_til_date = '2021-10-31'
+    iphone_11.promote_til_date = '2021-11-01'
+    iphone_10.promote_til_date = '2021-11-02'
     iphone_12.save()
     iphone_11.save()
     iphone_10.save()
@@ -104,7 +109,7 @@ def test_order_by_views(api_client, db_test_data):
     assert response.json() == list_ordered_by_views
 
 
-@freeze_time("2020-10-29")
+@freeze_time('2020-10-29')
 def test_order_mixed(api_client, db_test_data):
     response = api_client.get(offers_endpoint_url)
     assert response.json() == list_offers_expected_response
@@ -112,9 +117,9 @@ def test_order_mixed(api_client, db_test_data):
     iphone_12 = Offer.objects.get(title='Iphone 12')
     iphone_11 = Offer.objects.get(title='Iphone 11')
     iphone_10 = Offer.objects.get(title='Iphone 10')
-    iphone_12.promote_til_date = "2021-10-30"
-    iphone_11.promote_til_date = "2021-10-31"
-    iphone_10.promote_til_date = "2021-11-01"
+    iphone_12.promote_til_date = '2021-10-30'
+    iphone_11.promote_til_date = '2021-10-31'
+    iphone_10.promote_til_date = '2021-11-01'
     iphone_12.views = '238'
     iphone_11.views = '674'
     iphone_10.views = '257'
@@ -131,8 +136,9 @@ def test_is_favorite(api_client, user, db_test_data):
     assert response.json() == list_offers_expected_response
 
     iphone_10 = Offer.objects.get(title='Iphone 10')
-    iphone_10.favourite.add(user)
+    iphone_10.favorite.add(user)
     iphone_10.save()
+
     response = api_client.get(popular_url_with_user_in_query)
     assert response.data[2]['is_favorite'] is True
 
@@ -329,7 +335,7 @@ def test_offer_not_auth_update(api_client, db_test_data):
 
 
 @pytest.mark.parametrize(
-    "update_field,update_date",
+    'update_field,update_date',
     [
         ('price', 111),
         ('max_rent_period', 111),
@@ -399,6 +405,108 @@ def test_offer_image_delete(authed_api_client, offer_image):
     response = authed_api_client.get('/api/v1/offers/1b261f53-8e3b-4c14-abe6-5824c5d8b12e/')
     assert response.json()['images'] == []
 
+
 def test_offer_image_delete_no_authed(api_client, offer_image):
     response = api_client.delete('/api/v1/offers/image/1/')
     assert response.status_code == 401
+
+
+def test_create_offer_no_authed(api_client, offer_image):
+    response = api_client.post('/api/v1/offers/')
+    assert response.status_code == 401
+
+
+@freeze_time('2020-10-29')
+def test_create_offer_with_images(authed_api_client, sport_category):
+    data = json.dumps(
+        {
+            'category': 'sport',
+            'city': 'Kiev',
+            'cover_image': 'http://phoqer.com//mediafiles/image(1)_H802r7h.jpeg',
+            'deposit_val': 100000,
+            'description': 'Укажите нужно ли предоставить документы для оренды вашего товара',
+            'doc_needed': False,
+            'extra_requirements': 'Укажите нужно ли предоставить документы для оренды вашего товара',
+            'images': [
+                {'url': 'http://phoqer.com//mediafiles/image(1)_H802r7h.jpeg'},
+                {'url': 'http://phoqer.com//mediafiles/image(2)_bGKHdms.jpeg'},
+                {'url': 'http://phoqer.com//mediafiles/image(3)_PV4BY6L.jpeg'},
+                {'url': 'http://phoqer.com//mediafiles/image(4)_SCiBiMz.jpeg'},
+            ],
+            'is_deliverable': False,
+            'max_rent_period': None,
+            'min_rent_period': None,
+            'price': 10000,
+            'sub_category': None,
+            'title': 'name'
+        }
+    )
+    response = authed_api_client.post('/api/v1/offers/', data=data, content_type='application/json')
+    # assert response.status_code == 201
+    response = response.json()
+    # since 'id' every time is different I delete it from response before assert
+    # but firstly assure that such field is exist and its type is int
+    assert 'id' in response
+    assert type(response.pop('id')) == int
+    # now perform assert...
+    assert response == {
+        'category': 'sport',
+        'city': 'Kiev',
+        'cover_image': 'http://phoqer.com//mediafiles/image(1)_H802r7h.jpeg',
+        'currency': None,
+        'deposit_val': 100000,
+        'description': 'Укажите нужно ли предоставить документы для оренды вашего товара',
+        'doc_needed': False,
+        'extra_requirements': 'Укажите нужно ли предоставить документы для оренды вашего товара',
+        'images': [
+            {
+                'id': 1,
+                'url': 'http://phoqer.com//mediafiles/image(1)_H802r7h.jpeg'
+            },
+            {
+                'id': 2,
+                'url': 'http://phoqer.com//mediafiles/image(2)_bGKHdms.jpeg'
+            },
+            {
+                'id': 3,
+                'url': 'http://phoqer.com//mediafiles/image(3)_PV4BY6L.jpeg'
+            },
+            {
+                'id': 4,
+                'url': 'http://phoqer.com//mediafiles/image(4)_SCiBiMz.jpeg'
+            }
+        ],
+        'is_deliverable': False,
+        'is_favorite': False,
+        'is_promoted': False,
+        'max_rent_period': None,
+        'min_rent_period': None,
+        'price': 10000,
+        'pub_date': '2020-10-29', 'sub_category': None,
+        'title': 'name', 'views': 0
+    }
+
+
+@freeze_time('2020-10-29')
+def test_create_offer_without_images(authed_api_client, sport_category):
+    data = json.dumps(
+        {
+            'category': 'sport',
+            'city': 'Kiev',
+            'cover_image': 'http://phoqer.com//mediafiles/image(1)_H802r7h.jpeg',
+            'deposit_val': 100000,
+            'description': 'Укажите нужно ли предоставить документы для оренды вашего товара',
+            'doc_needed': False,
+            'extra_requirements': 'Укажите нужно ли предоставить документы для оренды вашего товара',
+            'is_deliverable': False,
+            'max_rent_period': None,
+            'min_rent_period': None,
+            'price': 10000,
+            'sub_category': None,
+            'title': 'name'
+        }
+    )
+    response = authed_api_client.post('/api/v1/offers/', data=data, content_type='application/json')
+    # assert response.status_code == 201
+    assert response.status_code == 201
+    assert response.json()['images'] == []

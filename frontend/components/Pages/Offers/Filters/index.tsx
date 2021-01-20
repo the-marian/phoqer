@@ -3,11 +3,11 @@ import React, { FormEvent, ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 import { useDispatch, useSelector } from 'react-redux';
 
-import router from '../../../../assets/router';
+import routes from '../../../../assets/routes';
 import { Theme } from '../../../../assets/theme';
 import { IState } from '../../../../interfaces';
 import types from '../../../../redux/types';
-import SectionTitle from '../../../Common/SectionTitle';
+import SectionTitle from '../../../Layout/SectionTitle';
 import Categories from './Categories';
 import Checkbox from './Checkbox';
 import PriceFilter from './Price';
@@ -143,7 +143,7 @@ const Filters = (): ReactElement => {
                 <ul className={css.list}>
                     {POPULAR.map(query => (
                         <li key={query}>
-                            <Link href={`${router.offers}?q=${query}`}>
+                            <Link href={routes.offers.single(`?q=${query}`)}>
                                 <a className={css.link}>{query}</a>
                             </Link>
                         </li>

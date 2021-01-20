@@ -6,7 +6,7 @@ import Link from 'next/link';
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
-import router from '../../../../assets/router';
+import routes from '../../../../assets/routes';
 import { Theme } from '../../../../assets/theme';
 import { IOfferCard } from '../../../../interfaces';
 
@@ -136,7 +136,7 @@ const OfferCard = ({ product }: IProps): ReactElement => {
 
     return (
         <div className={css.root}>
-            <Link href={`${router.offers}/:offerId`} as={`/offers/${id}`}>
+            <Link href={routes.offers.single()} as={routes.offers.single(id)}>
                 <a className={css.link}>
                     <div className={css.imgWrp}>
                         <div className={css.topWrp}>

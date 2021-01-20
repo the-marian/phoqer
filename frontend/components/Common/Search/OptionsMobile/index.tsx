@@ -6,7 +6,6 @@ import { formatCatList } from '../../../../assets/helpers';
 import { Theme } from '../../../../assets/theme';
 import { ICategories, IState } from '../../../../interfaces';
 import DropDown from '../../DropDown';
-import Media from '../../Media';
 import { modal } from '../../Modal';
 import RegionModal from '../../RegionModal';
 
@@ -63,7 +62,7 @@ const OptionsMobile = (): ReactElement => {
     };
 
     return (
-        <Media className={css.root} size={1100} mobile>
+        <div className={css.root}>
             <div className={css.drop}>
                 <DropDown data={categories} placeholder="Выберите категорию" onChange={console.log} height={7} withSub />
             </div>
@@ -73,7 +72,7 @@ const OptionsMobile = (): ReactElement => {
                     Киев, Киевская область Киев, Киевская область Киев, Киевская область Киевская область Киев, Киевская область
                 </span>
             </button>
-        </Media>
+        </div>
     );
 };
 

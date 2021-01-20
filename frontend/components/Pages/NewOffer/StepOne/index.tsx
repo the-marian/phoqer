@@ -5,21 +5,16 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Dispatch } from 'redux';
 
 import * as helpers from '../../../../assets/helpers';
-import { numberValidation } from '../../../../assets/helpers';
-import { ICategories, IDropList, IDropValue, INewOffer, IState } from '../../../../interfaces';
+import { moneyFormat, numberValidation } from '../../../../assets/helpers';
+import routes from '../../../../assets/routes';
+import { ICategories, IDropValue, INewOffer, IState } from '../../../../interfaces';
 import types from '../../../../redux/types';
-import CheckTitle from '../../../Common/CheckTitle';
+import CheckYesNo from '../../../Common/CheckYesNo';
 import DropDown from '../../../Common/DropDown';
 import { modal } from '../../../Common/Modal';
 import SaveModal from '../SaveModal';
 import Region from './Region';
 import useStyles from './StepOne.styles';
-
-const CURRENCY: IDropList[] = [
-    { name: 'uah', slug: 'uah' },
-    { name: 'usd', slug: 'usd' },
-    { name: 'eur', slug: 'eur' },
-];
 
 interface IError {
     title?: string;
@@ -37,7 +32,7 @@ const StepThree = (): ReactElement => {
     const dispatch = useDispatch();
 
     const [errors, setErrors] = useState<IError>({});
-    const init = useSelector<IState, INewOffer>(state => state.newOffer);
+    const init = useSelector<IState, INewOffer>(state => state.offers.newOffer);
     const [value, setValue] = useState<INewOffer>(init);
 
     useEffect(() => {
@@ -53,16 +48,14 @@ const StepThree = (): ReactElement => {
         setErrors({});
     };
     const handlePrice = (event: ChangeEvent<HTMLInputElement>): void => {
-        if (numberValidation(event.target.value)) return;
-        setValue({ ...value, price: event.target.value === '' ? null : +event.target.value });
+        const price = event.target.value.replace(/ /gi, '').trim();
+        if (numberValidation(price)) return;
+        setValue({ ...value, price: price === '' ? null : +price });
         setErrors({});
     };
     const handleCategory = (category: IDropValue): void => {
         setValue({ ...value, category });
         setErrors({});
-    };
-    const handleCurrency = (currency: IDropValue): void => {
-        setValue({ ...value, currency });
     };
 
     // on complete
@@ -73,18 +66,21 @@ const StepThree = (): ReactElement => {
         event.preventDefault();
 
         if (!value.title.trim()) {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
             setErrors({ title: 'Это обязательное поле' });
             notDone(value, dispatch);
             return;
         }
 
         if (!value.category) {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
             setErrors({ category: 'Это обязательное поле' });
             notDone(value, dispatch);
             return;
         }
 
         if (!value.price && value.price !== 0) {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
             setErrors({ price: 'Это обязательное поле' });
             notDone(value, dispatch);
             return;
@@ -94,11 +90,10 @@ const StepThree = (): ReactElement => {
             type: types.NEW_OFFER_FORM,
             payload: {
                 ...value,
-                currency: value.currency ? value.currency : CURRENCY[0],
                 isDone: { ...value.isDone, one: true },
             },
         });
-        router.push('/new_offer/2');
+        router.push(routes.new_offer(2));
     };
 
     const handleClear = (): void => {
@@ -108,7 +103,6 @@ const StepThree = (): ReactElement => {
             is_deliverable: false,
             price: null,
             category: null,
-            currency: null,
             isDone: {
                 one: false,
                 two: false,
@@ -123,10 +117,7 @@ const StepThree = (): ReactElement => {
         modal.open(<SaveModal />);
         dispatch({
             type: types.NEW_OFFER_FORM,
-            payload: {
-                ...value,
-                currency: value.currency ? value.currency : CURRENCY[0],
-            },
+            payload: value,
         });
     };
 
@@ -149,9 +140,9 @@ const StepThree = (): ReactElement => {
 
             <Region />
 
-            <CheckTitle value={value.is_deliverable} onChange={handleDelivery}>
+            <CheckYesNo value={value.is_deliverable} onChange={handleDelivery}>
                 Укажите возможность доставки вашего товара в другой город
-            </CheckTitle>
+            </CheckYesNo>
 
             <div className={css.flex}>
                 {!!categories?.length && (
@@ -175,18 +166,15 @@ const StepThree = (): ReactElement => {
 
                 <div className={css.inner}>
                     <h4 className={css.title}>
-                        Цена (за 1 час) <span className={css.red}>*</span>
+                        Цена (грн/день) <span className={css.red}>*</span>
                     </h4>
-                    <div className={css.wrp}>
-                        <input
-                            value={value.price !== null ? value.price : ''}
-                            onChange={handlePrice}
-                            className={clsx(css.input, errors.price && css.errors)}
-                            type="text"
-                            placeholder="Цена"
-                        />
-                        <DropDown white data={CURRENCY} defaultValue={init.currency} onChange={handleCurrency} />
-                    </div>
+                    <input
+                        value={moneyFormat(value.price)}
+                        onChange={handlePrice}
+                        className={clsx(css.input, errors.price && css.errors)}
+                        type="text"
+                        placeholder="Цена"
+                    />
                     {errors.price && <small className={css.errorsText}>{errors.price}</small>}
                 </div>
             </div>

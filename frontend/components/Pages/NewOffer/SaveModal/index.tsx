@@ -2,7 +2,7 @@ import Link from 'next/link';
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
-import router from '../../../../assets/router';
+import routes from '../../../../assets/routes';
 import { Theme } from '../../../../assets/theme';
 import SmallModalWrp from '../../../Common/Modal/SmallModalWrp';
 
@@ -64,7 +64,7 @@ const SaveModal = (): ReactElement => {
 
                 <p className={css.text}>Вы можете в любое время вернутся к его заполнению</p>
 
-                <Link href={router.root}>
+                <Link href={routes.root}>
                     <a className={css.link}>Перейти на главную</a>
                 </Link>
             </div>

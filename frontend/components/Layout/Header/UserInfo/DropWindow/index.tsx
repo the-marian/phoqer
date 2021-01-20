@@ -1,15 +1,18 @@
-import { faCommentAlt, faEnvelope } from '@fortawesome/free-regular-svg-icons';
+import { faCommentAlt, faEnvelope, faUser } from '@fortawesome/free-regular-svg-icons';
 import { faBullhorn, faSignOutAlt, faSlidersH, faUserPlus } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Link from 'next/link';
-import React, { CSSProperties, ReactElement } from 'react';
+import React, { CSSProperties, ReactElement, useEffect, useState } from 'react';
+import ReactDOM from 'react-dom';
 import { createUseStyles } from 'react-jss';
 import { useDispatch } from 'react-redux';
 
-import router from '../../../../../assets/router';
+import routes from '../../../../../assets/routes';
 import { Theme } from '../../../../../assets/theme';
+import useAuth from '../../../../../hooks/auth.hook';
 import types from '../../../../../redux/types';
 import NotifNumber from '../../../../Common/NotifNumber';
+import Spinner from '../../../../Common/Preloaders/Spinner';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     wrp: {
@@ -21,21 +24,30 @@ const useStyles = createUseStyles((theme: Theme) => ({
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        backdropFilter: 'blur(8px)',
         background: theme.palette.modal,
         zIndex: 100,
     },
     root: {
-        position: 'absolute',
-        top: theme.rem(7),
-        right: 0,
+        position: 'fixed',
+        top: theme.rem(10),
+        left: '50%',
+        transform: 'translateX(30rem)',
         zIndex: 101,
+        minWidth: theme.rem(30),
         padding: theme.rem(2, 4),
         background: theme.palette.white,
         borderRadius: theme.radius,
 
+        '@media (max-width: 1300px)': {
+            top: theme.rem(10),
+            right: '5%',
+            left: 'unset',
+            transform: 'unset',
+        },
+
         '@media (max-width: 1100px)': {
-            top: theme.rem(6),
+            top: theme.rem(10),
+            right: '5%',
         },
     },
     item: {
@@ -43,10 +55,16 @@ const useStyles = createUseStyles((theme: Theme) => ({
         display: 'flex',
         alignItems: 'center',
         color: theme.palette.black[0],
-        margin: theme.rem(1.4, 0),
+        margin: theme.rem(2.5, 0),
+        fontSize: theme.rem(1.6),
 
         '&:hover': {
             color: theme.palette.primary[0],
+        },
+
+        '& svg': {
+            height: theme.rem(1.6),
+            width: theme.rem(1.6),
         },
     },
     text: {
@@ -66,17 +84,42 @@ const style: CSSProperties = {
 
 const DropWindow = ({ onClose }: Props): ReactElement => {
     const css = useStyles();
+    const auth = useAuth();
     const dispatch = useDispatch();
 
+    const [loading, setLoading] = useState(false);
+
     const handleLogout = () => {
+        setLoading(true);
         dispatch({ type: types.LOGOUT_START });
     };
-    return (
+
+    useEffect(() => {
+        const handleClose = (event: KeyboardEvent): void => {
+            if (event.code !== 'Escape') return;
+            onClose();
+        };
+        window.addEventListener('keydown', handleClose);
+
+        return () => {
+            window.removeEventListener('keydown', handleClose);
+        };
+    }, []);
+
+    return ReactDOM.createPortal(
         <>
             <div className={css.wrp} onClick={onClose} aria-hidden />
             <ul className={css.root}>
                 <li>
-                    <Link href={router.root}>
+                    <Link href={routes.profile.single()} as={routes.profile.single(auth.first_name)}>
+                        <a className={css.item}>
+                            <FontAwesomeIcon icon={faUser} />
+                            <span className={css.text}>Мой профиль</span>
+                        </a>
+                    </Link>
+                </li>
+                <li>
+                    <Link href={routes.root}>
                         <a className={css.item}>
                             <FontAwesomeIcon icon={faBullhorn} />
                             <span className={css.text}>Мои объявления</span>
@@ -84,7 +127,7 @@ const DropWindow = ({ onClose }: Props): ReactElement => {
                     </Link>
                 </li>
                 <li>
-                    <Link href={router.root}>
+                    <Link href={routes.root}>
                         <a className={css.item}>
                             <FontAwesomeIcon icon={faEnvelope} />
                             <span className={css.text}>Мои сообщения</span>
@@ -94,7 +137,7 @@ const DropWindow = ({ onClose }: Props): ReactElement => {
                     </Link>
                 </li>
                 <li>
-                    <Link href={router.root}>
+                    <Link href={routes.root}>
                         <a className={css.item}>
                             <FontAwesomeIcon icon={faCommentAlt} />
                             <span className={css.text}>Отзывы</span>
@@ -104,7 +147,7 @@ const DropWindow = ({ onClose }: Props): ReactElement => {
                     </Link>
                 </li>
                 <li>
-                    <Link href={router.root}>
+                    <Link href={routes.root}>
                         <a className={css.item}>
                             <FontAwesomeIcon icon={faSlidersH} />
                             <span className={css.text}>Настройки</span>
@@ -112,7 +155,7 @@ const DropWindow = ({ onClose }: Props): ReactElement => {
                     </Link>
                 </li>
                 <li>
-                    <Link href={router.root}>
+                    <Link href={routes.root}>
                         <a className={css.item}>
                             <FontAwesomeIcon icon={faUserPlus} />
                             <span className={css.text}>Пригласить друзей</span>
@@ -125,8 +168,14 @@ const DropWindow = ({ onClose }: Props): ReactElement => {
                         <span className={css.text}>Выйти</span>
                     </button>
                 </li>
+                {loading && (
+                    <li>
+                        <Spinner />
+                    </li>
+                )}
             </ul>
-        </>
+        </>,
+        document.querySelector('body'),
     );
 };
 

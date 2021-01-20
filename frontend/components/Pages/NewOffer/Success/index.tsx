@@ -1,9 +1,15 @@
+import clsx from 'clsx';
 import Link from 'next/link';
-import React, { ReactElement } from 'react';
+import Router, { useRouter } from 'next/router';
+import React, { ReactElement, useEffect } from 'react';
 import { createUseStyles } from 'react-jss';
+import { useDispatch, useSelector } from 'react-redux';
 
-import router from '../../../../assets/router';
+import routes from '../../../../assets/routes';
 import { Theme } from '../../../../assets/theme';
+import { INewOffer, IState } from '../../../../interfaces';
+import initState from '../../../../redux/state';
+import types from '../../../../redux/types';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     root: {
@@ -66,6 +72,12 @@ const useStyles = createUseStyles((theme: Theme) => ({
             padding: theme.rem(2, 4),
         },
     },
+    center: {
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        background: theme.palette.green[0],
+    },
     topTitle: {
         maxWidth: theme.rem(40),
         margin: '3rem auto',
@@ -78,6 +90,26 @@ const useStyles = createUseStyles((theme: Theme) => ({
 
 const Success = (): ReactElement => {
     const css = useStyles();
+    const history = useRouter();
+    const dispatch = useDispatch();
+
+    const value = useSelector<IState, INewOffer>(state => state.offers.newOffer);
+    if (!value.isDone.one || !value.isDone.two) {
+        history.replace(routes.new_offer(1));
+        return null;
+    }
+
+    useEffect(() => {
+        const handleClear = () => {
+            dispatch({ type: types.NEW_OFFER_FORM, payload: initState.offers.newOffer });
+        };
+        Router.events.on('routeChangeComplete', handleClear);
+
+        return () => {
+            Router.events.off('routeChangeComplete', handleClear);
+        };
+    }, []);
+
     return (
         <div className={css.root}>
             <div className={css.success}>
@@ -101,7 +133,13 @@ const Success = (): ReactElement => {
                     в личном кабинете.
                 </p>
 
-                <Link href={router.root}>
+                <Link href={routes.offers.single(value.id)}>
+                    <a className={clsx(css.btn, css.center)} type="button">
+                        Просмотреть объявление
+                    </a>
+                </Link>
+
+                <Link href={routes.root}>
                     <a className={css.link}>Перейти в личный кабинет</a>
                 </Link>
             </div>

@@ -2,12 +2,12 @@ import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 import { useSelector } from 'react-redux';
 
-import router from '../../../../assets/router';
+import routes from '../../../../assets/routes';
 import { Theme } from '../../../../assets/theme';
 import { IOfferPopular, IState } from '../../../../interfaces';
 import OffersList from '../../../Common/Offers/OffersList';
-import SectionTitle from '../../../Common/SectionTitle';
 import Container from '../../../Layout/Container';
+import SectionTitle from '../../../Layout/SectionTitle';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     root: {
@@ -31,7 +31,7 @@ const TopOffers = (): ReactElement => {
     return (
         <div className={css.root}>
             <Container>
-                <SectionTitle link="Смотреть все" href={`${router.offers}?type=popular`}>
+                <SectionTitle link="Смотреть все" href={routes.offers.single(`?type=popular`)}>
                     TOП Объявления
                 </SectionTitle>
 

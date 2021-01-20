@@ -1,37 +1,39 @@
 import clsx from 'clsx';
 import { useRouter } from 'next/router';
-import React, { ChangeEvent, FormEvent, ReactElement, useEffect, useState } from 'react';
+import React, { ChangeEvent, FormEvent, ReactElement, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { numberValidation } from '../../../../assets/helpers';
+import { moneyFormat, numberValidation } from '../../../../assets/helpers';
+import routes from '../../../../assets/routes';
 import { INewOffer, IState } from '../../../../interfaces';
 import types from '../../../../redux/types';
 import CheckTitle from '../../../Common/CheckTitle';
+import CheckYesNo from '../../../Common/CheckYesNo';
 import { modal } from '../../../Common/Modal';
+import TextareaResize from '../../../Common/TextareaResize';
 import SaveModal from '../SaveModal';
 import useStyles from './StepTwo.styles';
 
 interface IError {
     description?: string;
     deposit_val?: string;
-    min_rent_value?: string;
-    max_rent_value?: string;
+    min_rent_period?: string;
+    max_rent_period?: string;
 }
 
 const StepTwo = (): ReactElement => {
     const css = useStyles();
-    const router = useRouter();
+    const history = useRouter();
     const dispatch = useDispatch();
 
     const [errors, setErrors] = useState<IError>({});
-    const init = useSelector<IState, INewOffer>(state => state.newOffer);
+    const init = useSelector<IState, INewOffer>(state => state.offers.newOffer);
     const [value, setValue] = useState<INewOffer>(init);
 
-    useEffect(() => {
-        if (!value.isDone.one) {
-            router.push('/new_offer/1');
-        }
-    }, [value]);
+    if (!value.isDone.one) {
+        history.replace(routes.new_offer(1));
+        return null;
+    }
 
     // OPTIONAL
     const handleDeposit = (deposit_val: boolean): void => {
@@ -42,28 +44,29 @@ const StepTwo = (): ReactElement => {
             optional: { ...value.optional, deposit_val },
         });
     };
-    const handleMin = (min_rent_value: boolean): void => {
+    const handleMin = (min_rent_period: boolean): void => {
         setErrors({});
         setValue({
             ...value,
-            min_rent_value: null,
-            optional: { ...value.optional, min_rent_value },
+            min_rent_period: null,
+            optional: { ...value.optional, min_rent_period },
         });
     };
-    const handleMax = (max_rent_value: boolean): void => {
+    const handleMax = (max_rent_period: boolean): void => {
         setErrors({});
         setValue({
             ...value,
-            max_rent_value: null,
-            optional: { ...value.optional, max_rent_value },
+            max_rent_period: null,
+            optional: { ...value.optional, max_rent_period },
         });
     };
 
     // TYPING
     const handleNumber = (event: ChangeEvent<HTMLInputElement>): void => {
         setErrors({});
-        if (numberValidation(event.target.value)) return;
-        setValue({ ...value, [event.target.name]: event.target.value === '' ? null : +event.target.value });
+        const num = event.target.value.replace(/ /gi, '').trim();
+        if (numberValidation(num)) return;
+        setValue({ ...value, [event.target.name]: num === '' ? null : +num });
     };
     const handleText = (event: ChangeEvent<HTMLTextAreaElement>): void => {
         setErrors({});
@@ -77,7 +80,7 @@ const StepTwo = (): ReactElement => {
     // SUBMISSION
     const handleBack = () => {
         dispatch({ type: types.NEW_OFFER_FORM, payload: { ...value, isDone: { ...value.isDone, two: false } } });
-        router.push('/new_offer/1');
+        history.push(routes.new_offer(1));
     };
     const handleClear = (): void => {
         const reset: INewOffer = {
@@ -85,13 +88,13 @@ const StepTwo = (): ReactElement => {
             doc_needed: false,
             description: '',
             deposit_val: null,
-            min_rent_value: null,
-            max_rent_value: null,
+            min_rent_period: null,
+            max_rent_period: null,
             extra_requirements: '',
             optional: {
                 deposit_val: false,
-                min_rent_value: false,
-                max_rent_value: false,
+                min_rent_period: false,
+                max_rent_period: false,
             },
             isDone: {
                 one: true,
@@ -102,6 +105,7 @@ const StepTwo = (): ReactElement => {
         setValue(reset);
         dispatch({ type: types.NEW_OFFER_FORM, payload: reset });
     };
+
     const handleSubmit = (event: FormEvent): void => {
         event.preventDefault();
 
@@ -119,21 +123,21 @@ const StepTwo = (): ReactElement => {
             return;
         }
 
-        if (value.optional.min_rent_value && !value.min_rent_value) {
-            setErrors({ min_rent_value: 'Введите данные или отключите это поле' });
+        if (value.optional.min_rent_period && !value.min_rent_period) {
+            setErrors({ min_rent_period: 'Введите данные или отключите это поле' });
             window.scrollTo({ top: 200, behavior: 'smooth' });
             dispatch({ type: types.NEW_OFFER_FORM, payload: { ...value, isDone: { ...value.isDone, two: false } } });
             return;
         }
 
-        if (value.optional.max_rent_value && !value.max_rent_value) {
-            setErrors({ max_rent_value: 'Введите данные или отключите это поле' });
+        if (value.optional.max_rent_period && !value.max_rent_period) {
+            setErrors({ max_rent_period: 'Введите данные или отключите это поле' });
             dispatch({ type: types.NEW_OFFER_FORM, payload: { ...value, isDone: { ...value.isDone, two: false } } });
             return;
         }
 
         dispatch({ type: types.NEW_OFFER_FORM, payload: { ...value, isDone: { ...value.isDone, two: true } } });
-        router.push('/new_offer/3');
+        history.push(routes.new_offer(3));
     };
     const handleSave = (): void => {
         modal.open(<SaveModal />);
@@ -142,15 +146,15 @@ const StepTwo = (): ReactElement => {
 
     return (
         <form className={css.form} onSubmit={handleSubmit}>
-            <CheckTitle value={value.doc_needed} onChange={handleDocs}>
+            <CheckYesNo value={value.doc_needed} onChange={handleDocs}>
                 Укажите нужно ли предоставить документы для оренды вашего товара
-            </CheckTitle>
+            </CheckYesNo>
 
             <div className={css.inner}>
                 <h4 className={css.title}>
                     Описание товара <span className={css.red}>*</span>
                 </h4>
-                <textarea
+                <TextareaResize
                     value={value.description}
                     onChange={handleText}
                     className={clsx(css.input, css.textarea, errors.description && css.errors)}
@@ -162,11 +166,11 @@ const StepTwo = (): ReactElement => {
 
             <div className={css.inner}>
                 <CheckTitle value={value.optional.deposit_val} onChange={handleDeposit}>
-                    {`Залоговая сума (${value.currency.name})`}
+                    Залоговая сума (грн)
                 </CheckTitle>
                 <div className={clsx(css.inputWrp, value.optional.deposit_val || css.inactive)}>
                     <input
-                        value={value.deposit_val !== null ? value.deposit_val : ''}
+                        value={moneyFormat(value.deposit_val)}
                         onChange={handleNumber}
                         className={clsx(css.input, errors.deposit_val && css.errors)}
                         name="deposit_val"
@@ -178,42 +182,42 @@ const StepTwo = (): ReactElement => {
             </div>
 
             <div className={css.inner}>
-                <CheckTitle value={value.optional.min_rent_value} onChange={handleMin}>
-                    Минимальный срок аренды (часов)
+                <CheckTitle value={value.optional.min_rent_period} onChange={handleMin}>
+                    Минимальный срок аренды (дней)
                 </CheckTitle>
-                <div className={clsx(css.inputWrp, value.optional.min_rent_value || css.inactive)}>
+                <div className={clsx(css.inputWrp, value.optional.min_rent_period || css.inactive)}>
                     <input
-                        value={value.min_rent_value !== null ? value.min_rent_value : ''}
+                        value={moneyFormat(value.min_rent_period)}
                         onChange={handleNumber}
-                        className={clsx(css.input, errors.min_rent_value && css.errors)}
-                        name="min_rent_value"
+                        className={clsx(css.input, errors.min_rent_period && css.errors)}
+                        name="min_rent_period"
                         placeholder="Введите число"
-                        readOnly={!value.optional.min_rent_value}
+                        readOnly={!value.optional.min_rent_period}
                     />
                 </div>
-                {errors.min_rent_value && <small className={css.errorsText}>{errors.min_rent_value}</small>}
+                {errors.min_rent_period && <small className={css.errorsText}>{errors.min_rent_period}</small>}
             </div>
 
             <div className={css.inner}>
-                <CheckTitle value={value.optional.max_rent_value} onChange={handleMax}>
-                    Максимальный срок аренды (часов)
+                <CheckTitle value={value.optional.max_rent_period} onChange={handleMax}>
+                    Максимальный срок аренды (дней)
                 </CheckTitle>
-                <div className={clsx(css.inputWrp, value.optional.max_rent_value || css.inactive)}>
+                <div className={clsx(css.inputWrp, value.optional.max_rent_period || css.inactive)}>
                     <input
-                        value={value.max_rent_value !== null ? value.max_rent_value : ''}
+                        value={moneyFormat(value.max_rent_period)}
                         onChange={handleNumber}
-                        className={clsx(css.input, errors.max_rent_value && css.errors)}
-                        name="max_rent_value"
+                        className={clsx(css.input, errors.max_rent_period && css.errors)}
+                        name="max_rent_period"
                         placeholder="Введите число"
-                        readOnly={!value.optional.max_rent_value}
+                        readOnly={!value.optional.max_rent_period}
                     />
                 </div>
-                {errors.max_rent_value && <small className={css.errorsText}>{errors.max_rent_value}</small>}
+                {errors.max_rent_period && <small className={css.errorsText}>{errors.max_rent_period}</small>}
             </div>
 
             <div className={css.inner}>
                 <h4 className={css.title}>Дополнительные требования</h4>
-                <textarea
+                <TextareaResize
                     value={value.extra_requirements}
                     onChange={handleText}
                     className={clsx(css.input, css.textarea)}

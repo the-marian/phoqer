@@ -3,7 +3,6 @@ import datetime
 from rest_framework import serializers
 
 from users.models import User
-
 from .models import Offer, OfferImages
 
 
@@ -15,29 +14,15 @@ class OfferImageSerializer(serializers.ModelSerializer):
             'url',
         ]
         extra_kwargs = {
-            'id': {'read_only': False}
+            'id': {'read_only': False, 'required': False}
         }
 
 
 class BaseOfferSerializer(serializers.ModelSerializer):
-    images = OfferImageSerializer(many=True, read_only=True, source='offer_images')
+    images = OfferImageSerializer(many=True, source='offer_images', required=False)
     is_favorite = serializers.SerializerMethodField()
     is_promoted = serializers.SerializerMethodField()
 
-    def get_is_favorite(self, offer):
-        user_request = self.context['request'].user
-        if user_request:
-            user = User.objects.get(email=user_request)
-            return offer in user.favourite_offers.all()
-        return False
-
-    def get_is_promoted(self, offer):
-        if offer.promote_til_date and datetime.date.today() < offer.promote_til_date:
-            return True
-        return False
-
-
-class OfferListItemSerializer(BaseOfferSerializer):
     class Meta:
         model = Offer
         fields = [
@@ -54,6 +39,20 @@ class OfferListItemSerializer(BaseOfferSerializer):
             'title',
             'views',
         ]
+
+    @extend_schema_field(OpenApiTypes.BOOL)
+    def get_is_favorite(self, offer):
+        user_query_param = self.context['request'].query_params.get('user', None)
+        if user_query_param:
+            user = User.objects.get(email=user_query_param)
+            return offer in user.favourite_offers.all()
+        return False
+
+    @extend_schema_field(OpenApiTypes.BOOL)
+    def get_is_promoted(self, offer):
+        if offer.promote_til_date and datetime.date.today() < offer.promote_til_date:
+            return True
+        return False
 
 
 class OfferSerializer(BaseOfferSerializer):
@@ -107,6 +106,18 @@ class OfferSerializer(BaseOfferSerializer):
             'title': {'required': False},
             'views': {'required': False, 'read_only': True},
         }
+
+    def create(self, validated_data):
+        try:
+            images = validated_data.pop('offer_images')
+        except KeyError:
+            images = None
+        offer_obj = Offer.objects.create(**validated_data)
+        if images:
+            OfferImages.objects.bulk_create(
+                [OfferImages(offer=offer_obj, **image) for image in images]
+            )
+        return offer_obj
 
     def update(self, instance, validated_data):
         offer_obj = super(OfferSerializer, self).update(instance, validated_data)

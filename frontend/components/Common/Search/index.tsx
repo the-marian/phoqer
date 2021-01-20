@@ -4,9 +4,10 @@ import { useRouter } from 'next/router';
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
-import router from '../../../assets/router';
+import routes from '../../../assets/routes';
 import { Theme } from '../../../assets/theme';
-import LinkArrow from '../LinkArrow';
+import useMedia from '../../../hooks/media.hook';
+import LinkArrow from '../../Layout/LinkArrow';
 import OptionsDesktop from './OptionsDesktop';
 import OptionsMobile from './OptionsMobile';
 
@@ -62,6 +63,11 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
     icon: {
         fontSize: theme.rem(1.4),
+
+        '& svg': {
+            height: theme.rem(1.4),
+            width: theme.rem(1.4),
+        },
     },
     toHome: {
         marginBottom: theme.rem(2),
@@ -92,13 +98,14 @@ const useStyles = createUseStyles((theme: Theme) => ({
 
 const Search = (): ReactElement => {
     const css = useStyles();
+    const mobile = useMedia(1100);
     const history = useRouter();
 
     return (
         <form action="#" method="post">
-            {history.pathname !== '/' && (
+            {history.pathname !== routes.root && (
                 <div className={css.toHome}>
-                    <LinkArrow href={router.root} toLeft>
+                    <LinkArrow href={routes.root} toLeft>
                         На главную
                     </LinkArrow>
                 </div>
@@ -111,12 +118,12 @@ const Search = (): ReactElement => {
                             <FontAwesomeIcon icon={faSearch} />
                         </span>
                         <input defaultValue={history?.query?.q} className={css.input} type="text" placeholder="Что вы ищите?" />
-                        <OptionsDesktop />
+                        {mobile && <OptionsDesktop />}
                     </div>
                 </div>
 
                 <div className={css.mobile}>
-                    <OptionsMobile />
+                    {!mobile && <OptionsMobile />}
                     <button type="submit" className={css.btn}>
                         Найти
                     </button>

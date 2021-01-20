@@ -33,7 +33,7 @@ class Offer(models.Model):
     description = models.TextField(blank=True, null=True)
     doc_needed = models.BooleanField(blank=True, null=True)
     extra_requirements = models.TextField(blank=True, null=True)
-    favourite = models.ManyToManyField(settings.AUTH_USER_MODEL, blank=True, null=True, related_name='favourite_offers')
+    favorite = models.ManyToManyField(settings.AUTH_USER_MODEL, blank=True, null=True, related_name='favorite_offers')
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     is_deliverable = models.BooleanField(blank=True, null=True)
     max_rent_period = models.PositiveSmallIntegerField(blank=True, null=True)

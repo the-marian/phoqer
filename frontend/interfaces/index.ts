@@ -6,8 +6,7 @@ import { AnyAction, Store } from 'redux';
  * 2 AUTH
  * 3 CATEGORIES
  * 4 OFFERS
- * 5 NEW OFFER
- * 6 REDUX STORE
+ * REDUX STORE
  * */
 
 // =====================================
@@ -34,8 +33,13 @@ export interface Login {
 }
 
 export interface IAuth {
+    id?: number;
     auth_token: string | null;
-    user: string | null;
+    birth_date?: string | null;
+    email?: string;
+    location?: string | null;
+    last_name?: string;
+    first_name?: string;
 }
 
 // =====================================
@@ -53,16 +57,25 @@ export interface ICategories {
 // =====================================
 export interface IOfferCard {
     id: string;
+    category?: string | null;
+    sub_category?: string | null;
+    deposit_val?: number | null;
+    min_rent_period?: number | null;
+    max_rent_period?: number | null;
+    pub_date?: string;
     cover_image: string;
+    images?: { id?: number; url: string }[];
     currency: string;
     is_favorite: boolean;
     is_promoted: boolean;
     is_deliverable: boolean;
+    doc_needed: boolean;
     price: number;
     pud_date: string;
     title: string;
     views: number;
     description: string;
+    extra_requirements?: string;
 }
 
 export interface IOfferPopular {
@@ -70,32 +83,24 @@ export interface IOfferPopular {
     loading: boolean;
 }
 
-export interface IOffers {
-    popular: IOfferPopular;
-}
-
-// =====================================
-// 5 NEW OFFER
-// =====================================
-
 export interface INewOffer {
+    id?: string | null;
     // step one
     title: string;
     price: number | null;
     category: IDropValue | null;
-    currency: IDropValue | null;
     is_deliverable: boolean;
     // step two
     doc_needed: boolean;
     description: string;
     deposit_val: number | null;
-    min_rent_value: number | null;
-    max_rent_value: number | null;
+    min_rent_period: number | null;
+    max_rent_period: number | null;
     extra_requirements: string;
     optional: {
         deposit_val: boolean;
-        min_rent_value: boolean;
-        max_rent_value: boolean;
+        min_rent_period: boolean;
+        max_rent_period: boolean;
     };
     // is done
     isDone: {
@@ -103,6 +108,12 @@ export interface INewOffer {
         two: boolean;
         three: boolean;
     };
+}
+
+export interface IOffers {
+    popular: IOfferPopular;
+    single: IOfferCard;
+    newOffer: INewOffer;
 }
 
 // =====================================
@@ -113,7 +124,6 @@ export interface IState {
     filters: { open: boolean };
     categories: ICategories[] | null;
     offers: IOffers;
-    newOffer: INewOffer;
 }
 
 export interface IStore extends Store<IState, AnyAction> {

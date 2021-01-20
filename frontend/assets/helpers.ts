@@ -4,7 +4,7 @@ export const addZeroToNumber = (value: string | number): string => String(value)
 
 export const numberValidation = (text: string): boolean => {
     if (text === '') return false;
-    return !/^\d{1,15}$/.test(text);
+    return !/^\d{1,10}$/.test(text);
 };
 
 // format category list from backend
@@ -15,14 +15,14 @@ export const formatCatList = (data: ICategories[]): IDropList[] =>
     );
 
 // find category name
-export const findCategory = (data: IDropList[], slug: string): string | null => {
-    const category: IDropList | undefined = data.find(item => item.slug === slug);
+export const findCategory = (data: ICategories[], slug: string): string | null => {
+    const category: ICategories | undefined = data.find(item => item.slug === slug);
     return category ? category.name : null;
 };
 
 // find sub category name
-export const findSubCategory = (data: IDropList[], slug: string): string | null => {
-    const category: IDropList | undefined = data.filter(item => item.sub).find(item => item.slug === slug);
+export const findSubCategory = (data: ICategories[], slug: string): string | null => {
+    const category: ICategories | undefined = data.filter(item => item.sub_categories).find(item => item.slug === slug);
     return category ? category.name : null;
 };
 
@@ -40,6 +40,18 @@ export const throttle = (func: IFunction, time: number): IFunction => {
     };
 };
 
+// decode data from cookie
+export const decode = (cookie = ''): string => decodeURI(cookie).replace(/\\"/gi, '');
+
+// parse cookie on server
+export const parseCookie = <T>(cookie = '', key = 'auth='): T | null => {
+    try {
+        return JSON.parse(decode(cookie).replace(/\+/g, ' ').replace(/%2C/gi, ',').split(key)[1]);
+    } catch (error) {
+        return null;
+    }
+};
+
 // custom console log for site identity
 export const logger = (): void => {
     console.clear();
@@ -48,4 +60,20 @@ export const logger = (): void => {
         'padding: 6px 15px; border-radius: 10px; background: #eee; text-transform: uppercase; color: #2771A3; font-size: 1rem; font-weight: 600; font-family: Montserrat, sans-serif',
         'color: #DB162F; font-size: 0.8rem;',
     );
+};
+
+export const moneyFormat = (value = 0): string => {
+    if (!value) return '';
+    return String(value)
+        .split('')
+        .reverse()
+        .map((item, index): string => (index % 3 ? item : item + ' '))
+        .reverse()
+        .join('')
+        .trim();
+};
+
+export const declOfNum = (number: number, titles: string[]): string => {
+    const cases = [2, 0, 1, 1, 1, 2];
+    return titles[number % 100 > 4 && number % 100 < 20 ? 2 : cases[number % 10 < 5 ? number % 10 : 5]];
 };

@@ -5,7 +5,8 @@ const types = {
      * 2 AUTH
      * 3 CATEGORIES
      * 4 OFFERS
-     * 5 NEW OFFER
+     * 5 NEW_OFFER
+     * 6 SINGLE_OFFER
      * */
 
     // ========================
@@ -47,10 +48,22 @@ const types = {
     GET_POPULAR_OFFERS_ERROR: 'GET_POPULAR_OFFERS_ERROR',
 
     // ========================
-    // NEW OFFER
+    // NEW_OFFER
     // ========================
     // NEW_OFFER_SAVE
     NEW_OFFER_FORM: 'NEW_OFFER_FORM',
+    // POST_OFFER
+    POST_OFFER_START: 'POST_OFFER_START',
+    POST_OFFER_SUCCESS: 'POST_OFFER_SUCCESS',
+    POST_OFFER_ERROR: 'POST_OFFER_ERROR',
+
+    // ========================
+    // SINGLE_OFFER
+    // ========================
+    // GET_SINGLE_OFFER
+    GET_SINGLE_OFFER_START: 'GET_SINGLE_OFFER_START',
+    GET_SINGLE_OFFER_SUCCESS: 'GET_SINGLE_OFFER_SUCCESS',
+    GET_SINGLE_OFFER_ERROR: 'GET_SINGLE_OFFER_ERROR',
 };
 
 export default types;
