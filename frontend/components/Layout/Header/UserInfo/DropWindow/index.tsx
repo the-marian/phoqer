@@ -88,7 +88,6 @@ const DropWindow = ({ onClose }: Props): ReactElement => {
     const dispatch = useDispatch();
 
     const [loading, setLoading] = useState(false);
-    const body = document.querySelector('body');
 
     const handleLogout = () => {
         setLoading(true);
@@ -176,7 +175,7 @@ const DropWindow = ({ onClose }: Props): ReactElement => {
                 )}
             </ul>
         </>,
-        body,
+        document.querySelector('body'),
     );
 };
 
