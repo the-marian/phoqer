@@ -19,11 +19,6 @@ const useStyles = createUseStyles((theme: Theme) => ({
         '&:hover': {
             color: theme.palette.primary[0],
         },
-
-        '& svg': {
-            height: theme.rem(2),
-            width: theme.rem(2),
-        },
     },
     menuWrp: {
         position: 'relative',
@@ -33,6 +28,11 @@ const useStyles = createUseStyles((theme: Theme) => ({
         zIndex: 101,
         padding: theme.rem(0, 1),
         fontSize: theme.rem(2),
+
+        '& svg': {
+            height: theme.rem(2),
+            width: theme.rem(2),
+        },
     },
 }));
 

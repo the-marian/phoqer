@@ -48,7 +48,6 @@ interface IProps {
 
 const GeneralInfoDrop = ({ onClick }: IProps): ReactElement => {
     const css = useStyles();
-    const body = document.querySelector('body');
 
     useEffect(() => {
         const handleClose = (event: KeyboardEvent): void => {
@@ -91,7 +90,7 @@ const GeneralInfoDrop = ({ onClick }: IProps): ReactElement => {
                 </button>
             </div>
         </>,
-        body,
+        document.querySelector('body'),
     );
 };
 
