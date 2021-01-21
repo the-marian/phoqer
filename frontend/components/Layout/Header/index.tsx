@@ -19,11 +19,11 @@ const useStyles = createUseStyles((theme: Theme) => ({
         zIndex: 10000,
         width: '100%',
         padding: theme.rem(1.4, 0),
-        background: theme.palette.glass,
         backdropFilter: 'blur(5px)',
         transition: theme.transitions,
     },
     shadow: {
+        background: theme.palette.glass,
         boxShadow: theme.shadow[0],
     },
     transform: {

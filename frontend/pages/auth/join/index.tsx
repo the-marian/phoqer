@@ -7,7 +7,7 @@ import serverRedirect from '../../../components/HOC/ServerRedirect';
 import AuthContainer from '../../../components/Pages/Auth/AuthContainer';
 import { wrapper } from '../../../redux/store';
 
-const Login = (): ReactElement => (
+const Join = (): ReactElement => (
     <>
         <AuthRedirect reverse />
         <Meta title="Join | Phoqer" />
@@ -19,4 +19,4 @@ const Login = (): ReactElement => (
 
 export const getServerSideProps = wrapper.getServerSideProps(serverRedirect(null, null, true));
 
-export default Login;
+export default Join;

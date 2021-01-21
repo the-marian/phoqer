@@ -30,11 +30,6 @@ const StepTwo = (): ReactElement => {
     const init = useSelector<IState, INewOffer>(state => state.offers.newOffer);
     const [value, setValue] = useState<INewOffer>(init);
 
-    if (!value.isDone.one) {
-        history.replace(routes.new_offer(1));
-        return null;
-    }
-
     // OPTIONAL
     const handleDeposit = (deposit_val: boolean): void => {
         setErrors({});

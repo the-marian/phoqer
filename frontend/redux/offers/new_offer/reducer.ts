@@ -5,7 +5,7 @@ import initState from '../../state';
 import types from '../../types';
 
 interface IAction {
-    type: typeof types.SEARCH_FILTERS | typeof types.POST_OFFER_SUCCESS;
+    type: typeof types.NEW_OFFER_FORM | typeof types.POST_OFFER_SUCCESS;
     payload: INewOffer | IState;
 }
 

@@ -63,6 +63,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
     icon: {
         fontSize: theme.rem(1.4),
+        color: theme.palette.primary[0],
 
         '& svg': {
             height: theme.rem(1.4),

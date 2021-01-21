@@ -18,10 +18,11 @@ const useStyles = createUseStyles((theme: Theme) => ({
         fontSize: theme.rem(1.2),
         fontWeight: theme.text.weight[4],
 
-        '@media (max-width: 600px)': {
+        '@media (max-width: 768px)': {
             top: theme.rem(-1.6),
             right: theme.rem(-1.2),
-            fontSize: theme.rem(1),
+            fontSize: theme.rem(1.8),
+            padding: theme.rem(0.2, 0.8),
         },
     },
 }));

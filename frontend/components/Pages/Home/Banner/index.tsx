@@ -1,9 +1,15 @@
+import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useRouter } from 'next/router';
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
 import routes from '../../../../assets/routes';
 import { Theme } from '../../../../assets/theme';
-import LinkArrow from '../../../Layout/LinkArrow';
+import useAuth from '../../../../hooks/auth.hook';
+import LoginForm from '../../../Common/Auth/LoginForm';
+import { modal } from '../../../Common/Modal';
+import SmallModalWrp from '../../../Common/Modal/SmallModalWrp';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     root: {
@@ -28,6 +34,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         display: 'flex',
     },
     img: {
+        display: 'block',
         width: theme.rem(10),
         margin: theme.rem(0, 2, 2, 0),
 
@@ -38,11 +45,35 @@ const useStyles = createUseStyles((theme: Theme) => ({
     link: {
         fontSize: theme.rem(1.8),
         fontWeight: theme.text.weight[3],
+        color: theme.palette.black[0],
+
+        '&:hover': {
+            textDecoration: 'underline',
+        },
+
+        '& svg': {
+            height: theme.rem(1.6),
+            width: theme.rem(1.6),
+        },
     },
 }));
 
 const Banner = (): ReactElement => {
     const css = useStyles();
+    const auth = useAuth();
+    const history = useRouter();
+
+    const handleClick = (): void => {
+        if (auth?.auth_token) {
+            history.push(routes.new_offer(1));
+        } else {
+            modal.open(
+                <SmallModalWrp>
+                    <LoginForm />
+                </SmallModalWrp>,
+            );
+        }
+    };
     return (
         <div className={css.root}>
             <div className={css.imgWrp}>
@@ -52,11 +83,11 @@ const Banner = (): ReactElement => {
             </div>
 
             <h2 className={css.title}>Делитесь с другими и зарабатывайте</h2>
-            <div className={css.link}>
-                <LinkArrow href={routes.new_offer()} as={routes.new_offer(1)}>
-                    Сдать вещи в аренду
-                </LinkArrow>
-            </div>
+
+            <button className={css.link} type="button" onClick={handleClick}>
+                <span>Сдать вещи в аренду</span>
+                <FontAwesomeIcon icon={faChevronRight} />
+            </button>
         </div>
     );
 };

@@ -2,7 +2,7 @@ import { faCommentAlt, faEnvelope, faUser } from '@fortawesome/free-regular-svg-
 import { faBullhorn, faSignOutAlt, faSlidersH, faUserPlus } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Link from 'next/link';
-import React, { CSSProperties, ReactElement, useEffect, useState } from 'react';
+import React, { ReactElement, useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
 import { createUseStyles } from 'react-jss';
 import { useDispatch } from 'react-redux';
@@ -11,7 +11,6 @@ import routes from '../../../../../assets/routes';
 import { Theme } from '../../../../../assets/theme';
 import useAuth from '../../../../../hooks/auth.hook';
 import types from '../../../../../redux/types';
-import NotifNumber from '../../../../Common/NotifNumber';
 import Spinner from '../../../../Common/Preloaders/Spinner';
 
 const useStyles = createUseStyles((theme: Theme) => ({
@@ -25,15 +24,15 @@ const useStyles = createUseStyles((theme: Theme) => ({
         justifyContent: 'center',
         alignItems: 'center',
         background: theme.palette.modal,
-        zIndex: 100,
+        zIndex: 10000,
     },
     root: {
         position: 'fixed',
         top: theme.rem(10),
         left: '50%',
         transform: 'translateX(30rem)',
-        zIndex: 101,
-        minWidth: theme.rem(30),
+        zIndex: 10001,
+        minWidth: theme.rem(35),
         padding: theme.rem(2, 4),
         background: theme.palette.white,
         borderRadius: theme.radius,
@@ -66,6 +65,20 @@ const useStyles = createUseStyles((theme: Theme) => ({
             height: theme.rem(1.6),
             width: theme.rem(1.6),
         },
+
+        '@media (max-width: 1100px)': {
+            fontSize: theme.rem(2),
+
+            '& svg': {
+                height: theme.rem(2),
+                width: theme.rem(2),
+            },
+        },
+    },
+    red: {
+        marginLeft: theme.rem(0.5),
+        color: theme.palette.red[0],
+        fontWeight: theme.text.weight[3],
     },
     text: {
         marginLeft: theme.rem(1),
@@ -75,12 +88,6 @@ const useStyles = createUseStyles((theme: Theme) => ({
 interface Props {
     onClose: () => void;
 }
-
-const style: CSSProperties = {
-    top: '-0.8em',
-    left: '-1.2em',
-    right: 'unset',
-};
 
 const DropWindow = ({ onClose }: Props): ReactElement => {
     const css = useStyles();
@@ -131,8 +138,7 @@ const DropWindow = ({ onClose }: Props): ReactElement => {
                         <a className={css.item}>
                             <FontAwesomeIcon icon={faEnvelope} />
                             <span className={css.text}>Мои сообщения</span>
-
-                            <NotifNumber style={style}>4</NotifNumber>
+                            <span className={css.red}>(2)</span>
                         </a>
                     </Link>
                 </li>
@@ -141,8 +147,7 @@ const DropWindow = ({ onClose }: Props): ReactElement => {
                         <a className={css.item}>
                             <FontAwesomeIcon icon={faCommentAlt} />
                             <span className={css.text}>Отзывы</span>
-
-                            <NotifNumber style={style}>4</NotifNumber>
+                            <span className={css.red}>(12)</span>
                         </a>
                     </Link>
                 </li>

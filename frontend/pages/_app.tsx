@@ -19,7 +19,7 @@ const MyApp = ({ Component, pageProps, width, auth }: AppProps & { width: number
     const history = useRouter();
 
     interceptors({ history });
-    logger();
+    // logger();
 
     useEffect(() => {
         const handleClear = () => {
@@ -51,7 +51,7 @@ MyApp.getInitialProps = async appContext => {
     const isMobile = toMatch.test(appContext?.ctx?.req?.headers?.['user-agent']);
 
     const props = await App.getInitialProps(appContext);
-    return { ...props, width: isMobile ? 500 : 1400, token: parseCookie<IAuth>(appContext?.ctx?.req?.headers?.cookie) };
+    return { ...props, width: isMobile ? 500 : 1400, auth: parseCookie<IAuth>(appContext?.ctx?.req?.headers?.cookie) };
 };
 
 export default wrapper.withRedux(MyApp);

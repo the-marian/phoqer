@@ -31,6 +31,10 @@ const useStyles = createUseStyles((theme: Theme) => ({
         objectFit: 'contain',
         background: theme.palette.gray[1],
         cursor: 'zoom-in',
+
+        '@media (max-width: 768px)': {
+            height: theme.rem(30),
+        },
     },
     modal: {
         display: 'block',
@@ -44,10 +48,26 @@ const useStyles = createUseStyles((theme: Theme) => ({
         display: 'flex',
         marginTop: theme.rem(6),
         fontSize: theme.rem(1.3),
+
+        '@media (max-width: 768px)': {
+            flexDirection: 'column',
+            marginTop: theme.rem(2),
+            fontSize: theme.rem(1.6),
+        },
     },
     main: {
         width: 'calc(100% - 40rem)',
         paddingRight: theme.rem(10),
+
+        '@media (max-width: 1300px)': {
+            paddingRight: theme.rem(4),
+        },
+
+        '@media (max-width: 768px)': {
+            width: '100%',
+            marginBottom: theme.rem(6),
+            paddingRight: 0,
+        },
     },
     title: {
         margin: theme.rem(0, 0, 1),
@@ -58,6 +78,10 @@ const useStyles = createUseStyles((theme: Theme) => ({
     action: {
         display: 'flex',
         alignItems: 'center',
+
+        '@media (max-width: 768px)': {
+            fontSize: theme.rem(1.6),
+        },
     },
     favorite: {
         margin: theme.rem(0, 2),
@@ -71,7 +95,11 @@ const useStyles = createUseStyles((theme: Theme) => ({
         '& svg': {
             height: theme.rem(1.4),
             width: theme.rem(1.4),
-            fill: theme.palette.primary[0],
+
+            '@media (max-width: 768px)': {
+                height: theme.rem(1.8),
+                width: theme.rem(1.8),
+            },
         },
     },
     eye: {
@@ -79,15 +107,29 @@ const useStyles = createUseStyles((theme: Theme) => ({
         '& span': {
             margin: theme.rem(0, 1),
         },
+        '@media (max-width: 768px)': {
+            margin: theme.rem(0, 0, 0, 3),
+        },
+
         '& svg': {
             height: theme.rem(1.4),
             width: theme.rem(1.4),
+
+            '@media (max-width: 768px)': {
+                height: theme.rem(2),
+                width: theme.rem(2),
+            },
         },
     },
     subtitle: {
         margin: theme.rem(6, 0, 3),
         fontSize: theme.rem(2),
         fontWeight: theme.text.weight[3],
+
+        '@media (max-width: 768px)': {
+            margin: theme.rem(3, 0, 1),
+            fontSize: theme.rem(2.5),
+        },
     },
     req: {
         '& li': {
@@ -124,11 +166,45 @@ const useStyles = createUseStyles((theme: Theme) => ({
         position: 'relative',
         width: theme.rem(40),
         marginTop: theme.rem(1),
+
+        '@media (max-width: 768px)': {
+            width: '100%',
+            maxWidth: theme.rem(40),
+        },
     },
     sticky: {
         position: 'sticky',
         top: theme.rem(10),
         left: 0,
+    },
+    priceTitle: {
+        margin: theme.rem(4, 0, 0),
+        fontSize: theme.rem(2),
+        fontWeight: theme.text.weight[2],
+    },
+    price: {
+        fontSize: theme.rem(1.6),
+        fontWeight: theme.text.weight[2],
+        color: theme.palette.black[0],
+    },
+    num: {
+        fontSize: theme.rem(3.5),
+        fontWeight: theme.text.weight[5],
+        color: theme.palette.primary[0],
+    },
+    point: {
+        fontSize: theme.rem(2),
+        fontWeight: theme.text.weight[5],
+        color: theme.palette.primary[0],
+    },
+    buy: {
+        display: 'block',
+        marginTop: theme.rem(2),
+        padding: theme.rem(1.5, 4),
+        borderRadius: theme.radius,
+        background: theme.palette.green[0],
+        fontSize: theme.rem(1.8),
+        color: theme.palette.white,
     },
 }));
 
@@ -266,9 +342,14 @@ const SingleOfferPage = (): ReactElement => {
                             <div className={css.sticky}>
                                 <ProfileCard firstName="Влад" lastName="Василенко" />
 
-                                <h3>Цена:</h3>
-                                <p>150 грн / день</p>
-                                <button type="button">Арендовать</button>
+                                <h3 className={css.priceTitle}>Цена:</h3>
+                                <p className={css.price}>
+                                    <span className={css.num}>{moneyFormat(offer?.price)}</span>
+                                    <span className={css.point}>.00</span> грн/день
+                                </p>
+                                <button className={css.buy} type="button">
+                                    Арендовать
+                                </button>
                             </div>
                         </aside>
                     </div>

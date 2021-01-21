@@ -2,6 +2,7 @@ import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
 import { Theme } from '../../../assets/theme';
+import useMedia from '../../../hooks/media.hook';
 import Logo from '../../Common/Logo';
 import Socials from '../../Pages/Socials';
 import Container from '../Container';
@@ -16,21 +17,23 @@ const useStyles = createUseStyles((theme: Theme) => ({
         justifyContent: 'space-between',
         marginTop: theme.rem(4),
 
-        '@media (max-width: 640px)': {
+        '@media (max-width: 768px)': {
             display: 'block',
+            textAlign: 'center',
         },
     },
 }));
 
 const Footer = (): ReactElement => {
     const css = useStyles();
+    const mobile = useMedia(768);
     return (
         <footer className={css.footer}>
             <Container>
-                <Logo />
+                <Logo center={!mobile} />
                 <div className={css.wrp}>
                     <SiteMap />
-                    <Socials />
+                    <Socials center={!mobile} />
                 </div>
             </Container>
         </footer>

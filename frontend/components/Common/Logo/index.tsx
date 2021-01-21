@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 import Link from 'next/link';
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
@@ -18,6 +19,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
             marginRight: theme.rem(1.5),
         },
     },
+    center: {
+        justifyContent: 'center',
+    },
     img: {
         height: 'auto',
         marginTop: theme.rem(0.4),
@@ -31,11 +35,15 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
 }));
 
-const Logo = (): ReactElement => {
+interface IProps {
+    center?: boolean;
+}
+
+const Logo = ({ center = false }: IProps): ReactElement => {
     const css = useStyles();
     return (
         <Link href={routes.root}>
-            <a className={css.logo}>
+            <a className={clsx(css.logo, center && css.center)}>
                 <img className={css.img} src="/logo.png" alt="logo" />
             </a>
         </Link>

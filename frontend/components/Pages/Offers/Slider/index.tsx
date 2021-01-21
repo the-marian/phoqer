@@ -16,6 +16,10 @@ const useStyles = createUseStyles((theme: Theme) => ({
         position: 'relative',
         width: '100%',
         margin: theme.rem(0, 0, 3),
+        '@media (max-width: 768px)': {
+            margin: theme.rem(0, 0, 1),
+        },
+
         '& .slick-track': {
             display: 'flex',
         },
@@ -33,11 +37,15 @@ const useStyles = createUseStyles((theme: Theme) => ({
             fontSize: 0,
             transition: theme.transitions[0],
 
+            '@media (max-width: 1400px)': {
+                width: theme.rem(6),
+            },
+
             '&::before': {
                 content: '""',
                 position: 'absolute',
                 top: '50%',
-                left: '60%',
+                left: '50%',
                 transform: 'translateY(-50%) rotate(-45deg)',
                 height: theme.rem(1.5),
                 width: theme.rem(1.5),
@@ -47,6 +55,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
         '& .slick-arrow.slick-prev': {
             left: theme.rem(-8),
             borderRadius: `${theme.radius} 0 0 ${theme.radius}`,
+            '@media (max-width: 1400px)': {
+                left: theme.rem(-5),
+            },
 
             '&::before': {
                 borderTop: theme.border(0.2, theme.palette.gray[3]),
@@ -56,11 +67,17 @@ const useStyles = createUseStyles((theme: Theme) => ({
 
             '&:hover': {
                 left: theme.rem(-9),
+                '@media (max-width: 1400px)': {
+                    left: theme.rem(-6),
+                },
             },
         },
         '& .slick-arrow.slick-next': {
             right: theme.rem(-8),
             borderRadius: `0 ${theme.radius} ${theme.radius} 0`,
+            '@media (max-width: 1400px)': {
+                right: theme.rem(-5),
+            },
 
             '&::before': {
                 left: '25%',
@@ -71,6 +88,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
 
             '&:hover': {
                 right: theme.rem(-9),
+                '@media (max-width: 1400px)': {
+                    right: theme.rem(-6),
+                },
             },
         },
     },
@@ -91,6 +111,10 @@ const useStyles = createUseStyles((theme: Theme) => ({
         objectFit: 'contain',
         background: theme.palette.gray[1],
         cursor: 'zoom-in',
+
+        '@media (max-width: 768px)': {
+            height: theme.rem(30),
+        },
     },
     bottom: {
         display: 'block',
@@ -98,6 +122,10 @@ const useStyles = createUseStyles((theme: Theme) => ({
         height: theme.rem(15),
         objectFit: 'cover',
         cursor: 'pointer',
+
+        '@media (max-width: 510px)': {
+            height: theme.rem(9),
+        },
     },
     modal: {
         display: 'block',
@@ -151,10 +179,18 @@ const OfferSlider = ({ images }: IProps): ReactElement => {
                 arrows
                 infinite
                 className={css.inner}
+                responsive={[
+                    {
+                        breakpoint: 1050,
+                        settings: {
+                            arrows: false,
+                        },
+                    },
+                ]}
             >
                 {slides.map(({ id, url }) => (
                     <div className={css.slide} key={id}>
-                        <img className={css.img} onClick={handleModal(url)} draggable={false} src={url} alt="" />
+                        <img className={css.img} onClick={handleModal(url)} draggable={false} src={url} aria-hidden alt="" />
                     </div>
                 ))}
             </Slider>
@@ -172,6 +208,20 @@ const OfferSlider = ({ images }: IProps): ReactElement => {
                 draggable
                 infinite
                 className={clsx(css.inner, css.padding)}
+                responsive={[
+                    {
+                        breakpoint: 1200,
+                        settings: {
+                            slidesToShow: 3,
+                        },
+                    },
+                    {
+                        breakpoint: 768,
+                        settings: {
+                            slidesToShow: 2,
+                        },
+                    },
+                ]}
             >
                 {slides.map(({ id, url }, index) => (
                     <div className={css.slide} key={id} onClick={handleNav(index)} aria-hidden>

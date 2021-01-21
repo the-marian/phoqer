@@ -24,11 +24,19 @@ const useStyles = createUseStyles((theme: Theme) => ({
     name: {
         fontSize: theme.rem(1.8),
         fontWeight: theme.text.weight[3],
+
+        '@media (max-width: 768px)': {
+            fontSize: theme.rem(2),
+        },
     },
     info: {
         marginBottom: theme.rem(2),
         color: theme.palette.gray[3],
         fontSize: theme.rem(1.2),
+
+        '@media (max-width: 768px)': {
+            fontSize: theme.rem(1.5),
+        },
     },
     btn: {
         display: 'block',

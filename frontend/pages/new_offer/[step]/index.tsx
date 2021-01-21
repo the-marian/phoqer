@@ -1,7 +1,9 @@
 import { useRouter } from 'next/router';
 import React, { ReactElement, useEffect, useState } from 'react';
 import { createUseStyles } from 'react-jss';
+import { useSelector } from 'react-redux';
 
+import routes from '../../../assets/routes';
 import { Theme } from '../../../assets/theme';
 import Meta from '../../../components/Common/Meta';
 import AuthRedirect from '../../../components/HOC/Auth/AuthRedirect';
@@ -13,6 +15,7 @@ import Stepper from '../../../components/Pages/NewOffer/Stepper';
 import StepThree from '../../../components/Pages/NewOffer/StepThree';
 import StepTwo from '../../../components/Pages/NewOffer/StepTwo';
 import Success from '../../../components/Pages/NewOffer/Success';
+import { INewOffer, IState } from '../../../interfaces';
 import { wrapper } from '../../../redux/store';
 
 const useStyles = createUseStyles((theme: Theme) => ({
@@ -46,14 +49,24 @@ const STEPS = {
 const STEPS_TITLE = ['О товаре', 'Описание', 'Фото'];
 
 const NewOffer = (): ReactElement => {
-    const { query } = useRouter();
-
     const css = useStyles();
+    const { query, push } = useRouter();
+
     const [index, setIndex] = useState<number>(1);
+    const value = useSelector<IState, INewOffer>(state => state.offers.newOffer);
 
     useEffect(() => {
         if (query.step) {
-            setIndex(typeof query.step === 'string' ? +query.step : +query.step[0]);
+            const step = typeof query.step === 'string' ? +query.step : +query.step[0];
+            if (step === 2 && !value?.isDone?.one) {
+                push(routes.new_offer(1));
+            } else if (step === 3 && !value?.isDone?.two) {
+                push(routes.new_offer(1));
+            } else if (step === 4 && (!value?.isDone?.one || !value?.isDone?.two)) {
+                push(routes.new_offer(1));
+            } else {
+                setIndex(step);
+            }
         }
     }, [query.step]);
 

@@ -88,7 +88,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         padding: theme.rem(1.5, 2),
         fontSize: theme.rem(1.4),
         borderRadius: theme.radius,
-        background: theme.palette.secondary[0],
+        background: theme.palette.gray[2],
     },
     favorite: {
         marginLeft: theme.rem(2),

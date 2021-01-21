@@ -16,31 +16,37 @@ import DropWindow from './DropWindow';
 const useStyles = createUseStyles((theme: Theme) => ({
     flex: {
         display: 'flex',
+        alignItems: 'center',
         fontSize: theme.rem(1.4),
     },
     item: {
         marginLeft: theme.rem(4.5),
 
-        '@media (max-width: 500px)': {
-            marginLeft: theme.rem(2),
-        },
-
-        '@media (max-width: 450px)': {
-            marginLeft: theme.rem(2.5),
+        '@media (max-width: 768px)': {
+            marginLeft: theme.rem(1),
         },
     },
     text: {
         position: 'relative',
         marginLeft: theme.rem(1),
 
-        '@media (max-width: 750px)': {
-            fontSize: 0,
-            marginLeft: 0,
+        '@media (max-width: 768px)': {
+            display: 'none',
         },
     },
     link: {
         position: 'relative',
         color: theme.palette.black[0],
+
+        '@media (max-width: 768px)': {
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            background: theme.palette.white,
+            padding: theme.rem(0.9, 1.8),
+            borderRadius: theme.radius,
+            boxShadow: theme.shadow[0],
+        },
 
         '&:hover': {
             color: theme.palette.primary[0],
@@ -49,10 +55,11 @@ const useStyles = createUseStyles((theme: Theme) => ({
         '& svg': {
             height: theme.rem(1.4),
             width: theme.rem(1.4),
-        },
 
-        '@media (max-width: 750px)': {
-            fontSize: theme.rem(2.2),
+            '@media (max-width: 750px)': {
+                height: theme.rem(1.8),
+                width: theme.rem(1.8),
+            },
         },
     },
     user: {

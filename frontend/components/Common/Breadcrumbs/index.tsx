@@ -15,9 +15,10 @@ const useStyles = createUseStyles((theme: Theme) => ({
             fontSize: theme.rem(1.2),
             color: theme.palette.black[0],
 
-            '& > span': {
-                color: theme.palette.primary[0],
-                fontWeight: theme.text.weight[3],
+            '@media (max-width: 768px)': {
+                lineHeight: 2.2,
+                fontSize: theme.rem(1.6),
+                fontWeight: theme.text.weight[1],
             },
         },
 
@@ -29,6 +30,15 @@ const useStyles = createUseStyles((theme: Theme) => ({
                 color: theme.palette.black[0],
             },
         },
+    },
+
+    end: {
+        color: theme.palette.primary[0],
+        fontWeight: theme.text.weight[3],
+    },
+
+    gray: {
+        color: theme.palette.gray[3],
     },
 }));
 
@@ -51,11 +61,11 @@ const Breadcrumbs = ({ data, end }: IProps): ReactElement => {
                     <Link href={link} as={as} passHref>
                         <a>{label}</a>
                     </Link>
-                    <span>{' / '}</span>
+                    <span className={css.gray}>{' / '}</span>
                 </li>
             ))}
             <li>
-                <span>{` ${end}`}</span>
+                <span className={css.end}>{` ${end}`}</span>
             </li>
         </ul>
     ) : null;
