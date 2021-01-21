@@ -215,9 +215,9 @@ const SingleOfferPage = (): ReactElement => {
     const categories = useSelector<IState, ICategories[]>(state => state.categories);
 
     const catName = offer?.category
-        ? findCategory(categories, offer.category)
+        ? findCategory(categories, offer?.category)
         : offer?.sub_category
-        ? findSubCategory(categories, offer.sub_category)
+        ? findSubCategory(categories, offer?.sub_category)
         : null;
 
     const desc = offer?.description ? offer.description.replace(/\n/g, '<br>') : '';
@@ -231,25 +231,25 @@ const SingleOfferPage = (): ReactElement => {
         );
     };
 
-    return offer ? (
+    return (
         <>
-            <Meta />
+            <Meta title={offer?.title} description={offer?.description.slice(0, 150)} icon={offer?.cover_image} />
             <Main>
                 <Container>
-                    {offer.images.length > 1 ? (
-                        <OfferSlider images={offer.images} />
-                    ) : offer.images.length || offer.cover_image ? (
-                        <img className={css.banner} src={offer.cover_image} alt="" onClick={handleModal} aria-hidden />
+                    {offer?.images.length > 1 ? (
+                        <OfferSlider images={offer?.images} />
+                    ) : offer?.images.length || offer?.cover_image ? (
+                        <img className={css.banner} src={offer?.cover_image} alt="" onClick={handleModal} aria-hidden />
                     ) : null}
                     <Breadcrumbs
-                        end={offer.title}
+                        end={offer?.title}
                         data={[
                             { label: 'На главную страницу', link: routes.root },
                             {
                                 label: catName ? `Предложения в раздере ${catName}` : 'Поиск вещей / услуг',
                                 link: catName
                                     ? routes.offers.single(
-                                          offer.category ? `?category=${offer.category}` : `?sub=${offer.sub_category}`,
+                                          offer?.category ? `?category=${offer?.category}` : `?sub=${offer?.sub_category}`,
                                       )
                                     : routes.offers.list,
                             },
@@ -258,15 +258,15 @@ const SingleOfferPage = (): ReactElement => {
 
                     <div className={css.flex}>
                         <div className={css.main}>
-                            <h1 className={css.title}>{offer.title}</h1>
+                            <h1 className={css.title}>{offer?.title}</h1>
                             <div className={css.action}>
-                                <p>Опубликовано: {offer.pub_date}</p>
+                                <p>Опубликовано: {offer?.pub_date}</p>
                                 <p className={css.eye}>
                                     <FontAwesomeIcon icon={faEye} />
-                                    <span>{offer.views}</span>
+                                    <span>{offer?.views}</span>
                                 </p>
                                 <button className={css.favorite} type="button">
-                                    {offer.is_favorite ? (
+                                    {offer?.is_favorite ? (
                                         <FontAwesomeIcon icon={faFillHeart} />
                                     ) : (
                                         <FontAwesomeIcon icon={faHeart} />
@@ -282,14 +282,16 @@ const SingleOfferPage = (): ReactElement => {
                                 <li>
                                     <span>Залоговая сумма:</span>
                                     <span className={css.dots} />
-                                    <span>{offer.deposit_val ? `${moneyFormat(offer.deposit_val)}.00 грн` : 'Не указанно'}</span>
+                                    <span>
+                                        {offer?.deposit_val ? `${moneyFormat(offer?.deposit_val)}.00 грн` : 'Не указанно'}
+                                    </span>
                                 </li>
                                 <li>
                                     <span>Минимальный срок аренды:</span>
                                     <span className={css.dots} />
                                     <span>
-                                        {offer.min_rent_period
-                                            ? `${moneyFormat(offer.min_rent_period)} ${declOfNum(offer.min_rent_period, [
+                                        {offer?.min_rent_period
+                                            ? `${moneyFormat(offer?.min_rent_period)} ${declOfNum(offer?.min_rent_period, [
                                                   'день',
                                                   'дня',
                                                   'дней',
@@ -301,8 +303,8 @@ const SingleOfferPage = (): ReactElement => {
                                     <span>Максимальный срок аренды:</span>
                                     <span className={css.dots} />
                                     <span>
-                                        {offer.max_rent_period
-                                            ? `${moneyFormat(offer.max_rent_period)} ${declOfNum(offer.max_rent_period, [
+                                        {offer?.max_rent_period
+                                            ? `${moneyFormat(offer?.max_rent_period)} ${declOfNum(offer?.max_rent_period, [
                                                   'день',
                                                   'дня',
                                                   'дней',
@@ -312,18 +314,18 @@ const SingleOfferPage = (): ReactElement => {
                                 </li>
                             </ul>
                             <ul className={css.emoji}>
-                                <li className={offer.is_deliverable ? null : css.gray}>
+                                <li className={offer?.is_deliverable ? null : css.gray}>
                                     <img src="/emoji/delivery.png" alt="" />
                                     <span>
-                                        {offer.is_deliverable
+                                        {offer?.is_deliverable
                                             ? 'Владелец осуществит доставку товара'
                                             : 'Владелец НЕ осуществляет доставку товара'}
                                     </span>
                                 </li>
-                                <li className={offer.doc_needed ? null : css.gray}>
+                                <li className={offer?.doc_needed ? null : css.gray}>
                                     <img src="/emoji/documents.png" alt="" />
                                     <span>
-                                        {offer.doc_needed
+                                        {offer?.doc_needed
                                             ? 'Необходимо предоставить документы в качестве залога'
                                             : 'НЕ нужно оставлять документы в качестве залога'}
                                     </span>
@@ -356,7 +358,7 @@ const SingleOfferPage = (): ReactElement => {
                 </Container>
             </Main>
         </>
-    ) : null;
+    );
 };
 
 export const getServerSideProps = wrapper.getServerSideProps(
