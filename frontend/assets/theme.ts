@@ -7,7 +7,7 @@ export interface Theme {
     shadow: string[];
     palette: {
         white: string;
-        glass: string;
+        glass: string[];
         black: string[];
         gray: string[];
         red: string[];
@@ -47,7 +47,7 @@ export const theme: Theme = {
     ],
     palette: {
         white: '#FFFFFF',
-        glass: 'rgba(245, 245, 245, 0.7)',
+        glass: ['rgba(255, 255, 255, 0.8)', 'rgba(245, 245, 245, 0.8)'],
         black: ['#222222', '#242424'],
         gray: ['#F9F9F9', '#EEEEEE', '#C4C4C4', '#999999', '#444444'],
         red: ['#DB162F'],

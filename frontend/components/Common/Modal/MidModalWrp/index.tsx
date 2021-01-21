@@ -9,10 +9,11 @@ import { modal } from '../index';
 const useStyles = createUseStyles((theme: Theme) => ({
     inner: {
         position: 'relative',
-        width: theme.rem(40),
+        width: '100%',
+        maxWidth: theme.rem(100),
         height: 'max-content',
         margin: theme.rem(2, 0),
-        padding: theme.rem(2),
+        padding: theme.rem(4),
         paddingTop: theme.rem(5),
         borderRadius: theme.radius,
         background: theme.palette.white,
@@ -39,7 +40,7 @@ interface IProps {
     children: JSX.Element[] | JSX.Element;
 }
 
-const SmallModalWrp = ({ children }: IProps): ReactElement => {
+const MidModalWrp = ({ children }: IProps): ReactElement => {
     const css = useStyles();
     return (
         <div className={css.inner}>
@@ -51,4 +52,4 @@ const SmallModalWrp = ({ children }: IProps): ReactElement => {
     );
 };
 
-export default SmallModalWrp;
+export default MidModalWrp;

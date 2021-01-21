@@ -22,8 +22,8 @@ const Meta = ({ title, description, keywords, icon }: IProps): ReactElement => (
             }
         />
         <meta name="keywords" content={`phoqer share goods services ad ${keywords}`} />
-        <title>{title || 'Phoqer'}</title>
-        <meta name="title" content={title || 'Phoqer'} />
+        <title>{title ? `${title} | Phoqer` : 'Phoqer'}</title>
+        <meta name="title" content={title ? `${title} | Phoqer` : 'Phoqer'} />
         <meta name="robots" content="index,follow" />
 
         <meta name="twitter:card" content="summary_large_image" />
@@ -36,7 +36,7 @@ const Meta = ({ title, description, keywords, icon }: IProps): ReactElement => (
         />
         <meta name="twitter:image:src" content={icon || config.host + '/about.jpg'} />
         <meta name="twitter:site" content="@Phoqer" />
-        <meta name="twitter:title" content={title || 'Phoqer'} />
+        <meta name="twitter:title" content={title ? `${title} | Phoqer` : 'Phoqer'} />
 
         <meta
             property="og:description"
@@ -47,7 +47,7 @@ const Meta = ({ title, description, keywords, icon }: IProps): ReactElement => (
         />
         <meta property="og:image" content={icon || config.host + '/about.jpg'} />
         <meta property="og:site_name" content="Phoqer" />
-        <meta property="og:title" content={title || 'Phoqer'} />
+        <meta property="og:title" content={title ? `${title} | Phoqer` : 'Phoqer'} />
         <meta property="og:type" content="website" />
         <meta property="og:url" content={config.host} />
 
