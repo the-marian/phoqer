@@ -14,7 +14,10 @@ class OfferImageSerializer(serializers.ModelSerializer):
             'url',
         ]
         extra_kwargs = {
-            'id': {'read_only': False, 'required': False}
+            'id': {
+                'read_only': False,
+                'required': False,
+            }
         }
 
 
@@ -57,7 +60,6 @@ class OfferListItemSerializer(BaseOfferSerializer):
 
 class OfferSerializer(BaseOfferSerializer):
     author = serializers.HiddenField(default=serializers.CurrentUserDefault())
-    id = serializers.IntegerField(required=False)
 
     class Meta:
         model = Offer

@@ -313,7 +313,7 @@ def test_offer_detail_view(api_client, db_test_data):
         'description': 'New Phone',
         'doc_needed': False,
         'extra_requirements': None,
-        'id': 36087098541470811203172639304561768044,
+        'id': '1b261f53-8e3b-4c14-abe6-5824c5d8b66c',
         'images': [],
         'is_deliverable': True,
         'is_favorite': False,
@@ -373,7 +373,7 @@ def test_offer_partial_update(
         'description': 'New Phone',
         'doc_needed': False,
         'extra_requirements': None,
-        'id': 36087098541470811203172639304561768044,
+        'id': '1b261f53-8e3b-4c14-abe6-5824c5d8b66c',
         'images': [],
         'is_deliverable': True,
         'is_favorite': False,
@@ -447,7 +447,7 @@ def test_create_offer_with_images(authed_api_client, sport_category):
     # since 'id' every time is different I delete it from response before assert
     # but firstly assure that such field is exist and its type is int
     assert 'id' in response
-    assert type(response.pop('id')) == int
+    assert type(response.pop('id')) == str
     # now perform assert...
     assert response == {
         'category': 'sport',
