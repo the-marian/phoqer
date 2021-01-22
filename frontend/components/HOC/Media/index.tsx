@@ -9,11 +9,6 @@ interface IProps {
 
 const MediaProvider = ({ children, width }: IProps): ReactElement => {
     const [media, setMedia] = useState<number>(width);
-    // useEffect(() => {
-    //     if (process.browser) {
-    //         setMedia(window.innerWidth);
-    //     }
-    // }, []);
 
     useEffect(() => {
         if (process.browser) {

@@ -101,24 +101,26 @@ const useStyles = createUseStyles((theme: Theme) => ({
 
         '& .DayPicker-Month': {
             width: '49%',
-            margin: theme.rem(0, 0, 0, -1),
+            margin: theme.rem(2, 0, 0, -1),
 
             '@media (max-width: 1100px)': {
                 width: '100%',
-                margin: theme.rem(0, 0, 0, -1),
+                margin: theme.rem(2, 0, 0, -1),
             },
         },
 
         '& .DayPicker-NavButton': {
             top: theme.rem(-0.5),
             right: theme.em(0.7),
-            width: theme.rem(3.5),
-            height: theme.rem(3.5),
-            backgroundSize: '22%',
+            width: theme.rem(5),
+            height: theme.rem(5),
+            backgroundColor: theme.palette.gray[1],
+            backgroundSize: '15%',
             backgroundPosition: 'center',
+            borderRadius: theme.radius,
 
             '&.DayPicker-NavButton--prev': {
-                marginRight: theme.rem(3.5),
+                marginRight: theme.rem(5.5),
             },
 
             '@media (max-width: 1100px)': {

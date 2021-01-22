@@ -48,7 +48,7 @@ const Requirements = (): ReactElement => {
                 <li>
                     <span>Залоговая сумма:</span>
                     <span className={css.dots} />
-                    <span>{offer?.deposit_val ? `${moneyFormat(offer?.deposit_val)}.00 грн` : 'Не указанно'}</span>
+                    <span>{offer?.deposit_val ? `${moneyFormat(offer?.deposit_val)}.00 грн` : 'Не указано'}</span>
                 </li>
                 <li>
                     <span>Минимальный срок аренды:</span>
@@ -60,7 +60,7 @@ const Requirements = (): ReactElement => {
                                   'дня',
                                   'дней',
                               ])}`
-                            : 'Не указанно'}
+                            : 'Не указано'}
                     </span>
                 </li>
                 <li>
@@ -73,7 +73,7 @@ const Requirements = (): ReactElement => {
                                   'дня',
                                   'дней',
                               ])}`
-                            : 'Не указанно'}
+                            : 'Не указано'}
                     </span>
                 </li>
             </ul>

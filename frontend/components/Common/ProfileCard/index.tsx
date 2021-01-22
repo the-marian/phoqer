@@ -100,7 +100,11 @@ const ProfileCard = ({ id, firstName, lastName, avatar = null, userLocation = nu
 
     return (
         <div className={css.wrp}>
-            <UserAvatar firstName={firstName} lastName={lastName} avatar={avatar} />
+            <Link href={routes.profile.single()} as={routes.profile.single(id)}>
+                <a>
+                    <UserAvatar firstName={firstName} lastName={lastName} avatar={avatar} />
+                </a>
+            </Link>
             <div className={css.content}>
                 <Link href={routes.profile.single()} as={routes.profile.single(id)}>
                     <a className={css.name}>{firstName + ' ' + lastName}</a>

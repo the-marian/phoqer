@@ -11,9 +11,13 @@ import { IOfferCard, IState } from '../../../../interfaces';
 const useStyles = createUseStyles((theme: Theme) => ({
     title: {
         margin: theme.rem(0, 0, 1),
-        fontSize: theme.rem(4),
+        fontSize: theme.rem(3),
         fontWeight: theme.text.weight[3],
-        lineHeight: 1,
+        lineHeight: 1.4,
+
+        '@media (max-width: 768px)': {
+            fontSize: theme.rem(2.5),
+        },
     },
     action: {
         display: 'flex',

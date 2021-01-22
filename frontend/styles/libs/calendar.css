@@ -163,8 +163,10 @@
 /* Default modifiers */
 
 .DayPicker-Day--today {
-    color: #D0021B;
-    font-weight: 700;
+    color: #085085;
+    font-weight: 600;
+    background: rgba(8,80,133,0.1);
+    border-radius: 0;
 }
 
 .DayPicker-Day--outside {

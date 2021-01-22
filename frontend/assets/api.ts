@@ -13,10 +13,7 @@ const api = {
         logout: (): Promise<AxiosResponse> => axios.post('/auth/token/logout/'),
     },
     categories: {
-        get: (): Promise<AxiosResponse<ICategories>> => {
-            console.log({ req_url: config.baseUrl[process.env.NODE_ENV] + '/categories/' });
-            return axios.get('/categories/');
-        },
+        get: (): Promise<AxiosResponse<ICategories>> => axios.get('/categories/'),
     },
     offers: {
         popular: {
