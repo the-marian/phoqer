@@ -10,7 +10,7 @@ import { wrapper } from '../../../redux/store';
 const Join = (): ReactElement => (
     <>
         <AuthRedirect reverse />
-        <Meta title="Join | Phoqer" />
+        <Meta title="Join" />
         <AuthContainer>
             <JoinForm />
         </AuthContainer>

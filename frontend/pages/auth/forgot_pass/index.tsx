@@ -10,7 +10,7 @@ import { wrapper } from '../../../redux/store';
 const ForgotPass = (): ReactElement => (
     <>
         <AuthRedirect reverse />
-        <Meta title="Reset password | Phoqer" />
+        <Meta title="Reset password" />
         <AuthContainer>
             <ForgotPassForm />
         </AuthContainer>

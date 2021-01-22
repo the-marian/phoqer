@@ -43,6 +43,10 @@ const useStyles = createUseStyles((theme: Theme) => ({
             overflow: 'hidden',
             textOverflow: 'ellipsis',
         },
+
+        '@media (max-width: 768px)': {
+            fontSize: theme.rem(1.6),
+        },
     },
     icon: {
         width: theme.rem(2.4),

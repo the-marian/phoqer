@@ -9,6 +9,10 @@ const useStyles = createUseStyles((theme: Theme) => ({
         display: 'flex',
         marginTop: theme.rem(2),
         marginLeft: theme.rem(-1.4),
+
+        '@media (max-width: 768px)': {
+            marginTop: theme.rem(1),
+        },
     },
     center: {
         justifyContent: 'center',
@@ -17,6 +21,10 @@ const useStyles = createUseStyles((theme: Theme) => ({
     title: {
         fontSize: theme.rem(1.2),
         fontWeight: theme.text.weight[3],
+
+        '@media (max-width: 768px)': {
+            fontSize: theme.rem(1.6),
+        },
     },
     link: {
         display: 'flex',
@@ -26,9 +34,15 @@ const useStyles = createUseStyles((theme: Theme) => ({
         width: theme.rem(4),
         marginRight: theme.rem(1.5),
         transition: theme.transitions[0],
+
         '&:hover': {
             transform: 'translateY(-0.2rem)',
             fill: theme.palette.primary[0],
+        },
+
+        '@media (max-width: 768px)': {
+            height: theme.rem(6),
+            width: theme.rem(6),
         },
     },
     margin: {
@@ -38,6 +52,11 @@ const useStyles = createUseStyles((theme: Theme) => ({
         height: theme.rem(1.4),
         width: theme.rem(1.4),
         fill: 'inherit',
+
+        '@media (max-width: 768px)': {
+            height: theme.rem(2),
+            width: theme.rem(2),
+        },
     },
 }));
 

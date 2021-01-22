@@ -52,9 +52,14 @@ const useStyles = createUseStyles((theme: Theme) => ({
     link: {
         fontSize: theme.rem(1.4),
         color: theme.palette.black[0],
+
         '&:hover': {
             textDecoration: 'underline',
             color: theme.palette.primary[0],
+        },
+
+        '@media (max-width: 768px)': {
+            fontSize: theme.rem(1.6),
         },
     },
     wrp: {
@@ -69,7 +74,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
     close: {
         marginLeft: theme.rem(2.5),
-        fontSize: theme.rem(1.4),
+        fontSize: theme.rem(1.6),
         color: theme.palette.primary[0],
         '&:hover': {
             textDecoration: 'underline',
@@ -115,12 +120,12 @@ const Filters = (): ReactElement => {
                 <div className={css.wrp}>
                     <h2 className={css.title}>Фильтры</h2>
                     <button type="button" className={css.close} onClick={handleClose}>
-                        {open ? 'Показать фильтры' : 'Скрыть фильтры'}
+                        {open ? 'Скрыть фильтры' : 'Показать фильтры'}
                     </button>
                 </div>
                 <hr />
 
-                {!open && (
+                {open && (
                     <form action="#" method="post" className={css.form} onSubmit={handleSubmit}>
                         <div className={css.formInner}>
                             <PriceFilter />

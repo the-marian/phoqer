@@ -8,8 +8,12 @@ const useStyles = createUseStyles((theme: Theme) => ({
     wrp: {
         display: 'flex',
         justifyContent: 'space-between',
-        alignItems: 'flex-end',
+        alignItems: 'center',
         marginBottom: theme.rem(2.5),
+
+        '@media (max-width: 768px)': {
+            fontSize: theme.rem(1.6),
+        },
     },
     title: {
         fontSize: theme.rem(2),

@@ -73,7 +73,7 @@ const NewOffer = (): ReactElement => {
     return (
         <>
             <AuthRedirect />
-            <Meta title="New product | Phoqer" />
+            <Meta title="New product" />
             <Main>
                 <Container>
                     <h1 className={css.title}>#Делитесь с другими и зарабатывайте</h1>

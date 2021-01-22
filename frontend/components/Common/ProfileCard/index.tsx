@@ -22,16 +22,16 @@ const useStyles = createUseStyles((theme: Theme) => ({
         width: 'calc(100% - 10rem)',
     },
     name: {
-        fontSize: theme.rem(1.8),
+        fontSize: theme.rem(2),
         fontWeight: theme.text.weight[3],
 
         '@media (max-width: 768px)': {
-            fontSize: theme.rem(2),
+            fontSize: theme.rem(2.2),
         },
     },
     info: {
         marginBottom: theme.rem(2),
-        color: theme.palette.gray[3],
+        color: theme.palette.gray[4],
         fontSize: theme.rem(1.2),
 
         '@media (max-width: 768px)': {

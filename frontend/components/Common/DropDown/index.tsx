@@ -27,6 +27,10 @@ const useStyles = createUseStyles((theme: Theme) => ({
         borderRadius: theme.radius,
         cursor: 'pointer',
         fontSize: theme.rem(1.4),
+
+        '@media (max-width: 768px)': {
+            fontSize: theme.rem(1.6),
+        },
     },
     text: {
         width: '100%',
@@ -53,6 +57,10 @@ const useStyles = createUseStyles((theme: Theme) => ({
         border: theme.border(0.1, theme.palette.gray[3]),
         fontSize: theme.rem(1.4),
         overflowY: 'auto',
+
+        '@media (max-width: 768px)': {
+            fontSize: theme.rem(1.6),
+        },
     },
     item: {
         cursor: 'pointer',
@@ -87,8 +95,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         background: theme.palette.white,
     },
     icon: {
-        marginTop: theme.em(0.4),
-        marginRight: theme.rem(1.5),
+        marginRight: theme.rem(0.6),
         fontSize: theme.em(0.7),
 
         '& svg': {

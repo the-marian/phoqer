@@ -10,7 +10,7 @@ import { wrapper } from '../../../redux/store';
 const Login = (): ReactElement => (
     <>
         <AuthRedirect reverse />
-        <Meta title="Login | Phoqer" />
+        <Meta title="Login" />
         <AuthContainer>
             <LoginForm />
         </AuthContainer>

@@ -35,6 +35,10 @@ const useStyles = createUseStyles((theme: Theme) => ({
         fontSize: theme.rem(1.4),
         borderRadius: theme.radius,
         border: 'none',
+
+        '@media (max-width: 768px)': {
+            fontSize: theme.rem(1.6),
+        },
     },
     input: {
         display: 'block',

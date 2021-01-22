@@ -46,6 +46,10 @@ const useStyles = createUseStyles((theme: Theme) => ({
         fontSize: theme.rem(1.4),
         textAlign: 'center',
 
+        '@media (max-width: 768px)': {
+            fontSize: theme.rem(1.6),
+        },
+
         '@media (max-width: 500px)': {
             margin: theme.rem(2, 0),
         },

@@ -158,7 +158,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
     gray: {
         filter: 'grayscale(100%)',
-        color: theme.palette.gray[2],
+        color: theme.palette.gray[3],
     },
 
     // right

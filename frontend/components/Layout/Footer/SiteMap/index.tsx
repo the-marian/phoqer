@@ -43,7 +43,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
 
         '@media (max-width: 640px)': {
             width: '100%',
-            marginBottom: theme.rem(5),
+            marginBottom: theme.rem(9),
         },
     },
     item: {
@@ -61,13 +61,18 @@ const useStyles = createUseStyles((theme: Theme) => ({
         fontWeight: theme.text.weight[3],
         color: theme.palette.black[0],
         lineHeight: 1,
+
         '&:hover': {
             textDecoration: 'underline',
             color: theme.palette.primary[0],
         },
 
+        '@media (max-width: 768px)': {
+            fontSize: theme.rem(1.6),
+        },
+
         '@media (max-width: 640px)': {
-            margin: theme.rem(1, 0),
+            margin: theme.rem(2, 0),
         },
     },
 }));

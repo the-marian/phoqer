@@ -13,7 +13,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         position: 'fixed',
         top: theme.rem(10),
         right: theme.rem(1),
-        zIndex: 100,
+        zIndex: 100001,
         padding: theme.rem(2),
         borderRadius: theme.radius,
         background: theme.palette.white,
@@ -27,7 +27,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         bottom: 0,
         backdropFilter: 'blur(8px)',
         background: theme.palette.modal,
-        zIndex: 99,
+        zIndex: 100000,
     },
     btn: {
         display: 'block',
@@ -36,8 +36,14 @@ const useStyles = createUseStyles((theme: Theme) => ({
         fontWeight: theme.text.weight[3],
         fontSize: theme.rem(1.3),
         textAlign: 'left',
+
         '&:hover': {
             color: theme.palette.primary[0],
+        },
+
+        '@media (max-width: 768px)': {
+            fontWeight: theme.text.weight[2],
+            fontSize: theme.rem(1.8),
         },
     },
 }));
