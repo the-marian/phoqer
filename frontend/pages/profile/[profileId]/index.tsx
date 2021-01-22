@@ -48,7 +48,7 @@ const PublicProfilePage = (): ReactElement => {
                 <Container>
                     <div className={css.wrp}>
                         <div className={css.left}>
-                            <ProfileCard firstName="Влад" lastName="Василенко" />
+                            <ProfileCard id={1} firstName="Влад" lastName="Василенко" />
                         </div>
                         <div className={css.right}>
                             <ProfileInfo />

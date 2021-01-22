@@ -1,26 +1,25 @@
-import { faHeart } from '@fortawesome/free-regular-svg-icons';
-import { faEye, faHeart as faFillHeart } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { GetServerSidePropsContext } from 'next';
 import React, { ReactElement } from 'react';
+import DayPicker from 'react-day-picker';
 import { createUseStyles } from 'react-jss';
 import { useSelector } from 'react-redux';
 import { END } from 'redux-saga';
 
-import { declOfNum, findCategory, findSubCategory, moneyFormat } from '../../../assets/helpers';
+import { findCategory, findSubCategory } from '../../../assets/helpers';
 import routes from '../../../assets/routes';
 import { Theme } from '../../../assets/theme';
-import LoginForm from '../../../components/Common/Auth/LoginForm';
 import Breadcrumbs from '../../../components/Common/Breadcrumbs';
 import Meta from '../../../components/Common/Meta';
 import { modal } from '../../../components/Common/Modal';
 import FullPageModal from '../../../components/Common/Modal/FullPageModal';
-import SmallModalWrp from '../../../components/Common/Modal/SmallModalWrp';
-import ProfileCard from '../../../components/Common/ProfileCard';
 import Container from '../../../components/Layout/Container';
 import Main from '../../../components/Layout/Main';
+import AsideElement from '../../../components/Pages/Offers/AsideElement';
+import OfferHead from '../../../components/Pages/Offers/OfferHead';
+import Price from '../../../components/Pages/Offers/Price';
+import Requirements from '../../../components/Pages/Offers/Requirements';
 import OfferSlider from '../../../components/Pages/Offers/Slider';
-import useAuth from '../../../hooks/auth.hook';
+import useMedia from '../../../hooks/media.hook';
 import { ICategories, IOfferCard, IState, IStore } from '../../../interfaces';
 import { wrapper } from '../../../redux/store';
 import types from '../../../redux/types';
@@ -60,68 +59,16 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
     main: {
         width: 'calc(100% - 40rem)',
-        paddingRight: theme.rem(10),
+        marginRight: theme.rem(10),
 
         '@media (max-width: 1300px)': {
-            paddingRight: theme.rem(4),
+            marginRight: theme.rem(4),
         },
 
         '@media (max-width: 768px)': {
             width: '100%',
             marginBottom: theme.rem(6),
-            paddingRight: 0,
-        },
-    },
-    title: {
-        margin: theme.rem(0, 0, 1),
-        fontSize: theme.rem(4),
-        fontWeight: theme.text.weight[3],
-        lineHeight: 1,
-    },
-    action: {
-        display: 'flex',
-        alignItems: 'center',
-
-        '@media (max-width: 768px)': {
-            fontSize: theme.rem(1.6),
-        },
-    },
-    favorite: {
-        margin: theme.rem(0, 2),
-        padding: theme.rem(1, 1.5),
-        color: theme.palette.primary[0],
-        borderRadius: theme.radius,
-
-        '&:hover': {
-            background: theme.palette.gray[1],
-        },
-        '& svg': {
-            height: theme.rem(1.4),
-            width: theme.rem(1.4),
-
-            '@media (max-width: 768px)': {
-                height: theme.rem(1.8),
-                width: theme.rem(1.8),
-            },
-        },
-    },
-    eye: {
-        margin: theme.rem(0, 0, 0, 6),
-        '& span': {
-            margin: theme.rem(0, 1),
-        },
-        '@media (max-width: 768px)': {
-            margin: theme.rem(0, 0, 0, 3),
-        },
-
-        '& svg': {
-            height: theme.rem(1.4),
-            width: theme.rem(1.4),
-
-            '@media (max-width: 768px)': {
-                height: theme.rem(2),
-                width: theme.rem(2),
-            },
+            marginRight: 0,
         },
     },
     subtitle: {
@@ -134,89 +81,57 @@ const useStyles = createUseStyles((theme: Theme) => ({
             fontSize: theme.rem(2.5),
         },
     },
-    req: {
-        '& li': {
+    calendar: {
+        width: '100%',
+        fontSize: theme.rem(1.8),
+
+        '@media (max-width: 1210px)': {
+            fontSize: theme.rem(1.5),
+        },
+
+        '@media (max-width: 1100px)': {
+            width: '100%',
+            fontSize: theme.rem(1.8),
+        },
+
+        '& .DayPicker-Months': {
             display: 'flex',
             justifyContent: 'space-between',
-            alignItems: 'center',
-            margin: theme.rem(2, 0),
         },
-    },
-    dots: {
-        flexGrow: 2,
-        margin: theme.rem(0, 2),
-        borderBottom: '0.1rem dashed #aaa',
-    },
-    emoji: {
-        '& li': {
-            display: 'flex',
-            alignItems: 'center',
-            margin: theme.rem(2, 0),
-        },
-        '& img': {
-            height: theme.rem(3),
-            width: theme.rem(3),
-            marginRight: theme.rem(2),
-        },
-    },
-    gray: {
-        filter: 'grayscale(100%)',
-        color: theme.palette.gray[3],
-    },
 
-    // right
-    aside: {
-        position: 'relative',
-        width: theme.rem(40),
-        marginTop: theme.rem(1),
+        '& .DayPicker-Month': {
+            width: '49%',
+            margin: theme.rem(0, 0, 0, -1),
 
-        '@media (max-width: 768px)': {
-            width: '100%',
+            '@media (max-width: 1100px)': {
+                width: '100%',
+                margin: theme.rem(0, 0, 0, -1),
+            },
         },
-    },
-    sticky: {
-        position: 'sticky',
-        top: theme.rem(10),
-        left: 0,
 
-        '@media (max-width: 768px)': {
-            position: 'static',
+        '& .DayPicker-NavButton': {
+            top: theme.rem(-0.5),
+            right: theme.em(0.7),
+            width: theme.rem(3.5),
+            height: theme.rem(3.5),
+            backgroundSize: '22%',
+            backgroundPosition: 'center',
+
+            '&.DayPicker-NavButton--prev': {
+                marginRight: theme.rem(3.5),
+            },
+
+            '@media (max-width: 1100px)': {
+                right: theme.em(1.5),
+            },
         },
-    },
-    priceTitle: {
-        margin: theme.rem(4, 0, 0),
-        fontSize: theme.rem(2),
-        fontWeight: theme.text.weight[2],
-    },
-    price: {
-        fontSize: theme.rem(1.6),
-        fontWeight: theme.text.weight[2],
-        color: theme.palette.black[0],
-    },
-    num: {
-        fontSize: theme.rem(3.5),
-        fontWeight: theme.text.weight[5],
-        color: theme.palette.primary[0],
-    },
-    point: {
-        fontSize: theme.rem(2),
-        fontWeight: theme.text.weight[5],
-        color: theme.palette.primary[0],
-    },
-    buy: {
-        display: 'block',
-        marginTop: theme.rem(2),
-        padding: theme.rem(1.5, 4),
-        borderRadius: theme.radius,
-        background: theme.palette.green[0],
-        fontSize: theme.rem(1.8),
-        color: theme.palette.white,
     },
 }));
 
 const SingleOfferPage = (): ReactElement => {
     const css = useStyles();
-    const auth = useAuth();
+    const priceMedia = useMedia(768);
+    const calendarMedia = useMedia(1100);
 
     const offer = useSelector<IState, IOfferCard>(state => state.offers.single);
     const categories = useSelector<IState, ICategories[]>(state => state.categories);
@@ -236,19 +151,6 @@ const SingleOfferPage = (): ReactElement => {
                 <img className={css.modal} draggable={false} src={offer.cover_image} alt="" />
             </FullPageModal>,
         );
-    };
-
-    const handleRent = (): void => {
-        if (!auth.auth_token) {
-            modal.open(
-                <SmallModalWrp>
-                    <LoginForm />
-                </SmallModalWrp>,
-            );
-            return;
-        }
-
-        alert('fuck you!');
     };
 
     return (
@@ -278,79 +180,14 @@ const SingleOfferPage = (): ReactElement => {
 
                     <div className={css.flex}>
                         <div className={css.main}>
-                            <h1 className={css.title}>{offer?.title}</h1>
-                            <div className={css.action}>
-                                <p>Опубликовано: {offer?.pub_date}</p>
-                                <p className={css.eye}>
-                                    <FontAwesomeIcon icon={faEye} />
-                                    <span>{offer?.views}</span>
-                                </p>
-                                <button className={css.favorite} type="button">
-                                    {offer?.is_favorite ? (
-                                        <FontAwesomeIcon icon={faFillHeart} />
-                                    ) : (
-                                        <FontAwesomeIcon icon={faHeart} />
-                                    )}
-                                </button>
-                            </div>
+                            <OfferHead />
 
+                            {!priceMedia && <Price />}
                             <h2 className={css.subtitle}>Описание</h2>
                             <p dangerouslySetInnerHTML={{ __html: desc }} />
 
                             <h2 className={css.subtitle}>Требования</h2>
-                            <ul className={css.req}>
-                                <li>
-                                    <span>Залоговая сумма:</span>
-                                    <span className={css.dots} />
-                                    <span>
-                                        {offer?.deposit_val ? `${moneyFormat(offer?.deposit_val)}.00 грн` : 'Не указанно'}
-                                    </span>
-                                </li>
-                                <li>
-                                    <span>Минимальный срок аренды:</span>
-                                    <span className={css.dots} />
-                                    <span>
-                                        {offer?.min_rent_period
-                                            ? `${moneyFormat(offer?.min_rent_period)} ${declOfNum(offer?.min_rent_period, [
-                                                  'день',
-                                                  'дня',
-                                                  'дней',
-                                              ])}`
-                                            : 'Не указанно'}
-                                    </span>
-                                </li>
-                                <li>
-                                    <span>Максимальный срок аренды:</span>
-                                    <span className={css.dots} />
-                                    <span>
-                                        {offer?.max_rent_period
-                                            ? `${moneyFormat(offer?.max_rent_period)} ${declOfNum(offer?.max_rent_period, [
-                                                  'день',
-                                                  'дня',
-                                                  'дней',
-                                              ])}`
-                                            : 'Не указанно'}
-                                    </span>
-                                </li>
-                            </ul>
-                            <ul className={css.emoji}>
-                                <li className={offer?.is_deliverable ? null : css.gray}>
-                                    <img src="/emoji/delivery.png" alt="" />
-                                    <span>
-                                        {offer?.is_deliverable
-                                            ? 'Владелец осуществит доставку товара'
-                                            : 'Владелец НЕ осуществляет доставку товара'}
-                                    </span>
-                                </li>
-                                <li className={offer?.doc_needed ? null : css.gray}>
-                                    <img src="/emoji/documents.png" alt="" />
-                                    <span>
-                                        {offer?.doc_needed
-                                            ? 'Необходимо предоставить документы в качестве залога'
-                                            : 'НЕ нужно оставлять документы в качестве залога'}
-                                    </span>
-                                </li>
-                            </ul>
+                            <Requirements />
 
                             {other && (
                                 <>
@@ -358,22 +195,18 @@ const SingleOfferPage = (): ReactElement => {
                                     <p dangerouslySetInnerHTML={{ __html: other }} />
                                 </>
                             )}
+
+                            <h2 className={css.subtitle}>Наличие</h2>
+                            <DayPicker
+                                className={css.calendar}
+                                fromMonth={new Date()}
+                                pagedNavigation
+                                fixedWeeks
+                                numberOfMonths={calendarMedia ? 2 : 1}
+                            />
                         </div>
 
-                        <aside className={css.aside}>
-                            <div className={css.sticky}>
-                                <ProfileCard firstName="Влад" lastName="Василенко" />
-
-                                <h3 className={css.priceTitle}>Цена:</h3>
-                                <p className={css.price}>
-                                    <span className={css.num}>{moneyFormat(offer?.price)}</span>
-                                    <span className={css.point}>.00</span> грн/день
-                                </p>
-                                <button className={css.buy} onClick={handleRent} type="button">
-                                    Арендовать
-                                </button>
-                            </div>
-                        </aside>
+                        <AsideElement />
                     </div>
                 </Container>
             </Main>

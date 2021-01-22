@@ -12,10 +12,6 @@ const useStyles = createUseStyles((theme: Theme) => ({
         width: '100vw',
         height: '100vh',
         background: theme.palette.black[0],
-
-        '@media (max-width: 500px)': {
-            width: '90%',
-        },
         cursor: 'zoom-out',
     },
     button: {

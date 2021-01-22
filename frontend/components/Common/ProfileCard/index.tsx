@@ -1,6 +1,8 @@
+import Link from 'next/link';
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
+import routes from '../../../assets/routes';
 import { Theme } from '../../../assets/theme';
 import useAuth from '../../../hooks/auth.hook';
 import LoginForm from '../Auth/LoginForm';
@@ -32,8 +34,13 @@ const useStyles = createUseStyles((theme: Theme) => ({
         },
     },
     name: {
+        color: theme.palette.black[0],
         fontSize: theme.rem(2),
         fontWeight: theme.text.weight[3],
+
+        '&:hover': {
+            textDecoration: 'underline',
+        },
 
         '@media (max-width: 768px)': {
             fontSize: theme.rem(2.2),
@@ -67,13 +74,14 @@ const useStyles = createUseStyles((theme: Theme) => ({
 }));
 
 interface IProps {
+    id: string | number;
     firstName: string;
     lastName: string;
     avatar?: string | null;
     userLocation?: string | null;
 }
 
-const ProfileCard = ({ firstName, lastName, avatar = null, userLocation = null }: IProps): ReactElement => {
+const ProfileCard = ({ id, firstName, lastName, avatar = null, userLocation = null }: IProps): ReactElement => {
     const css = useStyles();
     const auth = useAuth();
 
@@ -94,7 +102,9 @@ const ProfileCard = ({ firstName, lastName, avatar = null, userLocation = null }
         <div className={css.wrp}>
             <UserAvatar firstName={firstName} lastName={lastName} avatar={avatar} />
             <div className={css.content}>
-                <div className={css.name}>{firstName + ' ' + lastName}</div>
+                <Link href={routes.profile.single()} as={routes.profile.single(id)}>
+                    <a className={css.name}>{firstName + ' ' + lastName}</a>
+                </Link>
                 <div className={css.info}>
                     <p>Был онлайн 2 часа назад</p>
                 </div>
