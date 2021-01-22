@@ -23,6 +23,8 @@ const useStyles = createUseStyles((theme: Theme) => ({
         },
     },
     title: {
+        fontSize: theme.rem(1.8),
+        fontWeight: theme.text.weight[3],
         maxWidth: theme.rem(40),
         margin: '2rem auto',
         color: theme.palette.green,
@@ -30,11 +32,11 @@ const useStyles = createUseStyles((theme: Theme) => ({
     text: {
         maxWidth: theme.rem(40),
         margin: '0 auto',
-        fontSize: theme.rem(1.2),
+        fontSize: theme.rem(1.6),
     },
     link: {
         margin: theme.rem(3),
-        fontSize: theme.rem(1.2),
+        fontSize: theme.rem(1.6),
         color: theme.palette.primary[0],
         '&:hover': {
             textDecoration: 'underline',

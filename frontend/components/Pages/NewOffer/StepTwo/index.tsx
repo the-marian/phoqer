@@ -13,6 +13,8 @@ import { modal } from '../../../Common/Modal';
 import TextareaResize from '../../../Common/TextareaResize';
 import SaveModal from '../SaveModal';
 import useStyles from './StepTwo.styles';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSave, faTrashAlt } from "@fortawesome/free-regular-svg-icons";
 
 interface IError {
     description?: string;
@@ -227,10 +229,12 @@ const StepTwo = (): ReactElement => {
 
             <div className={css.saveWrp}>
                 <button type="button" className={css.save} onClick={handleSave}>
-                    Сохранить и прервать заполение
+                    <FontAwesomeIcon icon={faSave} />
+                    <span>Сохранить и прервать заполение</span>
                 </button>
                 <button type="button" className={css.btn} onClick={handleClear}>
-                    Очистить форму
+                    <FontAwesomeIcon icon={faTrashAlt} />
+                    <span>Очистить</span>
                 </button>
             </div>
 

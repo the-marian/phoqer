@@ -80,14 +80,20 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
     save: {
         height: theme.rem(6),
-        padding: theme.rem(1, 4),
+        padding: theme.rem(1, 2),
         background: theme.palette.white,
         fontSize: theme.rem(1.4),
         color: theme.palette.black,
         borderRadius: theme.radius,
 
+        '& svg': {
+            width: theme.rem(1.6),
+            height: theme.rem(1.6),
+            marginRight: theme.rem(1),
+        },
+
         '@media (max-width: 470px)': {
-            padding: theme.rem(1.6, 4),
+            padding: theme.rem(1.6, 2),
         },
     },
     btnWrp: {
@@ -115,16 +121,22 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
     btn: {
         height: theme.rem(6),
-        padding: theme.rem(1, 4),
+        padding: theme.rem(1, 2),
         marginLeft: theme.rem(2),
         background: theme.palette.white,
         fontSize: theme.rem(1.4),
         color: theme.palette.black,
         borderRadius: theme.radius,
 
+        '& svg': {
+            width: theme.rem(1.6),
+            height: theme.rem(1.6),
+            marginRight: theme.rem(1),
+        },
+
         '@media (max-width: 470px)': {
             margin: theme.rem(1.6, 0, 0),
-            padding: theme.rem(1.6, 4),
+            padding: theme.rem(1.6, 2),
         },
     },
     errors: {
