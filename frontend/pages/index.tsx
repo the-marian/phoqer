@@ -29,7 +29,7 @@ const Index = (): ReactElement => (
     </>
 );
 
-export const getStaticProps = wrapper.getStaticProps(
+export const getInitialProps = wrapper.getStaticProps(
     async ({ store }: { store: IStore }): Promise<void> => {
         store.dispatch({ type: types.GET_CATEGORIES_START });
         store.dispatch({ type: types.GET_POPULAR_OFFERS_START });
