@@ -4,6 +4,7 @@ import App, { AppProps } from 'next/app';
 import Router, { useRouter } from 'next/router';
 import React, { ReactElement, useEffect } from 'react';
 import { ThemeProvider } from 'react-jss';
+import { useDispatch } from 'react-redux';
 
 import { logger, parseCookie } from '../assets/helpers';
 import interceptors from '../assets/interceptors';
@@ -17,8 +18,9 @@ import { wrapper } from '../redux/store';
 
 const MyApp = ({ Component, pageProps, width, auth }: AppProps & { width: number; auth: IAuth }): ReactElement => {
     const history = useRouter();
+    const dispatch = useDispatch();
 
-    interceptors({ history });
+    interceptors({ history, dispatch });
     logger();
 
     useEffect(() => {

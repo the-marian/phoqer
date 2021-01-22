@@ -1,9 +1,11 @@
 import axios from 'axios';
 import { NextRouter } from 'next/router';
+import { Dispatch } from 'redux';
 
+import types from '../redux/types';
 import routes from './routes';
 
-const interceptors = ({ history }: { history: NextRouter }): void => {
+const interceptors = ({ history, dispatch }: { history: NextRouter; dispatch: Dispatch }): void => {
     axios.interceptors.request.use(
         config => config,
         error => Promise.reject(error),
@@ -19,6 +21,7 @@ const interceptors = ({ history }: { history: NextRouter }): void => {
         },
         error => {
             if (error?.response?.status === 401) delete axios.defaults.headers.common.Authorization;
+            dispatch({ type: types.LOGOUT_SUCCESS });
             return Promise.reject(error);
         },
     );

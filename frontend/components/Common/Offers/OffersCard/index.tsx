@@ -63,7 +63,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
     title: {
         margin: theme.rem(1, 0),
-        fontSize: theme.rem(1.4),
+        fontSize: theme.rem(1.5),
         fontWeight: theme.text.weight[3],
     },
     desc: {

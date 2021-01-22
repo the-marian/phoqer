@@ -42,14 +42,15 @@ const useStyles = createUseStyles((theme: Theme) => ({
 }));
 
 interface IProps {
+    height?: number;
     value: string | number;
     name: string;
     placeholder: string;
-    className: string | number;
+    className?: string;
     onChange: (event: ChangeEvent<HTMLTextAreaElement>) => void;
 }
 
-const TextareaResize = ({ value, onChange, className, name, placeholder }: IProps): ReactElement => {
+const TextareaResize = ({ value, onChange, className, name, placeholder, height = 60 }: IProps): ReactElement => {
     const css = useStyles();
     const [big, useBig] = useState(false);
 
@@ -65,7 +66,7 @@ const TextareaResize = ({ value, onChange, className, name, placeholder }: IProp
                 className={clsx(css.textarea, className)}
                 name={name}
                 placeholder={placeholder}
-                style={{ height: big ? '55rem' : '15rem' }}
+                style={{ height: big ? `${height}rem` : '8rem' }}
             />
             <button className={css.resize} type="button" onClick={handleClick}>
                 {big ? <FontAwesomeIcon icon={faCompressArrowsAlt} /> : <FontAwesomeIcon icon={faExpandArrowsAlt} />}

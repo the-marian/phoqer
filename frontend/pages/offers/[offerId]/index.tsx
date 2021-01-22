@@ -15,8 +15,10 @@ import FullPageModal from '../../../components/Common/Modal/FullPageModal';
 import Container from '../../../components/Layout/Container';
 import Main from '../../../components/Layout/Main';
 import AsideElement from '../../../components/Pages/Offers/AsideElement';
+import Comments from '../../../components/Pages/Offers/Comments';
 import OfferHead from '../../../components/Pages/Offers/OfferHead';
 import Price from '../../../components/Pages/Offers/Price';
+import RelatedOffers from '../../../components/Pages/Offers/RelatedOffers';
 import Requirements from '../../../components/Pages/Offers/Requirements';
 import OfferSlider from '../../../components/Pages/Offers/Slider';
 import useMedia from '../../../hooks/media.hook';
@@ -94,6 +96,10 @@ const useStyles = createUseStyles((theme: Theme) => ({
             fontSize: theme.rem(1.8),
         },
 
+        '& .DayPicker-wrapper': {
+            outline: 'none',
+        },
+
         '& .DayPicker-Months': {
             display: 'flex',
             justifyContent: 'space-between',
@@ -110,9 +116,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
         },
 
         '& .DayPicker-NavButton': {
-            top: theme.rem(-0.5),
+            top: theme.rem(-0.3),
             right: theme.em(0.7),
-            width: theme.rem(5),
+            width: theme.rem(6.5),
             height: theme.rem(5),
             backgroundColor: theme.palette.gray[1],
             backgroundSize: '15%',
@@ -120,11 +126,11 @@ const useStyles = createUseStyles((theme: Theme) => ({
             borderRadius: theme.radius,
 
             '&.DayPicker-NavButton--prev': {
-                marginRight: theme.rem(5.5),
+                marginRight: theme.rem(7.5),
             },
 
             '@media (max-width: 1100px)': {
-                right: theme.em(1.5),
+                right: theme.em(0.5),
             },
         },
     },
@@ -206,10 +212,15 @@ const SingleOfferPage = (): ReactElement => {
                                 fixedWeeks
                                 numberOfMonths={calendarMedia ? 2 : 1}
                             />
+
+                            <h2 className={css.subtitle}>Комментарии</h2>
+                            <Comments />
                         </div>
 
                         <AsideElement />
                     </div>
+
+                    <RelatedOffers />
                 </Container>
             </Main>
         </>
@@ -221,6 +232,7 @@ export const getServerSideProps = wrapper.getServerSideProps(
         if (!ctx.query?.offerId) return null;
 
         store.dispatch({ type: types.GET_CATEGORIES_START });
+        store.dispatch({ type: types.GET_POPULAR_OFFERS_START });
         store.dispatch({ type: types.GET_SINGLE_OFFER_START, payload: ctx.query?.offerId });
         store.dispatch(END);
         await store.sagaTask.toPromise();

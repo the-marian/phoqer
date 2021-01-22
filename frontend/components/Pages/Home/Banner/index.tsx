@@ -13,7 +13,7 @@ import SmallModalWrp from '../../../Common/Modal/SmallModalWrp';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     root: {
-        margin: theme.rem(14, 0),
+        margin: theme.rem(8, 0, 6),
         padding: theme.rem(6),
         borderRadius: theme.radius,
         background: theme.palette.soft[0],
@@ -37,11 +37,12 @@ const useStyles = createUseStyles((theme: Theme) => ({
         display: 'block',
         objectFit: 'contain',
         width: theme.rem(10),
-        height: 'auto',
+        height: theme.rem(10),
         margin: theme.rem(0, 2, 2, 0),
 
         '@media (max-width: 650px)': {
-            width: theme.rem(4.5),
+            width: theme.rem(6.5),
+            height: theme.rem(7),
         },
     },
     link: {

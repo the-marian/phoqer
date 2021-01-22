@@ -48,7 +48,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
     textarea: {
         width: '100%',
-        height: theme.rem(15),
+        height: theme.rem(10),
         padding: theme.rem(2),
     },
     resize: {

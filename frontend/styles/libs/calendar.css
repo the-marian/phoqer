@@ -166,7 +166,7 @@
     color: #085085;
     font-weight: 600;
     background: rgba(8,80,133,0.1);
-    border-radius: 0;
+    border-radius: 0.6rem;
 }
 
 .DayPicker-Day--outside {

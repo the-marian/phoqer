@@ -1,3 +1,5 @@
+import { faSave, faTrashAlt } from '@fortawesome/free-regular-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import clsx from 'clsx';
 import { useRouter } from 'next/router';
 import React, { ChangeEvent, FormEvent, ReactElement, useState } from 'react';
@@ -13,8 +15,6 @@ import { modal } from '../../../Common/Modal';
 import TextareaResize from '../../../Common/TextareaResize';
 import SaveModal from '../SaveModal';
 import useStyles from './StepTwo.styles';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSave, faTrashAlt } from "@fortawesome/free-regular-svg-icons";
 
 interface IError {
     description?: string;
