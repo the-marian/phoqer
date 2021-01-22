@@ -26,7 +26,7 @@ const Favorite = (): ReactElement => {
     );
 };
 
-export const getInitialProps = wrapper.getStaticProps(
+export const getServerSideProps = wrapper.getServerSideProps(
     async ({ store }: { store: IStore }): Promise<void> => {
         store.dispatch({ type: types.GET_POPULAR_OFFERS_START });
         store.dispatch(END);

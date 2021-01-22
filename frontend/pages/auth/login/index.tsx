@@ -17,6 +17,6 @@ const Login = (): ReactElement => (
     </>
 );
 
-export const getInitialProps = wrapper.getServerSideProps(serverRedirect(null, null, true));
+export const getServerSideProps = wrapper.getServerSideProps(serverRedirect(null, null, true));
 
 export default Login;

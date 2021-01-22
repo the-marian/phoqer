@@ -93,6 +93,6 @@ const NewOffer = (): ReactElement => {
     );
 };
 
-export const getInitialProps = wrapper.getServerSideProps(serverRedirect());
+export const getServerSideProps = wrapper.getServerSideProps(serverRedirect());
 
 export default NewOffer;
