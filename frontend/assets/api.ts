@@ -4,7 +4,7 @@ import { ICategories, IOffers, Login } from '../interfaces';
 import { IBody } from '../redux/offers/new_offer/saga';
 import config from './config';
 
-axios.defaults.baseURL = config.baseUrl;
+axios.defaults.baseURL = config.baseUrl[process.env.NODE_ENV];
 
 const api = {
     auth: {

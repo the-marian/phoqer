@@ -1,3 +1,5 @@
+import { faSave, faTrashAlt } from "@fortawesome/free-regular-svg-icons";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import clsx from 'clsx';
 import { useRouter } from 'next/router';
 import React, { ChangeEvent, FormEvent, ReactElement, useEffect, useState } from 'react';
@@ -185,10 +187,12 @@ const StepThree = (): ReactElement => {
 
             <div className={css.saveWrp}>
                 <button type="button" className={css.save} onClick={handleSave}>
-                    Сохранить и прервать заполение
+                    <FontAwesomeIcon icon={faSave} />
+                    <span>Сохранить и прервать заполение</span>
                 </button>
                 <button type="button" className={css.btn} onClick={handleClear}>
-                    Очистить
+                    <FontAwesomeIcon icon={faTrashAlt} />
+                    <span>Очистить</span>
                 </button>
             </div>
 

@@ -10,14 +10,17 @@ import { END } from 'redux-saga';
 import { declOfNum, findCategory, findSubCategory, moneyFormat } from '../../../assets/helpers';
 import routes from '../../../assets/routes';
 import { Theme } from '../../../assets/theme';
+import LoginForm from '../../../components/Common/Auth/LoginForm';
 import Breadcrumbs from '../../../components/Common/Breadcrumbs';
 import Meta from '../../../components/Common/Meta';
 import { modal } from '../../../components/Common/Modal';
 import FullPageModal from '../../../components/Common/Modal/FullPageModal';
+import SmallModalWrp from '../../../components/Common/Modal/SmallModalWrp';
 import ProfileCard from '../../../components/Common/ProfileCard';
 import Container from '../../../components/Layout/Container';
 import Main from '../../../components/Layout/Main';
 import OfferSlider from '../../../components/Pages/Offers/Slider';
+import useAuth from '../../../hooks/auth.hook';
 import { ICategories, IOfferCard, IState, IStore } from '../../../interfaces';
 import { wrapper } from '../../../redux/store';
 import types from '../../../redux/types';
@@ -47,7 +50,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     flex: {
         display: 'flex',
         marginTop: theme.rem(6),
-        fontSize: theme.rem(1.3),
+        fontSize: theme.rem(1.6),
 
         '@media (max-width: 768px)': {
             flexDirection: 'column',
@@ -169,13 +172,16 @@ const useStyles = createUseStyles((theme: Theme) => ({
 
         '@media (max-width: 768px)': {
             width: '100%',
-            maxWidth: theme.rem(40),
         },
     },
     sticky: {
         position: 'sticky',
         top: theme.rem(10),
         left: 0,
+
+        '@media (max-width: 768px)': {
+            position: 'static',
+        },
     },
     priceTitle: {
         margin: theme.rem(4, 0, 0),
@@ -210,6 +216,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
 
 const SingleOfferPage = (): ReactElement => {
     const css = useStyles();
+    const auth = useAuth();
 
     const offer = useSelector<IState, IOfferCard>(state => state.offers.single);
     const categories = useSelector<IState, ICategories[]>(state => state.categories);
@@ -229,6 +236,19 @@ const SingleOfferPage = (): ReactElement => {
                 <img className={css.modal} draggable={false} src={offer.cover_image} alt="" />
             </FullPageModal>,
         );
+    };
+
+    const handleRent = (): void => {
+        if (!auth.auth_token) {
+            modal.open(
+                <SmallModalWrp>
+                    <LoginForm />
+                </SmallModalWrp>,
+            );
+            return;
+        }
+
+        alert('fuck you!');
     };
 
     return (
@@ -349,7 +369,7 @@ const SingleOfferPage = (): ReactElement => {
                                     <span className={css.num}>{moneyFormat(offer?.price)}</span>
                                     <span className={css.point}>.00</span> грн/день
                                 </p>
-                                <button className={css.buy} type="button">
+                                <button className={css.buy} onClick={handleRent} type="button">
                                     Арендовать
                                 </button>
                             </div>

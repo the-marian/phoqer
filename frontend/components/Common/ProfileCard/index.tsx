@@ -1,9 +1,11 @@
-import Link from 'next/link';
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
-import routes from '../../../assets/routes';
 import { Theme } from '../../../assets/theme';
+import useAuth from '../../../hooks/auth.hook';
+import LoginForm from '../Auth/LoginForm';
+import { modal } from '../Modal';
+import SmallModalWrp from '../Modal/SmallModalWrp';
 import UserAvatar from '../UserAvatar';
 
 const useStyles = createUseStyles((theme: Theme) => ({
@@ -14,12 +16,20 @@ const useStyles = createUseStyles((theme: Theme) => ({
         borderRadius: theme.radius,
         background: theme.palette.gray[0],
         boxShadow: theme.shadow[1],
+
+        '@media (max-width: 450px)': {
+            flexDirection: 'column',
+        },
     },
     svg: {
         padding: theme.rem(3),
     },
     content: {
         width: 'calc(100% - 10rem)',
+        '@media (max-width: 450px)': {
+            width: '100%',
+            marginTop: theme.rem(2),
+        },
     },
     name: {
         fontSize: theme.rem(2),
@@ -40,6 +50,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
     btn: {
         display: 'block',
+        width: 'max-content',
         padding: theme.rem(1.5, 3),
         fontSize: theme.rem(1.6),
         color: theme.palette.black[0],
@@ -47,6 +58,11 @@ const useStyles = createUseStyles((theme: Theme) => ({
         background: theme.palette.white,
         textAlign: 'center',
         boxShadow: theme.shadow[1],
+        transition: theme.transitions[0],
+
+        '&:hover': {
+            boxShadow: theme.shadow[2],
+        },
     },
 }));
 
@@ -59,6 +75,20 @@ interface IProps {
 
 const ProfileCard = ({ firstName, lastName, avatar = null, userLocation = null }: IProps): ReactElement => {
     const css = useStyles();
+    const auth = useAuth();
+
+    const handleOpenChat = (): void => {
+        if (!auth.auth_token) {
+            modal.open(
+                <SmallModalWrp>
+                    <LoginForm />
+                </SmallModalWrp>,
+            );
+            return;
+        }
+
+        alert('fuck you!');
+    };
 
     return (
         <div className={css.wrp}>
@@ -70,13 +100,13 @@ const ProfileCard = ({ firstName, lastName, avatar = null, userLocation = null }
                 </div>
 
                 <div className={css.info}>
-                    <p>Зарегистрирован с января 1970 года</p>
-                    <p>{userLocation || 'Местоположение пользователя не указано'}</p>
+                    <p>Дата регистрации: 2021-10-10</p>
+                    <p>Локация: {userLocation || 'Не указано'}</p>
                 </div>
 
-                <Link href={routes.root}>
-                    <a className={css.btn}>Написать автору</a>
-                </Link>
+                <button className={css.btn} type="button" onClick={handleOpenChat}>
+                    Написать автору
+                </button>
             </div>
         </div>
     );

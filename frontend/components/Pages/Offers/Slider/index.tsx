@@ -45,7 +45,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
                 content: '""',
                 position: 'absolute',
                 top: '50%',
-                left: '50%',
+                left: '60%',
                 transform: 'translateY(-50%) rotate(-45deg)',
                 height: theme.rem(1.5),
                 width: theme.rem(1.5),

@@ -15,7 +15,7 @@ import types from '../redux/types';
 
 const Index = (): ReactElement => (
     <>
-        <Meta />
+        <Meta title='Home page' />
         <Main>
             <Container>
                 <Search />

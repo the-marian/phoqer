@@ -109,7 +109,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
 }));
 
-const LoginForm = (): ReactElement => {
+const JoinForm = (): ReactElement => {
     const css = useStyles();
     const [loading, setLoading] = useState(false);
     const [password, setPassword] = useState(true);
@@ -216,4 +216,4 @@ const LoginForm = (): ReactElement => {
     );
 };
 
-export default LoginForm;
+export default JoinForm;
