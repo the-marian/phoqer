@@ -15,7 +15,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     grid: {
         display: 'grid',
         gridTemplateColumns: theme.fr(config.offers.grid.desktop),
-        gridGap: theme.rem(8, 4),
+        gridGap: theme.rem(8, 3),
         fontSize: theme.rem(1.5),
         fontWeight: theme.text.weight[3],
 
@@ -130,7 +130,7 @@ const OffersLoader = ({ loading, isEmpty, emptyText, children }: IProps): ReactE
     ) : isEmpty ? (
         <div className={css.empty}>
             <img className={css.emoji} src="/emoji/thinking.png" alt="" />
-            <p className={css.emptyText}>{emptyText || 'Кадется здесь пусто. Создайте свое объявление, не тяните резину'}</p>
+            <p className={css.emptyText}>{emptyText || 'Кажется здесь пусто. Создайте свое объявление, не тяните резину'}</p>
 
             <Link href={routes.new_offer(1)}>
                 <a className={css.link}>Создать обьявление</a>

@@ -65,13 +65,11 @@ export interface IOfferCard {
     pub_date?: string;
     cover_image: string;
     images?: { id?: number; url: string }[];
-    currency: string;
     is_favorite: boolean;
     is_promoted: boolean;
     is_deliverable: boolean;
     doc_needed: boolean;
     price: number;
-    pud_date: string;
     title: string;
     views: number;
     description: string;

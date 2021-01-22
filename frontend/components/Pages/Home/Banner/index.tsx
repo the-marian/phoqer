@@ -35,7 +35,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
     img: {
         display: 'block',
+        objectFit: 'contain',
         width: theme.rem(10),
+        height: 'auto',
         margin: theme.rem(0, 2, 2, 0),
 
         '@media (max-width: 650px)': {

@@ -6,9 +6,13 @@ import Link from 'next/link';
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
+import { moneyFormat } from '../../../../assets/helpers';
 import routes from '../../../../assets/routes';
 import { Theme } from '../../../../assets/theme';
 import { IOfferCard } from '../../../../interfaces';
+
+const MAX_LENGTH = 60;
+const TITLE_MAX_LENGTH = 50;
 
 const useStyles = createUseStyles((theme: Theme) => ({
     root: {
@@ -32,6 +36,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         objectPosition: 'top',
         borderRadius: theme.radius,
         boxShadow: theme.shadow[1],
+        background: theme.palette.gray[1],
     },
     topWrp: {
         position: 'absolute',
@@ -47,13 +52,18 @@ const useStyles = createUseStyles((theme: Theme) => ({
         fontSize: theme.rem(1),
         boxShadow: theme.shadow[0],
         color: theme.palette.yellow[0],
+
+        '& svg': {
+            height: theme.rem(1.4),
+            width: theme.rem(1.4),
+        },
     },
     delivery: {
         color: theme.palette.primary[0],
     },
     title: {
-        margin: theme.rem(2, 0),
-        fontSize: theme.rem(1.6),
+        margin: theme.rem(1, 0),
+        fontSize: theme.rem(1.4),
         fontWeight: theme.text.weight[3],
     },
     desc: {
@@ -67,10 +77,17 @@ const useStyles = createUseStyles((theme: Theme) => ({
         margin: theme.rem(2, 0),
     },
     text: {
+        display: 'flex',
+        alignItems: 'center',
         margin: 0,
         color: theme.palette.gray[3],
         fontWeight: theme.text.weight[2],
         fontSize: theme.rem(1.4),
+
+        '& svg': {
+            height: theme.rem(1.4),
+            width: theme.rem(1.4),
+        },
     },
     view: {
         paddingLeft: theme.rem(1),
@@ -88,7 +105,8 @@ const useStyles = createUseStyles((theme: Theme) => ({
         padding: theme.rem(1.5, 2),
         fontSize: theme.rem(1.4),
         borderRadius: theme.radius,
-        background: theme.palette.gray[2],
+        background: theme.palette.green[0],
+        color: theme.palette.white,
     },
     favorite: {
         marginLeft: theme.rem(2),
@@ -98,7 +116,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         display: 'flex',
         flexDirection: 'column',
         margin: 0,
-        fontSize: theme.rem(1.6),
+        fontSize: theme.rem(1.5),
         fontWeight: theme.text.weight[3],
         color: theme.palette.black[0],
         textTransform: 'lowercase',
@@ -112,27 +130,13 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
 }));
 
-const MAX_LENGTH = 85;
-
 interface IProps {
     product: IOfferCard;
 }
 
 const OfferCard = ({ product }: IProps): ReactElement => {
     const css = useStyles();
-    const {
-        id,
-        title,
-        description,
-        cover_image,
-        is_promoted,
-        is_deliverable,
-        is_favorite,
-        views,
-        pud_date,
-        price,
-        currency,
-    } = product;
+    const { id, title, description, cover_image, is_promoted, is_deliverable, is_favorite, views, pub_date, price } = product;
 
     return (
         <div className={css.root}>
@@ -153,7 +157,9 @@ const OfferCard = ({ product }: IProps): ReactElement => {
                         </div>
                         <img className={css.img} src={cover_image} alt={title} />
                     </div>
-                    <h3 className={css.title}>{title}</h3>
+                    <h3 className={css.title}>
+                        {title.length > TITLE_MAX_LENGTH ? title.slice(0, TITLE_MAX_LENGTH) + '...' : title}
+                    </h3>
                     <p className={css.desc}>
                         {description.length > MAX_LENGTH ? `${description.slice(0, MAX_LENGTH - 3)}...` : description}
                     </p>
@@ -165,7 +171,7 @@ const OfferCard = ({ product }: IProps): ReactElement => {
                     <FontAwesomeIcon icon={faEye} />
                     <span className={css.view}>{views}</span>
                 </p>
-                <p className={css.text}>Дата: {pud_date}</p>
+                <p className={css.text}>Дата: {pub_date}</p>
             </div>
 
             <div className={css.action}>
@@ -180,10 +186,8 @@ const OfferCard = ({ product }: IProps): ReactElement => {
                 </div>
 
                 <p className={css.price}>
-                    <span>
-                        {price} {currency}
-                    </span>
-                    <small>*per hour</small>
+                    <span>{moneyFormat(price)}.00</span>
+                    <small>*грн/день</small>
                 </p>
             </div>
         </div>
