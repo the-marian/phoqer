@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { createUseStyles } from 'react-jss';
 
 import { Theme } from '../../../../../assets/theme';
+import useTrans from '../../../../../hooks/trans.hook';
 import JoinForm from '../../../../Common/Auth/JoinForm';
 import LoginForm from '../../../../Common/Auth/LoginForm';
 import { modal } from '../../../../Common/Modal';
@@ -54,6 +55,7 @@ interface IProps {
 
 const GeneralInfoDrop = ({ onClick }: IProps): ReactElement => {
     const css = useStyles();
+    const T = useTrans();
 
     useEffect(() => {
         const handleClose = (event: KeyboardEvent): void => {
@@ -89,10 +91,10 @@ const GeneralInfoDrop = ({ onClick }: IProps): ReactElement => {
             <div className={css.back} onClick={onClick} aria-hidden />
             <div className={css.drop}>
                 <button className={css.btn} type="button" onClick={handleLoginModal}>
-                    Войти
+                    {T.login}
                 </button>
                 <button className={css.btn} type="button" onClick={handleRegisterModal}>
-                    Зарегистрироватся
+                    {T.join}
                 </button>
             </div>
         </>,

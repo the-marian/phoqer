@@ -1,3 +1,0 @@
-{
-    "main": "UA - You have not declared a namespacesRequired array on your page-level component: ErrorPage. This will cause all namespaces to be sent down to the client, possibly negatively impacting the performance of your app. For more info"
-}

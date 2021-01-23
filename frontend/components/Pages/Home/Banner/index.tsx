@@ -8,6 +8,7 @@ import { createUseStyles } from 'react-jss';
 import routes from '../../../../assets/routes';
 import { Theme } from '../../../../assets/theme';
 import useAuth from '../../../../hooks/auth.hook';
+import useTrans from '../../../../hooks/trans.hook';
 import LoginForm from '../../../Common/Auth/LoginForm';
 import { modal } from '../../../Common/Modal';
 import SmallModalWrp from '../../../Common/Modal/SmallModalWrp';
@@ -58,6 +59,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
 const Banner = (): ReactElement => {
     const css = useStyles();
     const auth = useAuth();
+    const T = useTrans();
     const history = useRouter();
 
     const handleClick = (): void => {
@@ -79,10 +81,10 @@ const Banner = (): ReactElement => {
                 <Image height={60} width={70} className={css.img} src="/emoji/monay.png" alt="" />
             </div>
 
-            <h2 className={css.title}>Делитесь с другими и зарабатывайте</h2>
+            <h2 className={css.title}>{T.share_with_others_and_earn}</h2>
 
             <button className={css.link} type="button" onClick={handleClick}>
-                <span>Сдать вещи в аренду</span>
+                <span>{T.create_offer}</span>
                 <FontAwesomeIcon icon={faChevronRight} />
             </button>
         </div>

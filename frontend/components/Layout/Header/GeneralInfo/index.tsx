@@ -5,6 +5,7 @@ import { createUseStyles } from 'react-jss';
 
 import { Theme } from '../../../../assets/theme';
 import useMedia from '../../../../hooks/media.hook';
+import useTrans from '../../../../hooks/trans.hook';
 import JoinForm from '../../../Common/Auth/JoinForm';
 import LoginForm from '../../../Common/Auth/LoginForm';
 import { modal } from '../../../Common/Modal';
@@ -37,6 +38,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
 }));
 
 const GeneralInfo = (): ReactElement => {
+    const T = useTrans();
     const css = useStyles();
     const mobile = useMedia(900);
     const [drop, setDrop] = useState(false);
@@ -67,10 +69,10 @@ const GeneralInfo = (): ReactElement => {
     return mobile ? (
         <div>
             <button className={css.btn} type="button" onClick={handleLoginModal}>
-                Войти
+                {T.login}
             </button>
             <button className={css.btn} type="button" onClick={handleRegisterModal}>
-                Зарегистрироватся
+                {T.join}
             </button>
         </div>
     ) : (

@@ -10,6 +10,7 @@ import { createUseStyles } from 'react-jss';
 import routes from '../../../../assets/routes';
 import { Theme } from '../../../../assets/theme';
 import useAuth from '../../../../hooks/auth.hook';
+import useTrans from '../../../../hooks/trans.hook';
 import NotifNumber from '../../../Common/NotifNumber';
 import DropWindow from './DropWindow';
 
@@ -69,8 +70,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
 }));
 
 const UserInfo = (): ReactElement => {
-    const css = useStyles();
+    const T = useTrans();
     const auth = useAuth();
+    const css = useStyles();
     const [drop, setDrop] = useState<boolean>(false);
 
     useEffect(() => {
@@ -94,7 +96,7 @@ const UserInfo = (): ReactElement => {
                 <Link href={routes.new_offer()} as={routes.new_offer(1)}>
                     <a className={css.link}>
                         <FontAwesomeIcon icon={faPlus} />
-                        <span className={css.text}>Сдать в аренду</span>
+                        <span className={css.text}>{T.create_offer}</span>
                     </a>
                 </Link>
             </li>
@@ -102,7 +104,7 @@ const UserInfo = (): ReactElement => {
                 <Link href={routes.favorite}>
                     <a className={css.link}>
                         <FontAwesomeIcon icon={faHeart} />
-                        <span className={css.text}>Избранное</span>
+                        <span className={css.text}>{T.favorites}</span>
                     </a>
                 </Link>
             </li>

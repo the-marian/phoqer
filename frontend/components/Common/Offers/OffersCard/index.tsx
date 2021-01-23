@@ -9,6 +9,7 @@ import { createUseStyles } from 'react-jss';
 import { moneyFormat } from '../../../../assets/helpers';
 import routes from '../../../../assets/routes';
 import { Theme } from '../../../../assets/theme';
+import useTrans from '../../../../hooks/trans.hook';
 import { IOfferCard } from '../../../../interfaces';
 
 const MAX_LENGTH = 60;
@@ -135,6 +136,7 @@ interface IProps {
 
 const OfferCard = ({ product }: IProps): ReactElement => {
     const css = useStyles();
+    const T = useTrans();
     const { id, title, description, cover_image, is_promoted, is_deliverable, is_favorite, views, pub_date, price } = product;
 
     return (
@@ -168,13 +170,15 @@ const OfferCard = ({ product }: IProps): ReactElement => {
                     <FontAwesomeIcon icon={faEye} />
                     <span className={css.view}>{views}</span>
                 </p>
-                <p className={css.text}>Дата: {pub_date}</p>
+                <p className={css.text}>
+                    {T.date}: {pub_date}
+                </p>
             </div>
 
             <div className={css.action}>
                 <div className={css.actionBtn}>
                     <button type="button" className={css.btn}>
-                        Арендовать
+                        {T.rent}
                     </button>
 
                     <button type="button" className={css.favorite}>
@@ -184,7 +188,7 @@ const OfferCard = ({ product }: IProps): ReactElement => {
 
                 <p className={css.price}>
                     <span>{moneyFormat(price)}.00</span>
-                    <small>*грн/день</small>
+                    <small>{`*${T.uah}/${T.day}`}</small>
                 </p>
             </div>
         </div>

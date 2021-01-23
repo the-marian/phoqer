@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import React, { ReactElement, useState } from 'react';
+import React, { ReactElement } from 'react';
 
 import { IDropList } from '../../../../interfaces';
 import DropDown from '../../../Common/DropDown';
@@ -25,7 +25,15 @@ const Lang = (): ReactElement => {
         history.push(history.pathname, history.asPath, { locale: value.slug });
     };
 
-    return <DropDown height={3} data={LANGS} onChange={handleChange} white />;
+    return (
+        <DropDown
+            height={3}
+            defaultValue={{ name: history.locale.toUpperCase(), slug: history.locale, type: 'main' }}
+            data={LANGS}
+            onChange={handleChange}
+            white
+        />
+    );
 };
 
 export default Lang;

@@ -10,6 +10,7 @@ import { useDispatch } from 'react-redux';
 import routes from '../../../../../assets/routes';
 import { Theme } from '../../../../../assets/theme';
 import useAuth from '../../../../../hooks/auth.hook';
+import useTrans from '../../../../../hooks/trans.hook';
 import types from '../../../../../redux/types';
 import Spinner from '../../../../Common/Preloaders/Spinner';
 
@@ -91,6 +92,7 @@ interface Props {
 
 const DropWindow = ({ onClose }: Props): ReactElement => {
     const css = useStyles();
+    const T = useTrans();
     const auth = useAuth();
     const dispatch = useDispatch();
 
@@ -121,7 +123,7 @@ const DropWindow = ({ onClose }: Props): ReactElement => {
                     <Link href={routes.profile.single()} as={routes.profile.single(auth.first_name)}>
                         <a className={css.item}>
                             <FontAwesomeIcon icon={faUser} />
-                            <span className={css.text}>Мой профиль</span>
+                            <span className={css.text}>{T.my_profile}</span>
                         </a>
                     </Link>
                 </li>
@@ -129,7 +131,7 @@ const DropWindow = ({ onClose }: Props): ReactElement => {
                     <Link href={routes.root}>
                         <a className={css.item}>
                             <FontAwesomeIcon icon={faBullhorn} />
-                            <span className={css.text}>Мои объявления</span>
+                            <span className={css.text}>{T.my_offers}</span>
                         </a>
                     </Link>
                 </li>
@@ -137,7 +139,7 @@ const DropWindow = ({ onClose }: Props): ReactElement => {
                     <Link href={routes.root}>
                         <a className={css.item}>
                             <FontAwesomeIcon icon={faEnvelope} />
-                            <span className={css.text}>Мои сообщения</span>
+                            <span className={css.text}>{T.messages}</span>
                             <span className={css.red}>(2)</span>
                         </a>
                     </Link>
@@ -146,7 +148,7 @@ const DropWindow = ({ onClose }: Props): ReactElement => {
                     <Link href={routes.root}>
                         <a className={css.item}>
                             <FontAwesomeIcon icon={faCommentAlt} />
-                            <span className={css.text}>Отзывы</span>
+                            <span className={css.text}>{T.reviews}</span>
                             <span className={css.red}>(12)</span>
                         </a>
                     </Link>
@@ -155,7 +157,7 @@ const DropWindow = ({ onClose }: Props): ReactElement => {
                     <Link href={routes.root}>
                         <a className={css.item}>
                             <FontAwesomeIcon icon={faSlidersH} />
-                            <span className={css.text}>Настройки</span>
+                            <span className={css.text}>{T.settings}</span>
                         </a>
                     </Link>
                 </li>
@@ -163,14 +165,14 @@ const DropWindow = ({ onClose }: Props): ReactElement => {
                     <Link href={routes.root}>
                         <a className={css.item}>
                             <FontAwesomeIcon icon={faUserPlus} />
-                            <span className={css.text}>Пригласить друзей</span>
+                            <span className={css.text}>{T.invite_friends}</span>
                         </a>
                     </Link>
                 </li>
                 <li>
                     <button type="button" className={css.item} onClick={handleLogout}>
                         <FontAwesomeIcon icon={faSignOutAlt} />
-                        <span className={css.text}>Выйти</span>
+                        <span className={css.text}>{T.logout}</span>
                     </button>
                 </li>
                 {loading && (

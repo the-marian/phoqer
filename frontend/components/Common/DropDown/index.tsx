@@ -211,12 +211,12 @@ const DropDown = ({
                                     <ul>
                                         {sub?.map(({ name, slug }) => (
                                             <li
-                                                className={css.sub}
                                                 key={slug}
-                                                aria-hidden
+                                                className={css.sub}
                                                 onClick={() => {
                                                     handleSelect(name, slug, 'sub');
                                                 }}
+                                                aria-hidden
                                             >
                                                 <span>{name}</span>
                                             </li>

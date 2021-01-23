@@ -7,6 +7,7 @@ import { useSelector } from 'react-redux';
 import config from '../../../../assets/config';
 import routes from '../../../../assets/routes';
 import { Theme } from '../../../../assets/theme';
+import useTrans from '../../../../hooks/trans.hook';
 import { ICategories, IState } from '../../../../interfaces';
 import SectionTitle from '../../../Layout/SectionTitle';
 
@@ -48,11 +49,12 @@ const useStyles = createUseStyles((theme: Theme) => ({
 
 const Categories = (): ReactElement => {
     const css = useStyles();
+    const T = useTrans();
     const categories = useSelector<IState, ICategories[]>(state => state.categories);
 
     return (
         <div className={css.root}>
-            <SectionTitle>Арендуйте здесь и сейчас</SectionTitle>
+            <SectionTitle>{T.rent_here_and_now}</SectionTitle>
 
             <div className={css.wrp}>
                 {categories?.map(({ name, image, slug }) => (

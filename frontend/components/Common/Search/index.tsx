@@ -7,6 +7,7 @@ import { createUseStyles } from 'react-jss';
 import routes from '../../../assets/routes';
 import { Theme } from '../../../assets/theme';
 import useMedia from '../../../hooks/media.hook';
+import useTrans from '../../../hooks/trans.hook';
 import LinkArrow from '../../Layout/LinkArrow';
 import OptionsDesktop from './OptionsDesktop';
 import OptionsMobile from './OptionsMobile';
@@ -103,6 +104,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
 
 const Search = (): ReactElement => {
     const css = useStyles();
+    const T = useTrans();
     const mobile = useMedia(1100);
     const history = useRouter();
 
@@ -111,7 +113,7 @@ const Search = (): ReactElement => {
             {history.pathname !== routes.root && (
                 <div className={css.toHome}>
                     <LinkArrow href={routes.root} toLeft>
-                        На главную
+                        {T.to_home}
                     </LinkArrow>
                 </div>
             )}
@@ -122,7 +124,7 @@ const Search = (): ReactElement => {
                         <span className={css.icon}>
                             <FontAwesomeIcon icon={faSearch} />
                         </span>
-                        <input defaultValue={history?.query?.q} className={css.input} type="text" placeholder="Что вы ищите?" />
+                        <input className={css.input} type="text" placeholder={T.what_are_you_looking_for} />
                         {mobile && <OptionsDesktop />}
                     </div>
                 </div>
@@ -130,7 +132,7 @@ const Search = (): ReactElement => {
                 <div className={css.mobile}>
                     {!mobile && <OptionsMobile />}
                     <button type="submit" className={css.btn}>
-                        Найти
+                        {T.find}
                     </button>
                 </div>
             </div>

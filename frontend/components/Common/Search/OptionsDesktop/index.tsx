@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 
 import { formatCatList } from '../../../../assets/helpers';
 import { Theme } from '../../../../assets/theme';
+import useTrans from '../../../../hooks/trans.hook';
 import { ICategories, IState } from '../../../../interfaces';
 import DropDown from '../../DropDown';
 import { modal } from '../../Modal';
@@ -53,6 +54,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
 
 const OptionsDesktop = (): ReactElement => {
     const css = useStyles();
+    const T = useTrans();
     const data = useSelector<IState, ICategories[]>(state => state.categories);
     const categories = formatCatList(data);
 
@@ -66,7 +68,7 @@ const OptionsDesktop = (): ReactElement => {
             <div className={css.categories}>
                 <DropDown
                     data={categories}
-                    placeholder="Выберите категорию"
+                    placeholder={T.select_category}
                     onChange={console.log}
                     height={7}
                     withSub
