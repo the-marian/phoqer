@@ -21,6 +21,6 @@ const ForgotPass = (): ReactElement => {
     );
 };
 
-export const getServerSideProps = wrapper.getServerSideProps(serverRedirect(null, null, true));
+export const getInitialProps = wrapper.getServerSideProps(serverRedirect(null, null, true));
 
 export default ForgotPass;
