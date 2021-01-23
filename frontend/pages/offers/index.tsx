@@ -39,7 +39,7 @@ const OffersPage = (): ReactElement => {
     );
 };
 
-export const getInitialProps = wrapper.getServerSideProps(
+export const getServerSideProps = wrapper.getServerSideProps(
     async ({ store }: { store: IStore }): Promise<void> => {
         store.dispatch({ type: types.GET_CATEGORIES_START });
         store.dispatch({ type: types.GET_POPULAR_OFFERS_START });
