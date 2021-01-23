@@ -21,7 +21,7 @@ const MyApp = ({ Component, pageProps, width, auth }: AppProps & { width: number
     const dispatch = useDispatch();
 
     interceptors({ history, dispatch });
-    logger();
+    // logger();
 
     useEffect(() => {
         const handleClear = () => {
