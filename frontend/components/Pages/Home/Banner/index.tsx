@@ -1,5 +1,6 @@
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Image from 'next/image';
 import { useRouter } from 'next/router';
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
@@ -36,14 +37,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     img: {
         display: 'block',
         objectFit: 'contain',
-        width: theme.rem(10),
-        height: theme.rem(10),
         margin: theme.rem(0, 2, 2, 0),
-
-        '@media (max-width: 650px)': {
-            width: theme.rem(6.5),
-            height: theme.rem(7),
-        },
     },
     link: {
         fontSize: theme.rem(1.8),
@@ -80,9 +74,9 @@ const Banner = (): ReactElement => {
     return (
         <div className={css.root}>
             <div className={css.imgWrp}>
-                <img className={css.img} src="/emoji/monay.png" alt="" />
-                <img className={css.img} src="/emoji/monay.png" alt="" />
-                <img className={css.img} src="/emoji/monay.png" alt="" />
+                <Image height={60} width={70} className={css.img} src="/emoji/monay.png" alt="" />
+                <Image height={60} width={70} className={css.img} src="/emoji/monay.png" alt="" />
+                <Image height={60} width={70} className={css.img} src="/emoji/monay.png" alt="" />
             </div>
 
             <h2 className={css.title}>Делитесь с другими и зарабатывайте</h2>

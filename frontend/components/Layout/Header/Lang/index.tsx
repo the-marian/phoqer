@@ -1,4 +1,5 @@
-import React, { ReactElement } from 'react';
+import { useRouter } from 'next/router';
+import React, { ReactElement, useState } from 'react';
 
 import { IDropList } from '../../../../interfaces';
 import DropDown from '../../../Common/DropDown';
@@ -13,11 +14,18 @@ const LANGS: IDropList[] = [
         slug: 'ru',
     },
     {
-        name: 'UA',
-        slug: 'ua',
+        name: 'PL',
+        slug: 'pl',
     },
 ];
 
-const Lang = (): ReactElement => <DropDown height={3} data={LANGS} onChange={console.log} white />;
+const Lang = (): ReactElement => {
+    const history = useRouter();
+    const handleChange = (value: { name: string; slug: string; type: string }): void => {
+        history.push(history.pathname, history.asPath, { locale: value.slug });
+    };
+
+    return <DropDown height={3} data={LANGS} onChange={handleChange} white />;
+};
 
 export default Lang;

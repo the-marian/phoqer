@@ -3,13 +3,12 @@ import { Dashboard, StatusBar } from '@uppy/react';
 import XHRUpload from '@uppy/xhr-upload';
 import { useRouter } from 'next/router';
 import React, { FormEvent, ReactElement, useEffect, useMemo } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 import config from '../../../../assets/config';
 import routes from '../../../../assets/routes';
 import useAuth from '../../../../hooks/auth.hook';
 import useMedia from '../../../../hooks/media.hook';
-import { INewOffer, IState } from '../../../../interfaces';
 import types from '../../../../redux/types';
 import notifications from '../../../Common/Notifications';
 import useStyles from './StepThree.styles';

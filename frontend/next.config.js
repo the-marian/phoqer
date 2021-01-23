@@ -8,4 +8,11 @@ module.exports = {
             },
         ];
     },
+    i18n: {
+        locales: ['en', 'pl', 'ru'],
+        defaultLocale: 'ru',
+    },
+    images: {
+        domains: ['phoqer.com', 'images-na.ssl-images-amazon.com', 'example.com'],
+    },
 };

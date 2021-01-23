@@ -2,6 +2,7 @@ import { faEye, faHeart } from '@fortawesome/free-regular-svg-icons';
 import { faHeart as faSolidHeart, faStar, faTruck } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import clsx from 'clsx';
+import Image from 'next/image';
 import Link from 'next/link';
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
@@ -12,7 +13,6 @@ import { Theme } from '../../../../assets/theme';
 import { IOfferCard } from '../../../../interfaces';
 
 const MAX_LENGTH = 60;
-const TITLE_MAX_LENGTH = 50;
 
 const useStyles = createUseStyles((theme: Theme) => ({
     root: {
@@ -155,11 +155,9 @@ const OfferCard = ({ product }: IProps): ReactElement => {
                                 </div>
                             )}
                         </div>
-                        <img className={css.img} src={cover_image} alt={title} />
+                        <Image quality={50} height={260} width={400} className={css.img} src={cover_image} alt={title} />
                     </div>
-                    <h3 className={css.title}>
-                        {title.length > TITLE_MAX_LENGTH ? title.slice(0, TITLE_MAX_LENGTH) + '...' : title}
-                    </h3>
+                    <h3 className={css.title}>{title.length > MAX_LENGTH ? title.slice(0, MAX_LENGTH) + '...' : title}</h3>
                     <p className={css.desc}>
                         {description.length > MAX_LENGTH ? `${description.slice(0, MAX_LENGTH - 3)}...` : description}
                     </p>

@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
@@ -57,7 +58,7 @@ const Categories = (): ReactElement => {
                 {categories?.map(({ name, image, slug }) => (
                     <Link key={name} href={routes.offers.single(`?category=${slug}`)}>
                         <div className={css.cat}>
-                            <img className={css.img} src={image} alt={name} />
+                            <Image layout="responsive" height={160} width={200} className={css.img} src={image} alt={name} />
                             <p className={css.text}>{name}</p>
                         </div>
                     </Link>

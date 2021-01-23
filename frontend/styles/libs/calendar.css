@@ -58,7 +58,7 @@
     background-position: center;
     background-size: 50%;
     background-repeat: no-repeat;
-    color: #8B9898;
+    color: #8b9898;
     cursor: pointer;
 }
 
@@ -103,7 +103,7 @@
 .DayPicker-Weekday {
     display: table-cell;
     padding: 0.5em;
-    color: #8B9898;
+    color: #8b9898;
     text-align: center;
     font-size: 0.875em;
 }
@@ -134,8 +134,8 @@
     display: table-cell;
     padding: 0.5em;
     min-width: 1em;
-    border-right: 1px solid #EAECEC;
-    color: #8B9898;
+    border-right: 1px solid #eaecec;
+    color: #8b9898;
     vertical-align: middle;
     text-align: right;
     font-size: 0.75em;
@@ -155,7 +155,7 @@
     background-color: transparent;
     background-image: none;
     box-shadow: none;
-    color: #4A90E2;
+    color: #4a90e2;
     font-size: 0.875em;
     cursor: pointer;
 }
@@ -165,17 +165,17 @@
 .DayPicker-Day--today {
     color: #085085;
     font-weight: 600;
-    background: rgba(8,80,133,0.1);
+    background: rgba(8, 80, 133, 0.1);
     border-radius: 0.6rem;
 }
 
 .DayPicker-Day--outside {
-    color: #8B9898;
+    color: #8b9898;
     cursor: default;
 }
 
 .DayPicker-Day--disabled {
-    color: #DCE0E0;
+    color: #dce0e0;
     cursor: default;
     /* background-color: #eff1f1; */
 }
@@ -183,27 +183,27 @@
 /* Example modifiers */
 
 .DayPicker-Day--sunday {
-    background-color: #F7F8F8;
+    background-color: #f7f8f8;
 }
 
 .DayPicker-Day--sunday:not(.DayPicker-Day--today) {
-    color: #DCE0E0;
+    color: #dce0e0;
 }
 
 .DayPicker-Day--selected:not(.DayPicker-Day--disabled):not(.DayPicker-Day--outside) {
     position: relative;
 
-    background-color: #4A90E2;
-    color: #F0F8FF;
+    background-color: #4a90e2;
+    color: #f0f8ff;
 }
 
 .DayPicker-Day--selected:not(.DayPicker-Day--disabled):not(.DayPicker-Day--outside):hover {
-    background-color: #51A0FA;
+    background-color: #51a0fa;
 }
 
 .DayPicker:not(.DayPicker--interactionDisabled)
-.DayPicker-Day:not(.DayPicker-Day--disabled):not(.DayPicker-Day--selected):not(.DayPicker-Day--outside):hover {
-    background-color: #F0F8FF;
+    .DayPicker-Day:not(.DayPicker-Day--disabled):not(.DayPicker-Day--selected):not(.DayPicker-Day--outside):hover {
+    background-color: #f0f8ff;
 }
 
 /* DayPickerInput */
