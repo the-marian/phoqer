@@ -9,25 +9,29 @@ import Main from '../components/Layout/Main';
 import Banner from '../components/Pages/Home/Banner';
 import Categories from '../components/Pages/Home/Categories';
 import TopPopular from '../components/Pages/Home/PopularOffers';
+import useTrans from '../hooks/trans.hook';
 import { IStore } from '../interfaces';
 import { wrapper } from '../redux/store';
 import types from '../redux/types';
 
-const Index = (): ReactElement => (
-    <>
-        <Meta title="Home page" />
-        <Main>
-            <Container>
-                <Search />
-                <Categories />
-                <Banner />
-                <TopPopular />
-            </Container>
+const Index = (): ReactElement => {
+    const T = useTrans();
+    return (
+        <>
+            <Meta title={T.home_page} />
+            <Main>
+                <Container>
+                    <Search />
+                    <Categories />
+                    <Banner />
+                    <TopPopular />
+                </Container>
 
-            <About />
-        </Main>
-    </>
-);
+                <About />
+            </Main>
+        </>
+    );
+};
 
 export const getServerSideProps = wrapper.getServerSideProps(
     async ({ store }: { store: IStore }): Promise<void> => {

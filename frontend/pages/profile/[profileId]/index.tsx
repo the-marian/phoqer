@@ -8,6 +8,7 @@ import ProfileCard from '../../../components/Common/ProfileCard';
 import Container from '../../../components/Layout/Container';
 import Main from '../../../components/Layout/Main';
 import ProfileInfo from '../../../components/Pages/Profile/Public/ProfileInfo';
+import useTrans from '../../../hooks/trans.hook';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     wrp: {
@@ -38,12 +39,13 @@ const useStyles = createUseStyles((theme: Theme) => ({
 
 const PublicProfilePage = (): ReactElement => {
     const css = useStyles();
+    const T = useTrans();
     const history = useRouter();
     console.log(history.query.profileId);
 
     return (
         <>
-            <Meta title={'Влад Василенко'} />
+            <Meta title={'Влад Василенко'} h1={T.user_profile_on_phoqer} />
             <Main>
                 <Container>
                     <div className={css.wrp}>

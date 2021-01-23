@@ -16,6 +16,7 @@ import Stepper from '../../../components/Pages/NewOffer/Stepper';
 import StepThree from '../../../components/Pages/NewOffer/StepThree';
 import StepTwo from '../../../components/Pages/NewOffer/StepTwo';
 import Success from '../../../components/Pages/NewOffer/Success';
+import useTrans from '../../../hooks/trans.hook';
 import { INewOffer, IState, IStore } from '../../../interfaces';
 import { wrapper } from '../../../redux/store';
 import types from '../../../redux/types';
@@ -51,6 +52,7 @@ const STEPS = {
 const STEPS_TITLE = ['О товаре', 'Описание', 'Фото'];
 
 const NewOffer = (): ReactElement => {
+    const T = useTrans();
     const css = useStyles();
     const { query, push } = useRouter();
 
@@ -75,10 +77,10 @@ const NewOffer = (): ReactElement => {
     return (
         <>
             <AuthRedirect />
-            <Meta title="New product" />
+            <Meta title={T.create_new_offer} h1={T.share_with_others_and_earn} />
             <Main>
                 <Container>
-                    <h1 className={css.title}>#Делитесь с другими и зарабатывайте</h1>
+                    <h2 className={css.title}>{T.share_with_others_and_earn}</h2>
 
                     {index < 4 && <Stepper title={STEPS_TITLE} current={+index} />}
 

@@ -13,6 +13,7 @@ import useTrans from '../../../../hooks/trans.hook';
 import { IOfferCard } from '../../../../interfaces';
 
 const MAX_LENGTH = 60;
+const MAX_LENGTH_TITLE = 55;
 
 const useStyles = createUseStyles((theme: Theme) => ({
     root: {
@@ -158,7 +159,9 @@ const OfferCard = ({ product }: IProps): ReactElement => {
                         </div>
                         <img className={css.img} src={cover_image} alt={title} />
                     </div>
-                    <h3 className={css.title}>{title.length > MAX_LENGTH ? title.slice(0, MAX_LENGTH) + '...' : title}</h3>
+                    <h3 className={css.title}>
+                        {title.length > MAX_LENGTH_TITLE ? title.slice(0, MAX_LENGTH_TITLE - 3) + '...' : title}
+                    </h3>
                     <p className={css.desc}>
                         {description.length > MAX_LENGTH ? `${description.slice(0, MAX_LENGTH - 3)}...` : description}
                     </p>

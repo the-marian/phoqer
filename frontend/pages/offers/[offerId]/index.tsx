@@ -163,7 +163,12 @@ const SingleOfferPage = (): ReactElement => {
 
     return (
         <>
-            <Meta title={offer?.title} description={offer?.description.slice(0, 150)} icon={offer?.cover_image} />
+            <Meta
+                title={offer?.title}
+                h1={offer?.title + offer?.description.slice(0, 60)}
+                description={offer?.description.slice(0, 150)}
+                icon={offer?.cover_image}
+            />
             <Main>
                 <Container>
                     {offer?.images.length > 1 ? (

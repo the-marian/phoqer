@@ -10,15 +10,17 @@ import Container from '../../components/Layout/Container';
 import Main from '../../components/Layout/Main';
 import Filters from '../../components/Pages/Offers/Filters';
 import TopOffers from '../../components/Pages/Offers/TopOffers';
+import useTrans from '../../hooks/trans.hook';
 import { IOfferPopular, IState, IStore } from '../../interfaces';
 import { wrapper } from '../../redux/store';
 import types from '../../redux/types';
 
 const OffersPage = (): ReactElement => {
+    const T = useTrans();
     const { data, loading } = useSelector<IState, IOfferPopular>(state => state.offers.popular);
     return (
         <>
-            <Meta />
+            <Meta title={T.search_offers} h1={T.search_offers} />
             <Main>
                 <Container>
                     <Search />

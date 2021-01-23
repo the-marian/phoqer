@@ -73,7 +73,7 @@ const OfferHead = (): ReactElement => {
 
     return (
         <>
-            <h1 className={css.title}>{offer?.title}</h1>
+            <h2 className={css.title}>{offer?.title}</h2>
             <div className={css.action}>
                 <p>Опубликовано: {offer?.pub_date}</p>
                 <p className={css.eye}>

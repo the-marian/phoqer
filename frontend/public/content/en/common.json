@@ -1,6 +1,12 @@
 {
+    "site_desc": "PHOQER is an online advertising platform that brings people together to share goods and services. PHOQER - here you will find what you are looking for! By clicking the Submit Ad button, you will be able to place ads on any topic easily and quickly.",
+    "keywords": "phoqer share rent goods services",
+
+    "home_page": "Home page",
     "create_offer": "Create offer",
+    "create_new_offer": "Create new offer",
     "favorites": "Favorites",
+    "favorite_offer": "Favorite offers",
     "messages": "My messages",
     "invite_friends": "Invite friends",
     "settings": "Settings",
@@ -11,13 +17,15 @@
     "join": "Join Phoqer",
     "login": "Login",
     "logout": "Logout",
+    "reset_password": "Reset password",
 
     "to_home": "To home page",
     "find": "Find",
     "select_category": "Select category",
     "what_are_you_looking_for": "What are you looking for?",
+    "search_offers": "Search offers",
     "rent_here_and_now": "Rent here and now",
-    "share_with_others_and_earn": "Share with others and earn",
+    "share_with_others_and_earn": "# Share with others and earn",
     "see_all": "See all",
     "popular_offers": "Popular offers",
 
@@ -25,6 +33,8 @@
     "rent": "Rent",
     "uah": "uah",
     "day": "day",
+
+    "user_profile_on_phoqer": "User profile on the site phoqer.com",
 
     "about_1": "Ты – это то, что тебя окружает. Мы полностью согласны с этой фразой. Вещи, которые мы покупаем, формируют человека. Иногда одна простая вещь может сделать нас по-настоящему счастливыми.",
     "about_2": "Поэтому мы собрали самые разные товары у нас на сайте, чтобы каждый смог найти желаемое. Легко. Быстро. По приемлемой цене и хорошего качества.",
