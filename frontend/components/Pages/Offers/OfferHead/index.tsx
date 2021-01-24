@@ -75,7 +75,7 @@ const OfferHead = (): ReactElement => {
         <>
             <h2 className={css.title}>{offer?.title}</h2>
             <div className={css.action}>
-                <p>Опубликовано: {offer?.pub_date}</p>
+                <p>Дата: {offer?.pub_date}</p>
                 <p className={css.eye}>
                     <FontAwesomeIcon icon={faEye} />
                     <span>{offer?.views}</span>
