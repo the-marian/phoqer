@@ -59,7 +59,7 @@ def authenticated_client_2(db, author_2):
 
 
 @pytest.fixture
-def authenticated_client_3(db, author_2):
+def authenticated_client_3(db, author_3):
     from rest_framework.test import APIClient
     client = APIClient()
     client.login(username='jstop@gmail.com', password='jstop')
@@ -136,3 +136,21 @@ def offer_2(db, author_2, category_2, sub_category_2):
         sub_category=sub_category_2,
         title='PS5'
     )
+
+
+@pytest.fixture()
+def iphone_12_with_author_1(author_1, offer_1):
+    iphone_12 = Offer.objects.get(title='Iphone 12')
+    iphone_12.favorite.add(author_1)
+    iphone_12.save()
+
+
+@pytest.fixture()
+def iphone_12_and_ps5_with_author_2(author_2, offer_1, offer_2):
+    iphone_12 = Offer.objects.get(title='Iphone 12')
+    iphone_12.favorite.add(author_2)
+    iphone_12.save()
+
+    ps5 = Offer.objects.get(title='PS5')
+    ps5.favorite.add(author_2)
+    ps5.save()

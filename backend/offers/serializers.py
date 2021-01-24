@@ -1,6 +1,7 @@
 import datetime
 
 from rest_framework import serializers
+from django.core.exceptions import ObjectDoesNotExist
 
 from users.models import User
 
@@ -27,8 +28,11 @@ class BaseOfferSerializer(serializers.ModelSerializer):
     def get_is_favorite(self, offer):
         user_request = self.context['request'].user
         if user_request:
-            user = User.objects.get(email=user_request)
-            return offer in user.favorite_offers.all()
+            try:
+                user_request.favorite_offers.get(id=offer.id)
+                return True
+            except ObjectDoesNotExist:
+                return False
         return False
 
     def get_is_promoted(self, offer):

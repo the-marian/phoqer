@@ -1,3 +1,4 @@
+from django.db.models import Q
 from rest_framework.generics import ListAPIView
 from rest_framework.permissions import IsAuthenticated
 
@@ -10,4 +11,5 @@ class FavoriteListOffersView(ListAPIView):
 
     def get_queryset(self):
         client = self.request.user
-        return client.favorite_offers.all()
+        return client.favorite_offers.filter(Q(status='ACTIVE') | Q(status='IN_RENT'))\
+            .order_by('-promote_til_date', '-views')

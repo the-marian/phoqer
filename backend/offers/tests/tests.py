@@ -142,6 +142,11 @@ def test_is_favorite(api_client, user, db_test_data):
     assert response.data[2]['is_favorite'] is True
 
 
+def test_is_favorite_false(authed_api_client, db_test_data):
+    response = authed_api_client.get('/api/v1/offers/popular/')
+    assert response.data[2]['is_favorite'] is False
+
+
 def test_search(api_client, db_test_data, sport_category):
     response = api_client.get(search_endpoint_url)
     assert response.json() == list_offers_expected_response
