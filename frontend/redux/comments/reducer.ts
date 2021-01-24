@@ -1,6 +1,3 @@
-// import { HYDRATE } from 'next-redux-wrapper';
-//
-// import { ICategories, IState } from '../../interfaces';
 import { HYDRATE } from 'next-redux-wrapper';
 
 import { IComment, IState } from '../../interfaces';

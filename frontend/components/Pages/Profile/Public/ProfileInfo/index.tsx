@@ -5,6 +5,7 @@ import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
 import { Theme } from '../../../../../assets/theme';
+import LikeDislike from '../../../../Common/LikeDislike';
 import { modal } from '../../../../Common/Modal';
 import MidModalWrp from '../../../../Common/Modal/MidModalWrp';
 
@@ -75,41 +76,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
             marginBottom: theme.rem(2),
         },
     },
-    reputation: {
-        display: 'flex',
-        alignItems: 'flex-end',
-        margin: theme.rem(1, 0, 2),
 
-        '& span': {
-            lineHeight: 1,
-        },
-
-        '& svg': {
-            height: theme.rem(2),
-            width: theme.rem(2),
-            marginRight: theme.rem(1),
-            fill: theme.palette.primary[0],
-        },
-    },
-    like: {
-        display: 'flex',
-        alignItems: 'flex-end',
-        color: theme.palette.gray[4],
-
-        '&:hover': {
-            color: theme.palette.primary[0],
-        },
-    },
-    dislike: {
-        display: 'flex',
-        alignItems: 'flex-end',
-        marginLeft: theme.rem(4),
-        color: theme.palette.gray[4],
-
-        '&:hover': {
-            color: theme.palette.primary[0],
-        },
-    },
     title: {
         marginBottom: theme.rem(1),
         fontSize: theme.rem(2),
@@ -153,16 +120,8 @@ const ProfileInfo = (): ReactElement => {
                 <div className={clsx(css.percent, percent > 25 ? css.green : css.yellow)}>{percent} %</div>
             </div>
 
-            <div className={css.reputation}>
-                <button className={css.like} type="button">
-                    <FontAwesomeIcon icon={faThumbsUp} />
-                    <span>144</span>
-                </button>
-                <button className={css.dislike} type="button">
-                    <FontAwesomeIcon icon={faThumbsDown} />
-                    <span>3</span>
-                </button>
-            </div>
+            <LikeDislike like={133} dislike={4} active="like" onClick={console.log} />
+
             <div>
                 <h5 className={css.title}>Об Авторе</h5>
                 <p>

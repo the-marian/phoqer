@@ -30,7 +30,7 @@ const api = {
         list: (id: string): Promise<AxiosResponse<IComment[]>> => axios.get(`/comments/${id}`),
         create: (id: string, body: { body: string; offer_id: string }): Promise<AxiosResponse<void>> =>
             axios.post(`/comments/${id}/`, body),
-        delete: (id: string): Promise<AxiosResponse<void>> => axios.delete(`/comments/${id}`),
+        delete: (id: number): Promise<AxiosResponse<void>> => axios.delete(`/comments/${id}`),
         reply: (id: string, body: Body): Promise<AxiosResponse<void>> => axios.post(`/comments/${id}/reply/`, body),
         like: (id: string): Promise<AxiosResponse<void>> => axios.patch(`/comments/${id}/like/`),
         dislike: (id: string): Promise<AxiosResponse<void>> => axios.patch(`/comments/${id}/dislike/`),
