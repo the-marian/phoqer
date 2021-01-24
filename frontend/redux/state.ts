@@ -6,6 +6,7 @@ const initState: IState = {
     },
     filters: { open: true },
     categories: null,
+    comments: null,
     offers: {
         popular: {
             data: null,

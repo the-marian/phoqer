@@ -6,6 +6,7 @@ import { AnyAction, Store } from 'redux';
  * 2 AUTH
  * 3 CATEGORIES
  * 4 OFFERS
+ * 5 COMMENTS
  * REDUX STORE
  * */
 
@@ -115,6 +116,21 @@ export interface IOffers {
 }
 
 // =====================================
+// 5 COMMENTS
+// =====================================
+export interface IComment {
+    id: number;
+    author: string;
+    body: string;
+    dislikes: number;
+    images: { url: string }[];
+    likes: number;
+    offer: string;
+    pub_date: string;
+    replies: [];
+}
+
+// =====================================
 // REDUX STORE
 // =====================================
 export interface IState {
@@ -122,6 +138,7 @@ export interface IState {
     filters: { open: boolean };
     categories: ICategories[] | null;
     offers: IOffers;
+    comments: IComment[] | null;
 }
 
 export interface IStore extends Store<IState, AnyAction> {

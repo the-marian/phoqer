@@ -32,7 +32,7 @@ function* getComments({ payload }: IAction) {
 
 function* create({ payload }: IAction) {
     try {
-        const { status, data } = yield call(api.comments.create, payload as IBody);
+        const { status, data } = yield call(api.comments.create, (payload as IBody).offer_id, payload as IBody);
         if (status < 200 || status >= 300) throw new Error();
         yield put({ type: types.GET_COMMENTS_SUCCESS, payload: data });
     } catch (error) {

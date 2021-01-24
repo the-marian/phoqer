@@ -1,6 +1,6 @@
 import axios, { AxiosResponse } from 'axios';
 
-import { ICategories, IOffers, Login } from '../interfaces';
+import { ICategories, IComment, IOffers, Login } from "../interfaces";
 import { IBody } from '../redux/offers/new_offer/saga';
 import config from './config';
 
@@ -27,8 +27,9 @@ const api = {
         },
     },
     comments: {
-        list: (id: string): Promise<AxiosResponse<void>> => axios.get(`/comments/${id}`),
-        create: (body: { body: string; offer_id: string }): Promise<AxiosResponse<void>> => axios.post('/comments', body),
+        list: (id: string): Promise<AxiosResponse<IComment[]>> => axios.get(`/comments/${id}`),
+        create: (id: string, body: { body: string; offer_id: string }): Promise<AxiosResponse<void>> =>
+            axios.post(`/comments/${id}/`, body),
         delete: (id: string): Promise<AxiosResponse<void>> => axios.delete(`/comments/${id}`),
         reply: (id: string, body: Body): Promise<AxiosResponse<void>> => axios.post(`/comments/${id}/reply/`, body),
         like: (id: string): Promise<AxiosResponse<void>> => axios.patch(`/comments/${id}/like/`),

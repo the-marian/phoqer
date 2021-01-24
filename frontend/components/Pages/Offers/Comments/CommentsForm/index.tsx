@@ -8,9 +8,13 @@ import { createUseStyles } from 'react-jss';
 import { useDispatch } from 'react-redux';
 
 import { Theme } from '../../../../../assets/theme';
+import useAuth from '../../../../../hooks/auth.hook';
 import useMedia from '../../../../../hooks/media.hook';
 import useUppy from '../../../../../hooks/uppy.hook';
 import types from '../../../../../redux/types';
+import LoginForm from '../../../../Common/Auth/LoginForm';
+import { modal } from '../../../../Common/Modal';
+import SmallModalWrp from '../../../../Common/Modal/SmallModalWrp';
 import Switcher from '../../../../Common/Switcher';
 import TextareaResize from '../../../../Common/TextareaResize';
 
@@ -75,6 +79,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
 
 const CommentsForm = (): ReactElement => {
     const css = useStyles();
+    const auth = useAuth();
     const uppy = useUppy();
     const history = useRouter();
     const dispatch = useDispatch();
@@ -93,6 +98,14 @@ const CommentsForm = (): ReactElement => {
 
     const handleSubmit = (): void => {
         if (!value) return;
+        if (!auth?.auth_token) {
+            modal.open(
+                <SmallModalWrp>
+                    <LoginForm />
+                </SmallModalWrp>,
+            );
+            return;
+        }
 
         dispatch({
             type: types.CREATE_COMMENT_START,
