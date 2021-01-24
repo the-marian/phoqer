@@ -11,12 +11,10 @@ const useStyles = createUseStyles((theme: Theme) => ({
         display: 'flex',
         alignItems: 'center',
         height: theme.rem(5),
-        marginRight: theme.rem(4),
 
         '@media (max-width: 500px)': {
             display: 'flex',
             alignItems: 'center',
-            marginRight: theme.rem(1.5),
         },
     },
     center: {
@@ -24,7 +22,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
     img: {
         height: 'auto',
-        marginTop: theme.rem(0.4),
+        marginTop: theme.rem(0.6),
         width: theme.rem(14),
 
         '@media (max-width: 500px)': {

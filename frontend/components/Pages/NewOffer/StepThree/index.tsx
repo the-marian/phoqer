@@ -1,73 +1,72 @@
-import Uppy, { UploadedUppyFile } from '@uppy/core';
-import { Dashboard, StatusBar } from '@uppy/react';
-import XHRUpload from '@uppy/xhr-upload';
+import { UploadedUppyFile } from '@uppy/core';
+import { Dashboard } from '@uppy/react';
 import { useRouter } from 'next/router';
-import React, { FormEvent, ReactElement, useEffect, useMemo } from 'react';
+import React, { FormEvent, ReactElement, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 
 import config from '../../../../assets/config';
 import routes from '../../../../assets/routes';
-import useAuth from '../../../../hooks/auth.hook';
 import useMedia from '../../../../hooks/media.hook';
+import useUppy from '../../../../hooks/uppy.hook';
 import types from '../../../../redux/types';
 import notifications from '../../../Common/Notifications';
 import useStyles from './StepThree.styles';
 
 const StepThree = (): ReactElement => {
+    // style
     const css = useStyles();
-    const auth = useAuth();
+    // general
     const dispatch = useDispatch();
     const history = useRouter();
-
+    // uppy
+    const uppy = useUppy();
+    // media
     const media = useMedia(900);
-    const height = media ? 500 : 350;
 
-    const uppy = useMemo(
-        () =>
-            Uppy<Uppy.StrictTypes>({
-                id: 'file',
-                autoProceed: false,
-                allowMultipleUploads: true,
-                meta: { type: 'file' },
-                restrictions: {
-                    maxFileSize: 3145728, // 3 megabytes in bytes
-                    allowedFileTypes: ['.jpg', '.jpeg', '.png'],
-                    maxNumberOfFiles: 20,
-                },
-            }),
-        [],
-    );
+    const [isEmpty, setIsEmpty] = useState<boolean>(true);
 
     useEffect(() => {
-        const handleUploaded = (res): void => {
-            dispatch({
-                type: types.POST_OFFER_START,
-                history,
-                payload: res?.successful?.map((item: UploadedUppyFile<string, { images_url: [string] }>) => ({
-                    url: config.img + item?.response?.body?.images_url?.[0],
-                })),
-            });
+        const handler = (): void => {
+            setIsEmpty(!uppy.getFiles()?.length);
         };
 
-        uppy.on('complete', handleUploaded);
+        uppy.on('file-removed', handler);
+        uppy.on('file-added', handler);
         return () => {
-            uppy.off('complete', handleUploaded);
+            uppy.off('file-removed', handler);
+            uppy.off('file-added', handler);
         };
     }, []);
 
     useEffect(() => {
-        uppy.use(XHRUpload, {
-            endpoint: config.uploadsUrl,
-            fieldName: 'file',
-            headers: {
-                Authorization: `Token ${auth?.auth_token}`,
-            },
-        });
-        return () => uppy.close();
+        const handler = (res): void => {
+            const value: { url: string }[] = res?.successful?.map((item: UploadedUppyFile<string, { images_url: [string] }>) => ({
+                url: config.img + item?.response?.body?.images_url?.[0],
+            }));
+
+            dispatch({
+                type: types.POST_OFFER_START,
+                payload: value,
+                history,
+            });
+        };
+
+        uppy.on('complete', handler);
+        return () => {
+            uppy.off('complete', handler);
+        };
     }, []);
 
     const handleBack = () => {
         history.push(routes.new_offer(2));
+    };
+
+    const handleClick = (): void => {
+        dispatch({
+            type: types.POST_OFFER_START,
+            payload: null,
+            history,
+        });
     };
 
     const handleSubmit = async (event: FormEvent): Promise<void> => {
@@ -95,16 +94,22 @@ const StepThree = (): ReactElement => {
             <h4 className={css.title}>Добавьте фото вашего товара</h4>
             <p className={css.text}>Не больше 3мб (.png .jpg .jpeg)</p>
 
-            <StatusBar uppy={uppy} hideAfterFinish={false} showProgressDetails />
-            <Dashboard uppy={uppy} height={height} />
+            <Dashboard uppy={uppy} height={media ? 500 : 350} />
 
             <div className={css.btnWrp}>
                 <button type="button" className={css.btn} onClick={handleBack}>
                     Назад
                 </button>
-                <button type="submit" className={css.next}>
-                    Далее
-                </button>
+
+                {isEmpty ? (
+                    <button type="button" className={css.next} onClick={handleClick}>
+                        Опубликовать без фото
+                    </button>
+                ) : (
+                    <button type="submit" className={css.next}>
+                        Отправить
+                    </button>
+                )}
             </div>
         </form>
     );

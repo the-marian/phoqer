@@ -34,10 +34,14 @@ const useStyles = createUseStyles((theme: Theme) => ({
     img: {
         height: theme.rem(20),
         objectFit: 'cover',
-        objectPosition: 'top',
+        objectPosition: 'center',
         borderRadius: theme.radius,
         boxShadow: theme.shadow[1],
         background: theme.palette.gray[1],
+
+        '@media (max-width: 580px)': {
+            height: theme.rem(30),
+        },
     },
     topWrp: {
         position: 'absolute',
@@ -66,11 +70,19 @@ const useStyles = createUseStyles((theme: Theme) => ({
         margin: theme.rem(1, 0),
         fontSize: theme.rem(1.5),
         fontWeight: theme.text.weight[3],
+
+        '@media (max-width: 500px)': {
+            fontSize: theme.rem(1.8),
+        },
     },
     desc: {
         margin: 0,
         fontSize: theme.rem(1.4),
         fontWeight: theme.text.weight[2],
+
+        '@media (max-width: 500px)': {
+            fontSize: theme.rem(1.6),
+        },
     },
     info: {
         display: 'flex',
@@ -108,6 +120,10 @@ const useStyles = createUseStyles((theme: Theme) => ({
         borderRadius: theme.radius,
         background: theme.palette.green[0],
         color: theme.palette.white,
+
+        '@media (max-width: 500px)': {
+            fontSize: theme.rem(1.8),
+        },
     },
     favorite: {
         marginLeft: theme.rem(2),
@@ -127,6 +143,14 @@ const useStyles = createUseStyles((theme: Theme) => ({
             fontWeight: theme.text.weight[2],
             fontSize: theme.rem(1.2),
             color: theme.palette.gray[3],
+        },
+
+        '@media (max-width: 500px)': {
+            fontSize: theme.rem(1.8),
+
+            '& small': {
+                fontSize: theme.rem(1.4),
+            },
         },
     },
 }));

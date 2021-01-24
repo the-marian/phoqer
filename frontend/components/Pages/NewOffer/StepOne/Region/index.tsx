@@ -27,6 +27,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         border: 'none',
         borderRadius: theme.radius,
         fontSize: theme.rem(1.3),
+        boxShadow: theme.shadow[1],
 
         '& span': {
             width: '88%',

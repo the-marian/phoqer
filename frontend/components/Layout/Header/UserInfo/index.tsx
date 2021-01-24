@@ -46,7 +46,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
             background: theme.palette.white,
             padding: theme.rem(0.9, 1.8),
             borderRadius: theme.radius,
-            boxShadow: theme.shadow[0],
+            boxShadow: theme.shadow[1],
         },
 
         '&:hover': {
@@ -60,6 +60,11 @@ const useStyles = createUseStyles((theme: Theme) => ({
             '@media (max-width: 750px)': {
                 height: theme.rem(1.8),
                 width: theme.rem(1.8),
+            },
+
+            '@media (max-width: 350px)': {
+                height: theme.rem(1.8),
+                width: theme.rem(1.4),
             },
         },
     },

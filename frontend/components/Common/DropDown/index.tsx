@@ -31,6 +31,10 @@ const useStyles = createUseStyles((theme: Theme) => ({
         '@media (max-width: 768px)': {
             fontSize: theme.rem(1.6),
         },
+
+        '@media (max-width: 450px)': {
+            paddingLeft: theme.rem(1.2),
+        },
     },
     text: {
         width: '100%',
@@ -47,6 +51,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         left: 0,
         zIndex: 10,
         width: '100%',
+        minWidth: theme.rem(15),
         paddingTop: theme.rem(1),
     },
     box: {
@@ -93,6 +98,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
     white: {
         background: theme.palette.white,
+        boxShadow: theme.shadow[1],
     },
     icon: {
         marginRight: theme.rem(0.6),

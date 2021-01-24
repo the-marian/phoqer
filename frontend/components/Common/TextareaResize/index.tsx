@@ -1,4 +1,4 @@
-import { faCompressArrowsAlt, faExpandArrowsAlt } from '@fortawesome/free-solid-svg-icons';
+import { faCompressAlt, faExpandAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import clsx from 'clsx';
 import React, { ChangeEvent, ReactElement, useState } from 'react';
@@ -27,7 +27,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         position: 'absolute',
         bottom: theme.rem(2),
         right: theme.rem(2),
-        padding: theme.rem(1),
+        padding: theme.rem(0.8, 1.2),
         borderRadius: theme.radius,
         background: theme.palette.gray[1],
         opacity: 0,
@@ -36,7 +36,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
 
         '& svg': {
             height: theme.rem(1.6),
-            width: theme.rem(1.8),
+            width: theme.rem(1.6),
         },
     },
 }));
@@ -69,7 +69,7 @@ const TextareaResize = ({ value, onChange, className, name, placeholder, height 
                 style={{ height: big ? `${height}rem` : '8rem' }}
             />
             <button className={css.resize} type="button" onClick={handleClick}>
-                {big ? <FontAwesomeIcon icon={faCompressArrowsAlt} /> : <FontAwesomeIcon icon={faExpandArrowsAlt} />}
+                {big ? <FontAwesomeIcon icon={faCompressAlt} /> : <FontAwesomeIcon icon={faExpandAlt} />}
             </button>
         </div>
     );

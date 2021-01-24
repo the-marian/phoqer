@@ -11,7 +11,7 @@ import SectionTitle from '../../../Layout/SectionTitle';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     root: {
-        marginTop: theme.rem(20),
+        marginTop: theme.rem(10),
         fontSize: theme.rem(1.5),
         fontWeight: theme.text.weight[3],
     },

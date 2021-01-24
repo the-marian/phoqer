@@ -58,8 +58,8 @@ function* postOffer({ payload, history }: IAction) {
             max_rent_period,
             min_rent_period,
             extra_requirements,
-            images: payload,
-            cover_image: payload?.[0]?.url,
+            images: payload || [],
+            cover_image: payload && payload?.[0]?.url,
             category: category.type !== 'sub' ? category.slug : null,
             sub_category: category.type === 'sub' ? category.slug : null,
         } as IBody);

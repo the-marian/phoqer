@@ -15,7 +15,7 @@ const newOffer = (state: INewOffer = initState.offers.newOffer, { type, payload 
             return (payload as IState).offers.newOffer;
 
         case types.POST_OFFER_SUCCESS:
-            return { ...state, ...payload };
+            return { ...state, id: (payload as INewOffer).id };
 
         case types.NEW_OFFER_FORM:
             return { ...state, ...payload };

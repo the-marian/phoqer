@@ -41,6 +41,8 @@ const useStyles = createUseStyles((theme: Theme) => ({
         border: 'none',
         borderRadius: theme.radius,
         fontSize: theme.rem(1.2),
+        boxShadow: theme.shadow[1],
+
         '& span': {
             marginLeft: theme.rem(1.5),
             fontSize: theme.rem(1.3),
@@ -50,6 +52,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         width: '100%',
         height: theme.rem(10),
         padding: theme.rem(2),
+        boxShadow: theme.shadow[1],
     },
     resize: {
         position: 'absolute',
@@ -97,6 +100,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         fontSize: theme.rem(1.4),
         color: theme.palette.black,
         borderRadius: theme.radius,
+        boxShadow: theme.shadow[1],
 
         '& svg': {
             width: theme.rem(1.6),
@@ -138,6 +142,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         fontSize: theme.rem(1.4),
         color: theme.palette.black,
         borderRadius: theme.radius,
+        boxShadow: theme.shadow[1],
 
         '@media (max-width: 470px)': {
             margin: theme.rem(1.6, 0, 0),

@@ -1,8 +1,20 @@
 import { useRouter } from 'next/router';
 import React, { ReactElement } from 'react';
+import { createUseStyles } from 'react-jss';
 
+import { Theme } from '../../../../assets/theme';
 import { IDropList } from '../../../../interfaces';
 import DropDown from '../../../Common/DropDown';
+
+const useStyles = createUseStyles((theme: Theme) => ({
+    wrp: {
+        marginLeft: theme.rem(3),
+
+        '@media (max-width: 768px)': {
+            marginLeft: theme.rem(1),
+        },
+    },
+}));
 
 const LANGS: IDropList[] = [
     {
@@ -20,19 +32,22 @@ const LANGS: IDropList[] = [
 ];
 
 const Lang = (): ReactElement => {
+    const css = useStyles();
     const history = useRouter();
     const handleChange = (value: { name: string; slug: string; type: string }): void => {
         history.push(history.pathname, history.asPath, { locale: value.slug });
     };
 
     return (
-        <DropDown
-            height={3}
-            defaultValue={{ name: history.locale.toUpperCase(), slug: history.locale, type: 'main' }}
-            data={LANGS}
-            onChange={handleChange}
-            white
-        />
+        <div className={css.wrp}>
+            <DropDown
+                height={3}
+                defaultValue={{ name: history.locale.toUpperCase(), slug: history.locale, type: 'main' }}
+                data={LANGS}
+                onChange={handleChange}
+                white
+            />
+        </div>
     );
 };
 

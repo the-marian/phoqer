@@ -40,6 +40,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         border: 'none',
         borderRadius: theme.radius,
         fontSize: theme.rem(1.3),
+        boxShadow: theme.shadow[1],
 
         '& span': {
             width: '88%',
@@ -85,6 +86,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         fontSize: theme.rem(1.4),
         color: theme.palette.black,
         borderRadius: theme.radius,
+        boxShadow: theme.shadow[1],
 
         '& svg': {
             width: theme.rem(1.6),
@@ -127,6 +129,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         fontSize: theme.rem(1.4),
         color: theme.palette.black,
         borderRadius: theme.radius,
+        boxShadow: theme.shadow[1],
 
         '& svg': {
             width: theme.rem(1.6),

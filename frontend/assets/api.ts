@@ -26,6 +26,14 @@ const api = {
             post: (body: IBody): Promise<AxiosResponse<void>> => axios.post('/offers/', body),
         },
     },
+    comments: {
+        list: (id: string): Promise<AxiosResponse<void>> => axios.get(`/comments/${id}`),
+        create: (body: { body: string; offer_id: string }): Promise<AxiosResponse<void>> => axios.post('/comments', body),
+        delete: (id: string): Promise<AxiosResponse<void>> => axios.delete(`/comments/${id}`),
+        reply: (id: string, body: Body): Promise<AxiosResponse<void>> => axios.post(`/comments/${id}/reply/`, body),
+        like: (id: string): Promise<AxiosResponse<void>> => axios.patch(`/comments/${id}/like/`),
+        dislike: (id: string): Promise<AxiosResponse<void>> => axios.patch(`/comments/${id}/dislike/`),
+    },
 };
 
 export default api;

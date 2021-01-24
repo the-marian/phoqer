@@ -53,6 +53,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         fontSize: theme.rem(1.4),
         color: theme.palette.black,
         borderRadius: theme.radius,
+        boxShadow: theme.shadow[1],
 
         '@media (max-width: 470px)': {
             margin: theme.rem(1.6, 0, 0),

@@ -27,7 +27,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         },
         '@media (max-width: 560px)': {
             gridTemplateColumns: theme.fr(config.offers.grid.mobile),
-            maxWidth: theme.rem(40),
+            maxWidth: theme.rem(45),
             margin: '0 auto',
         },
     },

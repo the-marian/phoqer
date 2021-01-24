@@ -173,9 +173,15 @@ const SingleOfferPage = (): ReactElement => {
                 <Container>
                     {offer?.images.length > 1 ? (
                         <OfferSlider images={offer?.images} />
-                    ) : offer?.images.length || offer?.cover_image ? (
-                        <img className={css.banner} src={offer?.cover_image} alt="" onClick={handleModal} aria-hidden />
-                    ) : null}
+                    ) : (
+                        <img
+                            className={css.banner}
+                            src={offer?.cover_image || '/no_img.png'}
+                            alt=""
+                            onClick={handleModal}
+                            aria-hidden
+                        />
+                    )}
                     <Breadcrumbs
                         end={offer?.title}
                         data={[
@@ -238,6 +244,7 @@ export const getServerSideProps = wrapper.getServerSideProps(
 
         store.dispatch({ type: types.GET_CATEGORIES_START });
         store.dispatch({ type: types.GET_POPULAR_OFFERS_START });
+        store.dispatch({ type: types.GET_COMMENTS_START, payload: ctx.query?.offerId });
         store.dispatch({ type: types.GET_SINGLE_OFFER_START, payload: ctx.query?.offerId });
         store.dispatch(END);
         await store.sagaTask.toPromise();
