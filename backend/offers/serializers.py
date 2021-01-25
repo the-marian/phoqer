@@ -1,9 +1,7 @@
 import datetime
 
-from rest_framework import serializers
 from django.core.exceptions import ObjectDoesNotExist
-
-from users.models import User
+from rest_framework import serializers
 
 from .models import Offer, OfferImages
 
@@ -30,7 +28,7 @@ class BaseOfferSerializer(serializers.ModelSerializer):
 
     def get_is_favorite(self, offer):
         user_request = self.context['request'].user
-        if user_request:
+        if user_request.is_authenticated:
             try:
                 user_request.favorite_offers.get(id=offer.id)
                 return True
