@@ -6,6 +6,7 @@ import { useRouter } from 'next/router';
 import React, { ChangeEvent, ReactElement, useState } from 'react';
 import { createUseStyles } from 'react-jss';
 import { useDispatch } from 'react-redux';
+import TextareaAutosize from 'react-textarea-autosize';
 
 import { Theme } from '../../../../../assets/theme';
 import useAuth from '../../../../../hooks/auth.hook';
@@ -16,7 +17,6 @@ import LoginForm from '../../../../Common/Auth/LoginForm';
 import { modal } from '../../../../Common/Modal';
 import SmallModalWrp from '../../../../Common/Modal/SmallModalWrp';
 import Switcher from '../../../../Common/Switcher';
-import TextareaResize from '../../../../Common/TextareaResize';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     flex: {
@@ -34,11 +34,10 @@ const useStyles = createUseStyles((theme: Theme) => ({
         },
     },
     textarea: {
-        width: '100%',
+        ...theme.input,
         padding: theme.rem(2),
-        background: theme.palette.gray[0],
-        border: 'none',
-        borderRadius: theme.radius,
+        fontSize: theme.rem(1.6),
+        background: theme.palette.gray[1],
     },
     file: {
         margin: theme.rem(1, 0),
@@ -119,9 +118,8 @@ const CommentsForm = (): ReactElement => {
 
     return (
         <>
-            <TextareaResize
+            <TextareaAutosize
                 value={value}
-                height={45}
                 className={css.textarea}
                 onChange={handleChange}
                 name="comment"

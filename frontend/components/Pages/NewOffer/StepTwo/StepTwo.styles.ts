@@ -32,17 +32,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         fontWeight: theme.text.weight[2],
     },
     input: {
-        display: 'flex',
-        alignItems: 'center',
-        height: theme.rem(6),
-        width: '100%',
-        padding: theme.rem(1, 2),
-        background: theme.palette.white,
-        border: 'none',
-        borderRadius: theme.radius,
-        fontSize: theme.rem(1.2),
-        boxShadow: theme.shadow[1],
-
+        ...theme.input,
         '& span': {
             marginLeft: theme.rem(1.5),
             fontSize: theme.rem(1.3),

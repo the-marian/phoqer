@@ -17,6 +17,12 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
     transparent: {
         background: 'none !important',
+        '&:focus': {
+            boxShadow: 'none !important',
+        },
+        '&:hover': {
+            boxShadow: 'none !important',
+        },
     },
     inner: {
         display: 'flex',
@@ -27,6 +33,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         borderRadius: theme.radius,
         cursor: 'pointer',
         fontSize: theme.rem(1.4),
+        ...theme.outline,
 
         '@media (max-width: 768px)': {
             fontSize: theme.rem(1.6),
@@ -99,6 +106,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     white: {
         background: theme.palette.white,
         boxShadow: theme.shadow[1],
+        ...theme.outline,
     },
     icon: {
         marginRight: theme.rem(0.6),

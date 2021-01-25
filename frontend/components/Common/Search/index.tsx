@@ -36,6 +36,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         fontSize: theme.rem(1.4),
         borderRadius: theme.radius,
         border: 'none',
+        ...theme.outline,
 
         '@media (max-width: 768px)': {
             fontSize: theme.rem(1.6),

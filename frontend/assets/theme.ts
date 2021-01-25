@@ -24,6 +24,8 @@ export interface Theme {
         weight: [200, 300, 400, 500, 600, 700];
     };
     transitions: string[];
+    input: { [key: string]: string | { [key: string]: string } };
+    outline: { [key: string]: { [key: string]: string } };
 }
 
 export const theme: Theme = {
@@ -75,4 +77,28 @@ export const theme: Theme = {
         weight: [200, 300, 400, 500, 600, 700],
     },
     transitions: ['0.3s cubic-bezier(0.4, 0, 0.2, 1)'],
+    input: {
+        display: 'block',
+        alignItems: 'center',
+        height: '6rem',
+        width: '100%',
+        padding: '1rem 2rem',
+        border: 'none',
+        borderRadius: '0.6rem',
+        fontSize: '1.2rem',
+        '&:focus': {
+            boxShadow: '0 0 0 0.1rem #085085',
+        },
+        '&:hover': {
+            boxShadow: '0 0 0 0.1rem #085085',
+        },
+    },
+    outline: {
+        '&:focus': {
+            boxShadow: '0 0 0 0.1rem #085085',
+        },
+        '&:hover': {
+            boxShadow: '0 0 0 0.1rem #085085',
+        },
+    },
 };

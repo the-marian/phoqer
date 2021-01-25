@@ -4,6 +4,7 @@ import clsx from 'clsx';
 import { useRouter } from 'next/router';
 import React, { ChangeEvent, FormEvent, ReactElement, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import TextareaAutosize from 'react-textarea-autosize';
 
 import { moneyFormat, numberValidation } from '../../../../assets/helpers';
 import routes from '../../../../assets/routes';
@@ -12,7 +13,6 @@ import types from '../../../../redux/types';
 import CheckTitle from '../../../Common/CheckTitle';
 import CheckYesNo from '../../../Common/CheckYesNo';
 import { modal } from '../../../Common/Modal';
-import TextareaResize from '../../../Common/TextareaResize';
 import SaveModal from '../SaveModal';
 import useStyles from './StepTwo.styles';
 
@@ -151,7 +151,8 @@ const StepTwo = (): ReactElement => {
                 <h4 className={css.title}>
                     Описание товара <span className={css.red}>*</span>
                 </h4>
-                <TextareaResize
+                <TextareaAutosize
+                    cacheMeasurements
                     value={value.description}
                     onChange={handleText}
                     className={clsx(css.input, css.textarea, errors.description && css.errors)}
@@ -214,7 +215,7 @@ const StepTwo = (): ReactElement => {
 
             <div className={css.inner}>
                 <h4 className={css.title}>Дополнительные требования</h4>
-                <TextareaResize
+                <TextareaAutosize
                     value={value.extra_requirements}
                     onChange={handleText}
                     className={clsx(css.input, css.textarea)}

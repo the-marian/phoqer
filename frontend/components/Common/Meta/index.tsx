@@ -6,7 +6,7 @@ import { createUseStyles } from 'react-jss';
 import config from '../../../assets/config';
 import useTrans from '../../../hooks/trans.hook';
 
-const useStyles = createUseStyles(() => ({
+const useStyles = createUseStyles({
     title: {
         position: 'absolute',
         top: 0,
@@ -14,7 +14,7 @@ const useStyles = createUseStyles(() => ({
         fontSize: 0,
         opacity: 0,
     },
-}));
+});
 
 interface IProps {
     title?: string;

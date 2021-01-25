@@ -21,6 +21,7 @@ import Price from '../../../components/Pages/Offers/Price';
 import RelatedOffers from '../../../components/Pages/Offers/RelatedOffers';
 import Requirements from '../../../components/Pages/Offers/Requirements';
 import OfferSlider from '../../../components/Pages/Offers/Slider';
+import SmallBanner from '../../../components/Pages/Offers/SmallBanner';
 import useMedia from '../../../hooks/media.hook';
 import { ICategories, IOfferCard, IState, IStore } from '../../../interfaces';
 import { wrapper } from '../../../redux/store';
@@ -223,6 +224,8 @@ const SingleOfferPage = (): ReactElement => {
                                 fixedWeeks
                                 numberOfMonths={calendarMedia ? 2 : 1}
                             />
+
+                            <SmallBanner />
 
                             <h2 className={css.subtitle}>Комментарии</h2>
                             <Comments />

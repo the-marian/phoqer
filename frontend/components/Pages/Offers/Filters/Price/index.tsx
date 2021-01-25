@@ -15,12 +15,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         marginBottom: theme.rem(2.5),
     },
     input: {
-        display: 'block',
-        width: '100%',
-        padding: theme.rem(1, 1.5),
-        fontSize: theme.rem(1.3),
-        borderRadius: theme.radius,
-        border: 'none',
+        ...theme.input,
         background: theme.palette.gray[1],
     },
     title: {
@@ -45,11 +40,11 @@ const PriceFilter = (): ReactElement => {
     const [max, setMax] = useState<number>(100);
 
     const handleMin = (event: ChangeEvent<HTMLInputElement>): void => {
-        if (!numberValidation(event.target.value)) return;
+        if (numberValidation(event.target.value)) return;
         setMin(+event.target.value);
     };
     const handleMax = (event: ChangeEvent<HTMLInputElement>): void => {
-        if (!numberValidation(event.target.value)) return;
+        if (numberValidation(event.target.value)) return;
         setMax(+event.target.value);
     };
     const handleRange = (value: number[]): void => {
