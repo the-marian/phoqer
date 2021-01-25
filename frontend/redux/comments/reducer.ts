@@ -8,13 +8,21 @@ interface IAction {
     payload: IComment[] | IState | null;
 }
 
-const comments = (state: IComment[] | null = null, { type, payload }: IAction): IComment[] | null => {
+const comments = (
+    state: { loading: boolean; data: IComment[] | null } = { loading: false, data: null },
+    { type, payload }: IAction,
+): IComment[] | { loading: boolean; data: IComment[] | null } => {
     switch (type) {
         case HYDRATE:
             return (payload as IState).comments;
 
         case types.GET_COMMENTS_SUCCESS:
-            return payload as IComment[];
+            return { loading: false, data: payload as IComment[] };
+
+        case types.GET_COMMENTS_ERROR:
+        case types.CREATE_COMMENT_START:
+        case types.DELETE_COMMENT_START:
+            return { ...state, loading: true };
 
         default:
             return state;

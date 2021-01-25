@@ -1,21 +1,16 @@
 import { faPaperclip } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { UploadedUppyFile } from '@uppy/core';
 import { Dashboard } from '@uppy/react';
 import clsx from 'clsx';
-import { useRouter } from 'next/router';
-import React, { ChangeEvent, ReactElement, useState } from 'react';
+import React, { ChangeEvent, ReactElement, useEffect, useState } from 'react';
 import { createUseStyles } from 'react-jss';
-import { useDispatch } from 'react-redux';
 import TextareaAutosize from 'react-textarea-autosize';
 
+import config from '../../../../../assets/config';
 import { Theme } from '../../../../../assets/theme';
-import useAuth from '../../../../../hooks/auth.hook';
 import useMedia from '../../../../../hooks/media.hook';
 import useUppy from '../../../../../hooks/uppy.hook';
-import types from '../../../../../redux/types';
-import LoginForm from '../../../../Common/Auth/LoginForm';
-import { modal } from '../../../../Common/Modal';
-import SmallModalWrp from '../../../../Common/Modal/SmallModalWrp';
 import Switcher from '../../../../Common/Switcher';
 
 const useStyles = createUseStyles((theme: Theme) => ({
@@ -66,6 +61,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         background: theme.palette.primary[0],
         color: theme.palette.white,
         borderRadius: theme.radius,
+        fontSize: theme.rem(1.6),
 
         '@media (max-width: 1050px)': {
             margin: theme.rem(2, 0),
@@ -76,12 +72,13 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
 }));
 
-const CommentsForm = (): ReactElement => {
+interface IProps {
+    onSubmit: (value: string, images: { url: string }[]) => void;
+}
+
+const CommentsForm = ({ onSubmit }: IProps): ReactElement => {
     const css = useStyles();
-    const auth = useAuth();
     const uppy = useUppy();
-    const history = useRouter();
-    const dispatch = useDispatch();
     const media = useMedia(900);
 
     const [value, setValue] = useState<string>('');
@@ -95,24 +92,26 @@ const CommentsForm = (): ReactElement => {
         setAttachment(value);
     };
 
+    useEffect(() => {
+        const handler = (res): void => {
+            const images: { url: string }[] = res?.successful?.map(
+                (item: UploadedUppyFile<string, { images_url: [string] }>) => ({
+                    url: config.img + item?.response?.body?.images_url?.[0],
+                }),
+            );
+
+            onSubmit(value, images);
+        };
+
+        uppy.on('complete', handler);
+        return () => {
+            uppy.off('complete', handler);
+        };
+    }, []);
+
     const handleSubmit = (): void => {
         if (!value) return;
-        if (!auth?.auth_token) {
-            modal.open(
-                <SmallModalWrp>
-                    <LoginForm />
-                </SmallModalWrp>,
-            );
-            return;
-        }
-
-        dispatch({
-            type: types.CREATE_COMMENT_START,
-            payload: {
-                body: value,
-                offer_id: history.query.offerId,
-            },
-        });
+        onSubmit(value, []);
         setValue('');
     };
 
@@ -123,7 +122,7 @@ const CommentsForm = (): ReactElement => {
                 className={css.textarea}
                 onChange={handleChange}
                 name="comment"
-                placeholder="Оставте ваш отзыв от товаре"
+                placeholder="Оставте ваш отзыв"
             />
 
             <div className={css.switcher}>
@@ -141,7 +140,7 @@ const CommentsForm = (): ReactElement => {
                 )}
             </div>
 
-            {attachment && <Dashboard uppy={uppy} height={media ? 500 : 350} />}
+            {attachment && <Dashboard uppy={uppy} height={media ? 400 : 300} />}
         </>
     );
 };

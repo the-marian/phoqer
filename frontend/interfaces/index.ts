@@ -1,4 +1,4 @@
-import { AnyAction, Store } from 'redux';
+import { Store } from 'redux';
 
 /**
  * Document structure
@@ -138,9 +138,9 @@ export interface IState {
     filters: { open: boolean };
     categories: ICategories[] | null;
     offers: IOffers;
-    comments: IComment[] | null;
+    comments: { loading: boolean; data: IComment[] | null };
 }
 
-export interface IStore extends Store<IState, AnyAction> {
+export interface IStore extends Store<IState> {
     sagaTask?: { toPromise: () => void };
 }

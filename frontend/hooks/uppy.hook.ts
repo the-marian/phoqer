@@ -23,6 +23,7 @@ const useUppy = (): Uppy.Uppy<Uppy.StrictTypes> => {
         [],
     );
 
+    // console.log(uppy);
     useEffect(() => {
         uppy.use(XHRUpload, {
             endpoint: config.uploadsUrl,
@@ -31,7 +32,10 @@ const useUppy = (): Uppy.Uppy<Uppy.StrictTypes> => {
                 Authorization: `Token ${auth?.auth_token}`,
             },
         });
-        return () => uppy.close();
+
+        return () => {
+            uppy.close();
+        };
     }, []);
 
     return uppy;

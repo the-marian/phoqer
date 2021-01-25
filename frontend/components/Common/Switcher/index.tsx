@@ -8,6 +8,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     flex: {
         display: 'flex',
         alignItems: 'center',
+        fontSize: theme.rem(1.4),
     },
     wrp: {
         position: 'relative',

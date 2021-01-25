@@ -1,4 +1,3 @@
-import clsx from 'clsx';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React, { ReactElement } from 'react';
@@ -13,6 +12,7 @@ import types from '../../../../../../redux/types';
 import LikeDislike from '../../../../../Common/LikeDislike';
 import { modal } from '../../../../../Common/Modal';
 import MidModalWrp from '../../../../../Common/Modal/MidModalWrp';
+import ReplyModal from '../../ReplyModal';
 
 const MAX_LENGTH = 200;
 
@@ -25,6 +25,10 @@ const useStyles = createUseStyles((theme: Theme) => ({
         display: 'flex',
         alignItems: 'center',
         margin: theme.rem(0, 0, 1),
+
+        '@media (max-width: 550px)': {
+            display: 'block',
+        },
     },
     author: {
         display: 'flex',
@@ -48,6 +52,10 @@ const useStyles = createUseStyles((theme: Theme) => ({
         fontWeight: theme.text.weight[3],
         fontSize: theme.rem(1.6),
         color: theme.palette.primary[0],
+
+        '@media (max-width: 550px)': {
+            margin: theme.rem(0, 1, 1.6, 0),
+        },
 
         '&:hover': {
             textDecoration: 'underline',
@@ -73,6 +81,11 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
 }));
 
+const CLICK_TYPE = {
+    like: types.LIKE_COMMENT_START,
+    dislike: types.DISLIKE_COMMENT_START,
+};
+
 interface IProps {
     comment: IComment;
     extend?: boolean;
@@ -84,9 +97,17 @@ const CommentsItem = ({ comment, extend = false }: IProps): ReactElement => {
     const history = useRouter();
     const dispatch = useDispatch();
 
-    const handleDelete = (id: number) => (): void => {
+    const handleLike = (value: 'like' | 'dislike'): void => {
+        dispatch({ type: CLICK_TYPE[value], payload: comment.id, offerId: history.query.offerId });
+    };
+
+    const handleDelete = (): void => {
         modal.close();
-        dispatch({ type: types.DELETE_COMMENT_START, payload: id, offerId: history.query.offerId });
+        dispatch({ type: types.DELETE_COMMENT_START, payload: comment.id, offerId: history.query.offerId });
+    };
+
+    const handleReply = (): void => {
+        modal.open(<ReplyModal comment={comment} />);
     };
 
     const handleModal = (): void => {
@@ -114,13 +135,13 @@ const CommentsItem = ({ comment, extend = false }: IProps): ReactElement => {
                     </button>
                 </p>
             ) : (
-                <p className={css.text}>{comment.body}</p>
+                <p className={css.text} dangerouslySetInnerHTML={{ __html: comment.body.replace(/\n/, '<div></div>') }} />
             )}
 
             <div className={css.flex}>
                 {auth && (
                     <>
-                        <button className={css.link} type="button" onClick={handleDelete(comment.id)}>
+                        <button className={css.link} type="button" onClick={handleDelete}>
                             Удалить
                         </button>
                         <button className={css.link} type="button">
@@ -129,11 +150,11 @@ const CommentsItem = ({ comment, extend = false }: IProps): ReactElement => {
                     </>
                 )}
 
-                <button className={css.link} type="button">
+                <button className={css.link} type="button" onClick={handleReply}>
                     Ответить
                 </button>
 
-                <LikeDislike like={comment.likes} dislike={comment.dislikes} onClick={console.log} />
+                <LikeDislike like={comment.likes} dislike={comment.dislikes} onClick={handleLike} />
             </div>
         </div>
     );
