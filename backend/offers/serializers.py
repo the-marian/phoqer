@@ -1,8 +1,10 @@
 import datetime
 
 from rest_framework import serializers
+from django.core.exceptions import ObjectDoesNotExist
 
 from users.models import User
+
 from .models import Offer, OfferImages
 
 
@@ -27,10 +29,13 @@ class BaseOfferSerializer(serializers.ModelSerializer):
     is_promoted = serializers.SerializerMethodField()
 
     def get_is_favorite(self, offer):
-        user_query_param = self.context['request'].query_params.get('user', None)
-        if user_query_param:
-            user = User.objects.get(email=user_query_param)
-            return offer in user.favorite_offers.all()
+        user_request = self.context['request'].user
+        if user_request:
+            try:
+                user_request.favorite_offers.get(id=offer.id)
+                return True
+            except ObjectDoesNotExist:
+                return False
         return False
 
     def get_is_promoted(self, offer):

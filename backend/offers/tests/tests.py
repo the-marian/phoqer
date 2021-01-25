@@ -1,5 +1,4 @@
 import json
-
 from datetime import datetime
 
 import pytest
@@ -141,6 +140,11 @@ def test_is_favorite(api_client, user, db_test_data):
 
     response = api_client.get(popular_url_with_user_in_query)
     assert response.data[2]['is_favorite'] is True
+
+
+def test_is_favorite_false(authed_api_client, db_test_data):
+    response = authed_api_client.get('/api/v1/offers/popular/')
+    assert response.data[2]['is_favorite'] is False
 
 
 def test_search(api_client, db_test_data, sport_category):
