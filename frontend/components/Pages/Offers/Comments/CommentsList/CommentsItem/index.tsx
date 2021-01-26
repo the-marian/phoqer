@@ -202,7 +202,7 @@ const CommentsItem = ({ comment, extend = false, replies = false, inner = false 
             )}
 
             <div className={css.flex}>
-                {auth && (
+                {auth?.auth_token && (
                     <>
                         <button className={css.link} type="button" onClick={handleDelete}>
                             Удалить
