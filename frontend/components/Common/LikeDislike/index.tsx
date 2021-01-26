@@ -5,6 +5,7 @@ import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
 import { Theme } from '../../../assets/theme';
+import useAuth from '../../../hooks/auth.hook';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     action: {
@@ -22,6 +23,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
             marginRight: theme.rem(1),
             fill: theme.palette.primary[0],
         },
+    },
+    none: {
+        pointerEvents: 'none',
     },
     like: {
         display: 'flex',
@@ -57,14 +61,16 @@ interface IProps {
 }
 
 const LikeDislike = ({ like, dislike, active, onClick }: IProps): ReactElement => {
+    const auth = useAuth();
     const css = useStyles();
 
     const handleClick = (type: 'like' | 'dislike') => (): void => {
+        if (!auth?.auth_token) return;
         onClick(type);
     };
 
     return (
-        <div className={css.action}>
+        <div className={clsx(css.action, !auth?.auth_token && css.none)}>
             <button className={clsx(css.like, active === 'like' && css.active)} type="button" onClick={handleClick('like')}>
                 <FontAwesomeIcon icon={faThumbsUp} />
                 <span>{like}</span>

@@ -213,7 +213,7 @@ const CommentsItem = ({ comment, extend = false, replies = false, inner = false 
                     </>
                 )}
 
-                {replies && (
+                {replies && auth?.auth_token && (
                     <button className={css.link} type="button" onClick={handleReply}>
                         Ответить
                     </button>
