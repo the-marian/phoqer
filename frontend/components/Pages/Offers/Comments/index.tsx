@@ -1,10 +1,11 @@
 import { useRouter } from 'next/router';
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { Theme } from '../../../../assets/theme';
 import useAuth from '../../../../hooks/auth.hook';
+import { IState } from '../../../../interfaces';
 import types from '../../../../redux/types';
 import JoinForm from '../../../Common/Auth/JoinForm';
 import LoginForm from '../../../Common/Auth/LoginForm';
@@ -12,13 +13,26 @@ import { modal } from '../../../Common/Modal';
 import SmallModalWrp from '../../../Common/Modal/SmallModalWrp';
 import CommentsForm from './CommentsForm';
 import CommentsList from './CommentsList';
+import CommentsLoader from './CommentsLoader';
 
 const useStyles = createUseStyles((theme: Theme) => ({
+    root: {
+        position: 'relative',
+    },
     text: {
         marginTop: theme.rem(1),
         color: theme.palette.gray[3],
     },
+    title: {
+        margin: theme.rem(4, 0, 2),
+        fontSize: theme.rem(2),
+        fontWeight: theme.text.weight[3],
 
+        '@media (max-width: 768px)': {
+            margin: theme.rem(3, 0, 1),
+            fontSize: theme.rem(2.5),
+        },
+    },
     link: {
         fontWeight: theme.text.weight[3],
         fontSize: theme.rem(1.6),
@@ -36,7 +50,10 @@ const Comments = (): ReactElement => {
     const auth = useAuth();
     const dispatch = useDispatch();
 
+    const { loading } = useSelector<IState, { loading: boolean }>(state => state.comments);
+
     const handleSubmit = (body: string, images: { url: string }[]): void => {
+        if (!body.trim().length) return;
         dispatch({
             type: types.CREATE_COMMENT_START,
             payload: {
@@ -64,9 +81,14 @@ const Comments = (): ReactElement => {
     };
 
     return (
-        <div>
+        <>
             {auth?.auth_token ? (
-                <CommentsForm onSubmit={handleSubmit} />
+                <div className={css.root}>
+                    {loading && <CommentsLoader top={-1.5} />}
+
+                    <h2 className={css.title}>Оставте ваш комментарий</h2>
+                    <CommentsForm onSubmit={handleSubmit} />
+                </div>
             ) : (
                 <p className={css.text}>
                     <span>Авторизируйтесь чтобы оставить комментарий </span>
@@ -79,8 +101,10 @@ const Comments = (): ReactElement => {
                     </button>
                 </p>
             )}
+
+            <h2 className={css.title}>Комментарии пользователей</h2>
             <CommentsList />
-        </div>
+        </>
     );
 };
 

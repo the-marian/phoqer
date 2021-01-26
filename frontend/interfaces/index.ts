@@ -127,7 +127,7 @@ export interface IComment {
     likes: number;
     offer: string;
     pub_date: string;
-    replies: [];
+    replies: IComment[];
 }
 
 // =====================================

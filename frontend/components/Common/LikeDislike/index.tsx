@@ -17,8 +17,8 @@ const useStyles = createUseStyles((theme: Theme) => ({
         },
 
         '& svg': {
-            height: theme.rem(2),
-            width: theme.rem(2),
+            height: theme.rem(1.4),
+            width: theme.rem(1.4),
             marginRight: theme.rem(1),
             fill: theme.palette.primary[0],
         },
@@ -27,7 +27,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         display: 'flex',
         alignItems: 'flex-end',
         color: theme.palette.gray[4],
-        fontSize: theme.rem(1.6),
+        fontSize: theme.rem(1.4),
 
         '&:hover': {
             color: theme.palette.primary[0],
@@ -36,9 +36,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
     dislike: {
         display: 'flex',
         alignItems: 'flex-end',
-        marginLeft: theme.rem(4),
+        marginLeft: theme.rem(2),
         color: theme.palette.gray[4],
-        fontSize: theme.rem(1.6),
+        fontSize: theme.rem(1.4),
 
         '&:hover': {
             color: theme.palette.primary[0],

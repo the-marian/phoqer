@@ -78,8 +78,8 @@ const StepThree = (): ReactElement => {
             if (res.failed.length > 0) throw new Error();
 
             dispatch({
-                type: types.POST_OFFER_START,
                 history,
+                type: types.POST_OFFER_START,
                 payload: res?.successful?.map((item: UploadedUppyFile<string, { images_url: [string] }>) => ({
                     url: config.img + item?.response?.body?.images_url?.[0],
                 })),

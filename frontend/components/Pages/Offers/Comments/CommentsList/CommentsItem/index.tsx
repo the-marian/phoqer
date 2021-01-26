@@ -1,6 +1,7 @@
+import clsx from 'clsx';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import React, { ReactElement } from 'react';
+import React, { ReactElement, useState } from 'react';
 import { createUseStyles } from 'react-jss';
 import { useDispatch } from 'react-redux';
 
@@ -12,19 +13,44 @@ import types from '../../../../../../redux/types';
 import LikeDislike from '../../../../../Common/LikeDislike';
 import { modal } from '../../../../../Common/Modal';
 import MidModalWrp from '../../../../../Common/Modal/MidModalWrp';
+import CommentsForm from '../../CommentsForm';
+import CommentsLoader from '../../CommentsLoader';
 import ReplyModal from '../../ReplyModal';
 
 const MAX_LENGTH = 200;
 
 const useStyles = createUseStyles((theme: Theme) => ({
     item: {
-        margin: theme.rem(4, 0),
+        position: 'relative',
+        margin: theme.rem(2.5, 0),
         fontSize: theme.rem(1.6),
+        borderBottom: theme.border(0.1, theme.palette.gray[2]),
+    },
+    inner: {
+        position: 'relative',
+        margin: theme.rem(2, 0),
+        padding: theme.rem(0, 0, 0, 3),
+        borderBottom: 'none',
+
+        '&::before': {
+            content: '""',
+            position: 'absolute',
+            top: '-5%',
+            left: 0,
+            height: '92%',
+            width: theme.rem(0.15),
+            background: theme.palette.gray[2],
+
+            '@media (max-width: 768px)': {
+                top: 0,
+                height: '100%',
+            },
+        },
     },
     flex: {
         display: 'flex',
         alignItems: 'center',
-        margin: theme.rem(0, 0, 1),
+        margin: theme.rem(0, 0, 2),
 
         '@media (max-width: 550px)': {
             display: 'block',
@@ -33,7 +59,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     author: {
         display: 'flex',
         alignItems: 'center',
-        fontSize: theme.rem(2),
+        fontSize: theme.rem(1.6),
         fontWeight: theme.text.weight[3],
         marginBottom: theme.rem(2),
         lineHeight: 1,
@@ -48,9 +74,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
         },
     },
     link: {
-        margin: theme.rem(0, 4, 0.6, 0),
-        fontWeight: theme.text.weight[3],
-        fontSize: theme.rem(1.6),
+        margin: theme.rem(0, 2, 0.6, 0),
+        fontWeight: theme.text.weight[2],
+        fontSize: theme.rem(1.4),
         color: theme.palette.primary[0],
 
         '@media (max-width: 550px)': {
@@ -86,16 +112,52 @@ const CLICK_TYPE = {
     dislike: types.DISLIKE_COMMENT_START,
 };
 
+const SubComment = ({ id, comments }: { id: number; comments: IComment[] }): ReactElement => {
+    const auth = useAuth();
+    const css = useStyles();
+    const history = useRouter();
+    const dispatch = useDispatch();
+
+    const handleSubmit = (body: string, images: { url: string }[]): void => {
+        dispatch({
+            type: types.REPLY_COMMENT_START,
+            payload: {
+                body,
+                images,
+            },
+            offerId: history.query.offerId,
+            comment: id,
+        });
+    };
+
+    return (
+        <>
+            {comments?.map(item => (
+                <CommentsItem key={item.id} comment={item} inner />
+            ))}
+            {auth?.auth_token && (
+                <div className={css.inner}>
+                    <CommentsForm onSubmit={handleSubmit} />
+                </div>
+            )}
+        </>
+    );
+};
+
 interface IProps {
     comment: IComment;
-    extend?: boolean;
+    extend?: boolean; // show all content or only first 200 symbols
+    replies?: boolean; // show render replies or not
+    inner?: boolean; // if it is inner comment then provide special styles
 }
 
-const CommentsItem = ({ comment, extend = false }: IProps): ReactElement => {
+const CommentsItem = ({ comment, extend = false, replies = false, inner = false }: IProps): ReactElement => {
     const css = useStyles();
     const auth = useAuth();
     const history = useRouter();
     const dispatch = useDispatch();
+
+    const [deleting, setDeleting] = useState<number | null>(null);
 
     const handleLike = (value: 'like' | 'dislike'): void => {
         dispatch({ type: CLICK_TYPE[value], payload: comment.id, offerId: history.query.offerId });
@@ -103,6 +165,7 @@ const CommentsItem = ({ comment, extend = false }: IProps): ReactElement => {
 
     const handleDelete = (): void => {
         modal.close();
+        setDeleting(comment.id);
         dispatch({ type: types.DELETE_COMMENT_START, payload: comment.id, offerId: history.query.offerId });
     };
 
@@ -119,7 +182,7 @@ const CommentsItem = ({ comment, extend = false }: IProps): ReactElement => {
     };
 
     return (
-        <div className={css.item} key={comment.id}>
+        <div className={clsx(css.item, inner && css.inner)} key={comment.id}>
             <h3 className={css.author}>
                 <Link href={routes.profile.single(comment.author)}>
                     <a>{comment.author}</a>
@@ -135,7 +198,7 @@ const CommentsItem = ({ comment, extend = false }: IProps): ReactElement => {
                     </button>
                 </p>
             ) : (
-                <p className={css.text} dangerouslySetInnerHTML={{ __html: comment.body.replace(/\n/, '<div></div>') }} />
+                <p className={css.text} dangerouslySetInnerHTML={{ __html: comment.body.replace(/\n/gi, '<div></div>') }} />
             )}
 
             <div className={css.flex}>
@@ -150,12 +213,18 @@ const CommentsItem = ({ comment, extend = false }: IProps): ReactElement => {
                     </>
                 )}
 
-                <button className={css.link} type="button" onClick={handleReply}>
-                    Ответить
-                </button>
+                {replies && (
+                    <button className={css.link} type="button" onClick={handleReply}>
+                        Ответить
+                    </button>
+                )}
 
                 <LikeDislike like={comment.likes} dislike={comment.dislikes} onClick={handleLike} />
             </div>
+
+            {deleting === comment.id && <CommentsLoader top={-1.5} />}
+
+            {replies && !!comment.replies?.length && <SubComment id={comment.id} comments={comment.replies} />}
         </div>
     );
 };

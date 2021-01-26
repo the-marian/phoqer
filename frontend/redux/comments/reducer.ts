@@ -19,9 +19,7 @@ const comments = (
         case types.GET_COMMENTS_SUCCESS:
             return { loading: false, data: payload as IComment[] };
 
-        case types.GET_COMMENTS_ERROR:
         case types.CREATE_COMMENT_START:
-        case types.DELETE_COMMENT_START:
             return { ...state, loading: true };
 
         default:

@@ -227,7 +227,6 @@ const SingleOfferPage = (): ReactElement => {
 
                             <SmallBanner />
 
-                            <h2 className={css.subtitle}>Комментарии</h2>
                             <Comments />
                         </div>
 

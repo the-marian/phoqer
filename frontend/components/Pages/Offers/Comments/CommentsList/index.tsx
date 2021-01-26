@@ -8,42 +8,8 @@ import { IComment, IState } from '../../../../../interfaces';
 import CommentsItem from './CommentsItem';
 
 const useStyles = createUseStyles((theme: Theme) => ({
-    '@keyframes loader': {
-        '0%': {
-            left: 0,
-            width: '0%',
-        },
-        '50%': {
-            width: '20%',
-        },
-        '100%': {
-            left: '100%',
-            width: 0,
-        },
-    },
     root: {
-        position: 'relative',
-        paddingTop: theme.rem(1),
-    },
-    loading: {
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        height: theme.rem(0.5),
-        width: '100%',
-        background: theme.palette.gray[1],
-        overflow: 'hidden',
-
-        '&::before': {
-            content: '""',
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            height: '100%',
-            background: theme.palette.primary[0],
-            transition: theme.transitions[0],
-            animation: '$loader 1s ease-in-out infinite',
-        },
+        margin: theme.rem(1, 0),
     },
     empty: {
         margin: theme.rem(4, 0),
@@ -62,14 +28,12 @@ const useStyles = createUseStyles((theme: Theme) => ({
 const CommentsList = (): ReactElement => {
     const css = useStyles();
 
-    const { data, loading } = useSelector<IState, { loading: boolean; data: IComment[] | null }>(state => state.comments);
+    const { data } = useSelector<IState, { data: IComment[] | null }>(state => state.comments);
 
     return data?.length ? (
         <div className={css.root}>
-            {loading && <div className={css.loading} />}
-
             {data?.map(item => (
-                <CommentsItem key={item.id} comment={item} />
+                <CommentsItem key={item.id} comment={item} replies />
             ))}
         </div>
     ) : (
