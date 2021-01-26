@@ -155,6 +155,7 @@ const StepTwo = (): ReactElement => {
                     cacheMeasurements
                     value={value.description}
                     onChange={handleText}
+                    wrap="soft"
                     className={clsx(css.input, css.textarea, errors.description && css.errors)}
                     name="description"
                     placeholder="Описание"
@@ -218,6 +219,7 @@ const StepTwo = (): ReactElement => {
                 <TextareaAutosize
                     value={value.extra_requirements}
                     onChange={handleText}
+                    wrap="soft"
                     className={clsx(css.input, css.textarea)}
                     name="extra_requirements"
                     placeholder="Дополнительно"

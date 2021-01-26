@@ -6,5 +6,5 @@ import comments from './comments/saga';
 import offers from './offers/saga';
 
 export default function* rootSaga(): Generator {
-    yield all([yield fork(auth), yield fork(categories), yield fork(offers), yield fork(comments)]);
+    yield all([fork(auth), fork(categories), fork(offers), fork(comments)]);
 }

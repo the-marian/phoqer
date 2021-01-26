@@ -5,5 +5,5 @@ import popular from './popular/saga';
 import single from './single/saga';
 
 export default function* offers(): Generator {
-    yield all([yield fork(popular), yield fork(newOffer), yield fork(single)]);
+    yield all([fork(popular), fork(newOffer), fork(single)]);
 }

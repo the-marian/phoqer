@@ -154,6 +154,7 @@ const CommentsForm = ({ onSubmit }: IProps): ReactElement => {
                 onChange={handleChange}
                 onKeyPress={handleKeyPress}
                 name="comment"
+                wrap="soft"
                 placeholder="Комментировать ..."
                 title='Для переноса строки нажмите "Enter + Shift". Чтобы отправить сообщение нажмите "Enter"'
             />

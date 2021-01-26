@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { all, call, put, takeLatest } from 'redux-saga/effects';
 
 import api from '../../assets/api';
