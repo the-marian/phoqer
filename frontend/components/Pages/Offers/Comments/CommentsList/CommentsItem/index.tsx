@@ -25,6 +25,10 @@ const useStyles = createUseStyles((theme: Theme) => ({
         margin: theme.rem(2.5, 0),
         fontSize: theme.rem(1.6),
         borderBottom: theme.border(0.1, theme.palette.gray[2]),
+
+        '&:nth-last-of-type(1)': {
+            borderBottom: 'none',
+        },
     },
     inner: {
         position: 'relative',
