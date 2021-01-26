@@ -1,11 +1,11 @@
-FROM python:3.8.7-alpine
+FROM python:3.8-alpine
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 WORKDIR /home/phoqer/backend
-COPY requirements.txt requirements.txt
+COPY requirements_fastapi.txt requirements_fastapi.txt
 RUN apk add --no-cache --virtual .build-deps \
-  build-base postgresql-dev libffi-dev \
-    && pip install -r requirements.txt \
+  gcc musl-dev \
+    && pip install -r requirements_fastapi.txt \
     && find /usr/local \
         \( -type d -a -name test -o -name tests \) \
         -o \( -type f -a -name '*.pyc' -o -name '*.pyo' \) \
@@ -20,4 +20,4 @@ RUN apk add --no-cache --virtual .build-deps \
     && apk add --virtual .rundeps $runDeps \
     && apk del .build-deps
 COPY . .
-ENTRYPOINT ["/home/phoqer/backend/entrypoint.sh"]
+ENTRYPOINT ["/home/phoqer/backend/entrypoint_fastapi.sh"]

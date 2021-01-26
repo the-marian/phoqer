@@ -2,18 +2,30 @@ version: '3.7'
 
 services:
   backend:
+    container_name: backend
     image: "${BACKEND_IMAGE}"
     command: gunicorn phoqer.wsgi:application --bind 0.0.0.0:8000 --access-logfile - --error-logfile -
     volumes:
       - static_volume:/home/phoqer/backend/staticfiles/
       - media_volume:/home/phoqer/backend/mediafiles/
-    ports:
-      - 8000:8000
+    expose:
+      - 8000
     env_file:
       - .env.dev
     depends_on:
       - db
+  fastapi:
+    container_name: fastapi
+    image: "${FASTAPI_IMAGE}"
+    command: uvicorn phoqer_fastapi.main:app --root-path /api/v2 --reload --workers 1 --host 0.0.0.0 --port 8001
+    expose:
+      - 8001
+    env_file:
+      - ./.env.dev
+    depends_on:
+      - backend
   frontend:
+    container_name: frontend
     image: "${FRONTEND_IMAGE}"
     expose:
       - 4000
@@ -22,12 +34,14 @@ services:
     depends_on:
       - backend
   db:
+    container_name: db
     image: postgres:12.0-alpine
     volumes:
       - postgres_data:/var/lib/postgresql/data/
     env_file:
       - .env.dev
   nginx:
+    container_name: nginx
     image: "${NGINX_IMAGE}"
     volumes:
       - static_volume:/home/phoqer/backend/staticfiles/
@@ -36,6 +50,7 @@ services:
       - 80:80
     depends_on:
       - backend
+      - fastapi
       - frontend
 
 volumes:

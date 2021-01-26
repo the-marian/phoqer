@@ -2,6 +2,7 @@ version: '3.7'
 
 services:
   backend:
+    container_name: backend
     build:
       context: ./backend
       dockerfile: Dockerfile
@@ -16,7 +17,20 @@ services:
       - ./.env.dev
     depends_on:
       - db
+  fastapi:
+    container_name: fastapi
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.fastapi
+    command: uvicorn phoqer_fastapi.main:app --root-path /api/v2 --reload --workers 1 --host 0.0.0.0 --port 8001
+    expose:
+      - 8001
+    env_file:
+      - ./.env.dev
+    depends_on:
+      - backend
   frontend:
+    container_name: frontend
     build:
       context: ./frontend
       dockerfile: Dockerfile
@@ -27,12 +41,14 @@ services:
     depends_on:
       - backend
   db:
+    container_name: db
     image: postgres:12.0-alpine
     volumes:
       - postgres_data:/var/lib/postgresql/data/
     env_file:
       - ./.env.dev
   nginx:
+    container_name: nginx
     build: ./nginx
     volumes:
       - static_volume:/home/phoqer/backend/staticfiles/
@@ -41,6 +57,7 @@ services:
       - 80:80
     depends_on:
       - backend
+      - fastapi
       - frontend
 
 volumes:

@@ -165,3 +165,7 @@ backend/staticfiles/*
 
 #mediafiles
 backend/mediafiles/*
+
+# postgress docker volume
+postgres_data
+phoqer.bak
