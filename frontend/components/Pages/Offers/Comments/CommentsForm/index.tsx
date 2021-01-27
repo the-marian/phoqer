@@ -158,7 +158,7 @@ const CommentsForm = ({ onSubmit }: IProps): ReactElement => {
 
     const handleKeyPress = async (event: KeyboardEvent): Promise<void> => {
         if (event.key === 'Enter' && !event.shiftKey) {
-            if (media) return;
+            if (!media) return;
 
             event.preventDefault();
             await handleSubmit();
@@ -179,7 +179,7 @@ const CommentsForm = ({ onSubmit }: IProps): ReactElement => {
                     title='Для переноса строки нажмите "Enter + Shift". Чтобы отправить сообщение нажмите "Enter"'
                 />
 
-                {media && (
+                {!media && (
                     <button className={css.submit} type="submit">
                         <FontAwesomeIcon icon={faPaperPlane} />
                     </button>
