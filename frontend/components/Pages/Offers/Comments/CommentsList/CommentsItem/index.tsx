@@ -168,9 +168,9 @@ const CommentsItem = ({ comment, extend = false, replies = false, inner = false 
     };
 
     const handleDelete = (): void => {
-        modal.close();
         setDeleting(comment.id);
         dispatch({ type: types.DELETE_COMMENT_START, payload: comment.id, offerId: history.query.offerId });
+        // modal.close();
     };
 
     const handleReply = (): void => {
@@ -207,14 +207,9 @@ const CommentsItem = ({ comment, extend = false, replies = false, inner = false 
 
             <div className={css.flex}>
                 {auth?.auth_token && (
-                    <>
-                        <button className={css.link} type="button" onClick={handleDelete}>
-                            Удалить
-                        </button>
-                        <button className={css.link} type="button">
-                            Редактировать
-                        </button>
-                    </>
+                    <button className={css.link} type="button" onClick={handleDelete}>
+                        Удалить
+                    </button>
                 )}
 
                 {replies && auth?.auth_token && (

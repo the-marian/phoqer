@@ -1,9 +1,10 @@
 const config = {
     baseUrl: {
-        development: 'http://140.82.39.245/api/v1',
-        production: process.browser ? 'http://140.82.39.245/api/v1' : 'http://backend:8000/api/v1',
+        development: (version = 'v1'): string => 'http://phoqer.com/api/' + version,
+        production: (version = 'v1'): string =>
+            (process.browser ? 'http://phoqer.com/api/' : 'http://backend:8000/api/') + version,
     },
-    uploadsUrl: 'http://140.82.39.245/api/v1/upload/',
+    uploadsUrl: (version = 'v1'): string => `http://140.82.39.245/api/${version}/upload/`,
     host: 'http://phoqer.com/',
     img: 'http://phoqer.com/',
     offers: {
