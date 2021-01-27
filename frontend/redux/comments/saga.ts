@@ -48,7 +48,7 @@ function* createComment({ payload }: IAction) {
 
 function* deleteComment({ payload, offerId }: IAction) {
     try {
-        const { status } = yield call(api.comments.delete, payload as number);
+        const { status } = yield call(api.comments.deleteComment, payload as number);
         if (status < 200 || status >= 300) throw new Error();
         yield put({ type: types.DELETE_COMMENT_SUCCESS });
         yield put({ type: types.GET_COMMENTS_START, payload: offerId });
