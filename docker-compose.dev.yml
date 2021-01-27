@@ -47,6 +47,16 @@ services:
       - postgres_data:/var/lib/postgresql/data/
     env_file:
       - ./.env.dev
+  pgadmin:
+    container_name: pgadmin
+    image: dpage/pgadmin4
+    env_file:
+      - ./.env.dev
+    volumes:
+      - pgadmin:/root/.pgadmin
+    expose:
+      - 5050
+    restart: unless-stopped
   nginx:
     container_name: nginx
     build: ./nginx
@@ -59,8 +69,10 @@ services:
       - backend
       - fastapi
       - frontend
+      - pgadmin
 
 volumes:
   postgres_data:
   static_volume:
   media_volume:
+  pgadmin:

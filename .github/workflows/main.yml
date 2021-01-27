@@ -67,6 +67,9 @@ jobs:
       - name: Add environment variables to .env.dev
         run: |
           echo SECRET_KEY=${{ secrets.SECRET_KEY }} >> .env.dev
+          echo PGADMIN_LISTEN_PORT=${{ secrets.PGADMIN_LISTEN_PORT }} >> .env.dev
+          echo PGADMIN_DEFAULT_EMAIL=${{ secrets.PGADMIN_DEFAULT_EMAIL }} >> .env.dev
+          echo PGADMIN_DEFAULT_PASSWORD=${{ secrets.PGADMIN_DEFAULT_PASSWORD }} >> .env.dev
           echo DEBUG=1 >> .env.dev
           echo DATABASE=postgres >> .env.dev
           echo DJANGO_ALLOWED_HOSTS=${{ secrets.DJANGO_ALLOWED_HOSTS }} >> .env.dev
