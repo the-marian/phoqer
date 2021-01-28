@@ -34,8 +34,24 @@ async def get_current_user(authorization: Optional[str] = Header(None)) -> Union
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="No Authorisation header supplied")
 
 
+async def get_current_user_or_none(authorization: Optional[str] = Header(None)) -> Union[int, None]:
+    if authorization:
+        token = authorization.split(' ')[-1]
+        user_id = await crud.get_user_id(token)
+        if user_id:
+            return user_id
+
+
 @router.get("/{offer_id}", response_model=List[CommentResponse])
-async def list_comments(offer_id: str):
+async def list_comments(
+        offer_id: str,
+        author_id: Optional[int] = Depends(get_current_user_or_none)
+):
+    author_likes_map = {}
+    author_dislikes_map = {}
+    if author_id:
+        author_likes_map = await crud.get_author_likes_map(author_id, offer_id)
+        author_dislikes_map = await crud.get_author_dislikes_map(author_id, offer_id)
     comments_list = await crud.get_comments_list(offer_id)
     like_map = await crud.get_like_map(offer_id)
     dislike_map = await crud.get_dislike_map(offer_id)
@@ -43,7 +59,9 @@ async def list_comments(offer_id: str):
         comment['id']: CommentResponse(
             **comment,
             likes=like_map.get(comment['id'], 0),
-            dislikes=dislike_map.get(comment['id'], 0)
+            dislikes=dislike_map.get(comment['id'], 0),
+            like=author_likes_map.get(comment['id'], False),
+            dislike=author_dislikes_map.get(comment['id'], False),
         )
         for comment in comments_list
     }
