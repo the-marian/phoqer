@@ -5,7 +5,7 @@ import types from '../../types';
 
 function* getPopular() {
     try {
-        const { status, data } = yield call(api.offers.popular.get);
+        const { status, data } = yield call(api.v1.offers.popular.get);
         if (status < 200 || status >= 300) throw new Error();
         yield put({ type: types.GET_POPULAR_OFFERS_SUCCESS, payload: data });
     } catch (error) {

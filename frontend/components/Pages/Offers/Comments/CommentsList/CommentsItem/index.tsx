@@ -128,9 +128,9 @@ const SubComment = ({ id, comments }: { id: number; comments: IComment[] }): Rea
             payload: {
                 body,
                 images,
+                replies_id: id,
+                offer_id: history.query.offerId,
             },
-            offerId: history.query.offerId,
-            comment: id,
         });
     };
 

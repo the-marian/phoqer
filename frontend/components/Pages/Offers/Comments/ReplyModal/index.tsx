@@ -91,9 +91,9 @@ const ReplyModal = ({ comment }: IProps): ReactElement => {
             payload: {
                 body,
                 images,
+                replies_id: comment.id,
+                offer_id: history.query.offerId,
             },
-            offerId: history.query.offerId,
-            comment: comment.id,
         });
     };
 

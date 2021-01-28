@@ -6,7 +6,8 @@ import types from '../types';
 
 interface IBody {
     body: string;
-    offer_id: string;
+    replies_id?: number;
+    offer_id?: string;
     images: { url: string }[];
 }
 
@@ -17,7 +18,19 @@ interface IAction {
         | typeof types.GET_COMMENTS_SUCCESS
         | typeof types.CREATE_COMMENT_START
         | typeof types.CREATE_COMMENT_ERROR
-        | typeof types.CREATE_COMMENT_SUCCESS;
+        | typeof types.CREATE_COMMENT_SUCCESS
+        | typeof types.LIKE_COMMENT_START
+        | typeof types.LIKE_COMMENT_ERROR
+        | typeof types.LIKE_COMMENT_SUCCESS
+        | typeof types.DISLIKE_COMMENT_START
+        | typeof types.DISLIKE_COMMENT_ERROR
+        | typeof types.DISLIKE_COMMENT_SUCCESS
+        | typeof types.REPLY_COMMENT_START
+        | typeof types.REPLY_COMMENT_ERROR
+        | typeof types.REPLY_COMMENT_SUCCESS
+        | typeof types.DELETE_COMMENT_START
+        | typeof types.DELETE_COMMENT_ERROR
+        | typeof types.DELETE_COMMENT_SUCCESS;
     payload: string | number | IBody;
     offerId?: string;
     comment?: number;
@@ -25,7 +38,7 @@ interface IAction {
 
 function* getComments({ payload }: IAction) {
     try {
-        const { status, data } = yield call(api.comments.list, payload as string);
+        const { status, data } = yield call(api.v2.comments.list, payload as string);
         if (status < 200 || status >= 300) throw new Error();
         yield put({ type: types.GET_COMMENTS_SUCCESS, payload: data });
     } catch (error) {
@@ -36,7 +49,7 @@ function* getComments({ payload }: IAction) {
 
 function* createComment({ payload }: IAction) {
     try {
-        const { status } = yield call(api.comments.create, (payload as IBody).offer_id, payload as IBody);
+        const { status } = yield call(api.v2.comments.create, payload as IBody);
         if (status < 200 || status >= 300) throw new Error();
         yield put({ type: types.CREATE_COMMENT_SUCCESS });
         yield put({ type: types.GET_COMMENTS_START, payload: (payload as IBody).offer_id });
@@ -48,7 +61,7 @@ function* createComment({ payload }: IAction) {
 
 function* deleteComment({ payload, offerId }: IAction) {
     try {
-        const { status } = yield call(api.comments.delete, payload as number);
+        const { status } = yield call(api.v2.comments.delete, payload as number);
         if (status < 200 || status >= 300) throw new Error();
         yield put({ type: types.DELETE_COMMENT_SUCCESS });
         yield put({ type: types.GET_COMMENTS_START, payload: offerId });
@@ -60,7 +73,7 @@ function* deleteComment({ payload, offerId }: IAction) {
 
 function* likeComment({ payload, offerId }: IAction) {
     try {
-        const { status } = yield call(api.comments.like, payload as number);
+        const { status } = yield call(api.v2.comments.like, payload as number);
         if (status < 200 || status >= 300) throw new Error();
         yield put({ type: types.LIKE_COMMENT_SUCCESS });
         yield put({ type: types.GET_COMMENTS_START, payload: offerId });
@@ -72,7 +85,7 @@ function* likeComment({ payload, offerId }: IAction) {
 
 function* dislikeComment({ payload, offerId }: IAction) {
     try {
-        const { status } = yield call(api.comments.dislike, payload as number);
+        const { status } = yield call(api.v2.comments.dislike, payload as number);
         if (status < 200 || status >= 300) throw new Error();
         yield put({ type: types.DISLIKE_COMMENT_SUCCESS });
         yield put({ type: types.GET_COMMENTS_START, payload: offerId });
@@ -82,13 +95,13 @@ function* dislikeComment({ payload, offerId }: IAction) {
     }
 }
 
-function* replyComment({ payload, offerId, comment }: IAction) {
+function* replyComment({ payload }: IAction) {
     try {
-        const { status } = yield call(api.comments.reply, comment, payload as IBody);
+        const { status } = yield call(api.v2.comments.create, payload as IBody);
         if (status < 200 || status >= 300) throw new Error();
         yield put({ type: types.REPLY_COMMENT_SUCCESS });
         modal.close();
-        yield put({ type: types.GET_COMMENTS_START, payload: offerId });
+        yield put({ type: types.GET_COMMENTS_START, payload: (payload as IBody).offer_id });
     } catch (error) {
         if (error?.response?.status === 401) return;
         yield put({ type: types.REPLY_COMMENT_ERROR });

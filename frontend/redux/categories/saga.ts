@@ -5,7 +5,7 @@ import types from '../types';
 
 function* getCategories() {
     try {
-        const { status, data } = yield call(api.categories.get);
+        const { status, data } = yield call(api.v1.categories.get);
         if (status < 200 || status >= 300) throw new Error();
         yield put({ type: types.GET_CATEGORIES_SUCCESS, payload: data });
     } catch (error) {

@@ -23,7 +23,7 @@ export interface IAction {
 
 function* loginUser({ payload }: IAction) {
     try {
-        const { status, data } = yield call(api.auth.login, payload as Login);
+        const { status, data } = yield call(api.v1.auth.login, payload as Login);
         if (status < 200 || status >= 300) throw new Error();
         yield put({ type: types.LOGIN_SUCCESS, payload: data });
         modal.close();
