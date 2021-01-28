@@ -77,7 +77,7 @@ async def create_comment(
         author_id: int = Depends(get_current_user)
 ):
     try:
-        await crud.create_comment(comment, author_id)
+        await crud.create_comment(comment=comment, author_id=author_id, images=comment.images)
         return Response(status_code=status.HTTP_204_NO_CONTENT)
     except ForeignKeyViolationError as error:
         raise HTTPException(

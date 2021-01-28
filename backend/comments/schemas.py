@@ -17,7 +17,6 @@ class CommentResponse(CommentRequest):
     dislike: bool = False
     dislikes: int = 0
     id: int
-    images: List[HttpUrl] = []
     like: bool = False
     likes: int = 0
     pub_date: date

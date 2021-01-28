@@ -7,6 +7,7 @@ from comments.database import database
 from comments.schemas import CommentRequest
 
 
+@database.transaction()
 async def create_comment(comment: CommentRequest, author_id: int, images: List[HttpUrl]) -> None:
     query = f'''
         INSERT INTO comments_comment (pub_date, body, author_id, offer_id, replies_id)
@@ -22,16 +23,16 @@ async def create_comment(comment: CommentRequest, author_id: int, images: List[H
 
     comment_id = await database.execute(query=query, values=values)
     if images and comment_id:
-        await create_comment_images(images, comment_id)
+        await create_comment_images(images=images, comment_id=comment_id)
 
 
 async def create_comment_images(images: List[HttpUrl], comment_id: int) -> None:
-    query = 'INSERT INTO comments_commentimage (url, comment_id) VALUES (:url, :comment_id)'
+    name = 'empty_name'
+    query = 'INSERT INTO comments_commentimage (url, name, comment_id) VALUES (:url, :name, :comment_id)'
     values = []
     for image_url in images:
-        values.append({"url": image_url, "comment_id": comment_id})
-
-    await database.execute(query=query, values=values)
+        values.append({"url": image_url, "name": name, "comment_id": comment_id})
+    await database.execute_many(query=query, values=values)
 
 
 async def get_user_id(token: str) -> Union[int, None]:
