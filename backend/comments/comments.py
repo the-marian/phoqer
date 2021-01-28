@@ -37,9 +37,7 @@ async def get_current_user(authorization: Optional[str] = Header(None)) -> Union
 async def get_current_user_or_none(authorization: Optional[str] = Header(None)) -> Union[int, None]:
     if authorization:
         token = authorization.split(' ')[-1]
-        user_id = await crud.get_user_id(token)
-        if user_id:
-            return user_id
+        return await crud.get_user_id(token)
 
 
 @router.get("/{offer_id}", response_model=List[CommentReply])

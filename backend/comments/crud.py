@@ -37,7 +37,7 @@ async def create_comment_images(images: List[HttpUrl], comment_id: int) -> None:
 async def get_user_id(token: str) -> Union[int, None]:
     query = "SELECT user_id FROM authtoken_token WHERE key = :key"
     row = await database.fetch_one(query=query, values={'key': token})
-    return row.get('user_id')
+    return row['user_id'] if row else None
 
 
 async def get_comments_list(offer_id: str) -> List[Record]:
