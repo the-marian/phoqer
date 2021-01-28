@@ -5,7 +5,7 @@ from asyncpg import ForeignKeyViolationError
 from fastapi import APIRouter, HTTPException, status, Header, Depends, Response
 
 from comments import crud
-from comments.schemas import CommentRequest, CommentResponse
+from comments.schemas import CommentRequest, CommentReply
 
 router = APIRouter(
     prefix='/comments',
@@ -42,13 +42,14 @@ async def get_current_user_or_none(authorization: Optional[str] = Header(None)) 
             return user_id
 
 
-@router.get("/{offer_id}", response_model=List[CommentResponse])
+@router.get("/{offer_id}", response_model=List[CommentReply])
 async def list_comments(
         offer_id: str,
         author_id: Optional[int] = Depends(get_current_user_or_none)
 ):
     author_likes_map = {}
     author_dislikes_map = {}
+    comment_images_map = await crud.get_comment_images_map(offer_id)
     if author_id:
         author_likes_map = await crud.get_author_likes_map(author_id, offer_id)
         author_dislikes_map = await crud.get_author_dislikes_map(author_id, offer_id)
@@ -56,12 +57,13 @@ async def list_comments(
     like_map = await crud.get_like_map(offer_id)
     dislike_map = await crud.get_dislike_map(offer_id)
     comments_map = {
-        comment['id']: CommentResponse(
+        comment['id']: CommentReply(
             **comment,
             likes=like_map.get(comment['id'], 0),
             dislikes=dislike_map.get(comment['id'], 0),
             like=author_likes_map.get(comment['id'], False),
             dislike=author_dislikes_map.get(comment['id'], False),
+            images=comment_images_map.get(comment['id'], []),
         )
         for comment in comments_list
     }

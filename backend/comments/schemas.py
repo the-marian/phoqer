@@ -12,15 +12,18 @@ class CommentRequest(BaseModel):
     images: List[HttpUrl] = []
 
 
-class CommentResponse(CommentRequest):
+class CommentReply(CommentRequest):
     author_id: int
     dislike: bool = False
     dislikes: int = 0
     id: int
+    last_name: str
+    first_name: str
+    profile_img: HttpUrl
     like: bool = False
     likes: int = 0
     pub_date: date
-    replies: List['CommentResponse'] = []
+    replies: List['CommentReply'] = []
 
 
-CommentResponse.update_forward_refs()
+CommentReply.update_forward_refs()
