@@ -20,7 +20,6 @@ async def create_comment(comment: CommentRequest, author_id: int, images: List[H
         "offer_id": comment.offer_id,
         "replies_id": comment.replies_id
     }
-
     comment_id = await database.execute(query=query, values=values)
     if images and comment_id:
         await create_comment_images(images=images, comment_id=comment_id)
@@ -99,8 +98,27 @@ async def delete_all_comment_replies(comment_id: str) -> None:
     await database.execute(query=query, values={'comment_id': comment_id})
 
 
+def delete_all_comment_likes(comment_id: int) -> None:
+    query = "DELETE FROM comments_like WHERE comment_id = :comment_id"
+    await database.execute(query=query, values={'comment_id': comment_id})
+
+
+def delete_all_comment_dislikes(comment_id: int) -> None:
+    query = "DELETE FROM comments_dislike WHERE comment_id = :comment_id"
+    await database.execute(query=query, values={'comment_id': comment_id})
+
+
+def delete_all_comment_images(comment_id: int) -> None:
+    query = "DELETE FROM comments_commentimage WHERE comment_id = :comment_id"
+    await database.execute(query=query, values={'comment_id': comment_id})
+
+
+@database.transaction()
 async def delete_comment(comment_id: str) -> None:
     await delete_all_comment_replies(comment_id)
+    await delete_all_comment_likes(comment_id)
+    await delete_all_comment_dislikes(comment_id)
+    await delete_all_comment_images(comment_id)
     query = "DELETE FROM comments_comment WHERE id = :comment_id"
     await database.execute(query=query, values={'comment_id': comment_id})
 
