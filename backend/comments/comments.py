@@ -100,12 +100,12 @@ async def delete_comment(
 @router.patch("/{comment_id}/like", status_code=status.HTTP_204_NO_CONTENT)
 async def like_comment(comment_id: int, author_id: int = Depends(get_current_user)):
     await crud.delete_dislike(author_id, comment_id)
-    await crud.create_like(author_id, comment_id)
+    await crud.create_like_or_delete_if_exist(author_id, comment_id)
     return Response(status_code=status.HTTP_204_NO_CONTENT)
 
 
 @router.patch("/{comment_id}/dislike", status_code=status.HTTP_204_NO_CONTENT)
 async def dislike_comment(comment_id: int, author_id: int = Depends(get_current_user)):
     await crud.delete_like(author_id, comment_id)
-    await crud.create_dislike(author_id, comment_id)
+    await crud.create_dislike_or_delete_if_exist(author_id, comment_id)
     return Response(status_code=status.HTTP_204_NO_CONTENT)

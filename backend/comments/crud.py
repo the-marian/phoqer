@@ -120,7 +120,7 @@ async def get_author_dislikes_map(author_id: int, offer_id: str) -> Dict[int, bo
     }
 
 
-async def delete_all_comment_replies(comment_id: str) -> None:
+async def delete_all_comment_replies(comment_id: int) -> None:
     query = "DELETE FROM comments_comment WHERE replies_id = :comment_id"
     await database.execute(query=query, values={'comment_id': comment_id})
 
@@ -155,24 +155,34 @@ async def delete_like(author_id: int, comment_id: int) -> None:
     await database.execute(query=query, values={'author_id': author_id, 'comment_id': comment_id})
 
 
+async def create_like(author_id: int, comment_id: int) -> None:
+    query = "INSERT INTO comments_like (author_id, comment_id) VALUES (:author_id, :comment_id)"
+    await database.execute(query=query, values={'author_id': author_id, 'comment_id': comment_id})
+
+
+async def create_like_or_delete_if_exist(author_id: int, comment_id: int) -> None:
+    query = "SELECT TRUE FROM comments_like WHERE author_id = :author_id AND comment_id = :comment_id"
+    like = await database.fetch_one(query=query, values={'author_id': author_id, 'comment_id': comment_id})
+    if like:
+        await delete_like(author_id, comment_id)
+    else:
+        await create_like(author_id, comment_id)
+
+
 async def delete_dislike(author_id: int, comment_id: int) -> None:
     query = "DELETE FROM comments_dislike WHERE comment_id = :comment_id AND author_id = :author_id"
     await database.execute(query=query, values={'author_id': author_id, 'comment_id': comment_id})
 
 
-async def create_like(author_id: int, comment_id: int) -> None:
-    query = """
-    INSERT INTO comments_like (author_id, comment_id)
-    SELECT :author_id, :comment_id
-    WHERE NOT EXISTS (SELECT TRUE FROM comments_like WHERE author_id = :author_id AND comment_id = :comment_id)
-    """
+async def create_dislike(author_id, comment_id) -> None:
+    query = "INSERT INTO comments_dislike (author_id, comment_id) VALUES (:author_id, :comment_id)"
     await database.execute(query=query, values={'author_id': author_id, 'comment_id': comment_id})
 
 
-async def create_dislike(author_id: int, comment_id: int) -> None:
-    query = """
-        INSERT INTO comments_dislike (author_id, comment_id)
-        SELECT :author_id, :comment_id
-        WHERE NOT EXISTS (SELECT TRUE FROM comments_dislike WHERE author_id = :author_id AND comment_id = :comment_id)
-        """
-    await database.execute(query=query, values={'author_id': author_id, 'comment_id': comment_id})
+async def create_dislike_or_delete_if_exist(author_id: int, comment_id: int) -> None:
+    query = "SELECT TRUE FROM comments_dislike WHERE author_id = :author_id AND comment_id = :comment_id"
+    like = await database.fetch_one(query=query, values={'author_id': author_id, 'comment_id': comment_id})
+    if like:
+        await delete_dislike(author_id, comment_id)
+    else:
+        await create_dislike(author_id, comment_id)
