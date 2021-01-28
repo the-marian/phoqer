@@ -40,10 +40,10 @@ interface ICommentBody {
 const v2 = {
     comments: {
         list: (id: string): Promise<AxiosResponse<IComment[]>> => axios.get(`${url2}/comments/${id}`),
-        create: (body: ICommentBody): Promise<AxiosResponse<void>> => axios.post(`${url2}/comments/`, body),
+        create: (body: ICommentBody): Promise<AxiosResponse<void>> => axios.post(`${url2}/comments`, body),
         delete: (id: number): Promise<AxiosResponse<void>> => axios.delete(`${url2}/comments/${id}`),
-        like: (id: number): Promise<AxiosResponse<void>> => axios.patch(`${url2}/comments/${id}/like/`),
-        dislike: (id: number): Promise<AxiosResponse<void>> => axios.patch(`${url2}/comments/${id}/dislike/`),
+        like: (id: number): Promise<AxiosResponse<void>> => axios.patch(`${url2}/comments/${id}/like`),
+        dislike: (id: number): Promise<AxiosResponse<void>> => axios.patch(`${url2}/comments/${id}/dislike`),
     },
 };
 
