@@ -8,7 +8,7 @@ const config = {
                 ? 'http://backend:8000/api/'
                 : 'http://fastapi:8001/api/') + version,
     },
-    uploadsUrl: (version = 'v1'): string => `http://140.82.39.245/api/${version}/upload/`,
+    uploadsUrl: (version = 'v1'): string => `http://phoqer.com/api/${version}/upload/`,
     host: 'http://phoqer.com/',
     img: 'http://phoqer.com/',
     offers: {
