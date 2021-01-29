@@ -243,4 +243,4 @@ def test_comments_like_dislike_logic_6(api_client, authenticated_client, comment
 
     response = api_client.get('/api/v1/comments/1b261f53-8e3b-4c14-abe6-5824c5d8b66c/')
     assert response.data[0]['likes'] == 0
-    assert response.data[0]['dislikes'] == 1 # test linter
+    assert response.data[0]['dislikes'] == 1  # test linter
