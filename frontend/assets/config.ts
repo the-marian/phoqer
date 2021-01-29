@@ -2,11 +2,11 @@ const config = {
     baseUrl: {
         development: (version = 'v1'): string => 'http://phoqer.com/api/' + version,
         production: (version = 'v1'): string =>
-            (process.browser
-                ? 'http://phoqer.com/api/'
+            process.browser
+                ? 'http://phoqer.com/api/' + version
                 : version === 'v1'
-                ? 'http://backend:8000/api/'
-                : 'http://fastapi:8001/api/') + version,
+                ? 'http://backend:8000/api/' + version
+                : 'http://fastapi:8001/',
     },
     uploadsUrl: (version = 'v1'): string => `http://phoqer.com/api/${version}/upload/`,
     host: 'http://phoqer.com/',
