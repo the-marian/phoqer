@@ -19,7 +19,7 @@ class CommentReply(CommentRequest):
     id: int
     last_name: str
     first_name: str
-    profile_img: HttpUrl
+    profile_img: Optional[HttpUrl] = None
     like: bool = False
     likes: int = 0
     pub_date: date

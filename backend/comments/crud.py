@@ -43,13 +43,14 @@ async def get_user_id(token: str) -> Union[int, None]:
 async def get_comments_list(offer_id: str) -> List[Record]:
     query = """
     SELECT
-     comments_comment.id,
      comments_comment.author_id,
      comments_comment.body,
-     comments_comment.pub_date,
+     comments_comment.id,
      comments_comment.offer_id,
-     users_user.last_name,
+     comments_comment.pub_date,
+     comments_comment.replies_id,
      users_user.first_name,
+     users_user.last_name,
      users_user.profile_img
     FROM comments_comment
     INNER JOIN users_user
