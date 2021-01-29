@@ -1,4 +1,4 @@
-from typing import Union, List, Dict
+from typing import Dict, List, Union
 
 from databases.backends.postgres import Record
 from pydantic import HttpUrl
@@ -152,7 +152,10 @@ async def delete_comment(comment_id: int) -> None:
 
 
 async def delete_like(author_id: int, comment_id: int) -> None:
-    query = "DELETE FROM comments_like WHERE comment_id = :comment_id AND author_id = :author_id"
+    query = """
+    DELETE FROM comments_like
+    WHERE comment_id = :comment_id AND author_id = :author_id
+    """
     await database.execute(query=query, values={'author_id': author_id, 'comment_id': comment_id})
 
 

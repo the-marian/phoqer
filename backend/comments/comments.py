@@ -1,11 +1,11 @@
 import sqlite3
-from typing import Optional, Union, List
+from typing import List, Optional, Union
 
 from asyncpg import ForeignKeyViolationError
-from fastapi import APIRouter, HTTPException, status, Header, Depends, Response
+from fastapi import APIRouter, Depends, Header, HTTPException, Response, status
 
 from comments import crud
-from comments.schemas import CommentRequest, CommentReply
+from comments.schemas import CommentReply, CommentRequest
 
 router = APIRouter(
     prefix='/comments',
