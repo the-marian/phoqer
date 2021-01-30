@@ -17,7 +17,7 @@ from offers.tests.mocks import (
 )
 
 
-def test_list_offers(api_client, offer_1, offer_2, offer_3):
+def test_list_offers(api_client, _offer_1, _offer_2, _offer_3):
     response = api_client.get('/api/v1/offers/popular/')
     assert response.status_code == status.HTTP_200_OK
     assert response.json() == Iphone_12 + Iphone_11 + Iphone_10
@@ -33,7 +33,7 @@ def test_list_offers(api_client, offer_1, offer_2, offer_3):
         ('REVIEW', []),
     ],
 )
-def test_status(api_client, offer_3, stat, value):
+def test_status(api_client, _offer_3, stat, value):
     iphone_10 = Offer.objects.get(title='Iphone 10')
     iphone_10.status = stat
     iphone_10.save()
@@ -43,7 +43,7 @@ def test_status(api_client, offer_3, stat, value):
 
 
 @freeze_time('2020-10-29')
-def test_is_promoted(api_client, offer_1, offer_2, offer_3):
+def test_is_promoted(api_client, _offer_1, _offer_2, _offer_3):
     iphone_11 = Offer.objects.get(title='Iphone 11')
     iphone_11.promote_til_date = datetime.strptime('2020-10-30', '%Y-%m-%d')
     iphone_11.save()
@@ -59,7 +59,7 @@ def test_is_promoted(api_client, offer_1, offer_2, offer_3):
     assert response.json() == Iphone_11 + Iphone_12 + Iphone_10
 
 
-def test_is_deliverable(api_client, offer_1, offer_2, offer_3):
+def test_is_deliverable(api_client, _offer_1, _offer_2, _offer_3):
     iphone_11 = Offer.objects.get(title='Iphone 11')
     iphone_11.is_deliverable = True
     iphone_11.save()
@@ -68,7 +68,7 @@ def test_is_deliverable(api_client, offer_1, offer_2, offer_3):
     assert response.data[1]['is_deliverable'] is True
 
 
-def test_order_by_promotion(api_client, offer_1, offer_2, offer_3):
+def test_order_by_promotion(api_client, _offer_1, _offer_2, _offer_3):
     iphone_12 = Offer.objects.get(title='Iphone 12')
     iphone_11 = Offer.objects.get(title='Iphone 11')
     iphone_10 = Offer.objects.get(title='Iphone 10')
@@ -83,7 +83,7 @@ def test_order_by_promotion(api_client, offer_1, offer_2, offer_3):
     assert response.json() == list_ordered_by_promotion
 
 
-def test_order_by_views(api_client, offer_1, offer_2, offer_3):
+def test_order_by_views(api_client, _offer_1, _offer_2, _offer_3):
     iphone_12 = Offer.objects.get(title='Iphone 12')
     iphone_11 = Offer.objects.get(title='Iphone 11')
     iphone_10 = Offer.objects.get(title='Iphone 10')
@@ -99,7 +99,7 @@ def test_order_by_views(api_client, offer_1, offer_2, offer_3):
 
 
 @freeze_time('2020-10-29')
-def test_order_mixed(api_client, offer_1, offer_2, offer_3):
+def test_order_mixed(api_client, _offer_1, _offer_2, _offer_3):
     iphone_12 = Offer.objects.get(title='Iphone 12')
     iphone_11 = Offer.objects.get(title='Iphone 11')
     iphone_10 = Offer.objects.get(title='Iphone 10')
@@ -117,7 +117,7 @@ def test_order_mixed(api_client, offer_1, offer_2, offer_3):
     assert response.json() == list_order_mixed
 
 
-def test_is_favorite(authed_api_client, user, offer_1, offer_2, offer_3):
+def test_is_favorite(authed_api_client, user, _offer_1, _offer_2, _offer_3):
     response = authed_api_client.get('/api/v1/offers/popular/')
     assert response.json() == Iphone_12 + Iphone_11 + Iphone_10
 
@@ -129,12 +129,12 @@ def test_is_favorite(authed_api_client, user, offer_1, offer_2, offer_3):
     assert response.data[2]['is_favorite'] is True
 
 
-def test_is_favorite_false(authed_api_client, offer_1, offer_2, offer_3):
+def test_is_favorite_false(authed_api_client, _offer_1, _offer_2, _offer_3):
     response = authed_api_client.get('/api/v1/offers/popular/')
     assert response.data[2]['is_favorite'] is False
 
 
-def test_search(api_client, offer_1, offer_2, offer_3, sport_category):
+def test_search(api_client, _offer_1, _offer_2, _offer_3, sport_category):
     response = api_client.get('/api/v1/offers/search/')
     assert response.json() == Iphone_12 + Iphone_11 + Iphone_10
     # CATEGORY_TEST
@@ -173,7 +173,7 @@ def test_search(api_client, offer_1, offer_2, offer_3, sport_category):
     assert response.json() == Iphone_11 + Iphone_10
 
 
-def test_ascending_price_ordering(api_client, offer_1, offer_2, offer_3):
+def test_ascending_price_ordering(api_client, _offer_1, _offer_2, _offer_3):
     response = api_client.get('/api/v1/offers/search/')
     assert response.json() == Iphone_12 + Iphone_11 + Iphone_10
 
@@ -181,12 +181,12 @@ def test_ascending_price_ordering(api_client, offer_1, offer_2, offer_3):
     assert response.json() == Iphone_10 + Iphone_11 + Iphone_12
 
 
-def test_descending_price_ordering(api_client, offer_1, offer_2, offer_3):
+def test_descending_price_ordering(api_client, _offer_1, _offer_2, _offer_3):
     response = api_client.get('/api/v1/offers/search/?ordering=-price')
     assert response.json() == Iphone_12 + Iphone_11 + Iphone_10
 
 
-def test_ascending_deposit_val(api_client, offer_1, offer_2, offer_3):
+def test_ascending_deposit_val(api_client, _offer_1, _offer_2, _offer_3):
     response = api_client.get('/api/v1/offers/search/')
     assert response.json() == Iphone_12 + Iphone_11 + Iphone_10
 
@@ -206,7 +206,7 @@ def test_ascending_deposit_val(api_client, offer_1, offer_2, offer_3):
     assert response.json() == Iphone_10 + Iphone_12 + Iphone_11
 
 
-def test_descending_deposit_val(api_client, offer_1, offer_2, offer_3):
+def test_descending_deposit_val(api_client, _offer_1, _offer_2, _offer_3):
     iphone_10 = Offer.objects.get(title='Iphone 10')
     iphone_11 = Offer.objects.get(title='Iphone 11')
     iphone_12 = Offer.objects.get(title='Iphone 12')
@@ -223,7 +223,7 @@ def test_descending_deposit_val(api_client, offer_1, offer_2, offer_3):
     assert response.json() == Iphone_11 + Iphone_12 + Iphone_10
 
 
-def test_min_price_order(api_client, offer_1, offer_2, offer_3):
+def test_min_price_order(api_client, _offer_1, _offer_2, _offer_3):
     response = api_client.get('/api/v1/offers/search/')
     assert response.json() == Iphone_12 + Iphone_11 + Iphone_10
 
@@ -231,7 +231,7 @@ def test_min_price_order(api_client, offer_1, offer_2, offer_3):
     assert response.json() == Iphone_12 + Iphone_11
 
 
-def test_max_price_order(api_client, offer_1, offer_2, offer_3):
+def test_max_price_order(api_client, _offer_1, _offer_2, _offer_3):
     response = api_client.get('/api/v1/offers/search/')
     assert response.json() == Iphone_12 + Iphone_11 + Iphone_10
 
@@ -239,7 +239,7 @@ def test_max_price_order(api_client, offer_1, offer_2, offer_3):
     assert response.json() == Iphone_10
 
 
-def test_no_deposit(api_client, offer_1, offer_2, offer_3):
+def test_no_deposit(api_client, _offer_1, _offer_2, _offer_3):
     response = api_client.get('/api/v1/offers/search/')
     assert response.json() == Iphone_12 + Iphone_11 + Iphone_10
 
@@ -251,7 +251,7 @@ def test_no_deposit(api_client, offer_1, offer_2, offer_3):
     assert response.json() == Iphone_12 + Iphone_10
 
 
-def test_max_deposit(api_client, offer_1, offer_2, offer_3):
+def test_max_deposit(api_client, _offer_1, _offer_2, _offer_3):
     response = api_client.get('/api/v1/offers/search/')
     assert response.json() == Iphone_12 + Iphone_11 + Iphone_10
 
@@ -269,7 +269,7 @@ def test_max_deposit(api_client, offer_1, offer_2, offer_3):
     assert response.json() == Iphone_12 + Iphone_11
 
 
-def test_min_deposit(api_client, offer_1, offer_2, offer_3):
+def test_min_deposit(api_client, _offer_1, _offer_2, _offer_3):
     response = api_client.get('/api/v1/offers/search/')
     assert response.json() == Iphone_12 + Iphone_11 + Iphone_10
 
@@ -287,7 +287,7 @@ def test_min_deposit(api_client, offer_1, offer_2, offer_3):
     assert response.json() == Iphone_10
 
 
-def test_offer_detail_view(api_client, offer_1):
+def test_offer_detail_view(api_client, _offer_1):
     response = api_client.get('/api/v1/offers/1b261f53-8e3b-4c14-abe6-5824c5d8b66c/')
     assert response.json() == {
         'category': 'phones',
@@ -344,7 +344,7 @@ def test_offer_not_auth_update(api_client):
 )
 def test_offer_partial_update(
         authed_api_client,
-        offer_1,
+        _offer_1,
         sport_category,
         bike_subcategory,
         update_field,
