@@ -1,5 +1,3 @@
-import { faTimes } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
@@ -14,20 +12,6 @@ const useStyles = createUseStyles((theme: Theme) => ({
         background: theme.palette.black[0],
         cursor: 'zoom-out',
     },
-    button: {
-        position: 'absolute',
-        top: 0,
-        right: 0,
-        padding: theme.rem(1.2, 1.8),
-        fontSize: theme.rem(1.6),
-        color: theme.palette.white,
-
-        '& svg': {
-            height: theme.rem(1.6),
-            width: theme.rem(1.6),
-            fill: theme.palette.white,
-        },
-    },
 }));
 
 interface IProps {
@@ -38,9 +22,6 @@ const FullPageModal = ({ children }: IProps): ReactElement => {
     const css = useStyles();
     return (
         <div className={css.inner} onClick={modal.close} aria-hidden>
-            <button type="button" className={css.button}>
-                <FontAwesomeIcon icon={faTimes} />
-            </button>
             {children}
         </div>
     );

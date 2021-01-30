@@ -2,6 +2,7 @@
     "name": "phoqer",
     "version": "1.0.0",
     "scripts": {
+        "predev": "npm run lint --scripts-prepend-node-path",
         "dev": "next -p 4000",
         "build": "next build",
         "start": "next start -p 4000",

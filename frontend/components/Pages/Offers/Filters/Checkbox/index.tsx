@@ -20,6 +20,11 @@ const useStyles = createUseStyles((theme: Theme) => ({
         alignItems: 'center',
         borderRadius: 'none',
         margin: theme.rem(1, 4, 1, 0),
+        fontSize: theme.rem(1.4),
+
+        '@media (max-width: 500px)': {
+            fontSize: theme.rem(1.6),
+        },
     },
     label: {
         height: theme.rem(2.5),

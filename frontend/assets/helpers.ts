@@ -61,7 +61,7 @@ export const parseCookie = <T>(cookie = '', key = 'phoqer_auth'): T | null => {
 
 // custom console log for site identity
 export const logger = (): void => {
-    // console.clear();
+    if (process.env.NODE_ENV === 'production') console.clear();
     console.log(
         '%c Phoqer | %c Made with love ...',
         'padding: 6px 15px; border-radius: 10px; background: #eee; text-transform: uppercase; color: #2771A3; font-size: 1rem; font-weight: 600; font-family: Montserrat, sans-serif',

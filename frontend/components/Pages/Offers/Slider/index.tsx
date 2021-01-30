@@ -5,7 +5,7 @@ import Slider from 'react-slick';
 
 import { Theme } from '../../../../assets/theme';
 import { modal } from '../../../Common/Modal';
-import FullPageModal from '../../../Common/Modal/FullPageModal';
+import FullPageGallery from '../../../Common/Modal/FullPageGallery';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     flex: {
@@ -127,12 +127,6 @@ const useStyles = createUseStyles((theme: Theme) => ({
             height: theme.rem(9),
         },
     },
-    modal: {
-        display: 'block',
-        width: '100vw',
-        height: '100vh',
-        objectFit: 'contain',
-    },
 }));
 
 interface IProps {
@@ -158,12 +152,8 @@ const OfferSlider = ({ images }: IProps): ReactElement => {
         slider1?.slickGoTo(index);
     };
 
-    const handleModal = url => (): void => {
-        modal.open(
-            <FullPageModal>
-                <img className={css.modal} draggable={false} src={url} alt="" />
-            </FullPageModal>,
-        );
+    const handleModal = index => (): void => {
+        modal.open(<FullPageGallery images={images.map(item => item.url)} index={index} />);
     };
 
     return (
@@ -188,9 +178,9 @@ const OfferSlider = ({ images }: IProps): ReactElement => {
                     },
                 ]}
             >
-                {slides.map(({ id, url }) => (
+                {slides.map(({ id, url }, index) => (
                     <div className={css.slide} key={id}>
-                        <img className={css.img} onClick={handleModal(url)} draggable={false} src={url} aria-hidden alt="" />
+                        <img className={css.img} onClick={handleModal(index)} draggable={false} src={url} aria-hidden alt="" />
                     </div>
                 ))}
             </Slider>

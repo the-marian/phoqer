@@ -19,6 +19,10 @@ const useStyles = createUseStyles((theme: Theme) => ({
         background: theme.palette.gray[0],
         boxShadow: theme.shadow[1],
 
+        '@media (max-width: 500px)': {
+            border: theme.border(0.1, theme.palette.gray[2]),
+        },
+
         '@media (max-width: 450px)': {
             flexDirection: 'column',
         },
@@ -66,6 +70,10 @@ const useStyles = createUseStyles((theme: Theme) => ({
         textAlign: 'center',
         boxShadow: theme.shadow[1],
         transition: theme.transitions[0],
+
+        '@media (max-width: 500px)': {
+            border: theme.border(0.1, theme.palette.gray[2]),
+        },
 
         '&:hover': {
             boxShadow: theme.shadow[2],

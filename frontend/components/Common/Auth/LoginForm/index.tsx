@@ -3,7 +3,7 @@ import { faKey, faUser } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import clsx from 'clsx';
 import Link from 'next/link';
-import React, { ChangeEvent, FormEvent, ReactElement, useState } from 'react';
+import React, { ChangeEvent, FormEvent, MouseEvent, ReactElement, useState } from 'react';
 import { createUseStyles } from 'react-jss';
 import { useDispatch } from 'react-redux';
 
@@ -18,23 +18,23 @@ const useStyles = createUseStyles((theme: Theme) => ({
         fontSize: theme.rem(1.8),
         fontWeight: theme.text.weight[3],
         textAlign: 'center',
+
+        '@media (max-width: 500px)': {
+            fontSize: theme.rem(2.4),
+        },
     },
     wrp: {
         position: 'relative',
         margin: theme.rem(2, 0),
     },
     input: {
-        display: 'block',
-        width: '100%',
-        height: theme.rem(5),
-        paddingLeft: theme.rem(4),
-        paddingRight: theme.rem(5),
+        ...theme.input,
+        padding: theme.rem(0, 5, 0, 4),
         background: theme.palette.gray[1],
-        border: 'none',
-        borderRadius: theme.radius,
-        fontSize: theme.rem(1.4),
-        lineHeight: 1,
-        outline: 'none',
+
+        '@media (max-width: 500px)': {
+            fontSize: theme.rem(1.6),
+        },
     },
     icon: {
         position: 'absolute',
@@ -69,6 +69,11 @@ const useStyles = createUseStyles((theme: Theme) => ({
         textAlign: 'center',
         fontSize: theme.rem(1.4),
         color: theme.palette.primary[0],
+
+        '@media (max-width: 500px)': {
+            margin: theme.rem(3, 0),
+            fontSize: theme.rem(1.6),
+        },
     },
     btn: {
         display: 'block',
@@ -81,12 +86,21 @@ const useStyles = createUseStyles((theme: Theme) => ({
         borderRadius: theme.radius,
         background: theme.palette.primary[0],
         color: theme.palette.white,
+
+        '@media (max-width: 500px)': {
+            margin: '1rem auto 3rem',
+            padding: theme.rem(2),
+        },
     },
     text: {
         marginBottom: theme.rem(1),
         fontSize: theme.rem(1.4),
         fontWeight: theme.text.weight[2],
         textAlign: 'center',
+
+        '@media (max-width: 500px)': {
+            marginBottom: theme.rem(3),
+        },
     },
     list: {
         display: 'flex',
@@ -127,11 +141,11 @@ const LoginForm = (): ReactElement => {
         setPayload({ ...payload, [event.target.name]: event.target.value });
     };
 
-    const handleClick = () => {
+    const handleClick = (): void => {
         setUnhidden(!unhidden);
     };
 
-    const handleSubmit = (event: FormEvent) => {
+    const handleSubmit = (event: FormEvent<HTMLFormElement> | MouseEvent<HTMLButtonElement>): void => {
         event.preventDefault();
         setLoading(true);
         dispatch({ type: types.LOGIN_START, payload });

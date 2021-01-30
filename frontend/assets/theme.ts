@@ -92,6 +92,9 @@ export const theme: Theme = {
         '&:hover': {
             boxShadow: '0 0 0 0.1rem #085085',
         },
+        '@media (max-width: 500px)': {
+            fontSize: '1.6rem',
+        },
     },
     outline: {
         '&:focus': {

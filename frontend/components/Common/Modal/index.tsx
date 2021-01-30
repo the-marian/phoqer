@@ -1,5 +1,5 @@
 import { EventEmitter } from 'events';
-import React, { Component, MouseEvent, ReactElement } from 'react';
+import React, { Component, MouseEvent, ReactElement, TouchEvent } from 'react';
 
 type Element = JSX.Element[] | JSX.Element | null;
 
@@ -56,13 +56,13 @@ export default class ModalComponent extends Component<unknown, IState> {
         this.setState({ dom });
     };
 
-    handleKeyClose = (e: KeyboardEvent): void => {
-        if (e.code !== 'Escape') return;
+    handleKeyClose = (event: KeyboardEvent): void => {
+        if (event.code !== 'Escape') return;
         modal.close();
     };
 
-    handleClickClose = (e: MouseEvent<HTMLDivElement>): void => {
-        if (e.target !== e.currentTarget) return;
+    handleClickClose = (event: MouseEvent<HTMLDivElement> | TouchEvent<HTMLDivElement>): void => {
+        if (event.target !== event.currentTarget) return;
         modal.close();
     };
 
@@ -70,8 +70,18 @@ export default class ModalComponent extends Component<unknown, IState> {
         const { dom } = this.state;
         return (
             !!dom && (
-                <div className="react-modal-backdrop" onMouseDown={this.handleClickClose} aria-hidden>
-                    <div className="react-modal-scroll" onMouseDown={this.handleClickClose} aria-hidden>
+                <div
+                    className="react-modal-backdrop"
+                    onTouchEnd={this.handleClickClose}
+                    onMouseDown={this.handleClickClose}
+                    aria-hidden
+                >
+                    <div
+                        className="react-modal-scroll"
+                        onTouchEnd={this.handleClickClose}
+                        onMouseDown={this.handleClickClose}
+                        aria-hidden
+                    >
                         {dom}
                     </div>
                 </div>

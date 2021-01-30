@@ -85,15 +85,15 @@ const ReplyModal = ({ comment }: IProps): ReactElement => {
     const dispatch = useDispatch();
     const history = useRouter();
 
-    const handleSubmit = (body: string, images: { url: string }[]): void => {
+    const handleSubmit = (body: string, images: string[]): void => {
         dispatch({
             type: types.REPLY_COMMENT_START,
             payload: {
                 body,
                 images,
+                replies_id: comment.id,
+                offer_id: history.query.offerId,
             },
-            offerId: history.query.offerId,
-            comment: comment.id,
         });
     };
 
@@ -104,8 +104,8 @@ const ReplyModal = ({ comment }: IProps): ReactElement => {
             </button>
 
             <h3 className={css.author}>
-                <Link href={routes.profile.single(comment.author)}>
-                    <a>{comment.author}</a>
+                <Link href={routes.profile.single(comment.author_id)}>
+                    <a>{`${comment.first_name} ${comment.last_name}`}</a>
                 </Link>
                 <p className={css.date}>Дата: {comment.pub_date}</p>
             </h3>

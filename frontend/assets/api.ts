@@ -4,38 +4,47 @@ import { ICategories, IComment, IOffers, Login } from '../interfaces';
 import { IBody } from '../redux/offers/new_offer/saga';
 import config from './config';
 
-axios.defaults.baseURL = config.baseUrl[process.env.NODE_ENV];
+const url1 = config.baseUrl[process.env.NODE_ENV]('v1');
 
-const api = {
+const v1 = {
     auth: {
-        user: (): Promise<AxiosResponse> => axios.get('/users/me/'),
-        login: (body: Login): Promise<AxiosResponse> => axios.post('/auth/token/login/', body),
-        logout: (): Promise<AxiosResponse> => axios.post('/auth/token/logout/'),
+        user: (): Promise<AxiosResponse> => axios.get(`${url1}/users/me/`),
+        login: (body: Login): Promise<AxiosResponse> => axios.post(`${url1}/auth/token/login/`, body),
+        logout: (): Promise<AxiosResponse> => axios.post(`${url1}/auth/token/logout/`),
     },
     categories: {
-        get: (): Promise<AxiosResponse<ICategories>> => axios.get('/categories/'),
+        get: (): Promise<AxiosResponse<ICategories>> => axios.get(`${url1}/categories/`),
     },
     offers: {
         popular: {
-            get: (): Promise<AxiosResponse<IOffers>> => axios.get('/offers/popular/'),
+            get: (): Promise<AxiosResponse<IOffers>> => axios.get(`${url1}/offers/popular/`),
         },
         single: {
-            get: (id: string): Promise<AxiosResponse<IOffers>> => axios.get(`/offers/${id}/`),
+            get: (id: string): Promise<AxiosResponse<IOffers>> => axios.get(`${url1}/offers/${id}/`),
         },
         new: {
-            post: (body: IBody): Promise<AxiosResponse<void>> => axios.post('/offers/', body),
+            post: (body: IBody): Promise<AxiosResponse<void>> => axios.post(`${url1}/offers/`, body),
         },
-    },
-    comments: {
-        list: (id: string): Promise<AxiosResponse<IComment[]>> => axios.get(`/comments/${id}`),
-        create: (id: string, body: { body: string; offer_id: string; images: { url: string }[] }): Promise<AxiosResponse<void>> =>
-            axios.post(`/comments/${id}/`, body),
-        delete: (id: number): Promise<AxiosResponse<void>> => axios.delete(`/comments/${id}`),
-        reply: (id: number, body: { body: string; images: { url: string }[] }): Promise<AxiosResponse<void>> =>
-            axios.post(`/comments/${id}/reply/`, body),
-        like: (id: number): Promise<AxiosResponse<void>> => axios.patch(`/comments/${id}/like/`),
-        dislike: (id: number): Promise<AxiosResponse<void>> => axios.patch(`/comments/${id}/dislike/`),
     },
 };
 
-export default api;
+const url2 = config.baseUrl[process.env.NODE_ENV]('v2');
+
+interface ICommentBody {
+    body: string;
+    replies_id?: number;
+    offer_id?: string;
+    images: string[];
+}
+
+const v2 = {
+    comments: {
+        list: (id: string): Promise<AxiosResponse<IComment[]>> => axios.get(`${url2}/comments/${id}`),
+        create: (body: ICommentBody): Promise<AxiosResponse<void>> => axios.post(`${url2}/comments`, body),
+        delete: (id: number): Promise<AxiosResponse<void>> => axios.delete(`${url2}/comments/${id}`),
+        like: (id: number): Promise<AxiosResponse<void>> => axios.patch(`${url2}/comments/${id}/like`),
+        dislike: (id: number): Promise<AxiosResponse<void>> => axios.patch(`${url2}/comments/${id}/dislike`),
+    },
+};
+
+export default { v1, v2 };

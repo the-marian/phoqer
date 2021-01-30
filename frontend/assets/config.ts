@@ -1,11 +1,16 @@
 const config = {
     baseUrl: {
-        development: 'http://140.82.39.245/api/v1',
-        production: process.browser ? 'http://140.82.39.245/api/v1' : 'http://backend:8000/api/v1',
+        development: (version = 'v1'): string => 'http://phoqer.com/api/' + version,
+        production: (version = 'v1'): string =>
+            process.browser
+                ? 'http://phoqer.com/api/' + version
+                : version === 'v1'
+                ? 'http://backend:8000/api/' + version
+                : 'http://fastapi:8001',
     },
-    uploadsUrl: 'http://140.82.39.245/api/v1/upload/',
+    uploadsUrl: (version = 'v1'): string => `http://phoqer.com/api/${version}/upload/`,
     host: 'http://phoqer.com/',
-    img: 'http://phoqer.com/',
+    img: 'http://phoqer.com',
     offers: {
         grid: {
             desktop: 4,

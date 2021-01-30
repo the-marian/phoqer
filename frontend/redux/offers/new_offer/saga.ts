@@ -47,7 +47,7 @@ function* postOffer({ payload, history }: IAction) {
             extra_requirements,
         } = form as INewOffer;
 
-        const { status, data } = yield call(api.offers.new.post, {
+        const { status, data } = yield call(api.v1.offers.new.post, {
             price,
             title,
             doc_needed,

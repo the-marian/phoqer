@@ -1,4 +1,5 @@
 FROM python:3.8.7-alpine
+ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 WORKDIR /home/phoqer/backend
 COPY requirements.txt requirements.txt

@@ -1,8 +1,8 @@
-import { faPaperclip, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { faPaperclip, faPaperPlane, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { UploadedUppyFile } from '@uppy/core';
 import { Dashboard } from '@uppy/react';
-import React, { ChangeEvent, KeyboardEvent, ReactElement, useEffect, useState } from 'react';
+import React, { ChangeEvent, FormEvent, KeyboardEvent, ReactElement, useState } from 'react';
 import { createUseStyles } from 'react-jss';
 import TextareaAutosize from 'react-textarea-autosize';
 
@@ -13,6 +13,10 @@ import useUppy from '../../../../../hooks/uppy.hook';
 import notifications from '../../../../Common/Notifications';
 
 const useStyles = createUseStyles((theme: Theme) => ({
+    flex: {
+        display: 'flex',
+        alignItems: 'flex-end',
+    },
     attachment: {
         display: 'flex',
         alignItems: 'center',
@@ -32,9 +36,20 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
     textarea: {
         ...theme.input,
+        margin: theme.rem(0, 0, 1),
         padding: theme.rem(1.5),
         fontSize: theme.rem(1.4),
         background: theme.palette.gray[1],
+
+        '@media (max-width: 900px)': {
+            margin: 0,
+        },
+    },
+    small: {
+        display: 'block',
+        margin: theme.rem(0, 0, 1),
+        fontSize: theme.rem(1.2),
+        color: theme.palette.gray[4],
     },
     file: {
         margin: theme.rem(1, 0),
@@ -63,13 +78,25 @@ const useStyles = createUseStyles((theme: Theme) => ({
             margin: theme.rem(2, 0),
         },
     },
+    submit: {
+        margin: theme.rem(0, 0, 0, 1),
+        padding: theme.rem(1.5, 2),
+        background: theme.palette.primary[0],
+        color: theme.palette.white,
+        borderRadius: theme.radius,
+
+        '& svg': {
+            height: theme.rem(2),
+            width: theme.rem(2),
+        },
+    },
     disabled: {
         cursor: 'not-allowed',
     },
 }));
 
 interface IProps {
-    onSubmit: (value: string, images: { url: string }[]) => void;
+    onSubmit: (body: string, images: string[]) => void;
 }
 
 const CommentsForm = ({ onSubmit }: IProps): ReactElement => {
@@ -88,76 +115,75 @@ const CommentsForm = ({ onSubmit }: IProps): ReactElement => {
         setAttachment(!attachment);
     };
 
-    useEffect(() => {
-        const handler = (res): void => {
-            const images: { url: string }[] = res?.successful?.map(
-                (item: UploadedUppyFile<string, { images_url: [string] }>) => ({
-                    url: config.img + item?.response?.body?.images_url?.[0],
-                }),
+    const handleSubmit = async (event?: FormEvent<HTMLFormElement>): Promise<void> => {
+        event?.preventDefault();
+        if (!value.trim().length) return;
+        if (!attachment) {
+            onSubmit(value, []);
+            setValue('');
+            return;
+        }
+
+        if (!uppy.getFiles()?.length) {
+            onSubmit(value, []);
+            setValue('');
+            setAttachment(false);
+            return;
+        }
+
+        try {
+            const res = await uppy.upload();
+            if (res.failed.length > 0) throw new Error();
+
+            const images: string[] = await res?.successful?.map(
+                (item: UploadedUppyFile<string, { images_url: [string] }>): string =>
+                    config.img + item?.response?.body?.images_url?.[0],
             );
 
             onSubmit(value, images);
-        };
-
-        uppy.on('complete', handler);
-        return () => {
-            uppy.off('complete', handler);
-        };
-    }, []);
-
-    const handleSubmit = (): void => {
-        if (!value) return;
-        onSubmit(value, []);
-        setValue('');
+            setAttachment(false);
+            setValue('');
+        } catch (error) {
+            notifications('error');
+        }
     };
 
-    const handleKeyPress = async (event: KeyboardEvent): Promise<void> => {
+    const handleKeyPress = async (event: KeyboardEvent<HTMLTextAreaElement>): Promise<void> => {
         if (event.key === 'Enter' && !event.shiftKey) {
+            if (!media) return;
+
             event.preventDefault();
-            if (!value.trim().length) return;
-
-            if (!attachment) {
-                handleSubmit();
-                return;
-            }
-
-            if (!uppy.getFiles()?.length) {
-                handleSubmit();
-                setAttachment(false);
-                return;
-            }
-
-            try {
-                const res = await uppy.upload();
-                if (res.failed.length > 0) throw new Error();
-
-                const images: { url: string }[] = await res?.successful?.map(
-                    (item: UploadedUppyFile<string, { images_url: [string] }>) => ({
-                        url: config.img + item?.response?.body?.images_url?.[0],
-                    }),
-                );
-
-                onSubmit(value, images);
-                setAttachment(false);
-                setValue('');
-            } catch (error) {
-                notifications('error');
-            }
+            await handleSubmit();
         }
     };
 
     return (
         <form action="#" method="post" onSubmit={handleSubmit}>
-            <TextareaAutosize
-                value={value}
-                className={css.textarea}
-                onChange={handleChange}
-                onKeyPress={handleKeyPress}
-                name="comment"
-                wrap="soft"
-                placeholder="Комментировать ..."
-                title='Для переноса строки нажмите "Enter + Shift". Чтобы отправить сообщение нажмите "Enter"'
-            />
+            {media && (
+                <small className={css.small}>
+                    * Чтобы отправить сообщение нажмите &quot;Enter&quot;. Для переноса строки нажмите &quot;Enter + Shift&quot;.
+                </small>
+            )}
+            <div className={css.flex}>
+                <TextareaAutosize
+                    value={value}
+                    className={css.textarea}
+                    onChange={handleChange}
+                    onKeyPress={handleKeyPress}
+                    name="comment"
+                    wrap="soft"
+                    placeholder="Комментировать ..."
+                    title='Для переноса строки нажмите "Enter + Shift". Чтобы отправить сообщение нажмите "Enter"'
+                />
+
+                {!media && (
+                    <button className={css.submit} type="submit">
+                        <FontAwesomeIcon icon={faPaperPlane} />
+                    </button>
+                )}
+            </div>
+
+            {attachment && <Dashboard hideUploadButton uppy={uppy} height={media ? 230 : 200} />}
 
             <button type="button" className={css.attachment} onClick={handleAttachment}>
                 {attachment ? (
@@ -172,8 +198,6 @@ const CommentsForm = ({ onSubmit }: IProps): ReactElement => {
                     </>
                 )}
             </button>
-
-            {attachment && <Dashboard uppy={uppy} height={media ? 400 : 300} />}
         </form>
     );
 };

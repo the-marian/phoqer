@@ -11,7 +11,7 @@ interface IAction {
 
 function* getOffer({ payload }: IAction) {
     try {
-        const { status, data } = yield call(api.offers.single.get, payload);
+        const { status, data } = yield call(api.v1.offers.single.get, payload);
         if (status < 200 || status >= 300) throw new Error();
         yield put({ type: types.GET_SINGLE_OFFER_SUCCESS, payload: data });
     } catch (error) {
