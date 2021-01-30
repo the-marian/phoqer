@@ -50,7 +50,8 @@ def test_comments_list(api_client, comment_1, comment_2):
 @freeze_time("2020-10-29")
 def test_comments_create(api_client, authenticated_client, offer):
     data = {'body': 'This is a brand new comment'}
-    response = authenticated_client.post('/api/v1/comments/1b261f53-8e3b-4c14-abe6-5824c5d8b66c/', data)
+    response = authenticated_client.post(
+        '/api/v1/comments/1b261f53-8e3b-4c14-abe6-5824c5d8b66c/', data)
     assert response.status_code == status.HTTP_201_CREATED
     assert response.data == {'body': 'This is a brand new comment'}
 

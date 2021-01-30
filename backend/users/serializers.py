@@ -70,10 +70,12 @@ class UserDetailsSerializer(serializers.ModelSerializer):
             return 0
 
     def get_communication_rate(self, user):
-        return round(CommunicationRating.objects.filter(user=user).aggregate(Avg('mark'))['mark__avg'] or 0, 1)
+        return round(CommunicationRating.objects.filter(user=user).aggregate
+                     (Avg('mark'))['mark__avg'] or 0, 1)
 
     def get_description_rate(self, user):
-        return round(DescriptionRating.objects.filter(user=user).aggregate(Avg('mark'))['mark__avg'] or 0, 1)
+        return round(DescriptionRating.objects.filter(user=user).aggregate
+                     (Avg('mark'))['mark__avg'] or 0, 1)
 
     def get_response_rate(self, user):
         return 56
@@ -86,14 +88,23 @@ class UserVoteSerializer(serializers.ModelSerializer):
 
     def create_vote_or_delete_if_exist(self, vote_model, user_instance):
         try:
-            vote = vote_model.objects.get(user=user_instance, author=self.context['request'].user)
+            vote = vote_model.objects.get(
+                user=user_instance,
+                author=self.context['request'].user
+            )
             vote.delete()
         except vote_model.DoesNotExist:
-            vote_model.objects.create(user=user_instance, author=self.context['request'].user)
+            vote_model.objects.create(
+                user=user_instance,
+                author=self.context['request'].user
+            )
 
     def delete_opposite_vote_if_exist(self, opposite_vote_model, user_instance):
         try:
-            vote = opposite_vote_model.objects.get(user=user_instance, author=self.context['request'].user)
+            vote = opposite_vote_model.objects.get(
+                user=user_instance,
+                author=self.context['request'].user
+            )
             vote.delete()
         except opposite_vote_model.DoesNotExist:
             pass
@@ -101,9 +112,21 @@ class UserVoteSerializer(serializers.ModelSerializer):
     def update(self, instance: User, validated_data):
         if vote := self.context['view'].kwargs.get('vote'):
             if vote == 'like':
-                self.delete_opposite_vote_if_exist(opposite_vote_model=UserDislike, user_instance=instance)
-                self.create_vote_or_delete_if_exist(vote_model=UserLike, user_instance=instance)
+                self.delete_opposite_vote_if_exist(
+                    opposite_vote_model=UserDislike,
+                    user_instance=instance
+                )
+                self.create_vote_or_delete_if_exist(
+                    vote_model=UserLike,
+                    user_instance=instance
+                )
             if vote == 'dislike':
-                self.delete_opposite_vote_if_exist(opposite_vote_model=UserLike, user_instance=instance)
-                self.create_vote_or_delete_if_exist(vote_model=UserDislike, user_instance=instance)
+                self.delete_opposite_vote_if_exist(
+                    opposite_vote_model=UserLike,
+                    user_instance=instance
+                )
+                self.create_vote_or_delete_if_exist(
+                    vote_model=UserDislike,
+                    user_instance=instance
+                )
         return instance

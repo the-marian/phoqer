@@ -315,7 +315,10 @@ def test_offer_detail_view(api_client, offer_1):
 
 def test_offer_not_auth_update(api_client):
     data = {'price': 111}
-    response = api_client.patch('/api/v1/offers/1b261f53-8e3b-4c14-abe6-5824c5d8b66c/', data)
+    response = api_client.patch(
+        '/api/v1/offers/1b261f53-8e3b-4c14-abe6-5824c5d8b66c/',
+        data
+    )
     assert response.status_code == 401
 
 
@@ -347,7 +350,9 @@ def test_offer_partial_update(
         update_field,
         update_date
 ):
-    response = authed_api_client.get('/api/v1/offers/1b261f53-8e3b-4c14-abe6-5824c5d8b66c/')
+    response = authed_api_client.get(
+        '/api/v1/offers/1b261f53-8e3b-4c14-abe6-5824c5d8b66c/'
+    )
     # before update
     assert response.json() == {
         'category': 'phones',
@@ -373,21 +378,27 @@ def test_offer_partial_update(
     }
     # perform partial update
     data = {update_field: update_date}
-    response = authed_api_client.patch('/api/v1/offers/1b261f53-8e3b-4c14-abe6-5824c5d8b66c/', data)
+    response = authed_api_client.patch(
+        '/api/v1/offers/1b261f53-8e3b-4c14-abe6-5824c5d8b66c/',
+        data
+    )
     assert response.json()[update_field] == update_date
 
 
 def test_offer_image_delete(authed_api_client, offer_image):
     # before delete
-    response = authed_api_client.get('/api/v1/offers/1b261f53-8e3b-4c14-abe6-5824c5d8b12e/')
-    assert response.json()['images'] == [{'id': 1, 'url': 'https://example.com/iphone.jpeg'}]
+    response = authed_api_client.get(
+        '/api/v1/offers/1b261f53-8e3b-4c14-abe6-5824c5d8b12e/')
+    assert response.json()['images'] == \
+           [{'id': 1, 'url': 'https://example.com/iphone.jpeg'}]
 
     # perform delete
     response = authed_api_client.delete('/api/v1/offers/image/1/')
     assert response.status_code == 204
 
     # after delete
-    response = authed_api_client.get('/api/v1/offers/1b261f53-8e3b-4c14-abe6-5824c5d8b12e/')
+    response = authed_api_client.get(
+        '/api/v1/offers/1b261f53-8e3b-4c14-abe6-5824c5d8b12e/')
     assert response.json()['images'] == []
 
 
@@ -409,9 +420,11 @@ def test_create_offer_with_images(authed_api_client, sport_category):
             'city': 'Kiev',
             'cover_image': 'http://phoqer.com//mediafiles/image(1)_H802r7h.jpeg',
             'deposit_val': 100000,
-            'description': 'Укажите нужно ли предоставить документы для оренды вашего товара',
+            'description':
+                'Укажите нужно ли предоставить документы для оренды вашего товара',
             'doc_needed': False,
-            'extra_requirements': 'Укажите нужно ли предоставить документы для оренды вашего товара',
+            'extra_requirements':
+                'Укажите нужно ли предоставить документы для оренды вашего товара',
             'images': [
                 {'url': 'http://phoqer.com//mediafiles/image(1)_H802r7h.jpeg'},
                 {'url': 'http://phoqer.com//mediafiles/image(2)_bGKHdms.jpeg'},
@@ -426,7 +439,11 @@ def test_create_offer_with_images(authed_api_client, sport_category):
             'title': 'name'
         }
     )
-    response = authed_api_client.post('/api/v1/offers/', data=data, content_type='application/json')
+    response = authed_api_client.post(
+        '/api/v1/offers/',
+        data=data,
+        content_type='application/json'
+    )
     response = response.json()
     # since 'id' every time is different I delete it from response before assert
     # but firstly assure that such field is exist and its type is int
@@ -441,7 +458,8 @@ def test_create_offer_with_images(authed_api_client, sport_category):
         'deposit_val': 100000,
         'description': 'Укажите нужно ли предоставить документы для оренды вашего товара',
         'doc_needed': False,
-        'extra_requirements': 'Укажите нужно ли предоставить документы для оренды вашего товара',
+        'extra_requirements':
+            'Укажите нужно ли предоставить документы для оренды вашего товара',
         'images': [
             {
                 'id': 1,
@@ -479,9 +497,11 @@ def test_create_offer_without_images(authed_api_client, sport_category):
             'city': 'Kiev',
             'cover_image': 'http://phoqer.com//mediafiles/image(1)_H802r7h.jpeg',
             'deposit_val': 100000,
-            'description': 'Укажите нужно ли предоставить документы для оренды вашего товара',
+            'description':
+                'Укажите нужно ли предоставить документы для оренды вашего товара',
             'doc_needed': False,
-            'extra_requirements': 'Укажите нужно ли предоставить документы для оренды вашего товара',
+            'extra_requirements':
+                'Укажите нужно ли предоставить документы для оренды вашего товара',
             'is_deliverable': False,
             'max_rent_period': None,
             'min_rent_period': None,
@@ -490,6 +510,10 @@ def test_create_offer_without_images(authed_api_client, sport_category):
             'title': 'name'
         }
     )
-    response = authed_api_client.post('/api/v1/offers/', data=data, content_type='application/json')
+    response = authed_api_client.post(
+        '/api/v1/offers/',
+        data=data,
+        content_type='application/json'
+    )
     assert response.status_code == 201
     assert response.json()['images'] == []

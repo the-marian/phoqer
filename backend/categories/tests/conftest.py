@@ -12,12 +12,27 @@ def api_client():
 
 @pytest.fixture
 def db_test_data(db):
-    sport = ParentCategories.objects.create(name='Sport', slug='sport', image=sport_img_url, is_active=True,
-                                            priority=1)
-    books = ParentCategories.objects.create(name='Books', slug='books', image=books_img_url, is_active=True,
-                                            priority=2)
-    toys = ParentCategories.objects.create(name='Toys', slug='toys', image=toys_img_url, is_active=True,
-                                           priority=3)
+    sport = ParentCategories.objects.create(
+        name='Sport',
+        slug='sport',
+        image=sport_img_url,
+        is_active=True,
+        priority=1
+    )
+    books = ParentCategories.objects.create(
+        name='Books',
+        slug='books',
+        image=books_img_url,
+        is_active=True,
+        priority=2
+    )
+    toys = ParentCategories.objects.create(
+        name='Toys',
+        slug='toys',
+        image=toys_img_url,
+        is_active=True,
+        priority=3
+    )
     ChildCategories.objects.create(name='Bicycle', slug='bicycle', parent=sport)
     ChildCategories.objects.create(name='Jet Ski', slug='jet-ski', parent=sport)
     ChildCategories.objects.create(name='Bible', slug='bible', parent=books)

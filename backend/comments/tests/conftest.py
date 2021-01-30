@@ -15,14 +15,22 @@ def api_client():
 
 @pytest.fixture
 def author_1(db):
-    return User.objects.create_user(first_name='Marian', last_name='Zozulia', email='maric0naric@gmail.com',
-                                    password='bla bla bla 123')
+    return User.objects.create_user(
+        first_name='Marian',
+        last_name='Zozulia',
+        email='maric0naric@gmail.com',
+        password='bla bla bla 123'
+    )
 
 
 @pytest.fixture
 def author_2(db):
-    return User.objects.create_user(first_name='Kseniia', last_name='Pashkovska', email='pashkovskax@gmail.com',
-                                    password='bla bla bla 123')
+    return User.objects.create_user(
+        first_name='Kseniia',
+        last_name='Pashkovska',
+        email='pashkovskax@gmail.com',
+        password='bla bla bla 123'
+    )
 
 
 @pytest.fixture
@@ -35,8 +43,13 @@ def authenticated_client(db, author_1):
 
 @pytest.fixture
 def category(db):
-    return ParentCategories.objects.create(name='Phones', slug='phones', image='https://example.com/phone.jpeg',
-                                           is_active=True, priority=1)
+    return ParentCategories.objects.create(
+        name='Phones',
+        slug='phones',
+        image='https://example.com/phone.jpeg',
+        is_active=True,
+        priority=1
+    )
 
 
 @pytest.fixture

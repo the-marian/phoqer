@@ -90,7 +90,11 @@ def category_2(db):
 
 @pytest.fixture
 def sub_category_1(db, category_1):
-    return ChildCategories.objects.create(name='IPhones', slug='iphones', parent=category_1)
+    return ChildCategories.objects.create(
+        name='IPhones',
+        slug='iphones',
+        parent=category_1
+    )
 
 
 @pytest.fixture
