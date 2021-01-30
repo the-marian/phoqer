@@ -7,31 +7,20 @@ from rest_framework import status
 
 from offers.models import Offer
 from offers.tests.mocks import (
-    list_offers_expected_response,
-    list_offers_without_iphone10,
     iphone11_is_promoted_True,
-    iphone11_is_promoted_False,
+    Iphone_12,
     list_ordered_by_promotion,
     list_ordered_by_views,
     list_order_mixed,
-    search_filter_city_mock,
-    search_filter_status_in_rent_mock,
-    search_filter_is_deliverable_mock,
-    search_test_description_mock,
-    ascending_price_ordering_mock,
-    ascending_deposit_ordering_mock,
-    descending_deposit_ordering_mock,
-    max_deposit_filter_mock,
-    max_price_order_mock,
-    no_deposit_true_mock,
     Iphone_10,
+    Iphone_11,
 )
 
 
 def test_list_offers(api_client, offer_1, offer_2, offer_3):
     response = api_client.get('/api/v1/offers/popular/')
     assert response.status_code == status.HTTP_200_OK
-    assert response.json() == list_offers_expected_response
+    assert response.json() == Iphone_12 + Iphone_11 + Iphone_10
 
 
 @pytest.mark.parametrize(
@@ -60,14 +49,14 @@ def test_is_promoted(api_client, offer_1, offer_2, offer_3):
     iphone_11.save()
 
     response = api_client.get('/api/v1/offers/popular/')
-    assert response.json() == iphone11_is_promoted_True
+    assert response.json() == iphone11_is_promoted_True + Iphone_12 + Iphone_10
 
     iphone_11 = Offer.objects.get(title='Iphone 11')
     iphone_11.promote_til_date = datetime.strptime('2020-10-20', '%Y-%m-%d')
     iphone_11.save()
 
     response = api_client.get('/api/v1/offers/popular/')
-    assert response.json() == iphone11_is_promoted_False
+    assert response.json() == Iphone_11 + Iphone_12 + Iphone_10
 
 
 def test_is_deliverable(api_client, offer_1, offer_2, offer_3):
@@ -130,7 +119,7 @@ def test_order_mixed(api_client, offer_1, offer_2, offer_3):
 
 def test_is_favorite(authed_api_client, user, offer_1, offer_2, offer_3):
     response = authed_api_client.get('/api/v1/offers/popular/')
-    assert response.json() == list_offers_expected_response
+    assert response.json() == Iphone_12 + Iphone_11 + Iphone_10
 
     iphone_10 = Offer.objects.get(title='Iphone 10')
     iphone_10.favorite.add(user)
@@ -147,7 +136,7 @@ def test_is_favorite_false(authed_api_client, offer_1, offer_2, offer_3):
 
 def test_search(api_client, offer_1, offer_2, offer_3, sport_category):
     response = api_client.get('/api/v1/offers/search/')
-    assert response.json() == list_offers_expected_response
+    assert response.json() == Iphone_12 + Iphone_11 + Iphone_10
     # CATEGORY_TEST
     iphone_12 = Offer.objects.get(title='Iphone 12')
     iphone_12.category = sport_category
@@ -157,49 +146,49 @@ def test_search(api_client, offer_1, offer_2, offer_3, sport_category):
     assert response.data
     # SUB_CATEGORY_TEST
     response = api_client.get('/api/v1/offers/search/?sub_category=')
-    assert response.json() == list_offers_expected_response
+    assert response.json() == Iphone_12 + Iphone_11 + Iphone_10
     # CITY_TEST
     iphone_12 = Offer.objects.get(title='Iphone 12')
     iphone_12.city = 'Odessa'
     iphone_12.save()
 
     response = api_client.get('/api/v1/offers/search/?city=Odessa')
-    assert response.json() == search_filter_city_mock
+    assert response.json() == Iphone_12
     # STATUS_TEST
     # active
     response = api_client.get('/api/v1/offers/search/?status=ACTIVE')
-    assert response.json() == list_offers_without_iphone10
+    assert response.json() == Iphone_12 + Iphone_11
     # in rent
     response = api_client.get('/api/v1/offers/search/?status=IN_RENT')
-    assert response.json() == search_filter_status_in_rent_mock
+    assert response.json() == Iphone_10
     # IS_DELIVERABLE_TEST
     response = api_client.get('/api/v1/offers/search/?is_deliverable=True')
-    assert response.json() == search_filter_is_deliverable_mock
+    assert response.json() == Iphone_12 + Iphone_10
     # SEARCH_TEST
     # title
     response = api_client.get('/api/v1/offers/search/?search=iphone')
-    assert response.json() == list_offers_expected_response
+    assert response.json() == Iphone_12 + Iphone_11 + Iphone_10
     # description
     response = api_client.get('/api/v1/offers/search/?search=Old')
-    assert response.json() == search_test_description_mock
+    assert response.json() == Iphone_11 + Iphone_10
 
 
 def test_ascending_price_ordering(api_client, offer_1, offer_2, offer_3):
     response = api_client.get('/api/v1/offers/search/')
-    assert response.json() == list_offers_expected_response
+    assert response.json() == Iphone_12 + Iphone_11 + Iphone_10
 
     response = api_client.get('/api/v1/offers/search/?ordering=price')
-    assert response.json() == ascending_price_ordering_mock
+    assert response.json() == Iphone_10 + Iphone_11 + Iphone_12
 
 
 def test_descending_price_ordering(api_client, offer_1, offer_2, offer_3):
     response = api_client.get('/api/v1/offers/search/?ordering=-price')
-    assert response.json() == list_offers_expected_response
+    assert response.json() == Iphone_12 + Iphone_11 + Iphone_10
 
 
 def test_ascending_deposit_val(api_client, offer_1, offer_2, offer_3):
     response = api_client.get('/api/v1/offers/search/')
-    assert response.json() == list_offers_expected_response
+    assert response.json() == Iphone_12 + Iphone_11 + Iphone_10
 
     iphone_10 = Offer.objects.get(title='Iphone 10')
     iphone_11 = Offer.objects.get(title='Iphone 11')
@@ -214,7 +203,7 @@ def test_ascending_deposit_val(api_client, offer_1, offer_2, offer_3):
     iphone_12.save()
 
     response = api_client.get('/api/v1/offers/search/?ordering=deposit_val')
-    assert response.json() == ascending_deposit_ordering_mock
+    assert response.json() == Iphone_10 + Iphone_12 + Iphone_11
 
 
 def test_descending_deposit_val(api_client, offer_1, offer_2, offer_3):
@@ -231,40 +220,40 @@ def test_descending_deposit_val(api_client, offer_1, offer_2, offer_3):
     iphone_12.save()
 
     response = api_client.get('/api/v1/offers/search/?ordering=-deposit_val')
-    assert response.json() == descending_deposit_ordering_mock
+    assert response.json() == Iphone_11 + Iphone_12 + Iphone_10
 
 
 def test_min_price_order(api_client, offer_1, offer_2, offer_3):
     response = api_client.get('/api/v1/offers/search/')
-    assert response.json() == list_offers_expected_response
+    assert response.json() == Iphone_12 + Iphone_11 + Iphone_10
 
     response = api_client.get('/api/v1/offers/search/?min_price=300')
-    assert response.json() == max_deposit_filter_mock
+    assert response.json() == Iphone_12 + Iphone_11
 
 
 def test_max_price_order(api_client, offer_1, offer_2, offer_3):
     response = api_client.get('/api/v1/offers/search/')
-    assert response.json() == list_offers_expected_response
+    assert response.json() == Iphone_12 + Iphone_11 + Iphone_10
 
     response = api_client.get('/api/v1/offers/search/?max_price=300')
-    assert response.json() == max_price_order_mock
+    assert response.json() == Iphone_10
 
 
 def test_no_deposit(api_client, offer_1, offer_2, offer_3):
     response = api_client.get('/api/v1/offers/search/')
-    assert response.json() == list_offers_expected_response
+    assert response.json() == Iphone_12 + Iphone_11 + Iphone_10
 
     iphone_11 = Offer.objects.get(title='Iphone 11')
     iphone_11.deposit_val = 200
     iphone_11.save()
 
     response = api_client.get('/api/v1/offers/search/?no_deposit=True')
-    assert response.json() == no_deposit_true_mock
+    assert response.json() == Iphone_12 + Iphone_10
 
 
 def test_max_deposit(api_client, offer_1, offer_2, offer_3):
     response = api_client.get('/api/v1/offers/search/')
-    assert response.json() == list_offers_expected_response
+    assert response.json() == Iphone_12 + Iphone_11 + Iphone_10
 
     iphone_12 = Offer.objects.get(title='Iphone 12')
     iphone_11 = Offer.objects.get(title='Iphone 11')
@@ -277,12 +266,12 @@ def test_max_deposit(api_client, offer_1, offer_2, offer_3):
     iphone_10.save()
 
     response = api_client.get('/api/v1/offers/search/?max_deposit=250')
-    assert response.json() == max_deposit_filter_mock
+    assert response.json() == Iphone_12 + Iphone_11
 
 
 def test_min_deposit(api_client, offer_1, offer_2, offer_3):
     response = api_client.get('/api/v1/offers/search/')
-    assert response.json() == list_offers_expected_response
+    assert response.json() == Iphone_12 + Iphone_11 + Iphone_10
 
     iphone_12 = Offer.objects.get(title='Iphone 12')
     iphone_11 = Offer.objects.get(title='Iphone 11')
@@ -295,7 +284,7 @@ def test_min_deposit(api_client, offer_1, offer_2, offer_3):
     iphone_10.save()
 
     response = api_client.get('/api/v1/offers/search/?min_deposit=250')
-    assert response.json() == max_price_order_mock
+    assert response.json() == Iphone_10
 
 
 def test_offer_detail_view(api_client, offer_1):
@@ -502,6 +491,5 @@ def test_create_offer_without_images(authed_api_client, sport_category):
         }
     )
     response = authed_api_client.post('/api/v1/offers/', data=data, content_type='application/json')
-    # assert response.status_code == 201
     assert response.status_code == 201
     assert response.json()['images'] == []
