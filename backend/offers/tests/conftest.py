@@ -36,7 +36,7 @@ def author(db):
     return User.objects.create(email='qwerty@gmail.com')
 
 
-@pytest.fixture()
+@pytest.fixture
 def iphone_category(db):
     return ParentCategories.objects.create(
         name='Phones',
@@ -47,7 +47,7 @@ def iphone_category(db):
     )
 
 
-@pytest.fixture()
+@pytest.fixture
 def iphone_subcategory(db, iphone_category):
     return ChildCategories.objects.create(
         name='IPhones',
@@ -56,9 +56,9 @@ def iphone_subcategory(db, iphone_category):
     )
 
 
-@pytest.fixture()
+@pytest.fixture
 @freeze_time("2020-10-29")
-def offer_1(db, author, iphone_category, iphone_subcategory):
+def _offer_1(db, author, iphone_category, iphone_subcategory):
     Offer.objects.create(
         author=author,
         category=iphone_category,
@@ -75,9 +75,9 @@ def offer_1(db, author, iphone_category, iphone_subcategory):
         title='Iphone 12')
 
 
-@pytest.fixture()
+@pytest.fixture
 @freeze_time("2020-10-29")
-def offer_2(db, author, iphone_category, iphone_subcategory):
+def _offer_2(db, author, iphone_category, iphone_subcategory):
     Offer.objects.create(
         author=author,
         category=iphone_category,
@@ -94,9 +94,9 @@ def offer_2(db, author, iphone_category, iphone_subcategory):
         title='Iphone 11')
 
 
-@pytest.fixture()
+@pytest.fixture
 @freeze_time("2020-10-29")
-def offer_3(db, author, iphone_category, iphone_subcategory):
+def _offer_3(db, author, iphone_category, iphone_subcategory):
     Offer.objects.create(
         author=author,
         category=iphone_category,

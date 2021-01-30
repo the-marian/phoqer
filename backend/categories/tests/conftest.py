@@ -11,7 +11,7 @@ def api_client():
 
 
 @pytest.fixture
-def db_test_data(db):
+def _db_test_data(db):
     sport = ParentCategories.objects.create(
         name='Sport',
         slug='sport',
