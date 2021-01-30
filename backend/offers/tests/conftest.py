@@ -15,8 +15,12 @@ def api_client():
 
 @pytest.fixture
 def user(db):
-    return User.objects.create_user(first_name='Marian', last_name='Zozulia', email='maric0naric@gmail.com',
-                                    password='bla bla bla 123')
+    return User.objects.create_user(
+        first_name='Marian',
+        last_name='Zozulia',
+        email='maric0naric@gmail.com',
+        password='bla bla bla 123'
+    )
 
 
 @pytest.fixture
@@ -28,16 +32,36 @@ def authed_api_client(db, user):
 
 
 @pytest.fixture
-@freeze_time("2020-10-29")
-def db_test_data(db):
-    author = User.objects.create(email='qwerty@gmail.com')
-    phones = ParentCategories.objects.create(name='Phones', slug='phones', image=phones_image_url, is_active=True,
-                                             priority=1)
-    iphones = ChildCategories.objects.create(name='IPhones', slug='iphones', parent=phones)
+def author(db):
+    return User.objects.create(email='qwerty@gmail.com')
 
+
+@pytest.fixture
+def iphone_category(db):
+    return ParentCategories.objects.create(
+        name='Phones',
+        slug='phones',
+        image=phones_image_url,
+        is_active=True,
+        priority=1
+    )
+
+
+@pytest.fixture
+def iphone_subcategory(db, iphone_category):
+    return ChildCategories.objects.create(
+        name='IPhones',
+        slug='iphones',
+        parent=iphone_category
+    )
+
+
+@pytest.fixture
+@freeze_time("2020-10-29")
+def _offer_1(db, author, iphone_category, iphone_subcategory):
     Offer.objects.create(
         author=author,
-        category=phones,
+        category=iphone_category,
         city='Kiev',
         cover_image=image_iphone_url,
         currency='UAH',
@@ -47,11 +71,16 @@ def db_test_data(db):
         is_deliverable=True,
         price='499',
         status='ACTIVE',
-        sub_category=iphones,
+        sub_category=iphone_subcategory,
         title='Iphone 12')
+
+
+@pytest.fixture
+@freeze_time("2020-10-29")
+def _offer_2(db, author, iphone_category, iphone_subcategory):
     Offer.objects.create(
         author=author,
-        category=phones,
+        category=iphone_category,
         city='Kiev',
         cover_image=image_iphone_url,
         currency='UAH',
@@ -61,11 +90,16 @@ def db_test_data(db):
         is_deliverable=False,
         price='399',
         status='ACTIVE',
-        sub_category=iphones,
+        sub_category=iphone_subcategory,
         title='Iphone 11')
+
+
+@pytest.fixture
+@freeze_time("2020-10-29")
+def _offer_3(db, author, iphone_category, iphone_subcategory):
     Offer.objects.create(
         author=author,
-        category=phones,
+        category=iphone_category,
         city='Kiev',
         cover_image=image_iphone_url,
         currency='UAH',
@@ -75,7 +109,7 @@ def db_test_data(db):
         is_deliverable=True,
         price='299',
         status='IN_RENT',
-        sub_category=iphones,
+        sub_category=iphone_subcategory,
         title='Iphone 10'
     )
 
@@ -102,7 +136,7 @@ def bike_subcategory(db, sport_category):
 
 @pytest.fixture
 @freeze_time("2020-10-29")
-def offer_1(db, sport_category, user, bike_subcategory):
+def offer_4(db, sport_category, user, bike_subcategory):
     return Offer.objects.create(
         author=user,
         category=sport_category,
@@ -121,9 +155,9 @@ def offer_1(db, sport_category, user, bike_subcategory):
 
 
 @pytest.fixture
-def offer_image(db, sport_category, offer_1):
+def offer_image(db, sport_category, offer_4):
     return OfferImages.objects.create(
-        offer=offer_1,
+        offer=offer_4,
         name='photo_of_pixel.jpg',
         url=image_iphone_url,
     )

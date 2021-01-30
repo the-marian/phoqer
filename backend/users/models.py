@@ -56,11 +56,19 @@ class UserDislike(models.Model):
 
 class CommunicationRating(models.Model):
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    user = models.ForeignKey(User, related_name='communication_rating', on_delete=models.CASCADE)
+    user = models.ForeignKey(
+        User,
+        related_name='communication_rating',
+        on_delete=models.CASCADE
+    )
     mark = models.PositiveSmallIntegerField()
 
 
 class DescriptionRating(models.Model):
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    user = models.ForeignKey(User, related_name='description_rating', on_delete=models.CASCADE)
+    user = models.ForeignKey(
+        User,
+        related_name='description_rating',
+        on_delete=models.CASCADE
+    )
     mark = models.PositiveSmallIntegerField()

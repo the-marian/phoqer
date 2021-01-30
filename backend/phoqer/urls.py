@@ -20,7 +20,8 @@ urlpatterns = [
 
     # SWAGGER URL
     path('api/schema/', SpectacularAPIView.as_view(), name='schema'),
-    path('api/swagger/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),
+    path('api/swagger/',
+         SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),
 
     # AUTH
     path('api/v1/auth/', include('djoser.urls.authtoken')),
@@ -29,7 +30,8 @@ urlpatterns = [
     path('api/v1/comments/', include('comments.urls', namespace='comments')),
 
     # NOTIFICATIONS
-    path('api/v1/notifications/', include('notifications.urls', namespace='notifications')),
+    path('api/v1/notifications/',
+         include('notifications.urls', namespace='notifications')),
 
     # FAVOURITE
     path('api/v1/favorite/', include('favorite.urls', namespace='favorite')),
