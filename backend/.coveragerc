@@ -10,8 +10,8 @@ omit =
     */tests.py
     */urls.py
     manage.py
-    share/settings.py
-    share/wsgi.py
-    share/asgi.py
+    phoqer/settings.py
+    phoqer/wsgi.py
+    phoqer/asgi.py
     upload/models.py
     users/views.py

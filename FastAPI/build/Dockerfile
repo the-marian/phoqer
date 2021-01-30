@@ -1,11 +1,12 @@
 FROM python:3.8-alpine
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
-WORKDIR /home/phoqer/backend
-COPY requirements_fastapi.txt requirements_fastapi.txt
+ENV PYTHONPATH /phoqer
+WORKDIR $PYTHONPATH/FastAPI
+COPY build/requirements.txt build/requirements.txt
 RUN apk add --no-cache --virtual .build-deps \
   gcc musl-dev \
-    && pip install -r requirements_fastapi.txt \
+    && pip install -r build/requirements.txt \
     && find /usr/local \
         \( -type d -a -name test -o -name tests \) \
         -o \( -type f -a -name '*.pyc' -o -name '*.pyo' \) \
@@ -20,4 +21,4 @@ RUN apk add --no-cache --virtual .build-deps \
     && apk add --virtual .rundeps $runDeps \
     && apk del .build-deps
 COPY . .
-ENTRYPOINT ["/home/phoqer/backend/entrypoint_fastapi.sh"]
+ENTRYPOINT ["./build/entrypoint.sh"]

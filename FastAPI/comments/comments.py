@@ -1,50 +1,56 @@
-import sqlite3
-from typing import Optional, Union, List
+from typing import List, Optional
 
 from asyncpg import ForeignKeyViolationError
-from fastapi import APIRouter, HTTPException, status, Header, Depends, Response
+from fastapi import APIRouter, Depends, Header, HTTPException, Response, status
 
-from comments import crud
-from comments.schemas import CommentRequest, CommentReply
+from FastAPI.comments import crud
+from FastAPI.comments.schemas import CommentReply, CommentRequest
 
 router = APIRouter(
-    prefix='/comments',
-    tags=['comments'],
+    prefix="/comments",
+    tags=["comments"],
 )
 
 
-async def get_current_user(authorization: Optional[str] = Header(None)) -> Union[int, None]:
+async def get_current_user(
+    authorization: Optional[str] = Header(None),
+) -> Optional[int]:
     if authorization:
-        token = authorization.split(' ')[-1]
-        try:
+        if token := authorization.partition(" ")[2]:
             user_id = await crud.get_user_id(token)
             if user_id:
                 return user_id
-            elif user_id is None:
+            else:
                 raise HTTPException(
                     status_code=status.HTTP_401_UNAUTHORIZED,
-                    detail=f"Token does not exist"
+                    detail="Token does not exist",
                 )
-        except sqlite3.OperationalError as error:
+        else:
             raise HTTPException(
-                status_code=status.HTTP_400_BAD_REQUEST,
-                detail=f"Problem occurred during comment creation: {error}"
+                status_code=status.HTTP_401_UNAUTHORIZED,
+                detail="Invalid Authorisation Header format. Token cannot be blank.",
             )
-    elif authorization is None:
-        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="No Authorisation header supplied")
+    else:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="No Authorisation header supplied",
+        )
 
 
-async def get_current_user_or_none(authorization: Optional[str] = Header(None)) -> Union[int, None]:
+async def get_current_user_or_none(
+    authorization: Optional[str] = Header(None),
+) -> Optional[int]:
     if authorization:
-        token = authorization.split(' ')[-1]
+        token = authorization.split(" ")[-1]
         return await crud.get_user_id(token)
+    else:
+        return None
 
 
 @router.get("/{offer_id}", response_model=List[CommentReply])
 async def list_comments(
-        offer_id: str,
-        author_id: Optional[int] = Depends(get_current_user_or_none)
-):
+    offer_id: str, author_id: Optional[int] = Depends(get_current_user_or_none)
+) -> List[CommentReply]:
     author_likes_map = {}
     author_dislikes_map = {}
     comment_images_map = await crud.get_comment_images_map(offer_id)
@@ -55,55 +61,59 @@ async def list_comments(
     like_map = await crud.get_like_map(offer_id)
     dislike_map = await crud.get_dislike_map(offer_id)
     comments_map = {
-        comment['id']: CommentReply(
+        comment["id"]: CommentReply(
             **comment,
-            likes=like_map.get(comment['id'], 0),
-            dislikes=dislike_map.get(comment['id'], 0),
-            like=author_likes_map.get(comment['id'], False),
-            dislike=author_dislikes_map.get(comment['id'], False),
-            images=comment_images_map.get(comment['id'], []),
+            likes=like_map.get(comment["id"], 0),
+            dislikes=dislike_map.get(comment["id"], 0),
+            like=author_likes_map.get(comment["id"], False),
+            dislike=author_dislikes_map.get(comment["id"], False),
+            images=comment_images_map.get(comment["id"], []),
         )
         for comment in comments_list
     }
     for comment in comments_map.values():
         if parent_id := comment.replies_id:
-            comments_map.get(parent_id).replies.append(comment)
+            comments_map[parent_id].replies.append(comment)
     return [comment for comment in comments_map.values() if not comment.replies_id]
 
 
 @router.post("", status_code=status.HTTP_204_NO_CONTENT)
 async def create_comment(
-        comment: CommentRequest,
-        author_id: int = Depends(get_current_user)
-):
+    comment: CommentRequest, author_id: int = Depends(get_current_user)
+) -> Response:
     try:
-        await crud.create_comment(comment=comment, author_id=author_id, images=comment.images)
+        await crud.create_comment(
+            comment=comment, author_id=author_id, images=comment.images
+        )
         return Response(status_code=status.HTTP_204_NO_CONTENT)
     except ForeignKeyViolationError as error:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
-            detail=f"There are no Offer with this id in Database. {error}"
+            detail=f"There are no Offer with this id in Database. {error}",
         )
 
 
 @router.delete("/{comment_id}", status_code=status.HTTP_204_NO_CONTENT)
 async def delete_comment(
-        comment_id: int,
-        author_id: int = Depends(get_current_user)
-):
+    comment_id: int, author_id: int = Depends(get_current_user)
+) -> Response:
     await crud.delete_comment(comment_id)
     return Response(status_code=status.HTTP_204_NO_CONTENT)
 
 
 @router.patch("/{comment_id}/like", status_code=status.HTTP_204_NO_CONTENT)
-async def like_comment(comment_id: int, author_id: int = Depends(get_current_user)):
+async def like_comment(
+    comment_id: int, author_id: int = Depends(get_current_user)
+) -> Response:
     await crud.delete_dislike(author_id, comment_id)
     await crud.create_like_or_delete_if_exist(author_id, comment_id)
     return Response(status_code=status.HTTP_204_NO_CONTENT)
 
 
 @router.patch("/{comment_id}/dislike", status_code=status.HTTP_204_NO_CONTENT)
-async def dislike_comment(comment_id: int, author_id: int = Depends(get_current_user)):
+async def dislike_comment(
+    comment_id: int, author_id: int = Depends(get_current_user)
+) -> Response:
     await crud.delete_like(author_id, comment_id)
     await crud.create_dislike_or_delete_if_exist(author_id, comment_id)
     return Response(status_code=status.HTTP_204_NO_CONTENT)

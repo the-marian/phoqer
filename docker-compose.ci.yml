@@ -20,14 +20,14 @@ services:
     depends_on:
       - db
   fastapi:
-    container_name: fastapi
+    container_name: FastAPI
     build:
-      context: ./backend
-      dockerfile: Dockerfile.fastapi
+      context: ./FastAPI
+      dockerfile: build/Dockerfile
       cache_from:
         - "${FASTAPI_IMAGE}"
     image: "${FASTAPI_IMAGE}"
-    command: uvicorn phoqer_fastapi.main:app --root-path /api/v2 --reload --workers 1 --host 0.0.0.0 --port 8001
+    command: uvicorn main:app --root-path /api/v2 --reload --workers 1 --host 0.0.0.0 --port 8001
     expose:
       - 8001
     env_file:

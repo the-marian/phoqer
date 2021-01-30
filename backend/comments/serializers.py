@@ -2,7 +2,6 @@ from rest_framework import serializers
 from rest_framework.generics import get_object_or_404
 
 from offers.models import Offer
-
 from .models import Comment, CommentImage, Dislike, Like
 
 
@@ -44,7 +43,9 @@ class CommentSerializer(serializers.ModelSerializer):
 
     def get_fields(self):
         fields = super(CommentSerializer, self).get_fields()
-        fields['replies'] = CommentSerializer(many=True, read_only=True, source='comment_replies')
+        fields['replies'] = CommentSerializer(
+            many=True, read_only=True,
+            source='comment_replies')
         return fields
 
 
@@ -78,14 +79,17 @@ class CommentVoteSerializer(serializers.ModelSerializer):
 
     def create_vote_or_delete_if_exist(self, vote_model, comment_instance):
         try:
-            vote = vote_model.objects.get(comment=comment_instance, author=self.context['request'].user)
+            vote = vote_model.objects.get(comment=comment_instance,
+                                          author=self.context['request'].user)
             vote.delete()
         except vote_model.DoesNotExist:
-            vote_model.objects.create(comment=comment_instance, author=self.context['request'].user)
+            vote_model.objects.create(comment=comment_instance,
+                                      author=self.context['request'].user)
 
     def delete_opposite_vote_if_exist(self, opposite_vote_model, comment_instance):
         try:
-            vote = opposite_vote_model.objects.get(comment=comment_instance, author=self.context['request'].user)
+            vote = opposite_vote_model.objects.get(comment=comment_instance,
+                                                   author=self.context['request'].user)
             vote.delete()
         except opposite_vote_model.DoesNotExist:
             pass
@@ -93,9 +97,12 @@ class CommentVoteSerializer(serializers.ModelSerializer):
     def update(self, instance: Comment, validated_data):
         if vote := self.context['view'].kwargs.get('vote'):
             if vote == 'like':
-                self.delete_opposite_vote_if_exist(opposite_vote_model=Dislike, comment_instance=instance)
+                self.delete_opposite_vote_if_exist(opposite_vote_model=Dislike,
+                                                   comment_instance=instance)
                 self.create_vote_or_delete_if_exist(vote_model=Like, comment_instance=instance)
             if vote == 'dislike':
-                self.delete_opposite_vote_if_exist(opposite_vote_model=Like, comment_instance=instance)
-                self.create_vote_or_delete_if_exist(vote_model=Dislike, comment_instance=instance)
+                self.delete_opposite_vote_if_exist(opposite_vote_model=Like,
+                                                   comment_instance=instance)
+                self.create_vote_or_delete_if_exist(vote_model=Dislike,
+                                                    comment_instance=instance)
         return instance
