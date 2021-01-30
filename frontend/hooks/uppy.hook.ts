@@ -23,7 +23,6 @@ const useUppy = (): Uppy.Uppy<Uppy.StrictTypes> => {
         [],
     );
 
-    // console.log(uppy);
     useEffect(() => {
         uppy.use(XHRUpload, {
             endpoint: config.uploadsUrl(),

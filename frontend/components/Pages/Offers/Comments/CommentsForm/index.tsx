@@ -2,7 +2,7 @@ import { faPaperclip, faPaperPlane, faTimes } from '@fortawesome/free-solid-svg-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { UploadedUppyFile } from '@uppy/core';
 import { Dashboard } from '@uppy/react';
-import React, { ChangeEvent, FormEvent, KeyboardEvent, ReactElement, useEffect, useState } from 'react';
+import React, { ChangeEvent, FormEvent, KeyboardEvent, ReactElement, useState } from 'react';
 import { createUseStyles } from 'react-jss';
 import TextareaAutosize from 'react-textarea-autosize';
 
@@ -80,7 +80,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
     submit: {
         margin: theme.rem(0, 0, 0, 1),
-        padding: theme.rem(1.3, 2),
+        padding: theme.rem(1.5, 2),
         background: theme.palette.primary[0],
         color: theme.palette.white,
         borderRadius: theme.radius,

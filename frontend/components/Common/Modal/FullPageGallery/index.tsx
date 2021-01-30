@@ -32,6 +32,10 @@ const useStyles = createUseStyles((theme: Theme) => ({
 
             '&:hover': {
                 background: theme.palette.gray[4],
+
+                '@media (max-width: 768px)': {
+                    background: 'none',
+                },
             },
 
             '& svg': {

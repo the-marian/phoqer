@@ -69,6 +69,10 @@ const useStyles = createUseStyles((theme: Theme) => ({
         marginBottom: theme.rem(2),
         lineHeight: 1,
 
+        '@media (max-width: 500px)': {
+            fontSize: theme.rem(1.8),
+        },
+
         '& a': {
             color: theme.palette.black[0],
 
@@ -86,6 +90,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
 
         '@media (max-width: 550px)': {
             margin: theme.rem(0, 1, 1.6, 0),
+            fontSize: theme.rem(1.8),
         },
 
         '&:hover': {
@@ -108,6 +113,10 @@ const useStyles = createUseStyles((theme: Theme) => ({
         '& div': {
             display: 'block',
             marginBottom: theme.rem(2),
+        },
+
+        '@media (max-width: 500px)': {
+            fontSize: theme.rem(1.8),
         },
     },
     img: {

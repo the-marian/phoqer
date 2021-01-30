@@ -122,12 +122,27 @@ const useStyles = createUseStyles((theme: Theme) => ({
         color: theme.palette.white,
 
         '@media (max-width: 500px)': {
+            padding: theme.rem(2, 4),
             fontSize: theme.rem(1.8),
         },
     },
     favorite: {
         marginLeft: theme.rem(2),
         color: theme.palette.primary[0],
+
+        '@media (max-width: 500px)': {
+            marginLeft: theme.rem(4),
+        },
+
+        '& svg': {
+            height: theme.rem(1.8),
+            width: theme.rem(1.8),
+
+            '@media (max-width: 500px)': {
+                height: theme.rem(2.2),
+                width: theme.rem(2.2),
+            },
+        },
     },
     price: {
         display: 'flex',

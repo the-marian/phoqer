@@ -1,7 +1,7 @@
 import { faEye, faEyeSlash } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import clsx from 'clsx';
-import React, { FormEvent, ReactElement, useState } from 'react';
+import React, { FormEvent, MouseEvent, ReactElement, useState } from 'react';
 import { createUseStyles } from 'react-jss';
 
 import { Theme } from '../../../../assets/theme';
@@ -12,6 +12,10 @@ const useStyles = createUseStyles((theme: Theme) => ({
         fontSize: theme.rem(1.8),
         fontWeight: theme.text.weight[3],
         textAlign: 'center',
+
+        '@media (max-width: 500px)': {
+            fontSize: theme.rem(2.4),
+        },
     },
     wrp: {
         display: 'block',
@@ -24,19 +28,19 @@ const useStyles = createUseStyles((theme: Theme) => ({
         margin: 0,
         fontSize: theme.rem(1.2),
         fontWeight: theme.text.weight[3],
+
+        '@media (max-width: 500px)': {
+            fontSize: theme.rem(1.6),
+        },
     },
     input: {
-        display: 'block',
-        width: '100%',
-        height: theme.rem(5),
-        padding: theme.rem(1),
-        paddingRight: theme.rem(5),
+        ...theme.input,
+        padding: theme.rem(0, 5, 0, 2),
         background: theme.palette.gray[1],
-        border: 'none',
-        borderRadius: theme.radius,
-        fontSize: theme.rem(1.4),
-        lineHeight: 1,
-        outline: 'none',
+
+        '@media (max-width: 500px)': {
+            fontSize: theme.rem(1.6),
+        },
     },
     eye: {
         position: 'absolute',
@@ -75,12 +79,21 @@ const useStyles = createUseStyles((theme: Theme) => ({
             height: theme.rem(1.4),
             width: theme.rem(1.4),
         },
+
+        '@media (max-width: 500px)': {
+            margin: '5rem auto 3rem',
+            padding: theme.rem(2),
+        },
     },
     text: {
-        marginBottom: theme.rem(2),
+        marginBottom: theme.rem(1),
         fontSize: theme.rem(1.4),
         fontWeight: theme.text.weight[2],
         textAlign: 'center',
+
+        '@media (max-width: 500px)': {
+            marginBottom: theme.rem(2),
+        },
     },
     list: {
         display: 'flex',
@@ -118,7 +131,7 @@ const JoinForm = (): ReactElement => {
         setPassword(!password);
     };
 
-    const handleSubmit = (event: FormEvent) => {
+    const handleSubmit = (event: FormEvent<HTMLFormElement> | MouseEvent<HTMLButtonElement>) => {
         event.preventDefault();
         setLoading(true);
         alert('fuck you!');

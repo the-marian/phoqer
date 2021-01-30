@@ -6,7 +6,6 @@ import Slider from 'react-slick';
 import { Theme } from '../../../../assets/theme';
 import { modal } from '../../../Common/Modal';
 import FullPageGallery from '../../../Common/Modal/FullPageGallery';
-import FullPageModal from '../../../Common/Modal/FullPageModal';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     flex: {

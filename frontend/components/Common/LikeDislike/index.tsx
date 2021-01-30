@@ -22,6 +22,11 @@ const useStyles = createUseStyles((theme: Theme) => ({
             width: theme.rem(1.4),
             marginRight: theme.rem(1),
             fill: theme.palette.primary[0],
+
+            '@media (max-width: 500px)': {
+                height: theme.rem(1.8),
+                width: theme.rem(1.8),
+            },
         },
     },
     none: {
@@ -33,6 +38,10 @@ const useStyles = createUseStyles((theme: Theme) => ({
         color: theme.palette.gray[4],
         fontSize: theme.rem(1.4),
 
+        '@media (max-width: 500px)': {
+            fontSize: theme.rem(1.6),
+        },
+
         '&:hover': {
             color: theme.palette.primary[0],
         },
@@ -43,6 +52,10 @@ const useStyles = createUseStyles((theme: Theme) => ({
         marginLeft: theme.rem(2),
         color: theme.palette.gray[4],
         fontSize: theme.rem(1.4),
+
+        '@media (max-width: 500px)': {
+            fontSize: theme.rem(1.6),
+        },
 
         '&:hover': {
             color: theme.palette.primary[0],

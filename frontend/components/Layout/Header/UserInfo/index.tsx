@@ -44,9 +44,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
             alignItems: 'center',
             justifyContent: 'center',
             background: theme.palette.white,
-            padding: theme.rem(0.9, 1.8),
+            padding: theme.rem(1, 1.8),
             borderRadius: theme.radius,
-            boxShadow: theme.shadow[1],
+            border: theme.border(0.1, theme.palette.primary[0]),
         },
 
         '&:hover': {

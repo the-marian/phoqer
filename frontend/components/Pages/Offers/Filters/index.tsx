@@ -88,6 +88,10 @@ const useStyles = createUseStyles((theme: Theme) => ({
         borderRadius: theme.radius,
         background: theme.palette.primary[0],
         color: theme.palette.white,
+
+        '@media (max-width: 500px)': {
+            fontSize: theme.rem(1.8),
+        },
     },
 }));
 
@@ -109,7 +113,7 @@ const Filters = (): ReactElement => {
         dispatch({ type: types.SEARCH_FILTERS, payload: { open: !open } });
     };
 
-    const handleSubmit = (event: FormEvent): void => {
+    const handleSubmit = (event: FormEvent<HTMLFormElement>): void => {
         event.preventDefault();
         alert('fuck you');
     };

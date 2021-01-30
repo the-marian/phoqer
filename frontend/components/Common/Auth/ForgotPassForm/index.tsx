@@ -12,23 +12,23 @@ const useStyles = createUseStyles((theme: Theme) => ({
         fontSize: theme.rem(1.8),
         fontWeight: theme.text.weight[3],
         textAlign: 'center',
+
+        '@media (max-width: 500px)': {
+            fontSize: theme.rem(2.4),
+        },
     },
     wrp: {
         position: 'relative',
         margin: theme.rem(2, 0),
     },
     input: {
-        display: 'block',
-        width: '100%',
-        height: theme.rem(5),
-        paddingLeft: theme.rem(4),
-        paddingRight: theme.rem(5),
+        ...theme.input,
+        padding: theme.rem(1, 2),
         background: theme.palette.gray[1],
-        border: 'none',
-        borderRadius: theme.radius,
-        fontSize: theme.rem(1.4),
-        lineHeight: 1,
-        outline: 'none',
+
+        '@media (max-width: 500px)': {
+            fontSize: theme.rem(1.6),
+        },
     },
     icon: {
         position: 'absolute',
@@ -43,6 +43,10 @@ const useStyles = createUseStyles((theme: Theme) => ({
         textAlign: 'center',
         fontSize: theme.rem(1.4),
         color: theme.palette.primary[0],
+
+        '@media (max-width: 500px)': {
+            fontSize: theme.rem(1.6),
+        },
     },
     btn: {
         display: 'block',
@@ -55,17 +59,26 @@ const useStyles = createUseStyles((theme: Theme) => ({
         borderRadius: theme.radius,
         background: theme.palette.primary[0],
         color: theme.palette.white,
+
+        '@media (max-width: 500px)': {
+            margin: '1rem auto 3rem',
+            padding: theme.rem(2),
+        },
     },
     text: {
         padding: theme.rem(1, 0),
         fontSize: theme.rem(1.2),
         textAlign: 'center',
+
+        '@media (max-width: 500px)': {
+            fontSize: theme.rem(1.4),
+        },
     },
 }));
 
 const ForgotPassForm = (): ReactElement => {
     const css = useStyles();
-    const handleSubmit = (event: FormEvent) => {
+    const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         alert('fuck you!');
     };
