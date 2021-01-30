@@ -9,15 +9,21 @@ class CommentRequest(BaseModel):
     body: str
     offer_id: UUID
     replies_id: Optional[int] = None
+    images: List[HttpUrl] = []
 
 
-class CommentResponse(CommentRequest):
+class CommentReply(CommentRequest):
+    author_id: int
+    dislike: bool = False
     dislikes: int = 0
     id: int
-    images: List[HttpUrl] = []
+    last_name: str
+    first_name: str
+    profile_img: Optional[HttpUrl] = None
+    like: bool = False
     likes: int = 0
     pub_date: date
-    replies: List['CommentResponse'] = []
+    replies: List['CommentReply'] = []
 
 
-CommentResponse.update_forward_refs()
+CommentReply.update_forward_refs()
