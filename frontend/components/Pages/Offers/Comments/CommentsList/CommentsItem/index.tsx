@@ -12,6 +12,7 @@ import { IComment } from '../../../../../../interfaces';
 import types from '../../../../../../redux/types';
 import LikeDislike from '../../../../../Common/LikeDislike';
 import { modal } from '../../../../../Common/Modal';
+import FullPageModal from '../../../../../Common/Modal/FullPageModal';
 import MidModalWrp from '../../../../../Common/Modal/MidModalWrp';
 import CommentsForm from '../../CommentsForm';
 import CommentsLoader from '../../CommentsLoader';
@@ -109,6 +110,26 @@ const useStyles = createUseStyles((theme: Theme) => ({
             marginBottom: theme.rem(2),
         },
     },
+    img: {
+        display: 'flex',
+        alignItems: 'center',
+        flexWrap: 'wrap',
+
+        '& img': {
+            height: theme.rem(8),
+            width: theme.rem(12),
+            borderRadius: theme.radius,
+            margin: theme.rem(0, 1, 1, 0),
+            cursor: 'zoom-in',
+            objectFit: 'cover',
+        },
+    },
+    modal: {
+        display: 'block',
+        width: '100vw',
+        height: '100vh',
+        objectFit: 'contain',
+    },
 }));
 
 const CLICK_TYPE = {
@@ -122,7 +143,7 @@ const SubComment = ({ id, comments }: { id: number; comments: IComment[] }): Rea
     const history = useRouter();
     const dispatch = useDispatch();
 
-    const handleSubmit = (body: string, images: { url: string }[]): void => {
+    const handleSubmit = (body: string, images: string[]): void => {
         dispatch({
             type: types.REPLY_COMMENT_START,
             payload: {
@@ -170,7 +191,7 @@ const CommentsItem = ({ comment, extend = false, replies = false, inner = false 
     const handleDelete = (): void => {
         setDeleting(comment.id);
         dispatch({ type: types.DELETE_COMMENT_START, payload: comment.id, offerId: history.query.offerId });
-        // modal.close();
+        modal.close();
     };
 
     const handleReply = (): void => {
@@ -185,11 +206,19 @@ const CommentsItem = ({ comment, extend = false, replies = false, inner = false 
         );
     };
 
+    const handleClick = (src: string) => (): void => {
+        modal.open(
+            <FullPageModal>
+                <img className={css.modal} src={src} alt="" />
+            </FullPageModal>,
+        );
+    };
+
     return (
         <div className={clsx(css.item, inner && css.inner)} key={comment.id}>
             <h3 className={css.author}>
-                <Link href={routes.profile.single(comment.author)}>
-                    <a>{comment.author}</a>
+                <Link href={routes.profile.single(comment.author_id)}>
+                    <a>{`${comment.first_name} ${comment.last_name}`}</a>
                 </Link>
                 <p className={css.date}>Дата: {comment.pub_date}</p>
             </h3>
@@ -205,6 +234,16 @@ const CommentsItem = ({ comment, extend = false, replies = false, inner = false 
                 <p className={css.text} dangerouslySetInnerHTML={{ __html: comment.body.replace(/\n/gi, '<div></div>') }} />
             )}
 
+            {comment?.images?.length ? (
+                <ul className={css.img}>
+                    {comment.images?.map(img => (
+                        <li key={img}>
+                            <img onClick={handleClick(img)} src={img} alt="" aria-hidden />
+                        </li>
+                    ))}
+                </ul>
+            ) : null}
+
             <div className={css.flex}>
                 {auth?.auth_token && (
                     <button className={css.link} type="button" onClick={handleDelete}>
@@ -218,7 +257,12 @@ const CommentsItem = ({ comment, extend = false, replies = false, inner = false 
                     </button>
                 )}
 
-                <LikeDislike like={comment.likes} dislike={comment.dislikes} onClick={handleLike} />
+                <LikeDislike
+                    like={comment.likes}
+                    dislike={comment.dislikes}
+                    active={comment.dislike ? 'dislike' : comment.like ? 'like' : null}
+                    onClick={handleLike}
+                />
             </div>
 
             {deleting === comment.id && <CommentsLoader top={-1.5} />}

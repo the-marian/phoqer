@@ -13,6 +13,11 @@ import useUppy from '../../../../../hooks/uppy.hook';
 import notifications from '../../../../Common/Notifications';
 
 const useStyles = createUseStyles((theme: Theme) => ({
+    form: {
+        '& .uppy-Dashboard-progressindicators': {
+            display: 'none',
+        },
+    },
     flex: {
         display: 'flex',
         alignItems: 'flex-end',
@@ -85,7 +90,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
 }));
 
 interface IProps {
-    onSubmit: (value: string, images: { url: string }[]) => void;
+    onSubmit: (body: string, images: string[]) => void;
 }
 
 const CommentsForm = ({ onSubmit }: IProps): ReactElement => {
@@ -104,26 +109,8 @@ const CommentsForm = ({ onSubmit }: IProps): ReactElement => {
         setAttachment(!attachment);
     };
 
-    useEffect(() => {
-        const handler = (res): void => {
-            const images: { url: string }[] = res?.successful?.map(
-                (item: UploadedUppyFile<string, { images_url: [string] }>) => ({
-                    url: config.img + item?.response?.body?.images_url?.[0],
-                }),
-            );
-
-            onSubmit(value, images);
-        };
-
-        uppy.on('complete', handler);
-        return () => {
-            uppy.off('complete', handler);
-        };
-    }, []);
-
     const handleSubmit = async (event?: FormEvent): Promise<void> => {
         event?.preventDefault();
-
         if (!value.trim().length) return;
         if (!attachment) {
             onSubmit(value, []);
@@ -142,10 +129,9 @@ const CommentsForm = ({ onSubmit }: IProps): ReactElement => {
             const res = await uppy.upload();
             if (res.failed.length > 0) throw new Error();
 
-            const images: { url: string }[] = await res?.successful?.map(
-                (item: UploadedUppyFile<string, { images_url: [string] }>) => ({
-                    url: config.img + item?.response?.body?.images_url?.[0],
-                }),
+            const images: string[] = await res?.successful?.map(
+                (item: UploadedUppyFile<string, { images_url: [string] }>): string =>
+                    config.img + item?.response?.body?.images_url?.[0],
             );
 
             onSubmit(value, images);
@@ -166,7 +152,7 @@ const CommentsForm = ({ onSubmit }: IProps): ReactElement => {
     };
 
     return (
-        <form action="#" method="post" onSubmit={handleSubmit}>
+        <form className={css.form} action="#" method="post" onSubmit={handleSubmit}>
             <div className={css.flex}>
                 <TextareaAutosize
                     value={value}
@@ -200,7 +186,7 @@ const CommentsForm = ({ onSubmit }: IProps): ReactElement => {
                 )}
             </button>
 
-            {attachment && <Dashboard uppy={uppy} height={media ? 400 : 300} />}
+            {attachment && <Dashboard uppy={uppy} height={media ? 230 : 200} />}
         </form>
     );
 };

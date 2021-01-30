@@ -50,13 +50,14 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
     active: {
         color: theme.palette.primary[0],
+        fontWeight: theme.text.weight[4],
     },
 }));
 
 interface IProps {
     like: number;
     dislike: number;
-    active?: 'like' | 'dislike';
+    active?: 'like' | 'dislike' | null;
     onClick: (type: 'like' | 'dislike') => void;
 }
 

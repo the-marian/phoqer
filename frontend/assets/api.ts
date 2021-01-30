@@ -34,7 +34,7 @@ interface ICommentBody {
     body: string;
     replies_id?: number;
     offer_id?: string;
-    images: { url: string }[];
+    images: string[];
 }
 
 const v2 = {

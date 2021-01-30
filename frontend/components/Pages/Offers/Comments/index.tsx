@@ -52,7 +52,8 @@ const Comments = (): ReactElement => {
 
     const { loading } = useSelector<IState, { loading: boolean }>(state => state.comments);
 
-    const handleSubmit = (body: string, images: { url: string }[]): void => {
+    const handleSubmit = (body: string, images: string[]): void => {
+        console.log(body);
         if (!body.trim().length) return;
         dispatch({
             type: types.CREATE_COMMENT_START,

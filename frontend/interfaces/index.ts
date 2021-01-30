@@ -120,12 +120,18 @@ export interface IOffers {
 // =====================================
 export interface IComment {
     id: number;
-    author: string;
     body: string;
+    offer_id: string;
+    replies_id: number | null;
+    images: string[];
+    author_id: number;
     dislikes: number;
-    images: { url: string }[];
+    dislike: boolean;
+    last_name: string;
+    first_name: string;
+    profile_img: string | null;
     likes: number;
-    offer: string;
+    like: boolean;
     pub_date: string;
     replies: IComment[];
 }

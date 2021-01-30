@@ -6,7 +6,7 @@ const config = {
     },
     uploadsUrl: (version = 'v1'): string => `http://140.82.39.245/api/${version}/upload/`,
     host: 'http://phoqer.com/',
-    img: 'http://phoqer.com/',
+    img: 'http://phoqer.com',
     offers: {
         grid: {
             desktop: 4,
