@@ -2,8 +2,8 @@ import uvicorn
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from comments.comments import router
-from comments.database import database
+from FastAPI.comments.comments import router
+from FastAPI.config import database
 
 origins = [
     "http://localhost:4000",
@@ -25,12 +25,12 @@ app.include_router(router)
 
 
 @app.on_event("startup")
-async def startup():
+async def startup() -> None:
     await database.connect()
 
 
 @app.on_event("shutdown")
-async def shutdown():
+async def shutdown() -> None:
     await database.disconnect()
 
 

@@ -1,6 +1,7 @@
+Django==3.1.2
+black==20.8b1
 django-cors-headers==3.5.0
 django-filter==2.4.0
-Django==3.1.2
 djangorestframework-simplejwt==4.4.0
 djangorestframework==3.11.1
 djoser==2.0.5

@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from datetime import date
 from typing import List, Optional
 from uuid import UUID
@@ -23,7 +25,7 @@ class CommentReply(CommentRequest):
     like: bool = False
     likes: int = 0
     pub_date: date
-    replies: List['CommentReply'] = []
+    replies: List[CommentReply] = []
 
 
 CommentReply.update_forward_refs()
