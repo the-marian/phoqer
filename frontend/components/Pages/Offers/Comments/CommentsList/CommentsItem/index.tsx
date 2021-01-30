@@ -12,7 +12,7 @@ import { IComment } from '../../../../../../interfaces';
 import types from '../../../../../../redux/types';
 import LikeDislike from '../../../../../Common/LikeDislike';
 import { modal } from '../../../../../Common/Modal';
-import FullPageModal from '../../../../../Common/Modal/FullPageModal';
+import FullPageGallery from '../../../../../Common/Modal/FullPageGallery';
 import MidModalWrp from '../../../../../Common/Modal/MidModalWrp';
 import CommentsForm from '../../CommentsForm';
 import CommentsLoader from '../../CommentsLoader';
@@ -116,19 +116,13 @@ const useStyles = createUseStyles((theme: Theme) => ({
         flexWrap: 'wrap',
 
         '& img': {
-            height: theme.rem(8),
-            width: theme.rem(12),
+            height: theme.rem(6),
+            width: theme.rem(9),
             borderRadius: theme.radius,
             margin: theme.rem(0, 1, 1, 0),
             cursor: 'zoom-in',
             objectFit: 'cover',
         },
-    },
-    modal: {
-        display: 'block',
-        width: '100vw',
-        height: '100vh',
-        objectFit: 'contain',
     },
 }));
 
@@ -206,12 +200,8 @@ const CommentsItem = ({ comment, extend = false, replies = false, inner = false 
         );
     };
 
-    const handleClick = (src: string) => (): void => {
-        modal.open(
-            <FullPageModal>
-                <img className={css.modal} src={src} alt="" />
-            </FullPageModal>,
-        );
+    const handleClick = (index: number) => (): void => {
+        modal.open(<FullPageGallery images={comment.images} index={index} />);
     };
 
     return (
@@ -236,9 +226,9 @@ const CommentsItem = ({ comment, extend = false, replies = false, inner = false 
 
             {comment?.images?.length ? (
                 <ul className={css.img}>
-                    {comment.images?.map(img => (
+                    {comment.images?.map((img, index) => (
                         <li key={img}>
-                            <img onClick={handleClick(img)} src={img} alt="" aria-hidden />
+                            <img onClick={handleClick(index)} src={img} alt="" aria-hidden />
                         </li>
                     ))}
                 </ul>

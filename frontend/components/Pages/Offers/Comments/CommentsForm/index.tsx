@@ -13,11 +13,6 @@ import useUppy from '../../../../../hooks/uppy.hook';
 import notifications from '../../../../Common/Notifications';
 
 const useStyles = createUseStyles((theme: Theme) => ({
-    form: {
-        '& .uppy-Dashboard-progressindicators': {
-            display: 'none',
-        },
-    },
     flex: {
         display: 'flex',
         alignItems: 'flex-end',
@@ -41,9 +36,20 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
     textarea: {
         ...theme.input,
+        margin: theme.rem(0, 0, 1),
         padding: theme.rem(1.5),
         fontSize: theme.rem(1.4),
         background: theme.palette.gray[1],
+
+        '@media (max-width: 900px)': {
+            margin: 0,
+        },
+    },
+    small: {
+        display: 'block',
+        margin: theme.rem(0, 0, 1),
+        fontSize: theme.rem(1.2),
+        color: theme.palette.gray[4],
     },
     file: {
         margin: theme.rem(1, 0),
@@ -74,14 +80,14 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
     submit: {
         margin: theme.rem(0, 0, 0, 1),
-        padding: theme.rem(1.2, 2),
+        padding: theme.rem(1.3, 2),
         background: theme.palette.primary[0],
         color: theme.palette.white,
         borderRadius: theme.radius,
 
         '& svg': {
-            height: theme.rem(1.6),
-            width: theme.rem(1.6),
+            height: theme.rem(2),
+            width: theme.rem(2),
         },
     },
     disabled: {
@@ -109,7 +115,7 @@ const CommentsForm = ({ onSubmit }: IProps): ReactElement => {
         setAttachment(!attachment);
     };
 
-    const handleSubmit = async (event?: FormEvent): Promise<void> => {
+    const handleSubmit = async (event?: FormEvent<HTMLFormElement>): Promise<void> => {
         event?.preventDefault();
         if (!value.trim().length) return;
         if (!attachment) {
@@ -142,7 +148,7 @@ const CommentsForm = ({ onSubmit }: IProps): ReactElement => {
         }
     };
 
-    const handleKeyPress = async (event: KeyboardEvent): Promise<void> => {
+    const handleKeyPress = async (event: KeyboardEvent<HTMLTextAreaElement>): Promise<void> => {
         if (event.key === 'Enter' && !event.shiftKey) {
             if (!media) return;
 
@@ -152,7 +158,12 @@ const CommentsForm = ({ onSubmit }: IProps): ReactElement => {
     };
 
     return (
-        <form className={css.form} action="#" method="post" onSubmit={handleSubmit}>
+        <form action="#" method="post" onSubmit={handleSubmit}>
+            {media && (
+                <small className={css.small}>
+                    * Чтобы отправить сообщение нажмите &quot;Enter&quot;. Для переноса строки нажмите &quot;Enter + Shift&quot;.
+                </small>
+            )}
             <div className={css.flex}>
                 <TextareaAutosize
                     value={value}
@@ -172,6 +183,8 @@ const CommentsForm = ({ onSubmit }: IProps): ReactElement => {
                 )}
             </div>
 
+            {attachment && <Dashboard hideUploadButton uppy={uppy} height={media ? 230 : 200} />}
+
             <button type="button" className={css.attachment} onClick={handleAttachment}>
                 {attachment ? (
                     <>
@@ -185,8 +198,6 @@ const CommentsForm = ({ onSubmit }: IProps): ReactElement => {
                     </>
                 )}
             </button>
-
-            {attachment && <Dashboard uppy={uppy} height={media ? 230 : 200} />}
         </form>
     );
 };
