@@ -13,6 +13,6 @@ module.exports = {
         defaultLocale: 'pl',
     },
     images: {
-        domains: ['phoqer.com', 'pixaba.com', 'images-na.ssl-images-amazon.com', 'example.com'],
+        domains: ['phoqer.com', 'pixabay.com', 'images-na.ssl-images-amazon.com', 'example.com'],
     },
 };
