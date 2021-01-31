@@ -24,16 +24,35 @@ class Offer(models.Model):
         ARCHIVED = 'ARCHIVED', _('Archived')
         FROZEN = 'FROZEN', _('Frozen')
 
-    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='author_offers')
-    category = models.ForeignKey(ParentCategories, on_delete=models.PROTECT, blank=True, null=True)
+    author = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name='author_offers'
+    )
+    category = models.ForeignKey(
+        ParentCategories,
+        on_delete=models.PROTECT,
+        blank=True,
+        null=True
+    )
     city = models.CharField(max_length=50, blank=True, null=True)
     cover_image = models.URLField(blank=True, null=True)
-    currency = models.CharField(max_length=3, choices=Currency.choices, blank=True, null=True)
+    currency = models.CharField(
+        max_length=3,
+        choices=Currency.choices,
+        blank=True,
+        null=True
+    )
     deposit_val = models.PositiveIntegerField(default=0, blank=True, null=True)
     description = models.TextField(blank=True, null=True)
     doc_needed = models.BooleanField(blank=True, null=True)
     extra_requirements = models.TextField(blank=True, null=True)
-    favorite = models.ManyToManyField(settings.AUTH_USER_MODEL, blank=True, null=True, related_name='favorite_offers')
+    favorite = models.ManyToManyField(
+        settings.AUTH_USER_MODEL,
+        blank=True,
+        null=True,
+        related_name='favorite_offers'
+    )
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     is_deliverable = models.BooleanField(blank=True, null=True)
     max_rent_period = models.PositiveSmallIntegerField(blank=True, null=True)
@@ -42,7 +61,12 @@ class Offer(models.Model):
     promote_til_date = models.DateField(blank=True, null=True)
     pub_date = models.DateField(auto_now_add=True)
     status = models.CharField(max_length=8, choices=Status.choices, default=Status.DRAFT)
-    sub_category = models.ForeignKey(ChildCategories, on_delete=models.PROTECT, blank=True, null=True)
+    sub_category = models.ForeignKey(
+        ChildCategories,
+        on_delete=models.PROTECT,
+        blank=True,
+        null=True
+    )
     title = models.CharField(max_length=120, blank=True, null=True)
     views = models.PositiveIntegerField(default=0)
 
@@ -55,7 +79,11 @@ class Offer(models.Model):
 
 class OfferImages(models.Model):
     name = models.CharField(max_length=50)
-    offer = models.ForeignKey(Offer, related_name='offer_images', on_delete=models.CASCADE)
+    offer = models.ForeignKey(
+        Offer,
+        related_name='offer_images',
+        on_delete=models.CASCADE
+    )
     url = models.URLField()
 
     def __str__(self) -> str:

@@ -45,7 +45,8 @@ class FixSearchOffersView(OpenApiViewExtension):
                 parameters=[
                     OpenApiParameter(
                         name='max_price',
-                        description='Filter by max_price. Return all offers that lower this price',
+                        description='Filter by max_price. '
+                                    'Return all offers that lower this price',
                         required=False,
                         type=int,
                     ),
@@ -53,7 +54,8 @@ class FixSearchOffersView(OpenApiViewExtension):
                         name='min_price',
                         type=int,
                         required=False,
-                        description='Filter by min_price. Return all offers that higher this price',
+                        description='Filter by min_price. '
+                                    'Return all offers that higher this price',
                     ),
                 ],
             )

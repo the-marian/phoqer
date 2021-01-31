@@ -90,7 +90,11 @@ def category_2(db):
 
 @pytest.fixture
 def sub_category_1(db, category_1):
-    return ChildCategories.objects.create(name='IPhones', slug='iphones', parent=category_1)
+    return ChildCategories.objects.create(
+        name='IPhones',
+        slug='iphones',
+        parent=category_1
+    )
 
 
 @pytest.fixture
@@ -138,15 +142,15 @@ def offer_2(db, author_2, category_2, sub_category_2):
     )
 
 
-@pytest.fixture()
-def iphone_12_with_author_1(author_1, offer_1):
+@pytest.fixture
+def _iphone_12_with_author_1(author_1, offer_1):
     iphone_12 = Offer.objects.get(title='Iphone 12')
     iphone_12.favorite.add(author_1)
     iphone_12.save()
 
 
-@pytest.fixture()
-def iphone_12_and_ps5_with_author_2(author_2, offer_1, offer_2):
+@pytest.fixture
+def _iphone_12_and_ps5_with_author_2(author_2, offer_1, offer_2):
     iphone_12 = Offer.objects.get(title='Iphone 12')
     iphone_12.favorite.add(author_2)
     iphone_12.save()

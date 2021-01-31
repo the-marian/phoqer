@@ -1,3 +1,4 @@
+import pytest
 from rest_framework import status
 
 from categories.models import ParentCategories
@@ -9,13 +10,15 @@ from categories.tests.mocks import (
 )
 
 
-def test_list_categories(api_client, db_test_data):
+@pytest.mark.usefixtures("_db_test_data")
+def test_list_categories(api_client):
     response = api_client.get(categories_endpoint_url)
     assert response.status_code, status.HTTP_200_OK
     assert response.json() == list_categories_expected_response
 
 
-def test_is_active(api_client, db_test_data):
+@pytest.mark.usefixtures("_db_test_data")
+def test_is_active(api_client):
     response = api_client.get(categories_endpoint_url)
     assert response.json() == list_categories_expected_response
 
@@ -27,7 +30,8 @@ def test_is_active(api_client, db_test_data):
     assert response.json() == list_categories_without_toys
 
 
-def test_priority(api_client, db_test_data):
+@pytest.mark.usefixtures("_db_test_data")
+def test_priority(api_client):
     response = api_client.get(categories_endpoint_url)
     assert response.json() == list_categories_expected_response
 

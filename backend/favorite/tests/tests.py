@@ -1,6 +1,5 @@
+import pytest
 from rest_framework import status
-
-from offers.models import Offer
 
 
 def test_empty_favorite_list(authenticated_client_3):
@@ -8,7 +7,8 @@ def test_empty_favorite_list(authenticated_client_3):
     assert response.json() == []
 
 
-def test_favorite_for_user_1( authenticated_client_1, offer_1, iphone_12_with_author_1):
+@pytest.mark.usefixtures("_iphone_12_with_author_1")
+def test_favorite_for_user_1(authenticated_client_1, offer_1):
     response = authenticated_client_1.get('/api/v1/favorite/')
     assert response.status_code == status.HTTP_200_OK
     assert response.json() == [
@@ -29,7 +29,12 @@ def test_favorite_for_user_1( authenticated_client_1, offer_1, iphone_12_with_au
     ]
 
 
-def test_favorite_for_user_2( authenticated_client_2, offer_1, offer_2, iphone_12_and_ps5_with_author_2):
+@pytest.mark.usefixtures("_iphone_12_and_ps5_with_author_2")
+def test_favorite_for_user_2(
+        authenticated_client_2,
+        offer_1,
+        offer_2,
+):
     response = authenticated_client_2.get('/api/v1/favorite/')
     assert response.status_code == status.HTTP_200_OK
     assert response.json() == [
