@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import Link from 'next/link';
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
@@ -40,6 +39,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         height: theme.rem(14),
         borderRadius: theme.radius,
         objectFit: 'cover',
+        ...theme.outline,
     },
     text: {
         marginTop: theme.rem(1.5),
@@ -60,7 +60,7 @@ const Categories = (): ReactElement => {
                 {categories?.map(({ name, image, slug }) => (
                     <Link key={name} href={routes.offers.single(`?category=${slug}`)}>
                         <div className={css.cat}>
-                            <Image layout="responsive" height={160} width={200} className={css.img} src={image} alt={name} />
+                            <img className={css.img} src={image} alt={name} />
                             <p className={css.text}>{name}</p>
                         </div>
                     </Link>

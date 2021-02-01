@@ -70,13 +70,10 @@ const useStyles = createUseStyles((theme: Theme) => ({
         textAlign: 'center',
         boxShadow: theme.shadow[1],
         transition: theme.transitions[0],
+        ...theme.outline,
 
         '@media (max-width: 500px)': {
             border: theme.border(0.1, theme.palette.gray[2]),
-        },
-
-        '&:hover': {
-            boxShadow: theme.shadow[2],
         },
     },
 }));

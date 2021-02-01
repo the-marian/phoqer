@@ -38,25 +38,6 @@ const StepThree = (): ReactElement => {
         };
     }, []);
 
-    useEffect(() => {
-        const handler = (res): void => {
-            const value: { url: string }[] = res?.successful?.map((item: UploadedUppyFile<string, { images_url: [string] }>) => ({
-                url: config.img + item?.response?.body?.images_url?.[0],
-            }));
-
-            dispatch({
-                type: types.POST_OFFER_START,
-                payload: value,
-                history,
-            });
-        };
-
-        uppy.on('complete', handler);
-        return () => {
-            uppy.off('complete', handler);
-        };
-    }, []);
-
     const handleBack = () => {
         history.push(routes.new_offer(2));
     };
@@ -69,7 +50,7 @@ const StepThree = (): ReactElement => {
         });
     };
 
-    const handleSubmit = async (event: FormEvent): Promise<void> => {
+    const handleSubmit = async (event: FormEvent<HTMLFormElement>): Promise<void> => {
         event.preventDefault();
         if (!uppy.getFiles()?.length) return;
 
@@ -94,7 +75,7 @@ const StepThree = (): ReactElement => {
             <h4 className={css.title}>Добавьте фото вашего товара</h4>
             <p className={css.text}>Не больше 3мб (.png .jpg .jpeg)</p>
 
-            <Dashboard uppy={uppy} height={media ? 500 : 350} />
+            <Dashboard uppy={uppy} hideUploadButton height={media ? 500 : 350} />
 
             <div className={css.btnWrp}>
                 <button type="button" className={css.btn} onClick={handleBack}>

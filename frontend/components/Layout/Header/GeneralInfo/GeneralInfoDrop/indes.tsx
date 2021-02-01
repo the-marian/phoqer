@@ -88,7 +88,7 @@ const GeneralInfoDrop = ({ onClick }: IProps): ReactElement => {
 
     return ReactDOM.createPortal(
         <>
-            <div className={css.back} onClick={onClick} aria-hidden />
+            <div className={css.back} onClick={onClick} aria-hidden="true" />
             <div className={css.drop}>
                 <button className={css.btn} type="button" onClick={handleLoginModal}>
                     {T.login}

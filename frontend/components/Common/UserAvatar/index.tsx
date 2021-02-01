@@ -41,6 +41,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         color: theme.palette.black[0],
         borderRadius: '50%',
         objectFit: 'cover',
+        ...theme.outline,
     },
 }));
 

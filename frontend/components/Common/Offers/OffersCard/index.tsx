@@ -38,6 +38,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         borderRadius: theme.radius,
         boxShadow: theme.shadow[1],
         background: theme.palette.gray[1],
+        ...theme.outline,
 
         '@media (max-width: 580px)': {
             height: theme.rem(30),
@@ -118,8 +119,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
         padding: theme.rem(1.5, 2),
         fontSize: theme.rem(1.4),
         borderRadius: theme.radius,
-        background: theme.palette.green[0],
-        color: theme.palette.white,
+        background: theme.palette.gray[1],
+        color: theme.palette.primary[0],
+        ...theme.outline,
 
         '@media (max-width: 500px)': {
             padding: theme.rem(2, 4),
@@ -127,8 +129,12 @@ const useStyles = createUseStyles((theme: Theme) => ({
         },
     },
     favorite: {
-        marginLeft: theme.rem(2),
+        height: theme.rem(4.8),
+        marginLeft: theme.rem(0.6),
+        padding: theme.rem(1, 1.8),
         color: theme.palette.primary[0],
+        borderRadius: theme.radius,
+        ...theme.outline,
 
         '@media (max-width: 500px)': {
             marginLeft: theme.rem(4),

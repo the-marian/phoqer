@@ -4,6 +4,7 @@ import { call, put, select, takeLatest } from 'redux-saga/effects';
 import api from '../../../assets/api';
 import routes from '../../../assets/routes';
 import { INewOffer, IState } from '../../../interfaces';
+import initState from '../../state';
 import types from '../../types';
 
 interface IAction {
@@ -65,7 +66,7 @@ function* postOffer({ payload, history }: IAction) {
         } as IBody);
 
         if (status < 200 || status >= 300) throw new Error();
-        yield put({ type: types.POST_OFFER_SUCCESS, payload: data });
+        yield put({ type: types.POST_OFFER_SUCCESS, payload: { ...initState.offers.newOffer, id: data.id } });
         history.replace(routes.new_offer(4));
     } catch (error) {
         if (error?.response?.status === 401) return;

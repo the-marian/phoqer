@@ -180,7 +180,7 @@ const SingleOfferPage = (): ReactElement => {
                             src={offer?.cover_image || '/no_img.png'}
                             alt=""
                             onClick={handleModal}
-                            aria-hidden
+                            aria-hidden="true"
                         />
                     )}
                     <Breadcrumbs

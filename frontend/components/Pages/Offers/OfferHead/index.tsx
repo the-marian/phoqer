@@ -32,10 +32,8 @@ const useStyles = createUseStyles((theme: Theme) => ({
         padding: theme.rem(1, 1.5),
         color: theme.palette.primary[0],
         borderRadius: theme.radius,
+        ...theme.outline,
 
-        '&:hover': {
-            background: theme.palette.gray[1],
-        },
         '& svg': {
             height: theme.rem(1.4),
             width: theme.rem(1.4),

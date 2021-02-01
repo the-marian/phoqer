@@ -109,7 +109,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         height: theme.rem(60),
         borderRadius: theme.radius,
         objectFit: 'contain',
-        background: theme.palette.gray[1],
+        background: theme.palette.black[0],
         cursor: 'zoom-in',
 
         '@media (max-width: 768px)': {
@@ -169,6 +169,7 @@ const OfferSlider = ({ images }: IProps): ReactElement => {
                 arrows
                 infinite
                 className={css.inner}
+                lazyLoad="progressive"
                 responsive={[
                     {
                         breakpoint: 1050,
@@ -180,7 +181,14 @@ const OfferSlider = ({ images }: IProps): ReactElement => {
             >
                 {slides.map(({ id, url }, index) => (
                     <div className={css.slide} key={id}>
-                        <img className={css.img} onClick={handleModal(index)} draggable={false} src={url} aria-hidden alt="" />
+                        <img
+                            className={css.img}
+                            onClick={handleModal(index)}
+                            draggable={false}
+                            src={url}
+                            aria-hidden="true"
+                            alt=""
+                        />
                     </div>
                 ))}
             </Slider>
@@ -197,6 +205,7 @@ const OfferSlider = ({ images }: IProps): ReactElement => {
                 arrows={false}
                 draggable
                 infinite
+                lazyLoad="progressive"
                 className={clsx(css.inner, css.padding)}
                 responsive={[
                     {
@@ -214,7 +223,7 @@ const OfferSlider = ({ images }: IProps): ReactElement => {
                 ]}
             >
                 {slides.map(({ id, url }, index) => (
-                    <div className={css.slide} key={id} onClick={handleNav(index)} aria-hidden>
+                    <div className={css.slide} key={id} onClick={handleNav(index)} aria-hidden="true">
                         <img className={clsx(css.img, css.bottom)} draggable={false} src={url} alt="" />
                     </div>
                 ))}

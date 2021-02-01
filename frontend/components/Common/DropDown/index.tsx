@@ -1,7 +1,7 @@
 import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import clsx from 'clsx';
-import React, { ReactElement, useEffect, useState } from 'react';
+import React, { MouseEvent, ReactElement, useEffect, useState } from 'react';
 import { createUseStyles } from 'react-jss';
 
 import { Theme } from '../../../assets/theme';
@@ -27,11 +27,12 @@ const useStyles = createUseStyles((theme: Theme) => ({
     inner: {
         display: 'flex',
         alignItems: 'center',
+        width: '100%',
         margin: 0,
         padding: theme.rem(1.8),
         background: theme.palette.gray[1],
         borderRadius: theme.radius,
-        cursor: 'pointer',
+        textAlign: 'left',
         fontSize: theme.rem(1.4),
         ...theme.outline,
 
@@ -60,6 +61,10 @@ const useStyles = createUseStyles((theme: Theme) => ({
         width: '100%',
         minWidth: theme.rem(15),
         paddingTop: theme.rem(1),
+    },
+    top: {
+        top: 'unset',
+        bottom: '120%',
     },
     box: {
         maxHeight: theme.rem(40),
@@ -143,19 +148,16 @@ const DropDown = ({
     const css = useStyles();
 
     const [drop, setDrop] = useState<boolean>(false);
+    const [top, setTop] = useState<boolean>(false);
     const [selected, setSelected] = useState<string>(defaultValue?.name || placeholder || data[0].name);
 
     useEffect(() => {
-        if (defaultValue) {
-            setSelected(defaultValue.name || placeholder);
-        }
-
-        if (!defaultValue && placeholder) {
-            setSelected(placeholder);
-        }
+        if (defaultValue) setSelected(defaultValue.name || placeholder);
+        if (!defaultValue && placeholder) setSelected(placeholder);
     }, [defaultValue, placeholder]);
 
-    const handleClick = (): void => {
+    const handleClick = (event: MouseEvent<HTMLButtonElement>): void => {
+        setTop(document.body.clientHeight / event.currentTarget.getBoundingClientRect().top < 1.6);
         setDrop(!drop);
     };
 
@@ -184,7 +186,7 @@ const DropDown = ({
 
     return (
         <div className={css.wrp} tabIndex={-1} onBlur={handleBlur}>
-            <p
+            <button
                 className={clsx(
                     css.inner,
                     transparent && css.transparent,
@@ -193,7 +195,7 @@ const DropDown = ({
                 )}
                 style={{ height: height + 'rem' }}
                 onClick={handleClick}
-                aria-hidden
+                type="button"
             >
                 {drop ? (
                     <span className={css.icon}>
@@ -205,10 +207,10 @@ const DropDown = ({
                     </span>
                 )}
                 <span className={css.text}>{selected}</span>
-            </p>
+            </button>
 
             {drop && (
-                <div className={css.container}>
+                <div className={clsx(css.container, top && css.top)}>
                     <div className={css.box}>
                         <ul>
                             {data?.map(({ name, slug, sub }) => (
@@ -230,7 +232,7 @@ const DropDown = ({
                                                 onClick={() => {
                                                     handleSelect(name, slug, 'sub');
                                                 }}
-                                                aria-hidden
+                                                aria-hidden="true"
                                             >
                                                 <span>{name}</span>
                                             </li>

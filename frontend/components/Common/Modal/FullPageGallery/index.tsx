@@ -48,7 +48,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         position: 'fixed',
         bottom: theme.rem(2),
         left: theme.rem(2),
-        fontSize: theme.rem(1.4),
+        fontSize: theme.rem(1.8),
         color: theme.palette.white,
     },
 }));
@@ -122,7 +122,7 @@ const FullPageGallery = ({ index = 0, images }: IProps): ReactElement => {
                             <FontAwesomeIcon icon={faChevronRight} />
                         </button>
                     </nav>
-                    <div className={css.count}>{`${current + 1} / ${images.length}`}</div>
+                    <div className={css.count}>{`${current + 1} __ ${images.length}`}</div>
                 </>
             )}
         </FullPageModal>

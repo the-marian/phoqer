@@ -21,7 +21,7 @@ interface IProps {
 const FullPageModal = ({ children }: IProps): ReactElement => {
     const css = useStyles();
     return (
-        <div className={css.inner} onClick={modal.close} aria-hidden>
+        <div className={css.inner} onClick={modal.close} aria-hidden="true">
             {children}
         </div>
     );
