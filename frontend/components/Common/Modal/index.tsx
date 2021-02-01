@@ -62,7 +62,7 @@ export default class ModalComponent extends Component<unknown, IState> {
     };
 
     handleClickClose = (event: MouseEvent<HTMLDivElement> | TouchEvent<HTMLDivElement>): void => {
-        event.stopPropagation();
+        if (event.target !== event.currentTarget) return;
         modal.close();
     };
 
@@ -70,18 +70,8 @@ export default class ModalComponent extends Component<unknown, IState> {
         const { dom } = this.state;
         return (
             !!dom && (
-                <div
-                    className="react-modal-backdrop"
-                    onTouchEnd={this.handleClickClose}
-                    onMouseDown={this.handleClickClose}
-                    aria-hidden="true"
-                >
-                    <div
-                        className="react-modal-scroll"
-                        onTouchEnd={this.handleClickClose}
-                        onMouseDown={this.handleClickClose}
-                        aria-hidden="true"
-                    >
+                <div className="react-modal-backdrop" onClick={this.handleClickClose} aria-hidden="true">
+                    <div className="react-modal-scroll" onClick={this.handleClickClose} aria-hidden="true">
                         {dom}
                     </div>
                 </div>
