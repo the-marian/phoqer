@@ -156,7 +156,7 @@ const DropDown = ({
         if (!defaultValue && placeholder) setSelected(placeholder);
     }, [defaultValue, placeholder]);
 
-    const handleClick = (event: MouseEvent<HTMLButtonElement>): void => {
+    const handleClick = (event: MouseEvent<HTMLParagraphElement>): void => {
         setTop(document.body.clientHeight / event.currentTarget.getBoundingClientRect().top < 1.6);
         setDrop(!drop);
     };
@@ -186,7 +186,7 @@ const DropDown = ({
 
     return (
         <div className={css.wrp} tabIndex={-1} onBlur={handleBlur}>
-            <button
+            <p
                 className={clsx(
                     css.inner,
                     transparent && css.transparent,
@@ -195,7 +195,7 @@ const DropDown = ({
                 )}
                 style={{ height: height + 'rem' }}
                 onClick={handleClick}
-                type="button"
+                aria-hidden="true"
             >
                 {drop ? (
                     <span className={css.icon}>
@@ -207,7 +207,7 @@ const DropDown = ({
                     </span>
                 )}
                 <span className={css.text}>{selected}</span>
-            </button>
+            </p>
 
             {drop && (
                 <div className={clsx(css.container, top && css.top)}>
