@@ -136,10 +136,6 @@ const useStyles = createUseStyles((theme: Theme) => ({
         borderRadius: theme.radius,
         ...theme.outline,
 
-        '@media (max-width: 500px)': {
-            marginLeft: theme.rem(4),
-        },
-
         '& svg': {
             height: theme.rem(1.8),
             width: theme.rem(1.8),
