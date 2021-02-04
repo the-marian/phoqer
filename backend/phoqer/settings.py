@@ -31,7 +31,6 @@ MY_APPS = [
     'offers',
     'upload',
     'users',
-    'comments',
     'notifications',
     'favorite',
 ]
