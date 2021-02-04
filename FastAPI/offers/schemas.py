@@ -28,7 +28,6 @@ class Currency(Enum):
 
 class OfferDraftRequest(BaseModel):
     category: Optional[str] = None
-    category_name: Optional[str] = None
     city: Optional[str] = None
     cover_image: Optional[HttpUrl] = None
     currency: Optional[Currency] = None
@@ -42,13 +41,14 @@ class OfferDraftRequest(BaseModel):
     min_rent_period: Optional[int] = None
     price: Optional[int] = None
     sub_category: Optional[str] = None
-    sub_category_name: Optional[str] = None
     title: Optional[str] = None
 
 
 class OfferDraftReply(OfferDraftRequest):
     author_id: int
     views: int
+    category_name: Optional[str] = None
+    sub_category_name: Optional[str] = None
     id: UUID
     last_name: str
     first_name: str
