@@ -1,4 +1,4 @@
-def test_get_offers(client):
+def test_get_offer(client):
     response = client.get("offers/7cea9f56-e211-467b-8515-aa88f4a4a5c3")
     assert response.status_code == 200
     assert response.json() == {
@@ -26,6 +26,7 @@ def test_get_offers(client):
             'http://phoqer.com//mediafiles/1_RrQEWYc.jpg'
         ],
         'is_deliverable': True,
+        'is_favorite': False,
         'is_promoted': True,
         'last_name': 'Zozulia',
         'max_rent_period': 10,
@@ -39,3 +40,21 @@ def test_get_offers(client):
         'title': 'Iphone 12',
         'views': 0
     }
+
+
+def test_is_favorite_user_with_favorite(client):
+    response = client.get(
+        "offers/1a114c8e-14b7-46e4-8ad0-f251a35a6938",
+        headers={"Authorization": "Token 535a311d30844859d342b70bb45779818f824e08"}
+    )
+    assert response.status_code == 200
+    assert response.json()['is_favorite'] is True
+
+
+def test_is_favorite_user_with_no_favorite(client):
+    response = client.get(
+        "offers/7cea9f56-e211-467b-8515-aa88f4a4a5c3",
+        headers={"Authorization": "Token 535a311d30844859d342b70bb45779818f824e08"}
+    )
+    assert response.status_code == 200
+    assert response.json()['is_favorite'] is False

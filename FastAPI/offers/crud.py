@@ -52,3 +52,15 @@ async def get_offers_images(offer_id: str) -> List[HttpUrl]:
     query = "SELECT url FROM offers_offerimages WHERE offer_id=:offer_id"
     rows = await database.fetch_all(query=query, values={"offer_id": offer_id})
     return [row['url'] for row in rows]
+
+
+async def is_offer_in_favotire_of_user(offer_id: str, user_id: int):
+    query = """
+    SELECT TRUE
+    FROM offers_offer_favorite
+    WHERE offer_id=:offer_id
+      AND user_id=:user_id
+    """
+    values = {"user_id": user_id, "offer_id": offer_id}
+    row = await database.fetch_one(query=query, values=values)
+    return True if row else False

@@ -56,3 +56,4 @@ class OfferDraftReply(OfferDraftRequest):
     profile_img: Optional[HttpUrl] = None
     pub_date: date
     is_promoted: bool
+    is_favorite: bool
