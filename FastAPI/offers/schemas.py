@@ -24,13 +24,14 @@ class Currency(Enum):
     PLN = "PLN"
     UAH = "UAH"
     USD = "USD"
+    NONE = None
 
 
 class OfferDraftRequest(BaseModel):
     category: Optional[str] = None
     city: Optional[str] = None
     cover_image: Optional[HttpUrl] = None
-    currency: Optional[Currency] = None
+    currency: Currency = Currency.NONE
     deposit_val: Optional[int] = None
     description: Optional[str] = None
     doc_needed: bool = False
@@ -42,17 +43,16 @@ class OfferDraftRequest(BaseModel):
     price: Optional[int] = None
     sub_category: Optional[str] = None
     title: Optional[str] = None
+    views: int = 0
 
 
 class OfferDraftReply(OfferDraftRequest):
     author_id: int
-    views: int
     category_name: Optional[str] = None
     sub_category_name: Optional[str] = None
     id: UUID
     last_name: str
     first_name: str
-    status: Status = Status.DRAFT
     profile_img: Optional[HttpUrl] = None
     pub_date: date
     is_promoted: bool

@@ -1,9 +1,8 @@
 import uvicorn
 from fastapi import FastAPI
-from fastapi.middleware.cors import CORSMiddleware
-
 from FastAPI.comments import comments
 from FastAPI.config import database
+from fastapi.middleware.cors import CORSMiddleware
 from FastAPI.offers import offers
 
 origins = [

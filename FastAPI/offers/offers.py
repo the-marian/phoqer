@@ -1,8 +1,7 @@
 from datetime import date
 from typing import Optional
 
-from fastapi import APIRouter, Depends, Header, Response, status, HTTPException
-
+from fastapi import APIRouter, Depends, Header, HTTPException, Response, status
 from FastAPI.offers import crud
 from FastAPI.offers.schemas import OfferDraftReply, OfferDraftRequest
 
@@ -49,27 +48,33 @@ async def get_current_user(
 
 @router.get("/{offer_id}", response_model=OfferDraftReply)
 async def get_offer(
-    offer_id: str,
-    user_id: Optional[int] = Depends(get_current_user_or_none)
+    offer_id: str, user_id: Optional[int] = Depends(get_current_user_or_none)
 ) -> OfferDraftReply:
     offer = await crud.get_offer(offer_id)
-    offer_images = await crud.get_offers_images(offer_id)
-    is_favorite = False
-    is_promoted = False
-    if promote_til_date := offer['promote_til_date']:
-        is_promoted = date.today() < promote_til_date
-    if user_id:
-        is_favorite = await crud.is_offer_in_favotire_of_user(offer_id, user_id)
-    return OfferDraftReply(
-        **offer,
-        images=offer_images,
-        is_promoted=is_promoted,
-        is_favorite=is_favorite,
-    )
+    if offer:
+        offer_images = await crud.get_offers_images(offer_id)
+        is_favorite = False
+        is_promoted = False
+        if promote_til_date := offer.get("promote_til_date"):
+            is_promoted = date.today() < promote_til_date
+        if user_id:
+            is_favorite = await crud.is_offer_in_favotire_of_user(offer_id, user_id)
+        return OfferDraftReply(
+            **offer,
+            images=offer_images,
+            is_promoted=is_promoted,
+            is_favorite=is_favorite,
+        )
+    else:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail=f"Offer with id {offer_id} does not exist",
+        )
 
 
 @router.post("", status_code=status.HTTP_204_NO_CONTENT)
 async def create_offer(
     offer: OfferDraftRequest, author_id: int = Depends(get_current_user)
 ) -> Response:
-    pass
+    await crud.create_offer_draft(offer, author_id)
+    return Response(status_code=status.HTTP_204_NO_CONTENT)
