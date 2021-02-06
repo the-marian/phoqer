@@ -5,6 +5,7 @@ import categories from './categories/reducer';
 import comments from './comments/reducer';
 import filters from './filters/reducer';
 import offers from './offers/reducer';
+import profile from './profile/reducer';
 
 const rootReducer = combineReducers({
     auth,
@@ -12,6 +13,7 @@ const rootReducer = combineReducers({
     offers,
     comments,
     categories,
+    profile,
 });
 
 export default rootReducer;

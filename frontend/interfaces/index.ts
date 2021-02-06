@@ -34,13 +34,13 @@ export interface Login {
 }
 
 export interface IAuth {
-    id?: number;
+    id: number;
     auth_token: string | null;
-    birth_date?: string | null;
-    email?: string;
-    location?: string | null;
-    last_name?: string;
-    first_name?: string;
+    birth_date: string | null;
+    email: string;
+    location: string | null;
+    last_name: string;
+    first_name: string;
 }
 
 // =====================================
@@ -135,6 +135,18 @@ export interface IComment {
     pub_date: string;
     replies: IComment[];
 }
+// =====================================
+// 6 PUBLIC_PROFILE
+// =====================================
+export interface IProfile {
+    id?: number;
+    auth_token: string | null;
+    birth_date?: string | null;
+    email?: string;
+    location?: string | null;
+    last_name?: string;
+    first_name?: string;
+}
 
 // =====================================
 // REDUX STORE
@@ -145,6 +157,7 @@ export interface IState {
     categories: ICategories[] | null;
     offers: IOffers;
     comments: { loading: boolean; data: IComment[] | null };
+    profile: IProfile | null;
 }
 
 export interface IStore extends Store<IState> {
