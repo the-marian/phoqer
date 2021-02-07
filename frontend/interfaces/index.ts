@@ -7,6 +7,7 @@ import { Store } from 'redux';
  * 3 CATEGORIES
  * 4 OFFERS
  * 5 COMMENTS
+ * 6 PUBLIC_PROFILE
  * REDUX STORE
  * */
 
@@ -33,14 +34,8 @@ export interface Login {
     password: string;
 }
 
-export interface IAuth {
-    id: number;
+export interface IAuth extends IPublicProfile {
     auth_token: string | null;
-    birth_date: string | null;
-    email: string;
-    location: string | null;
-    last_name: string;
-    first_name: string;
 }
 
 // =====================================
@@ -138,9 +133,8 @@ export interface IComment {
 // =====================================
 // 6 PUBLIC_PROFILE
 // =====================================
-export interface IProfile {
+export interface IPublicProfile {
     id?: number;
-    auth_token: string | null;
     birth_date?: string | null;
     email?: string;
     location?: string | null;
@@ -157,7 +151,10 @@ export interface IState {
     categories: ICategories[] | null;
     offers: IOffers;
     comments: { loading: boolean; data: IComment[] | null };
-    profile: IProfile | null;
+    profile: {
+        public: IPublicProfile | null;
+        private: null;
+    };
 }
 
 export interface IStore extends Store<IState> {
