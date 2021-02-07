@@ -25,7 +25,7 @@ export interface Theme {
     };
     transitions: string[];
     input: { [key: string]: string | { [key: string]: string } };
-    outline: { [key: string]: { [key: string]: string } };
+    outline: { [key: string]: string | { [key: string]: string } };
 }
 
 export const theme: Theme = {
@@ -86,17 +86,21 @@ export const theme: Theme = {
         border: 'none',
         borderRadius: '0.6rem',
         fontSize: '1.2rem',
+        transition: '0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+        '@media (max-width: 500px)': {
+            fontSize: '1.6rem',
+        },
+
         '&:focus': {
             boxShadow: '0 0 0 0.1rem #085085',
         },
         '&:hover': {
             boxShadow: '0 0 0 0.1rem #085085',
         },
-        '@media (max-width: 500px)': {
-            fontSize: '1.6rem',
-        },
     },
     outline: {
+        transition: '0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+
         '&:focus': {
             boxShadow: '0 0 0 0.1rem #085085',
         },

@@ -117,7 +117,7 @@ const DropWindow = ({ onClose }: Props): ReactElement => {
 
     return ReactDOM.createPortal(
         <>
-            <div className={css.wrp} onClick={onClose} aria-hidden />
+            <div className={css.wrp} onClick={onClose} aria-hidden="true" />
             <ul className={css.root}>
                 <li>
                     <Link href={routes.profile.single()} as={routes.profile.single(auth.first_name)}>

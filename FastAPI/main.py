@@ -1,8 +1,9 @@
 import uvicorn
 from fastapi import FastAPI
-from FastAPI.comments.comments import router
+from FastAPI.comments import comments
 from FastAPI.config import database
 from fastapi.middleware.cors import CORSMiddleware
+from FastAPI.offers import offers
 
 origins = [
     "http://localhost:4000",
@@ -20,7 +21,8 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-app.include_router(router)
+app.include_router(comments.router)
+app.include_router(offers.router)
 
 
 @app.on_event("startup")

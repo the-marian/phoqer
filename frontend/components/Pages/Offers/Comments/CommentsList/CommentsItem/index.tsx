@@ -237,7 +237,7 @@ const CommentsItem = ({ comment, extend = false, replies = false, inner = false 
                 <ul className={css.img}>
                     {comment.images?.map((img, index) => (
                         <li key={img}>
-                            <img onClick={handleClick(index)} src={img} alt="" aria-hidden />
+                            <img onClick={handleClick(index)} src={img} alt="" aria-hidden="true" />
                         </li>
                     ))}
                 </ul>

@@ -40,6 +40,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         background: theme.palette.green[0],
         fontSize: theme.rem(1.8),
         color: theme.palette.white,
+        ...theme.outline,
     },
 }));
 

@@ -57,6 +57,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         fontSize: theme.rem(1.6),
         color: theme.palette.white,
         borderRadius: theme.radius,
+        ...theme.outline,
 
         '@media (max-width: 1100px)': {
             width: '31%',
