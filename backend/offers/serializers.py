@@ -26,6 +26,33 @@ class BaseOfferSerializer(serializers.ModelSerializer):
     is_favorite = serializers.SerializerMethodField()
     is_promoted = serializers.SerializerMethodField()
 
+    class Meta:
+        model = Offer
+        fields = [
+            'author',
+            'category',
+            'city',
+            'cover_image',
+            'currency',
+            'deposit_val',
+            'description',
+            'description',
+            'doc_needed',
+            'extra_requirements',
+            'id',
+            'images',
+            'is_deliverable',
+            'is_favorite',
+            'is_promoted',
+            'max_rent_period',
+            'min_rent_period',
+            'price',
+            'pub_date',
+            'sub_category',
+            'title',
+            'views',
+        ]
+
     def get_is_favorite(self, offer):
         user_request = self.context['request'].user
         if user_request.is_authenticated:
@@ -62,13 +89,16 @@ class OfferListItemSerializer(BaseOfferSerializer):
 
 
 class OfferSerializer(BaseOfferSerializer):
-    author = serializers.HiddenField(default=serializers.CurrentUserDefault())
+    author_id = serializers.CharField(source="author.id")
+    category_name = serializers.CharField(source="category.name")
+    slug = serializers.CharField(source="category.slug")
 
     class Meta:
         model = Offer
         fields = [
-            'author',
+            'author_id',
             'category',
+            'category_name',
             'city',
             'cover_image',
             'currency',
@@ -86,31 +116,38 @@ class OfferSerializer(BaseOfferSerializer):
             'min_rent_period',
             'price',
             'pub_date',
+            'slug',
             'sub_category',
             'title',
             'views',
         ]
-        extra_kwargs = {
-            'category': {'required': False},
-            'city': {'required': False},
-            'cover_image': {'required': False},
-            'currency': {'required': False},
-            'deposit_val': {'required': False},
-            'description': {'required': False},
-            'doc_needed': {'required': False},
-            'extra_requirements': {'required': False},
-            'images': {'required': False},
-            'is_deliverable': {'required': False},
-            'is_favorite': {'required': False, 'read_only': True},
-            'is_promoted': {'required': False, 'read_only': True},
-            'max_rent_period': {'required': False},
-            'min_rent_period': {'required': False},
-            'price': {'required': False},
-            'pub_date': {'required': False, 'read_only': True},
-            'sub_category': {'required': False},
-            'title': {'required': False},
-            'views': {'required': False, 'read_only': True},
-        }
+
+
+class CreateOfferSerializer(BaseOfferSerializer):
+    author = serializers.HiddenField(default=serializers.CurrentUserDefault())
+
+    extra_kwargs = {
+        'author': {'required': False},
+        'category': {'required': False},
+        'city': {'required': False},
+        'cover_image': {'required': False},
+        'currency': {'required': False},
+        'deposit_val': {'required': False},
+        'description': {'required': False},
+        'doc_needed': {'required': False},
+        'extra_requirements': {'required': False},
+        'images': {'required': False},
+        'is_deliverable': {'required': False},
+        'is_favorite': {'required': False, 'read_only': True},
+        'is_promoted': {'required': False, 'read_only': True},
+        'max_rent_period': {'required': False},
+        'min_rent_period': {'required': False},
+        'price': {'required': False},
+        'pub_date': {'required': False, 'read_only': True},
+        'sub_category': {'required': False},
+        'title': {'required': False},
+        'views': {'required': False, 'read_only': True},
+    }
 
     def create(self, validated_data):
         try:
@@ -125,7 +162,7 @@ class OfferSerializer(BaseOfferSerializer):
         return offer_obj
 
     def update(self, instance, validated_data):
-        offer_obj = super(OfferSerializer, self).update(instance, validated_data)
+        offer_obj = super(CreateOfferSerializer, self).update(instance, validated_data)
         images = validated_data.get('offer_images')
         if images:
             for image in images:
