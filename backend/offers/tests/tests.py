@@ -6,10 +6,15 @@ from freezegun import freeze_time
 from rest_framework import status
 
 from offers.models import Offer
-from offers.tests.mocks import (Iphone_10, Iphone_11, Iphone_12,
-                                iphone11_is_promoted_True, list_order_mixed,
-                                list_ordered_by_promotion,
-                                list_ordered_by_views)
+from offers.tests.mocks import (
+    Iphone_10,
+    Iphone_11,
+    Iphone_12,
+    iphone11_is_promoted_True,
+    list_order_mixed,
+    list_ordered_by_promotion,
+    list_ordered_by_views
+)
 
 
 @pytest.mark.usefixtures("_offer_1", "_offer_2", "_offer_3")
