@@ -2,6 +2,7 @@ from datetime import date
 from typing import Optional
 
 from fastapi import APIRouter, Depends, Header, HTTPException, Response, status
+
 from FastAPI.offers import crud
 from FastAPI.offers.schemas import OfferDraftReply, OfferDraftRequest
 
@@ -58,7 +59,7 @@ async def get_offer(
         if promote_til_date := offer.get("promote_til_date"):
             is_promoted = date.today() < promote_til_date
         if user_id:
-            is_favorite = await crud.is_offer_in_favotire_of_user(offer_id, user_id)
+            is_favorite = await crud.is_offer_in_favorite_of_user(offer_id, user_id)
         return OfferDraftReply(
             **offer,
             images=offer_images,
@@ -77,4 +78,13 @@ async def create_offer(
     offer: OfferDraftRequest, author_id: int = Depends(get_current_user)
 ) -> Response:
     await crud.create_offer_draft(offer, author_id)
+    return Response(status_code=status.HTTP_204_NO_CONTENT)
+
+
+@router.patch("/{offer_id}", status_code=status.HTTP_204_NO_CONTENT)
+async def update_offer(
+    offer_id: str, offer: OfferDraftRequest,
+    author_id: Optional[int] = Depends(get_current_user)
+) -> Response:
+    await crud.partial_update_offer(offer_id, offer)
     return Response(status_code=status.HTTP_204_NO_CONTENT)

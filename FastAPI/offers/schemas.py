@@ -9,22 +9,22 @@ from pydantic import BaseModel, HttpUrl
 
 
 class Status(Enum):
-    DRAFT = "DRAFT"
-    REVIEW = "REVIEW"
     ACTIVE = "ACTIVE"
-    REJECTED = "REJECTED"
+    ARCHIVED = "ARCHIVED"
+    DRAFT = "DRAFT"
+    FROZEN = "FROZEN"
     INACTIVE = "INACTIVE"
     IN_RENT = "IN_RENT"
-    ARCHIVED = "ARCHIVED"
-    FROZEN = "FROZEN"
+    REJECTED = "REJECTED"
+    REVIEW = "REVIEW"
 
 
 class Currency(Enum):
     EUR = "EUR"
+    NONE = None
     PLN = "PLN"
     UAH = "UAH"
     USD = "USD"
-    NONE = None
 
 
 class OfferDraftRequest(BaseModel):
@@ -49,11 +49,12 @@ class OfferDraftRequest(BaseModel):
 class OfferDraftReply(OfferDraftRequest):
     author_id: int
     category_name: Optional[str] = None
-    sub_category_name: Optional[str] = None
-    id: UUID
-    last_name: str
     first_name: str
+    id: UUID
+    is_favorite: bool
+    is_promoted: bool
+    last_name: str
     profile_img: Optional[HttpUrl] = None
     pub_date: date
-    is_promoted: bool
-    is_favorite: bool
+    status: Status
+    sub_category_name: Optional[str] = None

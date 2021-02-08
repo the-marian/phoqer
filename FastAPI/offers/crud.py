@@ -1,11 +1,12 @@
-from typing import List, Mapping, Optional, Union
+from typing import List, Mapping, Optional
+
+from pydantic import HttpUrl
 
 from FastAPI.config import database
 from FastAPI.offers.schemas import OfferDraftRequest, Status
-from pydantic import HttpUrl
 
 
-async def get_user_id(token: str) -> Union[int, None]:
+async def get_user_id(token: str) -> Optional[int]:
     query = "SELECT user_id FROM authtoken_token WHERE key = :key"
     row = await database.fetch_one(query=query, values={"key": token})
     return row["user_id"] if row else None
@@ -54,7 +55,7 @@ async def get_offers_images(offer_id: str) -> List[HttpUrl]:
     return [row["url"] for row in rows]
 
 
-async def is_offer_in_favotire_of_user(offer_id: str, user_id: int) -> bool:
+async def is_offer_in_favorite_of_user(offer_id: str, user_id: int) -> bool:
     query = """
     SELECT TRUE
     FROM offers_offer_favorite
@@ -136,12 +137,69 @@ async def create_offer_draft(offer: OfferDraftRequest, author_id: int) -> None:
     return None
 
 
-async def create_offer_images(images: List[HttpUrl], offer_id: int) -> None:
+async def create_offer_images(images: List[HttpUrl], offer_id: str) -> None:
     name = "empty_name"
     query = """
     INSERT INTO offers_offerimages (url, name, offer_id)
     VALUES (:url, :name, :offer_id)"""
-    values = []
-    for image_url in images:
-        values.append({"url": image_url, "name": name, "offer_id": offer_id})
+    values = [
+        {
+            "url": image_url,
+            "name": name,
+            "offer_id": offer_id,
+        }
+        for image_url in images
+    ]
     await database.execute_many(query=query, values=values)
+
+
+async def delete_all_offer_images(offer_id: str):
+    query = "DELETE FROM offers_offerimages WHERE offer_id=:offer_id"
+    await database.fetch_all(query=query, values={"offer_id": offer_id})
+
+
+@database.transaction()
+async def partial_update_offer(offer_id: str, offer: OfferDraftRequest) -> None:
+    stored_offer_data = await get_offer(offer_id)
+    stored_offer_model = OfferDraftRequest(**stored_offer_data)
+    update_data = offer.dict(exclude_unset=True)
+    updated_offer = stored_offer_model.copy(update=update_data)
+    query = """
+    UPDATE offers_offer
+    SET
+        category_id = :category_id,
+        city = :city,
+        cover_image = :cover_image,
+        currency = :currency,
+        deposit_val = :deposit_val,
+        description = :description,
+        doc_needed = :doc_needed,
+        extra_requirements = :extra_requirements,
+        is_deliverable = :is_deliverable,
+        max_rent_period = :max_rent_period,
+        min_rent_period = :min_rent_period,
+        price = :price,
+        sub_category_id = :sub_category_id,
+        title = :title
+    WHERE id=:offer_id
+    """
+    values = {
+        "category_id": updated_offer.category,
+        "city": updated_offer.city,
+        "cover_image": updated_offer.cover_image,
+        "currency": updated_offer.currency.value,
+        "deposit_val": updated_offer.deposit_val,
+        "description": updated_offer.description,
+        "doc_needed": updated_offer.doc_needed,
+        "extra_requirements": updated_offer.extra_requirements,
+        "is_deliverable": updated_offer.is_deliverable,
+        "max_rent_period": updated_offer.max_rent_period,
+        "min_rent_period": updated_offer.min_rent_period,
+        "offer_id": offer_id,
+        "price": updated_offer.price,
+        "sub_category_id": updated_offer.sub_category,
+        "title": updated_offer.title,
+    }
+    await delete_all_offer_images(offer_id)
+    await create_offer_images(images=offer.images, offer_id=offer_id)
+    await database.execute(query=query, values=values)
