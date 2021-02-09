@@ -1,13 +1,13 @@
 from datetime import date
 from math import ceil
-from typing import Optional, Dict
+from typing import Dict, Optional
 
 from fastapi import APIRouter, Depends, Header, HTTPException, Response, status
-
 from FastAPI.config import PAGE_SIZE
 from FastAPI.offers import crud
 from FastAPI.offers.schemas import (
-    OfferDraftReply, OfferDraftRequest,
+    OfferDraftReply,
+    OfferDraftRequest,
     OffersListResponse,
 )
 
@@ -85,21 +85,23 @@ async def search_offers(
             search=search,
             ordering=ordering,
         ),
-        "total": ceil(await crud.count_founded_offers(
-            category=category,
-            city=city,
-            limit=limit,
-            offset=offset,
-            sub_category=sub_category,
-            is_deliverable=is_deliverable,
-            max_price=max_price,
-            min_price=min_price,
-            max_deposit=max_deposit,
-            min_deposit=min_deposit,
-            no_deposit=no_deposit,
-            search=search,
-            ordering=ordering,
-        ) / PAGE_SIZE)
+        "total": ceil(
+            await crud.count_founded_offers(
+                category=category,
+                city=city,
+                limit=limit,
+                offset=offset,
+                sub_category=sub_category,
+                is_deliverable=is_deliverable,
+                max_price=max_price,
+                min_price=min_price,
+                max_deposit=max_deposit,
+                min_deposit=min_deposit,
+                no_deposit=no_deposit,
+                search=search,
+            )
+            / PAGE_SIZE
+        ),
     }
 
 
@@ -108,25 +110,24 @@ async def get_offer(
     offer_id: str, user_id: Optional[int] = Depends(get_current_user_or_none)
 ) -> OfferDraftReply:
     offer = await crud.get_offer(offer_id)
-    if offer:
-        offer_images = await crud.get_offers_images(offer_id)
-        is_favorite = False
-        is_promoted = False
-        if promote_til_date := offer.get("promote_til_date"):
-            is_promoted = date.today() < promote_til_date
-        if user_id:
-            is_favorite = await crud.is_offer_in_favorite_of_user(offer_id, user_id)
-        return OfferDraftReply(
-            **offer,
-            images=offer_images,
-            is_promoted=is_promoted,
-            is_favorite=is_favorite,
-        )
-    else:
+    if not offer:
         raise HTTPException(
-            status_code=status.HTTP_400_BAD_REQUEST,
+            status_code=status.HTTP_404_NOT_FOUND,
             detail=f"Offer with id {offer_id} does not exist",
         )
+    offer_images = await crud.get_offers_images(offer_id)
+    is_favorite = False
+    is_promoted = False
+    if promote_til_date := offer.get("promote_til_date"):
+        is_promoted = date.today() < promote_til_date
+    if user_id:
+        is_favorite = await crud.is_offer_in_favorite_of_user(offer_id, user_id)
+    return OfferDraftReply(
+        **offer,
+        images=offer_images,
+        is_promoted=is_promoted,
+        is_favorite=is_favorite,
+    )
 
 
 @router.post("", status_code=status.HTTP_204_NO_CONTENT)
@@ -139,8 +140,19 @@ async def create_offer(
 
 @router.patch("/{offer_id}", status_code=status.HTTP_204_NO_CONTENT)
 async def update_offer(
-    offer_id: str, offer: OfferDraftRequest,
-    author_id: Optional[int] = Depends(get_current_user)
+    offer_id: str,
+    update_offer_data: OfferDraftRequest,
+    author_id: Optional[int] = Depends(get_current_user),
 ) -> Response:
-    await crud.partial_update_offer(offer_id, offer)
+    stored_offer_data = await crud.get_offer(offer_id)
+    if not stored_offer_data:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail=f"Offer with id {offer_id} does not exist",
+        )
+    await crud.partial_update_offer(
+        offer_id=offer_id,
+        update_offer_data=update_offer_data,
+        stored_offer_data=stored_offer_data,
+    )
     return Response(status_code=status.HTTP_204_NO_CONTENT)

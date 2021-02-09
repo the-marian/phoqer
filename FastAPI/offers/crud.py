@@ -1,9 +1,8 @@
-from typing import List, Mapping, Optional, Any
+from typing import Any, List, Mapping, Optional
 
-from pydantic import HttpUrl
-
-from FastAPI.config import database, PAGE_SIZE
+from FastAPI.config import PAGE_SIZE, database
 from FastAPI.offers.schemas import OfferDraftRequest, Status
+from pydantic import HttpUrl
 
 
 async def get_user_id(token: str) -> Optional[int]:
@@ -153,16 +152,19 @@ async def create_offer_images(images: List[HttpUrl], offer_id: str) -> None:
     await database.execute_many(query=query, values=values)
 
 
-async def delete_all_offer_images(offer_id: str):
+async def delete_all_offer_images(offer_id: str) -> None:
     query = "DELETE FROM offers_offerimages WHERE offer_id=:offer_id"
     await database.fetch_all(query=query, values={"offer_id": offer_id})
 
 
 @database.transaction()
-async def partial_update_offer(offer_id: str, offer: OfferDraftRequest) -> None:
-    stored_offer_data = await get_offer(offer_id)
+async def partial_update_offer(
+    offer_id: str,
+    update_offer_data: OfferDraftRequest,
+    stored_offer_data: Mapping,
+) -> None:
     stored_offer_model = OfferDraftRequest(**stored_offer_data)
-    update_data = offer.dict(exclude_unset=True)
+    update_data = update_offer_data.dict(exclude_unset=True)
     updated_offer = stored_offer_model.copy(update=update_data)
     query = """
     UPDATE offers_offer
@@ -201,7 +203,7 @@ async def partial_update_offer(offer_id: str, offer: OfferDraftRequest) -> None:
         "title": updated_offer.title,
     }
     await delete_all_offer_images(offer_id)
-    await create_offer_images(images=offer.images, offer_id=offer_id)
+    await create_offer_images(images=update_offer_data.images, offer_id=offer_id)
     await database.execute(query=query, values=values)
 
 
@@ -227,7 +229,7 @@ async def find_offers(
     max_deposit: Optional[int] = None,
     min_deposit: Optional[int] = None,
     no_deposit: Optional[bool] = None,
-    search: Optional[bool] = None,
+    search: Optional[str] = None,
     ordering: str = "pub_date,-views",
 ) -> List[Mapping[str, Any]]:
     order_by_params = get_order_by_params(ordering_query=ordering)
@@ -289,8 +291,7 @@ async def count_founded_offers(
     max_deposit: Optional[int] = None,
     min_deposit: Optional[int] = None,
     no_deposit: Optional[bool] = None,
-    search: Optional[bool] = None,
-    ordering: str = "pub_date,-views",
+    search: Optional[str] = None,
 ) -> int:
     query = """
     SELECT count(*)
@@ -323,4 +324,5 @@ async def count_founded_offers(
         "no_deposit": no_deposit,
         "search": f"%{search}%" if search else None,
     }
-    return (await database.fetch_one(query=query, values=values))["count"]
+    count = await database.fetch_one(query=query, values=values)
+    return int(count["count"]) if count else 0
