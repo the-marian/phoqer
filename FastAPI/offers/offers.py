@@ -1,10 +1,15 @@
 from datetime import date
-from typing import Optional
+from math import ceil
+from typing import Optional, Dict
 
 from fastapi import APIRouter, Depends, Header, HTTPException, Response, status
 
+from FastAPI.config import PAGE_SIZE
 from FastAPI.offers import crud
-from FastAPI.offers.schemas import OfferDraftReply, OfferDraftRequest
+from FastAPI.offers.schemas import (
+    OfferDraftReply, OfferDraftRequest,
+    OffersListResponse,
+)
 
 router = APIRouter(
     prefix="/offers",
@@ -45,6 +50,57 @@ async def get_current_user(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="No Authorisation header supplied",
         )
+
+
+@router.get("/search", response_model=OffersListResponse)
+async def search_offers(
+    category: Optional[str] = None,
+    city: Optional[str] = None,
+    page: int = 1,
+    sub_category: Optional[str] = None,
+    is_deliverable: Optional[bool] = None,
+    max_price: Optional[int] = None,
+    min_price: Optional[int] = None,
+    max_deposit: Optional[int] = None,
+    min_deposit: Optional[int] = None,
+    no_deposit: Optional[bool] = None,
+    search: Optional[str] = None,
+    ordering: str = "pub_date",
+) -> Dict:
+    offset = (page - 1) * PAGE_SIZE
+    limit = PAGE_SIZE
+    return {
+        "data": await crud.find_offers(
+            category=category,
+            city=city,
+            limit=limit,
+            offset=offset,
+            sub_category=sub_category,
+            is_deliverable=is_deliverable,
+            max_price=max_price,
+            min_price=min_price,
+            max_deposit=max_deposit,
+            min_deposit=min_deposit,
+            no_deposit=no_deposit,
+            search=search,
+            ordering=ordering,
+        ),
+        "total": ceil(await crud.count_founded_offers(
+            category=category,
+            city=city,
+            limit=limit,
+            offset=offset,
+            sub_category=sub_category,
+            is_deliverable=is_deliverable,
+            max_price=max_price,
+            min_price=min_price,
+            max_deposit=max_deposit,
+            min_deposit=min_deposit,
+            no_deposit=no_deposit,
+            search=search,
+            ordering=ordering,
+        ) / PAGE_SIZE)
+    }
 
 
 @router.get("/{offer_id}", response_model=OfferDraftReply)

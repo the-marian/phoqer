@@ -58,3 +58,22 @@ class OfferDraftReply(OfferDraftRequest):
     pub_date: date
     status: Status
     sub_category_name: Optional[str] = None
+
+
+class OffersListItem(BaseModel):
+    cover_image: HttpUrl
+    currency: Currency
+    description: str
+    id: UUID
+    is_deliverable: bool
+    is_favorite: bool = False
+    is_promoted: bool = False
+    price: int
+    pub_date: date
+    title: str
+    views: int
+
+
+class OffersListResponse(BaseModel):
+    total: int = 0
+    data: List[OffersListItem]
