@@ -8,6 +8,7 @@ from FastAPI.offers import crud
 from FastAPI.offers.schemas import (
     OfferDraftReply,
     OfferDraftRequest,
+    OffersListItem,
     OffersListResponse,
 )
 
@@ -56,21 +57,24 @@ async def get_current_user(
 async def search_offers(
     category: Optional[str] = None,
     city: Optional[str] = None,
-    page: int = 1,
-    sub_category: Optional[str] = None,
     is_deliverable: Optional[bool] = None,
-    max_price: Optional[int] = None,
-    min_price: Optional[int] = None,
     max_deposit: Optional[int] = None,
+    max_price: Optional[int] = None,
     min_deposit: Optional[int] = None,
+    min_price: Optional[int] = None,
     no_deposit: Optional[bool] = None,
-    search: Optional[str] = None,
     ordering: str = "pub_date",
+    page: int = 1,
+    search: Optional[str] = None,
+    sub_category: Optional[str] = None,
+    user_id: Optional[int] = Depends(get_current_user_or_none),
 ) -> Dict:
     offset = (page - 1) * PAGE_SIZE
     limit = PAGE_SIZE
-    return {
-        "data": await crud.find_offers(
+    user_favorite_offers_set = set()
+    if user_id:
+        user_favorite_offers_set = await crud.get_user_favorite_offers_set(
+            user_id=user_id,
             category=category,
             city=city,
             limit=limit,
@@ -84,13 +88,36 @@ async def search_offers(
             no_deposit=no_deposit,
             search=search,
             ordering=ordering,
-        ),
+        )
+    founded_offers = await crud.find_offers(
+        category=category,
+        city=city,
+        limit=limit,
+        offset=offset,
+        sub_category=sub_category,
+        is_deliverable=is_deliverable,
+        max_price=max_price,
+        min_price=min_price,
+        max_deposit=max_deposit,
+        min_deposit=min_deposit,
+        no_deposit=no_deposit,
+        search=search,
+        ordering=ordering,
+    )
+    data = []
+    for offer in founded_offers:
+        offer_schema = OffersListItem(**offer)
+        if promote_til_date := offer.get("promote_til_date"):
+            offer_schema.is_promoted = date.today() < promote_til_date
+        if user_id:
+            offer_schema.is_favorite = offer_schema.id in user_favorite_offers_set
+        data.append(offer_schema)
+    return {
+        "data": data,
         "total": ceil(
             await crud.count_founded_offers(
                 category=category,
                 city=city,
-                limit=limit,
-                offset=offset,
                 sub_category=sub_category,
                 is_deliverable=is_deliverable,
                 max_price=max_price,

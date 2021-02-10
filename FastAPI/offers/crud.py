@@ -235,15 +235,16 @@ async def find_offers(
     order_by_params = get_order_by_params(ordering_query=ordering)
     query = f"""
     SELECT
-        offers_offer.cover_image,
-        offers_offer.currency,
-        offers_offer.description,
-        offers_offer.id,
-        offers_offer.is_deliverable,
-        offers_offer.price,
-        offers_offer.pub_date,
-        offers_offer.title,
-        offers_offer.views
+        cover_image,
+        currency,
+        description,
+        id,
+        is_deliverable,
+        price,
+        promote_til_date,
+        pub_date,
+        title,
+        views
     FROM offers_offer
     WHERE status = 'ACTIVE'
       AND ((:category)::varchar IS NULL OR category_id = (:category)::varchar)
@@ -313,8 +314,6 @@ async def count_founded_offers(
     values = {
         "category": category,
         "sub_category": sub_category,
-        "limit": limit,
-        "offset": offset,
         "city": city,
         "is_deliverable": is_deliverable,
         "max_price": max_price,
@@ -326,3 +325,67 @@ async def count_founded_offers(
     }
     count = await database.fetch_one(query=query, values=values)
     return int(count["count"]) if count else 0
+
+
+async def get_user_favorite_offers_set(
+    user_id: int,
+    category: Optional[str] = None,
+    city: Optional[str] = None,
+    limit: int = PAGE_SIZE,
+    offset: int = 0,
+    sub_category: Optional[str] = None,
+    is_deliverable: Optional[bool] = None,
+    max_price: Optional[int] = None,
+    min_price: Optional[int] = None,
+    max_deposit: Optional[int] = None,
+    min_deposit: Optional[int] = None,
+    no_deposit: Optional[bool] = None,
+    search: Optional[str] = None,
+    ordering: str = "pub_date,-views",
+) -> set:
+    order_by_params = get_order_by_params(ordering_query=ordering)
+    query = f"""
+    SELECT offer_id
+    FROM offers_offer_favorite
+    WHERE user_id = :user_id
+      AND offer_id IN (
+         SELECT id
+         FROM offers_offer
+         WHERE status = 'ACTIVE'
+           AND ((:category)::varchar IS NULL OR category_id = (:category)::varchar)
+           AND ((:city)::varchar IS NULL OR city = (:city)::varchar)
+           AND ((:sub_category)::varchar IS NULL
+               OR
+               sub_category_id = (:sub_category)::varchar)
+           AND ((:is_deliverable)::bool IS NULL
+               OR
+               is_deliverable = (:is_deliverable)::bool)
+           AND ((:max_price)::int IS NULL OR price <= (:max_price)::int)
+           AND ((:min_price)::int IS NULL OR price >= (:min_price)::int)
+           AND ((:max_deposit)::int IS NULL OR deposit_val <= (:max_deposit)::int)
+           AND ((:min_deposit)::int IS NULL OR deposit_val >= (:min_deposit)::int)
+           AND ((:no_deposit)::bool IS NULL OR deposit_val = 0)
+           AND (((:search)::varchar IS NULL OR title ilike :search)
+               OR
+               ((:search)::varchar IS NULL OR description ilike :search))
+         ORDER BY {order_by_params}
+         LIMIT :limit
+         OFFSET :offset)
+    """
+    values = {
+        "category": category,
+        "sub_category": sub_category,
+        "limit": limit,
+        "offset": offset,
+        "city": city,
+        "is_deliverable": is_deliverable,
+        "max_price": max_price,
+        "min_price": min_price,
+        "max_deposit": max_deposit,
+        "min_deposit": min_deposit,
+        "no_deposit": no_deposit,
+        "search": f"%{search}%" if search else None,
+        "user_id": user_id,
+    }
+    rows = (await database.fetch_all(query=query, values=values)) or []
+    return {row["offer_id"] for row in rows}
