@@ -12,7 +12,13 @@ from rest_framework.request import Request
 from rest_framework.response import Response
 
 from .models import Offer, OfferImages
-from .serializers import OfferImageSerializer, OfferListItemSerializer, OfferSerializer
+from .serializers import (
+    CreateOfferSerializer,
+    OfferImageSerializer,
+    OfferListItemSerializer,
+    GetOfferSerializer,
+    UpdateOfferSerializer,
+)
 
 
 class PopularOffersView(ListAPIView):
@@ -77,13 +83,17 @@ class SearchOffersView(ListAPIView):
 
 
 class OfferView(RetrieveUpdateAPIView):
-    serializer_class = OfferSerializer
+    def get_serializer_class(self):
+        if self.request.method == "GET":
+            return GetOfferSerializer
+        if self.request.method == "PUT":
+            return UpdateOfferSerializer
     queryset = Offer.objects.all()
     permission_classes = [IsAuthenticatedOrReadOnly]
 
 
 class CreateOfferView(CreateAPIView):
-    serializer_class = OfferSerializer
+    serializer_class = CreateOfferSerializer
     queryset = Offer.objects.all()
     permission_classes = [IsAuthenticatedOrReadOnly]
 
