@@ -9,8 +9,13 @@ from rest_framework.request import Request
 from rest_framework.response import Response
 
 from .models import Offer, OfferImages
-from .serializers import (CreateOfferSerializer, OfferImageSerializer,
-                          OfferListItemSerializer, OfferSerializer)
+from .serializers import (
+    CreateOfferSerializer,
+    UpdateOfferSerializer,
+    OfferImageSerializer,
+    OfferListItemSerializer,
+    OfferSerializer
+)
 
 
 class PopularOffersView(ListAPIView):
@@ -79,7 +84,7 @@ class OfferView(RetrieveUpdateAPIView):
         if self.request.method == "GET":
             return OfferSerializer
         if self.request.method == "PUT":
-            return CreateOfferSerializer
+            return UpdateOfferSerializer
     queryset = Offer.objects.all()
     permission_classes = [IsAuthenticatedOrReadOnly]
 

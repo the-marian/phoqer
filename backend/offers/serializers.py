@@ -29,7 +29,6 @@ class BaseOfferSerializer(serializers.ModelSerializer):
     class Meta:
         model = Offer
         fields = [
-            'author',
             'category',
             'city',
             'cover_image',
@@ -93,38 +92,16 @@ class OfferSerializer(BaseOfferSerializer):
     category_name = serializers.CharField(source="category.name")
     slug = serializers.CharField(source="category.slug")
 
-    class Meta:
+    class Meta(BaseOfferSerializer.Meta):
         model = Offer
-        fields = [
-            'author_id',
-            'category',
-            'category_name',
-            'city',
-            'cover_image',
-            'currency',
-            'deposit_val',
-            'description',
-            'description',
-            'doc_needed',
-            'extra_requirements',
-            'id',
-            'images',
-            'is_deliverable',
-            'is_favorite',
-            'is_promoted',
-            'max_rent_period',
-            'min_rent_period',
-            'price',
-            'pub_date',
-            'slug',
-            'sub_category',
-            'title',
-            'views',
-        ]
+        fields = BaseOfferSerializer.Meta.fields + ['author_id', 'category_name', 'slug']
 
 
 class CreateOfferSerializer(BaseOfferSerializer):
     author = serializers.HiddenField(default=serializers.CurrentUserDefault())
+
+    class Meta(BaseOfferSerializer.Meta):
+        fields = BaseOfferSerializer.Meta.fields + ['author']
 
     extra_kwargs = {
         'author': {'required': False},
@@ -161,8 +138,10 @@ class CreateOfferSerializer(BaseOfferSerializer):
             )
         return offer_obj
 
+
+class UpdateOfferSerializer(BaseOfferSerializer):
     def update(self, instance, validated_data):
-        offer_obj = super(CreateOfferSerializer, self).update(instance, validated_data)
+        offer_obj = super(UpdateOfferSerializer, self).update(instance, validated_data)
         images = validated_data.get('offer_images')
         if images:
             for image in images:
