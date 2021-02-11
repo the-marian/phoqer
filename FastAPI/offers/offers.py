@@ -1,6 +1,6 @@
 from datetime import date
 from math import ceil
-from typing import Dict, Optional
+from typing import Dict, List, Optional
 
 from fastapi import APIRouter, Depends, Header, HTTPException, Response, status
 from FastAPI.config import PAGE_SIZE
@@ -53,6 +53,28 @@ async def get_current_user(
         )
 
 
+@router.get("/popular", response_model=List[OffersListItem])
+async def get_popular_offers(
+    user_id: Optional[int] = Depends(get_current_user_or_none),
+) -> List[OffersListItem]:
+    popular_offers = await crud.get_popular_offers()
+    popular_offer_ids = [offer["id"] for offer in popular_offers]
+    user_favorite_popular_offers = set()
+    if user_id:
+        user_favorite_popular_offers = await crud.get_user_favorite_popular_offers(
+            user_id=user_id,
+            popular_offer_ids=popular_offer_ids,
+        )
+    return [
+        OffersListItem(
+            **offer,
+            is_promoted=True,
+            is_favorite=offer["id"] in user_favorite_popular_offers,
+        )
+        for offer in popular_offers
+    ]
+
+
 @router.get("/search", response_model=OffersListResponse)
 async def search_offers(
     category: Optional[str] = None,
@@ -71,24 +93,6 @@ async def search_offers(
 ) -> Dict:
     offset = (page - 1) * PAGE_SIZE
     limit = PAGE_SIZE
-    user_favorite_offers_set = set()
-    if user_id:
-        user_favorite_offers_set = await crud.get_user_favorite_offers_set(
-            user_id=user_id,
-            category=category,
-            city=city,
-            limit=limit,
-            offset=offset,
-            sub_category=sub_category,
-            is_deliverable=is_deliverable,
-            max_price=max_price,
-            min_price=min_price,
-            max_deposit=max_deposit,
-            min_deposit=min_deposit,
-            no_deposit=no_deposit,
-            search=search,
-            ordering=ordering,
-        )
     founded_offers = await crud.find_offers(
         category=category,
         city=city,
@@ -104,6 +108,13 @@ async def search_offers(
         search=search,
         ordering=ordering,
     )
+    founded_offer_ids = [offer["id"] for offer in founded_offers]
+    user_favorite_offers_set = set()
+    if user_id:
+        user_favorite_offers_set = await crud.get_user_favorite_founded_offers(
+            user_id=user_id,
+            founded_offer_ids=founded_offer_ids,
+        )
     data = []
     for offer in founded_offers:
         offer_schema = OffersListItem(**offer)
