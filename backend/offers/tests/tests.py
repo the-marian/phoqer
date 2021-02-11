@@ -13,7 +13,7 @@ from offers.tests.mocks import (
     iphone11_is_promoted_True,
     list_order_mixed,
     list_ordered_by_promotion,
-    list_ordered_by_views
+    list_ordered_by_views,
 )
 
 

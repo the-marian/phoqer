@@ -3,8 +3,13 @@ from djoser.conf import settings
 from rest_framework import serializers
 
 from offers.serializers import OfferListItemSerializer
-from users.models import (CommunicationRating, DescriptionRating, User,
-                          UserDislike, UserLike)
+from users.models import (
+    CommunicationRating,
+    DescriptionRating,
+    User,
+    UserDislike,
+    UserLike,
+)
 
 
 class TokenSerializer(serializers.ModelSerializer):

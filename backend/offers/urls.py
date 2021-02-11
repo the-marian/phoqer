@@ -5,7 +5,7 @@ from .views import (
     DeleteOfferImageView,
     OfferView,
     PopularOffersView,
-    SearchOffersView
+    SearchOffersView,
 )
 
 app_name = 'offers'
