@@ -16,7 +16,7 @@ from .serializers import (
     CreateOfferSerializer,
     OfferImageSerializer,
     OfferListItemSerializer,
-    OfferSerializer,
+    GetOfferSerializer,
     UpdateOfferSerializer,
 )
 
@@ -85,7 +85,7 @@ class SearchOffersView(ListAPIView):
 class OfferView(RetrieveUpdateAPIView):
     def get_serializer_class(self):
         if self.request.method == "GET":
-            return OfferSerializer
+            return GetOfferSerializer
         if self.request.method == "PUT":
             return UpdateOfferSerializer
     queryset = Offer.objects.all()

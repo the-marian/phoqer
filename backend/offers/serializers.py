@@ -87,13 +87,12 @@ class OfferListItemSerializer(BaseOfferSerializer):
         ]
 
 
-class OfferSerializer(BaseOfferSerializer):
+class GetOfferSerializer(BaseOfferSerializer):
     author_id = serializers.CharField(source="author.id")
     category_name = serializers.CharField(source="category.name")
     slug = serializers.CharField(source="category.slug")
 
     class Meta(BaseOfferSerializer.Meta):
-        model = Offer
         fields = BaseOfferSerializer.Meta.fields + ['author_id', 'category_name', 'slug']
 
 
