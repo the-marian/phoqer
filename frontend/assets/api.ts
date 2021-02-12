@@ -1,7 +1,7 @@
 import axios, { AxiosResponse } from 'axios';
 import { Params } from 'next/dist/next-server/server/router';
 
-import { ICategories, IComment, IOfferCard, IOffers, Login } from '../interfaces';
+import { ICategories, IComment, IOfferCard, Login } from '../interfaces';
 import { IBody } from '../redux/offers/new_offer/saga';
 import config from './config';
 

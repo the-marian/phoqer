@@ -71,7 +71,7 @@ export const parseCookie = <T>(cookie = '', key = 'phoqer_auth'): T | null => {
 export const logger = (): void => {
     if (process.env.NODE_ENV === 'production') console.clear();
     console.log(
-        '%c Phoqer %c v0.0.1 Made with love ...',
+        '%c Phoqer %c 0.0.1v Made with love ...',
         'padding: 6px 15px; border-radius: 10px; background: #eee; text-transform: uppercase; color: #2771A3; font-size: 1rem; font-weight: 600; font-family: Montserrat, sans-serif',
         'color: #DB162F; font-size: 0.8rem;',
     );

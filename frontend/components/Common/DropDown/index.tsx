@@ -1,4 +1,4 @@
-import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
+import { faChevronDown, faChevronUp, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import clsx from 'clsx';
 import React, { MouseEvent, ReactElement, useEffect, useState } from 'react';
@@ -34,6 +34,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         borderRadius: theme.radius,
         textAlign: 'left',
         fontSize: theme.rem(1.4),
+        cursor: 'pointer',
         ...theme.outline,
 
         '@media (max-width: 768px)': {
@@ -49,6 +50,22 @@ const useStyles = createUseStyles((theme: Theme) => ({
         whiteSpace: 'nowrap',
         overflow: 'hidden',
         textOverflow: 'ellipsis',
+    },
+    reset: {
+        position: 'absolute',
+        top: '50%',
+        right: theme.rem(1),
+        transform: 'translateY(-50%)',
+        padding: theme.rem(1.4),
+
+        '&:hover': {
+            color: theme.palette.primary[0],
+        },
+
+        '& svg': {
+            width: theme.rem(1.1),
+            height: theme.rem(1.1),
+        },
     },
     placeholder: {
         color: theme.palette.gray[3],
@@ -173,6 +190,13 @@ const DropDown = ({
         setDrop(!drop);
     };
 
+    const handleReset = (event: MouseEvent<HTMLSpanElement>): void => {
+        event.stopPropagation();
+        onChange({ name: '', slug: '', type: 'main' });
+        setSelected(placeholder);
+        setDrop(false);
+    };
+
     useEffect(() => {
         const handleClose = (): void => {
             if (!drop) setDrop(false);
@@ -207,6 +231,11 @@ const DropDown = ({
                     </span>
                 )}
                 <span className={css.text}>{selected}</span>
+                {placeholder && selected !== placeholder && (
+                    <span className={css.reset} onClick={handleReset} aria-hidden>
+                        <FontAwesomeIcon icon={faTimes} />
+                    </span>
+                )}
             </p>
 
             {drop && (

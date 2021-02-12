@@ -100,7 +100,7 @@ const POPULAR: string[] = [
     'Заднее сальто Владика 3',
     'Кто такой Влад Василенко?',
     'Задний винт Владика скачать без смс и регистрации',
-    'Владислав! Бейби донт хьорт ми,  донт хьорт ми, но мор!',
+    'Владислав! Бейби донт хьорт ми, донт хьорт ми, но мор!',
     'Заднее сальто Владика 2',
 ];
 
@@ -133,7 +133,6 @@ const Filters = (): ReactElement => {
                     <form action="#" method="post" className={css.form} onSubmit={handleSubmit}>
                         <div className={css.formInner}>
                             <PriceFilter />
-                            <Categories />
                             <Sort />
                         </div>
 

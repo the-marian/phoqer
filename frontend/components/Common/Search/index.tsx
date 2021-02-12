@@ -123,6 +123,10 @@ const Search = (): ReactElement => {
 
     const [query, setQuery] = useState<IValue>({ search: init || '' });
     const handleChange = (value: IDropValue): void => {
+        if (!value.slug) {
+            setQuery({ search: query.search });
+            return;
+        }
         setQuery({ search: query.search, [value.type === 'main' ? 'category' : 'sub_category']: value.slug });
     };
     const handleInput = (event: ChangeEvent<HTMLInputElement>): void => {
