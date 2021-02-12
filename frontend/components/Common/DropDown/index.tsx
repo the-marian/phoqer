@@ -127,7 +127,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
 interface Props {
     height?: number;
     data: IDropList[];
-    defaultValue?: IDropValue | null;
+    defaultValue?: IDropValue | IDropList | null;
     placeholder?: string;
     withSub?: boolean;
     transparent?: boolean;

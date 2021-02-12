@@ -1,11 +1,12 @@
+import { useRouter } from 'next/router';
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 import { useSelector } from 'react-redux';
 
-import { formatCatList } from '../../../../assets/helpers';
+import { findCategory, findSubCategory, formatCatList } from '../../../../assets/helpers';
 import { Theme } from '../../../../assets/theme';
 import useTrans from '../../../../hooks/trans.hook';
-import { ICategories, IState } from '../../../../interfaces';
+import { ICategories, IDropValue, IState } from '../../../../interfaces';
 import DropDown from '../../DropDown';
 import { modal } from '../../Modal';
 import RegionModal from '../../RegionModal';
@@ -52,11 +53,23 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
 }));
 
-const OptionsDesktop = (): ReactElement => {
+interface IProps {
+    onChange: (value: IDropValue) => void;
+}
+
+const OptionsDesktop = ({ onChange }: IProps): ReactElement => {
     const css = useStyles();
     const T = useTrans();
+    const history = useRouter();
+
     const data = useSelector<IState, ICategories[]>(state => state.categories);
     const categories = formatCatList(data);
+
+    // init
+    const initCat = typeof history.query.category === 'object' ? history.query.category[0] : history.query.category;
+    const initSubCat =
+        typeof history.query.sub_category === 'object' ? history.query.sub_category[0] : history.query.sub_category;
+    const defaultValue = initCat ? findCategory(data, initCat) : initSubCat ? findSubCategory(data, initSubCat) : null;
 
     const handleRegionModal = () => {
         modal.open(<RegionModal />);
@@ -67,9 +80,10 @@ const OptionsDesktop = (): ReactElement => {
             <span className={css.line} />
             <div className={css.categories}>
                 <DropDown
+                    defaultValue={defaultValue}
                     data={categories}
                     placeholder={T.select_category}
-                    onChange={console.log}
+                    onChange={onChange}
                     height={7}
                     withSub
                     transparent

@@ -14,16 +14,24 @@ export const formatCatList = (data: ICategories[]): IDropList[] =>
             item.sub_categories ? { name: item.name, slug: item.slug, sub: item.sub_categories } : item,
     );
 
-// find category name
-export const findCategory = (data: ICategories[], slug: string): string | null => {
+// find category
+export const findCategory = (data: ICategories[], slug: string): IDropList | null => {
     const category: ICategories | undefined = data.find(item => item.slug === slug);
-    return category ? category.name : null;
+    return category || null;
 };
 
-// find sub category name
-export const findSubCategory = (data: ICategories[], slug: string): string | null => {
-    const category: ICategories | undefined = data.filter(item => item.sub_categories).find(item => item.slug === slug);
-    return category ? category.name : null;
+// find sub category
+export const findSubCategory = (data: ICategories[], slug: string): IDropList | null => {
+    const categories: ICategories[] = data.filter(item => item.sub_categories?.[0]);
+
+    let subCategory;
+    if (categories.length) {
+        for (const cat of categories) {
+            subCategory = cat.sub_categories.find(item => item.slug === slug);
+            if (subCategory) break;
+        }
+    }
+    return subCategory || null;
 };
 
 type IFunction = (...args) => void;
@@ -63,7 +71,7 @@ export const parseCookie = <T>(cookie = '', key = 'phoqer_auth'): T | null => {
 export const logger = (): void => {
     if (process.env.NODE_ENV === 'production') console.clear();
     console.log(
-        '%c Phoqer | %c Made with love ...',
+        '%c Phoqer %c v0.0.1 Made with love ...',
         'padding: 6px 15px; border-radius: 10px; background: #eee; text-transform: uppercase; color: #2771A3; font-size: 1rem; font-weight: 600; font-family: Montserrat, sans-serif',
         'color: #DB162F; font-size: 0.8rem;',
     );
@@ -80,6 +88,7 @@ export const moneyFormat = (value = 0): string => {
         .trim();
 };
 
+// 1 день 2 дня 5 дней ...
 export const declOfNum = (number: number, titles: string[]): string => {
     const cases = [2, 0, 1, 1, 1, 2];
     return titles[number % 100 > 4 && number % 100 < 20 ? 2 : cases[number % 10 < 5 ? number % 10 : 5]];

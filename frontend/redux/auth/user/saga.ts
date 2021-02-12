@@ -5,7 +5,7 @@ import types from '../../types';
 
 function* getUser() {
     try {
-        const { status, data } = yield call(api.v1.auth.user);
+        const { status, data } = yield call(api.auth.user);
         if (status < 200 || status >= 300) throw new Error();
         yield put({ type: types.GET_USER_SUCCESS, payload: data });
     } catch (error) {
