@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 
 import routes from '../../../../assets/routes';
 import { Theme } from '../../../../assets/theme';
-import { IOfferPopular, IState } from '../../../../interfaces';
+import { IOfferState, IState } from '../../../../interfaces';
 import OffersList from '../../../Common/Offers/OffersList';
 import SectionTitle from '../../../Layout/SectionTitle';
 
@@ -37,7 +37,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
 
 const RelatedOffers = (): ReactElement => {
     const css = useStyles();
-    const { data, loading } = useSelector<IState, IOfferPopular>(state => state.offers.popular);
+    const { data, loading } = useSelector<IState, IOfferState>(state => state.offers.popular);
 
     return (
         <div className={css.root}>

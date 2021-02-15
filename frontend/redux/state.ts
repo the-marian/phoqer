@@ -12,6 +12,10 @@ const initState: IState = {
             data: null,
             loading: true,
         },
+        search: {
+            data: null,
+            loading: true,
+        },
         single: null,
         newOffer: {
             // step 1

@@ -1,3 +1,4 @@
+import { GetServerSidePropsContext } from 'next';
 import React, { ReactElement } from 'react';
 import { useSelector } from 'react-redux';
 import { END } from 'redux-saga';
@@ -11,13 +12,13 @@ import Main from '../../components/Layout/Main';
 import Filters from '../../components/Pages/Offers/Filters';
 import TopOffers from '../../components/Pages/Offers/TopOffers';
 import useTrans from '../../hooks/trans.hook';
-import { IOfferPopular, IState, IStore } from '../../interfaces';
+import { IOfferState, IState, IStore } from '../../interfaces';
 import { wrapper } from '../../redux/store';
 import types from '../../redux/types';
 
 const OffersPage = (): ReactElement => {
     const T = useTrans();
-    const { data, loading } = useSelector<IState, IOfferPopular>(state => state.offers.popular);
+    const { data, loading } = useSelector<IState, IOfferState>(state => state.offers.search);
     return (
         <>
             <Meta title={T.search_offers} h1={T.search_offers} />
@@ -40,11 +41,12 @@ const OffersPage = (): ReactElement => {
 };
 
 export const getServerSideProps = wrapper.getServerSideProps(
-    async ({ store }: { store: IStore }): Promise<void> => {
-        store.dispatch({ type: types.GET_CATEGORIES_START });
-        store.dispatch({ type: types.GET_POPULAR_OFFERS_START });
-        store.dispatch(END);
-        await store.sagaTask.toPromise();
+    async (ctx: GetServerSidePropsContext & { store: IStore }): Promise<void> => {
+        ctx.store.dispatch({ type: types.GET_CATEGORIES_START });
+        ctx.store.dispatch({ type: types.GET_POPULAR_OFFERS_START });
+        ctx.store.dispatch({ type: types.SEARCH_OFFERS_START, payload: ctx.query });
+        ctx.store.dispatch(END);
+        await ctx.store.sagaTask.toPromise();
     },
 );
 

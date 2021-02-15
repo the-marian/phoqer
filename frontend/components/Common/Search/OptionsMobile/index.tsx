@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 import { formatCatList } from '../../../../assets/helpers';
 import { Theme } from '../../../../assets/theme';
 import useTrans from '../../../../hooks/trans.hook';
-import { ICategories, IState } from '../../../../interfaces';
+import { ICategories, IDropValue, IState } from '../../../../interfaces';
 import DropDown from '../../DropDown';
 import { modal } from '../../Modal';
 import RegionModal from '../../RegionModal';
@@ -57,7 +57,11 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
 }));
 
-const OptionsMobile = (): ReactElement => {
+interface IProps {
+    onChange: (value: IDropValue) => void;
+}
+
+const OptionsMobile = ({ onChange }: IProps): ReactElement => {
     const css = useStyles();
     const T = useTrans();
     const data = useSelector<IState, ICategories[]>(state => state.categories);
@@ -70,7 +74,7 @@ const OptionsMobile = (): ReactElement => {
     return (
         <div className={css.root}>
             <div className={css.drop}>
-                <DropDown data={categories} placeholder={T.select_category} onChange={console.log} height={7} withSub />
+                <DropDown data={categories} placeholder={T.select_category} onChange={onChange} height={7} withSub />
             </div>
             <button type="button" className={css.location} onClick={handleRegionModal}>
                 <img className={css.icon} src="/emoji/map.png" alt="" />

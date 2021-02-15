@@ -6,7 +6,7 @@ import types from '../../types';
 
 function* logoutUser() {
     try {
-        const { status } = yield call(api.v1.auth.logout);
+        const { status } = yield call(api.auth.logout);
         if (status < 200 || status >= 300) throw new Error();
         yield put({ type: types.LOGOUT_SUCCESS });
     } catch (error) {

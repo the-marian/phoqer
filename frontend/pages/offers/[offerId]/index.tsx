@@ -146,9 +146,9 @@ const SingleOfferPage = (): ReactElement => {
     const categories = useSelector<IState, ICategories[]>(state => state.categories);
 
     const catName = offer?.category
-        ? findCategory(categories, offer?.category)
+        ? findCategory(categories, offer?.category)?.name
         : offer?.sub_category
-        ? findSubCategory(categories, offer?.sub_category)
+        ? findSubCategory(categories, offer?.sub_category)?.name
         : null;
 
     const desc = offer?.description ? offer.description.replace(/\n/g, '<br>') : '';

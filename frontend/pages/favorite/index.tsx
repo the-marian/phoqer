@@ -8,13 +8,13 @@ import Container from '../../components/Layout/Container';
 import Main from '../../components/Layout/Main';
 import SectionTitle from '../../components/Layout/SectionTitle';
 import useTrans from '../../hooks/trans.hook';
-import { IOfferPopular, IState, IStore } from '../../interfaces';
+import { IOfferState, IState, IStore } from '../../interfaces';
 import { wrapper } from '../../redux/store';
 import types from '../../redux/types';
 
 const Favorite = (): ReactElement => {
     const T = useTrans();
-    const { data, loading } = useSelector<IState, IOfferPopular>(state => state.offers.popular);
+    const { data, loading } = useSelector<IState, IOfferState>(state => state.offers.popular);
     return (
         <>
             <Meta title={T.favorite_offer} h1={T.favorite_offer} />

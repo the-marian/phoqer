@@ -77,7 +77,7 @@ export interface IOfferCard {
     extra_requirements?: string;
 }
 
-export interface IOfferPopular {
+export interface IOfferState {
     data: IOfferCard[] | null;
     loading: boolean;
 }
@@ -110,7 +110,8 @@ export interface INewOffer {
 }
 
 export interface IOffers {
-    popular: IOfferPopular;
+    popular: IOfferState;
+    search: IOfferState;
     single: IOfferCard;
     newOffer: INewOffer;
 }

@@ -1,10 +1,10 @@
 import React, { ReactElement } from 'react';
 
-import { IOfferPopular } from '../../../../interfaces';
+import { IOfferState } from '../../../../interfaces';
 import OffersLoader from '../../Preloaders/OffersLoader';
 import OfferCard from '../OffersCard';
 
-interface IProps extends IOfferPopular {
+interface IProps extends IOfferState {
     emptyText?: string;
 }
 
