@@ -8,7 +8,6 @@ import { Theme } from '../../../../assets/theme';
 import { IState } from '../../../../interfaces';
 import types from '../../../../redux/types';
 import SectionTitle from '../../../Layout/SectionTitle';
-import Categories from './Categories';
 import Checkbox from './Checkbox';
 import PriceFilter from './Price';
 import Sort from './Sort';
