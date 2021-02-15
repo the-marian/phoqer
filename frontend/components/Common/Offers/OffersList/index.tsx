@@ -9,8 +9,8 @@ interface IProps extends IOfferState {
 }
 
 const OffersList = ({ data, loading, emptyText }: IProps): ReactElement => (
-    <OffersLoader loading={loading} isEmpty={!data?.length} emptyText={emptyText}>
-        {data?.map(product => (
+    <OffersLoader loading={loading} isEmpty={!data?.data?.length} emptyText={emptyText}>
+        {data?.data?.map(product => (
             <OfferCard key={product.id} product={product} />
         ))}
     </OffersLoader>

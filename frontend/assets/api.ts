@@ -1,7 +1,7 @@
 import axios, { AxiosResponse } from 'axios';
 import { Params } from 'next/dist/next-server/server/router';
 
-import { ICategories, IComment, IOfferCard, Login } from '../interfaces';
+import { ICategories, IComment, IOfferCard, IOfferPaggination, Login } from '../interfaces';
 import { IBody } from '../redux/offers/new_offer/saga';
 import config from './config';
 
@@ -35,10 +35,10 @@ const api = {
         dislike: (id: number): Promise<AxiosResponse<void>> => axios.patch(`${url2}/comments/${id}/dislike`),
     },
     offers: {
-        popular: (): Promise<AxiosResponse<IOfferCard[]>> => axios.get(`${url1}/offers/popular/`),
-        single: (id: string): Promise<AxiosResponse<IOfferCard>> => axios.get(`${url1}/offers/${id}/`),
-        new: (body: IBody): Promise<AxiosResponse<void>> => axios.post(`${url1}/offers/`, body),
-        search: (params: Params): Promise<AxiosResponse<IOfferCard[]>> => axios.get(`${url1}/offers/search/`, { params }),
+        popular: (): Promise<AxiosResponse<IOfferPaggination>> => axios.get(`${url2}/offers/popular`),
+        single: (id: string): Promise<AxiosResponse<IOfferCard>> => axios.get(`${url2}/offers/${id}`),
+        new: (body: IBody): Promise<AxiosResponse<void>> => axios.post(`${url2}/offers`, body),
+        search: (params: Params): Promise<AxiosResponse<IOfferCard[]>> => axios.get(`${url2}/offers/search`, { params }),
     },
 };
 

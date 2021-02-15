@@ -77,8 +77,13 @@ export interface IOfferCard {
     extra_requirements?: string;
 }
 
-export interface IOfferState {
+export interface IOfferPaggination {
     data: IOfferCard[] | null;
+    total: number;
+}
+
+export interface IOfferState {
+    data: IOfferPaggination;
     loading: boolean;
 }
 

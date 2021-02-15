@@ -1,16 +1,19 @@
 import { HYDRATE } from 'next-redux-wrapper';
 
-import { IOfferCard, IOfferState, IState } from '../../../interfaces';
+import { IOfferPaggination, IOfferState, IState } from '../../../interfaces';
 import types from '../../types';
 import { IAction } from './saga';
 
-const search = (state: IOfferState = { data: null, loading: true }, { type, payload }: IAction): IOfferState => {
+const search = (
+    state: IOfferState = { data: { data: null, total: 0 }, loading: true },
+    { type, payload }: IAction,
+): IOfferState => {
     switch (type) {
         case HYDRATE:
             return (payload as IState).offers.search;
 
         case types.SEARCH_OFFERS_SUCCESS:
-            return { data: payload as IOfferCard[], loading: false };
+            return { data: payload as IOfferPaggination, loading: false };
 
         case types.SEARCH_OFFERS_START:
             return { ...state, loading: true };
