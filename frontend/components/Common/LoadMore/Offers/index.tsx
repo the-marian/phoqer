@@ -15,6 +15,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         display: 'grid',
         gridTemplateColumns: theme.fr(config.offers.grid.desktop),
         gridGap: theme.rem(8, 3),
+        marginTop: theme.rem(8),
         fontSize: theme.rem(1.5),
         fontWeight: theme.text.weight[3],
 

@@ -84,7 +84,7 @@ const OptionsDesktop = ({ onChange }: IProps): ReactElement => {
                     data={categories}
                     placeholder={T.select_category}
                     onChange={onChange}
-                    height={7}
+                    height={6}
                     withSub
                     transparent
                 />

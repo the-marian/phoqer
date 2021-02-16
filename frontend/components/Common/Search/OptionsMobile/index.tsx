@@ -28,7 +28,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     location: {
         display: 'flex',
         alignItems: 'center',
-        height: theme.rem(7),
+        height: theme.rem(6),
         width: '48%',
         padding: theme.rem(2),
         fontSize: theme.rem(1.4),
@@ -74,7 +74,7 @@ const OptionsMobile = ({ onChange }: IProps): ReactElement => {
     return (
         <div className={css.root}>
             <div className={css.drop}>
-                <DropDown data={categories} placeholder={T.select_category} onChange={onChange} height={7} withSub />
+                <DropDown data={categories} placeholder={T.select_category} onChange={onChange} height={6} withSub />
             </div>
             <button type="button" className={css.location} onClick={handleRegionModal}>
                 <img className={css.icon} src="/emoji/map.png" alt="" />

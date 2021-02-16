@@ -32,7 +32,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',
-        height: theme.rem(7),
+        height: theme.rem(6),
         width: '100%',
         paddingLeft: theme.rem(2.5),
         background: theme.palette.gray[1],
@@ -54,7 +54,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         border: 'none',
     },
     btn: {
-        height: theme.rem(7),
+        height: theme.rem(6),
         width: '100%',
         background: theme.palette.primary[0],
         fontSize: theme.rem(1.6),
