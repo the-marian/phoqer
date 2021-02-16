@@ -1,9 +1,8 @@
-import Link from 'next/link';
-import React, { ReactElement } from 'react';
+import React, { ReactElement, useEffect, useState } from 'react';
+import { useInView } from 'react-intersection-observer';
 import { createUseStyles } from 'react-jss';
 
 import config from '../../../../assets/config';
-import routes from '../../../../assets/routes';
 import { Theme } from '../../../../assets/theme';
 
 const useStyles = createUseStyles((theme: Theme) => ({
@@ -60,45 +59,47 @@ const useStyles = createUseStyles((theme: Theme) => ({
         borderRadius: theme.radius,
         animation: '$loader 1s ease infinite',
     },
-    empty: {
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-    },
-    emoji: {
-        width: theme.rem(10),
-        marginBottom: theme.rem(4),
-    },
-    emptyText: {
-        marginBottom: theme.rem(2),
-        fontSize: theme.rem(1.6),
-        color: theme.palette.gray[3],
-        textAlign: 'center',
-    },
-    link: {
-        fontSize: theme.rem(1.6),
-        color: theme.palette.primary[0],
-        fontWeight: theme.text.weight[3],
-
-        '&:hover': {
-            fontWeight: theme.text.weight[3],
-            textDecoration: 'underline',
-        },
-    },
 }));
 
 interface IProps {
+    onSubmit: (page: number) => void;
     loading: boolean;
-    isEmpty: boolean;
-    emptyText?: string;
-    children: JSX.Element | JSX.Element[];
+    total: number;
 }
 
-const OffersLoader = ({ loading, isEmpty, emptyText, children }: IProps): ReactElement => {
+const OffersLoadMore = ({ onSubmit, total, loading }: IProps): ReactElement => {
     const css = useStyles();
 
-    return loading ? (
-        <div className={css.grid}>
+    const [innerLoading, setInnerLoading] = useState<boolean>(true);
+    const [page, setPage] = useState<number>(1);
+    const { ref, inView } = useInView({
+        threshold: 0,
+        rootMargin: '400px',
+    });
+
+    setTimeout(() => {
+        setInnerLoading(false);
+    }, 500);
+
+    useEffect(() => {
+        let id = null;
+        if (!loading && !innerLoading) {
+            setInnerLoading(true);
+
+            id = setTimeout(() => {
+                setInnerLoading(false);
+                setPage(value => value + 1);
+                onSubmit(page + 1);
+            }, 500);
+        }
+
+        return () => {
+            if (id !== null) clearTimeout(id);
+        };
+    }, [inView]);
+
+    return total > page ? (
+        <div ref={ref} className={css.grid}>
             <div>
                 <div className={css.img} />
                 <div className={css.text} />
@@ -127,18 +128,7 @@ const OffersLoader = ({ loading, isEmpty, emptyText, children }: IProps): ReactE
                 <div className={css.textShort} />
             </div>
         </div>
-    ) : isEmpty ? (
-        <div className={css.empty}>
-            <img className={css.emoji} src="/emoji/thinking.png" alt="" />
-            <p className={css.emptyText}>{emptyText || 'Кажется здесь пусто. Создайте свое объявление, не тяните резину'}</p>
-
-            <Link href={routes.new_offer(1)}>
-                <a className={css.link}>Создать обьявление</a>
-            </Link>
-        </div>
-    ) : (
-        <div className={css.grid}>{children}</div>
-    );
+    ) : null;
 };
 
-export default OffersLoader;
+export default OffersLoadMore;

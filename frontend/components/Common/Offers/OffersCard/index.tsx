@@ -173,13 +173,13 @@ const useStyles = createUseStyles((theme: Theme) => ({
 }));
 
 interface IProps {
-    product: IOfferCard;
+    offer: IOfferCard;
 }
 
-const OfferCard = ({ product }: IProps): ReactElement => {
+const OfferCard = ({ offer }: IProps): ReactElement => {
     const css = useStyles();
     const T = useTrans();
-    const { id, title, description, cover_image, is_promoted, is_deliverable, is_favorite, views, pub_date, price } = product;
+    const { id, title, description, cover_image, is_promoted, is_deliverable, is_favorite, views, pub_date, price } = offer;
 
     return (
         <div className={css.root}>

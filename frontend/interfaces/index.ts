@@ -77,7 +77,17 @@ export interface IOfferCard {
     extra_requirements?: string;
 }
 
-export interface IOfferState {
+export interface IOfferPaggination {
+    data: IOfferCard[] | null;
+    total: number;
+}
+
+export interface IOfferDynamic {
+    data: IOfferPaggination;
+    loading: boolean;
+}
+
+export interface IOfferStatic {
     data: IOfferCard[] | null;
     loading: boolean;
 }
@@ -110,8 +120,8 @@ export interface INewOffer {
 }
 
 export interface IOffers {
-    popular: IOfferState;
-    search: IOfferState;
+    popular: IOfferStatic;
+    search: IOfferDynamic;
     single: IOfferCard;
     newOffer: INewOffer;
 }
