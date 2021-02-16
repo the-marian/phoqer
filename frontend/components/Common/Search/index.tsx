@@ -1,5 +1,6 @@
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Params } from 'next/dist/next-server/server/router';
 import { useRouter } from 'next/router';
 import { ParsedUrlQueryInput } from 'querystring';
 import React, { ChangeEvent, FormEvent, ReactElement, useEffect, useState } from 'react';
@@ -137,7 +138,12 @@ const Search = (): ReactElement => {
 
     const handleSubmit = (event: FormEvent<HTMLFormElement>): void => {
         event.preventDefault();
-        history.push({ pathname: routes.offers.list, query });
+        const data: Params = {};
+        if (query.search.trim()) data.search = query.search;
+        if (query.category) data.category = query.category;
+        if (query.sub_category) data.sub_category = query.sub_category;
+
+        history.push({ pathname: routes.offers.list, query: data });
     };
 
     return (

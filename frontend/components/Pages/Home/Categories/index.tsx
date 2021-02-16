@@ -24,6 +24,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
         '@media (max-width: 1200px)': {
             gridTemplateColumns: theme.fr(config.category.grid.tablet),
         },
+        '@media (max-width: 960px)': {
+            gridTemplateColumns: theme.fr(config.category.grid.smallTablet),
+        },
         '@media (max-width: 550px)': {
             gridTemplateColumns: theme.fr(config.category.grid.mobile),
             gridGap: theme.rem(2, 1.5),
