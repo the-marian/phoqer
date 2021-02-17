@@ -1,6 +1,7 @@
 const config = {
     baseUrl: {
         development: (version = 'v1'): string => 'http://phoqer.com/api/' + version,
+        test: (version = 'v1'): string => 'http://phoqer.com/api/' + version,
         production: (version = 'v1'): string =>
             process.browser
                 ? 'http://phoqer.com/api/' + version

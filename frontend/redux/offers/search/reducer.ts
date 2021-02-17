@@ -5,7 +5,7 @@ import types from '../../types';
 import { IAction } from './saga';
 
 const search = (
-    state: IOfferDynamic = { data: { data: null, total: 0 }, loading: true },
+    state: IOfferDynamic = { data: { data: [], total: 0 }, loading: true },
     { type, payload }: IAction,
 ): IOfferDynamic => {
     switch (type) {

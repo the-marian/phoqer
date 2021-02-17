@@ -169,7 +169,7 @@ const StepTwo = (): ReactElement => {
                 </CheckTitle>
                 <div className={clsx(css.inputWrp, value.optional.deposit_val || css.inactive)}>
                     <input
-                        value={moneyFormat(value.deposit_val)}
+                        value={moneyFormat(value.deposit_val || 0)}
                         onChange={handleNumber}
                         className={clsx(css.input, errors.deposit_val && css.errors)}
                         name="deposit_val"
@@ -186,7 +186,7 @@ const StepTwo = (): ReactElement => {
                 </CheckTitle>
                 <div className={clsx(css.inputWrp, value.optional.min_rent_period || css.inactive)}>
                     <input
-                        value={moneyFormat(value.min_rent_period)}
+                        value={moneyFormat(value.min_rent_period || 0)}
                         onChange={handleNumber}
                         className={clsx(css.input, errors.min_rent_period && css.errors)}
                         name="min_rent_period"
@@ -203,7 +203,7 @@ const StepTwo = (): ReactElement => {
                 </CheckTitle>
                 <div className={clsx(css.inputWrp, value.optional.max_rent_period || css.inactive)}>
                     <input
-                        value={moneyFormat(value.max_rent_period)}
+                        value={moneyFormat(value.max_rent_period || 0)}
                         onChange={handleNumber}
                         className={clsx(css.input, errors.max_rent_period && css.errors)}
                         name="max_rent_period"

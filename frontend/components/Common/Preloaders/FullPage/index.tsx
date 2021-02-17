@@ -1,5 +1,5 @@
 import Router from 'next/router';
-import React, { ReactElement, useState } from 'react';
+import React, { ReactElement, useEffect, useState } from 'react';
 import { createUseStyles } from 'react-jss';
 
 import { Theme } from '../../../../assets/theme';
@@ -27,19 +27,31 @@ const FullPageLoader = (): ReactElement => {
     const css = useStyles();
     const [loader, setLoader] = useState(false);
 
-    Router.events.on('routeChangeStart', () => {
-        setLoader(true);
-    });
+    useEffect(() => {
+        const handleStart = (): void => {
+            setLoader(true);
+        };
+        const handleComplete = (): void => {
+            setLoader(false);
+        };
 
-    Router.events.on('routeChangeComplete', () => {
-        setLoader(false);
-    });
+        Router.events.on('routeChangeStart', handleStart);
+        Router.events.on('routeChangeComplete', handleComplete);
+
+        return () => {
+            Router.events.off('routeChangeStart', handleStart);
+            Router.events.off('routeChangeComplete', handleComplete);
+        };
+    }, []);
+
     return (
-        loader && (
-            <div className={css.wrp}>
-                <img className={css.img} src="/spinner.gif" alt="spinner" />
-            </div>
-        )
+        <>
+            {loader ? (
+                <div className={css.wrp}>
+                    <img className={css.img} src="/spinner.gif" alt="spinner" />
+                </div>
+            ) : null}
+        </>
     );
 };
 

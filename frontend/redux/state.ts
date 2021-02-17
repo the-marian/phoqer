@@ -5,18 +5,32 @@ const initState: IState = {
         auth_token: null,
     },
     filters: { open: true },
-    categories: null,
-    comments: { loading: false, data: null },
+    categories: [],
+    comments: { loading: false, data: [] },
     offers: {
         popular: {
-            data: null,
+            data: [],
             loading: true,
         },
         search: {
-            data: null,
+            data: {
+                data: [],
+                total: 1,
+            },
             loading: true,
         },
-        single: null,
+        single: {
+            id: '',
+            cover_image: '',
+            is_favorite: false,
+            is_promoted: false,
+            is_deliverable: false,
+            doc_needed: false,
+            price: 0,
+            title: '',
+            views: 0,
+            description: '',
+        },
         newOffer: {
             // step 1
             title: '',

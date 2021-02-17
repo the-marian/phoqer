@@ -169,7 +169,7 @@ const DropDown = ({
     const [selected, setSelected] = useState<string>(defaultValue?.name || placeholder || data[0].name);
 
     useEffect(() => {
-        if (defaultValue) setSelected(defaultValue.name || placeholder);
+        if (defaultValue) setSelected(defaultValue.name || placeholder || '');
         if (!defaultValue && placeholder) setSelected(placeholder);
     }, [defaultValue, placeholder]);
 
@@ -193,7 +193,7 @@ const DropDown = ({
     const handleReset = (event: MouseEvent<HTMLSpanElement>): void => {
         event.stopPropagation();
         onChange({ name: '', slug: '', type: 'main' });
-        setSelected(placeholder);
+        setSelected(placeholder || '');
         setDrop(false);
     };
 

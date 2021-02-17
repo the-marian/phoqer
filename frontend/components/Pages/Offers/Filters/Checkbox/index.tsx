@@ -53,9 +53,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
 }));
 
 interface State {
-    top: boolean;
-    checked: boolean;
-    pledge: boolean;
+    [key: string]: boolean;
 }
 
 const Checkbox = (): ReactElement => {
@@ -67,10 +65,10 @@ const Checkbox = (): ReactElement => {
     });
 
     const handleClick = (event: MouseEvent<HTMLButtonElement>): void => {
-        setState({
-            ...state,
-            [event.currentTarget.name]: !state[event.currentTarget.name],
-        });
+        setState(value => ({
+            ...value,
+            [event.currentTarget.name]: !value[event.currentTarget.name],
+        }));
     };
 
     return (

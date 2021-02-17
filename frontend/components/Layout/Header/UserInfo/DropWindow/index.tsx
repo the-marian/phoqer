@@ -95,6 +95,7 @@ const DropWindow = ({ onClose }: Props): ReactElement => {
     const T = useTrans();
     const auth = useAuth();
     const dispatch = useDispatch();
+    const body = document.querySelector('body');
 
     const [loading, setLoading] = useState(false);
 
@@ -115,74 +116,80 @@ const DropWindow = ({ onClose }: Props): ReactElement => {
         };
     }, []);
 
-    return ReactDOM.createPortal(
+    return (
         <>
-            <div className={css.wrp} onClick={onClose} aria-hidden="true" />
-            <ul className={css.root}>
-                <li>
-                    <Link href={routes.profile.single()} as={routes.profile.single(auth.first_name)}>
-                        <a className={css.item}>
-                            <FontAwesomeIcon icon={faUser} />
-                            <span className={css.text}>{T.my_profile}</span>
-                        </a>
-                    </Link>
-                </li>
-                <li>
-                    <Link href={routes.root}>
-                        <a className={css.item}>
-                            <FontAwesomeIcon icon={faBullhorn} />
-                            <span className={css.text}>{T.my_offers}</span>
-                        </a>
-                    </Link>
-                </li>
-                <li>
-                    <Link href={routes.root}>
-                        <a className={css.item}>
-                            <FontAwesomeIcon icon={faEnvelope} />
-                            <span className={css.text}>{T.messages}</span>
-                            <span className={css.red}>(2)</span>
-                        </a>
-                    </Link>
-                </li>
-                <li>
-                    <Link href={routes.root}>
-                        <a className={css.item}>
-                            <FontAwesomeIcon icon={faCommentAlt} />
-                            <span className={css.text}>{T.reviews}</span>
-                            <span className={css.red}>(12)</span>
-                        </a>
-                    </Link>
-                </li>
-                <li>
-                    <Link href={routes.root}>
-                        <a className={css.item}>
-                            <FontAwesomeIcon icon={faSlidersH} />
-                            <span className={css.text}>{T.settings}</span>
-                        </a>
-                    </Link>
-                </li>
-                <li>
-                    <Link href={routes.root}>
-                        <a className={css.item}>
-                            <FontAwesomeIcon icon={faUserPlus} />
-                            <span className={css.text}>{T.invite_friends}</span>
-                        </a>
-                    </Link>
-                </li>
-                <li>
-                    <button type="button" className={css.item} onClick={handleLogout}>
-                        <FontAwesomeIcon icon={faSignOutAlt} />
-                        <span className={css.text}>{T.logout}</span>
-                    </button>
-                </li>
-                {loading && (
-                    <li>
-                        <Spinner />
-                    </li>
-                )}
-            </ul>
-        </>,
-        document.querySelector('body'),
+            {body
+                ? ReactDOM.createPortal(
+                      <>
+                          <div className={css.wrp} onClick={onClose} aria-hidden="true" />
+                          <ul className={css.root}>
+                              <li>
+                                  <Link href={routes.profile.single()} as={routes.profile.single(auth?.first_name)}>
+                                      <a className={css.item}>
+                                          <FontAwesomeIcon icon={faUser} />
+                                          <span className={css.text}>{T.my_profile}</span>
+                                      </a>
+                                  </Link>
+                              </li>
+                              <li>
+                                  <Link href={routes.root}>
+                                      <a className={css.item}>
+                                          <FontAwesomeIcon icon={faBullhorn} />
+                                          <span className={css.text}>{T.my_offers}</span>
+                                      </a>
+                                  </Link>
+                              </li>
+                              <li>
+                                  <Link href={routes.root}>
+                                      <a className={css.item}>
+                                          <FontAwesomeIcon icon={faEnvelope} />
+                                          <span className={css.text}>{T.messages}</span>
+                                          <span className={css.red}>(2)</span>
+                                      </a>
+                                  </Link>
+                              </li>
+                              <li>
+                                  <Link href={routes.root}>
+                                      <a className={css.item}>
+                                          <FontAwesomeIcon icon={faCommentAlt} />
+                                          <span className={css.text}>{T.reviews}</span>
+                                          <span className={css.red}>(12)</span>
+                                      </a>
+                                  </Link>
+                              </li>
+                              <li>
+                                  <Link href={routes.root}>
+                                      <a className={css.item}>
+                                          <FontAwesomeIcon icon={faSlidersH} />
+                                          <span className={css.text}>{T.settings}</span>
+                                      </a>
+                                  </Link>
+                              </li>
+                              <li>
+                                  <Link href={routes.root}>
+                                      <a className={css.item}>
+                                          <FontAwesomeIcon icon={faUserPlus} />
+                                          <span className={css.text}>{T.invite_friends}</span>
+                                      </a>
+                                  </Link>
+                              </li>
+                              <li>
+                                  <button type="button" className={css.item} onClick={handleLogout}>
+                                      <FontAwesomeIcon icon={faSignOutAlt} />
+                                      <span className={css.text}>{T.logout}</span>
+                                  </button>
+                              </li>
+                              {loading && (
+                                  <li>
+                                      <Spinner />
+                                  </li>
+                              )}
+                          </ul>
+                      </>,
+                      body,
+                  )
+                : null}
+        </>
     );
 };
 

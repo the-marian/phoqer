@@ -104,27 +104,29 @@ const FullPageGallery = ({ index = 0, images }: IProps): ReactElement => {
 
     return (
         <FullPageModal>
-            <img
-                className={css.modal}
-                title={images.length > 1 ? 'Вы можете управлять галереей используя вашу клавиатуру' : null}
-                src={images[current]}
-                alt=""
-            />
-            {images.length > 1 && (
-                <>
-                    <nav title="Вы можете управлять галереей используя вашу клавиатуру" className={css.nav}>
-                        <button type="button" onClick={handlePrev}>
-                            <span>Prev</span>
-                            <FontAwesomeIcon icon={faChevronLeft} />
-                        </button>
-                        <button type="button" onClick={handleNext}>
-                            <span>Next</span>
-                            <FontAwesomeIcon icon={faChevronRight} />
-                        </button>
-                    </nav>
-                    <div className={css.count}>{`${current + 1} __ ${images.length}`}</div>
-                </>
-            )}
+            <>
+                <img
+                    className={css.modal}
+                    title={images.length > 1 ? 'Вы можете управлять галереей используя вашу клавиатуру' : ''}
+                    src={images[current]}
+                    alt=""
+                />
+                {images.length > 1 ? (
+                    <>
+                        <nav title="Вы можете управлять галереей используя вашу клавиатуру" className={css.nav}>
+                            <button type="button" onClick={handlePrev}>
+                                <span>Prev</span>
+                                <FontAwesomeIcon icon={faChevronLeft} />
+                            </button>
+                            <button type="button" onClick={handleNext}>
+                                <span>Next</span>
+                                <FontAwesomeIcon icon={faChevronRight} />
+                            </button>
+                        </nav>
+                        <div className={css.count}>{`${current + 1} __ ${images.length}`}</div>
+                    </>
+                ) : null}
+            </>
         </FullPageModal>
     );
 };

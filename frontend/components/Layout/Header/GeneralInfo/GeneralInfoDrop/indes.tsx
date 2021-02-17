@@ -56,6 +56,7 @@ interface IProps {
 const GeneralInfoDrop = ({ onClick }: IProps): ReactElement => {
     const css = useStyles();
     const T = useTrans();
+    const body = document.querySelector('body');
 
     useEffect(() => {
         const handleClose = (event: KeyboardEvent): void => {
@@ -86,19 +87,25 @@ const GeneralInfoDrop = ({ onClick }: IProps): ReactElement => {
         );
     };
 
-    return ReactDOM.createPortal(
+    return (
         <>
-            <div className={css.back} onClick={onClick} aria-hidden="true" />
-            <div className={css.drop}>
-                <button className={css.btn} type="button" onClick={handleLoginModal}>
-                    {T.login}
-                </button>
-                <button className={css.btn} type="button" onClick={handleRegisterModal}>
-                    {T.join}
-                </button>
-            </div>
-        </>,
-        document.querySelector('body'),
+            {body
+                ? ReactDOM.createPortal(
+                      <>
+                          <div className={css.back} onClick={onClick} aria-hidden="true" />
+                          <div className={css.drop}>
+                              <button className={css.btn} type="button" onClick={handleLoginModal}>
+                                  {T.login}
+                              </button>
+                              <button className={css.btn} type="button" onClick={handleRegisterModal}>
+                                  {T.join}
+                              </button>
+                          </div>
+                      </>,
+                      body,
+                  )
+                : null}
+        </>
     );
 };
 

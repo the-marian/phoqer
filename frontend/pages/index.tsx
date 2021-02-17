@@ -38,7 +38,7 @@ export const getServerSideProps = wrapper.getServerSideProps(
         store.dispatch({ type: types.GET_CATEGORIES_START });
         store.dispatch({ type: types.GET_POPULAR_OFFERS_START });
         store.dispatch(END);
-        await store.sagaTask.toPromise();
+        await store?.sagaTask?.toPromise();
     },
 );
 

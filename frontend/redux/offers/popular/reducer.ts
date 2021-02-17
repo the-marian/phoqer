@@ -8,7 +8,7 @@ interface IAction {
     payload: IOfferCard[] | IState | null;
 }
 
-const popular = (state: IOfferStatic = { data: null, loading: true }, { type, payload }: IAction): IOfferStatic => {
+const popular = (state: IOfferStatic = { data: [], loading: true }, { type, payload }: IAction): IOfferStatic => {
     switch (type) {
         case HYDRATE:
             return (payload as IState).offers.popular;

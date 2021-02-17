@@ -78,7 +78,7 @@ const Requirements = (): ReactElement => {
                 </li>
             </ul>
             <ul className={css.emoji}>
-                <li className={offer?.is_deliverable ? null : css.gray}>
+                <li className={offer?.is_deliverable ? undefined : css.gray}>
                     <img src="/emoji/delivery.png" alt="" />
                     <span>
                         {offer?.is_deliverable
@@ -86,7 +86,7 @@ const Requirements = (): ReactElement => {
                             : 'Владелец НЕ осуществляет доставку товара'}
                     </span>
                 </li>
-                <li className={offer?.doc_needed ? null : css.gray}>
+                <li className={offer?.doc_needed ? undefined : css.gray}>
                     <img src="/emoji/documents.png" alt="" />
                     <span>
                         {offer?.doc_needed

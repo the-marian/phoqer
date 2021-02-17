@@ -61,8 +61,8 @@ function* postOffer({ payload, history }: IAction) {
             extra_requirements,
             images: payload || [],
             cover_image: payload && payload?.[0]?.url,
-            category: category.type !== 'sub' ? category.slug : null,
-            sub_category: category.type === 'sub' ? category.slug : null,
+            category: category?.type !== 'sub' ? category?.slug : null,
+            sub_category: category?.type === 'sub' ? category?.slug : null,
         } as IBody);
 
         if (status < 200 || status >= 300) throw new Error();

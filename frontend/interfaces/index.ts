@@ -1,4 +1,4 @@
-import { Store } from 'redux';
+import { AnyAction, Store } from 'redux';
 
 /**
  * Document structure
@@ -78,7 +78,7 @@ export interface IOfferCard {
 }
 
 export interface IOfferPaggination {
-    data: IOfferCard[] | null;
+    data: IOfferCard[];
     total: number;
 }
 
@@ -88,7 +88,7 @@ export interface IOfferDynamic {
 }
 
 export interface IOfferStatic {
-    data: IOfferCard[] | null;
+    data: IOfferCard[];
     loading: boolean;
 }
 
@@ -153,11 +153,11 @@ export interface IComment {
 export interface IState {
     auth: IAuth;
     filters: { open: boolean };
-    categories: ICategories[] | null;
+    categories: ICategories[];
     offers: IOffers;
-    comments: { loading: boolean; data: IComment[] | null };
+    comments: { loading: boolean; data: IComment[] };
 }
 
-export interface IStore extends Store<IState> {
+export interface IStore extends Store<IState, AnyAction> {
     sagaTask?: { toPromise: () => void };
 }

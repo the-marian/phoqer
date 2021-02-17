@@ -171,7 +171,7 @@ const StepThree = (): ReactElement => {
                         Цена (грн/день) <span className={css.red}>*</span>
                     </h4>
                     <input
-                        value={moneyFormat(value.price)}
+                        value={moneyFormat(value.price || 0)}
                         onChange={handlePrice}
                         className={clsx(css.input, errors.price && css.errors)}
                         type="text"

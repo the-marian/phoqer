@@ -83,7 +83,7 @@ const OffersLoadMore = ({ onSubmit, total, loading }: IProps): ReactElement => {
     }, 500);
 
     useEffect(() => {
-        let id = null;
+        let id: NodeJS.Timeout | null = null;
         if (!loading && !innerLoading) {
             setInnerLoading(true);
 
@@ -99,37 +99,41 @@ const OffersLoadMore = ({ onSubmit, total, loading }: IProps): ReactElement => {
         };
     }, [inView]);
 
-    return total > page ? (
-        <div ref={ref} className={css.grid}>
-            <div>
-                <div className={css.img} />
-                <div className={css.text} />
-                <div className={css.text} />
-                <div className={css.textShort} />
-            </div>
+    return (
+        <>
+            {total > page ? (
+                <div ref={ref} className={css.grid}>
+                    <div>
+                        <div className={css.img} />
+                        <div className={css.text} />
+                        <div className={css.text} />
+                        <div className={css.textShort} />
+                    </div>
 
-            <div>
-                <div className={css.img} />
-                <div className={css.text} />
-                <div className={css.text} />
-                <div className={css.textShort} />
-            </div>
+                    <div>
+                        <div className={css.img} />
+                        <div className={css.text} />
+                        <div className={css.text} />
+                        <div className={css.textShort} />
+                    </div>
 
-            <div className={css.wrp}>
-                <div className={css.img} />
-                <div className={css.text} />
-                <div className={css.text} />
-                <div className={css.textShort} />
-            </div>
+                    <div className={css.wrp}>
+                        <div className={css.img} />
+                        <div className={css.text} />
+                        <div className={css.text} />
+                        <div className={css.textShort} />
+                    </div>
 
-            <div className={css.wrp}>
-                <div className={css.img} />
-                <div className={css.text} />
-                <div className={css.text} />
-                <div className={css.textShort} />
-            </div>
-        </div>
-    ) : null;
+                    <div className={css.wrp}>
+                        <div className={css.img} />
+                        <div className={css.text} />
+                        <div className={css.text} />
+                        <div className={css.textShort} />
+                    </div>
+                </div>
+            ) : null}
+        </>
+    );
 };
 
 export default OffersLoadMore;

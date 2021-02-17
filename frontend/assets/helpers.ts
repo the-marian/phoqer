@@ -27,14 +27,14 @@ export const findSubCategory = (data: ICategories[], slug: string): IDropList | 
     let subCategory;
     if (categories.length) {
         for (const cat of categories) {
-            subCategory = cat.sub_categories.find(item => item.slug === slug);
+            subCategory = cat.sub_categories?.find(item => item.slug === slug);
             if (subCategory) break;
         }
     }
     return subCategory || null;
 };
 
-type IFunction = (...args) => void;
+type IFunction = (...args: unknown[]) => void;
 export const throttle = (func: IFunction, time: number): IFunction => {
     let timeout = true;
     return (...args) => {
@@ -54,14 +54,14 @@ export const decode = (cookie = ''): string => decodeURI(cookie).replace(/\\"/gi
 // parse cookie on server
 export const parseCookie = <T>(cookie = '', key = 'phoqer_auth'): T | null => {
     try {
-        return JSON.parse(
-            decode(cookie)
-                ?.split(' ')
-                ?.find(i => i.includes(key))
-                ?.replace(/\+/g, ' ')
-                ?.replace(/%2C/gi, ',')
-                ?.split(key + '=')[1],
-        );
+        const obj = decode(cookie)
+            ?.split(' ')
+            ?.find(i => i.includes(key))
+            ?.replace(/\+/g, ' ')
+            ?.replace(/%2C/gi, ',')
+            ?.split(key + '=')[1];
+
+        return obj ? JSON.parse(obj) : null;
     } catch (error) {
         return null;
     }

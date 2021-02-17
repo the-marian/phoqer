@@ -48,7 +48,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
 interface IProps {
     firstName: string;
     lastName: string;
-    avatar?: string;
+    avatar?: string | null;
     width?: number;
     height?: number;
 }
