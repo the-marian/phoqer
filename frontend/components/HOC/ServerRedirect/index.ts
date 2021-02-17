@@ -4,12 +4,11 @@ import routes from '../../../assets/routes';
 import { IAuth, IStore } from '../../../interfaces';
 import serverCookie from '../ServerCookie';
 
-type ServerProp = GetServerSidePropsContext & { store?: IStore; auth?: IAuth | null };
-type Callback = (ctx: GetServerSidePropsContext & { store?: IStore; auth?: IAuth | null }) => Promise<void> | void;
+type Callback = (ctx: GetServerSidePropsContext & { store: IStore }) => Promise<void> | void;
 
 const serverRedirect = (func?: Callback | null, path?: string | null, reverse = false): Callback =>
     serverCookie(
-        async (ctx: ServerProp): Promise<void> => {
+        async (ctx: GetServerSidePropsContext & { store: IStore; auth: IAuth }): Promise<void> => {
             const redirect = reverse ? ctx.auth?.auth_token : !ctx.auth?.auth_token;
             if (redirect) {
                 ctx.res.statusCode = 302;
