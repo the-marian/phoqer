@@ -1,7 +1,10 @@
+import { GetServerSideProps, GetServerSidePropsContext } from 'next';
 import { useRouter } from 'next/router';
+import { ParsedUrlQuery } from 'querystring';
 import React, { ReactElement, useEffect, useState } from 'react';
 import { createUseStyles } from 'react-jss';
 import { useSelector } from 'react-redux';
+import { AnyAction, Store } from 'redux';
 import { END } from 'redux-saga';
 
 import routes from '../../../assets/routes';
@@ -17,7 +20,7 @@ import StepThree from '../../../components/Pages/NewOffer/StepThree';
 import StepTwo from '../../../components/Pages/NewOffer/StepTwo';
 import Success from '../../../components/Pages/NewOffer/Success';
 import useTrans from '../../../hooks/trans.hook';
-import { INewOffer, IState, IStore } from '../../../interfaces';
+import { IAuth, INewOffer, IState, IStore } from '../../../interfaces';
 import { wrapper } from '../../../redux/store';
 import types from '../../../redux/types';
 
@@ -42,7 +45,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
 }));
 
-const STEPS = {
+const STEPS: { [key: string]: JSX.Element | JSX.Element[] } = {
     1: <StepOne />,
     2: <StepTwo />,
     3: <StepThree />,
@@ -80,31 +83,34 @@ const NewOffer = (): ReactElement => {
             <Meta title={T.create_new_offer} h1={T.share_with_others_and_earn} />
             <Main>
                 <Container>
-                    <h2 className={css.title}>{T.share_with_others_and_earn}</h2>
+                    <>
+                        <h2 className={css.title}>{T.share_with_others_and_earn}</h2>
 
-                    {index < 4 && <Stepper title={STEPS_TITLE} current={+index} />}
+                        {index < 4 ? <Stepper title={STEPS_TITLE} current={+index} /> : null}
 
-                    {query.step !== undefined && (STEPS[index] || STEPS[1])}
+                        {query.step !== undefined ? STEPS[index] || STEPS[1] : null}
 
-                    {index < 3 && (
-                        <p className={css.text}>
-                            <span className={css.red}>*</span> Обязательное поле
-                        </p>
-                    )}
+                        {index < 3 && (
+                            <p className={css.text}>
+                                <span className={css.red}>*</span> Обязательное поле
+                            </p>
+                        )}
+                    </>
                 </Container>
             </Main>
         </>
     );
 };
 
-export const getServerSideProps = wrapper.getServerSideProps(
+type ServerProp = GetServerSidePropsContext & { store: IStore; auth?: IAuth | null };
+export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps(
     serverRedirect(
-        async ({ store }: { store: IStore }): Promise<void> => {
-            store.dispatch({ type: types.GET_CATEGORIES_START });
-            store.dispatch(END);
-            await store.sagaTask.toPromise();
+        async (ctx): Promise<void> => {
+            ctx?.store?.dispatch({ type: types.GET_CATEGORIES_START });
+            ctx?.store?.dispatch(END);
+            await (ctx?.store as IStore)?.sagaTask?.toPromise();
         },
-    ),
+    ) as ServerProp,
 );
 
 export default NewOffer;

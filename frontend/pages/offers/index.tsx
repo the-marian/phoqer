@@ -1,4 +1,4 @@
-import { GetServerSideProps, GetServerSidePropsContext } from 'next';
+import { GetServerSideProps } from 'next';
 import { useRouter } from 'next/router';
 import React, { ReactElement } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -51,12 +51,12 @@ const OffersPage = (): ReactElement => {
 };
 
 export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps(
-    async (ctx: GetServerSidePropsContext & { store: IStore }): Promise<void> => {
+    async (ctx): Promise<void> => {
         ctx?.store?.dispatch({ type: types.GET_CATEGORIES_START });
         ctx?.store?.dispatch({ type: types.GET_POPULAR_OFFERS_START });
         ctx?.store?.dispatch({ type: types.SEARCH_OFFERS_START, payload: ctx.query });
         ctx?.store?.dispatch(END);
-        await ctx?.store?.sagaTask?.toPromise();
+        await (ctx.store as IStore)?.sagaTask?.toPromise();
     },
 );
 
