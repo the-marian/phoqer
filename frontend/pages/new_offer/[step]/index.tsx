@@ -1,10 +1,8 @@
 import { GetServerSideProps, GetServerSidePropsContext } from 'next';
 import { useRouter } from 'next/router';
-import { ParsedUrlQuery } from 'querystring';
 import React, { ReactElement, useEffect, useState } from 'react';
 import { createUseStyles } from 'react-jss';
 import { useSelector } from 'react-redux';
-import { AnyAction, Store } from 'redux';
 import { END } from 'redux-saga';
 
 import routes from '../../../assets/routes';
@@ -20,7 +18,7 @@ import StepThree from '../../../components/Pages/NewOffer/StepThree';
 import StepTwo from '../../../components/Pages/NewOffer/StepTwo';
 import Success from '../../../components/Pages/NewOffer/Success';
 import useTrans from '../../../hooks/trans.hook';
-import { IAuth, INewOffer, IState, IStore } from '../../../interfaces';
+import { INewOffer, IState, IStore } from '../../../interfaces';
 import { wrapper } from '../../../redux/store';
 import types from '../../../redux/types';
 
@@ -102,15 +100,13 @@ const NewOffer = (): ReactElement => {
     );
 };
 
-type ServerProp = GetServerSidePropsContext & { store: IStore; auth?: IAuth | null };
 export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps(
-    serverRedirect(
-        async (ctx): Promise<void> => {
-            ctx?.store?.dispatch({ type: types.GET_CATEGORIES_START });
-            ctx?.store?.dispatch(END);
-            await (ctx?.store as IStore)?.sagaTask?.toPromise();
-        },
-    ) as ServerProp,
+    async (ctx): Promise<void> => {
+        if (serverRedirect((ctx as unknown) as GetServerSidePropsContext)) return;
+        ctx?.store?.dispatch({ type: types.GET_CATEGORIES_START });
+        ctx?.store?.dispatch(END);
+        await (ctx?.store as IStore)?.sagaTask?.toPromise();
+    },
 );
 
 export default NewOffer;
