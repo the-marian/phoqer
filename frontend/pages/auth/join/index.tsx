@@ -1,3 +1,4 @@
+import { GetServerSidePropsContext } from 'next';
 import React, { ReactElement } from 'react';
 
 import JoinForm from '../../../components/Common/Auth/JoinForm';
@@ -21,6 +22,8 @@ const Join = (): ReactElement => {
     );
 };
 
-export const getServerSideProps = wrapper.getServerSideProps(serverRedirect(null, null, true));
+export const getServerSideProps = wrapper.getServerSideProps((ctx): void => {
+    serverRedirect((ctx as unknown) as GetServerSidePropsContext, null, true);
+});
 
 export default Join;

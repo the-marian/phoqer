@@ -1,3 +1,4 @@
+import { GetServerSidePropsContext } from 'next';
 import React, { ReactElement } from 'react';
 
 import LoginForm from '../../../components/Common/Auth/LoginForm';
@@ -21,6 +22,8 @@ const Login = (): ReactElement => {
     );
 };
 
-export const getServerSideProps = wrapper.getServerSideProps(serverRedirect(null, null, true));
+export const getServerSideProps = wrapper.getServerSideProps((ctx): void => {
+    serverRedirect((ctx as unknown) as GetServerSidePropsContext, null, true);
+});
 
 export default Login;

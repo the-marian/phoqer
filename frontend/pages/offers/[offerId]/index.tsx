@@ -1,4 +1,4 @@
-import { GetServerSidePropsContext } from 'next';
+import { GetServerSideProps } from 'next';
 import React, { ReactElement } from 'react';
 import DayPicker from 'react-day-picker';
 import { createUseStyles } from 'react-jss';
@@ -172,7 +172,7 @@ const SingleOfferPage = (): ReactElement => {
             />
             <Main>
                 <Container>
-                    {offer?.images.length > 1 ? (
+                    {offer.images && offer.images.length > 1 ? (
                         <OfferSlider images={offer?.images} />
                     ) : (
                         <img
@@ -240,17 +240,15 @@ const SingleOfferPage = (): ReactElement => {
     );
 };
 
-export const getServerSideProps = wrapper.getServerSideProps(
-    async ({ store, ...ctx }: GetServerSidePropsContext & { store: IStore }): Promise<void> => {
-        if (!ctx.query?.offerId) return null;
+export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps(async ctx => {
+    if (!ctx.query?.offerId) return;
 
-        store.dispatch({ type: types.GET_CATEGORIES_START });
-        store.dispatch({ type: types.GET_POPULAR_OFFERS_START });
-        store.dispatch({ type: types.GET_COMMENTS_START, payload: ctx.query?.offerId });
-        store.dispatch({ type: types.GET_SINGLE_OFFER_START, payload: ctx.query?.offerId });
-        store.dispatch(END);
-        await store.sagaTask.toPromise();
-    },
-);
+    ctx.store.dispatch({ type: types.GET_CATEGORIES_START });
+    ctx.store.dispatch({ type: types.GET_POPULAR_OFFERS_START });
+    ctx.store.dispatch({ type: types.GET_COMMENTS_START, payload: ctx.query?.offerId });
+    ctx.store.dispatch({ type: types.GET_SINGLE_OFFER_START, payload: ctx.query?.offerId });
+    ctx.store.dispatch(END);
+    await (ctx.store as IStore)?.sagaTask?.toPromise();
+});
 
 export default SingleOfferPage;

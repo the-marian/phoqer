@@ -1,3 +1,4 @@
+import { GetServerSideProps, GetServerSidePropsContext } from 'next';
 import { useRouter } from 'next/router';
 import React, { ReactElement, useEffect, useState } from 'react';
 import { createUseStyles } from 'react-jss';
@@ -42,7 +43,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
 }));
 
-const STEPS = {
+const STEPS: { [key: string]: JSX.Element | JSX.Element[] } = {
     1: <StepOne />,
     2: <StepTwo />,
     3: <StepThree />,
@@ -80,31 +81,32 @@ const NewOffer = (): ReactElement => {
             <Meta title={T.create_new_offer} h1={T.share_with_others_and_earn} />
             <Main>
                 <Container>
-                    <h2 className={css.title}>{T.share_with_others_and_earn}</h2>
+                    <>
+                        <h2 className={css.title}>{T.share_with_others_and_earn}</h2>
 
-                    {index < 4 && <Stepper title={STEPS_TITLE} current={+index} />}
+                        {index < 4 ? <Stepper title={STEPS_TITLE} current={+index} /> : null}
 
-                    {query.step !== undefined && (STEPS[index] || STEPS[1])}
+                        {query.step !== undefined ? STEPS[index] || STEPS[1] : null}
 
-                    {index < 3 && (
-                        <p className={css.text}>
-                            <span className={css.red}>*</span> Обязательное поле
-                        </p>
-                    )}
+                        {index < 3 && (
+                            <p className={css.text}>
+                                <span className={css.red}>*</span> Обязательное поле
+                            </p>
+                        )}
+                    </>
                 </Container>
             </Main>
         </>
     );
 };
 
-export const getServerSideProps = wrapper.getServerSideProps(
-    serverRedirect(
-        async ({ store }: { store: IStore }): Promise<void> => {
-            store.dispatch({ type: types.GET_CATEGORIES_START });
-            store.dispatch(END);
-            await store.sagaTask.toPromise();
-        },
-    ),
+export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps(
+    async (ctx): Promise<void> => {
+        if (serverRedirect((ctx as unknown) as GetServerSidePropsContext)) return;
+        ctx?.store?.dispatch({ type: types.GET_CATEGORIES_START });
+        ctx?.store?.dispatch(END);
+        await (ctx?.store as IStore)?.sagaTask?.toPromise();
+    },
 );
 
 export default NewOffer;
