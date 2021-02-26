@@ -1,11 +1,10 @@
 import { combineReducers } from 'redux';
-
 import auth from './auth/reducer';
 import categories from './categories/reducer';
 import comments from './comments/reducer';
 import filters from './filters/reducer';
 import offers from './offers/reducer';
-import public_profile from './public_profile/reducer';
+import profiles from './profile/reducer'
 
 const rootReducer = combineReducers({
     auth,
@@ -13,7 +12,7 @@ const rootReducer = combineReducers({
     offers,
     comments,
     categories,
-    public_profile,
+    profiles
 });
 
 export default rootReducer;
