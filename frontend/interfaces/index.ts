@@ -151,7 +151,7 @@ export interface IState {
     categories: ICategories[] | null;
     offers: IOffers;
     comments: { loading: boolean; data: IComment[] | null };
-    profile: {
+    profiles: {
         public: IPublicProfile | null;
         private: null;
     };
