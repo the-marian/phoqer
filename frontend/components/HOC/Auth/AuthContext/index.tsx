@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 
 import { IAuth, IState } from '../../../../interfaces';
 
-export const Auth = createContext<[value: IAuth | null, setValue: (t: IAuth | null) => void]>(null);
+export const Auth = createContext<[value: IAuth | null, setValue: ((t: IAuth | null) => void) | null]>([null, null]);
 
 interface IProps {
     authServer?: IAuth | null;

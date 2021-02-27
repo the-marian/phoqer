@@ -20,11 +20,11 @@ api/v1/offers/search/
 - ordering=pud_date (ascending)
 - ordering=-pud_date (descending) Также работает сортировка по: (views, price, deposit_val). Можно сортировать одновременно по нескольким полям. Пример (ordering=views,price)
 
-seach=Marine ( ищет по полям title и description ) на английском языке не чуствительно к регистру, к сожалению на кирилице чуствительно, это баг который я хз пока как решить
+search=Marine ( ищет по полям title и description ) на английском языке не чуствительно к регистру, к сожалению на кирилице чуствительно, это баг который я хз пока как решить
 
 Пример одного такого запроса:
 ```
-http://127.0.0.1:8000/api/v1/offers/search/?category=sport&city=%D0%9A%D0%B8%D0%B5%D0%B2&ordering=-pud_date&seach=Marine&&sub_category=bicycles
+http://127.0.0.1:8000/api/v1/offers/search/?category=sport&city=%D0%9A%D0%B8%D0%B5%D0%B2&ordering=-pud_date&search=Marine&&sub_category=bicycles
 ```
 Вернет вот что:
 

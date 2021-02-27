@@ -133,13 +133,13 @@ interface IProps {
     images: { id?: number | null; url: string }[];
 }
 
-let slider1 = null;
-let slider2 = null;
+let slider1: Slider | undefined;
+let slider2: Slider | undefined;
 
 const OfferSlider = ({ images }: IProps): ReactElement => {
     const css = useStyles();
-    const [nav1, setNav1] = useState(null);
-    const [nav2, setNav2] = useState(null);
+    const [nav1, setNav1] = useState<Slider | undefined>();
+    const [nav2, setNav2] = useState<Slider | undefined>();
 
     useEffect(() => {
         setNav1(slider1);
@@ -152,7 +152,7 @@ const OfferSlider = ({ images }: IProps): ReactElement => {
         slider1?.slickGoTo(index);
     };
 
-    const handleModal = index => (): void => {
+    const handleModal = (index: number) => (): void => {
         modal.open(<FullPageGallery images={images.map(item => item.url)} index={index} />);
     };
 
@@ -160,7 +160,7 @@ const OfferSlider = ({ images }: IProps): ReactElement => {
         <div className={css.flex}>
             <Slider
                 key={1}
-                ref={slider => (slider1 = slider)}
+                ref={slider => (slider1 = slider || undefined)}
                 asNavFor={nav2}
                 slidesToShow={1}
                 slidesToScroll={1}
@@ -200,7 +200,7 @@ const OfferSlider = ({ images }: IProps): ReactElement => {
                 initialSlide={0}
                 swipeToSlide
                 centerMode
-                ref={slider => (slider2 = slider)}
+                ref={slider => (slider2 = slider || undefined)}
                 asNavFor={nav1}
                 arrows={false}
                 draggable

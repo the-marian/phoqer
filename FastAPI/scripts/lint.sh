@@ -2,5 +2,5 @@
 
 set -x
 
-flake8 .
-mypy .
+flake8 ..
+mypy ..

@@ -61,9 +61,10 @@ const StepThree = (): ReactElement => {
             dispatch({
                 history,
                 type: types.POST_OFFER_START,
-                payload: res?.successful?.map((item: UploadedUppyFile<string, { images_url: [string] }>) => ({
-                    url: config.img + item?.response?.body?.images_url?.[0],
-                })),
+                payload:
+                    res?.successful?.map((value: UploadedUppyFile<unknown, { images_url?: [string] }>) => ({
+                        url: config.img + value?.response?.body?.images_url?.[0],
+                    })) || [],
             });
         } catch (error) {
             notifications('error');

@@ -69,7 +69,7 @@ const Meta = ({ title, description, keywords, icon, h1 = '' }: IProps): ReactEle
                 <link rel="alternate" hrefLang="en" href={url('en/')} />
                 <link rel="alternate" hrefLang="ru" href={url('ru/')} />
             </Head>
-            <h1 className={css.title}>{h1 || '' + T.site_desc}</h1>
+            <h1 className={css.title}>{(h1 || '') + T.site_desc}</h1>
         </>
     );
 };

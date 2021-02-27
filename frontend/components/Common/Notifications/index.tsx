@@ -15,7 +15,7 @@ const notifications = (type: ModalType, text?: string): void => {
             break;
 
         case 'success':
-            modal.open(<NotificationSuccess text={text} />);
+            modal.open(<NotificationSuccess text={text || 'Success'} />);
             break;
 
         default:

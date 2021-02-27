@@ -54,21 +54,31 @@ interface IProps {
 const Breadcrumbs = ({ data, end }: IProps): ReactElement => {
     const css = useStyles();
 
-    return data?.length ? (
-        <ul className={css.root}>
-            {data.map(({ label, link, as }) => (
-                <li key={link}>
-                    <Link href={link} as={as} passHref>
-                        <a>{label}</a>
-                    </Link>
-                    <span className={css.gray}>{' / '}</span>
-                </li>
-            ))}
-            <li>
-                <span className={css.end}>{` ${end}`}</span>
-            </li>
-        </ul>
-    ) : null;
+    return (
+        <>
+            {data?.length ? (
+                <ul className={css.root}>
+                    {data.map(({ label, link, as }) => (
+                        <li key={link}>
+                            {as ? (
+                                <Link href={link} as={as} passHref>
+                                    <a>{label}</a>
+                                </Link>
+                            ) : (
+                                <Link href={link} passHref>
+                                    <a>{label}</a>
+                                </Link>
+                            )}
+                            <span className={css.gray}>{' / '}</span>
+                        </li>
+                    ))}
+                    <li>
+                        <span className={css.end}>{` ${end}`}</span>
+                    </li>
+                </ul>
+            ) : null}
+        </>
+    );
 };
 
 export default Breadcrumbs;

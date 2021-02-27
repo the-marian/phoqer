@@ -1,13 +1,16 @@
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Params } from 'next/dist/next-server/server/router';
 import { useRouter } from 'next/router';
-import React, { ReactElement } from 'react';
+import { ParsedUrlQueryInput } from 'querystring';
+import React, { ChangeEvent, FormEvent, ReactElement, useEffect, useState } from 'react';
 import { createUseStyles } from 'react-jss';
 
 import routes from '../../../assets/routes';
 import { Theme } from '../../../assets/theme';
 import useMedia from '../../../hooks/media.hook';
 import useTrans from '../../../hooks/trans.hook';
+import { IDropValue } from '../../../interfaces';
 import LinkArrow from '../../Layout/LinkArrow';
 import OptionsDesktop from './OptionsDesktop';
 import OptionsMobile from './OptionsMobile';
@@ -29,7 +32,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',
-        height: theme.rem(7),
+        height: theme.rem(6),
         width: '100%',
         paddingLeft: theme.rem(2.5),
         background: theme.palette.gray[1],
@@ -51,7 +54,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         border: 'none',
     },
     btn: {
-        height: theme.rem(7),
+        height: theme.rem(6),
         width: '100%',
         background: theme.palette.primary[0],
         fontSize: theme.rem(1.6),
@@ -104,14 +107,47 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
 }));
 
+interface IValue extends ParsedUrlQueryInput {
+    search: string;
+    category?: string;
+    sub_category?: string;
+}
+
 const Search = (): ReactElement => {
     const css = useStyles();
     const T = useTrans();
-    const mobile = useMedia(1100);
+    const desktop = useMedia(1100);
     const history = useRouter();
 
+    // init
+    const init = typeof history.query.search === 'object' ? history.query.search[0] : history.query.search;
+
+    const [query, setQuery] = useState<IValue>({ search: init || '' });
+    const handleChange = (value: IDropValue): void => {
+        setQuery({ search: query.search, [value.type === 'main' ? 'category' : 'sub_category']: value.slug });
+    };
+    const handleInput = (event: ChangeEvent<HTMLInputElement>): void => {
+        setQuery({ ...query, search: event.target.value });
+    };
+
+    useEffect(() => {
+        if (init !== query.q) {
+            setQuery({ search: init || '' });
+        }
+    }, [init]);
+
+    const handleSubmit = (event: FormEvent<HTMLFormElement>): void => {
+        event.preventDefault();
+        const data: Params = {};
+        if (query.search.trim()) data.search = query.search;
+        if (query.category) data.category = query.category;
+        if (query.sub_category) data.sub_category = query.sub_category;
+
+        history.push({ pathname: routes.offers.list, query: data });
+    };
+
     return (
-        <form action="#" method="post">
+        <form action="#" method="post" onSubmit={handleSubmit}>
             {history.pathname !== routes.root && (
                 <div className={css.toHome}>
                     <LinkArrow href={routes.root} toLeft>
@@ -126,13 +162,19 @@ const Search = (): ReactElement => {
                         <span className={css.icon}>
                             <FontAwesomeIcon icon={faSearch} />
                         </span>
-                        <input className={css.input} type="text" placeholder={T.what_are_you_looking_for} />
-                        {mobile && <OptionsDesktop />}
+                        <input
+                            value={query.search}
+                            onChange={handleInput}
+                            className={css.input}
+                            type="text"
+                            placeholder={T.what_are_you_looking_for}
+                        />
+                        {desktop && <OptionsDesktop onChange={handleChange} />}
                     </div>
                 </div>
 
                 <div className={css.mobile}>
-                    {!mobile && <OptionsMobile />}
+                    {!desktop && <OptionsMobile onChange={handleChange} />}
                     <button type="submit" className={css.btn}>
                         {T.find}
                     </button>

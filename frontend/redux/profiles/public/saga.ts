@@ -10,7 +10,7 @@ export interface IAction {
 
 function* getProfile({ payload }: IAction) {
     try {
-        const { status, data } = yield call(api.v1.profiles.public.get, payload as number);
+        const { status, data } = yield call(api.profiles.public.get, payload as number);
         if (status < 200 || status >= 300) throw new Error();
         yield put({ type: types.GET_PUBLIC_PROFILE_SUCCESS, payload: data });
     } catch (error) {

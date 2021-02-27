@@ -1,15 +1,8 @@
 import { GetServerSidePropsContext } from 'next';
 
 import { parseCookie } from '../../../assets/helpers';
-import { IAuth, IStore } from '../../../interfaces';
+import { IAuth } from '../../../interfaces';
 
-type Callback = (ctx: GetServerSidePropsContext & { store: IStore; auth: IAuth }) => Promise<void> | void;
-
-const serverCookie = (func: Callback): Callback => async (
-    ctx: GetServerSidePropsContext & { store: IStore; auth: IAuth },
-): Promise<void> => {
-    ctx.auth = parseCookie<IAuth>(ctx.req.headers.cookie);
-    if (typeof func === 'function') return func(ctx);
-};
+const serverCookie = (ctx: GetServerSidePropsContext): IAuth | null => parseCookie<IAuth | null>(ctx.req.headers.cookie);
 
 export default serverCookie;

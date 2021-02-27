@@ -2,7 +2,6 @@ from typing import List, Optional
 
 from asyncpg import ForeignKeyViolationError
 from fastapi import APIRouter, Depends, Header, HTTPException, Response, status
-
 from FastAPI.comments import crud
 from FastAPI.comments.schemas import CommentReply, CommentRequest
 
@@ -82,9 +81,7 @@ async def create_comment(
     comment: CommentRequest, author_id: int = Depends(get_current_user)
 ) -> Response:
     try:
-        await crud.create_comment(
-            comment=comment, author_id=author_id, images=comment.images
-        )
+        await crud.create_comment(comment=comment, author_id=author_id)
         return Response(status_code=status.HTTP_204_NO_CONTENT)
     except ForeignKeyViolationError as error:
         raise HTTPException(

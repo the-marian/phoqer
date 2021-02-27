@@ -1,7 +1,8 @@
 import '../styles/index.css';
 
 import App, { AppProps } from 'next/app';
-import Router, { useRouter } from 'next/router';
+import { AppContextType } from 'next/dist/next-server/lib/utils';
+import { Router, useRouter } from 'next/router';
 import React, { ReactElement, useEffect } from 'react';
 import { ThemeProvider } from 'react-jss';
 import { useDispatch } from 'react-redux';
@@ -48,12 +49,13 @@ const MyApp = ({ Component, pageProps, width, auth }: AppProps & { width: number
     );
 };
 
-MyApp.getInitialProps = async appContext => {
+MyApp.getInitialProps = async (appContext: AppContextType<Router>) => {
     const toMatch = /mobile|iphone|ipod|android|blackberry|opera|mini|windows\sce|palm|smartphone|iemobile|ipad|android 3.0|xoom|sch-i800|playbook|tablet|kindle/i;
-    const isMobile = toMatch.test(appContext?.ctx?.req?.headers?.['user-agent']);
+    const isMobile = toMatch.test(appContext?.ctx?.req?.headers?.['user-agent'] || '');
 
     const props = await App.getInitialProps(appContext);
-    return { ...props, width: isMobile ? 500 : 1400, auth: parseCookie<IAuth>(appContext?.ctx?.req?.headers?.cookie) };
+    const auth = parseCookie<IAuth>(appContext?.ctx?.req?.headers?.cookie);
+    return { ...props, width: isMobile ? 500 : 1400, auth };
 };
 
 export default wrapper.withRedux(MyApp);

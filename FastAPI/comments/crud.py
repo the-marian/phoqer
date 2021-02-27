@@ -1,15 +1,12 @@
 from typing import Dict, List, Mapping, Union
 
-from pydantic import HttpUrl
-
 from FastAPI.comments.schemas import CommentRequest
 from FastAPI.config import database
+from pydantic import HttpUrl
 
 
 @database.transaction()
-async def create_comment(
-    comment: CommentRequest, author_id: int, images: List[HttpUrl]
-) -> None:
+async def create_comment(comment: CommentRequest, author_id: int) -> None:
     query = """
     INSERT INTO comments_comment (pub_date, body, author_id, offer_id, replies_id)
     VALUES (current_date, :body, :author_id, :offer_id, :replies_id)
@@ -22,6 +19,7 @@ async def create_comment(
         "replies_id": comment.replies_id,
     }
     comment_id = await database.execute(query=query, values=values)
+    images = comment.images
     if images and comment_id:
         await create_comment_images(images=images, comment_id=comment_id)
 

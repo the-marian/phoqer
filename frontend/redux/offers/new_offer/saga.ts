@@ -48,7 +48,7 @@ function* postOffer({ payload, history }: IAction) {
             extra_requirements,
         } = form as INewOffer;
 
-        const { status, data } = yield call(api.v1.offers.new.post, {
+        const { status, data } = yield call(api.offers.new, {
             price,
             title,
             doc_needed,
@@ -61,8 +61,8 @@ function* postOffer({ payload, history }: IAction) {
             extra_requirements,
             images: payload || [],
             cover_image: payload && payload?.[0]?.url,
-            category: category.type !== 'sub' ? category.slug : null,
-            sub_category: category.type === 'sub' ? category.slug : null,
+            category: category?.type !== 'sub' ? category?.slug : null,
+            sub_category: category?.type === 'sub' ? category?.slug : null,
         } as IBody);
 
         if (status < 200 || status >= 300) throw new Error();

@@ -7,13 +7,13 @@ from rest_framework import status
 
 from offers.models import Offer
 from offers.tests.mocks import (
-    iphone11_is_promoted_True,
-    Iphone_12,
-    list_ordered_by_promotion,
-    list_ordered_by_views,
-    list_order_mixed,
     Iphone_10,
     Iphone_11,
+    Iphone_12,
+    iphone11_is_promoted_True,
+    list_order_mixed,
+    list_ordered_by_promotion,
+    list_ordered_by_views,
 )
 
 
@@ -310,7 +310,9 @@ def test_min_deposit(api_client):
 def test_offer_detail_view(api_client, ):
     response = api_client.get('/api/v1/offers/1b261f53-8e3b-4c14-abe6-5824c5d8b66c/')
     assert response.json() == {
+        'author_id': '1',
         'category': 'phones',
+        'category_name': 'Phones',
         'city': 'Kiev',
         'cover_image': 'https://example.com/iphone.jpeg',
         'currency': 'UAH',
@@ -327,6 +329,7 @@ def test_offer_detail_view(api_client, ):
         'min_rent_period': None,
         'price': 499,
         'pub_date': '2020-10-29',
+        'slug': 'phones',
         'sub_category': 'iphones',
         'title': 'Iphone 12',
         'views': 0,
@@ -375,7 +378,9 @@ def test_offer_partial_update(
     )
     # before update
     assert response.json() == {
+        'author_id': '1',
         'category': 'phones',
+        'category_name': 'Phones',
         'city': 'Kiev',
         'cover_image': 'https://example.com/iphone.jpeg',
         'currency': 'UAH',
@@ -392,13 +397,14 @@ def test_offer_partial_update(
         'min_rent_period': None,
         'price': 499,
         'pub_date': '2020-10-29',
+        'slug': 'phones',
         'sub_category': 'iphones',
         'title': 'Iphone 12',
         'views': 0,
     }
     # perform partial update
     data = {update_field: update_date}
-    response = authed_api_client.patch(
+    response = authed_api_client.put(
         '/api/v1/offers/1b261f53-8e3b-4c14-abe6-5824c5d8b66c/',
         data
     )
@@ -504,8 +510,10 @@ def test_create_offer_with_images(authed_api_client, sport_category):
         'max_rent_period': None,
         'min_rent_period': None,
         'price': 10000,
-        'pub_date': '2020-10-29', 'sub_category': None,
-        'title': 'name', 'views': 0
+        'pub_date': '2020-10-29',
+        'sub_category': None,
+        'title': 'name',
+        'views': 0
     }
 
 

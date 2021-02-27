@@ -136,7 +136,7 @@ const CommentsForm = ({ onSubmit }: IProps): ReactElement => {
             if (res.failed.length > 0) throw new Error();
 
             const images: string[] = await res?.successful?.map(
-                (item: UploadedUppyFile<string, { images_url: [string] }>): string =>
+                (item: UploadedUppyFile<unknown, { images_url?: [string] }>): string =>
                     config.img + item?.response?.body?.images_url?.[0],
             );
 

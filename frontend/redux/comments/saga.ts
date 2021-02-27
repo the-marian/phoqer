@@ -38,7 +38,7 @@ interface IAction {
 
 function* getComments({ payload }: IAction) {
     try {
-        const { status, data } = yield call(api.v2.comments.list, payload as string);
+        const { status, data } = yield call(api.comments.list, payload as string);
         if (status < 200 || status >= 300) throw new Error();
         yield put({ type: types.GET_COMMENTS_SUCCESS, payload: data });
     } catch (error) {
@@ -49,7 +49,7 @@ function* getComments({ payload }: IAction) {
 
 function* createComment({ payload }: IAction) {
     try {
-        const { status } = yield call(api.v2.comments.create, payload as IBody);
+        const { status } = yield call(api.comments.create, payload as IBody);
         if (status < 200 || status >= 300) throw new Error();
         yield put({ type: types.CREATE_COMMENT_SUCCESS });
         yield put({ type: types.GET_COMMENTS_START, payload: (payload as IBody).offer_id });
@@ -61,7 +61,7 @@ function* createComment({ payload }: IAction) {
 
 function* deleteComment({ payload, offerId }: IAction) {
     try {
-        const { status } = yield call(api.v2.comments.delete, payload as number);
+        const { status } = yield call(api.comments.delete, payload as number);
         if (status < 200 || status >= 300) throw new Error();
         yield put({ type: types.DELETE_COMMENT_SUCCESS });
         yield put({ type: types.GET_COMMENTS_START, payload: offerId });
@@ -73,7 +73,7 @@ function* deleteComment({ payload, offerId }: IAction) {
 
 function* likeComment({ payload, offerId }: IAction) {
     try {
-        const { status } = yield call(api.v2.comments.like, payload as number);
+        const { status } = yield call(api.comments.like, payload as number);
         if (status < 200 || status >= 300) throw new Error();
         yield put({ type: types.LIKE_COMMENT_SUCCESS });
         yield put({ type: types.GET_COMMENTS_START, payload: offerId });
@@ -85,7 +85,7 @@ function* likeComment({ payload, offerId }: IAction) {
 
 function* dislikeComment({ payload, offerId }: IAction) {
     try {
-        const { status } = yield call(api.v2.comments.dislike, payload as number);
+        const { status } = yield call(api.comments.dislike, payload as number);
         if (status < 200 || status >= 300) throw new Error();
         yield put({ type: types.DISLIKE_COMMENT_SUCCESS });
         yield put({ type: types.GET_COMMENTS_START, payload: offerId });
@@ -97,7 +97,7 @@ function* dislikeComment({ payload, offerId }: IAction) {
 
 function* replyComment({ payload }: IAction) {
     try {
-        const { status } = yield call(api.v2.comments.create, payload as IBody);
+        const { status } = yield call(api.comments.create, payload as IBody);
         if (status < 200 || status >= 300) throw new Error();
         yield put({ type: types.REPLY_COMMENT_SUCCESS });
         modal.close();

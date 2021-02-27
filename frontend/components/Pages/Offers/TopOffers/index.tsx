@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 
 import routes from '../../../../assets/routes';
 import { Theme } from '../../../../assets/theme';
-import { IOfferPopular, IState } from '../../../../interfaces';
+import { IOfferStatic, IState } from '../../../../interfaces';
 import OffersList from '../../../Common/Offers/OffersList';
 import Container from '../../../Layout/Container';
 import SectionTitle from '../../../Layout/SectionTitle';
@@ -26,7 +26,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
 
 const TopOffers = (): ReactElement => {
     const css = useStyles();
-    const { data, loading } = useSelector<IState, IOfferPopular>(state => state.offers.popular);
+    const { data } = useSelector<IState, IOfferStatic>(state => state.offers.popular);
 
     return (
         <div className={css.root}>
@@ -34,8 +34,7 @@ const TopOffers = (): ReactElement => {
                 <SectionTitle link="Смотреть все" href={routes.offers.single(`?type=popular`)}>
                     TOП Объявления
                 </SectionTitle>
-
-                <OffersList data={data} loading={loading} />
+                <OffersList data={data} />
             </Container>
         </div>
     );

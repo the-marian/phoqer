@@ -56,7 +56,7 @@ interface IProps {
     children?: ReactElement | ReactElement[] | string;
 }
 
-const Switcher = ({ onClick, children = null }: IProps): ReactElement => {
+const Switcher = ({ onClick, children = undefined }: IProps): ReactElement => {
     const css = useStyles();
     const [value, setValue] = useState(false);
 

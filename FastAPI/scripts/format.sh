@@ -2,5 +2,5 @@
 
 set -x
 
-isort .
-black .
+isort ..
+black ..

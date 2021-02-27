@@ -26,12 +26,14 @@ const Categories = (): ReactElement => {
     const categories = helpers.formatCatList(data);
 
     return (
-        !!categories?.length && (
-            <div>
-                <h4 className={css.title}>Категория</h4>
-                <DropDown data={categories} onChange={console.log} withSub />
-            </div>
-        )
+        <>
+            {categories?.length ? (
+                <div>
+                    <h4 className={css.title}>Категория</h4>
+                    <DropDown data={categories} onChange={console.log} withSub />
+                </div>
+            ) : null}
+        </>
     );
 };
 

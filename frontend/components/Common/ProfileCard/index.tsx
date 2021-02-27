@@ -91,7 +91,7 @@ const ProfileCard = ({ id, firstName, lastName, avatar = null, userLocation = nu
     const auth = useAuth();
 
     const handleOpenChat = (): void => {
-        if (!auth.auth_token) {
+        if (!auth?.auth_token) {
             modal.open(
                 <SmallModalWrp>
                     <LoginForm />
