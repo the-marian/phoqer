@@ -1,6 +1,7 @@
-import { IState } from '../../../interfaces/index';
 import { call, put, takeLatest } from 'redux-saga/effects';
+
 import api from '../../../assets/api';
+import { IState } from '../../../interfaces/index';
 import types from '../../types';
 
 export interface IAction {

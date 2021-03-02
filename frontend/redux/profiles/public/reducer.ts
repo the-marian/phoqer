@@ -1,7 +1,8 @@
 import { HYDRATE } from 'next-redux-wrapper';
-import { IAction } from './saga';
+
 import { IPublicProfile, IState } from '../../../interfaces';
 import types from '../../types';
+import { IAction } from './saga';
 
 const publicProfile = (state: IPublicProfile | null = null, { type, payload }: IAction): IPublicProfile | null => {
     switch (type) {

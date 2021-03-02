@@ -104,7 +104,7 @@ const ReplyModal = ({ comment }: IProps): ReactElement => {
             </button>
 
             <h3 className={css.author}>
-                <Link href={routes.profile.single(comment.author_id)}>
+                <Link href={routes.profile.public(comment.author_id)}>
                     <a>{`${comment.first_name} ${comment.last_name}`}</a>
                 </Link>
                 <p className={css.date}>Дата: {comment.pub_date}</p>

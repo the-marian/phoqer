@@ -60,7 +60,7 @@ export interface IOfferCard {
     max_rent_period?: number | null;
     pub_date?: string;
     cover_image: string;
-    images?: { id?: number; url: string }[];
+    images?: string[];
     is_favorite: boolean;
     is_promoted: boolean;
     is_deliverable: boolean;
@@ -70,6 +70,15 @@ export interface IOfferCard {
     views: number;
     description: string;
     extra_requirements?: string;
+    city: string;
+    currency: string;
+    author_id: number;
+    category_name?: null | string;
+    sub_category_name?: null | string;
+    first_name?: string;
+    last_name?: string;
+    profile_img?: string | null;
+    status: string;
 }
 
 export interface IOfferPaggination {

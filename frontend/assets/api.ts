@@ -1,7 +1,7 @@
 import axios, { AxiosResponse } from 'axios';
 import { Params } from 'next/dist/next-server/server/router';
 
-import { ICategories, IComment, IOfferCard, IOfferPaggination, Login, IPublicProfile } from '../interfaces';
+import { ICategories, IComment, IOfferCard, IOfferPaggination, IPublicProfile, Login } from '../interfaces';
 import { IBody } from '../redux/offers/new_offer/saga';
 import config from './config';
 
@@ -24,7 +24,7 @@ const api = {
     },
     profiles: {
         public: {
-            get: (id: number): Promise<AxiosResponse<IPublicProfile>> => axios.get(`${url1}/profiles/${id}/`)
+            get: (id: number): Promise<AxiosResponse<IPublicProfile>> => axios.get(`${url1}/profiles/${id}/`),
         },
     },
     categories: {

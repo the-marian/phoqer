@@ -1,7 +1,9 @@
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
+import { useSelector } from 'react-redux';
 
 import { Theme } from '../../../../assets/theme';
+import { IOfferCard, IState } from '../../../../interfaces';
 import ProfileCard from '../../../Common/ProfileCard';
 import Price from '../Price';
 
@@ -28,11 +30,17 @@ const useStyles = createUseStyles((theme: Theme) => ({
 
 const AsideElement = (): ReactElement => {
     const css = useStyles();
+    const offer = useSelector<IState, IOfferCard>(state => state.offers.single);
 
     return (
         <aside className={css.aside}>
             <div className={css.sticky}>
-                <ProfileCard id={1} firstName="Влад" lastName="Василенко" />
+                <ProfileCard
+                    id={offer.author_id}
+                    firstName={offer.first_name || ''}
+                    lastName={offer.last_name || ''}
+                    avatar={offer.profile_img}
+                />
                 <Price />
             </div>
         </aside>

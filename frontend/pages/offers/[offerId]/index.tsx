@@ -137,7 +137,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
 }));
 
-const SingleOfferPage = (): ReactElement => {
+const SingleOfferPage = (): ReactElement | null => {
     const css = useStyles();
     const priceMedia = useMedia(768);
     const calendarMedia = useMedia(1100);
@@ -162,7 +162,7 @@ const SingleOfferPage = (): ReactElement => {
         );
     };
 
-    return (
+    return offer ? (
         <>
             <Meta
                 title={offer?.title}
@@ -237,7 +237,7 @@ const SingleOfferPage = (): ReactElement => {
                 </Container>
             </Main>
         </>
-    );
+    ) : null;
 };
 
 export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps(async ctx => {

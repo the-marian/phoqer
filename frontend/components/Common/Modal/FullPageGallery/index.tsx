@@ -60,10 +60,10 @@ interface IProps {
 
 const FullPageGallery = ({ index = 0, images }: IProps): ReactElement => {
     const css = useStyles();
-    const [current, setCurrent] = useState(index);
+    const [current, setCurrent] = useState(index >= images.length - 1 ? 0 : index);
 
     const next = (): void => {
-        setCurrent(val => (val === images.length - 1 ? 0 : val + 1));
+        setCurrent(val => (val >= images.length - 1 ? 0 : val + 1));
     };
     const prev = (): void => {
         setCurrent(val => (val === 0 ? images.length - 1 : val - 1));

@@ -130,7 +130,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
 }));
 
 interface IProps {
-    images: { id?: number | null; url: string }[];
+    images: string[];
 }
 
 let slider1: Slider | undefined;
@@ -153,7 +153,7 @@ const OfferSlider = ({ images }: IProps): ReactElement => {
     };
 
     const handleModal = (index: number) => (): void => {
-        modal.open(<FullPageGallery images={images.map(item => item.url)} index={index} />);
+        modal.open(<FullPageGallery images={images} index={index} />);
     };
 
     return (
@@ -179,13 +179,13 @@ const OfferSlider = ({ images }: IProps): ReactElement => {
                     },
                 ]}
             >
-                {slides.map(({ id, url }, index) => (
-                    <div className={css.slide} key={id}>
+                {slides.map((item, index) => (
+                    <div className={css.slide} key={item}>
                         <img
                             className={css.img}
                             onClick={handleModal(index)}
                             draggable={false}
-                            src={url}
+                            src={item}
                             aria-hidden="true"
                             alt=""
                         />
@@ -222,9 +222,9 @@ const OfferSlider = ({ images }: IProps): ReactElement => {
                     },
                 ]}
             >
-                {slides.map(({ id, url }, index) => (
-                    <div className={css.slide} key={id} onClick={handleNav(index)} aria-hidden="true">
-                        <img className={clsx(css.img, css.bottom)} draggable={false} src={url} alt="" />
+                {slides.map((item, index) => (
+                    <div className={css.slide} key={item} onClick={handleNav(index)} aria-hidden="true">
+                        <img className={clsx(css.img, css.bottom)} draggable={false} src={item} alt="" />
                     </div>
                 ))}
             </Slider>

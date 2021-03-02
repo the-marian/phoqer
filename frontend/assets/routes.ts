@@ -6,7 +6,7 @@ const routes = {
         forgot_pass: '/auth/forgot_pass',
     },
     profile: {
-        single: (id: string | number | null = ':profileId'): string => `/profile/${id}`,
+        public: (id: string | number | null = ':profileId'): string => `/profile/public/${id}`,
     },
     offers: {
         single: (id: string | number | null = ':offerId'): string => `/offers/${id}`,

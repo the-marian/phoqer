@@ -1,14 +1,17 @@
-import { useRouter } from 'next/router';
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
+import { END } from 'redux-saga';
 
-import { Theme } from '../../../assets/theme';
-import Meta from '../../../components/Common/Meta';
-import ProfileCard from '../../../components/Common/ProfileCard';
-import Container from '../../../components/Layout/Container';
-import Main from '../../../components/Layout/Main';
-import ProfileInfo from '../../../components/Pages/Profile/Public/ProfileInfo';
-import useTrans from '../../../hooks/trans.hook';
+import { Theme } from '../../../../assets/theme';
+import Meta from '../../../../components/Common/Meta';
+import ProfileCard from '../../../../components/Common/ProfileCard';
+import Container from '../../../../components/Layout/Container';
+import Main from '../../../../components/Layout/Main';
+import ProfileInfo from '../../../../components/Pages/Profile/Public/ProfileInfo';
+import useTrans from '../../../../hooks/trans.hook';
+import { IStore } from '../../../../interfaces';
+import { wrapper } from '../../../../redux/store';
+import types from '../../../../redux/types';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     wrp: {
@@ -40,8 +43,6 @@ const useStyles = createUseStyles((theme: Theme) => ({
 const PublicProfilePage = (): ReactElement => {
     const css = useStyles();
     const T = useTrans();
-    const history = useRouter();
-    console.log(history.query.profileId);
 
     return (
         <>
@@ -61,5 +62,13 @@ const PublicProfilePage = (): ReactElement => {
         </>
     );
 };
+
+export const getServerSideProps = wrapper.getServerSideProps(
+    async (ctx): Promise<void> => {
+        ctx.store.dispatch({ type: types.GET_PUBLIC_PROFILE_START, payload: +ctx.query?.profileId });
+        ctx.store.dispatch(END);
+        await (ctx.store as IStore).sagaTask?.toPromise();
+    },
+);
 
 export default PublicProfilePage;

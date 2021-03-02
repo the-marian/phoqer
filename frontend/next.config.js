@@ -6,6 +6,11 @@ module.exports = {
                 destination: '/new_offer/1',
                 permanent: true,
             },
+            {
+                source: '/profile',
+                destination: '/',
+                permanent: true,
+            },
         ];
     },
     i18n: {

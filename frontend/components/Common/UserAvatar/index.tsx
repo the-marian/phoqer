@@ -55,7 +55,12 @@ interface IProps {
 const UserAvatar = ({ firstName = 'A', lastName = 'A', avatar = null, width = 8, height = 8 }: IProps): ReactElement => {
     const css = useStyles();
     return avatar ? (
-        <img className={css.avatar} src={avatar} width={`${width}rem`} height={`${height}rem`} alt="" />
+        <img
+            className={css.avatar}
+            src={avatar}
+            style={{ width: `${width}rem`, height: `${height}rem`, maxWidth: `${width}rem`, maxHeight: `${height}rem` }}
+            alt=""
+        />
     ) : (
         <div
             style={{
