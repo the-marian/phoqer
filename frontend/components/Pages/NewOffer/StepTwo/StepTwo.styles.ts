@@ -9,6 +9,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         background: theme.palette.soft[5],
         maxWidth: theme.rem(80),
         margin: '0 auto',
+        color: theme.palette.black[0],
 
         '& > p': {
             marginTop: theme.rem(4),
@@ -33,6 +34,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
     input: {
         ...theme.input,
+        color: theme.palette.black[0],
+        background: theme.palette.white,
+
         '& span': {
             marginLeft: theme.rem(1.5),
             fontSize: theme.rem(1.3),
@@ -86,9 +90,8 @@ const useStyles = createUseStyles((theme: Theme) => ({
     save: {
         height: theme.rem(6),
         padding: theme.rem(1, 2),
-        background: theme.palette.white,
+        background: '#ffffff',
         fontSize: theme.rem(1.4),
-        color: theme.palette.black,
         borderRadius: theme.radius,
         boxShadow: theme.shadow[1],
 
@@ -116,7 +119,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         marginLeft: theme.rem(2),
         background: theme.palette.primary[0],
         fontSize: theme.rem(1.4),
-        color: theme.palette.white,
+        color: '#ffffff',
         borderRadius: theme.radius,
 
         '@media (max-width: 470px)': {
@@ -128,9 +131,8 @@ const useStyles = createUseStyles((theme: Theme) => ({
         height: theme.rem(6),
         padding: theme.rem(1, 2),
         marginLeft: theme.rem(2),
-        background: theme.palette.white,
+        background: '#ffffff',
         fontSize: theme.rem(1.4),
-        color: theme.palette.black,
         borderRadius: theme.radius,
         boxShadow: theme.shadow[1],
 

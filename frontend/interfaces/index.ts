@@ -20,6 +20,8 @@ export interface IDropList {
     sub?: { name: string; slug: string }[];
 }
 
+export type Themes = 'white' | 'black';
+
 export interface IDropValue {
     name: string;
     slug: string;

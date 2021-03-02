@@ -1,5 +1,6 @@
-import { faHeart, faUser } from '@fortawesome/free-regular-svg-icons';
-import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faHeart } from '@fortawesome/free-regular-svg-icons/faHeart';
+import { faUser } from '@fortawesome/free-regular-svg-icons/faUser';
+import { faPlus } from '@fortawesome/free-solid-svg-icons/faPlus';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import clsx from 'clsx';
 import Link from 'next/link';
@@ -43,10 +44,8 @@ const useStyles = createUseStyles((theme: Theme) => ({
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            background: theme.palette.white,
-            padding: theme.rem(1, 1.8),
+            padding: theme.rem(1, 1.5),
             borderRadius: theme.radius,
-            border: theme.border(0.1, theme.palette.primary[0]),
         },
 
         '&:hover': {
@@ -64,7 +63,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
 
             '@media (max-width: 350px)': {
                 height: theme.rem(1.8),
-                width: theme.rem(1.4),
+                width: theme.rem(1.6),
             },
         },
     },

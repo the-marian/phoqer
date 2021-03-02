@@ -28,6 +28,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         borderRadius: theme.radius,
         fontSize: theme.rem(1.3),
         boxShadow: theme.shadow[1],
+        color: theme.palette.black[0],
 
         '& span': {
             width: '88%',

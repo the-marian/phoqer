@@ -20,8 +20,12 @@ const useStyles = createUseStyles((theme: Theme) => ({
         width: '100%',
         padding: theme.rem(1.4, 0),
         background: theme.palette.glass[0],
-        backdropFilter: 'blur(5px)',
+        backdropFilter: 'blur(2px)',
         transition: theme.transitions,
+
+        '@media (max-width: 768px)': {
+            background: theme.palette.white,
+        },
     },
     shadow: {
         background: theme.palette.glass[1],

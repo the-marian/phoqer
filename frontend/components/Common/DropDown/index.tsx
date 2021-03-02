@@ -1,4 +1,6 @@
-import { faChevronDown, faChevronUp, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { faChevronDown } from '@fortawesome/free-solid-svg-icons/faChevronDown';
+import { faChevronUp } from '@fortawesome/free-solid-svg-icons/faChevronUp';
+import { faTimes } from '@fortawesome/free-solid-svg-icons/faTimes';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import clsx from 'clsx';
 import React, { MouseEvent, ReactElement, useEffect, useState } from 'react';
@@ -34,6 +36,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         borderRadius: theme.radius,
         textAlign: 'left',
         fontSize: theme.rem(1.4),
+        color: theme.palette.black[0],
         cursor: 'pointer',
         ...theme.outline,
 
@@ -76,7 +79,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         left: 0,
         zIndex: 10,
         width: '100%',
-        minWidth: theme.rem(15),
+        minWidth: theme.rem(20),
         paddingTop: theme.rem(1),
     },
     top: {
@@ -104,10 +107,11 @@ const useStyles = createUseStyles((theme: Theme) => ({
             padding: theme.rem(1, 2),
             textAlign: 'left',
             background: theme.palette.white,
+            color: theme.palette.black[0],
 
             '&:hover': {
-                background: theme.palette.gray[1],
-                color: theme.palette.primary[0],
+                background: theme.palette.primary[0],
+                color: '#ffffff',
             },
         },
     },
@@ -119,10 +123,11 @@ const useStyles = createUseStyles((theme: Theme) => ({
     sub: {
         position: 'relative',
         padding: theme.rem(1, 3),
+        color: theme.palette.black[0],
 
         '&:hover': {
-            background: theme.palette.gray[0],
-            color: theme.palette.primary[0],
+            background: theme.palette.primary[0],
+            color: theme.palette.white,
         },
     },
     white: {

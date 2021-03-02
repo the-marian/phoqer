@@ -4,15 +4,14 @@ import App, { AppProps } from 'next/app';
 import { AppContextType } from 'next/dist/next-server/lib/utils';
 import { Router, useRouter } from 'next/router';
 import React, { ReactElement, useEffect } from 'react';
-import { ThemeProvider } from 'react-jss';
 import { useDispatch } from 'react-redux';
 
 import { logger, parseCookie } from '../assets/helpers';
 import interceptors from '../assets/interceptors';
-import { theme } from '../assets/theme';
 import { modal } from '../components/Common/Modal';
 import AuthProvider from '../components/HOC/Auth/AuthContext';
 import MediaProvider from '../components/HOC/Media';
+import SiteTheme from '../components/HOC/SiteTheme';
 import PageLayout from '../components/Layout/PageLayout';
 import { IAuth } from '../interfaces';
 import { wrapper } from '../redux/store';
@@ -37,7 +36,7 @@ const MyApp = ({ Component, pageProps, width, auth }: AppProps & { width: number
     }, []);
 
     return (
-        <ThemeProvider theme={theme}>
+        <SiteTheme siteTheme={'white'}>
             <AuthProvider authServer={auth}>
                 <MediaProvider width={width}>
                     <PageLayout>
@@ -45,7 +44,7 @@ const MyApp = ({ Component, pageProps, width, auth }: AppProps & { width: number
                     </PageLayout>
                 </MediaProvider>
             </AuthProvider>
-        </ThemeProvider>
+        </SiteTheme>
     );
 };
 

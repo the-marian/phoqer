@@ -34,6 +34,8 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
     cat: {
         cursor: 'pointer',
+        color: theme.palette.black[0],
+
         '&:hover': {
             color: theme.palette.primary[0],
         },

@@ -1,5 +1,7 @@
-import { faEye, faEyeSlash } from '@fortawesome/free-regular-svg-icons';
-import { faKey, faUser } from '@fortawesome/free-solid-svg-icons';
+import { faEye } from '@fortawesome/free-regular-svg-icons/faEye';
+import { faEyeSlash } from '@fortawesome/free-regular-svg-icons/faEyeSlash';
+import { faUser } from '@fortawesome/free-regular-svg-icons/faUser';
+import { faKey } from '@fortawesome/free-solid-svg-icons/faKey';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import clsx from 'clsx';
 import Link from 'next/link';

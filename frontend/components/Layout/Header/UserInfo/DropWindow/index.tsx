@@ -1,5 +1,10 @@
-import { faCommentAlt, faEnvelope, faUser } from '@fortawesome/free-regular-svg-icons';
-import { faBullhorn, faSignOutAlt, faSlidersH, faUserPlus } from '@fortawesome/free-solid-svg-icons';
+import { faCommentAlt } from '@fortawesome/free-regular-svg-icons/faCommentAlt';
+import { faEnvelope } from '@fortawesome/free-regular-svg-icons/faEnvelope';
+import { faUser } from '@fortawesome/free-regular-svg-icons/faUser';
+import { faBullhorn } from '@fortawesome/free-solid-svg-icons/faBullhorn';
+import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons/faSignOutAlt';
+import { faSlidersH } from '@fortawesome/free-solid-svg-icons/faSlidersH';
+import { faUserPlus } from '@fortawesome/free-solid-svg-icons/faUserPlus';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Link from 'next/link';
 import React, { ReactElement, useEffect, useState } from 'react';

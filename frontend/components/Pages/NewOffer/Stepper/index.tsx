@@ -10,6 +10,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         justifyContent: 'space-between',
         maxWidth: theme.rem(80),
         margin: '0 auto 5rem',
+        color: theme.palette.black[0],
     },
     wrp: {
         position: 'relative',
@@ -33,7 +34,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
     activeWrp: {
         '&:not(:nth-last-of-type(1))::after': {
-            borderTop: '0.1rem solid #F9CB28',
+            borderTop: '0.1rem solid ' + theme.palette.primary[0],
         },
     },
     numWrp: {
@@ -51,14 +52,14 @@ const useStyles = createUseStyles((theme: Theme) => ({
         height: theme.rem(4),
         width: theme.rem(4),
         borderRadius: '50%',
-        border: theme.border(0.1, theme.palette.gray[2]),
+        border: theme.border(0.1, theme.palette.primary[0]),
         fontWeight: theme.text.weight[5],
         color: theme.palette.primary[0],
     },
     active: {
         border: 'none',
-        background: theme.palette.grad[2],
-        color: theme.palette.white,
+        background: theme.palette.primary[0],
+        color: '#ffffff',
     },
     text: {
         marginTop: theme.rem(1.5),

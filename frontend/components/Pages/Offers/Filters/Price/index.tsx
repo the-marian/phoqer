@@ -4,39 +4,35 @@ import { createUseStyles } from 'react-jss';
 
 import { numberValidation } from '../../../../../assets/helpers';
 import { Theme } from '../../../../../assets/theme';
-import { IDropList } from '../../../../../interfaces';
-import DropDown from '../../../../Common/DropDown';
 
 const useStyles = createUseStyles((theme: Theme) => ({
+    root: {
+        fontSize: theme.rem(1.4),
+        '@media (max-width: 500px)': {
+            fontSize: theme.rem(1.6),
+        },
+    },
     wrp: {
         display: 'grid',
-        gridTemplateColumns: theme.fr(3),
+        gridTemplateColumns: theme.fr(2),
         gridGap: theme.rem(1),
         marginBottom: theme.rem(2.5),
     },
     input: {
         ...theme.input,
         background: theme.palette.gray[1],
+        fontSize: 'inherit',
     },
     title: {
         marginBottom: theme.rem(1),
-        fontSize: theme.rem(1.4),
         fontWeight: theme.text.weight[2],
-
-        '@media (max-width: 500px)': {
-            fontSize: theme.rem(1.6),
-        },
+        fontSize: 'inherit',
+        color: theme.palette.black[0],
     },
     range: {
         padding: theme.rem(0, 1.2),
     },
 }));
-
-const CURRENCY: IDropList[] = [
-    { name: 'uah', slug: 'uah' },
-    { name: 'usd', slug: 'usd' },
-    { name: 'eur', slug: 'eur' },
-];
 
 const PriceFilter = (): ReactElement => {
     const css = useStyles();
@@ -57,12 +53,11 @@ const PriceFilter = (): ReactElement => {
     };
 
     return (
-        <div>
-            <h4 className={css.title}>Цена за час</h4>
+        <div className={css.root}>
+            <h4 className={css.title}>Цена за час / грн</h4>
             <div className={css.wrp}>
                 <input className={css.input} type="text" placeholder="min" value={min} onChange={handleMin} />
                 <input className={css.input} type="text" placeholder="max" value={max} onChange={handleMax} />
-                <DropDown data={CURRENCY} onChange={console.log} />
             </div>
 
             <div className={css.range}>

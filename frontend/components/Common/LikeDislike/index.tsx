@@ -1,4 +1,5 @@
-import { faThumbsDown, faThumbsUp } from '@fortawesome/free-regular-svg-icons';
+import { faThumbsDown } from '@fortawesome/free-regular-svg-icons/faThumbsDown';
+import { faThumbsUp } from '@fortawesome/free-regular-svg-icons/faThumbsUp';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import clsx from 'clsx';
 import React, { ReactElement } from 'react';

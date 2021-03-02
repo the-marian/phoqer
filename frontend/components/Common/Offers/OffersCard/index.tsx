@@ -1,5 +1,8 @@
-import { faEye, faHeart } from '@fortawesome/free-regular-svg-icons';
-import { faHeart as faSolidHeart, faStar, faTruck } from '@fortawesome/free-solid-svg-icons';
+import { faEye } from '@fortawesome/free-regular-svg-icons/faEye';
+import { faHeart } from '@fortawesome/free-regular-svg-icons/faHeart';
+import { faHeart as faSolidHeart } from '@fortawesome/free-solid-svg-icons/faHeart';
+import { faStar } from '@fortawesome/free-solid-svg-icons/faStar';
+import { faTruck } from '@fortawesome/free-solid-svg-icons/faTruck';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import clsx from 'clsx';
 import Link from 'next/link';
@@ -129,12 +132,19 @@ const useStyles = createUseStyles((theme: Theme) => ({
         },
     },
     favorite: {
-        height: theme.rem(4.8),
+        height: theme.rem(5.1),
         marginLeft: theme.rem(0.6),
         padding: theme.rem(1, 1.8),
         color: theme.palette.primary[0],
         borderRadius: theme.radius,
-        ...theme.outline,
+        transition: theme.transitions[0],
+
+        '&:focus': {
+            background: theme.palette.gray[1],
+        },
+        '&:hover': {
+            background: theme.palette.gray[1],
+        },
 
         '& svg': {
             height: theme.rem(1.8),

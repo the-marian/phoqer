@@ -15,21 +15,19 @@ const useStyles = createUseStyles((theme: Theme) => ({
 }));
 
 const FILTERS: IDropList[] = [
-    { name: 'От новых к старым', slug: 'old' },
-    { name: 'От старых к новым', slug: 'new' },
-    { name: 'Самые популярные', slug: 'popular' },
-    { name: 'От дешевых к дорогим', slug: 'cheap' },
-    { name: 'От дорогих к дешевым', slug: 'expensive' },
+    { name: 'Час', slug: 'hour' },
+    { name: 'День', slug: 'day' },
+    { name: 'Месяц', slug: 'month' },
 ];
 
-const Sort = (): ReactElement => {
+const Period = (): ReactElement => {
     const css = useStyles();
     return (
         <div>
-            <h4 className={css.title}>Cортировать</h4>
+            <h4 className={css.title}>Период аренды</h4>
             <DropDown data={FILTERS} onChange={console.log} />
         </div>
     );
 };
 
-export default Sort;
+export default Period;

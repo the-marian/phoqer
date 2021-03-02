@@ -9,6 +9,7 @@ import { IState } from '../../../../interfaces';
 import types from '../../../../redux/types';
 import SectionTitle from '../../../Layout/SectionTitle';
 import Checkbox from './Checkbox';
+import Period from './Period';
 import PriceFilter from './Price';
 import Sort from './Sort';
 
@@ -86,7 +87,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         fontSize: theme.rem(1.4),
         borderRadius: theme.radius,
         background: theme.palette.primary[0],
-        color: theme.palette.white,
+        color: '#ffffff',
 
         '@media (max-width: 500px)': {
             fontSize: theme.rem(1.8),
@@ -132,6 +133,7 @@ const Filters = (): ReactElement => {
                     <form action="#" method="post" className={css.form} onSubmit={handleSubmit}>
                         <div className={css.formInner}>
                             <PriceFilter />
+                            <Period />
                             <Sort />
                         </div>
 

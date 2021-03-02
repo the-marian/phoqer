@@ -16,6 +16,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         margin: theme.rem(4, 0, 0),
         fontSize: theme.rem(2),
         fontWeight: theme.text.weight[2],
+        color: theme.palette.black[0],
     },
     price: {
         fontSize: theme.rem(1.6),
@@ -39,7 +40,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         borderRadius: theme.radius,
         background: theme.palette.green[0],
         fontSize: theme.rem(1.8),
-        color: theme.palette.white,
+        color: '#ffffff',
         ...theme.outline,
     },
 }));

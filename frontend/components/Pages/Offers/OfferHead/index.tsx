@@ -1,5 +1,6 @@
-import { faHeart } from '@fortawesome/free-regular-svg-icons';
-import { faEye, faHeart as faFillHeart } from '@fortawesome/free-solid-svg-icons';
+import { faHeart } from '@fortawesome/free-regular-svg-icons/faHeart';
+import { faEye } from '@fortawesome/free-solid-svg-icons/faEye';
+import { faHeart as faFillHeart } from '@fortawesome/free-solid-svg-icons/faHeart';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
@@ -14,6 +15,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         fontSize: theme.rem(3),
         fontWeight: theme.text.weight[3],
         lineHeight: 1.4,
+        color: theme.palette.black[0],
 
         '@media (max-width: 768px)': {
             fontSize: theme.rem(2.5),
@@ -22,6 +24,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     action: {
         display: 'flex',
         alignItems: 'center',
+        color: theme.palette.black[0],
 
         '@media (max-width: 768px)': {
             fontSize: theme.rem(1.6),

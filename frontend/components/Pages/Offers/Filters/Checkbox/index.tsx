@@ -21,6 +21,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         borderRadius: 'none',
         margin: theme.rem(1, 4, 1, 0),
         fontSize: theme.rem(1.4),
+        color: theme.palette.black[0],
 
         '@media (max-width: 500px)': {
             fontSize: theme.rem(1.6),

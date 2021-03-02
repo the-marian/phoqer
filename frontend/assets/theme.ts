@@ -1,3 +1,20 @@
+import { Themes } from '../interfaces';
+
+interface IPalette {
+    white: string;
+    glass: string[];
+    black: string[];
+    gray: string[];
+    red: string[];
+    green: string[];
+    soft: string[];
+    grad: string[];
+    yellow: string[];
+    primary: string[];
+    secondary: string[];
+    modal: string;
+}
+
 export interface Theme {
     fr: (value: number) => string;
     border: (value: number, color: string) => string;
@@ -5,20 +22,7 @@ export interface Theme {
     em: (one: number, two?: number, three?: number, four?: number) => string;
     radius: string;
     shadow: string[];
-    palette: {
-        white: string;
-        glass: string[];
-        black: string[];
-        gray: string[];
-        red: string[];
-        green: string[];
-        soft: string[];
-        grad: string[];
-        yellow: string[];
-        primary: string[];
-        secondary: string[];
-        modal: string;
-    };
+    palette: IPalette;
     text: {
         family: string;
         weight: [200, 300, 400, 500, 600, 700];
@@ -28,7 +32,53 @@ export interface Theme {
     outline: { [key: string]: string | { [key: string]: string } };
 }
 
-export const theme: Theme = {
+const palette: { [key: string]: IPalette } = {
+    white: {
+        white: '#FFFFFF',
+        glass: ['rgba(255, 255, 255, 0.9)', 'rgba(250, 250, 250, 0.9)'],
+        black: ['#222222', '#242424'],
+        gray: ['#F9F9F9', '#EAEEF9', '#9E9E9E', '#999999', '#444444'],
+        red: ['#DB162F'],
+        green: ['#22cc52'],
+        soft: [
+            'linear-gradient(154deg,#fff8e0,#fbddd7)',
+            'linear-gradient(172deg,#faffd4,#88e4b8)',
+            'linear-gradient(168deg,#f9ecff,#ddfcf8)',
+            'linear-gradient(159deg,#e9c4ff,#ffd0d0)',
+            'linear-gradient(168deg,#ddf9ff,#cfc6ff)',
+            'linear-gradient(168deg,#e9ffea,#d1ddf7)',
+        ],
+        grad: [
+            'linear-gradient(90deg, #007CF0, #00DFD8)',
+            'linear-gradient(90deg, #7928CA, #FF0080)',
+            'linear-gradient(90deg, #FF4D4D, #F9CB28)',
+        ],
+        yellow: ['#EDBF18', '#FAF0CA'],
+        primary: ['#007aff', '#0040ff'],
+        secondary: ['#EDFBC9'],
+        modal: 'rgba(0, 0, 0, 0.7)',
+    },
+    black: {
+        white: '#222222',
+        glass: ['rgba(50, 50, 50, 0.9)', 'rgba(50, 50, 50, 0.9)'],
+        black: ['#FFFFFF', '#FEFEFE'],
+        gray: ['#343434', '#454545', '#999999', '#AAAAAA', '#AAAAAA'],
+        red: ['#DB162F'],
+        green: ['#22cc52'],
+        soft: ['#454545', '#454545', '#454545', '#454545', '#454545', '#454545'],
+        grad: [
+            'linear-gradient(90deg, #007CF0, #00DFD8)',
+            'linear-gradient(90deg, #7928CA, #FF0080)',
+            'linear-gradient(90deg, #FF4D4D, #F9CB28)',
+        ],
+        yellow: ['#EDBF18', '#FAF0CA'],
+        primary: ['#007aff', '#0040ff'],
+        secondary: ['#EDFBC9'],
+        modal: 'rgba(0, 0, 0, 0.7)',
+    },
+};
+
+export const theme = (value: Themes): Theme => ({
     fr: (value: number): string => Array(value).fill('1fr').join(' '),
     border: (value: number, color: string) => `${value}rem solid ${color}`,
     rem: (one: number, two?: number, three?: number, four?: number): string =>
@@ -47,36 +97,14 @@ export const theme: Theme = {
         '0 1.4rem 2.8rem rgba(0,0,0,0.08), 0 1rem 1rem rgba(0,0,0,0.12)',
         '0 1.9rem 3.8rem rgba(0,0,0,0.1), 0 1.5rem 1.2rem rgba(0,0,0,0.12)',
     ],
-    palette: {
-        white: '#FFFFFF',
-        glass: ['rgba(255, 255, 255, 0.8)', 'rgba(245, 245, 245, 0.8)'],
-        black: ['#222222', '#242424'],
-        gray: ['#F9F9F9', '#EEEEEE', '#C4C4C4', '#999999', '#444444'],
-        red: ['#DB162F'],
-        green: ['#22cc52'],
-        soft: [
-            'linear-gradient(154deg,#fff8e0,#fbddd7)',
-            'linear-gradient(172deg,#faffd4,#88e4b8)',
-            'linear-gradient(168deg,#f9ecff,#ddfcf8)',
-            'linear-gradient(159deg,#e9c4ff,#ffd0d0)',
-            'linear-gradient(168deg,#ddf9ff,#cfc6ff)',
-            'linear-gradient(168deg,#e9ffea,#d1ddf7)',
-        ],
-        grad: [
-            'linear-gradient(90deg, #007CF0, #00DFD8)',
-            'linear-gradient(90deg, #7928CA, #FF0080)',
-            'linear-gradient(90deg, #FF4D4D, #F9CB28)',
-        ],
-        yellow: ['#EDBF18', '#FAF0CA'],
-        primary: ['#085085', '#003459'],
-        secondary: ['#EDFBC9'],
-        modal: 'rgba(0, 0, 0, 0.7)',
-    },
+    palette: palette[value],
     text: {
         family: 'Montserrat, sans-serif',
         weight: [200, 300, 400, 500, 600, 700],
     },
     transitions: ['0.3s cubic-bezier(0.4, 0, 0.2, 1)'],
+
+    // templates
     input: {
         display: 'block',
         alignItems: 'center',
@@ -92,20 +120,20 @@ export const theme: Theme = {
         },
 
         '&:focus': {
-            boxShadow: '0 0 0 0.1rem #085085',
+            boxShadow: '0 0 0 0.1rem #007aff',
         },
         '&:hover': {
-            boxShadow: '0 0 0 0.1rem #085085',
+            boxShadow: '0 0 0 0.1rem #007aff',
         },
     },
     outline: {
         transition: '0.3s cubic-bezier(0.4, 0, 0.2, 1)',
 
         '&:focus': {
-            boxShadow: '0 0 0 0.1rem #085085',
+            boxShadow: '0 0 0 0.1rem #007aff',
         },
         '&:hover': {
-            boxShadow: '0 0 0 0.1rem #085085',
+            boxShadow: '0 0 0 0.1rem #007aff',
         },
     },
-};
+});

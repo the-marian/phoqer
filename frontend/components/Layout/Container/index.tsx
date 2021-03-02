@@ -17,12 +17,17 @@ const useStyles = createUseStyles((theme: Theme) => ({
 }));
 
 interface Props {
+    id?: string;
     children: JSX.Element[] | JSX.Element;
 }
 
-const Container = ({ children }: Props): ReactElement => {
+const Container = ({ id, children }: Props): ReactElement => {
     const css = useStyles();
-    return <div className={css.container}>{children}</div>;
+    return (
+        <div id={id} className={css.container}>
+            {children}
+        </div>
+    );
 };
 
 export default Container;

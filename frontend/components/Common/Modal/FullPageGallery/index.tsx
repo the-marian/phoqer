@@ -1,10 +1,13 @@
-import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
+import { faChevronLeft } from '@fortawesome/free-solid-svg-icons/faChevronLeft';
+import { faChevronRight } from '@fortawesome/free-solid-svg-icons/faChevronRight';
+import { faTimes } from '@fortawesome/free-solid-svg-icons/faTimes';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { MouseEvent, ReactElement, useEffect, useState } from 'react';
 import { createUseStyles } from 'react-jss';
 
 import { Theme } from '../../../../assets/theme';
 import FullPageModal from '../FullPageModal';
+import { modal } from '../index';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     modal: {
@@ -19,24 +22,23 @@ const useStyles = createUseStyles((theme: Theme) => ({
         height: '100%',
         display: 'flex',
         justifyContent: 'space-between',
+        alignItems: 'center',
         width: '100%',
+        padding: theme.rem(1),
+
+        '@media (max-width: 768px)': {
+            alignItems: 'flex-end',
+        },
 
         '& button': {
             display: 'block',
-            height: '100%',
+            height: theme.rem(7),
             width: theme.rem(7),
             padding: theme.rem(1, 2),
-            background: 'none',
             fontSize: theme.rem(0),
-            color: theme.palette.white,
-
-            '&:hover': {
-                background: theme.palette.gray[4],
-
-                '@media (max-width: 768px)': {
-                    background: 'none',
-                },
-            },
+            color: '#ffffff',
+            background: '#454545',
+            borderRadius: theme.radius,
 
             '& svg': {
                 height: theme.rem(2),
@@ -49,7 +51,26 @@ const useStyles = createUseStyles((theme: Theme) => ({
         bottom: theme.rem(2),
         left: theme.rem(2),
         fontSize: theme.rem(1.8),
-        color: theme.palette.white,
+        color: '#ffffff',
+
+        '@media (max-width: 768px)': {
+            left: '50%',
+            transform: 'translateX(-50%)',
+        },
+    },
+    button: {
+        position: 'absolute',
+        top: 0,
+        right: 0,
+        zIndex: 10,
+        padding: theme.rem(1.2, 1.8),
+        fontSize: theme.rem(1.6),
+        color: '#ffffff',
+
+        '& svg': {
+            height: theme.rem(1.6),
+            width: theme.rem(1.6),
+        },
     },
 }));
 
@@ -105,6 +126,9 @@ const FullPageGallery = ({ index = 0, images }: IProps): ReactElement => {
     return (
         <FullPageModal>
             <>
+                <button type="button" className={css.button} onClick={modal.close}>
+                    <FontAwesomeIcon icon={faTimes} />
+                </button>
                 <img
                     className={css.modal}
                     title={images.length > 1 ? 'Вы можете управлять галереей используя вашу клавиатуру' : ''}
@@ -123,7 +147,7 @@ const FullPageGallery = ({ index = 0, images }: IProps): ReactElement => {
                                 <FontAwesomeIcon icon={faChevronRight} />
                             </button>
                         </nav>
-                        <div className={css.count}>{`${current + 1} __ ${images.length}`}</div>
+                        <div className={css.count}>{`${current + 1} / ${images.length}`}</div>
                     </>
                 ) : null}
             </>

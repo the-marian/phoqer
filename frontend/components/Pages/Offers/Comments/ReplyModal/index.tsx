@@ -1,4 +1,4 @@
-import { faTimes } from '@fortawesome/free-solid-svg-icons';
+import { faTimes } from '@fortawesome/free-solid-svg-icons/faTimes';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
@@ -25,6 +25,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         paddingTop: theme.rem(5),
         borderRadius: theme.radius,
         background: theme.palette.white,
+        color: theme.palette.black[0],
 
         '@media (max-width: 500px)': {
             width: '90%',

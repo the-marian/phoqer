@@ -1,17 +1,20 @@
-import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { faSearch } from '@fortawesome/free-solid-svg-icons/faSearch';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Params } from 'next/dist/next-server/server/router';
 import { useRouter } from 'next/router';
 import { ParsedUrlQueryInput } from 'querystring';
 import React, { ChangeEvent, FormEvent, ReactElement, useEffect, useState } from 'react';
 import { createUseStyles } from 'react-jss';
+import { useDispatch, useSelector } from 'react-redux';
 
 import routes from '../../../assets/routes';
 import { Theme } from '../../../assets/theme';
 import useMedia from '../../../hooks/media.hook';
 import useTrans from '../../../hooks/trans.hook';
-import { IDropValue } from '../../../interfaces';
+import { IDropValue, IState } from '../../../interfaces';
+import types from '../../../redux/types';
 import LinkArrow from '../../Layout/LinkArrow';
+import Button from '../Button';
 import OptionsDesktop from './OptionsDesktop';
 import OptionsMobile from './OptionsMobile';
 
@@ -52,13 +55,14 @@ const useStyles = createUseStyles((theme: Theme) => ({
         padding: theme.rem(2),
         background: 'none',
         border: 'none',
+        color: theme.palette.black[0],
     },
     btn: {
         height: theme.rem(6),
         width: '100%',
         background: theme.palette.primary[0],
         fontSize: theme.rem(1.6),
-        color: theme.palette.white,
+        color: '#ffffff',
         borderRadius: theme.radius,
         ...theme.outline,
 
@@ -113,14 +117,22 @@ interface IValue extends ParsedUrlQueryInput {
     sub_category?: string;
 }
 
-const Search = (): ReactElement => {
-    const css = useStyles();
+interface IProps {
+    shallow?: boolean;
+}
+
+const Search = ({ shallow = false }: IProps): ReactElement => {
     const T = useTrans();
-    const desktop = useMedia(1100);
+    const css = useStyles();
     const history = useRouter();
+    const dispatch = useDispatch();
+    const desktop = useMedia(1100);
 
     // init
     const init = typeof history.query.search === 'object' ? history.query.search[0] : history.query.search;
+
+    // loading
+    const loading = useSelector<IState, boolean>(state => state.offers.search.loading);
 
     const [query, setQuery] = useState<IValue>({ search: init || '' });
     const handleChange = (value: IDropValue): void => {
@@ -131,9 +143,7 @@ const Search = (): ReactElement => {
     };
 
     useEffect(() => {
-        if (init !== query.q) {
-            setQuery({ search: init || '' });
-        }
+        if (init !== query.q) setQuery({ search: init || '' });
     }, [init]);
 
     const handleSubmit = (event: FormEvent<HTMLFormElement>): void => {
@@ -143,7 +153,11 @@ const Search = (): ReactElement => {
         if (query.category) data.category = query.category;
         if (query.sub_category) data.sub_category = query.sub_category;
 
-        history.push({ pathname: routes.offers.list, query: data });
+        history.push({ pathname: routes.offers.list, query: data }, undefined, { shallow });
+        if (shallow) {
+            dispatch({ type: types.SEARCH_OFFERS_START, payload: data });
+            window.scrollTo({ top: document.getElementById('products')?.offsetTop || 0, behavior: 'smooth' });
+        }
     };
 
     return (
@@ -175,9 +189,9 @@ const Search = (): ReactElement => {
 
                 <div className={css.mobile}>
                     {!desktop && <OptionsMobile onChange={handleChange} />}
-                    <button type="submit" className={css.btn}>
+                    <Button loading={loading && shallow} type="submit" className={css.btn}>
                         {T.find}
-                    </button>
+                    </Button>
                 </div>
             </div>
         </form>

@@ -9,7 +9,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         position: 'relative',
         width: '100vw',
         height: '100vh',
-        background: theme.palette.black[0],
+        background: '#323232',
         cursor: 'zoom-out',
     },
 }));

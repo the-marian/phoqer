@@ -63,6 +63,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     main: {
         width: 'calc(100% - 40rem)',
         marginRight: theme.rem(10),
+        color: theme.palette.black[0],
 
         '@media (max-width: 1300px)': {
             marginRight: theme.rem(4),

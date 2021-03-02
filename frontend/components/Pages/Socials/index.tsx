@@ -34,6 +34,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         width: theme.rem(4),
         marginRight: theme.rem(1.5),
         transition: theme.transitions[0],
+        fill: theme.palette.black[0],
 
         '&:hover': {
             transform: 'translateY(-0.2rem)',

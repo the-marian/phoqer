@@ -10,8 +10,8 @@ const useStyles = createUseStyles((theme: Theme) => ({
         alignItems: 'center',
     },
     img: {
-        height: theme.rem(2.5),
-        width: theme.rem(2.5),
+        height: theme.em(1),
+        width: theme.em(1),
     },
 }));
 

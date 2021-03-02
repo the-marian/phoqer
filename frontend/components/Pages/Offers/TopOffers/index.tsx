@@ -29,7 +29,7 @@ const TopOffers = (): ReactElement => {
     const { data } = useSelector<IState, IOfferStatic>(state => state.offers.popular);
 
     return (
-        <div className={css.root}>
+        <div className={css.root} id="products">
             <Container>
                 <SectionTitle link="Смотреть все" href={routes.offers.single(`?type=popular`)}>
                     TOП Объявления

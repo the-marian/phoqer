@@ -1,4 +1,6 @@
-import { faPaperclip, faPaperPlane, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { faPaperclip } from '@fortawesome/free-solid-svg-icons/faPaperclip';
+import { faPaperPlane } from '@fortawesome/free-solid-svg-icons/faPaperPlane';
+import { faTimes } from '@fortawesome/free-solid-svg-icons/faTimes';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { UploadedUppyFile } from '@uppy/core';
 import { Dashboard } from '@uppy/react';
@@ -40,6 +42,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         padding: theme.rem(1.5),
         fontSize: theme.rem(1.4),
         background: theme.palette.gray[1],
+        color: theme.palette.black[0],
 
         '@media (max-width: 900px)': {
             margin: 0,

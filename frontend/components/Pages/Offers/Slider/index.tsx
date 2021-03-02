@@ -27,7 +27,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
             overflow: 'hidden',
         },
         '& .slick-current.slick-center img': {
-            border: theme.border(0.5, theme.palette.primary[0]),
+            border: theme.border(0.2, theme.palette.primary[0]),
         },
         '& .slick-arrow': {
             position: 'absolute',
@@ -109,7 +109,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         height: theme.rem(60),
         borderRadius: theme.radius,
         objectFit: 'contain',
-        background: theme.palette.black[0],
+        background: '#323232',
         cursor: 'zoom-in',
 
         '@media (max-width: 768px)': {

@@ -11,6 +11,8 @@ import SiteMap from './SiteMap';
 const useStyles = createUseStyles((theme: Theme) => ({
     footer: {
         padding: theme.rem(8, 0),
+        background: theme.palette.gray[1],
+        color: theme.palette.black[0],
     },
     wrp: {
         display: 'flex',

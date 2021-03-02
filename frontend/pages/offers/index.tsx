@@ -33,7 +33,7 @@ const OffersPage = (): ReactElement => {
             <Meta title={T.search_offers} h1={T.search_offers} />
             <Main>
                 <Container>
-                    <Search />
+                    <Search shallow />
                     <Filters />
                 </Container>
 

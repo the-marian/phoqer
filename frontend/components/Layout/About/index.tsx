@@ -7,6 +7,7 @@ import useTrans from '../../../hooks/trans.hook';
 const useStyles = createUseStyles((theme: Theme) => ({
     wrp: {
         margin: theme.rem(10, 0, 20),
+        color: theme.palette.black[0],
 
         '@media (max-width: 500px)': {
             margin: theme.rem(8, 0),

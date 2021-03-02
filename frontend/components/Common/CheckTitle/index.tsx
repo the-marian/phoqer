@@ -13,6 +13,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         '& span': {
             textAlign: 'left',
             fontSize: theme.rem(1.4),
+            color: theme.palette.black[0],
         },
     },
     label: {
@@ -21,7 +22,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         display: 'inline-block',
         marginRight: theme.rem(1.5),
         border: theme.border(0.1, theme.palette.primary[0]),
-        background: theme.palette.white,
+        background: '#ffffff',
         borderRadius: theme.radius,
     },
     active: {
