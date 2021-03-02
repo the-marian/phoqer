@@ -142,7 +142,7 @@ const SingleOfferPage = (): ReactElement | null => {
     const priceMedia = useMedia(768);
     const calendarMedia = useMedia(1100);
 
-    const offer = useSelector<IState, IOfferCard>(state => state.offers.single);
+    const offer = useSelector<IState, IOfferCard | null>(state => state.offers.single);
     const categories = useSelector<IState, ICategories[]>(state => state.categories);
 
     const catName = offer?.category
@@ -157,7 +157,7 @@ const SingleOfferPage = (): ReactElement | null => {
     const handleModal = (): void => {
         modal.open(
             <FullPageModal>
-                <img className={css.modal} draggable={false} src={offer.cover_image} alt="" />
+                <img className={css.modal} draggable={false} src={offer?.cover_image || '/no_img.png'} alt="" />
             </FullPageModal>,
         );
     };

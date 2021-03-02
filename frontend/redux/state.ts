@@ -23,18 +23,7 @@ const initState: IState = {
             },
             loading: true,
         },
-        single: {
-            id: '',
-            cover_image: '',
-            is_favorite: false,
-            is_promoted: false,
-            is_deliverable: false,
-            doc_needed: false,
-            price: 0,
-            title: '',
-            views: 0,
-            description: '',
-        },
+        single: null,
         newOffer: {
             // step 1
             title: '',

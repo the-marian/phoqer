@@ -30,17 +30,19 @@ const useStyles = createUseStyles((theme: Theme) => ({
 
 const AsideElement = (): ReactElement => {
     const css = useStyles();
-    const offer = useSelector<IState, IOfferCard>(state => state.offers.single);
+    const offer = useSelector<IState, IOfferCard | null>(state => state.offers.single);
 
     return (
         <aside className={css.aside}>
             <div className={css.sticky}>
-                <ProfileCard
-                    id={offer.author_id}
-                    firstName={offer.first_name || ''}
-                    lastName={offer.last_name || ''}
-                    avatar={offer.profile_img}
-                />
+                {offer ? (
+                    <ProfileCard
+                        id={offer.author_id}
+                        firstName={offer.first_name || ''}
+                        lastName={offer.last_name || ''}
+                        avatar={offer.profile_img}
+                    />
+                ) : null}
                 <Price />
             </div>
         </aside>

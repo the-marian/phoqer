@@ -40,7 +40,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
 
 const Requirements = (): ReactElement => {
     const css = useStyles();
-    const offer = useSelector<IState, IOfferCard>(state => state.offers.single);
+    const offer = useSelector<IState, IOfferCard | null>(state => state.offers.single);
 
     return (
         <>
