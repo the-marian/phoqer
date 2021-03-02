@@ -27,7 +27,8 @@ async def get_current_user(
         else:
             raise HTTPException(
                 status_code=status.HTTP_401_UNAUTHORIZED,
-                detail="Invalid Authorisation Header format. Token cannot be blank.",
+                detail="Invalid Authorisation Header format."
+                       "Token cannot be blank.",
             )
     else:
         raise HTTPException(
@@ -55,7 +56,10 @@ async def list_comments(
     comment_images_map = await crud.get_comment_images_map(offer_id)
     if author_id:
         author_likes_map = await crud.get_author_likes_map(author_id, offer_id)
-        author_dislikes_map = await crud.get_author_dislikes_map(author_id, offer_id)
+        author_dislikes_map = await crud.get_author_dislikes_map(
+            author_id,
+            offer_id
+        )
     comments_list = await crud.get_comments_list(offer_id)
     like_map = await crud.get_like_map(offer_id)
     dislike_map = await crud.get_dislike_map(offer_id)
@@ -73,7 +77,10 @@ async def list_comments(
     for comment in comments_map.values():
         if parent_id := comment.replies_id:
             comments_map[parent_id].replies.append(comment)
-    return [comment for comment in comments_map.values() if not comment.replies_id]
+    return [
+        comment for comment in comments_map.values()
+        if not comment.replies_id
+    ]
 
 
 @router.post("", status_code=status.HTTP_204_NO_CONTENT)

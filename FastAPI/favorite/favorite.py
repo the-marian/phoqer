@@ -26,7 +26,8 @@ async def get_current_user(
         else:
             raise HTTPException(
                 status_code=status.HTTP_401_UNAUTHORIZED,
-                detail="Invalid Authorisation Header format. Token cannot be blank.",
+                detail="Invalid Authorisation Header format. "
+                       "Token cannot be blank.",
             )
     else:
         raise HTTPException(
@@ -48,11 +49,16 @@ async def get_is_favorite(
             )
             for offer in row
         ]
+    else:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Token does not exist"
+        )
 
 
 @router.patch("/{offer_id}", status_code=status.HTTP_204_NO_CONTENT)
 async def add_to_favorite_or_delete_if_exist(
         offer_id: str, user_id: int = Depends(get_current_user),
 ) -> Response:
-    await crud.offer_in_favorite_or_no(user_id, offer_id)
+    await crud.add_offer_to_favorite_or_delete(user_id, offer_id)
     return Response(status_code=status.HTTP_204_NO_CONTENT)

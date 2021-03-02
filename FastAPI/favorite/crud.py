@@ -31,7 +31,7 @@ async def offers_in_favorite(user_id: int):
     return row
 
 
-async def offer_in_favorite_or_no(user_id: int, offer_id: str) -> None:
+async def add_offer_to_favorite_or_delete(user_id: int, offer_id: str) -> None:
     query = """
     SELECT TRUE
     FROM offers_offer_favorite

@@ -8,7 +8,8 @@ from pydantic import HttpUrl
 @database.transaction()
 async def create_comment(comment: CommentRequest, author_id: int) -> None:
     query = """
-    INSERT INTO comments_comment (pub_date, body, author_id, offer_id, replies_id)
+    INSERT INTO comments_comment
+    (pub_date, body, author_id, offer_id, replies_id)
     VALUES (current_date, :body, :author_id, :offer_id, :replies_id)
     RETURNING id
     """
@@ -24,14 +25,23 @@ async def create_comment(comment: CommentRequest, author_id: int) -> None:
         await create_comment_images(images=images, comment_id=comment_id)
 
 
-async def create_comment_images(images: List[HttpUrl], comment_id: int) -> None:
+async def create_comment_images(
+        images: List[HttpUrl],
+        comment_id: int
+) -> None:
     name = "empty_name"
     query = """
     INSERT INTO comments_commentimage (url, name, comment_id)
     VALUES (:url, :name, :comment_id)"""
     values = []
     for image_url in images:
-        values.append({"url": image_url, "name": name, "comment_id": comment_id})
+        values.append(
+            {
+                "url": image_url,
+                "name": name,
+                "comment_id": comment_id
+            }
+        )
     await database.execute_many(query=query, values=values)
 
 
@@ -76,7 +86,10 @@ async def get_comment_images_map(offer_id: str) -> Dict[int, List[str]]:
     return comment_images_map
 
 
-async def get_author_likes_map(author_id: int, offer_id: str) -> Dict[int, bool]:
+async def get_author_likes_map(
+        author_id: int,
+        offer_id: str
+) -> Dict[int, bool]:
     query = """
     SELECT comment_id, TRUE AS "like"
     FROM comments_like
@@ -104,7 +117,10 @@ async def get_like_map(offer_id: str) -> Dict[int, int]:
         WHERE offer_id=:offer_id)
     GROUP BY comment_id
     """
-    likes = await database.fetch_all(query=query, values={"offer_id": offer_id})
+    likes = await database.fetch_all(
+        query=query,
+        values={"offer_id": offer_id}
+    )
     return {like["comment_id"]: like["likes_count"] for like in likes}
 
 
@@ -120,11 +136,20 @@ async def get_dislike_map(offer_id: str) -> Dict[int, int]:
         WHERE offer_id=:offer_id)
     GROUP BY comment_id
     """
-    dislikes = await database.fetch_all(query=query, values={"offer_id": offer_id})
-    return {dislike["comment_id"]: dislike["dislikes_count"] for dislike in dislikes}
+    dislikes = await database.fetch_all(
+        query=query,
+        values={"offer_id": offer_id}
+    )
+    return {
+        dislike["comment_id"]: dislike["dislikes_count"]
+        for dislike in dislikes
+    }
 
 
-async def get_author_dislikes_map(author_id: int, offer_id: str) -> Dict[int, bool]:
+async def get_author_dislikes_map(
+        author_id: int,
+        offer_id: str
+) -> Dict[int, bool]:
     query = """
     SELECT
         comment_id,
@@ -193,7 +218,10 @@ async def create_like(author_id: int, comment_id: int) -> None:
     )
 
 
-async def create_like_or_delete_if_exist(author_id: int, comment_id: int) -> None:
+async def create_like_or_delete_if_exist(
+        author_id: int,
+        comment_id: int
+) -> None:
     query = """
     SELECT TRUE
     FROM comments_like
@@ -230,7 +258,10 @@ async def create_dislike(author_id: int, comment_id: int) -> None:
     )
 
 
-async def create_dislike_or_delete_if_exist(author_id: int, comment_id: int) -> None:
+async def create_dislike_or_delete_if_exist(
+        author_id: int,
+        comment_id: int
+) -> None:
     query = """
     SELECT TRUE
     FROM comments_dislike
