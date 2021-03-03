@@ -7,7 +7,7 @@ import routes from '../../../../assets/routes';
 import { Theme } from '../../../../assets/theme';
 import { IState } from '../../../../interfaces';
 import types from '../../../../redux/types';
-import SectionTitle from '../../../Layout/SectionTitle';
+import SectionTitle from '../../SectionTitle';
 import Checkbox from './Checkbox';
 import Period from './Period';
 import PriceFilter from './Price';

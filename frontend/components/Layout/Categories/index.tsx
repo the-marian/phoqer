@@ -3,12 +3,12 @@ import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 import { useSelector } from 'react-redux';
 
-import config from '../../../../assets/config';
-import routes from '../../../../assets/routes';
-import { Theme } from '../../../../assets/theme';
-import useTrans from '../../../../hooks/trans.hook';
-import { ICategories, IState } from '../../../../interfaces';
-import SectionTitle from '../../../Layout/SectionTitle';
+import config from '../../../assets/config';
+import routes from '../../../assets/routes';
+import { Theme } from '../../../assets/theme';
+import useTrans from '../../../hooks/trans.hook';
+import { ICategories, IState } from '../../../interfaces';
+import SectionTitle from '../../Layout/SectionTitle';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     root: {

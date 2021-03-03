@@ -17,6 +17,8 @@ const useStyles = createUseStyles((theme: Theme) => ({
         paddingTop: theme.rem(5),
         borderRadius: theme.radius,
         background: theme.palette.white,
+        color: theme.palette.black[0],
+        border: theme.border(0.1, theme.palette.gray[1]),
 
         '@media (max-width: 500px)': {
             width: '90%',
