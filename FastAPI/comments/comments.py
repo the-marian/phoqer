@@ -27,7 +27,7 @@ async def get_current_user(
         else:
             raise HTTPException(
                 status_code=status.HTTP_401_UNAUTHORIZED,
-                detail="Invalid Authorisation Header format.Token cannot be blank.",
+                detail="Invalid Authorisation Header format. Token cannot be blank.",
             )
     else:
         raise HTTPException(

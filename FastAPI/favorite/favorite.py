@@ -37,18 +37,17 @@ async def get_current_user(
 
 
 @router.get("", response_model=List[OffersListItem])
-async def get_is_favorite(
+async def get_favorite_for_user(
     user_id: Optional[int] = Depends(get_current_user),
 ) -> List[OffersListItem]:
-    if user_id:
-        queryset = await crud.offers_in_favorite(user_id)
-        return [
-            OffersListItem(
-                **offer,
-                is_favorite=True,
-            )
-            for offer in queryset
-        ]
+    queryset = await crud.get_favorite_offers_of_user(user_id)
+    return [
+        OffersListItem(
+            **offer,
+            is_favorite=True,
+        )
+        for offer in queryset
+    ]
 
 
 @router.patch("/{offer_id}", status_code=status.HTTP_204_NO_CONTENT)

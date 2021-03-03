@@ -42,8 +42,8 @@ async def get_offer(offer_id: str) -> Optional[Mapping]:
         cc.name AS "sub_category_name"
     FROM offers_offer
     INNER JOIN users_user ON offers_offer.author_id=users_user.id
-    LEFT JOIN categories_childcategories cc ON offers_offer.sub_category_id=cc.slug
-    LEFT JOIN categories_parentcategories cp on offers_offer.category_id =cp.slug
+    LEFT JOIN categories_childcategories cc ON offers_offer.sub_category_id= cc.slug
+    LEFT JOIN categories_parentcategories cp on offers_offer.category_id = cp.slug
     WHERE offers_offer.id=:offer_id
     """
     return await database.fetch_one(query=query, values={"offer_id": offer_id})

@@ -110,7 +110,7 @@ async def get_like_map(offer_id: str) -> Dict[int, int]:
         WHERE offer_id=:offer_id)
     GROUP BY comment_id
     """
-    likes = await database.fetch_all(query=query,values={"offer_id": offer_id})
+    likes = await database.fetch_all(query=query, values={"offer_id": offer_id})
     return {like["comment_id"]: like["likes_count"] for like in likes}
 
 

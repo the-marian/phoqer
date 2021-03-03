@@ -62,9 +62,9 @@ async def get_popular_offers(
     user_favorite_popular_offers = set()
     if user_id:
         user_favorite_popular_offers = await crud.get_user_favorite_popular_offers(
-                user_id=user_id,
-                popular_offer_ids=popular_offer_ids,
-            )
+            user_id=user_id,
+            popular_offer_ids=popular_offer_ids,
+        )
     return [
         OffersListItem(
             **offer,
