@@ -1,6 +1,6 @@
 import { HYDRATE } from 'next-redux-wrapper';
 
-import { IOfferDynamic, IOfferPaggination, IState } from '../../../interfaces';
+import { IOfferDynamic, IOfferPagination, IState } from '../../../interfaces';
 import types from '../../types';
 import { IAction } from './saga';
 
@@ -14,12 +14,12 @@ const search = (
 
         case types.SEARCH_OFFERS_PAGINATION_SUCCESS:
             return {
-                data: { ...state.data, data: [...state.data.data, ...(payload as IOfferPaggination).data] },
+                data: { ...state.data, data: [...state.data.data, ...(payload as IOfferPagination).data] },
                 loading: false,
             };
 
         case types.SEARCH_OFFERS_SUCCESS:
-            return { data: payload as IOfferPaggination, loading: false };
+            return { data: payload as IOfferPagination, loading: false };
 
         case types.SEARCH_OFFERS_START:
         case types.SEARCH_OFFERS_PAGINATION_START:
