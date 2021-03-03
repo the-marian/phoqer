@@ -5,7 +5,7 @@ import LoginForm from '../../../components/Common/Auth/LoginForm';
 import Meta from '../../../components/Common/Meta';
 import AuthRedirect from '../../../components/HOC/Auth/AuthRedirect';
 import serverRedirect from '../../../components/HOC/ServerRedirect';
-import AuthContainer from '../../../components/Pages/Auth/AuthContainer';
+import AuthContainer from '../../../components/Layout/AuthContainer';
 import useTrans from '../../../hooks/trans.hook';
 import { wrapper } from '../../../redux/store';
 

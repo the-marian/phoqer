@@ -114,7 +114,8 @@ export const theme = (value: Themes): Theme => ({
         border: 'none',
         borderRadius: '0.6rem',
         fontSize: '1.2rem',
-        transition: '0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+        transition: '0.3s cubic-bezier(0.4, 0, 0.2, 1), background 5000000s',
+
         '@media (max-width: 500px)': {
             fontSize: '1.6rem',
         },

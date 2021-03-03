@@ -76,7 +76,6 @@ const useStyles = createUseStyles((theme: Theme) => ({
     container: {
         position: 'absolute',
         top: '100%',
-        left: 0,
         zIndex: 10,
         width: '100%',
         minWidth: theme.rem(20),
@@ -154,6 +153,7 @@ interface Props {
     withSub?: boolean;
     transparent?: boolean;
     white?: boolean;
+    toLeft?: boolean;
     onChange: (value: IDropValue) => void;
 }
 
@@ -166,6 +166,7 @@ const DropDown = ({
     withSub,
     transparent,
     white,
+    toLeft = false,
 }: Props): ReactElement => {
     const css = useStyles();
 
@@ -244,7 +245,7 @@ const DropDown = ({
             </p>
 
             {drop && (
-                <div className={clsx(css.container, top && css.top)}>
+                <div className={clsx(css.container, top && css.top)} style={toLeft ? { right: 0 } : { left: 0 }}>
                     <div className={css.box}>
                         <ul>
                             {data?.map(({ name, slug, sub }) => (

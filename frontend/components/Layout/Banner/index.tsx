@@ -5,13 +5,13 @@ import { useRouter } from 'next/router';
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
-import routes from '../../../../assets/routes';
-import { Theme } from '../../../../assets/theme';
-import useAuth from '../../../../hooks/auth.hook';
-import useTrans from '../../../../hooks/trans.hook';
-import LoginForm from '../../../Common/Auth/LoginForm';
-import { modal } from '../../../Common/Modal';
-import SmallModalWrp from '../../../Common/Modal/SmallModalWrp';
+import routes from '../../../assets/routes';
+import { Theme } from '../../../assets/theme';
+import useAuth from '../../../hooks/auth.hook';
+import useTrans from '../../../hooks/trans.hook';
+import LoginForm from '../../Common/Auth/LoginForm';
+import { modal } from '../../Common/Modal';
+import SmallModalWrp from '../../Common/Modal/SmallModalWrp';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     root: {

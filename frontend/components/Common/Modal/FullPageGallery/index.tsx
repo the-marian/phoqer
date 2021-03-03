@@ -68,8 +68,8 @@ const useStyles = createUseStyles((theme: Theme) => ({
         color: '#ffffff',
 
         '& svg': {
-            height: theme.rem(1.6),
-            width: theme.rem(1.6),
+            height: theme.rem(1.2),
+            width: theme.rem(1.2),
         },
     },
 }));

@@ -4,13 +4,13 @@ import React, { ReactElement } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { END } from 'redux-saga';
 
+import About from '../../components/Common/About';
 import OffersLoadMore from '../../components/Common/LoadMore/Offers';
 import Meta from '../../components/Common/Meta';
 import OffersList from '../../components/Common/Offers/OffersList';
 import Search from '../../components/Common/Search';
-import About from '../../components/Layout/About';
 import Container from '../../components/Layout/Container';
-import Main from '../../components/Layout/Main';
+import Main from '../../components/Layout/TagMain';
 import Filters from '../../components/Pages/Offers/Filters';
 import TopOffers from '../../components/Pages/Offers/TopOffers';
 import useTrans from '../../hooks/trans.hook';

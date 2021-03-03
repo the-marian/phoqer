@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import React, { ReactElement, useState } from 'react';
+import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
 import { Theme } from '../../../assets/theme';
@@ -9,6 +9,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         display: 'flex',
         alignItems: 'center',
         fontSize: theme.rem(1.4),
+        color: theme.palette.black[0],
     },
     wrp: {
         position: 'relative',
@@ -32,7 +33,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
             content: '""',
             position: 'absolute',
             top: '50%',
-            left: 0,
+            left: theme.rem(0.2),
             zIndex: 1,
             transform: 'translateY(-50%)',
             height: '95%',
@@ -46,30 +47,31 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
     open: {
         '&::before': {
-            left: '50%',
+            left: 'calc(50% - 0.2rem)',
         },
     },
 }));
 
 interface IProps {
+    on?: string;
+    off?: string;
+    value?: boolean;
     onClick: (value: boolean) => void;
     children?: ReactElement | ReactElement[] | string;
 }
 
-const Switcher = ({ onClick, children = undefined }: IProps): ReactElement => {
+const Switcher = ({ onClick, children = undefined, value = false, on = 'on', off = 'off' }: IProps): ReactElement => {
     const css = useStyles();
-    const [value, setValue] = useState(false);
 
     const handleClick = (): void => {
         onClick(!value);
-        setValue(!value);
     };
 
     return (
         <button className={css.flex} onClick={handleClick} type="button">
             <div className={clsx(css.wrp, value && css.open)}>
-                <span>Off</span>
-                <span>On</span>
+                <span>{off}</span>
+                <span>{on}</span>
             </div>
 
             {children}

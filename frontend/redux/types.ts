@@ -13,6 +13,8 @@ const types = {
     // ========================
     // SEARCH_FILTERS
     SEARCH_FILTERS: 'SEARCH_FILTERS',
+    // TOGGLE_DRAWER
+    TOGGLE_DRAWER: 'TOGGLE_DRAWER',
 
     // ========================
     // AUTH

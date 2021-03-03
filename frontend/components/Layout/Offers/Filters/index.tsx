@@ -107,7 +107,7 @@ const POPULAR: string[] = [
 const Filters = (): ReactElement => {
     const css = useStyles();
     const dispatch = useDispatch();
-    const open = useSelector<IState, boolean>(state => state.filters.open);
+    const open = useSelector<IState, boolean>(state => state.filters);
 
     const handleClose = () => {
         dispatch({ type: types.SEARCH_FILTERS, payload: { open: !open } });

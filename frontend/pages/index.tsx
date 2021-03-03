@@ -1,12 +1,12 @@
 import React, { ReactElement } from 'react';
 import { END } from 'redux-saga';
 
+import About from '../components/Common/About';
 import Meta from '../components/Common/Meta';
 import Search from '../components/Common/Search';
-import About from '../components/Layout/About';
+import Banner from '../components/Layout/Banner';
 import Container from '../components/Layout/Container';
-import Main from '../components/Layout/Main';
-import Banner from '../components/Pages/Home/Banner';
+import Main from '../components/Layout/TagMain';
 import Categories from '../components/Pages/Home/Categories';
 import TopPopular from '../components/Pages/Home/PopularOffers';
 import useTrans from '../hooks/trans.hook';

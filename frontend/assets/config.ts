@@ -16,7 +16,7 @@ const config = {
         grid: {
             desktop: 4,
             tablet: 3,
-            smallTablet: 3,
+            smallTablet: 2,
             mobile: 1,
         },
     },

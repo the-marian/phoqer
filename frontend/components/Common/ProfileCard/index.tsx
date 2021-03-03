@@ -123,9 +123,11 @@ const ProfileCard = ({ id, firstName, lastName, avatar = null, userLocation = nu
                     <p>Локация: {userLocation || 'Не указано'}</p>
                 </div>
 
-                <button className={css.btn} type="button" onClick={handleOpenChat}>
-                    Написать автору
-                </button>
+                {auth?.id === id ? (
+                    <button className={css.btn} type="button" onClick={handleOpenChat}>
+                        Написать автору
+                    </button>
+                ) : null}
             </div>
         </div>
     );

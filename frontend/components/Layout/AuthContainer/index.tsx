@@ -1,9 +1,9 @@
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
-import { Theme } from '../../../../assets/theme';
-import Container from '../../../Layout/Container';
-import Main from '../../../Layout/Main';
+import { Theme } from '../../../assets/theme';
+import Container from '../Container';
+import Main from '../TagMain';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     root: {

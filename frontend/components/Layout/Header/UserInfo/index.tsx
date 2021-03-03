@@ -11,6 +11,7 @@ import { createUseStyles } from 'react-jss';
 import routes from '../../../../assets/routes';
 import { Theme } from '../../../../assets/theme';
 import useAuth from '../../../../hooks/auth.hook';
+import useMedia from '../../../../hooks/media.hook';
 import useTrans from '../../../../hooks/trans.hook';
 import NotifNumber from '../../../Common/NotifNumber';
 import DropWindow from './DropWindow';
@@ -20,21 +21,21 @@ const useStyles = createUseStyles((theme: Theme) => ({
         display: 'flex',
         alignItems: 'center',
         fontSize: theme.rem(1.4),
+
+        '@media (max-width: 768px)': {
+            fontSize: theme.rem(1.8),
+        },
     },
     item: {
         marginLeft: theme.rem(4.5),
 
         '@media (max-width: 768px)': {
-            marginLeft: theme.rem(1),
+            marginLeft: theme.rem(1.2),
         },
     },
     text: {
         position: 'relative',
         marginLeft: theme.rem(1),
-
-        '@media (max-width: 768px)': {
-            display: 'none',
-        },
     },
     link: {
         position: 'relative',
@@ -77,6 +78,7 @@ const UserInfo = (): ReactElement => {
     const T = useTrans();
     const auth = useAuth();
     const css = useStyles();
+    const media = useMedia(920);
     const [drop, setDrop] = useState<boolean>(false);
 
     useEffect(() => {
@@ -96,22 +98,26 @@ const UserInfo = (): ReactElement => {
 
     return (
         <ul className={css.flex}>
-            <li className={css.item}>
-                <Link href={routes.new_offer()} as={routes.new_offer(1)}>
-                    <a className={css.link}>
-                        <FontAwesomeIcon icon={faPlus} />
-                        <span className={css.text}>{T.create_offer}</span>
-                    </a>
-                </Link>
-            </li>
-            <li className={css.item}>
-                <Link href={routes.favorite}>
-                    <a className={css.link}>
-                        <FontAwesomeIcon icon={faHeart} />
-                        <span className={css.text}>{T.favorites}</span>
-                    </a>
-                </Link>
-            </li>
+            {media ? (
+                <>
+                    <li className={css.item}>
+                        <Link href={routes.new_offer()} as={routes.new_offer(1)}>
+                            <a className={css.link}>
+                                <FontAwesomeIcon icon={faPlus} />
+                                <span className={css.text}>{T.create_offer}</span>
+                            </a>
+                        </Link>
+                    </li>
+                    <li className={css.item}>
+                        <Link href={routes.favorite}>
+                            <a className={css.link}>
+                                <FontAwesomeIcon icon={faHeart} />
+                                <span className={css.text}>{T.favorites}</span>
+                            </a>
+                        </Link>
+                    </li>
+                </>
+            ) : null}
             <li className={css.item}>
                 <button type="button" className={clsx(css.link, drop && css.user)} onClick={handleClick}>
                     <FontAwesomeIcon icon={faUser} />

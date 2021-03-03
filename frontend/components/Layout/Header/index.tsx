@@ -1,14 +1,18 @@
+import { faBars } from '@fortawesome/free-solid-svg-icons/faBars';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import clsx from 'clsx';
 import React, { ReactElement, useEffect, useState } from 'react';
 import { createUseStyles } from 'react-jss';
+import { useDispatch } from 'react-redux';
 
 import { throttle } from '../../../assets/helpers';
 import { Theme } from '../../../assets/theme';
 import useAuth from '../../../hooks/auth.hook';
+import types from '../../../redux/types';
 import Logo from '../../Common/Logo';
 import Container from '../Container';
-import GeneralInfo from './GeneralInfo';
 import Lang from './Lang';
+import NotAuth from './NotAuth';
 import UserInfo from './UserInfo';
 
 const useStyles = createUseStyles((theme: Theme) => ({
@@ -45,6 +49,18 @@ const useStyles = createUseStyles((theme: Theme) => ({
         display: 'flex',
         alignItems: 'center',
     },
+    menu: {
+        display: 'flex',
+        marginRight: theme.rem(2),
+        padding: theme.rem(0, 1),
+        fontSize: theme.rem(2),
+        color: theme.palette.black[0],
+
+        '& svg': {
+            height: theme.rem(2),
+            width: theme.rem(2),
+        },
+    },
 }));
 
 let prev = 0;
@@ -52,6 +68,7 @@ let prev = 0;
 const Header = (): ReactElement => {
     const auth = useAuth();
     const css = useStyles();
+    const dispatch = useDispatch();
 
     const [shadow, setShadow] = useState<boolean>(true);
     const [delta, setDelta] = useState<boolean>(false);
@@ -77,16 +94,25 @@ const Header = (): ReactElement => {
         };
     }, []);
 
+    const handleMenu = (): void => {
+        dispatch({ type: types.TOGGLE_DRAWER });
+    };
+
     return (
         <header className={clsx(css.header, delta && css.transform, shadow && css.shadow)}>
             <Container>
                 <div className={css.flex}>
                     <div className={css.wrp}>
+                        <button className={css.menu} onClick={handleMenu}>
+                            <FontAwesomeIcon icon={faBars} />
+                        </button>
                         <Logo />
-                        <Lang />
                     </div>
 
-                    {auth?.auth_token ? <UserInfo /> : <GeneralInfo />}
+                    <div className={css.wrp}>
+                        {auth?.auth_token ? <UserInfo /> : <NotAuth />}
+                        <Lang />
+                    </div>
                 </div>
             </Container>
         </header>

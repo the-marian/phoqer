@@ -1,6 +1,4 @@
-import { faBars } from '@fortawesome/free-solid-svg-icons/faBars';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React, { ReactElement, useState } from 'react';
+import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
 import { Theme } from '../../../../assets/theme';
@@ -10,13 +8,14 @@ import JoinForm from '../../../Common/Auth/JoinForm';
 import LoginForm from '../../../Common/Auth/LoginForm';
 import { modal } from '../../../Common/Modal';
 import SmallModalWrp from '../../../Common/Modal/SmallModalWrp';
-import GeneralInfoDrop from './GeneralInfoDrop/indes';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     btn: {
         padding: theme.rem(1.2),
         fontWeight: theme.text.weight[3],
         fontSize: theme.rem(1.3),
+        color: theme.palette.black[0],
+
         '&:hover': {
             color: theme.palette.primary[0],
         },
@@ -37,15 +36,10 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
 }));
 
-const GeneralInfo = (): ReactElement => {
+const NotAuth = (): ReactElement | null => {
     const T = useTrans();
     const css = useStyles();
-    const mobile = useMedia(900);
-    const [drop, setDrop] = useState(false);
-
-    const handleDropClick = () => {
-        setDrop(!drop);
-    };
+    const media = useMedia(768);
 
     const handleLoginModal = () => {
         modal.open(
@@ -62,11 +56,7 @@ const GeneralInfo = (): ReactElement => {
         );
     };
 
-    const handleCLose = (): void => {
-        setDrop(false);
-    };
-
-    return mobile ? (
+    return media ? (
         <div>
             <button className={css.btn} type="button" onClick={handleLoginModal}>
                 {T.login}
@@ -75,15 +65,7 @@ const GeneralInfo = (): ReactElement => {
                 {T.join}
             </button>
         </div>
-    ) : (
-        <div className={css.menuWrp}>
-            <button className={css.menu} onClick={handleDropClick}>
-                <FontAwesomeIcon icon={faBars} />
-            </button>
-
-            {drop && <GeneralInfoDrop onClick={handleCLose} />}
-        </div>
-    );
+    ) : null;
 };
 
-export default GeneralInfo;
+export default NotAuth;

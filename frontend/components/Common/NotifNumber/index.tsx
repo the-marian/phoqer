@@ -6,8 +6,8 @@ import { Theme } from '../../../assets/theme';
 const useStyles = createUseStyles((theme: Theme) => ({
     num: {
         position: 'absolute',
-        top: theme.rem(-2),
-        right: theme.rem(-1.2),
+        top: theme.rem(-1.4),
+        left: theme.rem(-2),
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
@@ -19,8 +19,8 @@ const useStyles = createUseStyles((theme: Theme) => ({
         fontWeight: theme.text.weight[4],
 
         '@media (max-width: 768px)': {
-            top: theme.rem(-1.6),
-            right: theme.rem(-1.2),
+            top: theme.rem(-1),
+            left: theme.rem(-1.6),
             fontSize: theme.rem(1.8),
             padding: theme.rem(0.2, 0.8),
         },

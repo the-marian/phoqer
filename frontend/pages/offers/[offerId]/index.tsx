@@ -13,7 +13,7 @@ import Meta from '../../../components/Common/Meta';
 import { modal } from '../../../components/Common/Modal';
 import FullPageModal from '../../../components/Common/Modal/FullPageModal';
 import Container from '../../../components/Layout/Container';
-import Main from '../../../components/Layout/Main';
+import Main from '../../../components/Layout/TagMain';
 import AsideElement from '../../../components/Pages/Offers/AsideElement';
 import Comments from '../../../components/Pages/Offers/Comments';
 import OfferHead from '../../../components/Pages/Offers/OfferHead';

@@ -22,8 +22,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
     img: {
         height: 'auto',
-        marginTop: theme.rem(0.6),
-        width: theme.rem(14),
+        width: theme.rem(10),
 
         '@media (max-width: 500px)': {
             height: 'auto',

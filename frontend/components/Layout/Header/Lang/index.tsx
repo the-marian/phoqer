@@ -48,6 +48,7 @@ const Lang = (): ReactElement => {
                 data={LANGS}
                 onChange={handleChange}
                 white
+                toLeft
             />
         </div>
     );
