@@ -1,10 +1,9 @@
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
-import { Theme } from '../../../../assets/theme';
 import { modal } from '../index';
 
-const useStyles = createUseStyles((theme: Theme) => ({
+const useStyles = createUseStyles({
     inner: {
         position: 'relative',
         width: '100vw',
@@ -12,7 +11,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         background: '#323232',
         cursor: 'zoom-out',
     },
-}));
+});
 
 interface IProps {
     children: JSX.Element[] | JSX.Element;
