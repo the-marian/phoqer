@@ -41,19 +41,14 @@ async def get_is_favorite(
     user_id: Optional[int] = Depends(get_current_user),
 ) -> List[OffersListItem]:
     if user_id:
-        row = await crud.offers_in_favorite(user_id)
+        queryset = await crud.offers_in_favorite(user_id)
         return [
             OffersListItem(
                 **offer,
                 is_favorite=True,
             )
-            for offer in row
+            for offer in queryset
         ]
-    else:
-        raise HTTPException(
-            status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="Token does not exist"
-        )
 
 
 @router.patch("/{offer_id}", status_code=status.HTTP_204_NO_CONTENT)

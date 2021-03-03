@@ -42,10 +42,8 @@ async def get_offer(offer_id: str) -> Optional[Mapping]:
         cc.name AS "sub_category_name"
     FROM offers_offer
     INNER JOIN users_user ON offers_offer.author_id=users_user.id
-    LEFT JOIN categories_childcategories cc ON offers_offer.sub_category_id=
-    cc.slug
-    LEFT JOIN categories_parentcategories cp on offers_offer.category_id =
-    cp.slug
+    LEFT JOIN categories_childcategories cc ON offers_offer.sub_category_id=cc.slug
+    LEFT JOIN categories_parentcategories cp on offers_offer.category_id =cp.slug
     WHERE offers_offer.id=:offer_id
     """
     return await database.fetch_one(query=query, values={"offer_id": offer_id})
@@ -206,10 +204,7 @@ async def partial_update_offer(
         "title": updated_offer.title,
     }
     await delete_all_offer_images(offer_id)
-    await create_offer_images(
-        images=update_offer_data.images,
-        offer_id=offer_id
-    )
+    await create_offer_images(images=update_offer_data.images, offer_id=offer_id)
     await database.execute(query=query, values=values)
 
 
@@ -255,10 +250,8 @@ async def find_offers(
     WHERE status = 'ACTIVE'
       AND ((:category)::varchar IS NULL OR category_id = (:category)::varchar)
       AND ((:city)::varchar IS NULL OR city = (:city)::varchar)
-      AND ((:sub_category)::varchar IS NULL OR sub_category_id =
-      (:sub_category)::varchar)
-      AND ((:is_deliverable)::bool IS NULL OR is_deliverable =
-      (:is_deliverable)::bool)
+      AND ((:sub_category)::varchar IS NULL OR sub_category_id = (:sub_category)::varchar)
+      AND ((:is_deliverable)::bool IS NULL OR is_deliverable = (:is_deliverable)::bool)
       AND ((:max_price)::int IS NULL OR price <= (:max_price)::int)
       AND ((:min_price)::int IS NULL OR price >= (:min_price)::int)
       AND ((:max_deposit)::int IS NULL OR deposit_val <= (:max_deposit)::int)
@@ -306,10 +299,8 @@ async def count_founded_offers(
     WHERE status = 'ACTIVE'
       AND ((:category)::varchar IS NULL OR category_id = (:category)::varchar)
       AND ((:city)::varchar IS NULL OR city = (:city)::varchar)
-      AND ((:sub_category)::varchar IS NULL OR sub_category_id =
-      (:sub_category)::varchar)
-      AND ((:is_deliverable)::bool IS NULL OR is_deliverable =
-      (:is_deliverable)::bool)
+      AND ((:sub_category)::varchar IS NULL OR sub_category_id = (:sub_category)::varchar)
+      AND ((:is_deliverable)::bool IS NULL OR is_deliverable = (:is_deliverable)::bool)
       AND ((:max_price)::int IS NULL OR price <= (:max_price)::int)
       AND ((:min_price)::int IS NULL OR price >= (:min_price)::int)
       AND ((:max_deposit)::int IS NULL OR deposit_val <= (:max_deposit)::int)

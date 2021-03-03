@@ -5,8 +5,12 @@ from typing import Dict, List, Optional
 from fastapi import APIRouter, Depends, Header, HTTPException, Response, status
 from FastAPI.config import PAGE_SIZE
 from FastAPI.offers import crud
-from FastAPI.offers.schemas import (OfferDraftReply, OfferDraftRequest,
-                                    OffersListItem, OffersListResponse)
+from FastAPI.offers.schemas import (
+    OfferDraftReply,
+    OfferDraftRequest,
+    OffersListItem,
+    OffersListResponse
+)
 
 router = APIRouter(
     prefix="/offers",
@@ -40,8 +44,7 @@ async def get_current_user(
         else:
             raise HTTPException(
                 status_code=status.HTTP_401_UNAUTHORIZED,
-                detail="Invalid Authorisation Header format. "
-                       "Token cannot be blank.",
+                detail="Invalid Authorisation Header format. Token cannot be blank.",
             )
     else:
         raise HTTPException(
@@ -58,8 +61,7 @@ async def get_popular_offers(
     popular_offer_ids = [offer["id"] for offer in popular_offers]
     user_favorite_popular_offers = set()
     if user_id:
-        user_favorite_popular_offers = \
-            await crud.get_user_favorite_popular_offers(
+        user_favorite_popular_offers = await crud.get_user_favorite_popular_offers(
                 user_id=user_id,
                 popular_offer_ids=popular_offer_ids,
             )
@@ -119,8 +121,7 @@ async def search_offers(
         if promote_til_date := offer.get("promote_til_date"):
             offer_schema.is_promoted = date.today() < promote_til_date
         if user_id:
-            offer_schema.is_favorite = \
-                offer_schema.id in user_favorite_offers_set
+            offer_schema.is_favorite = offer_schema.id in user_favorite_offers_set
         data.append(offer_schema)
     return {
         "data": data,
@@ -158,10 +159,7 @@ async def get_offer(
     if promote_til_date := offer.get("promote_til_date"):
         is_promoted = date.today() < promote_til_date
     if user_id:
-        is_favorite = await crud.is_offer_in_favorite_of_user(
-            offer_id,
-            user_id
-        )
+        is_favorite = await crud.is_offer_in_favorite_of_user(offer_id, user_id)
     return OfferDraftReply(
         **offer,
         images=offer_images,
