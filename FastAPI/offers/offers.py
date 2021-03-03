@@ -9,7 +9,7 @@ from FastAPI.offers.schemas import (
     OfferDraftReply,
     OfferDraftRequest,
     OffersListItem,
-    OffersListResponse,
+    OffersListResponse
 )
 
 router = APIRouter(

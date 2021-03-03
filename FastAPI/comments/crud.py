@@ -31,7 +31,13 @@ async def create_comment_images(images: List[HttpUrl], comment_id: int) -> None:
     VALUES (:url, :name, :comment_id)"""
     values = []
     for image_url in images:
-        values.append({"url": image_url, "name": name, "comment_id": comment_id})
+        values.append(
+            {
+                "url": image_url,
+                "name": name,
+                "comment_id": comment_id
+            }
+        )
     await database.execute_many(query=query, values=values)
 
 

@@ -2,6 +2,7 @@ import uvicorn
 from fastapi import FastAPI
 from FastAPI.comments import comments
 from FastAPI.config import database
+from FastAPI.favorite import favorite
 from fastapi.middleware.cors import CORSMiddleware
 from FastAPI.offers import offers
 
@@ -23,6 +24,7 @@ app.add_middleware(
 )
 app.include_router(comments.router)
 app.include_router(offers.router)
+app.include_router(favorite.router)
 
 
 @app.on_event("startup")
