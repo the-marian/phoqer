@@ -46,8 +46,8 @@ const useStyles = createUseStyles((theme: Theme) => ({
 }));
 
 interface IProps {
-    firstName: string;
-    lastName: string;
+    firstName?: string;
+    lastName?: string;
     avatar?: string | null;
     width?: number;
     height?: number;
@@ -70,7 +70,7 @@ const UserAvatar = ({ firstName = 'A', lastName = 'A', avatar = null, width = 8,
             }}
             className={css.avatar}
         >
-            {(firstName[0] + lastName[0]).toUpperCase()}
+            {(firstName[0] + lastName[0])?.toUpperCase()}
         </div>
     );
 };

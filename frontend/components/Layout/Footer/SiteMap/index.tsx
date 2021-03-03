@@ -57,7 +57,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     link: {
         display: 'block',
         margin: theme.rem(2, 0),
-        fontSize: theme.rem(1.2),
+        fontSize: theme.rem(1.4),
         fontWeight: theme.text.weight[3],
         color: theme.palette.black[0],
         lineHeight: 1,

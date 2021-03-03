@@ -11,12 +11,12 @@ const useStyles = createUseStyles((theme: Theme) => ({
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        padding: theme.rem(0.1, 0.6),
+        padding: theme.rem(0.1, 0.7),
         background: theme.palette.red[0],
         borderRadius: theme.rem(2),
         color: '#ffffff',
         fontSize: theme.rem(1.2),
-        fontWeight: theme.text.weight[4],
+        fontWeight: theme.text.weight[2],
 
         '@media (max-width: 768px)': {
             top: theme.rem(-1),

@@ -19,7 +19,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         marginLeft: 0,
     },
     title: {
-        fontSize: theme.rem(1.2),
+        fontSize: theme.rem(1.4),
         fontWeight: theme.text.weight[3],
 
         '@media (max-width: 768px)': {
@@ -50,8 +50,8 @@ const useStyles = createUseStyles((theme: Theme) => ({
         margin: 0,
     },
     svg: {
-        height: theme.rem(1.4),
-        width: theme.rem(1.4),
+        height: theme.rem(1.8),
+        width: theme.rem(1.8),
         fill: 'inherit',
 
         '@media (max-width: 768px)': {

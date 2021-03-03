@@ -83,13 +83,13 @@ export interface IOfferCard {
     status: string;
 }
 
-export interface IOfferPaggination {
+export interface IOfferPagination {
     data: IOfferCard[];
     total: number;
 }
 
 export interface IOfferDynamic {
-    data: IOfferPaggination;
+    data: IOfferPagination;
     loading: boolean;
 }
 
@@ -162,6 +162,7 @@ export interface IPublicProfile {
     location?: string | null;
     last_name?: string;
     first_name?: string;
+    profile_img?: string | null;
 }
 
 // =====================================

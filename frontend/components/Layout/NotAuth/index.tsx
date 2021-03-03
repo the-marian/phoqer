@@ -1,17 +1,17 @@
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
-import { Theme } from '../../../../assets/theme';
-import useMedia from '../../../../hooks/media.hook';
-import useTrans from '../../../../hooks/trans.hook';
-import JoinForm from '../../../Common/Auth/JoinForm';
-import LoginForm from '../../../Common/Auth/LoginForm';
-import { modal } from '../../../Common/Modal';
-import SmallModalWrp from '../../../Common/Modal/SmallModalWrp';
+import { Theme } from '../../../assets/theme';
+import useMedia from '../../../hooks/media.hook';
+import useTrans from '../../../hooks/trans.hook';
+import JoinForm from '../../Common/Auth/JoinForm';
+import LoginForm from '../../Common/Auth/LoginForm';
+import { modal } from '../../Common/Modal';
+import SmallModalWrp from '../../Common/Modal/SmallModalWrp';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     btn: {
-        padding: theme.rem(1.2),
+        paddingRight: theme.rem(2),
         fontWeight: theme.text.weight[3],
         fontSize: theme.rem(1.3),
         color: theme.palette.black[0],
@@ -39,7 +39,6 @@ const useStyles = createUseStyles((theme: Theme) => ({
 const NotAuth = (): ReactElement | null => {
     const T = useTrans();
     const css = useStyles();
-    const media = useMedia(768);
 
     const handleLoginModal = () => {
         modal.open(
@@ -56,7 +55,7 @@ const NotAuth = (): ReactElement | null => {
         );
     };
 
-    return media ? (
+    return (
         <div>
             <button className={css.btn} type="button" onClick={handleLoginModal}>
                 {T.login}
@@ -65,7 +64,7 @@ const NotAuth = (): ReactElement | null => {
                 {T.join}
             </button>
         </div>
-    ) : null;
+    );
 };
 
 export default NotAuth;

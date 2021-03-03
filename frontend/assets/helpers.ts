@@ -1,4 +1,7 @@
-import { ICategories, IDropList } from '../interfaces';
+import { GetServerSidePropsContext } from 'next';
+
+import { IAuth, ICategories, IDropList } from '../interfaces';
+import routes from "./routes";
 
 export const addZeroToNumber = (value: string | number): string => String(value).padStart(2, '0');
 
@@ -52,7 +55,7 @@ export const throttle = (func: IFunction, time: number): IFunction => {
 export const decode = (cookie = ''): string => decodeURI(cookie).replace(/\\"/gi, '');
 
 // parse cookie on server
-export const parseCookie = <T>(cookie = '', key = 'phoqer_auth'): T | null => {
+export const parseCookie = <T>(cookie = '', key = 'phoqer_auth', parsed = false): T | null => {
     try {
         const obj = decode(cookie)
             ?.split(' ')
@@ -61,7 +64,7 @@ export const parseCookie = <T>(cookie = '', key = 'phoqer_auth'): T | null => {
             ?.replace(/%2C/gi, ',')
             ?.split(key + '=')[1];
 
-        return obj ? JSON.parse(obj) : null;
+        return obj ? (parsed ? obj : JSON.parse(obj)) : null;
     } catch (error) {
         return null;
     }
@@ -92,4 +95,21 @@ export const moneyFormat = (value = 0): string => {
 export const declOfNum = (number: number, titles: string[]): string => {
     const cases = [2, 0, 1, 1, 1, 2];
     return titles[number % 100 > 4 && number % 100 < 20 ? 2 : cases[number % 10 < 5 ? number % 10 : 5]];
+};
+
+// decorator for SSR
+// get server side cookies
+export const serverCookie = (ctx: GetServerSidePropsContext): IAuth | null => parseCookie<IAuth | null>(ctx.req.headers.cookie);
+
+// decorator for SSR
+// redirect user on server side
+export const serverRedirect = (ctx: GetServerSidePropsContext, path?: string | null, reverse = false): boolean => {
+    const auth = serverCookie(ctx);
+    const redirect = reverse ? auth?.auth_token : !auth?.auth_token;
+    if (redirect) {
+        ctx.res.statusCode = 302;
+        ctx.res.setHeader('Location', path || routes.root);
+    }
+
+    return !!redirect;
 };

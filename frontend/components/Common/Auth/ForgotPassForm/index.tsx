@@ -11,6 +11,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     title: {
         fontSize: theme.rem(1.8),
         fontWeight: theme.text.weight[3],
+        color: theme.palette.black[0],
         textAlign: 'center',
 
         '@media (max-width: 500px)': {
@@ -44,6 +45,10 @@ const useStyles = createUseStyles((theme: Theme) => ({
         fontSize: theme.rem(1.4),
         color: theme.palette.primary[0],
 
+        '&:hover': {
+            textDecoration: 'underline',
+        },
+
         '@media (max-width: 500px)': {
             fontSize: theme.rem(1.6),
         },
@@ -58,7 +63,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         fontSize: theme.rem(1.4),
         borderRadius: theme.radius,
         background: theme.palette.primary[0],
-        color: theme.palette.white,
+        color: '#ffffff',
 
         '@media (max-width: 500px)': {
             margin: '1rem auto 3rem',
@@ -69,6 +74,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         padding: theme.rem(1, 0),
         fontSize: theme.rem(1.2),
         textAlign: 'center',
+        color: theme.palette.black[0],
 
         '@media (max-width: 500px)': {
             fontSize: theme.rem(1.4),

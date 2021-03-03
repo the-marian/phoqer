@@ -37,7 +37,7 @@ const palette: { [key: string]: IPalette } = {
         white: '#FFFFFF',
         glass: ['rgba(255, 255, 255, 0.9)', 'rgba(250, 250, 250, 0.9)'],
         black: ['#222222', '#242424'],
-        gray: ['#F9F9F9', '#EAEEF9', '#9E9E9E', '#999999', '#444444'],
+        gray: ['#F9F9F9', '#EAEEF9', '#909bac', '#999999', '#444444'],
         red: ['#DB162F'],
         green: ['#22cc52'],
         soft: [
@@ -113,8 +113,8 @@ export const theme = (value: Themes): Theme => ({
         padding: '1rem 2rem',
         border: 'none',
         borderRadius: '0.6rem',
-        fontSize: '1.2rem',
-        transition: '0.3s cubic-bezier(0.4, 0, 0.2, 1), background 5000000s',
+        fontSize: '1.6rem',
+        transition: '0.3s cubic-bezier(0.4, 0, 0.2, 1)',
 
         '@media (max-width: 500px)': {
             fontSize: '1.6rem',

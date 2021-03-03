@@ -55,12 +55,14 @@ const Persist: Middleware = store => next => action => {
          * */
         if (HYDRATE === action.type) {
             try {
+                // Auth
                 const authStr: string | null = Cookies.get('phoqer_auth') || null;
                 const auth: IAuth = authStr ? JSON.parse(authStr) : initState.auth;
 
                 const newOfferStr: string | null = localStorage.getItem('phoqer_new_offer') || null;
                 const newOffer: INewOffer = newOfferStr ? JSON.parse(newOfferStr) : initState.offers.newOffer;
 
+                // next
                 next({
                     type: HYDRATE,
                     payload: {

@@ -4,6 +4,7 @@ import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
 import config from '../../../assets/config';
+import useTheme from '../../../hooks/theme.hook';
 import useTrans from '../../../hooks/trans.hook';
 
 const useStyles = createUseStyles({
@@ -26,6 +27,7 @@ interface IProps {
 
 const Meta = ({ title, description, keywords, icon, h1 = '' }: IProps): ReactElement => {
     const css = useStyles();
+    const [theme] = useTheme();
     const history = useRouter();
     const T = useTrans();
 
@@ -36,7 +38,7 @@ const Meta = ({ title, description, keywords, icon, h1 = '' }: IProps): ReactEle
         <>
             <Head>
                 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
-                <meta name="theme-color" content="#ffffff" />
+                <meta name="theme-color" content={theme === 'white' ? '#ffffff' : '#000000'} />
                 <meta name="description" content={description || T.site_desc} />
                 <meta name="keywords" content={`${T.keywords} ${keywords || ''}`} />
                 <title>{title ? `${title} | Phoqer` : 'Phoqer'}</title>

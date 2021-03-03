@@ -62,13 +62,24 @@ const useStyles = createUseStyles((theme: Theme) => ({
         background: theme.palette.green[0],
     },
     percent: {
+        display: 'flex',
+        justifyContent: 'flex-start',
+        flexWrap: 'wrap',
         minWidth: theme.rem(17),
-        padding: theme.rem(1, 0),
+        padding: theme.rem(1, 1.5),
         borderRadius: theme.radius,
         fontSize: theme.rem(3.5),
         fontWeight: theme.text.weight[4],
-        textAlign: 'center',
-        color: theme.palette.white,
+        color: '#ffffff',
+
+        '& span': {
+            display: 'block',
+            width: '100%',
+        },
+        '& small': {
+            display: 'block',
+            fontSize: theme.rem(1.4),
+        },
 
         '@media (max-width: 1080px)': {
             marginBottom: theme.rem(2),
@@ -115,7 +126,10 @@ const ProfileInfo = (): ReactElement => {
                         <span className={css.gray}>Скорость отклика:</span> в течение часа
                     </div>
                 </div>
-                <div className={clsx(css.percent, percent > 25 ? css.green : css.yellow)}>{percent} %</div>
+                <div className={clsx(css.percent, percent > 25 ? css.green : css.yellow)}>
+                    <span>{percent} %</span>
+                    <small>Позитивных отзывов</small>
+                </div>
             </div>
 
             <LikeDislike like={133} dislike={4} active="like" onClick={console.log} />

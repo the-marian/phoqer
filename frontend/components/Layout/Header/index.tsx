@@ -8,11 +8,12 @@ import { useDispatch } from 'react-redux';
 import { throttle } from '../../../assets/helpers';
 import { Theme } from '../../../assets/theme';
 import useAuth from '../../../hooks/auth.hook';
+import useMedia from '../../../hooks/media.hook';
 import types from '../../../redux/types';
 import Logo from '../../Common/Logo';
 import Container from '../Container';
+import NotAuth from '../NotAuth';
 import Lang from './Lang';
-import NotAuth from './NotAuth';
 import UserInfo from './UserInfo';
 
 const useStyles = createUseStyles((theme: Theme) => ({
@@ -51,12 +52,14 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
     menu: {
         display: 'flex',
+        alignItems: 'center',
         marginRight: theme.rem(2),
         padding: theme.rem(0, 1),
-        fontSize: theme.rem(2),
+        fontSize: theme.rem(1.8),
         color: theme.palette.black[0],
 
         '& svg': {
+            marginRight: theme.rem(1),
             height: theme.rem(2),
             width: theme.rem(2),
         },
@@ -68,6 +71,7 @@ let prev = 0;
 const Header = (): ReactElement => {
     const auth = useAuth();
     const css = useStyles();
+    const media = useMedia(768);
     const dispatch = useDispatch();
 
     const [shadow, setShadow] = useState<boolean>(true);
@@ -105,12 +109,13 @@ const Header = (): ReactElement => {
                     <div className={css.wrp}>
                         <button className={css.menu} onClick={handleMenu}>
                             <FontAwesomeIcon icon={faBars} />
+                            <span>Menu</span>
                         </button>
-                        <Logo />
+                        <Logo link />
                     </div>
 
                     <div className={css.wrp}>
-                        {auth?.auth_token ? <UserInfo /> : <NotAuth />}
+                        {auth?.auth_token ? <UserInfo /> : media ? <NotAuth /> : null}
                         <Lang />
                     </div>
                 </div>

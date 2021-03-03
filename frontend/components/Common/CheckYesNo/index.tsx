@@ -16,6 +16,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         '& span': {
             textAlign: 'left',
             fontSize: theme.rem(1.4),
+            color: theme.palette.black[0],
         },
     },
     label: {
@@ -26,6 +27,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         border: theme.border(0.1, theme.palette.primary[0]),
         background: '#ffffff',
         borderRadius: theme.radius,
+        color: theme.palette.black[0],
     },
     active: {
         position: 'relative',

@@ -155,6 +155,10 @@ const useStyles = createUseStyles((theme: Theme) => ({
                 width: theme.rem(2.2),
             },
         },
+
+        '@media (max-width: 500px)': {
+            height: theme.rem(6.5),
+        },
     },
     price: {
         display: 'flex',

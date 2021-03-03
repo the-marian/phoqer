@@ -10,7 +10,7 @@ import Meta from '../../components/Common/Meta';
 import OffersList from '../../components/Common/Offers/OffersList';
 import Search from '../../components/Common/Search';
 import Container from '../../components/Layout/Container';
-import Filters from '../../components/Layout/SingleOffer/Filters';
+import Filters from '../../components/Layout/Filters';
 import TopOffers from '../../components/Layout/SingleOffer/TopOffers';
 import Main from '../../components/Layout/TagMain';
 import useTrans from '../../hooks/trans.hook';

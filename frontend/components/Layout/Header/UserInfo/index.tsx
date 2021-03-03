@@ -49,6 +49,10 @@ const useStyles = createUseStyles((theme: Theme) => ({
             borderRadius: theme.radius,
         },
 
+        '@media (max-width: 500px)': {
+            fontSize: 0,
+        },
+
         '&:hover': {
             color: theme.palette.primary[0],
         },

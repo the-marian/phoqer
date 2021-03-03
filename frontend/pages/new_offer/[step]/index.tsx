@@ -1,4 +1,4 @@
-import { GetServerSideProps, GetServerSidePropsContext } from 'next';
+import { GetServerSideProps } from 'next';
 import { useRouter } from 'next/router';
 import React, { ReactElement, useEffect, useState } from 'react';
 import { createUseStyles } from 'react-jss';
@@ -9,7 +9,6 @@ import routes from '../../../assets/routes';
 import { Theme } from '../../../assets/theme';
 import Meta from '../../../components/Common/Meta';
 import AuthRedirect from '../../../components/HOC/Auth/AuthRedirect';
-import serverRedirect from '../../../components/HOC/ServerRedirect';
 import Container from '../../../components/Layout/Container';
 import StepOne from '../../../components/Layout/NewOffer/StepOne';
 import Stepper from '../../../components/Layout/NewOffer/Stepper';
@@ -102,7 +101,6 @@ const NewOffer = (): ReactElement => {
 
 export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps(
     async (ctx): Promise<void> => {
-        if (serverRedirect((ctx as unknown) as GetServerSidePropsContext)) return;
         ctx?.store?.dispatch({ type: types.GET_CATEGORIES_START });
         ctx?.store?.dispatch(END);
         await (ctx?.store as IStore)?.sagaTask?.toPromise();

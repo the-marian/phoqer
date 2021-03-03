@@ -3,11 +3,11 @@ import React, { FormEvent, ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 import { useDispatch, useSelector } from 'react-redux';
 
-import routes from '../../../../assets/routes';
-import { Theme } from '../../../../assets/theme';
-import { IState } from '../../../../interfaces';
-import types from '../../../../redux/types';
-import SectionTitle from '../../SectionTitle';
+import routes from '../../../assets/routes';
+import { Theme } from '../../../assets/theme';
+import { IState } from '../../../interfaces';
+import types from '../../../redux/types';
+import SectionTitle from '../SectionTitle';
 import Checkbox from './Checkbox';
 import Period from './Period';
 import PriceFilter from './Price';

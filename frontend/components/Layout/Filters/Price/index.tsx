@@ -2,8 +2,8 @@ import { Range } from 'rc-slider';
 import React, { ChangeEvent, ReactElement, useState } from 'react';
 import { createUseStyles } from 'react-jss';
 
-import { numberValidation } from '../../../../../assets/helpers';
-import { Theme } from '../../../../../assets/theme';
+import { numberValidation } from '../../../../assets/helpers';
+import { Theme } from '../../../../assets/theme';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     root: {
@@ -22,6 +22,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         ...theme.input,
         background: theme.palette.gray[1],
         fontSize: 'inherit',
+        color: theme.palette.black[0],
     },
     title: {
         marginBottom: theme.rem(1),

@@ -7,6 +7,7 @@ import { useDispatch } from 'react-redux';
 import config from '../../../../assets/config';
 import routes from '../../../../assets/routes';
 import useMedia from '../../../../hooks/media.hook';
+import useTheme from '../../../../hooks/theme.hook';
 import useUppy from '../../../../hooks/uppy.hook';
 import types from '../../../../redux/types';
 import notifications from '../../../Common/Notifications';
@@ -15,6 +16,7 @@ import useStyles from './StepThree.styles';
 const StepThree = (): ReactElement => {
     // style
     const css = useStyles();
+    const [theme] = useTheme();
     // general
     const dispatch = useDispatch();
     const history = useRouter();
@@ -76,7 +78,7 @@ const StepThree = (): ReactElement => {
             <h4 className={css.title}>Добавьте фото вашего товара</h4>
             <p className={css.text}>Не больше 3мб (.png .jpg .jpeg)</p>
 
-            <Dashboard uppy={uppy} hideUploadButton height={media ? 500 : 350} />
+            <Dashboard theme={theme === 'white' ? 'light' : 'dark'} uppy={uppy} hideUploadButton height={media ? 500 : 350} />
 
             <div className={css.btnWrp}>
                 <button type="button" className={css.btn} onClick={handleBack}>

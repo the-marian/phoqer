@@ -23,27 +23,33 @@ const useStyles = createUseStyles((theme: Theme) => ({
     img: {
         height: 'auto',
         width: theme.rem(10),
+        marginBottom: theme.rem(0.1),
 
         '@media (max-width: 500px)': {
             height: 'auto',
             width: theme.rem(10),
-            marginTop: theme.rem(0.4),
         },
     },
 }));
 
 interface IProps {
+    className?: string;
+    link?: boolean;
     center?: boolean;
 }
 
-const Logo = ({ center = false }: IProps): ReactElement => {
+const Logo = ({ center = false, link = false, className }: IProps): ReactElement => {
     const css = useStyles();
-    return (
+    return link ? (
         <Link href={routes.root}>
-            <a className={clsx(css.logo, center && css.center)}>
+            <a className={clsx(css.logo, center && css.center, className)}>
                 <img className={css.img} src="/logo.png" alt="logo" />
             </a>
         </Link>
+    ) : (
+        <div className={clsx(css.logo, center && css.center, className)}>
+            <img className={css.img} src="/logo.png" alt="logo" />
+        </div>
     );
 };
 

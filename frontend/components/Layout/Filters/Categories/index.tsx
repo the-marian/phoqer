@@ -2,10 +2,10 @@ import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 import { useSelector } from 'react-redux';
 
-import * as helpers from '../../../../../assets/helpers';
-import { Theme } from '../../../../../assets/theme';
-import { ICategories, IState } from '../../../../../interfaces';
-import DropDown from '../../../../Common/DropDown';
+import * as helpers from '../../../../assets/helpers';
+import { Theme } from '../../../../assets/theme';
+import { ICategories, IState } from '../../../../interfaces';
+import DropDown from '../../../Common/DropDown';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     title: {

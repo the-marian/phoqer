@@ -13,10 +13,15 @@ import AuthProvider from '../components/HOC/Auth/AuthContext';
 import MediaProvider from '../components/HOC/Media';
 import SiteTheme from '../components/HOC/SiteTheme';
 import PageLayout from '../components/Layout/PageLayout';
-import { IAuth } from '../interfaces';
+import { IAuth, Themes } from '../interfaces';
 import { wrapper } from '../redux/store';
 
-const MyApp = ({ Component, pageProps, width, auth }: AppProps & { width: number; auth: IAuth }): ReactElement => {
+interface IProps {
+    width: number;
+    auth: IAuth;
+    theme: Themes | null;
+}
+const MyApp = ({ Component, pageProps, width, auth, theme }: AppProps & IProps): ReactElement => {
     const history = useRouter();
     const dispatch = useDispatch();
 
@@ -36,7 +41,7 @@ const MyApp = ({ Component, pageProps, width, auth }: AppProps & { width: number
     }, []);
 
     return (
-        <SiteTheme siteTheme={'white'}>
+        <SiteTheme siteTheme={theme === 'white' ? 'white' : 'black'}>
             <AuthProvider authServer={auth}>
                 <MediaProvider width={width}>
                     <PageLayout>
@@ -52,9 +57,10 @@ MyApp.getInitialProps = async (appContext: AppContextType<Router>) => {
     const toMatch = /mobile|iphone|ipod|android|blackberry|opera|mini|windows\sce|palm|smartphone|iemobile|ipad|android 3.0|xoom|sch-i800|playbook|tablet|kindle/i;
     const isMobile = toMatch.test(appContext?.ctx?.req?.headers?.['user-agent'] || '');
 
+    const theme = parseCookie<Themes>(appContext?.ctx?.req?.headers?.cookie, 'phoqer_theme', true);
     const props = await App.getInitialProps(appContext);
     const auth = parseCookie<IAuth>(appContext?.ctx?.req?.headers?.cookie);
-    return { ...props, width: isMobile ? 500 : 1400, auth };
+    return { ...props, width: isMobile ? 500 : 1400, auth, theme };
 };
 
 export default wrapper.withRedux(MyApp);

@@ -1,9 +1,9 @@
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
-import { Theme } from '../../../../../assets/theme';
-import { IDropList } from '../../../../../interfaces';
-import DropDown from '../../../../Common/DropDown';
+import { Theme } from '../../../../assets/theme';
+import { IDropList } from '../../../../interfaces';
+import DropDown from '../../../Common/DropDown';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     title: {

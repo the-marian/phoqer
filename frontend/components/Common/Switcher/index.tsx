@@ -17,7 +17,6 @@ const useStyles = createUseStyles((theme: Theme) => ({
         marginRight: theme.rem(1),
         background: theme.palette.gray[1],
         borderRadius: theme.radius,
-        boxShadow: theme.shadow[1],
 
         '& span': {
             position: 'relative',

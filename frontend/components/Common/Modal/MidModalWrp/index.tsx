@@ -30,6 +30,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         right: 0,
         padding: theme.rem(1.2, 1.8),
         fontSize: theme.rem(1.6),
+        color: theme.palette.black[0],
 
         '& svg': {
             height: theme.rem(1.2),

@@ -16,12 +16,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         justifyContent: 'space-between',
         padding: theme.rem(2),
         borderRadius: theme.radius,
-        background: theme.palette.gray[0],
-        boxShadow: theme.shadow[1],
-
-        '@media (max-width: 500px)': {
-            border: theme.border(0.1, theme.palette.gray[2]),
-        },
+        background: theme.palette.gray[1],
 
         '@media (max-width: 450px)': {
             flexDirection: 'column',
@@ -79,14 +74,14 @@ const useStyles = createUseStyles((theme: Theme) => ({
 }));
 
 interface IProps {
-    id: string | number;
-    firstName: string;
-    lastName: string;
+    id?: string | number;
+    firstName?: string;
+    lastName?: string;
     avatar?: string | null;
     userLocation?: string | null;
 }
 
-const ProfileCard = ({ id, firstName, lastName, avatar = null, userLocation = null }: IProps): ReactElement => {
+const ProfileCard = ({ id = 0, firstName = 'A', lastName = 'A', avatar = null, userLocation = null }: IProps): ReactElement => {
     const css = useStyles();
     const auth = useAuth();
 

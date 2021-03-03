@@ -13,6 +13,7 @@ import { Theme } from '../../../../../assets/theme';
 import useMedia from '../../../../../hooks/media.hook';
 import useUppy from '../../../../../hooks/uppy.hook';
 import notifications from '../../../../Common/Notifications';
+import useTheme from "../../../../../hooks/theme.hook";
 
 const useStyles = createUseStyles((theme: Theme) => ({
     flex: {
@@ -105,6 +106,7 @@ interface IProps {
 const CommentsForm = ({ onSubmit }: IProps): ReactElement => {
     const css = useStyles();
     const uppy = useUppy();
+    const [theme] = useTheme();
     const media = useMedia(900);
 
     const [value, setValue] = useState<string>('');
@@ -186,7 +188,7 @@ const CommentsForm = ({ onSubmit }: IProps): ReactElement => {
                 )}
             </div>
 
-            {attachment && <Dashboard hideUploadButton uppy={uppy} height={media ? 230 : 200} />}
+            {attachment && <Dashboard theme={theme === 'white' ? 'light' : 'dark'} hideUploadButton uppy={uppy} height={media ? 230 : 200} />}
 
             <button type="button" className={css.attachment} onClick={handleAttachment}>
                 {attachment ? (
