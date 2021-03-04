@@ -31,7 +31,7 @@ class OfferDraftRequest(BaseModel):
     category: Optional[str] = None
     city: Optional[str] = None
     cover_image: Optional[HttpUrl] = None
-    currency: Currency = Currency.NONE
+    currency: Currency = Currency.UAH
     deposit_val: Optional[int] = None
     description: Optional[str] = None
     doc_needed: bool = False
@@ -62,7 +62,7 @@ class OfferDraftReply(OfferDraftRequest):
 
 class OffersListItem(BaseModel):
     cover_image: HttpUrl
-    currency: Currency
+    currency: Currency = Currency.UAH
     description: str
     id: UUID
     is_deliverable: bool
