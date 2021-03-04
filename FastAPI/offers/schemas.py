@@ -62,7 +62,7 @@ class OfferDraftReply(OfferDraftRequest):
 
 class OffersListItem(BaseModel):
     cover_image: HttpUrl
-    currency: Currency = Currency.UAH
+    currency: Currency
     description: str
     id: UUID
     is_deliverable: bool
