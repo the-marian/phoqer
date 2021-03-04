@@ -3,7 +3,6 @@ import { faEyeSlash } from '@fortawesome/free-regular-svg-icons/faEyeSlash';
 import { faUser } from '@fortawesome/free-regular-svg-icons/faUser';
 import { faKey } from '@fortawesome/free-solid-svg-icons/faKey';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import clsx from 'clsx';
 import Link from 'next/link';
 import React, { ChangeEvent, FormEvent, MouseEvent, ReactElement, useState } from 'react';
 import { createUseStyles } from 'react-jss';

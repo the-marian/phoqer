@@ -2,11 +2,7 @@ import { HYDRATE } from 'next-redux-wrapper';
 
 import { IOfferCard, IState } from '../../../interfaces';
 import types from '../../types';
-
-export interface IAction {
-    type: typeof types.GET_SINGLE_OFFER_START | typeof types.GET_SINGLE_OFFER_SUCCESS | typeof types.GET_SINGLE_OFFER_ERROR;
-    payload: string | IState | IOfferCard | null;
-}
+import IAction from './interfaces';
 
 const single = (state: IOfferCard | null = null, { type, payload }: IAction): IOfferCard | null => {
     switch (type) {
@@ -18,6 +14,9 @@ const single = (state: IOfferCard | null = null, { type, payload }: IAction): IO
 
         case types.GET_SINGLE_OFFER_ERROR:
             return null;
+
+        case types.PATCH_FAVORITE_OFFERS_SUCCESS:
+            return state?.id === payload ? { ...state, is_favorite: !state.is_favorite } : state;
 
         default:
             return state;

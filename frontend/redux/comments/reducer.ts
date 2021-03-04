@@ -2,16 +2,12 @@ import { HYDRATE } from 'next-redux-wrapper';
 
 import { IComment, IState } from '../../interfaces';
 import types from '../types';
+import { IAction } from './interfaces';
 
-interface IAction {
-    type: typeof types.GET_COMMENTS_START | typeof types.GET_COMMENTS_ERROR | typeof types.GET_COMMENTS_SUCCESS;
-    payload: IComment[] | IState | null;
-}
+type Action = { loading: boolean; data: IComment[] | null };
+const INIT: Action = { loading: false, data: null };
 
-const comments = (
-    state: { loading: boolean; data: IComment[] | null } = { loading: false, data: null },
-    { type, payload }: IAction,
-): IComment[] | { loading: boolean; data: IComment[] | null } => {
+const comments = (state: Action = INIT, { type, payload }: IAction): IComment[] | Action => {
     switch (type) {
         case HYDRATE:
             return (payload as IState).comments;

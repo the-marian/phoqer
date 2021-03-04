@@ -11,9 +11,9 @@ import TextareaAutosize from 'react-textarea-autosize';
 import config from '../../../../../assets/config';
 import { Theme } from '../../../../../assets/theme';
 import useMedia from '../../../../../hooks/media.hook';
+import useTheme from '../../../../../hooks/theme.hook';
 import useUppy from '../../../../../hooks/uppy.hook';
 import notifications from '../../../../Common/Notifications';
-import useTheme from "../../../../../hooks/theme.hook";
 
 const useStyles = createUseStyles((theme: Theme) => ({
     flex: {
@@ -188,7 +188,9 @@ const CommentsForm = ({ onSubmit }: IProps): ReactElement => {
                 )}
             </div>
 
-            {attachment && <Dashboard theme={theme === 'white' ? 'light' : 'dark'} hideUploadButton uppy={uppy} height={media ? 230 : 200} />}
+            {attachment && (
+                <Dashboard theme={theme === 'white' ? 'light' : 'dark'} hideUploadButton uppy={uppy} height={media ? 230 : 200} />
+            )}
 
             <button type="button" className={css.attachment} onClick={handleAttachment}>
                 {attachment ? (

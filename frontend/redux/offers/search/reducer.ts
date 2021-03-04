@@ -2,7 +2,7 @@ import { HYDRATE } from 'next-redux-wrapper';
 
 import { IOfferDynamic, IOfferPagination, IState } from '../../../interfaces';
 import types from '../../types';
-import { IAction } from './saga';
+import IAction from './interfaces';
 
 const search = (
     state: IOfferDynamic = { data: { data: [], total: 0 }, loading: true },
@@ -28,6 +28,19 @@ const search = (
         case types.SEARCH_OFFERS_ERROR:
         case types.SEARCH_OFFERS_PAGINATION_ERROR:
             return { ...state, loading: false };
+
+        case types.PATCH_FAVORITE_OFFERS_SUCCESS:
+            return state.data.data.length
+                ? {
+                      data: {
+                          ...state.data,
+                          data: state.data.data.map(item =>
+                              item.id === (payload as string) ? { ...item, is_favorite: !item.is_favorite } : item,
+                          ),
+                      },
+                      loading: false,
+                  }
+                : state;
 
         default:
             return state;

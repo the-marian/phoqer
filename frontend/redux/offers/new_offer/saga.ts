@@ -1,4 +1,3 @@
-import { NextRouter } from 'next/router';
 import { call, put, select, takeLatest } from 'redux-saga/effects';
 
 import api from '../../../assets/api';
@@ -6,30 +5,7 @@ import routes from '../../../assets/routes';
 import { INewOffer, IState } from '../../../interfaces';
 import initState from '../../state';
 import types from '../../types';
-
-interface IAction {
-    type: typeof types.POST_OFFER_START | typeof types.POST_OFFER_SUCCESS | typeof types.POST_OFFER_ERROR;
-    payload: { url: string }[] | null;
-    history: NextRouter;
-}
-
-export interface IBody {
-    title: string;
-    price: number | null;
-    is_deliverable: boolean;
-    doc_needed: boolean;
-    description: string;
-    deposit_val: number | null;
-    min_rent_period: number | null;
-    max_rent_period: number | null;
-    extra_requirements: string;
-    city: 'Kiev';
-    currency: string;
-    images: { url: string }[];
-    cover_image: string;
-    category: string | null;
-    sub_category: string | null;
-}
+import IAction, { IBody } from './interfaces';
 
 function* postOffer({ payload, history }: IAction) {
     try {
@@ -60,7 +36,7 @@ function* postOffer({ payload, history }: IAction) {
             min_rent_period,
             extra_requirements,
             images: payload || [],
-            cover_image: payload && payload?.[0]?.url,
+            cover_image: payload && (payload as { url: string }[])?.[0]?.url,
             category: category?.type !== 'sub' ? category?.slug : null,
             sub_category: category?.type === 'sub' ? category?.slug : null,
         } as IBody);

@@ -24,6 +24,10 @@ const initState: IState = {
             },
             loading: true,
         },
+        favorite: {
+            data: [],
+            loading: true,
+        },
         single: null,
         newOffer: {
             // step 1

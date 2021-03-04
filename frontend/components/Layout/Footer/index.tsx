@@ -4,8 +4,8 @@ import { createUseStyles } from 'react-jss';
 import { Theme } from '../../../assets/theme';
 import useMedia from '../../../hooks/media.hook';
 import Logo from '../../Common/Logo';
-import Container from '../Container';
 import Socials from '../../Common/Socials';
+import Container from '../Container';
 import SiteMap from './SiteMap';
 
 const useStyles = createUseStyles((theme: Theme) => ({

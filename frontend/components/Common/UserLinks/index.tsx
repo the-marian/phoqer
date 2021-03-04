@@ -6,7 +6,6 @@ import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons/faSignOutAlt';
 import { faSlidersH } from '@fortawesome/free-solid-svg-icons/faSlidersH';
 import { faUserPlus } from '@fortawesome/free-solid-svg-icons/faUserPlus';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import clsx from 'clsx';
 import Link from 'next/link';
 import React, { ReactElement, useState } from 'react';
 import { createUseStyles } from 'react-jss';

@@ -3,11 +3,7 @@ import { HYDRATE } from 'next-redux-wrapper';
 import { INewOffer, IState } from '../../../interfaces';
 import initState from '../../state';
 import types from '../../types';
-
-interface IAction {
-    type: typeof types.NEW_OFFER_FORM | typeof types.POST_OFFER_SUCCESS;
-    payload: INewOffer | IState;
-}
+import IAction from './interfaces';
 
 const newOffer = (state: INewOffer = initState.offers.newOffer, { type, payload }: IAction): INewOffer => {
     switch (type) {

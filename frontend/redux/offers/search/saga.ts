@@ -2,13 +2,8 @@ import { Params } from 'next/dist/next-server/server/router';
 import { all, call, put, takeLatest } from 'redux-saga/effects';
 
 import api from '../../../assets/api';
-import { IOfferCard, IState } from '../../../interfaces';
 import types from '../../types';
-
-export interface IAction {
-    type: typeof types.SEARCH_OFFERS_START | typeof types.SEARCH_OFFERS_ERROR | typeof types.SEARCH_OFFERS_SUCCESS;
-    payload: IOfferCard[] | IState | Params | null;
-}
+import IAction from './interfaces';
 
 function* searchOffers({ payload }: IAction) {
     try {

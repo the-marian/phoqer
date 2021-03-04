@@ -2,7 +2,6 @@ import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
 import { Theme } from '../../../assets/theme';
-import useMedia from '../../../hooks/media.hook';
 import useTrans from '../../../hooks/trans.hook';
 import JoinForm from '../../Common/Auth/JoinForm';
 import LoginForm from '../../Common/Auth/LoginForm';

@@ -128,6 +128,7 @@ export interface INewOffer {
 export interface IOffers {
     popular: IOfferStatic;
     search: IOfferDynamic;
+    favorite: IOfferStatic;
     single: IOfferCard | null;
     newOffer: INewOffer;
 }

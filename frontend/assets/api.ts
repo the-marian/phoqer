@@ -2,7 +2,7 @@ import axios, { AxiosResponse } from 'axios';
 import { Params } from 'next/dist/next-server/server/router';
 
 import { ICategories, IComment, IOfferCard, IOfferPagination, IPublicProfile, Login } from '../interfaces';
-import { IBody } from '../redux/offers/new_offer/saga';
+import { IBody } from '../redux/offers/new_offer/interfaces';
 import config from './config';
 
 const url1 = config.baseUrl[process.env.NODE_ENV]('v1');
@@ -43,7 +43,11 @@ const api = {
         popular: (): Promise<AxiosResponse<IOfferPagination>> => axios.get(`${url2}/offers/popular`),
         single: (id: string): Promise<AxiosResponse<IOfferCard>> => axios.get(`${url2}/offers/${id}`),
         new: (body: IBody): Promise<AxiosResponse<void>> => axios.post(`${url2}/offers`, body),
-        search: (params: Params): Promise<AxiosResponse<IOfferCard[]>> => axios.get(`${url2}/offers/search`, { params }),
+        search: (params: Params): Promise<AxiosResponse<IOfferPagination>> => axios.get(`${url2}/offers/search`, { params }),
+        favorite: {
+            get: (): Promise<AxiosResponse<IOfferCard[]>> => axios.get(`${url2}/favorite`),
+            patch: (id: string): Promise<AxiosResponse<IOfferCard[]>> => axios.patch(`${url2}/favorite/${id}`),
+        },
     },
 };
 

@@ -8,12 +8,14 @@ import clsx from 'clsx';
 import Link from 'next/link';
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
+import { useDispatch } from 'react-redux';
 
 import { moneyFormat } from '../../../../assets/helpers';
 import routes from '../../../../assets/routes';
 import { Theme } from '../../../../assets/theme';
 import useTrans from '../../../../hooks/trans.hook';
 import { IOfferCard } from '../../../../interfaces';
+import types from '../../../../redux/types';
 
 const MAX_LENGTH = 60;
 const MAX_LENGTH_TITLE = 55;
@@ -191,9 +193,14 @@ interface IProps {
 }
 
 const OfferCard = ({ offer }: IProps): ReactElement => {
-    const css = useStyles();
     const T = useTrans();
+    const css = useStyles();
+    const dispatch = useDispatch();
     const { id, title, description, cover_image, is_promoted, is_deliverable, is_favorite, views, pub_date, price } = offer;
+
+    const handleFavorite = (): void => {
+        dispatch({ type: types.PATCH_FAVORITE_OFFERS_START, payload: offer.id });
+    };
 
     return (
         <div className={css.root}>
@@ -239,7 +246,7 @@ const OfferCard = ({ offer }: IProps): ReactElement => {
                         {T.rent}
                     </button>
 
-                    <button type="button" className={css.favorite}>
+                    <button type="button" className={css.favorite} onClick={handleFavorite}>
                         {is_favorite ? <FontAwesomeIcon icon={faSolidHeart} /> : <FontAwesomeIcon icon={faHeart} />}
                     </button>
                 </div>

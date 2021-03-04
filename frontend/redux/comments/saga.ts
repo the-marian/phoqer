@@ -3,38 +3,7 @@ import { all, call, put, takeLatest } from 'redux-saga/effects';
 import api from '../../assets/api';
 import { modal } from '../../components/Common/Modal';
 import types from '../types';
-
-interface IBody {
-    body: string;
-    replies_id?: number;
-    offer_id?: string;
-    images: string[];
-}
-
-interface IAction {
-    type:
-        | typeof types.GET_COMMENTS_START
-        | typeof types.GET_COMMENTS_ERROR
-        | typeof types.GET_COMMENTS_SUCCESS
-        | typeof types.CREATE_COMMENT_START
-        | typeof types.CREATE_COMMENT_ERROR
-        | typeof types.CREATE_COMMENT_SUCCESS
-        | typeof types.LIKE_COMMENT_START
-        | typeof types.LIKE_COMMENT_ERROR
-        | typeof types.LIKE_COMMENT_SUCCESS
-        | typeof types.DISLIKE_COMMENT_START
-        | typeof types.DISLIKE_COMMENT_ERROR
-        | typeof types.DISLIKE_COMMENT_SUCCESS
-        | typeof types.REPLY_COMMENT_START
-        | typeof types.REPLY_COMMENT_ERROR
-        | typeof types.REPLY_COMMENT_SUCCESS
-        | typeof types.DELETE_COMMENT_START
-        | typeof types.DELETE_COMMENT_ERROR
-        | typeof types.DELETE_COMMENT_SUCCESS;
-    payload: string | number | IBody;
-    offerId?: string;
-    comment?: number;
-}
+import { IAction, IBody } from './interfaces';
 
 function* getComments({ payload }: IAction) {
     try {

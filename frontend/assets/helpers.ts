@@ -1,7 +1,7 @@
 import { GetServerSidePropsContext } from 'next';
 
 import { IAuth, ICategories, IDropList } from '../interfaces';
-import routes from "./routes";
+import routes from './routes';
 
 export const addZeroToNumber = (value: string | number): string => String(value).padStart(2, '0');
 

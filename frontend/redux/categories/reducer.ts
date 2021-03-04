@@ -2,11 +2,7 @@ import { HYDRATE } from 'next-redux-wrapper';
 
 import { ICategories, IState } from '../../interfaces';
 import types from '../types';
-
-interface IAction {
-    type: typeof types.GET_CATEGORIES_START | typeof types.GET_CATEGORIES_ERROR | typeof types.GET_CATEGORIES_SUCCESS;
-    payload: IState | ICategories[] | null;
-}
+import IAction from './interfaces';
 
 const user = (state: ICategories[] = [], { type, payload }: IAction): ICategories[] => {
     switch (type) {

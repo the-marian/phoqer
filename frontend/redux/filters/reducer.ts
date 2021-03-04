@@ -1,8 +1,5 @@
 import types from '../types';
-
-interface IAction {
-    type: typeof types.SEARCH_FILTERS;
-}
+import IAction from './interfaces';
 
 const filters = (state = true, { type }: IAction): boolean => {
     switch (type) {

@@ -2,11 +2,7 @@ import { HYDRATE } from 'next-redux-wrapper';
 
 import { IState } from '../../interfaces';
 import types from '../types';
-
-interface IAction {
-    type: typeof types.TOGGLE_DRAWER;
-    payload?: boolean | IState;
-}
+import IAction from './interfaces';
 
 const drawer = (state = false, { type, payload }: IAction): boolean => {
     switch (type) {

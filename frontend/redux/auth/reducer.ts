@@ -2,7 +2,7 @@ import { HYDRATE } from 'next-redux-wrapper';
 
 import { IAuth, IState } from '../../interfaces';
 import types from '../types';
-import { IAction } from './login/saga';
+import IAction from './login/interfaces';
 
 const INIT: IAuth = { auth_token: null };
 

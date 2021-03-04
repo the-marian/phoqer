@@ -14,7 +14,8 @@ import types from '../../redux/types';
 
 const Favorite = (): ReactElement => {
     const T = useTrans();
-    const { data } = useSelector<IState, IOfferStatic>(state => state.offers.popular);
+    const { data } = useSelector<IState, IOfferStatic>(state => state.offers.favorite);
+
     return (
         <>
             <Meta title={T.favorite_offer} h1={T.favorite_offer} />
@@ -30,7 +31,7 @@ const Favorite = (): ReactElement => {
 
 export const getServerSideProps = wrapper.getServerSideProps(
     async ({ store }: { store: IStore }): Promise<void> => {
-        store.dispatch({ type: types.GET_POPULAR_OFFERS_START });
+        store.dispatch({ type: types.GET_FAVORITE_OFFERS_START });
         store.dispatch(END);
         await store?.sagaTask?.toPromise();
     },
