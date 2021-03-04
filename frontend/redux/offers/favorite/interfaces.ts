@@ -12,4 +12,5 @@ type Type =
 export default interface IAction {
     type: Type;
     payload: IState | IOfferStatic | IOfferCard[] | string;
+    loading: (value: boolean) => void;
 }

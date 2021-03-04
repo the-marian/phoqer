@@ -15,7 +15,7 @@ function* getFavorite() {
     }
 }
 
-function* patchFavorite({ payload }: IAction) {
+function* patchFavorite({ payload, loading }: IAction) {
     try {
         const { status } = yield call(api.offers.favorite.patch, payload as string);
         if (status < 200 || status >= 300) throw new Error();
@@ -23,6 +23,8 @@ function* patchFavorite({ payload }: IAction) {
     } catch (error) {
         if (error?.response?.status === 401) return;
         yield put({ type: types.PATCH_FAVORITE_OFFERS_ERROR });
+    } finally {
+        loading(false);
     }
 }
 
