@@ -37,18 +37,18 @@ def test_get_offer(client):
         "price": 499,
         "profile_img": "https://example.com/dic_pic.jpeg",
         "pub_date": "2021-01-20",
-        "status": "DRAFT",
+        "status": "ACTIVE",
         "sub_category": "bike",
         "sub_category_name": "Bike",
         "title": "Iphone 12",
-        "views": 0,
+        "views": 1000000,
     }
 
 
 def test_is_favorite_user_with_favorite(client):
     response = client.get(
         "offers/1a114c8e-14b7-46e4-8ad0-f251a35a6938",
-        headers={"Authorization": "Token 535a311d30844859d342b70bb45779818f824e08"},
+        headers={"Authorization": "Token 472df9e4e5f55a0bc2a2f1139e2ad49c5d76076a"},
     )
     assert response.status_code == status.HTTP_200_OK
     assert response.json()["is_favorite"] is True
@@ -57,7 +57,7 @@ def test_is_favorite_user_with_favorite(client):
 def test_is_favorite_user_with_no_favorite(client):
     response = client.get(
         "offers/7cea9f56-e211-467b-8515-aa88f4a4a5c3",
-        headers={"Authorization": "Token 535a311d30844859d342b70bb45779818f824e08"},
+        headers={"Authorization": "Token 472df9e4e5f55a0bc2a2f1139e2ad49c5d76076a"},
     )
     assert response.status_code == status.HTTP_200_OK
     assert response.json()["is_favorite"] is False
@@ -97,7 +97,7 @@ def test_create_offer_draft(client):
     response = client.post(
         "offers",
         json=post_data,
-        headers={"Authorization": "Token 535a311d30844859d342b70bb45779818f824e08"},
+        headers={"Authorization": "Token 472df9e4e5f55a0bc2a2f1139e2ad49c5d76076a"},
     )
     assert response.status_code == status.HTTP_204_NO_CONTENT
 
