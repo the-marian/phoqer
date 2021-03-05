@@ -11,7 +11,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         marginLeft: theme.rem(3),
 
         '@media (max-width: 768px)': {
-            marginLeft: theme.rem(1),
+            marginLeft: 0,
             borderRadius: theme.radius,
             border: theme.border(0.1, theme.palette.primary[0]),
         },

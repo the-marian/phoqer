@@ -6,8 +6,8 @@ import routes from '../../../../assets/routes';
 import { Theme } from '../../../../assets/theme';
 import { IOfferStatic, IState } from '../../../../interfaces';
 import OffersList from '../../../Common/Offers/OffersList';
-import Container from '../../Container';
 import SectionTitle from '../../../Common/SectionTitle';
+import Container from '../../Container';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     root: {

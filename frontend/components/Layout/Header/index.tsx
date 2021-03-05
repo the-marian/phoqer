@@ -54,7 +54,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         display: 'flex',
         alignItems: 'center',
         marginRight: theme.rem(2),
-        padding: theme.rem(0, 1),
+        paddingRight: theme.rem(1),
         fontSize: theme.rem(1.8),
         color: theme.palette.black[0],
 
@@ -62,6 +62,10 @@ const useStyles = createUseStyles((theme: Theme) => ({
             marginRight: theme.rem(1),
             height: theme.rem(2),
             width: theme.rem(2),
+        },
+
+        '@media (max-width: 768px)': {
+            marginRight: 0,
         },
     },
 }));

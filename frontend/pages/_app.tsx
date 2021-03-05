@@ -42,7 +42,7 @@ const MyApp = ({ Component, pageProps, width, auth, theme }: AppProps & IProps):
     }, []);
 
     return (
-        <SiteTheme siteTheme={theme === 'white' ? 'white' : 'black'}>
+        <SiteTheme siteTheme={theme === 'black' ? 'black' : 'white'}>
             <AuthProvider authServer={auth}>
                 <MediaProvider width={width}>
                     <PageLayout>

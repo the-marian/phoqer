@@ -1,6 +1,6 @@
 import { faTimes } from '@fortawesome/free-solid-svg-icons/faTimes';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React, { MouseEvent, ReactElement, useEffect } from 'react';
+import React, { MouseEvent, ReactElement, TouchEvent, useEffect, useRef, useState } from 'react';
 import { createUseStyles } from 'react-jss';
 import { CSSTransition } from 'react-transition-group';
 
@@ -21,28 +21,27 @@ const useStyles = createUseStyles((theme: Theme) => ({
         cursor: 'pointer',
 
         '&.enter .inner': {
-            transform: 'translateX(-100%)',
+            left: theme.rem(-60),
         },
         '&.enter-done .inner': {
-            transform: 'translateX(0%)',
+            left: theme.rem(-20),
         },
 
         '&.exit .inner': {
-            transform: 'translateX(-100%)',
+            left: theme.rem(-60),
         },
         '&.exit-done .inner': {
-            transform: 'translateX(0%)',
+            left: theme.rem(-20),
         },
 
         '& .inner': {
             position: 'absolute',
             top: 0,
-            left: 0,
+            left: theme.rem(-20),
             transform: 'translateX(0%)',
             height: '100%',
-            width: '100%',
-            maxWidth: theme.rem(40),
-            padding: theme.rem(5, 2, 2),
+            width: theme.rem(60),
+            padding: theme.rem(5, 2, 2, 22),
             background: theme.palette.white,
             borderRight: theme.border(0.1, theme.palette.gray[1]),
             transition: theme.transitions[0],
@@ -114,15 +113,43 @@ const Root = ({ children, open, onToggle }: IProps) => {
 
 const Drawer = ({ children, open, onToggle }: IProps): ReactElement | null => {
     const css = useStyles();
+    const [x, setX] = useState<number>(0);
+    const ref = useRef<HTMLDivElement>(null);
 
     const handleToggle = (): void => {
         onToggle(!open);
     };
 
+    // touch events
+    const handleTouchStart = (): void => {
+        if (ref.current) ref.current.style.transition = '0s';
+    };
+    const handleTouchMove = (event: TouchEvent<HTMLDivElement>): void => {
+        const dif = event?.touches?.[0]?.clientX - (ref.current?.offsetWidth || 0) || 0;
+        setX(dif > 50 ? x + 10 / dif : dif);
+    };
+    const handleTouchEnd = (): void => {
+        if (ref.current) {
+            if (ref.current?.offsetWidth + x < 200) onToggle(false);
+            ref.current.style.transition = '';
+        }
+
+        setTimeout(() => {
+            setX(0);
+        }, 4);
+    };
+
     return (
         <CSSTransition timeout={300} unmountOnExit in={open}>
             <Root onToggle={onToggle} open={open}>
-                <div className="inner">
+                <div
+                    ref={ref}
+                    className="inner"
+                    style={{ transform: `translateX(${x}px)` }}
+                    onTouchStart={handleTouchStart}
+                    onTouchMove={handleTouchMove}
+                    onTouchEnd={handleTouchEnd}
+                >
                     <button type="button" className={css.button} onClick={handleToggle}>
                         <FontAwesomeIcon icon={faTimes} />
                     </button>
