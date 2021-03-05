@@ -1,6 +1,6 @@
 import { faTimes } from '@fortawesome/free-solid-svg-icons/faTimes';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React, { MouseEvent, ReactElement, useEffect, TouchEvent } from 'react';
+import React, { MouseEvent, ReactElement, TouchEvent, useEffect } from 'react';
 import { createUseStyles } from 'react-jss';
 import { CSSTransition } from 'react-transition-group';
 
@@ -48,6 +48,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
             transition: theme.transitions[0],
             overflow: 'auto',
             cursor: 'auto',
+            scrollBehavior: 'smooth',
         },
     },
     button: {
