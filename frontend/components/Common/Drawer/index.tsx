@@ -49,6 +49,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
             overflow: 'auto',
             cursor: 'auto',
             scrollBehavior: 'smooth',
+            '-webkit-overflow-scrolling': 'touch',
         },
     },
     button: {
