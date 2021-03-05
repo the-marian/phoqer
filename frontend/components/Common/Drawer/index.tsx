@@ -79,11 +79,6 @@ const Root = ({ children, open, onToggle }: IProps) => {
         if (event.target === event.currentTarget) onToggle(!open);
     };
 
-    const handlePrevent = (event: TouchEvent<HTMLDivElement>): void => {
-        event.preventDefault();
-        event.stopPropagation();
-    };
-
     useEffect(() => {
         const close = (event: KeyboardEvent): void => {
             event.preventDefault();
@@ -108,7 +103,7 @@ const Root = ({ children, open, onToggle }: IProps) => {
     }, []);
 
     return (
-        <div className={css.backdrop} onClick={handleToggle} onTouchStart={handlePrevent} aria-hidden role="button">
+        <div className={css.backdrop} onClick={handleToggle} aria-hidden role="button">
             {children}
         </div>
     );

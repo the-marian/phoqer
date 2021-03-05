@@ -78,22 +78,12 @@ export default class ModalComponent extends Component<unknown, IState> {
         modal.close();
     };
 
-    handlePrevent = (event: TouchEvent<HTMLDivElement>): void => {
-        event.preventDefault();
-        event.stopPropagation();
-    };
-
     render(): ReactElement | boolean {
         const { dom } = this.state;
         return (
             !!dom && (
                 <div className="react-modal-backdrop" onClick={this.handleClickClose} aria-hidden="true">
-                    <div
-                        className="react-modal-scroll"
-                        onClick={this.handleClickClose}
-                        onTouchStart={this.handlePrevent}
-                        aria-hidden="true"
-                    >
+                    <div className="react-modal-scroll" onClick={this.handleClickClose} aria-hidden="true">
                         {dom}
                     </div>
                 </div>
