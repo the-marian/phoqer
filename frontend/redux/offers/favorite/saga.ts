@@ -10,12 +10,13 @@ function* getFavorite() {
         if (status < 200 || status >= 300) throw new Error();
         yield put({ type: types.GET_FAVORITE_OFFERS_SUCCESS, payload: data });
     } catch (error) {
+        console.log(error);
         if (error?.response?.status === 401) return;
         yield put({ type: types.GET_FAVORITE_OFFERS_ERROR });
     }
 }
 
-function* patchFavorite({ payload, loading }: IAction) {
+function* patchFavorite({ payload }: IAction) {
     try {
         const { status } = yield call(api.offers.favorite.patch, payload as string);
         if (status < 200 || status >= 300) throw new Error();
@@ -23,8 +24,6 @@ function* patchFavorite({ payload, loading }: IAction) {
     } catch (error) {
         if (error?.response?.status === 401) return;
         yield put({ type: types.PATCH_FAVORITE_OFFERS_ERROR });
-    } finally {
-        loading(false);
     }
 }
 

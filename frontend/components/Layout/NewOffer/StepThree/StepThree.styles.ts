@@ -38,7 +38,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         marginLeft: theme.rem(2),
         background: theme.palette.primary[0],
         fontSize: theme.rem(1.4),
-        color: '#ffffff',
+        color: theme.palette.trueWhite,
         borderRadius: theme.radius,
 
         '@media (max-width: 470px)': {
@@ -50,7 +50,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         height: theme.rem(6),
         padding: theme.rem(1, 4),
         marginLeft: theme.rem(2),
-        background: '#ffffff',
+        background: theme.palette.trueWhite,
         fontSize: theme.rem(1.4),
         borderRadius: theme.radius,
         boxShadow: theme.shadow[1],

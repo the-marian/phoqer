@@ -25,7 +25,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         padding: theme.rem(1, 4),
         textAlign: 'center',
         fontSize: theme.rem(1.4),
-        color: '#ffffff',
+        color: theme.palette.trueWhite,
         borderRadius: theme.radius,
         background: theme.palette.primary[0],
 

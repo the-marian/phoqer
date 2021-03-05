@@ -23,12 +23,11 @@ const useStyles = createUseStyles((theme: Theme) => ({
         height: theme.rem(6),
         width: '100%',
         padding: theme.rem(1, 2),
-        background: theme.palette.white,
+        background: theme.palette.trueWhite,
         border: 'none',
         borderRadius: theme.radius,
         fontSize: theme.rem(1.3),
         boxShadow: theme.shadow[1],
-        color: theme.palette.black[0],
 
         '& span': {
             width: '88%',

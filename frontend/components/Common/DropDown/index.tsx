@@ -110,7 +110,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
 
             '&:hover': {
                 background: theme.palette.primary[0],
-                color: '#ffffff',
+                color: theme.palette.trueWhite,
             },
         },
     },
@@ -130,7 +130,8 @@ const useStyles = createUseStyles((theme: Theme) => ({
         },
     },
     white: {
-        background: theme.palette.white,
+        background: theme.palette.trueWhite,
+        color: '#242424',
         boxShadow: theme.shadow[1],
         ...theme.outline,
     },

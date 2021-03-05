@@ -22,7 +22,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         display: 'inline-block',
         marginRight: theme.rem(1.5),
         border: theme.border(0.1, theme.palette.primary[0]),
-        background: '#ffffff',
+        background: theme.palette.trueWhite,
         borderRadius: theme.radius,
     },
     active: {

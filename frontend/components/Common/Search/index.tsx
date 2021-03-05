@@ -62,7 +62,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         width: '100%',
         background: theme.palette.primary[0],
         fontSize: theme.rem(1.6),
-        color: '#ffffff',
+        color: theme.palette.trueWhite,
         borderRadius: theme.radius,
         ...theme.outline,
 

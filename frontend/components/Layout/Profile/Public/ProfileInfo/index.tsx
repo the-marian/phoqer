@@ -70,7 +70,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         borderRadius: theme.radius,
         fontSize: theme.rem(3.5),
         fontWeight: theme.text.weight[4],
-        color: '#ffffff',
+        color: theme.palette.trueWhite,
 
         '& span': {
             display: 'block',

@@ -59,7 +59,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     active: {
         border: 'none',
         background: theme.palette.primary[0],
-        color: '#ffffff',
+        color: theme.palette.trueWhite,
     },
     text: {
         marginTop: theme.rem(1.5),

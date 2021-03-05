@@ -87,7 +87,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         fontSize: theme.rem(1.4),
         borderRadius: theme.radius,
         background: theme.palette.primary[0],
-        color: '#ffffff',
+        color: theme.palette.trueWhite,
 
         '@media (max-width: 500px)': {
             fontSize: theme.rem(1.8),

@@ -7,6 +7,8 @@ const useStyles = createUseStyles((theme: Theme) => ({
         maxWidth: theme.rem(80),
         margin: '0 auto',
         textAlign: 'center',
+        color: theme.palette.black[0],
+
         '& svg': {
             width: theme.rem(5),
 
@@ -55,7 +57,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         margin: theme.rem(5, 0, 0),
         background: theme.palette.primary[0],
         fontSize: theme.rem(1.4),
-        color: theme.palette.white,
+        color: theme.palette.trueWhite,
         borderRadius: theme.radius,
 
         '@media (max-width: 470px)': {

@@ -2,8 +2,10 @@ import { Themes } from '../interfaces';
 
 interface IPalette {
     white: string;
-    glass: string[];
     black: string[];
+    trueWhite: string;
+    trueBlack: string;
+    glass: string[];
     gray: string[];
     red: string[];
     green: string[];
@@ -35,8 +37,10 @@ export interface Theme {
 const palette: { [key: string]: IPalette } = {
     white: {
         white: '#FFFFFF',
-        glass: ['rgba(255, 255, 255, 0.9)', 'rgba(250, 250, 250, 0.9)'],
         black: ['#222222', '#242424'],
+        trueWhite: '#FFFFFF',
+        trueBlack: '#222222',
+        glass: ['rgba(255, 255, 255, 0.9)', 'rgba(250, 250, 250, 0.9)'],
         gray: ['#F9F9F9', '#EAEEF9', '#909bac', '#999999', '#444444'],
         red: ['#DB162F'],
         green: ['#22cc52'],
@@ -60,12 +64,21 @@ const palette: { [key: string]: IPalette } = {
     },
     black: {
         white: '#222222',
-        glass: ['rgba(50, 50, 50, 0.9)', 'rgba(50, 50, 50, 0.9)'],
         black: ['#FFFFFF', '#FEFEFE'],
+        trueWhite: '#FFFFFF',
+        trueBlack: '#222222',
+        glass: ['rgba(50, 50, 50, 0.9)', 'rgba(50, 50, 50, 0.9)'],
         gray: ['#343434', '#454545', '#999999', '#AAAAAA', '#AAAAAA'],
         red: ['#DB162F'],
         green: ['#22cc52'],
-        soft: ['#454545', '#454545', '#454545', '#454545', '#454545', '#454545'],
+        soft: [
+            'linear-gradient(to right top, #194189 0%, #3B4980 25%, #8738A7 100%)',
+            'linear-gradient(to right top, #8360c3, #2ebf91)',
+            'linear-gradient(225deg, #1623A6 0%, #3343D4 29%, #175EAC 73%, #176682 100%)',
+            'linear-gradient(to right top, #654ea3, #eaafc8)',
+            'linear-gradient(to right top, #604C7C 0%, #257983 50%, #20825A 100%)',
+            'linear-gradient(to right top, #194189 0%, #3B4980 25%, #8738A7 100%)',
+        ],
         grad: [
             'linear-gradient(90deg, #007CF0, #00DFD8)',
             'linear-gradient(90deg, #7928CA, #FF0080)',

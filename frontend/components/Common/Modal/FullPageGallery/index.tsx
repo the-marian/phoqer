@@ -36,7 +36,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
             width: theme.rem(7),
             padding: theme.rem(1, 2),
             fontSize: theme.rem(0),
-            color: '#ffffff',
+            color: theme.palette.trueWhite,
             background: '#454545',
             borderRadius: theme.radius,
 
@@ -51,7 +51,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         bottom: theme.rem(2),
         left: theme.rem(2),
         fontSize: theme.rem(1.8),
-        color: '#ffffff',
+        color: theme.palette.trueWhite,
 
         '@media (max-width: 768px)': {
             left: '50%',
@@ -65,7 +65,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         zIndex: 10,
         padding: theme.rem(1.2, 1.8),
         fontSize: theme.rem(1.6),
-        color: '#ffffff',
+        color: theme.palette.trueWhite,
 
         '& svg': {
             height: theme.rem(1.2),

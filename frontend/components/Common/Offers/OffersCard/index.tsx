@@ -6,17 +6,20 @@ import { faTruck } from '@fortawesome/free-solid-svg-icons/faTruck';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import clsx from 'clsx';
 import Link from 'next/link';
-import React, { ReactElement, useState } from 'react';
+import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 import { useDispatch } from 'react-redux';
 
 import { moneyFormat } from '../../../../assets/helpers';
 import routes from '../../../../assets/routes';
 import { Theme } from '../../../../assets/theme';
+import useAuth from '../../../../hooks/auth.hook';
 import useTrans from '../../../../hooks/trans.hook';
 import { IOfferCard } from '../../../../interfaces';
 import types from '../../../../redux/types';
-import Spinner from '../../Preloaders/Spinner';
+import LoginForm from '../../Auth/LoginForm';
+import { modal } from '../../Modal';
+import SmallModalWrp from '../../Modal/SmallModalWrp';
 
 const MAX_LENGTH = 60;
 const MAX_LENGTH_TITLE = 55;
@@ -142,9 +145,6 @@ const useStyles = createUseStyles((theme: Theme) => ({
         borderRadius: theme.radius,
         transition: theme.transitions[0],
 
-        '&:focus': {
-            background: theme.palette.gray[1],
-        },
         '&:hover': {
             background: theme.palette.gray[1],
         },
@@ -162,6 +162,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
         '@media (max-width: 500px)': {
             height: theme.rem(6.5),
         },
+    },
+    active: {
+        background: theme.palette.gray[1],
     },
     price: {
         display: 'flex',
@@ -195,15 +198,22 @@ interface IProps {
 
 const OfferCard = ({ offer }: IProps): ReactElement => {
     const T = useTrans();
+    const auth = useAuth();
     const css = useStyles();
     const dispatch = useDispatch();
-    const [loading, setLoading] = useState<boolean>(false);
 
     const { id, title, description, cover_image, is_promoted, is_deliverable, is_favorite, views, pub_date, price } = offer;
 
     const handleFavorite = (): void => {
-        setLoading(true);
-        dispatch({ type: types.PATCH_FAVORITE_OFFERS_START, payload: offer.id, loading: setLoading });
+        if (!auth?.auth_token) {
+            modal.open(
+                <SmallModalWrp>
+                    <LoginForm />
+                </SmallModalWrp>,
+            );
+            return;
+        }
+        dispatch({ type: types.PATCH_FAVORITE_OFFERS_START, payload: offer.id });
     };
 
     return (
@@ -250,14 +260,8 @@ const OfferCard = ({ offer }: IProps): ReactElement => {
                         {T.rent}
                     </button>
 
-                    <button type="button" className={css.favorite} onClick={handleFavorite}>
-                        {loading ? (
-                            <Spinner />
-                        ) : is_favorite ? (
-                            <FontAwesomeIcon icon={faSolidHeart} />
-                        ) : (
-                            <FontAwesomeIcon icon={faHeart} />
-                        )}
+                    <button type="button" className={clsx(css.favorite, is_favorite && css.active)} onClick={handleFavorite}>
+                        {is_favorite ? <FontAwesomeIcon icon={faSolidHeart}/> : <FontAwesomeIcon icon={faHeart}/>}
                     </button>
                 </div>
 

@@ -34,8 +34,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
     input: {
         ...theme.input,
-        color: theme.palette.black[0],
-        background: theme.palette.white,
+        background: theme.palette.trueWhite,
 
         '& span': {
             marginLeft: theme.rem(1.5),
@@ -47,19 +46,6 @@ const useStyles = createUseStyles((theme: Theme) => ({
         height: theme.rem(10),
         padding: theme.rem(2),
         boxShadow: theme.shadow[1],
-    },
-    resize: {
-        position: 'absolute',
-        bottom: theme.rem(1),
-        right: theme.rem(1),
-        padding: theme.rem(1),
-        borderRadius: theme.radius,
-        background: theme.palette.gray[1],
-
-        '& svg': {
-            height: theme.rem(1.2),
-            width: theme.rem(1.4),
-        },
     },
     wrp: {
         display: 'grid',
@@ -90,7 +76,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     save: {
         height: theme.rem(6),
         padding: theme.rem(1, 2),
-        background: '#ffffff',
+        background: theme.palette.trueWhite,
         fontSize: theme.rem(1.4),
         borderRadius: theme.radius,
         boxShadow: theme.shadow[1],
@@ -119,7 +105,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         marginLeft: theme.rem(2),
         background: theme.palette.primary[0],
         fontSize: theme.rem(1.4),
-        color: '#ffffff',
+        color: theme.palette.trueWhite,
         borderRadius: theme.radius,
 
         '@media (max-width: 470px)': {
@@ -131,7 +117,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         height: theme.rem(6),
         padding: theme.rem(1, 2),
         marginLeft: theme.rem(2),
-        background: '#ffffff',
+        background: theme.palette.trueWhite,
         fontSize: theme.rem(1.4),
         borderRadius: theme.radius,
         boxShadow: theme.shadow[1],
