@@ -130,7 +130,7 @@ const Drawer = ({ children, open, onToggle }: IProps): ReactElement | null => {
     };
     const handleTouchEnd = (): void => {
         if (ref.current) {
-            if (ref.current?.offsetWidth + x < 200) onToggle(false);
+            if (ref.current?.clientWidth + x * 2 < 450) onToggle(false);
             ref.current.style.transition = '';
         }
 
