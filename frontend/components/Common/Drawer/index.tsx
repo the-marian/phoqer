@@ -125,7 +125,7 @@ const Drawer = ({ children, open, onToggle }: IProps): ReactElement | null => {
         if (ref.current) ref.current.style.transition = '0s';
     };
     const handleTouchMove = (event: TouchEvent<HTMLDivElement>): void => {
-        const dif = event?.touches?.[0]?.clientX - (ref.current?.offsetWidth || 0) || 0;
+        const dif = event?.touches?.[0]?.clientX - (ref.current?.clientWidth || 0) / 1.6 || 0;
         setX(dif > 50 ? x + 10 / dif : dif);
     };
     const handleTouchEnd = (): void => {
