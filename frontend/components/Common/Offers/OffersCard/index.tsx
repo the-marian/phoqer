@@ -261,7 +261,7 @@ const OfferCard = ({ offer }: IProps): ReactElement => {
                     </button>
 
                     <button type="button" className={clsx(css.favorite, is_favorite && css.active)} onClick={handleFavorite}>
-                        {is_favorite ? <FontAwesomeIcon icon={faSolidHeart}/> : <FontAwesomeIcon icon={faHeart}/>}
+                        {is_favorite ? <FontAwesomeIcon icon={faSolidHeart} /> : <FontAwesomeIcon icon={faHeart} />}
                     </button>
                 </div>
 

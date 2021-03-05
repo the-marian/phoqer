@@ -1,6 +1,6 @@
 import { faTimes } from '@fortawesome/free-solid-svg-icons/faTimes';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React, { MouseEvent, ReactElement, useEffect } from 'react';
+import React, { MouseEvent, ReactElement, useEffect, useState } from 'react';
 import { createUseStyles } from 'react-jss';
 import { CSSTransition } from 'react-transition-group';
 
@@ -78,12 +78,33 @@ const Root = ({ children, open, onToggle }: IProps) => {
         if (event.target === event.currentTarget) onToggle(!open);
     };
 
+    useEffect(() => {
+        const close = (event: KeyboardEvent): void => {
+            event.preventDefault();
+            if (event.key === 'Escape') onToggle(false);
+        };
+
+        // style
+        document.body.style.top = `-${window.scrollY}px`;
+        document.body.style.position = 'fixed';
+        // event
+        window.addEventListener('keydown', close);
+
+        return () => {
+            // style
+            const top = document.body.style.top;
+            document.body.style.position = '';
+            document.body.style.top = '0';
+            window.scrollTo({ top: parseInt(top || '0') * -1 });
+            // event
+            window.removeEventListener('keydown', close);
+        };
+    }, []);
+
     return (
-        <CSSTransition timeout={300} unmountOnExit in={open}>
-            <div className={css.backdrop} onClick={handleToggle} aria-hidden role="button">
-                {children}
-            </div>
-        </CSSTransition>
+        <div className={css.backdrop} onClick={handleToggle} aria-hidden role="button">
+            {children}
+        </div>
     );
 };
 
@@ -94,26 +115,17 @@ const Drawer = ({ children, open, onToggle }: IProps): ReactElement | null => {
         onToggle(!open);
     };
 
-    useEffect(() => {
-        const close = (event: KeyboardEvent): void => {
-            if (event.key === 'Escape') onToggle(false);
-        };
-
-        window.addEventListener('keydown', close);
-        return () => {
-            window.addEventListener('keydown', close);
-        };
-    }, []);
-
     return (
-        <Root onToggle={onToggle} open={open}>
-            <div className="inner">
-                <button type="button" className={css.button} onClick={handleToggle}>
-                    <FontAwesomeIcon icon={faTimes} />
-                </button>
-                {children}
-            </div>
-        </Root>
+        <CSSTransition timeout={300} unmountOnExit in={open}>
+            <Root onToggle={onToggle} open={open}>
+                <div className="inner">
+                    <button type="button" className={css.button} onClick={handleToggle}>
+                        <FontAwesomeIcon icon={faTimes} />
+                    </button>
+                    {children}
+                </div>
+            </Root>
+        </CSSTransition>
     );
 };
 

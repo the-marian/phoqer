@@ -13,9 +13,11 @@ interface IProps {
 
 const SiteTheme = ({ children, siteTheme = 'white' }: IProps): ReactElement => {
     const [theme, setTheme] = useState<Themes>(siteTheme);
+
     const handleTheme = (value: Themes): void => {
         try {
             Cookies.set('phoqer_theme', value);
+            document.body.style.background = value === 'white' ? '#ffffff' : '#222222';
             setTheme(value);
         } catch (error) {
             notifications('error', error?.message);
