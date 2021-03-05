@@ -1,6 +1,6 @@
 import { faTimes } from '@fortawesome/free-solid-svg-icons/faTimes';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React, { MouseEvent, ReactElement, useEffect, useState } from 'react';
+import React, { MouseEvent, ReactElement, useEffect, TouchEvent } from 'react';
 import { createUseStyles } from 'react-jss';
 import { CSSTransition } from 'react-transition-group';
 
@@ -78,6 +78,11 @@ const Root = ({ children, open, onToggle }: IProps) => {
         if (event.target === event.currentTarget) onToggle(!open);
     };
 
+    const handlePrevent = (event: TouchEvent<HTMLDivElement>): void => {
+        event.preventDefault();
+        event.stopPropagation();
+    };
+
     useEffect(() => {
         const close = (event: KeyboardEvent): void => {
             event.preventDefault();
@@ -102,7 +107,7 @@ const Root = ({ children, open, onToggle }: IProps) => {
     }, []);
 
     return (
-        <div className={css.backdrop} onClick={handleToggle} aria-hidden role="button">
+        <div className={css.backdrop} onClick={handleToggle} onTouchStart={handlePrevent} aria-hidden role="button">
             {children}
         </div>
     );
