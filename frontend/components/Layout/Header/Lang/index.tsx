@@ -36,8 +36,8 @@ const LANGS: IDropList[] = [
 const Lang = (): ReactElement => {
     const css = useStyles();
     const history = useRouter();
-    const handleChange = (value: { name: string; slug: string; type: string }): void => {
-        history.push(history.pathname, history.asPath, { locale: value.slug });
+    const handleChange = (value: IDropList | null): void => {
+        history.push(history.pathname, history.asPath, { locale: value?.slug || 'ru' });
     };
 
     return (

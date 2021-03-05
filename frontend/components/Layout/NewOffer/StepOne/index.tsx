@@ -56,7 +56,7 @@ const StepThree = (): ReactElement => {
         setValue({ ...value, price: price === '' ? null : +price });
         setErrors({});
     };
-    const handleCategory = (category: IDropValue): void => {
+    const handleCategory = (category: IDropValue | null): void => {
         setValue({ ...value, category });
         setErrors({});
     };
