@@ -15,9 +15,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
 }));
 
 const FILTERS: IDropList[] = [
-    { name: 'Почасовая', slug: 'hour' },
-    { name: 'Посуточная', slug: 'day' },
-    { name: 'Помесячная', slug: 'month' },
+    { name: 'Активное', slug: 'active' },
+    { name: 'Временно не активно', slug: 'inactive' },
+    { name: 'На данный момент арендуется', slug: 'in_rent' },
 ];
 
 interface IProps {
@@ -25,14 +25,14 @@ interface IProps {
     onChange: (value: IDropValue | null) => void;
 }
 
-const Period = ({ value, onChange }: IProps): ReactElement => {
+const Status = ({ value, onChange }: IProps): ReactElement => {
     const css = useStyles();
     return (
         <div>
-            <h4 className={css.title}>Период аренды</h4>
-            <DropDown defaultValue={value} data={FILTERS} onChange={onChange} placeholder="Оплата ..." />
+            <h4 className={css.title}>Статус</h4>
+            <DropDown defaultValue={value} data={FILTERS} onChange={onChange} placeholder="Статус объявления" />
         </div>
     );
 };
 
-export default Period;
+export default Status;

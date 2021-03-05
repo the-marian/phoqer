@@ -58,7 +58,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
 }));
 
 interface IProps {
-    onChange: (value: IDropValue) => void;
+    onChange: (value: IDropValue | null) => void;
 }
 
 const OptionsMobile = ({ onChange }: IProps): ReactElement => {

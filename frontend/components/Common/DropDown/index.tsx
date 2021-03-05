@@ -155,7 +155,7 @@ interface Props {
     transparent?: boolean;
     white?: boolean;
     toLeft?: boolean;
-    onChange: (value: IDropValue) => void;
+    onChange: (value: IDropValue | null) => void;
 }
 
 const DropDown = ({
@@ -199,7 +199,7 @@ const DropDown = ({
 
     const handleReset = (event: MouseEvent<HTMLSpanElement>): void => {
         event.stopPropagation();
-        onChange({ name: '', slug: '', type: 'main' });
+        onChange(null);
         setSelected(placeholder || '');
         setDrop(false);
     };

@@ -8,7 +8,7 @@ import { Theme } from '../../../assets/theme';
 import useTrans from '../../../hooks/trans.hook';
 import { IOfferStatic, IState } from '../../../interfaces';
 import OffersList from '../../Common/Offers/OffersList';
-import SectionTitle from '../../Layout/SectionTitle';
+import SectionTitle from '../../Common/SectionTitle';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     root: {

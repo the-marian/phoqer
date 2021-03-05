@@ -5,7 +5,7 @@ import { END } from 'redux-saga';
 import Meta from '../../components/Common/Meta';
 import OffersList from '../../components/Common/Offers/OffersList';
 import Container from '../../components/Layout/Container';
-import SectionTitle from '../../components/Layout/SectionTitle';
+import SectionTitle from '../../components/Common/SectionTitle';
 import Main from '../../components/Layout/TagMain';
 import useTrans from '../../hooks/trans.hook';
 import { IOfferStatic, IState, IStore } from '../../interfaces';

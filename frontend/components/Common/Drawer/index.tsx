@@ -1,6 +1,6 @@
 import { faTimes } from '@fortawesome/free-solid-svg-icons/faTimes';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React, { MouseEvent, ReactElement, TouchEvent, useEffect } from 'react';
+import React, { MouseEvent, ReactElement, useEffect } from 'react';
 import { createUseStyles } from 'react-jss';
 import { CSSTransition } from 'react-transition-group';
 
@@ -61,8 +61,8 @@ const useStyles = createUseStyles((theme: Theme) => ({
         color: theme.palette.black[0],
 
         '& svg': {
-            height: theme.rem(1.2),
-            width: theme.rem(1.2),
+            height: theme.rem(1.6),
+            width: theme.rem(1.6),
         },
     },
 }));
@@ -88,12 +88,14 @@ const Root = ({ children, open, onToggle }: IProps) => {
         // style
         document.body.style.top = `-${window.scrollY}px`;
         document.body.style.position = 'fixed';
+        document.body.style.paddingRight = '15px';
         // event
         window.addEventListener('keydown', close);
 
         return () => {
             // style
             const top = document.body.style.top;
+            document.body.style.paddingRight = '0';
             document.body.style.position = '';
             document.body.style.top = '0';
             window.scrollTo({ top: parseInt(top || '0') * -1 });

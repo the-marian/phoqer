@@ -1,5 +1,5 @@
 import { Range } from 'rc-slider';
-import React, { ChangeEvent, ReactElement, useState } from 'react';
+import React, { ChangeEvent, ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
 import { numberValidation } from '../../../../assets/helpers';
@@ -35,34 +35,37 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
 }));
 
-const PriceFilter = (): ReactElement => {
+interface IProps {
+    data: [number, number];
+    initValue: [number, number];
+    onChange: (value: [number, number]) => void;
+}
+
+const PriceFilter = ({ data, initValue, onChange }: IProps): ReactElement => {
     const css = useStyles();
-    const [min, setMin] = useState<number>(0);
-    const [max, setMax] = useState<number>(100);
 
     const handleMin = (event: ChangeEvent<HTMLInputElement>): void => {
         if (numberValidation(event.target.value)) return;
-        setMin(+event.target.value);
+        onChange([+event.target.value, data[1]]);
     };
     const handleMax = (event: ChangeEvent<HTMLInputElement>): void => {
         if (numberValidation(event.target.value)) return;
-        setMax(+event.target.value);
+        onChange([data[0], +event.target.value]);
     };
     const handleRange = (value: number[]): void => {
-        setMin(value[0]);
-        setMax(value[1]);
+        onChange([value[0], value[1]]);
     };
 
     return (
         <div className={css.root}>
             <h4 className={css.title}>Цена за час / грн</h4>
             <div className={css.wrp}>
-                <input className={css.input} type="text" placeholder="min" value={min} onChange={handleMin} />
-                <input className={css.input} type="text" placeholder="max" value={max} onChange={handleMax} />
+                <input className={css.input} type="text" placeholder="min" value={data[0]} onChange={handleMin} />
+                <input className={css.input} type="text" placeholder="max" value={data[1]} onChange={handleMax} />
             </div>
 
             <div className={css.range}>
-                <Range min={0} max={100} value={[min, max]} onChange={handleRange} />
+                <Range min={initValue[0]} max={initValue[1]} value={[data[0], data[1]]} onChange={handleRange} />
             </div>
         </div>
     );

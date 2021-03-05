@@ -1,8 +1,8 @@
-import React, { ReactElement } from 'react';
+import React, { CSSProperties, ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
 import { Theme } from '../../../assets/theme';
-import LinkArrow from '../LinkArrow';
+import LinkArrow from '../../Layout/LinkArrow';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     wrp: {
@@ -29,13 +29,16 @@ interface Props {
     link?: string;
     href?: string;
     children: string;
+    style?: CSSProperties;
 }
 
-const SectionTitle = ({ children, link, href }: Props): ReactElement => {
+const SectionTitle = ({ children, link, href, style }: Props): ReactElement => {
     const css = useStyles();
     return (
         <div className={css.wrp}>
-            <h2 className={css.title}>{children}</h2>
+            <h2 className={css.title} style={style}>
+                {children}
+            </h2>
             <div className={css.link}>{!!link && !!href && <LinkArrow href={href}>{link}</LinkArrow>}</div>
         </div>
     );

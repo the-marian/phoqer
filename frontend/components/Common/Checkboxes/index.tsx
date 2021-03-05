@@ -1,8 +1,8 @@
 import clsx from 'clsx';
-import React, { MouseEvent, ReactElement, useState } from 'react';
+import React, { MouseEvent, ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
-import { Theme } from '../../../../assets/theme';
+import { Theme } from '../../../assets/theme';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     root: {
@@ -53,43 +53,40 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
 }));
 
-interface State {
+interface IState {
     [key: string]: boolean;
 }
 
-const Checkbox = (): ReactElement => {
+type Entries = [string, boolean];
+
+interface IProps {
+    values: IState;
+    labels: string[];
+    onChange: (values: { [key: string]: boolean }) => void;
+}
+
+const Checkboxes = ({ values, labels, onChange }: IProps): ReactElement => {
     const css = useStyles();
-    const [state, setState] = useState<State>({
-        top: false,
-        checked: false,
-        pledge: false,
-    });
 
     const handleClick = (event: MouseEvent<HTMLButtonElement>): void => {
-        setState(value => ({
-            ...value,
-            [event.currentTarget.name]: !value[event.currentTarget.name],
-        }));
+        onChange({
+            ...values,
+            [event.currentTarget.name]: !values[event.currentTarget.name],
+        });
     };
 
     return (
         <div className={css.root}>
-            <button type="button" name="top" className={css.btn} onClick={handleClick}>
-                <span className={clsx(css.label, !state.top || css.active)} />
-                <span>Только ТОП объявления</span>
-            </button>
-
-            <button type="button" name="checked" className={css.btn} onClick={handleClick}>
-                <span className={clsx(css.label, !state.checked || css.active)} />
-                <span>Проверенные</span>
-            </button>
-
-            <button type="button" name="pledge" className={css.btn} onClick={handleClick}>
-                <span className={clsx(css.label, !state.pledge || css.active)} />
-                <span>Без залога</span>
-            </button>
+            {Object.entries(values).map(
+                (item: Entries, index): ReactElement => (
+                    <button key={item[0]} type="button" name={item[0]} className={css.btn} onClick={handleClick}>
+                        <span className={clsx(css.label, !item[1] || css.active)} />
+                        <span>{labels[index]}</span>
+                    </button>
+                ),
+            )}
         </div>
     );
 };
 
-export default Checkbox;
+export default Checkboxes;

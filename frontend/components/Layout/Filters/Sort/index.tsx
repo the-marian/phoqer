@@ -2,7 +2,7 @@ import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
 import { Theme } from '../../../../assets/theme';
-import { IDropList } from '../../../../interfaces';
+import { IDropList, IDropValue } from '../../../../interfaces';
 import DropDown from '../../../Common/DropDown';
 
 const useStyles = createUseStyles((theme: Theme) => ({
@@ -15,19 +15,27 @@ const useStyles = createUseStyles((theme: Theme) => ({
 }));
 
 const FILTERS: IDropList[] = [
-    { name: 'От новых к старым', slug: 'old' },
-    { name: 'От старых к новым', slug: 'new' },
-    { name: 'Самые популярные', slug: 'popular' },
-    { name: 'От дешевых к дорогим', slug: 'cheap' },
-    { name: 'От дорогих к дешевым', slug: 'expensive' },
+    { name: 'От новых к старым', slug: 'pud_date' },
+    { name: 'От старых к новым', slug: '-pud_date' },
+    { name: 'Количество просмотров (по убыванию)', slug: 'views' },
+    { name: 'Количество просмотров (по возростанию)', slug: '-views' },
+    { name: 'От дешевых к дорогим', slug: 'price' },
+    { name: 'От дорогих к дешевым', slug: '-price' },
+    { name: 'Сума залога (по убыванию)', slug: '-deposit_val' },
+    { name: 'Сума залога (по возростанию)', slug: 'deposit_val' },
 ];
 
-const Sort = (): ReactElement => {
+interface IProps {
+    value: IDropList | IDropValue | null;
+    onChange: (value: IDropValue | null) => void;
+}
+
+const Sort = ({ value, onChange }: IProps): ReactElement => {
     const css = useStyles();
     return (
         <div>
             <h4 className={css.title}>Cортировать</h4>
-            <DropDown data={FILTERS} onChange={console.log} />
+            <DropDown defaultValue={value} data={FILTERS} onChange={onChange} placeholder="Укажите тип сортировки" />
         </div>
     );
 };

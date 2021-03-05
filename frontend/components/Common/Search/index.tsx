@@ -135,8 +135,8 @@ const Search = ({ shallow = false }: IProps): ReactElement => {
     const loading = useSelector<IState, boolean>(state => state.offers.search.loading);
 
     const [query, setQuery] = useState<IValue>({ search: init || '' });
-    const handleChange = (value: IDropValue): void => {
-        setQuery({ search: query.search, [value.type === 'main' ? 'category' : 'sub_category']: value.slug });
+    const handleChange = (value: IDropValue | null): void => {
+        setQuery({ search: query.search, [value?.type === 'sub' ? 'sub_category' : 'category']: value?.slug || '' });
     };
     const handleInput = (event: ChangeEvent<HTMLInputElement>): void => {
         setQuery({ ...query, search: event.target.value });
