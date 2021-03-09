@@ -5,7 +5,7 @@ ENV PYTHONPATH /phoqer
 WORKDIR $PYTHONPATH/FastAPI
 COPY build/requirements.txt build/requirements.txt
 RUN apk add --no-cache --virtual .build-deps \
-  gcc musl-dev \
+  gcc musl-dev libxml2-dev libxslt-dev \
     && pip install -r build/requirements.txt \
     && find /usr/local \
         \( -type d -a -name test -o -name tests \) \
