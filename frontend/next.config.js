@@ -2,7 +2,14 @@
 const withPWA = require('next-pwa');
 const runtimeCaching = require('next-pwa/cache');
 
-module.exports = withPWA({
+const pwa = withPWA({
+    pwa: {
+        dest: '/public',
+        runtimeCaching,
+    },
+});
+
+module.exports = {
     async redirects() {
         return [
             {
@@ -24,8 +31,5 @@ module.exports = withPWA({
     images: {
         domains: ['phoqer.com', 'pixabay.com', 'images-na.ssl-images-amazon.com', 'example.com'],
     },
-    pwa: {
-        dest: 'public',
-        runtimeCaching,
-    },
-});
+    ...pwa,
+};
