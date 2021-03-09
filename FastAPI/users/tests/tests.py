@@ -6,7 +6,7 @@ def test_user_signup(client):
         "password": "i_am_hungry",
         "email": "marian.zozulia@gmail.com",
         "first_name": "Marian",
-        "second_name": "Zozulia",
+        "last_name": "Zozulia",
     }
     response = client.post(
         "users/signup",
@@ -20,7 +20,7 @@ def test_user_already_exist(client):
         "password": "kitty",
         "email": "marian.zozulia@gmail.com",
         "first_name": "Marian",
-        "second_name": "Zozulia",
+        "last_name": "Zozulia",
     }
     response = client.post(
         "users/signup",
