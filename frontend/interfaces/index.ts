@@ -77,9 +77,6 @@ export interface IOfferCard {
     author_id: number;
     category_name?: null | string;
     sub_category_name?: null | string;
-    first_name?: string;
-    last_name?: string;
-    profile_img?: string | null;
     status: string;
 }
 

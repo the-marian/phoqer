@@ -35,14 +35,7 @@ const AsideElement = (): ReactElement => {
     return (
         <aside className={css.aside}>
             <div className={css.sticky}>
-                {offer ? (
-                    <ProfileCard
-                        id={offer.author_id}
-                        firstName={offer.first_name || ''}
-                        lastName={offer.last_name || ''}
-                        avatar={offer.profile_img}
-                    />
-                ) : null}
+                {offer ? <ProfileCard id={offer.author_id} firstName=" " lastName=" " avatar=" " /> : null}
                 <Price />
             </div>
         </aside>
