@@ -26,7 +26,20 @@ module.exports = {
     },
     i18n: {
         locales: ['en', 'pl', 'ru'],
-        defaultLocale: 'pl',
+        domains: [
+            {
+                domain: 'en.phoqer.com',
+                defaultLocale: 'en',
+            },
+            {
+                domain: 'pl.phoqer.com',
+                defaultLocale: 'pl',
+            },
+            {
+                domain: 'ru.phoqer.com',
+                defaultLocale: 'ru',
+            },
+        ],
     },
     images: {
         domains: ['phoqer.com', 'pixabay.com', 'images-na.ssl-images-amazon.com', 'example.com'],
