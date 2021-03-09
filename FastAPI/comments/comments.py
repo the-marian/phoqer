@@ -1,49 +1,15 @@
 from typing import List, Optional
 
 from asyncpg import ForeignKeyViolationError
-from fastapi import APIRouter, Depends, Header, HTTPException, Response, status
+from fastapi import APIRouter, Depends, HTTPException, Response, status
 from FastAPI.comments import crud
 from FastAPI.comments.schemas import CommentReply, CommentRequest
+from FastAPI.utils import get_current_user, get_current_user_or_none
 
 router = APIRouter(
     prefix="/comments",
     tags=["comments"],
 )
-
-
-async def get_current_user(
-    authorization: Optional[str] = Header(None),
-) -> Optional[int]:
-    if authorization:
-        if token := authorization.partition(" ")[2]:
-            user_id = await crud.get_user_id(token)
-            if user_id:
-                return user_id
-            else:
-                raise HTTPException(
-                    status_code=status.HTTP_401_UNAUTHORIZED,
-                    detail="Token does not exist",
-                )
-        else:
-            raise HTTPException(
-                status_code=status.HTTP_401_UNAUTHORIZED,
-                detail="Invalid Authorisation Header format. Token cannot be blank.",
-            )
-    else:
-        raise HTTPException(
-            status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="No Authorisation header supplied",
-        )
-
-
-async def get_current_user_or_none(
-    authorization: Optional[str] = Header(None),
-) -> Optional[int]:
-    if authorization:
-        token = authorization.split(" ")[-1]
-        return await crud.get_user_id(token)
-    else:
-        return None
 
 
 @router.get("/{offer_id}", response_model=List[CommentReply])

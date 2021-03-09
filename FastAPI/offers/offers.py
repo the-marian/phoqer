@@ -2,7 +2,7 @@ from datetime import date
 from math import ceil
 from typing import Dict, List, Optional
 
-from fastapi import APIRouter, Depends, Header, HTTPException, Response, status
+from fastapi import APIRouter, Depends, HTTPException, Response, status
 from FastAPI.config import PAGE_SIZE
 from FastAPI.offers import crud
 from FastAPI.offers.schemas import (
@@ -11,46 +11,12 @@ from FastAPI.offers.schemas import (
     OffersListItem,
     OffersListResponse
 )
+from FastAPI.utils import get_current_user, get_current_user_or_none
 
 router = APIRouter(
     prefix="/offers",
     tags=["offers"],
 )
-
-
-async def get_current_user_or_none(
-    authorization: Optional[str] = Header(None),
-) -> Optional[int]:
-    if authorization:
-        token = authorization.split(" ")[-1]
-        return await crud.get_user_id(token)
-    else:
-        return None
-
-
-async def get_current_user(
-    authorization: Optional[str] = Header(None),
-) -> Optional[int]:
-    if authorization:
-        if token := authorization.partition(" ")[2]:
-            user_id = await crud.get_user_id(token)
-            if user_id:
-                return user_id
-            else:
-                raise HTTPException(
-                    status_code=status.HTTP_401_UNAUTHORIZED,
-                    detail="Token does not exist",
-                )
-        else:
-            raise HTTPException(
-                status_code=status.HTTP_401_UNAUTHORIZED,
-                detail="Invalid Authorisation Header format. Token cannot be blank.",
-            )
-    else:
-        raise HTTPException(
-            status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="No Authorisation header supplied",
-        )
 
 
 @router.get("/popular", response_model=List[OffersListItem])

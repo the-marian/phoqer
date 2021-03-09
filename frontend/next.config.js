@@ -1,4 +1,8 @@
-module.exports = {
+/* eslint-disable @typescript-eslint/no-var-requires */
+const withPWA = require('next-pwa');
+const runtimeCaching = require('next-pwa/cache');
+
+module.exports = withPWA({
     async redirects() {
         return [
             {
@@ -20,4 +24,8 @@ module.exports = {
     images: {
         domains: ['phoqer.com', 'pixabay.com', 'images-na.ssl-images-amazon.com', 'example.com'],
     },
-};
+    pwa: {
+        dest: 'public',
+        runtimeCaching,
+    },
+});

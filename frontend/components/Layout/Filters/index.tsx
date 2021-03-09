@@ -141,6 +141,8 @@ const Filters = (): ReactElement => {
 
         // formate query string object
         const query: Params = {
+            // add main search query
+            ...history.query,
             // price
             min_price: price[0],
             max_price: price[1],
@@ -154,8 +156,6 @@ const Filters = (): ReactElement => {
             top: checkboxes.top || null,
             no_deposit: checkboxes.deposit || null,
             is_deliverable: checkboxes.deliverable || null,
-            // add main search query
-            ...history.query,
         };
 
         // SUBMIT
@@ -169,8 +169,8 @@ const Filters = (): ReactElement => {
             undefined,
             { shallow: true },
         );
-        dispatch({ type: types.SEARCH_OFFERS_START, payload: query });
         window.scrollTo({ top: document.getElementById('products')?.offsetTop || 0, behavior: 'smooth' });
+        dispatch({ type: types.SEARCH_OFFERS_START, payload: query });
     };
 
     return (

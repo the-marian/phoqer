@@ -2,5 +2,5 @@
 
 set -x
 
+black -l 90 ..
 isort ..
-black ..
