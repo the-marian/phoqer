@@ -1,6 +1,6 @@
 import { faTimes } from '@fortawesome/free-solid-svg-icons/faTimes';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React, { MouseEvent, ReactElement, TouchEvent, useEffect, useRef, useState } from 'react';
+import React, { MouseEvent, ReactElement, useEffect, useRef } from 'react';
 import { createUseStyles } from 'react-jss';
 import { CSSTransition } from 'react-transition-group';
 
@@ -113,43 +113,16 @@ const Root = ({ children, open, onToggle }: IProps) => {
 
 const Drawer = ({ children, open, onToggle }: IProps): ReactElement | null => {
     const css = useStyles();
-    const [x, setX] = useState<number>(0);
     const ref = useRef<HTMLDivElement>(null);
 
     const handleToggle = (): void => {
         onToggle(!open);
     };
 
-    // touch events
-    const handleTouchStart = (): void => {
-        if (ref.current) ref.current.style.transition = '0s';
-    };
-    const handleTouchMove = (event: TouchEvent<HTMLDivElement>): void => {
-        const dif = event?.touches?.[0]?.clientX - (ref.current?.clientWidth || 0) / 1.6 || 0;
-        setX(dif > 50 ? x + 10 / dif : dif);
-    };
-    const handleTouchEnd = (): void => {
-        if (ref.current) {
-            if (ref.current?.clientWidth + x * 2 < 450) onToggle(false);
-            ref.current.style.transition = '';
-        }
-
-        setTimeout(() => {
-            setX(0);
-        }, 4);
-    };
-
     return (
         <CSSTransition timeout={300} unmountOnExit in={open}>
             <Root onToggle={onToggle} open={open}>
-                <div
-                    ref={ref}
-                    className="inner"
-                    style={{ transform: `translateX(${x}px)` }}
-                    onTouchStart={handleTouchStart}
-                    onTouchMove={handleTouchMove}
-                    onTouchEnd={handleTouchEnd}
-                >
+                <div ref={ref} className="inner">
                     <button type="button" className={css.button} onClick={handleToggle}>
                         <FontAwesomeIcon icon={faTimes} />
                     </button>
