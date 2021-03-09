@@ -43,7 +43,7 @@ async def create_user(user_data: UserCreateRequest, hashed_password: str) -> Non
         "password": hashed_password,
         "is_superuser": False,
         "first_name": user_data.first_name,
-        "last_name": user_data.second_name,
+        "last_name": user_data.last_name,
         "is_staff": False,
         "is_active": False,
         "bio": "",
