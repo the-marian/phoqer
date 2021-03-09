@@ -4,7 +4,6 @@ import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
 import config from '../../../assets/config';
-import useTheme from '../../../hooks/theme.hook';
 import useTrans from '../../../hooks/trans.hook';
 
 const useStyles = createUseStyles({
@@ -27,7 +26,6 @@ interface IProps {
 
 const Meta = ({ title, description, keywords, icon, h1 = '' }: IProps): ReactElement => {
     const css = useStyles();
-    const [theme] = useTheme();
     const history = useRouter();
     const T = useTrans();
 
@@ -60,7 +58,7 @@ const Meta = ({ title, description, keywords, icon, h1 = '' }: IProps): ReactEle
 
                 <meta name="parsely-link" content={url(locale)} />
 
-                <meta name="theme-color" content={theme === 'white' ? '#ffffff' : '#222222'} />
+                <meta name="theme-color" content="007aff" />
                 <link rel="manifest" href="/manifest.json" />
                 <link href="/phoqer-72.png" rel="icon" type="image/png" sizes="16x16" />
                 <link href="/phoqer-72.png" rel="icon" type="image/png" sizes="32x32" />

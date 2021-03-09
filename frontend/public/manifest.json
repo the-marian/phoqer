@@ -1,7 +1,7 @@
 {
   "name": "PHOQER - an online sharing platform",
   "short_name": "PHOQER",
-  "theme_color": "#ffffff",
+  "theme_color": "#007aff",
   "background_color": "#007aff",
   "display": "fullscreen",
   "orientation": "portrait",

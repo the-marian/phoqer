@@ -89,14 +89,12 @@ const Root = ({ children, open, onToggle }: IProps) => {
         // style
         document.body.style.top = `-${window.scrollY}px`;
         document.body.style.position = 'fixed';
-        document.body.style.paddingRight = '15px';
         // event
         window.addEventListener('keydown', close);
 
         return () => {
             // style
             const top = document.body.style.top;
-            document.body.style.paddingRight = '0';
             document.body.style.position = '';
             document.body.style.top = '0';
             window.scrollTo({ top: parseInt(top || '0') * -1 });

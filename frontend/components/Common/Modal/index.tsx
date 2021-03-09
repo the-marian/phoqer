@@ -22,7 +22,6 @@ class ModalManagement extends EventEmitter {
         this.scrollY = window.scrollY;
         document.body.style.position = 'fixed';
         document.body.style.top = `-${this.scrollY}px`;
-        document.body.style.paddingRight = '15px';
 
         // emit
         this.emitChange();
@@ -34,8 +33,8 @@ class ModalManagement extends EventEmitter {
         // styles
         document.body.style.position = '';
         document.body.style.top = '0';
-        document.body.style.paddingRight = '';
         window.scrollTo({ top: this.scrollY });
+
         // emit
         this.emitChange();
     }
