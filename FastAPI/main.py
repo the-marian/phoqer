@@ -1,14 +1,13 @@
 import uvicorn
 from fastapi import FastAPI
-
-from FastAPI.users import signup
 from FastAPI.comments import comments
 from FastAPI.config import database
 from FastAPI.favorite import favorite
-from fastapi.middleware.cors import CORSMiddleware
 
 from FastAPI.login import login
+from fastapi.middleware.cors import CORSMiddleware
 from FastAPI.offers import offers
+from FastAPI.users import users
 
 origins = [
     "http://localhost:4000",
@@ -30,7 +29,7 @@ app.include_router(comments.router)
 app.include_router(offers.router)
 app.include_router(favorite.router)
 app.include_router(login.router)
-app.include_router(signup.router)
+app.include_router(users.router)
 
 
 @app.on_event("startup")

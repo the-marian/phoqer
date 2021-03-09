@@ -1,8 +1,10 @@
+from typing import Mapping
+
 from FastAPI.config import database
 from FastAPI.login.utils import verify_password
 
 
-async def get_user(email: str, password) -> dict:
+async def get_user(email: str, password: str) -> Mapping:
     query = """
     SELECT
         id,

@@ -1,21 +1,14 @@
-from pydantic import EmailStr
-
 from FastAPI.config import database
 from FastAPI.users.schemas import UserCreateRequest
+from pydantic import EmailStr
 
 
-async def get_user_by_email(email: EmailStr) -> bool:
-    query = """
-    SELECT
-        email,
-        is_superuser
-    FROM public.users_user
-    WHERE email = :email
-    """
-    return await database.fetch_one(query=query, values={"email": email})
+async def user_exist(email: EmailStr) -> bool:
+    query = "SELECT TRUE FROM users_user WHERE email = :email"
+    return bool(await database.fetch_one(query=query, values={"email": email}))
 
 
-async def create_user(user_data: UserCreateRequest, hashed_password: str):
+async def create_user(user_data: UserCreateRequest, hashed_password: str) -> None:
     query = """
     INSERT INTO users_user (
         password,
@@ -59,4 +52,9 @@ async def create_user(user_data: UserCreateRequest, hashed_password: str):
         "email": user_data.email,
         "profile_img": None,
     }
-    return await database.execute(query=query, values=values)
+    await database.execute(query=query, values=values)
+
+
+async def activate_user(email: EmailStr) -> None:
+    query = "UPDATE users_user SET is_active = TRUE WHERE email = :email"
+    await database.execute(query=query, values={"email": email})
