@@ -1,9 +1,14 @@
+from typing import Mapping
+
 from fastapi import APIRouter, HTTPException, Response, status
 from fastapi.responses import RedirectResponse
 from FastAPI.users import crud
-from FastAPI.users.schemas import UserCreateRequest
-from FastAPI.users.utils import (get_activation_jwt, get_password_hash,
-                                 send_new_account_email)
+from FastAPI.users.schemas import User, UserCreateRequest
+from FastAPI.users.utils import (
+    get_activation_jwt,
+    get_password_hash,
+    send_new_account_email,
+)
 from FastAPI.utils import decode_jwt
 
 router = APIRouter(
@@ -48,3 +53,11 @@ async def activate_user(jwt: str) -> RedirectResponse:
         )
     await crud.activate_user(user_email)
     return RedirectResponse("https://svoinarige.ru/thanks")
+
+
+@router.get("/{user_id}", response_model=User)
+async def get_user_details(user_id: int) -> Mapping:
+    """
+    Get user details by user_id
+    """
+    return await crud.get_user(user_id)

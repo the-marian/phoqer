@@ -2,7 +2,6 @@ import os
 
 import databases
 
-
 ALGORITHM = "HS256"
 
 PG_DB = os.environ.get("POSTGRES_DB", "phoqer_dev")
@@ -19,12 +18,12 @@ PAGE_SIZE = 4
 # 60 minutes * 24 hours * 8 days = 8 days
 ACCESS_TOKEN_EXPIRE_MINUTES: int = 60 * 24 * 8
 EMAIL_RESET_TOKEN_EXPIRE_HOURS = 48
-SECRET_KEY: str = os.environ.get('SECRET_KEY', 'please_change_me')
+SECRET_KEY: str = os.environ.get("SECRET_KEY", "please_change_me")
 
 SMTP_TLS = True
 SMTP_PORT = 587
-SMTP_HOST = os.environ.get('EMAIL_HOST', 'smtp.office365.com')
-SMTP_USER = os.environ.get('EMAIL_HOST_USER')
-SMTP_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
+SMTP_HOST = os.environ.get("EMAIL_HOST", "smtp.office365.com")
+SMTP_USER = os.environ.get("EMAIL_HOST_USER")
+SMTP_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD")
 EMAILS_FROM_EMAIL = "foosking@outlook.com"
 EMAILS_FROM_NAME = "Phoqer"
