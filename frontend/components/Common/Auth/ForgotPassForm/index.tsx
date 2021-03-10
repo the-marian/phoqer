@@ -1,11 +1,13 @@
 import { faUser } from '@fortawesome/free-regular-svg-icons/faUser';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Link from 'next/link';
-import React, { FormEvent, ReactElement } from 'react';
+import React, { ChangeEvent, FormEvent, ReactElement, useState } from 'react';
 import { createUseStyles } from 'react-jss';
 
+import { mailRegex } from '../../../../assets/helpers';
 import routes from '../../../../assets/routes';
 import { Theme } from '../../../../assets/theme';
+import Input from '../../Input';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     title: {
@@ -84,8 +86,31 @@ const useStyles = createUseStyles((theme: Theme) => ({
 
 const ForgotPassForm = (): ReactElement => {
     const css = useStyles();
+
+    const [error, setError] = useState<string>('');
+    const [email, setEmail] = useState<string>('');
+
+    const handleChange = (event: ChangeEvent<HTMLInputElement>): void => {
+        setEmail(event.target.value);
+        setError('');
+    };
+
     const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
+
+        // Empty
+        if (!email.trim()) {
+            setError('This is required field');
+            return;
+        }
+
+        // email
+        if (!mailRegex.test(email)) {
+            setEmail('');
+            setError('Not valid email');
+            return;
+        }
+
         alert('fuck you!');
     };
 
@@ -97,7 +122,15 @@ const ForgotPassForm = (): ReactElement => {
                 <div className={css.icon}>
                     <FontAwesomeIcon icon={faUser} />
                 </div>
-                <input type="email" name="email" className={css.input} />
+                <Input
+                    value={email}
+                    onChange={handleChange}
+                    type="email"
+                    name="email"
+                    className={css.input}
+                    errors={error}
+                    errorsPlaceholder
+                />
             </div>
 
             <button className={css.btn} type="submit">

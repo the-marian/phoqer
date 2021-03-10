@@ -34,7 +34,7 @@ const NotificationSuccess = ({ text }: IProps): ReactElement => {
     return (
         <SmallModalWrp>
             <img className={css.img} src="/emoji/success.png" alt="" />
-            <h4 className={css.title}>Oops</h4>
+            <h4 className={css.title}>Success</h4>
             <p className={css.p}>{text}</p>
         </SmallModalWrp>
     );

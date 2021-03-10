@@ -52,7 +52,7 @@ const Price = (): ReactElement => {
     const offer = useSelector<IState, IOfferCard | null>(state => state.offers.single);
 
     const handleRent = (): void => {
-        if (!auth?.auth_token) {
+        if (!auth?.access_token) {
             modal.open(
                 <SmallModalWrp>
                     <LoginForm />

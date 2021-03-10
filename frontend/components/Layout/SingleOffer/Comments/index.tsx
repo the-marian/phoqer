@@ -82,7 +82,7 @@ const Comments = (): ReactElement => {
 
     return (
         <>
-            {auth?.auth_token ? (
+            {auth?.access_token ? (
                 <div className={css.root}>
                     {loading && <CommentsLoader top={-1.5} />}
 

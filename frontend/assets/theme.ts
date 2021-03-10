@@ -126,7 +126,7 @@ export const theme = (value: Themes): Theme => ({
         padding: '1rem 2rem',
         border: 'none',
         borderRadius: '0.6rem',
-        fontSize: '1.6rem',
+        fontSize: '1.4rem',
         transition: '0.3s cubic-bezier(0.4, 0, 0.2, 1)',
 
         '@media (max-width: 500px)': {

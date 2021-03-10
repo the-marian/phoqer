@@ -63,7 +63,7 @@ const Banner = (): ReactElement => {
     const history = useRouter();
 
     const handleClick = (): void => {
-        if (auth?.auth_token) {
+        if (auth?.access_token) {
             history.push(routes.new_offer(1));
         } else {
             modal.open(

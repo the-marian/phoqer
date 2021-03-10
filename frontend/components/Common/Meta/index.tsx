@@ -60,30 +60,30 @@ const Meta = ({ title, description, keywords, icon, h1 = '' }: IProps): ReactEle
 
                 <meta name="theme-color" content="007aff" />
                 <link rel="manifest" href="/manifest.json" />
-                <link href="/phoqer-72.png" rel="icon" type="image/png" sizes="16x16" />
-                <link href="/phoqer-72.png" rel="icon" type="image/png" sizes="32x32" />
-                <link href="/phoqer-72.png" rel="icon" type="image/png" sizes="72x72" />
-                <link href="/phoqer-96.png" rel="icon" type="image/png" sizes="96x96" />
-                <link href="/phoqer-128.png" rel="icon" type="image/png" sizes="128x128" />
-                <link href="/phoqer-144.png" rel="icon" type="image/png" sizes="144x144" />
-                <link href="/phoqer-152.png" rel="icon" type="image/png" sizes="152x152" />
-                <link href="/phoqer-192.png" rel="icon" type="image/png" sizes="192x192" />
-                <link href="/phoqer-384.png" rel="icon" type="image/png" sizes="384x384" />
-                <link href="/phoqer-512.png" rel="icon" type="image/png" sizes="512x512" />
+                <link href="/icons/icon-72.png" rel="icon" type="image/png" sizes="16x16" />
+                <link href="/icons/icon-72.png" rel="icon" type="image/png" sizes="32x32" />
+                <link href="/icons/icon-72.png" rel="icon" type="image/png" sizes="72x72" />
+                <link href="/icons/icon-96.png" rel="icon" type="image/png" sizes="96x96" />
+                <link href="/icons/icon-128.png" rel="icon" type="image/png" sizes="128x128" />
+                <link href="/icons/icon-144.png" rel="icon" type="image/png" sizes="144x144" />
+                <link href="/icons/icon-152.png" rel="icon" type="image/png" sizes="152x152" />
+                <link href="/icons/icon-192.png" rel="icon" type="image/png" sizes="192x192" />
+                <link href="/icons/icon-384.png" rel="icon" type="image/png" sizes="384x384" />
+                <link href="/icons/icon-512.png" rel="icon" type="image/png" sizes="512x512" />
 
-                <link rel="apple-touch-icon" href="/phoqer-512.png" />
-                <link href="/phoqer-72.png" rel="apple-touch-icon" type="image/png" sizes="16x16" />
-                <link href="/phoqer-72.png" rel="apple-touch-icon" type="image/png" sizes="32x32" />
-                <link href="/phoqer-72.png" rel="apple-touch-icon" type="image/png" sizes="72x72" />
-                <link href="/phoqer-96.png" rel="apple-touch-icon" type="image/png" sizes="96x96" />
-                <link href="/phoqer-128.png" rel="apple-touch-icon" type="image/png" sizes="128x128" />
-                <link href="/phoqer-144.png" rel="apple-touch-icon" type="image/png" sizes="144x144" />
-                <link href="/phoqer-152.png" rel="apple-touch-icon" type="image/png" sizes="152x152" />
-                <link href="/phoqer-192.png" rel="apple-touch-icon" type="image/png" sizes="192x192" />
-                <link href="/phoqer-384.png" rel="apple-touch-icon" type="image/png" sizes="384x384" />
-                <link href="/phoqer-512.png" rel="apple-touch-icon" type="image/png" sizes="512x512" />
+                <link rel="apple-touch-icon" href="/icons/icon-512.png" />
+                <link href="/icons/icon-72.png" rel="apple-touch-icon" type="image/png" sizes="16x16" />
+                <link href="/icons/icon-72.png" rel="apple-touch-icon" type="image/png" sizes="32x32" />
+                <link href="/icons/icon-72.png" rel="apple-touch-icon" type="image/png" sizes="72x72" />
+                <link href="/icons/icon-96.png" rel="apple-touch-icon" type="image/png" sizes="96x96" />
+                <link href="/icons/icon-128.png" rel="apple-touch-icon" type="image/png" sizes="128x128" />
+                <link href="/icons/icon-144.png" rel="apple-touch-icon" type="image/png" sizes="144x144" />
+                <link href="/icons/icon-152.png" rel="apple-touch-icon" type="image/png" sizes="152x152" />
+                <link href="/icons/icon-192.png" rel="apple-touch-icon" type="image/png" sizes="192x192" />
+                <link href="/icons/icon-384.png" rel="apple-touch-icon" type="image/png" sizes="384x384" />
+                <link href="/icons/icon-512.png" rel="apple-touch-icon" type="image/png" sizes="512x512" />
 
-                <link rel="mask-icon" href="/phoqer-512.png" color="#171717" />
+                <link rel="mask-icon" href="/phoqer-512.png" color="#007aff" />
 
                 <link rel="canonical" href={url(locale)} />
                 <link rel="alternate" hrefLang="x-default" href={url('')} />

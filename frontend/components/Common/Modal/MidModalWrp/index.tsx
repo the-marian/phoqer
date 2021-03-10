@@ -12,7 +12,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         width: '100%',
         maxWidth: theme.rem(100),
         height: 'max-content',
-        margin: theme.rem(2, 0),
+        margin: theme.rem(8, 0),
         padding: theme.rem(4),
         paddingTop: theme.rem(5),
         borderRadius: theme.radius,

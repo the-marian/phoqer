@@ -13,15 +13,15 @@ const interceptors = ({ history, dispatch }: { history: NextRouter; dispatch: Di
     axios.interceptors.response.use(
         response => {
             if (response.config.url === '/Auth/token/login/') {
-                const bearerToken = response.data.auth_token;
-                if (bearerToken) axios.defaults.headers.common.Authorization = `Token ${bearerToken}`;
+                const bearerToken = response.data.access_token;
+                if (bearerToken) axios.defaults.headers.common.Authorization = `Bearer ${bearerToken}`;
                 history.replace(routes.root);
             }
             return response;
         },
         error => {
             if (error?.response?.status === 401) delete axios.defaults.headers.common.Authorization;
-            dispatch({ type: types.LOGOUT_SUCCESS });
+            dispatch({ type: types.LOGOUT_END });
             return Promise.reject(error);
         },
     );

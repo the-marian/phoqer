@@ -163,7 +163,7 @@ const SubComment = ({ id, comments }: { id: number; comments: IComment[] }): Rea
             {comments?.map(item => (
                 <CommentsItem key={item.id} comment={item} inner />
             ))}
-            {auth?.auth_token && (
+            {auth?.access_token && (
                 <div className={css.inner}>
                     <CommentsForm onSubmit={handleSubmit} />
                 </div>
@@ -244,13 +244,13 @@ const CommentsItem = ({ comment, extend = false, replies = false, inner = false 
             ) : null}
 
             <div className={css.flex}>
-                {auth?.auth_token && (
+                {auth?.access_token && (
                     <button className={css.link} type="button" onClick={handleDelete}>
                         Удалить
                     </button>
                 )}
 
-                {replies && auth?.auth_token && (
+                {replies && auth?.access_token && (
                     <button className={css.link} type="button" onClick={handleReply}>
                         Ответить
                     </button>

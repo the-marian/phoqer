@@ -11,7 +11,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         position: 'relative',
         width: theme.rem(40),
         height: 'max-content',
-        margin: theme.rem(2, 0),
+        margin: theme.rem(8, 0),
         padding: theme.rem(2),
         paddingTop: theme.rem(5),
         borderRadius: theme.radius,

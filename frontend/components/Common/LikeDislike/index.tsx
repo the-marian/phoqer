@@ -80,12 +80,12 @@ const LikeDislike = ({ like, dislike, active, onClick }: IProps): ReactElement =
     const css = useStyles();
 
     const handleClick = (type: 'like' | 'dislike') => (): void => {
-        if (!auth?.auth_token) return;
+        if (!auth?.access_token) return;
         onClick(type);
     };
 
     return (
-        <div className={clsx(css.action, !auth?.auth_token && css.none)}>
+        <div className={clsx(css.action, !auth?.access_token && css.none)}>
             <button className={clsx(css.like, active === 'like' && css.active)} type="button" onClick={handleClick('like')}>
                 <FontAwesomeIcon icon={faThumbsUp} />
                 <span>{like}</span>

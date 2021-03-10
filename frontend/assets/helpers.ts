@@ -3,6 +3,9 @@ import { GetServerSidePropsContext } from 'next';
 import { IAuth, ICategories, IDropList } from '../interfaces';
 import routes from './routes';
 
+export const mailRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+export const passwordRegex = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[_#?!@$%^&*-]).{6,}$/;
+
 export const addZeroToNumber = (value: string | number): string => String(value).padStart(2, '0');
 
 export const numberValidation = (text: string): boolean => {
@@ -105,7 +108,7 @@ export const serverCookie = (ctx: GetServerSidePropsContext): IAuth | null => pa
 // redirect user on server side
 export const serverRedirect = (ctx: GetServerSidePropsContext, path?: string | null, reverse = false): boolean => {
     const auth = serverCookie(ctx);
-    const redirect = reverse ? auth?.auth_token : !auth?.auth_token;
+    const redirect = reverse ? auth?.access_token : !auth?.access_token;
     if (redirect) {
         ctx.res.statusCode = 302;
         ctx.res.setHeader('Location', path || routes.root);

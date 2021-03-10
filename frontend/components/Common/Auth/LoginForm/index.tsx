@@ -8,11 +8,13 @@ import React, { ChangeEvent, FormEvent, MouseEvent, ReactElement, useState } fro
 import { createUseStyles } from 'react-jss';
 import { useDispatch } from 'react-redux';
 
+import { mailRegex } from '../../../../assets/helpers';
 import routes from '../../../../assets/routes';
 import { Theme } from '../../../../assets/theme';
-import { Login } from '../../../../interfaces';
+import { ILogin } from '../../../../interfaces';
 import types from '../../../../redux/types';
 import GoogleFacebook from '../../GoogleFacebook';
+import Input from '../../Input';
 import Spinner from '../../Preloaders/Spinner';
 
 const useStyles = createUseStyles((theme: Theme) => ({
@@ -45,6 +47,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         top: '52%',
         left: theme.rem(1.5),
         transform: 'translateY(-50%)',
+        zIndex: 2,
         fontSize: theme.rem(1.2),
         color: theme.palette.gray[4],
 
@@ -57,6 +60,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         position: 'absolute',
         top: '52%',
         right: 0,
+        zIndex: 2,
         height: '100%',
         width: theme.rem(5),
         transform: 'translateY(-50%)',
@@ -71,7 +75,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     link: {
         display: 'block',
         textAlign: 'center',
-        margin: theme.rem(2, 0),
+        margin: theme.rem(2, 0, 1),
         fontSize: theme.rem(1.4),
         color: theme.palette.primary[0],
 
@@ -119,16 +123,29 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
 }));
 
+interface IError {
+    username?: string;
+    password?: string;
+}
+
+const INIT: ILogin = {
+    username: '',
+    password: '',
+};
+
 const LoginForm = (): ReactElement => {
     const css = useStyles();
     const dispatch = useDispatch();
 
     const [loading, setLoading] = useState(false);
     const [unhidden, setUnhidden] = useState(true);
-    const [payload, setPayload] = useState<Login>({ password: '', email: '' });
+
+    const [errors, setErrors] = useState<IError>(INIT);
+    const [value, setValue] = useState<ILogin>(INIT);
 
     const handleChange = (event: ChangeEvent<HTMLInputElement>): void => {
-        setPayload({ ...payload, [event.target.name]: event.target.value });
+        setValue((prev: ILogin): ILogin => ({ ...prev, [event.target.name]: event.target.value }));
+        setErrors(INIT);
     };
 
     const handleClick = (): void => {
@@ -138,7 +155,26 @@ const LoginForm = (): ReactElement => {
     const handleSubmit = (event: FormEvent<HTMLFormElement> | MouseEvent<HTMLButtonElement>): void => {
         event.preventDefault();
         setLoading(true);
-        dispatch({ type: types.LOGIN_START, payload });
+
+        // Empty
+        const empty: [string, string][] = Object.entries(value).filter((item: [string, string]): boolean => !item[1].trim());
+        if (empty.length) {
+            const newErrors: IError = empty.reduce(
+                (acc: IError, item): IError => ({ ...acc, [item[0]]: 'This is required field' }),
+                {},
+            );
+            setErrors(newErrors);
+            return;
+        }
+
+        // email
+        if (!mailRegex.test(value.username)) {
+            setValue((prev: ILogin): ILogin => ({ ...prev, username: '' }));
+            setErrors({ username: 'Not valid email' });
+            return;
+        }
+
+        dispatch({ type: types.LOGIN_START, payload: value });
     };
 
     return (
@@ -149,7 +185,15 @@ const LoginForm = (): ReactElement => {
                 <div className={css.icon}>
                     <FontAwesomeIcon icon={faUser} />
                 </div>
-                <input type="email" onChange={handleChange} name="email" className={css.input} />
+                <Input
+                    type="email"
+                    value={value.username}
+                    onChange={handleChange}
+                    name="username"
+                    className={css.input}
+                    errors={errors.username}
+                    errorsPlaceholder
+                />
             </div>
 
             <div className={css.wrp}>
@@ -159,7 +203,15 @@ const LoginForm = (): ReactElement => {
                 <button className={css.eye} onClick={handleClick} type="button">
                     {unhidden ? <FontAwesomeIcon icon={faEyeSlash} /> : <FontAwesomeIcon icon={faEye} />}
                 </button>
-                <input type={unhidden ? 'password' : 'text'} name="password" onChange={handleChange} className={css.input} />
+                <Input
+                    type={unhidden ? 'password' : 'text'}
+                    value={value.password}
+                    name="password"
+                    onChange={handleChange}
+                    className={css.input}
+                    errors={errors.password}
+                    errorsPlaceholder
+                />
             </div>
 
             <Link href={routes.auth.forgot_pass}>

@@ -31,23 +31,6 @@ const useStyles = createUseStyles((theme: Theme) => ({
         fontSize: theme.rem(1.4),
         fontWeight: theme.text.weight[2],
     },
-    input: {
-        ...theme.input,
-        background: theme.palette.trueWhite,
-
-        '& span': {
-            width: '88%',
-            marginLeft: theme.rem(1),
-            whiteSpace: 'nowrap',
-            overflow: 'hidden',
-            textOverflow: 'ellipsis',
-            textAlign: 'left',
-
-            '@media (max-width: 900px)': {
-                width: '100%',
-            },
-        },
-    },
     icon: {
         fontSize: theme.rem(0.91),
         marginRight: theme.rem(1.5),

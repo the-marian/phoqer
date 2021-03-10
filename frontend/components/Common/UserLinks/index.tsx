@@ -69,7 +69,7 @@ const UserLinks = ({ className }: IProps): ReactElement => {
 
     const handleLogout = () => {
         setLoading(true);
-        dispatch({ type: types.LOGOUT_START });
+        dispatch({ type: types.LOGOUT_INIT });
     };
     return (
         <ul className={className}>

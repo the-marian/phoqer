@@ -74,7 +74,7 @@ const MainDrawer = (): ReactElement => {
     };
 
     const linksRedirect = (route: string): void => {
-        if (!auth?.auth_token) {
+        if (!auth?.access_token) {
             modal.open(
                 <SmallModalWrp>
                     <LoginForm />
@@ -116,7 +116,7 @@ const MainDrawer = (): ReactElement => {
                 </button>
             </div>
 
-            <div className={css.content}>{auth?.auth_token ? <AuthDrawer auth={auth} /> : <NotAuthDrawer />}</div>
+            <div className={css.content}>{auth?.access_token ? <AuthDrawer auth={auth} /> : <NotAuthDrawer />}</div>
 
             <Socials />
         </Drawer>
