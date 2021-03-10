@@ -116,3 +116,7 @@ export const serverRedirect = (ctx: GetServerSidePropsContext, path?: string | n
 
     return !!redirect;
 };
+
+// check empty fields in any form
+export const isEmpty = <T>(value: T): [string, string][] =>
+    Object.entries(value).filter((item: [string, string]): boolean => !item[1].trim());

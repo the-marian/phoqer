@@ -209,8 +209,8 @@ const CommentsItem = ({ comment, extend = false, replies = false, inner = false 
         );
     };
 
-    const handleClick = (index: number) => (): void => {
-        modal.open(<FullPageGallery images={comment.images} index={index} />);
+    const handleClick = (): void => {
+        modal.open(<FullPageGallery images={comment.images} />);
     };
 
     return (
@@ -237,7 +237,7 @@ const CommentsItem = ({ comment, extend = false, replies = false, inner = false 
                 <ul className={css.img}>
                     {comment.images?.map((img, index) => (
                         <li key={img}>
-                            <img onClick={handleClick(index)} src={img} alt="" aria-hidden="true" />
+                            <img onClick={handleClick} src={img} alt="" aria-hidden="true" />
                         </li>
                     ))}
                 </ul>

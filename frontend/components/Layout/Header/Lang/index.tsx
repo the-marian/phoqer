@@ -49,6 +49,7 @@ const Lang = (): ReactElement => {
                 onChange={handleChange}
                 white
                 toLeft
+                closeOnScroll
             />
         </div>
     );

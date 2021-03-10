@@ -28,7 +28,7 @@ const api = {
 
     // V2
     auth: {
-        user: (): Promise<AxiosResponse> => axios.get(`${url1}/users/me/`),
+        user: (): Promise<AxiosResponse> => axios.get(`${url2}/users/me`),
         // TEMP
         // login: (body: ILogin): Promise<AxiosResponse<IAuth>> => axios.post(`${url2}/auth/login`, body),
         login: (form: FormData): Promise<AxiosResponse<IAuth>> => axios.post(`${url2}/auth/login`, form),

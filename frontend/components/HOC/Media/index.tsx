@@ -12,6 +12,8 @@ const MediaProvider = ({ children, width = 768 }: IProps): ReactElement => {
 
     useEffect(() => {
         if (process.browser) {
+            setMedia(window.innerWidth);
+
             const handleResize = (): void => {
                 setMedia(window.innerWidth);
             };

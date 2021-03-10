@@ -7,6 +7,7 @@ import React, { MouseEvent, ReactElement, useEffect, useState } from 'react';
 import { createUseStyles } from 'react-jss';
 
 import { Theme } from '../../../assets/theme';
+import useMedia from '../../../hooks/media.hook';
 import { IDropList, IDropValue } from '../../../interfaces';
 
 const useStyles = createUseStyles((theme: Theme) => ({
@@ -80,6 +81,12 @@ const useStyles = createUseStyles((theme: Theme) => ({
         width: '100%',
         minWidth: theme.rem(20),
         paddingTop: theme.rem(1),
+        scrollBehavior: 'smooth',
+        '-webkit-overflow-scrolling': 'touch',
+
+        '@media (max-width: 768px)': {
+            minWidth: theme.rem(35),
+        },
     },
     top: {
         top: 'unset',
@@ -95,6 +102,8 @@ const useStyles = createUseStyles((theme: Theme) => ({
         overflowY: 'auto',
 
         '@media (max-width: 768px)': {
+            maxHeight: theme.rem(35),
+            padding: theme.rem(3, 0),
             fontSize: theme.rem(1.6),
         },
     },
@@ -116,12 +125,13 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
     itemEmpty: {
         '& > button': {
-            background: theme.palette.gray[0],
+            background: theme.palette.white,
         },
     },
     sub: {
         position: 'relative',
         padding: theme.rem(1, 3),
+        background: theme.palette.gray[0],
         color: theme.palette.black[0],
 
         '&:hover': {
@@ -155,6 +165,7 @@ interface Props {
     transparent?: boolean;
     white?: boolean;
     toLeft?: boolean;
+    closeOnScroll?: boolean;
     onChange: (value: IDropValue | null) => void;
 }
 
@@ -167,12 +178,14 @@ const DropDown = ({
     withSub,
     transparent,
     white,
+    closeOnScroll = false,
     toLeft = false,
 }: Props): ReactElement => {
     const css = useStyles();
+    const media = useMedia(768);
 
-    const [drop, setDrop] = useState<boolean>(false);
     const [top, setTop] = useState<boolean>(false);
+    const [drop, setDrop] = useState<boolean>(false);
     const [selected, setSelected] = useState<string>(defaultValue?.name || placeholder || data[0].name);
 
     useEffect(() => {
@@ -188,7 +201,7 @@ const DropDown = ({
     const handleBlur = (): void => {
         setTimeout(() => {
             setDrop(false);
-        }, 200);
+        }, 150);
     };
 
     const handleSelect = (name: string, slug: string, type: 'main' | 'sub'): void => {
@@ -205,15 +218,17 @@ const DropDown = ({
     };
 
     useEffect(() => {
-        const handleClose = (): void => {
-            if (!drop) setDrop(false);
-        };
+        if (drop && closeOnScroll) {
+            const handleClose = (): void => {
+                setDrop(false);
+            };
 
-        window.addEventListener('scroll', handleClose);
-        return () => {
-            window.removeEventListener('scroll', handleClose);
-        };
-    }, []);
+            window.addEventListener('scroll', handleClose);
+            return () => {
+                window.removeEventListener('scroll', handleClose);
+            };
+        }
+    }, [drop, closeOnScroll]);
 
     return (
         <div className={css.wrp} tabIndex={-1} onBlur={handleBlur}>
@@ -226,7 +241,7 @@ const DropDown = ({
                 )}
                 style={{ height: height + 'rem' }}
                 onClick={handleClick}
-                aria-hidden="true"
+                aria-hidden
             >
                 {drop ? (
                     <span className={css.icon}>
@@ -268,7 +283,7 @@ const DropDown = ({
                                                 onClick={() => {
                                                     handleSelect(name, slug, 'sub');
                                                 }}
-                                                aria-hidden="true"
+                                                aria-hidden
                                             >
                                                 <span>{name}</span>
                                             </li>

@@ -5,7 +5,7 @@ import React, { ChangeEvent, FormEvent, MouseEvent, ReactElement, useState } fro
 import { createUseStyles } from 'react-jss';
 import { useDispatch } from 'react-redux';
 
-import { mailRegex, passwordRegex } from '../../../../assets/helpers';
+import {isEmpty, mailRegex, passwordRegex} from '../../../../assets/helpers';
 import { Theme } from '../../../../assets/theme';
 import { ISignup } from '../../../../interfaces';
 import types from '../../../../redux/types';
@@ -152,7 +152,7 @@ const JoinForm = (): ReactElement => {
         event.preventDefault();
 
         // Empty
-        const empty: [string, string][] = Object.entries(value).filter((item: [string, string]): boolean => !item[1].trim());
+        const empty: [string, string][] = isEmpty<ISignup>(value);
         if (empty.length) {
             const newErrors: IError = empty.reduce(
                 (acc: IError, item): IError => ({ ...acc, [item[0]]: 'This is required field' }),

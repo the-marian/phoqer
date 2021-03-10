@@ -8,7 +8,7 @@ import React, { ChangeEvent, FormEvent, MouseEvent, ReactElement, useState } fro
 import { createUseStyles } from 'react-jss';
 import { useDispatch } from 'react-redux';
 
-import { mailRegex } from '../../../../assets/helpers';
+import { isEmpty, mailRegex } from '../../../../assets/helpers';
 import routes from '../../../../assets/routes';
 import { Theme } from '../../../../assets/theme';
 import { ILogin } from '../../../../interfaces';
@@ -157,7 +157,7 @@ const LoginForm = (): ReactElement => {
         setLoading(true);
 
         // Empty
-        const empty: [string, string][] = Object.entries(value).filter((item: [string, string]): boolean => !item[1].trim());
+        const empty: [string, string][] = isEmpty<ILogin>(value);
         if (empty.length) {
             const newErrors: IError = empty.reduce(
                 (acc: IError, item): IError => ({ ...acc, [item[0]]: 'This is required field' }),

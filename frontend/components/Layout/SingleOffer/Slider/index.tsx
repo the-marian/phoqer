@@ -152,8 +152,8 @@ const OfferSlider = ({ images }: IProps): ReactElement => {
         slider1?.slickGoTo(index);
     };
 
-    const handleModal = (index: number) => (): void => {
-        modal.open(<FullPageGallery images={images} index={index} />);
+    const handleModal = (): void => {
+        modal.open(<FullPageGallery images={images} />);
     };
 
     return (
@@ -179,16 +179,9 @@ const OfferSlider = ({ images }: IProps): ReactElement => {
                     },
                 ]}
             >
-                {slides.map((item, index) => (
+                {slides.map(item => (
                     <div className={css.slide} key={item}>
-                        <img
-                            className={css.img}
-                            onClick={handleModal(index)}
-                            draggable={false}
-                            src={item}
-                            aria-hidden="true"
-                            alt=""
-                        />
+                        <img className={css.img} onClick={handleModal} draggable={false} src={item} aria-hidden="true" alt="" />
                     </div>
                 ))}
             </Slider>
