@@ -145,7 +145,13 @@ yarn-error.log*
 node_modules
 /frontend/node_modules
 /frontend/.pnp
+/frontend/.idea
 .pnp.js
+
+#pwa
+/frontend/public/sw.js.map
+/frontend/public/workbox-*.js
+/frontend/public/workbox-*.js.map
 
 # testing
 /frontend/coverage
