@@ -14,6 +14,7 @@ import { ICategories, IDropValue, INewOffer, IState } from '../../../../interfac
 import types from '../../../../redux/types';
 import CheckYesNo from '../../../Common/CheckYesNo';
 import DropDown from '../../../Common/DropDown';
+import Input from '../../../Common/Input';
 import { modal } from '../../../Common/Modal';
 import SaveModal from '../SaveModal';
 import Region from './Region';
@@ -130,15 +131,14 @@ const StepThree = (): ReactElement => {
                 <h4 className={css.title}>
                     Придумайте название объявления <span className={css.red}>*</span>
                 </h4>
-                <input
+                <Input
                     value={value.title}
                     onChange={handleTitle}
-                    className={clsx(css.input, errors.title && css.errors)}
                     name="name"
                     type="text"
                     placeholder="Название"
+                    errors={errors.title}
                 />
-                {errors.title && <small className={css.errorsText}>{errors.title}</small>}
             </div>
 
             <Region />
@@ -171,14 +171,13 @@ const StepThree = (): ReactElement => {
                     <h4 className={css.title}>
                         Цена (грн/день) <span className={css.red}>*</span>
                     </h4>
-                    <input
+                    <Input
                         value={moneyFormat(value.price || 0)}
                         onChange={handlePrice}
-                        className={clsx(css.input, errors.price && css.errors)}
                         type="text"
                         placeholder="Цена"
+                        errors={errors.price}
                     />
-                    {errors.price && <small className={css.errorsText}>{errors.price}</small>}
                 </div>
             </div>
 

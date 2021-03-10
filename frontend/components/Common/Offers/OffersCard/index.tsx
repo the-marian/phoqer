@@ -205,7 +205,7 @@ const OfferCard = ({ offer }: IProps): ReactElement => {
     const { id, title, description, cover_image, is_promoted, is_deliverable, is_favorite, views, pub_date, price } = offer;
 
     const handleFavorite = (): void => {
-        if (!auth?.auth_token) {
+        if (!auth?.access_token) {
             modal.open(
                 <SmallModalWrp>
                     <LoginForm />

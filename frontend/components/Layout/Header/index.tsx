@@ -119,7 +119,7 @@ const Header = (): ReactElement => {
                     </div>
 
                     <div className={css.wrp}>
-                        {auth?.auth_token ? <UserInfo /> : media ? <NotAuth /> : null}
+                        {auth?.access_token ? <UserInfo /> : media ? <NotAuth /> : null}
                         <Lang />
                     </div>
                 </div>

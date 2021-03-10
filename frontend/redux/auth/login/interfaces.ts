@@ -1,4 +1,4 @@
-import { IAuth, IState, Login } from '../../../interfaces';
+import { IAuth, ILogin, IState } from '../../../interfaces';
 import types from '../../types';
 
 type Type =
@@ -8,11 +8,10 @@ type Type =
     | typeof types.GET_USER_START
     | typeof types.GET_USER_ERROR
     | typeof types.GET_USER_SUCCESS
-    | typeof types.LOGOUT_START
-    | typeof types.LOGOUT_ERROR
-    | typeof types.LOGOUT_SUCCESS;
+    | typeof types.LOGOUT_INIT
+    | typeof types.LOGOUT_END;
 
 export default interface IAction {
     type: Type;
-    payload?: IAuth | IState | Login | null;
+    payload?: IAuth | IState | ILogin | null;
 }

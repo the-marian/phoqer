@@ -64,7 +64,7 @@ MyApp.getInitialProps = async (appContext: AppContextType<Router>) => {
 
     // auth
     const auth = parseCookie<IAuth>(appContext?.ctx?.req?.headers?.cookie);
-    if (auth?.auth_token) axios.defaults.headers.common.Authorization = `Token ${auth?.auth_token}`;
+    if (auth?.access_token) axios.defaults.headers.common.Authorization = `Bearer ${auth?.access_token}`;
 
     // end
     return { ...props, width: isMobile ? 500 : 1400, auth, theme };

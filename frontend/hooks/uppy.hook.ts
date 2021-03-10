@@ -28,7 +28,7 @@ const useUppy = (): Uppy.Uppy<Uppy.StrictTypes> => {
             endpoint: config.uploadsUrl(),
             fieldName: 'file',
             headers: {
-                Authorization: `Token ${auth?.auth_token}`,
+                Authorization: `Bearer ${auth?.access_token}`,
             },
         });
 

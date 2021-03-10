@@ -3,4 +3,4 @@
 set -x
 
 black -l 90 ..
-isort ..
+isort --settings-path ./setup.cfg ..

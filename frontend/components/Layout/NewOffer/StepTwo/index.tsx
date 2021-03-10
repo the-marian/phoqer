@@ -13,6 +13,7 @@ import { INewOffer, IState } from '../../../../interfaces';
 import types from '../../../../redux/types';
 import CheckTitle from '../../../Common/CheckTitle';
 import CheckYesNo from '../../../Common/CheckYesNo';
+import Input from '../../../Common/Input';
 import { modal } from '../../../Common/Modal';
 import SaveModal from '../SaveModal';
 import useStyles from './StepTwo.styles';
@@ -169,16 +170,15 @@ const StepTwo = (): ReactElement => {
                     Залоговая сума (грн)
                 </CheckTitle>
                 <div className={clsx(css.inputWrp, value.optional.deposit_val || css.inactive)}>
-                    <input
+                    <Input
                         value={moneyFormat(value.deposit_val || 0)}
                         onChange={handleNumber}
-                        className={clsx(css.input, errors.deposit_val && css.errors)}
                         name="deposit_val"
                         placeholder="Введите число"
                         readOnly={!value.optional.deposit_val}
+                        errors={errors.deposit_val}
                     />
                 </div>
-                {errors.deposit_val && <small className={css.errorsText}>{errors.deposit_val}</small>}
             </div>
 
             <div className={css.inner}>
@@ -186,13 +186,13 @@ const StepTwo = (): ReactElement => {
                     Минимальный срок аренды (дней)
                 </CheckTitle>
                 <div className={clsx(css.inputWrp, value.optional.min_rent_period || css.inactive)}>
-                    <input
+                    <Input
                         value={moneyFormat(value.min_rent_period || 0)}
                         onChange={handleNumber}
-                        className={clsx(css.input, errors.min_rent_period && css.errors)}
                         name="min_rent_period"
                         placeholder="Введите число"
                         readOnly={!value.optional.min_rent_period}
+                        errors={errors.min_rent_period}
                     />
                 </div>
                 {errors.min_rent_period && <small className={css.errorsText}>{errors.min_rent_period}</small>}
@@ -203,16 +203,16 @@ const StepTwo = (): ReactElement => {
                     Максимальный срок аренды (дней)
                 </CheckTitle>
                 <div className={clsx(css.inputWrp, value.optional.max_rent_period || css.inactive)}>
-                    <input
+                    <Input
                         value={moneyFormat(value.max_rent_period || 0)}
                         onChange={handleNumber}
                         className={clsx(css.input, errors.max_rent_period && css.errors)}
                         name="max_rent_period"
                         placeholder="Введите число"
                         readOnly={!value.optional.max_rent_period}
+                        errors={errors.max_rent_period}
                     />
                 </div>
-                {errors.max_rent_period && <small className={css.errorsText}>{errors.max_rent_period}</small>}
             </div>
 
             <div className={css.inner}>

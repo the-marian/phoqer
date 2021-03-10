@@ -1,7 +1,7 @@
 import axios, { AxiosResponse } from 'axios';
 import { Params } from 'next/dist/next-server/server/router';
 
-import { ICategories, IComment, IOfferCard, IOfferPagination, IPublicProfile, Login } from '../interfaces';
+import { IAuth, ICategories, IComment, IOfferCard, IOfferPagination, IPublicProfile, ISignup } from '../interfaces';
 import { IBody } from '../redux/offers/new_offer/interfaces';
 import config from './config';
 
@@ -17,11 +17,6 @@ interface ICommentBody {
 
 const api = {
     // V1
-    auth: {
-        user: (): Promise<AxiosResponse> => axios.get(`${url1}/users/me/`),
-        login: (body: Login): Promise<AxiosResponse> => axios.post(`${url1}/auth/token/login/`, body),
-        logout: (): Promise<AxiosResponse> => axios.post(`${url1}/auth/token/logout/`),
-    },
     profiles: {
         public: {
             get: (id: number): Promise<AxiosResponse<IPublicProfile>> => axios.get(`${url1}/profiles/${id}/`),
@@ -32,6 +27,13 @@ const api = {
     },
 
     // V2
+    auth: {
+        user: (): Promise<AxiosResponse> => axios.get(`${url1}/users/me/`),
+        // TEMP
+        // login: (body: ILogin): Promise<AxiosResponse<IAuth>> => axios.post(`${url2}/auth/login`, body),
+        login: (form: FormData): Promise<AxiosResponse<IAuth>> => axios.post(`${url2}/auth/login`, form),
+        signup: (body: ISignup): Promise<AxiosResponse<void>> => axios.post(`${url2}/users/signup`, body),
+    },
     comments: {
         list: (id: string): Promise<AxiosResponse<IComment[]>> => axios.get(`${url2}/comments/${id}`),
         create: (body: ICommentBody): Promise<AxiosResponse<void>> => axios.post(`${url2}/comments`, body),

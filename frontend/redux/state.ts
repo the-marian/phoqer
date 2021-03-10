@@ -2,7 +2,7 @@ import { IState } from '../interfaces';
 
 const initState: IState = {
     auth: {
-        auth_token: null,
+        access_token: null,
     },
     drawer: false,
     filters: true,

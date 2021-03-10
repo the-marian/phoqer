@@ -9,7 +9,7 @@ from FastAPI.offers.schemas import (
     OfferDraftReply,
     OfferDraftRequest,
     OffersListItem,
-    OffersListResponse
+    OffersListResponse,
 )
 from FastAPI.utils import get_current_user, get_current_user_or_none
 

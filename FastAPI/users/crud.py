@@ -1,3 +1,5 @@
+from typing import Mapping
+
 from FastAPI.config import database
 from FastAPI.users.schemas import UserCreateRequest
 from pydantic import EmailStr
@@ -58,3 +60,22 @@ async def create_user(user_data: UserCreateRequest, hashed_password: str) -> Non
 async def activate_user(email: EmailStr) -> None:
     query = "UPDATE users_user SET is_active = TRUE WHERE email = :email"
     await database.execute(query=query, values={"email": email})
+
+
+async def get_user(user_id: int) -> Mapping:
+    query = """
+    SELECT
+        bio,
+        birth_date,
+        date_joined,
+        email,
+        first_name,
+        id,
+        last_login,
+        last_name,
+        location,
+        profile_img
+    FROM users_user
+    WHERE id = :id
+    """
+    return await database.fetch_one(query=query, values={"id": user_id}) or {}

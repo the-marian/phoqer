@@ -31,13 +31,20 @@ export interface IDropValue {
 // =====================================
 // 2 AUTH
 // =====================================
-export interface Login {
-    email: string;
+export interface ILogin {
+    username: string;
     password: string;
 }
 
+export interface ISignup {
+    email: string;
+    password: string;
+    first_name: string;
+    last_name: string;
+}
+
 export interface IAuth extends IPublicProfile {
-    auth_token: string | null;
+    access_token: string | null;
 }
 
 // =====================================

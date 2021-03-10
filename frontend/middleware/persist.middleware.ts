@@ -25,7 +25,7 @@ const Persist: Middleware = store => next => action => {
             }
         }
 
-        if (types.LOGOUT_SUCCESS === action.type || types.LOGOUT_ERROR === action.type) {
+        if (types.LOGOUT_END === action.type) {
             try {
                 Cookies.set('phoqer_auth', JSON.stringify(initState.auth));
                 next(action);

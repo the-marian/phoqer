@@ -4,7 +4,7 @@ import { IAuth, IState } from '../../interfaces';
 import types from '../types';
 import IAction from './login/interfaces';
 
-const INIT: IAuth = { auth_token: null };
+const INIT: IAuth = { access_token: null };
 
 const auth = (state: IAuth = INIT, { type, payload }: IAction): IAuth => {
     switch (type) {
@@ -17,11 +17,9 @@ const auth = (state: IAuth = INIT, { type, payload }: IAction): IAuth => {
         case types.GET_USER_SUCCESS:
             return { ...state, ...(payload as IAuth) };
 
-        case types.LOGOUT_SUCCESS:
-        case types.LOGOUT_ERROR:
+        case types.LOGOUT_END:
             return INIT;
 
-        case types.LOGOUT_START:
         case types.LOGIN_START:
         case types.GET_USER_START:
         case types.GET_USER_ERROR:

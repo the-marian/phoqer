@@ -26,10 +26,6 @@ const useStyles = createUseStyles((theme: Theme) => ({
         width: '100%',
         padding: theme.rem(1),
 
-        '@media (max-width: 768px)': {
-            alignItems: 'flex-end',
-        },
-
         '& button': {
             display: 'block',
             height: theme.rem(7),

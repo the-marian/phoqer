@@ -3,7 +3,6 @@ from fastapi import FastAPI
 from FastAPI.comments import comments
 from FastAPI.config import database
 from FastAPI.favorite import favorite
-
 from FastAPI.login import login
 from fastapi.middleware.cors import CORSMiddleware
 from FastAPI.offers import offers
