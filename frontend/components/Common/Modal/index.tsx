@@ -32,7 +32,7 @@ class ModalManagement extends EventEmitter {
 
         // styles
         document.body.style.position = '';
-        document.body.style.top = '0';
+        document.body.style.top = '';
         window.scrollTo({ top: this.scrollY });
 
         // emit

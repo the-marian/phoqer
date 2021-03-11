@@ -41,7 +41,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
             transform: 'translateX(0%)',
             height: '100%',
             width: '100%',
-            maxWidth: theme.rem(40),
+            maxWidth: theme.rem(50),
             padding: theme.rem(5, 2, 2),
             background: theme.palette.white,
             borderRight: theme.border(0.1, theme.palette.gray[1]),
@@ -96,7 +96,7 @@ const Root = ({ children, open, onToggle }: IProps) => {
             // style
             const top = document.body.style.top;
             document.body.style.position = '';
-            document.body.style.top = '0';
+            document.body.style.top = '';
             window.scrollTo({ top: parseInt(top || '0') * -1 });
             // event
             window.removeEventListener('keydown', close);

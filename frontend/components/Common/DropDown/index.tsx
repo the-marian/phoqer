@@ -97,7 +97,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
     box: {
         maxHeight: theme.rem(40),
-        padding: theme.rem(2, 0),
+        padding: theme.rem(0.4, 0),
         background: theme.palette.white,
         borderRadius: theme.radius,
         border: theme.border(0.1, theme.palette.gray[3]),
@@ -113,10 +113,14 @@ const useStyles = createUseStyles((theme: Theme) => ({
         cursor: 'pointer',
         borderBottom: theme.border(0.1, theme.palette.gray[1]),
 
+        '&:nth-last-of-type(1)': {
+            borderBottom: 'none',
+        },
+
         '& > button': {
             display: 'block',
             width: '100%',
-            padding: theme.rem(1, 2),
+            padding: theme.rem(1),
             textAlign: 'left',
             background: theme.palette.white,
             color: theme.palette.black[0],
@@ -139,7 +143,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
     sub: {
         position: 'relative',
-        padding: theme.rem(1, 3),
+        padding: theme.rem(1, 3, 1, 5),
         background: theme.palette.gray[0],
         color: theme.palette.black[0],
         fontSize: theme.rem(1.4),
@@ -231,6 +235,7 @@ const DropDown = ({
         onChange({ name, slug, type });
         setSelected(name);
         setDrop(!drop);
+        if (!media) modal.close();
     };
 
     const handleReset = (event: MouseEvent<HTMLSpanElement>): void => {

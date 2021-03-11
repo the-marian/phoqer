@@ -45,6 +45,7 @@ export interface ISignup {
 
 export interface IAuth extends IPublicProfile {
     access_token: string | null;
+    token_type?: string;
 }
 
 // =====================================
@@ -161,13 +162,21 @@ export interface IComment {
 // 6 PUBLIC_PROFILE
 // =====================================
 export interface IPublicProfile {
-    id?: number;
+    bio?: string;
     birth_date?: string | null;
-    email?: string;
-    location?: string | null;
-    last_name?: string;
+    communication_rate?: number;
+    date_joined?: string;
+    description_rate?: string;
+    dislikes?: number;
+    email?: string | null;
     first_name?: string;
+    id?: string | number;
+    last_name?: string;
+    likes?: number;
+    location?: string;
     profile_img?: string | null;
+    response_rate?: number;
+    satisfaction_rate?: number;
 }
 
 // =====================================
@@ -175,6 +184,7 @@ export interface IPublicProfile {
 // =====================================
 export interface IState {
     auth: IAuth;
+    user: IPublicProfile | null;
     drawer: boolean;
     filters: boolean;
     categories: ICategories[];

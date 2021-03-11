@@ -1,5 +1,6 @@
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
+import { useSelector } from 'react-redux';
 import { END } from 'redux-saga';
 
 import { Theme } from '../../../../assets/theme';
@@ -9,7 +10,7 @@ import Container from '../../../../components/Layout/Container';
 import ProfileInfo from '../../../../components/Layout/Profile/Public/ProfileInfo';
 import Main from '../../../../components/Layout/TagMain';
 import useTrans from '../../../../hooks/trans.hook';
-import { IStore } from '../../../../interfaces';
+import { IPublicProfile, IState, IStore } from '../../../../interfaces';
 import { wrapper } from '../../../../redux/store';
 import types from '../../../../redux/types';
 
@@ -41,8 +42,10 @@ const useStyles = createUseStyles((theme: Theme) => ({
 }));
 
 const PublicProfilePage = (): ReactElement => {
-    const css = useStyles();
     const T = useTrans();
+    const css = useStyles();
+
+    const profile = useSelector<IState, IPublicProfile | null>(state => state.profiles.public);
 
     return (
         <>
@@ -51,7 +54,14 @@ const PublicProfilePage = (): ReactElement => {
                 <Container>
                     <div className={css.wrp}>
                         <div className={css.left}>
-                            <ProfileCard id={1} firstName="Влад" lastName="Василенко" />
+                            <ProfileCard
+                                id={profile?.id}
+                                registerDate={profile?.date_joined}
+                                firstName={profile?.first_name}
+                                lastName={profile?.last_name}
+                                avatar={profile?.profile_img}
+                                userLocation={profile?.location}
+                            />
                         </div>
                         <div className={css.right}>
                             <ProfileInfo />

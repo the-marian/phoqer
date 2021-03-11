@@ -16,6 +16,7 @@ const AuthDrawer = ({ auth }: IProps): ReactElement | null => {
                 lastName={auth?.last_name}
                 avatar={auth?.profile_img}
                 userLocation={auth?.location}
+                registerDate={auth?.date_joined}
             />
             <UserLinks />
         </>

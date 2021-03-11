@@ -2,6 +2,7 @@ import Link from 'next/link';
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
+import { formatTimestemp } from '../../../assets/helpers';
 import routes from '../../../assets/routes';
 import { Theme } from '../../../assets/theme';
 import useAuth from '../../../hooks/auth.hook';
@@ -77,11 +78,19 @@ interface IProps {
     id?: string | number;
     firstName?: string;
     lastName?: string;
+    registerDate?: string;
     avatar?: string | null;
     userLocation?: string | null;
 }
 
-const ProfileCard = ({ id = 0, firstName = 'A', lastName = 'A', avatar = null, userLocation = null }: IProps): ReactElement => {
+const ProfileCard = ({
+    id = 0,
+    firstName = '_',
+    lastName = '_',
+    registerDate,
+    avatar = null,
+    userLocation = null,
+}: IProps): ReactElement => {
     const css = useStyles();
     const auth = useAuth();
 
@@ -114,7 +123,7 @@ const ProfileCard = ({ id = 0, firstName = 'A', lastName = 'A', avatar = null, u
                 </div>
 
                 <div className={css.info}>
-                    <p>Дата регистрации: 2021-10-10</p>
+                    <p>Дата регистрации: {formatTimestemp(registerDate)}</p>
                     <p>Локация: {userLocation || 'Не указано'}</p>
                 </div>
 

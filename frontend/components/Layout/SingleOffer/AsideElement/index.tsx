@@ -3,7 +3,7 @@ import { createUseStyles } from 'react-jss';
 import { useSelector } from 'react-redux';
 
 import { Theme } from '../../../../assets/theme';
-import { IOfferCard, IState } from '../../../../interfaces';
+import { IOfferCard, IPublicProfile, IState } from '../../../../interfaces';
 import ProfileCard from '../../../Common/ProfileCard';
 import Price from '../Price';
 
@@ -30,12 +30,19 @@ const useStyles = createUseStyles((theme: Theme) => ({
 
 const AsideElement = (): ReactElement => {
     const css = useStyles();
-    const offer = useSelector<IState, IOfferCard | null>(state => state.offers.single);
+    const profile = useSelector<IState, IPublicProfile | null>(state => state.profiles.public);
 
     return (
         <aside className={css.aside}>
             <div className={css.sticky}>
-                {offer ? <ProfileCard id={offer.author_id} firstName=" " lastName=" " avatar=" " /> : null}
+                <ProfileCard
+                    id={profile?.id}
+                    firstName={profile?.first_name}
+                    lastName={profile?.last_name}
+                    avatar={profile?.profile_img}
+                    userLocation={profile?.location}
+                    registerDate={profile?.date_joined}
+                />
                 <Price />
             </div>
         </aside>

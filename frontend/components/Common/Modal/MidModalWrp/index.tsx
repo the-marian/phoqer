@@ -9,7 +9,7 @@ import { modal } from '../index';
 const useStyles = createUseStyles((theme: Theme) => ({
     inner: {
         position: 'relative',
-        width: '100%',
+        width: '90%',
         maxWidth: theme.rem(100),
         height: 'max-content',
         margin: theme.rem(8, 0),
@@ -19,10 +19,6 @@ const useStyles = createUseStyles((theme: Theme) => ({
         background: theme.palette.white,
         color: theme.palette.black[0],
         border: theme.border(0.1, theme.palette.gray[1]),
-
-        '@media (max-width: 500px)': {
-            width: '90%',
-        },
     },
     button: {
         position: 'absolute',

@@ -120,3 +120,19 @@ export const serverRedirect = (ctx: GetServerSidePropsContext, path?: string | n
 // check empty fields in any form
 export const isEmpty = <T>(value: T): [string, string][] =>
     Object.entries(value).filter((item: [string, string]): boolean => !item[1].trim());
+
+// time && date
+export const formatTimestemp = (value?: string): string => {
+    try {
+        if (!value) throw new Error();
+
+        const date = new Date(value);
+        if (!date.getDate()) throw new Error(); // for invalid date
+
+        return `${addZeroToNumber(date.getDate())}-${addZeroToNumber(
+            date.getMonth() + 1,
+        )}-${date.getFullYear()} ${addZeroToNumber(date.getHours())}:${addZeroToNumber(date.getMinutes())}`;
+    } catch (error) {
+        return ' - ';
+    }
+};

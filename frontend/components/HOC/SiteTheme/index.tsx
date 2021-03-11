@@ -15,8 +15,8 @@ const SiteTheme = ({ children, siteTheme = 'white' }: IProps): ReactElement => {
     const [theme, setTheme] = useState<Themes>(siteTheme);
 
     useEffect(() => {
-        if (process.browser) {
-            document.body.style.background = siteTheme === 'white' ? '#ffffff' : '#222222';
+        if (process.browser && document.querySelector('html')) {
+            document.querySelector('html')?.classList?.add(siteTheme);
         }
     }, [theme]);
 

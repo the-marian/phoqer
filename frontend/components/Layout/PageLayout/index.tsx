@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react';
+import React, { ReactElement, useEffect } from 'react';
 import { ThemeProvider } from 'react-jss';
 
 import { theme } from '../../../assets/theme';
@@ -16,6 +16,13 @@ interface IProps {
 
 const PageLayout = ({ children }: IProps): ReactElement => {
     const [siteTheme] = useTheme();
+
+    useEffect(() => {
+        if (process.browser && /windows/i.test(window.navigator.userAgent) && document.querySelector('html')) {
+            document.querySelector('html')?.classList?.add('windows');
+        }
+    }, []);
+
     return (
         <ThemeProvider theme={theme(siteTheme)}>
             <AuthInterceptor />

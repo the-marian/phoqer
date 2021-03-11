@@ -1,8 +1,8 @@
 import { GetServerSideProps } from 'next';
-import React, { ReactElement } from 'react';
+import React, { ReactElement, useEffect } from 'react';
 import DayPicker from 'react-day-picker';
 import { createUseStyles } from 'react-jss';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { END } from 'redux-saga';
 
 import { findCategory, findSubCategory } from '../../../assets/helpers';
@@ -140,11 +140,16 @@ const useStyles = createUseStyles((theme: Theme) => ({
 
 const SingleOfferPage = (): ReactElement | null => {
     const css = useStyles();
+    const dispatch = useDispatch();
     const priceMedia = useMedia(768);
     const calendarMedia = useMedia(1100);
 
     const offer = useSelector<IState, IOfferCard | null>(state => state.offers.single);
     const categories = useSelector<IState, ICategories[]>(state => state.categories);
+
+    useEffect(() => {
+        dispatch({ type: types.GET_PUBLIC_PROFILE_START, payload: offer?.author_id });
+    }, []);
 
     const catName = offer?.category
         ? findCategory(categories, offer?.category)?.name

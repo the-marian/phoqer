@@ -17,20 +17,13 @@ interface ICommentBody {
 
 const api = {
     // V1
-    profiles: {
-        public: {
-            get: (id: number): Promise<AxiosResponse<IPublicProfile>> => axios.get(`${url1}/profiles/${id}/`),
-        },
-    },
     categories: {
         get: (): Promise<AxiosResponse<ICategories>> => axios.get(`${url1}/categories/`),
     },
 
     // V2
     auth: {
-        user: (): Promise<AxiosResponse> => axios.get(`${url2}/users/me`),
-        // TEMP
-        // login: (body: ILogin): Promise<AxiosResponse<IAuth>> => axios.post(`${url2}/auth/login`, body),
+        user: (): Promise<AxiosResponse<IPublicProfile>> => axios.get(`${url2}/users/me`),
         login: (form: FormData): Promise<AxiosResponse<IAuth>> => axios.post(`${url2}/auth/login`, form),
         signup: (body: ISignup): Promise<AxiosResponse<void>> => axios.post(`${url2}/users/signup`, body),
     },
@@ -49,6 +42,11 @@ const api = {
         favorite: {
             get: (): Promise<AxiosResponse<IOfferCard[]>> => axios.get(`${url2}/favorite`),
             patch: (id: string): Promise<AxiosResponse<IOfferCard[]>> => axios.patch(`${url2}/favorite/${id}`),
+        },
+    },
+    profiles: {
+        public: {
+            get: (id: number): Promise<AxiosResponse<IPublicProfile>> => axios.get(`${url2}/users/${id}/`),
         },
     },
 };
