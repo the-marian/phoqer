@@ -4,6 +4,7 @@ import { createUseStyles } from 'react-jss';
 
 import { formatTimestemp } from '../../../assets/helpers';
 import routes from '../../../assets/routes';
+import template from '../../../assets/template';
 import { Theme } from '../../../assets/theme';
 import useAuth from '../../../hooks/auth.hook';
 import LoginForm from '../Auth/LoginForm';
@@ -66,7 +67,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         textAlign: 'center',
         boxShadow: theme.shadow[1],
         transition: theme.transitions[0],
-        ...theme.outline,
+        ...template(theme).outline,
 
         '@media (max-width: 500px)': {
             border: theme.border(0.1, theme.palette.gray[2]),

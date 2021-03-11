@@ -10,6 +10,7 @@ import { useDispatch } from 'react-redux';
 
 import { isEmpty, mailRegex } from '../../../../assets/helpers';
 import routes from '../../../../assets/routes';
+import template from '../../../../assets/template';
 import { Theme } from '../../../../assets/theme';
 import { ILogin } from '../../../../interfaces';
 import types from '../../../../redux/types';
@@ -33,7 +34,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         margin: theme.rem(2, 0),
     },
     input: {
-        ...theme.input,
+        ...template(theme).input,
         padding: theme.rem(0, 5, 0, 4),
         background: theme.palette.gray[1],
         color: theme.palette.black[0],

@@ -6,6 +6,7 @@ import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 import { useSelector } from 'react-redux';
 
+import template from '../../../../assets/template';
 import { Theme } from '../../../../assets/theme';
 import { IOfferCard, IState } from '../../../../interfaces';
 
@@ -35,7 +36,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         padding: theme.rem(1, 1.5),
         color: theme.palette.primary[0],
         borderRadius: theme.radius,
-        ...theme.outline,
+        ...template(theme).outline,
 
         '& svg': {
             height: theme.rem(1.4),

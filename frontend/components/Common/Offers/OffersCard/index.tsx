@@ -12,6 +12,7 @@ import { useDispatch } from 'react-redux';
 
 import { moneyFormat } from '../../../../assets/helpers';
 import routes from '../../../../assets/routes';
+import template from '../../../../assets/template';
 import { Theme } from '../../../../assets/theme';
 import useAuth from '../../../../hooks/auth.hook';
 import useTrans from '../../../../hooks/trans.hook';
@@ -47,7 +48,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         borderRadius: theme.radius,
         boxShadow: theme.shadow[1],
         background: theme.palette.gray[1],
-        ...theme.outline,
+        ...template(theme).outline,
 
         '@media (max-width: 580px)': {
             height: theme.rem(30),
@@ -130,7 +131,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         borderRadius: theme.radius,
         background: theme.palette.gray[1],
         color: theme.palette.primary[0],
-        ...theme.outline,
+        ...template(theme).outline,
 
         '@media (max-width: 500px)': {
             padding: theme.rem(2, 4),

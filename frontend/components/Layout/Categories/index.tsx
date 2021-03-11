@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux';
 
 import config from '../../../assets/config';
 import routes from '../../../assets/routes';
+import template from '../../../assets/template';
 import { Theme } from '../../../assets/theme';
 import useTrans from '../../../hooks/trans.hook';
 import { ICategories, IState } from '../../../interfaces';
@@ -44,7 +45,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         height: theme.rem(14),
         borderRadius: theme.radius,
         objectFit: 'cover',
-        ...theme.outline,
+        ...template(theme).outline,
     },
     text: {
         marginTop: theme.rem(1.5),

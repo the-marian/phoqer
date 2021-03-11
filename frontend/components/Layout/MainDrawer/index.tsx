@@ -9,6 +9,7 @@ import { createUseStyles } from 'react-jss';
 import { useDispatch, useSelector } from 'react-redux';
 
 import routes from '../../../assets/routes';
+import template from '../../../assets/template';
 import { Theme } from '../../../assets/theme';
 import useAuth from '../../../hooks/auth.hook';
 import useTheme from '../../../hooks/theme.hook';
@@ -47,7 +48,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         borderRadius: theme.radius,
         fontSize: theme.rem(1.4),
         color: theme.palette.black[0],
-        ...theme.outline,
+        ...template(theme).outline,
 
         '& svg': {
             height: theme.em(1),
@@ -63,7 +64,7 @@ const MainDrawer = (): ReactElement => {
     const dispatch = useDispatch();
 
     const [theme, setTheme] = useTheme();
-    const drawer = useSelector<IState, boolean>(state => state.drawer);
+    const drawer = useSelector<IState, boolean>(state => state.config.drawer);
 
     const handleTheme = (value: boolean): void => {
         setTheme && setTheme(value ? 'black' : 'white');

@@ -119,7 +119,7 @@ const Filters = (): ReactElement => {
     const history = useRouter();
     const dispatch = useDispatch();
 
-    const open = useSelector<IState, boolean>(state => state.filters);
+    const open = useSelector<IState, boolean>(state => state.config.filters);
 
     // filters value
     const [period, setPeriod] = useState<IDropList | null>(null);

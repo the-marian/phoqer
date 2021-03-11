@@ -9,6 +9,7 @@ import { createUseStyles } from 'react-jss';
 import TextareaAutosize from 'react-textarea-autosize';
 
 import config from '../../../../../assets/config';
+import template from '../../../../../assets/template';
 import { Theme } from '../../../../../assets/theme';
 import useMedia from '../../../../../hooks/media.hook';
 import useTheme from '../../../../../hooks/theme.hook';
@@ -38,7 +39,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         },
     },
     textarea: {
-        ...theme.input,
+        ...template(theme).input,
         margin: theme.rem(0, 0, 1),
         padding: theme.rem(1.5),
         fontSize: theme.rem(1.4),

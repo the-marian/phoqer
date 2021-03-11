@@ -5,7 +5,6 @@ import { createUseStyles } from 'react-jss';
 import { useDispatch, useSelector } from 'react-redux';
 import { END } from 'redux-saga';
 
-import { findCategory, findSubCategory } from '../../../assets/helpers';
 import routes from '../../../assets/routes';
 import { Theme } from '../../../assets/theme';
 import Breadcrumbs from '../../../components/Common/Breadcrumbs';
@@ -23,7 +22,7 @@ import OfferSlider from '../../../components/Layout/SingleOffer/Slider';
 import SmallBanner from '../../../components/Layout/SingleOffer/SmallBanner';
 import Main from '../../../components/Layout/TagMain';
 import useMedia from '../../../hooks/media.hook';
-import { ICategories, IOfferCard, IState, IStore } from '../../../interfaces';
+import { IOfferCard, IState, IStore } from '../../../interfaces';
 import { wrapper } from '../../../redux/store';
 import types from '../../../redux/types';
 
@@ -145,17 +144,10 @@ const SingleOfferPage = (): ReactElement | null => {
     const calendarMedia = useMedia(1100);
 
     const offer = useSelector<IState, IOfferCard | null>(state => state.offers.single);
-    const categories = useSelector<IState, ICategories[]>(state => state.categories);
 
     useEffect(() => {
-        dispatch({ type: types.GET_PUBLIC_PROFILE_START, payload: offer?.author_id });
-    }, []);
-
-    const catName = offer?.category
-        ? findCategory(categories, offer?.category)?.name
-        : offer?.sub_category
-        ? findSubCategory(categories, offer?.sub_category)?.name
-        : null;
+        if (offer?.author_id) dispatch({ type: types.GET_PUBLIC_PROFILE_START, payload: offer.author_id });
+    }, [offer]);
 
     const desc = offer?.description ? offer.description.replace(/\n/g, '<br>') : '';
     const other = offer?.extra_requirements ? offer.extra_requirements.replace(/\n/g, '<br>') : '';
@@ -194,8 +186,11 @@ const SingleOfferPage = (): ReactElement | null => {
                         data={[
                             { label: 'На главную страницу', link: routes.root },
                             {
-                                label: catName ? `Предложения в раздере ${catName}` : 'Поиск вещей / услуг',
-                                link: catName
+                                label:
+                                    offer.category_name || offer.sub_category_name
+                                        ? `Предложения в разделе ${offer.category_name || offer.sub_category_name}`
+                                        : 'Поиск вещей / услуг',
+                                link: offer.category
                                     ? routes.offers.single(
                                           offer?.category ? `?category=${offer?.category}` : `?sub=${offer?.sub_category}`,
                                       )
@@ -249,7 +244,6 @@ const SingleOfferPage = (): ReactElement | null => {
 export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps(async ctx => {
     if (!ctx.query?.offerId) return;
 
-    ctx.store.dispatch({ type: types.GET_CATEGORIES_START });
     ctx.store.dispatch({ type: types.GET_POPULAR_OFFERS_START });
     ctx.store.dispatch({ type: types.GET_COMMENTS_START, payload: ctx.query?.offerId });
     ctx.store.dispatch({ type: types.GET_SINGLE_OFFER_START, payload: ctx.query?.offerId });

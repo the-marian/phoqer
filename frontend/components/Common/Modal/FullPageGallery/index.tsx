@@ -14,48 +14,64 @@ const useStyles = createUseStyles((theme: Theme) => ({
         '& .slick-track': {
             display: 'flex',
             alignItems: 'center',
+            height: '100%',
+        },
+        '& .slick-slide': {
+            maxHeight: 'calc(100vh - 5rem)',
+        },
+        '& .slick-slide > div': {
+            maxHeight: 'calc(100vh - 5rem)',
         },
         '& .slick-list': {
+            height: '100%',
             overflow: 'hidden',
         },
         '& .slick-arrow': {
             position: 'absolute',
-            top: 0,
-            height: '100%',
-            width: theme.rem(4),
+            top: '50%',
+            transform: 'translateY(-50%)',
+            zIndex: 2,
+            height: theme.rem(5),
+            width: theme.rem(5),
             fontSize: 0,
             transition: theme.transitions[0],
+            background: theme.palette.gray[4],
+
+            '@media (max-width: 768px)': {
+                top: '100%',
+                transform: 'translateY(calc(-100% - 5rem))',
+            },
 
             '&::before': {
                 content: '""',
                 position: 'absolute',
                 top: '50%',
                 left: '60%',
-                zIndex: 2,
                 transform: 'translateY(-50%) rotate(-45deg)',
-                height: theme.rem(1.5),
-                width: theme.rem(1.5),
+                height: theme.rem(1),
+                width: theme.rem(1),
             },
         },
 
         '& .slick-arrow.slick-prev': {
-            left: 0,
-            borderRadius: `${theme.radius} 0 0 ${theme.radius}`,
+            left: theme.rem(1),
+            borderRadius: theme.radius,
 
             '&::before': {
-                borderTop: theme.border(0.2, theme.palette.gray[3]),
-                borderLeft: theme.border(0.2, theme.palette.gray[3]),
+                left: '42%',
+                borderTop: theme.border(0.3, theme.palette.white),
+                borderLeft: theme.border(0.3, theme.palette.white),
                 transition: theme.transitions[0],
             },
         },
         '& .slick-arrow.slick-next': {
-            right: 0,
-            borderRadius: `0 ${theme.radius} ${theme.radius} 0`,
+            right: theme.rem(1),
+            borderRadius: theme.radius,
 
             '&::before': {
-                left: '25%',
-                borderBottom: theme.border(0.2, theme.palette.gray[3]),
-                borderRight: theme.border(0.2, theme.palette.gray[3]),
+                left: '35%',
+                borderBottom: theme.border(0.3, theme.palette.white),
+                borderRight: theme.border(0.3, theme.palette.white),
                 transition: theme.transitions[0],
             },
         },
@@ -63,12 +79,44 @@ const useStyles = createUseStyles((theme: Theme) => ({
     slide: {
         width: '100%',
         height: '100%',
+        maxHeight: 'calc(100vh - 5rem)',
     },
     img: {
         width: '100%',
         height: '100%',
+        maxHeight: 'calc(100vh - 5rem)',
         objectFit: 'contain',
         objectPosition: 'center',
+    },
+    dots: {
+        position: 'absolute',
+        bottom: 0,
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: '100%',
+        fontSize: theme.rem(1.6),
+        color: theme.palette.trueWhite,
+
+        '& ul': {
+            display: 'flex',
+            justifyContent: 'center',
+        },
+
+        '& p': {
+            padding: theme.rem(1),
+        },
+
+        '& li button': {
+            display: 'none',
+            padding: theme.rem(1),
+            color: 'inherit',
+            font: 'inherit',
+        },
+
+        '& li.slick-active button': {
+            display: 'block',
+        },
     },
 }));
 
@@ -107,15 +155,24 @@ const FullPageGallery = ({ images }: IProps): ReactElement => {
     return (
         <FullPageModal>
             <Slider
-                ref={ref}
-                slidesToShow={1}
-                className={css.wrp}
-                slidesToScroll={1}
-                initialSlide={0}
-                accessibility={false}
-                draggable
+                dots
                 infinite
+                ref={ref}
+                draggable
+                slidesToShow={1}
+                initialSlide={0}
+                slidesToScroll={1}
+                className={css.wrp}
+                dotsClass={css.dots}
+                accessibility={false}
                 lazyLoad="progressive"
+                appendDots={dots => (
+                    <div>
+                        <ul>{dots}</ul>
+                        <span>/</span>
+                        <p>{images.length}</p>
+                    </div>
+                )}
             >
                 {images.map(item => (
                     <div className={css.slide} key={item}>

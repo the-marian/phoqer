@@ -3,6 +3,7 @@ import { createUseStyles } from 'react-jss';
 import { useSelector } from 'react-redux';
 
 import { moneyFormat } from '../../../../assets/helpers';
+import template from '../../../../assets/template';
 import { Theme } from '../../../../assets/theme';
 import useAuth from '../../../../hooks/auth.hook';
 import { IOfferCard, IState } from '../../../../interfaces';
@@ -41,7 +42,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         background: theme.palette.green[0],
         fontSize: theme.rem(1.8),
         color: theme.palette.trueWhite,
-        ...theme.outline,
+        ...template(theme).outline,
     },
 }));
 

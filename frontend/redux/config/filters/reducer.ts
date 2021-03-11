@@ -1,4 +1,4 @@
-import types from '../types';
+import types from '../../types';
 import IAction from './interfaces';
 
 const filters = (state = true, { type }: IAction): boolean => {

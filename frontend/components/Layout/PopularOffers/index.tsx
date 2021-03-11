@@ -4,6 +4,7 @@ import { createUseStyles } from 'react-jss';
 import { useSelector } from 'react-redux';
 
 import routes from '../../../assets/routes';
+import template from '../../../assets/template';
 import { Theme } from '../../../assets/theme';
 import useTrans from '../../../hooks/trans.hook';
 import { IOfferStatic, IState } from '../../../interfaces';
@@ -28,7 +29,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         color: theme.palette.trueWhite,
         borderRadius: theme.radius,
         background: theme.palette.primary[0],
-        ...theme.outline,
+        ...template(theme).outline,
 
         '@media (max-width: 550px)': {
             margin: '4rem auto 0',

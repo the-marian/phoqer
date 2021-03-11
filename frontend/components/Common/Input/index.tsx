@@ -2,6 +2,7 @@ import clsx from 'clsx';
 import React, { ChangeEvent, ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
+import template from '../../../assets/template';
 import { Theme } from '../../../assets/theme';
 
 const useStyles = createUseStyles((theme: Theme) => ({
@@ -9,7 +10,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         position: 'relative',
     },
     input: {
-        ...theme.input,
+        ...template(theme).input,
         background: theme.palette.trueWhite,
 
         '& span': {

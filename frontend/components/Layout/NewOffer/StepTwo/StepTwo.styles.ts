@@ -1,5 +1,6 @@
 import { createUseStyles } from 'react-jss';
 
+import template from '../../../../assets/template';
 import { Theme } from '../../../../assets/theme';
 
 const useStyles = createUseStyles((theme: Theme) => ({
@@ -33,7 +34,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         fontWeight: theme.text.weight[2],
     },
     input: {
-        ...theme.input,
+        ...template(theme).input,
         background: theme.palette.trueWhite,
 
         '& span': {

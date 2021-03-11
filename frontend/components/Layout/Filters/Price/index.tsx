@@ -3,6 +3,7 @@ import React, { ChangeEvent, ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
 import { numberValidation } from '../../../../assets/helpers';
+import template from '../../../../assets/template';
 import { Theme } from '../../../../assets/theme';
 
 const useStyles = createUseStyles((theme: Theme) => ({
@@ -19,7 +20,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         marginBottom: theme.rem(2.5),
     },
     input: {
-        ...theme.input,
+        ...template(theme).input,
         background: theme.palette.gray[1],
         fontSize: 'inherit',
         color: theme.palette.black[0],

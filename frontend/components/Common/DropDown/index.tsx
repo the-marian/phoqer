@@ -6,6 +6,7 @@ import clsx from 'clsx';
 import React, { MouseEvent, ReactElement, useEffect, useState } from 'react';
 import { createUseStyles } from 'react-jss';
 
+import template from '../../../assets/template';
 import { Theme } from '../../../assets/theme';
 import useMedia from '../../../hooks/media.hook';
 import { IDropList, IDropValue } from '../../../interfaces';
@@ -42,7 +43,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         fontSize: theme.rem(1.4),
         color: theme.palette.black[0],
         cursor: 'pointer',
-        ...theme.outline,
+        ...template(theme).outline,
 
         '@media (max-width: 768px)': {
             fontSize: theme.rem(1.6),
@@ -161,7 +162,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         background: theme.palette.trueWhite,
         color: '#242424',
         boxShadow: theme.shadow[1],
-        ...theme.outline,
+        ...template(theme).outline,
     },
     icon: {
         marginRight: theme.rem(0.6),

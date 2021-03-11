@@ -4,8 +4,10 @@ const initState: IState = {
     auth: {
         access_token: null,
     },
-    drawer: false,
-    filters: true,
+    config: {
+        drawer: false,
+        filters: true,
+    },
     categories: [],
     profiles: {
         public: null,

@@ -184,8 +184,10 @@ export interface IPublicProfile {
 // =====================================
 export interface IState {
     auth: IAuth;
-    drawer: boolean;
-    filters: boolean;
+    config: {
+        drawer: boolean;
+        filters: boolean;
+    };
     categories: ICategories[];
     offers: IOffers;
     comments: { loading: boolean; data: IComment[] };

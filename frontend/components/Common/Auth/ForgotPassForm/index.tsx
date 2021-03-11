@@ -6,6 +6,7 @@ import { createUseStyles } from 'react-jss';
 
 import { mailRegex } from '../../../../assets/helpers';
 import routes from '../../../../assets/routes';
+import template from '../../../../assets/template';
 import { Theme } from '../../../../assets/theme';
 import Input from '../../Input';
 
@@ -25,7 +26,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         margin: theme.rem(2, 0),
     },
     input: {
-        ...theme.input,
+        ...template(theme).input,
         padding: theme.rem(1, 2),
         background: theme.palette.gray[1],
 

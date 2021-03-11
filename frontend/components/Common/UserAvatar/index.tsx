@@ -1,6 +1,7 @@
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
+import template from '../../../assets/template';
 import { Theme } from '../../../assets/theme';
 
 const COLORS: { [key: string]: string } = {
@@ -41,7 +42,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         color: theme.palette.black[0],
         borderRadius: '50%',
         objectFit: 'cover',
-        ...theme.outline,
+        ...template(theme).outline,
     },
 }));
 

@@ -30,8 +30,6 @@ export interface Theme {
         weight: [200, 300, 400, 500, 600, 700];
     };
     transitions: string[];
-    input: { [key: string]: string | { [key: string]: string } };
-    outline: { [key: string]: string | { [key: string]: string } };
 }
 
 const palette: { [key: string]: IPalette } = {
@@ -116,38 +114,4 @@ export const theme = (value: Themes): Theme => ({
         weight: [200, 300, 400, 500, 600, 700],
     },
     transitions: ['0.3s cubic-bezier(0.4, 0, 0.2, 1)'],
-
-    // templates
-    input: {
-        display: 'block',
-        alignItems: 'center',
-        height: '6rem',
-        width: '100%',
-        padding: '1rem 2rem',
-        border: 'none',
-        borderRadius: '0.6rem',
-        fontSize: '1.4rem',
-        transition: '0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-
-        '@media (max-width: 500px)': {
-            fontSize: '1.6rem',
-        },
-
-        '&:focus': {
-            boxShadow: '0 0 0 0.1rem #007aff',
-        },
-        '&:hover': {
-            boxShadow: '0 0 0 0.1rem #007aff',
-        },
-    },
-    outline: {
-        transition: '0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-
-        '&:focus': {
-            boxShadow: '0 0 0 0.1rem #007aff',
-        },
-        '&:hover': {
-            boxShadow: '0 0 0 0.1rem #007aff',
-        },
-    },
 });

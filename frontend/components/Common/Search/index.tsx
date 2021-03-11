@@ -8,6 +8,7 @@ import { createUseStyles } from 'react-jss';
 import { useDispatch, useSelector } from 'react-redux';
 
 import routes from '../../../assets/routes';
+import template from '../../../assets/template';
 import { Theme } from '../../../assets/theme';
 import useMedia from '../../../hooks/media.hook';
 import useTrans from '../../../hooks/trans.hook';
@@ -42,7 +43,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         fontSize: theme.rem(1.4),
         borderRadius: theme.radius,
         border: 'none',
-        ...theme.outline,
+        ...template(theme).outline,
 
         '@media (max-width: 768px)': {
             fontSize: theme.rem(1.6),
@@ -64,7 +65,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         fontSize: theme.rem(1.6),
         color: theme.palette.trueWhite,
         borderRadius: theme.radius,
-        ...theme.outline,
+        ...template(theme).outline,
 
         '@media (max-width: 1100px)': {
             width: '31%',
