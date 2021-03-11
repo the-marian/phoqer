@@ -9,81 +9,86 @@ import types from '../redux/types';
 
 const Persist: Middleware = store => next => action => {
     if (process.browser) {
-        /**
-         * REGULAR ACTIONS
-         * */
-        if (types.LOGIN_SUCCESS === action.type || types.GET_USER_SUCCESS === action.type) {
-            try {
-                const state: IState = store.getState();
-                Cookies.set('phoqer_auth', JSON.stringify({ ...state.auth, ...action.payload }));
+        switch (action.type) {
+            /**
+             * LOGIN
+             * */
+            case types.LOGIN_SUCCESS:
+            case types.GET_USER_SUCCESS:
+                try {
+                    const state: IState = store.getState();
+                    Cookies.set('phoqer_auth', JSON.stringify({ ...state.auth, ...action.payload }));
+                } catch (error) {
+                    notifications('error');
+                }
                 next(action);
-                return;
-            } catch (error) {
-                notifications('error');
-                next(action);
-                return;
-            }
-        }
+                break;
 
-        if (types.LOGOUT_END === action.type) {
-            try {
-                Cookies.set('phoqer_auth', JSON.stringify(initState.auth));
+            /**
+             * LOGOUT
+             * */
+            case types.LOGOUT_END:
+                try {
+                    Cookies.set('phoqer_auth', JSON.stringify(initState.auth));
+                } catch (error) {
+                    notifications('error');
+                }
                 next(action);
-                return;
-            } catch (error) {
-                notifications('error');
+                break;
+
+            /**
+             * OFFER CREATION
+             * */
+            case types.NEW_OFFER_FORM:
+            case types.POST_OFFER_SUCCESS:
+                try {
+                    const state: IState = store.getState();
+                    localStorage.setItem('phoqer_new_offer', JSON.stringify({ ...state.offers.newOffer, ...action.payload }));
+                } catch (error) {
+                    notifications('error');
+                }
                 next(action);
-                return;
-            }
-        }
+                break;
 
-        if (types.NEW_OFFER_FORM === action.type || types.POST_OFFER_SUCCESS === action.type) {
-            try {
-                const state: IState = store.getState();
-                localStorage.setItem('phoqer_new_offer', JSON.stringify({ ...state.offers.newOffer, ...action.payload }));
-                next(action);
-                return;
-            } catch (error) {
-                notifications('error');
-                next(action);
-                return;
-            }
-        }
+            /**
+             * HYDRATE ACTION
+             * */
+            case HYDRATE:
+                try {
+                    // Auth
+                    const authStr: string | null = Cookies.get('phoqer_auth') || null;
+                    const auth: IAuth = authStr ? JSON.parse(authStr) : initState.auth;
 
-        /**
-         * HYDRATE ACTION
-         * */
-        if (HYDRATE === action.type) {
-            try {
-                // Auth
-                const authStr: string | null = Cookies.get('phoqer_auth') || null;
-                const auth: IAuth = authStr ? JSON.parse(authStr) : initState.auth;
+                    const newOfferStr: string | null = localStorage.getItem('phoqer_new_offer') || null;
+                    const newOffer: INewOffer = newOfferStr ? JSON.parse(newOfferStr) : initState.offers.newOffer;
 
-                const newOfferStr: string | null = localStorage.getItem('phoqer_new_offer') || null;
-                const newOffer: INewOffer = newOfferStr ? JSON.parse(newOfferStr) : initState.offers.newOffer;
-
-                // next
-                next({
-                    type: HYDRATE,
-                    payload: {
-                        ...action.payload,
-                        auth,
-                        offers: {
-                            ...action.payload.offers,
-                            newOffer: {
-                                ...action.payload.offers.newOffer,
-                                ...newOffer,
+                    // next
+                    next({
+                        type: HYDRATE,
+                        payload: {
+                            ...action.payload,
+                            auth,
+                            offers: {
+                                ...action.payload.offers,
+                                newOffer: {
+                                    ...action.payload.offers.newOffer,
+                                    ...newOffer,
+                                },
                             },
                         },
-                    },
-                });
-                return;
-            } catch (error) {
-                notifications('error');
+                    });
+                } catch (error) {
+                    notifications('error');
+                    next(action);
+                }
+                break;
+
+            default:
                 next(action);
-                return;
-            }
+                break;
         }
+
+        return;
     }
 
     next(action);

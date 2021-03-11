@@ -5,7 +5,7 @@ import React, { ChangeEvent, FormEvent, MouseEvent, ReactElement, useState } fro
 import { createUseStyles } from 'react-jss';
 import { useDispatch } from 'react-redux';
 
-import {isEmpty, mailRegex, passwordRegex} from '../../../../assets/helpers';
+import { isEmpty, mailRegex, passwordRegex } from '../../../../assets/helpers';
 import { Theme } from '../../../../assets/theme';
 import { ISignup } from '../../../../interfaces';
 import types from '../../../../redux/types';
@@ -194,6 +194,7 @@ const JoinForm = (): ReactElement => {
                     name="first_name"
                     placeholder="first name"
                     className={css.input}
+                    autoComplete="given-name"
                     errorsPlaceholder
                 />
             </label>
@@ -207,6 +208,7 @@ const JoinForm = (): ReactElement => {
                     type="text"
                     name="last_name"
                     placeholder="last name"
+                    autoComplete="family-name"
                     className={css.input}
                     errorsPlaceholder
                 />
@@ -220,6 +222,7 @@ const JoinForm = (): ReactElement => {
                     onChange={handleChange}
                     type="email"
                     name="email"
+                    autoComplete="email"
                     placeholder="email"
                     className={css.input}
                     errorsPlaceholder
@@ -248,6 +251,7 @@ const JoinForm = (): ReactElement => {
                         type={password ? 'password' : 'text'}
                         name="password"
                         placeholder="password"
+                        autoComplete="current-password"
                         className={css.input}
                         errorsPlaceholder
                     />

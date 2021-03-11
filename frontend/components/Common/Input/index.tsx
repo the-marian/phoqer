@@ -55,6 +55,7 @@ interface IProps {
     errors?: string;
     errorsPlaceholder?: boolean;
     readOnly?: boolean;
+    autoComplete?: string;
 }
 
 const Input = ({
@@ -64,8 +65,9 @@ const Input = ({
     id,
     name,
     type,
-    placeholder = '',
     errors,
+    autoComplete,
+    placeholder = '',
     errorsPlaceholder = false,
     readOnly = false,
 }: IProps): ReactElement => {
@@ -81,6 +83,7 @@ const Input = ({
                 name={name}
                 type={type}
                 readOnly={readOnly}
+                autoComplete={autoComplete}
             />
             {errors && !errorsPlaceholder && <small className={css.errorsText}>{errors}</small>}
         </div>

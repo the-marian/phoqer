@@ -9,6 +9,9 @@ import { createUseStyles } from 'react-jss';
 import { Theme } from '../../../assets/theme';
 import useMedia from '../../../hooks/media.hook';
 import { IDropList, IDropValue } from '../../../interfaces';
+import { modal } from '../Modal';
+import SmallModalWrp from '../Modal/SmallModalWrp';
+import ValuesList from './ValuesList';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     wrp: {
@@ -98,7 +101,6 @@ const useStyles = createUseStyles((theme: Theme) => ({
         background: theme.palette.white,
         borderRadius: theme.radius,
         border: theme.border(0.1, theme.palette.gray[3]),
-        fontSize: theme.rem(1.4),
         overflowY: 'auto',
 
         '@media (max-width: 768px)': {
@@ -109,6 +111,8 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
     item: {
         cursor: 'pointer',
+        borderBottom: theme.border(0.1, theme.palette.gray[1]),
+
         '& > button': {
             display: 'block',
             width: '100%',
@@ -116,6 +120,11 @@ const useStyles = createUseStyles((theme: Theme) => ({
             textAlign: 'left',
             background: theme.palette.white,
             color: theme.palette.black[0],
+            fontSize: theme.rem(1.4),
+
+            '@media (max-width: 768px)': {
+                fontSize: theme.rem(1.6),
+            },
 
             '&:hover': {
                 background: theme.palette.primary[0],
@@ -133,6 +142,11 @@ const useStyles = createUseStyles((theme: Theme) => ({
         padding: theme.rem(1, 3),
         background: theme.palette.gray[0],
         color: theme.palette.black[0],
+        fontSize: theme.rem(1.4),
+
+        '@media (max-width: 768px)': {
+            fontSize: theme.rem(1.6),
+        },
 
         '&:hover': {
             background: theme.palette.primary[0],
@@ -194,11 +208,20 @@ const DropDown = ({
     }, [defaultValue, placeholder]);
 
     const handleClick = (event: MouseEvent<HTMLParagraphElement>): void => {
-        setTop(document.body.clientHeight / event.currentTarget.getBoundingClientRect().top < 1.6);
-        setDrop(!drop);
+        if (media) {
+            setTop(document.body.clientHeight / event.currentTarget.getBoundingClientRect().top < 1.6);
+            setDrop(!drop);
+        } else {
+            modal.open(
+                <SmallModalWrp>
+                    <ValuesList data={data} onSelect={handleSelect} withSub={withSub} css={css} />
+                </SmallModalWrp>,
+            );
+        }
     };
 
     const handleBlur = (): void => {
+        if (!media) return;
         setTimeout(() => {
             setDrop(false);
         }, 150);
@@ -260,38 +283,10 @@ const DropDown = ({
                 )}
             </p>
 
-            {drop && (
+            {drop && media && (
                 <div className={clsx(css.container, top && css.top)} style={toLeft ? { right: 0 } : { left: 0 }}>
                     <div className={css.box}>
-                        <ul>
-                            {data?.map(({ name, slug, sub }) => (
-                                <li className={clsx(css.item, withSub && css.itemEmpty)} key={slug}>
-                                    <button
-                                        type="button"
-                                        onClick={() => {
-                                            handleSelect(name, slug, 'main');
-                                        }}
-                                    >
-                                        {name}
-                                    </button>
-
-                                    <ul>
-                                        {sub?.map(({ name, slug }) => (
-                                            <li
-                                                key={slug}
-                                                className={css.sub}
-                                                onClick={() => {
-                                                    handleSelect(name, slug, 'sub');
-                                                }}
-                                                aria-hidden
-                                            >
-                                                <span>{name}</span>
-                                            </li>
-                                        ))}
-                                    </ul>
-                                </li>
-                            ))}
-                        </ul>
+                        <ValuesList data={data} onSelect={handleSelect} withSub={withSub} css={css} />
                     </div>
                 </div>
             )}

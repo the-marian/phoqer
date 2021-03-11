@@ -192,6 +192,7 @@ const LoginForm = (): ReactElement => {
                     name="username"
                     className={css.input}
                     errors={errors.username}
+                    autoComplete="email"
                     errorsPlaceholder
                 />
             </div>
@@ -210,6 +211,7 @@ const LoginForm = (): ReactElement => {
                     onChange={handleChange}
                     className={css.input}
                     errors={errors.password}
+                    autoComplete="current-password"
                     errorsPlaceholder
                 />
             </div>
