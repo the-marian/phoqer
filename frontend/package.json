@@ -74,7 +74,7 @@
     },
     "husky": {
         "hooks": {
-            "pre-commit": "lint-staged"
+            "pre-commit": "prettier --write './**/*.{js,jsx,ts,tsx,css,json}' --config ./.prettierrc && eslint --fix ./"
         }
     },
     "lint-staged": {
