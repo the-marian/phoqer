@@ -3,7 +3,7 @@ import { createUseStyles } from 'react-jss';
 import { useSelector } from 'react-redux';
 
 import { Theme } from '../../../../assets/theme';
-import { IOfferCard, IPublicProfile, IState } from '../../../../interfaces';
+import { IPublicProfile, IState } from '../../../../interfaces';
 import ProfileCard from '../../../Common/ProfileCard';
 import Price from '../Price';
 
