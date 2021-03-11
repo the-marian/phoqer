@@ -184,7 +184,6 @@ export interface IPublicProfile {
 // =====================================
 export interface IState {
     auth: IAuth;
-    user: IPublicProfile | null;
     drawer: boolean;
     filters: boolean;
     categories: ICategories[];
