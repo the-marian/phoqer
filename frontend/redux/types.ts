@@ -11,10 +11,12 @@ const types = {
     // ========================
     // GENERAL
     // ========================
-    // SEARCH_FILTERS
-    SEARCH_FILTERS: 'SEARCH_FILTERS',
     // TOGGLE_DRAWER
     TOGGLE_DRAWER: 'TOGGLE_DRAWER',
+    // OFFERS_PAGE
+    OFFERS_HIDE_FILTERS: 'OFFERS_HIDE_FILTERS',
+    OFFERS_HIDE_POPULAR_SEARCH: 'OFFERS_HIDE_POPULAR_SEARCH',
+    OFFERS_HIDE_TOP: 'OFFERS_HIDE_TOP',
 
     // ========================
     // AUTH

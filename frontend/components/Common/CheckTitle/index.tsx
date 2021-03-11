@@ -14,6 +14,10 @@ const useStyles = createUseStyles((theme: Theme) => ({
             textAlign: 'left',
             fontSize: theme.rem(1.4),
             color: theme.palette.black[0],
+
+            '@media (max-width: 768px)': {
+                fontSize: theme.rem(1.6),
+            },
         },
     },
     label: {
@@ -22,7 +26,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         display: 'inline-block',
         marginRight: theme.rem(1.5),
         border: theme.border(0.1, theme.palette.primary[0]),
-        background: theme.palette.trueWhite,
+        background: theme.palette.white,
         borderRadius: theme.radius,
     },
     active: {

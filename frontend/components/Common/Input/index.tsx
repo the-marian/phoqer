@@ -8,6 +8,7 @@ import { Theme } from '../../../assets/theme';
 const useStyles = createUseStyles((theme: Theme) => ({
     wrp: {
         position: 'relative',
+        width: '100%',
     },
     input: {
         ...template(theme).input,

@@ -9,6 +9,7 @@ import OffersLoadMore from '../../components/Common/LoadMore/Offers';
 import Meta from '../../components/Common/Meta';
 import OffersList from '../../components/Common/Offers/OffersList';
 import Search from '../../components/Common/Search';
+import SectionTitle from '../../components/Common/SectionTitle';
 import Container from '../../components/Layout/Container';
 import Filters from '../../components/Layout/Filters';
 import TopOffers from '../../components/Layout/SingleOffer/TopOffers';
@@ -40,6 +41,7 @@ const OffersPage = (): ReactElement => {
                 <TopOffers />
 
                 <Container>
+                    <SectionTitle>Результаты поиска</SectionTitle>
                     <OffersList data={data?.data} />
                     <OffersLoadMore loading={loading} total={data?.total || 0} onSubmit={handleLoadMore} />
                 </Container>

@@ -69,6 +69,7 @@ const Checkboxes = ({ values, labels, onChange }: IProps): ReactElement => {
     const css = useStyles();
 
     const handleClick = (event: MouseEvent<HTMLButtonElement>): void => {
+        event.stopPropagation();
         onChange({
             ...values,
             [event.currentTarget.name]: !values[event.currentTarget.name],

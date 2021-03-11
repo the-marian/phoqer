@@ -6,7 +6,11 @@ const initState: IState = {
     },
     config: {
         drawer: false,
-        filters: true,
+        offers: {
+            filters: true,
+            popularSearch: true,
+            hideTop: false,
+        },
     },
     categories: [],
     profiles: {

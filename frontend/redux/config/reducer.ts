@@ -1,11 +1,11 @@
-import { combineReducers, Reducer } from 'redux';
+import { combineReducers } from 'redux';
 
-import drawer from './reducer';
-import filters from './reducer';
+import drawer from './drawer/reducer';
+import offers from './offers/reducer';
 
-const config: Reducer = combineReducers({
+const config = combineReducers({
     drawer,
-    filters,
+    offers,
 });
 
 export default config;

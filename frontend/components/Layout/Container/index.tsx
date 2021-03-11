@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
@@ -18,13 +19,14 @@ const useStyles = createUseStyles((theme: Theme) => ({
 
 interface Props {
     id?: string;
+    className?: string;
     children: JSX.Element[] | JSX.Element;
 }
 
-const Container = ({ id, children }: Props): ReactElement => {
+const Container = ({ id, children, className }: Props): ReactElement => {
     const css = useStyles();
     return (
-        <div id={id} className={css.container}>
+        <div id={id} className={clsx(css.container, className)}>
             {children}
         </div>
     );

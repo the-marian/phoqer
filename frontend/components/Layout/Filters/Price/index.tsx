@@ -9,7 +9,7 @@ import { Theme } from '../../../../assets/theme';
 const useStyles = createUseStyles((theme: Theme) => ({
     root: {
         fontSize: theme.rem(1.4),
-        '@media (max-width: 500px)': {
+        '@media (max-width: 768px)': {
             fontSize: theme.rem(1.6),
         },
     },

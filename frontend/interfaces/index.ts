@@ -186,7 +186,11 @@ export interface IState {
     auth: IAuth;
     config: {
         drawer: boolean;
-        filters: boolean;
+        offers: {
+            filters: boolean;
+            popularSearch: boolean;
+            hideTop: boolean;
+        };
     };
     categories: ICategories[];
     offers: IOffers;

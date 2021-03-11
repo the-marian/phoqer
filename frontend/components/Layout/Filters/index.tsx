@@ -8,11 +8,10 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import routes from '../../../assets/routes';
 import { Theme } from '../../../assets/theme';
-import useTheme from '../../../hooks/theme.hook';
 import { IDropList, IState } from '../../../interfaces';
+import { IOffers } from '../../../redux/config/offers/interfaces';
 import types from '../../../redux/types';
 import Checkboxes from '../../Common/Checkboxes';
-import SectionTitle from '../../Common/SectionTitle';
 import Period from './Period';
 import PriceFilter from './Price';
 import Sort from './Sort';
@@ -69,7 +68,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
     wrp: {
         display: 'flex',
-        alignItems: 'center',
+        alignItems: 'flex-end',
         marginBottom: theme.rem(2),
     },
     title: {
@@ -115,11 +114,10 @@ interface ICheckbox {
 
 const Filters = (): ReactElement => {
     const css = useStyles();
-    const [theme] = useTheme();
     const history = useRouter();
     const dispatch = useDispatch();
 
-    const open = useSelector<IState, boolean>(state => state.config.filters);
+    const config = useSelector<IState, IOffers>(state => state.config.offers);
 
     // filters value
     const [period, setPeriod] = useState<IDropList | null>(null);
@@ -132,14 +130,17 @@ const Filters = (): ReactElement => {
         deliverable: false,
     });
 
-    const handleClose = () => {
-        dispatch({ type: types.SEARCH_FILTERS, payload: { open: !open } });
+    const handleCloseFilters = () => {
+        dispatch({ type: types.OFFERS_HIDE_FILTERS });
+    };
+    const handleCloseSearch = () => {
+        dispatch({ type: types.OFFERS_HIDE_POPULAR_SEARCH });
     };
 
     const handleSubmit = (event: FormEvent<HTMLFormElement>): void => {
         event.preventDefault();
 
-        // formate query string object
+        // format query string object
         const query: Params = {
             // add main search query
             ...history.query,
@@ -178,13 +179,13 @@ const Filters = (): ReactElement => {
             <div className={css.root}>
                 <div className={css.wrp}>
                     <h2 className={css.title}>Фильтры</h2>
-                    <button type="button" className={css.close} onClick={handleClose}>
-                        {open ? 'Скрыть фильтры' : 'Показать фильтры'}
+                    <button type="button" className={css.close} onClick={handleCloseFilters}>
+                        {config.filters ? 'Скрыть' : 'Показать'}
                     </button>
                 </div>
                 <hr />
 
-                {open && (
+                {config.filters && (
                     <form action="#" method="post" className={css.form} onSubmit={handleSubmit}>
                         <div className={css.formInner}>
                             <PriceFilter data={price} initValue={[0, 200_000]} onChange={setPrice} />
@@ -207,17 +208,24 @@ const Filters = (): ReactElement => {
             </div>
 
             <div className={css.root}>
-                <SectionTitle style={{ color: theme === 'white' ? '#222222' : '#ffffff' }}>Популярные запросы</SectionTitle>
+                <div className={css.wrp}>
+                    <h2 className={css.title}>Популярные запросы</h2>
+                    <button type="button" className={css.close} onClick={handleCloseSearch}>
+                        {config.popularSearch ? 'Скрыть' : 'Показать'}
+                    </button>
+                </div>
                 <hr />
-                <ul className={css.list}>
-                    {POPULAR.map(query => (
-                        <li key={query}>
-                            <Link href={routes.offers.single(`?q=${query}`)}>
-                                <a className={css.link}>{query}</a>
-                            </Link>
-                        </li>
-                    ))}
-                </ul>
+                {config.popularSearch ? (
+                    <ul className={css.list}>
+                        {POPULAR.map(query => (
+                            <li key={query}>
+                                <Link href={routes.offers.single(`?q=${query}`)}>
+                                    <a className={css.link}>{query}</a>
+                                </Link>
+                            </li>
+                        ))}
+                    </ul>
+                ) : null}
             </div>
         </>
     );

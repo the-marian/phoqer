@@ -6,9 +6,15 @@ import { IDropList, IDropValue } from '../../../../interfaces';
 import DropDown from '../../../Common/DropDown';
 
 const useStyles = createUseStyles((theme: Theme) => ({
+    root: {
+        fontSize: theme.rem(1.4),
+        '@media (max-width: 768px)': {
+            fontSize: theme.rem(1.6),
+        },
+    },
     title: {
         marginBottom: theme.rem(1),
-        fontSize: theme.rem(1.4),
+        fontSize: 'inherit',
         fontWeight: theme.text.weight[2],
         color: theme.palette.black[0],
     },
@@ -28,7 +34,7 @@ interface IProps {
 const Period = ({ value, onChange }: IProps): ReactElement => {
     const css = useStyles();
     return (
-        <div>
+        <div className={css.root}>
             <h4 className={css.title}>Период аренды</h4>
             <DropDown defaultValue={value} data={FILTERS} onChange={onChange} placeholder="Оплата ..." />
         </div>
