@@ -74,7 +74,7 @@ const UserLinks = ({ className }: IProps): ReactElement => {
     return (
         <ul className={className}>
             <li>
-                <Link href={routes.profile.public()} as={routes.profile.public(auth?.first_name)}>
+                <Link href={routes.profile.public()} as={routes.profile.public(auth?.id)}>
                     <a className={css.item}>
                         <FontAwesomeIcon icon={faUser} />
                         <span className={css.text}>{T.my_profile}</span>

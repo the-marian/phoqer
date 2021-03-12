@@ -1,21 +1,13 @@
 import clsx from 'clsx';
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
+import { useSelector } from 'react-redux';
 
 import { Theme } from '../../../../../assets/theme';
+import { IPublicProfile, IState } from '../../../../../interfaces';
 import LikeDislike from '../../../../Common/LikeDislike';
 import { modal } from '../../../../Common/Modal';
 import MidModalWrp from '../../../../Common/Modal/MidModalWrp';
-
-// test
-const percent = 93.21;
-const about = `Я Влад. Акробат. Я Влад. Акробат. Я Влад. Акробат.Я Влад. Акробат. Я Влад. Акробат. Я Влад. Акробат. Я Влад.
-    Акробат. Я Влад. Акробат. Я Влад. Акробат. Я Влад. Акробат. Я Влад. Акробат. Я Влад. Акробат.Я Влад. Акробат.
-    
-    Я Влад. Акробат. Я Влад. Акробат. Я Влад. Акробат. Я Влад. Акробат. Я Влад. Акробат.Я Влад. Акробат. Я Влад.
-    
-    Акробат. Я Влад. Акробат. Я Влад. Акробат. Я Влад. Акробат. Я Влад. Акробат.Я Влад. Акробат. Я Влад. Акробат.
-    Я Влад. Акробат. Я Влад. Акробат. Я Влад. Акробат. Я Влад. Акробат.Я Влад.`;
 
 const useStyles = createUseStyles((theme: Theme) => ({
     info: {
@@ -86,6 +78,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
         },
     },
 
+    bio: {
+        width: '100%',
+    },
     title: {
         marginBottom: theme.rem(1),
         fontSize: theme.rem(2),
@@ -103,11 +98,12 @@ const useStyles = createUseStyles((theme: Theme) => ({
 
 const ProfileInfo = (): ReactElement => {
     const css = useStyles();
+    const profile = useSelector<IState, IPublicProfile | null>(state => state.profiles.public);
 
     const handleReadMore = (): void => {
         modal.open(
             <MidModalWrp>
-                <p className={css.modal} dangerouslySetInnerHTML={{ __html: about.replace(/\n/, '<br>') }} />
+                <p className={css.modal} dangerouslySetInnerHTML={{ __html: profile?.bio?.replace(/\n/, '<br>') || '' }} />
             </MidModalWrp>,
         );
     };
@@ -117,31 +113,37 @@ const ProfileInfo = (): ReactElement => {
             <div className={css.flex}>
                 <div className={css.items}>
                     <div>
-                        <span className={css.gray}>Соответствие товара с описанием:</span> 5/5
+                        <span className={css.gray}>Соответствие товара с описанием:</span> {profile?.description_rate} / 5
                     </div>
                     <div>
-                        <span className={css.gray}>Коммуникация:</span> 5/5
+                        <span className={css.gray}>Коммуникация:</span> {profile?.communication_rate} / 5
                     </div>
                     <div>
-                        <span className={css.gray}>Скорость отклика:</span> в течение часа
+                        <span className={css.gray}>Скорость отклика:</span> {profile?.response_rate} / 5
                     </div>
                 </div>
-                <div className={clsx(css.percent, percent > 25 ? css.green : css.yellow)}>
-                    <span>{percent} %</span>
+                <div className={clsx(css.percent, profile?.satisfaction_rate || 0 > 25 ? css.green : css.yellow)}>
+                    <span>{profile?.satisfaction_rate || 0} %</span>
                     <small>Позитивных отзывов</small>
                 </div>
             </div>
 
-            <LikeDislike like={133} dislike={4} active="like" onClick={console.log} />
+            <LikeDislike like={profile?.likes || 0} dislike={profile?.dislikes || 0} active="like" onClick={console.log} />
 
-            <div>
+            <div className={css.bio}>
                 <h5 className={css.title}>Об Авторе</h5>
                 <p>
-                    {about.length > 150 ? about.slice(0, 150) + '... ' : about}
-                    {about.length > 150 && (
-                        <button type="button" onClick={handleReadMore} className={css.link}>
-                            read more
-                        </button>
+                    {profile?.bio ? (
+                        <>
+                            {profile?.bio?.length > 150 ? profile?.bio?.slice(0, 150) + '... ' : profile?.bio}
+                            {profile?.bio?.length > 150 && (
+                                <button type="button" onClick={handleReadMore} className={css.link}>
+                                    read more
+                                </button>
+                            )}
+                        </>
+                    ) : (
+                        'Информация отсутствует'
                     )}
                 </p>
             </div>

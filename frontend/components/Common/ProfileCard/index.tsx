@@ -7,6 +7,7 @@ import routes from '../../../assets/routes';
 import template from '../../../assets/template';
 import { Theme } from '../../../assets/theme';
 import useAuth from '../../../hooks/auth.hook';
+import useMonths from '../../../hooks/month.hook';
 import LoginForm from '../Auth/LoginForm';
 import { modal } from '../Modal';
 import SmallModalWrp from '../Modal/SmallModalWrp';
@@ -94,6 +95,7 @@ const ProfileCard = ({
 }: IProps): ReactElement => {
     const css = useStyles();
     const auth = useAuth();
+    const M = useMonths();
 
     const handleOpenChat = (): void => {
         if (!auth?.access_token) {
@@ -124,7 +126,7 @@ const ProfileCard = ({
                 </div>
 
                 <div className={css.info}>
-                    <p>Дата регистрации: {formatTimestemp(registerDate)}</p>
+                    <p>Дата регистрации: {formatTimestemp(registerDate, M)}</p>
                     <p>Локация: {userLocation || 'Не указано'}</p>
                 </div>
 
