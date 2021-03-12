@@ -4,7 +4,7 @@
     "license": "MIT",
     "scripts": {
         "prepare": "cd .. && husky install frontend/.husky",
-        "dev": "next -p 4000",
+        "dev": "npm run prepare && next -p 4000",
         "build": "next build",
         "start": "next start -p 4000",
         "lint": "prettier --write './**/*.{js,jsx,ts,tsx,css,json}' --config ./.prettierrc && eslint --fix ./",
