@@ -12,6 +12,7 @@ const interceptors = ({ history, dispatch }: { history: NextRouter; dispatch: Di
     );
     axios.interceptors.response.use(
         response => {
+            console.log({ url: response.config.url, method: response.config.method, data: response.data });
             if (response.config.url === '/Auth/token/login/') {
                 const bearerToken = response.data.access_token;
                 if (bearerToken) axios.defaults.headers.common.Authorization = `Bearer ${bearerToken}`;

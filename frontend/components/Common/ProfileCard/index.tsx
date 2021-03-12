@@ -2,7 +2,7 @@ import Link from 'next/link';
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
-import { formatTimestemp } from '../../../assets/helpers';
+import { formatTimestamp } from '../../../assets/helpers';
 import routes from '../../../assets/routes';
 import template from '../../../assets/template';
 import { Theme } from '../../../assets/theme';
@@ -126,7 +126,7 @@ const ProfileCard = ({
                 </div>
 
                 <div className={css.info}>
-                    <p>Дата регистрации: {formatTimestemp(registerDate, M)}</p>
+                    <p>Дата регистрации: {formatTimestamp(registerDate, M)}</p>
                     <p>Локация: {userLocation || 'Не указано'}</p>
                 </div>
 

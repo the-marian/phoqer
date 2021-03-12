@@ -6,9 +6,9 @@ import routes from './routes';
 /**
  * NAVIGATION
  * 1. Validation
- * 2. Value formating
- * ├─ 2.1 Number formating
- * └─ 2.2 Date formating
+ * 2. Value formatting
+ * ├─ 2.1 Number formatting
+ * └─ 2.2 Date formatting
  * 3. From lodash
  * 4. Work with cookies
  * 5. Site related helpers
@@ -24,7 +24,7 @@ import routes from './routes';
 // validation regex
 export const mailRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 export const passwordRegex = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[_#?!@$%^&*-]).{6,}$/;
-// check if string is valid namber
+// check if string is valid number
 export const numberValidation = (text: string): boolean => {
     if (text === '') return false;
     return !/^\d{1,10}$/.test(text);
@@ -35,8 +35,8 @@ export const isEmpty = <T>(value: T): [string, string][] =>
 
 // ----------------------------------------------
 // ----------------------------------------------
-//  2. Value formating
-//  └─ 2.1 Number formating
+//  2. Value formatting
+//  └─ 2.1 Number formatting
 // ----------------------------------------------
 // add zero to decimals. 2 => '02', 12 => '12'
 export const addZeroToNumber = (value: string | number): string => String(value).padStart(2, '0');
@@ -59,14 +59,14 @@ export const declOfNum = (number: number, titles: string[]): string => {
 
 // ----------------------------------------------
 // ----------------------------------------------
-//  2. Value formating
-//  └─ 2.2 Date formating
+//  2. Value formatting
+//  └─ 2.2 Date formatting
 // ----------------------------------------------
-// formate date string from timestemp or valid date string.
+// format date string from timestamp or valid date string.
 // 'Fri Mar 12 2021 10:51:16 GMT+0200 (Eastern European Standard Time)' => 12-03-2021 10:51
 // 'Fri Mar 12 2021 10:51:16 GMT+0200 (Eastern European Standard Time)' => 12 March 2021 10:51
 // @param {string[]} month array with translated months
-export const formatTimestemp = (value?: string | number, month?: string[]): string => {
+export const formatTimestamp = (value?: string | number, month?: string[]): string => {
     try {
         if (!value) throw new Error();
 
@@ -133,7 +133,7 @@ export const parseCookie = <T>(cookie = '', key = 'phoqer_auth', parsed = false)
 // ----------------------------------------------
 // custom console log for site identity
 export const logger = (): void => {
-    if (process.env.NODE_ENV === 'production') console.clear();
+    // if (process.env.NODE_ENV === 'production') console.clear();
     console.log(
         '%c Phoqer %c v0.0.1 Made with love ...',
         'padding: 6px 15px; border-radius: 10px; background: #eee; text-transform: uppercase; color: #007aff; font-size: 1rem; font-weight: 600; font-family: Montserrat, sans-serif',
