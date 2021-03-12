@@ -70,6 +70,10 @@ const useStyles = createUseStyles((theme: Theme) => ({
         display: 'flex',
         alignItems: 'flex-end',
         marginBottom: theme.rem(2),
+
+        '@media (max-width: 768px)': {
+            alignItems: 'center',
+        },
     },
     title: {
         fontSize: theme.rem(2),

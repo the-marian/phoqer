@@ -3,6 +3,7 @@
     "version": "1.0.0",
     "license": "MIT",
     "scripts": {
+        "prepare": "cd .. && husky install frontend/.husky",
         "dev": "next -p 4000",
         "build": "next build",
         "start": "next start -p 4000",
@@ -74,7 +75,7 @@
     },
     "husky": {
         "hooks": {
-            "pre-commit": "prettier --write './**/*.{js,jsx,ts,tsx,css,json}' --config ./.prettierrc && eslint --fix ./"
+            "pre-commit": "npm run lint"
         }
     },
     "lint-staged": {

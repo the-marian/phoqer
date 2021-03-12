@@ -18,12 +18,16 @@ const SiteTheme = ({ children, siteTheme = 'white' }: IProps): ReactElement => {
         if (process.browser && document.querySelector('html')) {
             document.querySelector('html')?.classList?.add(siteTheme);
         }
-    }, [theme]);
+    }, []);
 
     const handleTheme = (value: Themes): void => {
         try {
             Cookies.set('phoqer_theme', value);
             setTheme(value);
+            if (document.querySelector('html')) {
+                document.querySelector('html')?.classList?.remove(value === 'white' ? 'black' : 'white');
+                document.querySelector('html')?.classList?.add(value);
+            }
         } catch (error) {
             notifications('error', error?.message);
         }

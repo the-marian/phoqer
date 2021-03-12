@@ -235,7 +235,7 @@ const DropDown = ({
     const handleSelect = (name: string, slug: string, type: 'main' | 'sub'): void => {
         onChange({ name, slug, type });
         setSelected(name);
-        setDrop(!drop);
+        if (media) setDrop(!drop);
         if (!media) modal.close();
     };
 
