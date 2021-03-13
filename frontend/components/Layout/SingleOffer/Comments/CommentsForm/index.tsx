@@ -33,8 +33,6 @@ const useStyles = createUseStyles((theme: Theme) => ({
         },
 
         '& svg': {
-            height: theme.rem(1.8),
-            width: theme.rem(1.6),
             margin: theme.rem(0, 1, 0, 0),
         },
     },
@@ -73,11 +71,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         background: theme.palette.primary[0],
         color: theme.palette.white,
         borderRadius: theme.radius,
-
-        '& svg': {
-            height: theme.rem(1.6),
-            width: theme.rem(1.6),
-        },
+        fontSize: theme.rem(1.6),
 
         '@media (max-width: 1050px)': {
             margin: theme.rem(2, 0),
@@ -89,11 +83,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         background: theme.palette.primary[0],
         color: theme.palette.white,
         borderRadius: theme.radius,
-
-        '& svg': {
-            height: theme.rem(2),
-            width: theme.rem(2),
-        },
+        fontSize: theme.rem(2),
     },
     disabled: {
         cursor: 'not-allowed',

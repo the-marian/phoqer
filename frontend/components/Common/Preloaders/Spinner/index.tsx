@@ -8,6 +8,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
+        fontSize: 'inherit',
     },
     img: {
         height: theme.em(1),

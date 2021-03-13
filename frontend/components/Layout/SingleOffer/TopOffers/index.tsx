@@ -1,6 +1,7 @@
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 import { useDispatch, useSelector } from 'react-redux';
+import { CSSTransition } from 'react-transition-group';
 
 import routes from '../../../../assets/routes';
 import { Theme } from '../../../../assets/theme';
@@ -14,18 +15,42 @@ import Container from '../../Container';
 const useStyles = createUseStyles((theme: Theme) => ({
     root: {
         marginBottom: theme.rem(8),
+        maxHeight: theme.rem(200),
         padding: theme.rem(5, 0, 8),
         background: theme.palette.gray[0],
         fontSize: theme.rem(1.5),
         fontWeight: theme.text.weight[3],
+        transition: theme.transitions[0],
 
         '@media (max-width: 800px)': {
             marginBottom: theme.rem(5),
             padding: theme.rem(5, 0),
         },
+
+        '&.enter': {
+            maxHeight: 0,
+            padding: 0,
+            marginBottom: 0,
+            opacity: 0,
+        },
+        '&.enter-done': {
+            maxHeight: theme.rem(200),
+            marginBottom: theme.rem(8),
+            padding: theme.rem(5, 0, 8),
+            opacity: 1,
+
+            '@media (max-width: 800px)': {
+                marginBottom: theme.rem(5),
+                padding: theme.rem(5, 0),
+            },
+        },
+        '&.exit': {
+            maxHeight: 0,
+            opacity: 0,
+        },
     },
     checkbox: {
-        margin: '8rem auto 3rem',
+        margin: '3rem auto',
     },
 }));
 
@@ -49,7 +74,7 @@ const TopOffers = (): ReactElement => {
                 <hr />
             </Container>
 
-            {hideTop ? null : (
+            <CSSTransition timeout={300} unmountOnExit in={!hideTop}>
                 <div className={css.root} id="products">
                     <Container>
                         <SectionTitle link="Смотреть все" href={routes.offers.single(`?type=popular`)}>
@@ -58,7 +83,7 @@ const TopOffers = (): ReactElement => {
                         <OffersList data={data} />
                     </Container>
                 </div>
-            )}
+            </CSSTransition>
         </>
     );
 };

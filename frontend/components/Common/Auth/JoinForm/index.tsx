@@ -80,11 +80,6 @@ const useStyles = createUseStyles((theme: Theme) => ({
         background: theme.palette.primary[0],
         color: theme.palette.trueWhite,
 
-        '& svg': {
-            height: theme.rem(1.4),
-            width: theme.rem(1.4),
-        },
-
         '@media (max-width: 500px)': {
             margin: '5rem auto 3rem',
             padding: theme.rem(2),

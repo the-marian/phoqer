@@ -13,6 +13,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     socials: {
         height: theme.rem(6),
         width: theme.rem(6),
+        fontSize: theme.rem(2),
         margin: theme.rem(1),
         padding: theme.rem(1),
         borderRadius: '50%',

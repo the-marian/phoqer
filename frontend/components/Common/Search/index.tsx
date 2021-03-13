@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Params } from 'next/dist/next-server/server/router';
 import { useRouter } from 'next/router';
 import { ParsedUrlQueryInput } from 'querystring';
+import * as queryString from 'querystring';
 import React, { ChangeEvent, FormEvent, ReactElement, useEffect, useState } from 'react';
 import { createUseStyles } from 'react-jss';
 import { useDispatch, useSelector } from 'react-redux';
@@ -113,7 +114,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
 }));
 
 interface IValue extends ParsedUrlQueryInput {
-    search: string;
+    search: string | null;
     category?: string;
     sub_category?: string;
 }
@@ -128,29 +129,27 @@ const Search = ({ shallow = false }: IProps): ReactElement => {
     const history = useRouter();
     const dispatch = useDispatch();
     const desktop = useMedia(1100);
-
-    // init
-    const init = typeof history.query.search === 'object' ? history.query.search[0] : history.query.search;
+    const [query, setQuery] = useState<IValue>({ search: String(history.query.search || '') || null });
 
     // loading
     const loading = useSelector<IState, boolean>(state => state.offers.search.loading);
 
-    const [query, setQuery] = useState<IValue>({ search: init || '' });
     const handleChange = (value: IDropValue | null): void => {
         setQuery({ search: query.search, [value?.type === 'sub' ? 'sub_category' : 'category']: value?.slug || '' });
     };
     const handleInput = (event: ChangeEvent<HTMLInputElement>): void => {
+        // window.history.replaceState({}, '', routes.offers.single + '?' + queryString.stringify({ search }));
         setQuery({ ...query, search: event.target.value });
     };
 
     useEffect(() => {
-        if (init !== query.q) setQuery({ search: init || '' });
-    }, [init]);
+        if (history.query.search !== query.search) setQuery({ search: String(history.query.search || '') || null });
+    }, [history.query]);
 
     const handleSubmit = (event: FormEvent<HTMLFormElement>): void => {
         event.preventDefault();
         const data: Params = {};
-        if (query.search.trim()) data.search = query.search;
+        if (query.search?.trim()) data.search = query.search;
         if (query.category) data.category = query.category;
         if (query.sub_category) data.sub_category = query.sub_category;
 
@@ -178,7 +177,7 @@ const Search = ({ shallow = false }: IProps): ReactElement => {
                             <FontAwesomeIcon icon={faSearch} />
                         </span>
                         <input
-                            value={query.search}
+                            value={query.search || ''}
                             onChange={handleInput}
                             className={css.input}
                             type="text"

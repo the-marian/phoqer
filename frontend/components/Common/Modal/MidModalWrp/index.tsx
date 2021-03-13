@@ -27,11 +27,6 @@ const useStyles = createUseStyles((theme: Theme) => ({
         padding: theme.rem(1.2, 1.8),
         fontSize: theme.rem(1.6),
         color: theme.palette.black[0],
-
-        '& svg': {
-            height: theme.rem(1.6),
-            width: theme.rem(1.6),
-        },
     },
 }));
 

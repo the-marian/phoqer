@@ -48,11 +48,6 @@ const useStyles = createUseStyles((theme: Theme) => ({
         '&:hover': {
             textDecoration: 'underline',
         },
-
-        '& svg': {
-            height: theme.rem(1.6),
-            width: theme.rem(1.6),
-        },
     },
 }));
 

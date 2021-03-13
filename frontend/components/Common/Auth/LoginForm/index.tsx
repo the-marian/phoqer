@@ -49,13 +49,8 @@ const useStyles = createUseStyles((theme: Theme) => ({
         left: theme.rem(1.5),
         transform: 'translateY(-50%)',
         zIndex: 2,
-        fontSize: theme.rem(1.2),
+        fontSize: theme.rem(1.4),
         color: theme.palette.gray[4],
-
-        '& svg': {
-            height: theme.rem(1.4),
-            width: theme.rem(1.4),
-        },
     },
     eye: {
         position: 'absolute',
@@ -65,13 +60,8 @@ const useStyles = createUseStyles((theme: Theme) => ({
         height: '100%',
         width: theme.rem(5),
         transform: 'translateY(-50%)',
-        fontSize: theme.rem(1.2),
+        fontSize: theme.rem(2),
         color: theme.palette.gray[4],
-
-        '& svg': {
-            height: theme.rem(2),
-            width: theme.rem(2),
-        },
     },
     link: {
         display: 'block',

@@ -36,11 +36,6 @@ const useStyles = createUseStyles((theme: Theme) => ({
         fontSize: theme.rem(1.6),
         color: theme.palette.white,
         borderRadius: theme.radius,
-
-        '& svg': {
-            height: theme.rem(1.6),
-            width: theme.rem(1.6),
-        },
     },
 }));
 

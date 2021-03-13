@@ -50,21 +50,13 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
     eye: {
         margin: theme.rem(0, 0, 0, 6),
+        fontSize: theme.rem(1.4),
         '& span': {
             margin: theme.rem(0, 1),
         },
         '@media (max-width: 768px)': {
             margin: theme.rem(0, 0, 0, 3),
-        },
-
-        '& svg': {
-            height: theme.rem(1.4),
-            width: theme.rem(1.4),
-
-            '@media (max-width: 768px)': {
-                height: theme.rem(2),
-                width: theme.rem(2),
-            },
+            fontSize: theme.rem(2),
         },
     },
 }));

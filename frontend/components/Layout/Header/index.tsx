@@ -60,8 +60,6 @@ const useStyles = createUseStyles((theme: Theme) => ({
 
         '& svg': {
             marginRight: theme.rem(1),
-            height: theme.rem(2),
-            width: theme.rem(2),
         },
 
         '@media (max-width: 768px)': {

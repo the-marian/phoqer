@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import clsx from 'clsx';
 import React, { MouseEvent, ReactElement, useEffect, useState } from 'react';
 import { createUseStyles } from 'react-jss';
+import { CSSTransition } from 'react-transition-group';
 
 import template from '../../../assets/template';
 import { Theme } from '../../../assets/theme';
@@ -34,6 +35,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     inner: {
         display: 'flex',
         alignItems: 'center',
+        justifyContent: 'space-between',
         width: '100%',
         margin: 0,
         padding: theme.rem(1.8),
@@ -54,25 +56,22 @@ const useStyles = createUseStyles((theme: Theme) => ({
         },
     },
     text: {
+        flexGrow: 2,
         width: '100%',
         whiteSpace: 'nowrap',
         overflow: 'hidden',
         textOverflow: 'ellipsis',
     },
+    icon: {
+        marginRight: theme.rem(0.6),
+        fontSize: theme.em(1),
+    },
     reset: {
-        position: 'absolute',
-        top: '50%',
-        right: theme.rem(1),
-        transform: 'translateY(-50%)',
-        padding: theme.rem(1.4),
+        padding: theme.rem(1),
+        fontSize: theme.rem(1.1),
 
         '&:hover': {
             color: theme.palette.primary[0],
-        },
-
-        '& svg': {
-            width: theme.rem(1.1),
-            height: theme.rem(1.1),
         },
     },
     placeholder: {
@@ -83,7 +82,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         top: '100%',
         zIndex: 10,
         width: '100%',
-        minWidth: theme.rem(20),
+        minWidth: theme.rem(25),
         paddingTop: theme.rem(1),
         scrollBehavior: 'smooth',
         '-webkit-overflow-scrolling': 'touch',
@@ -91,24 +90,33 @@ const useStyles = createUseStyles((theme: Theme) => ({
         '@media (max-width: 768px)': {
             minWidth: theme.rem(35),
         },
+
+        '&.enter .box': {
+            maxHeight: 0,
+            opacity: 0,
+        },
+        '&.enter-done .box': {
+            maxHeight: theme.rem(35),
+            opacity: 1,
+        },
+        '&.exit .box': {
+            maxHeight: 0,
+            opacity: 0,
+        },
     },
     top: {
         top: 'unset',
         bottom: '120%',
     },
     box: {
-        maxHeight: theme.rem(40),
+        maxHeight: theme.rem(35),
         padding: theme.rem(0.4, 0),
         background: theme.palette.white,
         borderRadius: theme.radius,
         border: theme.border(0.1, theme.palette.gray[3]),
         overflowY: 'auto',
-
-        '@media (max-width: 768px)': {
-            maxHeight: theme.rem(35),
-            padding: theme.rem(3, 0),
-            fontSize: theme.rem(1.6),
-        },
+        transition: theme.transitions[0],
+        opacity: 1,
     },
     item: {
         cursor: 'pointer',
@@ -144,7 +152,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
     sub: {
         position: 'relative',
-        padding: theme.rem(1, 3, 1, 5),
+        padding: theme.rem(1, 2),
         background: theme.palette.gray[0],
         color: theme.palette.black[0],
         fontSize: theme.rem(1.4),
@@ -155,7 +163,6 @@ const useStyles = createUseStyles((theme: Theme) => ({
 
         '&:hover': {
             background: theme.palette.primary[0],
-            color: theme.palette.white,
         },
     },
     white: {
@@ -163,15 +170,6 @@ const useStyles = createUseStyles((theme: Theme) => ({
         color: '#242424',
         boxShadow: theme.shadow[1],
         ...template(theme).outline,
-    },
-    icon: {
-        marginRight: theme.rem(0.6),
-        fontSize: theme.em(0.7),
-
-        '& svg': {
-            width: theme.rem(1),
-            height: theme.rem(1),
-        },
     },
 }));
 
@@ -289,13 +287,13 @@ const DropDown = ({
                 )}
             </p>
 
-            {drop && media && (
+            <CSSTransition timeout={300} unmountOnExit in={drop && media}>
                 <div className={clsx(css.container, top && css.top)} style={toLeft ? { right: 0 } : { left: 0 }}>
-                    <div className={css.box}>
+                    <div className={clsx(css.box, 'box')}>
                         <ValuesList data={data} onSelect={handleSelect} withSub={withSub} css={css} />
                     </div>
                 </div>
-            )}
+            </CSSTransition>
         </div>
     );
 };

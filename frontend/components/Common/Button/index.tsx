@@ -8,6 +8,9 @@ const useStyles = createUseStyles({
     loading: {
         pointerEvents: 'none',
     },
+    btn: {
+        fontSize: 'inherit',
+    },
 });
 
 interface IProps {
@@ -21,7 +24,7 @@ interface IProps {
 const Button = ({ className, children, loading = false, onClick, type = 'button' }: IProps): ReactElement => {
     const css = useStyles();
     return (
-        <button className={clsx(className, loading && css.loading)} type={type} onClick={onClick}>
+        <button className={clsx(className, css.btn, loading && css.loading)} type={type} onClick={onClick}>
             {loading ? <Spinner /> : children}
         </button>
     );

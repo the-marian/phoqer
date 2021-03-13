@@ -16,6 +16,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
 
         '& svg': {
             width: theme.rem(5),
+            height: theme.rem(5),
 
             '& circle': {
                 fill: theme.palette.green,

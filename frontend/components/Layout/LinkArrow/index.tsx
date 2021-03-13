@@ -24,21 +24,11 @@ const useStyles = createUseStyles((theme: Theme) => ({
         fontSize: 'inherit',
     },
     icon: {
-        fontSize: theme.em(0.7),
-
-        '& svg': {
-            width: theme.rem(1),
-            height: theme.rem(1),
-        },
+        fontSize: theme.em(1),
     },
     leftIcon: {
         margin: theme.em(0, 0.8, 0.1, 0),
         fontSize: theme.em(0.7),
-
-        '& svg': {
-            width: theme.rem(1),
-            height: theme.rem(1),
-        },
     },
 }));
 

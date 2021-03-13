@@ -1,5 +1,8 @@
 import { EventEmitter } from 'events';
 import React, { Component, MouseEvent, ReactElement, TouchEvent } from 'react';
+import { CSSTransition } from 'react-transition-group';
+
+import css from './index.module.css';
 
 type Element = JSX.Element[] | JSX.Element | null;
 
@@ -10,12 +13,9 @@ class ModalManagement extends EventEmitter {
     constructor() {
         super();
         this.dom = null;
-
-        this.open = this.open.bind(this);
-        this.close = this.close.bind(this);
     }
 
-    open(dom: Element): void {
+    open = (dom: Element): void => {
         this.dom = dom;
 
         // styles
@@ -25,9 +25,9 @@ class ModalManagement extends EventEmitter {
 
         // emit
         this.emitChange();
-    }
+    };
 
-    close(): void {
+    close = (): void => {
         this.dom = null;
 
         // styles
@@ -37,11 +37,11 @@ class ModalManagement extends EventEmitter {
 
         // emit
         this.emitChange();
-    }
+    };
 
-    emitChange(): void {
+    emitChange = (): void => {
         this.emit('modal', this.dom);
-    }
+    };
 }
 
 export const modal = new ModalManagement();
@@ -50,7 +50,7 @@ interface IState {
     dom: Element;
 }
 
-export default class ModalComponent extends Component<unknown, IState> {
+export default class ModalComponent extends Component<null, IState> {
     state = {
         dom: null,
     };
@@ -82,13 +82,13 @@ export default class ModalComponent extends Component<unknown, IState> {
     render(): ReactElement | boolean {
         const { dom } = this.state;
         return (
-            !!dom && (
-                <div className="react-modal-backdrop" onClick={this.handleClickClose} aria-hidden="true">
-                    <div className="react-modal-scroll" onClick={this.handleClickClose} aria-hidden="true">
+            <CSSTransition timeout={100} unmountOnExit in={!!dom}>
+                <div className={css.backdrop} onClick={this.handleClickClose} aria-hidden="true">
+                    <div className={css.scroll} onClick={this.handleClickClose} aria-hidden="true">
                         {dom}
                     </div>
                 </div>
-            )
+            </CSSTransition>
         );
     }
 }

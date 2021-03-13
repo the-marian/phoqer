@@ -86,30 +86,9 @@ a {
     text-decoration: none;
 }
 
-.react-modal-backdrop {
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    z-index: 100000;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: rgba(0, 0, 0, 0.8);
-    box-sizing: border-box;
-}
-
-.react-modal-scroll {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    height: auto;
-    max-height: 100vh;
-    overflow-y: auto;
-    box-sizing: border-box;
-    scroll-behavior: smooth;
-    -webkit-overflow-scrolling: touch;
+svg {
+    height: 1em;
+    width: 1em;
 }
 
 .windows.white *::-webkit-scrollbar,

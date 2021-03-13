@@ -65,14 +65,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
         padding: theme.rem(0.5, 0.8),
         background: theme.palette.white,
         borderRadius: theme.radius,
-        fontSize: theme.rem(1),
+        fontSize: theme.rem(1.4),
         boxShadow: theme.shadow[0],
         color: theme.palette.yellow[0],
-
-        '& svg': {
-            height: theme.rem(1.4),
-            width: theme.rem(1.4),
-        },
     },
     delivery: {
         color: theme.palette.primary[0],
@@ -107,11 +102,6 @@ const useStyles = createUseStyles((theme: Theme) => ({
         color: theme.palette.gray[3],
         fontWeight: theme.text.weight[2],
         fontSize: theme.rem(1.4),
-
-        '& svg': {
-            height: theme.rem(1.4),
-            width: theme.rem(1.4),
-        },
     },
     view: {
         paddingLeft: theme.rem(1),
@@ -145,23 +135,15 @@ const useStyles = createUseStyles((theme: Theme) => ({
         color: theme.palette.primary[0],
         borderRadius: theme.radius,
         transition: theme.transitions[0],
+        fontSize: theme.rem(1.8),
 
         '&:hover': {
             background: theme.palette.gray[1],
         },
 
-        '& svg': {
-            height: theme.rem(1.8),
-            width: theme.rem(1.8),
-
-            '@media (max-width: 500px)': {
-                height: theme.rem(2.2),
-                width: theme.rem(2.2),
-            },
-        },
-
         '@media (max-width: 500px)': {
             height: theme.rem(6.5),
+            fontSize: theme.rem(2.2),
         },
     },
     active: {
