@@ -50,7 +50,7 @@ interface IState {
     dom: Element;
 }
 
-export default class ModalComponent extends Component<null, IState> {
+export default class ModalComponent extends Component<unknown, IState> {
     state = {
         dom: null,
     };

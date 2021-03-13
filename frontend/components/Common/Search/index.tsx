@@ -3,7 +3,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Params } from 'next/dist/next-server/server/router';
 import { useRouter } from 'next/router';
 import { ParsedUrlQueryInput } from 'querystring';
-import * as queryString from 'querystring';
 import React, { ChangeEvent, FormEvent, ReactElement, useEffect, useState } from 'react';
 import { createUseStyles } from 'react-jss';
 import { useDispatch, useSelector } from 'react-redux';

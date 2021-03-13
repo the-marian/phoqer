@@ -11,17 +11,17 @@
     background: rgba(0, 0, 0, 0.8);
 }
 
-.backdrop:global(.enter) .scroll  {
+.backdrop:global(.enter) .scroll {
     transform: scale(0);
     transition: 0.1s ease-in-out;
     opacity: 0;
 }
-.backdrop:global(.enter-done) .scroll  {
+.backdrop:global(.enter-done) .scroll {
     transform: scale(1);
     transition: 0.1s ease-in-out;
     opacity: 1;
 }
-.backdrop:global(.exit) .scroll  {
+.backdrop:global(.exit) .scroll {
     transform: scale(0);
     transition: 0.1s ease-in-out;
     opacity: 0;

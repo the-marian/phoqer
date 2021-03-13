@@ -1,4 +1,3 @@
-import { ParsedUrlQueryInput } from 'querystring';
 import { AnyAction, Store } from 'redux';
 
 /**
