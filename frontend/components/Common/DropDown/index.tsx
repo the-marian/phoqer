@@ -92,16 +92,16 @@ const useStyles = createUseStyles((theme: Theme) => ({
         },
 
         '&.enter .box': {
-            maxHeight: 0,
             opacity: 0,
+            transform: 'translateY(-2rem)',
         },
         '&.enter-done .box': {
-            maxHeight: theme.rem(35),
             opacity: 1,
+            transform: 'translateY(0)',
         },
         '&.exit .box': {
-            maxHeight: 0,
             opacity: 0,
+            transform: 'translateY(-2rem)',
         },
     },
     top: {
@@ -109,6 +109,8 @@ const useStyles = createUseStyles((theme: Theme) => ({
         bottom: '120%',
     },
     box: {
+        position: 'relative',
+        transform: 'translateY(0)',
         maxHeight: theme.rem(35),
         padding: theme.rem(0.4, 0),
         background: theme.palette.white,

@@ -201,7 +201,7 @@ const OfferCard = ({ offer }: IProps): ReactElement => {
 
     return (
         <div className={css.root}>
-            <Link href={routes.offers.single()} as={routes.offers.single(id)}>
+            <Link href={routes.offers.single(id)}>
                 <a className={css.link}>
                     <div className={css.imgWrp}>
                         <div className={css.topWrp}>

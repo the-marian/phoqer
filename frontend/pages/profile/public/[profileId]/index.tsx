@@ -49,7 +49,7 @@ const PublicProfilePage = (): ReactElement => {
 
     return (
         <>
-            <Meta title={'Влад Василенко'} h1={T.user_profile_on_phoqer} />
+            <Meta title={profile?.first_name + ' ' + profile?.last_name} h1={T.user_profile_on_phoqer} />
             <Main>
                 <Container>
                     <div className={css.wrp}>

@@ -1,10 +1,11 @@
-import { GetServerSideProps } from 'next';
+import { GetServerSideProps, GetServerSidePropsContext } from 'next';
 import { useRouter } from 'next/router';
 import React, { ReactElement, useEffect, useState } from 'react';
 import { createUseStyles } from 'react-jss';
 import { useSelector } from 'react-redux';
 import { END } from 'redux-saga';
 
+import { serverRedirect } from '../../../assets/helpers';
 import routes from '../../../assets/routes';
 import { Theme } from '../../../assets/theme';
 import Meta from '../../../components/Common/Meta';
@@ -49,7 +50,7 @@ const STEPS: { [key: string]: JSX.Element | JSX.Element[] } = {
     4: <Success />,
 };
 
-const STEPS_TITLE = ['О товаре', 'Описание', 'Фото'];
+const STEPS_TITLE = ['Основное', 'Описание', 'Фото'];
 
 const NewOffer = (): ReactElement => {
     const T = useTrans();
@@ -83,7 +84,7 @@ const NewOffer = (): ReactElement => {
                     <>
                         <h2 className={css.title}>{T.share_with_others_and_earn}</h2>
 
-                        {index < 4 ? <Stepper title={STEPS_TITLE} current={+index} /> : null}
+                        {index < 4 ? <Stepper titles={STEPS_TITLE} current={+index} /> : null}
 
                         {query.step !== undefined ? STEPS[index] || STEPS[1] : null}
 
@@ -101,6 +102,7 @@ const NewOffer = (): ReactElement => {
 
 export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps(
     async (ctx): Promise<void> => {
+        serverRedirect((ctx as unknown) as GetServerSidePropsContext);
         ctx?.store?.dispatch({ type: types.GET_CATEGORIES_START });
         ctx?.store?.dispatch(END);
         await (ctx?.store as IStore)?.sagaTask?.toPromise();

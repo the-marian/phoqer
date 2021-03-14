@@ -1,3 +1,4 @@
+import { IconProp } from '@fortawesome/fontawesome-svg-core';
 import { AnyAction, Store } from 'redux';
 
 /**
@@ -18,6 +19,19 @@ export interface IDropList {
     name: string;
     slug: string;
     sub?: { name: string; slug: string }[];
+}
+
+export interface ITabs {
+    text: string;
+    link: string;
+    icon?: IconProp;
+    count?: number | string;
+    blank?: boolean;
+}
+
+export interface ITabsNum {
+    messages?: number | string;
+    reviews?: number | string;
 }
 
 export type Themes = 'white' | 'black';

@@ -82,7 +82,7 @@ export default class ModalComponent extends Component<unknown, IState> {
     render(): ReactElement | boolean {
         const { dom } = this.state;
         return (
-            <CSSTransition timeout={100} unmountOnExit in={!!dom}>
+            <CSSTransition timeout={200} unmountOnExit in={!!dom}>
                 <div className={css.backdrop} onClick={this.handleClickClose} aria-hidden="true">
                     <div className={css.scroll} onClick={this.handleClickClose} aria-hidden="true">
                         {dom}

@@ -46,7 +46,6 @@ interface IProps {
     data: {
         label: string;
         link: string;
-        as?: string | null;
     }[];
     end: string;
 }
@@ -58,17 +57,11 @@ const Breadcrumbs = ({ data, end }: IProps): ReactElement => {
         <>
             {data?.length ? (
                 <ul className={css.root}>
-                    {data.map(({ label, link, as }) => (
+                    {data.map(({ label, link }) => (
                         <li key={link}>
-                            {as ? (
-                                <Link href={link} as={as} passHref>
-                                    <a>{label}</a>
-                                </Link>
-                            ) : (
-                                <Link href={link} passHref>
-                                    <a>{label}</a>
-                                </Link>
-                            )}
+                            <Link href={link} passHref>
+                                <a>{label}</a>
+                            </Link>
                             <span className={css.gray}>{' / '}</span>
                         </li>
                     ))}

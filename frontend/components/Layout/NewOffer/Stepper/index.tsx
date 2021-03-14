@@ -69,16 +69,16 @@ const useStyles = createUseStyles((theme: Theme) => ({
 }));
 
 interface Props {
-    title: string[];
+    titles: string[];
     current: number;
 }
 
-const Stepper = ({ title, current }: Props): ReactElement => {
+const Stepper = ({ titles, current }: Props): ReactElement => {
     const css = useStyles();
 
     return (
         <div className={css.root}>
-            {title.map((item, index) => (
+            {titles.map((item, index) => (
                 <div key={item} className={clsx(css.wrp, current - 1 > index && css.activeWrp)}>
                     <span className={css.numWrp}>
                         <span className={clsx(css.num, current > index && css.active)}>{index + 1}</span>

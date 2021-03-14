@@ -22,6 +22,11 @@ module.exports = {
                 destination: '/',
                 permanent: true,
             },
+            {
+                source: '/profile/private/:profileId',
+                destination: '/profile/private/:profileId/my_offers',
+                permanent: true,
+            },
         ];
     },
     i18n: {

@@ -28,7 +28,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
 }));
 
 interface Props {
-    children: string;
+    children: string | number;
     style?: CSSProperties;
 }
 

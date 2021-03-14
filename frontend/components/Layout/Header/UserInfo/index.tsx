@@ -105,7 +105,7 @@ const UserInfo = (): ReactElement => {
             {media ? (
                 <>
                     <li className={css.item}>
-                        <Link href={routes.new_offer()} as={routes.new_offer(1)}>
+                        <Link href={routes.new_offer(1)}>
                             <a className={css.link}>
                                 <FontAwesomeIcon icon={faPlus} />
                                 <span className={css.text}>{T.create_offer}</span>

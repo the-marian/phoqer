@@ -34,31 +34,14 @@ const useStyles = createUseStyles((theme: Theme) => ({
 
 interface Props {
     href: string;
-    as?: string | null;
     children: string;
     toLeft?: boolean;
 }
 
-const LinkArrow = ({ href, as = null, children, toLeft = false }: Props): ReactElement => {
+const LinkArrow = ({ href, children, toLeft = false }: Props): ReactElement => {
     const css = useStyles();
-    return as ? (
-        <Link href={href} as={as} passHref>
-            <a className={css.link}>
-                {toLeft && (
-                    <span className={css.leftIcon}>
-                        <FontAwesomeIcon icon={faChevronLeft} />
-                    </span>
-                )}
-                <span className={css.text}>{children}</span>
-                {!toLeft && (
-                    <span className={css.icon}>
-                        <FontAwesomeIcon icon={faChevronRight} />
-                    </span>
-                )}
-            </a>
-        </Link>
-    ) : (
-        <Link href={href} passHref>
+    return (
+        <Link href={href}>
             <a className={css.link}>
                 {toLeft && (
                     <span className={css.leftIcon}>

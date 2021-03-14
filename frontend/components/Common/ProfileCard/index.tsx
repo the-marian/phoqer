@@ -112,13 +112,13 @@ const ProfileCard = ({
 
     return (
         <div className={css.wrp}>
-            <Link href={routes.profile.public()} as={routes.profile.public(id)}>
+            <Link href={routes.profile.public(id)}>
                 <a>
                     <UserAvatar firstName={firstName} lastName={lastName} avatar={avatar} />
                 </a>
             </Link>
             <div className={css.content}>
-                <Link href={routes.profile.public()} as={routes.profile.public(id)}>
+                <Link href={routes.profile.public(id)}>
                     <a className={css.name}>{firstName + ' ' + lastName}</a>
                 </Link>
                 <div className={css.info}>

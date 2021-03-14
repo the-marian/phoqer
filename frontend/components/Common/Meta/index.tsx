@@ -29,34 +29,33 @@ const Meta = ({ title, description, keywords, icon, h1 = '' }: IProps): ReactEle
     const history = useRouter();
     const T = useTrans();
 
-    const locale = history.locale === history.defaultLocale ? '' : history.locale + '/';
-    const url = (lang: string): string => config.host + lang + history.pathname.replace('/', '');
+    const url = (lang = 'pl'): string => config.host(lang) + history.pathname.replace('/', '');
 
     return (
         <>
             <Head>
-                <title>{title ? `${title} | Phoqer` : 'Phoqer'}</title>
+                <title>{title?.trim() ? `${title} | Phoqer` : 'Phoqer'}</title>
 
                 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
                 <meta name="description" content={description || T.site_desc} />
                 <meta name="keywords" content={`${T.keywords} ${keywords || ''}`} />
-                <meta name="title" content={title ? `${title} | Phoqer` : 'Phoqer'} />
+                <meta name="title" content={title?.trim() ? `${title} | Phoqer` : 'Phoqer'} />
                 <meta name="robots" content="index,follow" />
 
                 <meta name="twitter:card" content="summary_large_image" />
                 <meta name="twitter:description" content={description || T.site_desc} />
-                <meta name="twitter:image:src" content={icon || config.host + 'about.jpg'} />
+                <meta name="twitter:image:src" content={icon || config.host() + 'about.jpg'} />
                 <meta name="twitter:site" content="@Phoqer" />
-                <meta name="twitter:title" content={title ? `${title} | Phoqer` : 'Phoqer'} />
+                <meta name="twitter:title" content={title?.trim() ? `${title} | Phoqer` : 'Phoqer'} />
 
                 <meta property="og:description" content={description || T.site_desc} />
-                <meta property="og:image" content={icon || config.host + 'about.jpg'} />
+                <meta property="og:image" content={icon || config.host() + 'about.jpg'} />
                 <meta property="og:site_name" content="Phoqer" />
-                <meta property="og:title" content={title ? `${title} | Phoqer` : 'Phoqer'} />
+                <meta property="og:title" content={title?.trim() ? `${title} | Phoqer` : 'Phoqer'} />
                 <meta property="og:type" content="website" />
-                <meta property="og:url" content={url(locale)} />
+                <meta property="og:url" content={url(history.locale)} />
 
-                <meta name="parsely-link" content={url(locale)} />
+                <meta name="parsely-link" content={url(history.locale)} />
 
                 <meta name="theme-color" content="007aff" />
                 <link rel="manifest" href="/manifest.json" />
@@ -85,10 +84,10 @@ const Meta = ({ title, description, keywords, icon, h1 = '' }: IProps): ReactEle
 
                 <link rel="mask-icon" href="/phoqer-512.png" color="#007aff" />
 
-                <link rel="canonical" href={url(locale)} />
+                <link rel="canonical" href={url(history.locale)} />
                 <link rel="alternate" hrefLang="x-default" href={url('')} />
-                <link rel="alternate" hrefLang="en" href={url('en/')} />
-                <link rel="alternate" hrefLang="ru" href={url('ru/')} />
+                <link rel="alternate" hrefLang="en" href={url('en')} />
+                <link rel="alternate" hrefLang="ru" href={url('ru')} />
             </Head>
             <h1 className={css.title}>{(h1 || '') + T.site_desc}</h1>
         </>

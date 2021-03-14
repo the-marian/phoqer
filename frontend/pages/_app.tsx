@@ -19,7 +19,7 @@ import { wrapper } from '../redux/store';
 
 interface IProps {
     width: number;
-    auth: IAuth;
+    auth: IAuth | null;
     theme: Themes | null;
 }
 const MyApp = ({ Component, pageProps, width, auth, theme }: AppProps & IProps): ReactElement => {
@@ -54,7 +54,7 @@ const MyApp = ({ Component, pageProps, width, auth, theme }: AppProps & IProps):
     );
 };
 
-MyApp.getInitialProps = async (appContext: AppContextType<Router>) => {
+MyApp.getInitialProps = async (appContext: AppContextType<Router>): Promise<IProps> => {
     const toMatch = /mobile|iphone|ipod|android|blackberry|opera|mini|windows\sce|palm|smartphone|iemobile|ipad|android 3.0|xoom|sch-i800|playbook|tablet|kindle/i;
     const isMobile = toMatch.test(appContext?.ctx?.req?.headers?.['user-agent'] || '');
 

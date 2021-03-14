@@ -14,8 +14,8 @@ import useMedia from '../../../hooks/media.hook';
 import useTrans from '../../../hooks/trans.hook';
 import { IDropValue, IState } from '../../../interfaces';
 import types from '../../../redux/types';
-import LinkArrow from '../../Layout/LinkArrow';
 import Button from '../Button';
+import LinkArrow from '../LinkArrow';
 import OptionsDesktop from './OptionsDesktop';
 import OptionsMobile from './OptionsMobile';
 

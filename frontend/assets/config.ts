@@ -1,3 +1,13 @@
+import { faCommentAlt } from '@fortawesome/free-regular-svg-icons/faCommentAlt';
+import { faEnvelope } from '@fortawesome/free-regular-svg-icons/faEnvelope';
+import { faUser } from '@fortawesome/free-regular-svg-icons/faUser';
+import { faBullhorn } from '@fortawesome/free-solid-svg-icons/faBullhorn';
+import { faSlidersH } from '@fortawesome/free-solid-svg-icons/faSlidersH';
+import { faUserPlus } from '@fortawesome/free-solid-svg-icons/faUserPlus';
+
+import { ITabs, ITabsNum } from '../interfaces';
+import routes from './routes';
+
 const config = {
     baseUrl: {
         development: (version = 'v1'): string => 'http://phoqer.com/api/' + version,
@@ -10,7 +20,7 @@ const config = {
                 : 'http://fastapi:8001',
     },
     uploadsUrl: (version = 'v1'): string => `http://phoqer.com/api/${version}/upload/`,
-    host: 'http://phoqer.com/',
+    host: (lang = 'pl'): string => 'http://' + lang + '.phoqer.com/',
     img: 'http://phoqer.com',
     offers: {
         grid: {
@@ -28,6 +38,41 @@ const config = {
             mobile: 2,
         },
     },
+    userProfileLinks: (userId: string, T: { [key: string]: string }, count?: ITabsNum): ITabs[] => [
+        {
+            text: T.my_profile,
+            link: routes.profile.public(userId),
+            icon: faUser,
+        },
+        {
+            text: T.my_offers,
+            link: routes.profile.private.my_offers(userId),
+            icon: faBullhorn,
+        },
+        {
+            text: T.messages,
+            link: routes.profile.private.messages(userId),
+            icon: faEnvelope,
+            count: count?.messages,
+            blank: true,
+        },
+        {
+            text: T.reviews,
+            link: routes.profile.private.reviews(userId),
+            icon: faCommentAlt,
+            count: count?.reviews,
+        },
+        {
+            text: T.invite_friends,
+            link: routes.profile.private.referral(userId),
+            icon: faUserPlus,
+        },
+        {
+            text: T.settings,
+            link: routes.profile.private.settings(userId),
+            icon: faSlidersH,
+        },
+    ],
 };
 
 export default config;
