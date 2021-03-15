@@ -1,11 +1,11 @@
+import { Styles } from 'jss';
+
 import { Theme } from './theme';
 
-interface CSS {
-    [key: string]: string | number | CSS;
-}
 interface Template {
-    input: CSS;
-    outline: CSS;
+    input: Styles;
+    outline: Styles;
+    profileNav: Styles;
 }
 
 const template = (theme: Theme): Template => ({
@@ -39,6 +39,47 @@ const template = (theme: Theme): Template => ({
         },
         '&:hover': {
             boxShadow: '0 0 0 0.1rem' + theme.palette.primary[0],
+        },
+    },
+    profileNav: {
+        tabs: {
+            '& ul': {
+                display: 'flex',
+                justifyContent: 'flex-start',
+                flexWrap: 'wrap',
+                margin: theme.rem(0, -1, 6),
+            },
+
+            '& li': {
+                flexGrow: 1,
+
+                '@media (max-width: 1300px)': {
+                    flexGrow: 'unset',
+                },
+            },
+        },
+        item: {
+            display: 'flex',
+            alignItems: 'center',
+            margin: theme.rem(1),
+            padding: theme.rem(1.2, 2),
+            background: theme.palette.gray[0],
+            color: theme.palette.black[0],
+            fontSize: theme.rem(1.6),
+            transition: theme.transitions[0],
+            borderRadius: theme.radius,
+
+            '& svg': {
+                marginRight: theme.rem(1),
+            },
+
+            '&:hover': {
+                background: theme.palette.gray[1],
+            },
+        },
+        active: {
+            color: theme.palette.trueWhite,
+            background: theme.palette.primary[0],
         },
     },
 });

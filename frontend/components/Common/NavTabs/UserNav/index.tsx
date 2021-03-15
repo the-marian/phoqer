@@ -44,7 +44,7 @@ interface IProps {
     className?: string;
 }
 
-const UserNavLinks = ({ className }: IProps): ReactElement => {
+const UserNav = ({ className }: IProps): ReactElement => {
     const css = useStyles();
     const T = useTrans();
     const auth = useAuth();
@@ -77,4 +77,4 @@ const UserNavLinks = ({ className }: IProps): ReactElement => {
     );
 };
 
-export default UserNavLinks;
+export default UserNav;

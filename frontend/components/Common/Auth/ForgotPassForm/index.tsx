@@ -8,6 +8,7 @@ import { mailRegex } from '../../../../assets/helpers';
 import routes from '../../../../assets/routes';
 import template from '../../../../assets/template';
 import { Theme } from '../../../../assets/theme';
+import Button from '../../Button';
 import Input from '../../Input';
 
 const useStyles = createUseStyles((theme: Theme) => ({
@@ -112,7 +113,7 @@ const ForgotPassForm = (): ReactElement => {
             return;
         }
 
-        alert('fuck you!');
+        alert('hi!');
     };
 
     return (
@@ -135,9 +136,9 @@ const ForgotPassForm = (): ReactElement => {
                 />
             </div>
 
-            <button className={css.btn} type="submit">
+            <Button className={css.btn} type="submit">
                 ВОСТАНОВИТЬ ПАРОЛЬ
-            </button>
+            </Button>
 
             <Link href={routes.auth.login}>
                 <a className={css.link}>Войти в личный кабинет</a>
