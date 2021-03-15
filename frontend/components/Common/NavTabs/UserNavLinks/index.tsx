@@ -51,7 +51,7 @@ const UserNavLinks = ({ className }: IProps): ReactElement => {
     const dispatch = useDispatch();
 
     const [loading, setLoading] = useState(false);
-    const profileTabs: ITabs[] = config.userProfileLinks(String(auth?.id), T, { messages: 5, reviews: 9 });
+    const profileTabs: ITabs[] = config.userNavLinks(String(auth?.id), T, { messages: 5, reviews: 9 });
 
     const handleLogout = () => {
         setLoading(true);
