@@ -1,4 +1,5 @@
 import { GetServerSidePropsContext } from 'next';
+import { useRouter } from 'next/router';
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
@@ -20,13 +21,14 @@ const useStyles = createUseStyles((theme: Theme) => ({
 const Messages = (): ReactElement => {
     const T = useTrans();
     const css = useStyles();
+    const { query } = useRouter();
 
     return (
         <>
             <Meta title={'Мои обьявления'} h1={T.user_profile_on_phoqer} />
             <Main>
                 <Container>
-                    <ProfileNav />
+                    <ProfileNav profileId={query.profileId} active="messages" />
                     <div className={css.root}>
                         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias aliquid aperiam dolorem dolores eaque et,
                         excepturi fugiat impedit incidunt magni maiores molestiae neque quasi quidem, soluta sunt vero. Sequi,

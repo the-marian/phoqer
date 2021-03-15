@@ -4,6 +4,7 @@ import { createUseStyles } from 'react-jss';
 import config from '../../../../assets/config';
 import { Theme } from '../../../../assets/theme';
 import { IOfferCard } from '../../../../interfaces';
+import OffersLoader from '../../Preloaders/Offers';
 import EmptyOffers from '../EmptyOffers';
 import OfferCard from '../OffersCard';
 
@@ -31,12 +32,15 @@ const useStyles = createUseStyles((theme: Theme) => ({
 }));
 
 interface IProps {
+    loading?: boolean;
     data: IOfferCard[] | null;
 }
 
-const OffersList = ({ data }: IProps): ReactElement => {
+const OffersList = ({ loading, data }: IProps): ReactElement => {
     const css = useStyles();
-    return (
+    return loading ? (
+        <OffersLoader />
+    ) : (
         <>
             {data?.length ? (
                 <div className={css.grid}>
