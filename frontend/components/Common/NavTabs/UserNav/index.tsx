@@ -44,14 +44,14 @@ interface IProps {
     className?: string;
 }
 
-const UserNavLinks = ({ className }: IProps): ReactElement => {
+const UserNav = ({ className }: IProps): ReactElement => {
     const css = useStyles();
     const T = useTrans();
     const auth = useAuth();
     const dispatch = useDispatch();
 
     const [loading, setLoading] = useState(false);
-    const profileTabs: ITabs[] = config.userProfileLinks(String(auth?.id), T, { messages: 5, reviews: 9 });
+    const profileTabs: ITabs[] = config.userNavLinks(String(auth?.id), T, { messages: 5, reviews: 9 });
 
     const handleLogout = () => {
         setLoading(true);
@@ -77,4 +77,4 @@ const UserNavLinks = ({ className }: IProps): ReactElement => {
     );
 };
 
-export default UserNavLinks;
+export default UserNav;

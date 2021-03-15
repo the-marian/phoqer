@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react';
 
 import { IAuth } from '../../../../interfaces';
-import UserNavLinks from '../../../Common/NavTabs/UserNavLinks';
+import UserNav from '../../../Common/NavTabs/UserNav';
 import ProfileCard from '../../../Common/ProfileCard';
 
 interface IProps {
@@ -18,7 +18,7 @@ const AuthDrawer = ({ auth }: IProps): ReactElement | null => {
                 userLocation={auth?.location}
                 registerDate={auth?.date_joined}
             />
-            <UserNavLinks />
+            <UserNav />
         </>
     );
 };

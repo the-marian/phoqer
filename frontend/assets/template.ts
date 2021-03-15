@@ -1,11 +1,10 @@
+import { Styles } from 'jss';
+
 import { Theme } from './theme';
 
-interface CSS {
-    [key: string]: string | number | CSS;
-}
 interface Template {
-    input: CSS;
-    outline: CSS;
+    input: Styles;
+    outline: Styles;
 }
 
 const template = (theme: Theme): Template => ({

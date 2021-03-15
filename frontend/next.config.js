@@ -24,7 +24,12 @@ module.exports = {
             },
             {
                 source: '/profile/private/:profileId',
-                destination: '/profile/private/:profileId/my_offers',
+                destination: '/profile/private/:profileId/my_offers/all',
+                permanent: true,
+            },
+            {
+                source: '/profile/private/:profileId/my_offers',
+                destination: '/profile/private/:profileId/my_offers/all',
                 permanent: true,
             },
         ];
@@ -48,7 +53,7 @@ module.exports = {
         ],
     },
     images: {
-        domains: ['phoqer.com', 'pixabay.com', 'images-na.ssl-images-amazon.com', 'example.com'],
+        domains: ['phoqer.com'],
     },
     ...pwa,
 };
