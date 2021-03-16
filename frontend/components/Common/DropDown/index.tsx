@@ -165,6 +165,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
 
         '&:hover': {
             background: theme.palette.primary[0],
+            color: theme.palette.trueWhite,
         },
     },
     white: {
@@ -289,7 +290,7 @@ const DropDown = ({
                 )}
             </p>
 
-            <CSSTransition timeout={300} unmountOnExit in={drop && media}>
+            <CSSTransition timeout={200} unmountOnExit in={drop && media}>
                 <div className={clsx(css.container, top && css.top)} style={toLeft ? { right: 0 } : { left: 0 }}>
                     <div className={clsx(css.box, 'box')}>
                         <ValuesList data={data} onSelect={handleSelect} withSub={withSub} css={css} />

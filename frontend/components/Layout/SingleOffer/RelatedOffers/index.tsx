@@ -41,7 +41,7 @@ const RelatedOffers = (): ReactElement => {
 
     return (
         <div className={css.root}>
-            <SectionTitle link="Смотреть все" href={routes.offers.single(`?type=popular`)}>
+            <SectionTitle link="Смотреть все" href={routes.offers.single(`?top=true`)}>
                 Похожие товары
             </SectionTitle>
 

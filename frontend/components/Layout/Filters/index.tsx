@@ -1,18 +1,17 @@
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons/faChevronDown';
 import { faChevronUp } from '@fortawesome/free-solid-svg-icons/faChevronUp';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import { Params } from 'next/dist/next-server/server/router';
 import Link from 'next/link';
-// import { useRouter } from 'next/router';
-// import queryString from 'query-string';
-import React, { FormEvent, ReactElement, useState } from 'react';
+import { useRouter } from 'next/router';
+import queryString from 'query-string';
+import React, { FormEvent, ReactElement, useEffect, useState } from 'react';
 import { createUseStyles } from 'react-jss';
 import { useDispatch, useSelector } from 'react-redux';
 import { CSSTransition } from 'react-transition-group';
 
 import routes from '../../../assets/routes';
 import { Theme } from '../../../assets/theme';
-import { IDropList, IState } from '../../../interfaces';
+import { ISearch, IState } from '../../../interfaces';
 import { IOffers } from '../../../redux/config/offers/interfaces';
 import types from '../../../redux/types';
 import Checkboxes from '../../Common/Checkboxes';
@@ -170,26 +169,42 @@ const POPULAR: string[] = [
 ];
 
 interface ICheckbox {
-    [key: string]: boolean;
+    [key: string]: boolean | null;
 }
 
 const Filters = (): ReactElement => {
     const css = useStyles();
-    // const history = useRouter();
+    const history = useRouter();
     const dispatch = useDispatch();
 
-    const config = useSelector<IState, IOffers>(state => state.config.offers);
-
-    // filters value
-    const [period, setPeriod] = useState<IDropList | null>(null);
-    const [status, setStatus] = useState<IDropList | null>(null);
-    const [ordering, setOrdering] = useState<IDropList | null>(null);
     const [price, setPrice] = useState<[number, number]>([0, 200_000]);
-    const [checkboxes, setCheckboxes] = useState<ICheckbox>({
-        top: false,
-        deposit: false,
-        deliverable: false,
-    });
+
+    const config = useSelector<IState, IOffers>(state => state.config.offers);
+    const search = useSelector<IState, ISearch>(state => state.config.search);
+
+    useEffect(() => {
+        const { period, status, ordering, top, no_deposit, is_deliverable } = history.query;
+        dispatch({
+            type: types.OFFERS_SEARCH,
+            payload: { ...search, period, status, ordering, top, no_deposit, is_deliverable },
+        });
+    }, [history.query]);
+
+    const handleCheckboxes = (value: ICheckbox): void => {
+        history.push(
+            {
+                pathname: routes.offers.list,
+                query: queryString.stringify(
+                    { ...search, ...value },
+                    {
+                        skipNull: true,
+                    },
+                ),
+            },
+            undefined,
+            { shallow: true, scroll: false },
+        );
+    };
 
     // hide elements
     const handleCloseFilters = () => {
@@ -202,39 +217,20 @@ const Filters = (): ReactElement => {
     // submit form
     const handleSubmit = (event: FormEvent<HTMLFormElement>): void => {
         event.preventDefault();
+        window.scrollTo({ top: document.getElementById('products')?.offsetTop || 0, behavior: 'smooth' });
 
-        // // format query string object
-        // const query: Params = {
-        //     // add main search query
-        //     ...history.query,
-        //     // price
-        //     min_price: price[0],
-        //     max_price: price[1],
-        //     // status
-        //     status: status?.slug ? status.slug.toUpperCase() : null,
-        //     // ordering
-        //     ordering: ordering?.slug ? ordering.slug : null,
-        //     // period
-        //     period: period?.slug ? period.slug : null,
-        //     // checkboxes
-        //     top: checkboxes.top || null,
-        //     no_deposit: checkboxes.deposit || null,
-        //     is_deliverable: checkboxes.deliverable || null,
-        // };
-        //
-        // // SUBMIT
-        // history.push(
-        //     {
-        //         pathname: routes.offers.list,
-        //         query: queryString.stringify(query, {
-        //             skipNull: true,
-        //         }),
-        //     },
-        //     undefined,
-        //     { shallow: true },
-        // );
-        // window.scrollTo({ top: document.getElementById('products')?.offsetTop || 0, behavior: 'smooth' });
-        // dispatch({ type: types.SEARCH_OFFERS_START, payload: query });
+        // SUBMIT
+        history.push(
+            {
+                pathname: routes.offers.list,
+                query: queryString.stringify(search, {
+                    skipNull: true,
+                }),
+            },
+            undefined,
+            { shallow: true, scroll: false },
+        );
+        dispatch({ type: types.SEARCH_OFFERS_START, payload: search });
     };
 
     return (
@@ -258,19 +254,19 @@ const Filters = (): ReactElement => {
                 </div>
                 <hr />
 
-                <CSSTransition timeout={300} unmountOnExit in={config.filters}>
+                <CSSTransition timeout={200} unmountOnExit in={config.filters}>
                     <form action="#" method="post" className={css.form} onSubmit={handleSubmit}>
                         <div className={css.formInner}>
                             <PriceFilter data={price} initValue={[0, 200_000]} onChange={setPrice} />
-                            <Period value={period} onChange={setPeriod} />
-                            <Sort value={ordering} onChange={setOrdering} />
-                            <Status value={status} onChange={setStatus} />
+                            <Period />
+                            <Sort />
+                            <Status />
                         </div>
 
                         <Checkboxes
-                            values={checkboxes}
+                            values={{ top: search.top, no_deposit: search.no_deposit, is_deliverable: search.is_deliverable }}
+                            onChange={handleCheckboxes}
                             labels={['Только ТОП объявления', 'Без залога', 'C доставкой']}
-                            onChange={setCheckboxes}
                         />
 
                         <button className={css.btn} type="submit">
@@ -298,7 +294,7 @@ const Filters = (): ReactElement => {
                     </button>
                 </div>
                 <hr />
-                <CSSTransition timeout={300} unmountOnExit in={config.popularSearch}>
+                <CSSTransition timeout={200} unmountOnExit in={config.popularSearch}>
                     <ul className={css.list}>
                         {POPULAR.map(query => (
                             <li key={query}>

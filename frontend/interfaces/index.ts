@@ -1,4 +1,5 @@
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
+import { Params } from 'next/dist/next-server/server/router';
 import { AnyAction, Store } from 'redux';
 
 /**
@@ -21,7 +22,7 @@ export interface IDropList {
     sub?: { name: string; slug: string }[];
 }
 
-export interface ISearch {
+export interface ISearch extends Params {
     search: string | null;
     category: string | null;
     sub_category: string | null;
@@ -30,9 +31,9 @@ export interface ISearch {
     ordering: string | null;
     max_price: number | null;
     min_price: number | null;
-    top: boolean;
-    no_deposit: boolean;
-    is_deliverable: boolean;
+    top: boolean | null;
+    no_deposit: boolean | null;
+    is_deliverable: boolean | null;
 }
 
 export interface ITabs {

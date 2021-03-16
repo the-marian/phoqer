@@ -1,24 +1,13 @@
+import { useRouter } from 'next/router';
+import queryString from 'query-string';
 import React, { ReactElement } from 'react';
-import { createUseStyles } from 'react-jss';
+import { useSelector } from 'react-redux';
 
-import { Theme } from '../../../../assets/theme';
-import { IDropList, IDropValue } from '../../../../interfaces';
+import { findCategory } from '../../../../assets/helpers';
+import routes from '../../../../assets/routes';
+import { IDropList, IDropValue, ISearch, IState } from '../../../../interfaces';
 import DropDown from '../../../Common/DropDown';
-
-const useStyles = createUseStyles((theme: Theme) => ({
-    root: {
-        fontSize: theme.rem(1.4),
-        '@media (max-width: 768px)': {
-            fontSize: theme.rem(1.6),
-        },
-    },
-    title: {
-        marginBottom: theme.rem(1),
-        fontSize: 'inherit',
-        fontWeight: theme.text.weight[2],
-        color: theme.palette.black[0],
-    },
-}));
+import useStyles from '../index.styles';
 
 const FILTERS: IDropList[] = [
     { name: 'Почасовая', slug: 'hour' },
@@ -26,17 +15,33 @@ const FILTERS: IDropList[] = [
     { name: 'Помесячная', slug: 'month' },
 ];
 
-interface IProps {
-    value: IDropList | IDropValue | null;
-    onChange: (value: IDropValue | null) => void;
-}
-
-const Period = ({ value, onChange }: IProps): ReactElement => {
+const Period = (): ReactElement => {
     const css = useStyles();
+    const history = useRouter();
+
+    const search = useSelector<IState, ISearch>(state => state.config.search);
+    const defaultValue = search.period ? findCategory(FILTERS, search.period) : null;
+
+    const handleChange = (value: IDropValue | null): void => {
+        history.push(
+            {
+                pathname: routes.offers.list,
+                query: queryString.stringify(
+                    { ...search, period: value?.slug || null },
+                    {
+                        skipNull: true,
+                    },
+                ),
+            },
+            undefined,
+            { shallow: true, scroll: false },
+        );
+    };
+
     return (
         <div className={css.root}>
             <h4 className={css.title}>Период аренды</h4>
-            <DropDown defaultValue={value} data={FILTERS} onChange={onChange} placeholder="Оплата ..." />
+            <DropDown defaultValue={defaultValue} data={FILTERS} onChange={handleChange} placeholder="Оплата ..." />
         </div>
     );
 };

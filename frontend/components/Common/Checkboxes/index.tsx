@@ -55,15 +55,15 @@ const useStyles = createUseStyles((theme: Theme) => ({
 }));
 
 interface IState {
-    [key: string]: boolean;
+    [key: string]: boolean | null;
 }
 
-type Entries = [string, boolean];
+type Entries = [string, boolean | null];
 
 interface IProps {
     values: IState;
     labels: string[];
-    onChange: (values: { [key: string]: boolean }) => void;
+    onChange: (values: { [key: string]: boolean | null }) => void;
 }
 
 const Checkboxes = ({ values, labels, onChange }: IProps): ReactElement => {
@@ -73,7 +73,7 @@ const Checkboxes = ({ values, labels, onChange }: IProps): ReactElement => {
         event.stopPropagation();
         onChange({
             ...values,
-            [event.currentTarget.name]: !values[event.currentTarget.name],
+            [event.currentTarget.name]: !values[event.currentTarget.name] || null,
         });
     };
 
