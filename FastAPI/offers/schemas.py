@@ -77,3 +77,22 @@ class OffersListItem(BaseModel):
 class OffersListResponse(BaseModel):
     total: int = 0
     data: List[OffersListItem]
+
+
+class MyOffersListItem(BaseModel):
+    cover_image: Optional[HttpUrl] = None
+    currency: Optional[Currency] = None
+    description: Optional[str] = None
+    functions: List[str]
+    id: UUID
+    is_deliverable: Optional[bool] = None
+    is_promoted: bool = False
+    price: Optional[int] = None
+    pub_date: Optional[date] = None
+    title: Optional[str] = None
+    views: Optional[int] = None
+
+
+class MyOffersListResponse(BaseModel):
+    total: int = 0
+    data: List[MyOffersListItem]
