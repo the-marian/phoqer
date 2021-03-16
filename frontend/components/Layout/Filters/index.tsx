@@ -24,6 +24,10 @@ import Status from './Status';
 const useStyles = createUseStyles((theme: Theme) => ({
     root: {
         margin: theme.rem(4, 0),
+
+        '@media (max-width: 768px)': {
+            margin: theme.rem(2, 0),
+        },
     },
     form: {
         margin: theme.rem(2, 0, 4),
@@ -63,14 +67,13 @@ const useStyles = createUseStyles((theme: Theme) => ({
         },
 
         '@media (max-width: 768px)': {
+            '& > div:nth-of-type(1)': {
+                width: '100%',
+            },
+
             '& > div': {
                 width: '48%',
-            },
-        },
-
-        '@media (max-width: 450px)': {
-            '& > div': {
-                width: '100%',
+                margin: theme.rem(1, 0),
             },
         },
     },
@@ -172,7 +175,7 @@ interface ICheckbox {
 
 const Filters = (): ReactElement => {
     const css = useStyles();
-    const history = useRouter();
+    // const history = useRouter();
     const dispatch = useDispatch();
 
     const config = useSelector<IState, IOffers>(state => state.config.offers);
@@ -200,38 +203,38 @@ const Filters = (): ReactElement => {
     const handleSubmit = (event: FormEvent<HTMLFormElement>): void => {
         event.preventDefault();
 
-        // format query string object
-        const query: Params = {
-            // add main search query
-            ...history.query,
-            // price
-            min_price: price[0],
-            max_price: price[1],
-            // status
-            status: status?.slug ? status.slug.toUpperCase() : null,
-            // ordering
-            ordering: ordering?.slug ? ordering.slug : null,
-            // period
-            period: period?.slug ? period.slug : null,
-            // checkboxes
-            top: checkboxes.top || null,
-            no_deposit: checkboxes.deposit || null,
-            is_deliverable: checkboxes.deliverable || null,
-        };
-
-        // SUBMIT
-        history.push(
-            {
-                pathname: routes.offers.list,
-                query: queryString.stringify(query, {
-                    skipNull: true,
-                }),
-            },
-            undefined,
-            { shallow: true },
-        );
-        window.scrollTo({ top: document.getElementById('products')?.offsetTop || 0, behavior: 'smooth' });
-        dispatch({ type: types.SEARCH_OFFERS_START, payload: query });
+        // // format query string object
+        // const query: Params = {
+        //     // add main search query
+        //     ...history.query,
+        //     // price
+        //     min_price: price[0],
+        //     max_price: price[1],
+        //     // status
+        //     status: status?.slug ? status.slug.toUpperCase() : null,
+        //     // ordering
+        //     ordering: ordering?.slug ? ordering.slug : null,
+        //     // period
+        //     period: period?.slug ? period.slug : null,
+        //     // checkboxes
+        //     top: checkboxes.top || null,
+        //     no_deposit: checkboxes.deposit || null,
+        //     is_deliverable: checkboxes.deliverable || null,
+        // };
+        //
+        // // SUBMIT
+        // history.push(
+        //     {
+        //         pathname: routes.offers.list,
+        //         query: queryString.stringify(query, {
+        //             skipNull: true,
+        //         }),
+        //     },
+        //     undefined,
+        //     { shallow: true },
+        // );
+        // window.scrollTo({ top: document.getElementById('products')?.offsetTop || 0, behavior: 'smooth' });
+        // dispatch({ type: types.SEARCH_OFFERS_START, payload: query });
     };
 
     return (

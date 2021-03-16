@@ -21,6 +21,20 @@ export interface IDropList {
     sub?: { name: string; slug: string }[];
 }
 
+export interface ISearch {
+    search: string | null;
+    category: string | null;
+    sub_category: string | null;
+    period: string | null;
+    status: string | null;
+    ordering: string | null;
+    max_price: number | null;
+    min_price: number | null;
+    top: boolean;
+    no_deposit: boolean;
+    is_deliverable: boolean;
+}
+
 export interface ITabs {
     id: number | string;
     text: string;
@@ -201,6 +215,7 @@ export interface IState {
     auth: IAuth;
     config: {
         drawer: boolean;
+        search: ISearch;
         offers: {
             filters: boolean;
             popularSearch: boolean;

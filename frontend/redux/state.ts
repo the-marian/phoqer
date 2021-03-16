@@ -6,6 +6,19 @@ const initState: IState = {
     },
     config: {
         drawer: false,
+        search: {
+            search: null,
+            category: null,
+            sub_category: null,
+            period: null,
+            status: null,
+            ordering: null,
+            max_price: null,
+            min_price: null,
+            top: false,
+            no_deposit: false,
+            is_deliverable: false,
+        },
         offers: {
             filters: true,
             popularSearch: true,

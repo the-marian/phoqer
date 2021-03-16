@@ -16,6 +16,7 @@ import types from '../redux/types';
 
 const Index = (): ReactElement => {
     const T = useTrans();
+    console.log('sssss');
     return (
         <>
             <Meta title={T.home_page} />

@@ -12,7 +12,7 @@ import template from '../../../assets/template';
 import { Theme } from '../../../assets/theme';
 import useMedia from '../../../hooks/media.hook';
 import useTrans from '../../../hooks/trans.hook';
-import { IDropValue, IState } from '../../../interfaces';
+import { IDropValue, ISearch, IState } from '../../../interfaces';
 import types from '../../../redux/types';
 import Button from '../Button';
 import LinkArrow from '../LinkArrow';
@@ -112,12 +112,6 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
 }));
 
-interface IValue extends ParsedUrlQueryInput {
-    search: string | null;
-    category?: string;
-    sub_category?: string;
-}
-
 interface IProps {
     shallow?: boolean;
 }
@@ -128,35 +122,25 @@ const Search = ({ shallow = false }: IProps): ReactElement => {
     const history = useRouter();
     const dispatch = useDispatch();
     const desktop = useMedia(1100);
-    const [query, setQuery] = useState<IValue>({ search: String(history.query.search || '') || null });
 
-    // loading
+    const search = useSelector<IState, ISearch>(state => state.config.search);
     const loading = useSelector<IState, boolean>(state => state.offers.search.loading);
 
     const handleChange = (value: IDropValue | null): void => {
-        setQuery({ search: query.search, [value?.type === 'sub' ? 'sub_category' : 'category']: value?.slug || '' });
+        console.log(value);
     };
     const handleInput = (event: ChangeEvent<HTMLInputElement>): void => {
-        // window.history.replaceState({}, '', routes.offers.single + '?' + queryString.stringify({ search }));
-        setQuery({ ...query, search: event.target.value });
+        dispatch({ type: types.OFFERS_SEARCH, payload: { ...search, search: event.target.value || null } });
     };
-
-    useEffect(() => {
-        if (history.query.search !== query.search) setQuery({ search: String(history.query.search || '') || null });
-    }, [history.query]);
 
     const handleSubmit = (event: FormEvent<HTMLFormElement>): void => {
         event.preventDefault();
-        const data: Params = {};
-        if (query.search?.trim()) data.search = query.search;
-        if (query.category) data.category = query.category;
-        if (query.sub_category) data.sub_category = query.sub_category;
 
-        history.push({ pathname: routes.offers.list, query: data }, undefined, { shallow });
-        if (shallow) {
-            dispatch({ type: types.SEARCH_OFFERS_START, payload: data });
-            window.scrollTo({ top: document.getElementById('products')?.offsetTop || 0, behavior: 'smooth' });
-        }
+        // history.push({ pathname: routes.offers.list, query: data }, undefined, { shallow });
+        // if (shallow) {
+        //     dispatch({ type: types.SEARCH_OFFERS_START, payload: data });
+        //     window.scrollTo({ top: document.getElementById('products')?.offsetTop || 0, behavior: 'smooth' });
+        // }
     };
 
     return (
@@ -176,8 +160,8 @@ const Search = ({ shallow = false }: IProps): ReactElement => {
                             <FontAwesomeIcon icon={faSearch} />
                         </span>
                         <input
-                            value={query.search || ''}
-                            onChange={handleInput}
+                            // value={search.search || ''}
+                            // onChange={handleInput}
                             className={css.input}
                             type="text"
                             placeholder={T.what_are_you_looking_for}

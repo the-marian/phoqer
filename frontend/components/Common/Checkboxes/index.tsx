@@ -24,6 +24,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         color: theme.palette.black[0],
 
         '@media (max-width: 500px)': {
+            width: '100%',
             fontSize: theme.rem(1.6),
         },
     },
