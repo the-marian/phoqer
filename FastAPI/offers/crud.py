@@ -380,3 +380,53 @@ async def get_user_favorite_popular_offers(
     }
     rows = await database.fetch_all(query=query, values=values)
     return {row["offer_id"] for row in rows}
+
+
+async def get_offers_by_statuses(
+    user_id: int, statuses: List[str], limit: int, offset: int
+) -> List[Mapping]:
+    query = """
+    SELECT
+        cover_image,
+        currency,
+        description,
+        id,
+        is_deliverable,
+        price,
+        promote_til_date,
+        pub_date,
+        status,
+        title,
+        views
+    FROM offers_offer
+    WHERE status = ANY(:statuses) AND author_id = :user_id
+    LIMIT :limit
+    OFFSET :offset
+    """
+    values = {
+        "limit": limit,
+        "offset": offset,
+        "statuses": statuses,
+        "user_id": user_id,
+    }
+    return await database.fetch_all(query=query, values=values)
+
+
+async def count_founded_offers_by_statuses(
+    user_id: int, statuses: List[str], limit: int, offset: int
+) -> int:
+    query = """
+    SELECT COUNT(*)
+    FROM offers_offer
+    WHERE status = ANY(:statuses) AND author_id = :user_id
+    LIMIT :limit
+    OFFSET :offset
+    """
+    values = {
+        "limit": limit,
+        "offset": offset,
+        "statuses": statuses,
+        "user_id": user_id,
+    }
+    count = await database.fetch_one(query=query, values=values)
+    return int(count["count"]) if count else 0

@@ -109,3 +109,70 @@ def test_create_offer_not_authed(client):
         json=post_data,
     )
     assert response.status_code == status.HTTP_401_UNAUTHORIZED
+
+
+def test_get_my_offers_not_authed(client, auth_token):
+    response = client.get("offers/status/all")
+    assert response.status_code == status.HTTP_401_UNAUTHORIZED
+
+
+def test_get_my_offers(client, auth_token):
+    response = client.get("offers/status/all", headers=auth_token)
+    assert response.status_code == status.HTTP_200_OK
+    assert response.json() == {
+        "data": [
+            {
+                "cover_image": "https://example.com/iphone.jpeg",
+                "currency": "UAH",
+                "description": "New Phone 17",
+                "functions": ["DO_ACTIVE", "ARCHIVE"],
+                "id": "6c2d804e-b916-4d1c-82ec-73508ebd2845",
+                "is_deliverable": True,
+                "is_promoted": False,
+                "price": None,
+                "pub_date": "2021-01-15",
+                "title": None,
+                "views": 0,
+            },
+            {
+                "cover_image": None,
+                "currency": None,
+                "description": None,
+                "functions": ["DO_ACTIVE", "ARCHIVE"],
+                "id": "0e5b47f0-ac19-4d67-83d8-3046a987bc86",
+                "is_deliverable": None,
+                "is_promoted": False,
+                "price": None,
+                "pub_date": "2021-01-15",
+                "title": None,
+                "views": 0,
+            },
+            {
+                "cover_image": None,
+                "currency": None,
+                "description": None,
+                "functions": ["DO_ACTIVE", "ARCHIVE"],
+                "id": "d9560917-3db3-44a0-89a7-9b5076df73cd",
+                "is_deliverable": None,
+                "is_promoted": False,
+                "price": None,
+                "pub_date": "2021-01-15",
+                "title": None,
+                "views": 0,
+            },
+            {
+                "cover_image": "http://phoqer.com//mediafiles/0_PrBB7kx.jpg",
+                "currency": None,
+                "description": "sfsdsdf",
+                "functions": ["DO_ACTIVE", "ARCHIVE"],
+                "id": "ffbaafb0-b94e-4b27-9699-c04e25f09190",
+                "is_deliverable": False,
+                "is_promoted": False,
+                "price": 4334,
+                "pub_date": "2021-01-21",
+                "title": "name",
+                "views": 0,
+            },
+        ],
+        "total": 20,
+    }
