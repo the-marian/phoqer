@@ -79,3 +79,19 @@ async def get_user(user_id: int) -> Mapping:
     WHERE id = :id
     """
     return await database.fetch_one(query=query, values={"id": user_id}) or {}
+
+
+async def get_short_user(user_id: int) -> Mapping:
+    query = """
+    SELECT
+        date_joined,
+        first_name,
+        id,
+        last_login,
+        last_name,
+        location,
+        profile_img
+    FROM users_user
+    WHERE id = :id
+    """
+    return await database.fetch_one(query=query, values={"id": user_id}) or {}
