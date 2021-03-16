@@ -11,20 +11,9 @@
     background: rgba(0, 0, 0, 0.8);
 }
 
-.backdrop:global(.enter) .scroll {
-    transform: scale(0);
-    transition: 0.2s ease-in-out;
-    opacity: 0;
-}
 .backdrop:global(.enter-done) .scroll {
-    transform: scale(1);
-    transition: 0.2s ease-in-out;
+    transform: translateY(0);
     opacity: 1;
-}
-.backdrop:global(.exit) .scroll {
-    transform: scale(0);
-    transition: 0.2s ease-in-out;
-    opacity: 0;
 }
 
 .scroll {
@@ -36,4 +25,7 @@
     overflow-y: auto;
     scroll-behavior: smooth;
     -webkit-overflow-scrolling: touch;
+    transform: translateY(-5rem);
+    opacity: 0;
+    transition: 0.2s ease-in-out;
 }

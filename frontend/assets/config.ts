@@ -40,16 +40,19 @@ const config = {
     },
     userNavLinks: (userId: string, T: { [key: string]: string }, count?: ITabsNum): ITabs[] => [
         {
+            id: 'my_profile',
             text: T.my_profile,
             link: routes.profile.public(userId),
             icon: faUser,
         },
         {
+            id: 'my_offers',
             text: T.my_offers,
             link: routes.profile.private.my_offers(userId),
             icon: faBullhorn,
         },
         {
+            id: 'messages',
             text: T.messages,
             link: routes.profile.private.messages(userId),
             icon: faEnvelope,
@@ -57,17 +60,20 @@ const config = {
             blank: true,
         },
         {
+            id: 'reviews',
             text: T.reviews,
             link: routes.profile.private.reviews(userId),
             icon: faCommentAlt,
             count: count?.reviews,
         },
         {
+            id: 'referral',
             text: T.invite_friends,
             link: routes.profile.private.referral(userId),
             icon: faUserPlus,
         },
         {
+            id: 'settings',
             text: T.settings,
             link: routes.profile.private.settings(userId),
             icon: faSlidersH,
@@ -75,32 +81,37 @@ const config = {
     ],
     userProfileLinks: (userId: string, T: { [key: string]: string }, count?: ITabsNum): ITabs[] => [
         {
+            id: 'my_offers',
             text: T.my_offers,
             link: routes.profile.private.my_offers(userId),
             icon: faBullhorn,
         },
         {
-            text: T.messages,
-            link: routes.profile.private.messages(userId),
-            icon: faEnvelope,
-            count: count?.messages,
-            blank: true,
-        },
-        {
+            id: 'reviews',
             text: T.reviews,
             link: routes.profile.private.reviews(userId),
             icon: faCommentAlt,
             count: count?.reviews,
         },
         {
+            id: 'referral',
             text: T.invite_friends,
             link: routes.profile.private.referral(userId),
             icon: faUserPlus,
         },
         {
+            id: 'settings',
             text: T.settings,
             link: routes.profile.private.settings(userId),
             icon: faSlidersH,
+        },
+        {
+            id: 'messages',
+            text: T.messages,
+            link: routes.profile.private.messages(userId),
+            icon: faEnvelope,
+            count: count?.messages,
+            blank: true,
         },
     ],
 };

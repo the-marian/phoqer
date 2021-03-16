@@ -22,6 +22,7 @@ export interface IDropList {
 }
 
 export interface ITabs {
+    id: number | string;
     text: string;
     link: string;
     icon?: IconProp;

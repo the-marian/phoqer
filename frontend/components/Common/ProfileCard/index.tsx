@@ -107,7 +107,7 @@ const ProfileCard = ({
             return;
         }
 
-        alert('fuck you!');
+        alert('hi!');
     };
 
     return (

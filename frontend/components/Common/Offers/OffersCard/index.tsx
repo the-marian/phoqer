@@ -138,7 +138,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         fontSize: theme.rem(1.8),
 
         '&:hover': {
-            background: theme.palette.gray[1],
+            background: theme.palette.gray[0],
         },
 
         '@media (max-width: 500px)': {
