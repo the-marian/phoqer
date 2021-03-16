@@ -1,10 +1,10 @@
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons/faChevronDown';
 import { faChevronUp } from '@fortawesome/free-solid-svg-icons/faChevronUp';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Params } from 'next/dist/next-server/server/router';
+// import { Params } from 'next/dist/next-server/server/router';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
-import queryString from 'query-string';
+// import { useRouter } from 'next/router';
+// import queryString from 'query-string';
 import React, { FormEvent, ReactElement, useState } from 'react';
 import { createUseStyles } from 'react-jss';
 import { useDispatch, useSelector } from 'react-redux';
