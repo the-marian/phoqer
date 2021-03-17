@@ -9,7 +9,7 @@ interface IProps {
     total: number;
 }
 
-const OffersLoadMore = ({ onSubmit, total, loading }: IProps): ReactElement | null => {
+const OffersIntersection = ({ onSubmit, total, loading }: IProps): ReactElement | null => {
     const [innerLoading, setInnerLoading] = useState<boolean>(true);
     const [page, setPage] = useState<number>(1);
     const { ref, inView } = useInView({
@@ -41,4 +41,4 @@ const OffersLoadMore = ({ onSubmit, total, loading }: IProps): ReactElement | nu
     return total > page ? <OffersLoader ref={ref} /> : null;
 };
 
-export default OffersLoadMore;
+export default OffersIntersection;

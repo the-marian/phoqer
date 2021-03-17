@@ -1,4 +1,3 @@
-import { useRouter } from 'next/router';
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 import { useSelector } from 'react-redux';
@@ -6,7 +5,7 @@ import { useSelector } from 'react-redux';
 import { findCategory, findSubCategory, formatCatList } from '../../../../assets/helpers';
 import { Theme } from '../../../../assets/theme';
 import useTrans from '../../../../hooks/trans.hook';
-import { ICategories, IDropValue, IState } from '../../../../interfaces';
+import { ICategories, IDropValue, ISearch, IState } from '../../../../interfaces';
 import DropDown from '../../DropDown';
 import { modal } from '../../Modal';
 import RegionModal from '../../RegionModal';
@@ -60,16 +59,16 @@ interface IProps {
 const OptionsDesktop = ({ onChange }: IProps): ReactElement => {
     const css = useStyles();
     const T = useTrans();
-    const history = useRouter();
 
+    const search = useSelector<IState, ISearch>(state => state.config.search);
     const data = useSelector<IState, ICategories[]>(state => state.categories);
     const categories = formatCatList(data);
 
-    // init
-    const initCat = typeof history.query.category === 'object' ? history.query.category[0] : history.query.category;
-    const initSubCat =
-        typeof history.query.sub_category === 'object' ? history.query.sub_category[0] : history.query.sub_category;
-    const defaultValue = initCat ? findCategory(data, initCat) : initSubCat ? findSubCategory(data, initSubCat) : null;
+    const defaultValue = search.category
+        ? findCategory(data, search.category)
+        : search.sub_category
+        ? findSubCategory(data, search.sub_category)
+        : null;
 
     const handleRegionModal = () => {
         modal.open(<RegionModal />);

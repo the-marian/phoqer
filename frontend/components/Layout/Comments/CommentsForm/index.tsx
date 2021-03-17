@@ -8,13 +8,13 @@ import React, { ChangeEvent, FormEvent, KeyboardEvent, ReactElement, useState } 
 import { createUseStyles } from 'react-jss';
 import TextareaAutosize from 'react-textarea-autosize';
 
-import config from '../../../../../assets/config';
-import template from '../../../../../assets/template';
-import { Theme } from '../../../../../assets/theme';
-import useMedia from '../../../../../hooks/media.hook';
-import useTheme from '../../../../../hooks/theme.hook';
-import useUppy from '../../../../../hooks/uppy.hook';
-import notifications from '../../../../Common/Notifications';
+import config from '../../../../assets/config';
+import template from '../../../../assets/template';
+import { Theme } from '../../../../assets/theme';
+import useMedia from '../../../../hooks/media.hook';
+import useTheme from '../../../../hooks/theme.hook';
+import useUppy from '../../../../hooks/uppy.hook';
+import notifications from '../../../Common/Notifications';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     flex: {

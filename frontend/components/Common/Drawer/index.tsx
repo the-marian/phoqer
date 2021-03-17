@@ -114,7 +114,7 @@ const Drawer = ({ children, open, onToggle }: IProps): ReactElement | null => {
     };
 
     return (
-        <CSSTransition timeout={300} unmountOnExit in={open}>
+        <CSSTransition timeout={200} unmountOnExit in={open}>
             <Root onToggle={onToggle} open={open}>
                 <div className="inner">
                     <button type="button" className={css.button} onClick={handleToggle}>

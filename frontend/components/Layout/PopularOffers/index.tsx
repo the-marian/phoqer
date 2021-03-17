@@ -44,7 +44,7 @@ const PopularOffers = (): ReactElement => {
 
     return (
         <div className={css.root}>
-            <SectionTitle link={T.see_all} href={routes.offers.single(`?type=popular`)}>
+            <SectionTitle link={T.see_all} href={routes.offers.single(`?top=true`)}>
                 {T.popular_offers}
             </SectionTitle>
 

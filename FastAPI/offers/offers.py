@@ -6,6 +6,8 @@ from fastapi import APIRouter, Depends, HTTPException, Response, status
 from FastAPI.config import PAGE_SIZE
 from FastAPI.offers import crud
 from FastAPI.offers.schemas import (
+    MyOffersListItem,
+    MyOffersListResponse,
     OfferDraftReply,
     OfferDraftRequest,
     OffersListItem,
@@ -17,6 +19,68 @@ router = APIRouter(
     prefix="/offers",
     tags=["offers"],
 )
+
+
+@router.get("/status/{tab_name}", response_model=MyOffersListResponse)
+async def get_offers_for_tab(
+    tab_name: str,
+    user_id: int = Depends(get_current_user),
+    page: int = 1,
+) -> Dict:
+    offset = (page - 1) * PAGE_SIZE
+    limit = PAGE_SIZE
+    statuses = {
+        "all": [
+            "ACTIVE",
+            "ARCHIVED",
+            "DRAFT",
+            "FROZEN",
+            "INACTIVE",
+            "IN_RENT",
+            "REJECTED",
+            "REVIEW",
+        ],
+        "archive": ["ARCHIVED", "FROZEN", "INACTIVE", "REJECTED", "REVIEW"],
+        "draft": ["DRAFT"],
+        "active": ["ACTIVE"],
+        "in-rent": ["IN_RENT"],
+    }
+    functions = {
+        "ACTIVE": ["DO_INACTIVE", "ARCHIVE", "PROMOTE", "EDIT"],
+        "ARCHIVED": ["DELETE", "DO_ACTIVE"],
+        "DRAFT": ["DO_ACTIVE", "ARCHIVE"],
+        "FROZEN": ["ARCHIVE"],
+        "INACTIVE": ["DO_ACTIVE", "ARCHIVE"],
+        "IN_RENT": ["ARCHIVE"],
+        "REJECTED": ["ARCHIVE", "EDIT", "DO_REVIEW"],
+        "REVIEW": ["ARCHIVE"],
+    }
+    offers: list = await crud.get_offers_by_statuses(
+        user_id=user_id,
+        statuses=statuses[tab_name],
+        limit=limit,
+        offset=offset,
+    )
+    return {
+        "data": [
+            MyOffersListItem(
+                **offer,
+                functions=functions[offer["status"]],
+                is_promoted=date.today()
+                < (offer.get("promote_til_date") or date.today()),
+            )
+            for offer in offers
+        ],
+        "total": ceil(
+            await crud.count_founded_offers_by_statuses(
+                user_id=user_id,
+                statuses=statuses[tab_name],
+                limit=limit,
+                offset=offset,
+            )
+            / PAGE_SIZE
+        ),
+    }
 
 
 @router.get("/popular", response_model=List[OffersListItem])

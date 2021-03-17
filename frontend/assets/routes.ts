@@ -15,6 +15,7 @@ const routes = {
             reviews: (id: ID = ':profileId'): string => `/profile/private/${id}/reviews`,
             settings: (id: ID = ':profileId'): string => `/profile/private/${id}/settings`,
             referral: (id: ID = ':profileId'): string => `/profile/private/${id}/referral`,
+            analytics: (id: ID = ':profileId'): string => `/profile/private/${id}/analytics`,
         },
     },
     offers: {

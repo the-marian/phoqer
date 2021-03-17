@@ -58,7 +58,7 @@ def test_get_user_details(client):
         "bio": "lol kek cheburek",
         "birth_date": "2021-03-01",
         "communication_rate": 0,
-        "date_joined": "2021-03-08T00:00:00+00:00",
+        "date_joined": "2021-03-08",
         "description_rate": 0,
         "dislikes": 0,
         "email": "marian.zozulia@gmail.com",
@@ -70,4 +70,19 @@ def test_get_user_details(client):
         "profile_img": "https://example.com/dic_pic.jpeg",
         "response_rate": 0,
         "satisfaction_rate": 0,
+        "last_login": "2021-03-08T00:00:00+00:00",
+    }
+
+
+def test_get_short_user_details(client):
+    r = client.get("users/short/15")
+    assert r.status_code == status.HTTP_200_OK
+    assert r.json() == {
+        "date_joined": "2021-03-08",
+        "first_name": "Marian",
+        "id": 15,
+        "last_login": "2021-03-08T00:00:00+00:00",
+        "last_name": "Zozulia",
+        "location": "Warsaw",
+        "profile_img": "https://example.com/dic_pic.jpeg",
     }

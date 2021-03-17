@@ -2,6 +2,7 @@ import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
 import routes from '../../../../assets/routes';
+import template from '../../../../assets/template';
 import { Theme } from '../../../../assets/theme';
 import useTrans from '../../../../hooks/trans.hook';
 import { ITabs } from '../../../../interfaces';
@@ -20,16 +21,13 @@ const useStyles = createUseStyles((theme: Theme) => ({
         display: 'flex',
         alignItems: 'center',
         margin: theme.rem(1),
-        padding: theme.rem(1.2, 2),
+        padding: theme.rem(1, 1.8),
         background: theme.palette.gray[0],
         color: theme.palette.black[0],
-        fontSize: theme.rem(1.6),
+        fontSize: theme.rem(1.4),
         transition: theme.transitions[0],
         borderRadius: theme.radius,
-
-        '&:hover': {
-            background: theme.palette.gray[1],
-        },
+        ...template(theme).outline,
     },
     active: {
         color: theme.palette.trueWhite,
