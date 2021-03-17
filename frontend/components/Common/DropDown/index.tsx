@@ -23,15 +23,6 @@ const useStyles = createUseStyles((theme: Theme) => ({
         userSelect: 'none',
         outline: 'none',
     },
-    transparent: {
-        background: 'none !important',
-        '&:focus': {
-            boxShadow: 'none !important',
-        },
-        '&:hover': {
-            boxShadow: 'none !important',
-        },
-    },
     inner: {
         display: 'flex',
         alignItems: 'center',
@@ -61,6 +52,15 @@ const useStyles = createUseStyles((theme: Theme) => ({
         whiteSpace: 'nowrap',
         overflow: 'hidden',
         textOverflow: 'ellipsis',
+    },
+    transparent: {
+        background: 'none !important',
+        '&:focus': {
+            border: theme.border(0.1, 'transparent'),
+        },
+        '&:hover': {
+            border: theme.border(0.1, 'transparent'),
+        },
     },
     icon: {
         marginRight: theme.rem(0.6),

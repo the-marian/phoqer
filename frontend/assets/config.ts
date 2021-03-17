@@ -1,3 +1,4 @@
+import { faChartBar } from '@fortawesome/free-regular-svg-icons/faChartBar';
 import { faCommentAlt } from '@fortawesome/free-regular-svg-icons/faCommentAlt';
 import { faEnvelope } from '@fortawesome/free-regular-svg-icons/faEnvelope';
 import { faUser } from '@fortawesome/free-regular-svg-icons/faUser';
@@ -57,7 +58,6 @@ const config = {
             link: routes.profile.private.messages(userId),
             icon: faEnvelope,
             count: count?.messages,
-            blank: true,
         },
         {
             id: 'reviews',
@@ -77,6 +77,13 @@ const config = {
             text: T.settings,
             link: routes.profile.private.settings(userId),
             icon: faSlidersH,
+        },
+        {
+            id: 'analytics',
+            text: T.analytics,
+            link: routes.profile.private.analytics(userId),
+            icon: faChartBar,
+            blank: true,
         },
     ],
     userProfileLinks: (userId: string, T: { [key: string]: string }, count?: ITabsNum): ITabs[] => [
@@ -87,6 +94,13 @@ const config = {
             icon: faBullhorn,
         },
         {
+            id: 'messages',
+            text: T.messages,
+            link: routes.profile.private.messages(userId),
+            icon: faEnvelope,
+            count: count?.messages,
+        },
+        {
             id: 'reviews',
             text: T.reviews,
             link: routes.profile.private.reviews(userId),
@@ -106,11 +120,10 @@ const config = {
             icon: faSlidersH,
         },
         {
-            id: 'messages',
-            text: T.messages,
-            link: routes.profile.private.messages(userId),
-            icon: faEnvelope,
-            count: count?.messages,
+            id: 'analytics',
+            text: T.analytics,
+            link: routes.profile.private.analytics(userId),
+            icon: faChartBar,
             blank: true,
         },
     ],

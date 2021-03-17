@@ -3,8 +3,8 @@ import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 import { useSelector } from 'react-redux';
 
-import { Theme } from '../../../../../assets/theme';
-import { IComment, IState } from '../../../../../interfaces';
+import { Theme } from '../../../../assets/theme';
+import { IComment, IState } from '../../../../interfaces';
 import CommentsItem from './CommentsItem';
 
 const useStyles = createUseStyles((theme: Theme) => ({

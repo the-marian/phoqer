@@ -6,11 +6,11 @@ import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 import { useDispatch } from 'react-redux';
 
-import routes from '../../../../../assets/routes';
-import { Theme } from '../../../../../assets/theme';
-import { IComment } from '../../../../../interfaces';
-import types from '../../../../../redux/types';
-import { modal } from '../../../../Common/Modal';
+import routes from '../../../../assets/routes';
+import { Theme } from '../../../../assets/theme';
+import { IComment } from '../../../../interfaces';
+import types from '../../../../redux/types';
+import { modal } from '../../../Common/Modal';
 import CommentsForm from '../CommentsForm';
 
 const MAX_LENGTH = 200;
@@ -37,6 +37,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         right: 0,
         padding: theme.rem(1.2, 1.8),
         fontSize: theme.rem(1.6),
+        color: theme.palette.black[0],
     },
     author: {
         display: 'flex',

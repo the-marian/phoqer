@@ -3,12 +3,12 @@ import { faChevronRight } from '@fortawesome/free-solid-svg-icons/faChevronRight
 import { faRedo } from '@fortawesome/free-solid-svg-icons/faRedo';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useRouter } from 'next/router';
-// import queryString from 'query-string';
 import React, { ReactElement, useState } from 'react';
 import { createUseStyles } from 'react-jss';
 import ReactPaginate from 'react-paginate';
 
 import { Theme } from '../../../../assets/theme';
+import useShallowRouter from '../../../../hooks/routing.hook';
 import Button from '../../Button';
 
 const useStyles = createUseStyles((theme: Theme) => ({
@@ -93,18 +93,12 @@ interface IProps {
 const Pagination = ({ total, onClick, onMore, loading }: IProps): ReactElement | null => {
     const css = useStyles();
     const history = useRouter();
+    const shallow = useShallowRouter();
     const [page, setPage] = useState<number>(+history.query?.page || 1);
 
     const pushRouter = (page: number) => {
         setPage(page);
-        history.push(
-            {
-                pathname: history.route,
-                query: { ...history.query, page },
-            },
-            undefined,
-            { scroll: false, shallow: true },
-        );
+        shallow({ ...history.query, page });
     };
 
     const handlePagination = ({ selected }: { selected: number }): void => {

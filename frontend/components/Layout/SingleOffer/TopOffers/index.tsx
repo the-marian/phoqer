@@ -15,12 +15,12 @@ import Container from '../../Container';
 const useStyles = createUseStyles((theme: Theme) => ({
     root: {
         marginBottom: theme.rem(8),
-        maxHeight: theme.rem(200),
+        maxHeight: theme.rem(2000),
         padding: theme.rem(5, 0, 8),
         background: theme.palette.gray[0],
         fontSize: theme.rem(1.5),
         fontWeight: theme.text.weight[3],
-        transition: theme.transitions[0],
+        transition: theme.transitions[1],
 
         '@media (max-width: 800px)': {
             marginBottom: theme.rem(5),
@@ -34,7 +34,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
             opacity: 0,
         },
         '&.enter-done': {
-            maxHeight: theme.rem(200),
+            maxHeight: theme.rem(2000),
             marginBottom: theme.rem(8),
             padding: theme.rem(5, 0, 8),
             opacity: 1,
@@ -74,7 +74,7 @@ const TopOffers = (): ReactElement => {
                 <hr />
             </Container>
 
-            <CSSTransition timeout={200} unmountOnExit in={!hideTop}>
+            <CSSTransition timeout={600} unmountOnExit in={!hideTop}>
                 <div className={css.root} id="products">
                     <Container>
                         <SectionTitle link="Смотреть все" href={routes.offers.single(`?top=true`)}>
