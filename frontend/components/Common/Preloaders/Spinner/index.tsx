@@ -11,8 +11,8 @@ const useStyles = createUseStyles((theme: Theme) => ({
         fontSize: 'inherit',
     },
     img: {
-        height: theme.em(1),
-        width: theme.em(1),
+        height: theme.em(1.3),
+        width: theme.em(1.3),
     },
 }));
 

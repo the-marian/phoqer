@@ -1,24 +1,13 @@
+import { useRouter } from 'next/router';
+import queryString from 'query-string';
 import React, { ReactElement } from 'react';
-import { createUseStyles } from 'react-jss';
+import { useSelector } from 'react-redux';
 
-import { Theme } from '../../../../assets/theme';
-import { IDropList, IDropValue } from '../../../../interfaces';
+import { findCategory } from '../../../../assets/helpers';
+import routes from '../../../../assets/routes';
+import { IDropList, IDropValue, ISearch, IState } from '../../../../interfaces';
 import DropDown from '../../../Common/DropDown';
-
-const useStyles = createUseStyles((theme: Theme) => ({
-    root: {
-        fontSize: theme.rem(1.4),
-        '@media (max-width: 768px)': {
-            fontSize: theme.rem(1.6),
-        },
-    },
-    title: {
-        marginBottom: theme.rem(1),
-        fontSize: 'inherit',
-        fontWeight: theme.text.weight[2],
-        color: theme.palette.black[0],
-    },
-}));
+import useStyles from '../index.styles';
 
 const FILTERS: IDropList[] = [
     { name: 'От новых к старым', slug: 'pud_date' },
@@ -31,17 +20,33 @@ const FILTERS: IDropList[] = [
     { name: 'Сума залога (по возростанию)', slug: 'deposit_val' },
 ];
 
-interface IProps {
-    value: IDropList | IDropValue | null;
-    onChange: (value: IDropValue | null) => void;
-}
-
-const Sort = ({ value, onChange }: IProps): ReactElement => {
+const Sort = (): ReactElement => {
     const css = useStyles();
+    const history = useRouter();
+
+    const search = useSelector<IState, ISearch>(state => state.config.search);
+    const defaultValue = search.ordering ? findCategory(FILTERS, search.ordering) : null;
+
+    const handleChange = (value: IDropValue | null): void => {
+        history.push(
+            {
+                pathname: routes.offers.list,
+                query: queryString.stringify(
+                    { ...search, ordering: value?.slug || null },
+                    {
+                        skipNull: true,
+                    },
+                ),
+            },
+            undefined,
+            { shallow: true, scroll: false },
+        );
+    };
+
     return (
         <div className={css.root}>
             <h4 className={css.title}>Cортировать</h4>
-            <DropDown defaultValue={value} data={FILTERS} onChange={onChange} placeholder="Укажите тип сортировки" />
+            <DropDown defaultValue={defaultValue} data={FILTERS} onChange={handleChange} placeholder="Укажите тип сортировки" />
         </div>
     );
 };

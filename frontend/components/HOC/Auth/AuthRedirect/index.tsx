@@ -16,7 +16,7 @@ const AuthRedirect = ({ path, reverse = false }: IProps): null => {
 
     useEffect(() => {
         if (reverse ? token : !token) {
-            history.replace(path || routes.root);
+            history.replace(path || routes.auth.login);
         }
     }, [token]);
 

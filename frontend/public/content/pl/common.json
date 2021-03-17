@@ -34,6 +34,12 @@
     "uah": "uah",
     "day": "day",
 
+    "all": "Wszystko",
+    "draft": "Warcaby",
+    "active": "Aktywny",
+    "in_rent": "Wynajęty",
+    "archived": "Archiwum",
+
     "user_profile_on_phoqer": "Profil użytkownika w serwisie phoqer.com",
 
     "about_1": "Ты – это то, что тебя окружает. Мы полностью согласны с этой фразой. Вещи, которые мы покупаем, формируют человека. Иногда одна простая вещь может сделать нас по-настоящему счастливыми.",

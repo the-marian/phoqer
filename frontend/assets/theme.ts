@@ -113,5 +113,5 @@ export const theme = (value: Themes): Theme => ({
         family: 'Montserrat, sans-serif',
         weight: [200, 300, 400, 500, 600, 700],
     },
-    transitions: ['0.3s cubic-bezier(0.4, 0, 0.2, 1)', '0.6s cubic-bezier(0.4, 0, 0.2, 1)'],
+    transitions: ['0.2s cubic-bezier(0.4, 0, 0.2, 1)', '0.6s cubic-bezier(0.4, 0, 0.2, 1)'],
 });

@@ -14,9 +14,9 @@ import template from '../../../../assets/template';
 import { Theme } from '../../../../assets/theme';
 import { ILogin } from '../../../../interfaces';
 import types from '../../../../redux/types';
+import Button from '../../Button';
 import GoogleFacebook from '../../GoogleFacebook';
 import Input from '../../Input';
-import Spinner from '../../Preloaders/Spinner';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     title: {
@@ -214,9 +214,9 @@ const LoginForm = (): ReactElement => {
                 <a className={css.link}>Зарегистрироваться</a>
             </Link>
 
-            <button className={css.btn} style={loading ? { pointerEvents: 'none' } : {}} type="submit">
-                {loading ? <Spinner /> : 'ВОЙТИ'}
-            </button>
+            <Button loading={loading} className={css.btn} type="submit">
+                ВОЙТИ
+            </Button>
 
             <p className={css.text}>
                 или

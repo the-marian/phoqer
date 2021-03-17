@@ -1,3 +1,5 @@
+type ID = string | number | null;
+
 const routes = {
     root: '/',
     auth: {
@@ -6,20 +8,20 @@ const routes = {
         forgot_pass: '/auth/forgot_pass',
     },
     profile: {
-        public: (id: string | number | null = ':profileId'): string => `/profile/public/${id}`,
+        public: (id: ID = ':profileId'): string => `/profile/public/${id}`,
         private: {
-            my_offers: (id: string | number | null = ':profileId'): string => `/profile/private/${id}/my_offers`,
-            messages: (id: string | number | null = ':profileId'): string => `/profile/private/${id}/messages`,
-            reviews: (id: string | number | null = ':profileId'): string => `/profile/private/${id}/reviews`,
-            settings: (id: string | number | null = ':profileId'): string => `/profile/private/${id}/settings`,
-            referral: (id: string | number | null = ':profileId'): string => `/profile/private/${id}/referral`,
+            my_offers: (id: ID = ':profileId', status = 'all'): string => `/profile/private/${id}/my_offers/${status}`,
+            messages: (id: ID = ':profileId'): string => `/profile/private/${id}/messages`,
+            reviews: (id: ID = ':profileId'): string => `/profile/private/${id}/reviews`,
+            settings: (id: ID = ':profileId'): string => `/profile/private/${id}/settings`,
+            referral: (id: ID = ':profileId'): string => `/profile/private/${id}/referral`,
         },
     },
     offers: {
-        single: (id: string | number | null = ':offerId'): string => `/offers/${id}`,
+        single: (id: ID = ':offerId'): string => `/offers/${id}`,
         list: '/offers',
     },
-    new_offer: (step: string | number | null = ':step'): string => `/new_offer/${step}`,
+    new_offer: (step: ID = ':step'): string => `/new_offer/${step}`,
     favorite: '/favorite',
 };
 

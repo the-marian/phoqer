@@ -8,9 +8,9 @@ import { modal } from '../index';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     wrp: {
+        position: 'relative',
         display: 'flex',
         flexDirection: 'column',
-        position: 'relative',
         width: '100vw',
         height: '100vh',
         maxHeight: '100vh',
@@ -46,7 +46,7 @@ interface IProps {
 const FullPageModal = ({ children }: IProps): ReactElement => {
     const css = useStyles();
     return (
-        <div className={css.wrp} aria-hidden>
+        <div className={css.wrp}>
             <button type="button" className={css.button} onClick={modal.close}>
                 <FontAwesomeIcon icon={faTimes} />
             </button>

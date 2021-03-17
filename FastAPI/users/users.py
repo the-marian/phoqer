@@ -1,10 +1,9 @@
 from typing import Mapping
 
-from fastapi import APIRouter, HTTPException, Response, status, Depends
+from fastapi import APIRouter, Depends, HTTPException, Response, status
 from fastapi.responses import RedirectResponse
-
 from FastAPI.users import crud
-from FastAPI.users.schemas import User, UserCreateRequest
+from FastAPI.users.schemas import ShortUser, User, UserCreateRequest
 from FastAPI.users.utils import (
     get_activation_jwt,
     get_password_hash,
@@ -62,6 +61,14 @@ async def logged_in_user_details(user_id: int = Depends(get_current_user)) -> Ma
     Get logged in user details
     """
     return await crud.get_user(user_id)
+
+
+@router.get("/short/{user_id}", response_model=ShortUser)
+async def get_short_user_details(user_id: int) -> Mapping:
+    """
+    Get short user details by user_id
+    """
+    return await crud.get_short_user(user_id)
 
 
 @router.get("/{user_id}", response_model=User)
