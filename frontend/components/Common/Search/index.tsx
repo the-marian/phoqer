@@ -10,6 +10,7 @@ import routes from '../../../assets/routes';
 import template from '../../../assets/template';
 import { Theme } from '../../../assets/theme';
 import useMedia from '../../../hooks/media.hook';
+import useShallowRouter from '../../../hooks/routing.hook';
 import useTrans from '../../../hooks/trans.hook';
 import { IDropValue, ISearch, IState } from '../../../interfaces';
 import types from '../../../redux/types';
@@ -120,6 +121,7 @@ const Search = ({ shallow = false }: IProps): ReactElement => {
     const css = useStyles();
     const history = useRouter();
     const dispatch = useDispatch();
+    const shallowPush = useShallowRouter();
     const desktop = useMedia(1100);
 
     const searchConfig = useSelector<IState, ISearch>(state => state.config.search);
@@ -135,23 +137,11 @@ const Search = ({ shallow = false }: IProps): ReactElement => {
     }, [history.query]);
 
     const handleChange = (value: IDropValue | null): void => {
-        history.push(
-            {
-                pathname: routes.offers.list,
-                query: queryString.stringify(
-                    {
-                        ...searchConfig,
-                        category: value?.type === 'main' ? value?.slug : null,
-                        sub_category: value?.type === 'sub' ? value?.slug : null,
-                    },
-                    {
-                        skipNull: true,
-                    },
-                ),
-            },
-            undefined,
-            { shallow: true, scroll: false },
-        );
+        shallowPush({
+            ...searchConfig,
+            category: value?.type === 'main' ? value?.slug : null,
+            sub_category: value?.type === 'sub' ? value?.slug : null,
+        });
     };
     const handleInput = (event: ChangeEvent<HTMLInputElement>): void => {
         dispatch({ type: types.OFFERS_SEARCH, payload: { ...searchConfig, search: event.target.value || null } });
@@ -173,8 +163,10 @@ const Search = ({ shallow = false }: IProps): ReactElement => {
             );
 
         if (shallow) {
+            shallowPush(searchConfig);
             dispatch({ type: types.SEARCH_OFFERS_START, payload: searchConfig });
-            window.scrollTo({ top: document.getElementById('products')?.offsetTop || 0, behavior: 'smooth' });
+            if (searchConfig.search?.trim())
+                window.scrollTo({ top: document.getElementById('products')?.offsetTop || 0, behavior: 'smooth' });
         }
     };
 

@@ -9,7 +9,7 @@ import IAction, { IBody } from './interfaces';
 
 function* postOffer({ payload, history }: IAction) {
     try {
-        const form = yield select<(state: IState) => INewOffer>(state => state.offers.newOffer);
+        const form: INewOffer = yield select<(state: IState) => INewOffer>(state => state.offers.newOffer);
 
         const {
             title,

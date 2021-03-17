@@ -48,11 +48,11 @@ const useStyles = createUseStyles((theme: Theme) => ({
 }));
 
 interface IProps {
-    profileId: string | string[];
+    profileId?: string | string[];
     active?: number | string;
 }
 
-const ProfileOffersNav = ({ profileId, active }: IProps): ReactElement => {
+const ProfileOffersNav = ({ profileId, active }: IProps): ReactElement | null => {
     const T = useTrans();
     const css = useStyles();
 
@@ -85,7 +85,9 @@ const ProfileOffersNav = ({ profileId, active }: IProps): ReactElement => {
         },
     ];
 
-    return <NavTabs tabs={offersTab} classNameWrp={css.tabs} className={css.item} activeClass={css.active} active={active} />;
+    return profileId ? (
+        <NavTabs tabs={offersTab} classNameWrp={css.tabs} className={css.item} activeClass={css.active} active={active} />
+    ) : null;
 };
 
 export default ProfileOffersNav;
