@@ -7,6 +7,7 @@ import Logo from '../../Common/Logo';
 import Socials from '../../Common/Socials';
 import Container from '../Container';
 import SiteMap from './SiteMap';
+import Warning from './Warning';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     footer: {
@@ -31,6 +32,7 @@ const Footer = (): ReactElement => {
     const mobile = useMedia(768);
     return (
         <footer className={css.footer}>
+            <Warning />
             <Container>
                 <Logo center={!mobile} />
                 <div className={css.wrp}>
