@@ -7,9 +7,9 @@ import routes from '../../../../assets/routes';
 import { Theme } from '../../../../assets/theme';
 import { IOfferStatic, IState } from '../../../../interfaces';
 import types from '../../../../redux/types';
-import CheckTitle from '../../../Common/CheckTitle';
 import OffersList from '../../../Common/Offers/OffersList';
 import SectionTitle from '../../../Common/SectionTitle';
+import Switcher from '../../../Common/Switcher';
 import Container from '../../Container';
 
 const useStyles = createUseStyles((theme: Theme) => ({
@@ -46,6 +46,8 @@ const useStyles = createUseStyles((theme: Theme) => ({
         },
         '&.exit': {
             maxHeight: 0,
+            padding: 0,
+            marginBottom: 0,
             opacity: 0,
         },
     },
@@ -68,10 +70,9 @@ const TopOffers = (): ReactElement => {
     return (
         <>
             <Container className={css.checkbox}>
-                <CheckTitle value={hideTop} onChange={handleHide}>
+                <Switcher onClick={handleHide} value={hideTop} off="open" on="close">
                     Скрыть ТОП обьявления
-                </CheckTitle>
-                <hr />
+                </Switcher>
             </Container>
 
             <CSSTransition timeout={600} unmountOnExit in={!hideTop}>

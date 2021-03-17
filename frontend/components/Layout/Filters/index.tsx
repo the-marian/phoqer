@@ -201,6 +201,7 @@ const Filters = (): ReactElement => {
 
     const handleCheckboxes = (value: ICheckbox): void => {
         shallow({ ...search, ...value });
+        dispatch({ type: types.OFFERS_SEARCH, payload: { ...search, ...value } });
     };
 
     // submit form
