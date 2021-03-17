@@ -94,7 +94,7 @@ const Pagination = ({ total, onClick, onMore, loading }: IProps): ReactElement |
     const css = useStyles();
     const history = useRouter();
     const shallow = useShallowRouter();
-    const [page, setPage] = useState<number>(+history.query?.page || 1);
+    const [page, setPage] = useState<number>(+(history.query?.page || 1));
 
     const pushRouter = (page: number) => {
         setPage(page);

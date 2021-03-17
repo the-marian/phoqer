@@ -75,7 +75,7 @@ const PublicProfilePage = (): ReactElement => {
 
 export const getServerSideProps = wrapper.getServerSideProps(
     async (ctx): Promise<void> => {
-        ctx.store.dispatch({ type: types.GET_PUBLIC_PROFILE_START, payload: +ctx.query?.profileId });
+        ctx.store.dispatch({ type: types.GET_PUBLIC_PROFILE_START, payload: +(ctx.query?.profileId || 0) });
         ctx.store.dispatch(END);
         await (ctx.store as IStore).sagaTask?.toPromise();
     },

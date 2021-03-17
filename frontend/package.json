@@ -79,10 +79,5 @@
         "hooks": {
             "pre-commit": "npm run lint"
         }
-    },
-    "lint-staged": {
-        "./**/*.{js,jsx,ts,tsx,css,json}": [
-            "npm run lint"
-        ]
     }
 }
