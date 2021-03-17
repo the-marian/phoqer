@@ -6,8 +6,21 @@ const initState: IState = {
     },
     config: {
         drawer: false,
+        search: {
+            search: null,
+            category: null,
+            sub_category: null,
+            period: null,
+            status: null,
+            ordering: null,
+            max_price: null,
+            min_price: null,
+            top: null,
+            no_deposit: null,
+            is_deliverable: null,
+        },
         offers: {
-            filters: true,
+            filters: false,
             popularSearch: true,
             hideTop: false,
         },

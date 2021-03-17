@@ -1,4 +1,3 @@
-import { IState } from '../../../interfaces';
 import types from '../../types';
 
 export interface IOffers {
@@ -9,5 +8,5 @@ export interface IOffers {
 
 export default interface IAction {
     type: typeof types.OFFERS_HIDE_POPULAR_SEARCH | typeof types.OFFERS_HIDE_FILTERS | typeof types.OFFERS_HIDE_TOP;
-    payload?: boolean | IState | IOffers;
+    payload?: boolean | IOffers;
 }

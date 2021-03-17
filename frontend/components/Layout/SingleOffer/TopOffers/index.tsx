@@ -74,10 +74,10 @@ const TopOffers = (): ReactElement => {
                 <hr />
             </Container>
 
-            <CSSTransition timeout={300} unmountOnExit in={!hideTop}>
+            <CSSTransition timeout={200} unmountOnExit in={!hideTop}>
                 <div className={css.root} id="products">
                     <Container>
-                        <SectionTitle link="Смотреть все" href={routes.offers.single(`?type=popular`)}>
+                        <SectionTitle link="Смотреть все" href={routes.offers.single(`?top=true`)}>
                             TOП Объявления
                         </SectionTitle>
                         <OffersList data={data} />

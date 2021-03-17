@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { END } from 'redux-saga';
 
 import About from '../../components/Common/About';
-import OffersLoadMore from '../../components/Common/LoadMore/Offers';
+import Pagination from '../../components/Common/LoadMore/Pagination';
 import Meta from '../../components/Common/Meta';
 import OffersList from '../../components/Common/Offers/OffersList';
 import Search from '../../components/Common/Search';
@@ -25,7 +25,10 @@ const OffersPage = (): ReactElement => {
     const dispatch = useDispatch();
     const { data, loading } = useSelector<IState, IOfferDynamic>(state => state.offers.search);
 
-    const handleLoadMore = (page: number): void => {
+    const handleClick = (page: number): void => {
+        dispatch({ type: types.SEARCH_OFFERS_START, payload: { ...query, page } });
+    };
+    const handleMore = (page: number): void => {
         dispatch({ type: types.SEARCH_OFFERS_PAGINATION_START, payload: { ...query, page } });
     };
 
@@ -43,7 +46,7 @@ const OffersPage = (): ReactElement => {
                 <Container>
                     <SectionTitle>Результаты поиска</SectionTitle>
                     <OffersList data={data?.data} />
-                    <OffersLoadMore loading={loading} total={data?.total || 0} onSubmit={handleLoadMore} />
+                    <Pagination loading={loading} total={data.total} onClick={handleClick} onMore={handleMore} />
                 </Container>
 
                 <About />
