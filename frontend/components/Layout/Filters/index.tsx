@@ -182,7 +182,7 @@ const Filters = (): ReactElement => {
     const search = useSelector<IState, ISearch>(state => state.config.search);
 
     useEffect(() => {
-        shallow(routes.offers.list, search);
+        shallow(search);
     }, [search]);
 
     // hide elements

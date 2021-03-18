@@ -7,7 +7,6 @@ import React, { ReactElement, useState } from 'react';
 import { createUseStyles } from 'react-jss';
 import ReactPaginate from 'react-paginate';
 
-import routes from '../../../../assets/routes';
 import { Theme } from '../../../../assets/theme';
 import useShallowRouter from '../../../../hooks/routing.hook';
 import Button from '../../Button';
@@ -99,7 +98,7 @@ const Pagination = ({ total, onClick, onMore, loading }: IProps): ReactElement |
 
     const pushRouter = (page: number) => {
         setPage(page);
-        shallow(routes.offers.list, { ...history.query, page });
+        shallow({ ...history.query, page });
     };
 
     const handlePagination = ({ selected }: { selected: number }): void => {

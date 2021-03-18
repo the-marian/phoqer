@@ -128,7 +128,7 @@ const Search = ({ shallow = false }: IProps): ReactElement => {
     const loading = useSelector<IState, boolean>(state => state.offers.search.loading);
 
     useEffect(() => {
-        shallowPush(routes.offers.list, searchConfig);
+        shallowPush(searchConfig);
     }, [searchConfig]);
 
     const handleChange = (value: IDropValue | null): void => {
