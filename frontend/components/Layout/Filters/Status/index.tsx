@@ -1,11 +1,9 @@
-import { useRouter } from 'next/router';
-import queryString from 'query-string';
 import React, { ReactElement } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { findCategory } from '../../../../assets/helpers';
-import routes from '../../../../assets/routes';
 import { IDropList, IDropValue, ISearch, IState } from '../../../../interfaces';
+import types from '../../../../redux/types';
 import DropDown from '../../../Common/DropDown';
 import useStyles from '../index.styles';
 
@@ -17,25 +15,13 @@ const FILTERS: IDropList[] = [
 
 const Status = (): ReactElement => {
     const css = useStyles();
-    const history = useRouter();
+    const dispatch = useDispatch();
 
     const search = useSelector<IState, ISearch>(state => state.config.search);
     const defaultValue = search.status ? findCategory(FILTERS, search.status) : null;
 
     const handleChange = (value: IDropValue | null): void => {
-        history.push(
-            {
-                pathname: routes.offers.list,
-                query: queryString.stringify(
-                    { ...search, status: value?.slug || null },
-                    {
-                        skipNull: true,
-                    },
-                ),
-            },
-            undefined,
-            { shallow: true, scroll: false },
-        );
+        dispatch({ type: types.OFFERS_SEARCH, payload: { ...search, status: value?.slug || null } });
     };
 
     return (

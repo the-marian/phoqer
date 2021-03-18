@@ -1,11 +1,11 @@
 import { Params } from 'next/dist/next-server/server/router';
 import queryString from 'query-string';
 
-const push = (query: Params): void => {
+const push = (pathname: string, query: Params): void => {
     window.history.pushState(
         {},
         window.location.origin,
-        window.location.pathname +
+        pathname +
             '?' +
             queryString.stringify(query, {
                 skipNull: true,
@@ -13,7 +13,7 @@ const push = (query: Params): void => {
     );
 };
 
-const useShallowRouter = (): ((query: Params) => void) => {
+const useShallowRouter = (): ((pathname: string, query: Params) => void) => {
     return push;
 };
 

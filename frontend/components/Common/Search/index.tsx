@@ -127,20 +127,18 @@ const Search = ({ shallow = false }: IProps): ReactElement => {
     const searchConfig = useSelector<IState, ISearch>(state => state.config.search);
     const loading = useSelector<IState, boolean>(state => state.offers.search.loading);
 
-    // init page
     useEffect(() => {
-        const { search, category, sub_category } = history.query;
-        dispatch({
-            type: types.OFFERS_SEARCH,
-            payload: { ...searchConfig, search, category, sub_category },
-        });
-    }, [history.query]);
+        shallowPush(routes.offers.list, searchConfig);
+    }, [searchConfig]);
 
     const handleChange = (value: IDropValue | null): void => {
-        shallowPush({
-            ...searchConfig,
-            category: value?.type === 'main' ? value?.slug : null,
-            sub_category: value?.type === 'sub' ? value?.slug : null,
+        dispatch({
+            type: types.OFFERS_SEARCH,
+            payload: {
+                ...searchConfig,
+                category: value?.type === 'main' ? value?.slug : null,
+                sub_category: value?.type === 'sub' ? value?.slug : null,
+            },
         });
     };
     const handleInput = (event: ChangeEvent<HTMLInputElement>): void => {
@@ -150,7 +148,7 @@ const Search = ({ shallow = false }: IProps): ReactElement => {
     const handleSubmit = (event: FormEvent<HTMLFormElement>): void => {
         event.preventDefault();
 
-        if (!shallow || searchConfig.search !== history.query.search)
+        if (!shallow || searchConfig.search !== history.query.search) {
             history.push(
                 {
                     pathname: routes.offers.list,
@@ -161,9 +159,9 @@ const Search = ({ shallow = false }: IProps): ReactElement => {
                 undefined,
                 { shallow },
             );
+        }
 
         if (shallow) {
-            shallowPush(searchConfig);
             dispatch({ type: types.SEARCH_OFFERS_START, payload: searchConfig });
             if (searchConfig.search?.trim())
                 window.scrollTo({ top: document.getElementById('products')?.offsetTop || 0, behavior: 'smooth' });

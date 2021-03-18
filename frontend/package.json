@@ -4,7 +4,7 @@
     "license": "MIT",
     "scripts": {
         "dev": "npm run lint && next -p 4000",
-        "build": "next build",
+        "build": "npm run lint && next build",
         "start": "next start -p 4000",
         "lint": "prettier --write './**/*.{js,jsx,ts,tsx,css,json}' --config ./.prettierrc && eslint --fix ./",
         "format": "prettier --write './**/*.{js,jsx,ts,tsx,css,json}' --config ./.prettierrc",
