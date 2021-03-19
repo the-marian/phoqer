@@ -162,6 +162,7 @@ const Search = ({ shallow = false }: IProps): ReactElement => {
         }
 
         if (shallow) {
+            shallowPush(searchConfig);
             dispatch({ type: types.SEARCH_OFFERS_START, payload: searchConfig });
             if (searchConfig.search?.trim())
                 window.scrollTo({ top: document.getElementById('products')?.offsetTop || 0, behavior: 'smooth' });
