@@ -1,0 +1,24 @@
+@import "../../styles/variables.scss";
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 4rem;
+    background: $primary-01;
+}
+
+.button {
+    margin-right: 4rem;
+    font-size: 1.6rem;
+    color: $white-01;
+
+    span {
+        margin-left: 1rem;
+    }
+}
+
+.logo {
+    display: block;
+    width: 10rem;
+}

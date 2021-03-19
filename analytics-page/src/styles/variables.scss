@@ -1,0 +1,46 @@
+//colors
+$white-01: #FFFFFF;
+$black-01: #222222;
+$black-02: #242424;
+
+$glass-01: rgba(255, 255, 255, 0.9);
+$glass-02: rgba(250, 250, 250, 0.9);
+
+$gray-01: #f9f9f9;
+$gray-02: #e0e0e8;
+$gray-03: #909bac;
+$gray-04: #999999;
+$gray-05: #444444;
+
+$red-01: #DB162F;
+$green-01: #22cc52;
+
+$soft-01: linear-gradient(154deg,#fff8e0,#fbddd7);
+$soft-02: linear-gradient(172deg,#faffd4,#88e4b8);
+$soft-03: linear-gradient(168deg,#f9ecff,#ddfcf8);
+$soft-04: linear-gradient(159deg,#e9c4ff,#ffd0d0);
+$soft-05: linear-gradient(168deg,#ddf9ff,#cfc6ff);
+$soft-06: linear-gradient(168deg,#e9ffea,#d1ddf7);
+
+$grad-01: linear-gradient(90deg, #007CF0, #00DFD8);
+$grad-02: linear-gradient(90deg, #7928CA, #FF0080);
+$grad-03: linear-gradient(90deg, #FF4D4D, #F9CB28);
+
+$yellow-01: #EDBF18;
+$yellow-01: #FAF0CA;
+$primary-01: #007aff;
+$primary-01: #0040ff;
+$secondary-01: #EDFBC9;
+$modal-01: rgba(0, 0, 0, 0.6);
+
+// markup
+$radius: 0.6rem;
+
+$shadow-01: 0 2rem 2.6rem rgba(0,0,0,0.015);
+$shadow-02: 0 0.1rem 0.2rem rgba(0,0,0,0.08);
+$shadow-03: 0 1rem 2rem rgba(0,0,0,0.08), 0 0.6rem 0.6rem rgba(0,0,0,0.1);
+$shadow-04: 0 1.4rem 2.8rem rgba(0,0,0,0.08), 0 1rem 1rem rgba(0,0,0,0.12);
+$shadow-05: 0 1.9rem 3.8rem rgba(0,0,0,0.1), 0 1.5rem 1.2rem rgba(0,0,0,0.12);
+
+$transitions-01: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+$transitions-02: 0.6s cubic-bezier(0.4, 0, 0.2, 1);
