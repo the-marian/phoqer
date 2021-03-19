@@ -1,16 +1,15 @@
 import { GetServerSidePropsContext } from 'next';
-import { useRouter } from 'next/router';
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
-import { serverRedirect } from '../../../../../assets/helpers';
-import { Theme } from '../../../../../assets/theme';
-import Meta from '../../../../../components/Common/Meta';
-import ProfileNav from '../../../../../components/Common/NavTabs/ProfileNav';
-import Container from '../../../../../components/Layout/Container';
-import Main from '../../../../../components/Layout/TagMain';
-import useTrans from '../../../../../hooks/trans.hook';
-import { wrapper } from '../../../../../redux/store';
+import { serverRedirect } from '../../../../assets/helpers';
+import { Theme } from '../../../../assets/theme';
+import Meta from '../../../../components/Common/Meta';
+import ProfileNav from '../../../../components/Common/NavTabs/ProfileNav';
+import Container from '../../../../components/Layout/Container';
+import Main from '../../../../components/Layout/TagMain';
+import useTrans from '../../../../hooks/trans.hook';
+import { wrapper } from '../../../../redux/store';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     root: {
@@ -21,14 +20,13 @@ const useStyles = createUseStyles((theme: Theme) => ({
 const Analytics = (): ReactElement => {
     const T = useTrans();
     const css = useStyles();
-    const { query } = useRouter();
 
     return (
         <>
             <Meta title={'Мои обьявления'} h1={T.user_profile_on_phoqer} />
             <Main>
                 <Container>
-                    <ProfileNav profileId={query.profileId} active="analytics" />
+                    <ProfileNav active="analytics" />
                     <div className={css.root}>
                         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias aliquid aperiam dolorem dolores eaque et,
                         excepturi fugiat impedit incidunt magni maiores molestiae neque quasi quidem, soluta sunt vero. Sequi,
