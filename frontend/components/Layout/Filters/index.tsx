@@ -118,7 +118,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     wrp: {
         display: 'flex',
         alignItems: 'flex-end',
-        marginBottom: theme.rem(2),
+        marginBottom: theme.rem(1),
 
         '@media (max-width: 768px)': {
             alignItems: 'center',
@@ -224,7 +224,6 @@ const Filters = (): ReactElement => {
                     </button>
                 </div>
                 <hr />
-
                 <CSSTransition timeout={200} unmountOnExit in={config.filters}>
                     <form action="#" method="post" className={css.form} onSubmit={handleSubmit}>
                         <div className={css.formInner}>
@@ -236,8 +235,8 @@ const Filters = (): ReactElement => {
 
                         <Checkboxes
                             values={{ top: search.top, no_deposit: search.no_deposit, is_deliverable: search.is_deliverable }}
-                            onChange={handleCheckboxes}
                             labels={['Только ТОП объявления', 'Без залога', 'C доставкой']}
+                            onChange={handleCheckboxes}
                         />
 
                         <button className={css.btn} type="submit">
