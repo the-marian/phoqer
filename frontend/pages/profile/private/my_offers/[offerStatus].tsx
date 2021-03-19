@@ -4,18 +4,18 @@ import React, { ReactElement, useEffect } from 'react';
 import { createUseStyles } from 'react-jss';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { serverRedirect } from '../../../../../assets/helpers';
-import { Theme } from '../../../../../assets/theme';
-import Meta from '../../../../../components/Common/Meta';
-import ProfileNav from '../../../../../components/Common/NavTabs/ProfileNav';
-import ProfileOffersNav from '../../../../../components/Common/NavTabs/ProfileOffersNav';
-import OffersList from '../../../../../components/Common/Offers/OffersList';
-import Container from '../../../../../components/Layout/Container';
-import Main from '../../../../../components/Layout/TagMain';
-import useTrans from '../../../../../hooks/trans.hook';
-import { IOfferStatic, IState } from '../../../../../interfaces';
-import { wrapper } from '../../../../../redux/store';
-import types from '../../../../../redux/types';
+import { serverRedirect } from '../../../../assets/helpers';
+import { Theme } from '../../../../assets/theme';
+import Meta from '../../../../components/Common/Meta';
+import ProfileNav from '../../../../components/Common/NavTabs/ProfileNav';
+import ProfileOffersNav from '../../../../components/Common/NavTabs/ProfileOffersNav';
+import OffersList from '../../../../components/Common/Offers/OffersList';
+import Container from '../../../../components/Layout/Container';
+import Main from '../../../../components/Layout/TagMain';
+import useTrans from '../../../../hooks/trans.hook';
+import { IOfferStatic, IState } from '../../../../interfaces';
+import { wrapper } from '../../../../redux/store';
+import types from '../../../../redux/types';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     root: {
@@ -42,8 +42,8 @@ const UserOffers = (): ReactElement => {
             <Meta title={'Мои обьявления'} h1={T.user_profile_on_phoqer} />
             <Main>
                 <Container>
-                    <ProfileNav profileId={query.profileId} active="my_offers" />
-                    <ProfileOffersNav profileId={query.profileId} active={offerStatus} />
+                    <ProfileNav active="my_offers" />
+                    <ProfileOffersNav active={offerStatus} />
 
                     <div className={css.root}>
                         <OffersList loading={loading} data={data} />

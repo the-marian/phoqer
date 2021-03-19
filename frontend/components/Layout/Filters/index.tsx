@@ -2,7 +2,6 @@ import { faChevronDown } from '@fortawesome/free-solid-svg-icons/faChevronDown';
 import { faChevronUp } from '@fortawesome/free-solid-svg-icons/faChevronUp';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
 import React, { FormEvent, ReactElement, useEffect, useState } from 'react';
 import { createUseStyles } from 'react-jss';
 import { useDispatch, useSelector } from 'react-redux';
@@ -119,7 +118,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     wrp: {
         display: 'flex',
         alignItems: 'flex-end',
-        marginBottom: theme.rem(2),
+        marginBottom: theme.rem(1),
 
         '@media (max-width: 768px)': {
             alignItems: 'center',
@@ -174,7 +173,6 @@ interface ICheckbox {
 
 const Filters = (): ReactElement => {
     const css = useStyles();
-    const history = useRouter();
     const dispatch = useDispatch();
     const shallow = useShallowRouter();
 
@@ -184,12 +182,8 @@ const Filters = (): ReactElement => {
     const search = useSelector<IState, ISearch>(state => state.config.search);
 
     useEffect(() => {
-        const { period, status, ordering, top, no_deposit, is_deliverable } = history.query;
-        dispatch({
-            type: types.OFFERS_SEARCH,
-            payload: { ...search, period, status, ordering, top, no_deposit, is_deliverable },
-        });
-    }, [history.query]);
+        shallow(search);
+    }, [search]);
 
     // hide elements
     const handleCloseFilters = () => {
@@ -200,7 +194,6 @@ const Filters = (): ReactElement => {
     };
 
     const handleCheckboxes = (value: ICheckbox): void => {
-        shallow({ ...search, ...value });
         dispatch({ type: types.OFFERS_SEARCH, payload: { ...search, ...value } });
     };
 
@@ -208,9 +201,6 @@ const Filters = (): ReactElement => {
     const handleSubmit = (event: FormEvent<HTMLFormElement>): void => {
         event.preventDefault();
         window.scrollTo({ top: document.getElementById('products')?.offsetTop || 0, behavior: 'smooth' });
-
-        // SUBMIT
-        shallow(search);
         dispatch({ type: types.SEARCH_OFFERS_START, payload: search });
     };
 
@@ -234,7 +224,6 @@ const Filters = (): ReactElement => {
                     </button>
                 </div>
                 <hr />
-
                 <CSSTransition timeout={200} unmountOnExit in={config.filters}>
                     <form action="#" method="post" className={css.form} onSubmit={handleSubmit}>
                         <div className={css.formInner}>
@@ -246,8 +235,8 @@ const Filters = (): ReactElement => {
 
                         <Checkboxes
                             values={{ top: search.top, no_deposit: search.no_deposit, is_deliverable: search.is_deliverable }}
-                            onChange={handleCheckboxes}
                             labels={['Только ТОП объявления', 'Без залога', 'C доставкой']}
+                            onChange={handleCheckboxes}
                         />
 
                         <button className={css.btn} type="submit">

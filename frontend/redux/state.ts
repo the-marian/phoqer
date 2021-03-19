@@ -20,7 +20,7 @@ const initState: IState = {
             is_deliverable: null,
         },
         offers: {
-            filters: false,
+            filters: true,
             popularSearch: true,
             hideTop: false,
         },
