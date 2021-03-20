@@ -41,7 +41,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
             transform: 'translateX(0%)',
             height: '100%',
             width: '95%',
-            maxWidth: theme.rem(50),
+            maxWidth: theme.rem(45),
             minWidth: theme.rem(40),
             padding: theme.rem(5, 2, 2),
             background: theme.palette.white,
