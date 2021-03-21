@@ -26,7 +26,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         padding: theme.rem(1.4, 0),
         background: theme.palette.glass[0],
         backdropFilter: 'blur(2px)',
-        transition: theme.transitions,
+        transition: theme.transitions[0],
 
         '@media (max-width: 768px)': {
             background: theme.palette.white,
