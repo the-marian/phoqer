@@ -7,7 +7,7 @@ import { Theme } from '../../../../assets/theme';
 import Meta from '../../../../components/Common/Meta';
 import ProfileCard from '../../../../components/Common/ProfileCard';
 import Container from '../../../../components/Layout/Container';
-import ProfileInfo from '../../../../components/Layout/Profile/Public/ProfileInfo';
+import ProfileInfo from '../../../../components/Pages/Profile/Public/ProfileInfo';
 import Main from '../../../../components/Layout/TagMain';
 import useTrans from '../../../../hooks/trans.hook';
 import { IPublicProfile, IState, IStore } from '../../../../interfaces';

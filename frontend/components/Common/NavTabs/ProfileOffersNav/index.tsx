@@ -72,14 +72,14 @@ const ProfileOffersNav = ({ active }: IProps): ReactElement | null => {
             link: routes.profile.private.my_offers('active'),
         },
         {
-            id: 'in_rent',
+            id: 'in-rent',
             text: T.in_rent,
-            link: routes.profile.private.my_offers('in_rent'),
+            link: routes.profile.private.my_offers('in-rent'),
         },
         {
-            id: 'archived',
-            text: T.archived,
-            link: routes.profile.private.my_offers('archived'),
+            id: 'archive',
+            text: T.archive,
+            link: routes.profile.private.my_offers('archive'),
         },
     ];
 

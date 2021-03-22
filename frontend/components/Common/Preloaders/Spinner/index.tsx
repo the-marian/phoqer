@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react';
+import React, { CSSProperties, ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
 import { Theme } from '../../../../assets/theme';
@@ -16,11 +16,15 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
 }));
 
-const Spinner = (): ReactElement => {
+interface IProps {
+    style?: CSSProperties;
+}
+
+const Spinner = ({ style = {} }: IProps): ReactElement => {
     const css = useStyles();
     return (
         <div className={css.wrap}>
-            <img className={css.img} src="/spinner.gif" alt="spinner" />
+            <img style={style} className={css.img} src="/spinner.gif" alt="spinner" />
         </div>
     );
 };

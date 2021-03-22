@@ -216,7 +216,7 @@ const OfferCard = ({ offer }: IProps): ReactElement => {
                                 </div>
                             )}
                         </div>
-                        <img className={css.img} src={cover_image} alt={title} />
+                        <img className={css.img} src={cover_image || '/no_img.png'} alt={title} />
                     </div>
                     <h3 className={css.title}>
                         {title.length > MAX_LENGTH_TITLE ? title.slice(0, MAX_LENGTH_TITLE - 3) + '...' : title}

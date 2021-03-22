@@ -9,7 +9,7 @@ import ReactPaginate from 'react-paginate';
 
 import { Theme } from '../../../../assets/theme';
 import useShallowRouter from '../../../../hooks/routing.hook';
-import Button from '../../Button';
+import Button from '../../../Layout/Button';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     root: {
@@ -113,28 +113,31 @@ const Pagination = ({ total, onClick, onMore, loading }: IProps): ReactElement |
 
     return total > 1 ? (
         <div className={css.root}>
-            <ReactPaginate
-                previousLabel={<FontAwesomeIcon icon={faChevronLeft} />}
-                nextLabel={<FontAwesomeIcon icon={faChevronRight} />}
-                breakLabel="..."
-                forcePage={page - 1}
-                pageCount={total}
-                marginPagesDisplayed={2}
-                pageRangeDisplayed={2}
-                onPageChange={handlePagination}
-                containerClassName={css.pagination}
-                breakLinkClassName={css.page}
-                pageLinkClassName={css.page}
-                activeLinkClassName={css.active}
-                previousLinkClassName={css.nav}
-                nextLinkClassName={css.nav}
-                disabledClassName={css.disabled}
-            />
             {page < total ? (
-                <Button className={css.more} onClick={handleMore} loading={loading}>
-                    <FontAwesomeIcon icon={faRedo} />
-                    <span>Load more</span>
-                </Button>
+                <>
+                    <ReactPaginate
+                        previousLabel={<FontAwesomeIcon icon={faChevronLeft} />}
+                        nextLabel={<FontAwesomeIcon icon={faChevronRight} />}
+                        breakLabel="..."
+                        forcePage={page - 1}
+                        pageCount={total}
+                        marginPagesDisplayed={2}
+                        pageRangeDisplayed={2}
+                        onPageChange={handlePagination}
+                        containerClassName={css.pagination}
+                        breakLinkClassName={css.page}
+                        pageLinkClassName={css.page}
+                        activeLinkClassName={css.active}
+                        previousLinkClassName={css.nav}
+                        nextLinkClassName={css.nav}
+                        disabledClassName={css.disabled}
+                    />
+
+                    <Button className={css.more} onClick={handleMore} loading={loading}>
+                        <FontAwesomeIcon icon={faRedo} />
+                        <span>Load more</span>
+                    </Button>
+                </>
             ) : null}
         </div>
     ) : null;

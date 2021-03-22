@@ -5,12 +5,12 @@ const routes = {
     auth: {
         login: '/auth/login',
         join: '/auth/join',
-        forgot_pass: '/auth/forgot_pass',
+        forgot_pass: '/auth/forgot-pass',
     },
     profile: {
         public: (id: ID = ':profileId'): string => `/profile/public/${id}`,
         private: {
-            my_offers: (status = 'all'): string => `/profile/private/my_offers/${status}`,
+            my_offers: (status = 'all'): string => `/profile/private/my-offers/${status}`,
             messages: `/profile/private/messages`,
             reviews: `/profile/private/reviews`,
             settings: `/profile/private/settings`,
@@ -22,7 +22,7 @@ const routes = {
         single: (id: ID = ':offerId'): string => `/offers/${id}`,
         list: '/offers',
     },
-    new_offer: (step: ID = ':step'): string => `/new_offer/${step}`,
+    new_offer: (step: ID = ':step'): string => `/new-offer/${step}`,
     favorite: '/favorite',
 };
 

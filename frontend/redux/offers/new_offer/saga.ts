@@ -1,15 +1,14 @@
 import { call, put, select, takeLatest } from 'redux-saga/effects';
 
 import api from '../../../assets/api';
-import routes from '../../../assets/routes';
 import { INewOffer, IState } from '../../../interfaces';
 import initState from '../../state';
 import types from '../../types';
 import IAction, { IBody } from './interfaces';
 
-function* postOffer({ payload, history }: IAction) {
+function* postOffer({ payload, redirect }: IAction) {
     try {
-        const form: INewOffer = yield select<(state: IState) => INewOffer>(state => state.offers.newOffer);
+        const form: INewOffer = yield select<(state: IState) => INewOffer>(state => state.offers.new_offer);
 
         const {
             title,
@@ -42,14 +41,14 @@ function* postOffer({ payload, history }: IAction) {
         } as IBody);
 
         if (status < 200 || status >= 300) throw new Error();
-        yield put({ type: types.POST_OFFER_SUCCESS, payload: { ...initState.offers.newOffer, id: data.id } });
-        history.replace(routes.new_offer(4));
+        yield put({ type: types.POST_OFFER_SUCCESS, payload: { ...initState.offers.new_offer, id: data.id } });
+        if (redirect) redirect();
     } catch (error) {
         if (error?.response?.status === 401) return;
         yield put({ type: types.POST_OFFER_ERROR });
     }
 }
 
-export default function* newOffer(): Generator {
+export default function* new_offer(): Generator {
     yield takeLatest(types.POST_OFFER_START, postOffer);
 }

@@ -43,12 +43,20 @@ const initState: IState = {
             },
             loading: true,
         },
+        my_offers: {
+            data: {
+                data: [],
+                total: 1,
+            },
+            loading: true,
+        },
         favorite: {
             data: [],
             loading: true,
         },
         single: null,
-        newOffer: {
+        new_offer: {
+            loading: true,
             // step 1
             title: '',
             price: null,
