@@ -1,6 +1,6 @@
 import { GetServerSidePropsContext } from 'next';
 
-import { IAuth, ICategories, IDropList } from '../interfaces';
+import { IAuth, ICategories, IDropList, IDropValue } from '../interfaces';
 import routes from './routes';
 
 /**
@@ -154,8 +154,9 @@ export const formatCatList = (data: ICategories[]): IDropList[] =>
             item.sub_categories ? { name: item.name, slug: item.slug, sub: item.sub_categories } : item,
     );
 // find category by slug
-export const findCategory = (data: ICategories[], slug: string): IDropList | null => {
-    const category: ICategories | undefined = data.find(item => item.slug === slug);
+type Dropdown = ICategories | IDropList | IDropValue;
+export const findCategory = (data: Dropdown[], slug: string): IDropList | null => {
+    const category: Dropdown | undefined = data.find(item => item.slug === slug);
     return category || null;
 };
 // find sub category by slug

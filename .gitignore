@@ -141,6 +141,9 @@ yarn-error.log*
 # production
 /frontend/build
 
+# analytics
+/analytics-page/node_modules
+
 # dependencies
 node_modules
 /frontend/node_modules
@@ -177,3 +180,6 @@ backend/mediafiles/*
 postgres_data
 phoqer.bak
 phoqer.dump
+
+# script for Ihor
+start.sh

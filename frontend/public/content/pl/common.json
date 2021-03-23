@@ -13,6 +13,7 @@
     "reviews": "Recenzje",
     "my_offers": "Moje oferty",
     "my_profile": "Mój profil",
+    "analytics": "Analityka",
 
     "join": "Zarejestrować",
     "login": "Zaloguj sie",
@@ -38,7 +39,7 @@
     "draft": "Warcaby",
     "active": "Aktywny",
     "in_rent": "Wynajęty",
-    "archived": "Archiwum",
+    "archive": "Archiwum",
 
     "user_profile_on_phoqer": "Profil użytkownika w serwisie phoqer.com",
 

@@ -5,15 +5,15 @@ import { useDispatch, useSelector } from 'react-redux';
 import { END } from 'redux-saga';
 
 import About from '../../components/Common/About';
-import OffersLoadMore from '../../components/Common/LoadMore/Offers';
+import Pagination from '../../components/Common/LoadMore/Pagination';
 import Meta from '../../components/Common/Meta';
 import OffersList from '../../components/Common/Offers/OffersList';
 import Search from '../../components/Common/Search';
 import SectionTitle from '../../components/Common/SectionTitle';
 import Container from '../../components/Layout/Container';
-import Filters from '../../components/Layout/Filters';
-import TopOffers from '../../components/Layout/SingleOffer/TopOffers';
-import Main from '../../components/Layout/TagMain';
+import Filters from '../../components/Pages/Offers/Filters';
+import TopOffers from '../../components/Pages/SingleOffer/TopOffers';
+import Main from '../../components/Shared/TagMain';
 import useTrans from '../../hooks/trans.hook';
 import { IOfferDynamic, IState, IStore } from '../../interfaces';
 import { wrapper } from '../../redux/store';
@@ -23,9 +23,12 @@ const OffersPage = (): ReactElement => {
     const T = useTrans();
     const { query } = useRouter();
     const dispatch = useDispatch();
-    const { data, loading } = useSelector<IState, IOfferDynamic>(state => state.offers.search);
+    const { data, loading, pagination } = useSelector<IState, IOfferDynamic>(state => state.offers.search);
 
-    const handleLoadMore = (page: number): void => {
+    const handleClick = (page: number): void => {
+        dispatch({ type: types.SEARCH_OFFERS_START, payload: { ...query, page } });
+    };
+    const handleMore = (page: number): void => {
         dispatch({ type: types.SEARCH_OFFERS_PAGINATION_START, payload: { ...query, page } });
     };
 
@@ -42,8 +45,8 @@ const OffersPage = (): ReactElement => {
 
                 <Container>
                     <SectionTitle>Результаты поиска</SectionTitle>
-                    <OffersList data={data?.data} />
-                    <OffersLoadMore loading={loading} total={data?.total || 0} onSubmit={handleLoadMore} />
+                    <OffersList loading={loading} data={data?.data} />
+                    <Pagination loading={pagination} total={data.total} onClick={handleClick} onMore={handleMore} />
                 </Container>
 
                 <About />

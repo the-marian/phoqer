@@ -13,6 +13,7 @@
     "reviews": "Отзывы",
     "my_offers": "Мои объявления",
     "my_profile": "Мой профиль",
+    "analytics": "Аналитика",
 
     "join": "Зарегистрироватся",
     "logout": "Выйти",
@@ -38,7 +39,7 @@
     "draft": "Черновики",
     "active": "Активные",
     "in_rent": "Aрендованные",
-    "archived": "Архив",
+    "archive": "Архив",
 
     "user_profile_on_phoqer": "Профиль Пользователя на сайте phoqer.com",
 

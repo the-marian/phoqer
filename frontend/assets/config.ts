@@ -1,3 +1,4 @@
+import { faChartBar } from '@fortawesome/free-regular-svg-icons/faChartBar';
 import { faCommentAlt } from '@fortawesome/free-regular-svg-icons/faCommentAlt';
 import { faEnvelope } from '@fortawesome/free-regular-svg-icons/faEnvelope';
 import { faUser } from '@fortawesome/free-regular-svg-icons/faUser';
@@ -40,77 +41,89 @@ const config = {
     },
     userNavLinks: (userId: string, T: { [key: string]: string }, count?: ITabsNum): ITabs[] => [
         {
-            id: 'my_profile',
+            id: 'my-profile',
             text: T.my_profile,
             link: routes.profile.public(userId),
             icon: faUser,
         },
         {
-            id: 'my_offers',
+            id: 'my-offers',
             text: T.my_offers,
-            link: routes.profile.private.my_offers(userId),
+            link: routes.profile.private.my_offers(),
             icon: faBullhorn,
         },
         {
             id: 'messages',
             text: T.messages,
-            link: routes.profile.private.messages(userId),
+            link: routes.profile.private.messages,
             icon: faEnvelope,
             count: count?.messages,
+        },
+        {
+            id: 'reviews',
+            text: T.reviews,
+            link: routes.profile.private.reviews,
+            icon: faCommentAlt,
+            count: count?.reviews,
+        },
+        {
+            id: 'referral',
+            text: T.invite_friends,
+            link: routes.profile.private.referral,
+            icon: faUserPlus,
+        },
+        {
+            id: 'settings',
+            text: T.settings,
+            link: routes.profile.private.settings,
+            icon: faSlidersH,
+        },
+        {
+            id: 'analytics',
+            text: T.analytics,
+            link: routes.profile.private.analytics,
+            icon: faChartBar,
             blank: true,
         },
-        {
-            id: 'reviews',
-            text: T.reviews,
-            link: routes.profile.private.reviews(userId),
-            icon: faCommentAlt,
-            count: count?.reviews,
-        },
-        {
-            id: 'referral',
-            text: T.invite_friends,
-            link: routes.profile.private.referral(userId),
-            icon: faUserPlus,
-        },
-        {
-            id: 'settings',
-            text: T.settings,
-            link: routes.profile.private.settings(userId),
-            icon: faSlidersH,
-        },
     ],
-    userProfileLinks: (userId: string, T: { [key: string]: string }, count?: ITabsNum): ITabs[] => [
+    userProfileLinks: (T: { [key: string]: string }, count?: ITabsNum): ITabs[] => [
         {
-            id: 'my_offers',
+            id: 'my-offers',
             text: T.my_offers,
-            link: routes.profile.private.my_offers(userId),
+            link: routes.profile.private.my_offers(),
             icon: faBullhorn,
-        },
-        {
-            id: 'reviews',
-            text: T.reviews,
-            link: routes.profile.private.reviews(userId),
-            icon: faCommentAlt,
-            count: count?.reviews,
-        },
-        {
-            id: 'referral',
-            text: T.invite_friends,
-            link: routes.profile.private.referral(userId),
-            icon: faUserPlus,
-        },
-        {
-            id: 'settings',
-            text: T.settings,
-            link: routes.profile.private.settings(userId),
-            icon: faSlidersH,
         },
         {
             id: 'messages',
             text: T.messages,
-            link: routes.profile.private.messages(userId),
+            link: routes.profile.private.messages,
             icon: faEnvelope,
             count: count?.messages,
+        },
+        {
+            id: 'reviews',
+            text: T.reviews,
+            link: routes.profile.private.reviews,
+            icon: faCommentAlt,
+            count: count?.reviews,
+        },
+        {
+            id: 'referral',
+            text: T.invite_friends,
+            link: routes.profile.private.referral,
+            icon: faUserPlus,
+        },
+        {
+            id: 'settings',
+            text: T.settings,
+            link: routes.profile.private.settings,
+            icon: faSlidersH,
+        },
+        {
+            id: 'analytics',
+            text: T.analytics,
+            link: routes.profile.private.analytics,
+            icon: faChartBar,
             blank: true,
         },
     ],

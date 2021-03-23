@@ -1,9 +1,8 @@
 import { faSearch } from '@fortawesome/free-solid-svg-icons/faSearch';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Params } from 'next/dist/next-server/server/router';
 import { useRouter } from 'next/router';
-import { ParsedUrlQueryInput } from 'querystring';
-import React, { ChangeEvent, FormEvent, ReactElement, useEffect, useState } from 'react';
+import queryString from 'query-string';
+import React, { ChangeEvent, FormEvent, ReactElement, useEffect } from 'react';
 import { createUseStyles } from 'react-jss';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -11,10 +10,11 @@ import routes from '../../../assets/routes';
 import template from '../../../assets/template';
 import { Theme } from '../../../assets/theme';
 import useMedia from '../../../hooks/media.hook';
+import useShallowRouter from '../../../hooks/routing.hook';
 import useTrans from '../../../hooks/trans.hook';
-import { IDropValue, IState } from '../../../interfaces';
+import { IDropValue, ISearch, IState } from '../../../interfaces';
 import types from '../../../redux/types';
-import Button from '../Button';
+import Button from '../../Layout/Button';
 import LinkArrow from '../LinkArrow';
 import OptionsDesktop from './OptionsDesktop';
 import OptionsMobile from './OptionsMobile';
@@ -59,13 +59,8 @@ const useStyles = createUseStyles((theme: Theme) => ({
         color: theme.palette.black[0],
     },
     btn: {
-        height: theme.rem(6),
+        ...template(theme).btn,
         width: '100%',
-        background: theme.palette.primary[0],
-        fontSize: theme.rem(1.6),
-        color: theme.palette.trueWhite,
-        borderRadius: theme.radius,
-        ...template(theme).outline,
 
         '@media (max-width: 1100px)': {
             width: '31%',
@@ -112,12 +107,6 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
 }));
 
-interface IValue extends ParsedUrlQueryInput {
-    search: string | null;
-    category?: string;
-    sub_category?: string;
-}
-
 interface IProps {
     shallow?: boolean;
 }
@@ -127,35 +116,51 @@ const Search = ({ shallow = false }: IProps): ReactElement => {
     const css = useStyles();
     const history = useRouter();
     const dispatch = useDispatch();
+    const shallowPush = useShallowRouter();
     const desktop = useMedia(1100);
-    const [query, setQuery] = useState<IValue>({ search: String(history.query.search || '') || null });
 
-    // loading
+    const searchConfig = useSelector<IState, ISearch>(state => state.config.search);
     const loading = useSelector<IState, boolean>(state => state.offers.search.loading);
 
+    useEffect(() => {
+        shallowPush(searchConfig);
+    }, [searchConfig]);
+
     const handleChange = (value: IDropValue | null): void => {
-        setQuery({ search: query.search, [value?.type === 'sub' ? 'sub_category' : 'category']: value?.slug || '' });
+        dispatch({
+            type: types.OFFERS_SEARCH,
+            payload: {
+                ...searchConfig,
+                category: value?.type === 'main' ? value?.slug : null,
+                sub_category: value?.type === 'sub' ? value?.slug : null,
+            },
+        });
     };
     const handleInput = (event: ChangeEvent<HTMLInputElement>): void => {
-        // window.history.replaceState({}, '', routes.offers.single + '?' + queryString.stringify({ search }));
-        setQuery({ ...query, search: event.target.value });
+        dispatch({ type: types.OFFERS_SEARCH, payload: { ...searchConfig, search: event.target.value || null } });
     };
-
-    useEffect(() => {
-        if (history.query.search !== query.search) setQuery({ search: String(history.query.search || '') || null });
-    }, [history.query]);
 
     const handleSubmit = (event: FormEvent<HTMLFormElement>): void => {
         event.preventDefault();
-        const data: Params = {};
-        if (query.search?.trim()) data.search = query.search;
-        if (query.category) data.category = query.category;
-        if (query.sub_category) data.sub_category = query.sub_category;
 
-        history.push({ pathname: routes.offers.list, query: data }, undefined, { shallow });
+        if (!shallow || searchConfig.search !== history.query.search) {
+            history.push(
+                {
+                    pathname: routes.offers.list,
+                    query: queryString.stringify(searchConfig, {
+                        skipNull: true,
+                    }),
+                },
+                undefined,
+                { shallow },
+            );
+        }
+
         if (shallow) {
-            dispatch({ type: types.SEARCH_OFFERS_START, payload: data });
-            window.scrollTo({ top: document.getElementById('products')?.offsetTop || 0, behavior: 'smooth' });
+            shallowPush(searchConfig);
+            dispatch({ type: types.SEARCH_OFFERS_START, payload: searchConfig });
+            if (searchConfig.search?.trim())
+                window.scrollTo({ top: document.getElementById('products')?.offsetTop || 0, behavior: 'smooth' });
         }
     };
 
@@ -176,7 +181,7 @@ const Search = ({ shallow = false }: IProps): ReactElement => {
                             <FontAwesomeIcon icon={faSearch} />
                         </span>
                         <input
-                            value={query.search || ''}
+                            value={searchConfig.search || ''}
                             onChange={handleInput}
                             className={css.input}
                             type="text"

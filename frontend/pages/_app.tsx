@@ -13,7 +13,7 @@ import { modal } from '../components/Common/Modal';
 import AuthProvider from '../components/HOC/Auth/AuthContext';
 import MediaProvider from '../components/HOC/Media';
 import SiteTheme from '../components/HOC/SiteTheme';
-import PageLayout from '../components/Layout/PageLayout';
+import PageLayout from '../components/Shared/PageLayout';
 import { IAuth, Themes } from '../interfaces';
 import { wrapper } from '../redux/store';
 

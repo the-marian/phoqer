@@ -8,8 +8,8 @@ import { mailRegex } from '../../../../assets/helpers';
 import routes from '../../../../assets/routes';
 import template from '../../../../assets/template';
 import { Theme } from '../../../../assets/theme';
-import Button from '../../Button';
-import Input from '../../Input';
+import Button from '../../../Layout/Button';
+import Input from '../../../Layout/Input';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     title: {
@@ -58,20 +58,12 @@ const useStyles = createUseStyles((theme: Theme) => ({
         },
     },
     btn: {
-        display: 'block',
+        ...template(theme).btn,
         minWidth: theme.rem(20),
         margin: '3rem auto 5rem',
-        padding: theme.rem(1.5, 2),
-        fontWeight: theme.text.weight[4],
-        textAlign: 'center',
-        fontSize: theme.rem(1.4),
-        borderRadius: theme.radius,
-        background: theme.palette.primary[0],
-        color: theme.palette.trueWhite,
 
         '@media (max-width: 500px)': {
             margin: '1rem auto 3rem',
-            padding: theme.rem(2),
         },
     },
     text: {

@@ -4,6 +4,7 @@ const runtimeCaching = require('next-pwa/cache');
 
 const pwa = withPWA({
     pwa: {
+        disable: process.env.NODE_ENV === 'development',
         dest: '/public',
         runtimeCaching,
     },
@@ -13,8 +14,8 @@ module.exports = {
     async redirects() {
         return [
             {
-                source: '/new_offer',
-                destination: '/new_offer/1',
+                source: '/new-offer',
+                destination: '/new-offer/1',
                 permanent: true,
             },
             {
@@ -24,12 +25,12 @@ module.exports = {
             },
             {
                 source: '/profile/private/:profileId',
-                destination: '/profile/private/:profileId/my_offers/all',
+                destination: '/profile/private/:profileId/my-offers/all',
                 permanent: true,
             },
             {
-                source: '/profile/private/:profileId/my_offers',
-                destination: '/profile/private/:profileId/my_offers/all',
+                source: '/profile/private/:profileId/my-offers',
+                destination: '/profile/private/:profileId/my-offers/all',
                 permanent: true,
             },
         ];

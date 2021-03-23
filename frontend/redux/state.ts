@@ -6,6 +6,19 @@ const initState: IState = {
     },
     config: {
         drawer: false,
+        search: {
+            search: null,
+            category: null,
+            sub_category: null,
+            period: null,
+            status: null,
+            ordering: null,
+            max_price: null,
+            min_price: null,
+            top: null,
+            no_deposit: null,
+            is_deliverable: null,
+        },
         offers: {
             filters: true,
             popularSearch: true,
@@ -29,13 +42,23 @@ const initState: IState = {
                 total: 1,
             },
             loading: true,
+            pagination: true,
+        },
+        my_offers: {
+            data: {
+                data: [],
+                total: 1,
+            },
+            loading: true,
+            pagination: true,
         },
         favorite: {
             data: [],
             loading: true,
         },
         single: null,
-        newOffer: {
+        new_offer: {
+            loading: true,
             // step 1
             title: '',
             price: null,

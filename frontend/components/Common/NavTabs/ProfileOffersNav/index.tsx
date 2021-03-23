@@ -2,6 +2,7 @@ import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
 import routes from '../../../../assets/routes';
+import template from '../../../../assets/template';
 import { Theme } from '../../../../assets/theme';
 import useTrans from '../../../../hooks/trans.hook';
 import { ITabs } from '../../../../interfaces';
@@ -20,16 +21,13 @@ const useStyles = createUseStyles((theme: Theme) => ({
         display: 'flex',
         alignItems: 'center',
         margin: theme.rem(1),
-        padding: theme.rem(1.2, 2),
+        padding: theme.rem(1, 1.8),
         background: theme.palette.gray[0],
         color: theme.palette.black[0],
-        fontSize: theme.rem(1.6),
+        fontSize: theme.rem(1.4),
         transition: theme.transitions[0],
         borderRadius: theme.radius,
-
-        '&:hover': {
-            background: theme.palette.gray[1],
-        },
+        ...template(theme).outline,
     },
     active: {
         color: theme.palette.trueWhite,
@@ -50,40 +48,38 @@ const useStyles = createUseStyles((theme: Theme) => ({
 }));
 
 interface IProps {
-    profileId: string | string[];
     active?: number | string;
 }
 
-const ProfileOffersNav = ({ profileId, active }: IProps): ReactElement => {
+const ProfileOffersNav = ({ active }: IProps): ReactElement | null => {
     const T = useTrans();
     const css = useStyles();
 
-    const id = String(profileId);
     const offersTab: ITabs[] = [
         {
             id: 'all',
             text: T.all,
-            link: routes.profile.private.my_offers(id, 'all'),
+            link: routes.profile.private.my_offers('all'),
         },
         {
             id: 'draft',
             text: T.draft,
-            link: routes.profile.private.my_offers(id, 'draft'),
+            link: routes.profile.private.my_offers('draft'),
         },
         {
             id: 'active',
             text: T.active,
-            link: routes.profile.private.my_offers(id, 'active'),
+            link: routes.profile.private.my_offers('active'),
         },
         {
-            id: 'in_rent',
+            id: 'in-rent',
             text: T.in_rent,
-            link: routes.profile.private.my_offers(id, 'in_rent'),
+            link: routes.profile.private.my_offers('in-rent'),
         },
         {
-            id: 'archived',
-            text: T.archived,
-            link: routes.profile.private.my_offers(id, 'archived'),
+            id: 'archive',
+            text: T.archive,
+            link: routes.profile.private.my_offers('archive'),
         },
     ];
 

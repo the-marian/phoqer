@@ -2,6 +2,7 @@ import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
 import config from '../../../../assets/config';
+import template from '../../../../assets/template';
 import { Theme } from '../../../../assets/theme';
 import useTrans from '../../../../hooks/trans.hook';
 import { ITabs } from '../../../../interfaces';
@@ -13,26 +14,23 @@ const useStyles = createUseStyles((theme: Theme) => ({
             display: 'flex',
             justifyContent: 'flex-start',
             flexWrap: 'wrap',
-            margin: theme.rem(0, -1, 3),
+            margin: theme.rem(0, -1, 1),
         },
     },
     item: {
         display: 'flex',
         alignItems: 'center',
         margin: theme.rem(1),
-        padding: theme.rem(1.2, 2),
+        padding: theme.rem(1, 1.8),
         background: theme.palette.gray[0],
         color: theme.palette.black[0],
-        fontSize: theme.rem(1.6),
+        fontSize: theme.rem(1.4),
         transition: theme.transitions[0],
         borderRadius: theme.radius,
+        ...template(theme).outline,
 
         '& svg': {
             marginRight: theme.rem(1),
-        },
-
-        '&:hover': {
-            background: theme.palette.gray[1],
         },
     },
     active: {
@@ -63,14 +61,12 @@ const useStyles = createUseStyles((theme: Theme) => ({
 
 interface IProps {
     active?: number | string;
-    profileId: string | string[];
 }
 
-const ProfileNav = ({ active, profileId }: IProps): ReactElement => {
+const ProfileNav = ({ active }: IProps): ReactElement | null => {
     const T = useTrans();
     const css = useStyles();
-
-    const profileTabs: ITabs[] = config.userProfileLinks(String(profileId), T, { messages: 5, reviews: 4 });
+    const profileTabs: ITabs[] = config.userProfileLinks(T, { messages: 5, reviews: 4 });
 
     return <NavTabs tabs={profileTabs} classNameWrp={css.tabs} className={css.item} activeClass={css.active} active={active} />;
 };

@@ -111,4 +111,5 @@ jobs:
             docker pull $NGINX_IMAGE
             docker pull $FASTAPI_IMAGE
             docker-compose -f docker-compose.yml --env-file ./.env.dev up -d
+            docker image prune -af
           ENDSSH
