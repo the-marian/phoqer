@@ -23,13 +23,13 @@ export interface Theme {
     rem: (one: number, two?: number, three?: number, four?: number) => string;
     em: (one: number, two?: number, three?: number, four?: number) => string;
     radius: string;
-    shadow: string[];
+    shadow: [string, string, string, string, string];
     palette: IPalette;
     text: {
         family: string;
         weight: ['200', '300', '400', '500', '600', '700'];
     };
-    transitions: string[];
+    transitions: [string, string];
 }
 
 const palette: { [key: string]: IPalette } = {

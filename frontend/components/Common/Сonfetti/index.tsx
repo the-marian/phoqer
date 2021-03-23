@@ -2,7 +2,11 @@ import React, { ReactElement, useEffect, useState } from 'react';
 import Confetti from 'react-confetti';
 import ReactDOM from 'react-dom';
 
+import useMedia from '../../../hooks/media.hook';
+
 const ConfettiWrp = (): ReactElement => {
+    const media = useMedia(768);
+
     const [party, setParty] = useState<boolean>(true);
     const [size, setSize] = useState<{ y: number; x: number }>({ y: window.innerHeight, x: window.innerWidth - 20 });
 
@@ -17,9 +21,10 @@ const ConfettiWrp = (): ReactElement => {
     }, []);
 
     useEffect(() => {
+        const time = media ? 3000 : 1000;
         setTimeout(() => {
             setParty(false);
-        }, 3000);
+        }, time);
     }, []);
 
     return ReactDOM.createPortal(

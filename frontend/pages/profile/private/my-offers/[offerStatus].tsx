@@ -53,7 +53,7 @@ const UserOffers = (): ReactElement => {
             <Meta title={'Мои обьявления'} h1={T.user_profile_on_phoqer} />
             <Main>
                 <Container>
-                    <ProfileNav active="my_offers" />
+                    <ProfileNav active="my-offers" />
                     <ProfileOffersNav active={offerStatus} />
 
                     <div className={css.root}>

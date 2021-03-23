@@ -16,6 +16,7 @@ import types from '../../../../redux/types';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     wrp: {
+        position: 'relative',
         display: 'flex',
         justifyContent: 'space-between',
 
@@ -23,8 +24,13 @@ const useStyles = createUseStyles((theme: Theme) => ({
             flexDirection: 'column',
         },
     },
+    sticky: {
+        position: 'sticky',
+        top: theme.rem(8),
+        left: 0,
+    },
     left: {
-        width: theme.rem(40),
+        width: theme.rem(45),
 
         '@media (max-width: 850px)': {
             display: 'block',
@@ -33,7 +39,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         },
     },
     right: {
-        width: 'calc(100% - 45rem)',
+        width: 'calc(100% - 49rem)',
 
         '@media (max-width: 850px)': {
             width: '100%',
@@ -55,6 +61,7 @@ const PublicProfilePage = (): ReactElement => {
                     <div className={css.wrp}>
                         <div className={css.left}>
                             <ProfileCard
+                                className={css.sticky}
                                 id={profile?.id}
                                 registerDate={profile?.date_joined}
                                 firstName={profile?.first_name}

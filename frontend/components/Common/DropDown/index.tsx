@@ -83,23 +83,26 @@ const useStyles = createUseStyles((theme: Theme) => ({
         zIndex: 10,
         width: '100%',
         minWidth: theme.rem(25),
-        paddingTop: theme.rem(1),
+        marginTop: theme.rem(1),
         scrollBehavior: 'smooth',
         '-webkit-overflow-scrolling': 'touch',
+        boxShadow: theme.shadow[3],
+        borderRadius: theme.radius,
+        transition: theme.transitions[0],
 
         '@media (max-width: 768px)': {
             minWidth: theme.rem(35),
         },
 
-        '&.enter .box': {
+        '&.enter': {
             opacity: 0,
             transform: 'translateY(-2rem)',
         },
-        '&.enter-done .box': {
+        '&.enter-done': {
             opacity: 1,
             transform: 'translateY(0)',
         },
-        '&.exit .box': {
+        '&.exit': {
             opacity: 0,
             transform: 'translateY(-2rem)',
         },
@@ -110,15 +113,12 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
     box: {
         position: 'relative',
-        transform: 'translateY(0)',
         maxHeight: theme.rem(35),
         padding: theme.rem(0.4, 0),
         background: theme.palette.white,
         borderRadius: theme.radius,
         border: theme.border(0.1, theme.palette.gray[3]),
         overflowY: 'auto',
-        transition: theme.transitions[0],
-        opacity: 1,
     },
     item: {
         cursor: 'pointer',

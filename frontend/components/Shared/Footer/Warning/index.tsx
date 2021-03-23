@@ -1,7 +1,6 @@
 import React, { ReactElement, useState } from 'react';
 import { createUseStyles } from 'react-jss';
 
-import template from '../../../../assets/template';
 import { Theme } from '../../../../assets/theme';
 
 const useStyles = createUseStyles((theme: Theme) => ({
@@ -9,16 +8,19 @@ const useStyles = createUseStyles((theme: Theme) => ({
         position: 'fixed',
         bottom: 0,
         left: 0,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
         width: '100%',
-        padding: theme.rem(2),
+        padding: theme.rem(1),
         background: theme.palette.yellow[0],
         color: theme.palette.trueBlack,
-        textAlign: 'center',
-        fontSize: theme.rem(1.6),
+        fontSize: theme.rem(2),
     },
     btn: {
-        ...template(theme).btn,
+        padding: theme.rem(1, 3),
         marginLeft: theme.rem(2),
+        borderRadius: theme.radius,
         background: theme.palette.trueWhite,
         color: theme.palette.trueBlack,
     },

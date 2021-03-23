@@ -17,6 +17,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         padding: theme.rem(2, 1),
         background: theme.palette.soft[0],
         borderRadius: theme.radius,
+        color: theme.palette.black[0],
 
         ...template(theme).outline,
     },

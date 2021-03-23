@@ -58,6 +58,7 @@ const api = {
     profiles: {
         public: {
             get: (id: number): Promise<AxiosResponse<IPublicProfile>> => axios.get(`${url2}/users/${id}`),
+            userShort: (id: number): Promise<AxiosResponse<IPublicProfile>> => axios.get(`${url2}/users/short/${id}`),
         },
     },
 };

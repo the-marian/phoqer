@@ -7,7 +7,7 @@ import { Theme } from '../../../assets/theme';
 const useStyles = createUseStyles((theme: Theme) => ({
     top: {
         maxWidth: theme.rem(80),
-        width: '100%',
+        width: '90%',
         height: '100%',
         margin: '5rem auto',
         padding: theme.rem(10),
@@ -15,6 +15,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         background: theme.palette.soft[0],
         fontSize: theme.rem(1.6),
         textAlign: 'center',
+        color: theme.palette.black[0],
 
         '& h2': {
             margin: theme.rem(4, 0, 2),
