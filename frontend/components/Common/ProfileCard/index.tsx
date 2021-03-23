@@ -89,7 +89,7 @@ const ProfileCard = ({
     firstName = '_',
     lastName = '_',
     registerDate,
-    lastActivity = '03-23-2021 22:20',
+    lastActivity,
     avatar = null,
     userLocation = null,
     className,
