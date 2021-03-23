@@ -1,8 +1,9 @@
+import clsx from 'clsx';
 import Link from 'next/link';
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
-import { formatTimestamp } from '../../../assets/helpers';
+import { dateFromTimestamp, declOfNum, formatTimestamp } from '../../../assets/helpers';
 import routes from '../../../assets/routes';
 import template from '../../../assets/template';
 import { Theme } from '../../../assets/theme';
@@ -69,6 +70,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
 }));
 
+const FIVE_MINUTES_IN_MS = 300000;
+const HOUR_IN_MS = 3600000;
+
 interface IProps {
     id?: string | number;
     firstName?: string;
@@ -76,6 +80,8 @@ interface IProps {
     registerDate?: string;
     avatar?: string | null;
     userLocation?: string | null;
+    className?: string;
+    lastActivity?: string;
 }
 
 const ProfileCard = ({
@@ -83,8 +89,10 @@ const ProfileCard = ({
     firstName = '_',
     lastName = '_',
     registerDate,
+    lastActivity = '03-23-2021 22:20',
     avatar = null,
     userLocation = null,
+    className,
 }: IProps): ReactElement => {
     const css = useStyles();
     const auth = useAuth();
@@ -103,11 +111,24 @@ const ProfileCard = ({
         alert('hi!');
     };
 
+    const date: Date | null = dateFromTimestamp(lastActivity);
+    const lastActivityPeriod = () => {
+        if (!date) return ' - ';
+        const dif = Date.now() - +date;
+        if (dif > HOUR_IN_MS) return formatTimestamp(date, M);
+
+        const minuts = Math.floor(dif / 60000);
+        return `Был(а) онлайн ${minuts} ${declOfNum(minuts, ['минуту', 'минуты', 'минут'])} назад`;
+    };
+
+    const isAuthor = auth?.id === id;
+    const isOnline = (date && Date.now() - +date < FIVE_MINUTES_IN_MS) || isAuthor;
+
     return (
-        <div className={css.wrp}>
+        <div className={clsx(css.wrp, className)}>
             <Link href={routes.profile.public(id)}>
                 <a>
-                    <UserAvatar firstName={firstName} lastName={lastName} avatar={avatar} />
+                    <UserAvatar online={isAuthor} firstName={firstName} lastName={lastName} avatar={avatar} />
                 </a>
             </Link>
             <div className={css.content}>
@@ -115,7 +136,7 @@ const ProfileCard = ({
                     <a className={css.name}>{firstName + ' ' + lastName}</a>
                 </Link>
                 <div className={css.info}>
-                    <p>Был онлайн 2 часа назад</p>
+                    <p>{isOnline ? 'online' : lastActivityPeriod()}</p>
                 </div>
 
                 <div className={css.info}>
@@ -123,7 +144,7 @@ const ProfileCard = ({
                     <p>Локация: {userLocation || 'Не указано'}</p>
                 </div>
 
-                {auth?.id !== id ? (
+                {!isAuthor ? (
                     <button className={css.btn} type="button" onClick={handleOpenChat}>
                         Написать автору
                     </button>

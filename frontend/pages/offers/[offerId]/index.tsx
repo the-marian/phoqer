@@ -27,7 +27,7 @@ import { wrapper } from '../../../redux/store';
 import types from '../../../redux/types';
 
 const useStyles = createUseStyles((theme: Theme) => ({
-    // top content
+    // top translate
     banner: {
         display: 'block',
         height: theme.rem(60),

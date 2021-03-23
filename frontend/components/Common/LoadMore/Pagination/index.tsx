@@ -37,6 +37,11 @@ const useStyles = createUseStyles((theme: Theme) => ({
         transition: theme.transitions[0],
         cursor: 'pointer',
 
+        '@media (max-width: 500px)': {
+            margin: theme.rem(0.2),
+            padding: theme.rem(0.6),
+        },
+
         '&:hover': {
             background: theme.palette.gray[1],
         },
@@ -123,8 +128,8 @@ const Pagination = ({ total, onClick, onMore, loading }: IProps): ReactElement |
                 breakLabel="..."
                 forcePage={page - 1}
                 pageCount={total}
-                marginPagesDisplayed={2}
-                pageRangeDisplayed={2}
+                marginPagesDisplayed={1}
+                pageRangeDisplayed={1}
                 onPageChange={handlePagination}
                 containerClassName={css.pagination}
                 breakLinkClassName={css.page}

@@ -202,8 +202,10 @@ export interface IPublicProfile {
     description_rate?: string;
     dislikes?: number;
     email?: string | null;
-    first_name?: string;
     id?: string | number;
+    first_name?: string;
+    last_login?: string;
+    last_activity?: string;
     last_name?: string;
     likes?: number;
     location?: string;

@@ -174,7 +174,7 @@ const SubComment = ({ id, comments }: { id: number; comments: IComment[] }): Rea
 
 interface IProps {
     comment: IComment;
-    extend?: boolean; // show all content or only first 200 symbols
+    extend?: boolean; // show all translate or only first 200 symbols
     replies?: boolean; // show render replies or not
     inner?: boolean; // if it is inner comment then provide special styles
 }
