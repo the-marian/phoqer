@@ -8,7 +8,7 @@ class UserBase(BaseModel):
     date_joined: date
     first_name: str
     id: int
-    last_login: datetime
+    last_activity: datetime
     last_name: str
     location: Optional[str]
     profile_img: Optional[HttpUrl]
