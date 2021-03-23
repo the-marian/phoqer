@@ -180,3 +180,6 @@ backend/mediafiles/*
 postgres_data
 phoqer.bak
 phoqer.dump
+
+# script for Ihor
+start.sh

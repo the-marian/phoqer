@@ -14,7 +14,7 @@ import useShallowRouter from '../../../hooks/routing.hook';
 import useTrans from '../../../hooks/trans.hook';
 import { IDropValue, ISearch, IState } from '../../../interfaces';
 import types from '../../../redux/types';
-import Button from '../Button';
+import Button from '../../Layout/Button';
 import LinkArrow from '../LinkArrow';
 import OptionsDesktop from './OptionsDesktop';
 import OptionsMobile from './OptionsMobile';
@@ -59,13 +59,8 @@ const useStyles = createUseStyles((theme: Theme) => ({
         color: theme.palette.black[0],
     },
     btn: {
-        height: theme.rem(6),
+        ...template(theme).btn,
         width: '100%',
-        background: theme.palette.primary[0],
-        fontSize: theme.rem(1.6),
-        color: theme.palette.trueWhite,
-        borderRadius: theme.radius,
-        ...template(theme).outline,
 
         '@media (max-width: 1100px)': {
             width: '31%',

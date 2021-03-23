@@ -3,13 +3,13 @@ import { faChevronRight } from '@fortawesome/free-solid-svg-icons/faChevronRight
 import { faRedo } from '@fortawesome/free-solid-svg-icons/faRedo';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useRouter } from 'next/router';
-import React, { ReactElement, useState } from 'react';
+import React, { ReactElement, useEffect, useState } from 'react';
 import { createUseStyles } from 'react-jss';
 import ReactPaginate from 'react-paginate';
 
 import { Theme } from '../../../../assets/theme';
 import useShallowRouter from '../../../../hooks/routing.hook';
-import Button from '../../Button';
+import Button from '../../../Layout/Button';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     root: {
@@ -95,6 +95,10 @@ const Pagination = ({ total, onClick, onMore, loading }: IProps): ReactElement |
     const history = useRouter();
     const shallow = useShallowRouter();
     const [page, setPage] = useState<number>(+(history.query?.page || 1));
+
+    useEffect(() => {
+        if (!history.query?.page) setPage(1);
+    }, [history.query]);
 
     const pushRouter = (page: number) => {
         setPage(page);

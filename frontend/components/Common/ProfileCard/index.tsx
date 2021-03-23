@@ -51,24 +51,17 @@ const useStyles = createUseStyles((theme: Theme) => ({
     info: {
         marginBottom: theme.rem(2),
         color: theme.palette.gray[4],
-        fontSize: theme.rem(1.2),
+        fontSize: theme.rem(1.4),
 
         '@media (max-width: 768px)': {
             fontSize: theme.rem(1.5),
         },
     },
     btn: {
-        display: 'block',
+        ...template(theme).btn,
         width: 'max-content',
-        padding: theme.rem(1.5, 3),
-        fontSize: theme.rem(1.6),
         color: theme.palette.black[0],
-        borderRadius: theme.radius,
         background: theme.palette.white,
-        textAlign: 'center',
-        boxShadow: theme.shadow[1],
-        transition: theme.transitions[0],
-        ...template(theme).outline,
 
         '@media (max-width: 500px)': {
             border: theme.border(0.1, theme.palette.gray[2]),
@@ -130,7 +123,7 @@ const ProfileCard = ({
                     <p>Локация: {userLocation || 'Не указано'}</p>
                 </div>
 
-                {auth?.id === id ? (
+                {auth?.id !== id ? (
                     <button className={css.btn} type="button" onClick={handleOpenChat}>
                         Написать автору
                     </button>

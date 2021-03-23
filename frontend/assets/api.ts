@@ -1,7 +1,16 @@
 import axios, { AxiosResponse } from 'axios';
 import { Params } from 'next/dist/next-server/server/router';
 
-import { IAuth, ICategories, IComment, IOfferCard, IOfferPagination, IPublicProfile, ISignup } from '../interfaces';
+import {
+    IAuth,
+    ICategories,
+    IComment,
+    IOfferCard,
+    IOfferDynamic,
+    IOfferPagination,
+    IPublicProfile,
+    ISignup,
+} from '../interfaces';
 import { IBody } from '../redux/offers/new_offer/interfaces';
 import config from './config';
 
@@ -35,6 +44,8 @@ const api = {
         dislike: (id: number): Promise<AxiosResponse<void>> => axios.patch(`${url2}/comments/${id}/dislike`),
     },
     offers: {
+        myOffers: ({ tab, params }: { tab: string; params: Params }): Promise<AxiosResponse<IOfferDynamic>> =>
+            axios.get(`${url2}/offers/status/${tab}`, { params }),
         popular: (): Promise<AxiosResponse<IOfferPagination>> => axios.get(`${url2}/offers/popular`),
         single: (id: string): Promise<AxiosResponse<IOfferCard>> => axios.get(`${url2}/offers/${id}`),
         new: (body: IBody): Promise<AxiosResponse<void>> => axios.post(`${url2}/offers`, body),

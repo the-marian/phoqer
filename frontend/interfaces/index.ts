@@ -126,6 +126,7 @@ export interface IOfferPagination {
 export interface IOfferDynamic {
     data: IOfferPagination;
     loading: boolean;
+    pagination: boolean;
 }
 
 export interface IOfferStatic {
@@ -134,6 +135,7 @@ export interface IOfferStatic {
 }
 
 export interface INewOffer {
+    loading: boolean;
     id?: string | null;
     // step one
     title: string;
@@ -163,9 +165,10 @@ export interface INewOffer {
 export interface IOffers {
     popular: IOfferStatic;
     search: IOfferDynamic;
+    my_offers: IOfferDynamic;
     favorite: IOfferStatic;
     single: IOfferCard | null;
-    newOffer: INewOffer;
+    new_offer: INewOffer;
 }
 
 // =====================================

@@ -5,13 +5,19 @@ import initState from '../../state';
 import types from '../../types';
 import IAction from './interfaces';
 
-const newOffer = (state: INewOffer = initState.offers.newOffer, { type, payload }: IAction): INewOffer => {
+const new_offer = (state: INewOffer = initState.offers.new_offer, { type, payload }: IAction): INewOffer => {
     switch (type) {
         case HYDRATE:
-            return (payload as IState).offers.newOffer;
+            return (payload as IState).offers.new_offer;
+
+        case types.POST_OFFER_START:
+            return { ...state, loading: true };
+
+        case types.POST_OFFER_ERROR:
+            return { ...state, loading: false };
 
         case types.POST_OFFER_SUCCESS:
-            return { ...state, id: (payload as INewOffer).id };
+            return { ...state, id: (payload as INewOffer).id, loading: false };
 
         case types.NEW_OFFER_FORM:
             return { ...state, ...payload };
@@ -21,4 +27,4 @@ const newOffer = (state: INewOffer = initState.offers.newOffer, { type, payload 
     }
 };
 
-export default newOffer;
+export default new_offer;
