@@ -4,21 +4,23 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import clsx from 'clsx';
 import { useRouter } from 'next/router';
 import React, { ChangeEvent, FormEvent, ReactElement, useState } from 'react';
+import { createUseStyles } from 'react-jss';
 import { useDispatch, useSelector } from 'react-redux';
 import { Dispatch } from 'redux';
 
 import * as helpers from '../../../../assets/helpers';
 import { moneyFormat, numberValidation } from '../../../../assets/helpers';
 import routes from '../../../../assets/routes';
+import { Theme } from '../../../../assets/theme';
 import { ICategories, IDropValue, INewOffer, IState } from '../../../../interfaces';
 import types from '../../../../redux/types';
 import CheckYesNo from '../../../Common/CheckYesNo';
 import DropDown from '../../../Common/DropDown';
-import { modal } from '../../../Common/Modal';
 import Input from '../../../Layout/Input';
-import SaveModal from '../SaveModal';
+import newOfferTemplate from '../index.style';
 import Region from './Region';
-import useStyles from './StepOne.styles';
+
+const useStyles = createUseStyles((theme: Theme) => newOfferTemplate(theme).step);
 
 interface IError {
     title?: string;
@@ -32,7 +34,7 @@ const notDone = (value: INewOffer, dispatch: Dispatch): void => {
 
 const StepThree = (): ReactElement => {
     const css = useStyles();
-    const router = useRouter();
+    const history = useRouter();
     const dispatch = useDispatch();
 
     const [errors, setErrors] = useState<IError>({});
@@ -93,7 +95,7 @@ const StepThree = (): ReactElement => {
                 isDone: { ...value.isDone, one: true },
             },
         });
-        router.push(routes.new_offer(2), undefined, { shallow: true });
+        history.push(routes.new_offer(2), undefined, { shallow: true });
     };
 
     const handleClear = (): void => {
@@ -114,10 +116,12 @@ const StepThree = (): ReactElement => {
     };
 
     const handleSave = (): void => {
-        modal.open(<SaveModal />);
         dispatch({
-            type: types.NEW_OFFER_FORM,
-            payload: value,
+            type: types.POST_OFFER_START,
+            payload: null,
+            redirect() {
+                history.push(routes.new_offer('draft'), undefined, { shallow: true });
+            },
         });
     };
 

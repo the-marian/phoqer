@@ -126,6 +126,7 @@ export interface IOfferPagination {
 export interface IOfferDynamic {
     data: IOfferPagination;
     loading: boolean;
+    pagination: boolean;
 }
 
 export interface IOfferStatic {

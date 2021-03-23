@@ -59,13 +59,8 @@ const useStyles = createUseStyles((theme: Theme) => ({
         color: theme.palette.black[0],
     },
     btn: {
-        height: theme.rem(6),
+        ...template(theme).btn,
         width: '100%',
-        background: theme.palette.primary[0],
-        fontSize: theme.rem(1.6),
-        color: theme.palette.trueWhite,
-        borderRadius: theme.radius,
-        ...template(theme).outline,
 
         '@media (max-width: 1100px)': {
             width: '31%',

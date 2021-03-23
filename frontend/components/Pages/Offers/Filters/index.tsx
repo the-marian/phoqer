@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { CSSTransition } from 'react-transition-group';
 
 import routes from '../../../../assets/routes';
+import template from '../../../../assets/template';
 import { Theme } from '../../../../assets/theme';
 import useShallowRouter from '../../../../hooks/routing.hook';
 import { ISearch, IState } from '../../../../interfaces';
@@ -144,13 +145,8 @@ const useStyles = createUseStyles((theme: Theme) => ({
         },
     },
     btn: {
-        height: theme.rem(6),
+        ...template(theme).btn,
         marginTop: theme.rem(3),
-        padding: theme.rem(1.5, 3),
-        fontSize: theme.rem(1.4),
-        borderRadius: theme.radius,
-        background: theme.palette.primary[0],
-        color: theme.palette.trueWhite,
 
         '@media (max-width: 500px)': {
             fontSize: theme.rem(1.8),

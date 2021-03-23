@@ -11,9 +11,9 @@ import OffersList from '../../components/Common/Offers/OffersList';
 import Search from '../../components/Common/Search';
 import SectionTitle from '../../components/Common/SectionTitle';
 import Container from '../../components/Layout/Container';
-import Main from '../../components/Layout/TagMain';
 import Filters from '../../components/Pages/Offers/Filters';
 import TopOffers from '../../components/Pages/SingleOffer/TopOffers';
+import Main from '../../components/Shared/TagMain';
 import useTrans from '../../hooks/trans.hook';
 import { IOfferDynamic, IState, IStore } from '../../interfaces';
 import { wrapper } from '../../redux/store';
@@ -23,7 +23,7 @@ const OffersPage = (): ReactElement => {
     const T = useTrans();
     const { query } = useRouter();
     const dispatch = useDispatch();
-    const { data, loading } = useSelector<IState, IOfferDynamic>(state => state.offers.search);
+    const { data, loading, pagination } = useSelector<IState, IOfferDynamic>(state => state.offers.search);
 
     const handleClick = (page: number): void => {
         dispatch({ type: types.SEARCH_OFFERS_START, payload: { ...query, page } });
@@ -45,8 +45,8 @@ const OffersPage = (): ReactElement => {
 
                 <Container>
                     <SectionTitle>Результаты поиска</SectionTitle>
-                    <OffersList data={data?.data} />
-                    <Pagination loading={loading} total={data.total} onClick={handleClick} onMore={handleMore} />
+                    <OffersList loading={loading} data={data?.data} />
+                    <Pagination loading={pagination} total={data.total} onClick={handleClick} onMore={handleMore} />
                 </Container>
 
                 <About />

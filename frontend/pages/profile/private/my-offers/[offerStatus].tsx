@@ -12,7 +12,7 @@ import ProfileNav from '../../../../components/Common/NavTabs/ProfileNav';
 import ProfileOffersNav from '../../../../components/Common/NavTabs/ProfileOffersNav';
 import OffersList from '../../../../components/Common/Offers/OffersList';
 import Container from '../../../../components/Layout/Container';
-import Main from '../../../../components/Layout/TagMain';
+import Main from '../../../../components/Shared/TagMain';
 import useTrans from '../../../../hooks/trans.hook';
 import { IOfferDynamic, IState } from '../../../../interfaces';
 import { wrapper } from '../../../../redux/store';
@@ -32,7 +32,7 @@ const UserOffers = (): ReactElement => {
     const { query } = useRouter();
     const offerStatus = String(query.offerStatus);
 
-    const { data, loading } = useSelector<IState, IOfferDynamic>(state => state.offers.my_offers);
+    const { data, loading, pagination } = useSelector<IState, IOfferDynamic>(state => state.offers.my_offers);
 
     useEffect(() => {
         dispatch({
@@ -57,8 +57,8 @@ const UserOffers = (): ReactElement => {
                     <ProfileOffersNav active={offerStatus} />
 
                     <div className={css.root}>
-                        <OffersList data={data?.data} />
-                        <Pagination loading={loading} total={data.total} onClick={handleClick} onMore={handleMore} />
+                        <OffersList loading={loading} data={data?.data} />
+                        <Pagination loading={pagination} total={data.total} onClick={handleClick} onMore={handleMore} />
                     </div>
                 </Container>
             </Main>

@@ -27,7 +27,7 @@ export interface Theme {
     palette: IPalette;
     text: {
         family: string;
-        weight: [200, 300, 400, 500, 600, 700];
+        weight: ['200', '300', '400', '500', '600', '700'];
     };
     transitions: string[];
 }
@@ -104,7 +104,7 @@ export const theme = (value: Themes): Theme => ({
     palette: palette[value],
     text: {
         family: 'Montserrat, sans-serif',
-        weight: [200, 300, 400, 500, 600, 700],
+        weight: ['200', '300', '400', '500', '600', '700'],
     },
     transitions: ['0.2s cubic-bezier(0.4, 0, 0.2, 1)', '0.6s cubic-bezier(0.4, 0, 0.2, 1)'],
 });

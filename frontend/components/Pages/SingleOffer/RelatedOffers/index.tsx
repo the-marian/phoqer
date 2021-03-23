@@ -4,6 +4,7 @@ import { createUseStyles } from 'react-jss';
 import { useSelector } from 'react-redux';
 
 import routes from '../../../../assets/routes';
+import template from '../../../../assets/template';
 import { Theme } from '../../../../assets/theme';
 import { IOfferStatic, IState } from '../../../../interfaces';
 import OffersList from '../../../Common/Offers/OffersList';
@@ -16,18 +17,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
         fontWeight: theme.text.weight[3],
     },
     btn: {
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
+        ...template(theme).btn,
         width: theme.rem(25),
-        height: theme.rem(6),
         margin: '10rem auto 0',
-        padding: theme.rem(1, 4),
-        textAlign: 'center',
-        fontSize: theme.rem(1.4),
-        color: theme.palette.trueWhite,
-        borderRadius: theme.radius,
-        background: theme.palette.primary[0],
 
         '@media (max-width: 550px)': {
             margin: '4rem auto 0',

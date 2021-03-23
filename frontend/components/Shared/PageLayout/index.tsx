@@ -6,9 +6,9 @@ import useTheme from '../../../hooks/theme.hook';
 import ModalComponent from '../../Common/Modal';
 import FullPageLoader from '../../Common/Preloaders/FullPage';
 import AuthInterceptor from '../../HOC/Auth/AuthInterceptor';
-import Footer from '../../Shared/Footer';
-import Header from '../../Shared/Header';
-import MainDrawer from '../../Shared/MainDrawer';
+import Footer from '../Footer';
+import Header from '../Header';
+import MainDrawer from '../MainDrawer';
 
 interface IProps {
     children: JSX.Element | JSX.Element[];

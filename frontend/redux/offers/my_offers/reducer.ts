@@ -5,7 +5,7 @@ import types from '../../types';
 import IAction from './interfaces';
 
 const my_offers = (
-    state: IOfferDynamic = { data: { data: [], total: 0 }, loading: true },
+    state: IOfferDynamic = { data: { data: [], total: 0 }, loading: true, pagination: true },
     { type, payload }: IAction,
 ): IOfferDynamic => {
     switch (type) {
@@ -16,18 +16,20 @@ const my_offers = (
             return {
                 data: { ...state.data, data: [...state.data.data, ...(payload as IOfferPagination).data] },
                 loading: false,
+                pagination: false,
             };
 
         case types.MY_OFFERS_SUCCESS:
-            return { data: payload as IOfferPagination, loading: false };
+            return { data: payload as IOfferPagination, loading: false, pagination: false };
 
         case types.MY_OFFERS_START:
-        case types.MY_OFFERS_PAGINATION_START:
             return { ...state, loading: true };
+        case types.MY_OFFERS_PAGINATION_START:
+            return { ...state, pagination: true };
 
         case types.MY_OFFERS_ERROR:
         case types.MY_OFFERS_PAGINATION_ERROR:
-            return { ...state, loading: false };
+            return { ...state, loading: false, pagination: false };
 
         default:
             return state;

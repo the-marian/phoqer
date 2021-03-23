@@ -3,7 +3,7 @@ import { faChevronRight } from '@fortawesome/free-solid-svg-icons/faChevronRight
 import { faRedo } from '@fortawesome/free-solid-svg-icons/faRedo';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useRouter } from 'next/router';
-import React, { ReactElement, useState } from 'react';
+import React, { ReactElement, useEffect, useState } from 'react';
 import { createUseStyles } from 'react-jss';
 import ReactPaginate from 'react-paginate';
 
@@ -96,6 +96,10 @@ const Pagination = ({ total, onClick, onMore, loading }: IProps): ReactElement |
     const shallow = useShallowRouter();
     const [page, setPage] = useState<number>(+(history.query?.page || 1));
 
+    useEffect(() => {
+        if (!history.query?.page) setPage(1);
+    }, [history.query]);
+
     const pushRouter = (page: number) => {
         setPage(page);
         shallow({ ...history.query, page });
@@ -113,31 +117,28 @@ const Pagination = ({ total, onClick, onMore, loading }: IProps): ReactElement |
 
     return total > 1 ? (
         <div className={css.root}>
+            <ReactPaginate
+                previousLabel={<FontAwesomeIcon icon={faChevronLeft} />}
+                nextLabel={<FontAwesomeIcon icon={faChevronRight} />}
+                breakLabel="..."
+                forcePage={page - 1}
+                pageCount={total}
+                marginPagesDisplayed={2}
+                pageRangeDisplayed={2}
+                onPageChange={handlePagination}
+                containerClassName={css.pagination}
+                breakLinkClassName={css.page}
+                pageLinkClassName={css.page}
+                activeLinkClassName={css.active}
+                previousLinkClassName={css.nav}
+                nextLinkClassName={css.nav}
+                disabledClassName={css.disabled}
+            />
             {page < total ? (
-                <>
-                    <ReactPaginate
-                        previousLabel={<FontAwesomeIcon icon={faChevronLeft} />}
-                        nextLabel={<FontAwesomeIcon icon={faChevronRight} />}
-                        breakLabel="..."
-                        forcePage={page - 1}
-                        pageCount={total}
-                        marginPagesDisplayed={2}
-                        pageRangeDisplayed={2}
-                        onPageChange={handlePagination}
-                        containerClassName={css.pagination}
-                        breakLinkClassName={css.page}
-                        pageLinkClassName={css.page}
-                        activeLinkClassName={css.active}
-                        previousLinkClassName={css.nav}
-                        nextLinkClassName={css.nav}
-                        disabledClassName={css.disabled}
-                    />
-
-                    <Button className={css.more} onClick={handleMore} loading={loading}>
-                        <FontAwesomeIcon icon={faRedo} />
-                        <span>Load more</span>
-                    </Button>
-                </>
+                <Button className={css.more} onClick={handleMore} loading={loading}>
+                    <FontAwesomeIcon icon={faRedo} />
+                    <span>Load more</span>
+                </Button>
             ) : null}
         </div>
     ) : null;

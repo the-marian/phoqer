@@ -11,7 +11,6 @@ import { Theme } from '../../../assets/theme';
 import Meta from '../../../components/Common/Meta';
 import AuthRedirect from '../../../components/HOC/Auth/AuthRedirect';
 import Container from '../../../components/Layout/Container';
-import Main from '../../../components/Layout/TagMain';
 import Draft from '../../../components/Pages/NewOffer/Draft';
 import StepFour from '../../../components/Pages/NewOffer/StepFour';
 import StepOne from '../../../components/Pages/NewOffer/StepOne';
@@ -19,6 +18,7 @@ import Stepper from '../../../components/Pages/NewOffer/Stepper';
 import StepThree from '../../../components/Pages/NewOffer/StepThree';
 import StepTwo from '../../../components/Pages/NewOffer/StepTwo';
 import Success from '../../../components/Pages/NewOffer/Success';
+import Main from '../../../components/Shared/TagMain';
 import useTrans from '../../../hooks/trans.hook';
 import { INewOffer, IState, IStore } from '../../../interfaces';
 import { wrapper } from '../../../redux/store';
@@ -71,21 +71,21 @@ const NewOffer = (): ReactElement => {
             /*
              * @desc don't use single if statement as it can brake the navigation logic
              * */
-            // if (step === '2' && !value?.isDone?.one) {
-            //     // *
-            //     // return to first page if user dont fill any of required field at step one
-            //     history.push(routes.new_offer(1));
-            // } else if (step === '3' && !value?.isDone?.two) {
-            //     // *
-            //     // return to first page if user dont fill any of required field at step two
-            //     history.push(routes.new_offer(1));
-            // } else if (['4', 'success', 'draft'].includes(step) && (!value?.isDone?.one || !value?.isDone?.two)) {
-            //     // *
-            //     // return to first page if user dont fill any of required field at step one and two
-            //     history.push(routes.new_offer(1));
-            // } else {
-            setPage(step);
-            // }
+            if (step === '2' && !value?.isDone?.one) {
+                // *
+                // return to first page if user dont fill any of required field at step one
+                history.push(routes.new_offer(1));
+            } else if (step === '3' && !value?.isDone?.two) {
+                // *
+                // return to first page if user dont fill any of required field at step two
+                history.push(routes.new_offer(1));
+            } else if (['4', 'success'].includes(step) && (!value?.isDone?.one || !value?.isDone?.two)) {
+                // *
+                // return to first page if user dont fill any of required field at step one and two
+                history.push(routes.new_offer(1));
+            } else {
+                setPage(step);
+            }
         }
     }, [history.query.step]);
 

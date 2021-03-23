@@ -16,6 +16,16 @@ const useStyles = createUseStyles((theme: Theme) => ({
         padding: theme.rem(2, 4),
         background: theme.palette.white,
         borderRadius: theme.radius,
+        transition: theme.transitions[0],
+
+        '&.appear': {
+            transform: 'translateX(30rem) translateY(-5rem)',
+            opacity: 0,
+        },
+        '&.appear-done': {
+            transform: 'translateX(30rem)',
+            opacity: 1,
+        },
 
         '@media (max-width: 1300px)': {
             top: theme.rem(10),
@@ -49,7 +59,6 @@ interface Props {
 
 const DropWindow = ({ onClose }: Props): ReactElement => {
     const css = useStyles();
-    const body = document.querySelector('body');
 
     useEffect(() => {
         const handleClose = (event: KeyboardEvent): void => {
@@ -63,18 +72,12 @@ const DropWindow = ({ onClose }: Props): ReactElement => {
         };
     }, []);
 
-    return (
+    return ReactDOM.createPortal(
         <>
-            {body
-                ? ReactDOM.createPortal(
-                      <>
-                          <div className={css.wrp} onClick={onClose} aria-hidden="true" />
-                          <UserNav className={css.root} />
-                      </>,
-                      body,
-                  )
-                : null}
-        </>
+            <div className={css.wrp} onClick={onClose} aria-hidden="true" />
+            <UserNav className={css.root} />
+        </>,
+        document.body,
     );
 };
 

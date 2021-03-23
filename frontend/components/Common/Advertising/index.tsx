@@ -1,12 +1,14 @@
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
-import { Theme } from '../../../../assets/theme';
+import template from '../../../assets/template';
+import { Theme } from '../../../assets/theme';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     top: {
         maxWidth: theme.rem(80),
         width: '100%',
+        height: '100%',
         margin: '5rem auto',
         padding: theme.rem(10),
         borderRadius: theme.radius,
@@ -28,16 +30,13 @@ const useStyles = createUseStyles((theme: Theme) => ({
         margin: '0 auto',
     },
     btn: {
-        height: theme.rem(6),
-        padding: theme.rem(1, 4),
-        margin: theme.rem(5, 0, 0),
-        background: theme.palette.primary[0],
-        color: theme.palette.trueWhite,
-        borderRadius: theme.radius,
+        ...template(theme).btn,
+        margin: '5rem auto 0',
+        padding: theme.rem(1, 8),
 
         '@media (max-width: 470px)': {
-            margin: theme.rem(2, 0, 0),
-            padding: theme.rem(2, 4),
+            margin: '2rem auto 0',
+            padding: theme.rem(1, 4),
         },
     },
 }));

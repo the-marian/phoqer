@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 import React, { CSSProperties, ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
@@ -17,13 +18,14 @@ const useStyles = createUseStyles((theme: Theme) => ({
 }));
 
 interface IProps {
+    className?: string;
     style?: CSSProperties;
 }
 
-const Spinner = ({ style = {} }: IProps): ReactElement => {
+const Spinner = ({ className, style = {} }: IProps): ReactElement => {
     const css = useStyles();
     return (
-        <div className={css.wrap}>
+        <div className={clsx(css.wrap, className)}>
             <img style={style} className={css.img} src="/spinner.gif" alt="spinner" />
         </div>
     );

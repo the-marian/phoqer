@@ -8,7 +8,7 @@ import Meta from '../../../../components/Common/Meta';
 import ProfileCard from '../../../../components/Common/ProfileCard';
 import Container from '../../../../components/Layout/Container';
 import ProfileInfo from '../../../../components/Pages/Profile/Public/ProfileInfo';
-import Main from '../../../../components/Layout/TagMain';
+import Main from '../../../../components/Shared/TagMain';
 import useTrans from '../../../../hooks/trans.hook';
 import { IPublicProfile, IState, IStore } from '../../../../interfaces';
 import { wrapper } from '../../../../redux/store';

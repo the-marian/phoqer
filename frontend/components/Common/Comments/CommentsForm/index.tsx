@@ -67,11 +67,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         },
     },
     btn: {
-        padding: theme.rem(1.2, 2),
-        background: theme.palette.primary[0],
-        color: theme.palette.white,
-        borderRadius: theme.radius,
-        fontSize: theme.rem(1.6),
+        ...template(theme).btn,
 
         '@media (max-width: 1050px)': {
             margin: theme.rem(2, 0),

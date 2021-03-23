@@ -2,16 +2,20 @@ import { UploadedUppyFile } from '@uppy/core';
 import { Dashboard } from '@uppy/react';
 import { useRouter } from 'next/router';
 import React, { FormEvent, ReactElement, useEffect, useState } from 'react';
+import { createUseStyles } from 'react-jss';
 import { useDispatch } from 'react-redux';
 
 import config from '../../../../assets/config';
 import routes from '../../../../assets/routes';
+import { Theme } from '../../../../assets/theme';
 import useMedia from '../../../../hooks/media.hook';
 import useTheme from '../../../../hooks/theme.hook';
 import useUppy from '../../../../hooks/uppy.hook';
 import types from '../../../../redux/types';
 import notifications from '../../../Common/Notifications';
-import useStyles from './StepThree.styles';
+import newOfferTemplate from '../index.style';
+
+const useStyles = createUseStyles((theme: Theme) => newOfferTemplate(theme).step);
 
 const StepThree = (): ReactElement => {
     // style
@@ -80,7 +84,7 @@ const StepThree = (): ReactElement => {
     return (
         <form className={css.form} onSubmit={handleSubmit}>
             <h4 className={css.title}>Добавьте фото вашего товара</h4>
-            <p className={css.text}>Не больше 3мб (.png .jpg .jpeg)</p>
+            <h5 className={css.subtitle}>Не больше 3мб (.png .jpg .jpeg)</h5>
 
             <Dashboard theme={theme === 'white' ? 'light' : 'dark'} uppy={uppy} hideUploadButton height={media ? 500 : 350} />
 
@@ -91,7 +95,7 @@ const StepThree = (): ReactElement => {
 
                 {isEmpty ? (
                     <button type="button" className={css.next} onClick={handleClick}>
-                        Опубликовать без фото
+                        Создать объявление
                     </button>
                 ) : (
                     <button type="submit" className={css.next}>

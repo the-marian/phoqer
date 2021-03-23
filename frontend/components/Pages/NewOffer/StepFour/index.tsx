@@ -6,7 +6,6 @@ import { createUseStyles } from 'react-jss';
 
 import routes from '../../../../assets/routes';
 import { Theme } from '../../../../assets/theme';
-import Advertising from '../Advertising';
 import newOfferTemplate from '../index.style';
 
 const useStyles = createUseStyles((theme: Theme) => newOfferTemplate(theme).end);
@@ -15,8 +14,9 @@ const Draft = (): ReactElement => {
     const css = useStyles();
     const history = useRouter();
 
-    const handleDraft = (): void => {
-        history.push(routes.profile.private.my_offers('draft'), undefined, { shallow: true });
+    const handleSubmit = (): void => {
+        // TEMP
+        history.push(routes.new_offer('success'));
     };
 
     return (
@@ -37,20 +37,18 @@ const Draft = (): ReactElement => {
             <h2 className={css.title}>Ваше объявление успешно сгенерировано</h2>
 
             <p className={css.text}>
-                Вы можете поместить его в черновики. Тогда никто не увидит ваше объявление, так что вы сможете его изменить перед
-                публикацией. Или вы можете сразу опубликовать его на сайте
+                Вы можете поместить его в черновики. Тогда вы сможете изменить его перед публикацией. Или вы можете сразу
+                опубликовать его на сайте
             </p>
 
             <div className={css.flex}>
-                <button type="button" className={css.btn} onClick={handleDraft}>
-                    Отправить в черновики
-                </button>
-                <button type="button" className={clsx(css.btn, css.primary)}>
+                <Link href={routes.profile.private.my_offers('draft')}>
+                    <a className={css.btn}>Отправить в черновики</a>
+                </Link>
+                <button type="button" className={clsx(css.btn, css.primary)} onClick={handleSubmit}>
                     Публиковать
                 </button>
             </div>
-
-            <Advertising />
         </div>
     );
 };

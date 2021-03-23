@@ -116,20 +116,17 @@ const useStyles = createUseStyles((theme: Theme) => ({
         alignItems: 'center',
     },
     btn: {
-        padding: theme.rem(1.5, 2),
-        fontSize: theme.rem(1.4),
-        borderRadius: theme.radius,
+        ...template(theme).btn,
         background: theme.palette.gray[1],
-        color: theme.palette.primary[0],
-        ...template(theme).outline,
+        color: theme.palette.black[0],
 
         '@media (max-width: 500px)': {
-            padding: theme.rem(2, 4),
+            padding: theme.rem(1, 4),
             fontSize: theme.rem(1.8),
         },
     },
     favorite: {
-        height: theme.rem(5.1),
+        height: theme.rem(6),
         marginLeft: theme.rem(0.6),
         padding: theme.rem(1, 1.8),
         color: theme.palette.primary[0],
@@ -142,7 +139,6 @@ const useStyles = createUseStyles((theme: Theme) => ({
         },
 
         '@media (max-width: 500px)': {
-            height: theme.rem(6.5),
             fontSize: theme.rem(2.2),
         },
     },

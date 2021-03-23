@@ -4,19 +4,21 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import clsx from 'clsx';
 import { useRouter } from 'next/router';
 import React, { ChangeEvent, FormEvent, ReactElement, useState } from 'react';
+import { createUseStyles } from 'react-jss';
 import { useDispatch, useSelector } from 'react-redux';
 import TextareaAutosize from 'react-textarea-autosize';
 
 import { moneyFormat, numberValidation } from '../../../../assets/helpers';
 import routes from '../../../../assets/routes';
+import { Theme } from '../../../../assets/theme';
 import { INewOffer, IState } from '../../../../interfaces';
 import types from '../../../../redux/types';
 import CheckTitle from '../../../Common/CheckTitle';
 import CheckYesNo from '../../../Common/CheckYesNo';
-import { modal } from '../../../Common/Modal';
 import Input from '../../../Layout/Input';
-import SaveModal from '../SaveModal';
-import useStyles from './StepTwo.styles';
+import newOfferTemplate from '../index.style';
+
+const useStyles = createUseStyles((theme: Theme) => newOfferTemplate(theme).step);
 
 interface IError {
     description?: string;
@@ -139,8 +141,13 @@ const StepTwo = (): ReactElement => {
         history.push(routes.new_offer(3), undefined, { shallow: true });
     };
     const handleSave = (): void => {
-        modal.open(<SaveModal />);
-        dispatch({ type: types.NEW_OFFER_FORM, payload: value });
+        dispatch({
+            type: types.POST_OFFER_START,
+            payload: null,
+            redirect() {
+                history.push(routes.new_offer('draft'), undefined, { shallow: true });
+            },
+        });
     };
 
     return (

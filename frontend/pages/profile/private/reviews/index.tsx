@@ -7,7 +7,7 @@ import { Theme } from '../../../../assets/theme';
 import Meta from '../../../../components/Common/Meta';
 import ProfileNav from '../../../../components/Common/NavTabs/ProfileNav';
 import Container from '../../../../components/Layout/Container';
-import Main from '../../../../components/Layout/TagMain';
+import Main from '../../../../components/Shared/TagMain';
 import useTrans from '../../../../hooks/trans.hook';
 import { wrapper } from '../../../../redux/store';
 

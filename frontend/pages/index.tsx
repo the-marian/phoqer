@@ -8,7 +8,7 @@ import Meta from '../components/Common/Meta';
 import TopPopular from '../components/Common/PopularOffers';
 import Search from '../components/Common/Search';
 import Container from '../components/Layout/Container';
-import Main from '../components/Layout/TagMain';
+import Main from '../components/Shared/TagMain';
 import useTrans from '../hooks/trans.hook';
 import { IStore } from '../interfaces';
 import { wrapper } from '../redux/store';

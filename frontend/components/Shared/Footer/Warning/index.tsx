@@ -17,12 +17,10 @@ const useStyles = createUseStyles((theme: Theme) => ({
         fontSize: theme.rem(1.6),
     },
     btn: {
+        ...template(theme).btn,
         marginLeft: theme.rem(2),
-        padding: theme.rem(0.5, 2),
         background: theme.palette.trueWhite,
         color: theme.palette.trueBlack,
-        borderRadius: theme.radius,
-        ...template(theme).outline,
     },
 }));
 
