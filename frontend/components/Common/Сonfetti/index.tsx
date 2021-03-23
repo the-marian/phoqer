@@ -6,6 +6,7 @@ import useMedia from '../../../hooks/media.hook';
 
 const ConfettiWrp = (): ReactElement => {
     const media = useMedia(768);
+
     const [party, setParty] = useState<boolean>(true);
     const [size, setSize] = useState<{ y: number; x: number }>({ y: window.innerHeight, x: window.innerWidth - 20 });
 
