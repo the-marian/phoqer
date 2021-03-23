@@ -1,10 +1,17 @@
 import React, { ReactElement } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
+<<<<<<< HEAD:frontend/components/Pages/Offers/Filters/Status/index.tsx
 import { findCategory } from '../../../../../assets/helpers';
 import { IDropList, IDropValue, ISearch, IState } from '../../../../../interfaces';
 import types from '../../../../../redux/types';
 import DropDown from '../../../../Common/DropDown';
+=======
+import { findCategory } from '../../../../assets/helpers';
+import { IDropList, IDropValue, ISearch, IState } from '../../../../interfaces';
+import types from '../../../../redux/types';
+import DropDown from '../../../Common/DropDown';
+>>>>>>> d0a04e15059ac5becb15b02e2ee23426aae0c9ad:frontend/components/Layout/Filters/Status/index.tsx
 import useStyles from '../index.styles';
 
 const FILTERS: IDropList[] = [
