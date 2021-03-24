@@ -3,7 +3,7 @@ import { HYDRATE } from 'next-redux-wrapper';
 import { Middleware } from 'redux';
 
 import notifications from '../components/Common/Notifications';
-import { IAuth, INewOffer, IState } from '../interfaces';
+import { IAuth, IState } from '../interfaces';
 import initState from '../redux/state';
 import types from '../redux/types';
 
@@ -37,20 +37,6 @@ const Persist: Middleware = store => next => action => {
                 break;
 
             /**
-             * OFFER CREATION
-             * */
-            case types.NEW_OFFER_FORM:
-            case types.POST_OFFER_SUCCESS:
-                try {
-                    const state: IState = store.getState();
-                    localStorage.setItem('phoqer_new_offer', JSON.stringify({ ...state.offers.newOffer, ...action.payload }));
-                } catch (error) {
-                    notifications('error');
-                }
-                next(action);
-                break;
-
-            /**
              * HYDRATE ACTION
              * */
             case HYDRATE:
@@ -58,25 +44,8 @@ const Persist: Middleware = store => next => action => {
                     // Auth
                     const authStr: string | null = Cookies.get('phoqer_auth') || null;
                     const auth: IAuth = authStr ? JSON.parse(authStr) : initState.auth;
-
-                    const newOfferStr: string | null = localStorage.getItem('phoqer_new_offer') || null;
-                    const newOffer: INewOffer = newOfferStr ? JSON.parse(newOfferStr) : initState.offers.newOffer;
-
                     // next
-                    next({
-                        type: HYDRATE,
-                        payload: {
-                            ...action.payload,
-                            auth,
-                            offers: {
-                                ...action.payload.offers,
-                                newOffer: {
-                                    ...action.payload.offers.newOffer,
-                                    ...newOffer,
-                                },
-                            },
-                        },
-                    });
+                    next({ type: HYDRATE, payload: { ...action.payload, auth } });
                 } catch (error) {
                     notifications('error');
                     next(action);

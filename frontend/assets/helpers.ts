@@ -62,27 +62,32 @@ export const declOfNum = (number: number, titles: string[]): string => {
 //  2. Value formatting
 //  └─ 2.2 Date formatting
 // ----------------------------------------------
+// date from string
+export const dateFromTimestamp = (value?: string | number | null | Date): Date | null => {
+    try {
+        if (!value) throw new Error();
+        const date = new Date(value);
+        if (!date.getDate()) throw new Error(); // for invalid date
+        return date;
+    } catch (error) {
+        return null;
+    }
+};
+
 // format date string from timestamp or valid date string.
 // 'Fri Mar 12 2021 10:51:16 GMT+0200 (Eastern European Standard Time)' => 12-03-2021 10:51
 // 'Fri Mar 12 2021 10:51:16 GMT+0200 (Eastern European Standard Time)' => 12 March 2021 10:51
 // @param {string[]} month array with translated months
-export const formatTimestamp = (value?: string | number, month?: string[]): string => {
-    try {
-        if (!value) throw new Error();
-
-        const date = new Date(value);
-        if (!date.getDate()) throw new Error(); // for invalid date
-
-        return month
-            ? `${month[date.getMonth()]} ${addZeroToNumber(date.getDate())}, ${date.getFullYear()} ${addZeroToNumber(
-                  date.getHours(),
-              )}:${addZeroToNumber(date.getMinutes())}`
-            : `${addZeroToNumber(date.getDate())}-${addZeroToNumber(date.getMonth() + 1)}-${date.getFullYear()} ${addZeroToNumber(
-                  date.getHours(),
-              )}:${addZeroToNumber(date.getMinutes())}`;
-    } catch (error) {
-        return ' - ';
-    }
+export const formatTimestamp = (value?: string | number | Date | null, month?: string[]): string => {
+    const date = dateFromTimestamp(value);
+    if (!date) return ' - ';
+    return month
+        ? `${month[date.getMonth()]} ${addZeroToNumber(date.getDate())}, ${date.getFullYear()} ${addZeroToNumber(
+              date.getHours(),
+          )}:${addZeroToNumber(date.getMinutes())}`
+        : `${addZeroToNumber(date.getDate())}-${addZeroToNumber(date.getMonth() + 1)}-${date.getFullYear()} ${addZeroToNumber(
+              date.getHours(),
+          )}:${addZeroToNumber(date.getMinutes())}`;
 };
 
 // ----------------------------------------------
@@ -118,7 +123,8 @@ export const parseCookie = <T>(cookie = '', key = 'phoqer_auth', parsed = false)
             ?.find(i => i.includes(key))
             ?.replace(/\+/g, ' ')
             ?.replace(/%2C/gi, ',')
-            ?.split(key + '=')[1];
+            ?.split(key + '=')[1]
+            ?.replace(/;/g, '');
 
         return obj ? (parsed ? obj : JSON.parse(obj)) : null;
     } catch (error) {

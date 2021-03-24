@@ -41,13 +41,13 @@ const config = {
     },
     userNavLinks: (userId: string, T: { [key: string]: string }, count?: ITabsNum): ITabs[] => [
         {
-            id: 'my_profile',
+            id: 'my-profile',
             text: T.my_profile,
             link: routes.profile.public(userId),
             icon: faUser,
         },
         {
-            id: 'my_offers',
+            id: 'my-offers',
             text: T.my_offers,
             link: routes.profile.private.my_offers(),
             icon: faBullhorn,
@@ -88,7 +88,7 @@ const config = {
     ],
     userProfileLinks: (T: { [key: string]: string }, count?: ITabsNum): ITabs[] => [
         {
-            id: 'my_offers',
+            id: 'my-offers',
             text: T.my_offers,
             link: routes.profile.private.my_offers(),
             icon: faBullhorn,

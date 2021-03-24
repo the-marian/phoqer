@@ -1,5 +1,3 @@
-import { NextRouter } from 'next/router';
-
 import { INewOffer, IState } from '../../../interfaces';
 import types from '../../types';
 
@@ -31,5 +29,5 @@ export interface IBody {
 export default interface IAction {
     type: Type;
     payload: INewOffer | IState | { url: string }[] | null;
-    history: NextRouter;
+    redirect?: () => void;
 }

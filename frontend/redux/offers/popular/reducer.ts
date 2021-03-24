@@ -1,10 +1,11 @@
 import { HYDRATE } from 'next-redux-wrapper';
 
 import { IOfferCard, IOfferStatic, IState } from '../../../interfaces';
+import initState from '../../state';
 import types from '../../types';
 import IAction from './interfaces';
 
-const popular = (state: IOfferStatic = { data: [], loading: true }, { type, payload }: IAction): IOfferStatic => {
+const popular = (state: IOfferStatic = initState.offers.popular, { type, payload }: IAction): IOfferStatic => {
     switch (type) {
         case HYDRATE:
             return (payload as IState).offers.popular;

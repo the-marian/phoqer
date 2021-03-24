@@ -41,8 +41,11 @@ const useStyles = createUseStyles((theme: Theme) => ({
             transform: 'translateX(0%)',
             height: '100%',
             width: '95%',
+<<<<<<< HEAD
             maxWidth: theme.rem(45),
             minWidth: theme.rem(40),
+=======
+>>>>>>> c1f27f8bd7937a2fe6d0940ad3eb4da1cb9c07e1
             padding: theme.rem(5, 2, 2),
             background: theme.palette.white,
             borderRight: theme.border(0.1, theme.palette.gray[1]),
@@ -66,6 +69,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
 
 interface IProps {
     open: boolean;
+    width?: number;
     onToggle: (value: boolean) => void;
     children: ReactElement | ReactElement[];
 }
@@ -106,7 +110,7 @@ const Root = ({ children, open, onToggle }: IProps) => {
     );
 };
 
-const Drawer = ({ children, open, onToggle }: IProps): ReactElement | null => {
+const Drawer = ({ children, width = 40, open, onToggle }: IProps): ReactElement | null => {
     const css = useStyles();
 
     const handleToggle = (): void => {
@@ -116,7 +120,7 @@ const Drawer = ({ children, open, onToggle }: IProps): ReactElement | null => {
     return (
         <CSSTransition timeout={200} unmountOnExit in={open}>
             <Root onToggle={onToggle} open={open}>
-                <div className="inner">
+                <div className="inner" style={{ maxWidth: `${width}rem`, minWidth: `${width - 10}rem` }}>
                     <button type="button" className={css.button} onClick={handleToggle}>
                         <FontAwesomeIcon icon={faTimes} />
                     </button>
