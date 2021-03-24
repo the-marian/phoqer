@@ -57,7 +57,7 @@ jobs:
   deploy:
     name: Deploy to Vultr VPS
     runs-on: ubuntu-latest
-    needs: build
+    needs: locales
     if: github.ref == 'refs/heads/dev'
     steps:
       - name: Checkout dev
