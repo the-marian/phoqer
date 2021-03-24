@@ -37,7 +37,7 @@ const UserOffers = (): ReactElement => {
     useEffect(() => {
         dispatch({
             type: types.MY_OFFERS_START,
-            payload: { tab: offerStatus, params: { page: 1 } },
+            payload: { tab: offerStatus, params: { page: String(query.page || '1') } },
         });
     }, [offerStatus]);
 

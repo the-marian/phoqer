@@ -1,3 +1,5 @@
+import { faSlidersH } from '@fortawesome/free-solid-svg-icons/faSlidersH';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import clsx from 'clsx';
 import Link from 'next/link';
 import React, { ReactElement } from 'react';
@@ -63,6 +65,10 @@ const useStyles = createUseStyles((theme: Theme) => ({
         width: 'max-content',
         color: theme.palette.black[0],
         background: theme.palette.white,
+
+        '& span': {
+            marginLeft: theme.rem(1),
+        },
 
         '@media (max-width: 500px)': {
             border: theme.border(0.1, theme.palette.gray[2]),
@@ -148,7 +154,14 @@ const ProfileCard = ({
                     <button className={css.btn} type="button" onClick={handleOpenChat}>
                         Написать автору
                     </button>
-                ) : null}
+                ) : (
+                    <Link href={routes.profile.private.settings}>
+                        <a className={css.btn}>
+                            <FontAwesomeIcon icon={faSlidersH} />
+                            <span>Настройки профиля</span>
+                        </a>
+                    </Link>
+                )}
             </div>
         </div>
     );

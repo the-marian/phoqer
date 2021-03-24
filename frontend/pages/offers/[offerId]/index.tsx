@@ -9,6 +9,7 @@ import routes from '../../../assets/routes';
 import { Theme } from '../../../assets/theme';
 import Breadcrumbs from '../../../components/Common/Breadcrumbs';
 import Comments from '../../../components/Common/Comments';
+import Gift from '../../../components/Common/Gift';
 import Meta from '../../../components/Common/Meta';
 import { modal } from '../../../components/Common/Modal';
 import FullPageModal from '../../../components/Common/Modal/FullPageModal';
@@ -19,8 +20,8 @@ import Price from '../../../components/Pages/SingleOffer/Price';
 import RelatedOffers from '../../../components/Pages/SingleOffer/RelatedOffers';
 import Requirements from '../../../components/Pages/SingleOffer/Requirements';
 import OfferSlider from '../../../components/Pages/SingleOffer/Slider';
-import SmallBanner from '../../../components/Pages/SingleOffer/SmallBanner';
 import Main from '../../../components/Shared/TagMain';
+import useAuth from '../../../hooks/auth.hook';
 import useMedia from '../../../hooks/media.hook';
 import { IOfferCard, IState, IStore } from '../../../interfaces';
 import { wrapper } from '../../../redux/store';
@@ -139,6 +140,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
 
 const SingleOfferPage = (): ReactElement | null => {
     const css = useStyles();
+    const auth = useAuth();
     const dispatch = useDispatch();
     const priceMedia = useMedia(768);
     const calendarMedia = useMedia(1100);
@@ -226,7 +228,7 @@ const SingleOfferPage = (): ReactElement | null => {
                                 numberOfMonths={calendarMedia ? 2 : 1}
                             />
 
-                            <SmallBanner />
+                            {auth?.access_token ? <Gift /> : null}
 
                             <Comments />
                         </div>

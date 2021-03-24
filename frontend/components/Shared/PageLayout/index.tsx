@@ -4,7 +4,7 @@ import { ThemeProvider } from 'react-jss';
 import { theme } from '../../../assets/theme';
 import useTheme from '../../../hooks/theme.hook';
 import ModalComponent from '../../Common/Modal';
-import FullPageLoader from '../../Common/Preloaders/FullPage';
+import Progress from '../../Common/Preloaders/Progress';
 import AuthInterceptor from '../../HOC/Auth/AuthInterceptor';
 import Footer from '../Footer';
 import Header from '../Header';
@@ -29,7 +29,7 @@ const PageLayout = ({ children }: IProps): ReactElement => {
             <Header />
             <ModalComponent />
             <MainDrawer />
-            <FullPageLoader />
+            <Progress />
             {children}
             <Footer />
         </ThemeProvider>

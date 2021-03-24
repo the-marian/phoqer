@@ -33,11 +33,6 @@ const useStyles = createUseStyles((theme: Theme) => ({
             left: 'unset',
             transform: 'unset',
         },
-
-        '@media (max-width: 1100px)': {
-            top: theme.rem(10),
-            right: '5%',
-        },
     },
     wrp: {
         position: 'fixed',

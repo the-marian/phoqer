@@ -2,7 +2,7 @@ import { faChevronDown } from '@fortawesome/free-solid-svg-icons/faChevronDown';
 import { faChevronUp } from '@fortawesome/free-solid-svg-icons/faChevronUp';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Link from 'next/link';
-import React, { FormEvent, ReactElement, useEffect, useState } from 'react';
+import React, { FormEvent, ReactElement, useState } from 'react';
 import { createUseStyles } from 'react-jss';
 import { useDispatch, useSelector } from 'react-redux';
 import { CSSTransition } from 'react-transition-group';
@@ -10,7 +10,6 @@ import { CSSTransition } from 'react-transition-group';
 import routes from '../../../../assets/routes';
 import template from '../../../../assets/template';
 import { Theme } from '../../../../assets/theme';
-import useShallowRouter from '../../../../hooks/routing.hook';
 import { ISearch, IState } from '../../../../interfaces';
 import { IOffers } from '../../../../redux/config/offers/interfaces';
 import types from '../../../../redux/types';
@@ -170,16 +169,11 @@ interface ICheckbox {
 const Filters = (): ReactElement => {
     const css = useStyles();
     const dispatch = useDispatch();
-    const shallow = useShallowRouter();
 
     const [price, setPrice] = useState<[number, number]>([0, 200_000]);
 
     const config = useSelector<IState, IOffers>(state => state.config.offers);
     const search = useSelector<IState, ISearch>(state => state.config.search);
-
-    useEffect(() => {
-        shallow(search);
-    }, [search]);
 
     // hide elements
     const handleCloseFilters = () => {

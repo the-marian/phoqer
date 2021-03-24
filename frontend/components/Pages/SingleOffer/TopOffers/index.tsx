@@ -69,14 +69,14 @@ const TopOffers = (): ReactElement => {
 
     return (
         <>
-            <Container className={css.checkbox}>
+            <Container className={css.checkbox} id="products">
                 <Switcher onClick={handleHide} value={hideTop} off="open" on="close">
                     Скрыть ТОП обьявления
                 </Switcher>
             </Container>
 
             <CSSTransition timeout={600} unmountOnExit in={!hideTop}>
-                <div className={css.root} id="products">
+                <div className={css.root}>
                     <Container>
                         <SectionTitle link="Смотреть все" href={routes.offers.single(`?top=true`)}>
                             TOП Объявления
