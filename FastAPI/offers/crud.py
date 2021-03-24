@@ -419,12 +419,8 @@ async def count_founded_offers_by_statuses(
     SELECT COUNT(*)
     FROM offers_offer
     WHERE status = ANY(:statuses) AND author_id = :user_id
-    LIMIT :limit
-    OFFSET :offset
     """
     values = {
-        "limit": limit,
-        "offset": offset,
         "statuses": statuses,
         "user_id": user_id,
     }

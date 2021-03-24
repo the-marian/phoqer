@@ -28,11 +28,7 @@ THIRD_PARTY_APPS = [
 
 MY_APPS = [
     'categories',
-    'offers',
     'upload',
-    'users',
-    'notifications',
-    'favorite',
 ]
 
 INSTALLED_APPS = DJANGO_CORE_APPS + THIRD_PARTY_APPS + MY_APPS
