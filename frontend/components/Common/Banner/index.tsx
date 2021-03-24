@@ -15,7 +15,7 @@ import SmallModalWrp from '../Modal/SmallModalWrp';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     root: {
-        margin: theme.rem(8, 0, 6),
+        margin: theme.rem(8, 0),
         padding: theme.rem(6),
         borderRadius: theme.radius,
         background: theme.palette.gray[1],

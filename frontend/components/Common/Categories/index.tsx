@@ -13,7 +13,7 @@ import SectionTitle from '../SectionTitle';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     root: {
-        margin: theme.rem(8, 0, 4),
+        margin: theme.rem(6, 0, 4),
         '@media (max-width: 550px)': {
             margin: theme.rem(2, 0),
         },
