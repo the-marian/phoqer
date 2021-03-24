@@ -70,7 +70,7 @@ def test_get_user_details(client):
         "profile_img": "https://example.com/dic_pic.jpeg",
         "response_rate": 0,
         "satisfaction_rate": 0,
-        "last_login": "2021-03-08T00:00:00+00:00",
+        'last_activity': '2021-03-08T00:00:00+00:00',
     }
 
 
