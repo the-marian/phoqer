@@ -6,6 +6,7 @@ import { serverRedirect } from '../../../../assets/helpers';
 import { Theme } from '../../../../assets/theme';
 import Meta from '../../../../components/Common/Meta';
 import ProfileNav from '../../../../components/Common/NavTabs/ProfileNav';
+import AuthRedirect from '../../../../components/HOC/Auth/AuthRedirect';
 import Container from '../../../../components/Layout/Container';
 import Main from '../../../../components/Shared/TagMain';
 import useTrans from '../../../../hooks/trans.hook';
@@ -14,6 +15,8 @@ import { wrapper } from '../../../../redux/store';
 const useStyles = createUseStyles((theme: Theme) => ({
     root: {
         margin: theme.rem(1, 0),
+        fontSize: theme.rem(1.6),
+        color: theme.palette.black[0],
     },
 }));
 
@@ -24,6 +27,7 @@ const Messages = (): ReactElement => {
     return (
         <>
             <Meta title={'Мои обьявления'} h1={T.user_profile_on_phoqer} />
+            <AuthRedirect />
             <Main>
                 <Container>
                     <ProfileNav active="messages" />
