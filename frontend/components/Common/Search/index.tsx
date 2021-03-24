@@ -107,6 +107,14 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
 }));
 
+// const isEmpty = (value: ISearch): boolean => !Object.entries(value).filter(item => item[1]).length;
+//
+// const generatePayload = (value: ISearch, query: Params): ISearch =>
+//     Object.entries(value).reduce((acc, item) => {
+//         acc[item[0]] = query[item[0]] || value[item[0]];
+//         return acc;
+//     }, value) as ISearch;
+
 interface IProps {
     shallow?: boolean;
 }
@@ -121,6 +129,16 @@ const Search = ({ shallow = false }: IProps): ReactElement => {
 
     const searchConfig = useSelector<IState, ISearch>(state => state.config.search);
     const loading = useSelector<IState, boolean>(state => state.offers.search.loading);
+
+    // useEffect(() => {
+    //     if (isEmpty(searchConfig)) {
+    //         dispatch({
+    //             type: types.OFFERS_SEARCH,
+    //             payload: generatePayload(searchConfig, history.query),
+    //         });
+    //         console.log(history);
+    //     }
+    // }, []);
 
     useEffect(() => {
         shallowPush(searchConfig);
