@@ -26,9 +26,9 @@ yarn run dev
 - [ ] Чтобы склепать prod версию:
 
 ```bash
-npm run build
+npm run locales
 # или
-yarn run build
+yarn run locales
 ```
 
 - [ ] Чтобы запустить prod версию:
