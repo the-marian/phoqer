@@ -12,11 +12,6 @@ urlpatterns = [
 
     # REST-FRAMEWORK URLS
     path('api/v1/categories/', include('categories.urls', namespace='categories')),
-    path('api/v1/offers/', include('offers.urls', namespace='offers')),
-
-    # Users
-    path('api/v1/users/', include('users.urls', namespace='users')),
-    path('api/v1/', include('djoser.urls')),
 
     # SWAGGER URL
     path('api/schema/', SpectacularAPIView.as_view(), name='schema'),
@@ -25,13 +20,6 @@ urlpatterns = [
 
     # AUTH
     path('api/v1/auth/', include('djoser.urls.authtoken')),
-
-    # NOTIFICATIONS
-    path('api/v1/notifications/',
-         include('notifications.urls', namespace='notifications')),
-
-    # FAVOURITE
-    path('api/v1/favorite/', include('favorite.urls', namespace='favorite')),
 ]
 
 if bool(settings.DEBUG):
