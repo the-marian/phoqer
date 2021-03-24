@@ -31,13 +31,13 @@ const MyApp = ({ Component, pageProps, width, auth, theme }: AppProps & IProps):
 
     useEffect(() => {
         const handleClear = () => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
             modal.close();
+            window.scrollTo({ top: 0, behavior: 'auto' });
         };
-        Router.events.on('routeChangeComplete', handleClear);
+        Router.events.on('routeChangeStart', handleClear);
 
         return () => {
-            Router.events.off('routeChangeComplete', handleClear);
+            Router.events.off('routeChangeStart', handleClear);
         };
     }, []);
 

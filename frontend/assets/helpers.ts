@@ -123,7 +123,8 @@ export const parseCookie = <T>(cookie = '', key = 'phoqer_auth', parsed = false)
             ?.find(i => i.includes(key))
             ?.replace(/\+/g, ' ')
             ?.replace(/%2C/gi, ',')
-            ?.split(key + '=')[1];
+            ?.split(key + '=')[1]
+            ?.replace(/;/g, '');
 
         return obj ? (parsed ? obj : JSON.parse(obj)) : null;
     } catch (error) {

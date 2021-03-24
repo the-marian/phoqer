@@ -1,10 +1,11 @@
 import { HYDRATE } from 'next-redux-wrapper';
 
 import { IOfferCard, IState } from '../../../interfaces';
+import initState from '../../state';
 import types from '../../types';
 import IAction from './interfaces';
 
-const single = (state: IOfferCard | null = null, { type, payload }: IAction): IOfferCard | null => {
+const single = (state: IOfferCard | null = initState.offers.single, { type, payload }: IAction): IOfferCard | null => {
     switch (type) {
         case HYDRATE:
             return (payload as IState).offers.single;

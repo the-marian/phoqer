@@ -41,7 +41,7 @@ const initState: IState = {
                 data: [],
                 total: 1,
             },
-            loading: true,
+            loading: false,
             pagination: true,
         },
         my_offers: {

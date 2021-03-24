@@ -1,11 +1,11 @@
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
-import template from '../../../../assets/template';
-import { Theme } from '../../../../assets/theme';
-import Advertising from '../../../Common/Advertising';
-import { modal } from '../../../Common/Modal';
-import ConfettiWrp from '../../../Common/Сonfetti';
+import template from '../../../assets/template';
+import { Theme } from '../../../assets/theme';
+import Advertising from '../Advertising';
+import { modal } from '../Modal';
+import ConfettiWrp from '../Сonfetti';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     root: {

@@ -1,9 +1,9 @@
 import React, { ReactElement } from 'react';
 
 import { IAuth } from '../../../../interfaces';
+import Gift from '../../../Common/Gift';
 import UserNav from '../../../Common/NavTabs/UserNav';
 import ProfileCard from '../../../Common/ProfileCard';
-import Gift from '../Gift';
 
 interface IProps {
     auth: IAuth;

@@ -1,4 +1,4 @@
-import { faHeart } from '@fortawesome/free-regular-svg-icons/faHeart';
+import { faHeart } from '@fortawesome/free-solid-svg-icons/faHeart';
 import { faHome } from '@fortawesome/free-solid-svg-icons/faHome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons/faPlus';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -26,6 +26,10 @@ import AuthDrawer from './AuthDrawer';
 import NotAuthDrawer from './NotAuthDrawer';
 
 const useStyles = createUseStyles((theme: Theme) => ({
+    wrp: {
+        maxWidth: theme.rem(35),
+        minWidth: theme.rem(35),
+    },
     link: {
         marginBottom: theme.rem(2),
     },
@@ -43,6 +47,11 @@ const useStyles = createUseStyles((theme: Theme) => ({
         padding: theme.rem(1.8, 3),
         background: theme.palette.primary[0],
         color: theme.palette.trueWhite,
+        transitions: theme.transitions[0],
+
+        '&:hover': {
+            background: theme.palette.primary[1],
+        },
     },
 }));
 
@@ -84,7 +93,7 @@ const MainDrawer = (): ReactElement => {
     };
 
     return (
-        <Drawer onToggle={handleToggle} open={drawer}>
+        <Drawer width={auth?.access_token ? 50 : 40} onToggle={handleToggle} open={drawer}>
             <Logo className={css.link} link />
             <Switcher onClick={handleTheme} value={theme === 'black'} off="white" on="dark">
                 Toggle color theme
