@@ -10,6 +10,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
+        background: theme.palette.gray[0],
+        borderRadius: theme.radius,
+        padding: theme.rem(6, 2),
     },
     emoji: {
         width: theme.rem(10),
@@ -42,7 +45,7 @@ const EmptyOffers = ({ text }: IProps): ReactElement => {
 
     return (
         <div className={css.empty}>
-            <img className={css.emoji} src="/emoji/thinking.png" alt="" />
+            <img className={css.emoji} src="/emoji/empty.png" alt="" />
             <p className={css.emptyText}>{text || 'Кажется здесь пусто. Создайте свое объявление, не тяните резину'}</p>
 
             <Link href={routes.new_offer(1)}>

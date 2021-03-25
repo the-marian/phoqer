@@ -19,7 +19,7 @@ const AuthDrawer = ({ auth }: IProps): ReactElement | null => {
                 userLocation={auth?.location}
                 registerDate={auth?.date_joined}
             />
-            <Gift />
+            <Gift style={{ margin: '4rem 0' }} />
             <UserNav />
         </>
     );

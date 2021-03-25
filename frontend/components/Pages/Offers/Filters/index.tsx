@@ -2,6 +2,7 @@ import { faChevronDown } from '@fortawesome/free-solid-svg-icons/faChevronDown';
 import { faChevronUp } from '@fortawesome/free-solid-svg-icons/faChevronUp';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import React, { FormEvent, ReactElement, useState } from 'react';
 import { createUseStyles } from 'react-jss';
 import { useDispatch, useSelector } from 'react-redux';
@@ -168,6 +169,7 @@ interface ICheckbox {
 
 const Filters = (): ReactElement => {
     const css = useStyles();
+    const history = useRouter();
     const dispatch = useDispatch();
 
     const [price, setPrice] = useState<[number, number]>([0, 200_000]);
@@ -190,8 +192,10 @@ const Filters = (): ReactElement => {
     // submit form
     const handleSubmit = (event: FormEvent<HTMLFormElement>): void => {
         event.preventDefault();
-        window.scrollTo({ top: document.getElementById('products')?.offsetTop || 0, behavior: 'smooth' });
+
         dispatch({ type: types.SEARCH_OFFERS_START, payload: search });
+        window.scrollTo({ top: document.getElementById('products')?.offsetTop || 0, behavior: 'smooth' });
+        history.push(routes.offers.list, undefined, { shallow: true });
     };
 
     return (

@@ -75,13 +75,13 @@ const config = {
         {
             id: 'settings',
             text: T.settings,
-            link: routes.profile.private.settings,
+            link: routes.profile.private.settings(),
             icon: faSlidersH,
         },
         {
             id: 'analytics',
             text: T.analytics,
-            link: routes.profile.private.analytics,
+            link: routes.profile.private.analytics(),
             icon: faChartBar,
             blank: true,
         },
@@ -116,13 +116,13 @@ const config = {
         {
             id: 'settings',
             text: T.settings,
-            link: routes.profile.private.settings,
+            link: routes.profile.private.settings(),
             icon: faSlidersH,
         },
         {
             id: 'analytics',
             text: T.analytics,
-            link: routes.profile.private.analytics,
+            link: routes.profile.private.analytics(),
             icon: faChartBar,
             blank: true,
         },

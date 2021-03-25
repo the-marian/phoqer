@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import React, { ReactElement } from 'react';
+import React, { CSSProperties, ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
 import { Theme } from '../../../assets/theme';
@@ -63,12 +63,13 @@ const useStyles = createUseStyles((theme: Theme) => ({
 
 interface IProps {
     center?: boolean;
+    style?: CSSProperties;
 }
 
-const Socials = ({ center = false }: IProps): ReactElement => {
+const Socials = ({ center = false, style = {} }: IProps): ReactElement => {
     const css = useStyles();
     return (
-        <div>
+        <div style={style}>
             <h3 className={css.title}>Социальные сети:</h3>
             <ul className={clsx(css.list, center && css.center)}>
                 <li>
