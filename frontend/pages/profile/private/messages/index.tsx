@@ -108,6 +108,7 @@ const Messages = (): ReactElement => {
     return (
         <>
             <Meta title={'Мои сообщения'} h1={T.user_profile_on_phoqer} />
+
             <AuthRedirect />
             <Main>
                 <Container>

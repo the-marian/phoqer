@@ -76,9 +76,6 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
 }));
 
-const FIVE_MINUTES_IN_MS = 300000;
-const HOUR_IN_MS = 3600000;
-
 interface IProps {
     id?: string | number;
     firstName?: string;
