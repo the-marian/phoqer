@@ -24,13 +24,18 @@ module.exports = {
                 permanent: true,
             },
             {
-                source: '/profile/private/:profileId',
-                destination: '/profile/private/:profileId/my-offers/all',
+                source: '/profile/private/',
+                destination: '/profile/private/my-offers/all',
                 permanent: true,
             },
             {
-                source: '/profile/private/:profileId/my-offers',
-                destination: '/profile/private/:profileId/my-offers/all',
+                source: '/profile/private/my-offers',
+                destination: '/profile/private/my-offers/all',
+                permanent: true,
+            },
+            {
+                source: '/profile/private/settings',
+                destination: '/profile/private/settings/general',
                 permanent: true,
             },
         ];

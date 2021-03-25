@@ -14,7 +14,7 @@ const template = (theme: Theme): Template => ({
         alignItems: 'center',
         height: theme.rem(6),
         width: '100%',
-        padding: theme.rem(1, 2),
+        padding: theme.rem(1.5, 2),
         border: theme.border(0.1, 'transparent'),
         borderRadius: theme.radius,
         fontSize: theme.rem(1.4),

@@ -115,7 +115,11 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
 }));
 
-const Search = (): ReactElement => {
+interface IProps {
+    shallow?: boolean;
+}
+
+const Search = ({ shallow = false }: IProps): ReactElement => {
     const T = useTrans();
     const css = useStyles();
     const history = useRouter();
@@ -123,7 +127,7 @@ const Search = (): ReactElement => {
     const desktop = useMedia(1100);
 
     const search = useSelector<IState, ISearch>(state => state.config.search);
-    const loading = useSelector<IState, boolean>(state => state.offers.search.loading);
+    const { loading, pagination } = useSelector<IState, { loading: boolean; pagination: boolean }>(state => state.offers.search);
 
     const handleChange = (value: IDropValue | null): void => {
         dispatch({
@@ -145,7 +149,14 @@ const Search = (): ReactElement => {
 
     const handleSubmit = (event: FormEvent<HTMLFormElement>): void => {
         event.preventDefault();
-        history.push(routes.offers.list);
+
+        if (shallow) {
+            dispatch({ type: types.SEARCH_OFFERS_START, payload: search });
+            window.scrollTo({ top: document.getElementById('products')?.offsetTop || 0, behavior: 'smooth' });
+            history.push(routes.offers.list, undefined, { shallow: true });
+        } else {
+            history.push(routes.offers.list);
+        }
     };
 
     return (
@@ -184,7 +195,7 @@ const Search = (): ReactElement => {
 
                 <div className={css.mobile}>
                     {!desktop && <OptionsMobile onChange={handleChange} />}
-                    <Button loading={loading} type="submit" className={css.btn}>
+                    <Button loading={loading || pagination} type="submit" className={css.btn}>
                         {T.find}
                     </Button>
                 </div>
