@@ -62,6 +62,7 @@ const newOfferTemplate = (theme: Theme): Template => ({
         text: {
             maxWidth: theme.rem(50),
             margin: '0 auto',
+            color: theme.palette.black[0],
         },
         flex: {
             display: 'flex',
@@ -220,7 +221,7 @@ const newOfferTemplate = (theme: Theme): Template => ({
             ...template(theme).btn,
             marginLeft: theme.rem(2),
             background: theme.palette.trueWhite,
-            color: theme.palette.black[0],
+            color: theme.palette.trueBlack,
 
             '& svg': {
                 width: theme.rem(1.6),

@@ -2,15 +2,15 @@ import { faSlidersH } from '@fortawesome/free-solid-svg-icons/faSlidersH';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import clsx from 'clsx';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
-import { dateFromTimestamp, declOfNum, formatTimestamp } from '../../../assets/helpers';
+import { formatTimestamp, onlineStatus } from '../../../assets/helpers';
 import routes from '../../../assets/routes';
 import template from '../../../assets/template';
 import { Theme } from '../../../assets/theme';
 import useAuth from '../../../hooks/auth.hook';
-import useMonths from '../../../hooks/month.hook';
 import LoginForm from '../Auth/LoginForm';
 import { modal } from '../Modal';
 import SmallModalWrp from '../Modal/SmallModalWrp';
@@ -76,9 +76,6 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
 }));
 
-const FIVE_MINUTES_IN_MS = 300000;
-const HOUR_IN_MS = 3600000;
-
 interface IProps {
     id?: string | number;
     firstName?: string;
@@ -102,7 +99,7 @@ const ProfileCard = ({
 }: IProps): ReactElement => {
     const css = useStyles();
     const auth = useAuth();
-    const M = useMonths();
+    const history = useRouter();
 
     const handleOpenChat = (): void => {
         if (!auth?.access_token) {
@@ -117,18 +114,7 @@ const ProfileCard = ({
         alert('hi!');
     };
 
-    const date: Date | null = dateFromTimestamp(lastActivity);
-    const lastActivityPeriod = () => {
-        if (!date) return ' - ';
-        const dif = Date.now() - +date;
-        if (dif > HOUR_IN_MS) return formatTimestamp(date, M);
-
-        const minuts = Math.floor(dif / 60000);
-        return `Был(а) онлайн ${minuts} ${declOfNum(minuts, ['минуту', 'минуты', 'минут'])} назад`;
-    };
-
     const isAuthor = auth?.id === id;
-    const isOnline = (date && Date.now() - +date < FIVE_MINUTES_IN_MS) || isAuthor;
 
     return (
         <div className={clsx(css.wrp, className)}>
@@ -142,11 +128,11 @@ const ProfileCard = ({
                     <a className={css.name}>{firstName + ' ' + lastName}</a>
                 </Link>
                 <div className={css.info}>
-                    <p>{isOnline ? 'online' : lastActivityPeriod()}</p>
+                    <p>{onlineStatus({ initDate: lastActivity, locale: history.locale, isAuthor })}</p>
                 </div>
 
                 <div className={css.info}>
-                    <p>Дата регистрации: {formatTimestamp(registerDate, M)}</p>
+                    <p>Дата регистрации: {formatTimestamp(registerDate, history.locale)}</p>
                     <p>Локация: {userLocation || 'Не указано'}</p>
                 </div>
 

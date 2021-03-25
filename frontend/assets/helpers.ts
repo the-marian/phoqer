@@ -1,6 +1,7 @@
 import { GetServerSidePropsContext } from 'next';
 
 import { IAuth, ICategories, IDropList, IDropValue } from '../interfaces';
+import months from './months';
 import routes from './routes';
 
 /**
@@ -14,7 +15,8 @@ import routes from './routes';
  * 5. Site related helpers
  * ├─ 5.1 Production logs
  * ├─ 5.2 Transform category list for dropdowns
- * └─ 5.3 SSR Auth helpers
+ * ├─ 5.3 SSR Auth helpers
+ * └─ 5.4 Online indicator
  */
 
 // ----------------------------------------------
@@ -22,7 +24,7 @@ import routes from './routes';
 //  1. Validation
 // ----------------------------------------------
 // validation regex
-export const mailRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+export const mailRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 export const passwordRegex = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[_#?!@$%^&*-]).{6,}$/;
 // check if string is valid number
 export const numberValidation = (text: string): boolean => {
@@ -78,16 +80,12 @@ export const dateFromTimestamp = (value?: string | number | null | Date): Date |
 // 'Fri Mar 12 2021 10:51:16 GMT+0200 (Eastern European Standard Time)' => 12-03-2021 10:51
 // 'Fri Mar 12 2021 10:51:16 GMT+0200 (Eastern European Standard Time)' => 12 March 2021 10:51
 // @param {string[]} month array with translated months
-export const formatTimestamp = (value?: string | number | Date | null, month?: string[]): string => {
+export const formatTimestamp = (value?: string | number | Date | null, locale = 'ru'): string => {
     const date = dateFromTimestamp(value);
     if (!date) return ' - ';
-    return month
-        ? `${month[date.getMonth()]} ${addZeroToNumber(date.getDate())}, ${date.getFullYear()} ${addZeroToNumber(
-              date.getHours(),
-          )}:${addZeroToNumber(date.getMinutes())}`
-        : `${addZeroToNumber(date.getDate())}-${addZeroToNumber(date.getMonth() + 1)}-${date.getFullYear()} ${addZeroToNumber(
-              date.getHours(),
-          )}:${addZeroToNumber(date.getMinutes())}`;
+    return `${months[locale][date.getMonth()]} ${addZeroToNumber(date.getDate())}, ${date.getFullYear()} ${addZeroToNumber(
+        date.getHours(),
+    )}:${addZeroToNumber(date.getMinutes())}`;
 };
 
 // ----------------------------------------------
@@ -151,7 +149,7 @@ export const logger = (): void => {
 // ----------------------------------------------
 // ----------------------------------------------
 //  5. Site related helpers
-//  └─ 5.2 Work with ategories list
+//  └─ 5.2 Work with categories list
 // ----------------------------------------------
 // format category list from backend in relation to IDropList interface
 export const formatCatList = (data: ICategories[]): IDropList[] =>
@@ -195,4 +193,29 @@ export const serverRedirect = (ctx: GetServerSidePropsContext, path?: string | n
         ctx.res.setHeader('Location', path || routes.root);
     }
     return !!redirect;
+};
+// ----------------------------------------------
+// ----------------------------------------------
+//  5. Site related helpers
+//  └─ 5.4 Online indicator
+// ----------------------------------------------
+// generate user online status
+const FIVE_MINUTES_IN_MS = 300000;
+const HOUR_IN_MS = 3600000;
+interface IOnlineStatusParams {
+    initDate?: Date | string | number | null;
+    locale?: string;
+    isAuthor?: boolean;
+}
+export const onlineStatus = ({ initDate, locale = 'ru', isAuthor = false }: IOnlineStatusParams): string => {
+    const date = dateFromTimestamp(initDate);
+    if (!date) return ' - ';
+
+    const isOnline = (date && Date.now() - +date < FIVE_MINUTES_IN_MS) || isAuthor;
+
+    const dif = Date.now() - +date;
+    if (dif > HOUR_IN_MS) return formatTimestamp(date, locale);
+    const minutes = Math.floor(dif / 60000);
+
+    return isOnline ? 'online' : `${minutes} ${declOfNum(minutes, ['минуту', 'минуты', 'минут'])} назад`;
 };

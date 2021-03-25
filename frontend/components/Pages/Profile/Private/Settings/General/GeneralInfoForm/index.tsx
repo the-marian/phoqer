@@ -33,10 +33,12 @@ const useStyles = createUseStyles((theme: Theme) => ({
     textarea: {
         ...template(theme).input,
         minHeight: theme.rem(15),
+        color: theme.palette.black[0],
         background: theme.palette.gray[1],
     },
     input: {
         ...template(theme).input,
+        color: theme.palette.black[0],
         background: theme.palette.gray[1],
     },
     label: {
