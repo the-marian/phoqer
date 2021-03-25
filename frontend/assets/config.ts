@@ -55,7 +55,7 @@ const config = {
         {
             id: 'messages',
             text: T.messages,
-            link: routes.profile.private.messages,
+            link: routes.profile.private.messages(),
             icon: faEnvelope,
             count: count?.messages,
         },
@@ -96,7 +96,7 @@ const config = {
         {
             id: 'messages',
             text: T.messages,
-            link: routes.profile.private.messages,
+            link: routes.profile.private.messages(),
             icon: faEnvelope,
             count: count?.messages,
         },

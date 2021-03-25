@@ -9,8 +9,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     root: {
         position: 'fixed',
         top: theme.rem(10),
-        left: '50%',
-        transform: 'translateX(30rem)',
+        right: '15%',
         zIndex: 10001,
         minWidth: theme.rem(35),
         padding: theme.rem(2, 4),
@@ -19,19 +18,12 @@ const useStyles = createUseStyles((theme: Theme) => ({
         transition: theme.transitions[0],
 
         '&.appear': {
-            transform: 'translateX(30rem) translateY(-5rem)',
+            transform: 'translateY(-5rem)',
             opacity: 0,
         },
         '&.appear-done': {
-            transform: 'translateX(30rem)',
+            transform: 'translateY(0)',
             opacity: 1,
-        },
-
-        '@media (max-width: 1300px)': {
-            top: theme.rem(10),
-            right: '5%',
-            left: 'unset',
-            transform: 'unset',
         },
     },
     wrp: {

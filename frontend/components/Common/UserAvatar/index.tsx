@@ -61,7 +61,7 @@ interface IProps {
     avatar?: string | null;
     width?: number;
     height?: number;
-    time?: string;
+    time?: string | null;
     online?: boolean;
 }
 const UserAvatar = ({

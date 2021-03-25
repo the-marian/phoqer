@@ -24,7 +24,6 @@ const useStyles = createUseStyles((theme: Theme) => ({
         width: theme.rem(20),
         marginBottom: theme.rem(2),
         borderRadius: '50%',
-        objectFit: 'cover',
     },
     file: {
         position: 'relative',

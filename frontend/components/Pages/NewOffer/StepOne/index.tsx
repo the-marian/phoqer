@@ -117,6 +117,10 @@ const StepThree = (): ReactElement => {
 
     const handleSave = (): void => {
         dispatch({
+            type: types.NEW_OFFER_FORM,
+            payload: value,
+        });
+        dispatch({
             type: types.POST_OFFER_START,
             payload: null,
             redirect() {

@@ -10,12 +10,8 @@ const useStyles = createUseStyles((theme: Theme) => ({
     wrp: {
         minWidth: theme.rem(20),
     },
-    textarea: {
-        ...template(theme).input,
-        minHeight: theme.rem(20),
-        background: theme.palette.gray[1],
-    },
     input: {
+        color: theme.palette.black[0],
         ...template(theme).input,
         background: theme.palette.gray[1],
     },

@@ -22,7 +22,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
 }));
 
 interface IProps {
-    time?: string;
+    time?: string | null;
     online?: boolean;
     className?: string;
 }

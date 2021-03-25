@@ -56,7 +56,8 @@ const Gift = ({ style = {} }: IProps): ReactElement => {
     return (
         <button type="button" style={style} className={css.root} onClick={handleClick}>
             <div className={css.wrp}>
-                <h2 className={css.title}>У нас есть подарок для вас</h2>
+                <h2 className={css.title}>Это ваш подарок</h2>
+                <p>Мы ценим вас, поэтому подготовили для вас подарок</p>
                 <p>Кликай прямо сейчас</p>
             </div>
             <img className={css.img} src="/emoji/gift.png" alt="" />
