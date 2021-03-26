@@ -198,12 +198,12 @@ async def get_offer(
     )
 
 
-@router.post("", status_code=status.HTTP_204_NO_CONTENT)
+@router.post("", status_code=status.HTTP_201_CREATED)
 async def create_offer(
-    offer: OfferDraftRequest, author_id: int = Depends(get_current_user)
+    offer: OfferDraftRequest,
+    author_id: int = Depends(get_current_user),
 ) -> Response:
-    await crud.create_offer_draft(offer, author_id)
-    return Response(status_code=status.HTTP_204_NO_CONTENT)
+    return {"id": await crud.create_offer_draft(offer, author_id)}
 
 
 @router.patch("/{offer_id}", status_code=status.HTTP_204_NO_CONTENT)

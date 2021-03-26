@@ -63,7 +63,7 @@ def test_is_favorite_user_with_no_favorite(client):
     assert response.json()["is_favorite"] is False
 
 
-def test_create_offer_draft(client):
+def test_create_offer_draft(client, auth_token):
     post_data = {
         "category": "kitty",
         "city": "Kiev",
@@ -97,9 +97,11 @@ def test_create_offer_draft(client):
     response = client.post(
         "offers",
         json=post_data,
-        headers={"Authorization": "Token 472df9e4e5f55a0bc2a2f1139e2ad49c5d76076a"},
+        headers=auth_token,
     )
-    assert response.status_code == status.HTTP_204_NO_CONTENT
+    assert response.status_code == status.HTTP_201_CREATED
+    assert "id" in response.json()
+    assert type(response.json()["id"]) is str
 
 
 def test_create_offer_not_authed(client):
