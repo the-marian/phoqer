@@ -1,3 +1,4 @@
+import { IconProp } from '@fortawesome/fontawesome-svg-core';
 import { faEye } from '@fortawesome/free-regular-svg-icons/faEye';
 import { faEyeSlash } from '@fortawesome/free-regular-svg-icons/faEyeSlash';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -19,6 +20,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
     input: {
         ...template(theme).input,
+        background: theme.palette.gray[1],
         color: theme.palette.black[0],
 
         '& span': {
@@ -61,10 +63,25 @@ const useStyles = createUseStyles((theme: Theme) => ({
         height: theme.rem(6),
         width: theme.rem(6),
         fontSize: theme.rem(1.8),
-        color: theme.palette.black[0],
+        color: theme.palette.trueBlack,
+    },
+    iconWrp: {
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: theme.rem(6),
+        width: theme.rem(6),
+        fontSize: theme.rem(1.8),
+        color: theme.palette.trueBlack,
     },
     password: {
         paddingRight: theme.rem(6),
+    },
+    icon: {
+        paddingLeft: theme.rem(6),
     },
 }));
 
@@ -80,7 +97,7 @@ interface IProps {
     errorsInPlaceholder?: boolean;
     readOnly?: boolean;
     autoComplete?: string;
-    icon?: string;
+    icon?: IconProp;
 }
 
 const Input = ({
@@ -107,11 +124,22 @@ const Input = ({
     return (
         <div className={css.wrp}>
             <div className={css.inner}>
+                {icon ? (
+                    <div className={css.iconWrp}>
+                        <FontAwesomeIcon icon={icon} />
+                    </div>
+                ) : null}
                 <input
                     id={id}
                     value={value}
                     onChange={onChange}
-                    className={clsx(css.input, type === 'password' && css.password, className, errors && css.errors)}
+                    className={clsx(
+                        css.input,
+                        type === 'password' && css.password,
+                        icon && css.icon,
+                        className,
+                        errors && css.errors,
+                    )}
                     placeholder={errorsInPlaceholder ? errors || placeholder : placeholder}
                     name={name}
                     type={show}

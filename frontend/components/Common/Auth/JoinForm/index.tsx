@@ -1,6 +1,3 @@
-import { faEye } from '@fortawesome/free-regular-svg-icons/faEye';
-import { faEyeSlash } from '@fortawesome/free-regular-svg-icons/faEyeSlash';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { ChangeEvent, FormEvent, MouseEvent, ReactElement, useState } from 'react';
 import { createUseStyles } from 'react-jss';
 import { useDispatch } from 'react-redux';
@@ -129,7 +126,6 @@ const JoinForm = (): ReactElement => {
     const css = useStyles();
     const dispatch = useDispatch();
     const [loading, setLoading] = useState(false);
-    const [password, setPassword] = useState(true);
 
     const [errors, setErrors] = useState<IError>(INIT);
     const [value, setValue] = useState<ISignup>(INIT);
@@ -137,10 +133,6 @@ const JoinForm = (): ReactElement => {
     const handleChange = (event: ChangeEvent<HTMLInputElement>): void => {
         setValue((prev: ISignup): ISignup => ({ ...prev, [event.target.name]: event.target.value }));
         setErrors(INIT);
-    };
-
-    const handleClick = () => {
-        setPassword(!password);
     };
 
     const handleSubmit = (event: FormEvent<HTMLFormElement> | MouseEvent<HTMLButtonElement>) => {
@@ -236,14 +228,11 @@ const JoinForm = (): ReactElement => {
                 </p>
 
                 <div className={css.inner}>
-                    <button className={css.eye} onClick={handleClick} type="button">
-                        {password ? <FontAwesomeIcon icon={faEyeSlash} /> : <FontAwesomeIcon icon={faEye} />}
-                    </button>
                     <Input
                         value={value.password}
                         errors={errors.password}
                         onChange={handleChange}
-                        type={password ? 'password' : 'text'}
+                        type="password"
                         name="password"
                         placeholder="password"
                         autoComplete="current-password"
