@@ -21,7 +21,7 @@ const config = {
                 : 'http://fastapi:8001',
     },
     uploadsUrl: (version = 'v1'): string => `http://phoqer.com/api/${version}/upload/`,
-    host: (lang = 'pl'): string => 'http://' + lang + '.phoqer.com/',
+    host: (lang = 'pl'): string => `http://phoqer.com${lang === 'pl' ? '' : '/' + lang}`,
     img: 'http://phoqer.com',
     offers: {
         grid: {

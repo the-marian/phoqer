@@ -190,7 +190,7 @@ const JoinForm = (): ReactElement => {
                     placeholder="first name"
                     className={css.input}
                     autoComplete="given-name"
-                    errorsPlaceholder
+                    errorsInPlaceholder
                 />
             </label>
 
@@ -205,7 +205,7 @@ const JoinForm = (): ReactElement => {
                     placeholder="last name"
                     autoComplete="family-name"
                     className={css.input}
-                    errorsPlaceholder
+                    errorsInPlaceholder
                 />
             </label>
 
@@ -220,7 +220,7 @@ const JoinForm = (): ReactElement => {
                     autoComplete="email"
                     placeholder="email"
                     className={css.input}
-                    errorsPlaceholder
+                    errorsInPlaceholder
                 />
             </label>
 
@@ -248,7 +248,7 @@ const JoinForm = (): ReactElement => {
                         placeholder="password"
                         autoComplete="current-password"
                         className={css.input}
-                        errorsPlaceholder
+                        errorsInPlaceholder
                     />
                 </div>
             </label>

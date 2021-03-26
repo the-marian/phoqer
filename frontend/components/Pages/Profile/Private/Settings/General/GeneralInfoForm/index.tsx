@@ -93,7 +93,7 @@ const GeneralInfoForm = (): ReactElement => {
                         autoComplete="given-name"
                         placeholder="first name"
                         className={css.input}
-                        errorsPlaceholder
+                        errorsInPlaceholder
                     />
                 </label>
 
@@ -108,7 +108,7 @@ const GeneralInfoForm = (): ReactElement => {
                         autoComplete="family-name"
                         placeholder="first name"
                         className={css.input}
-                        errorsPlaceholder
+                        errorsInPlaceholder
                     />
                 </label>
 
@@ -123,7 +123,7 @@ const GeneralInfoForm = (): ReactElement => {
                         autoComplete="location"
                         placeholder="location"
                         className={css.input}
-                        errorsPlaceholder
+                        errorsInPlaceholder
                     />
                 </label>
 

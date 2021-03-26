@@ -63,7 +63,7 @@ const ResetPassword = (): ReactElement => {
                         autoComplete="given-name"
                         placeholder="old password"
                         className={css.input}
-                        errorsPlaceholder
+                        errorsInPlaceholder
                     />
                 </label>
 
@@ -78,7 +78,7 @@ const ResetPassword = (): ReactElement => {
                         autoComplete="family-name"
                         placeholder="new password"
                         className={css.input}
-                        errorsPlaceholder
+                        errorsInPlaceholder
                     />
                 </label>
 
@@ -94,7 +94,7 @@ const ResetPassword = (): ReactElement => {
                             autoComplete="confirm_password"
                             placeholder="confirm password"
                             className={css.input}
-                            errorsPlaceholder
+                            errorsInPlaceholder
                         />
                     </label>
                 ) : null}
@@ -114,7 +114,7 @@ const ResetPassword = (): ReactElement => {
                             autoComplete="confirm_password"
                             placeholder="confirm password"
                             className={css.input}
-                            errorsPlaceholder
+                            errorsInPlaceholder
                         />
                     </label>
                 ) : null}

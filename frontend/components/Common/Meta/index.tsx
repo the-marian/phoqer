@@ -29,7 +29,7 @@ const Meta = ({ title, description, keywords, icon, h1 = '' }: IProps): ReactEle
     const history = useRouter();
     const T = useTrans();
 
-    const url = (lang = 'pl'): string => config.host(lang) + history.pathname.replace('/', '');
+    const url = (lang = 'pl'): string => config.host(lang) + history.pathname;
 
     return (
         <>
@@ -44,12 +44,12 @@ const Meta = ({ title, description, keywords, icon, h1 = '' }: IProps): ReactEle
 
                 <meta name="twitter:card" content="summary_large_image" />
                 <meta name="twitter:description" content={description || T.site_desc} />
-                <meta name="twitter:image:src" content={icon || config.host() + 'about.jpg'} />
+                <meta name="twitter:image:src" content={icon || config.host() + '/icons/icon-512.png'} />
                 <meta name="twitter:site" content="@Phoqer" />
                 <meta name="twitter:title" content={title?.trim() ? `${title} | Phoqer` : 'Phoqer'} />
 
                 <meta property="og:description" content={description || T.site_desc} />
-                <meta property="og:image" content={icon || config.host() + 'about.jpg'} />
+                <meta property="og:image" content={icon || config.host() + '/icons/icon-512.png'} />
                 <meta property="og:site_name" content="Phoqer" />
                 <meta property="og:title" content={title?.trim() ? `${title} | Phoqer` : 'Phoqer'} />
                 <meta property="og:type" content="website" />
@@ -85,11 +85,11 @@ const Meta = ({ title, description, keywords, icon, h1 = '' }: IProps): ReactEle
                 <link rel="mask-icon" href="/phoqer-512.png" color="#007aff" />
 
                 <link rel="canonical" href={url(history.locale)} />
-                <link rel="alternate" hrefLang="x-default" href={url('')} />
+                <link rel="alternate" hrefLang="x-default" href={url()} />
                 <link rel="alternate" hrefLang="en" href={url('en')} />
                 <link rel="alternate" hrefLang="ru" href={url('ru')} />
             </Head>
-            <h1 className={css.title}>{(h1 || '') + T.site_desc}</h1>
+            <h1 className={css.title}>{h1 ? h1 + '. ' + T.site_desc : T.site_desc}</h1>
         </>
     );
 };

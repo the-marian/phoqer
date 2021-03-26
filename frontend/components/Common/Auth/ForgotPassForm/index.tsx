@@ -124,7 +124,7 @@ const ForgotPassForm = (): ReactElement => {
                     className={css.input}
                     errors={error}
                     autoComplete="email"
-                    errorsPlaceholder
+                    errorsInPlaceholder
                 />
             </div>
 

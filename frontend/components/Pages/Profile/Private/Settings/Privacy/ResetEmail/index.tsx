@@ -49,7 +49,7 @@ const ResetEmail = (): ReactElement => {
                         autoComplete="email"
                         placeholder="email"
                         className={css.input}
-                        errorsPlaceholder
+                        errorsInPlaceholder
                     />
                 </label>
                 <Button className={css.btn}>Изменить почту</Button>

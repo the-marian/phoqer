@@ -184,7 +184,7 @@ const LoginForm = (): ReactElement => {
                     className={css.input}
                     errors={errors.username}
                     autoComplete="email"
-                    errorsPlaceholder
+                    errorsInPlaceholder
                 />
             </div>
 
@@ -192,18 +192,15 @@ const LoginForm = (): ReactElement => {
                 <div className={css.icon}>
                     <FontAwesomeIcon icon={faKey} />
                 </div>
-                <button className={css.eye} onClick={handleClick} type="button">
-                    {unhidden ? <FontAwesomeIcon icon={faEyeSlash} /> : <FontAwesomeIcon icon={faEye} />}
-                </button>
                 <Input
-                    type={unhidden ? 'password' : 'text'}
+                    type="password"
                     value={value.password}
                     name="password"
                     onChange={handleChange}
                     className={css.input}
                     errors={errors.password}
                     autoComplete="current-password"
-                    errorsPlaceholder
+                    errorsInPlaceholder
                 />
             </div>
 
