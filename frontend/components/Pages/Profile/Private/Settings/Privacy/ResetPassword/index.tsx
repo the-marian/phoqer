@@ -44,8 +44,9 @@ const ResetPassword = (): ReactElement => {
     const css = useStyles();
     const media = useMedia(680);
 
-    const [error, setErorr] = useState<IPassword>(init);
+    const [error, setError] = useState<IPassword>(init);
     const [value, setValue] = useState<IPassword>(init);
+    console.log(setError);
     const handleChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>): void => {
         setValue({ ...value, [event.target.name]: event.target.value });
     };

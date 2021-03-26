@@ -30,8 +30,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
 const ResetEmail = (): ReactElement => {
     const css = useStyles();
 
-    const [error, setErorr] = useState<string>('');
+    const [error, setError] = useState<string>('');
     const [value, setValue] = useState<string>('');
+    console.log(setError);
     const handleChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>): void => {
         setValue(event.target.value);
     };

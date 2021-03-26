@@ -74,8 +74,9 @@ const GeneralInfoForm = (): ReactElement => {
         bio: auth?.bio || '',
     };
 
-    const [error, setErorr] = useState<IValue>(init);
+    const [error, setError] = useState<IValue>(init);
     const [value, setValue] = useState<IValue>(init);
+    console.log(setError);
     const handleChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>): void => {
         setValue({ ...value, [event.target.name]: event.target.value });
     };
