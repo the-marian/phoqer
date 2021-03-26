@@ -48,40 +48,38 @@ const useStyles = createUseStyles((theme: Theme) => ({
 }));
 
 interface IProps {
-    profileId: string | string[];
     active?: number | string;
 }
 
-const ProfileOffersNav = ({ profileId, active }: IProps): ReactElement => {
+const ProfileOffersNav = ({ active }: IProps): ReactElement | null => {
     const T = useTrans();
     const css = useStyles();
 
-    const id = String(profileId);
     const offersTab: ITabs[] = [
         {
             id: 'all',
             text: T.all,
-            link: routes.profile.private.my_offers(id, 'all'),
+            link: routes.profile.private.my_offers('all'),
         },
         {
             id: 'draft',
             text: T.draft,
-            link: routes.profile.private.my_offers(id, 'draft'),
+            link: routes.profile.private.my_offers('draft'),
         },
         {
             id: 'active',
             text: T.active,
-            link: routes.profile.private.my_offers(id, 'active'),
+            link: routes.profile.private.my_offers('active'),
         },
         {
-            id: 'in_rent',
+            id: 'in-rent',
             text: T.in_rent,
-            link: routes.profile.private.my_offers(id, 'in_rent'),
+            link: routes.profile.private.my_offers('in-rent'),
         },
         {
-            id: 'archived',
-            text: T.archived,
-            link: routes.profile.private.my_offers(id, 'archived'),
+            id: 'archive',
+            text: T.archive,
+            link: routes.profile.private.my_offers('archive'),
         },
     ];
 

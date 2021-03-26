@@ -7,8 +7,8 @@ import { Theme } from '../../../../assets/theme';
 import Meta from '../../../../components/Common/Meta';
 import ProfileCard from '../../../../components/Common/ProfileCard';
 import Container from '../../../../components/Layout/Container';
-import ProfileInfo from '../../../../components/Layout/Profile/Public/ProfileInfo';
-import Main from '../../../../components/Layout/TagMain';
+import ProfileInfo from '../../../../components/Pages/Profile/Public/ProfileInfo';
+import Main from '../../../../components/Shared/TagMain';
 import useTrans from '../../../../hooks/trans.hook';
 import { IPublicProfile, IState, IStore } from '../../../../interfaces';
 import { wrapper } from '../../../../redux/store';
@@ -16,6 +16,7 @@ import types from '../../../../redux/types';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     wrp: {
+        position: 'relative',
         display: 'flex',
         justifyContent: 'space-between',
 
@@ -23,8 +24,13 @@ const useStyles = createUseStyles((theme: Theme) => ({
             flexDirection: 'column',
         },
     },
+    sticky: {
+        position: 'sticky',
+        top: theme.rem(8),
+        left: 0,
+    },
     left: {
-        width: theme.rem(40),
+        width: theme.rem(45),
 
         '@media (max-width: 850px)': {
             display: 'block',
@@ -33,7 +39,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         },
     },
     right: {
-        width: 'calc(100% - 45rem)',
+        width: 'calc(100% - 49rem)',
 
         '@media (max-width: 850px)': {
             width: '100%',
@@ -55,12 +61,14 @@ const PublicProfilePage = (): ReactElement => {
                     <div className={css.wrp}>
                         <div className={css.left}>
                             <ProfileCard
+                                className={css.sticky}
                                 id={profile?.id}
                                 registerDate={profile?.date_joined}
                                 firstName={profile?.first_name}
                                 lastName={profile?.last_name}
                                 avatar={profile?.profile_img}
                                 userLocation={profile?.location}
+                                lastActivity={profile?.last_activity}
                             />
                         </div>
                         <div className={css.right}>
@@ -75,7 +83,7 @@ const PublicProfilePage = (): ReactElement => {
 
 export const getServerSideProps = wrapper.getServerSideProps(
     async (ctx): Promise<void> => {
-        ctx.store.dispatch({ type: types.GET_PUBLIC_PROFILE_START, payload: +ctx.query?.profileId });
+        ctx.store.dispatch({ type: types.GET_PUBLIC_PROFILE_START, payload: +(ctx.query?.profileId || 0) });
         ctx.store.dispatch(END);
         await (ctx.store as IStore).sagaTask?.toPromise();
     },

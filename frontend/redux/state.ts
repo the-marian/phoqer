@@ -20,7 +20,7 @@ const initState: IState = {
             is_deliverable: null,
         },
         offers: {
-            filters: false,
+            filters: true,
             popularSearch: true,
             hideTop: false,
         },
@@ -41,14 +41,24 @@ const initState: IState = {
                 data: [],
                 total: 1,
             },
-            loading: true,
+            loading: false,
+            pagination: false,
+        },
+        my_offers: {
+            data: {
+                data: [],
+                total: 1,
+            },
+            loading: false,
+            pagination: false,
         },
         favorite: {
             data: [],
             loading: true,
         },
         single: null,
-        newOffer: {
+        new_offer: {
+            loading: true,
             // step 1
             title: '',
             price: null,

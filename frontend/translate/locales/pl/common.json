@@ -1,0 +1,49 @@
+{
+    "site_desc": "PHOQER to internetowa platforma reklamowa, która łączy ludzi w celu wymiany towarów i usług. PHOQER - tutaj znajdziesz to, czego szukasz! Klikając przycisk \"Utwórz reklamę\", możesz łatwo i szybko zamieścić reklamę na dowolny temat i zarabiać na wynajmowaniu.",
+    "keywords": "udostępniać usługi związane z wynajmem towarów",
+
+    "home_page": "Strona główna",
+    "create_offer": "Utwórz ofertę",
+    "create_new_offer": "Utwórz nową ofertę",
+    "favorites": "Ulubione",
+    "favorite_offer": "Ulubione ofertę",
+    "messages": "Moje wiadomości",
+    "invite_friends": "Zaprosić przyjaciół",
+    "settings": "Ustawienia",
+    "reviews": "Recenzje",
+    "my_offers": "Moje oferty",
+    "my_profile": "Mój profil",
+    "analytics": "Analityka",
+
+    "join": "Zarejestrować",
+    "login": "Zaloguj sie",
+    "logout": "Wyloguj",
+    "reset_password": "Resetuj hasło",
+
+    "to_home": "Do strony głównej",
+    "find": "Odnaleźć",
+    "select_category": "Wybierz kategorię",
+    "what_are_you_looking_for": "Czego szukasz?",
+    "search_offers": "Szukaj ofert",
+    "rent_here_and_now": "Wynajmij tu i teraz",
+    "share_with_others_and_earn": "# Dziel się z innymi i zarabiaj",
+    "see_all": "Widzieć wszystko",
+    "popular_offers": "Popularne oferty",
+
+    "date": "Date",
+    "rent": "Wynajem",
+    "uah": "uah",
+    "day": "day",
+
+    "all": "Wszystko",
+    "draft": "Warcaby",
+    "active": "Aktywny",
+    "in_rent": "Wynajęty",
+    "archive": "Archiwum",
+
+    "user_profile_on_phoqer": "Profil użytkownika w serwisie phoqer.com",
+
+    "about_1": "Ты – это то, что тебя окружает. Мы полностью согласны с этой фразой. Вещи, которые мы покупаем, формируют человека. Иногда одна простая вещь может сделать нас по-настоящему счастливыми.",
+    "about_2": "Поэтому мы собрали самые разные товары у нас на сайте, чтобы каждый смог найти желаемое. Легко. Быстро. По приемлемой цене и хорошего качества.",
+    "about_3": "Мы захотели создать что-то лучше, чем обычный супермаркет, где мы ходим с тележкой среди прилавков, в надежде найти конкретную вещь. Онлайн-шоппинг избавляет нас от многих неудобств. Здесь не придется стоять в очереди на кассе, а под конец выяснить, что оплата только наличкой. Ваш ребенок не потеряется где-то в рядах с игрушками, а вам не придется с виноватым видом говорить консультанту, что хотели «просто посмотреть»."
+}

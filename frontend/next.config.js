@@ -14,8 +14,8 @@ module.exports = {
     async redirects() {
         return [
             {
-                source: '/new_offer',
-                destination: '/new_offer/1',
+                source: '/new-offer',
+                destination: '/new-offer/1',
                 permanent: true,
             },
             {
@@ -24,13 +24,18 @@ module.exports = {
                 permanent: true,
             },
             {
-                source: '/profile/private/:profileId',
-                destination: '/profile/private/:profileId/my_offers/all',
+                source: '/profile/private/',
+                destination: '/profile/private/my-offers/all',
                 permanent: true,
             },
             {
-                source: '/profile/private/:profileId/my_offers',
-                destination: '/profile/private/:profileId/my_offers/all',
+                source: '/profile/private/my-offers',
+                destination: '/profile/private/my-offers/all',
+                permanent: true,
+            },
+            {
+                source: '/profile/private/settings',
+                destination: '/profile/private/settings/general',
                 permanent: true,
             },
         ];

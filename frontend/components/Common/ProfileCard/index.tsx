@@ -1,13 +1,16 @@
+import { faSlidersH } from '@fortawesome/free-solid-svg-icons/faSlidersH';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import clsx from 'clsx';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
-import { formatTimestamp } from '../../../assets/helpers';
+import { formatTimestamp, onlineStatus } from '../../../assets/helpers';
 import routes from '../../../assets/routes';
 import template from '../../../assets/template';
 import { Theme } from '../../../assets/theme';
 import useAuth from '../../../hooks/auth.hook';
-import useMonths from '../../../hooks/month.hook';
 import LoginForm from '../Auth/LoginForm';
 import { modal } from '../Modal';
 import SmallModalWrp from '../Modal/SmallModalWrp';
@@ -51,24 +54,21 @@ const useStyles = createUseStyles((theme: Theme) => ({
     info: {
         marginBottom: theme.rem(2),
         color: theme.palette.gray[4],
-        fontSize: theme.rem(1.2),
+        fontSize: theme.rem(1.4),
 
         '@media (max-width: 768px)': {
             fontSize: theme.rem(1.5),
         },
     },
     btn: {
-        display: 'block',
+        ...template(theme).btn,
         width: 'max-content',
-        padding: theme.rem(1.5, 3),
-        fontSize: theme.rem(1.6),
         color: theme.palette.black[0],
-        borderRadius: theme.radius,
         background: theme.palette.white,
-        textAlign: 'center',
-        boxShadow: theme.shadow[1],
-        transition: theme.transitions[0],
-        ...template(theme).outline,
+
+        '& span': {
+            marginLeft: theme.rem(1),
+        },
 
         '@media (max-width: 500px)': {
             border: theme.border(0.1, theme.palette.gray[2]),
@@ -83,6 +83,8 @@ interface IProps {
     registerDate?: string;
     avatar?: string | null;
     userLocation?: string | null;
+    className?: string;
+    lastActivity?: string;
 }
 
 const ProfileCard = ({
@@ -90,12 +92,14 @@ const ProfileCard = ({
     firstName = '_',
     lastName = '_',
     registerDate,
+    lastActivity,
     avatar = null,
     userLocation = null,
+    className,
 }: IProps): ReactElement => {
     const css = useStyles();
     const auth = useAuth();
-    const M = useMonths();
+    const history = useRouter();
 
     const handleOpenChat = (): void => {
         if (!auth?.access_token) {
@@ -110,11 +114,13 @@ const ProfileCard = ({
         alert('hi!');
     };
 
+    const isAuthor = auth?.id === id;
+
     return (
-        <div className={css.wrp}>
+        <div className={clsx(css.wrp, className)}>
             <Link href={routes.profile.public(id)}>
                 <a>
-                    <UserAvatar firstName={firstName} lastName={lastName} avatar={avatar} />
+                    <UserAvatar online={isAuthor} firstName={firstName} lastName={lastName} avatar={avatar} />
                 </a>
             </Link>
             <div className={css.content}>
@@ -122,19 +128,26 @@ const ProfileCard = ({
                     <a className={css.name}>{firstName + ' ' + lastName}</a>
                 </Link>
                 <div className={css.info}>
-                    <p>Был онлайн 2 часа назад</p>
+                    <p>{onlineStatus({ initDate: lastActivity, locale: history.locale, isAuthor })}</p>
                 </div>
 
                 <div className={css.info}>
-                    <p>Дата регистрации: {formatTimestamp(registerDate, M)}</p>
+                    <p>Дата регистрации: {formatTimestamp(registerDate, history.locale)}</p>
                     <p>Локация: {userLocation || 'Не указано'}</p>
                 </div>
 
-                {auth?.id === id ? (
+                {!isAuthor ? (
                     <button className={css.btn} type="button" onClick={handleOpenChat}>
                         Написать автору
                     </button>
-                ) : null}
+                ) : (
+                    <Link href={routes.profile.private.settings()}>
+                        <a className={css.btn}>
+                            <FontAwesomeIcon icon={faSlidersH} />
+                            <span>Настройки профиля</span>
+                        </a>
+                    </Link>
+                )}
             </div>
         </div>
     );

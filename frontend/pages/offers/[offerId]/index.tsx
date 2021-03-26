@@ -8,26 +8,27 @@ import { END } from 'redux-saga';
 import routes from '../../../assets/routes';
 import { Theme } from '../../../assets/theme';
 import Breadcrumbs from '../../../components/Common/Breadcrumbs';
+import Comments from '../../../components/Common/Comments';
+import Gift from '../../../components/Common/Gift';
 import Meta from '../../../components/Common/Meta';
 import { modal } from '../../../components/Common/Modal';
 import FullPageModal from '../../../components/Common/Modal/FullPageModal';
-import Comments from '../../../components/Layout/Comments';
 import Container from '../../../components/Layout/Container';
-import AsideElement from '../../../components/Layout/SingleOffer/AsideElement';
-import OfferHead from '../../../components/Layout/SingleOffer/OfferHead';
-import Price from '../../../components/Layout/SingleOffer/Price';
-import RelatedOffers from '../../../components/Layout/SingleOffer/RelatedOffers';
-import Requirements from '../../../components/Layout/SingleOffer/Requirements';
-import OfferSlider from '../../../components/Layout/SingleOffer/Slider';
-import SmallBanner from '../../../components/Layout/SingleOffer/SmallBanner';
-import Main from '../../../components/Layout/TagMain';
+import AsideElement from '../../../components/Pages/SingleOffer/AsideElement';
+import OfferHead from '../../../components/Pages/SingleOffer/OfferHead';
+import Price from '../../../components/Pages/SingleOffer/Price';
+import RelatedOffers from '../../../components/Pages/SingleOffer/RelatedOffers';
+import Requirements from '../../../components/Pages/SingleOffer/Requirements';
+import OfferSlider from '../../../components/Pages/SingleOffer/Slider';
+import Main from '../../../components/Shared/TagMain';
+import useAuth from '../../../hooks/auth.hook';
 import useMedia from '../../../hooks/media.hook';
 import { IOfferCard, IState, IStore } from '../../../interfaces';
 import { wrapper } from '../../../redux/store';
 import types from '../../../redux/types';
 
 const useStyles = createUseStyles((theme: Theme) => ({
-    // top content
+    // top translate
     banner: {
         display: 'block',
         height: theme.rem(60),
@@ -139,6 +140,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
 
 const SingleOfferPage = (): ReactElement | null => {
     const css = useStyles();
+    const auth = useAuth();
     const dispatch = useDispatch();
     const priceMedia = useMedia(768);
     const calendarMedia = useMedia(1100);
@@ -226,7 +228,7 @@ const SingleOfferPage = (): ReactElement | null => {
                                 numberOfMonths={calendarMedia ? 2 : 1}
                             />
 
-                            <SmallBanner />
+                            {auth?.access_token ? <Gift /> : null}
 
                             <Comments />
                         </div>

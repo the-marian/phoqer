@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { ReactElement, useState } from 'react';
 import { createUseStyles } from 'react-jss';
 import { useDispatch } from 'react-redux';
+import { CSSTransition } from 'react-transition-group';
 
 import config from '../../../../assets/config';
 import { Theme } from '../../../../assets/theme';
@@ -59,21 +60,23 @@ const UserNav = ({ className }: IProps): ReactElement => {
     };
 
     return (
-        <NavTabs tabs={profileTabs} classNameWrp={className} className={css.item} classNameText={css.text}>
-            <>
-                <li>
-                    <button type="button" className={css.item} onClick={handleLogout}>
-                        <FontAwesomeIcon icon={faSignOutAlt} />
-                        <span className={css.text}>{T.logout}</span>
-                    </button>
-                </li>
-                {loading && (
+        <CSSTransition in appear timeout={200} unmountOnExit>
+            <NavTabs tabs={profileTabs} classNameWrp={className} className={css.item} classNameText={css.text}>
+                <>
                     <li>
-                        <Spinner />
+                        <button type="button" className={css.item} onClick={handleLogout}>
+                            <FontAwesomeIcon icon={faSignOutAlt} />
+                            <span className={css.text}>{T.logout}</span>
+                        </button>
                     </li>
-                )}
-            </>
-        </NavTabs>
+                    {loading && (
+                        <li>
+                            <Spinner />
+                        </li>
+                    )}
+                </>
+            </NavTabs>
+        </CSSTransition>
     );
 };
 

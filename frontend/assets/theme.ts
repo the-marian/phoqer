@@ -23,13 +23,13 @@ export interface Theme {
     rem: (one: number, two?: number, three?: number, four?: number) => string;
     em: (one: number, two?: number, three?: number, four?: number) => string;
     radius: string;
-    shadow: string[];
+    shadow: [string, string, string, string, string];
     palette: IPalette;
     text: {
         family: string;
-        weight: [200, 300, 400, 500, 600, 700];
+        weight: ['200', '300', '400', '500', '600', '700'];
     };
-    transitions: string[];
+    transitions: [string, string];
 }
 
 const palette: { [key: string]: IPalette } = {
@@ -58,7 +58,7 @@ const palette: { [key: string]: IPalette } = {
         yellow: ['#EDBF18', '#FAF0CA'],
         primary: ['#007aff', '#0040ff'],
         secondary: ['#EDFBC9'],
-        modal: 'rgba(0, 0, 0, 0.6)',
+        modal: 'rgba(0, 0, 0, 0.3)',
     },
     black: {
         white: '#222222',
@@ -69,14 +69,7 @@ const palette: { [key: string]: IPalette } = {
         gray: ['#343434', '#454545', '#999999', '#AAAAAA', '#AAAAAA'],
         red: ['#DB162F'],
         green: ['#22cc52'],
-        soft: [
-            'linear-gradient(to right top, #194189 0%, #3B4980 25%, #8738A7 100%)',
-            'linear-gradient(to right top, #8360c3, #2ebf91)',
-            'linear-gradient(225deg, #1623A6 0%, #3343D4 29%, #175EAC 73%, #176682 100%)',
-            'linear-gradient(to right top, #654ea3, #eaafc8)',
-            'linear-gradient(to right top, #604C7C 0%, #257983 50%, #20825A 100%)',
-            'linear-gradient(to right top, #194189 0%, #3B4980 25%, #8738A7 100%)',
-        ],
+        soft: ['#343434', '#343434', '#343434', '#343434', '#343434', '#343434'],
         grad: [
             'linear-gradient(90deg, #007CF0, #00DFD8)',
             'linear-gradient(90deg, #7928CA, #FF0080)',
@@ -85,7 +78,7 @@ const palette: { [key: string]: IPalette } = {
         yellow: ['#EDBF18', '#FAF0CA'],
         primary: ['#007aff', '#0040ff'],
         secondary: ['#EDFBC9'],
-        modal: 'rgba(0, 0, 0, 0.6)',
+        modal: 'rgba(0, 0, 0, 0.3)',
     },
 };
 
@@ -111,7 +104,7 @@ export const theme = (value: Themes): Theme => ({
     palette: palette[value],
     text: {
         family: 'Montserrat, sans-serif',
-        weight: [200, 300, 400, 500, 600, 700],
+        weight: ['200', '300', '400', '500', '600', '700'],
     },
     transitions: ['0.2s cubic-bezier(0.4, 0, 0.2, 1)', '0.6s cubic-bezier(0.4, 0, 0.2, 1)'],
 });

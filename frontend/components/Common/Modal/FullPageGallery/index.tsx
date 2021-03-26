@@ -38,7 +38,8 @@ const useStyles = createUseStyles((theme: Theme) => ({
             background: theme.palette.gray[4],
 
             '@media (max-width: 768px)': {
-                top: '100%',
+                top: 'unset',
+                bottom: 0,
                 transform: 'translateY(calc(-100% - 5rem))',
             },
 
@@ -97,6 +98,10 @@ const useStyles = createUseStyles((theme: Theme) => ({
         width: '100%',
         fontSize: theme.rem(1.6),
         color: theme.palette.trueWhite,
+
+        '@media (max-width: 768px)': {
+            bottom: theme.rem(6),
+        },
 
         '& ul': {
             display: 'flex',

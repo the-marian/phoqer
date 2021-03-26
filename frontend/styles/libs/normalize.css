@@ -1,4 +1,4 @@
-/*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
+/*! normalize.scss v8.0.1 | MIT License | github.com/necolas/normalize.scss */
 
 /* Document
    ========================================================================== */
@@ -42,7 +42,7 @@ h1 {
     margin: 0.67em 0;
 }
 
-/* Grouping content
+/* Grouping translate
    ========================================================================== */
 
 /**
@@ -138,7 +138,7 @@ sup {
     top: -0.5em;
 }
 
-/* Embedded content
+/* Embedded translate
    ========================================================================== */
 
 /**

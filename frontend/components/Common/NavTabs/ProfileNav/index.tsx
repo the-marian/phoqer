@@ -61,14 +61,12 @@ const useStyles = createUseStyles((theme: Theme) => ({
 
 interface IProps {
     active?: number | string;
-    profileId: string | string[];
 }
 
-const ProfileNav = ({ active, profileId }: IProps): ReactElement => {
+const ProfileNav = ({ active }: IProps): ReactElement | null => {
     const T = useTrans();
     const css = useStyles();
-
-    const profileTabs: ITabs[] = config.userProfileLinks(String(profileId), T, { messages: 5, reviews: 4 });
+    const profileTabs: ITabs[] = config.userProfileLinks(T, { messages: 5, reviews: 4 });
 
     return <NavTabs tabs={profileTabs} classNameWrp={css.tabs} className={css.item} activeClass={css.active} active={active} />;
 };

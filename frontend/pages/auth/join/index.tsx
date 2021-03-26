@@ -3,9 +3,9 @@ import React, { ReactElement } from 'react';
 
 import { serverRedirect } from '../../../assets/helpers';
 import JoinForm from '../../../components/Common/Auth/JoinForm';
+import AuthContainer from '../../../components/Common/AuthContainer';
 import Meta from '../../../components/Common/Meta';
 import AuthRedirect from '../../../components/HOC/Auth/AuthRedirect';
-import AuthContainer from '../../../components/Layout/AuthContainer';
 import useTrans from '../../../hooks/trans.hook';
 import { wrapper } from '../../../redux/store';
 

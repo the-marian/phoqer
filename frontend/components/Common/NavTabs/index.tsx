@@ -46,7 +46,7 @@ const NavTabs = ({
                                 ) : null}
                             </a>
                         ) : (
-                            <Link href={item.link} shallow>
+                            <Link href={item.link}>
                                 <a className={clsx(active === item.id && activeClass, className)}>
                                     {item.icon ? <FontAwesomeIcon icon={item.icon} /> : null}
                                     <span className={classNameText}>{item.text}</span>

@@ -9,9 +9,9 @@ import { isEmpty, mailRegex, passwordRegex } from '../../../../assets/helpers';
 import { Theme } from '../../../../assets/theme';
 import { ISignup } from '../../../../interfaces';
 import types from '../../../../redux/types';
-import Button from '../../Button';
+import Button from '../../../Layout/Button';
+import Input from '../../../Layout/Input';
 import GoogleFacebook from '../../GoogleFacebook';
-import Input from '../../Input';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     title: {

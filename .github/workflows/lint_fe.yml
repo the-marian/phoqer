@@ -1,0 +1,24 @@
+name: Lint FE
+
+on:
+  push:
+    paths:
+    - 'frontend/**'
+
+jobs:
+  js_lint:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./frontend
+    steps:
+      - name: Set up Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12
+      - name: Checkout Phoqer
+        uses: actions/checkout@v2
+      - name: Install dependencies
+        run: npm install
+      - name: Run lint
+        run: npm run lint
