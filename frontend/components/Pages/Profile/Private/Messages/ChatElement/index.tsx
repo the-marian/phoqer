@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React, { ReactElement } from 'react';
@@ -23,6 +24,10 @@ const useStyles = createUseStyles((theme: Theme) => ({
 
         ...template(theme).outline,
     },
+    active: {
+        background: theme.palette.gray[1],
+        // color: theme.palette.trueWhite,
+    },
     name: {
         fontSize: theme.rem(1.8),
         fontWeight: theme.text.weight[4],
@@ -39,6 +44,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
 
 interface IProps {
     id: string | number;
+    active?: boolean;
     avatar?: string | null;
     firstName?: string | null;
     lastName?: string | null;
@@ -48,13 +54,13 @@ interface IProps {
 
 const MAX_LENGTH = 45;
 
-const ChatElement = ({ id, avatar, firstName = '', lastName = '', date, preview = '' }: IProps): ReactElement => {
+const ChatElement = ({ id, active = false, avatar, firstName = '', lastName = '', date, preview = '' }: IProps): ReactElement => {
     const css = useStyles();
     const history = useRouter();
 
     return (
         <Link href={routes.profile.private.messages(id)}>
-            <a className={css.wrp}>
+            <a className={clsx(css.wrp, active && css.active)}>
                 <UserAvatar firstName={firstName || ''} lastName={lastName || ''} avatar={avatar} time={date} />
 
                 <div className={css.inner}>

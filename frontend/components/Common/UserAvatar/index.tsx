@@ -51,7 +51,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     mark: {
         position: 'absolute',
         bottom: 0,
-        right: 0,
+        left: 0,
     },
 }));
 

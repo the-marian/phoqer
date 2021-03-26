@@ -44,8 +44,9 @@ const ResetPassword = (): ReactElement => {
     const css = useStyles();
     const media = useMedia(680);
 
-    const [error, setErorr] = useState<IPassword>(init);
+    const [error, setError] = useState<IPassword>(init);
     const [value, setValue] = useState<IPassword>(init);
+    console.log(setError);
     const handleChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>): void => {
         setValue({ ...value, [event.target.name]: event.target.value });
     };
@@ -63,7 +64,7 @@ const ResetPassword = (): ReactElement => {
                         autoComplete="given-name"
                         placeholder="old password"
                         className={css.input}
-                        errorsPlaceholder
+                        errorsInPlaceholder
                     />
                 </label>
 
@@ -78,7 +79,7 @@ const ResetPassword = (): ReactElement => {
                         autoComplete="family-name"
                         placeholder="new password"
                         className={css.input}
-                        errorsPlaceholder
+                        errorsInPlaceholder
                     />
                 </label>
 
@@ -94,7 +95,7 @@ const ResetPassword = (): ReactElement => {
                             autoComplete="confirm_password"
                             placeholder="confirm password"
                             className={css.input}
-                            errorsPlaceholder
+                            errorsInPlaceholder
                         />
                     </label>
                 ) : null}
@@ -114,7 +115,7 @@ const ResetPassword = (): ReactElement => {
                             autoComplete="confirm_password"
                             placeholder="confirm password"
                             className={css.input}
-                            errorsPlaceholder
+                            errorsInPlaceholder
                         />
                     </label>
                 ) : null}

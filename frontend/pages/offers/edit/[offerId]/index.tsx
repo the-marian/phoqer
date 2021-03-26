@@ -3,28 +3,22 @@ import React, { ReactElement } from 'react';
 
 import { serverRedirect } from '../../../../assets/helpers';
 import Meta from '../../../../components/Common/Meta';
-import ProfileNav from '../../../../components/Common/NavTabs/ProfileNav';
 import AuthRedirect from '../../../../components/HOC/Auth/AuthRedirect';
 import Container from '../../../../components/Layout/Container';
-import ChatWrp from '../../../../components/Pages/Profile/Private/Messages/ChatWrp';
 import Main from '../../../../components/Shared/TagMain';
 import useTrans from '../../../../hooks/trans.hook';
 import { wrapper } from '../../../../redux/store';
 
-const Messages = (): ReactElement => {
+const EditPost = (): ReactElement => {
     const T = useTrans();
 
     return (
         <>
-            <Meta title={'Мои сообщения'} h1={T.user_profile_on_phoqer} />
-
+            <Meta title={'Мои обьявления'} h1={T.user_profile_on_phoqer} />
             <AuthRedirect />
             <Main>
                 <Container>
-                    <ProfileNav active="messages" />
-                    <ChatWrp>
-                        <p>Select the chat in side panel</p>
-                    </ChatWrp>
+                    <p>Select the chat in side panel</p>
                 </Container>
             </Main>
         </>
@@ -37,4 +31,4 @@ export const getServerSideProps = wrapper.getServerSideProps(
     },
 );
 
-export default Messages;
+export default EditPost;

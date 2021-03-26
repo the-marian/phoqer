@@ -74,8 +74,9 @@ const GeneralInfoForm = (): ReactElement => {
         bio: auth?.bio || '',
     };
 
-    const [error, setErorr] = useState<IValue>(init);
+    const [error, setError] = useState<IValue>(init);
     const [value, setValue] = useState<IValue>(init);
+    console.log(setError);
     const handleChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>): void => {
         setValue({ ...value, [event.target.name]: event.target.value });
     };
@@ -93,7 +94,7 @@ const GeneralInfoForm = (): ReactElement => {
                         autoComplete="given-name"
                         placeholder="first name"
                         className={css.input}
-                        errorsPlaceholder
+                        errorsInPlaceholder
                     />
                 </label>
 
@@ -108,7 +109,7 @@ const GeneralInfoForm = (): ReactElement => {
                         autoComplete="family-name"
                         placeholder="first name"
                         className={css.input}
-                        errorsPlaceholder
+                        errorsInPlaceholder
                     />
                 </label>
 
@@ -123,7 +124,7 @@ const GeneralInfoForm = (): ReactElement => {
                         autoComplete="location"
                         placeholder="location"
                         className={css.input}
-                        errorsPlaceholder
+                        errorsInPlaceholder
                     />
                 </label>
 
