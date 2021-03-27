@@ -3,18 +3,16 @@ import { createUseStyles } from 'react-jss';
 
 import template from '../../../../../../../assets/template';
 import { Theme } from '../../../../../../../assets/theme';
-import useMedia from '../../../../../../../hooks/media.hook';
 import Button from '../../../../../../Layout/Button';
 import Input from '../../../../../../Layout/Input';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     wrp: {
         minWidth: theme.rem(20),
+        width: '40%',
     },
     input: {
-        ...template(theme).input,
-        color: theme.palette.black[0],
-        background: theme.palette.gray[1],
+        background: theme.palette.gray[0],
     },
     label: {
         display: 'block',
@@ -42,7 +40,6 @@ const init: IPassword = {
 
 const ResetPassword = (): ReactElement => {
     const css = useStyles();
-    const media = useMedia(680);
 
     const [error, setError] = useState<IPassword>(init);
     const [value, setValue] = useState<IPassword>(init);
@@ -83,42 +80,21 @@ const ResetPassword = (): ReactElement => {
                     />
                 </label>
 
-                {!media ? (
-                    <label className={css.label}>
-                        <p className={css.text}>Confirm password</p>
-                        <Input
-                            value={value.confirm_password}
-                            errors={error.confirm_password}
-                            onChange={handleChange}
-                            type="password"
-                            name="confirm_password"
-                            autoComplete="confirm_password"
-                            placeholder="confirm password"
-                            className={css.input}
-                            errorsInPlaceholder
-                        />
-                    </label>
-                ) : null}
+                <label className={css.label}>
+                    <p className={css.text}>Confirm password</p>
+                    <Input
+                        value={value.confirm_password}
+                        errors={error.confirm_password}
+                        onChange={handleChange}
+                        type="password"
+                        name="confirm_password"
+                        autoComplete="confirm_password"
+                        placeholder="confirm password"
+                        className={css.input}
+                        errorsInPlaceholder
+                    />
+                </label>
                 <Button className={css.btn}>Изменить пароль</Button>
-            </div>
-
-            <div className={css.wrp}>
-                {media ? (
-                    <label className={css.label}>
-                        <p className={css.text}>Confirm password</p>
-                        <Input
-                            value={value.confirm_password}
-                            errors={error.confirm_password}
-                            onChange={handleChange}
-                            type="password"
-                            name="confirm_password"
-                            autoComplete="confirm_password"
-                            placeholder="confirm password"
-                            className={css.input}
-                            errorsInPlaceholder
-                        />
-                    </label>
-                ) : null}
             </div>
         </>
     );

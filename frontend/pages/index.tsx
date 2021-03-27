@@ -1,6 +1,8 @@
 import React, { ReactElement } from 'react';
+import { createUseStyles } from 'react-jss';
 import { END } from 'redux-saga';
 
+import { Theme } from '../assets/theme';
 import About from '../components/Common/About';
 import Banner from '../components/Common/Banner';
 import Categories from '../components/Common/Categories';
@@ -8,27 +10,38 @@ import Meta from '../components/Common/Meta';
 import TopPopular from '../components/Common/PopularOffers';
 import Search from '../components/Common/Search';
 import Container from '../components/Layout/Container';
-import Main from '../components/Shared/TagMain';
+import PageLayout from '../components/Shared/PageLayout';
 import useTrans from '../hooks/trans.hook';
 import { IStore } from '../interfaces';
 import { wrapper } from '../redux/store';
 import types from '../redux/types';
 
+const useStyles = createUseStyles((theme: Theme) => ({
+    banner: {
+        margin: theme.rem(8, 0),
+
+        '@media (max-width: 550px)': {
+            margin: theme.rem(4, 0),
+        },
+    },
+}));
+
 const Index = (): ReactElement => {
     const T = useTrans();
+    const css = useStyles();
     return (
         <>
             <Meta title={T.home_page} />
-            <Main>
+            <PageLayout>
                 <Container>
                     <Search />
                     <Categories />
-                    <Banner />
+                    <Banner className={css.banner} />
                     <TopPopular />
                 </Container>
 
                 <About />
-            </Main>
+            </PageLayout>
         </>
     );
 };

@@ -37,10 +37,10 @@ const useStyles = createUseStyles((theme: Theme) => ({
         transition: theme.transitions[0],
         cursor: 'pointer',
 
-        '@media (max-width: 500px)': {
+        ...theme.media(500).max({
             margin: theme.rem(0.2),
             padding: theme.rem(0.6),
-        },
+        }),
 
         '&:hover': {
             background: theme.palette.gray[1],

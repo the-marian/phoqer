@@ -20,7 +20,7 @@ import Price from '../../../components/Pages/SingleOffer/Price';
 import RelatedOffers from '../../../components/Pages/SingleOffer/RelatedOffers';
 import Requirements from '../../../components/Pages/SingleOffer/Requirements';
 import OfferSlider from '../../../components/Pages/SingleOffer/Slider';
-import Main from '../../../components/Shared/TagMain';
+import PageLayout from '../../../components/Shared/PageLayout';
 import useAuth from '../../../hooks/auth.hook';
 import useMedia from '../../../hooks/media.hook';
 import { IOfferCard, IState, IStore } from '../../../interfaces';
@@ -170,7 +170,7 @@ const SingleOfferPage = (): ReactElement | null => {
                 description={offer?.description.slice(0, 150)}
                 icon={offer?.cover_image}
             />
-            <Main>
+            <PageLayout>
                 <Container>
                     {offer.images && offer.images.length > 1 ? (
                         <OfferSlider images={offer?.images} />
@@ -238,7 +238,7 @@ const SingleOfferPage = (): ReactElement | null => {
 
                     <RelatedOffers />
                 </Container>
-            </Main>
+            </PageLayout>
         </>
     ) : null;
 };

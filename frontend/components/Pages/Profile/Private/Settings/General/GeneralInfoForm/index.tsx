@@ -1,12 +1,11 @@
+import { faCompass } from '@fortawesome/free-regular-svg-icons/faCompass';
+import { faUser } from '@fortawesome/free-regular-svg-icons/faUser';
 import React, { ChangeEvent, ReactElement, useState } from 'react';
 import { createUseStyles } from 'react-jss';
-import TextareaAutosize from 'react-textarea-autosize';
 
-import template from '../../../../../../../assets/template';
 import { Theme } from '../../../../../../../assets/theme';
 import useAuth from '../../../../../../../hooks/auth.hook';
-import Gift from '../../../../../../Common/Gift';
-import Button from '../../../../../../Layout/Button';
+import Banner from '../../../../../../Common/Banner';
 import Input from '../../../../../../Layout/Input';
 
 const useStyles = createUseStyles((theme: Theme) => ({
@@ -30,16 +29,14 @@ const useStyles = createUseStyles((theme: Theme) => ({
             },
         },
     },
-    textarea: {
-        ...template(theme).input,
-        minHeight: theme.rem(15),
-        color: theme.palette.black[0],
-        background: theme.palette.gray[1],
+    banner: {
+        height: 'calc(100% - 4.5rem)',
+        padding: theme.rem(2),
+        marginTop: theme.rem(2.6),
+        background: theme.palette.soft[2],
     },
     input: {
-        ...template(theme).input,
-        color: theme.palette.black[0],
-        background: theme.palette.gray[1],
+        background: theme.palette.gray[0],
     },
     label: {
         display: 'block',
@@ -50,18 +47,19 @@ const useStyles = createUseStyles((theme: Theme) => ({
         marginBottom: theme.rem(0.6),
         fontSize: theme.rem(1.4),
     },
-    btn: {
-        ...template(theme).btn,
-        marginBottom: theme.rem(4),
-    },
 }));
 
 interface IValue {
     first_name: string;
     last_name: string;
     location: string;
-    bio: string;
 }
+
+const errorInit: IValue = {
+    first_name: '',
+    last_name: '',
+    location: '',
+};
 
 const GeneralInfoForm = (): ReactElement => {
     const css = useStyles();
@@ -71,10 +69,9 @@ const GeneralInfoForm = (): ReactElement => {
         first_name: auth?.first_name || '',
         last_name: auth?.last_name || '',
         location: auth?.location || '',
-        bio: auth?.bio || '',
     };
 
-    const [error, setError] = useState<IValue>(init);
+    const [error, setError] = useState<IValue>(errorInit);
     const [value, setValue] = useState<IValue>(init);
     console.log(setError);
     const handleChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>): void => {
@@ -86,6 +83,7 @@ const GeneralInfoForm = (): ReactElement => {
                 <label className={css.label}>
                     <p className={css.text}>First name</p>
                     <Input
+                        icon={faUser}
                         value={value.first_name}
                         errors={error.first_name}
                         onChange={handleChange}
@@ -101,6 +99,7 @@ const GeneralInfoForm = (): ReactElement => {
                 <label className={css.label}>
                     <p className={css.text}>First name</p>
                     <Input
+                        icon={faUser}
                         value={value.last_name}
                         errors={error.last_name}
                         onChange={handleChange}
@@ -116,35 +115,21 @@ const GeneralInfoForm = (): ReactElement => {
                 <label className={css.label}>
                     <p className={css.text}>Location</p>
                     <Input
+                        icon={faCompass}
                         value={value.location}
                         errors={error.location}
                         onChange={handleChange}
                         type="text"
                         name="location"
-                        autoComplete="location"
+                        autoComplete="street-address"
                         placeholder="location"
                         className={css.input}
                         errorsInPlaceholder
                     />
                 </label>
-
-                <Gift />
             </div>
-
             <div className={css.wrp}>
-                <label className={css.label}>
-                    <p className={css.text}>User bio</p>
-                    <TextareaAutosize
-                        value={value.bio}
-                        onChange={handleChange}
-                        className={css.textarea}
-                        name="bio"
-                        wrap="soft"
-                        placeholder="Начните печатать"
-                    />
-                </label>
-
-                <Button className={css.btn}>Применить изменения</Button>
+                <Banner className={css.banner} />
             </div>
         </>
     );

@@ -11,10 +11,10 @@ const routes = {
         public: (id: ID = ':profileId'): string => `/profile/public/${id}`,
         private: {
             my_offers: (status = 'all'): string => `/profile/private/my-offers/${status}`,
-            settings: (status = 'general'): string => `/profile/private/settings/${status}`,
             messages: (status: string | number = ''): string => `/profile/private/messages/${status}`,
-            reviews: `/profile/private/reviews`,
-            referral: `/profile/private/referral`,
+            settings: '/profile/private/settings',
+            reviews: '/profile/private/reviews',
+            referral: '/profile/private/referral',
             analytics: (): string =>
                 process.env.NODE_ENV === 'development'
                     ? 'http://localhost:4200'

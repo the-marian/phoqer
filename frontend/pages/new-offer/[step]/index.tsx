@@ -18,7 +18,7 @@ import Stepper from '../../../components/Pages/NewOffer/Stepper';
 import StepThree from '../../../components/Pages/NewOffer/StepThree';
 import StepTwo from '../../../components/Pages/NewOffer/StepTwo';
 import Success from '../../../components/Pages/NewOffer/Success';
-import Main from '../../../components/Shared/TagMain';
+import PageLayout from '../../../components/Shared/PageLayout';
 import useTrans from '../../../hooks/trans.hook';
 import { INewOffer, IState, IStore } from '../../../interfaces';
 import { wrapper } from '../../../redux/store';
@@ -93,7 +93,7 @@ const NewOffer = (): ReactElement => {
         <>
             <AuthRedirect />
             <Meta title={T.create_new_offer} h1={T.share_with_others_and_earn} />
-            <Main>
+            <PageLayout>
                 <Container>
                     <>
                         <h2 className={css.title}>{T.share_with_others_and_earn}</h2>
@@ -109,7 +109,7 @@ const NewOffer = (): ReactElement => {
                         )}
                     </>
                 </Container>
-            </Main>
+            </PageLayout>
         </>
     );
 };

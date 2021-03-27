@@ -1,5 +1,4 @@
 import { GetServerSidePropsContext } from 'next';
-import { useRouter } from 'next/router';
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
@@ -7,12 +6,11 @@ import { serverRedirect } from '../../../../assets/helpers';
 import { Theme } from '../../../../assets/theme';
 import Meta from '../../../../components/Common/Meta';
 import ProfileNav from '../../../../components/Common/NavTabs/ProfileNav';
-import ProfileSettings from '../../../../components/Common/NavTabs/ProfileSettings';
 import AuthRedirect from '../../../../components/HOC/Auth/AuthRedirect';
 import Container from '../../../../components/Layout/Container';
 import General from '../../../../components/Pages/Profile/Private/Settings/General';
 import Privacy from '../../../../components/Pages/Profile/Private/Settings/Privacy';
-import Main from '../../../../components/Shared/TagMain';
+import PageLayout from '../../../../components/Shared/PageLayout';
 import useTrans from '../../../../hooks/trans.hook';
 import { wrapper } from '../../../../redux/store';
 
@@ -22,35 +20,32 @@ const useStyles = createUseStyles((theme: Theme) => ({
         fontSize: theme.rem(1.6),
         color: theme.palette.black[0],
     },
+    title: {
+        margin: theme.rem(4, 0),
+        fontSize: theme.rem(3),
+        fontWeight: theme.text.weight[3],
+    },
 }));
-
-interface ITabs {
-    [key: string]: ReactElement;
-}
-
-const Tabs: ITabs = {
-    general: <General />,
-    privacy: <Privacy />,
-};
 
 const Settings = (): ReactElement => {
     const T = useTrans();
     const css = useStyles();
-    const history = useRouter();
-    const tab = String(history.query.tab);
 
     return (
         <>
             <Meta title={'Мои обьявления'} h1={T.user_profile_on_phoqer} />
             <AuthRedirect />
-            <Main>
+            <PageLayout>
                 <Container>
                     <ProfileNav active="settings" />
-                    <ProfileSettings active={tab} />
-
-                    <div className={css.root}>{Tabs[tab] || Tabs.general}</div>
+                    <div className={css.root}>
+                        <h2 className={css.title}>General data</h2>
+                        <General />
+                        <h2 className={css.title}>Privacy</h2>
+                        <Privacy />
+                    </div>
                 </Container>
-            </Main>
+            </PageLayout>
         </>
     );
 };

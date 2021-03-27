@@ -1,39 +1,19 @@
-import React, { ReactElement, useEffect } from 'react';
-import { ThemeProvider } from 'react-jss';
+import React, { ReactElement } from 'react';
 
-import { theme } from '../../../assets/theme';
-import useTheme from '../../../hooks/theme.hook';
-import ModalComponent from '../../Common/Modal';
-import Progress from '../../Common/Preloaders/Progress';
-import AuthInterceptor from '../../HOC/Auth/AuthInterceptor';
 import Footer from '../Footer';
 import Header from '../Header';
-import MainDrawer from '../MainDrawer';
+import Main from '../TagMain';
 
 interface IProps {
     children: JSX.Element | JSX.Element[];
 }
 
-const PageLayout = ({ children }: IProps): ReactElement => {
-    const [siteTheme] = useTheme();
-
-    useEffect(() => {
-        if (process.browser && /windows/i.test(window.navigator.userAgent) && document.querySelector('html')) {
-            document.querySelector('html')?.classList?.add('windows');
-        }
-    }, []);
-
-    return (
-        <ThemeProvider theme={theme(siteTheme)}>
-            <AuthInterceptor />
-            <Header />
-            <ModalComponent />
-            <MainDrawer />
-            <Progress />
-            {children}
-            <Footer />
-        </ThemeProvider>
-    );
-};
+const PageLayout = ({ children }: IProps): ReactElement => (
+    <>
+        <Header />
+        <Main>{children}</Main>
+        <Footer />
+    </>
+);
 
 export default PageLayout;

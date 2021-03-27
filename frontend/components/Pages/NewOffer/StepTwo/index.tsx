@@ -103,6 +103,7 @@ const StepTwo = (): ReactElement => {
                 three: false,
             },
         };
+        setErrors({});
         setValue(reset);
         dispatch({ type: types.NEW_OFFER_FORM, payload: reset });
     };
@@ -140,6 +141,7 @@ const StepTwo = (): ReactElement => {
         dispatch({ type: types.NEW_OFFER_FORM, payload: { ...value, isDone: { ...value.isDone, two: true } } });
         history.push(routes.new_offer(3), undefined, { shallow: true });
     };
+
     const handleSave = (): void => {
         dispatch({
             type: types.NEW_OFFER_FORM,
@@ -169,7 +171,7 @@ const StepTwo = (): ReactElement => {
                     value={value.description}
                     onChange={handleText}
                     wrap="soft"
-                    className={clsx(css.input, css.textarea, errors.description && css.errors)}
+                    className={clsx(css.textarea, errors.description && css.errors)}
                     name="description"
                     placeholder="Описание"
                 />
@@ -184,6 +186,7 @@ const StepTwo = (): ReactElement => {
                     <Input
                         value={moneyFormat(value.deposit_val || 0)}
                         onChange={handleNumber}
+                        className={css.input}
                         name="deposit_val"
                         placeholder="Введите число"
                         readOnly={!value.optional.deposit_val}
@@ -200,6 +203,7 @@ const StepTwo = (): ReactElement => {
                     <Input
                         value={moneyFormat(value.min_rent_period || 0)}
                         onChange={handleNumber}
+                        className={css.input}
                         name="min_rent_period"
                         placeholder="Введите число"
                         readOnly={!value.optional.min_rent_period}
@@ -217,7 +221,7 @@ const StepTwo = (): ReactElement => {
                     <Input
                         value={moneyFormat(value.max_rent_period || 0)}
                         onChange={handleNumber}
-                        className={clsx(css.input, errors.max_rent_period && css.errors)}
+                        className={css.input}
                         name="max_rent_period"
                         placeholder="Введите число"
                         readOnly={!value.optional.max_rent_period}
@@ -232,7 +236,7 @@ const StepTwo = (): ReactElement => {
                     value={value.extra_requirements}
                     onChange={handleText}
                     wrap="soft"
-                    className={clsx(css.input, css.textarea)}
+                    className={css.textarea}
                     name="extra_requirements"
                     placeholder="Дополнительно"
                 />

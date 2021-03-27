@@ -1,11 +1,13 @@
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons/faChevronRight';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import clsx from 'clsx';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
 import routes from '../../../assets/routes';
+import template from '../../../assets/template';
 import { Theme } from '../../../assets/theme';
 import useAuth from '../../../hooks/auth.hook';
 import useTrans from '../../../hooks/trans.hook';
@@ -15,14 +17,16 @@ import SmallModalWrp from '../Modal/SmallModalWrp';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     root: {
-        margin: theme.rem(8, 0),
+        display: 'block',
+        width: '100%',
         padding: theme.rem(6),
         borderRadius: theme.radius,
         background: theme.palette.gray[1],
         color: theme.palette.black[0],
+        textAlign: 'left',
+        ...template(theme).outline,
 
         '@media (max-width: 550px)': {
-            margin: theme.rem(4, 0),
             padding: theme.rem(3),
         },
     },
@@ -30,7 +34,10 @@ const useStyles = createUseStyles((theme: Theme) => ({
         color: theme.palette.black[0],
         marginBottom: theme.rem(1.5),
         fontSize: theme.rem(3),
-        fontWeight: theme.text.weight[5],
+        fontWeight: theme.text.weight[4],
+    },
+    text: {
+        fontSize: theme.rem(1.8),
     },
     imgWrp: {
         display: 'flex',
@@ -40,18 +47,13 @@ const useStyles = createUseStyles((theme: Theme) => ({
         objectFit: 'contain',
         margin: theme.rem(0, 2, 2, 0),
     },
-    link: {
-        fontSize: theme.rem(1.8),
-        fontWeight: theme.text.weight[3],
-        color: theme.palette.black[0],
-
-        '&:hover': {
-            textDecoration: 'underline',
-        },
-    },
 }));
 
-const Banner = (): ReactElement => {
+interface IProps {
+    className?: string;
+}
+
+const Banner = ({ className }: IProps): ReactElement => {
     const css = useStyles();
     const auth = useAuth();
     const T = useTrans();
@@ -69,7 +71,7 @@ const Banner = (): ReactElement => {
         }
     };
     return (
-        <div className={css.root}>
+        <button onClick={handleClick} type="button" className={clsx(css.root, className)}>
             <div className={css.imgWrp}>
                 <Image height={60} width={70} className={css.img} src="/emoji/monay.png" alt="" />
                 <Image height={60} width={70} className={css.img} src="/emoji/monay.png" alt="" />
@@ -77,12 +79,8 @@ const Banner = (): ReactElement => {
             </div>
 
             <h2 className={css.title}>{T.share_with_others_and_earn}</h2>
-
-            <button className={css.link} type="button" onClick={handleClick}>
-                <span>{T.create_offer}</span>
-                <FontAwesomeIcon icon={faChevronRight} />
-            </button>
-        </div>
+            <p className={css.text}>{T.create_offer}</p>
+        </button>
     );
 };
 

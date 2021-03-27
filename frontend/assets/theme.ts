@@ -1,3 +1,5 @@
+import { Styles } from 'jss';
+
 import { Themes } from '../interfaces';
 
 interface IPalette {
@@ -17,6 +19,11 @@ interface IPalette {
     modal: string;
 }
 
+interface IMedia {
+    max: (value: Styles) => Styles;
+    min: (value: Styles) => Styles;
+}
+
 export interface Theme {
     fr: (value: number) => string;
     border: (value: number, color: string) => string;
@@ -25,6 +32,7 @@ export interface Theme {
     radius: string;
     shadow: [string, string, string, string, string];
     palette: IPalette;
+    media: (size: number) => IMedia;
     text: {
         family: string;
         weight: ['200', '300', '400', '500', '600', '700'];
@@ -101,6 +109,10 @@ export const theme = (value: Themes): Theme => ({
         '0 1.4rem 2.8rem rgba(0,0,0,0.08), 0 1rem 1rem rgba(0,0,0,0.12)',
         '0 1.9rem 3.8rem rgba(0,0,0,0.1), 0 1.5rem 1.2rem rgba(0,0,0,0.12)',
     ],
+    media: (size: number) => ({
+        max: (value: Styles): Styles => ({ [`@media(max-width: ${size}px)`]: value }),
+        min: (value: Styles): Styles => ({ [`@media(min-width: ${size}px)`]: value }),
+    }),
     palette: palette[value],
     text: {
         family: 'Montserrat, sans-serif',

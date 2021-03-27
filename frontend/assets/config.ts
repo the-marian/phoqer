@@ -75,7 +75,7 @@ const config = {
         {
             id: 'settings',
             text: T.settings,
-            link: routes.profile.private.settings(),
+            link: routes.profile.private.settings,
             icon: faSlidersH,
         },
         {
@@ -116,7 +116,7 @@ const config = {
         {
             id: 'settings',
             text: T.settings,
-            link: routes.profile.private.settings(),
+            link: routes.profile.private.settings,
             icon: faSlidersH,
         },
         {

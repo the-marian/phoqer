@@ -9,7 +9,7 @@ import { Theme } from '../../../../../../assets/theme';
 const useStyles = createUseStyles((theme: Theme) => ({
     root: {
         position: 'relative',
-        marginBottom: theme.rem(2),
+        marginBottom: theme.rem(1),
     },
     input: {
         ...template(theme).input,

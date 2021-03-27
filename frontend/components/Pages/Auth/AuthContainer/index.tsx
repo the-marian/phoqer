@@ -1,9 +1,10 @@
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
-import { Theme } from '../../../assets/theme';
-import Container from '../../Layout/Container';
-import Main from '../../Shared/TagMain';
+import { Theme } from '../../../../assets/theme';
+import Container from '../../../Layout/Container';
+import PageLayout from '../../../Shared/PageLayout';
+import Main from '../../../Shared/TagMain';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     root: {
@@ -58,14 +59,14 @@ const AuthContainer = ({ children }: IProps): ReactElement => {
     const css = useStyles();
 
     return (
-        <Main>
+        <PageLayout>
             <Container>
                 <div className={css.root}>
                     <img className={css.img} src="/login.jpg" alt="" />
                     <div className={css.form}>{children}</div>
                 </div>
             </Container>
-        </Main>
+        </PageLayout>
     );
 };
 

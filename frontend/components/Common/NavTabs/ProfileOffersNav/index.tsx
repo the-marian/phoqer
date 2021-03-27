@@ -6,20 +6,63 @@ import template from '../../../../assets/template';
 import { Theme } from '../../../../assets/theme';
 import useTrans from '../../../../hooks/trans.hook';
 import { ITabs } from '../../../../interfaces';
-import NavTabs from '../index';
+import NavTabs from '../';
 
 const useStyles = createUseStyles((theme: Theme) => ({
-    tabs: {
+    wrp: {
+        position: 'relative',
+
+        '&::before': {
+            content: '""',
+            position: 'absolute',
+            top: 0,
+            right: theme.rem(-0.1),
+            height: '100%',
+            width: theme.rem(2),
+            background: 'linear-gradient(90deg,rgba(255,255,255,0) 0%,#fff 100%)',
+        },
+
+        '@media (max-width: 768px)': {
+            width: '92.5vw',
+            marginLeft: '-2.5%',
+
+            '&::after': {
+                content: '""',
+                position: 'absolute',
+                top: 0,
+                left: theme.rem(-0.1),
+                height: '100%',
+                width: theme.rem(2),
+                background: 'linear-gradient(-90deg,rgba(255,255,255,0) 0%,#fff 100%)',
+            },
+        },
+        '@media (max-width: 475px)': {
+            width: '95vw',
+            marginLeft: '-5%',
+        },
+    },
+    nav: {
+        overflow: 'auto',
+
         '& ul': {
             display: 'flex',
             justifyContent: 'flex-start',
-            flexWrap: 'wrap',
             margin: theme.rem(0, -1, 1),
+
+            '@media (max-width: 768px)': {
+                width: 'max-content',
+                margin: theme.rem(0, 1, 0, 1),
+
+                '& li:nth-last-of-type(1)': {
+                    marginRight: theme.rem(2),
+                },
+            },
         },
     },
     item: {
         display: 'flex',
         alignItems: 'center',
+        minHeight: theme.rem(5.5),
         margin: theme.rem(1),
         padding: theme.rem(1, 1.8),
         background: theme.palette.gray[0],
@@ -27,6 +70,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         fontSize: theme.rem(1.4),
         transition: theme.transitions[0],
         borderRadius: theme.radius,
+        whiteSpace: 'nowrap',
         ...template(theme).outline,
     },
     active: {
@@ -34,6 +78,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         background: theme.palette.primary[0],
         pointerEvents: 'none',
     },
+
     '@media (max-width: 560px)': {
         item: {
             padding: theme.rem(1, 2),
@@ -83,7 +128,11 @@ const ProfileOffersNav = ({ active }: IProps): ReactElement | null => {
         },
     ];
 
-    return <NavTabs tabs={offersTab} classNameWrp={css.tabs} className={css.item} activeClass={css.active} active={active} />;
+    return (
+        <div className={css.wrp}>
+            <NavTabs tabs={offersTab} classNameWrp={css.nav} className={css.item} activeClass={css.active} active={active} />
+        </div>
+    );
 };
 
 export default ProfileOffersNav;

@@ -13,7 +13,7 @@ import ProfileOffersNav from '../../../../components/Common/NavTabs/ProfileOffer
 import OffersList from '../../../../components/Common/Offers/OffersList';
 import AuthRedirect from '../../../../components/HOC/Auth/AuthRedirect';
 import Container from '../../../../components/Layout/Container';
-import Main from '../../../../components/Shared/TagMain';
+import PageLayout from '../../../../components/Shared/PageLayout';
 import useTrans from '../../../../hooks/trans.hook';
 import { IOfferDynamic, IState } from '../../../../interfaces';
 import { wrapper } from '../../../../redux/store';
@@ -53,7 +53,7 @@ const UserOffers = (): ReactElement => {
         <>
             <Meta title={'Мои обьявления'} h1={T.user_profile_on_phoqer} />
             <AuthRedirect />
-            <Main>
+            <PageLayout>
                 <Container>
                     <ProfileNav active="my-offers" />
                     <ProfileOffersNav active={offerStatus} />
@@ -63,7 +63,7 @@ const UserOffers = (): ReactElement => {
                         <Pagination loading={pagination} total={data.total} onClick={handleClick} onMore={handleMore} />
                     </div>
                 </Container>
-            </Main>
+            </PageLayout>
         </>
     );
 };

@@ -12,7 +12,7 @@ import useTrans from '../../../../hooks/trans.hook';
 import { ITabs } from '../../../../interfaces';
 import types from '../../../../redux/types';
 import Spinner from '../../Preloaders/Spinner';
-import NavTabs from '../index';
+import NavTabs from '../';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     item: {

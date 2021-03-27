@@ -53,7 +53,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         color: theme.palette.red[0],
         fontSize: theme.rem(1.2),
     },
-    eye: {
+    icon: {
         position: 'absolute',
         top: 0,
         right: 0,
@@ -63,24 +63,16 @@ const useStyles = createUseStyles((theme: Theme) => ({
         height: theme.rem(6),
         width: theme.rem(6),
         fontSize: theme.rem(1.8),
-        color: theme.palette.trueBlack,
+        color: theme.palette.black[0],
     },
-    iconWrp: {
-        position: 'absolute',
-        top: 0,
+    iconLeft: {
+        right: 0,
         left: 0,
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        height: theme.rem(6),
-        width: theme.rem(6),
-        fontSize: theme.rem(1.8),
-        color: theme.palette.trueBlack,
     },
-    password: {
+    withPassword: {
         paddingRight: theme.rem(6),
     },
-    icon: {
+    withIcon: {
         paddingLeft: theme.rem(6),
     },
 }));
@@ -125,7 +117,7 @@ const Input = ({
         <div className={css.wrp}>
             <div className={css.inner}>
                 {icon ? (
-                    <div className={css.iconWrp}>
+                    <div className={clsx(css.icon, css.iconLeft)}>
                         <FontAwesomeIcon icon={icon} />
                     </div>
                 ) : null}
@@ -135,9 +127,9 @@ const Input = ({
                     onChange={onChange}
                     className={clsx(
                         css.input,
-                        type === 'password' && css.password,
-                        icon && css.icon,
                         className,
+                        type === 'password' && css.withPassword,
+                        icon && css.withIcon,
                         errors && css.errors,
                     )}
                     placeholder={errorsInPlaceholder ? errors || placeholder : placeholder}
@@ -147,8 +139,8 @@ const Input = ({
                     autoComplete={autoComplete}
                 />
                 {type === 'password' ? (
-                    <button className={css.eye} onClick={handleClick} type="button">
-                        {show ? <FontAwesomeIcon icon={faEyeSlash} /> : <FontAwesomeIcon icon={faEye} />}
+                    <button className={css.icon} onClick={handleClick} type="button">
+                        {show === 'password' ? <FontAwesomeIcon icon={faEyeSlash} /> : <FontAwesomeIcon icon={faEye} />}
                     </button>
                 ) : null}
             </div>

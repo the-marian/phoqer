@@ -33,11 +33,6 @@ module.exports = {
                 destination: '/profile/private/my-offers/all',
                 permanent: true,
             },
-            {
-                source: '/profile/private/settings',
-                destination: '/profile/private/settings/general',
-                permanent: true,
-            },
         ];
     },
     i18n: {

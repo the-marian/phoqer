@@ -13,7 +13,7 @@ import SectionTitle from '../../components/Common/SectionTitle';
 import Container from '../../components/Layout/Container';
 import Filters from '../../components/Pages/Offers/Filters';
 import TopOffers from '../../components/Pages/SingleOffer/TopOffers';
-import Main from '../../components/Shared/TagMain';
+import PageLayout from '../../components/Shared/PageLayout';
 import useTrans from '../../hooks/trans.hook';
 import { IOfferDynamic, IState, IStore } from '../../interfaces';
 import { wrapper } from '../../redux/store';
@@ -35,7 +35,7 @@ const OffersPage = (): ReactElement => {
     return (
         <>
             <Meta title={T.search_offers} h1={T.search_offers} />
-            <Main>
+            <PageLayout>
                 <Container>
                     <Search shallow />
                     <Filters />
@@ -50,7 +50,7 @@ const OffersPage = (): ReactElement => {
                 </Container>
 
                 <About />
-            </Main>
+            </PageLayout>
         </>
     );
 };

@@ -62,37 +62,33 @@ const useStyles = createUseStyles((theme: Theme) => ({
     root: {
         display: 'flex',
         justifyContent: 'space-between',
-        margin: theme.rem(6, 0, 2),
+        width: '100%',
+        height: 'calc(100vh - 7.3rem)',
+        flexGrow: 2,
         fontSize: theme.rem(1.6),
         color: theme.palette.black[0],
     },
     aside: {
-        maxHeight: theme.rem(70),
         minWidth: theme.rem(40),
         maxWidth: theme.rem(40),
-        paddingRight: theme.rem(0.5),
+        height: '100%',
+        paddingRight: theme.rem(1),
         overflow: 'auto',
     },
-    chat: {
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        width: '100%',
-        marginLeft: theme.rem(1),
-        background: theme.palette.gray[0],
-        borderRadius: theme.radius,
+    inner: {
+        height: 'auto',
     },
     end: {
         margin: theme.rem(2, 0, 4),
-        textAlign: 'center',
         color: theme.palette.gray[2],
         fontSize: theme.rem(1.4),
+        textAlign: 'center',
     },
 }));
 
 interface IProps {
     active?: string | number;
-    children: ReactElement;
+    children: ReactElement | null;
 }
 
 const ChatWrp = ({ children, active }: IProps): ReactElement => {
@@ -102,13 +98,26 @@ const ChatWrp = ({ children, active }: IProps): ReactElement => {
         <>
             <div className={css.root}>
                 <aside className={css.aside}>
-                    <SearchChat />
-                    {test?.length ? (
-                        test.map((item, index) =>
-                            index === 3 ? (
-                                <Fragment key={item.id}>
-                                    <Gift />
+                    <div className={css.inner}>
+                        <SearchChat />
+                        {test?.length ? (
+                            test.map((item, index) =>
+                                index === 3 ? (
+                                    <Fragment key={item.id}>
+                                        <Gift />
+                                        <ChatElement
+                                            id={item.id}
+                                            active={item.id === +(active || '')}
+                                            firstName={item.first_name}
+                                            lastName={item.last_name}
+                                            avatar={item.cover_image}
+                                            date={item.date}
+                                            preview={item.preview}
+                                        />
+                                    </Fragment>
+                                ) : (
                                     <ChatElement
+                                        key={item.id}
                                         id={item.id}
                                         active={item.id === +(active || '')}
                                         firstName={item.first_name}
@@ -117,33 +126,22 @@ const ChatWrp = ({ children, active }: IProps): ReactElement => {
                                         date={item.date}
                                         preview={item.preview}
                                     />
-                                </Fragment>
-                            ) : (
-                                <ChatElement
-                                    key={item.id}
-                                    id={item.id}
-                                    active={item.id === +(active || '')}
-                                    firstName={item.first_name}
-                                    lastName={item.last_name}
-                                    avatar={item.cover_image}
-                                    date={item.date}
-                                    preview={item.preview}
-                                />
-                            ),
-                        )
-                    ) : (
-                        <>
-                            <EmptyChat />
-                            <Gift />
-                        </>
-                    )}
-                    <div className={css.end}>
-                        <h5>Phoqer</h5>
-                        <p>© 2021</p>
-                        <p>All rights reserved</p>
+                                ),
+                            )
+                        ) : (
+                            <>
+                                <EmptyChat />
+                                <Gift />
+                            </>
+                        )}
+                        <div className={css.end}>
+                            <h5>Phoqer</h5>
+                            <p>© 2021</p>
+                            <p>All rights reserved</p>
+                        </div>
                     </div>
                 </aside>
-                <div className={css.chat}>{test?.length ? children : <EmptyChat />}</div>
+                {test?.length ? children : <EmptyChat />}
             </div>
         </>
     );

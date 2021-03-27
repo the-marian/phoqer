@@ -112,6 +112,7 @@ const StepThree = (): ReactElement => {
             },
         };
         setValue(reset);
+        setErrors({});
         dispatch({ type: types.NEW_OFFER_FORM, payload: reset });
     };
 
@@ -138,6 +139,7 @@ const StepThree = (): ReactElement => {
                 <Input
                     value={value.title}
                     onChange={handleTitle}
+                    className={css.input}
                     name="name"
                     type="text"
                     placeholder="Название"
@@ -178,6 +180,7 @@ const StepThree = (): ReactElement => {
                     <Input
                         value={moneyFormat(value.price || 0)}
                         onChange={handlePrice}
+                        className={css.input}
                         type="text"
                         placeholder="Цена"
                         errors={errors.price}

@@ -1,3 +1,4 @@
+import { faEnvelope } from '@fortawesome/free-regular-svg-icons/faEnvelope';
 import React, { ChangeEvent, ReactElement, useState } from 'react';
 import { createUseStyles } from 'react-jss';
 
@@ -8,12 +9,12 @@ import Input from '../../../../../../Layout/Input';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     wrp: {
+        width: '40%',
         minWidth: theme.rem(20),
+        marginLeft: theme.rem(4),
     },
     input: {
-        color: theme.palette.black[0],
-        ...template(theme).input,
-        background: theme.palette.gray[1],
+        background: theme.palette.gray[0],
     },
     label: {
         display: 'block',
@@ -36,18 +37,20 @@ const ResetEmail = (): ReactElement => {
     const handleChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>): void => {
         setValue(event.target.value);
     };
+
     return (
         <>
             <div className={css.wrp}>
                 <label className={css.label}>
                     <p className={css.text}>New email</p>
                     <Input
+                        icon={faEnvelope}
                         value={value}
                         errors={error}
                         onChange={handleChange}
                         type="email"
                         name="email"
-                        autoComplete="email"
+                        autoComplete="off"
                         placeholder="email"
                         className={css.input}
                         errorsInPlaceholder

@@ -68,29 +68,29 @@ const newOfferTemplate = (theme: Theme): Template => ({
             display: 'flex',
             marginTop: theme.rem(3),
 
-            '@media(max-width: 560px)': {
+            ...theme.media(560).max({
                 flexWrap: 'wrap',
                 justifyContent: 'center',
-            },
+            }),
         },
         btn: {
             ...template(theme).btn,
             background: theme.palette.gray[0],
             color: theme.palette.black[0],
 
-            '@media(max-width: 560px)': {
+            ...theme.media(560).max({
                 width: '80%',
                 marginBottom: theme.rem(2),
-            },
+            }),
         },
         primary: {
             marginLeft: theme.rem(2),
             background: theme.palette.green[0],
             color: theme.palette.trueWhite,
 
-            '@media(max-width: 560px)': {
-                marginLeft: 0,
-            },
+            ...theme.media(560).max({
+                marginLeft: '0',
+            }),
         },
     },
     step: {
@@ -145,15 +145,11 @@ const newOfferTemplate = (theme: Theme): Template => ({
             },
         },
         input: {
-            ...template(theme).input,
+            color: theme.palette.trueBlack,
             background: theme.palette.trueWhite,
-
-            '& span': {
-                marginLeft: theme.rem(1.5),
-                fontSize: theme.rem(1.3),
-            },
         },
         textarea: {
+            ...template(theme).input,
             width: '100%',
             height: theme.rem(10),
             padding: theme.rem(2),

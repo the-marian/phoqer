@@ -1,32 +1,56 @@
 import { GetServerSidePropsContext } from 'next';
 import React, { ReactElement } from 'react';
+import { createUseStyles } from 'react-jss';
 
 import { serverRedirect } from '../../../../assets/helpers';
+import { Theme } from '../../../../assets/theme';
 import Meta from '../../../../components/Common/Meta';
 import ProfileNav from '../../../../components/Common/NavTabs/ProfileNav';
 import AuthRedirect from '../../../../components/HOC/Auth/AuthRedirect';
-import Container from '../../../../components/Layout/Container';
 import ChatWrp from '../../../../components/Pages/Profile/Private/Messages/ChatWrp';
-import Main from '../../../../components/Shared/TagMain';
+import useMedia from '../../../../hooks/media.hook';
 import useTrans from '../../../../hooks/trans.hook';
 import { wrapper } from '../../../../redux/store';
 
+const useStyles = createUseStyles((theme: Theme) => ({
+    main: {
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'flex-start',
+        justifyContent: 'flex-start',
+        padding: theme.rem(0, 1, 2),
+        height: '100vh',
+    },
+    chat: {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: '100%',
+        background: theme.palette.gray[0],
+        borderRadius: theme.radius,
+    },
+}));
+
 const Messages = (): ReactElement => {
     const T = useTrans();
+    const css = useStyles();
+    const media = useMedia(768);
 
     return (
         <>
             <Meta title={'Мои сообщения'} h1={T.user_profile_on_phoqer} />
 
             <AuthRedirect />
-            <Main>
-                <Container>
-                    <ProfileNav active="messages" />
-                    <ChatWrp>
-                        <p>Select the chat in side panel</p>
-                    </ChatWrp>
-                </Container>
-            </Main>
+            <main className={css.main}>
+                <ProfileNav active="messages" />
+                <ChatWrp>
+                    {media ? (
+                        <div className={css.chat}>
+                            <p>Select the chat in side panel</p>
+                        </div>
+                    ) : null}
+                </ChatWrp>
+            </main>
         </>
     );
 };
