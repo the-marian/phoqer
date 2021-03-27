@@ -22,10 +22,10 @@ const useStyles = createUseStyles((theme: Theme) => ({
         fontWeight: theme.text.weight[3],
         transition: theme.transitions[1],
 
-        '@media (max-width: 800px)': {
+        ...theme.media(800).max({
             marginBottom: theme.rem(5),
             padding: theme.rem(5, 0),
-        },
+        }),
 
         '&.enter': {
             maxHeight: 0,
@@ -39,10 +39,10 @@ const useStyles = createUseStyles((theme: Theme) => ({
             padding: theme.rem(5, 0, 8),
             opacity: 1,
 
-            '@media (max-width: 800px)': {
+            ...theme.media(800).max({
                 marginBottom: theme.rem(5),
                 padding: theme.rem(5, 0),
-            },
+            }),
         },
         '&.exit': {
             maxHeight: 0,

@@ -14,9 +14,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
         fontSize: 'inherit',
         width: 'max-content',
         color: 'inherit',
-        '&:hover': {
+        ...theme.hover({
             textDecoration: 'underline',
-        },
+        }),
     },
     text: {
         display: 'inline-block',

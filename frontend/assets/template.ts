@@ -20,27 +20,27 @@ const template = (theme: Theme): Template => ({
         fontSize: theme.rem(1.4),
         transition: theme.transitions[0],
 
-        '@media (max-width: 500px)': {
+        ...theme.media(500).max({
             fontSize: theme.rem(1.6),
-        },
+        }),
 
-        '&:focus': {
+        ...theme.focus({
             border: theme.border(0.1, theme.palette.primary[0]),
-        },
-        '&:hover': {
+        }),
+        ...theme.hover({
             border: theme.border(0.1, theme.palette.primary[0]),
-        },
+        }),
     },
     outline: {
         border: theme.border(0.1, 'transparent'),
         transition: theme.transitions[0],
 
-        '&:focus': {
+        ...theme.focus({
             border: theme.border(0.1, theme.palette.primary[0]),
-        },
-        '&:hover': {
+        }),
+        ...theme.hover({
             border: theme.border(0.1, theme.palette.primary[0]),
-        },
+        }),
     },
     btn: {
         display: 'flex',
@@ -57,12 +57,12 @@ const template = (theme: Theme): Template => ({
         border: theme.border(0.1, 'transparent'),
         transition: theme.transitions[0],
 
-        '&:focus': {
+        ...theme.focus({
             border: theme.border(0.1, theme.palette.primary[0]),
-        },
-        '&:hover': {
+        }),
+        ...theme.hover({
             border: theme.border(0.1, theme.palette.primary[0]),
-        },
+        }),
     },
 });
 

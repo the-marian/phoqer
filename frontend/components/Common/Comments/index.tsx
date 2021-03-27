@@ -28,19 +28,19 @@ const useStyles = createUseStyles((theme: Theme) => ({
         fontSize: theme.rem(2),
         fontWeight: theme.text.weight[3],
 
-        '@media (max-width: 768px)': {
+        ...theme.media(768).max({
             margin: theme.rem(3, 0, 1),
             fontSize: theme.rem(2.5),
-        },
+        }),
     },
     link: {
         fontWeight: theme.text.weight[3],
         fontSize: theme.rem(1.6),
         color: theme.palette.primary[0],
 
-        '&:hover': {
+        ...theme.hover({
             textDecoration: 'underline',
-        },
+        }),
     },
 }));
 

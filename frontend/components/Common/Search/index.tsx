@@ -25,9 +25,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
         justifyContent: 'space-between',
         alignItems: 'center',
 
-        '@media (max-width: 1100px)': {
+        ...theme.media(1100).max({
             display: 'block',
-        },
+        }),
     },
     form: {
         width: '100%',
@@ -45,9 +45,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
         border: 'none',
         ...template(theme).outline,
 
-        '@media (max-width: 768px)': {
+        ...theme.media(768).max({
             fontSize: theme.rem(1.6),
-        },
+        }),
     },
     input: {
         display: 'block',
@@ -62,14 +62,13 @@ const useStyles = createUseStyles((theme: Theme) => ({
         ...template(theme).btn,
         width: '100%',
 
-        '@media (max-width: 1100px)': {
+        ...theme.media(1100).max({
             width: '31%',
-        },
-
-        '@media (max-width: 550px)': {
+        }),
+        ...theme.media(550).max({
             width: '100%',
             margin: theme.rem(2, 0),
-        },
+        }),
     },
     icon: {
         fontSize: theme.rem(1.4),
@@ -85,25 +84,24 @@ const useStyles = createUseStyles((theme: Theme) => ({
         fontSize: theme.rem(1.6),
         fontWeight: theme.text.weight[3],
         color: theme.palette.primary[0],
-        '&:hover': {
+        ...theme.hover({
             textDecoration: 'underline',
-        },
+        }),
     },
     mobile: {
         width: theme.rem(30),
         marginLeft: theme.rem(2),
 
-        '@media (max-width: 1100px)': {
+        ...theme.media(1100).max({
             display: 'flex',
             justifyContent: 'space-between',
             width: '100%',
             margin: theme.rem(3, 0),
-        },
-
-        '@media (max-width: 550px)': {
+        }),
+        ...theme.media(550).max({
             margin: theme.rem(2, 0),
             flexDirection: 'column',
-        },
+        }),
     },
     reset: {
         fontSize: theme.rem(1.1),

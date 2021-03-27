@@ -13,7 +13,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         minWidth: theme.rem(20),
         width: '38%',
 
-        '@media (max-width: 1200px)': {
+        ...theme.media(1200).max({
             '&:nth-last-of-type(2)': {
                 width: '70%',
             },
@@ -21,13 +21,12 @@ const useStyles = createUseStyles((theme: Theme) => ({
                 marginTop: theme.rem(4),
                 width: '100%',
             },
-        },
-
-        '@media (max-width: 680px)': {
+        }),
+        ...theme.media(680).max({
             '&:nth-last-of-type(2)': {
                 width: '100%',
             },
-        },
+        }),
     },
     banner: {
         height: 'calc(100% - 4.5rem)',

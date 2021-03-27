@@ -23,13 +23,13 @@ const useStyles = createUseStyles((theme: Theme) => ({
         margin: theme.rem(2.5, 0),
         fontSize: theme.rem(1.6),
 
-        '&:hover': {
+        ...theme.hover({
             color: theme.palette.primary[0],
-        },
+        }),
 
-        '@media (max-width: 1100px)': {
+        ...theme.media(1100).max({
             fontSize: theme.rem(2),
-        },
+        }),
     },
     red: {
         marginLeft: theme.rem(0.5),

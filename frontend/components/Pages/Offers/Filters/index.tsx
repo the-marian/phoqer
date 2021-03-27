@@ -24,9 +24,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
     root: {
         margin: theme.rem(4, 0),
 
-        '@media (max-width: 768px)': {
+        ...theme.media(768).max({
             margin: theme.rem(2, 0),
-        },
+        }),
     },
     form: {
         margin: theme.rem(2, 0, 4),
@@ -58,14 +58,13 @@ const useStyles = createUseStyles((theme: Theme) => ({
             width: '24%',
         },
 
-        '@media (max-width: 1100px)': {
+        ...theme.media(1100).max({
             '& > div': {
                 width: '32%',
                 margin: theme.rem(2, 0),
             },
-        },
-
-        '@media (max-width: 768px)': {
+        }),
+        ...theme.media(768).max({
             '& > div:nth-of-type(1)': {
                 width: '100%',
             },
@@ -74,7 +73,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
                 width: '48%',
                 margin: theme.rem(1, 0),
             },
-        },
+        }),
     },
     list: {
         display: 'grid',
@@ -99,31 +98,31 @@ const useStyles = createUseStyles((theme: Theme) => ({
             opacity: 0,
         },
 
-        '@media (max-width: 550px)': {
+        ...theme.media(550).max({
             gridTemplateColumns: theme.fr(1),
-        },
+        }),
     },
     link: {
         fontSize: theme.rem(1.4),
         color: theme.palette.black[0],
 
-        '&:hover': {
+        ...theme.hover({
             textDecoration: 'underline',
             color: theme.palette.primary[0],
-        },
+        }),
 
-        '@media (max-width: 768px)': {
+        ...theme.media(768).max({
             fontSize: theme.rem(1.6),
-        },
+        }),
     },
     wrp: {
         display: 'flex',
         alignItems: 'flex-end',
         marginBottom: theme.rem(1),
 
-        '@media (max-width: 768px)': {
+        ...theme.media(768).max({
             alignItems: 'center',
-        },
+        }),
     },
     title: {
         fontSize: theme.rem(2),
@@ -140,17 +139,17 @@ const useStyles = createUseStyles((theme: Theme) => ({
             fontSize: theme.rem(1.2),
             marginRight: theme.rem(1),
         },
-        '&:hover': {
+        ...theme.hover({
             textDecoration: 'underline',
-        },
+        }),
     },
     btn: {
         ...template(theme).btn,
         marginTop: theme.rem(3),
 
-        '@media (max-width: 500px)': {
+        ...theme.media(500).max({
             fontSize: theme.rem(1.8),
-        },
+        }),
     },
 }));
 

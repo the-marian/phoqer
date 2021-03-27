@@ -46,10 +46,10 @@ const useStyles = createUseStyles((theme: Theme) => ({
             width: theme.rem(0.15),
             background: theme.palette.gray[2],
 
-            '@media (max-width: 768px)': {
-                top: 0,
+            ...theme.media(768).max({
+                top: '0',
                 height: '100%',
-            },
+            }),
         },
     },
     flex: {
@@ -57,9 +57,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
         alignItems: 'center',
         margin: theme.rem(0, 0, 2),
 
-        '@media (max-width: 550px)': {
+        ...theme.media(550).max({
             display: 'block',
-        },
+        }),
     },
     author: {
         display: 'flex',
@@ -69,17 +69,17 @@ const useStyles = createUseStyles((theme: Theme) => ({
         marginBottom: theme.rem(2),
         lineHeight: 1,
 
-        '@media (max-width: 500px)': {
+        ...theme.media(500).max({
             fontSize: theme.rem(1.8),
-        },
+        }),
 
         '& a': {
             color: theme.palette.black[0],
 
-            '&:hover': {
+            ...theme.hover({
                 textDecoration: 'underline',
                 color: theme.palette.primary[0],
-            },
+            }),
         },
     },
     link: {
@@ -88,14 +88,14 @@ const useStyles = createUseStyles((theme: Theme) => ({
         fontSize: theme.rem(1.4),
         color: theme.palette.primary[0],
 
-        '@media (max-width: 550px)': {
+        ...theme.media(550).max({
             margin: theme.rem(0, 1, 1.6, 0),
             fontSize: theme.rem(1.8),
-        },
+        }),
 
-        '&:hover': {
+        ...theme.hover({
             textDecoration: 'underline',
-        },
+        }),
     },
     date: {
         marginLeft: theme.rem(2),
@@ -115,9 +115,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
             marginBottom: theme.rem(2),
         },
 
-        '@media (max-width: 500px)': {
+        ...theme.media(500).max({
             fontSize: theme.rem(1.8),
-        },
+        }),
     },
     img: {
         display: 'flex',

@@ -37,9 +37,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
         color: theme.palette.white,
         borderRadius: theme.radius,
 
-        '@media (max-width: 768px)': {
+        ...theme.media(768).max({
             top: theme.rem(6),
-        },
+        }),
     },
 }));
 

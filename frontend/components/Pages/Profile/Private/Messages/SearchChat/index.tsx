@@ -24,9 +24,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
         width: theme.rem(6),
         color: theme.palette.primary[0],
 
-        '&:hover': {
+        ...theme.hover({
             color: theme.palette.primary[1],
-        },
+        }),
     },
 }));
 

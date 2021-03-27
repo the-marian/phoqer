@@ -10,11 +10,11 @@ const useStyles = createUseStyles((theme: Theme) => ({
     wrp: {
         marginLeft: theme.rem(3),
 
-        '@media (max-width: 768px)': {
-            marginLeft: 0,
+        ...theme.media(768).max({
+            marginLeft: '0',
             borderRadius: theme.radius,
             border: theme.border(0.1, theme.palette.primary[0]),
-        },
+        }),
     },
 }));
 

@@ -4,7 +4,6 @@ import { createUseStyles } from 'react-jss';
 import { Theme } from '../../../../assets/theme';
 import Container from '../../../Layout/Container';
 import PageLayout from '../../../Shared/PageLayout';
-import Main from '../../../Shared/TagMain';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     root: {
@@ -12,21 +11,20 @@ const useStyles = createUseStyles((theme: Theme) => ({
         justifyContent: 'center',
         alignItems: 'center',
 
-        '@media (max-width: 1000px)': {
+        ...theme.media(1000).max({
             flexDirection: 'column',
-        },
+        }),
     },
     form: {
         width: theme.rem(40),
         marginLeft: theme.rem(4),
 
-        '@media (max-width: 1000px)': {
-            margin: 0,
-        },
-
-        '@media (max-width: 420px)': {
+        ...theme.media(1000).max({
+            margin: '0',
+        }),
+        ...theme.media(420).max({
             width: '100%',
-        },
+        }),
     },
     img: {
         height: '70vh',
@@ -35,19 +33,17 @@ const useStyles = createUseStyles((theme: Theme) => ({
         borderRadius: theme.radius,
         objectFit: 'cover',
 
-        '@media (max-width: 1350px)': {
+        ...theme.media(1350).max({
             width: '60%',
-        },
-
-        '@media (max-width: 1000px)': {
+        }),
+        ...theme.media(1000).max({
             width: '100%',
             height: '20vh',
             margin: theme.rem(0, 0, 6),
-        },
-
-        '@media (max-width: 420px)': {
+        }),
+        ...theme.media(420).max({
             margin: theme.rem(0, 0, 3),
-        },
+        }),
     },
 }));
 

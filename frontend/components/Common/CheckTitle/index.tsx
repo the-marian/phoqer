@@ -15,9 +15,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
             fontSize: theme.rem(1.4),
             color: theme.palette.black[0],
 
-            '@media (max-width: 768px)': {
+            ...theme.media(768).max({
                 fontSize: theme.rem(1.6),
-            },
+            }),
         },
     },
     label: {

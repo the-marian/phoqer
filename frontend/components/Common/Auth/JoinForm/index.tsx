@@ -17,9 +17,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
         color: theme.palette.black[0],
         textAlign: 'center',
 
-        '@media (max-width: 500px)': {
+        ...theme.media(500).max({
             fontSize: theme.rem(2.4),
-        },
+        }),
     },
     wrp: {
         display: 'block',
@@ -36,9 +36,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
         fontWeight: theme.text.weight[3],
         color: theme.palette.black[0],
 
-        '@media (max-width: 500px)': {
+        ...theme.media(500).max({
             fontSize: theme.rem(1.6),
-        },
+        }),
     },
     input: {
         background: theme.palette.gray[1],
@@ -77,10 +77,10 @@ const useStyles = createUseStyles((theme: Theme) => ({
         background: theme.palette.primary[0],
         color: theme.palette.trueWhite,
 
-        '@media (max-width: 500px)': {
+        ...theme.media(500).max({
             margin: '5rem auto 3rem',
             padding: theme.rem(2),
-        },
+        }),
     },
     text: {
         marginBottom: theme.rem(1),
@@ -89,9 +89,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
         color: theme.palette.black[0],
         textAlign: 'center',
 
-        '@media (max-width: 500px)': {
+        ...theme.media(500).max({
             marginBottom: theme.rem(2),
-        },
+        }),
     },
     svg: {
         height: theme.rem(2),

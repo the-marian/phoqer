@@ -38,13 +38,12 @@ const useStyles = createUseStyles((theme: Theme) => ({
         cursor: 'pointer',
         ...template(theme).outline,
 
-        '@media (max-width: 768px)': {
+        ...theme.media(768).max({
             fontSize: theme.rem(1.6),
-        },
-
-        '@media (max-width: 450px)': {
+        }),
+        ...theme.media(450).max({
             paddingLeft: theme.rem(1.2),
-        },
+        }),
     },
     text: {
         flexGrow: 2,
@@ -55,12 +54,12 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
     transparent: {
         background: 'none !important',
-        '&:focus': {
+        ...theme.focus({
             border: theme.border(0.1, 'transparent'),
-        },
-        '&:hover': {
+        }),
+        ...theme.hover({
             border: theme.border(0.1, 'transparent'),
-        },
+        }),
     },
     icon: {
         marginRight: theme.rem(0.6),
@@ -70,9 +69,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
         padding: theme.rem(1),
         fontSize: theme.rem(1.1),
 
-        '&:hover': {
+        ...theme.hover({
             color: theme.palette.primary[0],
-        },
+        }),
     },
     placeholder: {
         color: theme.palette.gray[3],
@@ -90,9 +89,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
         borderRadius: theme.radius,
         transition: theme.transitions[0],
 
-        '@media (max-width: 768px)': {
+        ...theme.media(768).max({
             minWidth: theme.rem(35),
-        },
+        }),
 
         '&.enter': {
             opacity: 0,
@@ -137,14 +136,14 @@ const useStyles = createUseStyles((theme: Theme) => ({
             color: theme.palette.black[0],
             fontSize: theme.rem(1.4),
 
-            '@media (max-width: 768px)': {
+            ...theme.media(768).max({
                 fontSize: theme.rem(1.6),
-            },
+            }),
 
-            '&:hover': {
+            ...theme.hover({
                 background: theme.palette.primary[0],
                 color: theme.palette.trueWhite,
-            },
+            }),
         },
     },
     itemEmpty: {
@@ -159,14 +158,14 @@ const useStyles = createUseStyles((theme: Theme) => ({
         color: theme.palette.black[0],
         fontSize: theme.rem(1.4),
 
-        '@media (max-width: 768px)': {
+        ...theme.media(768).max({
             fontSize: theme.rem(1.6),
-        },
+        }),
 
-        '&:hover': {
+        ...theme.hover({
             background: theme.palette.primary[0],
             color: theme.palette.trueWhite,
-        },
+        }),
     },
     white: {
         background: theme.palette.trueWhite,

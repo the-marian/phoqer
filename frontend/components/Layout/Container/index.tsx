@@ -10,10 +10,10 @@ const useStyles = createUseStyles((theme: Theme) => ({
         maxWidth: theme.rem(120),
         margin: '0 auto',
 
-        '@media (max-width: 1300px)': {
+        ...theme.media(1300).max({
             width: '90%',
             maxWidth: 'unset',
-        },
+        }),
     },
 }));
 

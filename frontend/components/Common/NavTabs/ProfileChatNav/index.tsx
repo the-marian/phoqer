@@ -1,11 +1,17 @@
+import { faBars } from '@fortawesome/free-solid-svg-icons/faBars';
+import { faHeart } from '@fortawesome/free-solid-svg-icons/faHeart';
+import { faHome } from '@fortawesome/free-solid-svg-icons/faHome';
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
+import { useDispatch } from 'react-redux';
 
 import config from '../../../../assets/config';
+import routes from '../../../../assets/routes';
 import template from '../../../../assets/template';
 import { Theme } from '../../../../assets/theme';
 import useTrans from '../../../../hooks/trans.hook';
 import { ITabs } from '../../../../interfaces';
+import types from '../../../../redux/types';
 import NavTabs from '../index';
 
 const useStyles = createUseStyles((theme: Theme) => ({
@@ -24,9 +30,6 @@ const useStyles = createUseStyles((theme: Theme) => ({
         },
 
         ...theme.media(768).max({
-            width: '91vw',
-            marginLeft: '-2.5%',
-
             '&::after': {
                 content: '""',
                 position: 'absolute',
@@ -37,10 +40,6 @@ const useStyles = createUseStyles((theme: Theme) => ({
                 background: 'linear-gradient(-90deg,rgba(255,255,255,0) 0%,#fff 100%)',
             },
         }),
-        ...theme.media(475).max({
-            width: '95vw',
-            marginLeft: '-5%',
-        }),
     },
     nav: {
         overflow: 'auto',
@@ -48,11 +47,10 @@ const useStyles = createUseStyles((theme: Theme) => ({
         '& ul': {
             display: 'flex',
             justifyContent: 'flex-start',
-            margin: theme.rem(0, -1),
+            margin: theme.rem(0, 1),
 
             ...theme.media(768).max({
                 width: 'max-content',
-                margin: theme.rem(0, 1),
 
                 '& li:nth-last-of-type(1)': {
                     marginRight: theme.rem(4),
@@ -64,7 +62,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         display: 'flex',
         alignItems: 'center',
         height: theme.rem(4.5),
-        margin: theme.rem(0, 1, 2),
+        margin: theme.rem(2, 1, 2),
         padding: theme.rem(0.5, 1.8),
         background: theme.palette.gray[0],
         color: theme.palette.black[0],
@@ -78,10 +76,11 @@ const useStyles = createUseStyles((theme: Theme) => ({
             marginRight: theme.rem(1),
         },
 
+        ...theme.media(768).max({
+            margin: theme.rem(2, 0.4, 2),
+        }),
+
         ...theme.media(560).max({
-            padding: theme.rem(1, 2),
-            margin: theme.rem(0, 0.4, 1),
-            minHeight: theme.rem(5.5),
             background: theme.palette.gray[1],
             fontSize: '0',
 
@@ -107,16 +106,47 @@ interface IProps {
     active?: number | string;
 }
 
-const ProfileNav = ({ active }: IProps): ReactElement | null => {
+const ProfileChatNav = ({ active }: IProps): ReactElement | null => {
     const T = useTrans();
     const css = useStyles();
+    const dispatch = useDispatch();
+
     const profileTabs: ITabs[] = config.userProfileLinks(T, { messages: 5, reviews: 4 });
+
+    const extraTabs: ITabs[] = [
+        {
+            id: 'menu',
+            text: '',
+            icon: faBars,
+            onClick: () => {
+                dispatch({ type: types.TOGGLE_DRAWER });
+            },
+        },
+        {
+            id: 'home',
+            text: '',
+            link: routes.root,
+            icon: faHome,
+        },
+        {
+            id: 'favorite',
+            text: '',
+            link: routes.favorite,
+            icon: faHeart,
+        },
+    ];
 
     return (
         <div className={css.wrp}>
-            <NavTabs tabs={profileTabs} classNameWrp={css.nav} className={css.item} activeClass={css.active} active={active} />
+            <NavTabs
+                tabs={[...extraTabs, ...profileTabs]}
+                classNameWrp={css.nav}
+                className={css.item}
+                activeClass={css.active}
+                active={active}
+            />
         </div>
     );
 };
 
-export default ProfileNav;
+export default ProfileChatNav;

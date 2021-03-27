@@ -29,10 +29,10 @@ const useStyles = createUseStyles((theme: Theme) => ({
         color: theme.palette.primary[0],
         fontWeight: theme.text.weight[3],
 
-        '&:hover': {
+        ...theme.hover({
             fontWeight: theme.text.weight[3],
             textDecoration: 'underline',
-        },
+        }),
     },
 }));
 

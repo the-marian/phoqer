@@ -11,9 +11,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
         fontSize: theme.rem(1.4),
         flexWrap: 'wrap',
 
-        '@media (max-width: 550px)': {
+        ...theme.media(550).max({
             marginTop: theme.rem(2.5),
-        },
+        }),
     },
     btn: {
         display: 'flex',
@@ -23,10 +23,10 @@ const useStyles = createUseStyles((theme: Theme) => ({
         fontSize: theme.rem(1.4),
         color: theme.palette.black[0],
 
-        '@media (max-width: 500px)': {
+        ...theme.media(500).max({
             width: '100%',
             fontSize: theme.rem(1.6),
-        },
+        }),
     },
     label: {
         height: theme.rem(2.5),

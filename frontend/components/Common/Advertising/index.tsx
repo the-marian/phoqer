@@ -21,9 +21,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
             margin: theme.rem(4, 0, 2),
         },
 
-        '@media (max-width: 460px)': {
+        ...theme.media(460).max({
             padding: theme.rem(6, 3),
-        },
+        }),
     },
     img: {
         height: theme.rem(10),
@@ -35,10 +35,10 @@ const useStyles = createUseStyles((theme: Theme) => ({
         margin: '5rem auto 0',
         padding: theme.rem(1, 8),
 
-        '@media (max-width: 470px)': {
+        ...theme.media(470).max({
             margin: '2rem auto 0',
             padding: theme.rem(1, 4),
-        },
+        }),
     },
 }));
 

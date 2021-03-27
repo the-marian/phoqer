@@ -15,9 +15,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
         fontSize: theme.rem(1.3),
         color: theme.palette.black[0],
 
-        '&:hover': {
+        ...theme.hover({
             color: theme.palette.primary[0],
-        },
+        }),
     },
     menuWrp: {
         position: 'relative',

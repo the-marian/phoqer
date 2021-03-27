@@ -1,5 +1,3 @@
-import { faChevronRight } from '@fortawesome/free-solid-svg-icons/faChevronRight';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import clsx from 'clsx';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
@@ -26,9 +24,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
         textAlign: 'left',
         ...template(theme).outline,
 
-        '@media (max-width: 550px)': {
+        ...theme.media(550).max({
             padding: theme.rem(3),
-        },
+        }),
     },
     title: {
         color: theme.palette.black[0],

@@ -20,9 +20,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
     banner: {
         margin: theme.rem(8, 0),
 
-        '@media (max-width: 550px)': {
+        ...theme.media(550).max({
             margin: theme.rem(4, 0),
-        },
+        }),
     },
 }));
 

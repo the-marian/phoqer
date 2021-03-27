@@ -12,10 +12,10 @@ const useStyles = createUseStyles((theme: Theme) => ({
         alignItems: 'center',
         height: theme.rem(5),
 
-        '@media (max-width: 500px)': {
+        ...theme.media(500).max({
             display: 'flex',
             alignItems: 'center',
-        },
+        }),
     },
     center: {
         justifyContent: 'center',
@@ -25,10 +25,10 @@ const useStyles = createUseStyles((theme: Theme) => ({
         width: theme.rem(10),
         marginBottom: theme.rem(0.1),
 
-        '@media (max-width: 500px)': {
+        ...theme.media(500).max({
             height: 'auto',
             width: theme.rem(10),
-        },
+        }),
     },
 }));
 

@@ -20,9 +20,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
         display: 'flex',
         justifyContent: 'space-between',
 
-        '@media (max-width: 850px)': {
+        ...theme.media(850).max({
             flexDirection: 'column',
-        },
+        }),
     },
     sticky: {
         position: 'sticky',
@@ -32,18 +32,18 @@ const useStyles = createUseStyles((theme: Theme) => ({
     left: {
         width: theme.rem(45),
 
-        '@media (max-width: 850px)': {
+        ...theme.media(850).max({
             display: 'block',
             width: '100%',
             marginBottom: theme.rem(4),
-        },
+        }),
     },
     right: {
         width: 'calc(100% - 49rem)',
 
-        '@media (max-width: 850px)': {
+        ...theme.media(850).max({
             width: '100%',
-        },
+        }),
     },
 }));
 

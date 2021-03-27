@@ -16,10 +16,10 @@ const useStyles = createUseStyles((theme: Theme) => ({
         fontSize: theme.rem(1.6),
         color: theme.palette.black[0],
 
-        '@media (max-width: 550px)': {
+        ...theme.media(550).max({
             paddingLeft: theme.rem(0),
             width: '100%',
-        },
+        }),
     },
     flex: {
         display: 'flex',
@@ -27,22 +27,22 @@ const useStyles = createUseStyles((theme: Theme) => ({
         justifyContent: 'space-between',
         width: '100%',
 
-        '@media (max-width: 1080px)': {
+        ...theme.media(1080).max({
             flexDirection: 'column-reverse',
-        },
+        }),
     },
     items: {
         width: 'calc(100% - 18rem)',
         marginBottom: theme.rem(1),
 
-        '@media (max-width: 800px)': {
+        ...theme.media(1080).max({
+            width: '100%',
+        }),
+        ...theme.media(800).max({
             flexWrap: 'wrap',
             flexDirection: 'column',
             paddingRight: theme.rem(0),
-        },
-        '@media (max-width: 1080px)': {
-            width: '100%',
-        },
+        }),
     },
     gray: {
         color: theme.palette.gray[2],
@@ -73,9 +73,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
             fontSize: theme.rem(1.4),
         },
 
-        '@media (max-width: 1080px)': {
+        ...theme.media(1080).max({
             marginBottom: theme.rem(2),
-        },
+        }),
     },
 
     bio: {

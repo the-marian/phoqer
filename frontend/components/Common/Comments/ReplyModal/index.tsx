@@ -27,9 +27,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
         background: theme.palette.white,
         color: theme.palette.black[0],
 
-        '@media (max-width: 500px)': {
+        ...theme.media(500).max({
             width: '90%',
-        },
+        }),
     },
     button: {
         position: 'absolute',
@@ -50,10 +50,10 @@ const useStyles = createUseStyles((theme: Theme) => ({
         '& a': {
             color: theme.palette.black[0],
 
-            '&:hover': {
+            ...theme.hover({
                 textDecoration: 'underline',
                 color: theme.palette.primary[0],
-            },
+            }),
         },
     },
     date: {

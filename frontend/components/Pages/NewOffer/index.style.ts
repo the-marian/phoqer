@@ -107,9 +107,9 @@ const newOfferTemplate = (theme: Theme): Template => ({
                 marginTop: theme.rem(4),
             },
 
-            '@media (max-width: 580px)': {
+            ...theme.media(580).max({
                 padding: theme.rem(3),
-            },
+            }),
         },
         red: {
             color: theme.palette.red[0],
@@ -140,9 +140,9 @@ const newOfferTemplate = (theme: Theme): Template => ({
                 flexBasis: '48%',
             },
 
-            '@media (max-width: 500px)': {
+            ...theme.media(500).max({
                 display: 'block',
-            },
+            }),
         },
         input: {
             color: theme.palette.trueBlack,
@@ -168,9 +168,9 @@ const newOfferTemplate = (theme: Theme): Template => ({
             display: 'flex',
             margin: theme.rem(2, 0),
 
-            '@media (max-width: 470px)': {
+            ...theme.media(470).max({
                 flexDirection: 'column',
-            },
+            }),
         },
         save: {
             height: theme.rem(6),
@@ -186,18 +186,18 @@ const newOfferTemplate = (theme: Theme): Template => ({
                 marginRight: theme.rem(1),
             },
 
-            '@media (max-width: 470px)': {
+            ...theme.media(470).max({
                 padding: theme.rem(1.6, 2),
-            },
+            }),
         },
         btnWrp: {
             display: 'flex',
             justifyContent: 'flex-end',
             margin: theme.rem(6, 0, 4),
 
-            '@media (max-width: 470px)': {
+            ...theme.media(470).max({
                 flexDirection: 'column',
-            },
+            }),
         },
         next: {
             height: theme.rem(6),
@@ -208,10 +208,10 @@ const newOfferTemplate = (theme: Theme): Template => ({
             color: theme.palette.trueWhite,
             borderRadius: theme.radius,
 
-            '@media (max-width: 470px)': {
+            ...theme.media(470).max({
                 margin: theme.rem(2, 0, 0),
                 padding: theme.rem(2, 4),
-            },
+            }),
         },
         btn: {
             ...template(theme).btn,
@@ -225,10 +225,10 @@ const newOfferTemplate = (theme: Theme): Template => ({
                 marginRight: theme.rem(1),
             },
 
-            '@media (max-width: 470px)': {
+            ...theme.media(470).max({
                 margin: theme.rem(1.6, 0, 0),
                 padding: theme.rem(1, 2),
-            },
+            }),
         },
         disabled: {
             opacity: '0.5',

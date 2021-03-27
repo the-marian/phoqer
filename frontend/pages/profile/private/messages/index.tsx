@@ -5,7 +5,7 @@ import { createUseStyles } from 'react-jss';
 import { serverRedirect } from '../../../../assets/helpers';
 import { Theme } from '../../../../assets/theme';
 import Meta from '../../../../components/Common/Meta';
-import ProfileNav from '../../../../components/Common/NavTabs/ProfileNav';
+import ProfileChatNav from '../../../../components/Common/NavTabs/ProfileChatNav';
 import AuthRedirect from '../../../../components/HOC/Auth/AuthRedirect';
 import ChatWrp from '../../../../components/Pages/Profile/Private/Messages/ChatWrp';
 import useMedia from '../../../../hooks/media.hook';
@@ -18,7 +18,6 @@ const useStyles = createUseStyles((theme: Theme) => ({
         flexDirection: 'column',
         alignItems: 'flex-start',
         justifyContent: 'flex-start',
-        padding: theme.rem(0, 1, 2),
         height: '100vh',
     },
     chat: {
@@ -42,7 +41,7 @@ const Messages = (): ReactElement => {
 
             <AuthRedirect />
             <main className={css.main}>
-                <ProfileNav active="messages" />
+                <ProfileChatNav active="messages" />
                 <ChatWrp>
                     {media ? (
                         <div className={css.chat}>

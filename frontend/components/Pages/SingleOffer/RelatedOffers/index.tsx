@@ -21,9 +21,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
         width: theme.rem(25),
         margin: '10rem auto 0',
 
-        '@media (max-width: 550px)': {
+        ...theme.media(550).max({
             margin: '4rem auto 0',
-        },
+        }),
     },
 }));
 
