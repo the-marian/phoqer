@@ -24,13 +24,18 @@ module.exports = {
                 permanent: true,
             },
             {
-                source: '/profile/private/:profileId',
-                destination: '/profile/private/:profileId/my-offers/all',
+                source: '/profile/private/',
+                destination: '/profile/private/my-offers/all',
                 permanent: true,
             },
             {
-                source: '/profile/private/:profileId/my-offers',
-                destination: '/profile/private/:profileId/my-offers/all',
+                source: '/profile/private/my-offers',
+                destination: '/profile/private/my-offers/all',
+                permanent: true,
+            },
+            {
+                source: '/profile/private/settings',
+                destination: '/profile/private/settings/general',
                 permanent: true,
             },
         ];
@@ -38,20 +43,6 @@ module.exports = {
     i18n: {
         locales: ['en', 'pl', 'ru'],
         defaultLocale: 'pl',
-        domains: [
-            {
-                domain: 'en.phoqer.com',
-                defaultLocale: 'en',
-            },
-            {
-                domain: 'pl.phoqer.com',
-                defaultLocale: 'pl',
-            },
-            {
-                domain: 'ru.phoqer.com',
-                defaultLocale: 'ru',
-            },
-        ],
     },
     images: {
         domains: ['phoqer.com'],

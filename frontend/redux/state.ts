@@ -42,15 +42,15 @@ const initState: IState = {
                 total: 1,
             },
             loading: false,
-            pagination: true,
+            pagination: false,
         },
         my_offers: {
             data: {
                 data: [],
                 total: 1,
             },
-            loading: true,
-            pagination: true,
+            loading: false,
+            pagination: false,
         },
         favorite: {
             data: [],

@@ -21,7 +21,7 @@ const config = {
                 : 'http://fastapi:8001',
     },
     uploadsUrl: (version = 'v1'): string => `http://phoqer.com/api/${version}/upload/`,
-    host: (lang = 'pl'): string => 'http://' + lang + '.phoqer.com/',
+    host: (lang = 'pl'): string => `http://phoqer.com${lang === 'pl' ? '' : '/' + lang}`,
     img: 'http://phoqer.com',
     offers: {
         grid: {
@@ -55,7 +55,7 @@ const config = {
         {
             id: 'messages',
             text: T.messages,
-            link: routes.profile.private.messages,
+            link: routes.profile.private.messages(),
             icon: faEnvelope,
             count: count?.messages,
         },
@@ -75,13 +75,13 @@ const config = {
         {
             id: 'settings',
             text: T.settings,
-            link: routes.profile.private.settings,
+            link: routes.profile.private.settings(),
             icon: faSlidersH,
         },
         {
             id: 'analytics',
             text: T.analytics,
-            link: routes.profile.private.analytics,
+            link: routes.profile.private.analytics(),
             icon: faChartBar,
             blank: true,
         },
@@ -96,7 +96,7 @@ const config = {
         {
             id: 'messages',
             text: T.messages,
-            link: routes.profile.private.messages,
+            link: routes.profile.private.messages(),
             icon: faEnvelope,
             count: count?.messages,
         },
@@ -116,13 +116,13 @@ const config = {
         {
             id: 'settings',
             text: T.settings,
-            link: routes.profile.private.settings,
+            link: routes.profile.private.settings(),
             icon: faSlidersH,
         },
         {
             id: 'analytics',
             text: T.analytics,
-            link: routes.profile.private.analytics,
+            link: routes.profile.private.analytics(),
             icon: faChartBar,
             blank: true,
         },

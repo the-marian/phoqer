@@ -11,6 +11,7 @@ import Meta from '../../../../components/Common/Meta';
 import ProfileNav from '../../../../components/Common/NavTabs/ProfileNav';
 import ProfileOffersNav from '../../../../components/Common/NavTabs/ProfileOffersNav';
 import OffersList from '../../../../components/Common/Offers/OffersList';
+import AuthRedirect from '../../../../components/HOC/Auth/AuthRedirect';
 import Container from '../../../../components/Layout/Container';
 import Main from '../../../../components/Shared/TagMain';
 import useTrans from '../../../../hooks/trans.hook';
@@ -51,6 +52,7 @@ const UserOffers = (): ReactElement => {
     return (
         <>
             <Meta title={'Мои обьявления'} h1={T.user_profile_on_phoqer} />
+            <AuthRedirect />
             <Main>
                 <Container>
                     <ProfileNav active="my-offers" />

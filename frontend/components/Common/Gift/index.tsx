@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react';
+import React, { CSSProperties, ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
 import template from '../../../assets/template';
@@ -13,7 +13,6 @@ const useStyles = createUseStyles((theme: Theme) => ({
         alignItems: 'center',
         justifyContent: 'center',
         width: '100%',
-        margin: theme.rem(3, 0, 4),
         padding: theme.rem(2, 1),
         background: theme.palette.soft[0],
         borderRadius: theme.radius,
@@ -39,7 +38,10 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
 }));
 
-const Gift = (): ReactElement => {
+interface IProps {
+    style?: CSSProperties;
+}
+const Gift = ({ style = {} }: IProps): ReactElement => {
     const css = useStyles();
 
     const handleClick = (): void => {
@@ -52,12 +54,13 @@ const Gift = (): ReactElement => {
     };
 
     return (
-        <button type="button" className={css.root} onClick={handleClick}>
+        <button type="button" style={style} className={css.root} onClick={handleClick}>
             <div className={css.wrp}>
-                <h2 className={css.title}>У нас есть подарок для вас</h2>
+                <h2 className={css.title}>Это ваш подарок</h2>
+                <p>Мы ценим вас, поэтому подготовили для вас подарок</p>
                 <p>Кликай прямо сейчас</p>
             </div>
-            <img className={css.img} src="/gift.svg" alt="" />
+            <img className={css.img} src="/emoji/gift.png" alt="" />
         </button>
     );
 };

@@ -117,7 +117,7 @@ const MainDrawer = (): ReactElement => {
 
             <div className={css.content}>{auth?.access_token ? <AuthDrawer auth={auth} /> : <NotAuthDrawer />}</div>
 
-            <Socials />
+            <Socials style={{ marginTop: '8rem' }} />
         </Drawer>
     );
 };

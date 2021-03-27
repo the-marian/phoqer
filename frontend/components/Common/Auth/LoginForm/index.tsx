@@ -1,8 +1,5 @@
-import { faEye } from '@fortawesome/free-regular-svg-icons/faEye';
-import { faEyeSlash } from '@fortawesome/free-regular-svg-icons/faEyeSlash';
 import { faUser } from '@fortawesome/free-regular-svg-icons/faUser';
 import { faKey } from '@fortawesome/free-solid-svg-icons/faKey';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Link from 'next/link';
 import React, { ChangeEvent, FormEvent, MouseEvent, ReactElement, useState } from 'react';
 import { createUseStyles } from 'react-jss';
@@ -10,7 +7,6 @@ import { useDispatch } from 'react-redux';
 
 import { isEmpty, mailRegex } from '../../../../assets/helpers';
 import routes from '../../../../assets/routes';
-import template from '../../../../assets/template';
 import { Theme } from '../../../../assets/theme';
 import { ILogin } from '../../../../interfaces';
 import types from '../../../../redux/types';
@@ -32,36 +28,6 @@ const useStyles = createUseStyles((theme: Theme) => ({
     wrp: {
         position: 'relative',
         margin: theme.rem(2, 0),
-    },
-    input: {
-        ...template(theme).input,
-        padding: theme.rem(0, 5, 0, 4),
-        background: theme.palette.gray[1],
-        color: theme.palette.black[0],
-
-        '@media (max-width: 500px)': {
-            fontSize: theme.rem(1.6),
-        },
-    },
-    icon: {
-        position: 'absolute',
-        top: '52%',
-        left: theme.rem(1.5),
-        transform: 'translateY(-50%)',
-        zIndex: 2,
-        fontSize: theme.rem(1.4),
-        color: theme.palette.gray[4],
-    },
-    eye: {
-        position: 'absolute',
-        top: '52%',
-        right: 0,
-        zIndex: 2,
-        height: '100%',
-        width: theme.rem(5),
-        transform: 'translateY(-50%)',
-        fontSize: theme.rem(2),
-        color: theme.palette.gray[4],
     },
     link: {
         display: 'block',
@@ -107,11 +73,6 @@ const useStyles = createUseStyles((theme: Theme) => ({
             marginBottom: theme.rem(3),
         },
     },
-    svg: {
-        height: theme.rem(2),
-        width: theme.rem(1.5),
-        fill: 'inherit',
-    },
 }));
 
 interface IError {
@@ -129,7 +90,6 @@ const LoginForm = (): ReactElement => {
     const dispatch = useDispatch();
 
     const [loading, setLoading] = useState(false);
-    const [unhidden, setUnhidden] = useState(true);
 
     const [errors, setErrors] = useState<IError>(INIT);
     const [value, setValue] = useState<ILogin>(INIT);
@@ -137,10 +97,6 @@ const LoginForm = (): ReactElement => {
     const handleChange = (event: ChangeEvent<HTMLInputElement>): void => {
         setValue((prev: ILogin): ILogin => ({ ...prev, [event.target.name]: event.target.value }));
         setErrors(INIT);
-    };
-
-    const handleClick = (): void => {
-        setUnhidden(!unhidden);
     };
 
     const handleSubmit = (event: FormEvent<HTMLFormElement> | MouseEvent<HTMLButtonElement>): void => {
@@ -173,37 +129,28 @@ const LoginForm = (): ReactElement => {
             <h2 className={css.title}>Бобро пожаловать, засранец.</h2>
 
             <div className={css.wrp}>
-                <div className={css.icon}>
-                    <FontAwesomeIcon icon={faUser} />
-                </div>
                 <Input
+                    icon={faUser}
                     type="email"
                     value={value.username}
                     onChange={handleChange}
                     name="username"
-                    className={css.input}
                     errors={errors.username}
                     autoComplete="email"
-                    errorsPlaceholder
+                    errorsInPlaceholder
                 />
             </div>
 
             <div className={css.wrp}>
-                <div className={css.icon}>
-                    <FontAwesomeIcon icon={faKey} />
-                </div>
-                <button className={css.eye} onClick={handleClick} type="button">
-                    {unhidden ? <FontAwesomeIcon icon={faEyeSlash} /> : <FontAwesomeIcon icon={faEye} />}
-                </button>
                 <Input
-                    type={unhidden ? 'password' : 'text'}
+                    icon={faKey}
+                    type="password"
                     value={value.password}
                     name="password"
                     onChange={handleChange}
-                    className={css.input}
                     errors={errors.password}
                     autoComplete="current-password"
-                    errorsPlaceholder
+                    errorsInPlaceholder
                 />
             </div>
 

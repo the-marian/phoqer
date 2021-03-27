@@ -51,7 +51,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     mark: {
         position: 'absolute',
         bottom: 0,
-        right: 0,
+        left: 0,
     },
 }));
 
@@ -61,7 +61,7 @@ interface IProps {
     avatar?: string | null;
     width?: number;
     height?: number;
-    time?: string;
+    time?: string | null;
     online?: boolean;
 }
 const UserAvatar = ({
