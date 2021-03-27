@@ -18,22 +18,22 @@ const useStyles = createUseStyles((theme: Theme) => ({
         fontSize: theme.rem(1.5),
         fontWeight: theme.text.weight[3],
 
-        '@media (max-width: 1140px)': {
+        ...theme.media(1140).max({
             gridTemplateColumns: theme.fr(config.offers.grid.tablet),
-        },
-        '@media (max-width: 960px)': {
+        }),
+        ...theme.media(960).max({
             gridGap: theme.rem(6, 3),
-        },
-        '@media (max-width: 560px)': {
+        }),
+        ...theme.media(560).max({
             gridTemplateColumns: theme.fr(config.offers.grid.mobile),
             maxWidth: theme.rem(45),
             margin: '0 auto',
-        },
+        }),
     },
     wrp: {
-        '@media (max-width: 560px)': {
+        ...theme.media(560).max({
             display: 'none',
-        },
+        }),
     },
     img: {
         height: theme.rem(25),

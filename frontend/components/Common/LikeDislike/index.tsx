@@ -15,9 +15,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
         margin: theme.rem(1, 0, 2),
         fontSize: theme.rem(1.4),
 
-        '@media (max-width: 500px)': {
+        ...theme.media(500).max({
             fontSize: theme.rem(1.8),
-        },
+        }),
 
         '& span': {
             lineHeight: 1,
@@ -37,13 +37,13 @@ const useStyles = createUseStyles((theme: Theme) => ({
         color: theme.palette.gray[4],
         fontSize: theme.rem(1.4),
 
-        '@media (max-width: 500px)': {
+        ...theme.media(500).max({
             fontSize: theme.rem(1.6),
-        },
+        }),
 
-        '&:hover': {
+        ...theme.hover({
             color: theme.palette.primary[0],
-        },
+        }),
     },
     dislike: {
         display: 'flex',
@@ -52,13 +52,13 @@ const useStyles = createUseStyles((theme: Theme) => ({
         color: theme.palette.gray[4],
         fontSize: theme.rem(1.4),
 
-        '@media (max-width: 500px)': {
+        ...theme.media(500).max({
             fontSize: theme.rem(1.6),
-        },
+        }),
 
-        '&:hover': {
+        ...theme.hover({
             color: theme.palette.primary[0],
-        },
+        }),
     },
     active: {
         color: theme.palette.primary[0],

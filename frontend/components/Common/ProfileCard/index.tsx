@@ -24,41 +24,42 @@ const useStyles = createUseStyles((theme: Theme) => ({
         borderRadius: theme.radius,
         background: theme.palette.gray[1],
 
-        '@media (max-width: 450px)': {
+        ...theme.media(450).max({
             flexDirection: 'column',
-        },
+        }),
     },
     svg: {
         padding: theme.rem(3),
     },
     content: {
         width: 'calc(100% - 10rem)',
-        '@media (max-width: 450px)': {
+
+        ...theme.media(450).max({
             width: '100%',
             marginTop: theme.rem(2),
-        },
+        }),
     },
     name: {
         color: theme.palette.black[0],
         fontSize: theme.rem(2),
         fontWeight: theme.text.weight[3],
 
-        '&:hover': {
+        ...theme.hover({
             textDecoration: 'underline',
-        },
+        }),
 
-        '@media (max-width: 768px)': {
+        ...theme.media(768).max({
             fontSize: theme.rem(2.2),
-        },
+        }),
     },
     info: {
         marginBottom: theme.rem(2),
         color: theme.palette.gray[4],
         fontSize: theme.rem(1.4),
 
-        '@media (max-width: 768px)': {
+        ...theme.media(768).max({
             fontSize: theme.rem(1.5),
-        },
+        }),
     },
     btn: {
         ...template(theme).btn,
@@ -70,9 +71,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
             marginLeft: theme.rem(1),
         },
 
-        '@media (max-width: 500px)': {
+        ...theme.media(500).max({
             border: theme.border(0.1, theme.palette.gray[2]),
-        },
+        }),
     },
 }));
 

@@ -37,11 +37,11 @@ const useStyles = createUseStyles((theme: Theme) => ({
             transition: theme.transitions[0],
             background: theme.palette.gray[4],
 
-            '@media (max-width: 768px)': {
+            ...theme.media(768).max({
                 top: 'unset',
-                bottom: 0,
+                bottom: '0',
                 transform: 'translateY(calc(-100% - 5rem))',
-            },
+            }),
 
             '&::before': {
                 content: '""',
@@ -99,9 +99,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
         fontSize: theme.rem(1.6),
         color: theme.palette.trueWhite,
 
-        '@media (max-width: 768px)': {
+        ...theme.media(768).max({
             bottom: theme.rem(6),
-        },
+        }),
 
         '& ul': {
             display: 'flex',

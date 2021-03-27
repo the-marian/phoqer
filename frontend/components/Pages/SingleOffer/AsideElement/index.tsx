@@ -13,18 +13,18 @@ const useStyles = createUseStyles((theme: Theme) => ({
         width: theme.rem(40),
         marginTop: theme.rem(1),
 
-        '@media (max-width: 768px)': {
+        ...theme.media(768).max({
             width: '100%',
-        },
+        }),
     },
     sticky: {
         position: 'sticky',
         top: theme.rem(10),
         left: 0,
 
-        '@media (max-width: 768px)': {
+        ...theme.media(768).max({
             position: 'static',
-        },
+        }),
     },
 }));
 

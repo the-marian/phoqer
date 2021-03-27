@@ -50,9 +50,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
         background: theme.palette.gray[1],
         ...template(theme).outline,
 
-        '@media (max-width: 580px)': {
+        ...theme.media(580).max({
             height: theme.rem(30),
-        },
+        }),
     },
     topWrp: {
         position: 'absolute',
@@ -77,18 +77,18 @@ const useStyles = createUseStyles((theme: Theme) => ({
         fontSize: theme.rem(1.5),
         fontWeight: theme.text.weight[3],
 
-        '@media (max-width: 500px)': {
+        ...theme.media(500).max({
             fontSize: theme.rem(1.8),
-        },
+        }),
     },
     desc: {
         margin: 0,
         fontSize: theme.rem(1.4),
         fontWeight: theme.text.weight[2],
 
-        '@media (max-width: 500px)': {
+        ...theme.media(500).max({
             fontSize: theme.rem(1.6),
-        },
+        }),
     },
     info: {
         display: 'flex',
@@ -120,10 +120,10 @@ const useStyles = createUseStyles((theme: Theme) => ({
         background: theme.palette.gray[1],
         color: theme.palette.black[0],
 
-        '@media (max-width: 500px)': {
+        ...theme.media(500).max({
             padding: theme.rem(1, 4),
             fontSize: theme.rem(1.8),
-        },
+        }),
     },
     favorite: {
         height: theme.rem(6),
@@ -134,13 +134,13 @@ const useStyles = createUseStyles((theme: Theme) => ({
         transition: theme.transitions[0],
         fontSize: theme.rem(1.8),
 
-        '&:hover': {
+        ...theme.hover({
             background: theme.palette.gray[0],
-        },
+        }),
 
-        '@media (max-width: 500px)': {
+        ...theme.media(500).max({
             fontSize: theme.rem(2.2),
-        },
+        }),
     },
     active: {
         background: theme.palette.gray[1],
@@ -161,13 +161,13 @@ const useStyles = createUseStyles((theme: Theme) => ({
             color: theme.palette.gray[3],
         },
 
-        '@media (max-width: 500px)': {
+        ...theme.media(500).max({
             fontSize: theme.rem(1.8),
 
             '& small': {
                 fontSize: theme.rem(1.4),
             },
-        },
+        }),
     },
 }));
 

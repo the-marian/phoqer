@@ -20,10 +20,10 @@ const useStyles = createUseStyles((theme: Theme) => ({
         justifyContent: 'space-between',
         marginTop: theme.rem(4),
 
-        '@media (max-width: 768px)': {
+        ...theme.media(768).max({
             display: 'block',
             textAlign: 'center',
-        },
+        }),
     },
 }));
 

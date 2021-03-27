@@ -18,11 +18,11 @@ const useStyles = createUseStyles((theme: Theme) => ({
             top: 0,
             right: theme.rem(-0.1),
             height: '100%',
-            width: theme.rem(2),
+            width: theme.rem(3),
             background: 'linear-gradient(90deg,rgba(255,255,255,0) 0%,#fff 100%)',
         },
 
-        '@media (max-width: 768px)': {
+        ...theme.media(768).max({
             width: '92.5vw',
             marginLeft: '-2.5%',
 
@@ -35,11 +35,11 @@ const useStyles = createUseStyles((theme: Theme) => ({
                 width: theme.rem(2),
                 background: 'linear-gradient(-90deg,rgba(255,255,255,0) 0%,#fff 100%)',
             },
-        },
-        '@media (max-width: 475px)': {
+        }),
+        ...theme.media(475).max({
             width: '95vw',
             marginLeft: '-5%',
-        },
+        }),
     },
     nav: {
         overflow: 'auto',
@@ -49,14 +49,14 @@ const useStyles = createUseStyles((theme: Theme) => ({
             justifyContent: 'flex-start',
             margin: theme.rem(0, -1, 1),
 
-            '@media (max-width: 768px)': {
+            ...theme.media(768).max({
                 width: 'max-content',
                 margin: theme.rem(0, 1, 0, 1),
 
                 '& li:nth-last-of-type(1)': {
-                    marginRight: theme.rem(2),
+                    marginRight: theme.rem(4),
                 },
-            },
+            }),
         },
     },
     item: {
@@ -72,23 +72,22 @@ const useStyles = createUseStyles((theme: Theme) => ({
         borderRadius: theme.radius,
         whiteSpace: 'nowrap',
         ...template(theme).outline,
+
+        ...theme.media(560).max({
+            padding: theme.rem(1, 2),
+            margin: theme.rem(0, 0.5, 2),
+            minHeight: theme.rem(5.5),
+            background: theme.palette.gray[1],
+        }),
     },
     active: {
         color: theme.palette.trueWhite,
         background: theme.palette.primary[0],
         pointerEvents: 'none',
-    },
 
-    '@media (max-width: 560px)': {
-        item: {
-            padding: theme.rem(1, 2),
-            margin: theme.rem(0.5),
-            minHeight: theme.rem(5.5),
-            background: theme.palette.gray[1],
-        },
-        active: {
+        ...theme.media(560).max({
             background: theme.palette.primary[0],
-        },
+        }),
     },
 }));
 

@@ -18,12 +18,12 @@ const useStyles = createUseStyles((theme: Theme) => ({
         fontSize: theme.rem(1.2),
         fontWeight: theme.text.weight[2],
 
-        '@media (max-width: 768px)': {
+        ...theme.media(500).max({
             top: theme.rem(-1),
             left: theme.rem(-1.6),
             fontSize: theme.rem(1.8),
             padding: theme.rem(0.2, 0.8),
-        },
+        }),
     },
 }));
 

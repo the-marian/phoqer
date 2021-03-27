@@ -14,32 +14,32 @@ import SectionTitle from '../SectionTitle';
 const useStyles = createUseStyles((theme: Theme) => ({
     root: {
         margin: theme.rem(6, 0, 4),
-        '@media (max-width: 550px)': {
+        ...theme.media(550).max({
             margin: theme.rem(2, 0),
-        },
+        }),
     },
     wrp: {
         display: 'grid',
         gridTemplateColumns: theme.fr(config.category.grid.desktop),
         gridGap: theme.rem(4, 3),
-        '@media (max-width: 1200px)': {
+        ...theme.media(1200).max({
             gridTemplateColumns: theme.fr(config.category.grid.tablet),
-        },
-        '@media (max-width: 960px)': {
+        }),
+        ...theme.media(960).max({
             gridTemplateColumns: theme.fr(config.category.grid.smallTablet),
-        },
-        '@media (max-width: 550px)': {
+        }),
+        ...theme.media(550).max({
             gridTemplateColumns: theme.fr(config.category.grid.mobile),
             gridGap: theme.rem(2, 1.5),
-        },
+        }),
     },
     cat: {
         cursor: 'pointer',
         color: theme.palette.black[0],
 
-        '&:hover': {
+        ...theme.hover({
             color: theme.palette.primary[0],
-        },
+        }),
     },
     img: {
         height: theme.rem(14),

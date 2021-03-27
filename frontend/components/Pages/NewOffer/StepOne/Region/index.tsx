@@ -37,9 +37,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
             textOverflow: 'ellipsis',
             textAlign: 'left',
 
-            '@media (max-width: 900px)': {
+            ...theme.media(900).max({
                 width: '100%',
-            },
+            }),
         },
     },
     red: {

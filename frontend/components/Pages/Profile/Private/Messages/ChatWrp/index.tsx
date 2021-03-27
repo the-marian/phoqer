@@ -63,8 +63,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
         display: 'flex',
         justifyContent: 'space-between',
         width: '100%',
-        height: 'calc(100vh - 7.3rem)',
+        height: 'calc(100vh - 8.5rem)',
         flexGrow: 2,
+        padding: theme.rem(0, 2, 2),
         fontSize: theme.rem(1.6),
         color: theme.palette.black[0],
     },
@@ -74,6 +75,13 @@ const useStyles = createUseStyles((theme: Theme) => ({
         height: '100%',
         paddingRight: theme.rem(1),
         overflow: 'auto',
+
+        ...theme.media(768).max({
+            minWidth: 'unset',
+            maxWidth: 'unset',
+            width: '100%',
+            paddingRight: '0',
+        }),
     },
     inner: {
         height: 'auto',

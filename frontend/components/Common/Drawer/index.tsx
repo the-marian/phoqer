@@ -11,7 +11,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         position: 'fixed',
         top: 0,
         left: 0,
-        zIndex: 10000,
+        zIndex: 10001,
         width: '100%',
         height: '100%',
         maxHeight: '100%',

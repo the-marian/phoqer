@@ -42,9 +42,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
             padding: theme.rem(0.6),
         }),
 
-        '&:hover': {
-            background: theme.palette.gray[1],
-        },
+        ...theme.hover({ background: theme.palette.gray[1] }),
     },
     active: {
         background: theme.palette.primary[0],
@@ -64,9 +62,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         transition: theme.transitions[0],
         cursor: 'pointer',
 
-        '&:hover': {
-            background: theme.palette.gray[1],
-        },
+        ...theme.hover({ background: theme.palette.gray[1] }),
     },
     disabled: {
         opacity: 0.1,

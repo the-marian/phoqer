@@ -33,6 +33,8 @@ export interface Theme {
     shadow: [string, string, string, string, string];
     palette: IPalette;
     media: (size: number) => IMedia;
+    hover: (value: Styles) => Styles;
+    focus: (value: Styles) => Styles;
     text: {
         family: string;
         weight: ['200', '300', '400', '500', '600', '700'];
@@ -113,6 +115,8 @@ export const theme = (value: Themes): Theme => ({
         max: (value: Styles): Styles => ({ [`@media(max-width: ${size}px)`]: value }),
         min: (value: Styles): Styles => ({ [`@media(min-width: ${size}px)`]: value }),
     }),
+    hover: (value: Styles): Styles => ({ '&:hover': value }),
+    focus: (value: Styles): Styles => ({ '&:focus': value }),
     palette: palette[value],
     text: {
         family: 'Montserrat, sans-serif',

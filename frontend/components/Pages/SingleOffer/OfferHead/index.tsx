@@ -18,18 +18,18 @@ const useStyles = createUseStyles((theme: Theme) => ({
         lineHeight: 1.4,
         color: theme.palette.black[0],
 
-        '@media (max-width: 768px)': {
+        ...theme.media(768).max({
             fontSize: theme.rem(2.5),
-        },
+        }),
     },
     action: {
         display: 'flex',
         alignItems: 'center',
         color: theme.palette.black[0],
 
-        '@media (max-width: 768px)': {
+        ...theme.media(768).max({
             fontSize: theme.rem(1.6),
-        },
+        }),
     },
     favorite: {
         margin: theme.rem(0, 2),
@@ -42,10 +42,10 @@ const useStyles = createUseStyles((theme: Theme) => ({
             height: theme.rem(1.4),
             width: theme.rem(1.4),
 
-            '@media (max-width: 768px)': {
+            ...theme.media(768).max({
                 height: theme.rem(1.8),
                 width: theme.rem(1.8),
-            },
+            }),
         },
     },
     eye: {
@@ -54,10 +54,10 @@ const useStyles = createUseStyles((theme: Theme) => ({
         '& span': {
             margin: theme.rem(0, 1),
         },
-        '@media (max-width: 768px)': {
+        ...theme.media(768).max({
             margin: theme.rem(0, 0, 0, 3),
             fontSize: theme.rem(2),
-        },
+        }),
     },
 }));
 

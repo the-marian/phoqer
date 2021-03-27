@@ -49,9 +49,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
         color: theme.palette.trueWhite,
         transitions: theme.transitions[0],
 
-        '&:hover': {
+        ...theme.hover({
             background: theme.palette.primary[1],
-        },
+        }),
     },
 }));
 

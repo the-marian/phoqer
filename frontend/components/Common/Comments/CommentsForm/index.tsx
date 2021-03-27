@@ -44,9 +44,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
         background: theme.palette.gray[1],
         color: theme.palette.black[0],
 
-        '@media (max-width: 900px)': {
-            margin: 0,
-        },
+        ...theme.media(800).max({
+            margin: '0',
+        }),
     },
     small: {
         display: 'block',
@@ -69,9 +69,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
     btn: {
         ...template(theme).btn,
 
-        '@media (max-width: 1050px)': {
+        ...theme.media(1050).max({
             margin: theme.rem(2, 0),
-        },
+        }),
     },
     submit: {
         margin: theme.rem(0, 0, 0, 1),

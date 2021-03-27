@@ -41,18 +41,18 @@ const useStyles = createUseStyles((theme: Theme) => ({
         flexWrap: 'wrap',
         width: '60%',
 
-        '@media (max-width: 640px)': {
+        ...theme.media(640).max({
             width: '100%',
             marginBottom: theme.rem(9),
-        },
+        }),
     },
     item: {
         display: 'block',
         width: '48%',
 
-        '@media (max-width: 640px)': {
+        ...theme.media(640).max({
             width: '100%',
-        },
+        }),
     },
     link: {
         display: 'block',
@@ -62,18 +62,17 @@ const useStyles = createUseStyles((theme: Theme) => ({
         color: theme.palette.black[0],
         lineHeight: 1,
 
-        '&:hover': {
+        ...theme.hover({
             textDecoration: 'underline',
             color: theme.palette.primary[0],
-        },
+        }),
 
-        '@media (max-width: 768px)': {
+        ...theme.media(768).max({
             fontSize: theme.rem(1.6),
-        },
-
-        '@media (max-width: 640px)': {
+        }),
+        ...theme.media(640).max({
             margin: theme.rem(2, 0),
-        },
+        }),
     },
 }));
 

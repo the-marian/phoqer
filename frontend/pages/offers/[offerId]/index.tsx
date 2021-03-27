@@ -37,9 +37,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
         background: theme.palette.gray[1],
         cursor: 'zoom-in',
 
-        '@media (max-width: 768px)': {
+        ...theme.media(768).max({
             height: theme.rem(30),
-        },
+        }),
     },
     modal: {
         display: 'block',
@@ -54,49 +54,47 @@ const useStyles = createUseStyles((theme: Theme) => ({
         marginTop: theme.rem(6),
         fontSize: theme.rem(1.6),
 
-        '@media (max-width: 768px)': {
+        ...theme.media(768).max({
             flexDirection: 'column',
             marginTop: theme.rem(2),
             fontSize: theme.rem(1.6),
-        },
+        }),
     },
     main: {
         width: 'calc(100% - 40rem)',
         marginRight: theme.rem(10),
         color: theme.palette.black[0],
 
-        '@media (max-width: 1300px)': {
+        ...theme.media(1300).max({
             marginRight: theme.rem(4),
-        },
-
-        '@media (max-width: 768px)': {
+        }),
+        ...theme.media(768).max({
             width: '100%',
             marginBottom: theme.rem(6),
-            marginRight: 0,
-        },
+            marginRight: '0',
+        }),
     },
     subtitle: {
         margin: theme.rem(6, 0, 3),
         fontSize: theme.rem(2),
         fontWeight: theme.text.weight[3],
 
-        '@media (max-width: 768px)': {
+        ...theme.media(768).max({
             margin: theme.rem(3, 0, 1),
             fontSize: theme.rem(2.5),
-        },
+        }),
     },
     calendar: {
         width: '100%',
         fontSize: theme.rem(1.8),
 
-        '@media (max-width: 1210px)': {
+        ...theme.media(1210).max({
             fontSize: theme.rem(1.5),
-        },
-
-        '@media (max-width: 1100px)': {
+        }),
+        ...theme.media(1100).max({
             width: '100%',
             fontSize: theme.rem(1.8),
-        },
+        }),
 
         '& .DayPicker-wrapper': {
             outline: 'none',
@@ -111,10 +109,10 @@ const useStyles = createUseStyles((theme: Theme) => ({
             width: '49%',
             margin: theme.rem(2, 0, 0, -1),
 
-            '@media (max-width: 1100px)': {
+            ...theme.media(1100).max({
                 width: '100%',
                 margin: theme.rem(2, 0, 0, -1),
-            },
+            }),
         },
 
         '& .DayPicker-NavButton': {
@@ -131,9 +129,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
                 marginRight: theme.rem(7.5),
             },
 
-            '@media (max-width: 1100px)': {
+            ...theme.media(1100).max({
                 right: theme.em(0.5),
-            },
+            }),
         },
     },
 }));

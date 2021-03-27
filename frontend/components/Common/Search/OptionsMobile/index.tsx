@@ -15,15 +15,14 @@ const useStyles = createUseStyles((theme: Theme) => ({
         display: 'flex',
         alignItems: 'center',
 
-        '@media (max-width: 1100px)': {
+        ...theme.media(110).max({
             justifyContent: 'space-between',
             width: '66%',
-        },
-
-        '@media (max-width: 550px)': {
+        }),
+        ...theme.media(550).max({
             justifyContent: 'space-between',
             width: '100%',
-        },
+        }),
     },
     location: {
         display: 'flex',
@@ -45,9 +44,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
             textOverflow: 'ellipsis',
         },
 
-        '@media (max-width: 768px)': {
+        ...theme.media(768).max({
             fontSize: theme.rem(1.6),
-        },
+        }),
     },
     icon: {
         width: theme.rem(2.4),

@@ -28,9 +28,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
         backdropFilter: 'blur(2px)',
         transition: theme.transitions[0],
 
-        '@media (max-width: 768px)': {
+        ...theme.media(768).max({
             background: theme.palette.white,
-        },
+        }),
     },
     shadow: {
         background: theme.palette.glass[1],
@@ -62,9 +62,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
             marginRight: theme.rem(1),
         },
 
-        '@media (max-width: 768px)': {
-            marginRight: 0,
-        },
+        ...theme.media(768).max({
+            marginRight: '0',
+        }),
     },
 }));
 

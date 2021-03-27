@@ -11,9 +11,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
         alignItems: 'center',
         marginBottom: theme.rem(2.5),
 
-        '@media (max-width: 768px)': {
+        ...theme.media(768).max({
             fontSize: theme.rem(1.6),
-        },
+        }),
     },
     title: {
         fontSize: theme.rem(2),

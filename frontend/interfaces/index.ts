@@ -39,10 +39,11 @@ export interface ISearch extends Params {
 export interface ITabs {
     id: number | string;
     text: string;
-    link: string;
+    link?: string;
     icon?: IconProp;
     count?: number | string;
     blank?: boolean;
+    onClick?: () => void;
 }
 
 export interface ITabsNum {

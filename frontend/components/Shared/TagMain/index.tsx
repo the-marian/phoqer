@@ -9,9 +9,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
         padding: theme.rem(12, 0),
         background: theme.palette.white,
 
-        '@media (max-width: 900px)': {
+        ...theme.media(900).max({
             padding: theme.rem(10, 0),
-        },
+        }),
     },
 }));
 

@@ -16,9 +16,10 @@ const useStyles = createUseStyles((theme: Theme) => ({
         position: 'relative',
         width: '100%',
         margin: theme.rem(0, 0, 3),
-        '@media (max-width: 768px)': {
+
+        ...theme.media(768).max({
             margin: theme.rem(0, 0, 1),
-        },
+        }),
 
         '& .slick-track': {
             display: 'flex',
@@ -37,9 +38,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
             fontSize: 0,
             transition: theme.transitions[0],
 
-            '@media (max-width: 1400px)': {
+            ...theme.media(1400).max({
                 width: theme.rem(6),
-            },
+            }),
 
             '&::before': {
                 content: '""',
@@ -55,9 +56,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
         '& .slick-arrow.slick-prev': {
             left: theme.rem(-8),
             borderRadius: `${theme.radius} 0 0 ${theme.radius}`,
-            '@media (max-width: 1400px)': {
+            ...theme.media(1400).max({
                 left: theme.rem(-5),
-            },
+            }),
 
             '&::before': {
                 borderTop: theme.border(0.2, theme.palette.gray[3]),
@@ -65,19 +66,19 @@ const useStyles = createUseStyles((theme: Theme) => ({
                 transition: theme.transitions[0],
             },
 
-            '&:hover': {
+            ...theme.hover({
                 left: theme.rem(-9),
-                '@media (max-width: 1400px)': {
+                ...theme.media(1400).max({
                     left: theme.rem(-6),
-                },
-            },
+                }),
+            }),
         },
         '& .slick-arrow.slick-next': {
             right: theme.rem(-8),
             borderRadius: `0 ${theme.radius} ${theme.radius} 0`,
-            '@media (max-width: 1400px)': {
+            ...theme.media(1400).max({
                 right: theme.rem(-5),
-            },
+            }),
 
             '&::before': {
                 left: '25%',
@@ -86,12 +87,12 @@ const useStyles = createUseStyles((theme: Theme) => ({
                 transition: theme.transitions[0],
             },
 
-            '&:hover': {
+            ...theme.hover({
                 right: theme.rem(-9),
-                '@media (max-width: 1400px)': {
+                ...theme.media(1400).max({
                     right: theme.rem(-6),
-                },
-            },
+                }),
+            }),
         },
     },
     padding: {
@@ -112,9 +113,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
         background: '#323232',
         cursor: 'zoom-in',
 
-        '@media (max-width: 768px)': {
+        ...theme.media(768).max({
             height: theme.rem(30),
-        },
+        }),
     },
     bottom: {
         display: 'block',
@@ -123,9 +124,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
         objectFit: 'cover',
         cursor: 'pointer',
 
-        '@media (max-width: 510px)': {
+        ...theme.media(510).max({
             height: theme.rem(9),
-        },
+        }),
     },
 }));
 

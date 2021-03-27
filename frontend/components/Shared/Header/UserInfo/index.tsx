@@ -22,16 +22,16 @@ const useStyles = createUseStyles((theme: Theme) => ({
         alignItems: 'center',
         fontSize: theme.rem(1.4),
 
-        '@media (max-width: 768px)': {
+        ...theme.media(768).max({
             fontSize: theme.rem(1.8),
-        },
+        }),
     },
     item: {
         marginLeft: theme.rem(4.5),
 
-        '@media (max-width: 768px)': {
+        ...theme.media(768).max({
             marginLeft: theme.rem(1.2),
-        },
+        }),
     },
     text: {
         position: 'relative',
@@ -41,35 +41,32 @@ const useStyles = createUseStyles((theme: Theme) => ({
         position: 'relative',
         color: theme.palette.black[0],
 
-        '@media (max-width: 768px)': {
+        ...theme.media(768).max({
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
             padding: theme.rem(1, 1.5),
             borderRadius: theme.radius,
-        },
-
-        '@media (max-width: 500px)': {
-            fontSize: 0,
-        },
-
-        '&:hover': {
+        }),
+        ...theme.media(500).max({
+            fontSize: '0',
+        }),
+        ...theme.hover({
             color: theme.palette.primary[0],
-        },
+        }),
 
         '& svg': {
             height: theme.rem(1.4),
             width: theme.rem(1.4),
 
-            '@media (max-width: 750px)': {
+            ...theme.media(750).max({
                 height: theme.rem(1.8),
                 width: theme.rem(1.8),
-            },
-
-            '@media (max-width: 350px)': {
+            }),
+            ...theme.media(350).max({
                 height: theme.rem(1.8),
                 width: theme.rem(1.6),
-            },
+            }),
         },
     },
     user: {

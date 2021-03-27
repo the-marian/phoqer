@@ -10,9 +10,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
     root: {
         fontSize: theme.rem(1.4),
 
-        '@media (max-width: 768px)': {
+        ...theme.media(768).max({
             fontSize: theme.rem(1.6),
-        },
+        }),
     },
     wrp: {
         display: 'grid',

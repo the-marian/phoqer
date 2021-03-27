@@ -55,21 +55,21 @@ const useStyles = createUseStyles((theme: Theme) => ({
         margin: theme.rem(10, 0, 20),
         color: theme.palette.black[0],
 
-        '@media (max-width: 500px)': {
+        ...theme.media(500).max({
             margin: theme.rem(8, 0),
-        },
+        }),
     },
     slider: {
         display: 'flex',
         width: '100%',
         height: theme.rem(75),
 
-        '@media (max-width: 1200px)': {
+        ...theme.media(1200).max({
             height: theme.rem(55),
-        },
-        '@media (max-width: 500px)': {
+        }),
+        ...theme.media(500).max({
             height: theme.rem(40),
-        },
+        }),
 
         '& .slick-track': {
             display: 'flex',
@@ -87,12 +87,12 @@ const useStyles = createUseStyles((theme: Theme) => ({
         objectPosition: 'center',
         cursor: 'grab',
 
-        '@media (max-width: 1200px)': {
+        ...theme.media(1200).max({
             height: theme.rem(55),
-        },
-        '@media (max-width: 500px)': {
+        }),
+        ...theme.media(500).max({
             height: theme.rem(40),
-        },
+        }),
     },
     title: {
         textTransform: 'uppercase',
@@ -106,22 +106,21 @@ const useStyles = createUseStyles((theme: Theme) => ({
         maxWidth: theme.rem(60),
         margin: '0 auto',
 
-        '@media (max-width: 500px)': {
+        ...theme.media(500).max({
             maxWidth: '80%',
-        },
+        }),
     },
     text: {
         margin: theme.rem(3, 0),
         fontSize: theme.rem(1.4),
         textAlign: 'center',
 
-        '@media (max-width: 768px)': {
+        ...theme.media(768).max({
             fontSize: theme.rem(1.6),
-        },
-
-        '@media (max-width: 500px)': {
+        }),
+        ...theme.media(500).max({
             margin: theme.rem(2, 0),
-        },
+        }),
     },
 }));
 

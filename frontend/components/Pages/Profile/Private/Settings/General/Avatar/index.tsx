@@ -10,13 +10,13 @@ const useStyles = createUseStyles((theme: Theme) => ({
     wrp: {
         minWidth: theme.rem(20),
 
-        '@media (max-width: 680px)': {
+        ...theme.media(680).max({
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
             flexDirection: 'column',
             width: '100%',
-        },
+        }),
     },
     img: {
         display: 'block',
@@ -38,9 +38,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
         borderRadius: theme.radius,
         transition: theme.transitions[0],
 
-        '&:hover': {
+        ...theme.hover({
             background: theme.palette.gray[1],
-        },
+        }),
 
         '& span': {
             marginLeft: theme.rem(1),
