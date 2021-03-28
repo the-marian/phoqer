@@ -42,12 +42,10 @@ const Messages = (): ReactElement => {
             <AuthRedirect />
             <main className={css.main}>
                 <ProfileChatNav active="messages" />
-                <ChatWrp>
-                    {media ? (
-                        <div className={css.chat}>
-                            <p>Select the chat in side panel</p>
-                        </div>
-                    ) : null}
+                <ChatWrp showConversation={media} showSidebar={true}>
+                    <div className={css.chat}>
+                        <p>Select the chat in side panel</p>
+                    </div>
                 </ChatWrp>
             </main>
         </>

@@ -5,8 +5,9 @@ import { createUseStyles } from 'react-jss';
 import { serverRedirect } from '../../../../../assets/helpers';
 import { Theme } from '../../../../../assets/theme';
 import Meta from '../../../../../components/Common/Meta';
-import ProfileNav from '../../../../../components/Common/NavTabs/ProfileNav';
+import ProfileChatNav from '../../../../../components/Common/NavTabs/ProfileChatNav';
 import AuthRedirect from '../../../../../components/HOC/Auth/AuthRedirect';
+import Conversation from '../../../../../components/Pages/Profile/Private/Messages/ChatConversation';
 import ChatWrp from '../../../../../components/Pages/Profile/Private/Messages/ChatWrp';
 import useMedia from '../../../../../hooks/media.hook';
 import useTrans from '../../../../../hooks/trans.hook';
@@ -42,13 +43,11 @@ const MessagesChat = (): ReactElement => {
 
             <AuthRedirect />
             <main className={css.main}>
-                <ProfileNav active="messages" />
-                <ChatWrp>
-                    {media ? (
-                        <div className={css.chat}>
-                            <p>Select the chat in side panel</p>
-                        </div>
-                    ) : null}
+                <ProfileChatNav active="messages" />
+                <ChatWrp showSidebar={media} showConversation={true}>
+                    <div className={css.chat}>
+                        <Conversation />
+                    </div>
                 </ChatWrp>
             </main>
         </>

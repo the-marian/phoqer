@@ -49,12 +49,12 @@ const useStyles = createUseStyles((theme: Theme) => ({
             justifyContent: 'flex-start',
             margin: theme.rem(0, 1),
 
+            '& li:nth-last-of-type(1)': {
+                marginRight: theme.rem(4),
+            },
+
             ...theme.media(768).max({
                 width: 'max-content',
-
-                '& li:nth-last-of-type(1)': {
-                    marginRight: theme.rem(4),
-                },
             }),
         },
     },

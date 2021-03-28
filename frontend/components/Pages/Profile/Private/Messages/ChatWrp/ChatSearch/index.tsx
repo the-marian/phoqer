@@ -3,8 +3,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
-import template from '../../../../../../assets/template';
-import { Theme } from '../../../../../../assets/theme';
+import template from '../../../../../../../assets/template';
+import { Theme } from '../../../../../../../assets/theme';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     root: {
@@ -30,7 +30,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
 }));
 
-const SearchChat = (): ReactElement => {
+const ChatSearch = (): ReactElement => {
     const css = useStyles();
     return (
         <div className={css.root}>
@@ -42,4 +42,4 @@ const SearchChat = (): ReactElement => {
     );
 };
 
-export default SearchChat;
+export default ChatSearch;
