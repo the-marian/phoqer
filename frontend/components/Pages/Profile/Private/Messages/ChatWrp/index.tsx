@@ -3,9 +3,9 @@ import { createUseStyles } from 'react-jss';
 
 import { Theme } from '../../../../../../assets/theme';
 import Gift from '../../../../../Common/Gift';
-import ChatElement from '../ChatElement';
-import EmptyChat from '../EmptyChat';
-import SearchChat from '../SearchChat';
+import ChatEmpty from '../ChatEmpty';
+import ChatSearch from './ChatSearch';
+import ChatSidebar from './ChatSidebar';
 
 const test = [
     {
@@ -57,6 +57,7 @@ const test = [
         preview: 'Alias aliquid aperiam dolorem dolores eaque et, quidem, soluta sunt vero. Sequi, voluptatibus?',
     },
 ];
+// const test2 = [];
 
 const useStyles = createUseStyles((theme: Theme) => ({
     root: {
@@ -68,6 +69,10 @@ const useStyles = createUseStyles((theme: Theme) => ({
         padding: theme.rem(0, 2, 2),
         fontSize: theme.rem(1.6),
         color: theme.palette.black[0],
+
+        ...theme.media(768).max({
+            padding: theme.rem(0, 0, 1),
+        }),
     },
     aside: {
         minWidth: theme.rem(40),
@@ -97,23 +102,38 @@ const useStyles = createUseStyles((theme: Theme) => ({
 interface IProps {
     active?: string | number;
     children: ReactElement | null;
+    showSidebar?: boolean;
+    showConversation?: boolean;
 }
 
-const ChatWrp = ({ children, active }: IProps): ReactElement => {
+const ChatWrp = ({ children, active, showConversation = false, showSidebar = false }: IProps): ReactElement => {
     const css = useStyles();
 
     return (
         <>
             <div className={css.root}>
-                <aside className={css.aside}>
-                    <div className={css.inner}>
-                        <SearchChat />
-                        {test?.length ? (
-                            test.map((item, index) =>
-                                index === 3 ? (
-                                    <Fragment key={item.id}>
-                                        <Gift />
-                                        <ChatElement
+                {showSidebar ? (
+                    <aside className={css.aside}>
+                        <div className={css.inner}>
+                            <ChatSearch />
+                            {test?.length ? (
+                                test.map((item, index) =>
+                                    index === 3 ? (
+                                        <Fragment key={item.id}>
+                                            <Gift />
+                                            <ChatSidebar
+                                                id={item.id}
+                                                active={item.id === +(active || '')}
+                                                firstName={item.first_name}
+                                                lastName={item.last_name}
+                                                avatar={item.cover_image}
+                                                date={item.date}
+                                                preview={item.preview}
+                                            />
+                                        </Fragment>
+                                    ) : (
+                                        <ChatSidebar
+                                            key={item.id}
                                             id={item.id}
                                             active={item.id === +(active || '')}
                                             firstName={item.first_name}
@@ -122,34 +142,23 @@ const ChatWrp = ({ children, active }: IProps): ReactElement => {
                                             date={item.date}
                                             preview={item.preview}
                                         />
-                                    </Fragment>
-                                ) : (
-                                    <ChatElement
-                                        key={item.id}
-                                        id={item.id}
-                                        active={item.id === +(active || '')}
-                                        firstName={item.first_name}
-                                        lastName={item.last_name}
-                                        avatar={item.cover_image}
-                                        date={item.date}
-                                        preview={item.preview}
-                                    />
-                                ),
-                            )
-                        ) : (
-                            <>
-                                <EmptyChat />
-                                <Gift />
-                            </>
-                        )}
-                        <div className={css.end}>
-                            <h5>Phoqer</h5>
-                            <p>© 2021</p>
-                            <p>All rights reserved</p>
+                                    ),
+                                )
+                            ) : (
+                                <>
+                                    <ChatEmpty />
+                                    <Gift />
+                                </>
+                            )}
+                            <div className={css.end}>
+                                <h5>Phoqer</h5>
+                                <p>© 2021</p>
+                                <p>All rights reserved</p>
+                            </div>
                         </div>
-                    </div>
-                </aside>
-                {test?.length ? children : <EmptyChat />}
+                    </aside>
+                ) : null}
+                {showConversation ? test?.length ? children : <ChatEmpty /> : null}
             </div>
         </>
     );

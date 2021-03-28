@@ -4,11 +4,11 @@ import { useRouter } from 'next/router';
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
-import { onlineStatus } from '../../../../../../assets/helpers';
-import routes from '../../../../../../assets/routes';
-import template from '../../../../../../assets/template';
-import { Theme } from '../../../../../../assets/theme';
-import UserAvatar from '../../../../../Common/UserAvatar';
+import { onlineStatus } from '../../../../../../../assets/helpers';
+import routes from '../../../../../../../assets/routes';
+import template from '../../../../../../../assets/template';
+import { Theme } from '../../../../../../../assets/theme';
+import UserAvatar from '../../../../../../Common/UserAvatar';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     wrp: {
@@ -26,7 +26,6 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
     active: {
         background: theme.palette.gray[1],
-        // color: theme.palette.trueWhite,
     },
     name: {
         fontSize: theme.rem(1.8),
@@ -54,7 +53,7 @@ interface IProps {
 
 const MAX_LENGTH = 45;
 
-const ChatElement = ({ id, active = false, avatar, firstName = '', lastName = '', date, preview = '' }: IProps): ReactElement => {
+const ChatSidebar = ({ id, active = false, avatar, firstName = '', lastName = '', date, preview = '' }: IProps): ReactElement => {
     const css = useStyles();
     const history = useRouter();
 
@@ -75,4 +74,4 @@ const ChatElement = ({ id, active = false, avatar, firstName = '', lastName = ''
     );
 };
 
-export default ChatElement;
+export default ChatSidebar;

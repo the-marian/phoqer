@@ -22,7 +22,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
 }));
 
-const EmptyChat = (): ReactElement => {
+const ChatEmpty = (): ReactElement => {
     const css = useStyles();
     return (
         <div className={css.empty}>
@@ -32,4 +32,4 @@ const EmptyChat = (): ReactElement => {
     );
 };
 
-export default EmptyChat;
+export default ChatEmpty;
