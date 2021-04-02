@@ -426,3 +426,16 @@ async def count_founded_offers_by_statuses(
     }
     count = await database.fetch_one(query=query, values=values)
     return int(count["count"]) if count else 0
+
+
+async def offer_set_status(offer_id: str, status: Status) -> None:
+    query = """
+    UPDATE offers_offer
+    SET status = :status
+    WHERE id = :offer_id
+    """
+    values = {
+        "offer_id": offer_id,
+        "status": status,
+    }
+    await database.execute(query=query, values=values)

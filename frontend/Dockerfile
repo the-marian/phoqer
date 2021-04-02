@@ -1,16 +1,7 @@
-# pull official base image
 FROM node:alpine
-
-# set work directory
-WORKDIR /home/share/frontend
-
-# copy source files
-COPY . /home/share/frontend
-
-# install dependencies
+WORKDIR /home/frontend
+COPY package.json ./
 RUN yarn install
-
-# start app
+COPY . /home/frontend
 RUN yarn build
-
 CMD yarn start
