@@ -34,31 +34,37 @@ const Meta = ({ title, description, keywords, icon, h1 = '' }: IProps): ReactEle
     return (
         <>
             <Head>
+                {/*Primary Meta Tags*/}
                 <title>{title?.trim() ? `${title} | Phoqer` : 'Phoqer'}</title>
-
-                <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
-                <meta name="description" content={description || T.site_desc} />
-                <meta name="keywords" content={`${T.keywords} ${keywords || ''}`} />
                 <meta name="title" content={title?.trim() ? `${title} | Phoqer` : 'Phoqer'} />
+                <meta name="description" content={description || T.site_desc} />
+
+                {/*Internal Meta Tags*/}
+                <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
+                <meta name="keywords" content={`${T.keywords} ${keywords || ''}`} />
                 <meta name="robots" content="index,follow" />
 
-                <meta name="twitter:card" content="summary_large_image" />
-                <meta name="twitter:description" content={description || T.site_desc} />
-                <meta name="twitter:image:src" content={icon || config.host() + '/icons/icon-512.png'} />
-                <meta name="twitter:site" content="@Phoqer" />
-                <meta name="twitter:title" content={title?.trim() ? `${title} | Phoqer` : 'Phoqer'} />
-
-                <meta property="og:description" content={description || T.site_desc} />
-                <meta property="og:image" content={icon || config.host() + '/icons/icon-512.png'} />
-                <meta property="og:site_name" content="Phoqer" />
-                <meta property="og:title" content={title?.trim() ? `${title} | Phoqer` : 'Phoqer'} />
+                {/*Open Graph / Facebook*/}
                 <meta property="og:type" content="website" />
-                <meta property="og:url" content={url(history.locale)} />
+                <meta property="og:url" content={url()} />
+                <meta property="og:title" content={title?.trim() ? `${title} | Phoqer` : 'Phoqer'} />
+                <meta property="og:description" content={description || T.site_desc} />
+                <meta property="og:image" content={icon || `${url()}about.jpg`} />
+                <meta property="og:url" content={url()} />
+                <meta property="og:site_name" content="Phoqer" />
+
+                {/*Twitter*/}
+                <meta property="twitter:card" content="summary_large_image" />
+                <meta property="twitter:url" content={url()} />
+                <meta property="twitter:title" content={title?.trim() ? `${title} | Phoqer` : 'Phoqer'} />
+                <meta property="twitter:description" content={description || T.site_desc} />
+                <meta property="twitter:image" content={icon || `${url()}about.jpg`} />
 
                 <meta name="parsely-link" content={url(history.locale)} />
 
                 <meta name="theme-color" content="007aff" />
-                <link rel="manifest" href="/manifest.json" />
+                <link href="/manifest.json" rel="manifest" />
+                <link href={icon || `${url()}icons/icon-512.png`} rel="icon" type="image/png" />
                 <link href="/icons/icon-72.png" rel="icon" type="image/png" sizes="16x16" />
                 <link href="/icons/icon-72.png" rel="icon" type="image/png" sizes="32x32" />
                 <link href="/icons/icon-72.png" rel="icon" type="image/png" sizes="72x72" />
@@ -70,7 +76,7 @@ const Meta = ({ title, description, keywords, icon, h1 = '' }: IProps): ReactEle
                 <link href="/icons/icon-384.png" rel="icon" type="image/png" sizes="384x384" />
                 <link href="/icons/icon-512.png" rel="icon" type="image/png" sizes="512x512" />
 
-                <link rel="apple-touch-icon" href="/icons/icon-512.png" />
+                <link href="/icons/icon-512.png" rel="apple-touch-icon" />
                 <link href="/icons/icon-72.png" rel="apple-touch-icon" type="image/png" sizes="16x16" />
                 <link href="/icons/icon-72.png" rel="apple-touch-icon" type="image/png" sizes="32x32" />
                 <link href="/icons/icon-72.png" rel="apple-touch-icon" type="image/png" sizes="72x72" />
@@ -84,7 +90,7 @@ const Meta = ({ title, description, keywords, icon, h1 = '' }: IProps): ReactEle
 
                 <link rel="mask-icon" href="/phoqer-512.png" color="#007aff" />
 
-                <link rel="canonical" href={url(history.locale)} />
+                <link rel="canonical" href={url()} />
                 <link rel="alternate" hrefLang="x-default" href={url()} />
                 <link rel="alternate" hrefLang="en" href={url('en')} />
                 <link rel="alternate" hrefLang="ru" href={url('ru')} />

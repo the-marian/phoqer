@@ -1,11 +1,10 @@
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
-import { Theme } from '../../../../../../assets/theme';
 import ChatFlow from './ChatFlow';
 import ChatForm from './ChatForm';
 
-const useStyles = createUseStyles((theme: Theme) => ({
+const useStyles = createUseStyles({
     flex: {
         display: 'flex',
         alignItems: 'flex-start',
@@ -13,7 +12,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         height: '100%',
         width: '100%',
     },
-}));
+});
 
 const Conversation = (): ReactElement => {
     const css = useStyles();
