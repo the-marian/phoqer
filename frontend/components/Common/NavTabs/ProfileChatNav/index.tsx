@@ -1,6 +1,7 @@
 import { faBars } from '@fortawesome/free-solid-svg-icons/faBars';
 import { faHeart } from '@fortawesome/free-solid-svg-icons/faHeart';
 import { faHome } from '@fortawesome/free-solid-svg-icons/faHome';
+import clsx from 'clsx';
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 import { useDispatch } from 'react-redux';
@@ -9,6 +10,7 @@ import config from '../../../../assets/config';
 import routes from '../../../../assets/routes';
 import template from '../../../../assets/template';
 import { Theme } from '../../../../assets/theme';
+import useTheme from '../../../../hooks/theme.hook';
 import useTrans from '../../../../hooks/trans.hook';
 import { ITabs } from '../../../../interfaces';
 import types from '../../../../redux/types';
@@ -38,6 +40,16 @@ const useStyles = createUseStyles((theme: Theme) => ({
                 height: '100%',
                 width: theme.rem(2),
                 background: 'linear-gradient(-90deg,rgba(255,255,255,0) 0%,#fff 100%)',
+            },
+        }),
+    },
+    black: {
+        '&::before': {
+            background: 'linear-gradient(90deg,rgba(34,34,34,0) 0%,#222 100%)',
+        },
+        ...theme.media(768).max({
+            '&::after': {
+                background: 'linear-gradient(-90deg,rgba(34,34,34,0) 0%,#222 100%)',
             },
         }),
     },
@@ -109,6 +121,7 @@ interface IProps {
 const ProfileChatNav = ({ active }: IProps): ReactElement | null => {
     const T = useTrans();
     const css = useStyles();
+    const [theme] = useTheme();
     const dispatch = useDispatch();
 
     const profileTabs: ITabs[] = config.userProfileLinks(T, { messages: 5, reviews: 4 });
@@ -137,7 +150,7 @@ const ProfileChatNav = ({ active }: IProps): ReactElement | null => {
     ];
 
     return (
-        <div className={css.wrp}>
+        <div className={clsx(css.wrp, theme === 'black' && css.black)}>
             <NavTabs
                 tabs={[...extraTabs, ...profileTabs]}
                 classNameWrp={css.nav}

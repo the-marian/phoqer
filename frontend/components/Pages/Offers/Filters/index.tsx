@@ -14,7 +14,7 @@ import { Theme } from '../../../../assets/theme';
 import { ISearch, IState } from '../../../../interfaces';
 import { IOffers } from '../../../../redux/config/offers/interfaces';
 import types from '../../../../redux/types';
-import Checkboxes from '../../../Common/Checkboxes';
+import Checkboxes from '../../../Common/Checkbox/Checkboxes';
 import Period from './Period';
 import PriceFilter from './Price';
 import Sort from './Sort';

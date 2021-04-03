@@ -4,7 +4,7 @@ import TextareaAutosize from 'react-textarea-autosize';
 
 import template from '../../../../../../../assets/template';
 import { Theme } from '../../../../../../../assets/theme';
-import Button from '../../../../../../Layout/Button';
+import Button from '../../../../../../Common/Button';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     wrp: {
@@ -23,7 +23,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
     text: {
         marginBottom: theme.rem(0.6),
-        fontSize: theme.rem(1.4),
+        fontSize: theme.rem(1.6),
     },
     btn: {
         ...template(theme).btn,

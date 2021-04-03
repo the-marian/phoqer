@@ -22,6 +22,12 @@ export interface IDropList {
     sub?: { name: string; slug: string }[];
 }
 
+export interface IDropValue {
+    name: string;
+    slug: string;
+    type: 'main' | 'sub';
+}
+
 export interface ISearch extends Params {
     search: string | null;
     category: string | null;
@@ -52,12 +58,6 @@ export interface ITabsNum {
 }
 
 export type Themes = 'white' | 'black';
-
-export interface IDropValue {
-    name: string;
-    slug: string;
-    type: 'main' | 'sub';
-}
 
 // =====================================
 // 2 AUTH
@@ -102,6 +102,7 @@ export interface IOfferCard {
     pub_date?: string;
     cover_image: string;
     images?: string[];
+    functions?: ('DO_INACTIVE' | 'ARCHIVE' | 'PROMOTE' | 'EDIT' | 'DELETE' | 'DO_REVIEW')[];
     is_favorite: boolean;
     is_promoted: boolean;
     is_deliverable: boolean;

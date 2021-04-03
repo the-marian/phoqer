@@ -6,13 +6,13 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { serverRedirect } from '../../../../assets/helpers';
 import { Theme } from '../../../../assets/theme';
+import Container from '../../../../components/Common/Container';
 import Pagination from '../../../../components/Common/LoadMore/Pagination';
-import Meta from '../../../../components/Common/Meta';
 import ProfileNav from '../../../../components/Common/NavTabs/ProfileNav';
 import ProfileOffersNav from '../../../../components/Common/NavTabs/ProfileOffersNav';
 import OffersList from '../../../../components/Common/Offers/OffersList';
 import AuthRedirect from '../../../../components/HOC/Auth/AuthRedirect';
-import Container from '../../../../components/Layout/Container';
+import Meta from '../../../../components/Shared/Meta';
 import PageLayout from '../../../../components/Shared/PageLayout';
 import useTrans from '../../../../hooks/trans.hook';
 import { IOfferDynamic, IState } from '../../../../interfaces';

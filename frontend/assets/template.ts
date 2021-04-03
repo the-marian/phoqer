@@ -15,7 +15,7 @@ const template = (theme: Theme): Template => ({
         height: theme.rem(6),
         width: '100%',
         padding: theme.rem(1.5, 2),
-        border: theme.border(0.1, 'transparent'),
+        border: theme.border(0.2, 'transparent'),
         borderRadius: theme.radius,
         fontSize: theme.rem(1.4),
         transition: theme.transitions[0],
@@ -25,21 +25,21 @@ const template = (theme: Theme): Template => ({
         }),
 
         ...theme.focus({
-            border: theme.border(0.1, theme.palette.primary[0]),
+            border: theme.border(0.2, theme.palette.primary[0]),
         }),
         ...theme.hover({
-            border: theme.border(0.1, theme.palette.primary[0]),
+            border: theme.border(0.2, theme.palette.primary[0]),
         }),
     },
     outline: {
-        border: theme.border(0.1, 'transparent'),
+        border: theme.border(0.2, 'transparent'),
         transition: theme.transitions[0],
 
         ...theme.focus({
-            border: theme.border(0.1, theme.palette.primary[0]),
+            border: theme.border(0.2, theme.palette.primary[0]),
         }),
         ...theme.hover({
-            border: theme.border(0.1, theme.palette.primary[0]),
+            border: theme.border(0.2, theme.palette.primary[0]),
         }),
     },
     btn: {
@@ -54,14 +54,14 @@ const template = (theme: Theme): Template => ({
         fontSize: theme.rem(1.4),
         borderRadius: theme.radius,
         boxShadow: theme.shadow[1],
-        border: theme.border(0.1, 'transparent'),
+        border: theme.border(0.2, 'transparent'),
         transition: theme.transitions[0],
 
         ...theme.focus({
-            border: theme.border(0.1, theme.palette.primary[0]),
+            border: theme.border(0.2, theme.palette.primary[0]),
         }),
         ...theme.hover({
-            border: theme.border(0.1, theme.palette.primary[0]),
+            border: theme.border(0.2, theme.palette.primary[0]),
         }),
     },
 });

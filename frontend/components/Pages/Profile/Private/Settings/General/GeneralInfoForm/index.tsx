@@ -6,7 +6,7 @@ import { createUseStyles } from 'react-jss';
 import { Theme } from '../../../../../../../assets/theme';
 import useAuth from '../../../../../../../hooks/auth.hook';
 import Banner from '../../../../../../Common/Banner';
-import Input from '../../../../../../Layout/Input';
+import Input from '../../../../../../Common/Input';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     wrp: {
@@ -14,18 +14,18 @@ const useStyles = createUseStyles((theme: Theme) => ({
         width: '38%',
 
         ...theme.media(1200).max({
-            '&:nth-last-of-type(2)': {
-                width: '70%',
-            },
-            '&:nth-last-of-type(1)': {
-                marginTop: theme.rem(4),
-                width: '100%',
-            },
+            width: '75%',
         }),
-        ...theme.media(680).max({
-            '&:nth-last-of-type(2)': {
-                width: '100%',
-            },
+        ...theme.media(768).max({
+            width: '100%',
+        }),
+    },
+    bannerWrp: {
+        minWidth: theme.rem(20),
+        width: '38%',
+        ...theme.media(1200).max({
+            width: '100%',
+            minHeight: theme.rem(30),
         }),
     },
     banner: {
@@ -44,7 +44,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
     text: {
         marginBottom: theme.rem(0.6),
-        fontSize: theme.rem(1.4),
+        fontSize: theme.rem(1.6),
     },
 }));
 
@@ -127,7 +127,7 @@ const GeneralInfoForm = (): ReactElement => {
                     />
                 </label>
             </div>
-            <div className={css.wrp}>
+            <div className={css.bannerWrp}>
                 <Banner className={css.banner} />
             </div>
         </>

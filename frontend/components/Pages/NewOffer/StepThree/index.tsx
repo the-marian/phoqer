@@ -69,7 +69,7 @@ const StepThree = (): ReactElement => {
             dispatch({
                 type: types.POST_OFFER_START,
                 payload:
-                    res?.successful?.map((value: UploadedUppyFile<unknown, { images_url?: [string] }>) => ({
+                    res?.successful?.map<{ url: string }>((value: UploadedUppyFile<unknown, { images_url?: [string] }>) => ({
                         url: config.img + value?.response?.body?.images_url?.[0],
                     })) || [],
                 redirect() {

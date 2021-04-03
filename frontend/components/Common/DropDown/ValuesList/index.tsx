@@ -31,7 +31,7 @@ const ValuesList = ({ data, onSelect, withSub, css }: Props): ReactElement => (
                             onClick={() => {
                                 onSelect(name, slug, 'sub');
                             }}
-                            aria-hidden
+                            aria-hidden={true}
                         >
                             <span>{name}</span>
                         </li>

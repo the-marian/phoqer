@@ -14,7 +14,7 @@ import useMedia from '../../../hooks/media.hook';
 import useTrans from '../../../hooks/trans.hook';
 import { IDropValue, ISearch, IState } from '../../../interfaces';
 import types from '../../../redux/types';
-import Button from '../../Layout/Button';
+import Button from '../Button';
 import LinkArrow from '../LinkArrow';
 import OptionsDesktop from './OptionsDesktop';
 import OptionsMobile from './OptionsMobile';
@@ -125,7 +125,7 @@ const Search = ({ shallow = false }: IProps): ReactElement => {
     const desktop = useMedia(1100);
 
     const search = useSelector<IState, ISearch>(state => state.config.search);
-    const { loading, pagination } = useSelector<IState, { loading: boolean; pagination: boolean }>(state => state.offers.search);
+    const { pagination } = useSelector<IState, { loading: boolean; pagination: boolean }>(state => state.offers.search);
 
     const handleChange = (value: IDropValue | null): void => {
         dispatch({
@@ -193,7 +193,7 @@ const Search = ({ shallow = false }: IProps): ReactElement => {
 
                 <div className={css.mobile}>
                     {!desktop && <OptionsMobile onChange={handleChange} />}
-                    <Button loading={loading || pagination} type="submit" className={css.btn}>
+                    <Button loading={pagination} type="submit" className={css.btn}>
                         {T.find}
                     </Button>
                 </div>

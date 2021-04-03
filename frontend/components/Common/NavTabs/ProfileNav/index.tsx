@@ -1,9 +1,11 @@
+import clsx from 'clsx';
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
 import config from '../../../../assets/config';
 import template from '../../../../assets/template';
 import { Theme } from '../../../../assets/theme';
+import useTheme from '../../../../hooks/theme.hook';
 import useTrans from '../../../../hooks/trans.hook';
 import { ITabs } from '../../../../interfaces';
 import NavTabs from '../index';
@@ -42,6 +44,16 @@ const useStyles = createUseStyles((theme: Theme) => ({
             marginLeft: '-5%',
         }),
     },
+    black: {
+        '&::before': {
+            background: 'linear-gradient(90deg,rgba(34,34,34,0) 0%,#222 100%)',
+        },
+        ...theme.media(768).max({
+            '&::after': {
+                background: 'linear-gradient(-90deg,rgba(34,34,34,0) 0%,#222 100%)',
+            },
+        }),
+    },
     nav: {
         overflow: 'auto',
 
@@ -78,10 +90,11 @@ const useStyles = createUseStyles((theme: Theme) => ({
             marginRight: theme.rem(1),
         },
 
+        ...theme.media(768).max({
+            margin: theme.rem(0, 0.4, 2),
+        }),
+
         ...theme.media(560).max({
-            padding: theme.rem(1, 2),
-            margin: theme.rem(0, 0.4, 1),
-            minHeight: theme.rem(5.5),
             background: theme.palette.gray[1],
             fontSize: '0',
 
@@ -110,10 +123,11 @@ interface IProps {
 const ProfileNav = ({ active }: IProps): ReactElement | null => {
     const T = useTrans();
     const css = useStyles();
+    const [theme] = useTheme();
     const profileTabs: ITabs[] = config.userProfileLinks(T, { messages: 5, reviews: 4 });
 
     return (
-        <div className={css.wrp}>
+        <div className={clsx(css.wrp, theme === 'black' && css.black)}>
             <NavTabs tabs={profileTabs} classNameWrp={css.nav} className={css.item} activeClass={css.active} active={active} />
         </div>
     );

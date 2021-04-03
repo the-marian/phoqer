@@ -94,6 +94,17 @@ const Meta = ({ title, description, keywords, icon, h1 = '' }: IProps): ReactEle
                 <link rel="alternate" hrefLang="x-default" href={url()} />
                 <link rel="alternate" hrefLang="en" href={url('en')} />
                 <link rel="alternate" hrefLang="ru" href={url('ru')} />
+
+                {/* PWA */}
+                <meta name="application-name" content="Phoqer App" />
+                <meta name="apple-mobile-web-app-capable" content="yes" />
+                <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+                <meta name="apple-mobile-web-app-title" content={title?.trim() ? `${title} | Phoqer` : 'Phoqer'} />
+                <meta name="description" content={description || T.site_desc} />
+                <meta name="format-detection" content="telephone=no" />
+                <meta name="mobile-web-app-capable" content="yes" />
+                <meta name="msapplication-TileColor" content="#007aff" />
+                <meta name="msapplication-tap-highlight" content="no" />
             </Head>
             <h1 className={css.title}>{h1 ? h1 + '. ' + T.site_desc : T.site_desc}</h1>
         </>

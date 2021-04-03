@@ -1,9 +1,11 @@
+import clsx from 'clsx';
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
 import routes from '../../../../assets/routes';
 import template from '../../../../assets/template';
 import { Theme } from '../../../../assets/theme';
+import useTheme from '../../../../hooks/theme.hook';
 import useTrans from '../../../../hooks/trans.hook';
 import { ITabs } from '../../../../interfaces';
 import NavTabs from '../';
@@ -41,6 +43,16 @@ const useStyles = createUseStyles((theme: Theme) => ({
             marginLeft: '-5%',
         }),
     },
+    black: {
+        '&::before': {
+            background: 'linear-gradient(90deg,rgba(34,34,34,0) 0%,#222 100%)',
+        },
+        ...theme.media(768).max({
+            '&::after': {
+                background: 'linear-gradient(-90deg,rgba(34,34,34,0) 0%,#222 100%)',
+            },
+        }),
+    },
     nav: {
         overflow: 'auto',
 
@@ -62,9 +74,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
     item: {
         display: 'flex',
         alignItems: 'center',
-        minHeight: theme.rem(5.5),
-        margin: theme.rem(1),
-        padding: theme.rem(1, 1.8),
+        height: theme.rem(4.5),
+        margin: theme.rem(0, 1, 2),
+        padding: theme.rem(0.5, 1.8),
         background: theme.palette.gray[0],
         color: theme.palette.black[0],
         fontSize: theme.rem(1.4),
@@ -73,10 +85,11 @@ const useStyles = createUseStyles((theme: Theme) => ({
         whiteSpace: 'nowrap',
         ...template(theme).outline,
 
+        ...theme.media(768).max({
+            margin: theme.rem(0, 0.4, 2),
+        }),
+
         ...theme.media(560).max({
-            padding: theme.rem(1, 2),
-            margin: theme.rem(0, 0.5, 2),
-            minHeight: theme.rem(5.5),
             background: theme.palette.gray[1],
         }),
     },
@@ -98,6 +111,7 @@ interface IProps {
 const ProfileOffersNav = ({ active }: IProps): ReactElement | null => {
     const T = useTrans();
     const css = useStyles();
+    const [theme] = useTheme();
 
     const offersTab: ITabs[] = [
         {
@@ -128,7 +142,7 @@ const ProfileOffersNav = ({ active }: IProps): ReactElement | null => {
     ];
 
     return (
-        <div className={css.wrp}>
+        <div className={clsx(css.wrp, theme === 'black' && css.black)}>
             <NavTabs tabs={offersTab} classNameWrp={css.nav} className={css.item} activeClass={css.active} active={active} />
         </div>
     );

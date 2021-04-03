@@ -6,7 +6,7 @@ import TextareaAutosize from 'react-textarea-autosize';
 
 import template from '../../../../../../../assets/template';
 import { Theme } from '../../../../../../../assets/theme';
-import Button from '../../../../../../Layout/Button';
+import Button from '../../../../../../Common/Button';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     flex: {

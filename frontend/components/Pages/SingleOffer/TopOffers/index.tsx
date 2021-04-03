@@ -7,10 +7,10 @@ import routes from '../../../../assets/routes';
 import { Theme } from '../../../../assets/theme';
 import { IOfferStatic, IState } from '../../../../interfaces';
 import types from '../../../../redux/types';
+import Container from '../../../Common/Container';
 import OffersList from '../../../Common/Offers/OffersList';
 import SectionTitle from '../../../Common/SectionTitle';
 import Switcher from '../../../Common/Switcher';
-import Container from '../../../Layout/Container';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     root: {
