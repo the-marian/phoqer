@@ -1,8 +1,8 @@
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
-import { Theme } from '../../../assets/theme';
-import SmallModalWrp from '../Modal/SmallModalWrp';
+import { Theme } from '../../../../assets/theme';
+import SmallModalWrp from '../SmallModalWrp';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     root: {

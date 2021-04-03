@@ -9,7 +9,7 @@ import ReactPaginate from 'react-paginate';
 
 import { Theme } from '../../../../assets/theme';
 import useShallowRouter from '../../../../hooks/routing.hook';
-import Button from '../../../Layout/Button';
+import Button from '../../Button';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     root: {

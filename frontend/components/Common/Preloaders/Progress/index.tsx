@@ -9,7 +9,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         position: 'fixed',
         top: 0,
         left: 0,
-        zIndex: 10000,
+        zIndex: 100001,
         width: '100%',
         height: theme.rem(0.5),
         background: theme.palette.gray[1],
@@ -40,6 +40,10 @@ const Progress = (): ReactElement | null => {
                     return value + 10;
                 });
             }, 10);
+
+            setTimeout(() => {
+                handleComplete();
+            }, 60_000); // 1 minute = 60 000 milliseconds
         };
 
         const handleComplete = (): void => {

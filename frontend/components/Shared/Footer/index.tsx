@@ -3,11 +3,11 @@ import { createUseStyles } from 'react-jss';
 
 import { Theme } from '../../../assets/theme';
 import useMedia from '../../../hooks/media.hook';
+import Container from '../../Common/Container';
+import Logo from '../../Common/Logo';
 import Socials from '../../Common/Socials';
-import Container from '../../Layout/Container';
-import Logo from '../../Layout/Logo';
+import Warning from '../../Common/Warning';
 import SiteMap from './SiteMap';
-import Warning from './Warning';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     footer: {

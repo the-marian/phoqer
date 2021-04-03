@@ -3,7 +3,7 @@ import { createUseStyles } from 'react-jss';
 
 import { Theme } from '../../../../../assets/theme';
 import { modal } from '../../../../Common/Modal';
-import RegionModal from '../../../../Common/RegionModal';
+import RegionModal from '../../../../Common/Modal/RegionModal';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     map: {

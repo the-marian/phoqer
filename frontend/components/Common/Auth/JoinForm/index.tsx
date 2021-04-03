@@ -6,9 +6,9 @@ import { isEmpty, mailRegex, passwordRegex } from '../../../../assets/helpers';
 import { Theme } from '../../../../assets/theme';
 import { ISignup } from '../../../../interfaces';
 import types from '../../../../redux/types';
-import Button from '../../../Layout/Button';
-import Input from '../../../Layout/Input';
+import Button from '../../Button';
 import GoogleFacebook from '../../GoogleFacebook';
+import Input from '../../Input';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     title: {
@@ -141,7 +141,7 @@ const JoinForm = (): ReactElement => {
         // Empty
         const empty: [string, string][] = isEmpty<ISignup>(value);
         if (empty.length) {
-            const newErrors: IError = empty.reduce(
+            const newErrors: IError = empty.reduce<IError>(
                 (acc: IError, item): IError => ({ ...acc, [item[0]]: 'This is required field' }),
                 {},
             );

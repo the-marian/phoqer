@@ -96,3 +96,20 @@ class MyOffersListItem(BaseModel):
 class MyOffersListResponse(BaseModel):
     total: int = 0
     data: List[MyOffersListItem]
+
+
+class ValidOffer(BaseModel):
+    city: str
+    cover_image: HttpUrl
+    currency: Currency
+    deposit_val: int
+    description: str
+    doc_needed: bool
+    extra_requirements: str
+    is_deliverable: bool
+    price: int
+    pub_date: date
+    status: Status
+    title: str
+    category_id: str
+    sub_category_id: str

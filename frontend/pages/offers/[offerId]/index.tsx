@@ -9,17 +9,17 @@ import routes from '../../../assets/routes';
 import { Theme } from '../../../assets/theme';
 import Breadcrumbs from '../../../components/Common/Breadcrumbs';
 import Comments from '../../../components/Common/Comments';
+import Container from '../../../components/Common/Container';
 import Gift from '../../../components/Common/Gift';
-import Meta from '../../../components/Common/Meta';
 import { modal } from '../../../components/Common/Modal';
 import FullPageModal from '../../../components/Common/Modal/FullPageModal';
-import Container from '../../../components/Layout/Container';
 import AsideElement from '../../../components/Pages/SingleOffer/AsideElement';
 import OfferHead from '../../../components/Pages/SingleOffer/OfferHead';
 import Price from '../../../components/Pages/SingleOffer/Price';
 import RelatedOffers from '../../../components/Pages/SingleOffer/RelatedOffers';
 import Requirements from '../../../components/Pages/SingleOffer/Requirements';
 import OfferSlider from '../../../components/Pages/SingleOffer/Slider';
+import Meta from '../../../components/Shared/Meta';
 import PageLayout from '../../../components/Shared/PageLayout';
 import useAuth from '../../../hooks/auth.hook';
 import useMedia from '../../../hooks/media.hook';
@@ -242,8 +242,6 @@ const SingleOfferPage = (): ReactElement | null => {
 };
 
 export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps(async ctx => {
-    if (!ctx.query?.offerId) return;
-
     ctx.store.dispatch({ type: types.GET_POPULAR_OFFERS_START });
     ctx.store.dispatch({ type: types.GET_COMMENTS_START, payload: ctx.query?.offerId });
     ctx.store.dispatch({ type: types.GET_SINGLE_OFFER_START, payload: ctx.query?.offerId });

@@ -1,13 +1,14 @@
 import React, { ReactElement, useState } from 'react';
 import { createUseStyles } from 'react-jss';
 
-import { Theme } from '../../../../assets/theme';
+import { Theme } from '../../../assets/theme';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     root: {
         position: 'fixed',
         bottom: 0,
         left: 0,
+        zIndex: 100,
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',

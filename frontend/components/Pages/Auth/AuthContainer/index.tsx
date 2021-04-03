@@ -2,7 +2,7 @@ import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
 import { Theme } from '../../../../assets/theme';
-import Container from '../../../Layout/Container';
+import Container from '../../../Common/Container';
 import PageLayout from '../../../Shared/PageLayout';
 
 const useStyles = createUseStyles((theme: Theme) => ({

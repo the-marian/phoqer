@@ -1,3 +1,4 @@
+import { IconProp } from '@fortawesome/fontawesome-svg-core';
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons/faChevronDown';
 import { faChevronUp } from '@fortawesome/free-solid-svg-icons/faChevronUp';
 import { faTimes } from '@fortawesome/free-solid-svg-icons/faTimes';
@@ -55,10 +56,10 @@ const useStyles = createUseStyles((theme: Theme) => ({
     transparent: {
         background: 'none !important',
         ...theme.focus({
-            border: theme.border(0.1, 'transparent'),
+            border: theme.border(0.2, 'transparent'),
         }),
         ...theme.hover({
-            border: theme.border(0.1, 'transparent'),
+            border: theme.border(0.2, 'transparent'),
         }),
     },
     icon: {
@@ -85,7 +86,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         marginTop: theme.rem(1),
         scrollBehavior: 'smooth',
         '-webkit-overflow-scrolling': 'touch',
-        boxShadow: theme.shadow[3],
+        boxShadow: theme.shadow[4],
         borderRadius: theme.radius,
         transition: theme.transitions[0],
 
@@ -176,6 +177,8 @@ const useStyles = createUseStyles((theme: Theme) => ({
 }));
 
 interface Props {
+    icon?: IconProp;
+    className?: string;
     height?: number;
     data: IDropList[];
     defaultValue?: IDropValue | IDropList | null;
@@ -190,6 +193,8 @@ interface Props {
 
 const DropDown = ({
     height = 6,
+    className,
+    icon,
     data,
     onChange,
     defaultValue,
@@ -213,6 +218,8 @@ const DropDown = ({
     }, [defaultValue, placeholder]);
 
     const handleClick = (event: MouseEvent<HTMLParagraphElement>): void => {
+        event.stopPropagation();
+
         if (media) {
             setTop(document.body.clientHeight / event.currentTarget.getBoundingClientRect().top < 1.6);
             setDrop(!drop);
@@ -260,7 +267,7 @@ const DropDown = ({
     }, [drop, closeOnScroll]);
 
     return (
-        <div className={css.wrp} tabIndex={-1} onBlur={handleBlur}>
+        <div className={clsx(css.wrp, className)} tabIndex={-1} onBlur={handleBlur}>
             <p
                 className={clsx(
                     css.inner,
@@ -270,22 +277,28 @@ const DropDown = ({
                 )}
                 style={{ height: height + 'rem' }}
                 onClick={handleClick}
-                aria-hidden
+                aria-hidden={true}
             >
-                {drop ? (
-                    <span className={css.icon}>
-                        <FontAwesomeIcon icon={faChevronUp} />
-                    </span>
+                {icon ? (
+                    <FontAwesomeIcon icon={icon} />
                 ) : (
-                    <span className={css.icon}>
-                        <FontAwesomeIcon icon={faChevronDown} />
-                    </span>
-                )}
-                <span className={css.text}>{selected}</span>
-                {placeholder && selected !== placeholder && (
-                    <span className={css.reset} onClick={handleReset} aria-hidden>
-                        <FontAwesomeIcon icon={faTimes} />
-                    </span>
+                    <>
+                        {drop ? (
+                            <span className={css.icon}>
+                                <FontAwesomeIcon icon={faChevronUp} />
+                            </span>
+                        ) : (
+                            <span className={css.icon}>
+                                <FontAwesomeIcon icon={faChevronDown} />
+                            </span>
+                        )}
+                        <span className={css.text}>{selected}</span>
+                        {placeholder && selected !== placeholder && (
+                            <span className={css.reset} onClick={handleReset} aria-hidden={true}>
+                                <FontAwesomeIcon icon={faTimes} />
+                            </span>
+                        )}
+                    </>
                 )}
             </p>
 

@@ -13,9 +13,9 @@ import routes from '../../../../assets/routes';
 import { Theme } from '../../../../assets/theme';
 import { INewOffer, IState } from '../../../../interfaces';
 import types from '../../../../redux/types';
-import CheckTitle from '../../../Common/CheckTitle';
-import CheckYesNo from '../../../Common/CheckYesNo';
-import Input from '../../../Layout/Input';
+import CheckTitle from '../../../Common/Checkbox/CheckTitle';
+import CheckYesNo from '../../../Common/Checkbox/CheckYesNo';
+import Input from '../../../Common/Input';
 import newOfferTemplate from '../index.style';
 
 const useStyles = createUseStyles((theme: Theme) => newOfferTemplate(theme).step);

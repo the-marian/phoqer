@@ -1,3 +1,5 @@
+import { faCompass } from '@fortawesome/free-regular-svg-icons/faCompass';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 import { useSelector } from 'react-redux';
@@ -8,7 +10,7 @@ import useTrans from '../../../../hooks/trans.hook';
 import { ICategories, IDropValue, ISearch, IState } from '../../../../interfaces';
 import DropDown from '../../DropDown';
 import { modal } from '../../Modal';
-import RegionModal from '../../RegionModal';
+import RegionModal from '../../Modal/RegionModal';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     container: {
@@ -22,17 +24,19 @@ const useStyles = createUseStyles((theme: Theme) => ({
         width: '50%',
         height: '100%',
         padding: theme.rem(2),
-        fontSize: theme.rem(1.4),
+        fontSize: theme.rem(1.6),
         background: 'none',
         border: 'none',
         color: theme.palette.primary[0],
 
         '& span': {
             width: theme.rem(20),
+            fontSize: theme.rem(1.4),
             marginLeft: theme.rem(1),
             whiteSpace: 'nowrap',
             overflow: 'hidden',
             textOverflow: 'ellipsis',
+            color: theme.palette.black[0],
         },
     },
     icon: {
@@ -90,7 +94,7 @@ const OptionsDesktop = ({ onChange }: IProps): ReactElement => {
             </div>
             <span className={css.line} />
             <button type="button" className={css.location} onClick={handleRegionModal}>
-                <img className={css.icon} src="/emoji/map.png" alt="" />
+                <FontAwesomeIcon icon={faCompass} />
                 <span>Киев, Киевская область Киев, Киевская область Киев, Киевская область</span>
             </button>
         </div>

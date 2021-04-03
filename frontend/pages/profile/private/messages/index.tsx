@@ -4,10 +4,10 @@ import { createUseStyles } from 'react-jss';
 
 import { serverRedirect } from '../../../../assets/helpers';
 import { Theme } from '../../../../assets/theme';
-import Meta from '../../../../components/Common/Meta';
 import ProfileChatNav from '../../../../components/Common/NavTabs/ProfileChatNav';
 import AuthRedirect from '../../../../components/HOC/Auth/AuthRedirect';
 import ChatWrp from '../../../../components/Pages/Profile/Private/Messages/ChatWrp';
+import Meta from '../../../../components/Shared/Meta';
 import useMedia from '../../../../hooks/media.hook';
 import useTrans from '../../../../hooks/trans.hook';
 import { wrapper } from '../../../../redux/store';
@@ -19,6 +19,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         alignItems: 'flex-start',
         justifyContent: 'flex-start',
         height: '100vh',
+        background: theme.palette.white,
     },
     chat: {
         display: 'flex',

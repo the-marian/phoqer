@@ -4,13 +4,13 @@ import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
 import { Theme } from '../../../../../../../assets/theme';
-import Button from '../../../../../../Layout/Button';
+import Button from '../../../../../../Common/Button';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     wrp: {
         minWidth: theme.rem(20),
 
-        ...theme.media(680).max({
+        ...theme.media(768).max({
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',

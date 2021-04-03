@@ -17,11 +17,11 @@ import { IState } from '../../../interfaces';
 import types from '../../../redux/types';
 import LoginForm from '../../Common/Auth/LoginForm';
 import Drawer from '../../Common/Drawer';
+import Logo from '../../Common/Logo';
 import { modal } from '../../Common/Modal';
 import SmallModalWrp from '../../Common/Modal/SmallModalWrp';
 import Socials from '../../Common/Socials';
 import Switcher from '../../Common/Switcher';
-import Logo from '../../Layout/Logo';
 import AuthDrawer from './AuthDrawer';
 import NotAuthDrawer from './NotAuthDrawer';
 

@@ -8,8 +8,8 @@ import { mailRegex } from '../../../../assets/helpers';
 import routes from '../../../../assets/routes';
 import template from '../../../../assets/template';
 import { Theme } from '../../../../assets/theme';
-import Button from '../../../Layout/Button';
-import Input from '../../../Layout/Input';
+import Button from '../../Button';
+import Input from '../../Input';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     title: {

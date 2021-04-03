@@ -1,3 +1,4 @@
+import cookie from 'cookie';
 import { GetServerSidePropsContext } from 'next';
 
 import { IAuth, ICategories, IDropList, IDropValue } from '../interfaces';
@@ -48,7 +49,7 @@ export const moneyFormat = (value: number | string = 0, separator = ' '): string
     return String(value)
         .split('')
         .reverse()
-        .map((item, index): string => (index % 3 ? item : item + separator))
+        .map<string>((item, index): string => (index % 3 ? item : item + separator))
         .reverse()
         .join('')
         .trim();
@@ -111,20 +112,10 @@ export const throttle = (func: IFunction, time = 0): IFunction => {
 // ----------------------------------------------
 //  4. Work with cookies
 // ----------------------------------------------
-// Decode data from cookies
-export const decode = (cookie = ''): string => decodeURI(cookie).replace(/\\"/gi, '');
 // Parse cookie on server. Generate valid js object from cookies string
-export const parseCookie = <T>(cookie = '', key = 'phoqer_auth', parsed = false): T | null => {
+export const parseCookie = <T>(value = '', key = 'phoqer_auth', parsed = false): T | null => {
     try {
-        const obj = decode(cookie)
-            ?.split(' ')
-            ?.find(i => i.includes(key))
-            ?.replace(/\+/g, ' ')
-            ?.replace(/%2C/gi, ',')
-            ?.split(key + '=')[1]
-            ?.replace(/;/g, '');
-
-        return obj ? (parsed ? obj : JSON.parse(obj)) : null;
+        return parsed ? cookie.parse(value)[key] || null : JSON.parse(cookie.parse(value)[key]);
     } catch (error) {
         return null;
     }
@@ -137,7 +128,7 @@ export const parseCookie = <T>(cookie = '', key = 'phoqer_auth', parsed = false)
 // ----------------------------------------------
 // custom console log for site identity
 export const logger = (): void => {
-    // if (process.env.NODE_ENV === 'production') console.clear();
+    if (process.env.NODE_ENV === 'production' && process.browser) console.clear();
     console.log(
         '%c Phoqer %c v0.0.1 Made with love ...',
         'padding: 6px 15px; border-radius: 10px; background: #eee; text-transform: uppercase; color: #007aff; font-size: 1rem; font-weight: 600; font-family: Montserrat, sans-serif',
@@ -153,7 +144,7 @@ export const logger = (): void => {
 // ----------------------------------------------
 // format category list from backend in relation to IDropList interface
 export const formatCatList = (data: ICategories[]): IDropList[] =>
-    data?.map(
+    data?.map<ICategories | IDropList>(
         (item: ICategories): IDropList =>
             item.sub_categories ? { name: item.name, slug: item.slug, sub: item.sub_categories } : item,
     );

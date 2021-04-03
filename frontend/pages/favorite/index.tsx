@@ -2,10 +2,10 @@ import React, { ReactElement } from 'react';
 import { useSelector } from 'react-redux';
 import { END } from 'redux-saga';
 
-import Meta from '../../components/Common/Meta';
+import Container from '../../components/Common/Container';
 import OffersList from '../../components/Common/Offers/OffersList';
 import SectionTitle from '../../components/Common/SectionTitle';
-import Container from '../../components/Layout/Container';
+import Meta from '../../components/Shared/Meta';
 import PageLayout from '../../components/Shared/PageLayout';
 import useTrans from '../../hooks/trans.hook';
 import { IOfferStatic, IState, IStore } from '../../interfaces';

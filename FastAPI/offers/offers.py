@@ -2,9 +2,9 @@ from datetime import date
 from math import ceil
 from typing import Dict, List, Optional
 
-from fastapi import APIRouter, Depends, HTTPException, Response, status
+from fastapi import APIRouter, Body, Depends, HTTPException, Response
 from FastAPI.config import PAGE_SIZE
-from FastAPI.offers import crud
+from FastAPI.offers import crud, validators
 from FastAPI.offers.schemas import (
     MyOffersListItem,
     MyOffersListResponse,
@@ -12,6 +12,7 @@ from FastAPI.offers.schemas import (
     OfferDraftRequest,
     OffersListItem,
     OffersListResponse,
+    Status,
 )
 from FastAPI.utils import get_current_user, get_current_user_or_none
 
@@ -19,6 +20,20 @@ router = APIRouter(
     prefix="/offers",
     tags=["offers"],
 )
+
+
+@router.patch("/status/{offer_id}")
+async def change_status(
+    offer_id: str,
+    status: Status = Body(..., embed=True),
+    user_id: int = Depends(get_current_user),
+) -> Response:
+    validator = {"REVIEW": validators.set_review_status}
+    errors = await validator[status.value](offer_id)
+    if errors:
+        return Response(status_code=500, content=errors)
+    await crud.offer_set_status(offer_id=offer_id, status=status)
+    return Response(status_code=204)
 
 
 @router.get("/status/{tab_name}", response_model=MyOffersListResponse)
@@ -180,7 +195,7 @@ async def get_offer(
     offer = await crud.get_offer(offer_id)
     if not offer:
         raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND,
+            status_code=404,
             detail=f"Offer with id {offer_id} does not exist",
         )
     offer_images = await crud.get_offers_images(offer_id)
@@ -198,15 +213,15 @@ async def get_offer(
     )
 
 
-@router.post("", status_code=status.HTTP_204_NO_CONTENT)
+@router.post("", status_code=204)
 async def create_offer(
     offer: OfferDraftRequest, author_id: int = Depends(get_current_user)
 ) -> Response:
     await crud.create_offer_draft(offer, author_id)
-    return Response(status_code=status.HTTP_204_NO_CONTENT)
+    return Response(status_code=204)
 
 
-@router.patch("/{offer_id}", status_code=status.HTTP_204_NO_CONTENT)
+@router.patch("/{offer_id}", status_code=204)
 async def update_offer(
     offer_id: str,
     update_offer_data: OfferDraftRequest,
@@ -215,7 +230,7 @@ async def update_offer(
     stored_offer_data = await crud.get_offer(offer_id)
     if not stored_offer_data:
         raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND,
+            status_code=404,
             detail=f"Offer with id {offer_id} does not exist",
         )
     await crud.partial_update_offer(
@@ -223,4 +238,4 @@ async def update_offer(
         update_offer_data=update_offer_data,
         stored_offer_data=stored_offer_data,
     )
-    return Response(status_code=status.HTTP_204_NO_CONTENT)
+    return Response(status_code=204)

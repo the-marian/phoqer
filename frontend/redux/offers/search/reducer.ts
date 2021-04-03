@@ -1,6 +1,6 @@
 import { HYDRATE } from 'next-redux-wrapper';
 
-import { IOfferDynamic, IOfferPagination, IState } from '../../../interfaces';
+import { IOfferCard, IOfferDynamic, IOfferPagination, IState } from '../../../interfaces';
 import initState from '../../state';
 import types from '../../types';
 import IAction from './interfaces';
@@ -34,7 +34,7 @@ const search = (state: IOfferDynamic = initState.offers.search, { type, payload 
                 ? {
                       data: {
                           ...state.data,
-                          data: state.data.data.map(item =>
+                          data: state.data.data.map<IOfferCard>(item =>
                               item.id === (payload as string) ? { ...item, is_favorite: !item.is_favorite } : item,
                           ),
                       },

@@ -4,10 +4,10 @@ import { createUseStyles } from 'react-jss';
 
 import { serverRedirect } from '../../../../assets/helpers';
 import { Theme } from '../../../../assets/theme';
-import Meta from '../../../../components/Common/Meta';
+import Container from '../../../../components/Common/Container';
 import ProfileNav from '../../../../components/Common/NavTabs/ProfileNav';
 import AuthRedirect from '../../../../components/HOC/Auth/AuthRedirect';
-import Container from '../../../../components/Layout/Container';
+import Meta from '../../../../components/Shared/Meta';
 import PageLayout from '../../../../components/Shared/PageLayout';
 import useTrans from '../../../../hooks/trans.hook';
 import { wrapper } from '../../../../redux/store';

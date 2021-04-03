@@ -5,14 +5,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { END } from 'redux-saga';
 
 import About from '../../components/Common/About';
+import Container from '../../components/Common/Container';
 import Pagination from '../../components/Common/LoadMore/Pagination';
-import Meta from '../../components/Common/Meta';
 import OffersList from '../../components/Common/Offers/OffersList';
 import Search from '../../components/Common/Search';
 import SectionTitle from '../../components/Common/SectionTitle';
-import Container from '../../components/Layout/Container';
 import Filters from '../../components/Pages/Offers/Filters';
 import TopOffers from '../../components/Pages/SingleOffer/TopOffers';
+import Meta from '../../components/Shared/Meta';
 import PageLayout from '../../components/Shared/PageLayout';
 import useTrans from '../../hooks/trans.hook';
 import { IOfferDynamic, IState, IStore } from '../../interfaces';

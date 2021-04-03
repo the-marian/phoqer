@@ -49,7 +49,7 @@ const Meta = ({ title, description, keywords, icon, h1 = '' }: IProps): ReactEle
                 <meta property="og:url" content={url()} />
                 <meta property="og:title" content={title?.trim() ? `${title} | Phoqer` : 'Phoqer'} />
                 <meta property="og:description" content={description || T.site_desc} />
-                <meta property="og:image" content={icon || `${url()}/about.jpg`} />
+                <meta property="og:image" content={icon || `${url()}about.jpg`} />
                 <meta property="og:url" content={url()} />
                 <meta property="og:site_name" content="Phoqer" />
 
@@ -58,13 +58,13 @@ const Meta = ({ title, description, keywords, icon, h1 = '' }: IProps): ReactEle
                 <meta property="twitter:url" content={url()} />
                 <meta property="twitter:title" content={title?.trim() ? `${title} | Phoqer` : 'Phoqer'} />
                 <meta property="twitter:description" content={description || T.site_desc} />
-                <meta property="twitter:image" content={icon || `${url()}/about.jpg`} />
+                <meta property="twitter:image" content={icon || `${url()}about.jpg`} />
 
                 <meta name="parsely-link" content={url(history.locale)} />
 
                 <meta name="theme-color" content="007aff" />
                 <link href="/manifest.json" rel="manifest" />
-                <link href={icon || '/icons/icon-512.png'} rel="icon" type="image/png" />
+                <link href={icon || `${url()}icons/icon-512.png`} rel="icon" type="image/png" />
                 <link href="/icons/icon-72.png" rel="icon" type="image/png" sizes="16x16" />
                 <link href="/icons/icon-72.png" rel="icon" type="image/png" sizes="32x32" />
                 <link href="/icons/icon-72.png" rel="icon" type="image/png" sizes="72x72" />
@@ -94,6 +94,17 @@ const Meta = ({ title, description, keywords, icon, h1 = '' }: IProps): ReactEle
                 <link rel="alternate" hrefLang="x-default" href={url()} />
                 <link rel="alternate" hrefLang="en" href={url('en')} />
                 <link rel="alternate" hrefLang="ru" href={url('ru')} />
+
+                {/* PWA */}
+                <meta name="application-name" content="Phoqer App" />
+                <meta name="apple-mobile-web-app-capable" content="yes" />
+                <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+                <meta name="apple-mobile-web-app-title" content={title?.trim() ? `${title} | Phoqer` : 'Phoqer'} />
+                <meta name="description" content={description || T.site_desc} />
+                <meta name="format-detection" content="telephone=no" />
+                <meta name="mobile-web-app-capable" content="yes" />
+                <meta name="msapplication-TileColor" content="#007aff" />
+                <meta name="msapplication-tap-highlight" content="no" />
             </Head>
             <h1 className={css.title}>{h1 ? h1 + '. ' + T.site_desc : T.site_desc}</h1>
         </>

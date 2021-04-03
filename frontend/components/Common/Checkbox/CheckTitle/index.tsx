@@ -2,12 +2,9 @@ import clsx from 'clsx';
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
-import { Theme } from '../../../assets/theme';
+import { Theme } from '../../../../assets/theme';
 
 const useStyles = createUseStyles((theme: Theme) => ({
-    flex: {
-        display: 'flex',
-    },
     btn: {
         display: 'flex',
         alignItems: 'center',
@@ -17,17 +14,20 @@ const useStyles = createUseStyles((theme: Theme) => ({
             textAlign: 'left',
             fontSize: theme.rem(1.4),
             color: theme.palette.black[0],
+
+            ...theme.media(768).max({
+                fontSize: theme.rem(1.6),
+            }),
         },
     },
     label: {
-        height: theme.rem(2.5),
-        minWidth: theme.rem(2.5),
+        height: theme.rem(2.2),
+        minWidth: theme.rem(2.2),
         display: 'inline-block',
         marginRight: theme.rem(1.5),
-        border: theme.border(0.1, theme.palette.primary[0]),
+        border: theme.border(0.2, theme.palette.primary[0]),
         background: theme.palette.trueWhite,
         borderRadius: theme.radius,
-        color: theme.palette.black[0],
     },
     active: {
         position: 'relative',
@@ -35,8 +35,8 @@ const useStyles = createUseStyles((theme: Theme) => ({
         '&::before': {
             content: '""',
             position: 'absolute',
-            left: theme.rem(0.9),
-            top: theme.rem(0.5),
+            top: theme.rem(0.4),
+            left: theme.rem(0.7),
             width: theme.rem(0.5),
             height: theme.rem(1),
             border: 'solid white',
@@ -52,7 +52,7 @@ interface Props {
     onChange: (value: boolean) => void;
 }
 
-const CheckYesNo = ({ children, value, onChange }: Props): ReactElement => {
+const CheckTitle = ({ children, value, onChange }: Props): ReactElement => {
     const css = useStyles();
 
     const handleClick = () => {
@@ -60,20 +60,11 @@ const CheckYesNo = ({ children, value, onChange }: Props): ReactElement => {
     };
 
     return (
-        <>
-            <p>{children}</p>
-            <div className={css.flex}>
-                <button type="button" name="checked" className={css.btn} onClick={handleClick}>
-                    <span className={clsx(css.label, !value || css.active)} />
-                    <span>Да</span>
-                </button>
-                <button type="button" name="checked" className={css.btn} onClick={handleClick}>
-                    <span className={clsx(css.label, value || css.active)} />
-                    <span>Нет</span>
-                </button>
-            </div>
-        </>
+        <button type="button" name="checked" className={css.btn} onClick={handleClick}>
+            <span className={clsx(css.label, !value || css.active)} />
+            <span>{children}</span>
+        </button>
     );
 };
 
-export default CheckYesNo;
+export default CheckTitle;

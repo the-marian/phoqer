@@ -2,7 +2,7 @@ import clsx from 'clsx';
 import React, { MouseEvent, ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
-import { Theme } from '../../../assets/theme';
+import { Theme } from '../../../../assets/theme';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     root: {
@@ -29,13 +29,13 @@ const useStyles = createUseStyles((theme: Theme) => ({
         }),
     },
     label: {
-        height: theme.rem(2.5),
-        width: theme.rem(2.5),
         display: 'inline-block',
+        height: theme.rem(2.2),
+        width: theme.rem(2.2),
         marginRight: theme.rem(1.5),
-        border: theme.border(0.1, theme.palette.primary[0]),
+        border: theme.border(0.2, theme.palette.primary[0]),
         background: theme.palette.white,
-        borderRadius: theme.radius,
+        borderRadius: theme.rem(0.4),
     },
     active: {
         position: 'relative',
@@ -43,8 +43,8 @@ const useStyles = createUseStyles((theme: Theme) => ({
         '&::before': {
             content: '""',
             position: 'absolute',
-            left: theme.rem(0.9),
-            top: theme.rem(0.5),
+            top: theme.rem(0.4),
+            left: theme.rem(0.7),
             width: theme.rem(0.5),
             height: theme.rem(1),
             border: 'solid white',
@@ -79,14 +79,12 @@ const Checkboxes = ({ values, labels, onChange }: IProps): ReactElement => {
 
     return (
         <div className={css.root}>
-            {Object.entries(values).map(
-                (item: Entries, index): ReactElement => (
-                    <button key={item[0]} type="button" name={item[0]} className={css.btn} onClick={handleClick}>
-                        <span className={clsx(css.label, !item[1] || css.active)} />
-                        <span>{labels[index]}</span>
-                    </button>
-                ),
-            )}
+            {Object.entries(values).map((item: Entries, index) => (
+                <button key={item[0]} type="button" name={item[0]} className={css.btn} onClick={handleClick}>
+                    <span className={clsx(css.label, !item[1] || css.active)} />
+                    <span>{labels[index]}</span>
+                </button>
+            ))}
         </div>
     );
 };

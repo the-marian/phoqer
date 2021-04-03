@@ -3,13 +3,13 @@ import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 import { useSelector } from 'react-redux';
 
-import routes from '../../../assets/routes';
-import template from '../../../assets/template';
-import { Theme } from '../../../assets/theme';
-import useTrans from '../../../hooks/trans.hook';
-import { IOfferStatic, IState } from '../../../interfaces';
-import OffersList from '../Offers/OffersList';
-import SectionTitle from '../SectionTitle';
+import routes from '../../../../assets/routes';
+import template from '../../../../assets/template';
+import { Theme } from '../../../../assets/theme';
+import useTrans from '../../../../hooks/trans.hook';
+import { IOfferStatic, IState } from '../../../../interfaces';
+import SectionTitle from '../../SectionTitle';
+import OffersList from '../OffersList';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     root: {

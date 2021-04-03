@@ -22,7 +22,7 @@ const popular = (state: IOfferStatic = initState.offers.popular, { type, payload
         case types.PATCH_FAVORITE_OFFERS_SUCCESS:
             return state.data.length
                 ? {
-                      data: state.data.map(item =>
+                      data: state.data.map<IOfferCard>(item =>
                           item.id === (payload as string) ? { ...item, is_favorite: !item.is_favorite } : item,
                       ),
                       loading: false,

@@ -4,8 +4,8 @@ import { createUseStyles } from 'react-jss';
 
 import template from '../../../../../../../assets/template';
 import { Theme } from '../../../../../../../assets/theme';
-import Button from '../../../../../../Layout/Button';
-import Input from '../../../../../../Layout/Input';
+import Button from '../../../../../../Common/Button';
+import Input from '../../../../../../Common/Input';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     wrp: {
@@ -23,7 +23,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
     text: {
         marginBottom: theme.rem(0.6),
-        fontSize: theme.rem(1.4),
+        fontSize: theme.rem(1.6),
     },
     btn: template(theme).btn,
 }));

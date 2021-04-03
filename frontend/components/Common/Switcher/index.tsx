@@ -25,7 +25,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         },
 
         '&:hover::before': {
-            border: theme.border(0.1, theme.palette.primary[0]),
+            border: theme.border(0.2, theme.palette.primary[0]),
         },
 
         '&::before': {
@@ -41,7 +41,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
             background: theme.palette.white,
             transition: theme.transitions[0],
             boxShadow: theme.shadow[1],
-            border: theme.border(0.1, theme.palette.white),
+            border: theme.border(0.2, theme.palette.white),
         },
     },
     open: {

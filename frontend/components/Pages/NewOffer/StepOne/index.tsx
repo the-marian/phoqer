@@ -14,9 +14,9 @@ import routes from '../../../../assets/routes';
 import { Theme } from '../../../../assets/theme';
 import { ICategories, IDropValue, INewOffer, IState } from '../../../../interfaces';
 import types from '../../../../redux/types';
-import CheckYesNo from '../../../Common/CheckYesNo';
+import CheckYesNo from '../../../Common/Checkbox/CheckYesNo';
 import DropDown from '../../../Common/DropDown';
-import Input from '../../../Layout/Input';
+import Input from '../../../Common/Input';
 import newOfferTemplate from '../index.style';
 import Region from './Region';
 
