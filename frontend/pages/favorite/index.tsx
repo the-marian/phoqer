@@ -2,11 +2,11 @@ import React, { ReactElement } from 'react';
 import { useSelector } from 'react-redux';
 import { END } from 'redux-saga';
 
-import Meta from '../../components/Common/Meta';
+import Container from '../../components/Common/Container';
 import OffersList from '../../components/Common/Offers/OffersList';
 import SectionTitle from '../../components/Common/SectionTitle';
-import Container from '../../components/Layout/Container';
-import Main from '../../components/Layout/TagMain';
+import Meta from '../../components/Shared/Meta';
+import PageLayout from '../../components/Shared/PageLayout';
 import useTrans from '../../hooks/trans.hook';
 import { IOfferStatic, IState, IStore } from '../../interfaces';
 import { wrapper } from '../../redux/store';
@@ -19,12 +19,12 @@ const Favorite = (): ReactElement => {
     return (
         <>
             <Meta title={T.favorite_offer} h1={T.favorite_offer} />
-            <Main>
+            <PageLayout>
                 <Container>
                     <SectionTitle>{T.favorite_offer}</SectionTitle>
                     <OffersList data={data} />
                 </Container>
-            </Main>
+            </PageLayout>
         </>
     );
 };

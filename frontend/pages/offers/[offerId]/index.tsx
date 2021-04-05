@@ -8,26 +8,27 @@ import { END } from 'redux-saga';
 import routes from '../../../assets/routes';
 import { Theme } from '../../../assets/theme';
 import Breadcrumbs from '../../../components/Common/Breadcrumbs';
-import Meta from '../../../components/Common/Meta';
+import Comments from '../../../components/Common/Comments';
+import Container from '../../../components/Common/Container';
+import Gift from '../../../components/Common/Gift';
 import { modal } from '../../../components/Common/Modal';
 import FullPageModal from '../../../components/Common/Modal/FullPageModal';
-import Comments from '../../../components/Layout/Comments';
-import Container from '../../../components/Layout/Container';
-import AsideElement from '../../../components/Layout/SingleOffer/AsideElement';
-import OfferHead from '../../../components/Layout/SingleOffer/OfferHead';
-import Price from '../../../components/Layout/SingleOffer/Price';
-import RelatedOffers from '../../../components/Layout/SingleOffer/RelatedOffers';
-import Requirements from '../../../components/Layout/SingleOffer/Requirements';
-import OfferSlider from '../../../components/Layout/SingleOffer/Slider';
-import SmallBanner from '../../../components/Layout/SingleOffer/SmallBanner';
-import Main from '../../../components/Layout/TagMain';
+import AsideElement from '../../../components/Pages/SingleOffer/AsideElement';
+import OfferHead from '../../../components/Pages/SingleOffer/OfferHead';
+import Price from '../../../components/Pages/SingleOffer/Price';
+import RelatedOffers from '../../../components/Pages/SingleOffer/RelatedOffers';
+import Requirements from '../../../components/Pages/SingleOffer/Requirements';
+import OfferSlider from '../../../components/Pages/SingleOffer/Slider';
+import Meta from '../../../components/Shared/Meta';
+import PageLayout from '../../../components/Shared/PageLayout';
+import useAuth from '../../../hooks/auth.hook';
 import useMedia from '../../../hooks/media.hook';
 import { IOfferCard, IState, IStore } from '../../../interfaces';
 import { wrapper } from '../../../redux/store';
 import types from '../../../redux/types';
 
 const useStyles = createUseStyles((theme: Theme) => ({
-    // top content
+    // top translate
     banner: {
         display: 'block',
         height: theme.rem(60),
@@ -36,9 +37,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
         background: theme.palette.gray[1],
         cursor: 'zoom-in',
 
-        '@media (max-width: 768px)': {
+        ...theme.media(768).max({
             height: theme.rem(30),
-        },
+        }),
     },
     modal: {
         display: 'block',
@@ -53,49 +54,47 @@ const useStyles = createUseStyles((theme: Theme) => ({
         marginTop: theme.rem(6),
         fontSize: theme.rem(1.6),
 
-        '@media (max-width: 768px)': {
+        ...theme.media(768).max({
             flexDirection: 'column',
             marginTop: theme.rem(2),
             fontSize: theme.rem(1.6),
-        },
+        }),
     },
     main: {
         width: 'calc(100% - 40rem)',
         marginRight: theme.rem(10),
         color: theme.palette.black[0],
 
-        '@media (max-width: 1300px)': {
+        ...theme.media(1300).max({
             marginRight: theme.rem(4),
-        },
-
-        '@media (max-width: 768px)': {
+        }),
+        ...theme.media(768).max({
             width: '100%',
             marginBottom: theme.rem(6),
-            marginRight: 0,
-        },
+            marginRight: '0',
+        }),
     },
     subtitle: {
         margin: theme.rem(6, 0, 3),
         fontSize: theme.rem(2),
         fontWeight: theme.text.weight[3],
 
-        '@media (max-width: 768px)': {
+        ...theme.media(768).max({
             margin: theme.rem(3, 0, 1),
             fontSize: theme.rem(2.5),
-        },
+        }),
     },
     calendar: {
         width: '100%',
         fontSize: theme.rem(1.8),
 
-        '@media (max-width: 1210px)': {
+        ...theme.media(1210).max({
             fontSize: theme.rem(1.5),
-        },
-
-        '@media (max-width: 1100px)': {
+        }),
+        ...theme.media(1100).max({
             width: '100%',
             fontSize: theme.rem(1.8),
-        },
+        }),
 
         '& .DayPicker-wrapper': {
             outline: 'none',
@@ -110,10 +109,10 @@ const useStyles = createUseStyles((theme: Theme) => ({
             width: '49%',
             margin: theme.rem(2, 0, 0, -1),
 
-            '@media (max-width: 1100px)': {
+            ...theme.media(1100).max({
                 width: '100%',
                 margin: theme.rem(2, 0, 0, -1),
-            },
+            }),
         },
 
         '& .DayPicker-NavButton': {
@@ -130,15 +129,16 @@ const useStyles = createUseStyles((theme: Theme) => ({
                 marginRight: theme.rem(7.5),
             },
 
-            '@media (max-width: 1100px)': {
+            ...theme.media(1100).max({
                 right: theme.em(0.5),
-            },
+            }),
         },
     },
 }));
 
 const SingleOfferPage = (): ReactElement | null => {
     const css = useStyles();
+    const auth = useAuth();
     const dispatch = useDispatch();
     const priceMedia = useMedia(768);
     const calendarMedia = useMedia(1100);
@@ -168,7 +168,7 @@ const SingleOfferPage = (): ReactElement | null => {
                 description={offer?.description.slice(0, 150)}
                 icon={offer?.cover_image}
             />
-            <Main>
+            <PageLayout>
                 <Container>
                     {offer.images && offer.images.length > 1 ? (
                         <OfferSlider images={offer?.images} />
@@ -226,7 +226,7 @@ const SingleOfferPage = (): ReactElement | null => {
                                 numberOfMonths={calendarMedia ? 2 : 1}
                             />
 
-                            <SmallBanner />
+                            {auth?.access_token ? <Gift /> : null}
 
                             <Comments />
                         </div>
@@ -236,14 +236,12 @@ const SingleOfferPage = (): ReactElement | null => {
 
                     <RelatedOffers />
                 </Container>
-            </Main>
+            </PageLayout>
         </>
     ) : null;
 };
 
 export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps(async ctx => {
-    if (!ctx.query?.offerId) return;
-
     ctx.store.dispatch({ type: types.GET_POPULAR_OFFERS_START });
     ctx.store.dispatch({ type: types.GET_COMMENTS_START, payload: ctx.query?.offerId });
     ctx.store.dispatch({ type: types.GET_SINGLE_OFFER_START, payload: ctx.query?.offerId });

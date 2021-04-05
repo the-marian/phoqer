@@ -1,5 +1,9 @@
+import { IconProp } from '@fortawesome/fontawesome-svg-core';
+import { faEye } from '@fortawesome/free-regular-svg-icons/faEye';
+import { faEyeSlash } from '@fortawesome/free-regular-svg-icons/faEyeSlash';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import clsx from 'clsx';
-import React, { ChangeEvent, ReactElement } from 'react';
+import React, { ChangeEvent, ReactElement, useState } from 'react';
 import { createUseStyles } from 'react-jss';
 
 import template from '../../../assets/template';
@@ -10,9 +14,14 @@ const useStyles = createUseStyles((theme: Theme) => ({
         position: 'relative',
         width: '100%',
     },
+    inner: {
+        position: 'relative',
+        width: '100%',
+    },
     input: {
         ...template(theme).input,
-        background: theme.palette.trueWhite,
+        background: theme.palette.gray[1],
+        color: theme.palette.black[0],
 
         '& span': {
             width: '88%',
@@ -22,9 +31,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
             textOverflow: 'ellipsis',
             textAlign: 'left',
 
-            '@media (max-width: 900px)': {
+            ...theme.media(900).max({
                 width: '100%',
-            },
+            }),
         },
     },
     errors: {
@@ -44,6 +53,28 @@ const useStyles = createUseStyles((theme: Theme) => ({
         color: theme.palette.red[0],
         fontSize: theme.rem(1.2),
     },
+    icon: {
+        position: 'absolute',
+        top: 0,
+        right: 0,
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: theme.rem(6),
+        width: theme.rem(6),
+        fontSize: theme.rem(1.8),
+        color: theme.palette.black[0],
+    },
+    iconLeft: {
+        right: 0,
+        left: 0,
+    },
+    withPassword: {
+        paddingRight: theme.rem(6),
+    },
+    withIcon: {
+        paddingLeft: theme.rem(6),
+    },
 }));
 
 interface IProps {
@@ -55,9 +86,10 @@ interface IProps {
     type?: string;
     placeholder?: string;
     errors?: string;
-    errorsPlaceholder?: boolean;
+    errorsInPlaceholder?: boolean;
     readOnly?: boolean;
     autoComplete?: string;
+    icon?: IconProp;
 }
 
 const Input = ({
@@ -70,24 +102,49 @@ const Input = ({
     errors,
     autoComplete,
     placeholder = '',
-    errorsPlaceholder = false,
+    errorsInPlaceholder = false, // show error text in input placeholder
     readOnly = false,
+    icon,
 }: IProps): ReactElement => {
     const css = useStyles();
+    const [show, setShow] = useState<string>(type || 'text');
+
+    const handleClick = (): void => {
+        setShow(value => (value === 'password' ? 'text' : 'password'));
+    };
+
     return (
         <div className={css.wrp}>
-            <input
-                id={id}
-                value={value}
-                onChange={onChange}
-                className={clsx(css.input, className, errors && css.errors)}
-                placeholder={errorsPlaceholder ? errors || placeholder : placeholder}
-                name={name}
-                type={type}
-                readOnly={readOnly}
-                autoComplete={autoComplete}
-            />
-            {errors && !errorsPlaceholder && <small className={css.errorsText}>{errors}</small>}
+            <div className={css.inner}>
+                {icon ? (
+                    <div className={clsx(css.icon, css.iconLeft)}>
+                        <FontAwesomeIcon icon={icon} />
+                    </div>
+                ) : null}
+                <input
+                    id={id}
+                    value={value}
+                    onChange={onChange}
+                    className={clsx(
+                        css.input,
+                        className,
+                        type === 'password' && css.withPassword,
+                        icon && css.withIcon,
+                        errors && css.errors,
+                    )}
+                    placeholder={errorsInPlaceholder ? errors || placeholder : placeholder}
+                    name={name}
+                    type={show}
+                    readOnly={readOnly}
+                    autoComplete={autoComplete}
+                />
+                {type === 'password' ? (
+                    <button className={css.icon} onClick={handleClick} type="button">
+                        {show === 'password' ? <FontAwesomeIcon icon={faEyeSlash} /> : <FontAwesomeIcon icon={faEye} />}
+                    </button>
+                ) : null}
+            </div>
+            {errors && !errorsInPlaceholder && <small className={css.errorsText}>{errors}</small>}
         </div>
     );
 };

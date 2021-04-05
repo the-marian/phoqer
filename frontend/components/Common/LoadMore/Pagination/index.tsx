@@ -3,7 +3,7 @@ import { faChevronRight } from '@fortawesome/free-solid-svg-icons/faChevronRight
 import { faRedo } from '@fortawesome/free-solid-svg-icons/faRedo';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useRouter } from 'next/router';
-import React, { ReactElement, useState } from 'react';
+import React, { ReactElement, useEffect, useState } from 'react';
 import { createUseStyles } from 'react-jss';
 import ReactPaginate from 'react-paginate';
 
@@ -37,9 +37,12 @@ const useStyles = createUseStyles((theme: Theme) => ({
         transition: theme.transitions[0],
         cursor: 'pointer',
 
-        '&:hover': {
-            background: theme.palette.gray[1],
-        },
+        ...theme.media(500).max({
+            margin: theme.rem(0.2),
+            padding: theme.rem(0.6),
+        }),
+
+        ...theme.hover({ background: theme.palette.gray[1] }),
     },
     active: {
         background: theme.palette.primary[0],
@@ -59,9 +62,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         transition: theme.transitions[0],
         cursor: 'pointer',
 
-        '&:hover': {
-            background: theme.palette.gray[1],
-        },
+        ...theme.hover({ background: theme.palette.gray[1] }),
     },
     disabled: {
         opacity: 0.1,
@@ -94,7 +95,12 @@ const Pagination = ({ total, onClick, onMore, loading }: IProps): ReactElement |
     const css = useStyles();
     const history = useRouter();
     const shallow = useShallowRouter();
-    const [page, setPage] = useState<number>(+(history.query?.page || 1));
+    const init = +(history.query?.page || 1);
+    const [page, setPage] = useState<number>(init < total ? init : total);
+
+    useEffect(() => {
+        if (!history.query?.page) setPage(1);
+    }, [history.query]);
 
     const pushRouter = (page: number) => {
         setPage(page);
@@ -119,8 +125,8 @@ const Pagination = ({ total, onClick, onMore, loading }: IProps): ReactElement |
                 breakLabel="..."
                 forcePage={page - 1}
                 pageCount={total}
-                marginPagesDisplayed={2}
-                pageRangeDisplayed={2}
+                marginPagesDisplayed={1}
+                pageRangeDisplayed={1}
                 onPageChange={handlePagination}
                 containerClassName={css.pagination}
                 breakLinkClassName={css.page}

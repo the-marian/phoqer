@@ -16,18 +16,18 @@ const useStyles = createUseStyles((theme: Theme) => ({
         fontSize: theme.rem(1.5),
         fontWeight: theme.text.weight[3],
 
-        '@media (max-width: 1350px)': {
+        ...theme.media(1350).max({
             gridTemplateColumns: theme.fr(config.offers.grid.tablet),
-        },
-        '@media (max-width: 960px)': {
+        }),
+        ...theme.media(960).max({
             gridTemplateColumns: theme.fr(config.offers.grid.smallTablet),
             gridGap: theme.rem(6, 3),
-        },
-        '@media (max-width: 560px)': {
+        }),
+        ...theme.media(560).max({
             gridTemplateColumns: theme.fr(config.offers.grid.mobile),
             maxWidth: theme.rem(45),
             margin: '0 auto',
-        },
+        }),
     },
 }));
 

@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { ReactElement, useState } from 'react';
 import { createUseStyles } from 'react-jss';
 import { useDispatch } from 'react-redux';
+import { CSSTransition } from 'react-transition-group';
 
 import config from '../../../../assets/config';
 import { Theme } from '../../../../assets/theme';
@@ -11,7 +12,7 @@ import useTrans from '../../../../hooks/trans.hook';
 import { ITabs } from '../../../../interfaces';
 import types from '../../../../redux/types';
 import Spinner from '../../Preloaders/Spinner';
-import NavTabs from '../index';
+import NavTabs from '../';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     item: {
@@ -22,13 +23,13 @@ const useStyles = createUseStyles((theme: Theme) => ({
         margin: theme.rem(2.5, 0),
         fontSize: theme.rem(1.6),
 
-        '&:hover': {
+        ...theme.hover({
             color: theme.palette.primary[0],
-        },
+        }),
 
-        '@media (max-width: 1100px)': {
+        ...theme.media(1100).max({
             fontSize: theme.rem(2),
-        },
+        }),
     },
     red: {
         marginLeft: theme.rem(0.5),
@@ -59,21 +60,23 @@ const UserNav = ({ className }: IProps): ReactElement => {
     };
 
     return (
-        <NavTabs tabs={profileTabs} classNameWrp={className} className={css.item} classNameText={css.text}>
-            <>
-                <li>
-                    <button type="button" className={css.item} onClick={handleLogout}>
-                        <FontAwesomeIcon icon={faSignOutAlt} />
-                        <span className={css.text}>{T.logout}</span>
-                    </button>
-                </li>
-                {loading && (
+        <CSSTransition in appear timeout={200} unmountOnExit>
+            <NavTabs tabs={profileTabs} classNameWrp={className} className={css.item} classNameText={css.text}>
+                <>
                     <li>
-                        <Spinner />
+                        <button type="button" className={css.item} onClick={handleLogout}>
+                            <FontAwesomeIcon icon={faSignOutAlt} />
+                            <span className={css.text}>{T.logout}</span>
+                        </button>
                     </li>
-                )}
-            </>
-        </NavTabs>
+                    {loading && (
+                        <li>
+                            <Spinner />
+                        </li>
+                    )}
+                </>
+            </NavTabs>
+        </CSSTransition>
     );
 };
 

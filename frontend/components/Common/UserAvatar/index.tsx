@@ -3,6 +3,7 @@ import { createUseStyles } from 'react-jss';
 
 import template from '../../../assets/template';
 import { Theme } from '../../../assets/theme';
+import OnlineIndicator from './OnlineIndicator';
 
 const COLORS: { [key: string]: string } = {
     A: 'rgba(8,139,226,0.2)',
@@ -34,6 +35,9 @@ const COLORS: { [key: string]: string } = {
 };
 
 const useStyles = createUseStyles((theme: Theme) => ({
+    root: {
+        position: 'relative',
+    },
     avatar: {
         display: 'flex',
         alignItems: 'center',
@@ -44,6 +48,11 @@ const useStyles = createUseStyles((theme: Theme) => ({
         objectFit: 'cover',
         ...template(theme).outline,
     },
+    mark: {
+        position: 'absolute',
+        bottom: 0,
+        left: 0,
+    },
 }));
 
 interface IProps {
@@ -52,26 +61,46 @@ interface IProps {
     avatar?: string | null;
     width?: number;
     height?: number;
+    time?: string | null;
+    online?: boolean;
 }
-const UserAvatar = ({ firstName = 'A', lastName = 'A', avatar = null, width = 8, height = 8 }: IProps): ReactElement => {
+const UserAvatar = ({
+    firstName = 'A',
+    lastName = 'A',
+    avatar = null,
+    width = 8,
+    height = 8,
+    online = false,
+    time,
+}: IProps): ReactElement => {
     const css = useStyles();
-    return avatar ? (
-        <img
-            className={css.avatar}
-            src={avatar}
-            style={{ width: `${width}rem`, height: `${height}rem`, maxWidth: `${width}rem`, maxHeight: `${height}rem` }}
-            alt=""
-        />
-    ) : (
-        <div
-            style={{
-                width: `${width}rem`,
-                height: `${height}rem`,
-                background: COLORS[firstName[0]] || 'rgba(8,139,226,0.2)',
-            }}
-            className={css.avatar}
-        >
-            {(firstName[0] + lastName[0])?.toUpperCase()}
+    return (
+        <div className={css.root}>
+            {avatar ? (
+                <img
+                    className={css.avatar}
+                    src={avatar}
+                    style={{
+                        width: `${width}rem`,
+                        height: `${height}rem`,
+                        maxWidth: `${width}rem`,
+                        maxHeight: `${height}rem`,
+                    }}
+                    alt=""
+                />
+            ) : (
+                <div
+                    style={{
+                        width: `${width}rem`,
+                        height: `${height}rem`,
+                        background: COLORS[firstName[0]] || 'rgba(8,139,226,0.2)',
+                    }}
+                    className={css.avatar}
+                >
+                    {(firstName[0] + lastName[0])?.toUpperCase()}
+                </div>
+            )}
+            <OnlineIndicator className={css.mark} online={online} time={time} />
         </div>
     );
 };

@@ -22,6 +22,12 @@ export interface IDropList {
     sub?: { name: string; slug: string }[];
 }
 
+export interface IDropValue {
+    name: string;
+    slug: string;
+    type: 'main' | 'sub';
+}
+
 export interface ISearch extends Params {
     search: string | null;
     category: string | null;
@@ -39,10 +45,11 @@ export interface ISearch extends Params {
 export interface ITabs {
     id: number | string;
     text: string;
-    link: string;
+    link?: string;
     icon?: IconProp;
     count?: number | string;
     blank?: boolean;
+    onClick?: () => void;
 }
 
 export interface ITabsNum {
@@ -51,12 +58,6 @@ export interface ITabsNum {
 }
 
 export type Themes = 'white' | 'black';
-
-export interface IDropValue {
-    name: string;
-    slug: string;
-    type: 'main' | 'sub';
-}
 
 // =====================================
 // 2 AUTH
@@ -101,6 +102,7 @@ export interface IOfferCard {
     pub_date?: string;
     cover_image: string;
     images?: string[];
+    functions?: ('DO_INACTIVE' | 'ARCHIVE' | 'PROMOTE' | 'EDIT' | 'DELETE' | 'DO_REVIEW')[];
     is_favorite: boolean;
     is_promoted: boolean;
     is_deliverable: boolean;
@@ -126,6 +128,7 @@ export interface IOfferPagination {
 export interface IOfferDynamic {
     data: IOfferPagination;
     loading: boolean;
+    pagination: boolean;
 }
 
 export interface IOfferStatic {
@@ -134,6 +137,7 @@ export interface IOfferStatic {
 }
 
 export interface INewOffer {
+    loading: boolean;
     id?: string | null;
     // step one
     title: string;
@@ -163,9 +167,10 @@ export interface INewOffer {
 export interface IOffers {
     popular: IOfferStatic;
     search: IOfferDynamic;
+    my_offers: IOfferDynamic;
     favorite: IOfferStatic;
     single: IOfferCard | null;
-    newOffer: INewOffer;
+    new_offer: INewOffer;
 }
 
 // =====================================
@@ -199,8 +204,10 @@ export interface IPublicProfile {
     description_rate?: string;
     dislikes?: number;
     email?: string | null;
-    first_name?: string;
     id?: string | number;
+    first_name?: string;
+    last_login?: string;
+    last_activity?: string;
     last_name?: string;
     likes?: number;
     location?: string;

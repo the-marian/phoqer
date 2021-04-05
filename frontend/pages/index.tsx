@@ -1,34 +1,48 @@
 import React, { ReactElement } from 'react';
+import { createUseStyles } from 'react-jss';
 import { END } from 'redux-saga';
 
+import { Theme } from '../assets/theme';
 import About from '../components/Common/About';
-import Meta from '../components/Common/Meta';
+import Banner from '../components/Common/Banner';
+import Container from '../components/Common/Container';
+import TopPopular from '../components/Common/Offers/PopularOffers';
 import Search from '../components/Common/Search';
-import Banner from '../components/Layout/Banner';
-import Categories from '../components/Layout/Categories';
-import Container from '../components/Layout/Container';
-import TopPopular from '../components/Layout/PopularOffers';
-import Main from '../components/Layout/TagMain';
+import Categories from '../components/Pages/Home/Categories';
+import Meta from '../components/Shared/Meta';
+import PageLayout from '../components/Shared/PageLayout';
 import useTrans from '../hooks/trans.hook';
 import { IStore } from '../interfaces';
 import { wrapper } from '../redux/store';
 import types from '../redux/types';
 
+const useStyles = createUseStyles((theme: Theme) => ({
+    banner: {
+        background: theme.palette.soft[5],
+        margin: theme.rem(8, 0),
+
+        ...theme.media(550).max({
+            margin: theme.rem(4, 0),
+        }),
+    },
+}));
+
 const Index = (): ReactElement => {
     const T = useTrans();
+    const css = useStyles();
     return (
         <>
             <Meta title={T.home_page} />
-            <Main>
+            <PageLayout>
                 <Container>
                     <Search />
                     <Categories />
-                    <Banner />
+                    <Banner className={css.banner} />
                     <TopPopular />
                 </Container>
 
                 <About />
-            </Main>
+            </PageLayout>
         </>
     );
 };

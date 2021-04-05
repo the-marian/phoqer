@@ -4,40 +4,46 @@ import { useSelector } from 'react-redux';
 import { END } from 'redux-saga';
 
 import { Theme } from '../../../../assets/theme';
-import Meta from '../../../../components/Common/Meta';
+import Meta from '../../../../components/Shared/Meta';
 import ProfileCard from '../../../../components/Common/ProfileCard';
-import Container from '../../../../components/Layout/Container';
-import ProfileInfo from '../../../../components/Layout/Profile/Public/ProfileInfo';
-import Main from '../../../../components/Layout/TagMain';
+import Container from '../../../../components/Common/Container';
+import ProfileInfo from '../../../../components/Pages/Profile/Public/ProfileInfo';
 import useTrans from '../../../../hooks/trans.hook';
 import { IPublicProfile, IState, IStore } from '../../../../interfaces';
 import { wrapper } from '../../../../redux/store';
 import types from '../../../../redux/types';
+import PageLayout from "../../../../components/Shared/PageLayout";
 
 const useStyles = createUseStyles((theme: Theme) => ({
     wrp: {
+        position: 'relative',
         display: 'flex',
         justifyContent: 'space-between',
 
-        '@media (max-width: 850px)': {
+        ...theme.media(850).max({
             flexDirection: 'column',
-        },
+        }),
+    },
+    sticky: {
+        position: 'sticky',
+        top: theme.rem(8),
+        left: 0,
     },
     left: {
-        width: theme.rem(40),
+        width: theme.rem(45),
 
-        '@media (max-width: 850px)': {
+        ...theme.media(850).max({
             display: 'block',
             width: '100%',
             marginBottom: theme.rem(4),
-        },
+        }),
     },
     right: {
-        width: 'calc(100% - 45rem)',
+        width: 'calc(100% - 49rem)',
 
-        '@media (max-width: 850px)': {
+        ...theme.media(850).max({
             width: '100%',
-        },
+        }),
     },
 }));
 
@@ -50,17 +56,19 @@ const PublicProfilePage = (): ReactElement => {
     return (
         <>
             <Meta title={profile?.first_name + ' ' + profile?.last_name} h1={T.user_profile_on_phoqer} />
-            <Main>
+            <PageLayout>
                 <Container>
                     <div className={css.wrp}>
                         <div className={css.left}>
                             <ProfileCard
+                                className={css.sticky}
                                 id={profile?.id}
                                 registerDate={profile?.date_joined}
                                 firstName={profile?.first_name}
                                 lastName={profile?.last_name}
                                 avatar={profile?.profile_img}
                                 userLocation={profile?.location}
+                                lastActivity={profile?.last_activity}
                             />
                         </div>
                         <div className={css.right}>
@@ -68,7 +76,7 @@ const PublicProfilePage = (): ReactElement => {
                         </div>
                     </div>
                 </Container>
-            </Main>
+            </PageLayout>
         </>
     );
 };

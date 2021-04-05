@@ -36,6 +36,10 @@ const useStyles = createUseStyles((theme: Theme) => ({
         fontSize: theme.rem(1.6),
         color: theme.palette.white,
         borderRadius: theme.radius,
+
+        ...theme.media(768).max({
+            top: theme.rem(6),
+        }),
     },
 }));
 

@@ -1,179 +1,46 @@
 import { faEye } from '@fortawesome/free-regular-svg-icons/faEye';
 import { faHeart } from '@fortawesome/free-regular-svg-icons/faHeart';
+import { faCogs } from '@fortawesome/free-solid-svg-icons/faCogs';
 import { faHeart as faSolidHeart } from '@fortawesome/free-solid-svg-icons/faHeart';
 import { faStar } from '@fortawesome/free-solid-svg-icons/faStar';
 import { faTruck } from '@fortawesome/free-solid-svg-icons/faTruck';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import clsx from 'clsx';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import React, { ReactElement } from 'react';
-import { createUseStyles } from 'react-jss';
 import { useDispatch } from 'react-redux';
 
 import { moneyFormat } from '../../../../assets/helpers';
 import routes from '../../../../assets/routes';
-import template from '../../../../assets/template';
-import { Theme } from '../../../../assets/theme';
 import useAuth from '../../../../hooks/auth.hook';
 import useTrans from '../../../../hooks/trans.hook';
-import { IOfferCard } from '../../../../interfaces';
+import { IDropList, IDropValue, IOfferCard } from '../../../../interfaces';
 import types from '../../../../redux/types';
 import LoginForm from '../../Auth/LoginForm';
+import DropDown from '../../DropDown';
 import { modal } from '../../Modal';
 import SmallModalWrp from '../../Modal/SmallModalWrp';
+import useStyles from './index.styles';
 
 const MAX_LENGTH = 60;
 const MAX_LENGTH_TITLE = 55;
 
-const useStyles = createUseStyles((theme: Theme) => ({
-    root: {
-        display: 'flex',
-        flexDirection: 'column',
-    },
-    link: {
-        flexGrow: 2,
-        cursor: 'pointer',
-        color: theme.palette.black[0],
-        '&:hover h3': {
-            textDecoration: 'underline',
-        },
-    },
-    imgWrp: {
-        position: 'relative',
-    },
-    img: {
-        height: theme.rem(20),
-        objectFit: 'cover',
-        objectPosition: 'center',
-        borderRadius: theme.radius,
-        boxShadow: theme.shadow[1],
-        background: theme.palette.gray[1],
-        ...template(theme).outline,
+const USER_ACTIONS = {
+    DO_INACTIVE: 'Деактевировать обьявление',
+    ARCHIVE: 'Поместить в архив',
+    PROMOTE: 'Поместить в топ',
+    EDIT: 'Редактировать',
+    DELETE: 'Удалить',
+    DO_REVIEW: 'Опубликовать',
+};
 
-        '@media (max-width: 580px)': {
-            height: theme.rem(30),
-        },
-    },
-    topWrp: {
-        position: 'absolute',
-        top: theme.rem(1),
-        right: theme.rem(1),
-        display: 'flex',
-    },
-    top: {
-        margin: theme.rem(0, 0.5),
-        padding: theme.rem(0.5, 0.8),
-        background: theme.palette.white,
-        borderRadius: theme.radius,
-        fontSize: theme.rem(1.4),
-        boxShadow: theme.shadow[0],
-        color: theme.palette.yellow[0],
-    },
-    delivery: {
-        color: theme.palette.primary[0],
-    },
-    title: {
-        margin: theme.rem(1, 0),
-        fontSize: theme.rem(1.5),
-        fontWeight: theme.text.weight[3],
-
-        '@media (max-width: 500px)': {
-            fontSize: theme.rem(1.8),
-        },
-    },
-    desc: {
-        margin: 0,
-        fontSize: theme.rem(1.4),
-        fontWeight: theme.text.weight[2],
-
-        '@media (max-width: 500px)': {
-            fontSize: theme.rem(1.6),
-        },
-    },
-    info: {
-        display: 'flex',
-        justifyContent: 'space-between',
-        margin: theme.rem(2, 0),
-    },
-    text: {
-        display: 'flex',
-        alignItems: 'center',
-        margin: 0,
-        color: theme.palette.gray[3],
-        fontWeight: theme.text.weight[2],
-        fontSize: theme.rem(1.4),
-    },
-    view: {
-        paddingLeft: theme.rem(1),
-    },
-    action: {
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-    },
-    actionBtn: {
-        display: 'flex',
-        alignItems: 'center',
-    },
-    btn: {
-        padding: theme.rem(1.5, 2),
-        fontSize: theme.rem(1.4),
-        borderRadius: theme.radius,
-        background: theme.palette.gray[1],
-        color: theme.palette.primary[0],
-        ...template(theme).outline,
-
-        '@media (max-width: 500px)': {
-            padding: theme.rem(2, 4),
-            fontSize: theme.rem(1.8),
-        },
-    },
-    favorite: {
-        height: theme.rem(5.1),
-        marginLeft: theme.rem(0.6),
-        padding: theme.rem(1, 1.8),
-        color: theme.palette.primary[0],
-        borderRadius: theme.radius,
-        transition: theme.transitions[0],
-        fontSize: theme.rem(1.8),
-
-        '&:hover': {
-            background: theme.palette.gray[0],
-        },
-
-        '@media (max-width: 500px)': {
-            height: theme.rem(6.5),
-            fontSize: theme.rem(2.2),
-        },
-    },
-    active: {
-        background: theme.palette.gray[1],
-    },
-    price: {
-        display: 'flex',
-        flexDirection: 'column',
-        margin: 0,
-        fontSize: theme.rem(1.5),
-        fontWeight: theme.text.weight[3],
-        color: theme.palette.black[0],
-        textTransform: 'lowercase',
-        textAlign: 'right',
-
-        '& small': {
-            fontWeight: theme.text.weight[2],
-            fontSize: theme.rem(1.2),
-            color: theme.palette.gray[3],
-        },
-
-        '@media (max-width: 500px)': {
-            fontSize: theme.rem(1.8),
-
-            '& small': {
-                fontSize: theme.rem(1.4),
-            },
-        },
-    },
-}));
+const formatUserActions = (value: string[]): IDropList[] => {
+    return Object.entries(USER_ACTIONS).reduce<IDropList[]>((acc, cur) => {
+        if (value.includes(cur[0])) acc.push({ name: cur[1], slug: cur[0] });
+        return acc;
+    }, []);
+};
 
 interface IProps {
     offer: IOfferCard;
@@ -183,9 +50,22 @@ const OfferCard = ({ offer }: IProps): ReactElement => {
     const T = useTrans();
     const auth = useAuth();
     const css = useStyles();
+    const history = useRouter();
     const dispatch = useDispatch();
 
-    const { id, title, description, cover_image, is_promoted, is_deliverable, is_favorite, views, pub_date, price } = offer;
+    const {
+        id,
+        title,
+        description,
+        cover_image,
+        is_promoted,
+        is_deliverable,
+        is_favorite,
+        views,
+        pub_date,
+        price,
+        functions,
+    } = offer;
 
     const handleFavorite = (): void => {
         if (!auth?.access_token) {
@@ -197,6 +77,38 @@ const OfferCard = ({ offer }: IProps): ReactElement => {
             return;
         }
         dispatch({ type: types.PATCH_FAVORITE_OFFERS_START, payload: offer.id });
+    };
+
+    const handleSettings = (value: IDropValue | null): void => {
+        if (!value) return;
+        switch (value.slug) {
+            case 'DO_INACTIVE':
+                alert('Деактевировать обьявление');
+                break;
+
+            case 'ARCHIVE':
+                alert('Поместить в архив');
+                break;
+
+            case 'PROMOTE':
+                alert('Поместить в топ');
+                break;
+
+            case 'EDIT':
+                history.push(routes.offers.edit(id));
+                break;
+
+            case 'DELETE':
+                alert('Удалить');
+                break;
+
+            case 'DO_REVIEW':
+                alert('Опубликовать');
+                break;
+
+            default:
+                break;
+        }
     };
 
     return (
@@ -216,7 +128,7 @@ const OfferCard = ({ offer }: IProps): ReactElement => {
                                 </div>
                             )}
                         </div>
-                        <img className={css.img} src={cover_image} alt={title} />
+                        <img className={css.img} src={cover_image || '/no_img.png'} alt={title} />
                     </div>
                     <h3 className={css.title}>
                         {title.length > MAX_LENGTH_TITLE ? title.slice(0, MAX_LENGTH_TITLE - 3) + '...' : title}
@@ -226,6 +138,16 @@ const OfferCard = ({ offer }: IProps): ReactElement => {
                     </p>
                 </a>
             </Link>
+
+            {functions?.length ? (
+                <DropDown
+                    className={css.dropdown}
+                    icon={faCogs}
+                    onChange={handleSettings}
+                    data={formatUserActions(functions)}
+                    height={4}
+                />
+            ) : null}
 
             <div className={css.info}>
                 <p className={css.text}>

@@ -13,7 +13,7 @@ import { modal } from '../components/Common/Modal';
 import AuthProvider from '../components/HOC/Auth/AuthContext';
 import MediaProvider from '../components/HOC/Media';
 import SiteTheme from '../components/HOC/SiteTheme';
-import PageLayout from '../components/Layout/PageLayout';
+import Root from '../components/Shared/Root';
 import { IAuth, Themes } from '../interfaces';
 import { wrapper } from '../redux/store';
 
@@ -31,13 +31,13 @@ const MyApp = ({ Component, pageProps, width, auth, theme }: AppProps & IProps):
 
     useEffect(() => {
         const handleClear = () => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
             modal.close();
+            window.scrollTo({ top: 0, behavior: 'auto' });
         };
-        Router.events.on('routeChangeComplete', handleClear);
+        Router.events.on('routeChangeStart', handleClear);
 
         return () => {
-            Router.events.off('routeChangeComplete', handleClear);
+            Router.events.off('routeChangeStart', handleClear);
         };
     }, []);
 
@@ -45,9 +45,9 @@ const MyApp = ({ Component, pageProps, width, auth, theme }: AppProps & IProps):
         <SiteTheme siteTheme={theme === 'black' ? 'black' : 'white'}>
             <AuthProvider authServer={auth}>
                 <MediaProvider width={width}>
-                    <PageLayout>
+                    <Root>
                         <Component {...pageProps} />
-                    </PageLayout>
+                    </Root>
                 </MediaProvider>
             </AuthProvider>
         </SiteTheme>

@@ -15,20 +15,20 @@ const useStyles = createUseStyles((theme: Theme) => ({
             fontSize: theme.rem(1.2),
             color: theme.palette.black[0],
 
-            '@media (max-width: 768px)': {
-                lineHeight: 2.2,
+            ...theme.media(768).max({
+                lineHeight: '2.2',
                 fontSize: theme.rem(1.6),
                 fontWeight: theme.text.weight[1],
-            },
+            }),
         },
 
         '& a': {
             color: theme.palette.gray[3],
 
-            '&:hover': {
+            ...theme.hover({
                 textDecoration: 'underline',
                 color: theme.palette.black[0],
-            },
+            }),
         },
     },
 

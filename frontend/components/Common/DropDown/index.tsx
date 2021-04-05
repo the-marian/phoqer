@@ -1,3 +1,4 @@
+import { IconProp } from '@fortawesome/fontawesome-svg-core';
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons/faChevronDown';
 import { faChevronUp } from '@fortawesome/free-solid-svg-icons/faChevronUp';
 import { faTimes } from '@fortawesome/free-solid-svg-icons/faTimes';
@@ -38,13 +39,12 @@ const useStyles = createUseStyles((theme: Theme) => ({
         cursor: 'pointer',
         ...template(theme).outline,
 
-        '@media (max-width: 768px)': {
+        ...theme.media(768).max({
             fontSize: theme.rem(1.6),
-        },
-
-        '@media (max-width: 450px)': {
+        }),
+        ...theme.media(450).max({
             paddingLeft: theme.rem(1.2),
-        },
+        }),
     },
     text: {
         flexGrow: 2,
@@ -55,12 +55,12 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
     transparent: {
         background: 'none !important',
-        '&:focus': {
-            border: theme.border(0.1, 'transparent'),
-        },
-        '&:hover': {
-            border: theme.border(0.1, 'transparent'),
-        },
+        ...theme.focus({
+            border: theme.border(0.2, 'transparent'),
+        }),
+        ...theme.hover({
+            border: theme.border(0.2, 'transparent'),
+        }),
     },
     icon: {
         marginRight: theme.rem(0.6),
@@ -70,9 +70,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
         padding: theme.rem(1),
         fontSize: theme.rem(1.1),
 
-        '&:hover': {
+        ...theme.hover({
             color: theme.palette.primary[0],
-        },
+        }),
     },
     placeholder: {
         color: theme.palette.gray[3],
@@ -83,23 +83,26 @@ const useStyles = createUseStyles((theme: Theme) => ({
         zIndex: 10,
         width: '100%',
         minWidth: theme.rem(25),
-        paddingTop: theme.rem(1),
+        marginTop: theme.rem(1),
         scrollBehavior: 'smooth',
         '-webkit-overflow-scrolling': 'touch',
+        boxShadow: theme.shadow[4],
+        borderRadius: theme.radius,
+        transition: theme.transitions[0],
 
-        '@media (max-width: 768px)': {
+        ...theme.media(768).max({
             minWidth: theme.rem(35),
-        },
+        }),
 
-        '&.enter .box': {
+        '&.enter': {
             opacity: 0,
             transform: 'translateY(-2rem)',
         },
-        '&.enter-done .box': {
+        '&.enter-done': {
             opacity: 1,
             transform: 'translateY(0)',
         },
-        '&.exit .box': {
+        '&.exit': {
             opacity: 0,
             transform: 'translateY(-2rem)',
         },
@@ -110,15 +113,12 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
     box: {
         position: 'relative',
-        transform: 'translateY(0)',
         maxHeight: theme.rem(35),
         padding: theme.rem(0.4, 0),
         background: theme.palette.white,
         borderRadius: theme.radius,
         border: theme.border(0.1, theme.palette.gray[3]),
         overflowY: 'auto',
-        transition: theme.transitions[0],
-        opacity: 1,
     },
     item: {
         cursor: 'pointer',
@@ -137,14 +137,14 @@ const useStyles = createUseStyles((theme: Theme) => ({
             color: theme.palette.black[0],
             fontSize: theme.rem(1.4),
 
-            '@media (max-width: 768px)': {
+            ...theme.media(768).max({
                 fontSize: theme.rem(1.6),
-            },
+            }),
 
-            '&:hover': {
+            ...theme.hover({
                 background: theme.palette.primary[0],
                 color: theme.palette.trueWhite,
-            },
+            }),
         },
     },
     itemEmpty: {
@@ -159,14 +159,14 @@ const useStyles = createUseStyles((theme: Theme) => ({
         color: theme.palette.black[0],
         fontSize: theme.rem(1.4),
 
-        '@media (max-width: 768px)': {
+        ...theme.media(768).max({
             fontSize: theme.rem(1.6),
-        },
+        }),
 
-        '&:hover': {
+        ...theme.hover({
             background: theme.palette.primary[0],
             color: theme.palette.trueWhite,
-        },
+        }),
     },
     white: {
         background: theme.palette.trueWhite,
@@ -177,6 +177,8 @@ const useStyles = createUseStyles((theme: Theme) => ({
 }));
 
 interface Props {
+    icon?: IconProp;
+    className?: string;
     height?: number;
     data: IDropList[];
     defaultValue?: IDropValue | IDropList | null;
@@ -191,6 +193,8 @@ interface Props {
 
 const DropDown = ({
     height = 6,
+    className,
+    icon,
     data,
     onChange,
     defaultValue,
@@ -214,6 +218,8 @@ const DropDown = ({
     }, [defaultValue, placeholder]);
 
     const handleClick = (event: MouseEvent<HTMLParagraphElement>): void => {
+        event.stopPropagation();
+
         if (media) {
             setTop(document.body.clientHeight / event.currentTarget.getBoundingClientRect().top < 1.6);
             setDrop(!drop);
@@ -261,7 +267,7 @@ const DropDown = ({
     }, [drop, closeOnScroll]);
 
     return (
-        <div className={css.wrp} tabIndex={-1} onBlur={handleBlur}>
+        <div className={clsx(css.wrp, className)} tabIndex={-1} onBlur={handleBlur}>
             <p
                 className={clsx(
                     css.inner,
@@ -271,22 +277,28 @@ const DropDown = ({
                 )}
                 style={{ height: height + 'rem' }}
                 onClick={handleClick}
-                aria-hidden
+                aria-hidden={true}
             >
-                {drop ? (
-                    <span className={css.icon}>
-                        <FontAwesomeIcon icon={faChevronUp} />
-                    </span>
+                {icon ? (
+                    <FontAwesomeIcon icon={icon} />
                 ) : (
-                    <span className={css.icon}>
-                        <FontAwesomeIcon icon={faChevronDown} />
-                    </span>
-                )}
-                <span className={css.text}>{selected}</span>
-                {placeholder && selected !== placeholder && (
-                    <span className={css.reset} onClick={handleReset} aria-hidden>
-                        <FontAwesomeIcon icon={faTimes} />
-                    </span>
+                    <>
+                        {drop ? (
+                            <span className={css.icon}>
+                                <FontAwesomeIcon icon={faChevronUp} />
+                            </span>
+                        ) : (
+                            <span className={css.icon}>
+                                <FontAwesomeIcon icon={faChevronDown} />
+                            </span>
+                        )}
+                        <span className={css.text}>{selected}</span>
+                        {placeholder && selected !== placeholder && (
+                            <span className={css.reset} onClick={handleReset} aria-hidden={true}>
+                                <FontAwesomeIcon icon={faTimes} />
+                            </span>
+                        )}
+                    </>
                 )}
             </p>
 

@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import React, { ReactElement } from 'react';
+import React, { CSSProperties, ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
 import { Theme } from '../../../assets/theme';
@@ -10,9 +10,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
         marginTop: theme.rem(2),
         marginLeft: theme.rem(-1.4),
 
-        '@media (max-width: 768px)': {
+        ...theme.media(768).max({
             marginTop: theme.rem(1),
-        },
+        }),
     },
     center: {
         justifyContent: 'center',
@@ -22,9 +22,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
         fontSize: theme.rem(1.4),
         fontWeight: theme.text.weight[3],
 
-        '@media (max-width: 768px)': {
+        ...theme.media(768).max({
             fontSize: theme.rem(1.6),
-        },
+        }),
     },
     link: {
         display: 'flex',
@@ -36,15 +36,15 @@ const useStyles = createUseStyles((theme: Theme) => ({
         transition: theme.transitions[0],
         fill: theme.palette.black[0],
 
-        '&:hover': {
+        ...theme.hover({
             transform: 'translateY(-0.2rem)',
             fill: theme.palette.primary[0],
-        },
+        }),
 
-        '@media (max-width: 768px)': {
+        ...theme.media(768).max({
             height: theme.rem(6),
             width: theme.rem(6),
-        },
+        }),
     },
     margin: {
         margin: 0,
@@ -54,21 +54,22 @@ const useStyles = createUseStyles((theme: Theme) => ({
         width: theme.rem(1.8),
         fill: 'inherit',
 
-        '@media (max-width: 768px)': {
+        ...theme.media(768).max({
             height: theme.rem(2),
             width: theme.rem(2),
-        },
+        }),
     },
 }));
 
 interface IProps {
     center?: boolean;
+    style?: CSSProperties;
 }
 
-const Socials = ({ center = false }: IProps): ReactElement => {
+const Socials = ({ center = false, style = {} }: IProps): ReactElement => {
     const css = useStyles();
     return (
-        <div>
+        <div style={style}>
             <h3 className={css.title}>Социальные сети:</h3>
             <ul className={clsx(css.list, center && css.center)}>
                 <li>

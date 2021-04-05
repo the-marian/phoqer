@@ -1,10 +1,11 @@
 import { HYDRATE } from 'next-redux-wrapper';
 
 import { IOfferCard, IOfferStatic, IState } from '../../../interfaces';
+import initState from '../../state';
 import types from '../../types';
 import IAction from './interfaces';
 
-const popular = (state: IOfferStatic = { data: [], loading: true }, { type, payload }: IAction): IOfferStatic => {
+const popular = (state: IOfferStatic = initState.offers.popular, { type, payload }: IAction): IOfferStatic => {
     switch (type) {
         case HYDRATE:
             return (payload as IState).offers.popular;
@@ -21,7 +22,7 @@ const popular = (state: IOfferStatic = { data: [], loading: true }, { type, payl
         case types.PATCH_FAVORITE_OFFERS_SUCCESS:
             return state.data.length
                 ? {
-                      data: state.data.map(item =>
+                      data: state.data.map<IOfferCard>(item =>
                           item.id === (payload as string) ? { ...item, is_favorite: !item.is_favorite } : item,
                       ),
                       loading: false,

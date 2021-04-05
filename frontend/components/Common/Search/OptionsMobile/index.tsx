@@ -1,3 +1,5 @@
+import { faCompass } from '@fortawesome/free-regular-svg-icons/faCompass';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 import { useSelector } from 'react-redux';
@@ -8,22 +10,21 @@ import useTrans from '../../../../hooks/trans.hook';
 import { ICategories, IDropValue, IState } from '../../../../interfaces';
 import DropDown from '../../DropDown';
 import { modal } from '../../Modal';
-import RegionModal from '../../RegionModal';
+import RegionModal from '../../Modal/RegionModal';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     root: {
         display: 'flex',
         alignItems: 'center',
 
-        '@media (max-width: 1100px)': {
+        ...theme.media(1100).max({
             justifyContent: 'space-between',
             width: '66%',
-        },
-
-        '@media (max-width: 550px)': {
+        }),
+        ...theme.media(550).max({
             justifyContent: 'space-between',
             width: '100%',
-        },
+        }),
     },
     location: {
         display: 'flex',
@@ -31,23 +32,33 @@ const useStyles = createUseStyles((theme: Theme) => ({
         height: theme.rem(6),
         width: '48%',
         padding: theme.rem(2),
-        fontSize: theme.rem(1.4),
+        fontSize: theme.rem(1.6),
+        color: theme.palette.primary[0],
         background: theme.palette.gray[1],
         borderRadius: theme.radius,
         border: 'none',
-        color: theme.palette.primary[0],
 
         '& span': {
             width: theme.rem(20),
+            fontSize: theme.rem(1.4),
+            color: theme.palette.black[0],
             marginLeft: theme.rem(1),
             whiteSpace: 'nowrap',
             overflow: 'hidden',
             textOverflow: 'ellipsis',
+
+            ...theme.media(450).max({
+                width: theme.rem(15),
+            }),
+
+            ...theme.media(350).max({
+                width: theme.rem(12),
+            }),
         },
 
-        '@media (max-width: 768px)': {
+        ...theme.media(768).max({
             fontSize: theme.rem(1.6),
-        },
+        }),
     },
     icon: {
         width: theme.rem(2.4),
@@ -77,7 +88,7 @@ const OptionsMobile = ({ onChange }: IProps): ReactElement => {
                 <DropDown data={categories} placeholder={T.select_category} onChange={onChange} height={6} withSub />
             </div>
             <button type="button" className={css.location} onClick={handleRegionModal}>
-                <img className={css.icon} src="/emoji/map.png" alt="" />
+                <FontAwesomeIcon icon={faCompass} />
                 <span>
                     Киев, Киевская область Киев, Киевская область Киев, Киевская область Киевская область Киев, Киевская область
                 </span>

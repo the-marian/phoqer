@@ -183,3 +183,36 @@ def test_get_my_offers(client, auth_token):
         ],
         "total": 20,
     }
+
+
+def test_change_status(client, auth_token):
+    data = {"status": "REVIEW"}
+    response = client.patch(
+        "offers/status/a9795a7d-67ac-4e63-bdd2-cecc1ce8a5df",
+        json=data,
+        headers=auth_token,
+    )
+    assert response.status_code == status.HTTP_500_INTERNAL_SERVER_ERROR
+    assert response.json() == [
+        {
+            "loc": ["cover_image"],
+            "msg": "none is not an allowed value",
+            "type": "type_error.none.not_allowed",
+        },
+        {
+            "loc": ["currency"],
+            "msg": "none is not an allowed value",
+            "type": "type_error.none.not_allowed",
+        },
+        {
+            "loc": ["deposit_val"],
+            "msg": "none is not an allowed value",
+            "type": "type_error.none.not_allowed",
+        },
+        {"loc": ["category_id"], "msg": "field required", "type": "value_error.missing"},
+        {
+            "loc": ["sub_category_id"],
+            "msg": "field required",
+            "type": "value_error.missing",
+        },
+    ]

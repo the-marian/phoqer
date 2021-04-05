@@ -13,19 +13,19 @@ const useStyles = createUseStyles((theme: Theme) => ({
         display: 'grid',
         gridTemplateColumns: theme.fr(7),
         gridGap: theme.rem(4, 3),
-        '@media (max-width: 1200px)': {
+        ...theme.media(1200).max({
             gridTemplateColumns: theme.fr(5),
-        },
-        '@media (max-width: 1000px)': {
+        }),
+        ...theme.media(1000).max({
             gridTemplateColumns: theme.fr(4),
-        },
-        '@media (max-width: 780px)': {
+        }),
+        ...theme.media(780).max({
             gridTemplateColumns: theme.fr(3),
-        },
-        '@media (max-width: 550px)': {
+        }),
+        ...theme.media(550).max({
             gridTemplateColumns: theme.fr(2),
             gridGap: theme.rem(2, 1.5),
-        },
+        }),
     },
     cat: {
         width: '100%',

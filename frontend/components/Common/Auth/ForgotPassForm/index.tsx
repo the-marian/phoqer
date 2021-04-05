@@ -18,9 +18,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
         color: theme.palette.black[0],
         textAlign: 'center',
 
-        '@media (max-width: 500px)': {
+        ...theme.media(500).max({
             fontSize: theme.rem(2.4),
-        },
+        }),
     },
     wrp: {
         position: 'relative',
@@ -31,9 +31,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
         padding: theme.rem(1, 2),
         background: theme.palette.gray[1],
 
-        '@media (max-width: 500px)': {
+        ...theme.media(500).max({
             fontSize: theme.rem(1.6),
-        },
+        }),
     },
     icon: {
         position: 'absolute',
@@ -49,30 +49,22 @@ const useStyles = createUseStyles((theme: Theme) => ({
         fontSize: theme.rem(1.4),
         color: theme.palette.primary[0],
 
-        '&:hover': {
+        ...theme.hover({
             textDecoration: 'underline',
-        },
+        }),
 
-        '@media (max-width: 500px)': {
+        ...theme.media(500).max({
             fontSize: theme.rem(1.6),
-        },
+        }),
     },
     btn: {
-        display: 'block',
+        ...template(theme).btn,
         minWidth: theme.rem(20),
         margin: '3rem auto 5rem',
-        padding: theme.rem(1.5, 2),
-        fontWeight: theme.text.weight[4],
-        textAlign: 'center',
-        fontSize: theme.rem(1.4),
-        borderRadius: theme.radius,
-        background: theme.palette.primary[0],
-        color: theme.palette.trueWhite,
 
-        '@media (max-width: 500px)': {
+        ...theme.media(500).max({
             margin: '1rem auto 3rem',
-            padding: theme.rem(2),
-        },
+        }),
     },
     text: {
         padding: theme.rem(1, 0),
@@ -80,9 +72,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
         textAlign: 'center',
         color: theme.palette.black[0],
 
-        '@media (max-width: 500px)': {
+        ...theme.media(500).max({
             fontSize: theme.rem(1.4),
-        },
+        }),
     },
 }));
 
@@ -132,7 +124,7 @@ const ForgotPassForm = (): ReactElement => {
                     className={css.input}
                     errors={error}
                     autoComplete="email"
-                    errorsPlaceholder
+                    errorsInPlaceholder
                 />
             </div>
 

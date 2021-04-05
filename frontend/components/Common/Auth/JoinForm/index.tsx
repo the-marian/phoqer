@@ -1,6 +1,3 @@
-import { faEye } from '@fortawesome/free-regular-svg-icons/faEye';
-import { faEyeSlash } from '@fortawesome/free-regular-svg-icons/faEyeSlash';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { ChangeEvent, FormEvent, MouseEvent, ReactElement, useState } from 'react';
 import { createUseStyles } from 'react-jss';
 import { useDispatch } from 'react-redux';
@@ -20,9 +17,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
         color: theme.palette.black[0],
         textAlign: 'center',
 
-        '@media (max-width: 500px)': {
+        ...theme.media(500).max({
             fontSize: theme.rem(2.4),
-        },
+        }),
     },
     wrp: {
         display: 'block',
@@ -39,9 +36,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
         fontWeight: theme.text.weight[3],
         color: theme.palette.black[0],
 
-        '@media (max-width: 500px)': {
+        ...theme.media(500).max({
             fontSize: theme.rem(1.6),
-        },
+        }),
     },
     input: {
         background: theme.palette.gray[1],
@@ -80,10 +77,10 @@ const useStyles = createUseStyles((theme: Theme) => ({
         background: theme.palette.primary[0],
         color: theme.palette.trueWhite,
 
-        '@media (max-width: 500px)': {
+        ...theme.media(500).max({
             margin: '5rem auto 3rem',
             padding: theme.rem(2),
-        },
+        }),
     },
     text: {
         marginBottom: theme.rem(1),
@@ -92,9 +89,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
         color: theme.palette.black[0],
         textAlign: 'center',
 
-        '@media (max-width: 500px)': {
+        ...theme.media(500).max({
             marginBottom: theme.rem(2),
-        },
+        }),
     },
     svg: {
         height: theme.rem(2),
@@ -129,7 +126,6 @@ const JoinForm = (): ReactElement => {
     const css = useStyles();
     const dispatch = useDispatch();
     const [loading, setLoading] = useState(false);
-    const [password, setPassword] = useState(true);
 
     const [errors, setErrors] = useState<IError>(INIT);
     const [value, setValue] = useState<ISignup>(INIT);
@@ -139,17 +135,13 @@ const JoinForm = (): ReactElement => {
         setErrors(INIT);
     };
 
-    const handleClick = () => {
-        setPassword(!password);
-    };
-
     const handleSubmit = (event: FormEvent<HTMLFormElement> | MouseEvent<HTMLButtonElement>) => {
         event.preventDefault();
 
         // Empty
         const empty: [string, string][] = isEmpty<ISignup>(value);
         if (empty.length) {
-            const newErrors: IError = empty.reduce(
+            const newErrors: IError = empty.reduce<IError>(
                 (acc: IError, item): IError => ({ ...acc, [item[0]]: 'This is required field' }),
                 {},
             );
@@ -190,7 +182,7 @@ const JoinForm = (): ReactElement => {
                     placeholder="first name"
                     className={css.input}
                     autoComplete="given-name"
-                    errorsPlaceholder
+                    errorsInPlaceholder
                 />
             </label>
 
@@ -205,7 +197,7 @@ const JoinForm = (): ReactElement => {
                     placeholder="last name"
                     autoComplete="family-name"
                     className={css.input}
-                    errorsPlaceholder
+                    errorsInPlaceholder
                 />
             </label>
 
@@ -220,7 +212,7 @@ const JoinForm = (): ReactElement => {
                     autoComplete="email"
                     placeholder="email"
                     className={css.input}
-                    errorsPlaceholder
+                    errorsInPlaceholder
                 />
             </label>
 
@@ -236,19 +228,16 @@ const JoinForm = (): ReactElement => {
                 </p>
 
                 <div className={css.inner}>
-                    <button className={css.eye} onClick={handleClick} type="button">
-                        {password ? <FontAwesomeIcon icon={faEyeSlash} /> : <FontAwesomeIcon icon={faEye} />}
-                    </button>
                     <Input
                         value={value.password}
                         errors={errors.password}
                         onChange={handleChange}
-                        type={password ? 'password' : 'text'}
+                        type="password"
                         name="password"
                         placeholder="password"
                         autoComplete="current-password"
                         className={css.input}
-                        errorsPlaceholder
+                        errorsInPlaceholder
                     />
                 </div>
             </label>

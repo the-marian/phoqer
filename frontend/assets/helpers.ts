@@ -1,6 +1,8 @@
+import cookie from 'cookie';
 import { GetServerSidePropsContext } from 'next';
 
 import { IAuth, ICategories, IDropList, IDropValue } from '../interfaces';
+import months from './months';
 import routes from './routes';
 
 /**
@@ -14,7 +16,8 @@ import routes from './routes';
  * 5. Site related helpers
  * ├─ 5.1 Production logs
  * ├─ 5.2 Transform category list for dropdowns
- * └─ 5.3 SSR Auth helpers
+ * ├─ 5.3 SSR Auth helpers
+ * └─ 5.4 Online indicator
  */
 
 // ----------------------------------------------
@@ -22,7 +25,7 @@ import routes from './routes';
 //  1. Validation
 // ----------------------------------------------
 // validation regex
-export const mailRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+export const mailRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 export const passwordRegex = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[_#?!@$%^&*-]).{6,}$/;
 // check if string is valid number
 export const numberValidation = (text: string): boolean => {
@@ -46,7 +49,7 @@ export const moneyFormat = (value: number | string = 0, separator = ' '): string
     return String(value)
         .split('')
         .reverse()
-        .map((item, index): string => (index % 3 ? item : item + separator))
+        .map<string>((item, index): string => (index % 3 ? item : item + separator))
         .reverse()
         .join('')
         .trim();
@@ -62,27 +65,28 @@ export const declOfNum = (number: number, titles: string[]): string => {
 //  2. Value formatting
 //  └─ 2.2 Date formatting
 // ----------------------------------------------
+// date from string
+export const dateFromTimestamp = (value?: string | number | null | Date): Date | null => {
+    try {
+        if (!value) throw new Error();
+        const date = new Date(value);
+        if (!date.getDate()) throw new Error(); // for invalid date
+        return date;
+    } catch (error) {
+        return null;
+    }
+};
+
 // format date string from timestamp or valid date string.
 // 'Fri Mar 12 2021 10:51:16 GMT+0200 (Eastern European Standard Time)' => 12-03-2021 10:51
 // 'Fri Mar 12 2021 10:51:16 GMT+0200 (Eastern European Standard Time)' => 12 March 2021 10:51
 // @param {string[]} month array with translated months
-export const formatTimestamp = (value?: string | number, month?: string[]): string => {
-    try {
-        if (!value) throw new Error();
-
-        const date = new Date(value);
-        if (!date.getDate()) throw new Error(); // for invalid date
-
-        return month
-            ? `${month[date.getMonth()]} ${addZeroToNumber(date.getDate())}, ${date.getFullYear()} ${addZeroToNumber(
-                  date.getHours(),
-              )}:${addZeroToNumber(date.getMinutes())}`
-            : `${addZeroToNumber(date.getDate())}-${addZeroToNumber(date.getMonth() + 1)}-${date.getFullYear()} ${addZeroToNumber(
-                  date.getHours(),
-              )}:${addZeroToNumber(date.getMinutes())}`;
-    } catch (error) {
-        return ' - ';
-    }
+export const formatTimestamp = (value?: string | number | Date | null, locale = 'ru'): string => {
+    const date = dateFromTimestamp(value);
+    if (!date) return ' - ';
+    return `${months[locale][date.getMonth()]} ${addZeroToNumber(date.getDate())}, ${date.getFullYear()} ${addZeroToNumber(
+        date.getHours(),
+    )}:${addZeroToNumber(date.getMinutes())}`;
 };
 
 // ----------------------------------------------
@@ -108,19 +112,10 @@ export const throttle = (func: IFunction, time = 0): IFunction => {
 // ----------------------------------------------
 //  4. Work with cookies
 // ----------------------------------------------
-// Decode data from cookies
-export const decode = (cookie = ''): string => decodeURI(cookie).replace(/\\"/gi, '');
 // Parse cookie on server. Generate valid js object from cookies string
-export const parseCookie = <T>(cookie = '', key = 'phoqer_auth', parsed = false): T | null => {
+export const parseCookie = <T>(value = '', key = 'phoqer_auth', parsed = false): T | null => {
     try {
-        const obj = decode(cookie)
-            ?.split(' ')
-            ?.find(i => i.includes(key))
-            ?.replace(/\+/g, ' ')
-            ?.replace(/%2C/gi, ',')
-            ?.split(key + '=')[1];
-
-        return obj ? (parsed ? obj : JSON.parse(obj)) : null;
+        return parsed ? cookie.parse(value)[key] || null : JSON.parse(cookie.parse(value)[key]);
     } catch (error) {
         return null;
     }
@@ -133,7 +128,7 @@ export const parseCookie = <T>(cookie = '', key = 'phoqer_auth', parsed = false)
 // ----------------------------------------------
 // custom console log for site identity
 export const logger = (): void => {
-    // if (process.env.NODE_ENV === 'production') console.clear();
+    if (process.env.NODE_ENV === 'production' && process.browser) console.clear();
     console.log(
         '%c Phoqer %c v0.0.1 Made with love ...',
         'padding: 6px 15px; border-radius: 10px; background: #eee; text-transform: uppercase; color: #007aff; font-size: 1rem; font-weight: 600; font-family: Montserrat, sans-serif',
@@ -145,11 +140,11 @@ export const logger = (): void => {
 // ----------------------------------------------
 // ----------------------------------------------
 //  5. Site related helpers
-//  └─ 5.2 Work with ategories list
+//  └─ 5.2 Work with categories list
 // ----------------------------------------------
 // format category list from backend in relation to IDropList interface
 export const formatCatList = (data: ICategories[]): IDropList[] =>
-    data?.map(
+    data?.map<ICategories | IDropList>(
         (item: ICategories): IDropList =>
             item.sub_categories ? { name: item.name, slug: item.slug, sub: item.sub_categories } : item,
     );
@@ -189,4 +184,29 @@ export const serverRedirect = (ctx: GetServerSidePropsContext, path?: string | n
         ctx.res.setHeader('Location', path || routes.root);
     }
     return !!redirect;
+};
+// ----------------------------------------------
+// ----------------------------------------------
+//  5. Site related helpers
+//  └─ 5.4 Online indicator
+// ----------------------------------------------
+// generate user online status
+const FIVE_MINUTES_IN_MS = 300000;
+const HOUR_IN_MS = 3600000;
+interface IOnlineStatusParams {
+    initDate?: Date | string | number | null;
+    locale?: string;
+    isAuthor?: boolean;
+}
+export const onlineStatus = ({ initDate, locale = 'ru', isAuthor = false }: IOnlineStatusParams): string => {
+    const date = dateFromTimestamp(initDate);
+    if (!date) return ' - ';
+
+    const isOnline = (date && Date.now() - +date < FIVE_MINUTES_IN_MS) || isAuthor;
+
+    const dif = Date.now() - +date;
+    if (dif > HOUR_IN_MS) return formatTimestamp(date, locale);
+    const minutes = Math.floor(dif / 60000);
+
+    return isOnline ? 'online' : `${minutes} ${declOfNum(minutes, ['минуту', 'минуты', 'минут'])} назад`;
 };

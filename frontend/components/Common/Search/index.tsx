@@ -1,8 +1,9 @@
 import { faSearch } from '@fortawesome/free-solid-svg-icons/faSearch';
+import { faTimes } from '@fortawesome/free-solid-svg-icons/faTimes';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import clsx from 'clsx';
 import { useRouter } from 'next/router';
-import queryString from 'query-string';
-import React, { ChangeEvent, FormEvent, ReactElement, useEffect } from 'react';
+import React, { ChangeEvent, FormEvent, ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -10,7 +11,6 @@ import routes from '../../../assets/routes';
 import template from '../../../assets/template';
 import { Theme } from '../../../assets/theme';
 import useMedia from '../../../hooks/media.hook';
-import useShallowRouter from '../../../hooks/routing.hook';
 import useTrans from '../../../hooks/trans.hook';
 import { IDropValue, ISearch, IState } from '../../../interfaces';
 import types from '../../../redux/types';
@@ -25,9 +25,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
         justifyContent: 'space-between',
         alignItems: 'center',
 
-        '@media (max-width: 1100px)': {
+        ...theme.media(1100).max({
             display: 'block',
-        },
+        }),
     },
     form: {
         width: '100%',
@@ -45,9 +45,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
         border: 'none',
         ...template(theme).outline,
 
-        '@media (max-width: 768px)': {
+        ...theme.media(768).max({
             fontSize: theme.rem(1.6),
-        },
+        }),
     },
     input: {
         display: 'block',
@@ -59,22 +59,16 @@ const useStyles = createUseStyles((theme: Theme) => ({
         color: theme.palette.black[0],
     },
     btn: {
-        height: theme.rem(6),
+        ...template(theme).btn,
         width: '100%',
-        background: theme.palette.primary[0],
-        fontSize: theme.rem(1.6),
-        color: theme.palette.trueWhite,
-        borderRadius: theme.radius,
-        ...template(theme).outline,
 
-        '@media (max-width: 1100px)': {
+        ...theme.media(1100).max({
             width: '31%',
-        },
-
-        '@media (max-width: 550px)': {
+        }),
+        ...theme.media(550).max({
             width: '100%',
             margin: theme.rem(2, 0),
-        },
+        }),
     },
     icon: {
         fontSize: theme.rem(1.4),
@@ -90,25 +84,32 @@ const useStyles = createUseStyles((theme: Theme) => ({
         fontSize: theme.rem(1.6),
         fontWeight: theme.text.weight[3],
         color: theme.palette.primary[0],
-        '&:hover': {
+        ...theme.hover({
             textDecoration: 'underline',
-        },
+        }),
     },
     mobile: {
         width: theme.rem(30),
         marginLeft: theme.rem(2),
 
-        '@media (max-width: 1100px)': {
+        ...theme.media(1100).max({
             display: 'flex',
             justifyContent: 'space-between',
             width: '100%',
             margin: theme.rem(3, 0),
-        },
-
-        '@media (max-width: 550px)': {
+        }),
+        ...theme.media(550).max({
             margin: theme.rem(2, 0),
             flexDirection: 'column',
-        },
+        }),
+    },
+    reset: {
+        fontSize: theme.rem(1.1),
+        padding: theme.rem(2),
+    },
+    resetHidden: {
+        opacity: 0,
+        visibility: 'hidden',
     },
 }));
 
@@ -121,52 +122,38 @@ const Search = ({ shallow = false }: IProps): ReactElement => {
     const css = useStyles();
     const history = useRouter();
     const dispatch = useDispatch();
-    const shallowPush = useShallowRouter();
     const desktop = useMedia(1100);
 
-    const searchConfig = useSelector<IState, ISearch>(state => state.config.search);
-    const loading = useSelector<IState, boolean>(state => state.offers.search.loading);
-
-    // init page
-    useEffect(() => {
-        const { search, category, sub_category } = history.query;
-        dispatch({
-            type: types.OFFERS_SEARCH,
-            payload: { ...searchConfig, search, category, sub_category },
-        });
-    }, [history.query]);
+    const search = useSelector<IState, ISearch>(state => state.config.search);
+    const { pagination } = useSelector<IState, { loading: boolean; pagination: boolean }>(state => state.offers.search);
 
     const handleChange = (value: IDropValue | null): void => {
-        shallowPush({
-            ...searchConfig,
-            category: value?.type === 'main' ? value?.slug : null,
-            sub_category: value?.type === 'sub' ? value?.slug : null,
+        dispatch({
+            type: types.OFFERS_SEARCH,
+            payload: {
+                ...search,
+                category: value?.type === 'main' ? value?.slug : null,
+                sub_category: value?.type === 'sub' ? value?.slug : null,
+            },
         });
     };
+
     const handleInput = (event: ChangeEvent<HTMLInputElement>): void => {
-        dispatch({ type: types.OFFERS_SEARCH, payload: { ...searchConfig, search: event.target.value || null } });
+        dispatch({ type: types.OFFERS_SEARCH, payload: { ...search, search: event.target.value || null } });
+    };
+    const handleReset = (): void => {
+        dispatch({ type: types.OFFERS_SEARCH, payload: { ...search, search: null } });
     };
 
     const handleSubmit = (event: FormEvent<HTMLFormElement>): void => {
         event.preventDefault();
 
-        if (!shallow || searchConfig.search !== history.query.search)
-            history.push(
-                {
-                    pathname: routes.offers.list,
-                    query: queryString.stringify(searchConfig, {
-                        skipNull: true,
-                    }),
-                },
-                undefined,
-                { shallow },
-            );
-
         if (shallow) {
-            shallowPush(searchConfig);
-            dispatch({ type: types.SEARCH_OFFERS_START, payload: searchConfig });
-            if (searchConfig.search?.trim())
-                window.scrollTo({ top: document.getElementById('products')?.offsetTop || 0, behavior: 'smooth' });
+            dispatch({ type: types.SEARCH_OFFERS_START, payload: search });
+            window.scrollTo({ top: document.getElementById('products')?.offsetTop || 0, behavior: 'smooth' });
+            history.push(routes.offers.list, undefined, { shallow: true });
+        } else {
+            history.push(routes.offers.list);
         }
     };
 
@@ -183,23 +170,30 @@ const Search = ({ shallow = false }: IProps): ReactElement => {
             <div className={css.wrp}>
                 <div className={css.form}>
                     <div className={css.search}>
-                        <span className={css.icon}>
+                        <button type="submit" className={css.icon}>
                             <FontAwesomeIcon icon={faSearch} />
-                        </span>
+                        </button>
                         <input
-                            value={searchConfig.search || ''}
+                            value={search.search || ''}
                             onChange={handleInput}
                             className={css.input}
                             type="text"
                             placeholder={T.what_are_you_looking_for}
                         />
+                        <button
+                            className={clsx(css.reset, !search.search && css.resetHidden)}
+                            type="button"
+                            onClick={handleReset}
+                        >
+                            <FontAwesomeIcon icon={faTimes} />
+                        </button>
                         {desktop && <OptionsDesktop onChange={handleChange} />}
                     </div>
                 </div>
 
                 <div className={css.mobile}>
                     {!desktop && <OptionsMobile onChange={handleChange} />}
-                    <Button loading={loading && shallow} type="submit" className={css.btn}>
+                    <Button loading={pagination} type="submit" className={css.btn}>
                         {T.find}
                     </Button>
                 </div>

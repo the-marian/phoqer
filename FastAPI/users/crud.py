@@ -71,7 +71,7 @@ async def get_user(user_id: int) -> Mapping:
         email,
         first_name,
         id,
-        last_login,
+        last_login AS last_activity,
         last_name,
         location,
         profile_img
@@ -87,7 +87,7 @@ async def get_short_user(user_id: int) -> Mapping:
         date_joined,
         first_name,
         id,
-        last_login,
+        last_login AS last_activity,
         last_name,
         location,
         profile_img
