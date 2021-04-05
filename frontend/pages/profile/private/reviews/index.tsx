@@ -5,7 +5,7 @@ import { createUseStyles } from 'react-jss';
 import { serverRedirect } from '../../../../assets/helpers';
 import { Theme } from '../../../../assets/theme';
 import Container from '../../../../components/Common/Container';
-import ProfileNav from '../../../../components/Common/NavTabs/ProfileNav';
+import ProfileNav from '../../../../components/Common/NavTabs/Profile/RootNav';
 import AuthRedirect from '../../../../components/HOC/Auth/AuthRedirect';
 import Meta from '../../../../components/Shared/Meta';
 import PageLayout from '../../../../components/Shared/PageLayout';

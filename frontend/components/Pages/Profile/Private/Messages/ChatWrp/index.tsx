@@ -85,7 +85,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
             minWidth: 'unset',
             maxWidth: 'unset',
             width: '100%',
-            paddingRight: '0',
+            padding: theme.rem(0, 1.5),
         }),
     },
     inner: {

@@ -4,7 +4,7 @@ import { createUseStyles } from 'react-jss';
 
 import { serverRedirect } from '../../../../../assets/helpers';
 import { Theme } from '../../../../../assets/theme';
-import ProfileChatNav from '../../../../../components/Common/NavTabs/ProfileChatNav';
+import ProfileChatNav from '../../../../../components/Common/NavTabs/Profile/ChatNav';
 import AuthRedirect from '../../../../../components/HOC/Auth/AuthRedirect';
 import Conversation from '../../../../../components/Pages/Profile/Private/Messages/ChatConversation';
 import ChatWrp from '../../../../../components/Pages/Profile/Private/Messages/ChatWrp';

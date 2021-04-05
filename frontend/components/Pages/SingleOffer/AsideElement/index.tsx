@@ -10,7 +10,7 @@ import Price from '../Price';
 const useStyles = createUseStyles((theme: Theme) => ({
     aside: {
         position: 'relative',
-        width: theme.rem(40),
+        width: theme.rem(45),
         marginTop: theme.rem(1),
 
         ...theme.media(768).max({

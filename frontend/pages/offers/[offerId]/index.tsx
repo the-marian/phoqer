@@ -61,17 +61,14 @@ const useStyles = createUseStyles((theme: Theme) => ({
         }),
     },
     main: {
-        width: 'calc(100% - 40rem)',
-        marginRight: theme.rem(10),
+        width: 'calc(100% - 45rem)',
+        paddingRight: theme.rem(3),
         color: theme.palette.black[0],
 
-        ...theme.media(1300).max({
-            marginRight: theme.rem(4),
-        }),
         ...theme.media(768).max({
             width: '100%',
             marginBottom: theme.rem(6),
-            marginRight: '0',
+            paddingRight: '0',
         }),
     },
     subtitle: {
