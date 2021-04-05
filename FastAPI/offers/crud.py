@@ -127,6 +127,7 @@ async def create_offer_draft(offer: OfferDraftRequest, author_id: int) -> None:
         "max_rent_period": offer.max_rent_period,
         "min_rent_period": offer.min_rent_period,
         "sub_category_id": offer.sub_category,
+        "price": offer.price,
         "title": offer.title,
         "views": offer.views,
     }

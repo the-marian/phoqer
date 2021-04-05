@@ -1,4 +1,8 @@
+import pytest
 from fastapi import status
+from httpx import AsyncClient
+from ..crud import get_offer
+from ...main import app
 
 
 def test_get_offer(client):
@@ -63,7 +67,8 @@ def test_is_favorite_user_with_no_favorite(client):
     assert response.json()["is_favorite"] is False
 
 
-def test_create_offer_draft(client, auth_token):
+@pytest.mark.asyncio
+async def test_create_offer_draft(client, auth_token):
     post_data = {
         "category": "kitty",
         "city": "Kiev",
@@ -94,11 +99,11 @@ def test_create_offer_draft(client, auth_token):
         "title": "Iphone 12",
         "views": 0,
     }
-    response = client.post(
-        "offers",
-        json=post_data,
-        headers=auth_token,
-    )
+    async with AsyncClient(app=app, base_url="http://test") as ac:
+        response = await ac.post("offers", json=post_data, headers=auth_token)
+
+    db_response = await get_offer(response.json()["id"])
+    assert db_response.get("price") == 499
     assert response.status_code == status.HTTP_201_CREATED
     assert "id" in response.json()
     assert type(response.json()["id"]) is str
