@@ -1,4 +1,8 @@
+import pytest
 from fastapi import status
+from httpx import AsyncClient
+from FastAPI.offers.crud import get_offer
+from FastAPI.main import app
 
 
 def test_get_offer(client):
@@ -63,7 +67,8 @@ def test_is_favorite_user_with_no_favorite(client):
     assert response.json()["is_favorite"] is False
 
 
-def test_create_offer_draft(client):
+@pytest.mark.asyncio
+async def test_create_offer_draft(client, auth_token):
     post_data = {
         "category": "kitty",
         "city": "Kiev",
@@ -94,12 +99,14 @@ def test_create_offer_draft(client):
         "title": "Iphone 12",
         "views": 0,
     }
-    response = client.post(
-        "offers",
-        json=post_data,
-        headers={"Authorization": "Token 472df9e4e5f55a0bc2a2f1139e2ad49c5d76076a"},
-    )
-    assert response.status_code == status.HTTP_204_NO_CONTENT
+    async with AsyncClient(app=app, base_url="http://test") as ac:
+        response = await ac.post("offers", json=post_data, headers=auth_token)
+
+    db_response = await get_offer(response.json()["id"])
+    assert db_response.get("price") == 499
+    assert response.status_code == status.HTTP_201_CREATED
+    assert "id" in response.json()
+    assert type(response.json()["id"]) is str
 
 
 def test_create_offer_not_authed(client):

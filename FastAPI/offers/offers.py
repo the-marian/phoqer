@@ -213,12 +213,11 @@ async def get_offer(
     )
 
 
-@router.post("", status_code=204)
+@router.post("", status_code=201)
 async def create_offer(
     offer: OfferDraftRequest, author_id: int = Depends(get_current_user)
 ) -> Response:
-    await crud.create_offer_draft(offer, author_id)
-    return Response(status_code=204)
+    return {"id": await crud.create_offer_draft(offer, author_id)}
 
 
 @router.patch("/{offer_id}", status_code=204)

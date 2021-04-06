@@ -127,6 +127,7 @@ async def create_offer_draft(offer: OfferDraftRequest, author_id: int) -> None:
         "max_rent_period": offer.max_rent_period,
         "min_rent_period": offer.min_rent_period,
         "sub_category_id": offer.sub_category,
+        "price": offer.price,
         "title": offer.title,
         "views": offer.views,
     }
@@ -134,7 +135,7 @@ async def create_offer_draft(offer: OfferDraftRequest, author_id: int) -> None:
     images = offer.images
     if images and offer_id:
         await create_offer_images(images=images, offer_id=offer_id)
-    return None
+    return offer_id
 
 
 async def create_offer_images(images: List[HttpUrl], offer_id: str) -> None:
