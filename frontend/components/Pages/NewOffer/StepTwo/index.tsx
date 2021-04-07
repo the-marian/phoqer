@@ -159,7 +159,7 @@ const StepTwo = (): ReactElement => {
     return (
         <form className={css.form} onSubmit={handleSubmit}>
             <CheckYesNo value={value.doc_needed} onChange={handleDocs}>
-                Укажите нужно ли предоставить документы для оренды вашего товара
+                Укажите нужно ли предоставить документы в залог для оренды вашего товара
             </CheckYesNo>
 
             <div className={css.inner}>

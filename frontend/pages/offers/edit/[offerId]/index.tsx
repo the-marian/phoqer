@@ -13,10 +13,11 @@ import Container from '../../../../components/Common/Container';
 import Gift from '../../../../components/Common/Gift';
 import { modal } from '../../../../components/Common/Modal';
 import FullPageModal from '../../../../components/Common/Modal/FullPageModal';
-import AsideElement from '../../../../components/Pages/SingleOffer/AsideElement';
+import Meta from '../../../../components/Layout/Meta';
+import PageLayout from '../../../../components/Layout/PageLayout';
+import AsideElement from '../../../../components/Pages/Offers/Edit/AsideElement';
+import EditContentForm from '../../../../components/Pages/Offers/Edit/EditContentForm';
 import OfferSlider from '../../../../components/Pages/SingleOffer/Slider';
-import Meta from '../../../../components/Shared/Meta';
-import PageLayout from '../../../../components/Shared/PageLayout';
 import useAuth from '../../../../hooks/auth.hook';
 import { IOfferCard, IState, IStore } from '../../../../interfaces';
 import { wrapper } from '../../../../redux/store';
@@ -56,17 +57,14 @@ const useStyles = createUseStyles((theme: Theme) => ({
         }),
     },
     main: {
-        width: 'calc(100% - 40rem)',
-        marginRight: theme.rem(10),
+        width: 'calc(100% - 45rem)',
+        paddingRight: theme.rem(3),
         color: theme.palette.black[0],
 
-        ...theme.media(1300).max({
-            marginRight: theme.rem(4),
-        }),
         ...theme.media(768).max({
             width: '100%',
             marginBottom: theme.rem(6),
-            marginRight: '0',
+            paddingRight: '0',
         }),
     },
 }));
@@ -80,14 +78,14 @@ const SingleOfferPage = (): ReactElement | null => {
     const offer = useSelector<IState, IOfferCard | null>(state => state.offers.single);
 
     useEffect(() => {
-        if (offer?.author_id) {
+        if (offer?.author_id && auth?.id) {
             if (offer?.author_id !== auth?.id) {
                 history.push(routes.root);
                 return;
             }
             dispatch({ type: types.GET_PUBLIC_PROFILE_START, payload: offer.author_id });
         }
-    }, [offer]);
+    }, [offer, auth]);
 
     const handleModal = (): void => {
         modal.open(
@@ -138,7 +136,7 @@ const SingleOfferPage = (): ReactElement | null => {
 
                     <div className={css.flex}>
                         <div className={css.main}>
-                            <Gift />
+                            <EditContentForm />
                         </div>
 
                         <AsideElement />
@@ -152,6 +150,7 @@ const SingleOfferPage = (): ReactElement | null => {
 export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps(async ctx => {
     if (serverRedirect((ctx as unknown) as GetServerSidePropsContext)) return;
 
+    ctx?.store?.dispatch({ type: types.GET_CATEGORIES_START });
     ctx.store.dispatch({ type: types.GET_SINGLE_OFFER_START, payload: ctx.query?.offerId });
     ctx.store.dispatch(END);
     await (ctx.store as IStore)?.sagaTask?.toPromise();

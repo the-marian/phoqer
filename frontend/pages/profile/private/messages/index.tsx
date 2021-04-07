@@ -4,10 +4,10 @@ import { createUseStyles } from 'react-jss';
 
 import { serverRedirect } from '../../../../assets/helpers';
 import { Theme } from '../../../../assets/theme';
-import ProfileChatNav from '../../../../components/Common/NavTabs/ProfileChatNav';
+import ProfileChatNav from '../../../../components/Common/NavTabs/Profile/ChatNav';
 import AuthRedirect from '../../../../components/HOC/Auth/AuthRedirect';
+import Meta from '../../../../components/Layout/Meta';
 import ChatWrp from '../../../../components/Pages/Profile/Private/Messages/ChatWrp';
-import Meta from '../../../../components/Shared/Meta';
 import useMedia from '../../../../hooks/media.hook';
 import useTrans from '../../../../hooks/trans.hook';
 import { wrapper } from '../../../../redux/store';

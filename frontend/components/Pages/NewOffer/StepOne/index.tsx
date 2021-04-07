@@ -29,6 +29,7 @@ interface IError {
 }
 
 const notDone = (value: INewOffer, dispatch: Dispatch): void => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
     dispatch({ type: types.NEW_OFFER_FORM, payload: { ...value, isDone: { ...value.isDone, one: false } } });
 };
 
@@ -40,6 +41,10 @@ const StepThree = (): ReactElement => {
     const [errors, setErrors] = useState<IError>({});
     const init = useSelector<IState, INewOffer>(state => state.offers.new_offer);
     const [value, setValue] = useState<INewOffer>(init);
+
+    // categories
+    const data = useSelector<IState, ICategories[]>(state => state.categories);
+    const categories = helpers.formatCatList(data);
 
     // event handlers
     const handleDelivery = (is_deliverable: boolean): void => {
@@ -60,29 +65,22 @@ const StepThree = (): ReactElement => {
         setErrors({});
     };
 
-    // on complete
-    const data = useSelector<IState, ICategories[]>(state => state.categories);
-    const categories = helpers.formatCatList(data);
-
     const handleSubmit = (event: FormEvent): void => {
         event.preventDefault();
 
         if (!value.title.trim()) {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
             setErrors({ title: 'Это обязательное поле' });
             notDone(value, dispatch);
             return;
         }
 
         if (!value.category) {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
             setErrors({ category: 'Это обязательное поле' });
             notDone(value, dispatch);
             return;
         }
 
         if (!value.price && value.price !== 0) {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
             setErrors({ price: 'Это обязательное поле' });
             notDone(value, dispatch);
             return;

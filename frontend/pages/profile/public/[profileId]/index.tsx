@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import { END } from 'redux-saga';
 
 import { Theme } from '../../../../assets/theme';
-import Meta from '../../../../components/Shared/Meta';
+import Meta from '../../../../components/Layout/Meta';
 import ProfileCard from '../../../../components/Common/ProfileCard';
 import Container from '../../../../components/Common/Container';
 import ProfileInfo from '../../../../components/Pages/Profile/Public/ProfileInfo';
@@ -12,7 +12,7 @@ import useTrans from '../../../../hooks/trans.hook';
 import { IPublicProfile, IState, IStore } from '../../../../interfaces';
 import { wrapper } from '../../../../redux/store';
 import types from '../../../../redux/types';
-import PageLayout from "../../../../components/Shared/PageLayout";
+import PageLayout from "../../../../components/Layout/PageLayout";
 
 const useStyles = createUseStyles((theme: Theme) => ({
     wrp: {

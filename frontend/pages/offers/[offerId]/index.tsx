@@ -13,14 +13,14 @@ import Container from '../../../components/Common/Container';
 import Gift from '../../../components/Common/Gift';
 import { modal } from '../../../components/Common/Modal';
 import FullPageModal from '../../../components/Common/Modal/FullPageModal';
+import Meta from '../../../components/Layout/Meta';
+import PageLayout from '../../../components/Layout/PageLayout';
 import AsideElement from '../../../components/Pages/SingleOffer/AsideElement';
 import OfferHead from '../../../components/Pages/SingleOffer/OfferHead';
 import Price from '../../../components/Pages/SingleOffer/Price';
 import RelatedOffers from '../../../components/Pages/SingleOffer/RelatedOffers';
 import Requirements from '../../../components/Pages/SingleOffer/Requirements';
 import OfferSlider from '../../../components/Pages/SingleOffer/Slider';
-import Meta from '../../../components/Shared/Meta';
-import PageLayout from '../../../components/Shared/PageLayout';
 import useAuth from '../../../hooks/auth.hook';
 import useMedia from '../../../hooks/media.hook';
 import { IOfferCard, IState, IStore } from '../../../interfaces';
@@ -61,17 +61,14 @@ const useStyles = createUseStyles((theme: Theme) => ({
         }),
     },
     main: {
-        width: 'calc(100% - 40rem)',
-        marginRight: theme.rem(10),
+        width: 'calc(100% - 45rem)',
+        paddingRight: theme.rem(3),
         color: theme.palette.black[0],
 
-        ...theme.media(1300).max({
-            marginRight: theme.rem(4),
-        }),
         ...theme.media(768).max({
             width: '100%',
             marginBottom: theme.rem(6),
-            marginRight: '0',
+            paddingRight: '0',
         }),
     },
     subtitle: {

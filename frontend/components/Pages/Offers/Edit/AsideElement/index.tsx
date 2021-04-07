@@ -2,10 +2,10 @@ import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 import { useSelector } from 'react-redux';
 
-import { Theme } from '../../../../assets/theme';
-import { IPublicProfile, IState } from '../../../../interfaces';
-import ProfileCard from '../../../Common/ProfileCard';
-import Price from '../Price';
+import { Theme } from '../../../../../assets/theme';
+import { IPublicProfile, IState } from '../../../../../interfaces';
+import Gift from '../../../../Common/Gift';
+import ProfileCard from '../../../../Common/ProfileCard';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     aside: {
@@ -44,7 +44,7 @@ const AsideElement = (): ReactElement => {
                     userLocation={profile?.location}
                     registerDate={profile?.date_joined}
                 />
-                <Price />
+                <Gift style={{ margin: '2rem 0' }} />
             </div>
         </aside>
     );

@@ -142,7 +142,8 @@ export interface INewOffer {
     // step one
     title: string;
     price: number | null;
-    category: IDropValue | null;
+    category?: IDropValue | null;
+    sub_category?: IDropValue | null;
     is_deliverable: boolean;
     // step two
     doc_needed: boolean;

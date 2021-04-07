@@ -24,7 +24,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         height: theme.rem(2.2),
         minWidth: theme.rem(2.2),
         marginRight: theme.rem(1.5),
-        border: theme.border(0.1, theme.palette.primary[0]),
+        border: theme.border(0.2, theme.palette.primary[0]),
         background: theme.palette.trueWhite,
         borderRadius: theme.radius,
         color: theme.palette.black[0],

@@ -10,7 +10,6 @@ function* getFavorite() {
         if (status < 200 || status >= 300) throw new Error();
         yield put({ type: types.GET_FAVORITE_OFFERS_SUCCESS, payload: data });
     } catch (error) {
-        console.log(error);
         if (error?.response?.status === 401) return;
         yield put({ type: types.GET_FAVORITE_OFFERS_ERROR });
     }
