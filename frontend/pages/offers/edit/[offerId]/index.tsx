@@ -13,11 +13,11 @@ import Container from '../../../../components/Common/Container';
 import Gift from '../../../../components/Common/Gift';
 import { modal } from '../../../../components/Common/Modal';
 import FullPageModal from '../../../../components/Common/Modal/FullPageModal';
+import Meta from '../../../../components/Layout/Meta';
+import PageLayout from '../../../../components/Layout/PageLayout';
+import AsideElement from '../../../../components/Pages/Offers/Edit/AsideElement';
 import EditContentForm from '../../../../components/Pages/Offers/Edit/EditContentForm';
-import AsideElement from '../../../../components/Pages/SingleOffer/AsideElement';
 import OfferSlider from '../../../../components/Pages/SingleOffer/Slider';
-import Meta from '../../../../components/Shared/Meta';
-import PageLayout from '../../../../components/Shared/PageLayout';
 import useAuth from '../../../../hooks/auth.hook';
 import { IOfferCard, IState, IStore } from '../../../../interfaces';
 import { wrapper } from '../../../../redux/store';
@@ -137,7 +137,6 @@ const SingleOfferPage = (): ReactElement | null => {
                     <div className={css.flex}>
                         <div className={css.main}>
                             <EditContentForm />
-                            <Gift />
                         </div>
 
                         <AsideElement />

@@ -12,8 +12,8 @@ import ProfileOffersNav from '../../../../components/Common/NavTabs/Profile/Offe
 import ProfileNav from '../../../../components/Common/NavTabs/Profile/RootNav';
 import OffersList from '../../../../components/Common/Offers/OffersList';
 import AuthRedirect from '../../../../components/HOC/Auth/AuthRedirect';
-import Meta from '../../../../components/Shared/Meta';
-import PageLayout from '../../../../components/Shared/PageLayout';
+import Meta from '../../../../components/Layout/Meta';
+import PageLayout from '../../../../components/Layout/PageLayout';
 import useTrans from '../../../../hooks/trans.hook';
 import { IOfferDynamic, IState } from '../../../../interfaces';
 import { wrapper } from '../../../../redux/store';

@@ -94,6 +94,10 @@ const useStyles = createUseStyles((theme: Theme) => ({
         pointerEvents: 'none',
         opacity: '0.4',
     },
+    submit: {
+        ...template(theme).btn,
+        background: theme.palette.green[0],
+    },
 }));
 
 const newOfferAdapter = (value: IOfferCard | null): INewOffer =>
@@ -330,6 +334,10 @@ const EditContentForm = (): ReactElement => {
             <p className={css.mark}>
                 <span className={css.red}>*</span> Обязательные поля
             </p>
+
+            <button className={css.submit} type="submit">
+                Опубликувать
+            </button>
         </form>
     );
 };
