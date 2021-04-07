@@ -8,6 +8,7 @@ import { createUseStyles } from 'react-jss';
 import ReactPaginate from 'react-paginate';
 
 import { Theme } from '../../../../assets/theme';
+import useMedia from '../../../../hooks/media.hook';
 import useShallowRouter from '../../../../hooks/routing.hook';
 import Button from '../../Button';
 
@@ -37,9 +38,10 @@ const useStyles = createUseStyles((theme: Theme) => ({
         transition: theme.transitions[0],
         cursor: 'pointer',
 
-        ...theme.media(500).max({
+        ...theme.media(768).max({
             margin: theme.rem(0.2),
-            padding: theme.rem(0.6),
+            padding: theme.rem(1.5, 3),
+            background: theme.palette.gray[1],
         }),
 
         ...theme.hover({ background: theme.palette.gray[1] }),
@@ -48,6 +50,8 @@ const useStyles = createUseStyles((theme: Theme) => ({
         background: theme.palette.primary[0],
         color: theme.palette.trueWhite,
         pointerEvents: 'none',
+
+        ...theme.hover({ background: theme.palette.primary[0] }),
     },
     nav: {
         display: 'block',
@@ -78,6 +82,10 @@ const useStyles = createUseStyles((theme: Theme) => ({
         fontSize: theme.rem(1.6),
         borderRadius: theme.radius,
 
+        ...theme.media(768).max({
+            minHeight: theme.rem(6),
+        }),
+
         '& span': {
             marginLeft: theme.rem(1),
         },
@@ -93,6 +101,7 @@ interface IProps {
 
 const Pagination = ({ total, onClick, onMore, loading }: IProps): ReactElement | null => {
     const css = useStyles();
+    const media = useMedia(768);
     const history = useRouter();
     const shallow = useShallowRouter();
     const init = +(history.query?.page || 1);
@@ -120,8 +129,8 @@ const Pagination = ({ total, onClick, onMore, loading }: IProps): ReactElement |
     return total > 1 ? (
         <div className={css.root}>
             <ReactPaginate
-                previousLabel={<FontAwesomeIcon icon={faChevronLeft} />}
-                nextLabel={<FontAwesomeIcon icon={faChevronRight} />}
+                previousLabel={media ? <FontAwesomeIcon icon={faChevronLeft} /> : null}
+                nextLabel={media ? <FontAwesomeIcon icon={faChevronRight} /> : null}
                 breakLabel="..."
                 forcePage={page - 1}
                 pageCount={total}

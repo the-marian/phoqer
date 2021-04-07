@@ -47,7 +47,7 @@ const config = {
             icon: faUser,
         },
         {
-            id: 'my-offers',
+            id: 'my-searchHiddenBlocks',
             text: T.my_offers,
             link: routes.profile.private.my_offers(),
             icon: faBullhorn,
@@ -75,7 +75,7 @@ const config = {
         {
             id: 'settings',
             text: T.settings,
-            link: routes.profile.private.settings,
+            link: routes.profile.private.settings(),
             icon: faSlidersH,
         },
         {
@@ -88,7 +88,7 @@ const config = {
     ],
     userProfileLinks: (T: { [key: string]: string }, count?: ITabsNum): ITabs[] => [
         {
-            id: 'my-offers',
+            id: 'my-searchHiddenBlocks',
             text: T.my_offers,
             link: routes.profile.private.my_offers(),
             icon: faBullhorn,
@@ -116,7 +116,7 @@ const config = {
         {
             id: 'settings',
             text: T.settings,
-            link: routes.profile.private.settings,
+            link: routes.profile.private.settings(),
             icon: faSlidersH,
         },
         {

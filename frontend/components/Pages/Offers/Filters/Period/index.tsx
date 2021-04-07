@@ -17,11 +17,11 @@ const Period = (): ReactElement => {
     const css = useStyles();
     const dispatch = useDispatch();
 
-    const search = useSelector<IState, ISearch>(state => state.config.search);
+    const search = useSelector<IState, ISearch>(state => state.config.searchParams);
     const defaultValue = search.period ? findCategory(FILTERS, search.period) : null;
 
     const handleChange = (value: IDropValue | null): void => {
-        dispatch({ type: types.OFFERS_SEARCH, payload: { ...search, period: value?.slug || null } });
+        dispatch({ type: types.OFFERS_SEARCH_LOCAL_PARAMS, payload: { ...search, period: value?.slug || null } });
     };
 
     return (

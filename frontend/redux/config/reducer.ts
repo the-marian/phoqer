@@ -1,13 +1,13 @@
 import { combineReducers } from 'redux';
 
 import drawer from './drawer/reducer';
-import offers from './offers/reducer';
-import search from './search/reducer';
+import searchHiddenBlocks from './searchHiddenBlocks/reducer';
+import searchParams from './searchParams/reducer';
 
 const config = combineReducers({
     drawer,
-    offers,
-    search,
+    searchHiddenBlocks,
+    searchParams,
 });
 
 export default config;

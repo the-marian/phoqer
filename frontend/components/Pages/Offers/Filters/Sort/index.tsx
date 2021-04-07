@@ -22,11 +22,11 @@ const Sort = (): ReactElement => {
     const css = useStyles();
     const dispatch = useDispatch();
 
-    const search = useSelector<IState, ISearch>(state => state.config.search);
+    const search = useSelector<IState, ISearch>(state => state.config.searchParams);
     const defaultValue = search.ordering ? findCategory(FILTERS, search.ordering) : null;
 
     const handleChange = (value: IDropValue | null): void => {
-        dispatch({ type: types.OFFERS_SEARCH, payload: { ...search, ordering: value?.slug || null } });
+        dispatch({ type: types.OFFERS_SEARCH_LOCAL_PARAMS, payload: { ...search, ordering: value?.slug || null } });
     };
 
     return (

@@ -169,7 +169,7 @@ const JoinForm = (): ReactElement => {
 
     return (
         <form action="#" method="post" onSubmit={handleSubmit}>
-            <h2 className={css.title}>Бобро пожаловать, засранец.</h2>
+            <h2 className={css.title}>Добро пожаловать!</h2>
 
             <label className={css.wrp}>
                 <p className={css.label}>First Name</p>

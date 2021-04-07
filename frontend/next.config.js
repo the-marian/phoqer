@@ -25,12 +25,17 @@ module.exports = {
             },
             {
                 source: '/profile/private/',
-                destination: '/profile/private/my-offers/all',
+                destination: '/profile/private/my-searchHiddenBlocks/all',
                 permanent: true,
             },
             {
-                source: '/profile/private/my-offers',
-                destination: '/profile/private/my-offers/all',
+                source: '/profile/private/my-searchHiddenBlocks',
+                destination: '/profile/private/my-searchHiddenBlocks/all',
+                permanent: true,
+            },
+            {
+                source: '/profile/private/settings/',
+                destination: '/profile/private/settings/general',
                 permanent: true,
             },
         ];

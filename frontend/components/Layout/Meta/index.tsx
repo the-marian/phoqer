@@ -40,7 +40,10 @@ const Meta = ({ title, description, keywords, icon, h1 = '' }: IProps): ReactEle
                 <meta name="description" content={description || T.site_desc} />
 
                 {/*Internal Meta Tags*/}
-                <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
+                <meta
+                    name="viewport"
+                    content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no, user-scalable=no, viewport-fit=cover"
+                />
                 <meta name="keywords" content={`${T.keywords} ${keywords || ''}`} />
                 <meta name="robots" content="index,follow" />
 

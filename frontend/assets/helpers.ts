@@ -44,7 +44,7 @@ export const isEmpty = <T>(value: T): [string, string][] =>
 // add zero to decimals. 2 => '02', 12 => '12'
 export const addZeroToNumber = (value: string | number): string => String(value).padStart(2, '0');
 // transform init value to string with separators. 1000000 => 1 000 000, 90 => 90
-export const moneyFormat = (value: number | string = 0, separator = ' '): string => {
+export const moneyFormat = (value: number | string = 0, separator = '   '): string => {
     if (!value) return '';
     return String(value)
         .split('')

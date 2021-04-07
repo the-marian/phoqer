@@ -1,8 +1,8 @@
+import { faTrashAlt } from '@fortawesome/free-regular-svg-icons/faTrashAlt';
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons/faChevronDown';
 import { faChevronUp } from '@fortawesome/free-solid-svg-icons/faChevronUp';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
 import React, { FormEvent, ReactElement, useState } from 'react';
 import { createUseStyles } from 'react-jss';
 import { useDispatch, useSelector } from 'react-redux';
@@ -11,8 +11,10 @@ import { CSSTransition } from 'react-transition-group';
 import routes from '../../../../assets/routes';
 import template from '../../../../assets/template';
 import { Theme } from '../../../../assets/theme';
+import useShallowRouter from '../../../../hooks/routing.hook';
 import { ISearch, IState } from '../../../../interfaces';
-import { IOffers } from '../../../../redux/config/offers/interfaces';
+import { IOffers } from '../../../../redux/config/searchHiddenBlocks/interfaces';
+import initState from '../../../../redux/state';
 import types from '../../../../redux/types';
 import Checkboxes from '../../../Common/Checkbox/Checkboxes';
 import Period from './Period';
@@ -143,12 +145,33 @@ const useStyles = createUseStyles((theme: Theme) => ({
             textDecoration: 'underline',
         }),
     },
+    btnWrp: {
+        display: 'flex',
+        flexWrap: 'wrap',
+        marginTop: theme.rem(3),
+    },
     btn: {
         ...template(theme).btn,
-        marginTop: theme.rem(3),
 
         ...theme.media(500).max({
-            fontSize: theme.rem(1.8),
+            width: '100%',
+            fontSize: theme.rem(1.6),
+        }),
+    },
+    reset: {
+        ...template(theme).btn,
+        marginRight: theme.rem(2),
+        background: theme.palette.gray[1],
+        color: theme.palette.black[0],
+
+        '& span': {
+            marginLeft: theme.rem(1),
+        },
+
+        ...theme.media(500).max({
+            width: '100%',
+            margin: theme.rem(0, 0, 2),
+            fontSize: theme.rem(1.6),
         }),
     },
 }));
@@ -168,13 +191,13 @@ interface ICheckbox {
 
 const Filters = (): ReactElement => {
     const css = useStyles();
-    const history = useRouter();
     const dispatch = useDispatch();
+    const shallowRouter = useShallowRouter();
 
     const [price, setPrice] = useState<[number, number]>([0, 200_000]);
 
-    const config = useSelector<IState, IOffers>(state => state.config.offers);
-    const search = useSelector<IState, ISearch>(state => state.config.search);
+    const config = useSelector<IState, IOffers>(state => state.config.searchHiddenBlocks);
+    const searchParams = useSelector<IState, ISearch>(state => state.config.searchParams);
 
     // hide elements
     const handleCloseFilters = () => {
@@ -185,16 +208,22 @@ const Filters = (): ReactElement => {
     };
 
     const handleCheckboxes = (value: ICheckbox): void => {
-        dispatch({ type: types.OFFERS_SEARCH, payload: { ...search, ...value } });
+        dispatch({ type: types.OFFERS_SEARCH_LOCAL_PARAMS, payload: { ...searchParams, ...value } });
+    };
+
+    const handleReset = (): void => {
+        shallowRouter(initState.config.searchParams);
+        dispatch({ type: types.OFFERS_SEARCH_LOCAL_PARAMS, payload: initState.config.searchParams });
+        dispatch({ type: types.SEARCH_OFFERS_START, payload: null });
     };
 
     // submit form
     const handleSubmit = (event: FormEvent<HTMLFormElement>): void => {
         event.preventDefault();
 
-        dispatch({ type: types.SEARCH_OFFERS_START, payload: search });
+        dispatch({ type: types.SEARCH_OFFERS_START, payload: searchParams });
         window.scrollTo({ top: document.getElementById('products')?.offsetTop || 0, behavior: 'smooth' });
-        history.push(routes.offers.list, undefined, { shallow: true });
+        shallowRouter(searchParams);
     };
 
     return (
@@ -227,14 +256,24 @@ const Filters = (): ReactElement => {
                         </div>
 
                         <Checkboxes
-                            values={{ top: search.top, no_deposit: search.no_deposit, is_deliverable: search.is_deliverable }}
+                            values={{
+                                top: searchParams.top,
+                                no_deposit: searchParams.no_deposit,
+                                is_deliverable: searchParams.is_deliverable,
+                            }}
                             labels={['Только ТОП объявления', 'Без залога', 'C доставкой']}
                             onChange={handleCheckboxes}
                         />
 
-                        <button className={css.btn} type="submit">
-                            Применить фильтры
-                        </button>
+                        <div className={css.btnWrp}>
+                            <button className={css.reset} type="button" onClick={handleReset}>
+                                <FontAwesomeIcon icon={faTrashAlt} />
+                                <span>Очистить все фильтры</span>
+                            </button>
+                            <button className={css.btn} type="submit">
+                                Применить фильтры
+                            </button>
+                        </div>
                     </form>
                 </CSSTransition>
             </div>

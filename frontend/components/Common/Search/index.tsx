@@ -3,6 +3,7 @@ import { faTimes } from '@fortawesome/free-solid-svg-icons/faTimes';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import clsx from 'clsx';
 import { useRouter } from 'next/router';
+import queryString from 'query-string';
 import React, { ChangeEvent, FormEvent, ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 import { useDispatch, useSelector } from 'react-redux';
@@ -11,8 +12,10 @@ import routes from '../../../assets/routes';
 import template from '../../../assets/template';
 import { Theme } from '../../../assets/theme';
 import useMedia from '../../../hooks/media.hook';
+import useShallowRouter from '../../../hooks/routing.hook';
 import useTrans from '../../../hooks/trans.hook';
 import { IDropValue, ISearch, IState } from '../../../interfaces';
+import initState from '../../../redux/state';
 import types from '../../../redux/types';
 import Button from '../Button';
 import LinkArrow from '../LinkArrow';
@@ -123,15 +126,16 @@ const Search = ({ shallow = false }: IProps): ReactElement => {
     const history = useRouter();
     const dispatch = useDispatch();
     const desktop = useMedia(1100);
+    const shallowRouter = useShallowRouter();
 
-    const search = useSelector<IState, ISearch>(state => state.config.search);
+    const searchParams = useSelector<IState, ISearch>(state => state.config.searchParams);
     const { pagination } = useSelector<IState, { loading: boolean; pagination: boolean }>(state => state.offers.search);
 
     const handleChange = (value: IDropValue | null): void => {
         dispatch({
-            type: types.OFFERS_SEARCH,
+            type: types.OFFERS_SEARCH_LOCAL_PARAMS,
             payload: {
-                ...search,
+                ...searchParams,
                 category: value?.type === 'main' ? value?.slug : null,
                 sub_category: value?.type === 'sub' ? value?.slug : null,
             },
@@ -139,21 +143,21 @@ const Search = ({ shallow = false }: IProps): ReactElement => {
     };
 
     const handleInput = (event: ChangeEvent<HTMLInputElement>): void => {
-        dispatch({ type: types.OFFERS_SEARCH, payload: { ...search, search: event.target.value || null } });
+        dispatch({ type: types.OFFERS_SEARCH_LOCAL_PARAMS, payload: { ...searchParams, search: event.target.value || null } });
     };
     const handleReset = (): void => {
-        dispatch({ type: types.OFFERS_SEARCH, payload: { ...search, search: null } });
+        dispatch({ type: types.OFFERS_SEARCH_LOCAL_PARAMS, payload: { ...searchParams, search: null } });
     };
 
     const handleSubmit = (event: FormEvent<HTMLFormElement>): void => {
         event.preventDefault();
 
         if (shallow) {
-            dispatch({ type: types.SEARCH_OFFERS_START, payload: search });
+            dispatch({ type: types.SEARCH_OFFERS_START, payload: searchParams });
             window.scrollTo({ top: document.getElementById('products')?.offsetTop || 0, behavior: 'smooth' });
-            history.push(routes.offers.list, undefined, { shallow: true });
+            shallowRouter(searchParams);
         } else {
-            history.push(routes.offers.list);
+            history.push({ pathname: routes.offers.list, query: queryString.stringify(searchParams, { skipNull: true }) });
         }
     };
 
@@ -174,14 +178,14 @@ const Search = ({ shallow = false }: IProps): ReactElement => {
                             <FontAwesomeIcon icon={faSearch} />
                         </button>
                         <input
-                            value={search.search || ''}
+                            value={searchParams.search || ''}
                             onChange={handleInput}
                             className={css.input}
                             type="text"
                             placeholder={T.what_are_you_looking_for}
                         />
                         <button
-                            className={clsx(css.reset, !search.search && css.resetHidden)}
+                            className={clsx(css.reset, !searchParams.search && css.resetHidden)}
                             type="button"
                             onClick={handleReset}
                         >

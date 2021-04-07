@@ -224,8 +224,8 @@ export interface IState {
     auth: IAuth;
     config: {
         drawer: boolean;
-        search: ISearch;
-        offers: {
+        searchParams: ISearch;
+        searchHiddenBlocks: {
             filters: boolean;
             popularSearch: boolean;
             hideTop: boolean;

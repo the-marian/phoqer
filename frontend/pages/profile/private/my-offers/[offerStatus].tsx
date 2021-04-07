@@ -22,6 +22,10 @@ import types from '../../../../redux/types';
 const useStyles = createUseStyles((theme: Theme) => ({
     root: {
         margin: theme.rem(8, 0, 0),
+
+        ...theme.media(768).max({
+            margin: theme.rem(4, 0, 0),
+        }),
     },
 }));
 

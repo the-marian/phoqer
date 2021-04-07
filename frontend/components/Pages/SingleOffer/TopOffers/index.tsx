@@ -60,7 +60,7 @@ const TopOffers = (): ReactElement => {
     const css = useStyles();
     const dispatch = useDispatch();
 
-    const hideTop = useSelector<IState, boolean>(state => state.config.offers.hideTop);
+    const hideTop = useSelector<IState, boolean>(state => state.config.searchHiddenBlocks.hideTop);
     const { data } = useSelector<IState, IOfferStatic>(state => state.offers.popular);
 
     const handleHide = (): void => {
