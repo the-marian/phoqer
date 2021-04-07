@@ -2,7 +2,7 @@ import initState from '../../state';
 import types from '../../types';
 import IAction, { IOffers } from './interfaces';
 
-const offers = (state: IOffers = initState.config.offers, { type, payload }: IAction): IOffers => {
+const searchHiddenBlocks = (state: IOffers = initState.config.searchHiddenBlocks, { type, payload }: IAction): IOffers => {
     switch (type) {
         case types.OFFERS_HIDE_POPULAR_SEARCH:
             return { ...state, popularSearch: payload === undefined ? !state.popularSearch : (payload as boolean) };
@@ -18,4 +18,4 @@ const offers = (state: IOffers = initState.config.offers, { type, payload }: IAc
     }
 };
 
-export default offers;
+export default searchHiddenBlocks;

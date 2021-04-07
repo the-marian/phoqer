@@ -126,7 +126,7 @@ const LoginForm = (): ReactElement => {
 
     return (
         <form action="#" method="post" onSubmit={handleSubmit}>
-            <h2 className={css.title}>Бобро пожаловать, засранец.</h2>
+            <h2 className={css.title}>Добро пожаловать!</h2>
 
             <div className={css.wrp}>
                 <Input

@@ -6,7 +6,7 @@ const initState: IState = {
     },
     config: {
         drawer: false,
-        search: {
+        searchParams: {
             search: null,
             category: null,
             sub_category: null,
@@ -19,7 +19,7 @@ const initState: IState = {
             no_deposit: null,
             is_deliverable: null,
         },
-        offers: {
+        searchHiddenBlocks: {
             filters: true,
             popularSearch: true,
             hideTop: false,

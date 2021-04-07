@@ -12,7 +12,7 @@ const routes = {
         private: {
             my_offers: (status = 'all'): string => `/profile/private/my-offers/${status}`,
             messages: (status: string | number = ''): string => `/profile/private/messages/${status}`,
-            settings: '/profile/private/settings',
+            settings: (status: string | number = 'general'): string => `/profile/private/settings/${status}`,
             reviews: '/profile/private/reviews',
             referral: '/profile/private/referral',
             analytics: (): string =>

@@ -71,21 +71,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
 
 const SingleOfferPage = (): ReactElement | null => {
     const css = useStyles();
-    const auth = useAuth();
-    const history = useRouter();
-    const dispatch = useDispatch();
-
     const offer = useSelector<IState, IOfferCard | null>(state => state.offers.single);
-
-    useEffect(() => {
-        if (offer?.author_id && auth?.id) {
-            if (offer?.author_id !== auth?.id) {
-                history.push(routes.root);
-                return;
-            }
-            dispatch({ type: types.GET_PUBLIC_PROFILE_START, payload: offer.author_id });
-        }
-    }, [offer, auth]);
 
     const handleModal = (): void => {
         modal.open(

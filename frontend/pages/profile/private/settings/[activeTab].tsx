@@ -1,4 +1,5 @@
 import { GetServerSidePropsContext } from 'next';
+import { useRouter } from 'next/router';
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
@@ -6,6 +7,7 @@ import { serverRedirect } from '../../../../assets/helpers';
 import { Theme } from '../../../../assets/theme';
 import Container from '../../../../components/Common/Container';
 import ProfileNav from '../../../../components/Common/NavTabs/Profile/RootNav';
+import ProfileSettingsNav from '../../../../components/Common/NavTabs/Profile/SettingsNav';
 import AuthRedirect from '../../../../components/HOC/Auth/AuthRedirect';
 import Meta from '../../../../components/Layout/Meta';
 import PageLayout from '../../../../components/Layout/PageLayout';
@@ -27,9 +29,15 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
 }));
 
+const tabs: { [key: string]: ReactElement } = {
+    general: <General />,
+    privacy: <Privacy />,
+};
+
 const Settings = (): ReactElement => {
     const T = useTrans();
     const css = useStyles();
+    const { query } = useRouter();
 
     return (
         <>
@@ -38,12 +46,9 @@ const Settings = (): ReactElement => {
             <PageLayout>
                 <Container>
                     <ProfileNav active="settings" />
-                    <div className={css.root}>
-                        <h2 className={css.title}>General data</h2>
-                        <General />
-                        <h2 className={css.title}>Privacy</h2>
-                        <Privacy />
-                    </div>
+                    <ProfileSettingsNav active={String(query.activeTab)} />
+
+                    <div className={css.root}>{tabs[String(query.activeTab)] || tabs.general}</div>
                 </Container>
             </PageLayout>
         </>

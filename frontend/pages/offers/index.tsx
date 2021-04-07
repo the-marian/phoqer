@@ -16,6 +16,7 @@ import Filters from '../../components/Pages/Offers/Filters';
 import TopOffers from '../../components/Pages/SingleOffer/TopOffers';
 import useTrans from '../../hooks/trans.hook';
 import { IOfferDynamic, IState, IStore } from '../../interfaces';
+import initState from '../../redux/state';
 import { wrapper } from '../../redux/store';
 import types from '../../redux/types';
 
@@ -57,9 +58,16 @@ const OffersPage = (): ReactElement => {
 
 export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps(
     async (ctx): Promise<void> => {
+        // CATEGORIES
         ctx?.store?.dispatch({ type: types.GET_CATEGORIES_START });
+        // OFFERS
         ctx?.store?.dispatch({ type: types.GET_POPULAR_OFFERS_START });
+        ctx?.store?.dispatch({
+            type: types.OFFERS_SEARCH_LOCAL_PARAMS,
+            payload: { ...initState.config.searchParams, ...ctx.query },
+        });
         ctx?.store?.dispatch({ type: types.SEARCH_OFFERS_START, payload: ctx.query });
+        // GENERAL
         ctx?.store?.dispatch(END);
         await (ctx.store as IStore)?.sagaTask?.toPromise();
     },

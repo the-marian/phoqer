@@ -14,6 +14,7 @@ import { useDispatch } from 'react-redux';
 import { moneyFormat } from '../../../../assets/helpers';
 import routes from '../../../../assets/routes';
 import useAuth from '../../../../hooks/auth.hook';
+import useMedia from '../../../../hooks/media.hook';
 import useTrans from '../../../../hooks/trans.hook';
 import { IDropList, IDropValue, IOfferCard } from '../../../../interfaces';
 import types from '../../../../redux/types';
@@ -49,6 +50,7 @@ interface IProps {
 const OfferCard = ({ offer }: IProps): ReactElement => {
     const T = useTrans();
     const auth = useAuth();
+    const media = useMedia(500);
     const css = useStyles();
     const history = useRouter();
     const dispatch = useDispatch();
@@ -145,7 +147,7 @@ const OfferCard = ({ offer }: IProps): ReactElement => {
                     icon={faCogs}
                     onChange={handleSettings}
                     data={formatUserActions(functions)}
-                    height={4}
+                    height={media ? 4 : 6}
                 />
             ) : null}
 

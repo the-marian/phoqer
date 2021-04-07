@@ -142,7 +142,7 @@ const ProfileCard = ({
                         Написать автору
                     </button>
                 ) : (
-                    <Link href={routes.profile.private.settings}>
+                    <Link href={routes.profile.private.settings()}>
                         <a className={css.btn}>
                             <FontAwesomeIcon icon={faSlidersH} />
                             <span>Настройки профиля</span>

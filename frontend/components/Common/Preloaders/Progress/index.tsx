@@ -5,6 +5,16 @@ import { createUseStyles } from 'react-jss';
 import { Theme } from '../../../../assets/theme';
 
 const useStyles = createUseStyles((theme: Theme) => ({
+    '@keyframes loader': {
+        '0%': {
+            left: 0,
+            transform: 'translateX(-100%)',
+        },
+        '100%': {
+            left: '100%',
+            transform: 'translateX(0)',
+        },
+    },
     wrp: {
         position: 'fixed',
         top: 0,
@@ -13,46 +23,30 @@ const useStyles = createUseStyles((theme: Theme) => ({
         width: '100%',
         height: theme.rem(0.5),
         background: theme.palette.gray[1],
+        overflow: 'height',
     },
     inner: {
-        width: 0,
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        width: '25%',
         height: '100%',
         background: theme.palette.primary[0],
         transition: theme.transitions[0],
+        animation: '$loader 1.5s ease infinite',
     },
 }));
 
 const Progress = (): ReactElement | null => {
     const css = useStyles();
-    const [loader, setLoader] = useState(0);
+    const [loader, setLoader] = useState<boolean>(false);
 
     useEffect(() => {
-        let id: NodeJS.Timeout;
-
         const handleStart = (): void => {
-            id = setInterval(() => {
-                setLoader(value => {
-                    if (value >= 95) {
-                        clearInterval(id);
-                        return value;
-                    }
-                    if (value >= 80) return value + 0.01;
-                    return value + 10;
-                });
-            }, 10);
-
-            setTimeout(() => {
-                handleComplete();
-            }, 60_000); // 1 minute = 60 000 milliseconds
+            setLoader(true);
         };
-
         const handleComplete = (): void => {
-            clearInterval(id);
-            setLoader(100);
-
-            setTimeout(() => {
-                setLoader(0);
-            }, 100);
+            setLoader(false);
         };
 
         Router.events.on('routeChangeStart', handleStart);
@@ -66,7 +60,7 @@ const Progress = (): ReactElement | null => {
 
     return loader ? (
         <div className={css.wrp}>
-            <div className={css.inner} style={{ width: `${loader}%` }} />
+            <div className={css.inner} />
         </div>
     ) : null;
 };

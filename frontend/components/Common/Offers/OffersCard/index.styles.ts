@@ -164,6 +164,16 @@ const useStyles = createUseStyles((theme: Theme) => ({
             textAlign: 'center',
             background: theme.palette.white,
         },
+
+        ...theme.media(500).max({
+            top: theme.rem(1),
+            left: theme.rem(1),
+
+            '& > p': {
+                width: theme.rem(6),
+                fontSize: theme.rem(3),
+            },
+        }),
     },
 }));
 

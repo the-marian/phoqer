@@ -64,7 +64,7 @@ const OptionsDesktop = ({ onChange }: IProps): ReactElement => {
     const css = useStyles();
     const T = useTrans();
 
-    const search = useSelector<IState, ISearch>(state => state.config.search);
+    const search = useSelector<IState, ISearch>(state => state.config.searchParams);
     const data = useSelector<IState, ICategories[]>(state => state.categories);
     const categories = formatCatList(data);
 

@@ -57,6 +57,10 @@ const template = (theme: Theme): Template => ({
         border: theme.border(0.2, 'transparent'),
         transition: theme.transitions[0],
 
+        ...theme.media(500).max({
+            fontSize: theme.rem(1.6),
+        }),
+
         ...theme.focus({
             border: theme.border(0.2, theme.palette.primary[0]),
         }),
