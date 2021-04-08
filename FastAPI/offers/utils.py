@@ -1,7 +1,7 @@
 from typing import Optional
 
 from FastAPI.offers import crud
-from FastAPI.offers.schemas import ValidOffer, Status
+from FastAPI.offers.schemas import Status, ValidOffer
 from pydantic import ValidationError
 
 
