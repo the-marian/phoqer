@@ -1,8 +1,7 @@
 import { GetServerSideProps, GetServerSidePropsContext } from 'next';
-import { useRouter } from 'next/router';
-import React, { ReactElement, useEffect } from 'react';
+import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { END } from 'redux-saga';
 
 import { serverRedirect } from '../../../../assets/helpers';
@@ -10,7 +9,6 @@ import routes from '../../../../assets/routes';
 import { Theme } from '../../../../assets/theme';
 import Breadcrumbs from '../../../../components/Common/Breadcrumbs';
 import Container from '../../../../components/Common/Container';
-import Gift from '../../../../components/Common/Gift';
 import { modal } from '../../../../components/Common/Modal';
 import FullPageModal from '../../../../components/Common/Modal/FullPageModal';
 import Meta from '../../../../components/Layout/Meta';
@@ -18,7 +16,6 @@ import PageLayout from '../../../../components/Layout/PageLayout';
 import AsideElement from '../../../../components/Pages/Offers/Edit/AsideElement';
 import EditContentForm from '../../../../components/Pages/Offers/Edit/EditContentForm';
 import OfferSlider from '../../../../components/Pages/SingleOffer/Slider';
-import useAuth from '../../../../hooks/auth.hook';
 import { IOfferCard, IState, IStore } from '../../../../interfaces';
 import { wrapper } from '../../../../redux/store';
 import types from '../../../../redux/types';

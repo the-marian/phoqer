@@ -1,5 +1,3 @@
-import { faTimes } from '@fortawesome/free-solid-svg-icons/faTimes';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React, { ReactElement } from 'react';
@@ -10,6 +8,7 @@ import routes from '../../../../assets/routes';
 import { Theme } from '../../../../assets/theme';
 import { IComment } from '../../../../interfaces';
 import types from '../../../../redux/types';
+import ButtonClose from '../../ButtonClose';
 import { modal } from '../../Modal';
 import CommentsForm from '../CommentsForm';
 
@@ -35,9 +34,6 @@ const useStyles = createUseStyles((theme: Theme) => ({
         position: 'absolute',
         top: 0,
         right: 0,
-        padding: theme.rem(1.2, 1.8),
-        fontSize: theme.rem(1.6),
-        color: theme.palette.black[0],
     },
     author: {
         display: 'flex',
@@ -96,9 +92,7 @@ const ReplyModal = ({ comment }: IProps): ReactElement => {
 
     return (
         <div className={css.inner}>
-            <button type="button" className={css.button} onClick={modal.close}>
-                <FontAwesomeIcon icon={faTimes} />
-            </button>
+            <ButtonClose className={css.button} onClick={modal.close} />
 
             <h3 className={css.author}>
                 <Link href={routes.profile.public(comment.author_id)}>

@@ -1,10 +1,9 @@
-import { faTimes } from '@fortawesome/free-solid-svg-icons/faTimes';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { MouseEvent, ReactElement, useEffect } from 'react';
 import { createUseStyles } from 'react-jss';
 import { CSSTransition } from 'react-transition-group';
 
 import { Theme } from '../../../assets/theme';
+import ButtonClose from '../ButtonClose';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     backdrop: {
@@ -56,9 +55,6 @@ const useStyles = createUseStyles((theme: Theme) => ({
         top: 0,
         right: 0,
         zIndex: 10,
-        padding: theme.rem(1.2, 1.8),
-        fontSize: theme.rem(1.6),
-        color: theme.palette.black[0],
     },
 }));
 
@@ -116,9 +112,7 @@ const Drawer = ({ children, width = 40, open, onToggle }: IProps): ReactElement 
         <CSSTransition timeout={200} unmountOnExit in={open}>
             <Root onToggle={onToggle} open={open}>
                 <div className="inner" style={{ maxWidth: `${width}rem`, minWidth: `${width - 10}rem` }}>
-                    <button type="button" className={css.button} onClick={handleToggle}>
-                        <FontAwesomeIcon icon={faTimes} />
-                    </button>
+                    <ButtonClose className={css.button} onClick={handleToggle} />
                     {children}
                 </div>
             </Root>

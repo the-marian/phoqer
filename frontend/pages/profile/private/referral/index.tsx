@@ -6,7 +6,7 @@ import { serverRedirect } from '../../../../assets/helpers';
 import { Theme } from '../../../../assets/theme';
 import Container from '../../../../components/Common/Container';
 import ProfileNav from '../../../../components/Common/NavTabs/Profile/RootNav';
-import AuthRedirect from '../../../../components/HOC/Auth/AuthRedirect';
+import AuthRedirect from '../../../../components/Context/Auth/AuthRedirect';
 import Meta from '../../../../components/Layout/Meta';
 import PageLayout from '../../../../components/Layout/PageLayout';
 import useTrans from '../../../../hooks/trans.hook';
