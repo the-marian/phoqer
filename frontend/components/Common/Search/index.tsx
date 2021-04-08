@@ -15,6 +15,7 @@ import useMedia from '../../../hooks/media.hook';
 import useShallowRouter from '../../../hooks/routing.hook';
 import useTrans from '../../../hooks/trans.hook';
 import { IDropValue, ISearch, IState } from '../../../interfaces';
+import initState from '../../../redux/state';
 import types from '../../../redux/types';
 import Button from '../Button';
 import LinkArrow from '../LinkArrow';

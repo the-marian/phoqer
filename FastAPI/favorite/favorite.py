@@ -1,38 +1,14 @@
-from typing import List, Optional
+from typing import List
 
-from fastapi import APIRouter, Depends, Header, HTTPException, Response, status
+from fastapi import APIRouter, Depends, Response, status
 from FastAPI.favorite import crud
 from FastAPI.offers.schemas import OffersListItem
+from FastAPI.utils import get_current_user
 
 router = APIRouter(
     prefix="/favorite",
     tags=["favorite"],
 )
-
-
-async def get_current_user(
-    authorization: Optional[str] = Header(None),
-) -> Optional[int]:
-    if authorization:
-        if token := authorization.partition(" ")[2]:
-            user_id = await crud.get_user_id(token)
-            if user_id:
-                return user_id
-            else:
-                raise HTTPException(
-                    status_code=status.HTTP_401_UNAUTHORIZED,
-                    detail="Token does not exist",
-                )
-        else:
-            raise HTTPException(
-                status_code=status.HTTP_401_UNAUTHORIZED,
-                detail="Invalid Authorisation Header format. Token cannot be blank.",
-            )
-    else:
-        raise HTTPException(
-            status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="No Authorisation header supplied",
-        )
 
 
 @router.get("", response_model=List[OffersListItem])

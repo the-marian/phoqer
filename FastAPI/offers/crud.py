@@ -68,7 +68,7 @@ async def is_offer_in_favorite_of_user(offer_id: str, user_id: int) -> bool:
 
 
 @database.transaction()
-async def create_offer_draft(offer: OfferDraftRequest, author_id: int) -> None:
+async def create_offer_draft(offer: OfferDraftRequest, author_id: int) -> str:
     query = """
     INSERT INTO offers_offer (
         author_id,
@@ -131,7 +131,7 @@ async def create_offer_draft(offer: OfferDraftRequest, author_id: int) -> None:
         "title": offer.title,
         "views": offer.views,
     }
-    offer_id = await database.execute(query=query, values=values)
+    offer_id: str = await database.execute(query=query, values=values)
     images = offer.images
     if images and offer_id:
         await create_offer_images(images=images, offer_id=offer_id)
@@ -439,4 +439,10 @@ async def offer_set_status(offer_id: str, status: Status) -> None:
         "offer_id": offer_id,
         "status": status,
     }
+    await database.execute(query=query, values=values)
+
+
+async def increment_views_counter(offer_id: str) -> None:
+    query = "UPDATE offers_offer SET views = views + 1 WHERE id = :offer_id"
+    values = {"offer_id": offer_id}
     await database.execute(query=query, values=values)
