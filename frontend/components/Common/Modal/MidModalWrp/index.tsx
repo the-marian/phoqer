@@ -1,9 +1,8 @@
-import { faTimes } from '@fortawesome/free-solid-svg-icons/faTimes';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
 import { Theme } from '../../../../assets/theme';
+import ButtonClose from '../../ButtonClose';
 import { modal } from '../index';
 
 const useStyles = createUseStyles((theme: Theme) => ({
@@ -24,9 +23,6 @@ const useStyles = createUseStyles((theme: Theme) => ({
         position: 'absolute',
         top: 0,
         right: 0,
-        padding: theme.rem(1.2, 1.8),
-        fontSize: theme.rem(1.6),
-        color: theme.palette.black[0],
     },
 }));
 
@@ -38,9 +34,7 @@ const MidModalWrp = ({ children }: IProps): ReactElement => {
     const css = useStyles();
     return (
         <div className={css.inner}>
-            <button type="button" className={css.button} onClick={modal.close}>
-                <FontAwesomeIcon icon={faTimes} />
-            </button>
+            <ButtonClose className={css.button} onClick={modal.close} />
             {children}
         </div>
     );

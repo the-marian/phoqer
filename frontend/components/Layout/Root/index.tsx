@@ -5,7 +5,7 @@ import { theme } from '../../../assets/theme';
 import useTheme from '../../../hooks/theme.hook';
 import ModalComponent from '../../Common/Modal';
 import Progress from '../../Common/Preloaders/Progress';
-import AuthInterceptor from '../../HOC/Auth/AuthInterceptor';
+import AuthInterceptor from '../../Context/Auth/AuthInterceptor';
 import MainDrawer from '../MainDrawer';
 
 interface IProps {

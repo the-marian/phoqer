@@ -8,7 +8,7 @@ import { Theme } from '../../../../assets/theme';
 import Container from '../../../../components/Common/Container';
 import ProfileNav from '../../../../components/Common/NavTabs/Profile/RootNav';
 import ProfileSettingsNav from '../../../../components/Common/NavTabs/Profile/SettingsNav';
-import AuthRedirect from '../../../../components/HOC/Auth/AuthRedirect';
+import AuthRedirect from '../../../../components/Context/Auth/AuthRedirect';
 import Meta from '../../../../components/Layout/Meta';
 import PageLayout from '../../../../components/Layout/PageLayout';
 import General from '../../../../components/Pages/Profile/Private/Settings/General';

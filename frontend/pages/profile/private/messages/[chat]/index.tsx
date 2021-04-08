@@ -5,7 +5,7 @@ import { createUseStyles } from 'react-jss';
 import { serverRedirect } from '../../../../../assets/helpers';
 import { Theme } from '../../../../../assets/theme';
 import ProfileChatNav from '../../../../../components/Common/NavTabs/Profile/ChatNav';
-import AuthRedirect from '../../../../../components/HOC/Auth/AuthRedirect';
+import AuthRedirect from '../../../../../components/Context/Auth/AuthRedirect';
 import Meta from '../../../../../components/Layout/Meta';
 import Conversation from '../../../../../components/Pages/Profile/Private/Messages/ChatConversation';
 import ChatWrp from '../../../../../components/Pages/Profile/Private/Messages/ChatWrp';

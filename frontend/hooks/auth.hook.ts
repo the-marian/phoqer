@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 
-import { Auth } from '../components/HOC/Auth/AuthContext';
+import { Auth } from '../components/Context/Auth/AuthContext';
 import { IAuth } from '../interfaces';
 
 const useAuth = (): IAuth | null => {

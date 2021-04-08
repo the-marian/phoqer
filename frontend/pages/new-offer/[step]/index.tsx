@@ -9,7 +9,7 @@ import { serverRedirect } from '../../../assets/helpers';
 import routes from '../../../assets/routes';
 import { Theme } from '../../../assets/theme';
 import Container from '../../../components/Common/Container';
-import AuthRedirect from '../../../components/HOC/Auth/AuthRedirect';
+import AuthRedirect from '../../../components/Context/Auth/AuthRedirect';
 import Meta from '../../../components/Layout/Meta';
 import PageLayout from '../../../components/Layout/PageLayout';
 import Draft from '../../../components/Pages/NewOffer/Draft';
