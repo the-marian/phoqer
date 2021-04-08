@@ -440,3 +440,9 @@ async def offer_set_status(offer_id: str, status: Status) -> None:
         "status": status,
     }
     await database.execute(query=query, values=values)
+
+
+async def increment_views_counter(offer_id: str) -> None:
+    query = "UPDATE offers_offer SET views = views + 1 WHERE id = :offer_id"
+    values = {"offer_id": offer_id}
+    await database.execute(query=query, values=values)

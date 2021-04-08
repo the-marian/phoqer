@@ -193,6 +193,7 @@ async def get_offer(
     offer_id: str, user_id: Optional[int] = Depends(get_current_user_or_none)
 ) -> OfferDraftReply:
     offer = await crud.get_offer(offer_id)
+    await crud.increment_views_counter(offer_id)
     if not offer:
         raise HTTPException(
             status_code=404,
