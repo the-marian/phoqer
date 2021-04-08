@@ -4,7 +4,7 @@ from typing import Dict, List, Optional
 
 from fastapi import APIRouter, Body, Depends, HTTPException, Response
 from FastAPI.config import PAGE_SIZE
-from FastAPI.offers import crud, validators
+from FastAPI.offers import crud
 from FastAPI.offers.schemas import (
     MyOffersListItem,
     MyOffersListResponse,
@@ -14,6 +14,7 @@ from FastAPI.offers.schemas import (
     OffersListResponse,
     Status,
 )
+from FastAPI.offers.utils import review_status_validator, set_review_status
 from FastAPI.utils import get_current_user, get_current_user_or_none
 
 router = APIRouter(
@@ -28,11 +29,10 @@ async def change_status(
     status: Status = Body(..., embed=True),
     user_id: int = Depends(get_current_user),
 ) -> Response:
-    validator = {"REVIEW": validators.set_review_status}
-    errors = await validator[status.value](offer_id)
-    if errors:
+    actions_for_status = {"REVIEW": (review_status_validator, set_review_status)}
+    if errors := await actions_for_status[status.value][0](offer_id):
         return Response(status_code=500, content=errors)
-    await crud.offer_set_status(offer_id=offer_id, status=status)
+    await actions_for_status[status.value][1](offer_id)
     return Response(status_code=204)
 
 
@@ -65,9 +65,9 @@ async def get_offers_for_tab(
         "ARCHIVED": ["DELETE", "DO_REVIEW"],
         "DRAFT": ["DO_REVIEW", "ARCHIVE"],
         "FROZEN": ["ARCHIVE"],
-        "INACTIVE": ["DO_REVIEW", "ARCHIVE"],
+        "INACTIVE": ["EDIT", "ARCHIVE", "DO_ACTIVE"],
         "IN_RENT": ["ARCHIVE"],
-        "REJECTED": ["ARCHIVE", "EDIT", "DO_REVIEW"],
+        "REJECTED": ["ARCHIVE", "EDIT"],
         "REVIEW": ["ARCHIVE"],
     }
     offers: list = await crud.get_offers_by_statuses(
@@ -216,7 +216,7 @@ async def get_offer(
 @router.post("", status_code=201)
 async def create_offer(
     offer: OfferDraftRequest, author_id: int = Depends(get_current_user)
-) -> Response:
+) -> Dict[str, str]:
     return {"id": await crud.create_offer_draft(offer, author_id)}
 
 
