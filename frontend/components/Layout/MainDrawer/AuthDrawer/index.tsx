@@ -12,6 +12,7 @@ const AuthDrawer = ({ auth }: IProps): ReactElement | null => {
     return (
         <>
             <ProfileCard
+                column
                 id={auth?.id}
                 firstName={auth?.first_name}
                 lastName={auth?.last_name}

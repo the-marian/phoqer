@@ -14,8 +14,8 @@ import LikeDislike from '../../../LikeDislike';
 import { modal } from '../../../Modal';
 import FullPageGallery from '../../../Modal/FullPageGallery';
 import MidModalWrp from '../../../Modal/MidModalWrp';
+import CommentsLoader from '../../../Preloaders/CommentsLoader';
 import CommentsForm from '../../CommentsForm';
-import CommentsLoader from '../../CommentsLoader';
 import ReplyModal from '../../ReplyModal';
 
 const MAX_LENGTH = 200;

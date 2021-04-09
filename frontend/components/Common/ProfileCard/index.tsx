@@ -28,6 +28,16 @@ const useStyles = createUseStyles((theme: Theme) => ({
             flexDirection: 'column',
         }),
     },
+    column: {
+        flexDirection: 'column',
+        '& > a': {
+            width: '100%',
+            marginBottom: theme.rem(2),
+        },
+        '& > div': {
+            width: '100%',
+        },
+    },
     svg: {
         padding: theme.rem(3),
     },
@@ -86,6 +96,7 @@ interface IProps {
     userLocation?: string | null;
     className?: string;
     lastActivity?: string;
+    column?: boolean;
 }
 
 const ProfileCard = ({
@@ -97,6 +108,7 @@ const ProfileCard = ({
     avatar = null,
     userLocation = null,
     className,
+    column = false,
 }: IProps): ReactElement => {
     const css = useStyles();
     const auth = useAuth();
@@ -118,7 +130,7 @@ const ProfileCard = ({
     const isAuthor = auth?.id === id;
 
     return (
-        <div className={clsx(css.wrp, className)}>
+        <div className={clsx(css.wrp, className, column && css.column)}>
             <Link href={routes.profile.public(id)}>
                 <a>
                     <UserAvatar online={isAuthor} firstName={firstName} lastName={lastName} avatar={avatar} />

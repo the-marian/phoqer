@@ -93,7 +93,7 @@ const MainDrawer = (): ReactElement => {
     };
 
     return (
-        <Drawer width={auth?.access_token ? 50 : 40} onToggle={handleToggle} open={drawer}>
+        <Drawer onToggle={handleToggle} open={drawer}>
             <Logo className={css.link} link />
             <Switcher onClick={handleTheme} value={theme === 'black'} off="white" on="dark">
                 Toggle color theme

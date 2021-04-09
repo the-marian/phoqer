@@ -11,9 +11,9 @@ import JoinForm from '../Auth/JoinForm';
 import LoginForm from '../Auth/LoginForm';
 import { modal } from '../Modal';
 import SmallModalWrp from '../Modal/SmallModalWrp';
+import CommentsLoader from '../Preloaders/CommentsLoader';
 import CommentsForm from './CommentsForm';
 import CommentsList from './CommentsList';
-import CommentsLoader from './CommentsLoader';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     root: {

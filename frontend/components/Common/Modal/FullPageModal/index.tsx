@@ -33,6 +33,13 @@ const useStyles = createUseStyles((theme: Theme) => ({
         width: theme.rem(4.5),
         background: theme.palette.gray[4],
 
+        '&::after': {
+            background: theme.palette.white,
+        },
+        '&::before': {
+            background: theme.palette.white,
+        },
+
         ...theme.media(768).max({
             top: theme.rem(6),
         }),

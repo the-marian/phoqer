@@ -14,9 +14,10 @@ interface Template {
     errorsText: Styles;
     mark: Styles;
     region: Styles;
-    inputWrp: Styles;
+    group: Styles;
     inactive: Styles;
     submit: Styles;
+    save: Styles;
 }
 
 const editOfferTemplate = (theme: Theme): Template => ({
@@ -87,9 +88,8 @@ const editOfferTemplate = (theme: Theme): Template => ({
             textOverflow: 'ellipsis',
         },
     },
-    inputWrp: {
+    group: {
         display: 'flex',
-        justifyContent: 'space-between',
         alignItems: 'center',
     },
     inactive: {
@@ -98,7 +98,13 @@ const editOfferTemplate = (theme: Theme): Template => ({
     },
     submit: {
         ...template(theme).btn,
-        background: theme.palette.green[0],
+        background: theme.palette.primary[0],
+    },
+    save: {
+        ...template(theme).btn,
+        marginRight: theme.rem(2),
+        background: theme.palette.gray[1],
+        color: theme.palette.black[0],
     },
 });
 

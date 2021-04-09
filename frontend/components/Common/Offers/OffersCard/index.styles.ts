@@ -96,6 +96,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
     btn: {
         ...template(theme).btn,
+        height: theme.rem(5),
         background: theme.palette.gray[1],
         color: theme.palette.black[0],
 
@@ -105,7 +106,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         }),
     },
     favorite: {
-        height: theme.rem(6),
+        height: theme.rem(5),
         marginLeft: theme.rem(0.6),
         padding: theme.rem(1, 1.8),
         color: theme.palette.primary[0],

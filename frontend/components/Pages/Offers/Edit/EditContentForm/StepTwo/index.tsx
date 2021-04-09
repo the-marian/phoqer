@@ -9,7 +9,7 @@ import CheckTitle from '../../../../../Common/Checkbox/CheckTitle';
 import CheckYesNo from '../../../../../Common/Checkbox/CheckYesNo';
 import Input from '../../../../../Common/Input';
 import { IError } from '../';
-import editOfferTemplate from '../index.style';
+import editOfferTemplate from '../edit-content-form.validations.style';
 
 const useStyles = createUseStyles(editOfferTemplate);
 
@@ -89,7 +89,7 @@ const StepOne = ({ value, errors, setErrors, setValue }: IProps): ReactElement =
                 <CheckTitle value={value.optional.deposit_val} onChange={handleDeposit}>
                     Залоговая сума (грн)
                 </CheckTitle>
-                <div className={clsx(css.inputWrp, value.optional.deposit_val || css.inactive)}>
+                <div className={clsx(css.group, value.optional.deposit_val || css.inactive)}>
                     <Input
                         value={moneyFormat(value.deposit_val || 0)}
                         onChange={handleNumber}
@@ -104,7 +104,7 @@ const StepOne = ({ value, errors, setErrors, setValue }: IProps): ReactElement =
                 <CheckTitle value={value.optional.min_rent_period} onChange={handleMin}>
                     Минимальный срок аренды (дней)
                 </CheckTitle>
-                <div className={clsx(css.inputWrp, value.optional.min_rent_period || css.inactive)}>
+                <div className={clsx(css.group, value.optional.min_rent_period || css.inactive)}>
                     <Input
                         value={moneyFormat(value.min_rent_period || 0)}
                         onChange={handleNumber}
@@ -120,7 +120,7 @@ const StepOne = ({ value, errors, setErrors, setValue }: IProps): ReactElement =
                 <CheckTitle value={value.optional.max_rent_period} onChange={handleMax}>
                     Максимальный срок аренды (дней)
                 </CheckTitle>
-                <div className={clsx(css.inputWrp, value.optional.max_rent_period || css.inactive)}>
+                <div className={clsx(css.group, value.optional.max_rent_period || css.inactive)}>
                     <Input
                         value={moneyFormat(value.max_rent_period || 0)}
                         onChange={handleNumber}
@@ -132,7 +132,7 @@ const StepOne = ({ value, errors, setErrors, setValue }: IProps): ReactElement =
                 </div>
             </div>
             <div className={css.inner}>
-                <h3 className={css.title}>Дополнительные требования</h3>
+                <h3 className={css.subtitle}>Дополнительные требования</h3>
                 <TextareaAutosize
                     value={value.extra_requirements}
                     onChange={handleChangeText}

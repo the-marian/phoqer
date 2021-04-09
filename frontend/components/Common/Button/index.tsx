@@ -5,8 +5,13 @@ import { createUseStyles } from 'react-jss';
 import Spinner from '../Preloaders/Spinner';
 
 const useStyles = createUseStyles({
+    '@keyframes loader': {
+        '0%': { opacity: 1 },
+        '50%': { opacity: 0.5 },
+    },
     loading: {
         pointerEvents: 'none',
+        animation: '$loader 1.5s ease infinite',
 
         '& span': {
             opacity: 0,

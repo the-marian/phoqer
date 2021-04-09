@@ -12,7 +12,7 @@ import CheckYesNo from '../../../../../Common/Checkbox/CheckYesNo';
 import DropDown from '../../../../../Common/DropDown';
 import Input from '../../../../../Common/Input';
 import { IError } from '../';
-import editOfferTemplate from '../index.style';
+import editOfferTemplate from '../edit-content-form.validations.style';
 
 const useStyles = createUseStyles(editOfferTemplate);
 

@@ -4,7 +4,7 @@ import { ThemeProvider } from 'react-jss';
 import { theme } from '../../../assets/theme';
 import useTheme from '../../../hooks/theme.hook';
 import ModalComponent from '../../Common/Modal';
-import Progress from '../../Common/Preloaders/Progress';
+import RouterProgress from '../../Common/Preloaders/Progress/RouterProgress';
 import AuthInterceptor from '../../Context/Auth/AuthInterceptor';
 import MainDrawer from '../MainDrawer';
 
@@ -26,7 +26,7 @@ const Root = ({ children }: IProps): ReactElement => {
             <AuthInterceptor />
             <ModalComponent />
             <MainDrawer />
-            <Progress />
+            <RouterProgress />
             {children}
         </ThemeProvider>
     );

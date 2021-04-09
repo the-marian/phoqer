@@ -73,8 +73,10 @@ const Root = ({ children, open, onToggle }: IProps) => {
 
     useEffect(() => {
         const close = (event: KeyboardEvent): void => {
-            event.preventDefault();
-            if (event.key === 'Escape') onToggle(false);
+            if (event.key === 'Escape') {
+                event.preventDefault();
+                onToggle(false);
+            }
         };
 
         // style

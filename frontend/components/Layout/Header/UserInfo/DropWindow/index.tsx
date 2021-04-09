@@ -17,6 +17,11 @@ const useStyles = createUseStyles((theme: Theme) => ({
         borderRadius: theme.radius,
         transition: theme.transitions[0],
 
+        ...theme.media(500).max({
+            top: theme.rem(8),
+            right: '5%',
+        }),
+
         '&.appear': {
             transform: 'translateY(-5rem)',
             opacity: 0,
@@ -53,10 +58,7 @@ const DropWindow = ({ onClose }: Props): ReactElement => {
             onClose();
         };
         window.addEventListener('keydown', handleClose);
-
-        return () => {
-            window.removeEventListener('keydown', handleClose);
-        };
+        return () => window.removeEventListener('keydown', handleClose);
     }, []);
 
     return ReactDOM.createPortal(

@@ -1,7 +1,7 @@
 import { GetServerSideProps, GetServerSidePropsContext } from 'next';
-import React, { ReactElement } from 'react';
+import React, { ReactElement, useEffect } from 'react';
 import { createUseStyles } from 'react-jss';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { END } from 'redux-saga';
 
 import { serverRedirect } from '../../../../assets/helpers';
@@ -68,7 +68,12 @@ const useStyles = createUseStyles((theme: Theme) => ({
 
 const SingleOfferPage = (): ReactElement | null => {
     const css = useStyles();
+    const dispatch = useDispatch();
     const offer = useSelector<IState, IOfferCard | null>(state => state.offers.single);
+
+    useEffect(() => {
+        if (offer?.author_id) dispatch({ type: types.GET_PUBLIC_PROFILE_START, payload: offer.author_id });
+    }, [offer]);
 
     const handleModal = (): void => {
         modal.open(

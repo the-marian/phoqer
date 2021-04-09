@@ -5,7 +5,9 @@ import { useSelector } from 'react-redux';
 import { IDropValue, INewOffer, IOfferCard, IState } from '../../../../../interfaces';
 import initState from '../../../../../redux/state';
 import Button from '../../../../Common/Button';
-import editOfferTemplate from './index.style';
+import Progress from '../../../../Common/Preloaders/Progress';
+import validate from './edit-content-form.validations';
+import editOfferTemplate from './edit-content-form.validations.style';
 import StepOne from './StepOne';
 import StepTwo from './StepTwo';
 
@@ -51,6 +53,7 @@ export interface IError {
 
 const EditContentForm = (): ReactElement => {
     const css = useStyles();
+    const [loading, setLoading] = useState(false);
 
     const init = useSelector<IState, IOfferCard | null>(state => state.offers.single);
     const [value, setValue] = useState<INewOffer>(newOfferAdapter(init));
@@ -58,71 +61,29 @@ const EditContentForm = (): ReactElement => {
 
     const handleSubmit = (event: FormEvent): void => {
         event.preventDefault();
-
-        // check if field is empty
-        if (!value.title.trim()) {
-            setErrors({ title: 'Это обязательное поле' });
-            window.scrollTo({
-                top: (document.getElementById('general')?.offsetTop || 300) - 100,
-                behavior: 'smooth',
-            });
-            return;
+        if (validate({ value, setErrors })) {
+            setLoading(true);
+            console.log(value.price);
         }
-        if (!value.category) {
-            setErrors({ category: 'Это обязательное поле' });
-            window.scrollTo({
-                top: (document.getElementById('general')?.offsetTop || 300) - 100,
-                behavior: 'smooth',
-            });
-            return;
-        }
-        if (!value.price) {
-            setErrors({ price: 'Это обязательное поле' });
-            window.scrollTo({
-                top: (document.getElementById('general')?.offsetTop || 300) - 100,
-                behavior: 'smooth',
-            });
-            return;
-        }
-        if (!value.description.trim()) {
-            setErrors({ description: 'Это обязательное поле' });
-            window.scrollTo({
-                top: (document.getElementById('description')?.offsetTop || 300) - 100,
-                behavior: 'smooth',
-            });
-            return;
-        }
-
-        // check optional fields
-        if (value.optional.deposit_val && !value.deposit_val) {
-            setErrors({ deposit_val: 'Введите данные или отключите это поле' });
-            return;
-        }
-        if (value.optional.min_rent_period && !value.min_rent_period) {
-            setErrors({ min_rent_period: 'Введите данные или отключите это поле' });
-            return;
-        }
-        if (value.optional.max_rent_period && !value.max_rent_period) {
-            setErrors({ max_rent_period: 'Введите данные или отключите это поле' });
-            return;
-        }
-
-        console.log(value.price);
     };
 
     return (
         <form action="#" method="post" onSubmit={handleSubmit}>
             <StepOne value={value} setValue={setValue} errors={errors} setErrors={setErrors} />
-
             <StepTwo value={value} setValue={setValue} errors={errors} setErrors={setErrors} />
-
+            <Progress loading={loading} />
             <p className={css.mark}>
                 <span className={css.red}>*</span> Обязательные поля
             </p>
 
-            <Button className={css.submit} type="submit">
-                Опубликувать
-            </Button>
+            <div className={css.group}>
+                <Button loading={loading} className={css.save} type="button">
+                    Сохранить изменения
+                </Button>
+                <Button loading={loading} className={css.submit} type="submit">
+                    Опубликувать
+                </Button>
+            </div>
         </form>
     );
 };

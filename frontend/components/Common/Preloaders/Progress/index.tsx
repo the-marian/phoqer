@@ -1,5 +1,5 @@
-import Router from 'next/router';
-import React, { ReactElement, useEffect, useState } from 'react';
+import clsx from 'clsx';
+import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
 import { Theme } from '../../../../assets/theme';
@@ -16,14 +16,11 @@ const useStyles = createUseStyles((theme: Theme) => ({
         },
     },
     wrp: {
-        position: 'fixed',
-        top: 0,
-        left: 0,
-        zIndex: 100001,
+        position: 'relative',
         width: '100%',
         height: theme.rem(0.5),
         background: theme.palette.gray[1],
-        overflow: 'height',
+        overflow: 'hidden',
     },
     inner: {
         position: 'absolute',
@@ -33,33 +30,20 @@ const useStyles = createUseStyles((theme: Theme) => ({
         height: '100%',
         background: theme.palette.primary[0],
         transition: theme.transitions[0],
-        animation: '$loader 1.5s ease infinite',
+        animation: '$loader 1s ease infinite',
     },
 }));
 
-const Progress = (): ReactElement | null => {
+interface IProps {
+    loading: boolean;
+    className?: string;
+}
+
+const Progress = ({ className, loading }: IProps): ReactElement | null => {
     const css = useStyles();
-    const [loader, setLoader] = useState<boolean>(false);
 
-    useEffect(() => {
-        const handleStart = (): void => {
-            setLoader(true);
-        };
-        const handleComplete = (): void => {
-            setLoader(false);
-        };
-
-        Router.events.on('routeChangeStart', handleStart);
-        Router.events.on('routeChangeComplete', handleComplete);
-
-        return () => {
-            Router.events.off('routeChangeStart', handleStart);
-            Router.events.off('routeChangeComplete', handleComplete);
-        };
-    }, []);
-
-    return loader ? (
-        <div className={css.wrp}>
+    return loading ? (
+        <div className={clsx(className, css.wrp)}>
             <div className={css.inner} />
         </div>
     ) : null;
