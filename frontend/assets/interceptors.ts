@@ -12,6 +12,11 @@ const interceptors = ({ history, dispatch }: { history: NextRouter; dispatch: Di
     );
     axios.interceptors.response.use(
         response => {
+            if (!process.browser)
+                console.log(
+                    `url: ${response.config.url}, method: ${response.config.method}, auth-token: ${!!response.config.headers
+                        .Authorization}, status: ${response.status}`,
+                );
             if (response.config.url === '/auth/token/login/') {
                 const bearerToken = response.data.access_token;
                 if (bearerToken) axios.defaults.headers.common.Authorization = `Bearer ${bearerToken}`;
@@ -20,6 +25,7 @@ const interceptors = ({ history, dispatch }: { history: NextRouter; dispatch: Di
             return response;
         },
         error => {
+            if (!process.browser) console.log('error', error);
             if (error?.response?.status === 401) delete axios.defaults.headers.common.Authorization;
             dispatch({ type: types.LOGOUT_END });
             return Promise.reject(error);
