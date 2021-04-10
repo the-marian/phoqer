@@ -152,6 +152,7 @@ node_modules
 .pnp.js
 
 #pwa
+/frontend/public/sw.js
 /frontend/public/sw.js.map
 /frontend/public/workbox-*.js
 /frontend/public/workbox-*.js.map
@@ -180,6 +181,3 @@ backend/mediafiles/*
 postgres_data
 phoqer.bak
 phoqer.dump
-
-# script for Ihor
-start.sh
