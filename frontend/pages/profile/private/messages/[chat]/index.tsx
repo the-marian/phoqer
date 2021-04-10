@@ -4,11 +4,11 @@ import { createUseStyles } from 'react-jss';
 
 import { serverRedirect } from '../../../../../assets/helpers';
 import { Theme } from '../../../../../assets/theme';
-import ProfileChatNav from '../../../../../components/Common/NavTabs/Profile/ChatNav';
-import AuthRedirect from '../../../../../components/Context/Auth/AuthRedirect';
-import Meta from '../../../../../components/Layout/Meta';
-import Conversation from '../../../../../components/Pages/Profile/Private/Messages/ChatConversation';
-import ChatWrp from '../../../../../components/Pages/Profile/Private/Messages/ChatWrp';
+import ProfileChatNav from '../../../../../components/common/nav-tabs/profile/chat-nav';
+import AuthRedirect from '../../../../../components/context/auth/auth-redirect';
+import Meta from '../../../../../components/layout/meta';
+import Conversation from '../../../../../components/pages/profile/private/messages/chat-conversation';
+import ChatWrp from '../../../../../components/pages/profile/private/messages/chat-wrp';
 import useMedia from '../../../../../hooks/media.hook';
 import useTrans from '../../../../../hooks/trans.hook';
 import { wrapper } from '../../../../../redux/store';

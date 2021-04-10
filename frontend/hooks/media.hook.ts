@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 
-import { Media } from '../components/Context/Media';
+import { Media } from '../components/context/media';
 
 const useMedia = (width: number): boolean => {
     const [media] = useContext(Media);
