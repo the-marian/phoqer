@@ -10,6 +10,12 @@ const useStyles = createUseStyles((theme: Theme) => ({
     wrp: {
         minWidth: theme.rem(20),
         width: '40%',
+        ...theme.media(1100).max({
+            width: '48%',
+        }),
+        ...theme.media(768).max({
+            width: '100%',
+        }),
     },
     input: {
         background: theme.palette.gray[0],
@@ -48,55 +54,53 @@ const ResetPassword = (): ReactElement => {
         setValue({ ...value, [event.target.name]: event.target.value });
     };
     return (
-        <>
-            <div className={css.wrp}>
-                <label className={css.label}>
-                    <p className={css.text}>Old password</p>
-                    <Input
-                        value={value.old_password}
-                        errors={error.old_password}
-                        onChange={handleChange}
-                        type="password"
-                        name="old_password"
-                        autoComplete="given-name"
-                        placeholder="old password"
-                        className={css.input}
-                        errorsInPlaceholder
-                    />
-                </label>
+        <div className={css.wrp}>
+            <label className={css.label}>
+                <p className={css.text}>Old password</p>
+                <Input
+                    value={value.old_password}
+                    errors={error.old_password}
+                    onChange={handleChange}
+                    type="password"
+                    name="old_password"
+                    autoComplete="given-name"
+                    placeholder="old password"
+                    className={css.input}
+                    errorsInPlaceholder
+                />
+            </label>
 
-                <label className={css.label}>
-                    <p className={css.text}>New password</p>
-                    <Input
-                        value={value.new_password}
-                        errors={error.new_password}
-                        onChange={handleChange}
-                        type="password"
-                        name="new_password"
-                        autoComplete="family-name"
-                        placeholder="new password"
-                        className={css.input}
-                        errorsInPlaceholder
-                    />
-                </label>
+            <label className={css.label}>
+                <p className={css.text}>New password</p>
+                <Input
+                    value={value.new_password}
+                    errors={error.new_password}
+                    onChange={handleChange}
+                    type="password"
+                    name="new_password"
+                    autoComplete="family-name"
+                    placeholder="new password"
+                    className={css.input}
+                    errorsInPlaceholder
+                />
+            </label>
 
-                <label className={css.label}>
-                    <p className={css.text}>Confirm password</p>
-                    <Input
-                        value={value.confirm_password}
-                        errors={error.confirm_password}
-                        onChange={handleChange}
-                        type="password"
-                        name="confirm_password"
-                        autoComplete="confirm_password"
-                        placeholder="confirm password"
-                        className={css.input}
-                        errorsInPlaceholder
-                    />
-                </label>
-                <Button className={css.btn}>Изменить пароль</Button>
-            </div>
-        </>
+            <label className={css.label}>
+                <p className={css.text}>Confirm password</p>
+                <Input
+                    value={value.confirm_password}
+                    errors={error.confirm_password}
+                    onChange={handleChange}
+                    type="password"
+                    name="confirm_password"
+                    autoComplete="confirm_password"
+                    placeholder="confirm password"
+                    className={css.input}
+                    errorsInPlaceholder
+                />
+            </label>
+            <Button className={css.btn}>Изменить пароль</Button>
+        </div>
     );
 };
 

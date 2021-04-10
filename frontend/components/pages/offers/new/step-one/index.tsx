@@ -8,15 +8,15 @@ import { createUseStyles } from 'react-jss';
 import { useDispatch, useSelector } from 'react-redux';
 import { Dispatch } from 'redux';
 
-import * as helpers from '../../../../assets/helpers';
-import { moneyFormat, numberValidation } from '../../../../assets/helpers';
-import routes from '../../../../assets/routes';
-import { Theme } from '../../../../assets/theme';
-import { ICategories, IDropValue, INewOffer, IState } from '../../../../interfaces';
-import types from '../../../../redux/types';
-import CheckYesNo from '../../../common/checkbox/check-yes-no';
-import DropDown from '../../../common/drop-down';
-import Input from '../../../common/input';
+import * as helpers from '../../../../../assets/helpers';
+import { moneyFormat, numberValidation } from '../../../../../assets/helpers';
+import routes from '../../../../../assets/routes';
+import { Theme } from '../../../../../assets/theme';
+import { ICategories, IDropValue, INewOffer, IState } from '../../../../../interfaces';
+import types from '../../../../../redux/types';
+import CheckYesNo from '../../../../common/checkbox/check-yes-no';
+import DropDown from '../../../../common/drop-down';
+import Input from '../../../../common/input';
 import newOfferTemplate from '../new-offer.style';
 import Region from './region';
 
@@ -93,7 +93,7 @@ const StepThree = (): ReactElement => {
                 isDone: { ...value.isDone, one: true },
             },
         });
-        history.push(routes.new_offer(2), undefined, { shallow: true });
+        history.push(routes.offers.new(2), undefined, { shallow: true });
     };
 
     const handleClear = (): void => {
@@ -123,7 +123,7 @@ const StepThree = (): ReactElement => {
             type: types.POST_OFFER_START,
             payload: null,
             callback() {
-                history.push(routes.new_offer('draft'), undefined, { shallow: true });
+                history.push(routes.offers.new('draft'), undefined, { shallow: true });
             },
         });
     };
@@ -160,7 +160,7 @@ const StepThree = (): ReactElement => {
                         <div className={clsx(errors.category && css.errors)}>
                             <DropDown
                                 data={categories}
-                                defaultValue={value.category}
+                                defaultValue={value.category as IDropValue}
                                 placeholder="Выберите категорию"
                                 onChange={handleCategory}
                                 withSub

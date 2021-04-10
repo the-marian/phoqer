@@ -9,15 +9,15 @@ import IAction from './interfaces';
 
 function* signupUser({ payload }: IAction) {
     try {
-        const { status, data } = yield call(api.auth.signup, payload as ISignup);
+        const { status } = yield call(api.auth.signup, payload as ISignup);
         if (status < 200 || status >= 300) throw new Error();
-        yield put({ type: types.SIGNUP_SUCCESS, payload: data });
+        yield put({ type: types.SIGNUP_SUCCESS });
         modal.close();
         notifications('success', 'We have sent a verification link on your email, please open it to complete registration');
     } catch (error) {
+        if (error?.response?.status === 401) return;
         // TODO add error text
         notifications('error', '');
-        if (error?.response?.status === 401) return;
         yield put({ type: types.SIGNUP_ERROR });
     }
 }

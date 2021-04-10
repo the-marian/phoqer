@@ -1,13 +1,14 @@
+import { useRouter } from 'next/router';
 import React, { FormEvent, ReactElement, useState } from 'react';
 import { createUseStyles } from 'react-jss';
 import { useDispatch, useSelector } from 'react-redux';
 
-import routes from '../../../../../assets/routes';
-import { IDropValue, INewOffer, IOfferCard, IState } from '../../../../../interfaces';
+import { INewOffer, IOfferCard, IState } from '../../../../../interfaces';
 import initState from '../../../../../redux/state';
 import types from '../../../../../redux/types';
 import Button from '../../../../common/button';
-import Progress from '../../../../common/preloaders/progress';
+import Progress from '../../../../common/loaders/progress';
+import notifications from '../../../../common/notifications';
 import editOfferTemplate from './edit-content-form.style';
 import validate from './edit-content-form.validations';
 import StepOne from './step-one';
@@ -19,15 +20,11 @@ const newOfferAdapter = (value: IOfferCard | null): INewOffer =>
     value
         ? {
               ...initState.offers.new_offer,
-
               title: value.title || '',
               price: value.price || 0,
-              category: value.category ? ({ name: value.category_name, slug: value.category, type: 'main' } as IDropValue) : null,
-              sub_category: value.sub_category
-                  ? ({ name: value.sub_category_name, slug: value.sub_category, type: 'sub' } as IDropValue)
-                  : null,
+              category: value.category ? value.category : null,
+              sub_category: value.sub_category ? value.sub_category : null,
               is_deliverable: value.is_deliverable,
-
               doc_needed: value.doc_needed,
               description: value.description,
               deposit_val: value.deposit_val || null,
@@ -55,9 +52,10 @@ export interface IError {
 
 const EditContentForm = (): ReactElement => {
     const css = useStyles();
+    const { query } = useRouter();
     const dispatch = useDispatch();
-    const [loading, setLoading] = useState(false);
 
+    const loading = useSelector<IState, boolean>(state => state.offers.new_offer.loading);
     const init = useSelector<IState, IOfferCard | null>(state => state.offers.single);
     const [value, setValue] = useState<INewOffer>(newOfferAdapter(init));
     const [errors, setErrors] = useState<IError>({});
@@ -65,20 +63,31 @@ const EditContentForm = (): ReactElement => {
     const handleSubmit = (event: FormEvent): void => {
         event.preventDefault();
         if (validate({ value, setErrors })) {
-            setLoading(true);
-            console.log(value.price);
+            dispatch({
+                type: types.PATCH_OFFER_STATUS_START,
+                payload: value,
+                offerId: String(query.offerId || ''),
+                callback() {
+                    notifications(
+                        'success',
+                        'Ваши изменения успешно сохранены! Чтобы опубликовать обьявления нажмите на кнопку "Опубликувать"',
+                    );
+                },
+            });
         }
     };
 
     const handleSave = (): void => {
         if (validate({ value, setErrors })) {
-            setLoading(true);
-            dispatch({ type: types.NEW_OFFER_FORM, payload: value });
             dispatch({
-                type: types.POST_OFFER_START,
-                payload: null,
+                type: types.PATCH_OFFER_START,
+                payload: value,
+                offerId: String(query.offerId || ''),
                 callback() {
-                    setLoading(false);
+                    notifications(
+                        'success',
+                        'Ваши изменения успешно сохранены! Чтобы опубликовать обьявления нажмите на кнопку "Опубликувать"',
+                    );
                 },
             });
         }

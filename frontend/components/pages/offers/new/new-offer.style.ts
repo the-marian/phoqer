@@ -1,7 +1,7 @@
 import { Styles } from 'jss';
 
-import template from '../../../assets/template';
-import { Theme } from '../../../assets/theme';
+import template from '../../../../assets/template';
+import { Theme } from '../../../../assets/theme';
 
 interface Template {
     end: {

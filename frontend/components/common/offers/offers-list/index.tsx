@@ -4,7 +4,7 @@ import { createUseStyles } from 'react-jss';
 import config from '../../../../assets/config';
 import { Theme } from '../../../../assets/theme';
 import { IOfferCard } from '../../../../interfaces';
-import OffersLoader from '../../preloaders/offers';
+import OffersLoader from '../../loaders/offers';
 import EmptyOffers from '../empty-offers';
 import OfferCard from '../offers-card';
 

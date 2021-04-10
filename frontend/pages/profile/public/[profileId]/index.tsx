@@ -13,6 +13,8 @@ import { IPublicProfile, IState, IStore } from '../../../../interfaces';
 import { wrapper } from '../../../../redux/store';
 import types from '../../../../redux/types';
 import PageLayout from "../../../../components/layout/page-layout";
+import {serverUser} from "../../../../assets/helpers";
+import {GetServerSidePropsContext} from "next";
 
 const useStyles = createUseStyles((theme: Theme) => ({
     wrp: {

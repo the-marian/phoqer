@@ -10,9 +10,8 @@ const useStyles = createUseStyles((theme: Theme) => ({
             left: 0,
             transform: 'translateX(-100%)',
         },
-        '100%': {
+        '50%': {
             left: '100%',
-            transform: 'translateX(0)',
         },
     },
     wrp: {
@@ -30,7 +29,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         height: '100%',
         background: theme.palette.primary[0],
         transition: theme.transitions[0],
-        animation: '$loader 1s ease infinite',
+        animation: '$loader 2s ease-in-out infinite',
     },
 }));
 

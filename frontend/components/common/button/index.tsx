@@ -2,7 +2,7 @@ import clsx from 'clsx';
 import React, { MouseEvent, ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
-import Spinner from '../preloaders/spinner';
+import Spinner from '../loaders/spinner';
 
 const useStyles = createUseStyles({
     '@keyframes loader': {

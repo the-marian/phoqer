@@ -14,8 +14,8 @@ module.exports = {
     async redirects() {
         return [
             {
-                source: '/new-offer',
-                destination: '/new-offer/1',
+                source: '/new',
+                destination: '/new/1',
                 permanent: true,
             },
             {

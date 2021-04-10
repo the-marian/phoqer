@@ -13,5 +13,5 @@ type Type =
 
 export default interface IAction {
     type: Type;
-    payload?: IAuth | IState | ILogin | null;
+    payload?: IState | ILogin | IAuth | null;
 }

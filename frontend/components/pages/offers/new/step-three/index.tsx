@@ -5,14 +5,14 @@ import React, { FormEvent, ReactElement, useEffect, useState } from 'react';
 import { createUseStyles } from 'react-jss';
 import { useDispatch } from 'react-redux';
 
-import config from '../../../../assets/config';
-import routes from '../../../../assets/routes';
-import { Theme } from '../../../../assets/theme';
-import useMedia from '../../../../hooks/media.hook';
-import useTheme from '../../../../hooks/theme.hook';
-import useUppy from '../../../../hooks/uppy.hook';
-import types from '../../../../redux/types';
-import notifications from '../../../common/notifications';
+import config from '../../../../../assets/config';
+import routes from '../../../../../assets/routes';
+import { Theme } from '../../../../../assets/theme';
+import useMedia from '../../../../../hooks/media.hook';
+import useTheme from '../../../../../hooks/theme.hook';
+import useUppy from '../../../../../hooks/uppy.hook';
+import types from '../../../../../redux/types';
+import notifications from '../../../../common/notifications';
 import newOfferTemplate from '../new-offer.style';
 
 const useStyles = createUseStyles((theme: Theme) => newOfferTemplate(theme).step);
@@ -45,7 +45,7 @@ const StepThree = (): ReactElement => {
     }, []);
 
     const handleBack = () => {
-        history.push(routes.new_offer(2), undefined, { shallow: true });
+        history.push(routes.offers.new(2), undefined, { shallow: true });
     };
 
     const handleClick = (): void => {
@@ -53,7 +53,7 @@ const StepThree = (): ReactElement => {
             type: types.POST_OFFER_START,
             payload: null,
             callback() {
-                history.push(routes.new_offer(4), undefined, { shallow: true });
+                history.push(routes.offers.new(4), undefined, { shallow: true });
             },
         });
     };
@@ -73,7 +73,7 @@ const StepThree = (): ReactElement => {
                         url: config.img + value?.response?.body?.images_url?.[0],
                     })) || [],
                 callback() {
-                    history.push(routes.new_offer(4), undefined, { shallow: true });
+                    history.push(routes.offers.new(4), undefined, { shallow: true });
                 },
             });
         } catch (error) {

@@ -9,9 +9,9 @@ import { IState } from '../../../interfaces';
 import types from '../../../redux/types';
 import JoinForm from '../auth/join-form';
 import LoginForm from '../auth/login-form';
+import CommentsLoader from '../loaders/comments-loader';
 import { modal } from '../modal';
 import SmallModalWrp from '../modal/small-modal-wrp';
-import CommentsLoader from '../preloaders/comments-loader';
 import CommentsForm from './comments-form';
 import CommentsList from './comments-list';
 

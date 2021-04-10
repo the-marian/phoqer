@@ -1,25 +1,24 @@
 import React, { ReactElement } from 'react';
+import { useSelector } from 'react-redux';
 
-import { IAuth } from '../../../../interfaces';
+import { IPublicProfile, IState } from '../../../../interfaces';
 import Gift from '../../../common/gift';
 import UserNav from '../../../common/nav-tabs/user-nav';
 import ProfileCard from '../../../common/profile-card';
 
-interface IProps {
-    auth: IAuth;
-}
-const AuthDrawer = ({ auth }: IProps): ReactElement | null => {
+const AuthDrawer = (): ReactElement | null => {
+    const user = useSelector<IState, IPublicProfile | null>(state => state.user);
     return (
         <>
             <ProfileCard
                 column
-                id={auth?.id}
-                firstName={auth?.first_name}
-                lastName={auth?.last_name}
-                avatar={auth?.profile_img}
-                lastActivity={auth?.last_activity}
-                userLocation={auth?.location}
-                registerDate={auth?.date_joined}
+                id={user?.id}
+                firstName={user?.first_name}
+                lastName={user?.last_name}
+                avatar={user?.profile_img}
+                lastActivity={user?.last_activity}
+                userLocation={user?.location}
+                registerDate={user?.date_joined}
             />
             <Gift style={{ margin: '4rem 0' }} />
             <UserNav />

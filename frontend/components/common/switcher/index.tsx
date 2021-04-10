@@ -35,7 +35,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
             left: theme.rem(0.2),
             zIndex: 1,
             transform: 'translateY(-50%)',
-            height: '95%',
+            height: '91%',
             width: '50%',
             borderRadius: theme.radius,
             background: theme.palette.white,

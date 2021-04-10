@@ -1,7 +1,8 @@
 import cookie from 'cookie';
 import { GetServerSidePropsContext } from 'next';
 
-import { IAuth, ICategories, IDropList, IDropValue } from '../interfaces';
+import { IAuth, ICategories, IDropList, IDropValue, IStore } from '../interfaces';
+import types from '../redux/types';
 import months from './months';
 import routes from './routes';
 
@@ -184,6 +185,11 @@ export const serverRedirect = (ctx: GetServerSidePropsContext, path?: string | n
         ctx.res.setHeader('Location', path || routes.root);
     }
     return !!redirect;
+};
+// get user in next.js getServerSideProps function
+export const serverUser = (ctx: GetServerSidePropsContext & { store: IStore }): void => {
+    const auth = serverCookie(ctx);
+    if (auth?.access_token) ctx.store.dispatch({ type: types.GET_USER_START });
 };
 // ----------------------------------------------
 // ----------------------------------------------

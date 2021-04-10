@@ -11,10 +11,10 @@ import useAuth from '../../../../../hooks/auth.hook';
 import { IComment } from '../../../../../interfaces';
 import types from '../../../../../redux/types';
 import LikeDislike from '../../../like-dislike';
+import CommentsLoader from '../../../loaders/comments-loader';
 import { modal } from '../../../modal';
 import FullPageGallery from '../../../modal/full-page-gallery';
 import MidModalWrp from '../../../modal/mid-modal-wrp';
-import CommentsLoader from '../../../preloaders/comments-loader';
 import CommentsForm from '../../comments-form';
 import ReplyModal from '../../reply-modal';
 

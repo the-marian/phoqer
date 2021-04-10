@@ -1,21 +1,21 @@
 import clsx from 'clsx';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
-import { useSelector } from 'react-redux';
 
-import routes from '../../../../assets/routes';
-import { Theme } from '../../../../assets/theme';
-import { INewOffer, IState } from '../../../../interfaces';
-import Advertising from '../../../common/advertising';
-import ConfettiWrp from '../../../common/confetti';
+import routes from '../../../../../assets/routes';
+import { Theme } from '../../../../../assets/theme';
+import Advertising from '../../../../common/advertising';
+import ConfettiWrp from '../../../../common/confetti';
 import newOfferTemplate from '../new-offer.style';
 
 const useStyles = createUseStyles((theme: Theme) => newOfferTemplate(theme).end);
 
 const Success = (): ReactElement => {
     const css = useStyles();
-    const value = useSelector<IState, INewOffer>(state => state.offers.new_offer);
+    const { query } = useRouter();
+    const offerId = String(query.offerId);
 
     return (
         <>
@@ -46,7 +46,7 @@ const Success = (): ReactElement => {
                         <Link href={routes.profile.private.my_offers('all')}>
                             <a className={css.btn}>Перейти в личный кабинет</a>
                         </Link>
-                        <Link href={routes.offers.single(value.id)}>
+                        <Link href={routes.offers.single(offerId)}>
                             <a className={clsx(css.btn, css.primary)} type="button">
                                 Просмотреть объявление
                             </a>

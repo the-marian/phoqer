@@ -59,7 +59,7 @@ const Banner = ({ className }: IProps): ReactElement => {
 
     const handleClick = (): void => {
         if (auth?.access_token) {
-            history.push(routes.new_offer(1));
+            history.push(routes.offers.new(1));
         } else {
             modal.open(
                 <SmallModalWrp>

@@ -1,9 +1,9 @@
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
-import { Theme } from '../../../../../assets/theme';
-import { modal } from '../../../../common/modal';
-import RegionModal from '../../../../common/modal/region-modal';
+import { Theme } from '../../../../../../assets/theme';
+import { modal } from '../../../../../common/modal';
+import RegionModal from '../../../../../common/modal/region-modal';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     map: {

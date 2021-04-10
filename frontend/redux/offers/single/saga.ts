@@ -12,6 +12,7 @@ function* getOffer({ payload }: IAction) {
         yield put({ type: types.GET_SINGLE_OFFER_SUCCESS, payload: data });
     } catch (error) {
         if (error?.response?.status === 401) return;
+        notifications('error');
         yield put({ type: types.GET_SINGLE_OFFER_ERROR });
         notifications('error');
     }

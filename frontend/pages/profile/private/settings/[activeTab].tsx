@@ -57,7 +57,7 @@ const Settings = (): ReactElement => {
 
 export const getServerSideProps = wrapper.getServerSideProps(
     async (ctx): Promise<void> => {
-        serverRedirect((ctx as unknown) as GetServerSidePropsContext);
+        if (serverRedirect((ctx as unknown) as GetServerSidePropsContext)) return;
     },
 );
 

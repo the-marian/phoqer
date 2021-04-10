@@ -22,12 +22,16 @@ export interface IBody {
     currency: string;
     images: { url: string }[];
     cover_image: string;
-    category: string | null;
-    sub_category: string | null;
+    category?: string | null;
+    sub_category?: string | null;
+    category_id?: string | null;
+    sub_category_id?: string | null;
 }
 
 export default interface IAction {
     type: Type;
     payload: INewOffer | IState | { url: string }[] | null;
+    images?: { url: string }[] | null;
+    offerId?: string;
     callback?: () => void;
 }

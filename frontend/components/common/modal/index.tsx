@@ -19,9 +19,11 @@ class ModalManagement extends EventEmitter {
         this.dom = dom;
 
         // styles
-        this.scrollY = window.scrollY;
-        document.body.style.position = 'fixed';
-        document.body.style.top = `-${this.scrollY}px`;
+        if (process.browser) {
+            this.scrollY = window.scrollY;
+            document.body.style.position = 'fixed';
+            document.body.style.top = `-${this.scrollY}px`;
+        }
 
         // emit
         this.emitChange();
@@ -31,9 +33,11 @@ class ModalManagement extends EventEmitter {
         this.dom = null;
 
         // styles
-        document.body.style.position = '';
-        document.body.style.top = '';
-        window.scrollTo({ top: this.scrollY });
+        if (process.browser) {
+            document.body.style.position = '';
+            document.body.style.top = '';
+            window.scrollTo({ top: this.scrollY });
+        }
 
         // emit
         this.emitChange();

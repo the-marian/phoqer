@@ -25,6 +25,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
             marginRight: theme.rem(4),
         },
     },
+    number: {
+        marginLeft: theme.rem(0.5),
+    },
 }));
 
 interface INavTabsItem {
@@ -61,11 +64,7 @@ const NavTabsItem = ({ item, className, active, classNameText, activeClass }: IN
 
                 <span className={classNameText}>{item.text}</span>
 
-                {item?.count ? (
-                    <NotifNumber style={{ position: 'static', top: 'unset', left: 'unset', marginLeft: '1rem' }}>
-                        {item?.count}
-                    </NotifNumber>
-                ) : null}
+                {item?.count ? <NotifNumber className={css.number}>{item?.count}</NotifNumber> : null}
             </button>
         </li>
     );

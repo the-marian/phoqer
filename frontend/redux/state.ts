@@ -2,7 +2,27 @@ import { IState } from '../interfaces';
 
 const initState: IState = {
     auth: {
+        loading: false,
         access_token: null,
+    },
+    user: {
+        bio: 'loading...',
+        birth_date: 'loading...',
+        communication_rate: 0,
+        date_joined: 'loading...',
+        description_rate: 'loading...',
+        dislikes: 0,
+        email: 'loading...',
+        id: 0,
+        first_name: 'loading...',
+        last_login: 'loading...',
+        last_activity: 'loading...',
+        last_name: 'loading...',
+        likes: 0,
+        location: 'loading...',
+        profile_img: 'loading...',
+        response_rate: 0,
+        satisfaction_rate: 0,
     },
     config: {
         drawer: false,
@@ -58,7 +78,7 @@ const initState: IState = {
         },
         single: null,
         new_offer: {
-            loading: true,
+            loading: false,
             // step 1
             title: '',
             price: null,

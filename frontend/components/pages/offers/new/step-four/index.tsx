@@ -3,9 +3,11 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
+import { useSelector } from 'react-redux';
 
-import routes from '../../../../assets/routes';
-import { Theme } from '../../../../assets/theme';
+import routes from '../../../../../assets/routes';
+import { Theme } from '../../../../../assets/theme';
+import { INewOffer, IState } from '../../../../../interfaces';
 import newOfferTemplate from '../new-offer.style';
 
 const useStyles = createUseStyles((theme: Theme) => newOfferTemplate(theme).end);
@@ -13,10 +15,11 @@ const useStyles = createUseStyles((theme: Theme) => newOfferTemplate(theme).end)
 const Draft = (): ReactElement => {
     const css = useStyles();
     const history = useRouter();
+    const newOffer = useSelector<IState, INewOffer>(state => state.offers.new_offer);
 
     const handleSubmit = (): void => {
         // TEMP
-        history.push(routes.new_offer('success'));
+        history.push(routes.offers.new('success?offerId=' + newOffer.id));
     };
 
     return (

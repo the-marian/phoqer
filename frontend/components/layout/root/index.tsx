@@ -3,8 +3,8 @@ import { ThemeProvider } from 'react-jss';
 
 import { theme } from '../../../assets/theme';
 import useTheme from '../../../hooks/theme.hook';
+import RouterProgress from '../../common/loaders/progress/router-progress';
 import ModalComponent from '../../common/modal';
-import RouterProgress from '../../common/preloaders/progress/router-progress';
 import AuthInterceptor from '../../context/auth/auth-interceptor';
 import MainDrawer from '../main-drawer';
 

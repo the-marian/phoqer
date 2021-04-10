@@ -1,7 +1,9 @@
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
+import template from '../../../../assets/template';
 import { Theme } from '../../../../assets/theme';
+import { modal } from '../../modal';
 import SmallModalWrp from '../../modal/small-modal-wrp';
 
 const useStyles = createUseStyles((theme: Theme) => ({
@@ -11,18 +13,27 @@ const useStyles = createUseStyles((theme: Theme) => ({
         color: theme.palette.green[0],
         textAlign: 'center',
     },
-
     img: {
         display: 'block',
         width: theme.rem(7),
         margin: '0 auto 2rem',
         textAlign: 'center',
     },
-
-    p: {
+    text: {
         marginTop: theme.rem(1),
         fontSize: theme.rem(1.4),
         textAlign: 'center',
+    },
+    flex: {
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        margin: theme.rem(3, 0, 0),
+    },
+    button: {
+        ...template(theme).btn,
+        minWidth: theme.rem(20),
+        background: theme.palette.green[0],
     },
 }));
 interface IProps {
@@ -33,9 +44,17 @@ const NotificationSuccess = ({ text }: IProps): ReactElement => {
     const css = useStyles();
     return (
         <SmallModalWrp>
-            <img className={css.img} src="/emoji/success.png" alt="" />
-            <h4 className={css.title}>Success</h4>
-            <p className={css.p}>{text}</p>
+            <>
+                <img className={css.img} src="/emoji/success.png" alt="" />
+                <h4 className={css.title}>Success</h4>
+                <p className={css.text}>{text}</p>
+
+                <div className={css.flex}>
+                    <button className={css.button} type="button" onClick={modal.close}>
+                        Ok
+                    </button>
+                </div>
+            </>
         </SmallModalWrp>
     );
 };

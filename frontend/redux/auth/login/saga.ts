@@ -14,14 +14,13 @@ function* loginUser({ payload }: IAction) {
 
     try {
         const { status, data } = yield call(api.auth.login, value);
-        // const { status, data } = yield call(api.auth.login, payload as ILogin);
         if (status < 200 || status >= 300) throw new Error();
         yield put({ type: types.LOGIN_SUCCESS, payload: data });
         modal.close();
     } catch (error) {
-        // TODO add error text
-        notifications('error', '');
         if (error?.response?.status === 401) return;
+        // TODO add error text
+        notifications('error');
         yield put({ type: types.LOGIN_ERROR });
     }
 }
