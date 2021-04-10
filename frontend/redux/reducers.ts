@@ -6,9 +6,11 @@ import comments from './comments/reducer';
 import config from './config/reducer';
 import offers from './offers/reducer';
 import profiles from './profiles/reducer';
+import user from './user/reducer';
 
 const rootReducer = combineReducers({
     auth,
+    user,
     config,
     offers,
     comments,

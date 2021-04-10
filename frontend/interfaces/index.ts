@@ -74,9 +74,9 @@ export interface ISignup {
     last_name: string;
 }
 
-export interface IAuth extends IPublicProfile {
+export interface IAuth {
+    loading: boolean;
     access_token: string | null;
-    token_type?: string;
 }
 
 // =====================================
@@ -142,8 +142,8 @@ export interface INewOffer {
     // step one
     title: string;
     price: number | null;
-    category?: IDropValue | null;
-    sub_category?: IDropValue | null;
+    category?: IDropValue | string | null;
+    sub_category?: IDropValue | string | null;
     is_deliverable: boolean;
     // step two
     doc_needed: boolean;
@@ -222,6 +222,7 @@ export interface IPublicProfile {
 // =====================================
 export interface IState {
     auth: IAuth;
+    user: IPublicProfile;
     config: {
         drawer: boolean;
         searchParams: ISearch;

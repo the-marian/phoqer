@@ -3,12 +3,12 @@ import { faKey } from '@fortawesome/free-solid-svg-icons/faKey';
 import Link from 'next/link';
 import React, { ChangeEvent, FormEvent, MouseEvent, ReactElement, useState } from 'react';
 import { createUseStyles } from 'react-jss';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { isEmpty, mailRegex } from '../../../../assets/helpers';
 import routes from '../../../../assets/routes';
 import { Theme } from '../../../../assets/theme';
-import { ILogin } from '../../../../interfaces';
+import { ILogin, IState } from '../../../../interfaces';
 import types from '../../../../redux/types';
 import Button from '../../button';
 import GoogleFacebook from '../../google-facebook';
@@ -89,10 +89,10 @@ const LoginForm = (): ReactElement => {
     const css = useStyles();
     const dispatch = useDispatch();
 
-    const [loading, setLoading] = useState(false);
-
     const [errors, setErrors] = useState<IError>(INIT);
     const [value, setValue] = useState<ILogin>(INIT);
+
+    const loading = useSelector<IState, boolean>(state => state.auth.loading);
 
     const handleChange = (event: ChangeEvent<HTMLInputElement>): void => {
         setValue((prev: ILogin): ILogin => ({ ...prev, [event.target.name]: event.target.value }));
@@ -101,7 +101,6 @@ const LoginForm = (): ReactElement => {
 
     const handleSubmit = (event: FormEvent<HTMLFormElement> | MouseEvent<HTMLButtonElement>): void => {
         event.preventDefault();
-        setLoading(true);
 
         // Empty
         const empty: [string, string][] = isEmpty<ILogin>(value);

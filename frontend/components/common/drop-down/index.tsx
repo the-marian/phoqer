@@ -117,7 +117,6 @@ const useStyles = createUseStyles((theme: Theme) => ({
         padding: theme.rem(0.4, 0),
         background: theme.palette.white,
         borderRadius: theme.radius,
-        border: theme.border(0.1, theme.palette.gray[3]),
         overflowY: 'auto',
     },
     item: {
@@ -131,7 +130,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         '& > button': {
             display: 'block',
             width: '100%',
-            padding: theme.rem(1),
+            padding: theme.rem(2),
             textAlign: 'left',
             background: theme.palette.white,
             color: theme.palette.black[0],
@@ -154,7 +153,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
     sub: {
         position: 'relative',
-        padding: theme.rem(1, 2),
+        padding: theme.rem(2, 2, 2, 4),
         background: theme.palette.gray[0],
         color: theme.palette.black[0],
         fontSize: theme.rem(1.4),

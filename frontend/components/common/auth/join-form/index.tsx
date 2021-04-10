@@ -1,10 +1,10 @@
 import React, { ChangeEvent, FormEvent, MouseEvent, ReactElement, useState } from 'react';
 import { createUseStyles } from 'react-jss';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { isEmpty, mailRegex, passwordRegex } from '../../../../assets/helpers';
 import { Theme } from '../../../../assets/theme';
-import { ISignup } from '../../../../interfaces';
+import { ISignup, IState } from '../../../../interfaces';
 import types from '../../../../redux/types';
 import Button from '../../button';
 import GoogleFacebook from '../../google-facebook';
@@ -125,10 +125,11 @@ const INIT: ISignup = {
 const JoinForm = (): ReactElement => {
     const css = useStyles();
     const dispatch = useDispatch();
-    const [loading, setLoading] = useState(false);
 
     const [errors, setErrors] = useState<IError>(INIT);
     const [value, setValue] = useState<ISignup>(INIT);
+
+    const loading = useSelector<IState, boolean>(state => state.auth.loading);
 
     const handleChange = (event: ChangeEvent<HTMLInputElement>): void => {
         setValue((prev: ISignup): ISignup => ({ ...prev, [event.target.name]: event.target.value }));
@@ -163,7 +164,6 @@ const JoinForm = (): ReactElement => {
             return;
         }
 
-        setLoading(true);
         dispatch({ type: types.SIGNUP_START, payload: value });
     };
 

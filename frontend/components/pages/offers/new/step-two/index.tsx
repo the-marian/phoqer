@@ -8,14 +8,14 @@ import { createUseStyles } from 'react-jss';
 import { useDispatch, useSelector } from 'react-redux';
 import TextareaAutosize from 'react-textarea-autosize';
 
-import { moneyFormat, numberValidation } from '../../../../assets/helpers';
-import routes from '../../../../assets/routes';
-import { Theme } from '../../../../assets/theme';
-import { INewOffer, IState } from '../../../../interfaces';
-import types from '../../../../redux/types';
-import CheckTitle from '../../../common/checkbox/check-title';
-import CheckYesNo from '../../../common/checkbox/check-yes-no';
-import Input from '../../../common/input';
+import { moneyFormat, numberValidation } from '../../../../../assets/helpers';
+import routes from '../../../../../assets/routes';
+import { Theme } from '../../../../../assets/theme';
+import { INewOffer, IState } from '../../../../../interfaces';
+import types from '../../../../../redux/types';
+import CheckTitle from '../../../../common/checkbox/check-title';
+import CheckYesNo from '../../../../common/checkbox/check-yes-no';
+import Input from '../../../../common/input';
 import newOfferTemplate from '../new-offer.style';
 
 const useStyles = createUseStyles((theme: Theme) => newOfferTemplate(theme).step);
@@ -81,7 +81,7 @@ const StepTwo = (): ReactElement => {
     // SUBMISSION
     const handleBack = () => {
         dispatch({ type: types.NEW_OFFER_FORM, payload: { ...value, isDone: { ...value.isDone, two: false } } });
-        history.push(routes.new_offer(1), undefined, { shallow: true });
+        history.push(routes.offers.new(1), undefined, { shallow: true });
     };
     const handleClear = (): void => {
         const reset: INewOffer = {
@@ -139,7 +139,7 @@ const StepTwo = (): ReactElement => {
         }
 
         dispatch({ type: types.NEW_OFFER_FORM, payload: { ...value, isDone: { ...value.isDone, two: true } } });
-        history.push(routes.new_offer(3), undefined, { shallow: true });
+        history.push(routes.offers.new(3), undefined, { shallow: true });
     };
 
     const handleSave = (): void => {
@@ -151,7 +151,7 @@ const StepTwo = (): ReactElement => {
             type: types.POST_OFFER_START,
             payload: null,
             callback() {
-                history.push(routes.new_offer('draft'), undefined, { shallow: true });
+                history.push(routes.offers.new('draft'), undefined, { shallow: true });
             },
         });
     };

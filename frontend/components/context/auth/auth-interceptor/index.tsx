@@ -6,12 +6,13 @@ import { IState } from '../../../../interfaces';
 import types from '../../../../redux/types';
 
 const AuthInterceptor = (): null => {
-    const dispatch = useDispatch();
     const token = useSelector<IState, string | null>(state => state.auth.access_token);
+    const dispatch = useDispatch();
 
     useEffect(() => {
         if (token) {
             axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+            console.log('ssssssss');
             dispatch({ type: types.GET_USER_START });
         } else {
             delete axios.defaults.headers.common.Authorization;

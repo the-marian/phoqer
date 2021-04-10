@@ -48,11 +48,11 @@ const Index = (): ReactElement => {
 };
 
 export const getServerSideProps = wrapper.getServerSideProps(
-    async ({ store }: { store: IStore }): Promise<void> => {
-        store.dispatch({ type: types.GET_CATEGORIES_START });
-        store.dispatch({ type: types.GET_POPULAR_OFFERS_START });
-        store.dispatch(END);
-        await store?.sagaTask?.toPromise();
+    async (ctx): Promise<void> => {
+        ctx.store.dispatch({ type: types.GET_CATEGORIES_START });
+        ctx.store.dispatch({ type: types.GET_POPULAR_OFFERS_START });
+        ctx.store.dispatch(END);
+        await (ctx.store as IStore)?.sagaTask?.toPromise();
     },
 );
 

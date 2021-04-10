@@ -2,9 +2,10 @@ import { faCompass } from '@fortawesome/free-regular-svg-icons/faCompass';
 import { faUser } from '@fortawesome/free-regular-svg-icons/faUser';
 import React, { ChangeEvent, ReactElement, useState } from 'react';
 import { createUseStyles } from 'react-jss';
+import { useSelector } from 'react-redux';
 
 import { Theme } from '../../../../../../../assets/theme';
-import useAuth from '../../../../../../../hooks/auth.hook';
+import { IPublicProfile, IState } from '../../../../../../../interfaces';
 import Banner from '../../../../../../common/banner';
 import Input from '../../../../../../common/input';
 
@@ -62,12 +63,12 @@ const errorInit: IValue = {
 
 const GeneralInfoForm = (): ReactElement => {
     const css = useStyles();
-    const auth = useAuth();
+    const user = useSelector<IState, IPublicProfile | null>(state => state.user);
 
     const init: IValue = {
-        first_name: auth?.first_name || '',
-        last_name: auth?.last_name || '',
-        location: auth?.location || '',
+        first_name: user?.first_name !== 'loading...' ? user?.first_name || '' : '',
+        last_name: user?.last_name !== 'loading...' ? user?.last_name || '' : '',
+        location: user?.location !== 'loading...' ? user?.location || '' : '',
     };
 
     const [error, setError] = useState<IValue>(errorInit);

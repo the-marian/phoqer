@@ -48,7 +48,7 @@ const EmptyOffers = ({ text }: IProps): ReactElement => {
             <img className={css.emoji} src="/emoji/empty.png" alt="" />
             <p className={css.emptyText}>{text || 'Кажется здесь пусто. Создайте свое объявление, не тяните резину'}</p>
 
-            <Link href={routes.new_offer(1)}>
+            <Link href={routes.offers.new(1)}>
                 <a className={css.link}>Создать обьявление</a>
             </Link>
         </div>

@@ -12,6 +12,15 @@ const useStyles = createUseStyles((theme: Theme) => ({
         width: '40%',
         minWidth: theme.rem(20),
         marginLeft: theme.rem(4),
+        ...theme.media(1100).max({
+            width: '48%',
+            marginLeft: '4%',
+        }),
+        ...theme.media(768).max({
+            width: '100%',
+            marginLeft: '0',
+            marginTop: theme.rem(8),
+        }),
     },
     input: {
         background: theme.palette.gray[0],
@@ -39,26 +48,24 @@ const ResetEmail = (): ReactElement => {
     };
 
     return (
-        <>
-            <div className={css.wrp}>
-                <label className={css.label}>
-                    <p className={css.text}>New email</p>
-                    <Input
-                        icon={faEnvelope}
-                        value={value}
-                        errors={error}
-                        onChange={handleChange}
-                        type="email"
-                        name="email"
-                        autoComplete="off"
-                        placeholder="email"
-                        className={css.input}
-                        errorsInPlaceholder
-                    />
-                </label>
-                <Button className={css.btn}>Изменить почту</Button>
-            </div>
-        </>
+        <div className={css.wrp}>
+            <label className={css.label}>
+                <p className={css.text}>New email</p>
+                <Input
+                    icon={faEnvelope}
+                    value={value}
+                    errors={error}
+                    onChange={handleChange}
+                    type="email"
+                    name="email"
+                    autoComplete="off"
+                    placeholder="email"
+                    className={css.input}
+                    errorsInPlaceholder
+                />
+            </label>
+            <Button className={css.btn}>Изменить почту</Button>
+        </div>
     );
 };
 

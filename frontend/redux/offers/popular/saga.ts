@@ -1,6 +1,7 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
 
 import api from '../../../assets/api';
+import notifications from '../../../components/common/notifications';
 import types from '../../types';
 
 function* getPopular() {
@@ -10,6 +11,7 @@ function* getPopular() {
         yield put({ type: types.GET_POPULAR_OFFERS_SUCCESS, payload: data });
     } catch (error) {
         if (error?.response?.status === 401) return;
+        notifications('error');
         yield put({ type: types.GET_POPULAR_OFFERS_ERROR });
     }
 }

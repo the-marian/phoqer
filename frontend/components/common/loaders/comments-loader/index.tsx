@@ -7,14 +7,10 @@ const useStyles = createUseStyles((theme: Theme) => ({
     '@keyframes loader': {
         '0%': {
             left: 0,
-            width: '0%',
+            transform: 'translateX(-100%)',
         },
         '50%': {
-            width: '20%',
-        },
-        '100%': {
             left: '100%',
-            width: 0,
         },
     },
     loading: {

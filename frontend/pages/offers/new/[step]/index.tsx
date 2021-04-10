@@ -5,24 +5,24 @@ import { createUseStyles } from 'react-jss';
 import { useSelector } from 'react-redux';
 import { END } from 'redux-saga';
 
-import { serverRedirect } from '../../../assets/helpers';
-import routes from '../../../assets/routes';
-import { Theme } from '../../../assets/theme';
-import Container from '../../../components/common/container';
-import AuthRedirect from '../../../components/context/auth/auth-redirect';
-import Meta from '../../../components/layout/meta';
-import PageLayout from '../../../components/layout/page-layout';
-import Draft from '../../../components/pages/new-offer/draft';
-import StepFour from '../../../components/pages/new-offer/step-four';
-import StepOne from '../../../components/pages/new-offer/step-one';
-import StepThree from '../../../components/pages/new-offer/step-three';
-import StepTwo from '../../../components/pages/new-offer/step-two';
-import Stepper from '../../../components/pages/new-offer/stepper';
-import Success from '../../../components/pages/new-offer/success';
-import useTrans from '../../../hooks/trans.hook';
-import { INewOffer, IState, IStore } from '../../../interfaces';
-import { wrapper } from '../../../redux/store';
-import types from '../../../redux/types';
+import { serverRedirect } from '../../../../assets/helpers';
+import routes from '../../../../assets/routes';
+import { Theme } from '../../../../assets/theme';
+import Container from '../../../../components/common/container';
+import AuthRedirect from '../../../../components/context/auth/auth-redirect';
+import Meta from '../../../../components/layout/meta';
+import PageLayout from '../../../../components/layout/page-layout';
+import Draft from '../../../../components/pages/offers/new/draft';
+import StepFour from '../../../../components/pages/offers/new/step-four';
+import StepOne from '../../../../components/pages/offers/new/step-one';
+import StepThree from '../../../../components/pages/offers/new/step-three';
+import StepTwo from '../../../../components/pages/offers/new/step-two';
+import Stepper from '../../../../components/pages/offers/new/stepper';
+import Success from '../../../../components/pages/offers/new/success';
+import useTrans from '../../../../hooks/trans.hook';
+import { INewOffer, IState, IStore } from '../../../../interfaces';
+import { wrapper } from '../../../../redux/store';
+import types from '../../../../redux/types';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     title: {
@@ -74,15 +74,15 @@ const NewOffer = (): ReactElement => {
             if (step === '2' && !value?.isDone?.one) {
                 // *
                 // return to first page if user dont fill any of required field at step one
-                history.push(routes.new_offer(1));
+                history.push(routes.offers.new(1));
             } else if (step === '3' && !value?.isDone?.two) {
                 // *
                 // return to first page if user dont fill any of required field at step two
-                history.push(routes.new_offer(1));
+                history.push(routes.offers.new(1));
             } else if (['4', 'success'].includes(step) && (!value?.isDone?.one || !value?.isDone?.two)) {
                 // *
                 // return to first page if user dont fill any of required field at step one and two
-                history.push(routes.new_offer(1));
+                history.push(routes.offers.new(1));
             } else {
                 setPage(step);
             }
@@ -116,7 +116,7 @@ const NewOffer = (): ReactElement => {
 
 export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps(
     async (ctx): Promise<void> => {
-        serverRedirect((ctx as unknown) as GetServerSidePropsContext);
+        if (serverRedirect((ctx as unknown) as GetServerSidePropsContext)) return;
         ctx?.store?.dispatch({ type: types.GET_CATEGORIES_START });
         ctx?.store?.dispatch(END);
         await (ctx?.store as IStore)?.sagaTask?.toPromise();

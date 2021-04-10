@@ -89,7 +89,7 @@ const MainDrawer = (): ReactElement => {
     };
 
     const handleNewOffer = (): void => {
-        linksRedirect(routes.new_offer(1));
+        linksRedirect(routes.offers.new(1));
     };
 
     return (
@@ -115,7 +115,7 @@ const MainDrawer = (): ReactElement => {
                 </button>
             </div>
 
-            <div className={css.content}>{auth?.access_token ? <AuthDrawer auth={auth} /> : <NotAuthDrawer />}</div>
+            <div className={css.content}>{auth?.access_token ? <AuthDrawer /> : <NotAuthDrawer />}</div>
 
             <Socials style={{ marginTop: '8rem' }} />
         </Drawer>

@@ -1,7 +1,7 @@
 import React, { ReactElement, useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 
-import OffersLoader from '../../preloaders/offers';
+import OffersLoader from '../../loaders/offers';
 
 interface IProps {
     onSubmit: (page: number) => void;

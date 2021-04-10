@@ -14,7 +14,6 @@ const Persist: Middleware = store => next => action => {
              * LOGIN
              * */
             case types.LOGIN_SUCCESS:
-            case types.GET_USER_SUCCESS:
                 try {
                     const state: IState = store.getState();
                     Cookies.set('phoqer_auth', JSON.stringify({ ...state.auth, ...action.payload }));

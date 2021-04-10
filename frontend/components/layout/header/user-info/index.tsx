@@ -7,12 +7,13 @@ import Link from 'next/link';
 import { Router } from 'next/router';
 import React, { ReactElement, useEffect, useState } from 'react';
 import { createUseStyles } from 'react-jss';
+import { useSelector } from 'react-redux';
 
 import routes from '../../../../assets/routes';
 import { Theme } from '../../../../assets/theme';
-import useAuth from '../../../../hooks/auth.hook';
 import useMedia from '../../../../hooks/media.hook';
 import useTrans from '../../../../hooks/trans.hook';
+import { IPublicProfile, IState } from '../../../../interfaces';
 import NotifNumber from '../../../common/notif-number';
 import DropWindow from './drop-window';
 
@@ -39,6 +40,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
     link: {
         position: 'relative',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
         color: theme.palette.black[0],
 
         ...theme.media(768).max({
@@ -73,14 +77,17 @@ const useStyles = createUseStyles((theme: Theme) => ({
         position: 'relative',
         zIndex: 101,
     },
+    number: {
+        marginRight: theme.rem(0.5),
+    },
 }));
 
 const UserInfo = (): ReactElement => {
     const T = useTrans();
-    const auth = useAuth();
     const css = useStyles();
     const media = useMedia(1060);
     const [drop, setDrop] = useState<boolean>(false);
+    const user = useSelector<IState, IPublicProfile | null>(state => state.user);
 
     useEffect(() => {
         const handleClose = (): void => {
@@ -102,7 +109,7 @@ const UserInfo = (): ReactElement => {
             {media ? (
                 <>
                     <li className={css.item}>
-                        <Link href={routes.new_offer(1)}>
+                        <Link href={routes.offers.new(1)}>
                             <a className={css.link}>
                                 <FontAwesomeIcon icon={faPlus} />
                                 <span className={css.text}>{T.create_offer}</span>
@@ -121,9 +128,9 @@ const UserInfo = (): ReactElement => {
             ) : null}
             <li className={css.item}>
                 <button type="button" className={clsx(css.link, drop && css.user)} onClick={handleClick}>
+                    <NotifNumber className={css.number}>14</NotifNumber>
                     <FontAwesomeIcon icon={faUser} />
-                    <span className={css.text}>{auth?.first_name + ' ' + auth?.last_name}</span>
-                    <NotifNumber>14</NotifNumber>
+                    <span className={css.text}>{user?.first_name + ' ' + user?.last_name}</span>
                 </button>
                 {drop && <DropWindow onClose={handleClick} />}
             </li>

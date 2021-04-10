@@ -5,12 +5,14 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
+import { useSelector } from 'react-redux';
 
 import { formatTimestamp, onlineStatus } from '../../../assets/helpers';
 import routes from '../../../assets/routes';
 import template from '../../../assets/template';
 import { Theme } from '../../../assets/theme';
 import useAuth from '../../../hooks/auth.hook';
+import { IPublicProfile, IState } from '../../../interfaces';
 import LoginForm from '../auth/login-form';
 import { modal } from '../modal';
 import SmallModalWrp from '../modal/small-modal-wrp';
@@ -113,6 +115,7 @@ const ProfileCard = ({
     const css = useStyles();
     const auth = useAuth();
     const history = useRouter();
+    const user = useSelector<IState, IPublicProfile | null>(state => state.user);
 
     const handleOpenChat = (): void => {
         if (!auth?.access_token) {
@@ -127,7 +130,7 @@ const ProfileCard = ({
         alert('hi!');
     };
 
-    const isAuthor = auth?.id === id;
+    const isAuthor = user?.id === id;
 
     return (
         <div className={clsx(css.wrp, className, column && css.column)}>

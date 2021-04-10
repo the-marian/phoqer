@@ -15,6 +15,12 @@ const useStyles = createUseStyles((theme: Theme) => ({
         borderRadius: theme.radius,
         transition: theme.transitions[0],
 
+        ...theme.media(768).max({
+            height: theme.rem(4),
+            width: theme.rem(4),
+            background: theme.palette.gray[1],
+        }),
+
         '&:hover': {
             background: theme.palette.gray[1],
         },

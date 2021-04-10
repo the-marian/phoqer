@@ -112,12 +112,15 @@ const SingleOfferPage = (): ReactElement | null => {
                                 label:
                                     offer.category_name || offer.sub_category_name
                                         ? `Предложения в разделе ${offer.category_name || offer.sub_category_name}`
-                                        : 'Поиск вещей / услуг',
-                                link: offer.category
-                                    ? routes.offers.single(
-                                          offer?.category ? `?category=${offer?.category}` : `?sub=${offer?.sub_category}`,
-                                      )
-                                    : routes.offers.list,
+                                        : 'Поиск вещей и услуг',
+                                link:
+                                    offer.category || offer?.sub_category
+                                        ? routes.offers.single(
+                                              offer?.category
+                                                  ? `?category=${offer?.category}`
+                                                  : `?sub_category=${offer?.sub_category}`,
+                                          )
+                                        : routes.offers.list,
                             },
                         ]}
                     />

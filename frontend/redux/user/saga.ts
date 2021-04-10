@@ -1,7 +1,8 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
 
-import api from '../../../assets/api';
-import types from '../../types';
+import api from '../../assets/api';
+import notifications from '../../components/common/notifications';
+import types from '../types';
 
 function* getUser() {
     try {
@@ -10,6 +11,7 @@ function* getUser() {
         yield put({ type: types.GET_USER_SUCCESS, payload: data });
     } catch (error) {
         if (error?.response?.status === 401) return;
+        notifications('error');
         yield put({ type: types.GET_USER_ERROR });
     }
 }
