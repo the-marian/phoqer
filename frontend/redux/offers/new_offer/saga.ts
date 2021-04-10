@@ -6,7 +6,7 @@ import initState from '../../state';
 import types from '../../types';
 import IAction, { IBody } from './interfaces';
 
-function* postOffer({ payload, redirect }: IAction) {
+function* postOffer({ payload, callback }: IAction) {
     try {
         const form: INewOffer = yield select<(state: IState) => INewOffer>(state => state.offers.new_offer);
 
@@ -42,7 +42,7 @@ function* postOffer({ payload, redirect }: IAction) {
 
         if (status < 200 || status >= 300) throw new Error();
         yield put({ type: types.POST_OFFER_SUCCESS, payload: { ...initState.offers.new_offer, id: data.id } });
-        if (redirect) redirect();
+        if (callback) callback();
     } catch (error) {
         if (error?.response?.status === 401) return;
         yield put({ type: types.POST_OFFER_ERROR });

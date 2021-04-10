@@ -1,15 +1,16 @@
 const types = {
     /**
      * DOCS
-     * 1 GENERAL
-     * 2 AUTH
-     * 3 CATEGORIES
-     * 4 OFFERS
-     * 7 COMMENTS
+     * 1_GENERAL
+     * 2_AUTH
+     * 3_CATEGORIES
+     * 4_OFFERS
+     * 5_COMMENTS
+     * 6_PUBLIC_PROFILE
      * */
 
     // ========================
-    // GENERAL
+    // 1_GENERAL
     // ========================
     // TOGGLE_DRAWER
     TOGGLE_DRAWER: 'TOGGLE_DRAWER',
@@ -21,7 +22,7 @@ const types = {
     OFFERS_SEARCH_LOCAL_PARAMS: 'OFFERS_SEARCH_LOCAL_PARAMS',
 
     // ========================
-    // AUTH
+    // 2_AUTH
     // ========================
     // SIGNUP
     SIGNUP_START: 'SIGNUP_START',
@@ -40,7 +41,7 @@ const types = {
     GET_USER_ERROR: 'GET_USER_ERROR',
 
     // ========================
-    // CATEGORIES
+    // 3_CATEGORIES
     // ========================
     // GET_CATEGORIES
     GET_CATEGORIES_START: 'GET_CATEGORIES_START',
@@ -48,7 +49,7 @@ const types = {
     GET_CATEGORIES_ERROR: 'GET_CATEGORIES_ERROR',
 
     // ========================
-    // OFFERS
+    // 4_OFFERS
     // ========================
     // GET_POPULAR_OFFERS
     GET_POPULAR_OFFERS_START: 'GET_POPULAR_OFFERS_START',
@@ -68,6 +69,10 @@ const types = {
     POST_OFFER_START: 'POST_OFFER_START',
     POST_OFFER_SUCCESS: 'POST_OFFER_SUCCESS',
     POST_OFFER_ERROR: 'POST_OFFER_ERROR',
+    // PATCH_OFFER
+    PATCH_OFFER_START: 'PATCH_OFFER_START',
+    PATCH_OFFER_SUCCESS: 'PATCH_OFFER_SUCCESS',
+    PATCH_OFFER_ERROR: 'PATCH_OFFER_ERROR',
     // GET_SINGLE_OFFER
     GET_SINGLE_OFFER_START: 'GET_SINGLE_OFFER_START',
     GET_SINGLE_OFFER_SUCCESS: 'GET_SINGLE_OFFER_SUCCESS',
@@ -90,7 +95,7 @@ const types = {
     MY_OFFERS_PAGINATION_ERROR: 'MY_OFFERS_PAGINATION_ERROR',
 
     // ========================
-    // COMMENTS
+    // 5_COMMENTS
     // ========================
     // GET_COMMENTS
     GET_COMMENTS_START: 'GET_COMMENTS_START',
@@ -116,8 +121,9 @@ const types = {
     DISLIKE_COMMENT_START: 'DISLIKE_COMMENT_START',
     DISLIKE_COMMENT_SUCCESS: 'DISLIKE_COMMENT_SUCCESS',
     DISLIKE_COMMENT_ERROR: 'DISLIKE_COMMENT_ERROR',
+
     // ========================
-    // PUBLIC_PROFILE
+    // 6_PUBLIC_PROFILE
     // ========================
     GET_PUBLIC_PROFILE_START: 'GET_PUBLIC_PROFILE_START',
     GET_PUBLIC_PROFILE_SUCCESS: 'GET_PUBLIC_PROFILE_SUCCESS',
