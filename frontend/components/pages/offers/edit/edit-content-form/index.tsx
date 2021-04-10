@@ -1,9 +1,11 @@
 import React, { FormEvent, ReactElement, useState } from 'react';
 import { createUseStyles } from 'react-jss';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
+import routes from '../../../../../assets/routes';
 import { IDropValue, INewOffer, IOfferCard, IState } from '../../../../../interfaces';
 import initState from '../../../../../redux/state';
+import types from '../../../../../redux/types';
 import Button from '../../../../common/button';
 import Progress from '../../../../common/preloaders/progress';
 import editOfferTemplate from './edit-content-form.style';
@@ -53,6 +55,7 @@ export interface IError {
 
 const EditContentForm = (): ReactElement => {
     const css = useStyles();
+    const dispatch = useDispatch();
     const [loading, setLoading] = useState(false);
 
     const init = useSelector<IState, IOfferCard | null>(state => state.offers.single);
@@ -67,6 +70,20 @@ const EditContentForm = (): ReactElement => {
         }
     };
 
+    const handleSave = (): void => {
+        if (validate({ value, setErrors })) {
+            setLoading(true);
+            dispatch({ type: types.NEW_OFFER_FORM, payload: value });
+            dispatch({
+                type: types.POST_OFFER_START,
+                payload: null,
+                callback() {
+                    setLoading(false);
+                },
+            });
+        }
+    };
+
     return (
         <form action="#" method="post" onSubmit={handleSubmit}>
             <StepOne value={value} setValue={setValue} errors={errors} setErrors={setErrors} />
@@ -77,7 +94,7 @@ const EditContentForm = (): ReactElement => {
             </p>
 
             <div className={css.group}>
-                <Button loading={loading} className={css.save} type="button">
+                <Button loading={loading} className={css.save} type="button" onClick={handleSave}>
                     Сохранить изменения
                 </Button>
                 <Button loading={loading} className={css.submit} type="submit">

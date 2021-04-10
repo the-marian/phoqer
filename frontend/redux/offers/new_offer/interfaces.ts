@@ -29,5 +29,5 @@ export interface IBody {
 export default interface IAction {
     type: Type;
     payload: INewOffer | IState | { url: string }[] | null;
-    redirect?: () => void;
+    callback?: () => void;
 }

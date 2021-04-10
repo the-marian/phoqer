@@ -52,7 +52,7 @@ const StepThree = (): ReactElement => {
         dispatch({
             type: types.POST_OFFER_START,
             payload: null,
-            redirect() {
+            callback() {
                 history.push(routes.new_offer(4), undefined, { shallow: true });
             },
         });
@@ -72,7 +72,7 @@ const StepThree = (): ReactElement => {
                     res?.successful?.map<{ url: string }>((value: UploadedUppyFile<unknown, { images_url?: [string] }>) => ({
                         url: config.img + value?.response?.body?.images_url?.[0],
                     })) || [],
-                redirect() {
+                callback() {
                     history.push(routes.new_offer(4), undefined, { shallow: true });
                 },
             });
