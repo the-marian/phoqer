@@ -9,11 +9,11 @@ import { useDispatch } from 'react-redux';
 
 import { logger, parseCookie } from '../assets/helpers';
 import interceptors from '../assets/interceptors';
-import { modal } from '../components/Common/Modal';
-import AuthProvider from '../components/Context/Auth/AuthContext';
-import MediaProvider from '../components/Context/Media';
-import SiteTheme from '../components/Context/SiteTheme';
-import Root from '../components/Layout/Root';
+import { modal } from '../components/common/modal';
+import AuthProvider from '../components/context/auth/auth-context';
+import MediaProvider from '../components/context/media';
+import SiteTheme from '../components/context/site-theme';
+import Root from '../components/layout/root';
 import { IAuth, Themes } from '../interfaces';
 import { wrapper } from '../redux/store';
 

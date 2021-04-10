@@ -1,21 +1,21 @@
 import { GetServerSideProps, GetServerSidePropsContext } from 'next';
-import React, { ReactElement } from 'react';
+import React, { ReactElement, useEffect } from 'react';
 import { createUseStyles } from 'react-jss';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { END } from 'redux-saga';
 
 import { serverRedirect } from '../../../../assets/helpers';
 import routes from '../../../../assets/routes';
 import { Theme } from '../../../../assets/theme';
-import Breadcrumbs from '../../../../components/Common/Breadcrumbs';
-import Container from '../../../../components/Common/Container';
-import { modal } from '../../../../components/Common/Modal';
-import FullPageModal from '../../../../components/Common/Modal/FullPageModal';
-import Meta from '../../../../components/Layout/Meta';
-import PageLayout from '../../../../components/Layout/PageLayout';
-import AsideElement from '../../../../components/Pages/Offers/Edit/AsideElement';
-import EditContentForm from '../../../../components/Pages/Offers/Edit/EditContentForm';
-import OfferSlider from '../../../../components/Pages/SingleOffer/Slider';
+import Breadcrumbs from '../../../../components/common/breadcrumbs';
+import Container from '../../../../components/common/container';
+import { modal } from '../../../../components/common/modal';
+import FullPageModal from '../../../../components/common/modal/full-page-modal';
+import Meta from '../../../../components/layout/meta';
+import PageLayout from '../../../../components/layout/page-layout';
+import AsideElement from '../../../../components/pages/offers/edit/aside-element';
+import EditContentForm from '../../../../components/pages/offers/edit/edit-content-form';
+import OfferSlider from '../../../../components/pages/single-offer/slider';
 import { IOfferCard, IState, IStore } from '../../../../interfaces';
 import { wrapper } from '../../../../redux/store';
 import types from '../../../../redux/types';
@@ -68,7 +68,12 @@ const useStyles = createUseStyles((theme: Theme) => ({
 
 const SingleOfferPage = (): ReactElement | null => {
     const css = useStyles();
+    const dispatch = useDispatch();
     const offer = useSelector<IState, IOfferCard | null>(state => state.offers.single);
+
+    useEffect(() => {
+        if (offer?.author_id) dispatch({ type: types.GET_PUBLIC_PROFILE_START, payload: offer.author_id });
+    }, [offer]);
 
     const handleModal = (): void => {
         modal.open(

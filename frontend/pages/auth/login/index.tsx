@@ -2,10 +2,10 @@ import { GetServerSidePropsContext } from 'next';
 import React, { ReactElement } from 'react';
 
 import { serverRedirect } from '../../../assets/helpers';
-import LoginForm from '../../../components/Common/Auth/LoginForm';
-import AuthRedirect from '../../../components/Context/Auth/AuthRedirect';
-import Meta from '../../../components/Layout/Meta';
-import AuthContainer from '../../../components/Pages/Auth/AuthContainer';
+import LoginForm from '../../../components/common/auth/login-form';
+import AuthRedirect from '../../../components/context/auth/auth-redirect';
+import Meta from '../../../components/layout/meta';
+import AuthContainer from '../../../components/pages/auth/auth-container';
 import useTrans from '../../../hooks/trans.hook';
 import { wrapper } from '../../../redux/store';
 

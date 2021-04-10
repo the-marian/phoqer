@@ -1,8 +1,8 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
 
 import api from '../../../assets/api';
-import { modal } from '../../../components/Common/Modal';
-import notifications from '../../../components/Common/Notifications';
+import { modal } from '../../../components/common/modal';
+import notifications from '../../../components/common/notifications';
 import { ISignup } from '../../../interfaces';
 import types from '../../types';
 import IAction from './interfaces';

@@ -5,14 +5,14 @@ import { createUseStyles } from 'react-jss';
 
 import { serverRedirect } from '../../../../assets/helpers';
 import { Theme } from '../../../../assets/theme';
-import Container from '../../../../components/Common/Container';
-import ProfileNav from '../../../../components/Common/NavTabs/Profile/RootNav';
-import ProfileSettingsNav from '../../../../components/Common/NavTabs/Profile/SettingsNav';
-import AuthRedirect from '../../../../components/Context/Auth/AuthRedirect';
-import Meta from '../../../../components/Layout/Meta';
-import PageLayout from '../../../../components/Layout/PageLayout';
-import General from '../../../../components/Pages/Profile/Private/Settings/General';
-import Privacy from '../../../../components/Pages/Profile/Private/Settings/Privacy';
+import Container from '../../../../components/common/container';
+import ProfileNav from '../../../../components/common/nav-tabs/profile/root-nav';
+import ProfileSettingsNav from '../../../../components/common/nav-tabs/profile/settings-nav';
+import AuthRedirect from '../../../../components/context/auth/auth-redirect';
+import Meta from '../../../../components/layout/meta';
+import PageLayout from '../../../../components/layout/page-layout';
+import General from '../../../../components/pages/profile/private/settings/general';
+import Privacy from '../../../../components/pages/profile/private/settings/privacy';
 import useTrans from '../../../../hooks/trans.hook';
 import { wrapper } from '../../../../redux/store';
 

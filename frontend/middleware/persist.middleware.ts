@@ -2,7 +2,7 @@ import Cookies from 'js-cookie';
 import { HYDRATE } from 'next-redux-wrapper';
 import { Middleware } from 'redux';
 
-import notifications from '../components/Common/Notifications';
+import notifications from '../components/common/notifications';
 import { IAuth, IState } from '../interfaces';
 import initState from '../redux/state';
 import types from '../redux/types';
@@ -41,7 +41,7 @@ const Persist: Middleware = store => next => action => {
              * */
             case HYDRATE:
                 try {
-                    // Auth
+                    // auth
                     const authStr: string | null = Cookies.get('phoqer_auth') || null;
                     const auth: IAuth = authStr ? JSON.parse(authStr) : initState.auth;
                     // next
