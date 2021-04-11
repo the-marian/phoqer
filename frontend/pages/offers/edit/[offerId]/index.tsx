@@ -1,3 +1,6 @@
+import { faChevronRight } from '@fortawesome/free-solid-svg-icons/faChevronRight';
+import { faPlus } from '@fortawesome/free-solid-svg-icons/faPlus';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { GetServerSideProps, GetServerSidePropsContext } from 'next';
 import React, { ReactElement, useEffect } from 'react';
 import { createUseStyles } from 'react-jss';
@@ -6,41 +9,20 @@ import { END } from 'redux-saga';
 
 import { serverRedirect } from '../../../../assets/helpers';
 import routes from '../../../../assets/routes';
+import template from '../../../../assets/template';
 import { Theme } from '../../../../assets/theme';
 import Breadcrumbs from '../../../../components/common/breadcrumbs';
 import Container from '../../../../components/common/container';
-import { modal } from '../../../../components/common/modal';
-import FullPageModal from '../../../../components/common/modal/full-page-modal';
 import Meta from '../../../../components/layout/meta';
 import PageLayout from '../../../../components/layout/page-layout';
 import AsideElement from '../../../../components/pages/offers/edit/aside-element';
 import EditContentForm from '../../../../components/pages/offers/edit/edit-content-form';
-import OfferSlider from '../../../../components/pages/single-offer/slider';
+import PhotosList from '../../../../components/pages/offers/edit/photos-list';
 import { IOfferCard, IState, IStore } from '../../../../interfaces';
 import { wrapper } from '../../../../redux/store';
 import types from '../../../../redux/types';
 
 const useStyles = createUseStyles((theme: Theme) => ({
-    // top translate
-    banner: {
-        display: 'block',
-        height: theme.rem(60),
-        borderRadius: theme.radius,
-        objectFit: 'contain',
-        background: theme.palette.gray[1],
-        cursor: 'zoom-in',
-
-        ...theme.media(768).max({
-            height: theme.rem(30),
-        }),
-    },
-    modal: {
-        display: 'block',
-        width: '100vw',
-        height: '100vh',
-        objectFit: 'contain',
-    },
-
     // main
     flex: {
         display: 'flex',
@@ -64,6 +46,14 @@ const useStyles = createUseStyles((theme: Theme) => ({
             paddingRight: '0',
         }),
     },
+    plus: {
+        ...template(theme).btn,
+        margin: '2rem auto',
+
+        '& span': {
+            marginLeft: theme.rem(1),
+        },
+    },
 }));
 
 const SingleOfferPage = (): ReactElement | null => {
@@ -75,14 +65,6 @@ const SingleOfferPage = (): ReactElement | null => {
         if (offer?.author_id) dispatch({ type: types.GET_PUBLIC_PROFILE_START, payload: offer.author_id });
     }, [offer]);
 
-    const handleModal = (): void => {
-        modal.open(
-            <FullPageModal>
-                <img className={css.modal} draggable={false} src={offer?.cover_image || '/no_img.png'} alt="" />
-            </FullPageModal>,
-        );
-    };
-
     return offer ? (
         <>
             <Meta
@@ -93,17 +75,13 @@ const SingleOfferPage = (): ReactElement | null => {
             />
             <PageLayout>
                 <Container>
-                    {offer.images && offer.images.length > 1 ? (
-                        <OfferSlider images={offer?.images} />
-                    ) : (
-                        <img
-                            className={css.banner}
-                            src={offer?.cover_image || '/no_img.png'}
-                            alt=""
-                            onClick={handleModal}
-                            aria-hidden="true"
-                        />
-                    )}
+                    <PhotosList />
+
+                    <button className={css.plus} type="button">
+                        <FontAwesomeIcon icon={faPlus} />
+                        <span>Добавить фотографии</span>
+                    </button>
+
                     <Breadcrumbs
                         end={offer?.title}
                         data={[
@@ -124,12 +102,10 @@ const SingleOfferPage = (): ReactElement | null => {
                             },
                         ]}
                     />
-
                     <div className={css.flex}>
                         <div className={css.main}>
                             <EditContentForm />
                         </div>
-
                         <AsideElement />
                     </div>
                 </Container>

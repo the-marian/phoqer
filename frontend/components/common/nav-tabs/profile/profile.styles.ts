@@ -83,6 +83,7 @@ export const item = (theme: Theme): Styles => ({
     transition: theme.transitions[0],
     borderRadius: theme.radius,
     whiteSpace: 'nowrap',
+    textTransform: 'capitalize',
     ...template(theme).outline,
 
     ...theme.media(768).max({

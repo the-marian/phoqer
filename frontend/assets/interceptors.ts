@@ -17,9 +17,10 @@ const interceptors = ({ history, dispatch }: { history: NextRouter; dispatch: Di
                     '\x1b[32m',
                     'Success:',
                     '\x1b[0m',
-                    `url: ${response.config.url} | `,
-                    `method: ${response.config.method}| `,
-                    `auth-token: ${!!response.config.headers.Authorization}, status: ${response.status}`,
+                    `url: ${response.config.url} |`,
+                    `method: ${response.config.method} |`,
+                    `status: ${response.status} |`,
+                    `auth-token: ${!!response.config.headers.Authorization}`,
                 );
             if (response.config.url === '/auth/token/login/') {
                 const bearerToken = response.data.access_token;
@@ -34,11 +35,11 @@ const interceptors = ({ history, dispatch }: { history: NextRouter; dispatch: Di
                     '\x1b[31m',
                     'Error:',
                     '\x1b[0m',
-                    `url: ${error.config.url} | `,
-                    `method: ${error.config.method} | `,
-                    `statues: ${error?.response?.status} | `,
-                    `text: ${error?.response?.statusText} | `,
-                    `auth-token: ${!!error.config.headers.Authorization}, status: ${error?.response?.status}`,
+                    `url: ${error.config.url} |`,
+                    `method: ${error.config.method} |`,
+                    `status: ${error?.response?.status} |`,
+                    `text: ${error?.response?.statusText} |`,
+                    `auth-token: ${!!error.config.headers.Authorization}`,
                 );
             if (error?.response?.status === 401) delete axios.defaults.headers.common.Authorization;
             dispatch({ type: types.LOGOUT_END });

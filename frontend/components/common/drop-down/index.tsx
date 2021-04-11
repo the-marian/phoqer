@@ -82,7 +82,6 @@ const useStyles = createUseStyles((theme: Theme) => ({
         top: '100%',
         zIndex: 10,
         width: '100%',
-        minWidth: theme.rem(25),
         marginTop: theme.rem(1),
         scrollBehavior: 'smooth',
         '-webkit-overflow-scrolling': 'touch',
@@ -113,11 +112,14 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
     box: {
         position: 'relative',
-        maxHeight: theme.rem(35),
-        padding: theme.rem(0.4, 0),
+        maxHeight: theme.rem(45),
+        padding: theme.rem(0.8, 0),
         background: theme.palette.white,
         borderRadius: theme.radius,
         overflowY: 'auto',
+        ...theme.media(768).max({
+            maxHeight: theme.rem(35),
+        }),
     },
     item: {
         cursor: 'pointer',
@@ -176,33 +178,35 @@ const useStyles = createUseStyles((theme: Theme) => ({
 }));
 
 interface Props {
-    icon?: IconProp;
-    className?: string;
-    height?: number;
-    data: IDropList[];
-    defaultValue?: IDropValue | IDropList | null;
-    placeholder?: string;
-    withSub?: boolean;
-    transparent?: boolean;
     white?: boolean;
+    icon?: IconProp;
+    height?: number;
     toLeft?: boolean;
+    data: IDropList[];
+    withSub?: boolean;
+    minWidth?: number;
+    className?: string;
+    placeholder?: string;
+    transparent?: boolean;
     closeOnScroll?: boolean;
+    defaultValue?: IDropValue | IDropList | null;
     onChange: (value: IDropValue | null) => void;
 }
 
 const DropDown = ({
-    height = 6,
-    className,
     icon,
     data,
-    onChange,
-    defaultValue,
-    placeholder,
-    withSub,
-    transparent,
     white,
-    closeOnScroll = false,
+    withSub,
+    onChange,
+    className,
+    height = 6,
+    transparent,
+    placeholder,
+    defaultValue,
+    minWidth = 30,
     toLeft = false,
+    closeOnScroll = false,
 }: Props): ReactElement => {
     const css = useStyles();
     const media = useMedia(768);
@@ -218,7 +222,6 @@ const DropDown = ({
 
     const handleClick = (event: MouseEvent<HTMLParagraphElement>): void => {
         event.stopPropagation();
-
         if (media) {
             setTop(document.body.clientHeight / event.currentTarget.getBoundingClientRect().top < 1.6);
             setDrop(!drop);
@@ -254,10 +257,7 @@ const DropDown = ({
 
     useEffect(() => {
         if (drop && closeOnScroll) {
-            const handleClose = (): void => {
-                setDrop(false);
-            };
-
+            const handleClose = (): void => setDrop(false);
             window.addEventListener('scroll', handleClose);
             return () => {
                 window.removeEventListener('scroll', handleClose);
@@ -302,7 +302,10 @@ const DropDown = ({
             </p>
 
             <CSSTransition timeout={200} unmountOnExit in={drop && media}>
-                <div className={clsx(css.container, top && css.top)} style={toLeft ? { right: 0 } : { left: 0 }}>
+                <div
+                    className={clsx(css.container, top && css.top)}
+                    style={toLeft ? { right: 0, minWidth: minWidth + 'rem' } : { left: 0, minWidth: minWidth + 'rem' }}
+                >
                     <div className={clsx(css.box, 'box')}>
                         <ValuesList data={data} onSelect={handleSelect} withSub={withSub} css={css} />
                     </div>

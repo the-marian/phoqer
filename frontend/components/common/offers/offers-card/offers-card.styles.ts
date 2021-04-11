@@ -106,9 +106,12 @@ const useStyles = createUseStyles((theme: Theme) => ({
         }),
     },
     favorite: {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        minWidth: theme.rem(5),
         height: theme.rem(5),
         marginLeft: theme.rem(0.6),
-        padding: theme.rem(1, 1.8),
         color: theme.palette.primary[0],
         borderRadius: theme.radius,
         transition: theme.transitions[0],
@@ -119,7 +122,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         }),
 
         ...theme.media(500).max({
-            fontSize: theme.rem(2.2),
+            fontSize: theme.rem(2),
         }),
     },
     active: {
@@ -149,12 +152,10 @@ const useStyles = createUseStyles((theme: Theme) => ({
             },
         }),
     },
-
     dropdown: {
         position: 'absolute',
         top: theme.rem(0.5),
         left: theme.rem(0.5),
-
         '& > p': {
             display: 'flex',
             justifyContent: 'center',
@@ -165,11 +166,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
             textAlign: 'center',
             background: theme.palette.white,
         },
-
         ...theme.media(500).max({
             top: theme.rem(1),
             left: theme.rem(1),
-
             '& > p': {
                 width: theme.rem(6),
                 fontSize: theme.rem(3),

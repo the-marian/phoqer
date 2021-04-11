@@ -28,9 +28,13 @@ export interface IBody {
     sub_category_id?: string | null;
 }
 
+export interface IImage {
+    url: string;
+}
+
 export default interface IAction {
     type: Type;
-    payload: INewOffer | IState | { url: string }[] | null;
+    payload: INewOffer | IState | IImage[] | null;
     images?: { url: string }[] | null;
     offerId?: string;
     callback?: () => void;

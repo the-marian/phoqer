@@ -43,8 +43,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
     btn: {
         ...template(theme).btn,
         height: theme.rem(4.5),
-        marginRight: theme.rem(2),
-        padding: theme.rem(1.8, 3),
+        minWidth: theme.rem(8),
+        marginRight: theme.rem(1),
+        padding: 0,
         background: theme.palette.primary[0],
         color: theme.palette.trueWhite,
         transitions: theme.transitions[0],

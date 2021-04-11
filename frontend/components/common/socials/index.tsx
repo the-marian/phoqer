@@ -42,8 +42,8 @@ const useStyles = createUseStyles((theme: Theme) => ({
         }),
 
         ...theme.media(768).max({
-            height: theme.rem(6),
-            width: theme.rem(6),
+            height: theme.rem(5),
+            width: theme.rem(5),
         }),
     },
     margin: {
