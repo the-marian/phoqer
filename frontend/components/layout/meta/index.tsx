@@ -34,6 +34,16 @@ const Meta = ({ title, description, keywords, icon, h1 = '' }: IProps): ReactEle
     return (
         <>
             <Head>
+                {/*Global site tag (gtag.js) - Google Analytics*/}
+                <script async src="https://www.googletagmanager.com/gtag/js?id=G-B57V56EVR8" />
+                <script>
+                    {`window.dataLayer = window.dataLayer || [];
+                        function gtag(){dataLayer.push(arguments);}
+                        gtag('js', new Date());
+
+                        gtag('config', 'G-B57V56EVR8');`}
+                </script>
+
                 {/*Primary meta Tags*/}
                 <title>{title?.trim() ? `${title} | Phoqer` : 'Phoqer'}</title>
                 <meta name="title" content={title?.trim() ? `${title} | Phoqer` : 'Phoqer'} />
