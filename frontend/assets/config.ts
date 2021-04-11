@@ -88,7 +88,7 @@ const config = {
     ],
     userProfileLinks: (T: { [key: string]: string }, count?: ITabsNum): ITabs[] => [
         {
-            id: 'my-searchHiddenBlocks',
+            id: 'my-offers',
             text: T.my_offers,
             link: routes.profile.private.my_offers(),
             icon: faBullhorn,

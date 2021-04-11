@@ -33,10 +33,11 @@ const useStyles = createUseStyles((theme: Theme) => ({
 
 interface IProps {
     loading?: boolean;
+    showFavoriteBtn?: boolean;
     data: IOfferCard[] | null;
 }
 
-const OffersList = ({ loading, data }: IProps): ReactElement => {
+const OffersList = ({ loading, data, showFavoriteBtn = true }: IProps): ReactElement => {
     const css = useStyles();
     return loading ? (
         <OffersLoader />
@@ -45,7 +46,7 @@ const OffersList = ({ loading, data }: IProps): ReactElement => {
             {data?.length ? (
                 <div className={css.grid}>
                     {data?.map(item => (
-                        <OfferCard key={item.id} offer={item} />
+                        <OfferCard key={item.id} offer={item} showFavoriteBtn={showFavoriteBtn} />
                     ))}
                 </div>
             ) : (

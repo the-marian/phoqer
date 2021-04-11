@@ -43,6 +43,7 @@ const Lang = (): ReactElement => {
     return (
         <div className={css.wrp}>
             <DropDown
+                minWidth={15}
                 height={3}
                 defaultValue={{ name: history.locale?.toUpperCase() || 'EN', slug: history?.locale || 'en', type: 'main' }}
                 data={LANGS}

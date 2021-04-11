@@ -45,9 +45,10 @@ const formatUserActions = (value: string[]): IDropList[] => {
 
 interface IProps {
     offer: IOfferCard;
+    showFavoriteBtn?: boolean;
 }
 
-const OfferCard = ({ offer }: IProps): ReactElement => {
+const OfferCard = ({ offer, showFavoriteBtn = true }: IProps): ReactElement => {
     const T = useTrans();
     const auth = useAuth();
     const media = useMedia(500);
@@ -143,11 +144,12 @@ const OfferCard = ({ offer }: IProps): ReactElement => {
 
             {functions?.length ? (
                 <DropDown
-                    className={css.dropdown}
                     icon={faCogs}
+                    minWidth={20}
+                    height={media ? 4 : 6}
+                    className={css.dropdown}
                     onChange={handleSettings}
                     data={formatUserActions(functions)}
-                    height={media ? 4 : 6}
                 />
             ) : null}
 
@@ -167,9 +169,11 @@ const OfferCard = ({ offer }: IProps): ReactElement => {
                         {T.rent}
                     </button>
 
-                    <button type="button" className={clsx(css.favorite, is_favorite && css.active)} onClick={handleFavorite}>
-                        {is_favorite ? <FontAwesomeIcon icon={faSolidHeart} /> : <FontAwesomeIcon icon={faHeart} />}
-                    </button>
+                    {showFavoriteBtn && (
+                        <button type="button" className={clsx(css.favorite, is_favorite && css.active)} onClick={handleFavorite}>
+                            {is_favorite ? <FontAwesomeIcon icon={faSolidHeart} /> : <FontAwesomeIcon icon={faHeart} />}
+                        </button>
+                    )}
                 </div>
 
                 <p className={css.price}>

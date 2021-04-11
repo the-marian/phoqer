@@ -35,10 +35,15 @@ const MyApp = ({ Component, pageProps, width, auth, theme }: AppProps & IProps):
             window.scrollTo({ top: 0, behavior: 'auto' });
         };
         Router.events.on('routeChangeStart', handleClear);
-
         return () => {
             Router.events.off('routeChangeStart', handleClear);
         };
+    }, []);
+
+    // clear server side styles
+    useEffect(() => {
+        const style = document.getElementById('server-side-styles');
+        if (style) style?.parentNode?.removeChild(style);
     }, []);
 
     return (

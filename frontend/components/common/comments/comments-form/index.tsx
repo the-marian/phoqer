@@ -4,6 +4,7 @@ import { faTimes } from '@fortawesome/free-solid-svg-icons/faTimes';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { UploadedUppyFile } from '@uppy/core';
 import { Dashboard } from '@uppy/react';
+import clsx from 'clsx';
 import React, { ChangeEvent, FormEvent, KeyboardEvent, ReactElement, useState } from 'react';
 import { createUseStyles } from 'react-jss';
 import TextareaAutosize from 'react-textarea-autosize';
@@ -48,11 +49,23 @@ const useStyles = createUseStyles((theme: Theme) => ({
             margin: '0',
         }),
     },
+    error: {
+        border: theme.border(0.2, theme.palette.red[0]),
+        ...theme.hover({
+            border: theme.border(0.2, theme.palette.red[0]),
+        }),
+        ...theme.focus({
+            border: theme.border(0.2, theme.palette.red[0]),
+        }),
+    },
     small: {
         display: 'block',
         margin: theme.rem(0, 0, 1),
         fontSize: theme.rem(1.2),
         color: theme.palette.gray[4],
+    },
+    errorText: {
+        color: theme.palette.red[0],
     },
     file: {
         margin: theme.rem(1, 0),
@@ -96,11 +109,13 @@ const CommentsForm = ({ onSubmit }: IProps): ReactElement => {
     const [theme] = useTheme();
     const media = useMedia(900);
 
+    const [error, setError] = useState<string>('');
     const [value, setValue] = useState<string>('');
     const [attachment, setAttachment] = useState<boolean>(false);
 
     const handleChange = (event: ChangeEvent<HTMLTextAreaElement>): void => {
         setValue(event.target.value);
+        setError('');
     };
 
     const handleAttachment = (): void => {
@@ -109,7 +124,10 @@ const CommentsForm = ({ onSubmit }: IProps): ReactElement => {
 
     const handleSubmit = async (event?: FormEvent<HTMLFormElement>): Promise<void> => {
         event?.preventDefault();
-        if (!value.trim().length) return;
+        if (!value.trim().length) {
+            setError('Введите текст комментария');
+            return;
+        }
         if (!attachment) {
             onSubmit(value, []);
             setValue('');
@@ -159,7 +177,7 @@ const CommentsForm = ({ onSubmit }: IProps): ReactElement => {
             <div className={css.flex}>
                 <TextareaAutosize
                     value={value}
-                    className={css.textarea}
+                    className={clsx(css.textarea, error && css.error)}
                     onChange={handleChange}
                     onKeyPress={handleKeyPress}
                     name="comment"
@@ -174,6 +192,7 @@ const CommentsForm = ({ onSubmit }: IProps): ReactElement => {
                     </button>
                 )}
             </div>
+            {error && <small className={clsx(css.small, css.errorText)}>{error}</small>}
 
             {attachment && (
                 <Dashboard theme={theme === 'white' ? 'light' : 'dark'} hideUploadButton uppy={uppy} height={media ? 230 : 200} />

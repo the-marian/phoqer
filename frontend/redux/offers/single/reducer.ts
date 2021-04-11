@@ -16,6 +16,9 @@ const single = (state: IOfferCard | null = initState.offers.single, { type, payl
         case types.GET_SINGLE_OFFER_ERROR:
             return null;
 
+        case types.DELETE_SINGLE_OFFER_IMG:
+            return { ...state, images: state?.images?.filter(url => url !== (payload as string)) } as IOfferCard;
+
         case types.PATCH_FAVORITE_OFFERS_SUCCESS:
             return state?.id === payload ? { ...state, is_favorite: !state.is_favorite } : state;
 

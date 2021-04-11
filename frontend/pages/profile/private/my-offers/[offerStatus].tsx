@@ -63,7 +63,7 @@ const UserOffers = (): ReactElement => {
                     <ProfileOffersNav active={offerStatus} />
 
                     <div className={css.root}>
-                        <OffersList loading={loading} data={data?.data} />
+                        <OffersList loading={loading} data={data?.data} showFavoriteBtn={false} />
                         <Pagination loading={pagination} total={data.total} onClick={handleClick} onMore={handleMore} />
                     </div>
                 </Container>
