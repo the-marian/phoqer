@@ -4,7 +4,6 @@ import { Middleware } from 'redux';
 
 import notifications from '../components/common/notifications';
 import { IAuth, IState } from '../interfaces';
-import { ISearchHiddenBlocks } from '../redux/config/searchHiddenBlocks/interfaces';
 import initState from '../redux/state';
 import types from '../redux/types';
 
