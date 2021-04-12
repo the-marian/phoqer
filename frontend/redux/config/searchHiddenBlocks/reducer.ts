@@ -1,9 +1,18 @@
+import { HYDRATE } from 'next-redux-wrapper';
+
+import { IState } from '../../../interfaces';
 import initState from '../../state';
 import types from '../../types';
-import IAction, { IOffers } from './interfaces';
+import IAction, { ISearchHiddenBlocks } from './interfaces';
 
-const searchHiddenBlocks = (state: IOffers = initState.config.searchHiddenBlocks, { type, payload }: IAction): IOffers => {
+const searchHiddenBlocks = (
+    state: ISearchHiddenBlocks = initState.config.searchHiddenBlocks,
+    { type, payload }: IAction,
+): ISearchHiddenBlocks => {
     switch (type) {
+        case HYDRATE:
+            return (payload as IState).config.searchHiddenBlocks;
+
         case types.OFFERS_HIDE_POPULAR_SEARCH:
             return { ...state, popularSearch: payload === undefined ? !state.popularSearch : (payload as boolean) };
 

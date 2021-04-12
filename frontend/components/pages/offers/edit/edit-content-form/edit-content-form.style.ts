@@ -29,6 +29,16 @@ const editOfferTemplate = (theme: Theme): Template => ({
             flexBasis: '48%',
         },
 
+        ...theme.media(1200).max({
+            flexWrap: 'wrap',
+            '& > div': {
+                flexBasis: '100%',
+            },
+            '& > div:nth-of-type(2)': {
+                marginTop: '0',
+            },
+        }),
+
         ...theme.media(500).max({
             display: 'block',
         }),

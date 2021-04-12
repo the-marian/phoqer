@@ -35,14 +35,17 @@ const Meta = ({ title, description, keywords, icon, h1 = '' }: IProps): ReactEle
         <>
             <Head>
                 {/*Global site tag (gtag.js) - Google Analytics*/}
-                <script async src="https://www.googletagmanager.com/gtag/js?id=G-B57V56EVR8" />
-                <script>
-                    {`window.dataLayer = window.dataLayer || [];
-                        function gtag(){dataLayer.push(arguments);}
-                        gtag('js', new Date());
-
-                        gtag('config', 'G-B57V56EVR8');`}
-                </script>
+                {process.env.NODE_ENV === 'production' && (
+                    <>
+                        <script async src="https://www.googletagmanager.com/gtag/js?id=G-B57V56EVR8" />
+                        <script>
+                            {`window.dataLayer = window.dataLayer || [];
+                            function gtag(){dataLayer.push(arguments);}
+                            gtag('js', new Date());
+                            gtag('config', 'G-B57V56EVR8');`}
+                        </script>
+                    </>
+                )}
 
                 {/*Primary meta Tags*/}
                 <title>{title?.trim() ? `${title} | Phoqer` : 'Phoqer'}</title>

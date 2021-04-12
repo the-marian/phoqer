@@ -34,8 +34,8 @@ const Index = (): ReactElement => {
         <>
             <Meta title={T.home_page} />
             <PageLayout>
+                <Search />
                 <Container>
-                    <Search />
                     <Categories />
                     <Banner className={css.banner} />
                     <TopPopular />

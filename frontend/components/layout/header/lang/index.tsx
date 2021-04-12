@@ -9,11 +9,15 @@ import DropDown from '../../../common/drop-down';
 const useStyles = createUseStyles((theme: Theme) => ({
     wrp: {
         marginLeft: theme.rem(3),
-
+        border: theme.border(0.2, theme.palette.primary[0]),
+        borderRadius: theme.radius,
+        '& p': {
+            ...theme.hover({
+                border: theme.border(0.2, 'transparent'),
+            }),
+        },
         ...theme.media(768).max({
             marginLeft: '0',
-            borderRadius: theme.radius,
-            border: theme.border(0.1, theme.palette.primary[0]),
         }),
     },
 }));

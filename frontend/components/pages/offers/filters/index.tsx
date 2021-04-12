@@ -13,7 +13,7 @@ import template from '../../../../assets/template';
 import { Theme } from '../../../../assets/theme';
 import useShallowRouter from '../../../../hooks/routing.hook';
 import { ISearch, IState } from '../../../../interfaces';
-import { IOffers } from '../../../../redux/config/searchHiddenBlocks/interfaces';
+import { ISearchHiddenBlocks } from '../../../../redux/config/searchHiddenBlocks/interfaces';
 import initState from '../../../../redux/state';
 import types from '../../../../redux/types';
 import Checkboxes from '../../../common/checkbox/checkboxes';
@@ -196,7 +196,7 @@ const Filters = (): ReactElement => {
 
     const [price, setPrice] = useState<[number, number]>([0, 200_000]);
 
-    const config = useSelector<IState, IOffers>(state => state.config.searchHiddenBlocks);
+    const config = useSelector<IState, ISearchHiddenBlocks>(state => state.config.searchHiddenBlocks);
     const searchParams = useSelector<IState, ISearch>(state => state.config.searchParams);
 
     // hide elements

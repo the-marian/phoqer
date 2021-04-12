@@ -12,7 +12,6 @@ const AuthInterceptor = (): null => {
     useEffect(() => {
         if (token) {
             axios.defaults.headers.common.Authorization = `Bearer ${token}`;
-            console.log('ssssssss');
             dispatch({ type: types.GET_USER_START });
         } else {
             delete axios.defaults.headers.common.Authorization;

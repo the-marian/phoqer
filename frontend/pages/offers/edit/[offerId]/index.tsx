@@ -1,4 +1,3 @@
-import { faChevronRight } from '@fortawesome/free-solid-svg-icons/faChevronRight';
 import { faPlus } from '@fortawesome/free-solid-svg-icons/faPlus';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { GetServerSideProps, GetServerSidePropsContext } from 'next';
@@ -13,11 +12,13 @@ import template from '../../../../assets/template';
 import { Theme } from '../../../../assets/theme';
 import Breadcrumbs from '../../../../components/common/breadcrumbs';
 import Container from '../../../../components/common/container';
+import { modal } from '../../../../components/common/modal';
 import Meta from '../../../../components/layout/meta';
 import PageLayout from '../../../../components/layout/page-layout';
 import AsideElement from '../../../../components/pages/offers/edit/aside-element';
 import EditContentForm from '../../../../components/pages/offers/edit/edit-content-form';
 import PhotosList from '../../../../components/pages/offers/edit/photos-list';
+import PhotosUploadModal from '../../../../components/pages/offers/edit/photos-upload-modal';
 import { IOfferCard, IState, IStore } from '../../../../interfaces';
 import { wrapper } from '../../../../redux/store';
 import types from '../../../../redux/types';
@@ -29,7 +30,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         marginTop: theme.rem(6),
         fontSize: theme.rem(1.6),
 
-        ...theme.media(768).max({
+        ...theme.media(940).max({
             flexDirection: 'column',
             marginTop: theme.rem(2),
             fontSize: theme.rem(1.6),
@@ -40,7 +41,10 @@ const useStyles = createUseStyles((theme: Theme) => ({
         paddingRight: theme.rem(3),
         color: theme.palette.black[0],
 
-        ...theme.media(768).max({
+        ...theme.media(1200).max({
+            width: 'calc(100% - 40rem)',
+        }),
+        ...theme.media(940).max({
             width: '100%',
             marginBottom: theme.rem(6),
             paddingRight: '0',
@@ -65,6 +69,10 @@ const SingleOfferPage = (): ReactElement | null => {
         if (offer?.author_id) dispatch({ type: types.GET_PUBLIC_PROFILE_START, payload: offer.author_id });
     }, [offer]);
 
+    const handleModal = (): void => {
+        modal.open(<PhotosUploadModal />);
+    };
+
     return offer ? (
         <>
             <Meta
@@ -77,7 +85,7 @@ const SingleOfferPage = (): ReactElement | null => {
                 <Container>
                     <PhotosList />
 
-                    <button className={css.plus} type="button">
+                    <button className={css.plus} type="button" onClick={handleModal}>
                         <FontAwesomeIcon icon={faPlus} />
                         <span>Добавить фотографии</span>
                     </button>

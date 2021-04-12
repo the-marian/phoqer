@@ -24,7 +24,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         zIndex: 10000,
         width: '100%',
         padding: theme.rem(1.4, 0),
-        background: theme.palette.glass[0],
+        background: theme.palette.glass[1],
         backdropFilter: 'blur(2px)',
         transition: theme.transitions[0],
 
@@ -33,7 +33,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         }),
     },
     shadow: {
-        background: theme.palette.glass[1],
+        background: theme.palette.glass[0],
         boxShadow: theme.shadow[0],
     },
     transform: {
@@ -76,7 +76,7 @@ const Header = (): ReactElement => {
     const media = useMedia(768);
     const dispatch = useDispatch();
 
-    const [shadow, setShadow] = useState<boolean>(true);
+    const [shadow, setShadow] = useState<boolean>(false);
     const [delta, setDelta] = useState<boolean>(false);
 
     useEffect(() => {

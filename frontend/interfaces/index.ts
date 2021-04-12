@@ -142,9 +142,10 @@ export interface INewOffer {
     // step one
     title: string;
     price: number | null;
-    category?: IDropValue | string | null;
-    sub_category?: IDropValue | string | null;
+    category?: IDropValue | null;
+    sub_category?: IDropValue | null;
     is_deliverable: boolean;
+    currency: 'EUR' | 'PLN' | 'UAH' | 'USD' | null;
     // step two
     doc_needed: boolean;
     description: string;

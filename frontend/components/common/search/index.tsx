@@ -17,11 +17,16 @@ import useTrans from '../../../hooks/trans.hook';
 import { IDropValue, ISearch, IState } from '../../../interfaces';
 import types from '../../../redux/types';
 import Button from '../button';
+import Container from '../container';
 import LinkArrow from '../link-arrow';
 import OptionsDesktop from './options-desktop';
 import OptionsMobile from './options-mobile';
 
 const useStyles = createUseStyles((theme: Theme) => ({
+    root: {
+        padding: theme.rem(14, 0, 6),
+        background: theme.palette.gray[0],
+    },
     wrp: {
         display: 'flex',
         justifyContent: 'space-between',
@@ -161,47 +166,51 @@ const Search = ({ shallow = false }: IProps): ReactElement => {
     };
 
     return (
-        <form action="#" method="post" onSubmit={handleSubmit}>
-            {history.pathname !== routes.root && (
-                <div className={css.toHome}>
-                    <LinkArrow href={routes.root} toLeft>
-                        {T.to_home}
-                    </LinkArrow>
-                </div>
-            )}
+        <div className={css.root}>
+            <Container>
+                <form action="#" method="post" onSubmit={handleSubmit}>
+                    {history.pathname !== routes.root && (
+                        <div className={css.toHome}>
+                            <LinkArrow href={routes.root} toLeft>
+                                {T.to_home}
+                            </LinkArrow>
+                        </div>
+                    )}
 
-            <div className={css.wrp}>
-                <div className={css.form}>
-                    <div className={css.search}>
-                        <button type="submit" className={css.icon}>
-                            <FontAwesomeIcon icon={faSearch} />
-                        </button>
-                        <input
-                            value={searchParams.search || ''}
-                            onChange={handleInput}
-                            className={css.input}
-                            type="text"
-                            placeholder={T.what_are_you_looking_for}
-                        />
-                        <button
-                            className={clsx(css.reset, !searchParams.search && css.resetHidden)}
-                            type="button"
-                            onClick={handleReset}
-                        >
-                            <FontAwesomeIcon icon={faTimes} />
-                        </button>
-                        {desktop && <OptionsDesktop onChange={handleChange} />}
+                    <div className={css.wrp}>
+                        <div className={css.form}>
+                            <div className={css.search}>
+                                <button type="submit" className={css.icon}>
+                                    <FontAwesomeIcon icon={faSearch} />
+                                </button>
+                                <input
+                                    value={searchParams.search || ''}
+                                    onChange={handleInput}
+                                    className={css.input}
+                                    type="text"
+                                    placeholder={T.what_are_you_looking_for}
+                                />
+                                <button
+                                    className={clsx(css.reset, !searchParams.search && css.resetHidden)}
+                                    type="button"
+                                    onClick={handleReset}
+                                >
+                                    <FontAwesomeIcon icon={faTimes} />
+                                </button>
+                                {desktop && <OptionsDesktop onChange={handleChange} />}
+                            </div>
+                        </div>
+
+                        <div className={css.mobile}>
+                            {!desktop && <OptionsMobile onChange={handleChange} />}
+                            <Button loading={pagination} type="submit" className={css.btn}>
+                                {T.find}
+                            </Button>
+                        </div>
                     </div>
-                </div>
-
-                <div className={css.mobile}>
-                    {!desktop && <OptionsMobile onChange={handleChange} />}
-                    <Button loading={pagination} type="submit" className={css.btn}>
-                        {T.find}
-                    </Button>
-                </div>
-            </div>
-        </form>
+                </form>
+            </Container>
+        </div>
     );
 };
 

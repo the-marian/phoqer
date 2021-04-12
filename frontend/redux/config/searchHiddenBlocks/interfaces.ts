@@ -1,6 +1,7 @@
+import { IState } from '../../../interfaces';
 import types from '../../types';
 
-export interface IOffers {
+export interface ISearchHiddenBlocks {
     filters: boolean;
     popularSearch: boolean;
     hideTop: boolean;
@@ -8,5 +9,5 @@ export interface IOffers {
 
 export default interface IAction {
     type: typeof types.OFFERS_HIDE_POPULAR_SEARCH | typeof types.OFFERS_HIDE_FILTERS | typeof types.OFFERS_HIDE_TOP;
-    payload?: boolean | IOffers;
+    payload?: IState | ISearchHiddenBlocks | boolean;
 }

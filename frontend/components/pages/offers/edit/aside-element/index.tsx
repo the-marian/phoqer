@@ -13,6 +13,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
         width: theme.rem(45),
         marginTop: theme.rem(1),
 
+        ...theme.media(1200).max({
+            width: theme.rem(40),
+        }),
         ...theme.media(768).max({
             width: '100%',
         }),
