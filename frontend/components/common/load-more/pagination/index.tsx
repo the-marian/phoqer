@@ -101,14 +101,14 @@ interface IProps {
 
 const Pagination = ({ total, onClick, onMore, loading }: IProps): ReactElement | null => {
     const css = useStyles();
-    const media = useMedia(768);
     const history = useRouter();
+    const media = useMedia(768);
     const shallow = useShallowRouter();
     const init = +(history.query?.page || 1);
     const [page, setPage] = useState<number>(init < total ? init : total);
 
     useEffect(() => {
-        if (!history.query?.page) setPage(1);
+        setPage(+String(history.query?.page || 1));
     }, [history.query]);
 
     const pushRouter = (page: number) => {

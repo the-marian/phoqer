@@ -12,7 +12,6 @@ import routes from '../../../assets/routes';
 import template from '../../../assets/template';
 import { Theme } from '../../../assets/theme';
 import useMedia from '../../../hooks/media.hook';
-import useShallowRouter from '../../../hooks/routing.hook';
 import useTrans from '../../../hooks/trans.hook';
 import { IDropValue, ISearch, IState } from '../../../interfaces';
 import types from '../../../redux/types';
@@ -130,10 +129,9 @@ const Search = ({ shallow = false }: IProps): ReactElement => {
     const history = useRouter();
     const dispatch = useDispatch();
     const desktop = useMedia(1100);
-    const shallowRouter = useShallowRouter();
 
     const searchParams = useSelector<IState, ISearch>(state => state.config.searchParams);
-    const { pagination } = useSelector<IState, { loading: boolean; pagination: boolean }>(state => state.offers.search);
+    const { pagination } = useSelector<IState, { pagination: boolean }>(state => state.offers.search);
 
     const handleChange = (value: IDropValue | null): void => {
         dispatch({
@@ -155,14 +153,15 @@ const Search = ({ shallow = false }: IProps): ReactElement => {
 
     const handleSubmit = (event: FormEvent<HTMLFormElement>): void => {
         event.preventDefault();
-
-        if (shallow) {
-            dispatch({ type: types.SEARCH_OFFERS_START, payload: searchParams });
-            window.scrollTo({ top: document.getElementById('products')?.offsetTop || 0, behavior: 'smooth' });
-            shallowRouter(searchParams);
-        } else {
-            history.push({ pathname: routes.offers.list, query: queryString.stringify(searchParams, { skipNull: true }) });
-        }
+        if (shallow) dispatch({ type: types.SEARCH_OFFERS_START, payload: searchParams });
+        history.push(
+            {
+                pathname: routes.offers.list,
+                query: queryString.stringify({ ...searchParams, page: 1 }, { skipNull: true }),
+            },
+            undefined,
+            { shallow },
+        );
     };
 
     return (

@@ -3,6 +3,8 @@ import { faChevronDown } from '@fortawesome/free-solid-svg-icons/faChevronDown';
 import { faChevronUp } from '@fortawesome/free-solid-svg-icons/faChevronUp';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
+import queryString from 'query-string';
 import React, { FormEvent, ReactElement, useState } from 'react';
 import { createUseStyles } from 'react-jss';
 import { useDispatch, useSelector } from 'react-redux';
@@ -11,9 +13,7 @@ import { CSSTransition } from 'react-transition-group';
 import routes from '../../../../assets/routes';
 import template from '../../../../assets/template';
 import { Theme } from '../../../../assets/theme';
-import useShallowRouter from '../../../../hooks/routing.hook';
 import { ISearch, IState } from '../../../../interfaces';
-import { ISearchHiddenBlocks } from '../../../../redux/config/searchHiddenBlocks/interfaces';
 import initState from '../../../../redux/state';
 import types from '../../../../redux/types';
 import Checkboxes from '../../../common/checkbox/checkboxes';
@@ -185,26 +185,35 @@ const POPULAR: string[] = [
     'Заднее сальто Владика 2',
 ];
 
+interface IConfig {
+    hideFilters: boolean;
+    hidePopularOffers: boolean;
+}
+
 interface ICheckbox {
     [key: string]: boolean | null;
 }
 
 const Filters = (): ReactElement => {
     const css = useStyles();
+    const history = useRouter();
     const dispatch = useDispatch();
-    const shallowRouter = useShallowRouter();
 
+    const initConfig: IConfig = {
+        hideFilters: false,
+        hidePopularOffers: false,
+    };
+    const [config, setConfig] = useState<IConfig>(initConfig);
     const [price, setPrice] = useState<[number, number]>([0, 200_000]);
 
-    const config = useSelector<IState, ISearchHiddenBlocks>(state => state.config.searchHiddenBlocks);
     const searchParams = useSelector<IState, ISearch>(state => state.config.searchParams);
 
     // hide elements
     const handleCloseFilters = () => {
-        dispatch({ type: types.OFFERS_HIDE_FILTERS });
+        setConfig({ ...config, hideFilters: !config.hideFilters });
     };
     const handleCloseSearch = () => {
-        dispatch({ type: types.OFFERS_HIDE_POPULAR_SEARCH });
+        setConfig(val => ({ ...val, hidePopularOffers: !val.hidePopularOffers }));
     };
 
     const handleCheckboxes = (value: ICheckbox): void => {
@@ -212,7 +221,10 @@ const Filters = (): ReactElement => {
     };
 
     const handleReset = (): void => {
-        shallowRouter(initState.config.searchParams);
+        history.push({
+            pathname: routes.offers.list,
+            query: queryString.stringify({ ...initState.config.searchParams, page: 1 }, { skipNull: true }),
+        });
         dispatch({ type: types.OFFERS_SEARCH_LOCAL_PARAMS, payload: initState.config.searchParams });
         dispatch({ type: types.SEARCH_OFFERS_START, payload: null });
     };
@@ -220,10 +232,15 @@ const Filters = (): ReactElement => {
     // submit form
     const handleSubmit = (event: FormEvent<HTMLFormElement>): void => {
         event.preventDefault();
-
         dispatch({ type: types.SEARCH_OFFERS_START, payload: searchParams });
-        window.scrollTo({ top: document.getElementById('products')?.offsetTop || 0, behavior: 'smooth' });
-        shallowRouter(searchParams);
+        history.push(
+            {
+                pathname: routes.offers.list,
+                query: queryString.stringify({ ...searchParams, page: 1 }, { skipNull: true }),
+            },
+            undefined,
+            { shallow: true },
+        );
     };
 
     return (
@@ -232,7 +249,7 @@ const Filters = (): ReactElement => {
                 <div className={css.wrp}>
                     <h2 className={css.title}>Фильтры</h2>
                     <button type="button" className={css.close} onClick={handleCloseFilters}>
-                        {config.filters ? (
+                        {config.hideFilters ? (
                             <>
                                 <FontAwesomeIcon icon={faChevronUp} />
                                 <span>Скрыть</span>
@@ -246,7 +263,7 @@ const Filters = (): ReactElement => {
                     </button>
                 </div>
                 <hr />
-                <CSSTransition timeout={200} unmountOnExit in={config.filters}>
+                <CSSTransition timeout={200} unmountOnExit in={config.hideFilters}>
                     <form action="#" method="post" className={css.form} onSubmit={handleSubmit}>
                         <div className={css.formInner}>
                             <PriceFilter data={price} initValue={[0, 200_000]} onChange={setPrice} />
@@ -282,7 +299,7 @@ const Filters = (): ReactElement => {
                 <div className={css.wrp}>
                     <h2 className={css.title}>Популярные запросы</h2>
                     <button type="button" className={css.close} onClick={handleCloseSearch}>
-                        {config.popularSearch ? (
+                        {config.hidePopularOffers ? (
                             <>
                                 <FontAwesomeIcon icon={faChevronUp} />
                                 <span>Скрыть</span>
@@ -296,7 +313,7 @@ const Filters = (): ReactElement => {
                     </button>
                 </div>
                 <hr />
-                <CSSTransition timeout={200} unmountOnExit in={config.popularSearch}>
+                <CSSTransition timeout={200} unmountOnExit in={config.hidePopularOffers}>
                     <ul className={css.list}>
                         {POPULAR.map(query => (
                             <li key={query}>

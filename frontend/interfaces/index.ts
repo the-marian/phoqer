@@ -227,11 +227,6 @@ export interface IState {
     config: {
         drawer: boolean;
         searchParams: ISearch;
-        searchHiddenBlocks: {
-            filters: boolean;
-            popularSearch: boolean;
-            hideTop: boolean;
-        };
     };
     categories: ICategories[];
     offers: IOffers;

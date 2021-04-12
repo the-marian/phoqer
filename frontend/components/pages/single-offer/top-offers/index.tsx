@@ -1,12 +1,11 @@
-import React, { ReactElement } from 'react';
+import React, { ReactElement, useState } from 'react';
 import { createUseStyles } from 'react-jss';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { CSSTransition } from 'react-transition-group';
 
 import routes from '../../../../assets/routes';
 import { Theme } from '../../../../assets/theme';
 import { IOfferStatic, IState } from '../../../../interfaces';
-import types from '../../../../redux/types';
 import Container from '../../../common/container';
 import OffersList from '../../../common/offers/offers-list';
 import SectionTitle from '../../../common/section-title';
@@ -58,24 +57,23 @@ const useStyles = createUseStyles((theme: Theme) => ({
 
 const TopOffers = (): ReactElement => {
     const css = useStyles();
-    const dispatch = useDispatch();
 
-    const hideTop = useSelector<IState, boolean>(state => state.config.searchHiddenBlocks.hideTop);
+    const [hideTopOffers, setHideTopOffers] = useState<boolean>(false);
     const { data } = useSelector<IState, IOfferStatic>(state => state.offers.popular);
 
     const handleHide = (): void => {
-        dispatch({ type: types.OFFERS_HIDE_TOP });
+        setHideTopOffers(val => !val);
     };
 
     return (
         <>
             <Container className={css.checkbox} id="products">
-                <Switcher onClick={handleHide} value={hideTop} off="open" on="close">
+                <Switcher onClick={handleHide} value={hideTopOffers} off="open" on="close">
                     Скрыть ТОП обьявления
                 </Switcher>
             </Container>
 
-            <CSSTransition timeout={600} unmountOnExit in={!hideTop}>
+            <CSSTransition timeout={600} unmountOnExit in={!hideTopOffers}>
                 <div className={css.root}>
                     <Container>
                         <SectionTitle link="Смотреть все" href={routes.offers.single(`?top=true`)}>
