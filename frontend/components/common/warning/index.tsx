@@ -2,6 +2,7 @@ import React, { ReactElement, useState } from 'react';
 import { createUseStyles } from 'react-jss';
 
 import { Theme } from '../../../assets/theme';
+import useConfig from '../../../hooks/config.hook';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     root: {
@@ -29,18 +30,16 @@ const useStyles = createUseStyles((theme: Theme) => ({
 
 const Warning = (): ReactElement | null => {
     const css = useStyles();
-    const [open, setOpen] = useState<boolean>(true);
+    const [config, setConfig] = useConfig();
 
-    return open && process.env.NODE_ENV === 'production' ? (
+    const handleClick = (): void => {
+        setConfig({ ...config, warning: false });
+    };
+
+    return config.warning ? (
         <div className={css.root}>
             <span>The website is under construction. Coming soon...</span>
-            <button
-                className={css.btn}
-                type="button"
-                onClick={() => {
-                    setOpen(false);
-                }}
-            >
+            <button className={css.btn} type="button" onClick={handleClick}>
                 Ok
             </button>
         </div>

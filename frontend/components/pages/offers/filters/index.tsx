@@ -13,6 +13,7 @@ import { CSSTransition } from 'react-transition-group';
 import routes from '../../../../assets/routes';
 import template from '../../../../assets/template';
 import { Theme } from '../../../../assets/theme';
+import useConfig from '../../../../hooks/config.hook';
 import { ISearch, IState } from '../../../../interfaces';
 import initState from '../../../../redux/state';
 import types from '../../../../redux/types';
@@ -185,11 +186,6 @@ const POPULAR: string[] = [
     'Заднее сальто Владика 2',
 ];
 
-interface IConfig {
-    hideFilters: boolean;
-    hidePopularOffers: boolean;
-}
-
 interface ICheckbox {
     [key: string]: boolean | null;
 }
@@ -198,22 +194,17 @@ const Filters = (): ReactElement => {
     const css = useStyles();
     const history = useRouter();
     const dispatch = useDispatch();
+    const [config, setConfig] = useConfig();
 
-    const initConfig: IConfig = {
-        hideFilters: false,
-        hidePopularOffers: false,
-    };
-    const [config, setConfig] = useState<IConfig>(initConfig);
     const [price, setPrice] = useState<[number, number]>([0, 200_000]);
-
     const searchParams = useSelector<IState, ISearch>(state => state.config.searchParams);
 
     // hide elements
     const handleCloseFilters = () => {
-        setConfig({ ...config, hideFilters: !config.hideFilters });
+        setConfig({ ...config, hideSearchFilters: !config.hideSearchFilters });
     };
     const handleCloseSearch = () => {
-        setConfig(val => ({ ...val, hidePopularOffers: !val.hidePopularOffers }));
+        setConfig({ ...config, hideTopSearchQuery: !config.hideTopSearchQuery });
     };
 
     const handleCheckboxes = (value: ICheckbox): void => {
@@ -249,21 +240,21 @@ const Filters = (): ReactElement => {
                 <div className={css.wrp}>
                     <h2 className={css.title}>Фильтры</h2>
                     <button type="button" className={css.close} onClick={handleCloseFilters}>
-                        {config.hideFilters ? (
-                            <>
-                                <FontAwesomeIcon icon={faChevronUp} />
-                                <span>Скрыть</span>
-                            </>
-                        ) : (
+                        {config.hideSearchFilters ? (
                             <>
                                 <FontAwesomeIcon icon={faChevronDown} />
                                 <span>Показать</span>
+                            </>
+                        ) : (
+                            <>
+                                <FontAwesomeIcon icon={faChevronUp} />
+                                <span>Скрыть</span>
                             </>
                         )}
                     </button>
                 </div>
                 <hr />
-                <CSSTransition timeout={200} unmountOnExit in={config.hideFilters}>
+                <CSSTransition timeout={200} unmountOnExit in={!config.hideSearchFilters}>
                     <form action="#" method="post" className={css.form} onSubmit={handleSubmit}>
                         <div className={css.formInner}>
                             <PriceFilter data={price} initValue={[0, 200_000]} onChange={setPrice} />
@@ -299,21 +290,21 @@ const Filters = (): ReactElement => {
                 <div className={css.wrp}>
                     <h2 className={css.title}>Популярные запросы</h2>
                     <button type="button" className={css.close} onClick={handleCloseSearch}>
-                        {config.hidePopularOffers ? (
-                            <>
-                                <FontAwesomeIcon icon={faChevronUp} />
-                                <span>Скрыть</span>
-                            </>
-                        ) : (
+                        {config.hideTopSearchQuery ? (
                             <>
                                 <FontAwesomeIcon icon={faChevronDown} />
                                 <span>Показать</span>
+                            </>
+                        ) : (
+                            <>
+                                <FontAwesomeIcon icon={faChevronUp} />
+                                <span>Скрыть</span>
                             </>
                         )}
                     </button>
                 </div>
                 <hr />
-                <CSSTransition timeout={200} unmountOnExit in={config.hidePopularOffers}>
+                <CSSTransition timeout={200} unmountOnExit in={!config.hideTopSearchQuery}>
                     <ul className={css.list}>
                         {POPULAR.map(query => (
                             <li key={query}>
