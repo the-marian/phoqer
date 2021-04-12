@@ -37,6 +37,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
         background: theme.palette.gray[1],
         cursor: 'zoom-in',
 
+        ...theme.media(1200).max({
+            width: 'calc(100% - 40rem)',
+        }),
         ...theme.media(768).max({
             height: theme.rem(30),
         }),

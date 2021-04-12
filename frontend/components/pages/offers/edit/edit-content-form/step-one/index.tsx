@@ -37,7 +37,7 @@ const StepOne = ({ value, errors, setErrors, setValue }: IProps): ReactElement =
         setErrors({});
     };
     const handleCategory = (category: IDropValue | null): void => {
-        setValue({ ...value, [category?.type === 'main' ? 'category' : 'sub_category']: category?.slug });
+        setValue({ ...value, category });
         setErrors({});
     };
     const handleNumber = (event: ChangeEvent<HTMLInputElement>): void => {
@@ -87,7 +87,13 @@ const StepOne = ({ value, errors, setErrors, setValue }: IProps): ReactElement =
                             Выберите категорию товара <span className={css.red}>*</span>
                         </h3>
                         <div className={clsx(errors.category && css.errors)}>
-                            <DropDown data={categories} placeholder="Выберите категорию" onChange={handleCategory} withSub />
+                            <DropDown
+                                data={categories}
+                                defaultValue={value.category}
+                                placeholder="Выберите категорию"
+                                onChange={handleCategory}
+                                withSub
+                            />
                         </div>
                         {errors.category && <small className={css.errorsText}>{errors.category}</small>}
                     </div>

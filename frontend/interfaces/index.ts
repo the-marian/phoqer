@@ -142,9 +142,10 @@ export interface INewOffer {
     // step one
     title: string;
     price: number | null;
-    category?: IDropValue | string | null;
-    sub_category?: IDropValue | string | null;
+    category?: IDropValue | null;
+    sub_category?: IDropValue | null;
     is_deliverable: boolean;
+    currency: 'EUR' | 'PLN' | 'UAH' | 'USD' | null;
     // step two
     doc_needed: boolean;
     description: string;
@@ -226,11 +227,6 @@ export interface IState {
     config: {
         drawer: boolean;
         searchParams: ISearch;
-        searchHiddenBlocks: {
-            filters: boolean;
-            popularSearch: boolean;
-            hideTop: boolean;
-        };
     };
     categories: ICategories[];
     offers: IOffers;

@@ -116,6 +116,11 @@
     overflow: hidden;
 }
 
+.uppy-Dashboard-Item-action--remove .uppy-c-icon {
+    width: 100%;
+    height: 100%;
+}
+
 .uppy-c-btn {
     display: inline-block;
     text-align: center;

@@ -12,16 +12,20 @@ import routes from '../../../assets/routes';
 import template from '../../../assets/template';
 import { Theme } from '../../../assets/theme';
 import useMedia from '../../../hooks/media.hook';
-import useShallowRouter from '../../../hooks/routing.hook';
 import useTrans from '../../../hooks/trans.hook';
 import { IDropValue, ISearch, IState } from '../../../interfaces';
 import types from '../../../redux/types';
 import Button from '../button';
+import Container from '../container';
 import LinkArrow from '../link-arrow';
 import OptionsDesktop from './options-desktop';
 import OptionsMobile from './options-mobile';
 
 const useStyles = createUseStyles((theme: Theme) => ({
+    root: {
+        padding: theme.rem(14, 0, 6),
+        background: theme.palette.gray[0],
+    },
     wrp: {
         display: 'flex',
         justifyContent: 'space-between',
@@ -125,10 +129,9 @@ const Search = ({ shallow = false }: IProps): ReactElement => {
     const history = useRouter();
     const dispatch = useDispatch();
     const desktop = useMedia(1100);
-    const shallowRouter = useShallowRouter();
 
     const searchParams = useSelector<IState, ISearch>(state => state.config.searchParams);
-    const { pagination } = useSelector<IState, { loading: boolean; pagination: boolean }>(state => state.offers.search);
+    const { pagination } = useSelector<IState, { pagination: boolean }>(state => state.offers.search);
 
     const handleChange = (value: IDropValue | null): void => {
         dispatch({
@@ -150,58 +153,63 @@ const Search = ({ shallow = false }: IProps): ReactElement => {
 
     const handleSubmit = (event: FormEvent<HTMLFormElement>): void => {
         event.preventDefault();
-
-        if (shallow) {
-            dispatch({ type: types.SEARCH_OFFERS_START, payload: searchParams });
-            window.scrollTo({ top: document.getElementById('products')?.offsetTop || 0, behavior: 'smooth' });
-            shallowRouter(searchParams);
-        } else {
-            history.push({ pathname: routes.offers.list, query: queryString.stringify(searchParams, { skipNull: true }) });
-        }
+        if (shallow) dispatch({ type: types.SEARCH_OFFERS_START, payload: searchParams });
+        history.push(
+            {
+                pathname: routes.offers.list,
+                query: queryString.stringify({ ...searchParams, page: 1 }, { skipNull: true }),
+            },
+            undefined,
+            { shallow },
+        );
     };
 
     return (
-        <form action="#" method="post" onSubmit={handleSubmit}>
-            {history.pathname !== routes.root && (
-                <div className={css.toHome}>
-                    <LinkArrow href={routes.root} toLeft>
-                        {T.to_home}
-                    </LinkArrow>
-                </div>
-            )}
+        <div className={css.root}>
+            <Container>
+                <form action="#" method="post" onSubmit={handleSubmit}>
+                    {history.pathname !== routes.root && (
+                        <div className={css.toHome}>
+                            <LinkArrow href={routes.root} toLeft>
+                                {T.to_home}
+                            </LinkArrow>
+                        </div>
+                    )}
 
-            <div className={css.wrp}>
-                <div className={css.form}>
-                    <div className={css.search}>
-                        <button type="submit" className={css.icon}>
-                            <FontAwesomeIcon icon={faSearch} />
-                        </button>
-                        <input
-                            value={searchParams.search || ''}
-                            onChange={handleInput}
-                            className={css.input}
-                            type="text"
-                            placeholder={T.what_are_you_looking_for}
-                        />
-                        <button
-                            className={clsx(css.reset, !searchParams.search && css.resetHidden)}
-                            type="button"
-                            onClick={handleReset}
-                        >
-                            <FontAwesomeIcon icon={faTimes} />
-                        </button>
-                        {desktop && <OptionsDesktop onChange={handleChange} />}
+                    <div className={css.wrp}>
+                        <div className={css.form}>
+                            <div className={css.search}>
+                                <button type="submit" className={css.icon}>
+                                    <FontAwesomeIcon icon={faSearch} />
+                                </button>
+                                <input
+                                    value={searchParams.search || ''}
+                                    onChange={handleInput}
+                                    className={css.input}
+                                    type="text"
+                                    placeholder={T.what_are_you_looking_for}
+                                />
+                                <button
+                                    className={clsx(css.reset, !searchParams.search && css.resetHidden)}
+                                    type="button"
+                                    onClick={handleReset}
+                                >
+                                    <FontAwesomeIcon icon={faTimes} />
+                                </button>
+                                {desktop && <OptionsDesktop onChange={handleChange} />}
+                            </div>
+                        </div>
+
+                        <div className={css.mobile}>
+                            {!desktop && <OptionsMobile onChange={handleChange} />}
+                            <Button loading={pagination} type="submit" className={css.btn}>
+                                {T.find}
+                            </Button>
+                        </div>
                     </div>
-                </div>
-
-                <div className={css.mobile}>
-                    {!desktop && <OptionsMobile onChange={handleChange} />}
-                    <Button loading={pagination} type="submit" className={css.btn}>
-                        {T.find}
-                    </Button>
-                </div>
-            </div>
-        </form>
+                </form>
+            </Container>
+        </div>
     );
 };
 

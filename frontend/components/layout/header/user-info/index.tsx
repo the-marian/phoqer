@@ -100,6 +100,8 @@ const UserInfo = (): ReactElement => {
         };
     }, []);
 
+    const userName = user?.first_name + ' ' + user?.last_name;
+
     const handleClick = () => {
         setDrop(!drop);
     };
@@ -130,7 +132,7 @@ const UserInfo = (): ReactElement => {
                 <button type="button" className={clsx(css.link, drop && css.user)} onClick={handleClick}>
                     <NotifNumber className={css.number}>14</NotifNumber>
                     <FontAwesomeIcon icon={faUser} />
-                    <span className={css.text}>{user?.first_name + ' ' + user?.last_name}</span>
+                    <span className={css.text}>{userName.length > 20 ? userName.slice(0, 17) + '...' : userName}</span>
                 </button>
                 {drop && <DropWindow onClose={handleClick} />}
             </li>

@@ -1675,8 +1675,8 @@ button.uppy-Dashboard-Item-progressIndicator:focus .uppy-Dashboard-Item-progress
     position: absolute;
     top: -0.8rem;
     right: -0.8rem;
-    width: 1.8rem;
-    height: 1.8rem;
+    width: 2.5rem;
+    height: 2.5rem;
     padding: 0;
 }
 .uppy-size--md .uppy-Dashboard-Item-action--remove:focus {
@@ -1689,8 +1689,7 @@ button.uppy-Dashboard-Item-progressIndicator:focus .uppy-Dashboard-Item-progress
     -ms-flex-align: center;
     align-items: center;
     border-bottom: 0.1rem solid #eaeaea;
-    padding: 1rem;
-    padding-right: 0;
+    padding: 1rem 0 1rem 1rem;
 }
 [data-uppy-theme='dark'] .uppy-Dashboard-Item {
     border-bottom: 0.1rem solid #333;

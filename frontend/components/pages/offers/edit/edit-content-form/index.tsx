@@ -22,8 +22,12 @@ const newOfferAdapter = (value: IOfferCard | null): INewOffer =>
               ...initState.offers.new_offer,
               title: value.title || '',
               price: value.price || 0,
-              category: value.category ? value.category : null,
-              sub_category: value.sub_category ? value.sub_category : null,
+              category:
+                  value.category && value.category_name
+                      ? { name: value.category_name, slug: value.category, type: 'main' }
+                      : value.sub_category && value.sub_category_name
+                      ? { name: value.sub_category_name, slug: value.sub_category, type: 'sub' }
+                      : null,
               is_deliverable: value.is_deliverable,
               doc_needed: value.doc_needed,
               description: value.description,

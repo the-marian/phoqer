@@ -5,5 +5,5 @@ type Type = typeof types.GET_SINGLE_OFFER_START | typeof types.GET_SINGLE_OFFER_
 
 export default interface IAction {
     type: Type;
-    payload: string | IState | IOfferCard | null;
+    payload: IState | IOfferCard | string | string[] | null;
 }

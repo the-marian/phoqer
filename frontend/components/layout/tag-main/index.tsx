@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
@@ -6,8 +7,10 @@ import { Theme } from '../../../assets/theme';
 const useStyles = createUseStyles((theme: Theme) => ({
     main: {
         minHeight: '50vh',
-        padding: theme.rem(12, 0),
         background: theme.palette.white,
+    },
+    padding: {
+        padding: theme.rem(12, 0),
 
         ...theme.media(900).max({
             padding: theme.rem(10, 0),
@@ -17,11 +20,12 @@ const useStyles = createUseStyles((theme: Theme) => ({
 
 interface Props {
     children: JSX.Element[] | JSX.Element;
+    padding?: boolean;
 }
 
-const Main = ({ children }: Props): ReactElement => {
+const Main = ({ children, padding }: Props): ReactElement => {
     const css = useStyles();
-    return <main className={css.main}>{children}</main>;
+    return <main className={clsx(css.main, padding && css.padding)}>{children}</main>;
 };
 
 export default Main;

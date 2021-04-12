@@ -4,6 +4,7 @@ import { Middleware } from 'redux';
 
 import notifications from '../components/common/notifications';
 import { IAuth, IState } from '../interfaces';
+import { ISearchHiddenBlocks } from '../redux/config/searchHiddenBlocks/interfaces';
 import initState from '../redux/state';
 import types from '../redux/types';
 
@@ -43,8 +44,12 @@ const Persist: Middleware = store => next => action => {
                     // auth
                     const authStr: string | null = Cookies.get('phoqer_auth') || null;
                     const auth: IAuth = authStr ? JSON.parse(authStr) : initState.auth;
+
                     // next
-                    next({ type: HYDRATE, payload: { ...action.payload, auth } });
+                    next({
+                        type: HYDRATE,
+                        payload: { ...action.payload, auth },
+                    });
                 } catch (error) {
                     notifications('error');
                     next(action);
