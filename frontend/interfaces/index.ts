@@ -59,6 +59,13 @@ export interface ITabsNum {
 
 export type Themes = 'white' | 'black';
 
+export interface IConfig {
+    warning: boolean;
+    hideSearchFilters: boolean;
+    hideTopSearchQuery: boolean;
+    hideTopOffers: boolean;
+}
+
 // =====================================
 // 2 AUTH
 // =====================================

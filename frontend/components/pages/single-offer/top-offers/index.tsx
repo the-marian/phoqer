@@ -5,6 +5,7 @@ import { CSSTransition } from 'react-transition-group';
 
 import routes from '../../../../assets/routes';
 import { Theme } from '../../../../assets/theme';
+import useConfig from '../../../../hooks/config.hook';
 import { IOfferStatic, IState } from '../../../../interfaces';
 import Container from '../../../common/container';
 import OffersList from '../../../common/offers/offers-list';
@@ -57,23 +58,22 @@ const useStyles = createUseStyles((theme: Theme) => ({
 
 const TopOffers = (): ReactElement => {
     const css = useStyles();
-
-    const [hideTopOffers, setHideTopOffers] = useState<boolean>(false);
+    const [config, setConfig] = useConfig();
     const { data } = useSelector<IState, IOfferStatic>(state => state.offers.popular);
 
     const handleHide = (): void => {
-        setHideTopOffers(val => !val);
+        setConfig({ ...config, hideTopOffers: !config.hideTopOffers });
     };
 
     return (
         <>
             <Container className={css.checkbox} id="products">
-                <Switcher onClick={handleHide} value={hideTopOffers} off="open" on="close">
-                    Скрыть ТОП обьявления
+                <Switcher onClick={handleHide} value={config.hideTopOffers} off="open" on="close">
+                    {config.hideTopOffers ? 'Показать ТОП обьявления' : 'Скрыть ТОП обьявления'}
                 </Switcher>
             </Container>
 
-            <CSSTransition timeout={600} unmountOnExit in={!hideTopOffers}>
+            <CSSTransition timeout={600} unmountOnExit in={!config.hideTopOffers}>
                 <div className={css.root}>
                     <Container>
                         <SectionTitle link="Смотреть все" href={routes.offers.single(`?top=true`)}>

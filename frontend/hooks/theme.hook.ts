@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 
-import { Theme } from '../components/context/site-theme';
+import { Theme } from '../components/context/theme';
 import { Themes } from '../interfaces';
 
 const useTheme = (): [theme: Themes, setTheme: ((v: Themes) => void) | null] => {

@@ -11,18 +11,20 @@ import { logger, parseCookie } from '../assets/helpers';
 import interceptors from '../assets/interceptors';
 import { modal } from '../components/common/modal';
 import AuthProvider from '../components/context/auth/auth-context';
+import ConfigProvider from '../components/context/config';
 import MediaProvider from '../components/context/media';
-import SiteTheme from '../components/context/site-theme';
+import SiteTheme from '../components/context/theme';
 import Root from '../components/layout/root';
-import { IAuth, Themes } from '../interfaces';
+import { IAuth, IConfig, Themes } from '../interfaces';
 import { wrapper } from '../redux/store';
 
 interface IProps {
     width: number;
     auth: IAuth | null;
     theme: Themes | null;
+    config: IConfig | null;
 }
-const MyApp = ({ Component, pageProps, width, auth, theme }: AppProps & IProps): ReactElement => {
+const MyApp = ({ Component, pageProps, width, auth, theme, config }: AppProps & IProps): ReactElement => {
     const history = useRouter();
     const dispatch = useDispatch();
 
@@ -48,13 +50,15 @@ const MyApp = ({ Component, pageProps, width, auth, theme }: AppProps & IProps):
 
     return (
         <SiteTheme siteTheme={theme === 'black' ? 'black' : 'white'}>
-            <AuthProvider authServer={auth}>
-                <MediaProvider width={width}>
-                    <Root>
-                        <Component {...pageProps} />
-                    </Root>
-                </MediaProvider>
-            </AuthProvider>
+            <ConfigProvider value={config}>
+                <AuthProvider authServer={auth}>
+                    <MediaProvider width={width}>
+                        <Root>
+                            <Component {...pageProps} />
+                        </Root>
+                    </MediaProvider>
+                </AuthProvider>
+            </ConfigProvider>
         </SiteTheme>
     );
 };
@@ -71,8 +75,11 @@ MyApp.getInitialProps = async (appContext: AppContextType<Router>): Promise<IPro
     const auth = parseCookie<IAuth>(appContext?.ctx?.req?.headers?.cookie);
     if (auth?.access_token) axios.defaults.headers.common.Authorization = `Bearer ${auth?.access_token}`;
 
+    // config
+    const config = parseCookie<IConfig>(appContext?.ctx?.req?.headers?.cookie, 'phoqer_config');
+
     // end
-    return { ...props, width: isMobile ? 500 : 1400, auth, theme };
+    return { ...props, width: isMobile ? 500 : 1400, auth, theme, config };
 };
 
 export default wrapper.withRedux(MyApp);
