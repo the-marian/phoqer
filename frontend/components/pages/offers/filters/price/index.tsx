@@ -1,10 +1,15 @@
+import { useRouter } from 'next/router';
+import queryString from 'query-string';
 import { Range } from 'rc-slider';
-import React, { ChangeEvent, ReactElement, useState } from 'react';
+import React, { ChangeEvent, ReactElement, useEffect, useState } from 'react';
 import { createUseStyles } from 'react-jss';
+import { useSelector } from 'react-redux';
 
 import { numberValidation } from '../../../../../assets/helpers';
+import routes from '../../../../../assets/routes';
 import template from '../../../../../assets/template';
 import { Theme } from '../../../../../assets/theme';
+import { ISearch, IState } from '../../../../../interfaces';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     root: {
@@ -39,8 +44,15 @@ const useStyles = createUseStyles((theme: Theme) => ({
 
 const PriceFilter = (): ReactElement => {
     const css = useStyles();
+    const history = useRouter();
     const [price, setPrice] = useState<[number, number]>([0, 200_000]);
+    const searchParams = useSelector<IState, ISearch>(state => state.config.searchParams);
 
+    useEffect(() => {
+        setPrice([searchParams.min_price || 0, searchParams.max_price || 200_000]);
+    }, [searchParams.min_price, searchParams.max_price]);
+
+    // manual change
     const handleMin = (event: ChangeEvent<HTMLInputElement>): void => {
         if (numberValidation(event.target.value)) return;
         setPrice([+event.target.value, price[1]]);
@@ -49,20 +61,51 @@ const PriceFilter = (): ReactElement => {
         if (numberValidation(event.target.value)) return;
         setPrice([price[0], +event.target.value]);
     };
+
+    // slider change
     const handleRange = (value: number[]): void => {
         setPrice([value[0], value[1]]);
+    };
+
+    // submit
+    const handleSubmit = (): void => {
+        history.push(
+            {
+                pathname: routes.offers.list,
+                query: queryString.stringify(
+                    { ...searchParams, min_price: price[0], max_price: price[1], page: 1 },
+                    { skipNull: true },
+                ),
+            },
+            undefined,
+            { scroll: false },
+        );
     };
 
     return (
         <div className={css.root}>
             <h4 className={css.title}>Цена за час / грн</h4>
             <div className={css.wrp}>
-                <input className={css.input} type="text" placeholder="min" value={price[0]} onChange={handleMin} />
-                <input className={css.input} type="text" placeholder="max" value={price[1]} onChange={handleMax} />
+                <input
+                    className={css.input}
+                    type="text"
+                    placeholder="min"
+                    value={price[0] || ''}
+                    onChange={handleMin}
+                    onBlur={handleSubmit}
+                />
+                <input
+                    className={css.input}
+                    type="text"
+                    placeholder="max"
+                    value={price[1] || ''}
+                    onChange={handleMax}
+                    onBlur={handleSubmit}
+                />
             </div>
 
             <div className={css.range}>
-                <Range min={0} max={200_000} value={[price[0], price[1]]} onChange={handleRange} />
+                <Range min={0} max={200_000} value={[price[0], price[1]]} onAfterChange={handleSubmit} onChange={handleRange} />
             </div>
         </div>
     );

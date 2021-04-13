@@ -13,7 +13,7 @@ import SectionTitle from '../../../common/section-title';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     root: {
-        margin: theme.rem(6, 0, 4),
+        margin: theme.rem(3, 0),
         ...theme.media(550).max({
             margin: theme.rem(2, 0),
         }),

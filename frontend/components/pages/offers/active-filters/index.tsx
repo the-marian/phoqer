@@ -6,7 +6,7 @@ import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 import { useSelector } from 'react-redux';
 
-import { findCategory, findSubCategory } from '../../../../assets/helpers';
+import { findCategory, findSubCategory, moneyFormat } from '../../../../assets/helpers';
 import routes from '../../../../assets/routes';
 import template from '../../../../assets/template';
 import { Theme } from '../../../../assets/theme';
@@ -91,6 +91,12 @@ const filtersToText = (filter: Filter, categories: ICategories[]): string => {
 
         case 'is_deliverable':
             return 'C доставкой';
+
+        case 'max_price':
+            return 'максимальная цена: ' + moneyFormat(filter[1]) + '.00';
+
+        case 'min_price':
+            return 'минимальная цена: ' + moneyFormat(filter[1]) + '.00';
 
         default:
             return '';
