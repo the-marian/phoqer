@@ -92,11 +92,11 @@ const filtersToText = (filter: Filter, categories: ICategories[]): string => {
         case 'is_deliverable':
             return 'C доставкой';
 
-        case 'max_price':
-            return 'максимальная цена: ' + moneyFormat(filter[1]) + '.00';
-
         case 'min_price':
             return 'минимальная цена: ' + moneyFormat(filter[1]) + '.00';
+
+        case 'max_price':
+            return 'максимальная цена: ' + moneyFormat(filter[1]) + '.00';
 
         default:
             return '';

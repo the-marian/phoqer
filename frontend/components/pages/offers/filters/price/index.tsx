@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import queryString from 'query-string';
 import { Range } from 'rc-slider';
-import React, { ChangeEvent, ReactElement, useEffect, useState } from 'react';
+import React, { ChangeEvent, KeyboardEvent, ReactElement, useEffect, useState } from 'react';
 import { createUseStyles } from 'react-jss';
 import { useSelector } from 'react-redux';
 
@@ -73,13 +73,18 @@ const PriceFilter = (): ReactElement => {
             {
                 pathname: routes.offers.list,
                 query: queryString.stringify(
-                    { ...searchParams, min_price: price[0], max_price: price[1], page: 1 },
+                    { ...searchParams, max_price: price[1], min_price: price[0], page: 1 },
                     { skipNull: true },
                 ),
             },
             undefined,
             { scroll: false },
         );
+    };
+
+    // keypress
+    const handleKeyPress = (event: KeyboardEvent<HTMLInputElement>): void => {
+        if (event.code === 'Enter') handleSubmit();
     };
 
     return (
@@ -92,7 +97,7 @@ const PriceFilter = (): ReactElement => {
                     placeholder="min"
                     value={price[0] || ''}
                     onChange={handleMin}
-                    onBlur={handleSubmit}
+                    onKeyPress={handleKeyPress}
                 />
                 <input
                     className={css.input}
@@ -100,7 +105,7 @@ const PriceFilter = (): ReactElement => {
                     placeholder="max"
                     value={price[1] || ''}
                     onChange={handleMax}
-                    onBlur={handleSubmit}
+                    onKeyPress={handleKeyPress}
                 />
             </div>
 
