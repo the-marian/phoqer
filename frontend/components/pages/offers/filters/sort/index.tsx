@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 import queryString from 'query-string';
-import React, { ReactElement } from 'react';
+import React, { ReactElement, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
 import { findCategory } from '../../../../../assets/helpers';
@@ -24,14 +24,14 @@ const Sort = (): ReactElement => {
     const css = useStyles();
     const history = useRouter();
 
-    const search = useSelector<IState, ISearch>(state => state.config.searchParams);
-    const defaultValue = search.ordering ? findCategory(FILTERS, search.ordering) : null;
+    const searchParams = useSelector<IState, ISearch>(state => state.config.searchParams);
+    const defaultValue = searchParams.ordering ? findCategory(FILTERS, searchParams.ordering) : null;
 
     const handleChange = (value: IDropValue | null): void => {
         history.push(
             {
                 pathname: routes.offers.list,
-                query: queryString.stringify({ ...search, ordering: value?.slug || null, page: 1 }, { skipNull: true }),
+                query: queryString.stringify({ ...searchParams, ordering: value?.slug || null, page: 1 }, { skipNull: true }),
             },
             undefined,
             { scroll: false },

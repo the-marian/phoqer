@@ -164,17 +164,17 @@ const OfferCard = ({ offer, showFavoriteBtn = true }: IProps): ReactElement => {
             </div>
 
             <div className={css.action}>
-                <div className={css.actionBtn}>
-                    <button type="button" className={css.btn}>
-                        {T.rent}
-                    </button>
+                {showFavoriteBtn && (
+                    <div className={css.actionBtn}>
+                        <button type="button" className={css.btn}>
+                            {T.rent}
+                        </button>
 
-                    {showFavoriteBtn && (
-                        <button type="button" className={clsx(css.favorite, is_favorite && css.active)} onClick={handleFavorite}>
+                        <button type="button" className={clsx(css.favorite)} onClick={handleFavorite}>
                             {is_favorite ? <FontAwesomeIcon icon={faSolidHeart} /> : <FontAwesomeIcon icon={faHeart} />}
                         </button>
-                    )}
-                </div>
+                    </div>
+                )}
 
                 <p className={css.price}>
                     <span>{moneyFormat(price)}.00</span>

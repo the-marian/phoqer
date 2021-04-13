@@ -112,6 +112,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     reset: {
         fontSize: theme.rem(1.1),
         padding: theme.rem(2),
+        color: theme.palette.black[0],
     },
     resetHidden: {
         opacity: 0,

@@ -97,8 +97,8 @@ const useStyles = createUseStyles((theme: Theme) => ({
     btn: {
         ...template(theme).btn,
         height: theme.rem(5),
-        background: theme.palette.gray[1],
-        color: theme.palette.black[0],
+        background: theme.palette.green[0],
+        color: theme.palette.white,
 
         ...theme.media(500).max({
             padding: theme.rem(1, 4),
@@ -116,19 +116,14 @@ const useStyles = createUseStyles((theme: Theme) => ({
         borderRadius: theme.radius,
         transition: theme.transitions[0],
         fontSize: theme.rem(1.8),
-        border: theme.border(0.2, 'transparent'),
 
         ...theme.hover({
-            background: theme.palette.gray[0],
-            border: theme.border(0.2, theme.palette.primary[0]),
+            background: theme.palette.gray[1],
         }),
 
         ...theme.media(500).max({
             fontSize: theme.rem(2),
         }),
-    },
-    active: {
-        background: theme.palette.gray[1],
     },
     price: {
         display: 'flex',
