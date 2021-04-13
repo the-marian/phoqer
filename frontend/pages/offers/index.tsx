@@ -12,6 +12,7 @@ import Search from '../../components/common/search';
 import SectionTitle from '../../components/common/section-title';
 import Meta from '../../components/layout/meta';
 import PageLayout from '../../components/layout/page-layout';
+import ActiveFilters from '../../components/pages/offers/active-filters';
 import Filters from '../../components/pages/offers/filters';
 import TopOffers from '../../components/pages/single-offer/top-offers';
 import useTrans from '../../hooks/trans.hook';
@@ -43,6 +44,7 @@ const OffersPage = (): ReactElement => {
                     <Filters />
                 </Container>
 
+                <ActiveFilters />
                 <TopOffers />
 
                 <Container>

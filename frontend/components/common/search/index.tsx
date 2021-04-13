@@ -23,7 +23,7 @@ import OptionsMobile from './options-mobile';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     root: {
-        padding: theme.rem(14, 0, 6),
+        padding: theme.rem(10, 0, 4),
         background: theme.palette.gray[0],
     },
     wrp: {
@@ -73,7 +73,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         }),
         ...theme.media(550).max({
             width: '100%',
-            margin: theme.rem(2, 0),
+            margin: theme.rem(2, 0, 0),
         }),
     },
     icon: {
@@ -102,10 +102,10 @@ const useStyles = createUseStyles((theme: Theme) => ({
             display: 'flex',
             justifyContent: 'space-between',
             width: '100%',
-            margin: theme.rem(3, 0),
+            margin: theme.rem(3, 0, 0),
         }),
         ...theme.media(550).max({
-            margin: theme.rem(2, 0),
+            margin: theme.rem(2, 0, 0),
             flexDirection: 'column',
         }),
     },
@@ -134,6 +134,23 @@ const Search = ({ shallow = false }: IProps): ReactElement => {
     const { pagination } = useSelector<IState, { pagination: boolean }>(state => state.offers.search);
 
     const handleChange = (value: IDropValue | null): void => {
+        if (shallow) {
+            history.push({
+                pathname: routes.offers.list,
+                query: queryString.stringify(
+                    {
+                        page: 1,
+                        ...searchParams,
+                        category: value?.type === 'main' ? value?.slug : null,
+                        sub_category: value?.type === 'sub' ? value?.slug : null,
+                    },
+                    { skipNull: true },
+                ),
+            });
+
+            return;
+        }
+
         dispatch({
             type: types.OFFERS_SEARCH_LOCAL_PARAMS,
             payload: {
@@ -148,6 +165,25 @@ const Search = ({ shallow = false }: IProps): ReactElement => {
         dispatch({ type: types.OFFERS_SEARCH_LOCAL_PARAMS, payload: { ...searchParams, search: event.target.value || null } });
     };
     const handleReset = (): void => {
+        if (shallow) {
+            history.push(
+                {
+                    pathname: routes.offers.list,
+                    query: queryString.stringify(
+                        {
+                            page: 1,
+                            ...searchParams,
+                            search: null,
+                        },
+                        { skipNull: true },
+                    ),
+                },
+                undefined,
+                { scroll: false },
+            );
+
+            return;
+        }
         dispatch({ type: types.OFFERS_SEARCH_LOCAL_PARAMS, payload: { ...searchParams, search: null } });
     };
 
