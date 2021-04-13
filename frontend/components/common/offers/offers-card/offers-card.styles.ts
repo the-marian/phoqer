@@ -116,9 +116,11 @@ const useStyles = createUseStyles((theme: Theme) => ({
         borderRadius: theme.radius,
         transition: theme.transitions[0],
         fontSize: theme.rem(1.8),
+        border: theme.border(0.2, 'transparent'),
 
         ...theme.hover({
             background: theme.palette.gray[0],
+            border: theme.border(0.2, theme.palette.primary[0]),
         }),
 
         ...theme.media(500).max({

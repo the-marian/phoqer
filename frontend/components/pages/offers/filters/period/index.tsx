@@ -1,9 +1,11 @@
+import { useRouter } from 'next/router';
+import queryString from 'query-string';
 import React, { ReactElement } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 import { findCategory } from '../../../../../assets/helpers';
+import routes from '../../../../../assets/routes';
 import { IDropList, IDropValue, ISearch, IState } from '../../../../../interfaces';
-import types from '../../../../../redux/types';
 import DropDown from '../../../../common/drop-down';
 import useStyles from '../filters.styles';
 
@@ -15,13 +17,20 @@ const FILTERS: IDropList[] = [
 
 const Period = (): ReactElement => {
     const css = useStyles();
-    const dispatch = useDispatch();
+    const history = useRouter();
 
     const search = useSelector<IState, ISearch>(state => state.config.searchParams);
     const defaultValue = search.period ? findCategory(FILTERS, search.period) : null;
 
     const handleChange = (value: IDropValue | null): void => {
-        dispatch({ type: types.OFFERS_SEARCH_LOCAL_PARAMS, payload: { ...search, period: value?.slug || null } });
+        history.push(
+            {
+                pathname: routes.offers.list,
+                query: queryString.stringify({ ...search, period: value?.slug || null, page: 1 }, { skipNull: true }),
+            },
+            undefined,
+            { scroll: false },
+        );
     };
 
     return (

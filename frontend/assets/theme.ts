@@ -67,7 +67,7 @@ const palette: { [key: string]: IPalette } = {
         ],
         yellow: ['#EDBF18', '#FAF0CA'],
         primary: ['#007aff', '#0040ff'],
-        secondary: ['#EDFBC9'],
+        secondary: ['#62a0ff'],
         modal: 'rgba(0, 0, 0, 0.3)',
     },
     black: {
@@ -87,7 +87,7 @@ const palette: { [key: string]: IPalette } = {
         ],
         yellow: ['#EDBF18', '#FAF0CA'],
         primary: ['#007aff', '#0040ff'],
-        secondary: ['#EDFBC9'],
+        secondary: ['#62a0ff'],
         modal: 'rgba(0, 0, 0, 0.3)',
     },
 };

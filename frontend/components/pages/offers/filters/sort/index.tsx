@@ -1,32 +1,41 @@
+import { useRouter } from 'next/router';
+import queryString from 'query-string';
 import React, { ReactElement } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 import { findCategory } from '../../../../../assets/helpers';
+import routes from '../../../../../assets/routes';
 import { IDropList, IDropValue, ISearch, IState } from '../../../../../interfaces';
-import types from '../../../../../redux/types';
 import DropDown from '../../../../common/drop-down';
 import useStyles from '../filters.styles';
 
 const FILTERS: IDropList[] = [
-    { name: 'От новых к старым', slug: 'pud_date' },
-    { name: 'От старых к новым', slug: '-pud_date' },
-    { name: 'Количество просмотров (по убыванию)', slug: 'views' },
-    { name: 'Количество просмотров (по возростанию)', slug: '-views' },
+    { name: 'От новых к старым', slug: '-pub_date' },
+    { name: 'От старых к новым', slug: 'pub_date' },
+    { name: 'Количество просмотров (по убыванию)', slug: '-views' },
+    { name: 'Количество просмотров (по возростанию)', slug: 'views' },
     { name: 'От дешевых к дорогим', slug: 'price' },
     { name: 'От дорогих к дешевым', slug: '-price' },
-    { name: 'Сума залога (по убыванию)', slug: '-deposit_val' },
-    { name: 'Сума залога (по возростанию)', slug: 'deposit_val' },
+    { name: 'Сума залога (по убыванию)', slug: 'deposit_val' },
+    { name: 'Сума залога (по возростанию)', slug: '-deposit_val' },
 ];
 
 const Sort = (): ReactElement => {
     const css = useStyles();
-    const dispatch = useDispatch();
+    const history = useRouter();
 
     const search = useSelector<IState, ISearch>(state => state.config.searchParams);
     const defaultValue = search.ordering ? findCategory(FILTERS, search.ordering) : null;
 
     const handleChange = (value: IDropValue | null): void => {
-        dispatch({ type: types.OFFERS_SEARCH_LOCAL_PARAMS, payload: { ...search, ordering: value?.slug || null } });
+        history.push(
+            {
+                pathname: routes.offers.list,
+                query: queryString.stringify({ ...search, ordering: value?.slug || null, page: 1 }, { skipNull: true }),
+            },
+            undefined,
+            { scroll: false },
+        );
     };
 
     return (
