@@ -6,6 +6,7 @@ const routes = {
         login: '/auth/login',
         join: '/auth/join',
         forgot_pass: '/auth/forgot-pass',
+        confirmation: '/auth/confirmation',
     },
     profile: {
         public: (id: ID = ':profileId'): string => `/profile/public/${id}`,

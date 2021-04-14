@@ -4,11 +4,17 @@ import { faHeart as faFillHeart } from '@fortawesome/free-solid-svg-icons/faHear
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import useAuth from '../../../../hooks/auth.hook';
+import clsx from 'clsx';
 
 import template from '../../../../assets/template';
 import { Theme } from '../../../../assets/theme';
 import { IOfferCard, IState } from '../../../../interfaces';
+import SmallModalWrp from '../../../common/modal/small-modal-wrp';
+import LoginForm from '../../../common/auth/login-form';
+import { modal } from '../../../common/modal';
+import types from '../../../../redux/types';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     title: {
@@ -62,8 +68,23 @@ const useStyles = createUseStyles((theme: Theme) => ({
 }));
 
 const OfferHead = (): ReactElement => {
+
     const css = useStyles();
     const offer = useSelector<IState, IOfferCard | null>(state => state.offers.single);
+    const auth = useAuth()
+    const dispatch = useDispatch()
+
+    const handleFavorite = (): void => {
+        if (!auth?.access_token) {
+            modal.open(
+                <SmallModalWrp>
+                    <LoginForm />
+                </SmallModalWrp>,
+            );
+            return;
+        }
+        dispatch({ type: types.PATCH_FAVORITE_OFFERS_START, payload: offer?.id });
+    };
 
     return (
         <>
@@ -74,7 +95,7 @@ const OfferHead = (): ReactElement => {
                     <FontAwesomeIcon icon={faEye} />
                     <span>{offer?.views}</span>
                 </p>
-                <button className={css.favorite} type="button">
+                <button className={clsx(css.favorite, offer?.is_favorite)} onClick={handleFavorite} type="button">
                     {offer?.is_favorite ? <FontAwesomeIcon icon={faFillHeart} /> : <FontAwesomeIcon icon={faHeart} />}
                 </button>
             </div>
