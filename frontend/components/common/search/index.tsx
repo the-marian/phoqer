@@ -23,7 +23,7 @@ import OptionsMobile from './options-mobile';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     root: {
-        padding: theme.rem(10, 0, 4),
+        padding: theme.rem(14, 0, 4),
         background: theme.palette.gray[0],
     },
     wrp: {

@@ -101,6 +101,7 @@ const editOfferTemplate = (theme: Theme): Template => ({
     group: {
         display: 'flex',
         alignItems: 'center',
+        flexWrap: 'wrap',
     },
     inactive: {
         pointerEvents: 'none',
@@ -109,12 +110,21 @@ const editOfferTemplate = (theme: Theme): Template => ({
     submit: {
         ...template(theme).btn,
         background: theme.palette.primary[0],
+
+        ...theme.media(768).max({
+            width: '100%',
+        }),
     },
     save: {
         ...template(theme).btn,
         marginRight: theme.rem(2),
         background: theme.palette.gray[1],
         color: theme.palette.black[0],
+
+        ...theme.media(768).max({
+            width: '100%',
+            margin: theme.rem(0, 0, 2),
+        }),
     },
 });
 

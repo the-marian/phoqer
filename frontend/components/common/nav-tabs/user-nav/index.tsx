@@ -27,7 +27,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         }),
 
         ...theme.media(1100).max({
-            fontSize: theme.rem(2),
+            fontSize: theme.rem(1.6),
         }),
     },
     red: {

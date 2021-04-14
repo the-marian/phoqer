@@ -19,6 +19,7 @@ const template = (theme: Theme): Template => ({
         borderRadius: theme.radius,
         fontSize: theme.rem(1.4),
         transition: theme.transitions[0],
+        boxShadow: theme.shadow[1],
 
         ...theme.media(500).max({
             fontSize: theme.rem(1.6),

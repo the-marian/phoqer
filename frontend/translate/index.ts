@@ -1,5 +1,5 @@
-import en from './locales/en/common.json';
-import pl from './locales/pl/common.json';
-import ru from './locales/ru/common.json';
+import en from './locales/en.json';
+import pl from './locales/pl.json';
+import ru from './locales/ru.json';
 
 export default { en, pl, ru };

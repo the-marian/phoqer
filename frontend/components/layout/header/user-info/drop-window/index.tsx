@@ -11,17 +11,17 @@ const useStyles = createUseStyles((theme: Theme) => ({
         top: theme.rem(10),
         right: '15%',
         zIndex: 10001,
-        minWidth: theme.rem(35),
+        minWidth: theme.rem(30),
         padding: theme.rem(2, 4),
         background: theme.palette.white,
         borderRadius: theme.radius,
         transition: theme.transitions[0],
+        border: theme.border(0.1, theme.palette.gray[1]),
 
         ...theme.media(500).max({
             top: theme.rem(8),
             right: '5%',
         }),
-
         '&.appear': {
             transform: 'translateY(-5rem)',
             opacity: 0,

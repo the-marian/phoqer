@@ -15,7 +15,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         width: '38%',
 
         ...theme.media(1200).max({
-            width: '75%',
+            width: 'calc(95% - 20rem)',
         }),
         ...theme.media(768).max({
             width: '100%',
@@ -33,7 +33,11 @@ const useStyles = createUseStyles((theme: Theme) => ({
         height: 'calc(100% - 4.5rem)',
         padding: theme.rem(2),
         marginTop: theme.rem(2.6),
-        background: theme.palette.soft[2],
+
+        ...theme.media(768).max({
+            height: 'auto',
+            marginBottom: theme.rem(4),
+        }),
     },
     input: {
         background: theme.palette.gray[0],
@@ -129,7 +133,7 @@ const GeneralInfoForm = (): ReactElement => {
                 </label>
             </div>
             <div className={css.bannerWrp}>
-                <Banner className={css.banner} />
+                <Banner className={css.banner} animation />
             </div>
         </>
     );

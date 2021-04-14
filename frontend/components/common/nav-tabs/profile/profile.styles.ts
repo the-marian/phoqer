@@ -14,6 +14,10 @@ export const nav = (theme: Theme): INav => ({
         position: 'relative',
         margin: theme.rem(0, -2),
 
+        ...theme.media(660).max({
+            margin: theme.rem(0, -1.5),
+        }),
+
         '&::before': {
             content: '""',
             position: 'absolute',

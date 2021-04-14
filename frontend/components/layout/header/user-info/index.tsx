@@ -22,10 +22,6 @@ const useStyles = createUseStyles((theme: Theme) => ({
         display: 'flex',
         alignItems: 'center',
         fontSize: theme.rem(1.4),
-
-        ...theme.media(768).max({
-            fontSize: theme.rem(1.8),
-        }),
     },
     item: {
         marginLeft: theme.rem(4.5),
@@ -52,7 +48,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
             padding: theme.rem(1, 1.5),
             borderRadius: theme.radius,
         }),
-        ...theme.media(500).max({
+        ...theme.media(768).max({
             fontSize: '0',
         }),
         ...theme.hover({

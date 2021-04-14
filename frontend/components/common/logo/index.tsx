@@ -27,7 +27,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
 
         ...theme.media(500).max({
             height: 'auto',
-            width: theme.rem(10),
+            width: theme.rem(8),
         }),
     },
 }));

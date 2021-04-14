@@ -54,7 +54,7 @@ const palette: { [key: string]: IPalette } = {
         green: ['#22cc52'],
         soft: [
             'linear-gradient(154deg,#fff8e0,#fbddd7)',
-            'linear-gradient(172deg,#faffd4,#88e4b8)',
+            'linear-gradient(-205deg,rgba(251,244,223,0.6),rgba(223,247,251,0.6))',
             'linear-gradient(168deg,#f9ecff,#ddfcf8)',
             'linear-gradient(159deg,#e9c4ff,#ffd0d0)',
             'linear-gradient(168deg,#ddf9ff,#cfc6ff)',
@@ -75,7 +75,7 @@ const palette: { [key: string]: IPalette } = {
         black: ['#FFFFFF', '#FEFEFE'],
         trueWhite: '#FFFFFF',
         trueBlack: '#222222',
-        glass: ['rgba(50, 50, 50, 0.8)', 'rgba(50, 50, 50, 0.8)'],
+        glass: ['rgba(100, 100, 100, 0.8)', 'rgba(50, 50, 50, 0.8)'],
         gray: ['#343434', '#454545', '#999999', '#AAAAAA', '#AAAAAA'],
         red: ['#DB162F'],
         green: ['#22cc52'],

@@ -10,6 +10,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     wrp: {
         marginLeft: theme.rem(3),
         border: theme.border(0.2, theme.palette.primary[0]),
+        background: theme.palette.trueWhite,
         borderRadius: theme.radius,
         '& p': {
             ...theme.hover({
