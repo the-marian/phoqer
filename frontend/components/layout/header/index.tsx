@@ -1,7 +1,5 @@
-import { faBars } from '@fortawesome/free-solid-svg-icons/faBars';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import clsx from 'clsx';
-import React, { ReactElement, useEffect, useState } from 'react';
+import React, { ReactElement, useEffect, useRef, useState } from 'react';
 import { createUseStyles } from 'react-jss';
 import { useDispatch } from 'react-redux';
 
@@ -13,6 +11,7 @@ import types from '../../../redux/types';
 import Container from '../../common/container';
 import Logo from '../../common/logo';
 import Lang from './lang';
+import MenuIcon from './menu-icon';
 import NotAuth from './not-auth';
 import UserInfo from './user-info';
 
@@ -62,15 +61,20 @@ const useStyles = createUseStyles((theme: Theme) => ({
             marginRight: theme.rem(1),
         },
 
+        ...theme.hover({
+            '& div span': {
+                left: '120%',
+            },
+        }),
+
         ...theme.media(768).max({
             marginRight: '0',
         }),
     },
 }));
 
-let prev = 0;
-
 const Header = (): ReactElement => {
+    const prev = useRef<number>(0);
     const auth = useAuth();
     const css = useStyles();
     const media = useMedia(768);
@@ -80,21 +84,19 @@ const Header = (): ReactElement => {
     const [delta, setDelta] = useState<boolean>(false);
 
     useEffect(() => {
-        const handleScroll = throttle((): void => {
+        const handleScroll = (): void => {
             if (window.scrollY < 100 && !delta) {
                 setShadow(false);
                 setDelta(false);
-                prev = 0;
+                prev.current = 0;
                 return;
             }
 
             setShadow(true);
-            setDelta(prev < window.scrollY);
-            prev = window.scrollY;
-        }, 300);
-
+            setDelta(prev.current < window.scrollY);
+            prev.current = window.scrollY;
+        };
         window.addEventListener('scroll', handleScroll);
-
         return () => {
             window.removeEventListener('scroll', handleScroll);
         };
@@ -110,7 +112,7 @@ const Header = (): ReactElement => {
                 <div className={css.flex}>
                     <div className={css.wrp}>
                         <button className={css.menu} onClick={handleMenu}>
-                            <FontAwesomeIcon icon={faBars} />
+                            <MenuIcon />
                             <span>Menu</span>
                         </button>
                         <Logo link />

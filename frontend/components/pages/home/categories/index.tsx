@@ -46,10 +46,16 @@ const useStyles = createUseStyles((theme: Theme) => ({
         borderRadius: theme.radius,
         objectFit: 'cover',
         ...template(theme).outline,
+        ...theme.media(768).max({
+            height: theme.rem(9),
+        }),
     },
     text: {
         marginTop: theme.rem(1.5),
         fontSize: theme.rem(1.6),
+        ...theme.media(768).max({
+            marginTop: theme.rem(0.5),
+        }),
     },
 }));
 

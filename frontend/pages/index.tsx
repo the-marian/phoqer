@@ -18,8 +18,8 @@ import types from '../redux/types';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     banner: {
-        background: theme.palette.soft[5],
         margin: theme.rem(8, 0),
+        padding: theme.rem(14, 8, 10),
 
         ...theme.media(550).max({
             margin: theme.rem(4, 0),
@@ -37,7 +37,7 @@ const Index = (): ReactElement => {
                 <Search />
                 <Container>
                     <Categories />
-                    <Banner className={css.banner} />
+                    <Banner className={css.banner} animation />
                     <TopPopular />
                 </Container>
 

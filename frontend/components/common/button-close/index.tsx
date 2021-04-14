@@ -2,6 +2,7 @@ import clsx from 'clsx';
 import React, { MouseEvent, ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
+import template from '../../../assets/template';
 import { Theme } from '../../../assets/theme';
 
 const useStyles = createUseStyles((theme: Theme) => ({
@@ -12,18 +13,16 @@ const useStyles = createUseStyles((theme: Theme) => ({
         width: theme.rem(3.5),
         margin: '0.5rem 0.5rem 0 auto',
         fontSize: 0,
+        background: theme.palette.gray[1],
         borderRadius: theme.radius,
         transition: theme.transitions[0],
+
+        ...template(theme).outline,
 
         ...theme.media(768).max({
             height: theme.rem(4),
             width: theme.rem(4),
-            background: theme.palette.gray[1],
         }),
-
-        '&:hover': {
-            background: theme.palette.gray[1],
-        },
 
         '&::after': {
             content: '""',

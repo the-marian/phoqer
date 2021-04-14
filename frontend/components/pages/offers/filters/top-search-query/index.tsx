@@ -28,7 +28,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         }),
     },
     title: {
-        fontSize: theme.rem(2),
+        fontSize: theme.rem(1.6),
         fontWeight: theme.text.weight[4],
         color: theme.palette.black[0],
     },

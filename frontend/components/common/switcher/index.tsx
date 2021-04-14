@@ -10,6 +10,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         alignItems: 'center',
         fontSize: theme.rem(1.4),
         color: theme.palette.black[0],
+        textAlign: 'left',
     },
     wrp: {
         position: 'relative',

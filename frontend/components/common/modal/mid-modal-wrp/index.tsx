@@ -18,6 +18,10 @@ const useStyles = createUseStyles((theme: Theme) => ({
         background: theme.palette.white,
         color: theme.palette.black[0],
         border: theme.border(0.1, theme.palette.gray[1]),
+
+        ...theme.media(100).max({
+            padding: theme.rem(4, 1, 1),
+        }),
     },
     button: {
         position: 'absolute',

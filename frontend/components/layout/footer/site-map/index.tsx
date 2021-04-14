@@ -41,7 +41,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         flexWrap: 'wrap',
         width: '60%',
 
-        ...theme.media(768).max({
+        ...theme.media(1100).max({
             width: '100%',
             marginBottom: theme.rem(9),
         }),
@@ -50,7 +50,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         display: 'block',
         width: '48%',
 
-        ...theme.media(768).max({
+        ...theme.media(1100).max({
             width: '100%',
         }),
     },
@@ -67,7 +67,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
             color: theme.palette.primary[0],
         }),
 
-        ...theme.media(768).max({
+        ...theme.media(1100).max({
             fontSize: theme.rem(1.6),
         }),
         ...theme.media(640).max({

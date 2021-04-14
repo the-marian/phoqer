@@ -29,7 +29,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         background: theme.palette.gray[1],
         ...template(theme).outline,
 
-        ...theme.media(580).max({
+        ...theme.media(680).max({
             height: theme.rem(30),
         }),
     },
@@ -72,7 +72,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     info: {
         display: 'flex',
         justifyContent: 'space-between',
-        margin: theme.rem(2, 0),
+        margin: theme.rem(1, 0),
     },
     text: {
         display: 'flex',
@@ -87,8 +87,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
     action: {
         display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center',
+        flexDirection: 'column',
     },
     actionBtn: {
         display: 'flex',
@@ -96,9 +95,8 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
     btn: {
         ...template(theme).btn,
-        height: theme.rem(5),
         background: theme.palette.green[0],
-        color: theme.palette.white,
+        color: theme.palette.trueWhite,
 
         ...theme.media(500).max({
             padding: theme.rem(1, 4),
@@ -109,8 +107,8 @@ const useStyles = createUseStyles((theme: Theme) => ({
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        minWidth: theme.rem(5),
-        height: theme.rem(5),
+        minWidth: theme.rem(7),
+        height: theme.rem(6),
         marginLeft: theme.rem(0.6),
         color: theme.palette.primary[0],
         borderRadius: theme.radius,
@@ -127,18 +125,18 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
     price: {
         display: 'flex',
-        flexDirection: 'column',
-        margin: 0,
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        margin: theme.rem(0, 0, 1, 0),
         fontSize: theme.rem(1.5),
         fontWeight: theme.text.weight[3],
         color: theme.palette.black[0],
         textTransform: 'lowercase',
-        textAlign: 'right',
 
         '& small': {
             fontWeight: theme.text.weight[2],
             fontSize: theme.rem(1.2),
-            color: theme.palette.gray[3],
+            color: theme.palette.primary[4],
         },
 
         ...theme.media(500).max({
@@ -157,7 +155,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
-            width: theme.rem(4),
+            width: theme.rem(5),
             padding: theme.rem(0),
             fontSize: theme.rem(2),
             textAlign: 'center',
@@ -166,10 +164,6 @@ const useStyles = createUseStyles((theme: Theme) => ({
         ...theme.media(500).max({
             top: theme.rem(1),
             left: theme.rem(1),
-            '& > p': {
-                width: theme.rem(6),
-                fontSize: theme.rem(3),
-            },
         }),
     },
 }));

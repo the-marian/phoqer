@@ -19,9 +19,18 @@ const useStyles = createUseStyles((theme: Theme) => ({
         fontSize: theme.rem(2),
         fontWeight: theme.text.weight[4],
         color: theme.palette.primary[0],
+
+        ...theme.media(768).max({
+            fontSize: theme.rem(1.8),
+        }),
     },
     link: {
         color: theme.palette.primary[0],
+        lineHeight: 1,
+
+        ...theme.media(768).max({
+            fontSize: theme.rem(1.6),
+        }),
     },
 }));
 
