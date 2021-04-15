@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 import queryString from 'query-string';
-import React, { ReactElement, useEffect } from 'react';
+import React, { ReactElement } from 'react';
 import { useSelector } from 'react-redux';
 
 import { findCategory } from '../../../../../assets/helpers';

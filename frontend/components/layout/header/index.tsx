@@ -84,7 +84,7 @@ const Header = (): ReactElement => {
     const [delta, setDelta] = useState<boolean>(false);
 
     useEffect(() => {
-        const handleScroll = (): void => {
+        const handleScroll = throttle((): void => {
             if (window.scrollY < 100 && !delta) {
                 setShadow(false);
                 setDelta(false);
@@ -95,7 +95,7 @@ const Header = (): ReactElement => {
             setShadow(true);
             setDelta(prev.current < window.scrollY);
             prev.current = window.scrollY;
-        };
+        }, 300);
         window.addEventListener('scroll', handleScroll);
         return () => {
             window.removeEventListener('scroll', handleScroll);
