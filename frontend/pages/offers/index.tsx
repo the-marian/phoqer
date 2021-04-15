@@ -4,6 +4,7 @@ import React, { ReactElement } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { END } from 'redux-saga';
 
+import trans from '../../assets/trans';
 import About from '../../components/common/about';
 import Container from '../../components/common/container';
 import Pagination from '../../components/common/load-more/pagination';
@@ -15,14 +16,12 @@ import PageLayout from '../../components/layout/page-layout';
 import ActiveFilters from '../../components/pages/offers/active-filters';
 import Filters from '../../components/pages/offers/filters';
 import TopOffers from '../../components/pages/single-offer/top-offers';
-import useTrans from '../../hooks/trans.hook';
 import { IOfferDynamic, IState, IStore } from '../../interfaces';
 import initState from '../../redux/state';
 import { wrapper } from '../../redux/store';
 import types from '../../redux/types';
 
 const OffersPage = (): ReactElement => {
-    const T = useTrans();
     const { query } = useRouter();
     const dispatch = useDispatch();
     const { data, loading, pagination } = useSelector<IState, IOfferDynamic>(state => state.offers.search);
@@ -36,7 +35,7 @@ const OffersPage = (): ReactElement => {
 
     return (
         <>
-            <Meta title={T.search_offers} h1={T.search_offers} />
+            <Meta title={trans('search_offers')} h1={trans('search_offers')} />
             <PageLayout>
                 <Search shallow />
 

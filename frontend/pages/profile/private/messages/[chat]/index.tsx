@@ -4,13 +4,13 @@ import { createUseStyles } from 'react-jss';
 
 import { serverRedirect } from '../../../../../assets/helpers';
 import { Theme } from '../../../../../assets/theme';
+import trans from '../../../../../assets/trans';
 import ProfileChatNav from '../../../../../components/common/nav-tabs/profile/chat-nav';
 import AuthRedirect from '../../../../../components/context/auth/auth-redirect';
 import Meta from '../../../../../components/layout/meta';
 import Conversation from '../../../../../components/pages/profile/private/messages/chat-conversation';
 import ChatWrp from '../../../../../components/pages/profile/private/messages/chat-wrp';
 import useMedia from '../../../../../hooks/media.hook';
-import useTrans from '../../../../../hooks/trans.hook';
 import { wrapper } from '../../../../../redux/store';
 
 const useStyles = createUseStyles((theme: Theme) => ({
@@ -34,13 +34,12 @@ const useStyles = createUseStyles((theme: Theme) => ({
 }));
 
 const MessagesChat = (): ReactElement => {
-    const T = useTrans();
     const css = useStyles();
     const media = useMedia(768);
 
     return (
         <>
-            <Meta title={'Мои сообщения'} h1={T.user_profile_on_phoqer} />
+            <Meta title={'Мои сообщения'} h1={trans('user_profile_on_phoqer')} />
 
             <AuthRedirect />
             <main className={css.main}>

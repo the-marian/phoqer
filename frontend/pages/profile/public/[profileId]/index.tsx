@@ -8,13 +8,11 @@ import Meta from '../../../../components/layout/meta';
 import ProfileCard from '../../../../components/common/profile-card';
 import Container from '../../../../components/common/container';
 import ProfileInfo from '../../../../components/pages/profile/public/profile-info';
-import useTrans from '../../../../hooks/trans.hook';
 import { IPublicProfile, IState, IStore } from '../../../../interfaces';
 import { wrapper } from '../../../../redux/store';
 import types from '../../../../redux/types';
 import PageLayout from "../../../../components/layout/page-layout";
-import {serverUser} from "../../../../assets/helpers";
-import {GetServerSidePropsContext} from "next";
+import trans from "../../../../assets/trans";
 
 const useStyles = createUseStyles((theme: Theme) => ({
     wrp: {
@@ -50,14 +48,13 @@ const useStyles = createUseStyles((theme: Theme) => ({
 }));
 
 const PublicProfilePage = (): ReactElement => {
-    const T = useTrans();
     const css = useStyles();
 
     const profile = useSelector<IState, IPublicProfile | null>(state => state.profiles.public);
 
     return (
         <>
-            <Meta title={profile?.first_name + ' ' + profile?.last_name} h1={T.user_profile_on_phoqer} />
+            <Meta title={profile?.first_name + ' ' + profile?.last_name} h1={trans('user_profile_on_phoqer')} />
             <PageLayout>
                 <Container>
                     <div className={css.wrp}>

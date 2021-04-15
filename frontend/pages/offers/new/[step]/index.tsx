@@ -8,6 +8,7 @@ import { END } from 'redux-saga';
 import { serverRedirect } from '../../../../assets/helpers';
 import routes from '../../../../assets/routes';
 import { Theme } from '../../../../assets/theme';
+import trans from '../../../../assets/trans';
 import Container from '../../../../components/common/container';
 import AuthRedirect from '../../../../components/context/auth/auth-redirect';
 import Meta from '../../../../components/layout/meta';
@@ -19,7 +20,6 @@ import StepThree from '../../../../components/pages/offers/new/step-three';
 import StepTwo from '../../../../components/pages/offers/new/step-two';
 import Stepper from '../../../../components/pages/offers/new/stepper';
 import Success from '../../../../components/pages/offers/new/success';
-import useTrans from '../../../../hooks/trans.hook';
 import { INewOffer, IState, IStore } from '../../../../interfaces';
 import { wrapper } from '../../../../redux/store';
 import types from '../../../../redux/types';
@@ -57,7 +57,6 @@ const STEPS: { [key: string]: JSX.Element | JSX.Element[] } = {
 const STEPS_TITLE = ['Основное', 'Описание', 'Фото'];
 
 const NewOffer = (): ReactElement => {
-    const T = useTrans();
     const css = useStyles();
     const history = useRouter();
 
@@ -92,11 +91,11 @@ const NewOffer = (): ReactElement => {
     return (
         <>
             <AuthRedirect />
-            <Meta title={T.create_new_offer} h1={T.share_with_others_and_earn} />
+            <Meta title={trans('create_new_offer')} h1={trans('share_with_others_and_earn')} />
             <PageLayout>
                 <Container>
                     <>
-                        <h2 className={css.title}>{T.share_with_others_and_earn}</h2>
+                        <h2 className={css.title}>{trans('share_with_others_and_earn')}</h2>
 
                         {page in [1, 2, 3] ? <Stepper titles={STEPS_TITLE} current={+page} /> : null}
 

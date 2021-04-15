@@ -11,8 +11,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import routes from '../../../assets/routes';
 import template from '../../../assets/template';
 import { Theme } from '../../../assets/theme';
+import trans from '../../../assets/trans';
 import useMedia from '../../../hooks/media.hook';
-import useTrans from '../../../hooks/trans.hook';
 import { IDropValue, ISearch, IState } from '../../../interfaces';
 import types from '../../../redux/types';
 import Button from '../button';
@@ -125,7 +125,6 @@ interface IProps {
 }
 
 const Search = ({ shallow = false }: IProps): ReactElement => {
-    const T = useTrans();
     const css = useStyles();
     const history = useRouter();
     const dispatch = useDispatch();
@@ -208,7 +207,7 @@ const Search = ({ shallow = false }: IProps): ReactElement => {
                     {history.pathname !== routes.root && (
                         <div className={css.toHome}>
                             <LinkArrow href={routes.root} toLeft>
-                                {T.to_home}
+                                {trans('to_home')}
                             </LinkArrow>
                         </div>
                     )}
@@ -224,7 +223,7 @@ const Search = ({ shallow = false }: IProps): ReactElement => {
                                     onChange={handleInput}
                                     className={css.input}
                                     type="text"
-                                    placeholder={T.what_are_you_looking_for}
+                                    placeholder={trans('what_are_you_looking_for')}
                                 />
                                 <button
                                     className={clsx(css.reset, !searchParams.search && css.resetHidden)}
@@ -240,7 +239,7 @@ const Search = ({ shallow = false }: IProps): ReactElement => {
                         <div className={css.mobile}>
                             {!desktop && <OptionsMobile onChange={handleChange} />}
                             <Button loading={pagination} type="submit" className={css.btn}>
-                                {T.find}
+                                {trans('find')}
                             </Button>
                         </div>
                     </div>

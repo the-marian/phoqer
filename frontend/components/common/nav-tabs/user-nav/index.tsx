@@ -7,7 +7,7 @@ import { CSSTransition } from 'react-transition-group';
 
 import config from '../../../../assets/config';
 import { Theme } from '../../../../assets/theme';
-import useTrans from '../../../../hooks/trans.hook';
+import trans from '../../../../assets/trans';
 import { IPublicProfile, IState, ITabs } from '../../../../interfaces';
 import types from '../../../../redux/types';
 import Spinner from '../../loaders/spinner';
@@ -46,12 +46,11 @@ interface IProps {
 
 const UserNav = ({ className }: IProps): ReactElement => {
     const css = useStyles();
-    const T = useTrans();
     const dispatch = useDispatch();
 
     const [loading, setLoading] = useState(false);
     const user = useSelector<IState, IPublicProfile | null>(state => state.user);
-    const profileTabs: ITabs[] = config.userNavLinks(String(user?.id), T, { messages: 5, reviews: 9 });
+    const profileTabs: ITabs[] = config.userNavLinks(String(user?.id), { messages: 5, reviews: 9 });
 
     const handleLogout = () => {
         setLoading(true);
@@ -65,7 +64,7 @@ const UserNav = ({ className }: IProps): ReactElement => {
                     <li>
                         <button type="button" className={css.item} onClick={handleLogout}>
                             <FontAwesomeIcon icon={faSignOutAlt} />
-                            <span className={css.text}>{T.logout}</span>
+                            <span className={css.text}>{trans('logout')}</span>
                         </button>
                     </li>
                     {loading && (

@@ -10,7 +10,6 @@ import config from '../../../../../assets/config';
 import routes from '../../../../../assets/routes';
 import { Theme } from '../../../../../assets/theme';
 import useTheme from '../../../../../hooks/theme.hook';
-import useTrans from '../../../../../hooks/trans.hook';
 import { ITabs } from '../../../../../interfaces';
 import types from '../../../../../redux/types';
 import NavTabs from '../../index';
@@ -21,6 +20,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     ...nav(theme),
     chatWrp: {
         margin: theme.rem(2, 0, 0),
+        maxWidth: '100%',
     },
 }));
 
@@ -29,12 +29,11 @@ interface IProps {
 }
 
 const ProfileChatNav = ({ active }: IProps): ReactElement | null => {
-    const T = useTrans();
     const css = useStyles();
     const [theme] = useTheme();
     const dispatch = useDispatch();
 
-    const profileTabs: ITabs[] = config.userProfileLinks(T, { messages: 5, reviews: 4 });
+    const profileTabs: ITabs[] = config.userProfileLinks({ messages: 5, reviews: 4 });
 
     const extraTabs: ITabs[] = [
         {

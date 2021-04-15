@@ -2,7 +2,7 @@ import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
 import { Theme } from '../../../../assets/theme';
-import useTrans from '../../../../hooks/trans.hook';
+import trans from '../../../../assets/trans';
 import JoinForm from '../../../common/auth/join-form';
 import LoginForm from '../../../common/auth/login-form';
 import { modal } from '../../../common/modal';
@@ -31,7 +31,6 @@ const useStyles = createUseStyles((theme: Theme) => ({
 }));
 
 const NotAuth = (): ReactElement | null => {
-    const T = useTrans();
     const css = useStyles();
 
     const handleLoginModal = () => {
@@ -52,10 +51,10 @@ const NotAuth = (): ReactElement | null => {
     return (
         <div>
             <button className={css.btn} type="button" onClick={handleLoginModal}>
-                {T.login}
+                {trans('login')}
             </button>
             <button className={css.btn} type="button" onClick={handleRegisterModal}>
-                {T.join}
+                {trans('join')}
             </button>
         </div>
     );

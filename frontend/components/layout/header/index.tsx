@@ -63,7 +63,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
 
         ...theme.hover({
             '& div span': {
-                left: '120%',
+                left: '140%',
             },
         }),
 

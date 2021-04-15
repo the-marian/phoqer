@@ -4,12 +4,12 @@ import { createUseStyles } from 'react-jss';
 
 import { serverRedirect } from '../../../../assets/helpers';
 import { Theme } from '../../../../assets/theme';
+import trans from '../../../../assets/trans';
 import Container from '../../../../components/common/container';
 import ProfileNav from '../../../../components/common/nav-tabs/profile/root-nav';
 import AuthRedirect from '../../../../components/context/auth/auth-redirect';
 import Meta from '../../../../components/layout/meta';
 import PageLayout from '../../../../components/layout/page-layout';
-import useTrans from '../../../../hooks/trans.hook';
 import { wrapper } from '../../../../redux/store';
 
 const useStyles = createUseStyles((theme: Theme) => ({
@@ -21,12 +21,11 @@ const useStyles = createUseStyles((theme: Theme) => ({
 }));
 
 const Referral = (): ReactElement => {
-    const T = useTrans();
     const css = useStyles();
 
     return (
         <>
-            <Meta title={'Мои обьявления'} h1={T.user_profile_on_phoqer} />
+            <Meta title={'Мои обьявления'} h1={trans('user_profile_on_phoqer')} />
             <AuthRedirect />
             <PageLayout>
                 <Container>
