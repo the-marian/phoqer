@@ -6,8 +6,8 @@ import { createUseStyles } from 'react-jss';
 import routes from '../../../assets/routes';
 import template from '../../../assets/template';
 import { Theme } from '../../../assets/theme';
+import trans from '../../../assets/trans';
 import useAuth from '../../../hooks/auth.hook';
-import useTrans from '../../../hooks/trans.hook';
 import LoginForm from '../auth/login-form';
 import { modal } from '../modal';
 import SmallModalWrp from '../modal/small-modal-wrp';
@@ -59,7 +59,6 @@ interface IProps {
 const Banner = ({ className, animation = false }: IProps): ReactElement => {
     const css = useStyles();
     const auth = useAuth();
-    const T = useTrans();
     const history = useRouter();
 
     const handleClick = (): void => {
@@ -75,7 +74,7 @@ const Banner = ({ className, animation = false }: IProps): ReactElement => {
     };
     return (
         <button onClick={handleClick} type="button" className={clsx(css.root, className, animation && css.animation)}>
-            <h2 className={css.title}>{T.share_with_others_and_earn}</h2>
+            <h2 className={css.title}>{trans('share_with_others_and_earn')}</h2>
             <p className={css.text}>Разместите объявление на любую тематику и получайте дополнительный заработок прямо сейчас.</p>
         </button>
     );

@@ -10,9 +10,9 @@ interface ILocales {
     [key: string]: IContent;
 }
 
-const useTrans = (): IContent => {
+const trans = (value: string): string => {
     const router = useRouter();
-    return (content as ILocales)[router.locale || 'en'];
+    return (content as ILocales)[router.locale || 'en'][value] || '...';
 };
 
-export default useTrans;
+export default trans;

@@ -4,8 +4,8 @@ import { createUseStyles } from 'react-jss';
 
 import routes from '../../../../../assets/routes';
 import { Theme } from '../../../../../assets/theme';
+import trans from '../../../../../assets/trans';
 import useTheme from '../../../../../hooks/theme.hook';
-import useTrans from '../../../../../hooks/trans.hook';
 import { ITabs } from '../../../../../interfaces';
 import NavTabs from '../../index';
 import { item, nav } from '../profile.styles';
@@ -20,34 +20,33 @@ interface IProps {
 }
 
 const ProfileOffersNav = ({ active }: IProps): ReactElement | null => {
-    const T = useTrans();
     const css = useStyles();
     const [theme] = useTheme();
 
     const offersTab: ITabs[] = [
         {
             id: 'all',
-            text: T.all,
+            text: trans('all'),
             link: routes.profile.private.my_offers('all'),
         },
         {
             id: 'draft',
-            text: T.draft,
+            text: trans('draft'),
             link: routes.profile.private.my_offers('draft'),
         },
         {
             id: 'active',
-            text: T.active,
+            text: trans('active'),
             link: routes.profile.private.my_offers('active'),
         },
         {
             id: 'in-rent',
-            text: T.in_rent,
+            text: trans('in_rent'),
             link: routes.profile.private.my_offers('in-rent'),
         },
         {
             id: 'archive',
-            text: T.archive,
+            text: trans('archive'),
             link: routes.profile.private.my_offers('archive'),
         },
     ];

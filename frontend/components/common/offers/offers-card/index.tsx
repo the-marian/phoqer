@@ -13,8 +13,8 @@ import { useDispatch } from 'react-redux';
 
 import { moneyFormat } from '../../../../assets/helpers';
 import routes from '../../../../assets/routes';
+import trans from '../../../../assets/trans';
 import useAuth from '../../../../hooks/auth.hook';
-import useTrans from '../../../../hooks/trans.hook';
 import { IDropList, IDropValue, IOfferCard } from '../../../../interfaces';
 import types from '../../../../redux/types';
 import LoginForm from '../../auth/login-form';
@@ -48,7 +48,6 @@ interface IProps {
 }
 
 const OfferCard = ({ offer, showFavoriteBtn = true }: IProps): ReactElement => {
-    const T = useTrans();
     const auth = useAuth();
     const css = useStyles();
     const history = useRouter();
@@ -157,20 +156,20 @@ const OfferCard = ({ offer, showFavoriteBtn = true }: IProps): ReactElement => {
                     <span className={css.view}>{views}</span>
                 </p>
                 <p className={css.text}>
-                    {T.date}: {pub_date}
+                    {trans('date')}: {pub_date}
                 </p>
             </div>
 
             <div className={css.action}>
                 <p className={css.price}>
                     <span>{moneyFormat(price)}.00</span>
-                    <small>{`*${T.uah}/${T.day}`}</small>
+                    <small>{`*${trans('uah')}/${trans('day')}`}</small>
                 </p>
 
                 {showFavoriteBtn && (
                     <div className={css.actionBtn}>
                         <button type="button" className={css.btn}>
-                            {T.rent}
+                            {trans('rent')}
                         </button>
 
                         <button type="button" className={clsx(css.favorite)} onClick={handleFavorite}>

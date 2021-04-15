@@ -10,6 +10,7 @@ import { AnyAction, Store } from 'redux';
  * 4 OFFERS
  * 5 COMMENTS
  * 6 PUBLIC_PROFILE
+ * 7 CHAT
  * REDUX STORE
  * */
 
@@ -223,6 +224,18 @@ export interface IPublicProfile {
     profile_img?: string | null;
     response_rate?: number;
     satisfaction_rate?: number;
+}
+
+// =====================================
+// 7 CHAT
+// =====================================
+export interface IChat {
+    id: string | number;
+    cover_image: null | string;
+    first_name: string;
+    last_name: string;
+    date: string;
+    preview: string;
 }
 
 // =====================================

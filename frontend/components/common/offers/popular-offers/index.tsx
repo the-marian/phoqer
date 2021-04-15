@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 import routes from '../../../../assets/routes';
 import template from '../../../../assets/template';
 import { Theme } from '../../../../assets/theme';
-import useTrans from '../../../../hooks/trans.hook';
+import trans from '../../../../assets/trans';
 import { IOfferStatic, IState } from '../../../../interfaces';
 import SectionTitle from '../../section-title';
 import OffersList from '../offers-list';
@@ -29,19 +29,18 @@ const useStyles = createUseStyles((theme: Theme) => ({
 
 const PopularOffers = (): ReactElement => {
     const css = useStyles();
-    const T = useTrans();
     const { data } = useSelector<IState, IOfferStatic>(state => state.offers.popular);
 
     return (
         <div className={css.root}>
-            <SectionTitle link={T.see_all} href={routes.offers.single(`?top=true`)}>
-                {T.popular_offers}
+            <SectionTitle link={trans('see_all')} href={routes.offers.single(`?top=true`)}>
+                {trans('popular_offers')}
             </SectionTitle>
 
             <OffersList data={data} />
 
             <Link href={routes.offers.list}>
-                <a className={css.btn}>{T.see_all}</a>
+                <a className={css.btn}>{trans('see_all')}</a>
             </Link>
         </div>
     );

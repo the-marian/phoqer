@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 
 import { findCategory, findSubCategory, formatCatList } from '../../../../assets/helpers';
 import { Theme } from '../../../../assets/theme';
-import useTrans from '../../../../hooks/trans.hook';
+import trans from '../../../../assets/trans';
 import { ICategories, IDropValue, ISearch, IState } from '../../../../interfaces';
 import DropDown from '../../drop-down';
 import { modal } from '../../modal';
@@ -62,7 +62,6 @@ interface IProps {
 
 const OptionsDesktop = ({ onChange }: IProps): ReactElement => {
     const css = useStyles();
-    const T = useTrans();
 
     const search = useSelector<IState, ISearch>(state => state.config.searchParams);
     const data = useSelector<IState, ICategories[]>(state => state.categories);
@@ -85,7 +84,7 @@ const OptionsDesktop = ({ onChange }: IProps): ReactElement => {
                 <DropDown
                     defaultValue={defaultValue}
                     data={categories}
-                    placeholder={T.select_category}
+                    placeholder={trans('select_category')}
                     onChange={onChange}
                     height={6}
                     withSub

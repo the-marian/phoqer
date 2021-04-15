@@ -36,30 +36,11 @@ const useStyles = createUseStyles((theme: Theme) => ({
     content: {
         margin: theme.rem(4, 0),
     },
-    buttons: {
-        display: 'flex',
-        margin: theme.rem(4, 0),
-    },
-    btn: {
-        ...template(theme).btn,
-        height: theme.rem(4.5),
-        minWidth: theme.rem(8),
-        marginRight: theme.rem(1),
-        padding: 0,
-        background: theme.palette.primary[0],
-        color: theme.palette.trueWhite,
-        transitions: theme.transitions[0],
-
-        ...theme.hover({
-            background: theme.palette.primary[1],
-        }),
-    },
 }));
 
 const MainDrawer = (): ReactElement => {
     const css = useStyles();
     const auth = useAuth();
-    const history = useRouter();
     const dispatch = useDispatch();
 
     const [theme, setTheme] = useTheme();
@@ -73,48 +54,12 @@ const MainDrawer = (): ReactElement => {
         dispatch({ type: types.TOGGLE_DRAWER, payload });
     };
 
-    const linksRedirect = (route: string): void => {
-        if (!auth?.access_token) {
-            modal.open(
-                <SmallModalWrp>
-                    <LoginForm />
-                </SmallModalWrp>,
-            );
-            return;
-        }
-        history.push(route);
-    };
-
-    const handleFavorite = (): void => {
-        linksRedirect(routes.favorite);
-    };
-
-    const handleNewOffer = (): void => {
-        linksRedirect(routes.offers.new(1));
-    };
-
     return (
         <Drawer onToggle={handleToggle} open={drawer}>
             <Logo className={css.link} link />
             <Switcher onClick={handleTheme} value={theme === 'black'} off="white" on="dark">
                 Toggle color theme
             </Switcher>
-
-            <div className={css.buttons}>
-                <Link href={routes.root}>
-                    <a className={css.btn} type="button">
-                        <FontAwesomeIcon icon={faHome} />
-                    </a>
-                </Link>
-
-                <button className={css.btn} type="button" onClick={handleFavorite}>
-                    <FontAwesomeIcon icon={faHeart} />
-                </button>
-
-                <button className={css.btn} type="button" onClick={handleNewOffer}>
-                    <FontAwesomeIcon icon={faPlus} />
-                </button>
-            </div>
 
             <div className={css.content}>{auth?.access_token ? <AuthDrawer /> : <NotAuthDrawer />}</div>
 

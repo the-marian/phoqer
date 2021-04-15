@@ -27,6 +27,15 @@ const routes = {
         new: (step: ID = ':step'): string => `/offers/new/${step}`,
         list: '/offers',
     },
+    static: {
+        help: '/static/help',
+        ad: '/static/ad',
+        rules: '/static/rules',
+        politic: '/static/politic',
+        faq: '/static/faq',
+        safety: '/static/safety',
+        map: '/static/map',
+    },
     favorite: '/favorite',
 };
 

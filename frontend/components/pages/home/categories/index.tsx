@@ -7,7 +7,7 @@ import config from '../../../../assets/config';
 import routes from '../../../../assets/routes';
 import template from '../../../../assets/template';
 import { Theme } from '../../../../assets/theme';
-import useTrans from '../../../../hooks/trans.hook';
+import trans from '../../../../assets/trans';
 import { ICategories, IState } from '../../../../interfaces';
 import SectionTitle from '../../../common/section-title';
 
@@ -61,12 +61,11 @@ const useStyles = createUseStyles((theme: Theme) => ({
 
 const Categories = (): ReactElement => {
     const css = useStyles();
-    const T = useTrans();
     const categories = useSelector<IState, ICategories[]>(state => state.categories);
 
     return (
         <div className={css.root}>
-            <SectionTitle>{T.rent_here_and_now}</SectionTitle>
+            <SectionTitle>{trans('rent_here_and_now')}</SectionTitle>
 
             <div className={css.wrp}>
                 {categories?.map(({ name, image, slug }) => (

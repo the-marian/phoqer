@@ -4,7 +4,6 @@ import React, { ReactElement, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
 import config from '../../../../../assets/config';
-import routes from '../../../../../assets/routes';
 import useMedia from '../../../../../hooks/media.hook';
 import useTheme from '../../../../../hooks/theme.hook';
 import useUppy from '../../../../../hooks/uppy.hook';

@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { serverRedirect } from '../../../../assets/helpers';
 import { Theme } from '../../../../assets/theme';
+import trans from '../../../../assets/trans';
 import Container from '../../../../components/common/container';
 import Pagination from '../../../../components/common/load-more/pagination';
 import ProfileOffersNav from '../../../../components/common/nav-tabs/profile/offers-nav';
@@ -14,7 +15,6 @@ import OffersList from '../../../../components/common/offers/offers-list';
 import AuthRedirect from '../../../../components/context/auth/auth-redirect';
 import Meta from '../../../../components/layout/meta';
 import PageLayout from '../../../../components/layout/page-layout';
-import useTrans from '../../../../hooks/trans.hook';
 import { IOfferDynamic, IState } from '../../../../interfaces';
 import { wrapper } from '../../../../redux/store';
 import types from '../../../../redux/types';
@@ -30,7 +30,6 @@ const useStyles = createUseStyles((theme: Theme) => ({
 }));
 
 const UserOffers = (): ReactElement => {
-    const T = useTrans();
     const css = useStyles();
     const dispatch = useDispatch();
 
@@ -55,7 +54,7 @@ const UserOffers = (): ReactElement => {
 
     return (
         <>
-            <Meta title={'Мои обьявления'} h1={T.user_profile_on_phoqer} />
+            <Meta title={'Мои обьявления'} h1={trans('user_profile_on_phoqer')} />
             <AuthRedirect />
             <PageLayout>
                 <Container>
