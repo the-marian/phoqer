@@ -70,12 +70,12 @@ const useStyles = createUseStyles((theme: Theme) => ({
         color: theme.palette.black[0],
 
         ...theme.media(1060).max({
-            height: 'auto',
+            height: 'unset',
             padding: theme.rem(0, 0, 1),
         }),
     },
     sidebar: theme.media(1060).max({
-        height: 'auto',
+        height: 'unset',
     }),
     aside: {
         minWidth: theme.rem(40),
@@ -87,23 +87,27 @@ const useStyles = createUseStyles((theme: Theme) => ({
         ...theme.media(1060).max({
             minWidth: 'unset',
             maxWidth: 'unset',
+            height: 'unset',
             width: '100%',
             padding: theme.rem(0, 1.5),
+            overflow: 'unset',
         }),
     },
     inner: {
         height: 'auto',
+        ...theme.media(1060).max({
+            height: 'unset',
+        }),
     },
 }));
 
 interface IProps {
-    active?: string | number;
     children: ReactElement | null;
     showSidebar?: boolean;
     showConversation?: boolean;
 }
 
-const ChatWrp = ({ children, active, showConversation = false, showSidebar = false }: IProps): ReactElement => {
+const ChatWrp = ({ children, showConversation = false, showSidebar = false }: IProps): ReactElement => {
     const css = useStyles();
 
     return (
@@ -112,7 +116,7 @@ const ChatWrp = ({ children, active, showConversation = false, showSidebar = fal
                 {showSidebar ? (
                     <aside className={css.aside}>
                         <div className={css.inner}>
-                            <ChatSidebar active={active} chats={test} />
+                            <ChatSidebar chats={test} />
                         </div>
                     </aside>
                 ) : null}

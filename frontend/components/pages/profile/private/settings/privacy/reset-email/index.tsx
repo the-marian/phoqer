@@ -11,11 +11,11 @@ const useStyles = createUseStyles((theme: Theme) => ({
     wrp: {
         width: '48%',
         minWidth: theme.rem(20),
-        marginLeft: '4%',
+        marginTop: theme.rem(8),
+
         ...theme.media(768).max({
             width: '100%',
             marginLeft: '0',
-            marginTop: theme.rem(8),
         }),
     },
     input: {

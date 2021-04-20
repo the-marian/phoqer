@@ -65,10 +65,6 @@ const useStyles = createUseStyles((theme: Theme) => ({
         }),
     },
     text: {
-        width: '100%',
-        textOverflow: 'ellipsis',
-        whiteSpace: 'nowrap',
-        overflow: 'hidden',
         fontSize: theme.rem(1.2),
         textAlign: 'center',
     },
@@ -82,12 +78,15 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
 }));
 
+const MAX_LENGTH = 12;
+
 const MobileNav = (): ReactElement | null => {
     const css = useStyles();
     const auth = useAuth();
     const media = useMedia(1060);
 
     const user = useSelector<IState, IPublicProfile | null>(state => state.user);
+    const userName = `${user?.first_name || ''} ${user?.last_name || ''}`;
 
     const handleClick = (): void => {
         modal.open(<MobileNavModal />);
@@ -132,7 +131,9 @@ const MobileNav = (): ReactElement | null => {
                         <FontAwesomeIcon icon={faUser} />
                         <NotifNumber className={css.number}>14</NotifNumber>
                     </div>
-                    <span className={css.text}>{`${user?.first_name || ''} ${user?.last_name || ''}`}</span>
+                    <span className={css.text}>
+                        {userName.length > MAX_LENGTH ? userName.slice(0, MAX_LENGTH - 3) + '...' : userName}
+                    </span>
                 </button>
             </li>
         </ul>

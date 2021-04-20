@@ -26,6 +26,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         background: theme.palette.white,
 
         ...theme.media(1060).max({
+            height: 'unset',
             padding: theme.rem(6, 0, 8),
         }),
     },
