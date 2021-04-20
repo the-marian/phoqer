@@ -69,11 +69,12 @@ const useStyles = createUseStyles((theme: Theme) => ({
         fontSize: theme.rem(1.6),
         color: theme.palette.black[0],
 
-        ...theme.media(768).max({
+        ...theme.media(1060).max({
+            height: 'auto',
             padding: theme.rem(0, 0, 1),
         }),
     },
-    sidebar: theme.media(768).max({
+    sidebar: theme.media(1060).max({
         height: 'auto',
     }),
     aside: {
@@ -83,7 +84,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         paddingRight: theme.rem(1),
         overflow: 'auto',
 
-        ...theme.media(768).max({
+        ...theme.media(1060).max({
             minWidth: 'unset',
             maxWidth: 'unset',
             width: '100%',

@@ -3,7 +3,7 @@ import { createUseStyles } from 'react-jss';
 import Slider from 'react-slick';
 
 import { Theme } from '../../../assets/theme';
-import trans from '../../../assets/trans';
+import useTrans from '../../../hooks/trans.hook';
 
 interface ISlides {
     src: string;
@@ -126,6 +126,8 @@ const useStyles = createUseStyles((theme: Theme) => ({
 
 const About = (): ReactElement => {
     const css = useStyles();
+    const trans = useTrans();
+
     return (
         <div className={css.wrp}>
             <Slider

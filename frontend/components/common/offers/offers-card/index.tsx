@@ -13,8 +13,8 @@ import { useDispatch } from 'react-redux';
 
 import { moneyFormat } from '../../../../assets/helpers';
 import routes from '../../../../assets/routes';
-import trans from '../../../../assets/trans';
 import useAuth from '../../../../hooks/auth.hook';
+import useTrans from '../../../../hooks/trans.hook';
 import { IDropList, IDropValue, IOfferCard } from '../../../../interfaces';
 import types from '../../../../redux/types';
 import LoginForm from '../../auth/login-form';
@@ -50,6 +50,7 @@ interface IProps {
 const OfferCard = ({ offer, showFavoriteBtn = true }: IProps): ReactElement => {
     const auth = useAuth();
     const css = useStyles();
+    const trans = useTrans();
     const history = useRouter();
     const dispatch = useDispatch();
 

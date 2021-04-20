@@ -10,10 +10,7 @@ import Input from '../../../../../../common/input';
 const useStyles = createUseStyles((theme: Theme) => ({
     wrp: {
         minWidth: theme.rem(20),
-        width: '40%',
-        ...theme.media(1100).max({
-            width: '48%',
-        }),
+        width: '48%',
         ...theme.media(768).max({
             width: '100%',
         }),

@@ -2,7 +2,7 @@ import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
 import { Theme } from '../../../../assets/theme';
-import trans from '../../../../assets/trans';
+import useTrans from '../../../../hooks/trans.hook';
 import JoinForm from '../../../common/auth/join-form';
 import LoginForm from '../../../common/auth/login-form';
 import { modal } from '../../../common/modal';
@@ -32,6 +32,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
 
 const NotAuth = (): ReactElement | null => {
     const css = useStyles();
+    const trans = useTrans();
 
     const handleLoginModal = () => {
         modal.open(

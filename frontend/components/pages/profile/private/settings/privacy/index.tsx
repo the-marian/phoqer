@@ -8,6 +8,7 @@ import ResetPassword from './reset-password';
 const useStyles = createUseStyles((theme: Theme) => ({
     flex: {
         display: 'flex',
+        justifyContent: 'center',
         flexWrap: 'wrap',
         margin: theme.rem(2, 0),
     },

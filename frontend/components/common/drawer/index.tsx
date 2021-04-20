@@ -48,6 +48,10 @@ const useStyles = createUseStyles((theme: Theme) => ({
             cursor: 'auto',
             scrollBehavior: 'smooth',
             '-webkit-overflow-scrolling': 'touch',
+
+            ...theme.media(768).max({
+                padding: theme.rem(2),
+            }),
         },
     },
     button: {

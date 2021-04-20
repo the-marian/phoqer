@@ -3,15 +3,15 @@ import { createUseStyles } from 'react-jss';
 import { END } from 'redux-saga';
 
 import { Theme } from '../assets/theme';
-import trans from '../assets/trans';
 import About from '../components/common/about';
 import Banner from '../components/common/banner';
-import Container from '../components/common/container';
 import TopPopular from '../components/common/offers/popular-offers';
 import Search from '../components/common/search';
+import Container from '../components/layout/container';
 import Meta from '../components/layout/meta';
 import PageLayout from '../components/layout/page-layout';
 import Categories from '../components/pages/home/categories';
+import useTrans from '../hooks/trans.hook';
 import { IStore } from '../interfaces';
 import { wrapper } from '../redux/store';
 import types from '../redux/types';
@@ -30,6 +30,8 @@ const useStyles = createUseStyles((theme: Theme) => ({
 
 const Index = (): ReactElement => {
     const css = useStyles();
+    const trans = useTrans();
+
     return (
         <>
             <Meta title={trans('home_page')} />

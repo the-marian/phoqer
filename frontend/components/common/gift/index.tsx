@@ -23,8 +23,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         backgroundSize: '400% 400%',
         animation: '$grad 15s ease infinite',
         borderRadius: theme.radius,
-        color: theme.palette.black[0],
-
+        color: theme.palette.trueBlack,
         ...template(theme).outline,
     },
     img: {

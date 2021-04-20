@@ -9,9 +9,9 @@ import GeneralInfoForm from './general-info-form';
 const useStyles = createUseStyles((theme: Theme) => ({
     flex: {
         display: 'flex',
-        justifyContent: 'space-between',
+        alignItems: 'center',
+        flexDirection: 'column',
         margin: theme.rem(2, 0),
-        flexWrap: 'wrap',
     },
 }));
 

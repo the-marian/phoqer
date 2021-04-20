@@ -8,7 +8,6 @@ import { faUserPlus } from '@fortawesome/free-solid-svg-icons/faUserPlus';
 
 import { ITabs, ITabsNum } from '../interfaces';
 import routes from './routes';
-import trans from './trans';
 
 const config = {
     baseUrl: {
@@ -40,7 +39,7 @@ const config = {
             mobile: 2,
         },
     },
-    userNavLinks: (userId: string, count?: ITabsNum): ITabs[] => [
+    userNavLinks: (trans: (v: string) => string, userId: string, count?: ITabsNum): ITabs[] => [
         {
             id: 'my-profile',
             text: trans('my_profile'),
@@ -48,7 +47,7 @@ const config = {
             icon: faUser,
         },
         {
-            id: 'my-searchHiddenBlocks',
+            id: 'my-offers',
             text: trans('my_offers'),
             link: routes.profile.private.my_offers(),
             icon: faBullhorn,
@@ -87,7 +86,7 @@ const config = {
             blank: true,
         },
     ],
-    userProfileLinks: (count?: ITabsNum): ITabs[] => [
+    userProfileLinks: (trans: (v: string) => string, count?: ITabsNum): ITabs[] => [
         {
             id: 'my-offers',
             text: trans('my_offers'),
