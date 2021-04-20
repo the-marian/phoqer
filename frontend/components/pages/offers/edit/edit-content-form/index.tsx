@@ -8,7 +8,7 @@ import initState from '../../../../../redux/state';
 import types from '../../../../../redux/types';
 import Button from '../../../../common/button';
 import Progress from '../../../../common/loaders/progress';
-import notifications from '../../../../common/notifications';
+import notificationsModal from '../../../../common/modal/notifications-modal';
 import editOfferTemplate from './edit-content-form.style';
 import validate from './edit-content-form.validations';
 import StepOne from './step-one';
@@ -72,7 +72,7 @@ const EditContentForm = (): ReactElement => {
                 payload: value,
                 offerId: String(query.offerId || ''),
                 callback() {
-                    notifications(
+                    notificationsModal(
                         'success',
                         'Ваши изменения успешно сохранены! Чтобы опубликовать обьявления нажмите на кнопку "Опубликувать"',
                     );
@@ -88,7 +88,7 @@ const EditContentForm = (): ReactElement => {
                 payload: value,
                 offerId: String(query.offerId || ''),
                 callback() {
-                    notifications(
+                    notificationsModal(
                         'success',
                         'Ваши изменения успешно сохранены! Чтобы опубликовать обьявления нажмите на кнопку "Опубликувать"',
                     );

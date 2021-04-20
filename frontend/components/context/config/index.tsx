@@ -2,7 +2,7 @@ import Cookies from 'js-cookie';
 import React, { createContext, ReactElement, useState } from 'react';
 
 import { IConfig } from '../../../interfaces';
-import notifications from '../../common/notifications';
+import notificationsModal from '../../common/modal/notifications-modal';
 
 const init: IConfig = {
     warning: true,
@@ -25,7 +25,7 @@ const ConfigProvider = ({ children, value }: IProps): ReactElement => {
             Cookies.set('phoqer_config', JSON.stringify(data));
             setConfig(data);
         } catch (error) {
-            notifications('error');
+            notificationsModal('error');
             setConfig(init);
         }
     };

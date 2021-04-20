@@ -12,7 +12,7 @@ import useMedia from '../../../../../hooks/media.hook';
 import useTheme from '../../../../../hooks/theme.hook';
 import useUppy from '../../../../../hooks/uppy.hook';
 import types from '../../../../../redux/types';
-import notifications from '../../../../common/notifications';
+import notificationsModal from '../../../../common/modal/notifications-modal';
 import newOfferTemplate from '../new-offer.style';
 
 const useStyles = createUseStyles((theme: Theme) => newOfferTemplate(theme).step);
@@ -77,7 +77,7 @@ const StepThree = (): ReactElement => {
                 },
             });
         } catch (error) {
-            notifications('error');
+            notificationsModal('error');
         }
     };
 

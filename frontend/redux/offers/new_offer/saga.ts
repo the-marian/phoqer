@@ -1,7 +1,7 @@
 import { all, call, put, select, takeLatest } from 'redux-saga/effects';
 
 import api from '../../../assets/api';
-import notifications from '../../../components/common/notifications';
+import notificationsModal from '../../../components/common/modal/notifications-modal';
 import { IDropValue, INewOffer, IState } from '../../../interfaces';
 import initState from '../../state';
 import types from '../../types';
@@ -36,7 +36,7 @@ function* postOffer({ payload, callback }: IAction) {
         if (callback) callback();
     } catch (error) {
         if (error?.response?.status === 401) return;
-        notifications('error');
+        notificationsModal('error');
         yield put({ type: types.POST_OFFER_ERROR });
     }
 }
@@ -59,7 +59,7 @@ function* updateOffer({ payload, images, offerId, callback }: IAction) {
         if (callback) callback();
     } catch (error) {
         if (error?.response?.status === 401) return;
-        notifications('error');
+        notificationsModal('error');
         yield put({ type: types.PATCH_OFFER_ERROR });
     }
 }
@@ -86,7 +86,7 @@ function* publishOffer({ payload, images, offerId, callback }: IAction) {
         if (callback) callback();
     } catch (error) {
         if (error?.response?.status === 401) return;
-        notifications('error');
+        notificationsModal('error');
         yield put({ type: types.PATCH_OFFER_STATUS_ERROR });
     }
 }

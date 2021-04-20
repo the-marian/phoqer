@@ -1,12 +1,12 @@
 import React from 'react';
 
-import { modal } from '../modal';
+import { modal } from '../index';
 import NotificationError from './error';
 import NotificationSuccess from './success';
 
 type ModalType = 'error' | 'success';
 
-const notifications = (type: ModalType, text?: string): void => {
+const notificationsModal = (type: ModalType, text?: string): void => {
     switch (type) {
         case 'error':
             modal.open(
@@ -23,4 +23,4 @@ const notifications = (type: ModalType, text?: string): void => {
     }
 };
 
-export default notifications;
+export default notificationsModal;
