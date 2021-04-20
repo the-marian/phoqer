@@ -11,7 +11,6 @@ import { useSelector } from 'react-redux';
 
 import routes from '../../../../assets/routes';
 import { Theme } from '../../../../assets/theme';
-import useMedia from '../../../../hooks/media.hook';
 import useTrans from '../../../../hooks/trans.hook';
 import { IPublicProfile, IState } from '../../../../interfaces';
 import NotifNumber from '../../../common/notif-number';

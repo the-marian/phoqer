@@ -1,7 +1,6 @@
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
-import { Theme } from '../../../../../../assets/theme';
 import ChatFlow from './chat-flow';
 import ChatForm from './chat-form';
 
