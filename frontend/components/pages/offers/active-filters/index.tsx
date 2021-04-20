@@ -11,7 +11,7 @@ import routes from '../../../../assets/routes';
 import template from '../../../../assets/template';
 import { Theme } from '../../../../assets/theme';
 import { ICategories, ISearch, IState } from '../../../../interfaces';
-import Container from '../../../common/container';
+import Container from '../../../layout/container';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     flex: {

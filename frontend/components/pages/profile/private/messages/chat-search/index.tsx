@@ -3,8 +3,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
-import template from '../../../../../../../assets/template';
-import { Theme } from '../../../../../../../assets/theme';
+import template from '../../../../../../assets/template';
+import { Theme } from '../../../../../../assets/theme';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     root: {
@@ -22,10 +22,11 @@ const useStyles = createUseStyles((theme: Theme) => ({
         right: 0,
         height: theme.rem(6),
         width: theme.rem(6),
-        color: theme.palette.primary[0],
+        color: theme.palette.gray[3],
 
         ...theme.hover({
-            color: theme.palette.primary[1],
+            background: theme.palette.gray[0],
+            color: theme.palette.primary[0],
         }),
     },
 }));

@@ -4,12 +4,12 @@ import { createUseStyles } from 'react-jss';
 
 import { serverRedirect } from '../../../../assets/helpers';
 import { Theme } from '../../../../assets/theme';
-import trans from '../../../../assets/trans';
-import Container from '../../../../components/common/container';
-import ProfileNav from '../../../../components/common/nav-tabs/profile/root-nav';
+import ProfileNav from '../../../../components/common/user-nav/profile/root-nav';
 import AuthRedirect from '../../../../components/context/auth/auth-redirect';
+import Container from '../../../../components/layout/container';
 import Meta from '../../../../components/layout/meta';
 import PageLayout from '../../../../components/layout/page-layout';
+import useTrans from '../../../../hooks/trans.hook';
 import { wrapper } from '../../../../redux/store';
 
 const useStyles = createUseStyles((theme: Theme) => ({
@@ -22,6 +22,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
 
 const Analytics = (): ReactElement => {
     const css = useStyles();
+    const trans = useTrans();
 
     return (
         <>

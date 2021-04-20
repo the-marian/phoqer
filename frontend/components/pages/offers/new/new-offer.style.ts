@@ -108,7 +108,7 @@ const newOfferTemplate = (theme: Theme): Template => ({
             },
 
             ...theme.media(768).max({
-                padding: theme.rem(3),
+                padding: theme.rem(1.5),
             }),
         },
         red: {
@@ -197,6 +197,7 @@ const newOfferTemplate = (theme: Theme): Template => ({
 
             ...theme.media(768).max({
                 flexDirection: 'column',
+                margin: theme.rem(0, 0, 2),
             }),
         },
         next: {

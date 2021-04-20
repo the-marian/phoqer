@@ -11,8 +11,8 @@ import { useSelector } from 'react-redux';
 
 import routes from '../../../../assets/routes';
 import { Theme } from '../../../../assets/theme';
-import trans from '../../../../assets/trans';
 import useMedia from '../../../../hooks/media.hook';
+import useTrans from '../../../../hooks/trans.hook';
 import { IPublicProfile, IState } from '../../../../interfaces';
 import NotifNumber from '../../../common/notif-number';
 import DropWindow from './drop-window';
@@ -80,7 +80,8 @@ const useStyles = createUseStyles((theme: Theme) => ({
 
 const UserInfo = (): ReactElement => {
     const css = useStyles();
-    const media = useMedia(1060);
+    const trans = useTrans();
+
     const [drop, setDrop] = useState<boolean>(false);
     const user = useSelector<IState, IPublicProfile | null>(state => state.user);
 
@@ -103,26 +104,22 @@ const UserInfo = (): ReactElement => {
 
     return (
         <ul className={css.flex}>
-            {media ? (
-                <>
-                    <li className={css.item}>
-                        <Link href={routes.offers.new(1)}>
-                            <a className={css.link}>
-                                <FontAwesomeIcon icon={faPlus} />
-                                <span className={css.text}>{trans('create_offer')}</span>
-                            </a>
-                        </Link>
-                    </li>
-                    <li className={css.item}>
-                        <Link href={routes.favorite}>
-                            <a className={css.link}>
-                                <FontAwesomeIcon icon={faHeart} />
-                                <span className={css.text}>{trans('favorites')}</span>
-                            </a>
-                        </Link>
-                    </li>
-                </>
-            ) : null}
+            <li className={css.item}>
+                <Link href={routes.offers.new(1)}>
+                    <a className={css.link}>
+                        <FontAwesomeIcon icon={faPlus} />
+                        <span className={css.text}>{trans('create_offer')}</span>
+                    </a>
+                </Link>
+            </li>
+            <li className={css.item}>
+                <Link href={routes.favorite}>
+                    <a className={css.link}>
+                        <FontAwesomeIcon icon={faHeart} />
+                        <span className={css.text}>{trans('favorites')}</span>
+                    </a>
+                </Link>
+            </li>
             <li className={css.item}>
                 <button type="button" className={clsx(css.link, drop && css.user)} onClick={handleClick}>
                     <NotifNumber className={css.number}>14</NotifNumber>

@@ -3,20 +3,17 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
+import template from '../../../../../../../assets/template';
 import { Theme } from '../../../../../../../assets/theme';
 import Button from '../../../../../../common/button';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     wrp: {
-        minWidth: theme.rem(20),
-
-        ...theme.media(768).max({
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            flexDirection: 'column',
-            width: '100%',
-        }),
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        flexDirection: 'column',
+        width: '100%',
     },
     img: {
         display: 'block',
@@ -31,21 +28,15 @@ const useStyles = createUseStyles((theme: Theme) => ({
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        color: theme.palette.primary[0],
+        marginBottom: theme.rem(4),
+        padding: theme.rem(1.5, 2),
+        background: theme.palette.gray[0],
+        borderRadius: theme.radius,
         fontWeight: theme.text.weight[3],
         fontSize: theme.rem(1.6),
-        padding: theme.rem(2),
-        borderRadius: theme.radius,
+        color: theme.palette.primary[0],
         transition: theme.transitions[0],
-
-        ...theme.media(768).max({
-            marginBottom: theme.rem(4),
-            background: theme.palette.gray[0],
-        }),
-
-        ...theme.hover({
-            background: theme.palette.gray[1],
-        }),
+        ...template(theme).outline,
 
         '& span': {
             marginLeft: theme.rem(1),

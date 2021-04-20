@@ -6,7 +6,7 @@ import { Theme } from '../../../../../../../assets/theme';
 import { IChat } from '../../../../../../../interfaces';
 import Gift from '../../../../../../common/gift';
 import ChatEmpty from '../../chat-empty';
-import ChatSearch from '../chat-search';
+import ChatSearch from '../../chat-search';
 import ChatSidebarItem from './chat-sidebar-item';
 
 const useStyles = createUseStyles((theme: Theme) => ({

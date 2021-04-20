@@ -17,13 +17,17 @@ import LoginForm from '../../../common/auth/login-form';
 import Gift from '../../../common/gift';
 import { modal } from '../../../common/modal';
 import SmallModalWrp from '../../../common/modal/small-modal-wrp';
-import UserNav from '../../../common/nav-tabs/user-nav';
 import ProfileCard from '../../../common/profile-card';
+import UserNavDropdown from '../../../common/user-nav/user-nav-dropdown';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     buttons: {
         display: 'flex',
         margin: theme.rem(4, 0),
+
+        ...theme.media(768).max({
+            margin: theme.rem(2, 0),
+        }),
     },
     btn: {
         ...template(theme).btn,
@@ -94,8 +98,8 @@ const AuthDrawer = (): ReactElement | null => {
                 userLocation={user?.location}
                 registerDate={user?.date_joined}
             />
-            <Gift style={{ margin: '4rem 0' }} />
-            <UserNav />
+            <Gift style={{ margin: '3rem 0' }} />
+            <UserNavDropdown />
         </>
     );
 };

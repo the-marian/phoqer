@@ -7,7 +7,7 @@ import config from '../../../../assets/config';
 import routes from '../../../../assets/routes';
 import template from '../../../../assets/template';
 import { Theme } from '../../../../assets/theme';
-import trans from '../../../../assets/trans';
+import useTrans from '../../../../hooks/trans.hook';
 import { ICategories, IState } from '../../../../interfaces';
 import SectionTitle from '../../../common/section-title';
 
@@ -61,6 +61,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
 
 const Categories = (): ReactElement => {
     const css = useStyles();
+    const trans = useTrans();
     const categories = useSelector<IState, ICategories[]>(state => state.categories);
 
     return (

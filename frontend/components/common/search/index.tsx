@@ -11,12 +11,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import routes from '../../../assets/routes';
 import template from '../../../assets/template';
 import { Theme } from '../../../assets/theme';
-import trans from '../../../assets/trans';
 import useMedia from '../../../hooks/media.hook';
+import useTrans from '../../../hooks/trans.hook';
 import { IDropValue, ISearch, IState } from '../../../interfaces';
 import types from '../../../redux/types';
+import Container from '../../layout/container';
 import Button from '../button';
-import Container from '../container';
 import LinkArrow from '../link-arrow';
 import OptionsDesktop from './options-desktop';
 import OptionsMobile from './options-mobile';
@@ -126,6 +126,7 @@ interface IProps {
 
 const Search = ({ shallow = false }: IProps): ReactElement => {
     const css = useStyles();
+    const trans = useTrans();
     const history = useRouter();
     const dispatch = useDispatch();
     const desktop = useMedia(1100);

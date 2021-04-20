@@ -4,7 +4,7 @@ import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
 import config from '../../../assets/config';
-import trans from '../../../assets/trans';
+import useTrans from '../../../hooks/trans.hook';
 
 const useStyles = createUseStyles({
     title: {
@@ -26,6 +26,7 @@ interface IProps {
 
 const Meta = ({ title, description, keywords, icon, h1 = '' }: IProps): ReactElement => {
     const css = useStyles();
+    const trans = useTrans();
     const history = useRouter();
 
     const url = (lang = 'pl'): string => config.host(lang) + history.pathname;

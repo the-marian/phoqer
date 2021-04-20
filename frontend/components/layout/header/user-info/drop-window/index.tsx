@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { createUseStyles } from 'react-jss';
 
 import { Theme } from '../../../../../assets/theme';
-import UserNav from '../../../../common/nav-tabs/user-nav';
+import UserNavDropdown from '../../../../common/user-nav/user-nav-dropdown';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     root: {
@@ -64,7 +64,7 @@ const DropWindow = ({ onClose }: Props): ReactElement => {
     return ReactDOM.createPortal(
         <>
             <div className={css.wrp} onClick={onClose} aria-hidden="true" />
-            <UserNav className={css.root} />
+            <UserNavDropdown className={css.root} />
         </>,
         document.body,
     );
