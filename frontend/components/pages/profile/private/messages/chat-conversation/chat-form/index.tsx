@@ -18,7 +18,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
 
         ...theme.media(1060).max({
             position: 'fixed',
-            bottom: theme.rem(5.5),
+            bottom: theme.rem(5),
             left: '0',
             width: '100%',
             background: theme.palette.white,
