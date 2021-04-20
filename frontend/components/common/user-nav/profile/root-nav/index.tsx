@@ -5,6 +5,7 @@ import { createUseStyles } from 'react-jss';
 import config from '../../../../../assets/config';
 import { Theme } from '../../../../../assets/theme';
 import useTheme from '../../../../../hooks/theme.hook';
+import useTrans from '../../../../../hooks/trans.hook';
 import { ITabs } from '../../../../../interfaces';
 import NavTabs from '../../index';
 import { itemSvg, nav } from '../profile.styles';
@@ -18,10 +19,11 @@ interface IProps {
     active?: number | string;
 }
 
-const ProfileNav = ({ active }: IProps): ReactElement | null => {
+const ProfileNav = ({ active }: IProps): ReactElement => {
     const css = useStyles();
+    const trans = useTrans();
     const [theme] = useTheme();
-    const profileTabs: ITabs[] = config.userProfileLinks({ messages: 5, reviews: 4 });
+    const profileTabs: ITabs[] = config.userProfileLinks(trans, { messages: 5, reviews: 4 });
 
     return (
         <div className={clsx(css.wrp, theme === 'black' && css.black)}>

@@ -7,10 +7,10 @@ import routes from '../../../../assets/routes';
 import { Theme } from '../../../../assets/theme';
 import useConfig from '../../../../hooks/config.hook';
 import { IOfferStatic, IState } from '../../../../interfaces';
-import Container from '../../../common/container';
 import OffersList from '../../../common/offers/offers-list';
 import SectionTitle from '../../../common/section-title';
 import Switcher from '../../../common/switcher';
+import Container from '../../../layout/container';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     root: {

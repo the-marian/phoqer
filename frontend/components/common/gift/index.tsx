@@ -8,16 +8,22 @@ import ConfettiWrp from '../confetti';
 import { modal } from '../modal';
 
 const useStyles = createUseStyles((theme: Theme) => ({
+    '@keyframes grad': {
+        '0%': { backgroundPosition: '0% 50%' },
+        '50%': { backgroundPosition: '100% 50%' },
+        '100%': { backgroundPosition: '0% 50%' },
+    },
     root: {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
         width: '100%',
         padding: theme.rem(2, 1),
-        background: theme.palette.soft[0],
+        background: 'linear-gradient(-45deg, #f9ecff, #e9c4ff, #ddfcf8, #f5f1e5, #ffd0d0, #e4f4f6)',
+        backgroundSize: '400% 400%',
+        animation: '$grad 15s ease infinite',
         borderRadius: theme.radius,
-        color: theme.palette.black[0],
-
+        color: theme.palette.trueBlack,
         ...template(theme).outline,
     },
     img: {

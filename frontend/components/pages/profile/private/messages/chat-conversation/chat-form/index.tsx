@@ -15,26 +15,35 @@ const useStyles = createUseStyles((theme: Theme) => ({
         flexGrow: 1,
         width: '100%',
         padding: theme.rem(1),
+
+        ...theme.media(1060).max({
+            position: 'fixed',
+            bottom: theme.rem(5.5),
+            left: '0',
+            width: '100%',
+            background: theme.palette.white,
+        }),
     },
     textarea: {
         ...template(theme).input,
-        minHeight: theme.rem(6),
+        minHeight: theme.rem(4),
         maxHeight: '70vh',
+        boxShadow: 'unset',
 
         ...theme.media(768).max({
             padding: theme.rem(0.5, 1),
         }),
     },
     submit: {
-        height: theme.rem(6),
+        height: theme.rem(4),
         margin: theme.rem(0, 0, 0, 1),
         padding: theme.rem(0.5, 4),
-        background: theme.palette.primary[0],
-        color: theme.palette.white,
+        background: theme.palette.gray[1],
+        color: theme.palette.black[0],
         borderRadius: theme.radius,
         fontSize: theme.rem(2),
 
-        ...theme.media(768).max({
+        ...theme.media(1060).max({
             padding: theme.rem(0.5, 2),
         }),
     },

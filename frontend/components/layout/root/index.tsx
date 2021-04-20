@@ -4,6 +4,7 @@ import { ThemeProvider } from 'react-jss';
 import { theme } from '../../../assets/theme';
 import useTheme from '../../../hooks/theme.hook';
 import RouterProgress from '../../common/loaders/progress/router-progress';
+import MobileNav from '../../common/mobile-nav';
 import ModalComponent from '../../common/modal';
 import AuthInterceptor from '../../context/auth/auth-interceptor';
 import MainDrawer from '../main-drawer';
@@ -27,6 +28,7 @@ const Root = ({ children }: IProps): ReactElement => {
             <ModalComponent />
             <MainDrawer />
             <RouterProgress />
+            <MobileNav />
             {children}
         </ThemeProvider>
     );

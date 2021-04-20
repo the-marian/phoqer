@@ -8,9 +8,8 @@ import { END } from 'redux-saga';
 import { serverRedirect } from '../../../../assets/helpers';
 import routes from '../../../../assets/routes';
 import { Theme } from '../../../../assets/theme';
-import trans from '../../../../assets/trans';
-import Container from '../../../../components/common/container';
 import AuthRedirect from '../../../../components/context/auth/auth-redirect';
+import Container from '../../../../components/layout/container';
 import Meta from '../../../../components/layout/meta';
 import PageLayout from '../../../../components/layout/page-layout';
 import Draft from '../../../../components/pages/offers/new/draft';
@@ -20,6 +19,7 @@ import StepThree from '../../../../components/pages/offers/new/step-three';
 import StepTwo from '../../../../components/pages/offers/new/step-two';
 import Stepper from '../../../../components/pages/offers/new/stepper';
 import Success from '../../../../components/pages/offers/new/success';
+import useTrans from '../../../../hooks/trans.hook';
 import { INewOffer, IState, IStore } from '../../../../interfaces';
 import { wrapper } from '../../../../redux/store';
 import types from '../../../../redux/types';
@@ -59,6 +59,7 @@ const STEPS_TITLE = ['Основное', 'Описание', 'Фото'];
 const NewOffer = (): ReactElement => {
     const css = useStyles();
     const history = useRouter();
+    const trans = useTrans();
 
     const [page, setPage] = useState<number | string>(1);
     const value = useSelector<IState, INewOffer>(state => state.offers.new_offer);

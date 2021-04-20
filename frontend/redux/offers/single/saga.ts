@@ -1,7 +1,7 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
 
 import api from '../../../assets/api';
-import notifications from '../../../components/common/notifications';
+import notificationsModal from '../../../components/common/modal/notifications-modal';
 import types from '../../types';
 import IAction from './interfaces';
 
@@ -12,9 +12,9 @@ function* getOffer({ payload }: IAction) {
         yield put({ type: types.GET_SINGLE_OFFER_SUCCESS, payload: data });
     } catch (error) {
         if (error?.response?.status === 401) return;
-        notifications('error');
+        notificationsModal('error');
         yield put({ type: types.GET_SINGLE_OFFER_ERROR });
-        notifications('error');
+        notificationsModal('error');
     }
 }
 

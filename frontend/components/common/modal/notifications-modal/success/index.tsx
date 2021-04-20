@@ -1,10 +1,10 @@
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
-import template from '../../../../assets/template';
-import { Theme } from '../../../../assets/theme';
-import { modal } from '../../modal';
-import SmallModalWrp from '../../modal/small-modal-wrp';
+import template from '../../../../../assets/template';
+import { Theme } from '../../../../../assets/theme';
+import { modal } from '../../index';
+import SmallModalWrp from '../../small-modal-wrp';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     title: {

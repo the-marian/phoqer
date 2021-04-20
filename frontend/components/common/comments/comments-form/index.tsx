@@ -15,7 +15,7 @@ import { Theme } from '../../../../assets/theme';
 import useMedia from '../../../../hooks/media.hook';
 import useTheme from '../../../../hooks/theme.hook';
 import useUppy from '../../../../hooks/uppy.hook';
-import notifications from '../../notifications';
+import notificationsModal from '../../modal/notifications-modal';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     flex: {
@@ -151,7 +151,7 @@ const CommentsForm = ({ onSubmit }: IProps): ReactElement => {
             setAttachment(false);
             setValue('');
         } catch (error) {
-            notifications('error');
+            notificationsModal('error');
         }
     };
 

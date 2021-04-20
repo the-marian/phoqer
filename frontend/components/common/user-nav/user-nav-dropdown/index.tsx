@@ -7,7 +7,7 @@ import { CSSTransition } from 'react-transition-group';
 
 import config from '../../../../assets/config';
 import { Theme } from '../../../../assets/theme';
-import trans from '../../../../assets/trans';
+import useTrans from '../../../../hooks/trans.hook';
 import { IPublicProfile, IState, ITabs } from '../../../../interfaces';
 import types from '../../../../redux/types';
 import Spinner from '../../loaders/spinner';
@@ -30,11 +30,6 @@ const useStyles = createUseStyles((theme: Theme) => ({
             fontSize: theme.rem(1.6),
         }),
     },
-    red: {
-        marginLeft: theme.rem(0.5),
-        color: theme.palette.red[0],
-        fontWeight: theme.text.weight[3],
-    },
     text: {
         marginLeft: theme.rem(1),
     },
@@ -44,13 +39,14 @@ interface IProps {
     className?: string;
 }
 
-const UserNav = ({ className }: IProps): ReactElement => {
+const UserNavDropdown = ({ className }: IProps): ReactElement => {
     const css = useStyles();
     const dispatch = useDispatch();
+    const trans = useTrans();
 
     const [loading, setLoading] = useState(false);
     const user = useSelector<IState, IPublicProfile | null>(state => state.user);
-    const profileTabs: ITabs[] = config.userNavLinks(String(user?.id), { messages: 5, reviews: 9 });
+    const profileTabs: ITabs[] = config.userNavLinks(trans, String(user?.id), { messages: 5, reviews: 9 });
 
     const handleLogout = () => {
         setLoading(true);
@@ -78,4 +74,4 @@ const UserNav = ({ className }: IProps): ReactElement => {
     );
 };
 
-export default UserNav;
+export default UserNavDropdown;

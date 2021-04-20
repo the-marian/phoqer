@@ -10,9 +10,11 @@ interface ILocales {
     [key: string]: IContent;
 }
 
-const trans = (value: string): string => {
+type UseTransType = (value: string) => string;
+
+const useTrans = (): UseTransType => (value: string): string => {
     const router = useRouter();
     return (content as ILocales)[router.locale || 'en'][value] || '...';
 };
 
-export default trans;
+export default useTrans;

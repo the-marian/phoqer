@@ -6,13 +6,13 @@ import { END } from 'redux-saga';
 import { Theme } from '../../../../assets/theme';
 import Meta from '../../../../components/layout/meta';
 import ProfileCard from '../../../../components/common/profile-card';
-import Container from '../../../../components/common/container';
+import Container from '../../../../components/layout/container';
 import ProfileInfo from '../../../../components/pages/profile/public/profile-info';
 import { IPublicProfile, IState, IStore } from '../../../../interfaces';
 import { wrapper } from '../../../../redux/store';
 import types from '../../../../redux/types';
 import PageLayout from "../../../../components/layout/page-layout";
-import trans from "../../../../assets/trans";
+import useTrans from "../../../../hooks/trans.hook";
 
 const useStyles = createUseStyles((theme: Theme) => ({
     wrp: {
@@ -49,7 +49,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
 
 const PublicProfilePage = (): ReactElement => {
     const css = useStyles();
-
+    const trans = useTrans();
     const profile = useSelector<IState, IPublicProfile | null>(state => state.profiles.public);
 
     return (

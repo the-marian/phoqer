@@ -2,7 +2,7 @@ import { call, put, takeLatest } from 'redux-saga/effects';
 
 import api from '../../../assets/api';
 import { modal } from '../../../components/common/modal';
-import notifications from '../../../components/common/notifications';
+import notificationsModal from '../../../components/common/modal/notifications-modal';
 import { ILogin } from '../../../interfaces';
 import types from '../../types';
 import IAction from './interfaces';
@@ -20,7 +20,7 @@ function* loginUser({ payload }: IAction) {
     } catch (error) {
         if (error?.response?.status === 401) return;
         // TODO add error text
-        notifications('error');
+        notificationsModal('error');
         yield put({ type: types.LOGIN_ERROR });
     }
 }

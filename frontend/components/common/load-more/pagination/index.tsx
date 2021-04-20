@@ -7,6 +7,7 @@ import React, { ReactElement, useEffect, useState } from 'react';
 import { createUseStyles } from 'react-jss';
 import ReactPaginate from 'react-paginate';
 
+import template from '../../../../assets/template';
 import { Theme } from '../../../../assets/theme';
 import useMedia from '../../../../hooks/media.hook';
 import useShallowRouter from '../../../../hooks/routing.hook';
@@ -24,12 +25,21 @@ const useStyles = createUseStyles((theme: Theme) => ({
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
+
+        ...theme.media(768).max({
+            '& .next': {
+                display: 'none',
+            },
+            '& .previous': {
+                display: 'none',
+            },
+        }),
     },
     page: {
         display: 'block',
         minWidth: theme.rem(5),
         margin: theme.rem(0.4),
-        padding: theme.rem(0.6, 1),
+        padding: theme.rem(1.3, 2.5),
         borderRadius: theme.radius,
         background: theme.palette.gray[0],
         color: theme.palette.black[0],
@@ -37,27 +47,24 @@ const useStyles = createUseStyles((theme: Theme) => ({
         textAlign: 'center',
         transition: theme.transitions[0],
         cursor: 'pointer',
+        ...template(theme).outline,
 
         ...theme.media(768).max({
             margin: theme.rem(0.2),
-            padding: theme.rem(1.5, 3),
             background: theme.palette.gray[1],
         }),
-
-        ...theme.hover({ background: theme.palette.gray[1] }),
     },
     active: {
         background: theme.palette.primary[0],
         color: theme.palette.trueWhite,
         pointerEvents: 'none',
-
-        ...theme.hover({ background: theme.palette.primary[0] }),
+        ...template(theme).outline,
     },
     nav: {
         display: 'block',
-        minWidth: theme.rem(5),
+        minWidth: theme.rem(6),
         margin: theme.rem(0.4),
-        padding: theme.rem(0.6, 1),
+        padding: theme.rem(1.3, 1),
         borderRadius: theme.radius,
         background: theme.palette.white,
         color: theme.palette.black[0],
@@ -65,8 +72,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         textAlign: 'center',
         transition: theme.transitions[0],
         cursor: 'pointer',
-
-        ...theme.hover({ background: theme.palette.gray[1] }),
+        ...template(theme).outline,
     },
     disabled: {
         opacity: 0.1,
