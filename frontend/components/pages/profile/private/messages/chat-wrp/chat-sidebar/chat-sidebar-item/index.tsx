@@ -25,7 +25,12 @@ const useStyles = createUseStyles((theme: Theme) => ({
         ...template(theme).outline,
     },
     active: {
-        background: theme.palette.gray[1],
+        background: theme.palette.primary[0],
+        color: theme.palette.trueWhite,
+
+        '& p': {
+            color: theme.palette.trueWhite,
+        },
     },
     name: {
         fontSize: theme.rem(1.8),

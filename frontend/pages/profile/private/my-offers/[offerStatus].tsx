@@ -35,6 +35,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         margin: theme.rem(3, 0, 1),
         fontSize: theme.rem(1.6),
         fontWeight: theme.text.weight[2],
+        color: theme.palette.black[0],
 
         ...theme.media(1060).max({
             margin: theme.rem(0, 0, 1),
