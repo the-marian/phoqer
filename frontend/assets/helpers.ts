@@ -71,6 +71,7 @@ export const dateFromTimestamp = (value?: string | number | null | Date): Date |
     try {
         if (!value) throw new Error();
         const date = new Date(value);
+        console.log(value);
         if (!date.getDate()) throw new Error(); // for invalid date
         return date;
     } catch (error) {
@@ -158,7 +159,6 @@ export const findCategory = (data: Dropdown[], slug: string): IDropList | null =
 // find sub category by slug
 export const findSubCategory = (data: ICategories[], slug: string): IDropList | null => {
     const categories: ICategories[] = data.filter(item => item.sub_categories?.[0]);
-
     let subCategory;
     if (categories.length) {
         for (const cat of categories) {
@@ -209,7 +209,6 @@ export const onlineStatus = ({ initDate, locale = 'ru', isAuthor = false }: IOnl
     if (!date) return ' - ';
 
     const isOnline = (date && Date.now() - +date < FIVE_MINUTES_IN_MS) || isAuthor;
-
     const dif = Date.now() - +date;
     if (dif > HOUR_IN_MS) return formatTimestamp(date, locale);
     const minutes = Math.floor(dif / 60000);

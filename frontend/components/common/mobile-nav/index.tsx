@@ -78,7 +78,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
 }));
 
-const MAX_LENGTH = 14;
+const MAX_LENGTH = 12;
 
 const MobileNav = (): ReactElement | null => {
     const css = useStyles();

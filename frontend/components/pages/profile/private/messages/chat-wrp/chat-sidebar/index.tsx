@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router';
 import React, { Fragment, ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
@@ -48,11 +49,12 @@ const useStyles = createUseStyles((theme: Theme) => ({
 
 interface IProps {
     chats: IChat[];
-    active?: string | number | null;
 }
 
-const ChatSidebar = ({ chats, active = null }: IProps): ReactElement => {
+const ChatSidebar = ({ chats }: IProps): ReactElement => {
     const css = useStyles();
+    const { query } = useRouter();
+    const active = String(query.chat);
 
     return (
         <>
@@ -63,7 +65,7 @@ const ChatSidebar = ({ chats, active = null }: IProps): ReactElement => {
                         {index === 3 ? <Gift /> : null}
                         <ChatSidebarItem
                             id={item.id}
-                            active={item.id === +(active || '')}
+                            active={String(item.id) === (active || '')}
                             firstName={item.first_name}
                             lastName={item.last_name}
                             avatar={item.cover_image}

@@ -23,11 +23,8 @@ const useStyles = createUseStyles((theme: Theme) => ({
         height: theme.rem(6),
         width: theme.rem(6),
         color: theme.palette.gray[3],
-
-        ...theme.hover({
-            background: theme.palette.gray[0],
-            color: theme.palette.primary[0],
-        }),
+        borderRadius: theme.radius,
+        ...template(theme).outline,
     },
 }));
 
