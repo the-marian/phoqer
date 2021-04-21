@@ -1,0 +1,20 @@
+<main class="main">
+    <mat-sidenav-container class="sidenav">
+        <mat-sidenav #sidenav mode="side" [(opened)]="opened">
+            Sidenav content
+        </mat-sidenav>
+
+        <mat-sidenav-content>
+            <app-header></app-header>
+            <button
+                mat-raised-button
+                color="primary"
+                (click)="sidenav.toggle()"
+            >
+                sidenav.toggle()
+            </button>
+
+            <ng-content></ng-content>
+        </mat-sidenav-content>
+    </mat-sidenav-container>
+</main>
