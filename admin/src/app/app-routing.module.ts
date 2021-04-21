@@ -5,7 +5,7 @@ import { TranslationsPageComponent } from './translations-page/translations-page
 
 const routes: Routes = [
     { path: '', component: HomePageComponent },
-    { path: 'translations', component: TranslationsPageComponent },
+    { path: 'translations/:language', component: TranslationsPageComponent },
 ];
 
 @NgModule({

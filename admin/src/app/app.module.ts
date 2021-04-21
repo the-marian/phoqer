@@ -4,24 +4,30 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MaterialUiModule } from './material-ui/material-ui.module';
+import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { MatNativeDateModule } from '@angular/material/core';
+import { ContainerComponent } from './shared/container/container.component';
+import { HeaderComponent } from './shared/header/header.component';
+import { FooterComponent } from './shared/footer/footer.component';
+import { SidebarComponent } from './shared/sidebar/sidebar.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { TranslationsPageComponent } from './translations-page/translations-page.component';
-import { SharedModule } from './shared/shared.module';
-import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
-import { FormsModule } from '@angular/forms';
-import { MatIconModule } from '@angular/material/icon';
-import { MatNativeDateModule } from '@angular/material/core';
+import { TableComponent } from './translations-page/table/table.component';
 
 @NgModule({
-    declarations: [AppComponent, HomePageComponent, TranslationsPageComponent],
+    declarations: [AppComponent, ContainerComponent, HeaderComponent, FooterComponent, SidebarComponent, HomePageComponent, TranslationsPageComponent, TableComponent],
     imports: [
         BrowserModule,
-        AppRoutingModule,
         BrowserAnimationsModule,
-        MatNativeDateModule,
-        MatIconModule,
         FormsModule,
-        SharedModule,
+        HttpClientModule,
+        AppRoutingModule,
+        MaterialUiModule,
+        MatNativeDateModule,
+        ReactiveFormsModule,
     ],
     providers: [
         {

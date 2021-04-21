@@ -1,16 +1,19 @@
 <mat-toolbar>
-    <button mat-icon-button>
-        <mat-icon>menu</mat-icon>
-    </button>
-
-    <span>My App</span>
+    <div class="header-menu" (click)="drawer.toggle()">
+        <button mat-icon-button>
+            <mat-icon>menu</mat-icon>
+        </button>
+        <span class="header-menu-text">Phoqer dashboard</span>
+    </div>
 
     <span class="spacer"></span>
 
-    <button mat-icon-button>
-        <mat-icon>favorite</mat-icon>
-    </button>
-    <button mat-icon-button>
-        <mat-icon>share</mat-icon>
-    </button>
+    <a
+        href="http://phoqer.com/"
+        mat-button
+        target="_blank"
+        rel="noopener noreferrer"
+        class="primary primary-link"
+        >go to the website</a
+    >
 </mat-toolbar>
