@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { CreateModalComponent } from './create-modal/create-modal.component';
 
 type Links = 'en' | 'pl' | 'ru';
 interface Languages {
@@ -20,11 +22,29 @@ export class TranslationsPageComponent implements OnInit {
     ];
     selected: Links = 'en';
 
-    constructor(public routes: ActivatedRoute) {}
+    constructor(
+        private routes: ActivatedRoute,
+        private router: Router,
+        public dialog: MatDialog
+    ) {}
 
     ngOnInit(): void {
         this.routes.params.subscribe((params: Params) => {
             this.selected = params.language;
+        });
+    }
+
+    select(value: string): void {
+        this.router.navigate([`translations/${value}`]);
+    }
+
+    open(): void {
+        const dialogRef = this.dialog.open(CreateModalComponent, {
+            maxWidth: '70rem',
+            width: '100%',
+        });
+        dialogRef.afterClosed().subscribe((result) => {
+            if (result) console.log(result);
         });
     }
 }

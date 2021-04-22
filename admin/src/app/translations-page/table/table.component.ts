@@ -1,22 +1,24 @@
 import { Component } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
+import { MatDialog } from '@angular/material/dialog';
+import { EditModalComponent } from '../edit-modal/edit-modal.component';
 
 export interface PeriodicElement {
     id: string;
-    text: string;
+    content: string;
 }
 
 const ELEMENT_DATA: PeriodicElement[] = [
-    { text: 'Hydrogen', id: 'H' },
-    { text: 'Helium', id: 'He' },
-    { text: 'Lithium', id: 'Li' },
-    { text: 'Beryllium', id: 'Be' },
-    { text: 'Boron', id: 'B' },
-    { text: 'Carbon', id: 'C' },
-    { text: 'Nitrogen', id: 'N' },
-    { text: 'Oxygen', id: 'O' },
-    { text: 'Fluorine', id: 'F' },
-    { text: 'Neon', id: 'Ne' },
+    { content: 'Hydrogen', id: 'H' },
+    { content: 'Helium', id: 'He' },
+    { content: 'Lithium', id: 'Li' },
+    { content: 'Beryllium', id: 'Be' },
+    { content: 'Boron', id: 'B' },
+    { content: 'Carbon', id: 'C' },
+    { content: 'Nitrogen', id: 'N' },
+    { content: 'Oxygen', id: 'O' },
+    { content: 'Fluorine', id: 'F' },
+    { content: 'Neon', id: 'Ne' },
 ];
 
 @Component({
@@ -28,12 +30,21 @@ export class TableComponent {
     displayedColumns: string[] = ['id', 'text'];
     dataSource = new MatTableDataSource(ELEMENT_DATA);
 
+    constructor(public dialog: MatDialog) {}
+
     applyFilter(event: Event) {
         const filterValue = (event.target as HTMLInputElement).value;
         this.dataSource.filter = filterValue.trim().toLowerCase();
     }
 
-    open(): void {
-        console.log('dssdds');
+    open(data: PeriodicElement): void {
+        const dialogRef = this.dialog.open(EditModalComponent, {
+            maxWidth: '70rem',
+            width: '100%',
+            data,
+        });
+        dialogRef.afterClosed().subscribe((result) => {
+            if (result) console.log(result);
+        });
     }
 }

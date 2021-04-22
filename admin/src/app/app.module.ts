@@ -16,9 +16,11 @@ import { SidebarComponent } from './shared/sidebar/sidebar.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { TranslationsPageComponent } from './translations-page/translations-page.component';
 import { TableComponent } from './translations-page/table/table.component';
+import { EditModalComponent } from './translations-page/edit-modal/edit-modal.component';
+import { CreateModalComponent } from './translations-page/create-modal/create-modal.component';
 
 @NgModule({
-    declarations: [AppComponent, ContainerComponent, HeaderComponent, FooterComponent, SidebarComponent, HomePageComponent, TranslationsPageComponent, TableComponent],
+    declarations: [AppComponent, ContainerComponent, HeaderComponent, FooterComponent, SidebarComponent, HomePageComponent, TranslationsPageComponent, TableComponent, EditModalComponent, CreateModalComponent],
     imports: [
         BrowserModule,
         BrowserAnimationsModule,
