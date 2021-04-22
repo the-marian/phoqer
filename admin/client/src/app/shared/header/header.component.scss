@@ -1,0 +1,25 @@
+.spacer {
+    flex: 1 1 auto;
+}
+
+.header-menu {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+
+    &:hover {
+        color: #1b5dab;
+    }
+}
+
+.header-menu-text {
+    margin-left: 0.5rem;
+    line-height: 1;
+    font-size: 1.8rem;
+}
+
+.primary-link {
+    font-weight: 400;
+    //font-size: 1.8rem;
+    color: #1b5dab;
+}

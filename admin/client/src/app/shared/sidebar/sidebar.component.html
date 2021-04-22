@@ -1,0 +1,15 @@
+<mat-selection-list [multiple]="false">
+    <a mat-line routerLink="/">
+        <mat-list-option (click)="drawer.toggle()">
+            <mat-icon mat-list-icon>home</mat-icon>
+            <span> Home </span>
+        </mat-list-option>
+    </a>
+
+    <a mat-line routerLink="/translations/en">
+        <mat-list-option (click)="drawer.toggle()">
+            <mat-icon mat-list-icon>source</mat-icon>
+            <span> Translations </span>
+        </mat-list-option>
+    </a>
+</mat-selection-list>
