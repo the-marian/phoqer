@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 
-import content from '../translate';
+import content from '../translations';
 
 interface IContent {
     [key: string]: string;
