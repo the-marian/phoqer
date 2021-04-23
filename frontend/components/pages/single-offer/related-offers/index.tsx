@@ -35,7 +35,7 @@ const RelatedOffers = (): ReactElement => {
 
     return (
         <div className={css.root}>
-            <SectionTitle link="Смотреть все" href={routes.offers.single(`?top=true`)}>
+            <SectionTitle link={trans('see_all')} href={routes.offers.single(`?top=true`)}>
                 {trans('similar_products')}
             </SectionTitle>
 

@@ -78,7 +78,7 @@ const TopOffers = (): ReactElement => {
             <CSSTransition timeout={600} unmountOnExit in={!config.hideTopOffers}>
                 <div className={css.root}>
                     <Container>
-                        <SectionTitle link="Смотреть все" href={routes.offers.single(`?top=true`)}>
+                        <SectionTitle link={trans('see_all')} href={routes.offers.single(`?top=true`)}>
                             {trans('top_offers')}
                         </SectionTitle>
                         <OffersList data={data} />
