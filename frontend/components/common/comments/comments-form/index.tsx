@@ -14,6 +14,7 @@ import template from '../../../../assets/template';
 import { Theme } from '../../../../assets/theme';
 import useMedia from '../../../../hooks/media.hook';
 import useTheme from '../../../../hooks/theme.hook';
+import useTrans from '../../../../hooks/trans.hook';
 import useUppy from '../../../../hooks/uppy.hook';
 import notificationsModal from '../../modal/notifications-modal';
 
@@ -103,6 +104,7 @@ interface IProps {
 const CommentsForm = ({ onSubmit }: IProps): ReactElement => {
     const css = useStyles();
     const uppy = useUppy();
+    const trans = useTrans();
     const [theme] = useTheme();
     const media = useMedia(900);
 
@@ -166,11 +168,7 @@ const CommentsForm = ({ onSubmit }: IProps): ReactElement => {
 
     return (
         <form action="#" method="post" onSubmit={handleSubmit}>
-            {media && (
-                <small className={css.small}>
-                    * Чтобы отправить сообщение нажмите &quot;Enter&quot;. Для переноса строки нажмите &quot;Enter + Shift&quot;.
-                </small>
-            )}
+            {media && <small className={css.small}>* {trans('press_enter_send')}</small>}
             <div className={css.flex}>
                 <TextareaAutosize
                     value={value}
@@ -179,8 +177,8 @@ const CommentsForm = ({ onSubmit }: IProps): ReactElement => {
                     onKeyPress={handleKeyPress}
                     name="comment"
                     wrap="soft"
-                    placeholder="Комментировать ..."
-                    title='Для переноса строки нажмите "Enter + Shift". Чтобы отправить сообщение нажмите "Enter"'
+                    title={trans('press_enter_send')}
+                    placeholder={trans('comment')}
                 />
 
                 {!media && (
@@ -199,12 +197,12 @@ const CommentsForm = ({ onSubmit }: IProps): ReactElement => {
                 {attachment ? (
                     <>
                         <FontAwesomeIcon icon={faTimes} />
-                        <span>Comment without attachments</span>
+                        <span>{trans('comment_without_attachments')}</span>
                     </>
                 ) : (
                     <>
                         <FontAwesomeIcon icon={faPaperclip} />
-                        <span>Add attachments</span>
+                        <span>{trans('add_attachments')}</span>
                     </>
                 )}
             </button>

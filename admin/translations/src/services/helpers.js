@@ -7,3 +7,10 @@ export const errorWrapper = func => async (req, res, next) => {
         });
     }
 };
+
+export class CustomError extends Error {
+    constructor(message, code) {
+        super(message);
+        this.code = code;
+    }
+}

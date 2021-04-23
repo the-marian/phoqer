@@ -5,7 +5,7 @@ const router = express.Router();
 
 router.get('/:lang', getContent);
 router.put('/:lang', updateContent);
-router.post('/:lang', addContent);
+router.post('/', addContent);
 router.delete('/:id', deleteContent);
 
 export default router;

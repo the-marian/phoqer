@@ -52,7 +52,7 @@ const UserOffers = (): ReactElement => {
     const offersTab: IDropValue[] = [
         {
             slug: 'all',
-            name: trans('all'),
+            name: trans('all_offers'),
             type: 'main',
         },
         {
@@ -103,13 +103,13 @@ const UserOffers = (): ReactElement => {
 
     return (
         <>
-            <Meta title={'Мои обьявления'} h1={trans('user_profile_on_phoqer')} />
+            <Meta title={trans('my_offers')} h1={trans('user_profile_on_phoqer')} />
             <AuthRedirect />
             <PageLayout>
                 <Container>
                     <>
                         {media && <ProfileNav active="my-offers" />}
-                        <h3 className={css.title}>Выберите статус объявления</h3>
+                        <h3 className={css.title}>{trans('select_offer_status')}</h3>
                         <DropDown
                             data={offersTab}
                             defaultValue={findCategory(offersTab, offerStatus)}

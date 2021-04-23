@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { Theme } from '../../../assets/theme';
 import useAuth from '../../../hooks/auth.hook';
+import useTrans from '../../../hooks/trans.hook';
 import { IState } from '../../../interfaces';
 import types from '../../../redux/types';
 import JoinForm from '../auth/join-form';
@@ -48,6 +49,7 @@ const Comments = (): ReactElement => {
     const css = useStyles();
     const history = useRouter();
     const auth = useAuth();
+    const trans = useTrans();
     const dispatch = useDispatch();
 
     const { loading } = useSelector<IState, { loading: boolean }>(state => state.comments);
@@ -86,23 +88,23 @@ const Comments = (): ReactElement => {
                 <div className={css.root}>
                     {loading && <CommentsLoader top={-1.5} />}
 
-                    <h2 className={css.title}>Оставте ваш комментарий</h2>
+                    <h2 className={css.title}>{trans('leave_your_comment')}</h2>
                     <CommentsForm onSubmit={handleSubmit} />
                 </div>
             ) : (
                 <p className={css.text}>
-                    <span>Авторизируйтесь чтобы оставить комментарий </span>
+                    <span>{trans('login_to_leave_comment')}</span>
                     <button className={css.link} onClick={handleLogin} type="button">
-                        Login
+                        {trans('Login')}
                     </button>
                     <span> or </span>
                     <button className={css.link} onClick={handleJoin} type="button">
-                        Join
+                        {trans('join')}
                     </button>
                 </p>
             )}
 
-            <h2 className={css.title}>Комментарии пользователей</h2>
+            <h2 className={css.title}>{trans('users_comments')}</h2>
             <CommentsList />
         </>
     );

@@ -4,6 +4,7 @@ import { createUseStyles } from 'react-jss';
 import { useDispatch } from 'react-redux';
 
 import { Theme } from '../../../assets/theme';
+import useTrans from '../../../hooks/trans.hook';
 import types from '../../../redux/types';
 import MenuIcon from './menu-icon';
 
@@ -38,6 +39,7 @@ interface IProps {
 
 const SiteMenu = ({ className }: IProps): ReactElement => {
     const css = useStyles();
+    const trans = useTrans();
     const dispatch = useDispatch();
 
     const handleClick = (): void => {
@@ -47,7 +49,7 @@ const SiteMenu = ({ className }: IProps): ReactElement => {
     return (
         <button className={clsx(css.menu, className)} onClick={handleClick}>
             <MenuIcon />
-            <span>Menu</span>
+            <span>{trans('menu')}</span>
         </button>
     );
 };

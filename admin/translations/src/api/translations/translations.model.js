@@ -1,6 +1,8 @@
 import fs from 'fs';
 import path from 'path';
 
+import { CustomError } from '../../services/helpers';
+
 const fsPromises = fs.promises;
 
 export default class Translations {
@@ -34,7 +36,7 @@ export default class Translations {
         const trans = await this.getContent(lang);
 
         // check duplicate
-        if (trans[data.id]) return;
+        if (trans[data.id]) throw new CustomError('id duplicate', 409);
 
         // add content
         trans[data.id] = data.content;
@@ -44,8 +46,8 @@ export default class Translations {
     static async deleteContent(lang, id) {
         const trans = await this.getContent(lang);
 
-        // check duplicate
-        if (!trans[id]) return;
+        // return if field not exist
+        if (trans[id] === undefined) return;
 
         // delete content
         delete trans[id];

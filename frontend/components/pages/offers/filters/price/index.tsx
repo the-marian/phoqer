@@ -9,6 +9,7 @@ import { numberValidation } from '../../../../../assets/helpers';
 import routes from '../../../../../assets/routes';
 import template from '../../../../../assets/template';
 import { Theme } from '../../../../../assets/theme';
+import useTrans from '../../../../../hooks/trans.hook';
 import { ISearch, IState } from '../../../../../interfaces';
 
 const useStyles = createUseStyles((theme: Theme) => ({
@@ -44,6 +45,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
 
 const PriceFilter = (): ReactElement => {
     const css = useStyles();
+    const trans = useTrans();
     const history = useRouter();
     const [price, setPrice] = useState<[number, number]>([0, 200_000]);
     const searchParams = useSelector<IState, ISearch>(state => state.config.searchParams);
@@ -89,7 +91,7 @@ const PriceFilter = (): ReactElement => {
 
     return (
         <div className={css.root}>
-            <h4 className={css.title}>Цена за час / грн</h4>
+            <h4 className={css.title}>{trans('price_per_hour') + ' / ' + trans('uah')}</h4>
             <div className={css.wrp}>
                 <input
                     className={css.input}

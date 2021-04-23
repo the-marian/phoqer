@@ -8,6 +8,7 @@ import { IPublicProfile, IState } from '../../../../../interfaces';
 import LikeDislike from '../../../../common/like-dislike';
 import { modal } from '../../../../common/modal';
 import MidModalWrp from '../../../../common/modal/mid-modal-wrp';
+import useTrans from "../../../../../hooks/trans.hook";
 
 const useStyles = createUseStyles((theme: Theme) => ({
     info: {
@@ -98,6 +99,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
 
 const ProfileInfo = (): ReactElement => {
     const css = useStyles();
+    const trans = useTrans();
     const profile = useSelector<IState, IPublicProfile | null>(state => state.profiles.public);
 
     const handleReadMore = (): void => {
@@ -113,37 +115,37 @@ const ProfileInfo = (): ReactElement => {
             <div className={css.flex}>
                 <div className={css.items}>
                     <div>
-                        <span className={css.gray}>Соответствие товара с описанием:</span> {profile?.description_rate} / 5
+                        <span className={css.gray}>{trans('compliance_with_description')}</span> {profile?.description_rate} / 5
                     </div>
                     <div>
-                        <span className={css.gray}>Коммуникация:</span> {profile?.communication_rate} / 5
+                        <span className={css.gray}>{trans('communication')}</span> {profile?.communication_rate} / 5
                     </div>
                     <div>
-                        <span className={css.gray}>Скорость отклика:</span> {profile?.response_rate} / 5
+                        <span className={css.gray}>{trans('response_speed')}</span> {profile?.response_rate} / 5
                     </div>
                 </div>
                 <div className={clsx(css.percent, profile?.satisfaction_rate || 0 > 25 ? css.green : css.yellow)}>
                     <span>{profile?.satisfaction_rate || 0} %</span>
-                    <small>Позитивных отзывов</small>
+                    <small>{trans('positive_feedback')}</small>
                 </div>
             </div>
 
             <LikeDislike like={profile?.likes || 0} dislike={profile?.dislikes || 0} active="like" onClick={console.log} />
 
             <div className={css.bio}>
-                <h5 className={css.title}>Об Авторе</h5>
+                <h5 className={css.title}>{trans('about_author')}</h5>
                 <p>
                     {profile?.bio ? (
                         <>
                             {profile?.bio?.length > 150 ? profile?.bio?.slice(0, 150) + '... ' : profile?.bio}
                             {profile?.bio?.length > 150 && (
                                 <button type="button" onClick={handleReadMore} className={css.link}>
-                                    read more
+                                    {trans('read_more')}
                                 </button>
                             )}
                         </>
                     ) : (
-                        'Информация отсутствует'
+                        trans('no_information_available')
                     )}
                 </p>
             </div>

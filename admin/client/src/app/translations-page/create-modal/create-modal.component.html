@@ -10,9 +10,9 @@
             <mat-label>Translated content</mat-label>
             <textarea
                 matInput
-                placeholder="Hello"
-                name="content"
                 rows="14"
+                name="content"
+                placeholder="Hello"
                 [(ngModel)]="content"
             ></textarea>
         </mat-form-field>
@@ -23,11 +23,5 @@
     <button mat-button mat-dialog-close [mat-dialog-close]="null">
         Cancel
     </button>
-    <button
-        mat-raised-button
-        color="primary"
-        [mat-dialog-close]="{ id: id, content: content }"
-    >
-        Save
-    </button>
+    <button mat-raised-button color="primary" (click)="create()">Save</button>
 </mat-dialog-actions>

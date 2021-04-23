@@ -1,4 +1,9 @@
-import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import {
+    AfterContentInit,
+    AfterViewInit,
+    Component,
+    ViewChild,
+} from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { EditModalComponent } from '../edit-modal/edit-modal.component';
 
@@ -8,6 +13,7 @@ import {
 } from '../translations-page.service';
 import { DeleteModalComponent } from '../delete-modal/delete-modal.component';
 import { MatSort } from '@angular/material/sort';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
     selector: 'app-table',
@@ -15,16 +21,19 @@ import { MatSort } from '@angular/material/sort';
     styleUrls: ['./table.component.scss'],
 })
 export class TableComponent implements AfterViewInit {
-    displayedColumns: string[] = ['id', 'content', 'delete'];
+    displayedColumns: string[] = ['delete', 'id', 'content'];
     @ViewChild(MatSort) sort: MatSort;
 
     constructor(
         public dialog: MatDialog,
-        public trans: TranslationsPageService
+        public trans: TranslationsPageService,
+        private routerParams: ActivatedRoute
     ) {}
 
     ngAfterViewInit() {
-        this.trans.data.sort = this.sort;
+        this.routerParams.params.subscribe(() => {
+            this.trans.data.sort = this.sort;
+        });
     }
 
     applyFilter(event: Event) {
@@ -33,23 +42,18 @@ export class TableComponent implements AfterViewInit {
     }
 
     open(data: Translations): void {
-        const dialogRef = this.dialog.open(EditModalComponent, {
+        this.dialog.open(EditModalComponent, {
             maxWidth: '70rem',
             width: '100%',
             data,
         });
-        dialogRef.afterClosed().subscribe((result) => {
-            if (result) this.trans.updateContent(result);
-        });
     }
+
     deleteModal(data: Translations): void {
-        const dialogRef = this.dialog.open(DeleteModalComponent, {
+        this.dialog.open(DeleteModalComponent, {
             maxWidth: '50rem',
             width: '100%',
             data,
-        });
-        dialogRef.afterClosed().subscribe((result) => {
-            if (result) this.trans.deleteContent(result);
         });
     }
 }

@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux';
 import routes from '../../../../assets/routes';
 import template from '../../../../assets/template';
 import { Theme } from '../../../../assets/theme';
+import useTrans from '../../../../hooks/trans.hook';
 import { IOfferStatic, IState } from '../../../../interfaces';
 import OffersList from '../../../common/offers/offers-list';
 import SectionTitle from '../../../common/section-title';
@@ -29,18 +30,19 @@ const useStyles = createUseStyles((theme: Theme) => ({
 
 const RelatedOffers = (): ReactElement => {
     const css = useStyles();
+    const trans = useTrans();
     const { data } = useSelector<IState, IOfferStatic>(state => state.offers.popular);
 
     return (
         <div className={css.root}>
             <SectionTitle link="Смотреть все" href={routes.offers.single(`?top=true`)}>
-                Похожие товары
+                {trans('similar_products')}
             </SectionTitle>
 
             <OffersList data={data} />
 
             <Link href={routes.offers.list}>
-                <a className={css.btn}>Смотреть все</a>
+                <a className={css.btn}>{trans('see_all')}</a>
             </Link>
         </div>
     );

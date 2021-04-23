@@ -10,7 +10,7 @@
     <button mat-button mat-dialog-close [mat-dialog-close]="null">
         Cancel
     </button>
-    <button color="primary" mat-raised-button [mat-dialog-close]="data.id">
+    <button color="primary" mat-raised-button (click)="deleteContent(data.id)">
         Delete
     </button>
 </mat-dialog-actions>

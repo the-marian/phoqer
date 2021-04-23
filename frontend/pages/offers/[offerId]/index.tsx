@@ -23,12 +23,13 @@ import Requirements from '../../../components/pages/single-offer/requirements';
 import OfferSlider from '../../../components/pages/single-offer/slider';
 import useAuth from '../../../hooks/auth.hook';
 import useMedia from '../../../hooks/media.hook';
+import useTrans from '../../../hooks/trans.hook';
 import { IOfferCard, IState, IStore } from '../../../interfaces';
 import { wrapper } from '../../../redux/store';
 import types from '../../../redux/types';
 
 const useStyles = createUseStyles((theme: Theme) => ({
-    // top translations
+    // top translate
     banner: {
         display: 'block',
         height: theme.rem(60),
@@ -136,6 +137,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
 const SingleOfferPage = (): ReactElement | null => {
     const css = useStyles();
     const auth = useAuth();
+    const trans = useTrans();
     const dispatch = useDispatch();
     const media = useMedia(768);
 
@@ -172,20 +174,20 @@ const SingleOfferPage = (): ReactElement | null => {
                         <img
                             className={css.banner}
                             src={offer?.cover_image || '/no_img.png'}
-                            alt=""
                             onClick={handleModal}
                             aria-hidden="true"
+                            alt=""
                         />
                     )}
                     <Breadcrumbs
                         end={offer?.title}
                         data={[
-                            { label: 'На главную страницу', link: routes.root },
+                            { label: trans('to_home_page'), link: routes.root },
                             {
                                 label:
                                     offer.category_name || offer.sub_category_name
-                                        ? `Предложения в разделе ${offer.category_name || offer.sub_category_name}`
-                                        : 'Поиск вещей / услуг',
+                                        ? `${trans('offers_in_section')} ${offer.category_name || offer.sub_category_name}`
+                                        : trans('search_for_things'),
                                 link: offer.category
                                     ? routes.offers.single(
                                           offer?.category ? `?category=${offer?.category}` : `?sub=${offer?.sub_category}`,
@@ -200,20 +202,20 @@ const SingleOfferPage = (): ReactElement | null => {
                             <OfferHead />
 
                             {!media && <Price />}
-                            <h2 className={css.subtitle}>Описание</h2>
+                            <h2 className={css.subtitle}>{trans('description')}</h2>
                             <p dangerouslySetInnerHTML={{ __html: desc }} />
 
-                            <h2 className={css.subtitle}>Требования</h2>
+                            <h2 className={css.subtitle}>{trans('requirements')}</h2>
                             <Requirements />
 
                             {other && (
                                 <>
-                                    <h2 className={css.subtitle}>Дополнительно</h2>
+                                    <h2 className={css.subtitle}>{trans('additionally')}</h2>
                                     <p dangerouslySetInnerHTML={{ __html: other }} />
                                 </>
                             )}
 
-                            <h2 className={css.subtitle}>Наличие</h2>
+                            <h2 className={css.subtitle}>{trans('availability')}</h2>
                             <DayPicker
                                 className={css.calendar}
                                 fromMonth={new Date()}

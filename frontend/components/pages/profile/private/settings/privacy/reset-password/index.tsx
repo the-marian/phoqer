@@ -4,6 +4,7 @@ import { createUseStyles } from 'react-jss';
 
 import template from '../../../../../../../assets/template';
 import { Theme } from '../../../../../../../assets/theme';
+import useTrans from '../../../../../../../hooks/trans.hook';
 import Button from '../../../../../../common/button';
 import Input from '../../../../../../common/input';
 
@@ -44,6 +45,7 @@ const init: IPassword = {
 
 const ResetPassword = (): ReactElement => {
     const css = useStyles();
+    const trans = useTrans();
 
     const [error, setError] = useState<IPassword>(init);
     const [value, setValue] = useState<IPassword>(init);
@@ -54,7 +56,7 @@ const ResetPassword = (): ReactElement => {
     return (
         <div className={css.wrp}>
             <label className={css.label}>
-                <p className={css.text}>Old password</p>
+                <p className={css.text}>{trans('old_password')}</p>
                 <Input
                     icon={faKey}
                     value={value.old_password}
@@ -63,14 +65,14 @@ const ResetPassword = (): ReactElement => {
                     type="password"
                     name="old_password"
                     autoComplete="given-name"
-                    placeholder="old password"
+                    placeholder={trans('old_password')}
                     className={css.input}
                     errorsInPlaceholder
                 />
             </label>
 
             <label className={css.label}>
-                <p className={css.text}>New password</p>
+                <p className={css.text}>{trans('create_new_password')}</p>
                 <Input
                     icon={faKey}
                     value={value.new_password}
@@ -79,14 +81,14 @@ const ResetPassword = (): ReactElement => {
                     type="password"
                     name="new_password"
                     autoComplete="family-name"
-                    placeholder="new password"
+                    placeholder={trans('new_password')}
                     className={css.input}
                     errorsInPlaceholder
                 />
             </label>
 
             <label className={css.label}>
-                <p className={css.text}>Confirm password</p>
+                <p className={css.text}>{trans('confirm_password')}</p>
                 <Input
                     icon={faKey}
                     value={value.confirm_password}
@@ -95,12 +97,12 @@ const ResetPassword = (): ReactElement => {
                     type="password"
                     name="confirm_password"
                     autoComplete="confirm_password"
-                    placeholder="confirm password"
+                    placeholder={trans('confirm_password')}
                     className={css.input}
                     errorsInPlaceholder
                 />
             </label>
-            <Button className={css.btn}>Изменить пароль</Button>
+            <Button className={css.btn}>{trans('change_password')}</Button>
         </div>
     );
 };
