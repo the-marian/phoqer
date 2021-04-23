@@ -1,4 +1,5 @@
 import Joi from 'joi';
+import { CustomError } from '../../services/helpers';
 
 const contentSchema = Joi.object({
     id: Joi.string(),
@@ -7,7 +8,7 @@ const contentSchema = Joi.object({
 
 const validate = body => {
     const { error } = contentSchema.validate(body);
-    if (error) throw new Error(error.details[0].message);
+    if (error) throw new CustomError(error.details[0].message, 400);
 };
 
 export default validate;

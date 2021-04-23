@@ -27,7 +27,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
                 top: '50%',
                 left: 0,
                 width: '100%',
-                transform: 'translations(-140%, -50%)',
+                transform: 'translate(-140%, -50%)',
                 height: theme.rem(0.2),
                 background: theme.palette.primary[0],
             },

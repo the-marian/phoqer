@@ -8,8 +8,10 @@
 
     <mat-sidenav-content>
         <app-header [drawer]="drawer"></app-header>
+        <app-scroll-top></app-scroll-top>
         <div class="content">
             <ng-content></ng-content>
+            <app-footer></app-footer>
         </div>
     </mat-sidenav-content>
 </mat-sidenav-container>

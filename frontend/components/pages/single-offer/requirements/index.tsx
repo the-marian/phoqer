@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 
 import { declOfNum, moneyFormat } from '../../../../assets/helpers';
 import { Theme } from '../../../../assets/theme';
+import useTrans from '../../../../hooks/trans.hook';
 import { IOfferCard, IState } from '../../../../interfaces';
 
 const useStyles = createUseStyles((theme: Theme) => ({
@@ -43,61 +44,54 @@ const useStyles = createUseStyles((theme: Theme) => ({
 
 const Requirements = (): ReactElement => {
     const css = useStyles();
+    const trans = useTrans();
     const offer = useSelector<IState, IOfferCard | null>(state => state.offers.single);
 
     return (
         <>
             <ul className={css.req}>
                 <li>
-                    <span>Залоговая сумма:</span>
+                    <span>{trans('deposit')}:</span>
                     <span className={css.dots} />
                     <span className={css.value}>
-                        {offer?.deposit_val ? `${moneyFormat(offer?.deposit_val)}.00 грн` : 'Не указано'}
+                        {offer?.deposit_val ? `${moneyFormat(offer?.deposit_val)}.00 ${trans('uah')}` : trans('not_indicated')}
                     </span>
                 </li>
                 <li>
-                    <span>Минимальный срок аренды:</span>
+                    <span>{trans('minimum_rental_period')}:</span>
                     <span className={css.dots} />
                     <span className={css.value}>
                         {offer?.min_rent_period
                             ? `${moneyFormat(offer?.min_rent_period)} ${declOfNum(offer?.min_rent_period, [
-                                  'день',
-                                  'дня',
-                                  'дней',
+                                  trans('day'),
+                                  trans('day_2'),
+                                  trans('day_3'),
                               ])}`
-                            : 'Не указано'}
+                            : trans('not_indicated')}
                     </span>
                 </li>
                 <li>
-                    <span>Максимальный срок аренды:</span>
+                    <span>{trans('maximum_rental_period')}:</span>
                     <span className={css.dots} />
                     <span className={css.value}>
                         {offer?.max_rent_period
                             ? `${moneyFormat(offer?.max_rent_period)} ${declOfNum(offer?.max_rent_period, [
-                                  'день',
-                                  'дня',
-                                  'дней',
+                                  trans('day'),
+                                  trans('day_2'),
+                                  trans('day_3'),
                               ])}`
-                            : 'Не указано'}
+                            : trans('not_indicated')}
                     </span>
                 </li>
             </ul>
             <ul className={css.emoji}>
                 <li className={offer?.is_deliverable ? undefined : css.gray}>
                     <img src="/emoji/delivery.png" alt="" />
-                    <span>
-                        {offer?.is_deliverable
-                            ? 'Владелец осуществит доставку товара'
-                            : 'Владелец НЕ осуществляет доставку товара'}
-                    </span>
+                    <span>{offer?.is_deliverable ? trans('owner_delivers_good') : trans('owner_not_deliver_goods')}</span>
                 </li>
                 <li className={offer?.doc_needed ? undefined : css.gray}>
                     <img src="/emoji/documents.png" alt="" />
-                    <span>
-                        {offer?.doc_needed
-                            ? 'Необходимо предоставить документы в качестве залога'
-                            : 'НЕ нужно оставлять документы в качестве залога'}
-                    </span>
+                    <span>{offer?.doc_needed ? trans('client_provide_documents') : trans('client_dont_provide_documents')}</span>
                 </li>
             </ul>
         </>

@@ -5,19 +5,21 @@ import { useSelector } from 'react-redux';
 
 import { findCategory } from '../../../../../assets/helpers';
 import routes from '../../../../../assets/routes';
+import useTrans from '../../../../../hooks/trans.hook';
 import { IDropList, IDropValue, ISearch, IState } from '../../../../../interfaces';
 import DropDown from '../../../../common/drop-down';
 import useStyles from '../filters.styles';
 
-const FILTERS: IDropList[] = [
-    { name: 'Почасовая', slug: 'hour' },
-    { name: 'Посуточная', slug: 'day' },
-    { name: 'Помесячная', slug: 'month' },
-];
-
 const Period = (): ReactElement => {
     const css = useStyles();
+    const trans = useTrans();
     const history = useRouter();
+
+    const FILTERS: IDropList[] = [
+        { name: trans('hourly'), slug: 'hour' },
+        { name: trans('daily'), slug: 'day' },
+        { name: trans('monthly'), slug: 'month' },
+    ];
 
     const search = useSelector<IState, ISearch>(state => state.config.searchParams);
     const defaultValue = search.period ? findCategory(FILTERS, search.period) : null;
@@ -35,8 +37,8 @@ const Period = (): ReactElement => {
 
     return (
         <div className={css.root}>
-            <h4 className={css.title}>Период аренды</h4>
-            <DropDown defaultValue={defaultValue} data={FILTERS} onChange={handleChange} placeholder="Оплата ..." />
+            <h4 className={css.title}>{trans('rental_period')}</h4>
+            <DropDown defaultValue={defaultValue} data={FILTERS} onChange={handleChange} placeholder={trans('payment')} />
         </div>
     );
 };

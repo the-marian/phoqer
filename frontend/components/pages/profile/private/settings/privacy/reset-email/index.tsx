@@ -4,6 +4,7 @@ import { createUseStyles } from 'react-jss';
 
 import template from '../../../../../../../assets/template';
 import { Theme } from '../../../../../../../assets/theme';
+import useTrans from '../../../../../../../hooks/trans.hook';
 import Button from '../../../../../../common/button';
 import Input from '../../../../../../common/input';
 
@@ -35,6 +36,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
 
 const ResetEmail = (): ReactElement => {
     const css = useStyles();
+    const trans = useTrans();
 
     const [error, setError] = useState<string>('');
     const [value, setValue] = useState<string>('');
@@ -46,7 +48,7 @@ const ResetEmail = (): ReactElement => {
     return (
         <div className={css.wrp}>
             <label className={css.label}>
-                <p className={css.text}>New email</p>
+                <p className={css.text}>{trans('change_email')}</p>
                 <Input
                     icon={faEnvelope}
                     value={value}
@@ -55,12 +57,12 @@ const ResetEmail = (): ReactElement => {
                     type="email"
                     name="email"
                     autoComplete="off"
-                    placeholder="email"
+                    placeholder={trans('email')}
                     className={css.input}
                     errorsInPlaceholder
                 />
             </label>
-            <Button className={css.btn}>Изменить почту</Button>
+            <Button className={css.btn}>{trans('change_email')}</Button>
         </div>
     );
 };

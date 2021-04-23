@@ -9,8 +9,8 @@ import DropDown from '../../../common/drop-down';
 const useStyles = createUseStyles((theme: Theme) => ({
     wrp: {
         marginLeft: theme.rem(3),
-        background: theme.palette.trueWhite,
         borderRadius: theme.radius,
+
         ...theme.media(768).max({
             marginLeft: '0',
         }),

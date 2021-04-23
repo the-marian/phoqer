@@ -11,6 +11,7 @@ import template from '../../../../assets/template';
 import { Theme } from '../../../../assets/theme';
 import useMedia from '../../../../hooks/media.hook';
 import useShallowRouter from '../../../../hooks/routing.hook';
+import useTrans from '../../../../hooks/trans.hook';
 import Button from '../../button';
 
 const useStyles = createUseStyles((theme: Theme) => ({
@@ -108,6 +109,7 @@ interface IProps {
 const Pagination = ({ total, onClick, onMore, loading }: IProps): ReactElement | null => {
     const css = useStyles();
     const history = useRouter();
+    const trans = useTrans();
     const media = useMedia(768);
     const shallow = useShallowRouter();
     const init = +(history.query?.page || 1);
@@ -154,7 +156,7 @@ const Pagination = ({ total, onClick, onMore, loading }: IProps): ReactElement |
             {page < total ? (
                 <Button className={css.more} onClick={handleMore} loading={loading}>
                     <FontAwesomeIcon icon={faRedo} />
-                    <span>Load more</span>
+                    <span>{trans('load_more')}</span>
                 </Button>
             ) : null}
         </div>

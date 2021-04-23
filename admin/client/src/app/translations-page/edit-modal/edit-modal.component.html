@@ -7,10 +7,10 @@
             <mat-label>Translated content</mat-label>
             <textarea
                 matInput
-                placeholder="Hello"
                 rows="14"
-                [value]="content"
-                (change)="changeContent($event)"
+                name="content"
+                placeholder="Hello"
+                [(ngModel)]="content"
             ></textarea>
         </mat-form-field>
     </form>
@@ -20,11 +20,7 @@
     <button mat-button mat-dialog-close [mat-dialog-close]="null">
         Cancel
     </button>
-    <button
-        color="primary"
-        mat-raised-button
-        [mat-dialog-close]="{ id: data.id, content: content }"
-    >
+    <button color="primary" mat-raised-button (click)="save(data.id)">
         Save
     </button>
 </mat-dialog-actions>

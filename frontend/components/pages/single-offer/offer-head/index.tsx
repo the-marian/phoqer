@@ -9,6 +9,7 @@ import useAuth from '../../../../hooks/auth.hook';
 
 import template from '../../../../assets/template';
 import { Theme } from '../../../../assets/theme';
+import useTrans from '../../../../hooks/trans.hook';
 import { IOfferCard, IState } from '../../../../interfaces';
 import SmallModalWrp from '../../../common/modal/small-modal-wrp';
 import LoginForm from '../../../common/auth/login-form';
@@ -69,6 +70,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
 const OfferHead = (): ReactElement => {
 
     const css = useStyles();
+    const trans = useTrans();
     const offer = useSelector<IState, IOfferCard | null>(state => state.offers.single);
     const auth = useAuth()
     const dispatch = useDispatch()
@@ -89,7 +91,9 @@ const OfferHead = (): ReactElement => {
         <>
             <h2 className={css.title}>{offer?.title}</h2>
             <div className={css.action}>
-                <p>Дата: {offer?.pub_date}</p>
+                <p>
+                    {trans('date')}: {offer?.pub_date}
+                </p>
                 <p className={css.eye}>
                     <FontAwesomeIcon icon={faEye} />
                     <span>{offer?.views}</span>

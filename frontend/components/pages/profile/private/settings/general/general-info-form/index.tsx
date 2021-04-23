@@ -5,6 +5,7 @@ import { createUseStyles } from 'react-jss';
 import { useSelector } from 'react-redux';
 
 import { Theme } from '../../../../../../../assets/theme';
+import useTrans from '../../../../../../../hooks/trans.hook';
 import { IPublicProfile, IState } from '../../../../../../../interfaces';
 import Banner from '../../../../../../common/banner';
 import Input from '../../../../../../common/input';
@@ -48,6 +49,7 @@ const errorInit: IValue = {
 
 const GeneralInfoForm = (): ReactElement => {
     const css = useStyles();
+    const trans = useTrans();
     const user = useSelector<IState, IPublicProfile | null>(state => state.user);
 
     const init: IValue = {
@@ -62,11 +64,12 @@ const GeneralInfoForm = (): ReactElement => {
     const handleChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>): void => {
         setValue({ ...value, [event.target.name]: event.target.value });
     };
+
     return (
         <>
             <div className={css.wrp}>
                 <label className={css.label}>
-                    <p className={css.text}>First name</p>
+                    <p className={css.text}>{trans('first_name')}</p>
                     <Input
                         icon={faUser}
                         value={value.first_name}
@@ -75,14 +78,14 @@ const GeneralInfoForm = (): ReactElement => {
                         type="text"
                         name="first_name"
                         autoComplete="given-name"
-                        placeholder="first name"
+                        placeholder={trans('first_name')}
                         className={css.input}
                         errorsInPlaceholder
                     />
                 </label>
 
                 <label className={css.label}>
-                    <p className={css.text}>First name</p>
+                    <p className={css.text}>{trans('last_name')}</p>
                     <Input
                         icon={faUser}
                         value={value.last_name}
@@ -91,14 +94,14 @@ const GeneralInfoForm = (): ReactElement => {
                         type="text"
                         name="last_name"
                         autoComplete="family-name"
-                        placeholder="first name"
+                        placeholder={trans('last_name')}
                         className={css.input}
                         errorsInPlaceholder
                     />
                 </label>
 
                 <label className={css.label}>
-                    <p className={css.text}>Location</p>
+                    <p className={css.text}>{trans('user_location')}</p>
                     <Input
                         icon={faCompass}
                         value={value.location}
@@ -107,7 +110,7 @@ const GeneralInfoForm = (): ReactElement => {
                         type="text"
                         name="location"
                         autoComplete="street-address"
-                        placeholder="location"
+                        placeholder={trans('user_location')}
                         className={css.input}
                         errorsInPlaceholder
                     />

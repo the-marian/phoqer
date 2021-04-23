@@ -14,7 +14,7 @@ import Meta from '../../components/layout/meta';
 import PageLayout from '../../components/layout/page-layout';
 import ActiveFilters from '../../components/pages/offers/active-filters';
 import Filters from '../../components/pages/offers/filters';
-import TopOffers from '../../components/pages/single-offer/top-offers';
+import TopOffers from '../../components/pages/offers/top-offers';
 import useTrans from '../../hooks/trans.hook';
 import { IOfferDynamic, IState, IStore } from '../../interfaces';
 import initState from '../../redux/state';
@@ -48,7 +48,7 @@ const OffersPage = (): ReactElement => {
                 <TopOffers />
 
                 <Container>
-                    <SectionTitle>Результаты поиска</SectionTitle>
+                    <SectionTitle>{trans('searching_results')}</SectionTitle>
                     <OffersList loading={loading} data={data?.data} />
                     <Pagination loading={pagination} total={data.total} onClick={handleClick} onMore={handleMore} />
                 </Container>

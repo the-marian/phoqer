@@ -26,14 +26,15 @@ export class TranslationsPageComponent implements OnInit {
     constructor(
         public dialog: MatDialog,
         private router: Router,
-        private routes: ActivatedRoute,
+        private routerParams: ActivatedRoute,
         public trans: TranslationsPageService
     ) {}
 
     ngOnInit(): void {
-        this.routes.params.subscribe((params: Params) => {
+        this.routerParams.params.subscribe((params: Params) => {
             this.selected = params.language;
-            this.trans.getContent(params.language);
+            this.trans.setLang(params.language);
+            this.trans.getContent();
         });
     }
 
@@ -42,12 +43,9 @@ export class TranslationsPageComponent implements OnInit {
     }
 
     open(): void {
-        const dialogRef = this.dialog.open(CreateModalComponent, {
+        this.dialog.open(CreateModalComponent, {
             maxWidth: '70rem',
             width: '100%',
-        });
-        dialogRef.afterClosed().subscribe((result) => {
-            if (result) this.trans.addContent(result);
         });
     }
 }
