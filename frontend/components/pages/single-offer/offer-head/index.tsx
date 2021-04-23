@@ -6,7 +6,6 @@ import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 import { useSelector, useDispatch } from 'react-redux';
 import useAuth from '../../../../hooks/auth.hook';
-import clsx from 'clsx';
 
 import template from '../../../../assets/template';
 import { Theme } from '../../../../assets/theme';
@@ -95,7 +94,7 @@ const OfferHead = (): ReactElement => {
                     <FontAwesomeIcon icon={faEye} />
                     <span>{offer?.views}</span>
                 </p>
-                <button className={clsx(css.favorite, offer?.is_favorite)} onClick={handleFavorite} type="button">
+                <button className={css.favorite} onClick={handleFavorite} type="button">
                     {offer?.is_favorite ? <FontAwesomeIcon icon={faFillHeart} /> : <FontAwesomeIcon icon={faHeart} />}
                 </button>
             </div>

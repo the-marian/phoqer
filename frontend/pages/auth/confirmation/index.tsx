@@ -4,7 +4,15 @@ import { createUseStyles } from 'react-jss';
 import routes from '../../../assets/routes';
 import template from '../../../assets/template';
 import { Theme } from '../../../assets/theme';
-import Container from '../../../components/common/container';
+import Container from '../../../components/layout/container';
+import SmallModalWrp from '../../../components/common/modal/small-modal-wrp';
+import useAuth from '../../../hooks/auth.hook';
+import { modal } from '../../../components/common/modal';
+import LoginForm from '../../../components/common/auth/login-form';
+import AuthRedirect from '../../../components/context/auth/auth-redirect';
+import { GetServerSidePropsContext } from 'next';
+import { serverRedirect } from '../../../assets/helpers';
+import { wrapper } from '../../../redux/store';
 
 
 const useStyles = createUseStyles((theme: Theme) => ({
@@ -55,7 +63,23 @@ const useStyles = createUseStyles((theme: Theme) => ({
 
 const Confirmation = (): ReactElement => {
     const css = useStyles()
+    const auth = useAuth()
+
+
+    const handleLogin = (): void => {
+        if (!auth?.access_token) {
+            modal.open(
+                <SmallModalWrp>
+                    <LoginForm />
+                </SmallModalWrp>,
+            );
+            return;
+        }
+    };
+
     return (
+        <>
+        <AuthRedirect reverse />
         <div className={css.bg}>
             <Container className={css.wrp}>
                 <div>
@@ -70,17 +94,21 @@ const Confirmation = (): ReactElement => {
                             На главную
                         </a>
                       </Link>
-                       <Link href={routes.profile.private.referral}>
-                        <a className={css.btn}>
-                            Личный кабинет
-                        </a>
-                        </Link>
+                        <button className={css.btn} onClick={handleLogin}>
+                            Войти
+                        </button>
                       </div>
-
                 </div>
             </Container>
         </div>
+        </>
     )
 }
+
+
+export const getServerSideProps = wrapper.getServerSideProps((ctx): void => {
+    serverRedirect((ctx as unknown) as GetServerSidePropsContext, null, true);
+});
+
 
 export default Confirmation; 
