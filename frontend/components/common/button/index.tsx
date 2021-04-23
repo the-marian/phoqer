@@ -29,7 +29,7 @@ const useStyles = createUseStyles({
         position: 'absolute',
         top: '50%',
         left: '50%',
-        transform: 'translations(-50%, -50%)',
+        transform: 'translate(-50%, -50%)',
         zIndex: 2,
     },
 });
