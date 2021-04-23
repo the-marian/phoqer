@@ -2,7 +2,7 @@ import Cookies from 'js-cookie';
 import { HYDRATE } from 'next-redux-wrapper';
 import { Middleware } from 'redux';
 
-import notifications from '../components/common/notifications';
+import notificationsModal from '../components/common/modal/notifications-modal';
 import { IAuth, IState } from '../interfaces';
 import initState from '../redux/state';
 import types from '../redux/types';
@@ -18,7 +18,7 @@ const Persist: Middleware = store => next => action => {
                     const state: IState = store.getState();
                     Cookies.set('phoqer_auth', JSON.stringify({ ...state.auth, ...action.payload }));
                 } catch (error) {
-                    notifications('error');
+                    notificationsModal('error');
                 }
                 next(action);
                 break;
@@ -30,7 +30,7 @@ const Persist: Middleware = store => next => action => {
                 try {
                     Cookies.set('phoqer_auth', JSON.stringify(initState.auth));
                 } catch (error) {
-                    notifications('error');
+                    notificationsModal('error');
                 }
                 next(action);
                 break;
@@ -50,7 +50,7 @@ const Persist: Middleware = store => next => action => {
                         payload: { ...action.payload, auth },
                     });
                 } catch (error) {
-                    notifications('error');
+                    notificationsModal('error');
                     next(action);
                 }
                 break;

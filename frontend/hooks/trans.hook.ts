@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 
-import content from '../translate';
+import content from '../translations';
 
 interface IContent {
     [key: string]: string;
@@ -10,9 +10,11 @@ interface ILocales {
     [key: string]: IContent;
 }
 
-const useTrans = (): IContent => {
+type UseTransType = (value: string) => string;
+
+const useTrans = (): UseTransType => (value: string): string => {
     const router = useRouter();
-    return (content as ILocales)[router.locale || 'en'];
+    return (content as ILocales)[router.locale || 'en'][value] || '...';
 };
 
 export default useTrans;

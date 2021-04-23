@@ -14,7 +14,6 @@ import { useDispatch } from 'react-redux';
 import { moneyFormat } from '../../../../assets/helpers';
 import routes from '../../../../assets/routes';
 import useAuth from '../../../../hooks/auth.hook';
-import useMedia from '../../../../hooks/media.hook';
 import useTrans from '../../../../hooks/trans.hook';
 import { IDropList, IDropValue, IOfferCard } from '../../../../interfaces';
 import types from '../../../../redux/types';
@@ -24,8 +23,8 @@ import { modal } from '../../modal';
 import SmallModalWrp from '../../modal/small-modal-wrp';
 import useStyles from './offers-card.styles';
 
-const MAX_LENGTH = 60;
-const MAX_LENGTH_TITLE = 55;
+const MAX_LENGTH = 55;
+const MAX_LENGTH_TITLE = 50;
 
 const USER_ACTIONS = {
     DO_INACTIVE: 'Деактевировать обьявление',
@@ -49,10 +48,9 @@ interface IProps {
 }
 
 const OfferCard = ({ offer, showFavoriteBtn = true }: IProps): ReactElement => {
-    const T = useTrans();
     const auth = useAuth();
-    const media = useMedia(500);
     const css = useStyles();
+    const trans = useTrans();
     const history = useRouter();
     const dispatch = useDispatch();
 
@@ -146,7 +144,7 @@ const OfferCard = ({ offer, showFavoriteBtn = true }: IProps): ReactElement => {
                 <DropDown
                     icon={faCogs}
                     minWidth={20}
-                    height={media ? 4 : 6}
+                    height={5}
                     className={css.dropdown}
                     onChange={handleSettings}
                     data={formatUserActions(functions)}
@@ -159,15 +157,20 @@ const OfferCard = ({ offer, showFavoriteBtn = true }: IProps): ReactElement => {
                     <span className={css.view}>{views}</span>
                 </p>
                 <p className={css.text}>
-                    {T.date}: {pub_date}
+                    {trans('date')}: {pub_date}
                 </p>
             </div>
 
             <div className={css.action}>
+                <p className={css.price}>
+                    <span>{moneyFormat(price)}.00</span>
+                    <small>{`*${trans('uah')}/${trans('day')}`}</small>
+                </p>
+
                 {showFavoriteBtn && (
                     <div className={css.actionBtn}>
                         <button type="button" className={css.btn}>
-                            {T.rent}
+                            {trans('rent')}
                         </button>
 
                         <button type="button" className={clsx(css.favorite)} onClick={handleFavorite}>
@@ -175,11 +178,6 @@ const OfferCard = ({ offer, showFavoriteBtn = true }: IProps): ReactElement => {
                         </button>
                     </div>
                 )}
-
-                <p className={css.price}>
-                    <span>{moneyFormat(price)}.00</span>
-                    <small>{`*${T.uah}/${T.day}`}</small>
-                </p>
             </div>
         </div>
     );

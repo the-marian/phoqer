@@ -10,11 +10,11 @@ import useTrans from '../../../hooks/trans.hook';
 import { wrapper } from '../../../redux/store';
 
 const Join = (): ReactElement => {
-    const T = useTrans();
+    const trans = useTrans();
     return (
         <>
             <AuthRedirect reverse />
-            <Meta title={T.join} />
+            <Meta title={trans('join')} />
             <AuthContainer>
                 <JoinForm />
             </AuthContainer>

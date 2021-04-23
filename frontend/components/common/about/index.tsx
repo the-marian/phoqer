@@ -52,17 +52,17 @@ const slides: ISlides[] = [
 
 const useStyles = createUseStyles((theme: Theme) => ({
     wrp: {
-        margin: theme.rem(10, 0, 20),
+        padding: theme.rem(20, 0),
         color: theme.palette.black[0],
 
         ...theme.media(500).max({
-            margin: theme.rem(8, 0),
+            padding: theme.rem(15, 0),
         }),
     },
     slider: {
         display: 'flex',
         width: '100%',
-        height: theme.rem(75),
+        height: theme.rem(70),
 
         ...theme.media(1200).max({
             height: theme.rem(55),
@@ -82,7 +82,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
     img: {
         display: 'block',
-        height: theme.rem(75),
+        height: theme.rem(70),
         objectFit: 'cover',
         objectPosition: 'center',
         cursor: 'grab',
@@ -126,7 +126,8 @@ const useStyles = createUseStyles((theme: Theme) => ({
 
 const About = (): ReactElement => {
     const css = useStyles();
-    const T = useTrans();
+    const trans = useTrans();
+
     return (
         <div className={css.wrp}>
             <Slider
@@ -155,9 +156,9 @@ const About = (): ReactElement => {
 
             <h2 className={css.title}>phoqer</h2>
             <div className={css.content}>
-                <p className={css.text}>{T.about_1}</p>
-                <p className={css.text}>{T.about_2}</p>
-                <p className={css.text}>{T.about_3}</p>
+                <p className={css.text}>{trans('about_1')}</p>
+                <p className={css.text}>{trans('about_2')}</p>
+                <p className={css.text}>{trans('about_3')}</p>
             </div>
         </div>
     );

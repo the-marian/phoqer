@@ -15,7 +15,7 @@ import { Theme } from '../../../../assets/theme';
 import useMedia from '../../../../hooks/media.hook';
 import useTheme from '../../../../hooks/theme.hook';
 import useUppy from '../../../../hooks/uppy.hook';
-import notifications from '../../notifications';
+import notificationsModal from '../../modal/notifications-modal';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     flex: {
@@ -39,7 +39,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
     textarea: {
         ...template(theme).input,
-        margin: theme.rem(0, 0, 1),
+        minHeight: theme.rem(6),
         padding: theme.rem(1.5),
         fontSize: theme.rem(1.4),
         background: theme.palette.gray[1],
@@ -87,12 +87,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
         }),
     },
     submit: {
-        margin: theme.rem(0, 0, 0, 1),
-        padding: theme.rem(1.5, 2),
-        background: theme.palette.primary[0],
-        color: theme.palette.white,
-        borderRadius: theme.radius,
-        fontSize: theme.rem(2),
+        ...template(theme).btn,
+        width: theme.rem(8),
+        marginLeft: theme.rem(1),
     },
     disabled: {
         cursor: 'not-allowed',
@@ -154,7 +151,7 @@ const CommentsForm = ({ onSubmit }: IProps): ReactElement => {
             setAttachment(false);
             setValue('');
         } catch (error) {
-            notifications('error');
+            notificationsModal('error');
         }
     };
 

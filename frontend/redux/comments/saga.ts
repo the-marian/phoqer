@@ -2,7 +2,7 @@ import { all, call, put, takeLatest } from 'redux-saga/effects';
 
 import api from '../../assets/api';
 import { modal } from '../../components/common/modal';
-import notifications from '../../components/common/notifications';
+import notificationsModal from '../../components/common/modal/notifications-modal';
 import types from '../types';
 import { IAction, IBody } from './interfaces';
 
@@ -13,7 +13,7 @@ function* getComments({ payload }: IAction) {
         yield put({ type: types.GET_COMMENTS_SUCCESS, payload: data });
     } catch (error) {
         if (error?.response?.status === 401) return;
-        notifications('error');
+        notificationsModal('error');
         yield put({ type: types.GET_COMMENTS_ERROR });
     }
 }
@@ -26,7 +26,7 @@ function* createComment({ payload }: IAction) {
         yield put({ type: types.GET_COMMENTS_START, payload: (payload as IBody).offer_id });
     } catch (error) {
         if (error?.response?.status === 401) return;
-        notifications('error');
+        notificationsModal('error');
         yield put({ type: types.CREATE_COMMENT_ERROR });
     }
 }
@@ -39,7 +39,7 @@ function* deleteComment({ payload, offerId }: IAction) {
         yield put({ type: types.GET_COMMENTS_START, payload: offerId });
     } catch (error) {
         if (error?.response?.status === 401) return;
-        notifications('error');
+        notificationsModal('error');
         yield put({ type: types.DELETE_COMMENT_ERROR });
     }
 }
@@ -52,7 +52,7 @@ function* likeComment({ payload, offerId }: IAction) {
         yield put({ type: types.GET_COMMENTS_START, payload: offerId });
     } catch (error) {
         if (error?.response?.status === 401) return;
-        notifications('error');
+        notificationsModal('error');
         yield put({ type: types.LIKE_COMMENT_ERROR });
     }
 }
@@ -65,7 +65,7 @@ function* dislikeComment({ payload, offerId }: IAction) {
         yield put({ type: types.GET_COMMENTS_START, payload: offerId });
     } catch (error) {
         if (error?.response?.status === 401) return;
-        notifications('error');
+        notificationsModal('error');
         yield put({ type: types.DISLIKE_COMMENT_ERROR });
     }
 }
@@ -79,7 +79,7 @@ function* replyComment({ payload }: IAction) {
         yield put({ type: types.GET_COMMENTS_START, payload: (payload as IBody).offer_id });
     } catch (error) {
         if (error?.response?.status === 401) return;
-        notifications('error');
+        notificationsModal('error');
         yield put({ type: types.REPLY_COMMENT_ERROR });
     }
 }

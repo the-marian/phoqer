@@ -4,10 +4,10 @@ import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 import { useSelector } from 'react-redux';
 
-import { formatCatList } from '../../../../assets/helpers';
+import { findCategory, findSubCategory, formatCatList } from '../../../../assets/helpers';
 import { Theme } from '../../../../assets/theme';
 import useTrans from '../../../../hooks/trans.hook';
-import { ICategories, IDropValue, IState } from '../../../../interfaces';
+import { ICategories, IDropValue, ISearch, IState } from '../../../../interfaces';
 import DropDown from '../../drop-down';
 import { modal } from '../../modal';
 import RegionModal from '../../modal/region-modal';
@@ -39,7 +39,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         border: 'none',
 
         '& span': {
-            width: theme.rem(20),
+            width: '80%',
             fontSize: theme.rem(1.4),
             color: theme.palette.black[0],
             marginLeft: theme.rem(1),
@@ -47,12 +47,8 @@ const useStyles = createUseStyles((theme: Theme) => ({
             overflow: 'hidden',
             textOverflow: 'ellipsis',
 
-            ...theme.media(450).max({
-                width: theme.rem(15),
-            }),
-
-            ...theme.media(350).max({
-                width: theme.rem(12),
+            ...theme.media(768).max({
+                fontSize: theme.rem(1.6),
             }),
         },
 
@@ -74,9 +70,17 @@ interface IProps {
 
 const OptionsMobile = ({ onChange }: IProps): ReactElement => {
     const css = useStyles();
-    const T = useTrans();
+    const trans = useTrans();
+
+    const search = useSelector<IState, ISearch>(state => state.config.searchParams);
     const data = useSelector<IState, ICategories[]>(state => state.categories);
     const categories = formatCatList(data);
+
+    const defaultValue = search.category
+        ? findCategory(data, search.category)
+        : search.sub_category
+        ? findSubCategory(data, search.sub_category)
+        : null;
 
     const handleRegionModal = () => {
         modal.open(<RegionModal />);
@@ -85,7 +89,14 @@ const OptionsMobile = ({ onChange }: IProps): ReactElement => {
     return (
         <div className={css.root}>
             <div className={css.drop}>
-                <DropDown data={categories} placeholder={T.select_category} onChange={onChange} height={6} withSub />
+                <DropDown
+                    data={categories}
+                    defaultValue={defaultValue}
+                    placeholder={trans('select_category')}
+                    onChange={onChange}
+                    height={6}
+                    withSub
+                />
             </div>
             <button type="button" className={css.location} onClick={handleRegionModal}>
                 <FontAwesomeIcon icon={faCompass} />

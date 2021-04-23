@@ -46,21 +46,27 @@ const useStyles = createUseStyles((theme: Theme) => ({
         borderRadius: theme.radius,
         objectFit: 'cover',
         ...template(theme).outline,
+        ...theme.media(768).max({
+            height: theme.rem(9),
+        }),
     },
     text: {
         marginTop: theme.rem(1.5),
         fontSize: theme.rem(1.6),
+        ...theme.media(768).max({
+            marginTop: theme.rem(0.5),
+        }),
     },
 }));
 
 const Categories = (): ReactElement => {
     const css = useStyles();
-    const T = useTrans();
+    const trans = useTrans();
     const categories = useSelector<IState, ICategories[]>(state => state.categories);
 
     return (
         <div className={css.root}>
-            <SectionTitle>{T.rent_here_and_now}</SectionTitle>
+            <SectionTitle>{trans('rent_here_and_now')}</SectionTitle>
 
             <div className={css.wrp}>
                 {categories?.map(({ name, image, slug }) => (

@@ -40,7 +40,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
             ...theme.media(768).max({
                 top: 'unset',
                 bottom: '0',
-                transform: 'translateY(calc(-100% - 5rem))',
+                transform: 'translateY(calc(-100% - 1rem))',
             }),
 
             '&::before': {

@@ -36,6 +36,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
         filter: 'grayscale(100%)',
         color: theme.palette.gray[3],
     },
+    value: {
+        whiteSpace: 'nowrap',
+    },
 }));
 
 const Requirements = (): ReactElement => {
@@ -48,12 +51,14 @@ const Requirements = (): ReactElement => {
                 <li>
                     <span>Залоговая сумма:</span>
                     <span className={css.dots} />
-                    <span>{offer?.deposit_val ? `${moneyFormat(offer?.deposit_val)}.00 грн` : 'Не указано'}</span>
+                    <span className={css.value}>
+                        {offer?.deposit_val ? `${moneyFormat(offer?.deposit_val)}.00 грн` : 'Не указано'}
+                    </span>
                 </li>
                 <li>
                     <span>Минимальный срок аренды:</span>
                     <span className={css.dots} />
-                    <span>
+                    <span className={css.value}>
                         {offer?.min_rent_period
                             ? `${moneyFormat(offer?.min_rent_period)} ${declOfNum(offer?.min_rent_period, [
                                   'день',
@@ -66,7 +71,7 @@ const Requirements = (): ReactElement => {
                 <li>
                     <span>Максимальный срок аренды:</span>
                     <span className={css.dots} />
-                    <span>
+                    <span className={css.value}>
                         {offer?.max_rent_period
                             ? `${moneyFormat(offer?.max_rent_period)} ${declOfNum(offer?.max_rent_period, [
                                   'день',

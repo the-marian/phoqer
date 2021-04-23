@@ -31,8 +31,8 @@ const useStyles = createUseStyles((theme: Theme) => ({
 }));
 
 const NotAuth = (): ReactElement | null => {
-    const T = useTrans();
     const css = useStyles();
+    const trans = useTrans();
 
     const handleLoginModal = () => {
         modal.open(
@@ -52,10 +52,10 @@ const NotAuth = (): ReactElement | null => {
     return (
         <div>
             <button className={css.btn} type="button" onClick={handleLoginModal}>
-                {T.login}
+                {trans('login')}
             </button>
             <button className={css.btn} type="button" onClick={handleRegisterModal}>
-                {T.join}
+                {trans('join')}
             </button>
         </div>
     );

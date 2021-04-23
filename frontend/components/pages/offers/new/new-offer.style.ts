@@ -68,7 +68,7 @@ const newOfferTemplate = (theme: Theme): Template => ({
             display: 'flex',
             marginTop: theme.rem(3),
 
-            ...theme.media(560).max({
+            ...theme.media(768).max({
                 flexWrap: 'wrap',
                 justifyContent: 'center',
             }),
@@ -78,7 +78,7 @@ const newOfferTemplate = (theme: Theme): Template => ({
             background: theme.palette.gray[0],
             color: theme.palette.black[0],
 
-            ...theme.media(560).max({
+            ...theme.media(768).max({
                 width: '80%',
                 marginBottom: theme.rem(2),
             }),
@@ -88,7 +88,7 @@ const newOfferTemplate = (theme: Theme): Template => ({
             background: theme.palette.green[0],
             color: theme.palette.trueWhite,
 
-            ...theme.media(560).max({
+            ...theme.media(768).max({
                 marginLeft: '0',
             }),
         },
@@ -107,8 +107,8 @@ const newOfferTemplate = (theme: Theme): Template => ({
                 marginTop: theme.rem(4),
             },
 
-            ...theme.media(580).max({
-                padding: theme.rem(3),
+            ...theme.media(768).max({
+                padding: theme.rem(1.5),
             }),
         },
         red: {
@@ -140,7 +140,7 @@ const newOfferTemplate = (theme: Theme): Template => ({
                 flexBasis: '48%',
             },
 
-            ...theme.media(500).max({
+            ...theme.media(768).max({
                 display: 'block',
             }),
         },
@@ -168,7 +168,7 @@ const newOfferTemplate = (theme: Theme): Template => ({
             display: 'flex',
             margin: theme.rem(2, 0),
 
-            ...theme.media(470).max({
+            ...theme.media(768).max({
                 flexDirection: 'column',
             }),
         },
@@ -186,7 +186,7 @@ const newOfferTemplate = (theme: Theme): Template => ({
                 marginRight: theme.rem(1),
             },
 
-            ...theme.media(470).max({
+            ...theme.media(768).max({
                 padding: theme.rem(1.6, 2),
             }),
         },
@@ -195,8 +195,9 @@ const newOfferTemplate = (theme: Theme): Template => ({
             justifyContent: 'flex-end',
             margin: theme.rem(6, 0, 4),
 
-            ...theme.media(470).max({
+            ...theme.media(768).max({
                 flexDirection: 'column',
+                margin: theme.rem(0, 0, 2),
             }),
         },
         next: {
@@ -208,7 +209,7 @@ const newOfferTemplate = (theme: Theme): Template => ({
             color: theme.palette.trueWhite,
             borderRadius: theme.radius,
 
-            ...theme.media(470).max({
+            ...theme.media(768).max({
                 margin: theme.rem(2, 0, 0),
                 padding: theme.rem(2, 4),
             }),
@@ -225,7 +226,7 @@ const newOfferTemplate = (theme: Theme): Template => ({
                 marginRight: theme.rem(1),
             },
 
-            ...theme.media(470).max({
+            ...theme.media(768).max({
                 margin: theme.rem(1.6, 0, 0),
                 padding: theme.rem(1, 2),
             }),

@@ -1,14 +1,14 @@
-import clsx from 'clsx';
-import Link from 'next/link';
 import { useRouter } from 'next/router';
-import React, { ReactElement } from 'react';
+import React, { Fragment, ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
-import { onlineStatus } from '../../../../../../../assets/helpers';
-import routes from '../../../../../../../assets/routes';
 import template from '../../../../../../../assets/template';
 import { Theme } from '../../../../../../../assets/theme';
-import UserAvatar from '../../../../../../common/user-avatar';
+import { IChat } from '../../../../../../../interfaces';
+import Gift from '../../../../../../common/gift';
+import ChatEmpty from '../../chat-empty';
+import ChatSearch from '../../chat-search';
+import ChatSidebarItem from './chat-sidebar-item';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     wrp: {
@@ -39,38 +39,53 @@ const useStyles = createUseStyles((theme: Theme) => ({
         marginTop: theme.rem(1),
         color: theme.palette.gray[3],
     },
+    end: {
+        margin: theme.rem(2, 0, 4),
+        color: theme.palette.gray[2],
+        fontSize: theme.rem(1.4),
+        textAlign: 'center',
+    },
 }));
 
 interface IProps {
-    id: string | number;
-    active?: boolean;
-    avatar?: string | null;
-    firstName?: string | null;
-    lastName?: string | null;
-    date?: string | null;
-    preview?: string | null;
+    chats: IChat[];
 }
 
-const MAX_LENGTH = 45;
-
-const ChatSidebar = ({ id, active = false, avatar, firstName = '', lastName = '', date, preview = '' }: IProps): ReactElement => {
+const ChatSidebar = ({ chats }: IProps): ReactElement => {
     const css = useStyles();
-    const history = useRouter();
+    const { query } = useRouter();
+    const active = String(query.chat);
 
     return (
-        <Link href={routes.profile.private.messages(id)}>
-            <a className={clsx(css.wrp, active && css.active)}>
-                <UserAvatar firstName={firstName || ''} lastName={lastName || ''} avatar={avatar} time={date} />
-
-                <div className={css.inner}>
-                    <h2 className={css.name}>{`${firstName} ${lastName}`}</h2>
-                    <p>{onlineStatus({ initDate: date, locale: history.locale })}</p>
-                    <p className={css.text}>
-                        {(preview || '').length > MAX_LENGTH ? preview?.slice(0, MAX_LENGTH) + '...' : preview}
-                    </p>
-                </div>
-            </a>
-        </Link>
+        <>
+            <ChatSearch />
+            {chats?.length ? (
+                chats.map<ReactElement>((item, index) => (
+                    <Fragment key={item.id}>
+                        {index === 3 ? <Gift /> : null}
+                        <ChatSidebarItem
+                            id={item.id}
+                            active={String(item.id) === (active || '')}
+                            firstName={item.first_name}
+                            lastName={item.last_name}
+                            avatar={item.cover_image}
+                            date={item.date}
+                            preview={item.preview}
+                        />
+                    </Fragment>
+                ))
+            ) : (
+                <>
+                    <ChatEmpty />
+                    <Gift />
+                </>
+            )}
+            <div className={css.end}>
+                <h5>Phoqer</h5>
+                <p>© 2021</p>
+                <p>All rights reserved</p>
+            </div>
+        </>
     );
 };
 

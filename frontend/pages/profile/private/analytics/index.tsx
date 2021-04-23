@@ -4,9 +4,9 @@ import { createUseStyles } from 'react-jss';
 
 import { serverRedirect } from '../../../../assets/helpers';
 import { Theme } from '../../../../assets/theme';
-import Container from '../../../../components/common/container';
-import ProfileNav from '../../../../components/common/nav-tabs/profile/root-nav';
+import ProfileNav from '../../../../components/common/user-nav/profile/root-nav';
 import AuthRedirect from '../../../../components/context/auth/auth-redirect';
+import Container from '../../../../components/layout/container';
 import Meta from '../../../../components/layout/meta';
 import PageLayout from '../../../../components/layout/page-layout';
 import useTrans from '../../../../hooks/trans.hook';
@@ -21,12 +21,12 @@ const useStyles = createUseStyles((theme: Theme) => ({
 }));
 
 const Analytics = (): ReactElement => {
-    const T = useTrans();
     const css = useStyles();
+    const trans = useTrans();
 
     return (
         <>
-            <Meta title={'Мои обьявления'} h1={T.user_profile_on_phoqer} />
+            <Meta title={'Мои обьявления'} h1={trans('user_profile_on_phoqer')} />
             <AuthRedirect />
             <PageLayout>
                 <Container>

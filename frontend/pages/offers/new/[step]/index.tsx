@@ -8,8 +8,8 @@ import { END } from 'redux-saga';
 import { serverRedirect } from '../../../../assets/helpers';
 import routes from '../../../../assets/routes';
 import { Theme } from '../../../../assets/theme';
-import Container from '../../../../components/common/container';
 import AuthRedirect from '../../../../components/context/auth/auth-redirect';
+import Container from '../../../../components/layout/container';
 import Meta from '../../../../components/layout/meta';
 import PageLayout from '../../../../components/layout/page-layout';
 import Draft from '../../../../components/pages/offers/new/draft';
@@ -57,9 +57,9 @@ const STEPS: { [key: string]: JSX.Element | JSX.Element[] } = {
 const STEPS_TITLE = ['Основное', 'Описание', 'Фото'];
 
 const NewOffer = (): ReactElement => {
-    const T = useTrans();
     const css = useStyles();
     const history = useRouter();
+    const trans = useTrans();
 
     const [page, setPage] = useState<number | string>(1);
     const value = useSelector<IState, INewOffer>(state => state.offers.new_offer);
@@ -92,11 +92,11 @@ const NewOffer = (): ReactElement => {
     return (
         <>
             <AuthRedirect />
-            <Meta title={T.create_new_offer} h1={T.share_with_others_and_earn} />
+            <Meta title={trans('create_new_offer')} h1={trans('share_with_others_and_earn')} />
             <PageLayout>
                 <Container>
                     <>
-                        <h2 className={css.title}>{T.share_with_others_and_earn}</h2>
+                        <h2 className={css.title}>{trans('share_with_others_and_earn')}</h2>
 
                         {page in [1, 2, 3] ? <Stepper titles={STEPS_TITLE} current={+page} /> : null}
 

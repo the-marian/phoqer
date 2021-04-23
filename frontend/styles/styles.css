@@ -14,9 +14,9 @@ html {
     font-family: 'Montserrat', sans-serif;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 450px) {
     html {
-        font-size: 8px;
+        font-size: 9px;
     }
 }
 
@@ -52,6 +52,26 @@ button,
 textarea,
 select {
     font: inherit;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+input:hover,
+input:focus,
+input[type=text],
+button:hover,
+button:focus,
+button[type=text],
+textarea:hover,
+textarea:focus,
+textarea[type=text],
+select:hover,
+select:focus,
+select[type=text] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
 }
 
 audio,
@@ -113,4 +133,12 @@ svg {
 .windows.black *::-webkit-scrollbar-thumb {
     outline: none;
     background: #999999;
+}
+
+.black body {
+    background: #222222;
+}
+
+.white body {
+    background: #ffffff;
 }

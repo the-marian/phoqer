@@ -9,12 +9,16 @@ const useStyles = createUseStyles((theme: Theme) => ({
         height: '100%',
         borderRadius: theme.radius,
         overflow: 'auto',
+
+        ...theme.media(1060).max({
+            borderRadius: '0',
+        }),
     },
     inner: {
         padding: theme.rem(4, 1, 1),
 
-        ...theme.media(768).max({
-            padding: theme.rem(2, 1.5, 1.5),
+        ...theme.media(1060).max({
+            padding: theme.rem(2, 1.5, 12),
         }),
     },
 }));

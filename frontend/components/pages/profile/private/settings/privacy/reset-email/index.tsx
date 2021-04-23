@@ -9,17 +9,13 @@ import Input from '../../../../../../common/input';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     wrp: {
-        width: '40%',
+        width: '48%',
         minWidth: theme.rem(20),
-        marginLeft: theme.rem(4),
-        ...theme.media(1100).max({
-            width: '48%',
-            marginLeft: '4%',
-        }),
+        marginTop: theme.rem(8),
+
         ...theme.media(768).max({
             width: '100%',
             marginLeft: '0',
-            marginTop: theme.rem(8),
         }),
     },
     input: {

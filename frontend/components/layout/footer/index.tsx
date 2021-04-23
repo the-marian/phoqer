@@ -3,16 +3,16 @@ import { createUseStyles } from 'react-jss';
 
 import { Theme } from '../../../assets/theme';
 import useMedia from '../../../hooks/media.hook';
-import Container from '../../common/container';
 import Logo from '../../common/logo';
 import Socials from '../../common/socials';
 import Warning from '../../common/warning';
+import Container from '../container';
 import SiteMap from './site-map';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     footer: {
         padding: theme.rem(8, 0),
-        background: theme.palette.gray[1],
+        background: theme.palette.gray[0],
         color: theme.palette.black[0],
     },
     wrp: {
@@ -20,7 +20,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         justifyContent: 'space-between',
         marginTop: theme.rem(4),
 
-        ...theme.media(768).max({
+        ...theme.media(1100).max({
             display: 'block',
             textAlign: 'center',
         }),
@@ -29,7 +29,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
 
 const Footer = (): ReactElement => {
     const css = useStyles();
-    const mobile = useMedia(768);
+    const mobile = useMedia(1100);
     return (
         <footer className={css.footer}>
             <Warning />

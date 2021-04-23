@@ -9,10 +9,10 @@ import routes from '../../../assets/routes';
 import { Theme } from '../../../assets/theme';
 import Breadcrumbs from '../../../components/common/breadcrumbs';
 import Comments from '../../../components/common/comments';
-import Container from '../../../components/common/container';
 import Gift from '../../../components/common/gift';
 import { modal } from '../../../components/common/modal';
 import FullPageModal from '../../../components/common/modal/full-page-modal';
+import Container from '../../../components/layout/container';
 import Meta from '../../../components/layout/meta';
 import PageLayout from '../../../components/layout/page-layout';
 import AsideElement from '../../../components/pages/single-offer/aside-element';
@@ -28,7 +28,7 @@ import { wrapper } from '../../../redux/store';
 import types from '../../../redux/types';
 
 const useStyles = createUseStyles((theme: Theme) => ({
-    // top translate
+    // top translations
     banner: {
         display: 'block',
         height: theme.rem(60),
@@ -37,9 +37,6 @@ const useStyles = createUseStyles((theme: Theme) => ({
         background: theme.palette.gray[1],
         cursor: 'zoom-in',
 
-        ...theme.media(1200).max({
-            width: 'calc(100% - 40rem)',
-        }),
         ...theme.media(768).max({
             height: theme.rem(30),
         }),
@@ -57,7 +54,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         marginTop: theme.rem(6),
         fontSize: theme.rem(1.6),
 
-        ...theme.media(768).max({
+        ...theme.media(1100).max({
             flexDirection: 'column',
             marginTop: theme.rem(2),
             fontSize: theme.rem(1.6),
@@ -68,7 +65,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         paddingRight: theme.rem(3),
         color: theme.palette.black[0],
 
-        ...theme.media(768).max({
+        ...theme.media(1100).max({
             width: '100%',
             marginBottom: theme.rem(6),
             paddingRight: '0',
@@ -91,7 +88,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         ...theme.media(1210).max({
             fontSize: theme.rem(1.5),
         }),
-        ...theme.media(1100).max({
+        ...theme.media(768).max({
             width: '100%',
             fontSize: theme.rem(1.8),
         }),
@@ -109,7 +106,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
             width: '49%',
             margin: theme.rem(2, 0, 0, -1),
 
-            ...theme.media(1100).max({
+            ...theme.media(768).max({
                 width: '100%',
                 margin: theme.rem(2, 0, 0, -1),
             }),
@@ -129,7 +126,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
                 marginRight: theme.rem(7.5),
             },
 
-            ...theme.media(1100).max({
+            ...theme.media(768).max({
                 right: theme.em(0.5),
             }),
         },
@@ -140,8 +137,7 @@ const SingleOfferPage = (): ReactElement | null => {
     const css = useStyles();
     const auth = useAuth();
     const dispatch = useDispatch();
-    const priceMedia = useMedia(768);
-    const calendarMedia = useMedia(1100);
+    const media = useMedia(768);
 
     const offer = useSelector<IState, IOfferCard | null>(state => state.offers.single);
 
@@ -203,7 +199,7 @@ const SingleOfferPage = (): ReactElement | null => {
                         <div className={css.main}>
                             <OfferHead />
 
-                            {!priceMedia && <Price />}
+                            {!media && <Price />}
                             <h2 className={css.subtitle}>Описание</h2>
                             <p dangerouslySetInnerHTML={{ __html: desc }} />
 
@@ -223,7 +219,7 @@ const SingleOfferPage = (): ReactElement | null => {
                                 fromMonth={new Date()}
                                 pagedNavigation
                                 fixedWeeks
-                                numberOfMonths={calendarMedia ? 2 : 1}
+                                numberOfMonths={media ? 2 : 1}
                             />
 
                             {auth?.access_token ? <Gift /> : null}

@@ -2,7 +2,7 @@ import { Params } from 'next/dist/next-server/server/router';
 import { all, call, put, takeLatest } from 'redux-saga/effects';
 
 import api from '../../../assets/api';
-import notifications from '../../../components/common/notifications';
+import notificationsModal from '../../../components/common/modal/notifications-modal';
 import types from '../../types';
 import IAction from './interfaces';
 
@@ -13,7 +13,7 @@ function* searchOffers({ payload }: IAction) {
         yield put({ type: types.SEARCH_OFFERS_SUCCESS, payload: data });
     } catch (error) {
         if (error?.response?.status === 401) return;
-        notifications('error');
+        notificationsModal('error');
         yield put({ type: types.SEARCH_OFFERS_ERROR });
     }
 }
@@ -25,7 +25,7 @@ function* searchOffersPagination({ payload }: IAction) {
         yield put({ type: types.SEARCH_OFFERS_PAGINATION_SUCCESS, payload: data });
     } catch (error) {
         if (error?.response?.status === 401) return;
-        notifications('error');
+        notificationsModal('error');
         yield put({ type: types.SEARCH_OFFERS_PAGINATION_ERROR });
     }
 }

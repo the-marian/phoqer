@@ -48,6 +48,10 @@ const useStyles = createUseStyles((theme: Theme) => ({
             cursor: 'auto',
             scrollBehavior: 'smooth',
             '-webkit-overflow-scrolling': 'touch',
+
+            ...theme.media(768).max({
+                padding: theme.rem(2),
+            }),
         },
     },
     button: {
@@ -97,7 +101,7 @@ const Root = ({ children, open, onToggle }: IProps) => {
     }, []);
 
     return (
-        <div className={css.backdrop} onClick={handleToggle} aria-hidden role="button">
+        <div className={css.backdrop} onClick={handleToggle} aria-hidden="true" role="button">
             {children}
         </div>
     );

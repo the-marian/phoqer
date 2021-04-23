@@ -1,7 +1,7 @@
 import { all, call, put, takeLatest } from 'redux-saga/effects';
 
 import api from '../../../assets/api';
-import notifications from '../../../components/common/notifications';
+import notificationsModal from '../../../components/common/modal/notifications-modal';
 import types from '../../types';
 import IAction, { IParams } from './interfaces';
 
@@ -12,7 +12,7 @@ function* getMyOffers({ payload }: IAction) {
         yield put({ type: types.MY_OFFERS_SUCCESS, payload: data });
     } catch (error) {
         if (error?.response?.status === 401) return;
-        notifications('error');
+        notificationsModal('error');
         yield put({ type: types.MY_OFFERS_ERROR });
     }
 }
@@ -24,7 +24,7 @@ function* getMyOffersPagination({ payload }: IAction) {
         yield put({ type: types.MY_OFFERS_PAGINATION_SUCCESS, payload: data });
     } catch (error) {
         if (error?.response?.status === 401) return;
-        notifications('error');
+        notificationsModal('error');
         yield put({ type: types.MY_OFFERS_PAGINATION_ERROR });
     }
 }

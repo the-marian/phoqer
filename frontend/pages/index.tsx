@@ -5,9 +5,9 @@ import { END } from 'redux-saga';
 import { Theme } from '../assets/theme';
 import About from '../components/common/about';
 import Banner from '../components/common/banner';
-import Container from '../components/common/container';
 import TopPopular from '../components/common/offers/popular-offers';
 import Search from '../components/common/search';
+import Container from '../components/layout/container';
 import Meta from '../components/layout/meta';
 import PageLayout from '../components/layout/page-layout';
 import Categories from '../components/pages/home/categories';
@@ -18,26 +18,28 @@ import types from '../redux/types';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     banner: {
-        background: theme.palette.soft[5],
         margin: theme.rem(8, 0),
+        padding: theme.rem(14, 8, 10),
 
-        ...theme.media(550).max({
+        ...theme.media(767).max({
+            padding: theme.rem(10, 3),
             margin: theme.rem(4, 0),
         }),
     },
 }));
 
 const Index = (): ReactElement => {
-    const T = useTrans();
     const css = useStyles();
+    const trans = useTrans();
+
     return (
         <>
-            <Meta title={T.home_page} />
+            <Meta title={trans('home_page')} />
             <PageLayout>
                 <Search />
                 <Container>
                     <Categories />
-                    <Banner className={css.banner} />
+                    <Banner className={css.banner} animation />
                     <TopPopular />
                 </Container>
 

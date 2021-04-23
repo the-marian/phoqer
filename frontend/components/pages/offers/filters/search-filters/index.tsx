@@ -4,7 +4,7 @@ import { faChevronUp } from '@fortawesome/free-solid-svg-icons/faChevronUp';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useRouter } from 'next/router';
 import queryString from 'query-string';
-import React, { ReactElement, useState } from 'react';
+import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 import { useSelector } from 'react-redux';
 import { CSSTransition } from 'react-transition-group';
@@ -39,7 +39,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         }),
     },
     title: {
-        fontSize: theme.rem(2),
+        fontSize: theme.rem(1.6),
         fontWeight: theme.text.weight[4],
         color: theme.palette.black[0],
     },

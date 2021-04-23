@@ -48,8 +48,12 @@ const useStyles = createUseStyles((theme: Theme) => ({
 
         ...theme.media(450).max({
             width: '100%',
-            marginTop: theme.rem(2),
+            marginTop: '0',
         }),
+    },
+    avatar: {
+        display: 'block',
+        marginBottom: theme.rem(2),
     },
     name: {
         color: theme.palette.black[0],
@@ -135,7 +139,7 @@ const ProfileCard = ({
     return (
         <div className={clsx(css.wrp, className, column && css.column)}>
             <Link href={routes.profile.public(id)}>
-                <a>
+                <a className={css.avatar}>
                     <UserAvatar online={isAuthor} firstName={firstName} lastName={lastName} avatar={avatar} />
                 </a>
             </Link>

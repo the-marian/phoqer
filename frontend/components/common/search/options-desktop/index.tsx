@@ -62,7 +62,7 @@ interface IProps {
 
 const OptionsDesktop = ({ onChange }: IProps): ReactElement => {
     const css = useStyles();
-    const T = useTrans();
+    const trans = useTrans();
 
     const search = useSelector<IState, ISearch>(state => state.config.searchParams);
     const data = useSelector<IState, ICategories[]>(state => state.categories);
@@ -85,7 +85,7 @@ const OptionsDesktop = ({ onChange }: IProps): ReactElement => {
                 <DropDown
                     defaultValue={defaultValue}
                     data={categories}
-                    placeholder={T.select_category}
+                    placeholder={trans('select_category')}
                     onChange={onChange}
                     height={6}
                     withSub

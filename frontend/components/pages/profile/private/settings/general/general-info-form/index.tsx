@@ -11,29 +11,14 @@ import Input from '../../../../../../common/input';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     wrp: {
-        minWidth: theme.rem(20),
-        width: '38%',
-
-        ...theme.media(1200).max({
-            width: '75%',
-        }),
-        ...theme.media(768).max({
-            width: '100%',
-        }),
-    },
-    bannerWrp: {
-        minWidth: theme.rem(20),
-        width: '38%',
-        ...theme.media(1200).max({
-            width: '100%',
-            minHeight: theme.rem(30),
-        }),
+        width: '100%',
+        maxWidth: theme.rem(60),
     },
     banner: {
-        height: 'calc(100% - 4.5rem)',
-        padding: theme.rem(2),
-        marginTop: theme.rem(2.6),
-        background: theme.palette.soft[2],
+        maxWidth: theme.rem(60),
+        margin: '2rem auto 4rem',
+        padding: theme.rem(6, 4),
+        height: 'auto',
     },
     input: {
         background: theme.palette.gray[0],
@@ -128,9 +113,8 @@ const GeneralInfoForm = (): ReactElement => {
                     />
                 </label>
             </div>
-            <div className={css.bannerWrp}>
-                <Banner className={css.banner} />
-            </div>
+
+            <Banner className={css.banner} animation />
         </>
     );
 };

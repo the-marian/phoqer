@@ -23,7 +23,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
             gridTemplateColumns: theme.fr(config.offers.grid.smallTablet),
             gridGap: theme.rem(6, 3),
         }),
-        ...theme.media(560).max({
+        ...theme.media(680).max({
             gridTemplateColumns: theme.fr(config.offers.grid.mobile),
             maxWidth: theme.rem(45),
             margin: '0 auto',

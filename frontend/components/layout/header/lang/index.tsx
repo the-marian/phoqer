@@ -9,13 +9,8 @@ import DropDown from '../../../common/drop-down';
 const useStyles = createUseStyles((theme: Theme) => ({
     wrp: {
         marginLeft: theme.rem(3),
-        border: theme.border(0.2, theme.palette.primary[0]),
+        background: theme.palette.trueWhite,
         borderRadius: theme.radius,
-        '& p': {
-            ...theme.hover({
-                border: theme.border(0.2, 'transparent'),
-            }),
-        },
         ...theme.media(768).max({
             marginLeft: '0',
         }),
@@ -48,11 +43,10 @@ const Lang = (): ReactElement => {
         <div className={css.wrp}>
             <DropDown
                 minWidth={15}
-                height={3}
+                height={3.5}
                 defaultValue={{ name: history.locale?.toUpperCase() || 'EN', slug: history?.locale || 'en', type: 'main' }}
                 data={LANGS}
                 onChange={handleChange}
-                white
                 toLeft
                 closeOnScroll
             />

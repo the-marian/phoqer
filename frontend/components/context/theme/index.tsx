@@ -2,7 +2,7 @@ import Cookies from 'js-cookie';
 import React, { createContext, ReactElement, useEffect, useState } from 'react';
 
 import { Themes } from '../../../interfaces';
-import notifications from '../../common/notifications';
+import notificationsModal from '../../common/modal/notifications-modal';
 
 export const Theme = createContext<[theme: Themes, setTheme: ((v: Themes) => void) | null]>(['white', null]);
 
@@ -29,7 +29,7 @@ const SiteTheme = ({ children, siteTheme = 'white' }: IProps): ReactElement => {
                 document.querySelector('html')?.classList?.add(value);
             }
         } catch (error) {
-            notifications('error', error?.message);
+            notificationsModal('error', error?.message);
         }
     };
     return <Theme.Provider value={[theme, handleTheme]}>{children}</Theme.Provider>;

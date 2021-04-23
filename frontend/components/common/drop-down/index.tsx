@@ -30,7 +30,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         justifyContent: 'space-between',
         width: '100%',
         margin: 0,
-        padding: theme.rem(1.8),
+        padding: theme.rem(1),
         background: theme.palette.gray[1],
         borderRadius: theme.radius,
         textAlign: 'left',
@@ -38,12 +38,8 @@ const useStyles = createUseStyles((theme: Theme) => ({
         color: theme.palette.black[0],
         cursor: 'pointer',
         ...template(theme).outline,
-
-        ...theme.media(768).max({
-            fontSize: theme.rem(1.6),
-        }),
         ...theme.media(450).max({
-            paddingLeft: theme.rem(1.2),
+            fontSize: theme.rem(1.6),
         }),
     },
     text: {
@@ -64,7 +60,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
     icon: {
         marginRight: theme.rem(0.6),
-        fontSize: theme.em(1),
+        fontSize: theme.em(0.7),
     },
     reset: {
         padding: theme.rem(1),
@@ -87,12 +83,12 @@ const useStyles = createUseStyles((theme: Theme) => ({
         '-webkit-overflow-scrolling': 'touch',
         boxShadow: theme.shadow[4],
         borderRadius: theme.radius,
+        border: theme.border(0.1, theme.palette.gray[1]),
         transition: theme.transitions[0],
 
         ...theme.media(768).max({
-            minWidth: theme.rem(35),
+            minWidth: theme.rem(30),
         }),
-
         '&.enter': {
             opacity: 0,
             transform: 'translateY(-2rem)',
@@ -124,11 +120,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
     item: {
         cursor: 'pointer',
         borderBottom: theme.border(0.1, theme.palette.gray[1]),
-
         '&:nth-last-of-type(1)': {
             borderBottom: 'none',
         },
-
         '& > button': {
             display: 'block',
             width: '100%',
@@ -137,14 +131,12 @@ const useStyles = createUseStyles((theme: Theme) => ({
             background: theme.palette.white,
             color: theme.palette.black[0],
             fontSize: theme.rem(1.4),
-
-            ...theme.media(768).max({
-                fontSize: theme.rem(1.6),
-            }),
-
             ...theme.hover({
                 background: theme.palette.primary[0],
                 color: theme.palette.trueWhite,
+            }),
+            ...theme.media(768).max({
+                fontSize: theme.rem(1.6),
             }),
         },
     },
@@ -159,11 +151,6 @@ const useStyles = createUseStyles((theme: Theme) => ({
         background: theme.palette.gray[0],
         color: theme.palette.black[0],
         fontSize: theme.rem(1.4),
-
-        ...theme.media(768).max({
-            fontSize: theme.rem(1.6),
-        }),
-
         ...theme.hover({
             background: theme.palette.primary[0],
             color: theme.palette.trueWhite,
@@ -171,7 +158,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
     white: {
         background: theme.palette.trueWhite,
-        color: '#242424',
+        color: theme.palette.trueBlack,
         boxShadow: theme.shadow[1],
         ...template(theme).outline,
     },

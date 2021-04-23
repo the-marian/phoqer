@@ -2,36 +2,37 @@ import Link from 'next/link';
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
+import routes from '../../../../assets/routes';
 import { Theme } from '../../../../assets/theme';
 
 const LINKS: { text: string; href: string }[] = [
     {
         text: 'Помощь и Обратная связь',
-        href: '/help',
+        href: routes.static.help,
     },
     {
         text: 'Реклама на сайте',
-        href: '/ad',
+        href: routes.static.ad,
     },
     {
         text: 'Условия использования',
-        href: '/rules',
+        href: routes.static.rules,
     },
     {
         text: 'Политика конфиденциальности',
-        href: '/politic',
+        href: routes.static.politic,
     },
     {
         text: 'FAQ',
-        href: '/faq',
+        href: routes.static.faq,
     },
     {
         text: 'Правила безопасности',
-        href: '/fff',
+        href: routes.static.safety,
     },
     {
         text: 'Карта сайта',
-        href: '/map',
+        href: routes.static.map,
     },
 ];
 
@@ -41,7 +42,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         flexWrap: 'wrap',
         width: '60%',
 
-        ...theme.media(768).max({
+        ...theme.media(1100).max({
             width: '100%',
             marginBottom: theme.rem(9),
         }),
@@ -50,7 +51,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         display: 'block',
         width: '48%',
 
-        ...theme.media(768).max({
+        ...theme.media(1100).max({
             width: '100%',
         }),
     },
@@ -67,7 +68,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
             color: theme.palette.primary[0],
         }),
 
-        ...theme.media(768).max({
+        ...theme.media(1100).max({
             fontSize: theme.rem(1.6),
         }),
         ...theme.media(640).max({

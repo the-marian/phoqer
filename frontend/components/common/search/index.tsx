@@ -15,16 +15,20 @@ import useMedia from '../../../hooks/media.hook';
 import useTrans from '../../../hooks/trans.hook';
 import { IDropValue, ISearch, IState } from '../../../interfaces';
 import types from '../../../redux/types';
+import Container from '../../layout/container';
 import Button from '../button';
-import Container from '../container';
 import LinkArrow from '../link-arrow';
 import OptionsDesktop from './options-desktop';
 import OptionsMobile from './options-mobile';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     root: {
-        padding: theme.rem(10, 0, 4),
+        padding: theme.rem(14, 0, 4),
         background: theme.palette.gray[0],
+
+        ...theme.media(768).max({
+            padding: theme.rem(8, 0, 4),
+        }),
     },
     wrp: {
         display: 'flex',
@@ -125,8 +129,8 @@ interface IProps {
 }
 
 const Search = ({ shallow = false }: IProps): ReactElement => {
-    const T = useTrans();
     const css = useStyles();
+    const trans = useTrans();
     const history = useRouter();
     const dispatch = useDispatch();
     const desktop = useMedia(1100);
@@ -208,7 +212,7 @@ const Search = ({ shallow = false }: IProps): ReactElement => {
                     {history.pathname !== routes.root && (
                         <div className={css.toHome}>
                             <LinkArrow href={routes.root} toLeft>
-                                {T.to_home}
+                                {trans('to_home')}
                             </LinkArrow>
                         </div>
                     )}
@@ -224,7 +228,7 @@ const Search = ({ shallow = false }: IProps): ReactElement => {
                                     onChange={handleInput}
                                     className={css.input}
                                     type="text"
-                                    placeholder={T.what_are_you_looking_for}
+                                    placeholder={trans('what_are_you_looking_for')}
                                 />
                                 <button
                                     className={clsx(css.reset, !searchParams.search && css.resetHidden)}
@@ -240,7 +244,7 @@ const Search = ({ shallow = false }: IProps): ReactElement => {
                         <div className={css.mobile}>
                             {!desktop && <OptionsMobile onChange={handleChange} />}
                             <Button loading={pagination} type="submit" className={css.btn}>
-                                {T.find}
+                                {trans('find')}
                             </Button>
                         </div>
                     </div>

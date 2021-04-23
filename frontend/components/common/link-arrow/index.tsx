@@ -24,7 +24,8 @@ const useStyles = createUseStyles((theme: Theme) => ({
         fontSize: 'inherit',
     },
     icon: {
-        fontSize: theme.em(1),
+        fontSize: theme.em(0.7),
+        marginTop: theme.em(0.2),
     },
     leftIcon: {
         margin: theme.em(0, 0.8, 0.1, 0),

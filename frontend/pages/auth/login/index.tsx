@@ -10,11 +10,11 @@ import useTrans from '../../../hooks/trans.hook';
 import { wrapper } from '../../../redux/store';
 
 const Login = (): ReactElement => {
-    const T = useTrans();
+    const trans = useTrans();
     return (
         <>
             <AuthRedirect reverse />
-            <Meta title={T.login} h1={T.login} />
+            <Meta title={trans('login')} h1={trans('login')} />
             <AuthContainer>
                 <LoginForm />
             </AuthContainer>
