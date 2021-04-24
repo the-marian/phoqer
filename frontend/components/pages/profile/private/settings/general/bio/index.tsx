@@ -4,6 +4,7 @@ import TextareaAutosize from 'react-textarea-autosize';
 
 import template from '../../../../../../../assets/template';
 import { Theme } from '../../../../../../../assets/theme';
+import useTrans from '../../../../../../../hooks/trans.hook';
 import Button from '../../../../../../common/button';
 
 const useStyles = createUseStyles((theme: Theme) => ({
@@ -37,6 +38,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
 
 const Bio = (): ReactElement => {
     const css = useStyles();
+    const trans = useTrans();
 
     const [value, setValue] = useState<string>('');
     const handleChange = (event: ChangeEvent<HTMLTextAreaElement>): void => {
@@ -46,18 +48,18 @@ const Bio = (): ReactElement => {
     return (
         <div className={css.wrp}>
             <label className={css.label}>
-                <p className={css.text}>User bio</p>
+                <p className={css.text}>{trans('user_bio')}</p>
                 <TextareaAutosize
                     value={value}
                     onChange={handleChange}
                     className={css.textarea}
                     name="bio"
                     wrap="soft"
-                    placeholder="Начните печатать"
+                    placeholder={trans('start_typing')}
                 />
             </label>
 
-            <Button className={css.btn}>Применить изменения</Button>
+            <Button className={css.btn}>{trans('apply_changes')}</Button>
         </div>
     );
 };

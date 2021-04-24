@@ -1,0 +1,16 @@
+.content {
+    width: 100%;
+}
+
+.flex,
+.add {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.add {
+    h4 {
+        margin: 0 2rem 0 0;
+    }
+}

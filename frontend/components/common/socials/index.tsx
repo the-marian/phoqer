@@ -3,6 +3,7 @@ import React, { CSSProperties, ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
 import { Theme } from '../../../assets/theme';
+import useTrans from '../../../hooks/trans.hook';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     list: {
@@ -68,9 +69,11 @@ interface IProps {
 
 const Socials = ({ center = false, style = {} }: IProps): ReactElement => {
     const css = useStyles();
+    const trans = useTrans();
+
     return (
         <div style={style}>
-            <h3 className={css.title}>Социальные сети:</h3>
+            <h3 className={css.title}>{trans('social_networks')}</h3>
             <ul className={clsx(css.list, center && css.center)}>
                 <li>
                     <a

@@ -1,0 +1,17 @@
+<mat-sidenav-container class="container">
+    <mat-sidenav #drawer mode="push" class="content-inner">
+        <button mat-icon-button (click)="drawer.toggle()">
+            <mat-icon>arrow_back</mat-icon>
+        </button>
+        <app-sidebar [drawer]="drawer"></app-sidebar>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+        <app-header [drawer]="drawer"></app-header>
+        <app-scroll-top></app-scroll-top>
+        <div class="content">
+            <ng-content></ng-content>
+            <app-footer></app-footer>
+        </div>
+    </mat-sidenav-content>
+</mat-sidenav-container>

@@ -13,6 +13,7 @@ import routes from '../../../../../assets/routes';
 import template from '../../../../../assets/template';
 import { Theme } from '../../../../../assets/theme';
 import useConfig from '../../../../../hooks/config.hook';
+import useTrans from '../../../../../hooks/trans.hook';
 import { ISearch, IState } from '../../../../../interfaces';
 import initState from '../../../../../redux/state';
 import Checkboxes from '../../../../common/checkbox/checkboxes';
@@ -137,6 +138,7 @@ interface ICheckbox {
 
 const SearchFilters = (): ReactElement => {
     const css = useStyles();
+    const trans = useTrans();
     const history = useRouter();
     const [config, setConfig] = useConfig();
 
@@ -171,17 +173,17 @@ const SearchFilters = (): ReactElement => {
     return (
         <div className={css.root}>
             <div className={css.wrp}>
-                <h2 className={css.title}>Фильтры</h2>
+                <h2 className={css.title}>{trans('filters')}</h2>
                 <button type="button" className={css.close} onClick={handleCloseFilters}>
                     {config.hideSearchFilters ? (
                         <>
                             <FontAwesomeIcon icon={faChevronDown} />
-                            <span>Показать</span>
+                            <span>{trans('show')}</span>
                         </>
                     ) : (
                         <>
                             <FontAwesomeIcon icon={faChevronUp} />
-                            <span>Скрыть</span>
+                            <span>{trans('hide')}</span>
                         </>
                     )}
                 </button>
@@ -202,14 +204,14 @@ const SearchFilters = (): ReactElement => {
                             no_deposit: searchParams.no_deposit,
                             is_deliverable: searchParams.is_deliverable,
                         }}
-                        labels={['Только ТОП объявления', 'Без залога', 'C доставкой']}
+                        labels={[trans('top_offers_only'), trans('no_deposit'), trans('with_delivery')]}
                         onChange={handleCheckboxes}
                     />
 
                     <div className={css.btnWrp}>
                         <button className={css.reset} type="button" onClick={handleReset}>
                             <FontAwesomeIcon icon={faTrashAlt} />
-                            <span>Очистить все фильтры</span>
+                            <span>{trans('clear_all_filters')}</span>
                         </button>
                     </div>
                 </div>

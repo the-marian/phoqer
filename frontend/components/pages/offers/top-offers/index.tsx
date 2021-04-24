@@ -6,6 +6,7 @@ import { CSSTransition } from 'react-transition-group';
 import routes from '../../../../assets/routes';
 import { Theme } from '../../../../assets/theme';
 import useConfig from '../../../../hooks/config.hook';
+import useTrans from '../../../../hooks/trans.hook';
 import { IOfferStatic, IState } from '../../../../interfaces';
 import OffersList from '../../../common/offers/offers-list';
 import SectionTitle from '../../../common/section-title';
@@ -58,6 +59,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
 
 const TopOffers = (): ReactElement => {
     const css = useStyles();
+    const trans = useTrans();
     const [config, setConfig] = useConfig();
     const { data } = useSelector<IState, IOfferStatic>(state => state.offers.popular);
 
@@ -69,15 +71,15 @@ const TopOffers = (): ReactElement => {
         <>
             <Container className={css.checkbox} id="products">
                 <Switcher onClick={handleHide} value={config.hideTopOffers} off="open" on="close">
-                    {config.hideTopOffers ? 'Показать ТОП обьявления' : 'Скрыть ТОП обьявления'}
+                    {config.hideTopOffers ? trans('show_top_offers') : trans('hide_top_offers')}
                 </Switcher>
             </Container>
 
             <CSSTransition timeout={600} unmountOnExit in={!config.hideTopOffers}>
                 <div className={css.root}>
                     <Container>
-                        <SectionTitle link="Смотреть все" href={routes.offers.single(`?top=true`)}>
-                            TOП Объявления
+                        <SectionTitle link={trans('see_all')} href={routes.offers.single(`?top=true`)}>
+                            {trans('top_offers')}
                         </SectionTitle>
                         <OffersList data={data} />
                     </Container>

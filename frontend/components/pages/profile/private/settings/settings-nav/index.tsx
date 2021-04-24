@@ -7,6 +7,7 @@ import { createUseStyles } from 'react-jss';
 import routes from '../../../../../../assets/routes';
 import template from '../../../../../../assets/template';
 import { Theme } from '../../../../../../assets/theme';
+import useTrans from '../../../../../../hooks/trans.hook';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     list: {
@@ -34,6 +35,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
 
 const SettingsNav = (): ReactElement => {
     const css = useStyles();
+    const trans = useTrans();
     const { query } = useRouter();
     const activeTab = String(query.activeTab);
 
@@ -41,12 +43,12 @@ const SettingsNav = (): ReactElement => {
         <ul className={css.list}>
             <li>
                 <Link href={routes.profile.private.settings('general')}>
-                    <a className={clsx(css.link, activeTab === 'general' && css.active)}>General</a>
+                    <a className={clsx(css.link, activeTab === 'general' && css.active)}>{trans('general')}</a>
                 </Link>
             </li>
             <li>
                 <Link href={routes.profile.private.settings('privacy')}>
-                    <a className={clsx(css.link, activeTab === 'privacy' && css.active)}>Privacy</a>
+                    <a className={clsx(css.link, activeTab === 'privacy' && css.active)}>{trans('privacy')}</a>
                 </Link>
             </li>
         </ul>
