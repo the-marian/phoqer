@@ -16,6 +16,7 @@ export interface Translations {
 export class TranslationsPageService {
     baseUrl = 'http://localhost:4201/api/translations/';
     language: Links = 'en';
+
     data: MatTableDataSource<Translations> = new MatTableDataSource<
         Translations
     >([]);
@@ -41,6 +42,10 @@ export class TranslationsPageService {
 
     updateContent(value: Translations): Observable<Translations> {
         return this.http.put<Translations>(this.baseUrl + this.language, value);
+    }
+
+    updateAll(): void {
+        console.log(this.data);
     }
 
     addContent(value: Translations): Observable<Translations> {

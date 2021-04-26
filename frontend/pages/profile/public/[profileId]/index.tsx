@@ -13,6 +13,7 @@ import { wrapper } from '../../../../redux/store';
 import types from '../../../../redux/types';
 import PageLayout from "../../../../components/layout/page-layout";
 import useTrans from "../../../../hooks/trans.hook";
+import {GetServerSidePropsContext} from "next-redux-wrapper";
 
 const useStyles = createUseStyles((theme: Theme) => ({
     wrp: {

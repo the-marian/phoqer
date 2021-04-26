@@ -73,15 +73,15 @@ const NewOffer = (): ReactElement => {
              * */
             if (step === '2' && !value?.isDone?.one) {
                 // *
-                // return to first page if user dont fill any of required field at step one
+                // return to first pages if user dont fill any of required field at step one
                 history.push(routes.offers.new(1));
             } else if (step === '3' && !value?.isDone?.two) {
                 // *
-                // return to first page if user dont fill any of required field at step two
+                // return to first pages if user dont fill any of required field at step two
                 history.push(routes.offers.new(1));
             } else if (['4', 'success'].includes(step) && (!value?.isDone?.one || !value?.isDone?.two)) {
                 // *
-                // return to first page if user dont fill any of required field at step one and two
+                // return to first pages if user dont fill any of required field at step one and two
                 history.push(routes.offers.new(1));
             } else {
                 setPage(step);

@@ -4,17 +4,17 @@ import { faHeart as faFillHeart } from '@fortawesome/free-solid-svg-icons/faHear
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
-import { useSelector, useDispatch } from 'react-redux';
-import useAuth from '../../../../hooks/auth.hook';
+import { useDispatch, useSelector } from 'react-redux';
 
 import template from '../../../../assets/template';
 import { Theme } from '../../../../assets/theme';
+import useAuth from '../../../../hooks/auth.hook';
 import useTrans from '../../../../hooks/trans.hook';
 import { IOfferCard, IState } from '../../../../interfaces';
-import SmallModalWrp from '../../../common/modal/small-modal-wrp';
+import types from '../../../../redux/types';
 import LoginForm from '../../../common/auth/login-form';
 import { modal } from '../../../common/modal';
-import types from '../../../../redux/types';
+import SmallModalWrp from '../../../common/modal/small-modal-wrp';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     title: {
@@ -68,12 +68,11 @@ const useStyles = createUseStyles((theme: Theme) => ({
 }));
 
 const OfferHead = (): ReactElement => {
-
     const css = useStyles();
     const trans = useTrans();
     const offer = useSelector<IState, IOfferCard | null>(state => state.offers.single);
-    const auth = useAuth()
-    const dispatch = useDispatch()
+    const auth = useAuth();
+    const dispatch = useDispatch();
 
     const handleFavorite = (): void => {
         if (!auth?.access_token) {
