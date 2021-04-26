@@ -59,16 +59,16 @@ select {
 
 input:hover,
 input:focus,
-input[type=text],
+input[type='text'],
 button:hover,
 button:focus,
-button[type=text],
+button[type='text'],
 textarea:hover,
 textarea:focus,
-textarea[type=text],
+textarea[type='text'],
 select:hover,
 select:focus,
-select[type=text] {
+select[type='text'] {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;

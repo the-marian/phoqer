@@ -10,12 +10,6 @@ import { IDropList, IDropValue, ISearch, IState } from '../../../../../interface
 import DropDown from '../../../../common/drop-down';
 import useStyles from '../filters.styles';
 
-const FILTERS: IDropList[] = [
-    { name: 'Активное', slug: 'active' },
-    { name: 'Временно не активно', slug: 'inactive' },
-    { name: 'На данный момент арендуется', slug: 'in_rent' },
-];
-
 const Status = (): ReactElement => {
     const css = useStyles();
     const trans = useTrans();

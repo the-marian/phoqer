@@ -32,7 +32,12 @@
         <th mat-header-cell *matHeaderCellDef mat-sort-header>
             Translated content
         </th>
-        <td mat-cell *matCellDef="let element" (click)="open(element)">
+        <td
+            mat-cell
+            class="content"
+            *matCellDef="let element"
+            (click)="open(element)"
+        >
             {{ element.content }}
         </td>
     </ng-container>

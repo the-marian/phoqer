@@ -1,3 +1,4 @@
+import { GetServerSidePropsContext } from 'next';
 import React, { ReactElement } from 'react';
 
 import routes from '../../../assets/routes';
@@ -5,6 +6,8 @@ import Breadcrumbs from '../../../components/common/breadcrumbs';
 import Container from '../../../components/layout/container';
 import Meta from '../../../components/layout/meta';
 import PageLayout from '../../../components/layout/page-layout';
+import { wrapper } from '../../../redux/store';
+import types from '../../../redux/types';
 
 const Politic = (): ReactElement => {
     return (

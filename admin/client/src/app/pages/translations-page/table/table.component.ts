@@ -2,6 +2,7 @@ import {
     AfterContentInit,
     AfterViewInit,
     Component,
+    Input,
     ViewChild,
 } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
