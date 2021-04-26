@@ -10,8 +10,6 @@ import {
     IOfferPagination,
     IPublicProfile,
     ISignup,
-    ITranslations,
-    Languages,
 } from '../interfaces';
 import { IBody } from '../redux/offers/new_offer/interfaces';
 import config from './config';
@@ -65,9 +63,6 @@ const api = {
             get: (id: number): Promise<AxiosResponse<IPublicProfile>> => axios.get(`${url2}/users/${id}`),
             userShort: (id: number): Promise<AxiosResponse<IPublicProfile>> => axios.get(`${url2}/users/short/${id}`),
         },
-    },
-    translations: {
-        get: (lang: Languages): Promise<AxiosResponse<ITranslations>> => axios.get(`${translationsUrl}/${lang}.json`),
     },
 };
 
