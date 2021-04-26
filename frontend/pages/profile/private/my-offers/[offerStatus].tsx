@@ -130,9 +130,6 @@ const UserOffers = (): ReactElement => {
 export const getServerSideProps = wrapper.getServerSideProps(
     async (ctx): Promise<void> => {
         if (serverRedirect((ctx as unknown) as GetServerSidePropsContext)) return;
-
-        const locale = ((ctx as unknown) as GetServerSidePropsContext & { locale: string }).locale; // TEMP before release next-redux-wrapper https://github.com/kirill-konshin/next-redux-wrapper
-        ctx.store.dispatch({ type: types.GET_TRANSLATIONS_START, payload: locale });
     },
 );
 

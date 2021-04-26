@@ -6,7 +6,6 @@ import comments from './comments/reducer';
 import config from './config/reducer';
 import offers from './offers/reducer';
 import profiles from './profiles/reducer';
-import translations from './translations/reducer';
 import user from './user/reducer';
 
 const rootReducer = combineReducers({
@@ -17,7 +16,6 @@ const rootReducer = combineReducers({
     comments,
     categories,
     profiles,
-    translations,
 });
 
 export default rootReducer;

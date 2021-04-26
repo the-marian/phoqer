@@ -13,12 +13,12 @@ import { ContainerComponent } from './shared/container/container.component';
 import { HeaderComponent } from './shared/header/header.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { SidebarComponent } from './shared/sidebar/sidebar.component';
-import { HomePageComponent } from './home-page/home-page.component';
-import { TranslationsPageComponent } from './translations-page/translations-page.component';
-import { TableComponent } from './translations-page/table/table.component';
-import { EditModalComponent } from './translations-page/edit-modal/edit-modal.component';
-import { CreateModalComponent } from './translations-page/create-modal/create-modal.component';
-import { DeleteModalComponent } from './translations-page/delete-modal/delete-modal.component';
+import { HomePageComponent } from './pages/home-page/home-page.component';
+import { TranslationsPageComponent } from './pages/translations-page/translations-page.component';
+import { TableComponent } from './pages/translations-page/table/table.component';
+import { EditModalComponent } from './pages/translations-page/edit-modal/edit-modal.component';
+import { CreateModalComponent } from './pages/translations-page/create-modal/create-modal.component';
+import { DeleteModalComponent } from './pages/translations-page/delete-modal/delete-modal.component';
 import { ScrollTopComponent } from './shared/scroll-top/scroll-top.component';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 

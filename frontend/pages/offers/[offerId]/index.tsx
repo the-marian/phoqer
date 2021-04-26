@@ -241,9 +241,6 @@ const SingleOfferPage = (): ReactElement | null => {
 };
 
 export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps(async ctx => {
-    const locale = ((ctx as unknown) as GetServerSidePropsContext & { locale: string }).locale; // TEMP before release next-redux-wrapper https://github.com/kirill-konshin/next-redux-wrapper
-    ctx.store.dispatch({ type: types.GET_TRANSLATIONS_START, payload: locale });
-
     ctx.store.dispatch({ type: types.GET_POPULAR_OFFERS_START });
     ctx.store.dispatch({ type: types.GET_COMMENTS_START, payload: ctx.query?.offerId });
     ctx.store.dispatch({ type: types.GET_SINGLE_OFFER_START, payload: ctx.query?.offerId });

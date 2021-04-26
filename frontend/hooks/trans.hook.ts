@@ -1,12 +1,20 @@
-import { useSelector } from 'react-redux';
+import { useRouter } from 'next/router';
 
-import { IState, ITranslations } from '../interfaces';
+import content from '../translations';
+
+interface IContent {
+    [key: string]: string;
+}
+
+interface ILocales {
+    [key: string]: IContent;
+}
 
 type UseTransType = (value: string) => string;
 
 const useTrans = (): UseTransType => (value: string): string => {
-    const translations = useSelector<IState, ITranslations>(state => state.translations);
-    return translations[value] || '...';
+    const router = useRouter();
+    return (content as ILocales)[router.locale || 'en'][value] || '...';
 };
 
 export default useTrans;

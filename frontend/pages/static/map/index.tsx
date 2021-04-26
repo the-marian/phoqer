@@ -22,9 +22,4 @@ const SiteMap = (): ReactElement => {
     );
 };
 
-export const getServerSideProps = wrapper.getServerSideProps((ctx): void => {
-    const locale = ((ctx as unknown) as GetServerSidePropsContext & { locale: string }).locale; // TEMP before release next-redux-wrapper https://github.com/kirill-konshin/next-redux-wrapper
-    ctx.store.dispatch({ type: types.GET_TRANSLATIONS_START, payload: locale });
-});
-
 export default SiteMap;
