@@ -1,3 +1,4 @@
+import { GetServerSidePropsContext } from 'next';
 import React, { ReactElement } from 'react';
 import { useSelector } from 'react-redux';
 import { END } from 'redux-saga';
@@ -31,6 +32,9 @@ const Favorite = (): ReactElement => {
 
 export const getServerSideProps = wrapper.getServerSideProps(
     async (ctx): Promise<void> => {
+        const locale = ((ctx as unknown) as GetServerSidePropsContext & { locale: string }).locale; // TEMP before release next-redux-wrapper https://github.com/kirill-konshin/next-redux-wrapper
+        ctx.store.dispatch({ type: types.GET_TRANSLATIONS_START, payload: locale });
+
         ctx.store.dispatch({ type: types.GET_FAVORITE_OFFERS_START });
         ctx.store.dispatch(END);
         await (ctx.store as IStore)?.sagaTask?.toPromise();

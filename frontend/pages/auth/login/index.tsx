@@ -8,6 +8,7 @@ import Meta from '../../../components/layout/meta';
 import AuthContainer from '../../../components/pages/auth/auth-container';
 import useTrans from '../../../hooks/trans.hook';
 import { wrapper } from '../../../redux/store';
+import types from '../../../redux/types';
 
 const Login = (): ReactElement => {
     const trans = useTrans();
@@ -24,6 +25,9 @@ const Login = (): ReactElement => {
 
 export const getServerSideProps = wrapper.getServerSideProps((ctx): void => {
     serverRedirect((ctx as unknown) as GetServerSidePropsContext, null, true);
+
+    const locale = ((ctx as unknown) as GetServerSidePropsContext & { locale: string }).locale; // TEMP before release next-redux-wrapper https://github.com/kirill-konshin/next-redux-wrapper
+    ctx.store.dispatch({ type: types.GET_TRANSLATIONS_START, payload: locale });
 });
 
 export default Login;

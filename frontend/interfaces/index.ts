@@ -11,6 +11,7 @@ import { AnyAction, Store } from 'redux';
  * 5 COMMENTS
  * 6 PUBLIC_PROFILE
  * 7 CHAT
+ * 8 TRANSLATIONS
  * REDUX STORE
  * */
 
@@ -239,11 +240,21 @@ export interface IChat {
 }
 
 // =====================================
+// 8 TRANSLATIONS
+// =====================================
+export type Languages = 'ru' | 'pl' | 'ua';
+
+export interface ITranslations {
+    [key: string]: string;
+}
+
+// =====================================
 // REDUX STORE
 // =====================================
 export interface IState {
     auth: IAuth;
     user: IPublicProfile;
+    translations: { [key: string]: string };
     config: {
         drawer: boolean;
         searchParams: ISearch;

@@ -13,6 +13,7 @@ import { wrapper } from '../../../../redux/store';
 import types from '../../../../redux/types';
 import PageLayout from "../../../../components/layout/page-layout";
 import useTrans from "../../../../hooks/trans.hook";
+import {GetServerSidePropsContext} from "next-redux-wrapper";
 
 const useStyles = createUseStyles((theme: Theme) => ({
     wrp: {
@@ -82,6 +83,9 @@ const PublicProfilePage = (): ReactElement => {
 
 export const getServerSideProps = wrapper.getServerSideProps(
     async (ctx): Promise<void> => {
+        const locale = ((ctx as unknown) as GetServerSidePropsContext & { locale: string }).locale; // TEMP before release next-redux-wrapper https://github.com/kirill-konshin/next-redux-wrapper
+        ctx.store.dispatch({ type: types.GET_TRANSLATIONS_START, payload: locale });
+
         ctx.store.dispatch({ type: types.GET_PUBLIC_PROFILE_START, payload: +(ctx.query?.profileId || 0) });
         ctx.store.dispatch(END);
         await (ctx.store as IStore).sagaTask?.toPromise();

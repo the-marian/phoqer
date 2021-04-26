@@ -23,7 +23,12 @@ tr:not(.mat-header-row) {
 tr {
     th.mat-header-cell,
     td.mat-cell {
+        width: 8%;
         padding: 1rem;
+    }
+
+    td.content {
+        width: 65%;
     }
 }
 

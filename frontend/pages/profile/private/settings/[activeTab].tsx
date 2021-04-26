@@ -16,6 +16,7 @@ import SettingsNav from '../../../../components/pages/profile/private/settings/s
 import useMedia from '../../../../hooks/media.hook';
 import useTrans from '../../../../hooks/trans.hook';
 import { wrapper } from '../../../../redux/store';
+import types from '../../../../redux/types';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     root: {
@@ -65,6 +66,9 @@ const Settings = (): ReactElement => {
 export const getServerSideProps = wrapper.getServerSideProps(
     async (ctx): Promise<void> => {
         if (serverRedirect((ctx as unknown) as GetServerSidePropsContext)) return;
+
+        const locale = ((ctx as unknown) as GetServerSidePropsContext & { locale: string }).locale; // TEMP before release next-redux-wrapper https://github.com/kirill-konshin/next-redux-wrapper
+        ctx.store.dispatch({ type: types.GET_TRANSLATIONS_START, payload: locale });
     },
 );
 

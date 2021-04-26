@@ -10,12 +10,15 @@ import {
     IOfferPagination,
     IPublicProfile,
     ISignup,
+    ITranslations,
+    Languages,
 } from '../interfaces';
 import { IBody } from '../redux/offers/new_offer/interfaces';
 import config from './config';
 
 const url1 = config.baseUrl[process.env.NODE_ENV]('v1');
 const url2 = config.baseUrl[process.env.NODE_ENV]('v2');
+const translationsUrl = config.baseUrl.translations;
 
 interface ICommentBody {
     body: string;
@@ -62,6 +65,9 @@ const api = {
             get: (id: number): Promise<AxiosResponse<IPublicProfile>> => axios.get(`${url2}/users/${id}`),
             userShort: (id: number): Promise<AxiosResponse<IPublicProfile>> => axios.get(`${url2}/users/short/${id}`),
         },
+    },
+    translations: {
+        get: (lang: Languages): Promise<AxiosResponse<ITranslations>> => axios.get(`${translationsUrl}/${lang}.json`),
     },
 };
 

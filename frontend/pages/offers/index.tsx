@@ -1,5 +1,6 @@
 import { GetServerSideProps } from 'next';
 import { useRouter } from 'next/router';
+import { GetServerSidePropsContext } from 'next-redux-wrapper';
 import React, { ReactElement } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { END } from 'redux-saga';
@@ -61,6 +62,9 @@ const OffersPage = (): ReactElement => {
 
 export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps(
     async (ctx): Promise<void> => {
+        const locale = ((ctx as unknown) as GetServerSidePropsContext & { locale: string }).locale; // TEMP before release next-redux-wrapper https://github.com/kirill-konshin/next-redux-wrapper
+        ctx.store.dispatch({ type: types.GET_TRANSLATIONS_START, payload: locale });
+
         // CATEGORIES
         ctx?.store?.dispatch({ type: types.GET_CATEGORIES_START });
         // OFFERS
