@@ -8,7 +8,6 @@ import Meta from '../../../components/layout/meta';
 import AuthContainer from '../../../components/pages/auth/auth-container';
 import useTrans from '../../../hooks/trans.hook';
 import { wrapper } from '../../../redux/store';
-import types from '../../../redux/types';
 
 const Login = (): ReactElement => {
     const trans = useTrans();

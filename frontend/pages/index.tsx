@@ -1,4 +1,3 @@
-import { GetServerSidePropsContext } from 'next-redux-wrapper';
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 import { END } from 'redux-saga';

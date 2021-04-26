@@ -1,6 +1,5 @@
 import { GetServerSideProps } from 'next';
 import { useRouter } from 'next/router';
-import { GetServerSidePropsContext } from 'next-redux-wrapper';
 import React, { ReactElement } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { END } from 'redux-saga';

@@ -1,5 +1,4 @@
 import { GetServerSideProps } from 'next';
-import { GetServerSidePropsContext } from 'next-redux-wrapper';
 import React, { ReactElement, useEffect } from 'react';
 import DayPicker from 'react-day-picker';
 import { createUseStyles } from 'react-jss';

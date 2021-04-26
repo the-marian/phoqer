@@ -14,7 +14,6 @@ import AuthRedirect from '../../../components/context/auth/auth-redirect';
 import Container from '../../../components/layout/container';
 import useAuth from '../../../hooks/auth.hook';
 import { wrapper } from '../../../redux/store';
-import types from '../../../redux/types';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     bg: {

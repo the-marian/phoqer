@@ -13,7 +13,6 @@ import ChatWrp from '../../../../components/pages/profile/private/messages/chat-
 import useMedia from '../../../../hooks/media.hook';
 import useTrans from '../../../../hooks/trans.hook';
 import { wrapper } from '../../../../redux/store';
-import types from '../../../../redux/types';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     main: {

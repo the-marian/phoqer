@@ -1,4 +1,3 @@
-import { GetServerSidePropsContext } from 'next';
 import React, { ReactElement } from 'react';
 import { useSelector } from 'react-redux';
 import { END } from 'redux-saga';

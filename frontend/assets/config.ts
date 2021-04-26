@@ -19,7 +19,6 @@ const config = {
                 : version === 'v1'
                 ? 'http://backend:8000/api/' + version
                 : 'http://fastapi:8001',
-        translations: 'http://localhost:4201',
     },
     uploadsUrl: (version = 'v1'): string => `http://phoqer.com/api/${version}/upload/`,
     host: (lang = 'pl'): string => `http://phoqer.com${lang === 'pl' ? '' : '/' + lang}`,
