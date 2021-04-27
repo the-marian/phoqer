@@ -11,7 +11,6 @@ interface IPalette {
     gray: string[];
     red: string[];
     green: string[];
-    soft: string[];
     grad: string[];
     yellow: string[];
     primary: string[];
@@ -43,7 +42,26 @@ export interface Theme {
 }
 
 const palette: { [key: string]: IPalette } = {
-    white: {
+    green: {
+        white: '#FFFFFF',
+        black: ['#222222', '#242424'],
+        trueWhite: '#FFFFFF',
+        trueBlack: '#222222',
+        glass: ['rgba(255, 255, 255, 0.8)', 'rgba(250, 250, 250, 0.8)'],
+        gray: ['#f9f9f9', '#e0e0e8', '#909bac', '#999999', '#444444'],
+        red: ['#DB162F'],
+        green: ['#065fa4'],
+        grad: [
+            'linear-gradient(90deg, #007CF0, #00DFD8)',
+            'linear-gradient(90deg, #7928CA, #FF0080)',
+            'linear-gradient(90deg, #FF4D4D, #F9CB28)',
+        ],
+        yellow: ['#EDBF18', '#FAF0CA'],
+        primary: ['#32603f', '#32603f'],
+        secondary: ['#dfece2'],
+        modal: 'rgba(0, 0, 0, 0.3)',
+    },
+    blue: {
         white: '#FFFFFF',
         black: ['#222222', '#242424'],
         trueWhite: '#FFFFFF',
@@ -52,14 +70,6 @@ const palette: { [key: string]: IPalette } = {
         gray: ['#f9f9f9', '#e0e0e8', '#909bac', '#999999', '#444444'],
         red: ['#DB162F'],
         green: ['#22cc52'],
-        soft: [
-            'linear-gradient(154deg,#fff8e0,#fbddd7)',
-            'linear-gradient(-205deg,rgba(251,244,223,0.6),rgba(223,247,251,0.6))',
-            'linear-gradient(168deg,#f9ecff,#ddfcf8)',
-            'linear-gradient(159deg,#e9c4ff,#ffd0d0)',
-            'linear-gradient(168deg,#ddf9ff,#cfc6ff)',
-            'linear-gradient(168deg,#e9ffea,#d1ddf7)',
-        ],
         grad: [
             'linear-gradient(90deg, #007CF0, #00DFD8)',
             'linear-gradient(90deg, #7928CA, #FF0080)',
@@ -67,10 +77,10 @@ const palette: { [key: string]: IPalette } = {
         ],
         yellow: ['#EDBF18', '#FAF0CA'],
         primary: ['#007aff', '#0040ff'],
-        secondary: ['#62a0ff'],
+        secondary: ['#e3ecf6'],
         modal: 'rgba(0, 0, 0, 0.3)',
     },
-    black: {
+    'black-blue': {
         white: '#222222',
         black: ['#FFFFFF', '#FEFEFE'],
         trueWhite: '#FFFFFF',
@@ -79,7 +89,6 @@ const palette: { [key: string]: IPalette } = {
         gray: ['#343434', '#454545', '#999999', '#AAAAAA', '#AAAAAA'],
         red: ['#DB162F'],
         green: ['#22cc52'],
-        soft: ['#343434', '#343434', '#343434', '#343434', '#343434', '#343434'],
         grad: [
             'linear-gradient(90deg, #007CF0, #00DFD8)',
             'linear-gradient(90deg, #7928CA, #FF0080)',
@@ -87,8 +96,27 @@ const palette: { [key: string]: IPalette } = {
         ],
         yellow: ['#EDBF18', '#FAF0CA'],
         primary: ['#007aff', '#0040ff'],
-        secondary: ['#62a0ff'],
+        secondary: ['#454545'],
         modal: 'rgba(0, 0, 0, 0.3)',
+    },
+    'black-violet': {
+        white: '#222222',
+        black: ['#FFFFFF', '#FEFEFE'],
+        trueWhite: '#FFFFFF',
+        trueBlack: '#222222',
+        glass: ['rgba(100, 100, 100, 0.8)', 'rgba(50, 50, 50, 0.8)'],
+        gray: ['#343434', '#454545', '#999999', '#AAAAAA', '#AAAAAA'],
+        red: ['#DB162F'],
+        green: ['#22cc52'],
+        grad: [
+            'linear-gradient(90deg, #007CF0, #00DFD8)',
+            'linear-gradient(90deg, #7928CA, #FF0080)',
+            'linear-gradient(90deg, #FF4D4D, #F9CB28)',
+        ],
+        yellow: ['#EDBF18', '#FAF0CA'],
+        primary: ['#ff43e6', '#9d43de'],
+        secondary: ['#565356'],
+        modal: 'rgba(0,0,0,0.3)',
     },
 };
 

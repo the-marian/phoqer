@@ -14,10 +14,10 @@ const useStyles = createUseStyles((theme: Theme) => ({
         borderRadius: '50%',
     },
     green: {
-        background: theme.palette.green[0],
+        background: '#22cc52',
     },
     gray: {
-        background: theme.palette.gray[2],
+        background: theme.palette.gray[1],
     },
 }));
 

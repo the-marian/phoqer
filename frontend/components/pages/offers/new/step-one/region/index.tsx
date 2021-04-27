@@ -20,7 +20,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     input: {
         display: 'flex',
         alignItems: 'center',
-        height: theme.rem(6),
+        height: theme.rem(5),
         width: '100%',
         padding: theme.rem(1, 2),
         background: theme.palette.trueWhite,

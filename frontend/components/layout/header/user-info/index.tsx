@@ -23,10 +23,11 @@ const useStyles = createUseStyles((theme: Theme) => ({
         fontSize: theme.rem(1.4),
     },
     item: {
-        marginLeft: theme.rem(4.5),
+        marginLeft: theme.rem(1),
+        borderRadius: theme.radius,
 
         ...theme.media(768).max({
-            marginLeft: theme.rem(1.2),
+            marginLeft: theme.rem(0.4),
         }),
     },
     text: {
@@ -38,6 +39,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
+        padding: theme.rem(0.5, 1.5),
         color: theme.palette.black[0],
 
         ...theme.media(768).max({
@@ -51,7 +53,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
             fontSize: '0',
         }),
         ...theme.hover({
-            color: theme.palette.primary[0],
+            '& svg': {
+                color: theme.palette.primary[0],
+            },
         }),
 
         '& svg': {

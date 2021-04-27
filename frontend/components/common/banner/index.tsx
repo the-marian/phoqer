@@ -23,7 +23,6 @@ const useStyles = createUseStyles((theme: Theme) => ({
         width: '100%',
         padding: theme.rem(6),
         borderRadius: theme.radius,
-        background: theme.palette.soft[1],
         color: theme.palette.trueBlack,
         textAlign: 'left',
         ...template(theme).outline,

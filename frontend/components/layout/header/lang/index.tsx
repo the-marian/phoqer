@@ -15,6 +15,12 @@ const useStyles = createUseStyles((theme: Theme) => ({
             marginLeft: '0',
         }),
     },
+    lang: {
+        '& p': {
+            background: theme.palette.primary[0],
+            color: theme.palette.trueWhite,
+        },
+    },
 }));
 
 const LANGS: IDropList[] = [
@@ -42,8 +48,9 @@ const Lang = (): ReactElement => {
     return (
         <div className={css.wrp}>
             <DropDown
+                className={css.lang}
                 minWidth={15}
-                height={3.5}
+                height={3}
                 defaultValue={{ name: history.locale?.toUpperCase() || 'EN', slug: history?.locale || 'en', type: 'main' }}
                 data={LANGS}
                 onChange={handleChange}

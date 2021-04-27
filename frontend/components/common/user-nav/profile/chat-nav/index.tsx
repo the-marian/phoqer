@@ -20,7 +20,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     item: itemSvg(theme),
     ...nav(theme),
     chatWrp: {
-        margin: theme.rem(2, 0, 0),
+        margin: theme.rem(1, 0, 0),
         maxWidth: '100%',
     },
 }));
@@ -61,7 +61,7 @@ const ProfileChatNav = ({ active }: IProps): ReactElement | null => {
     ];
 
     return (
-        <div className={clsx(css.wrp, css.chatWrp, theme === 'black' && css.black)}>
+        <div className={clsx(css.wrp, css.chatWrp, theme.includes('black') && css.black)}>
             <NavTabs
                 tabs={[...extraTabs, ...profileTabs]}
                 classNameWrp={css.nav}

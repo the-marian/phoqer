@@ -36,7 +36,7 @@ const PhotosUploadModal = (): ReactElement => {
 
     return (
         <MidModalWrp>
-            <Dashboard theme={theme === 'white' ? 'light' : 'dark'} width="100%" uppy={uppy} height={media ? 500 : 350} />
+            <Dashboard theme={theme.includes('black') ? 'dark' : 'light'} width="100%" uppy={uppy} height={media ? 500 : 350} />
         </MidModalWrp>
     );
 };

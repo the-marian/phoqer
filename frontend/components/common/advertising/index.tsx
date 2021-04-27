@@ -12,7 +12,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         margin: '5rem auto',
         padding: theme.rem(10),
         borderRadius: theme.radius,
-        background: theme.palette.soft[0],
+        background: theme.palette.secondary[0],
         fontSize: theme.rem(1.6),
         textAlign: 'center',
         color: theme.palette.black[0],

@@ -29,7 +29,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     location: {
         display: 'flex',
         alignItems: 'center',
-        height: theme.rem(6),
+        height: theme.rem(5),
         width: '48%',
         padding: theme.rem(2),
         fontSize: theme.rem(1.6),

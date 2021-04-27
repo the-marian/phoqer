@@ -6,7 +6,7 @@ import { faBullhorn } from '@fortawesome/free-solid-svg-icons/faBullhorn';
 import { faSlidersH } from '@fortawesome/free-solid-svg-icons/faSlidersH';
 import { faUserPlus } from '@fortawesome/free-solid-svg-icons/faUserPlus';
 
-import { ITabs, ITabsNum } from '../interfaces';
+import { ITabs, ITabsNum, Themes } from '../interfaces';
 import routes from './routes';
 
 const config = {
@@ -23,6 +23,7 @@ const config = {
     uploadsUrl: (version = 'v1'): string => `http://phoqer.com/api/${version}/upload/`,
     host: (lang = 'pl'): string => `http://phoqer.com${lang === 'pl' ? '' : '/' + lang}`,
     img: 'http://phoqer.com',
+    themes: ['blue', 'green', 'black-blue', 'black-violet'] as Themes[],
     offers: {
         grid: {
             desktop: 4,
@@ -83,7 +84,6 @@ const config = {
             text: trans('analytics'),
             link: routes.profile.private.analytics(),
             icon: faChartBar,
-            blank: true,
         },
     ],
     userProfileLinks: (trans: (v: string) => string, count?: ITabsNum): ITabs[] => [
@@ -124,7 +124,6 @@ const config = {
             text: trans('analytics'),
             link: routes.profile.private.analytics(),
             icon: faChartBar,
-            blank: true,
         },
     ],
 };
