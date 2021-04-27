@@ -32,7 +32,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     textarea: {
         ...template(theme).input,
         maxHeight: '70vh',
-        minHeight: theme.rem(6),
+        minHeight: theme.rem(5),
         boxShadow: 'unset',
         background: theme.palette.white,
         border: theme.border(0.2, 'transparent'),
@@ -52,7 +52,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
     submit: {
         width: theme.rem(8),
-        height: theme.rem(6),
+        height: theme.rem(5),
         margin: theme.rem(0, 1),
         background: theme.palette.gray[1],
         color: theme.palette.black[0],

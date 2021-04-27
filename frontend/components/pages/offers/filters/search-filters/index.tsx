@@ -113,8 +113,8 @@ const useStyles = createUseStyles((theme: Theme) => ({
     reset: {
         ...template(theme).btn,
         marginRight: theme.rem(2),
-        background: theme.palette.gray[1],
-        color: theme.palette.black[0],
+        background: theme.palette.primary[0],
+        color: theme.palette.trueWhite,
 
         '& span': {
             marginLeft: theme.rem(1),

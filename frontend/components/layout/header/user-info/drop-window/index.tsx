@@ -8,7 +8,7 @@ import UserNavDropdown from '../../../../common/user-nav/user-nav-dropdown';
 const useStyles = createUseStyles((theme: Theme) => ({
     root: {
         position: 'fixed',
-        top: theme.rem(10),
+        top: theme.rem(7),
         right: '15%',
         zIndex: 10001,
         minWidth: theme.rem(30),
@@ -19,7 +19,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         border: theme.border(0.1, theme.palette.gray[1]),
 
         ...theme.media(500).max({
-            top: theme.rem(8),
+            top: theme.rem(6),
             right: '5%',
         }),
         '&.appear': {

@@ -135,10 +135,12 @@ svg {
     background: #999999;
 }
 
-.black body {
+.black-blue body,
+.black-violet body {
     background: #222222;
 }
 
-.white body {
+.green body,
+.blue body {
     background: #ffffff;
 }

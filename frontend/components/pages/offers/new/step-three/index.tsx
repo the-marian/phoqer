@@ -86,7 +86,12 @@ const StepThree = (): ReactElement => {
             <h4 className={css.title}>Добавьте фото вашего товара</h4>
             <h5 className={css.subtitle}>Не больше 3мб (.png .jpg .jpeg)</h5>
 
-            <Dashboard theme={theme === 'white' ? 'light' : 'dark'} uppy={uppy} hideUploadButton height={media ? 500 : 350} />
+            <Dashboard
+                theme={theme.includes('black') ? 'dark' : 'light'}
+                uppy={uppy}
+                hideUploadButton
+                height={media ? 500 : 350}
+            />
 
             <div className={css.btnWrp}>
                 <button type="button" className={css.btn} onClick={handleBack}>

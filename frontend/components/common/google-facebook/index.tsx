@@ -11,8 +11,8 @@ const useStyles = createUseStyles((theme: Theme) => ({
         alignItems: 'center',
     },
     socials: {
-        height: theme.rem(6),
-        width: theme.rem(6),
+        height: theme.rem(5),
+        width: theme.rem(5),
         fontSize: theme.rem(2),
         margin: theme.rem(1),
         padding: theme.rem(1),

@@ -126,7 +126,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         flexWrap: 'wrap',
 
         '& img': {
-            height: theme.rem(6),
+            height: theme.rem(5),
             width: theme.rem(9),
             borderRadius: theme.radius,
             margin: theme.rem(0, 1, 1, 0),

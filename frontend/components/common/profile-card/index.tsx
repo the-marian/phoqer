@@ -25,7 +25,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         justifyContent: 'space-between',
         padding: theme.rem(2),
         borderRadius: theme.radius,
-        background: theme.palette.gray[1],
+        background: theme.palette.secondary[0],
 
         ...theme.media(450).max({
             flexDirection: 'column',
@@ -57,7 +57,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         marginBottom: theme.rem(2),
     },
     name: {
-        color: theme.palette.black[0],
+        color: theme.palette.primary[0],
         fontSize: theme.rem(2),
         fontWeight: theme.text.weight[3],
 

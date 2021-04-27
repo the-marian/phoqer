@@ -79,7 +79,7 @@ export const item = (theme: Theme): Styles => ({
     display: 'flex',
     alignItems: 'center',
     height: theme.rem(4.5),
-    margin: theme.rem(0, 1),
+    margin: theme.rem(0, 0.5),
     padding: theme.rem(0.5, 1.8),
     background: theme.palette.gray[0],
     color: theme.palette.black[0],

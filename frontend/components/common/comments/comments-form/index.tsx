@@ -40,7 +40,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
     textarea: {
         ...template(theme).input,
-        minHeight: theme.rem(6),
+        minHeight: theme.rem(5),
         padding: theme.rem(1.5),
         fontSize: theme.rem(1.4),
         background: theme.palette.gray[1],
@@ -190,7 +190,12 @@ const CommentsForm = ({ onSubmit }: IProps): ReactElement => {
             {error && <small className={clsx(css.small, css.errorText)}>{error}</small>}
 
             {attachment && (
-                <Dashboard theme={theme === 'white' ? 'light' : 'dark'} hideUploadButton uppy={uppy} height={media ? 230 : 200} />
+                <Dashboard
+                    theme={theme.includes('black') ? 'dark' : 'light'}
+                    hideUploadButton
+                    uppy={uppy}
+                    height={media ? 230 : 200}
+                />
             )}
 
             <button type="button" className={css.attachment} onClick={handleAttachment}>

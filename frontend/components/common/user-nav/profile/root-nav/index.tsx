@@ -26,7 +26,7 @@ const ProfileNav = ({ active }: IProps): ReactElement => {
     const profileTabs: ITabs[] = config.userProfileLinks(trans, { messages: 5, reviews: 4 });
 
     return (
-        <div className={clsx(css.wrp, theme === 'black' && css.black)}>
+        <div className={clsx(css.wrp, theme.includes('black') && css.black)}>
             <NavTabs tabs={profileTabs} classNameWrp={css.nav} className={css.item} activeClass={css.active} active={active} />
         </div>
     );

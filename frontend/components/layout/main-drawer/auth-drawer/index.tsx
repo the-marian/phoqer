@@ -23,11 +23,7 @@ import UserNavDropdown from '../../../common/user-nav/user-nav-dropdown';
 const useStyles = createUseStyles((theme: Theme) => ({
     buttons: {
         display: 'flex',
-        margin: theme.rem(4, 0),
-
-        ...theme.media(768).max({
-            margin: theme.rem(2, 0),
-        }),
+        margin: theme.rem(2, 0),
     },
     btn: {
         ...template(theme).btn,
@@ -35,13 +31,10 @@ const useStyles = createUseStyles((theme: Theme) => ({
         minWidth: theme.rem(8),
         marginRight: theme.rem(1),
         padding: 0,
-        background: theme.palette.primary[0],
-        color: theme.palette.trueWhite,
+        boxShadow: 'none',
+        background: theme.palette.secondary[0],
+        color: theme.palette.primary[0],
         transitions: theme.transitions[0],
-
-        ...theme.hover({
-            background: theme.palette.primary[1],
-        }),
     },
 }));
 
