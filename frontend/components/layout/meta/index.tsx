@@ -20,7 +20,7 @@ interface IProps {
     title?: string;
     description?: string;
     keywords?: string;
-    icon?: string;
+    icon?: string | null;
     h1?: string;
 }
 
@@ -29,7 +29,7 @@ const Meta = ({ title, description, keywords, icon, h1 = '' }: IProps): ReactEle
     const trans = useTrans();
     const history = useRouter();
 
-    const url = (lang = 'pl'): string => config.host(lang) + history.pathname;
+    const url = (lang = 'pl'): string => config.host(lang);
 
     return (
         <>
@@ -65,7 +65,7 @@ const Meta = ({ title, description, keywords, icon, h1 = '' }: IProps): ReactEle
                 <meta property="og:url" content={url()} />
                 <meta property="og:title" content={title?.trim() ? `${title} | Phoqer` : 'Phoqer'} />
                 <meta property="og:description" content={description || trans('site_desc')} />
-                <meta property="og:image" content={icon || `${url()}about.jpg`} />
+                <meta property="og:image" content={icon || `/about.jpg`} />
                 <meta property="og:url" content={url()} />
                 <meta property="og:site_name" content="Phoqer" />
 
@@ -74,13 +74,13 @@ const Meta = ({ title, description, keywords, icon, h1 = '' }: IProps): ReactEle
                 <meta property="twitter:url" content={url()} />
                 <meta property="twitter:title" content={title?.trim() ? `${title} | Phoqer` : 'Phoqer'} />
                 <meta property="twitter:description" content={description || trans('site_desc')} />
-                <meta property="twitter:image" content={icon || `${url()}about.jpg`} />
+                <meta property="twitter:image" content={icon || `/about.jpg`} />
 
                 <meta name="parsely-link" content={url(history.locale)} />
 
                 <meta name="theme-color" content="007aff" />
                 <link href="/manifest.json" rel="manifest" />
-                <link href={icon || `${url()}icons/icon-512.png`} rel="icon" type="image/png" />
+                <link href={icon || '/icons/icon-512.png'} rel="icon" type="image/png" />
                 <link href="/icons/icon-72.png" rel="icon" type="image/png" sizes="16x16" />
                 <link href="/icons/icon-72.png" rel="icon" type="image/png" sizes="32x32" />
                 <link href="/icons/icon-72.png" rel="icon" type="image/png" sizes="72x72" />

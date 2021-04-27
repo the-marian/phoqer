@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux';
 
 import { findCategory, findSubCategory, formatCatList } from '../../../../assets/helpers';
 import { Theme } from '../../../../assets/theme';
+import useMedia from '../../../../hooks/media.hook';
 import useTrans from '../../../../hooks/trans.hook';
 import { ICategories, IDropValue, ISearch, IState } from '../../../../interfaces';
 import DropDown from '../../drop-down';
@@ -30,7 +31,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         display: 'flex',
         alignItems: 'center',
         height: theme.rem(5),
-        width: '48%',
+        width: '49%',
         padding: theme.rem(2),
         fontSize: theme.rem(1.6),
         color: theme.palette.primary[0],
@@ -60,7 +61,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         width: theme.rem(2.4),
     },
     drop: {
-        width: '48%',
+        width: '49%',
     },
 }));
 
@@ -71,6 +72,7 @@ interface IProps {
 const OptionsMobile = ({ onChange }: IProps): ReactElement => {
     const css = useStyles();
     const trans = useTrans();
+    const tablet = useMedia(1100);
 
     const search = useSelector<IState, ISearch>(state => state.config.searchParams);
     const data = useSelector<IState, ICategories[]>(state => state.categories);
@@ -94,7 +96,7 @@ const OptionsMobile = ({ onChange }: IProps): ReactElement => {
                     defaultValue={defaultValue}
                     placeholder={trans('select_category')}
                     onChange={onChange}
-                    height={6}
+                    height={tablet ? 6 : 5}
                     withSub
                 />
             </div>

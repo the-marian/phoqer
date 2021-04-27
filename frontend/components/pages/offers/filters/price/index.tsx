@@ -25,6 +25,10 @@ const useStyles = createUseStyles((theme: Theme) => ({
         gridTemplateColumns: theme.fr(2),
         gridGap: theme.rem(1),
         marginBottom: theme.rem(2.5),
+
+        ...theme.media(768).max({
+            gridGap: '4%',
+        }),
     },
     input: {
         ...template(theme).input,

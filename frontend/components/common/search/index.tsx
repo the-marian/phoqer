@@ -55,6 +55,10 @@ const useStyles = createUseStyles((theme: Theme) => ({
         border: 'none',
         ...template(theme).outline,
 
+        ...theme.media(1100).max({
+            height: theme.rem(5),
+        }),
+
         ...theme.media(768).max({
             fontSize: theme.rem(1.6),
         }),
@@ -74,7 +78,8 @@ const useStyles = createUseStyles((theme: Theme) => ({
         height: theme.rem(6),
 
         ...theme.media(1100).max({
-            width: '31%',
+            width: '33%',
+            height: theme.rem(5),
         }),
         ...theme.media(550).max({
             width: '100%',
@@ -107,10 +112,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
             display: 'flex',
             justifyContent: 'space-between',
             width: '100%',
-            margin: theme.rem(3, 0, 0),
+            margin: theme.rem(1, 0, 0),
         }),
         ...theme.media(550).max({
-            margin: theme.rem(2, 0, 0),
             flexDirection: 'column',
         }),
     },
