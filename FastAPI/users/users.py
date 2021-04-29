@@ -52,7 +52,7 @@ async def activate_user(jwt: str) -> RedirectResponse:
             detail="Invalid JWT",
         )
     await crud.activate_user(user_email)
-    return RedirectResponse("https://svoinarige.ru/thanks")
+    return RedirectResponse(f"http://phoqer.com/auth/confirmation?userId={user_email}")
 
 
 @router.get("/me", response_model=User)
