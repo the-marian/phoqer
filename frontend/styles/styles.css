@@ -136,11 +136,13 @@ svg {
 }
 
 .black-blue body,
+.black-aqua body,
 .black-violet body {
     background: #222222;
 }
 
 .green body,
+.aqua body,
 .blue body {
     background: #ffffff;
 }
