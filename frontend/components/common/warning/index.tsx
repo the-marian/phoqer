@@ -15,16 +15,16 @@ const useStyles = createUseStyles((theme: Theme) => ({
         justifyContent: 'center',
         width: '100%',
         padding: theme.rem(1),
-        background: theme.palette.yellow[0],
-        color: theme.palette.trueBlack,
+        background: theme.palette.gray[0],
+        color: theme.palette.black[0],
         fontSize: theme.rem(2),
     },
     btn: {
         padding: theme.rem(1, 3),
         marginLeft: theme.rem(2),
         borderRadius: theme.radius,
-        background: theme.palette.trueWhite,
-        color: theme.palette.trueBlack,
+        background: theme.palette.primary[0],
+        color: theme.palette.trueWhite,
     },
 }));
 

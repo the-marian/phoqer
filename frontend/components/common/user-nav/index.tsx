@@ -12,11 +12,15 @@ const useStyles = createUseStyles((theme: Theme) => ({
     noText: {
         '& button': {
             fontSize: 0,
-            background: theme.palette.gray[1],
+            background: theme.palette.secondary[0],
 
             '& svg': {
                 height: theme.rem(1.6),
                 width: theme.rem(1.6),
+            },
+
+            '& span': {
+                display: 'none',
                 margin: 0,
             },
         },

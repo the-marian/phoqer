@@ -23,7 +23,7 @@ const palette: { [key: string]: IPalette } = {
         glass: ['rgba(255, 255, 255, 0.8)', 'rgba(250, 250, 250, 0.8)'],
         gray: ['#f9f9f9', '#e0e0e8', '#909bac', '#999999', '#444444'],
         red: ['#DB162F'],
-        green: ['#22cc88'],
+        green: ['#227dcc'],
         grad: ['#e4ecdf', '#dfece2', '#dfecec'],
         yellow: ['#EDBF18', '#FAF0CA'],
         primary: ['#32603f', '#32603f'],

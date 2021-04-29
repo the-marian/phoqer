@@ -71,7 +71,6 @@ export const dateFromTimestamp = (value?: string | number | null | Date): Date |
     try {
         if (!value) throw new Error();
         const date = new Date(value);
-        console.log(value);
         if (!date.getDate()) throw new Error(); // for invalid date
         return date;
     } catch (error) {

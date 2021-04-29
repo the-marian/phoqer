@@ -101,8 +101,8 @@
     "delete": "Kasować",
     "publish": "Publikować",
     "my_settings": "Moje ustawienia",
-    "general": "Ustawienia główne",
-    "privacy": "Ustawienia prywatności",
+    "general": "Główny",
+    "privacy": "Prywatność",
     "change_email": "Zmień adres e-mail",
     "email": "E-mail",
     "old_password": "Aktualne hasło",
@@ -144,5 +144,6 @@
     "press_enter_send": "Naciśnij \"Enter\", aby wysłać wiadomość. Aby przerwać linię, naciśnij \"Enter + Shift\"",
     "comment": "Komentować",
     "comment_without_attachments": "Komentarz bez zdjęcia",
-    "add_attachments": "Dodaj zdjęcie"
+    "add_attachments": "Dodaj zdjęcie",
+    "personal_area": "Obszar Osobisty"
 }

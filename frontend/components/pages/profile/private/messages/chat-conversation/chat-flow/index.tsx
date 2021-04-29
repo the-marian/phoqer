@@ -7,7 +7,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
     root: {
         flexGrow: 2,
         height: '100%',
+        marginBottom: theme.rem(1),
         borderRadius: theme.radius,
+        background: theme.palette.gray[0],
         overflow: 'auto',
 
         ...theme.media(1060).max({

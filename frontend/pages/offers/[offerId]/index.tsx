@@ -221,7 +221,7 @@ const SingleOfferPage = (): ReactElement | null => {
                                 numberOfMonths={media ? 2 : 1}
                             />
 
-                            {auth?.access_token ? <Gift /> : null}
+                            {auth?.access_token ? <Gift style={{ padding: '8rem 4rem' }} /> : null}
 
                             <Comments />
                         </div>

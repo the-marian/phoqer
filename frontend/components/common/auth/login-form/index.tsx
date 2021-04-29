@@ -1,4 +1,4 @@
-import { faUser } from '@fortawesome/free-regular-svg-icons/faUser';
+import { faUserCircle } from '@fortawesome/free-regular-svg-icons/faUserCircle';
 import { faKey } from '@fortawesome/free-solid-svg-icons/faKey';
 import Link from 'next/link';
 import React, { ChangeEvent, FormEvent, MouseEvent, ReactElement, useState } from 'react';
@@ -129,7 +129,7 @@ const LoginForm = (): ReactElement => {
 
             <div className={css.wrp}>
                 <Input
-                    icon={faUser}
+                    icon={faUserCircle}
                     type="email"
                     value={value.username}
                     onChange={handleChange}

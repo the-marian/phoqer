@@ -11,7 +11,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         alignItems: 'center',
         flexDirection: 'column',
         flexWrap: 'wrap',
-        margin: theme.rem(2, 0),
+        margin: theme.rem(8, 0, 2),
     },
 }));
 

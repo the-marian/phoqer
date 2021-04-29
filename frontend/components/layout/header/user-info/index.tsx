@@ -1,5 +1,5 @@
 import { faHeart } from '@fortawesome/free-regular-svg-icons/faHeart';
-import { faUser } from '@fortawesome/free-regular-svg-icons/faUser';
+import { faUserCircle } from '@fortawesome/free-regular-svg-icons/faUserCircle';
 import { faPlus } from '@fortawesome/free-solid-svg-icons/faPlus';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import clsx from 'clsx';
@@ -126,7 +126,7 @@ const UserInfo = (): ReactElement => {
             <li className={css.item}>
                 <button type="button" className={clsx(css.link, drop && css.user)} onClick={handleClick}>
                     <NotifNumber className={css.number}>14</NotifNumber>
-                    <FontAwesomeIcon icon={faUser} />
+                    <FontAwesomeIcon icon={faUserCircle} />
                     <span className={css.text}>{userName.length > 20 ? userName.slice(0, 17) + '...' : userName}</span>
                 </button>
                 {drop && <DropWindow onClose={handleClick} />}

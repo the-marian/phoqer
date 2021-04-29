@@ -42,7 +42,7 @@ const Lang = (): ReactElement => {
     const css = useStyles();
     const history = useRouter();
     const handleChange = (value: IDropList | null): void => {
-        history.push(history.pathname, undefined, { locale: value?.slug || 'ru', scroll: false });
+        history.push(history.pathname, history.asPath, { locale: value?.slug || 'ru', scroll: false });
     };
 
     return (

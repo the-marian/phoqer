@@ -101,8 +101,8 @@
     "delete": "Delete",
     "publish": "Publish",
     "my_settings": "My settings",
-    "general": "General settings",
-    "privacy": "Privacy settings",
+    "general": "General",
+    "privacy": "Privacy",
     "change_email": "Change email",
     "email": "Email",
     "old_password": "Current password",
@@ -144,5 +144,6 @@
     "press_enter_send": "Press \"Enter\" to send the message. To break the line, press \"Enter + Shift\"",
     "comment": "Comment",
     "comment_without_attachments": "Comment without photo",
-    "add_attachments": "Add photos"
+    "add_attachments": "Add photos",
+    "personal_area": "Personal Area"
 }

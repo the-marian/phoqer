@@ -19,6 +19,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         borderRadius: '50%',
         objectFit: 'cover',
         ...template(theme).outline,
+        border: theme.border(0.2, theme.palette.trueWhite),
     },
     mark: {
         position: 'absolute',

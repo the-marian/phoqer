@@ -30,18 +30,6 @@ const useStyles = createUseStyles((theme: Theme) => ({
             padding: theme.rem(6, 0, 8),
         }),
     },
-    chat: {
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        width: '100%',
-        background: theme.palette.gray[0],
-        borderRadius: theme.radius,
-
-        ...theme.media(1060).max({
-            borderRadius: '0',
-        }),
-    },
 }));
 
 const MessagesChat = (): ReactElement => {
@@ -62,9 +50,7 @@ const MessagesChat = (): ReactElement => {
                 )}
 
                 <ChatWrp showSidebar={media} showConversation={true}>
-                    <div className={css.chat}>
-                        <Conversation />
-                    </div>
+                    <Conversation />
                 </ChatWrp>
             </main>
         </>

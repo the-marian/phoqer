@@ -9,19 +9,16 @@ import { useDispatch } from 'react-redux';
 import config from '../../../../../assets/config';
 import routes from '../../../../../assets/routes';
 import { Theme } from '../../../../../assets/theme';
-import useTheme from '../../../../../hooks/theme.hook';
 import useTrans from '../../../../../hooks/trans.hook';
 import { ITabs } from '../../../../../interfaces';
 import types from '../../../../../redux/types';
 import NavTabs from '../../index';
-import { itemSvg, nav } from '../profile.styles';
+import nav from '../profile.styles';
 
 const useStyles = createUseStyles((theme: Theme) => ({
-    item: itemSvg(theme),
     ...nav(theme),
-    chatWrp: {
-        margin: theme.rem(1, 0, 0),
-        maxWidth: '100%',
+    chat: {
+        margin: theme.rem(0.5, 1.5),
     },
 }));
 
@@ -32,11 +29,9 @@ interface IProps {
 const ProfileChatNav = ({ active }: IProps): ReactElement | null => {
     const css = useStyles();
     const trans = useTrans();
-    const [theme] = useTheme();
     const dispatch = useDispatch();
 
     const profileTabs: ITabs[] = config.userProfileLinks(trans, { messages: 5, reviews: 4 });
-
     const extraTabs: ITabs[] = [
         {
             id: 'menu',
@@ -61,15 +56,13 @@ const ProfileChatNav = ({ active }: IProps): ReactElement | null => {
     ];
 
     return (
-        <div className={clsx(css.wrp, css.chatWrp, theme.includes('black') && css.black)}>
-            <NavTabs
-                tabs={[...extraTabs, ...profileTabs]}
-                classNameWrp={css.nav}
-                className={css.item}
-                activeClass={css.active}
-                active={active}
-            />
-        </div>
+        <NavTabs
+            tabs={[...extraTabs, ...profileTabs]}
+            classNameWrp={clsx(css.nav, css.chat)}
+            className={css.item}
+            activeClass={css.active}
+            active={active}
+        />
     );
 };
 

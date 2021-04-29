@@ -14,7 +14,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     input: {
         ...template(theme).input,
         paddingRight: theme.rem(6),
-        background: theme.palette.gray[1],
+        background: theme.palette.gray[0],
     },
     search: {
         position: 'absolute',
@@ -22,7 +22,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         right: 0,
         height: theme.rem(5),
         width: theme.rem(5),
-        color: theme.palette.gray[3],
+        color: theme.palette.gray[4],
         borderRadius: theme.radius,
         ...template(theme).outline,
     },

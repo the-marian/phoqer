@@ -1,4 +1,4 @@
-import { faUser } from '@fortawesome/free-regular-svg-icons/faUser';
+import { faUserCircle } from '@fortawesome/free-regular-svg-icons/faUserCircle';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Link from 'next/link';
 import React, { ChangeEvent, FormEvent, ReactElement, useState } from 'react';
@@ -114,7 +114,7 @@ const ForgotPassForm = (): ReactElement => {
 
             <div className={css.wrp}>
                 <div className={css.icon}>
-                    <FontAwesomeIcon icon={faUser} />
+                    <FontAwesomeIcon icon={faUserCircle} />
                 </div>
                 <Input
                     value={email}

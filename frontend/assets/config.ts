@@ -1,10 +1,11 @@
 import { faChartBar } from '@fortawesome/free-regular-svg-icons/faChartBar';
 import { faCommentAlt } from '@fortawesome/free-regular-svg-icons/faCommentAlt';
 import { faEnvelope } from '@fortawesome/free-regular-svg-icons/faEnvelope';
-import { faUser } from '@fortawesome/free-regular-svg-icons/faUser';
-import { faBullhorn } from '@fortawesome/free-solid-svg-icons/faBullhorn';
+import { faFlag } from '@fortawesome/free-regular-svg-icons/faFlag';
+import { faPlusSquare } from '@fortawesome/free-regular-svg-icons/faPlusSquare';
+import { faUserCircle } from '@fortawesome/free-regular-svg-icons/faUserCircle';
+import { faBullseye } from '@fortawesome/free-solid-svg-icons/faBullseye';
 import { faSlidersH } from '@fortawesome/free-solid-svg-icons/faSlidersH';
-import { faUserPlus } from '@fortawesome/free-solid-svg-icons/faUserPlus';
 
 import { ITabs, ITabsNum, Themes } from '../interfaces';
 import routes from './routes';
@@ -45,13 +46,19 @@ const config = {
             id: 'my-profile',
             text: trans('my_profile'),
             link: routes.profile.public(userId),
-            icon: faUser,
+            icon: faUserCircle,
+        },
+        {
+            id: 'personal-area',
+            text: trans('personal_area'),
+            link: routes.profile.private.personal_area,
+            icon: faFlag,
         },
         {
             id: 'my-offers',
             text: trans('my_offers'),
             link: routes.profile.private.my_offers(),
-            icon: faBullhorn,
+            icon: faBullseye,
         },
         {
             id: 'messages',
@@ -71,7 +78,7 @@ const config = {
             id: 'referral',
             text: trans('invite_friends'),
             link: routes.profile.private.referral,
-            icon: faUserPlus,
+            icon: faPlusSquare,
         },
         {
             id: 'settings',
@@ -91,7 +98,7 @@ const config = {
             id: 'my-offers',
             text: trans('my_offers'),
             link: routes.profile.private.my_offers(),
-            icon: faBullhorn,
+            icon: faBullseye,
         },
         {
             id: 'messages',
@@ -111,7 +118,7 @@ const config = {
             id: 'referral',
             text: trans('invite_friends'),
             link: routes.profile.private.referral,
-            icon: faUserPlus,
+            icon: faPlusSquare,
         },
         {
             id: 'settings',

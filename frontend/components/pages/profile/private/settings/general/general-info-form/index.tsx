@@ -1,5 +1,5 @@
 import { faCompass } from '@fortawesome/free-regular-svg-icons/faCompass';
-import { faUser } from '@fortawesome/free-regular-svg-icons/faUser';
+import { faUserCircle } from '@fortawesome/free-regular-svg-icons/faUserCircle';
 import React, { ChangeEvent, ReactElement, useState } from 'react';
 import { createUseStyles } from 'react-jss';
 import { useSelector } from 'react-redux';
@@ -71,7 +71,7 @@ const GeneralInfoForm = (): ReactElement => {
                 <label className={css.label}>
                     <p className={css.text}>{trans('first_name')}</p>
                     <Input
-                        icon={faUser}
+                        icon={faUserCircle}
                         value={value.first_name}
                         errors={error.first_name}
                         onChange={handleChange}
@@ -87,7 +87,7 @@ const GeneralInfoForm = (): ReactElement => {
                 <label className={css.label}>
                     <p className={css.text}>{trans('last_name')}</p>
                     <Input
-                        icon={faUser}
+                        icon={faUserCircle}
                         value={value.last_name}
                         errors={error.last_name}
                         onChange={handleChange}

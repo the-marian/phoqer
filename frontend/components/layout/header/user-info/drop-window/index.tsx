@@ -58,6 +58,7 @@ const DropWindow = ({ onClose }: Props): ReactElement => {
             onClose();
         };
         window.addEventListener('keydown', handleClose);
+
         return () => window.removeEventListener('keydown', handleClose);
     }, []);
 

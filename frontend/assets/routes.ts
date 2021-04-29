@@ -11,6 +11,7 @@ const routes = {
     profile: {
         public: (id: ID = ':profileId'): string => `/profile/public/${id}`,
         private: {
+            personal_area: '/profile/private/',
             my_offers: (status = 'all'): string => `/profile/private/my-offers/${status}`,
             messages: (status: string | number = ''): string => `/profile/private/messages/${status}`,
             settings: (status: string | number = 'general'): string => `/profile/private/settings/${status}`,

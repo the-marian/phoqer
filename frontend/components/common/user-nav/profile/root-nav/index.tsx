@@ -1,19 +1,13 @@
-import clsx from 'clsx';
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
 import config from '../../../../../assets/config';
-import { Theme } from '../../../../../assets/theme';
-import useTheme from '../../../../../hooks/theme.hook';
 import useTrans from '../../../../../hooks/trans.hook';
 import { ITabs } from '../../../../../interfaces';
 import NavTabs from '../../index';
-import { itemSvg, nav } from '../profile.styles';
+import nav from '../profile.styles';
 
-const useStyles = createUseStyles((theme: Theme) => ({
-    item: itemSvg(theme),
-    ...nav(theme),
-}));
+const useStyles = createUseStyles(nav);
 
 interface IProps {
     active?: number | string;
@@ -22,14 +16,8 @@ interface IProps {
 const ProfileNav = ({ active }: IProps): ReactElement => {
     const css = useStyles();
     const trans = useTrans();
-    const [theme] = useTheme();
     const profileTabs: ITabs[] = config.userProfileLinks(trans, { messages: 5, reviews: 4 });
-
-    return (
-        <div className={clsx(css.wrp, theme.includes('black') && css.black)}>
-            <NavTabs tabs={profileTabs} classNameWrp={css.nav} className={css.item} activeClass={css.active} active={active} />
-        </div>
-    );
+    return <NavTabs tabs={profileTabs} classNameWrp={css.nav} className={css.item} activeClass={css.active} active={active} />;
 };
 
 export default ProfileNav;
