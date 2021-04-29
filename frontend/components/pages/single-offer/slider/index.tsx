@@ -114,6 +114,10 @@ const useStyles = createUseStyles((theme: Theme) => ({
         cursor: 'zoom-in',
 
         ...theme.media(768).max({
+            height: theme.rem(50),
+        }),
+
+        ...theme.media(500).max({
             height: theme.rem(30),
         }),
     },

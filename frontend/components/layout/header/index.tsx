@@ -20,7 +20,6 @@ const useStyles = createUseStyles((theme: Theme) => ({
         left: 0,
         zIndex: 10000,
         width: '100%',
-        padding: theme.rem(0.3, 0),
         background: theme.palette.gray[0],
         transition: theme.transitions[0],
 

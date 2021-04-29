@@ -46,7 +46,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         borderRadius: theme.radius,
         objectFit: 'cover',
         ...template(theme).outline,
-        ...theme.media(768).max({
+        ...theme.media(500).max({
             height: theme.rem(9),
         }),
     },

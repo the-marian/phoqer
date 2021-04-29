@@ -1,7 +1,9 @@
+import clsx from 'clsx';
 import React, { ReactElement, useEffect, useRef } from 'react';
 import { createUseStyles } from 'react-jss';
 import Slider from 'react-slick';
 
+import template from '../../../../assets/template';
 import { Theme } from '../../../../assets/theme';
 import FullPageModal from '../full-page-modal';
 
@@ -36,6 +38,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
             fontSize: 0,
             transition: theme.transitions[0],
             background: theme.palette.gray[4],
+            ...template(theme).outline,
 
             ...theme.media(768).max({
                 top: 'unset',
@@ -55,7 +58,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         },
 
         '& .slick-arrow.slick-prev': {
-            left: theme.rem(1),
+            left: theme.rem(2),
             borderRadius: theme.radius,
 
             '&::before': {
@@ -66,7 +69,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
             },
         },
         '& .slick-arrow.slick-next': {
-            right: theme.rem(1),
+            right: theme.rem(2),
             borderRadius: theme.radius,
 
             '&::before': {
@@ -75,6 +78,13 @@ const useStyles = createUseStyles((theme: Theme) => ({
                 borderRight: theme.border(0.3, theme.palette.white),
                 transition: theme.transitions[0],
             },
+        },
+    },
+    mobile: {
+        '& .slick-arrow': {
+            top: 'unset',
+            bottom: '0',
+            transform: 'translateY(calc(-100% - 1rem))',
         },
     },
     slide: {
@@ -123,15 +133,21 @@ const useStyles = createUseStyles((theme: Theme) => ({
             display: 'block',
         },
     },
+    mobileDots: {
+        bottom: theme.rem(6),
+    },
 }));
 
 interface IProps {
     images: string[];
 }
 
+const toMatch = /mobile|iphone|ipod|android|blackberry|opera|mini|windows\sce|palm|smartphone|iemobile|ipad|android 3.0|xoom|sch-i800|playbook|tablet|kindle/i;
+
 const FullPageGallery = ({ images }: IProps): ReactElement => {
     const css = useStyles();
     const ref = useRef<Slider>(null);
+    const isMobile = toMatch.test(window.navigator.userAgent || '');
 
     useEffect(() => {
         if (ref.current) {
@@ -167,8 +183,8 @@ const FullPageGallery = ({ images }: IProps): ReactElement => {
                 slidesToShow={1}
                 initialSlide={0}
                 slidesToScroll={1}
-                className={css.wrp}
-                dotsClass={css.dots}
+                className={clsx(css.wrp, isMobile && css.mobile)}
+                dotsClass={clsx(css.dots, isMobile && css.mobileDots)}
                 accessibility={false}
                 lazyLoad="progressive"
                 appendDots={dots => (

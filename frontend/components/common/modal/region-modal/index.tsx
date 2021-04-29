@@ -6,7 +6,7 @@ import SmallModalWrp from '../small-modal-wrp';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     root: {
-        fontSize: theme.rem(1.6),
+        fontSize: theme.rem(1.4),
     },
 }));
 

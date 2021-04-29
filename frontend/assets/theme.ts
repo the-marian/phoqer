@@ -1,22 +1,7 @@
 import { Styles } from 'jss';
 
 import { Themes } from '../interfaces';
-
-interface IPalette {
-    white: string;
-    black: string[];
-    trueWhite: string;
-    trueBlack: string;
-    glass: string[];
-    gray: string[];
-    red: string[];
-    green: string[];
-    grad: string[];
-    yellow: string[];
-    primary: string[];
-    secondary: string[];
-    modal: string;
-}
+import palette, { IPalette } from './palette';
 
 interface IMedia {
     max: (value: Styles) => Styles;
@@ -40,85 +25,6 @@ export interface Theme {
     };
     transitions: [string, string];
 }
-
-const palette: { [key: string]: IPalette } = {
-    green: {
-        white: '#FFFFFF',
-        black: ['#222222', '#242424'],
-        trueWhite: '#FFFFFF',
-        trueBlack: '#222222',
-        glass: ['rgba(255, 255, 255, 0.8)', 'rgba(250, 250, 250, 0.8)'],
-        gray: ['#f9f9f9', '#e0e0e8', '#909bac', '#999999', '#444444'],
-        red: ['#DB162F'],
-        green: ['#065fa4'],
-        grad: [
-            'linear-gradient(90deg, #007CF0, #00DFD8)',
-            'linear-gradient(90deg, #7928CA, #FF0080)',
-            'linear-gradient(90deg, #FF4D4D, #F9CB28)',
-        ],
-        yellow: ['#EDBF18', '#FAF0CA'],
-        primary: ['#32603f', '#32603f'],
-        secondary: ['#dfece2'],
-        modal: 'rgba(0, 0, 0, 0.3)',
-    },
-    blue: {
-        white: '#FFFFFF',
-        black: ['#222222', '#242424'],
-        trueWhite: '#FFFFFF',
-        trueBlack: '#222222',
-        glass: ['rgba(255, 255, 255, 0.8)', 'rgba(250, 250, 250, 0.8)'],
-        gray: ['#f9f9f9', '#e0e0e8', '#909bac', '#999999', '#444444'],
-        red: ['#DB162F'],
-        green: ['#22cc52'],
-        grad: [
-            'linear-gradient(90deg, #007CF0, #00DFD8)',
-            'linear-gradient(90deg, #7928CA, #FF0080)',
-            'linear-gradient(90deg, #FF4D4D, #F9CB28)',
-        ],
-        yellow: ['#EDBF18', '#FAF0CA'],
-        primary: ['#007aff', '#0040ff'],
-        secondary: ['#e3ecf6'],
-        modal: 'rgba(0, 0, 0, 0.3)',
-    },
-    'black-blue': {
-        white: '#222222',
-        black: ['#FFFFFF', '#FEFEFE'],
-        trueWhite: '#FFFFFF',
-        trueBlack: '#222222',
-        glass: ['rgba(100, 100, 100, 0.8)', 'rgba(50, 50, 50, 0.8)'],
-        gray: ['#343434', '#454545', '#999999', '#AAAAAA', '#AAAAAA'],
-        red: ['#DB162F'],
-        green: ['#22cc52'],
-        grad: [
-            'linear-gradient(90deg, #007CF0, #00DFD8)',
-            'linear-gradient(90deg, #7928CA, #FF0080)',
-            'linear-gradient(90deg, #FF4D4D, #F9CB28)',
-        ],
-        yellow: ['#EDBF18', '#FAF0CA'],
-        primary: ['#007aff', '#0040ff'],
-        secondary: ['#454545'],
-        modal: 'rgba(0, 0, 0, 0.3)',
-    },
-    'black-violet': {
-        white: '#222222',
-        black: ['#FFFFFF', '#FEFEFE'],
-        trueWhite: '#FFFFFF',
-        trueBlack: '#222222',
-        glass: ['rgba(100, 100, 100, 0.8)', 'rgba(50, 50, 50, 0.8)'],
-        gray: ['#343434', '#454545', '#999999', '#AAAAAA', '#AAAAAA'],
-        red: ['#DB162F'],
-        green: ['#22cc52'],
-        grad: [
-            'linear-gradient(90deg, #007CF0, #00DFD8)',
-            'linear-gradient(90deg, #7928CA, #FF0080)',
-            'linear-gradient(90deg, #FF4D4D, #F9CB28)',
-        ],
-        yellow: ['#EDBF18', '#FAF0CA'],
-        primary: ['#ff43e6', '#9d43de'],
-        secondary: ['#565356'],
-        modal: 'rgba(0,0,0,0.3)',
-    },
-};
 
 export const theme = (value: Themes): Theme => ({
     fr: (value: number): string => Array(value).fill('1fr').join(' '),

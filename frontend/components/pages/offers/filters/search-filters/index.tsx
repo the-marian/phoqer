@@ -123,7 +123,6 @@ const useStyles = createUseStyles((theme: Theme) => ({
         ...theme.media(500).max({
             width: '100%',
             margin: theme.rem(0, 0, 2),
-            fontSize: theme.rem(1.6),
         }),
     },
     hr: {

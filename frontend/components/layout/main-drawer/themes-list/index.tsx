@@ -65,10 +65,24 @@ const useStyles = createUseStyles((theme: Theme) => ({
             background: '#32603F',
         },
     },
+    aqua: {
+        '& > span:nth-of-type(1)': {
+            background: '#03a8ae',
+        },
+    },
     'black-blue': {
         background: theme.palette.trueBlack,
         '& > span:nth-of-type(1)': {
             background: '#007AFF',
+        },
+        '& > span:nth-last-of-type(1)': {
+            background: '#454545',
+        },
+    },
+    'black-aqua': {
+        background: theme.palette.trueBlack,
+        '& > span:nth-of-type(1)': {
+            background: '#03a8ae',
         },
         '& > span:nth-last-of-type(1)': {
             background: '#454545',
@@ -113,8 +127,8 @@ const ThemesItem = ({ element }: IProps): ReactElement => {
     );
 };
 
-const white: Themes[] = ['blue', 'green'];
-const black: Themes[] = ['black-blue', 'black-violet'];
+const white: Themes[] = ['blue', 'green', 'aqua'];
+const black: Themes[] = ['black-blue', 'black-violet', 'black-aqua'];
 
 const ThemesList = (): ReactElement => {
     const css = useStyles();

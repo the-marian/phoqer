@@ -32,7 +32,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         alignItems: 'center',
         height: theme.rem(5),
         width: '49%',
-        padding: theme.rem(2),
+        padding: theme.rem(0.5, 1),
         fontSize: theme.rem(1.6),
         color: theme.palette.primary[0],
         background: theme.palette.gray[1],
@@ -47,15 +47,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
             whiteSpace: 'nowrap',
             overflow: 'hidden',
             textOverflow: 'ellipsis',
-
-            ...theme.media(768).max({
-                fontSize: theme.rem(1.6),
-            }),
         },
-
-        ...theme.media(768).max({
-            fontSize: theme.rem(1.6),
-        }),
     },
     icon: {
         width: theme.rem(2.4),

@@ -57,10 +57,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
 
         ...theme.media(1100).max({
             height: theme.rem(5),
-        }),
-
-        ...theme.media(768).max({
-            fontSize: theme.rem(1.6),
+            paddingLeft: theme.rem(1.5),
         }),
     },
     input: {

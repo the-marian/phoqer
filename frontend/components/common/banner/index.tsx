@@ -23,7 +23,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         width: '100%',
         padding: theme.rem(6),
         borderRadius: theme.radius,
-        color: theme.palette.trueBlack,
+        color: theme.palette.black[0],
         textAlign: 'left',
         ...template(theme).outline,
 
@@ -32,7 +32,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         }),
     },
     animation: {
-        background: 'linear-gradient(-45deg, #f9ecff, #e9c4ff, #ddfcf8, #f5f1e5, #ffd0d0, #e4f4f6)',
+        background: `linear-gradient(-45deg, ${theme.palette.grad})`,
         backgroundSize: '400% 400%',
         animation: '$grad 15s ease infinite',
     },

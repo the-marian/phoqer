@@ -33,7 +33,6 @@ const useStyles = createUseStyles((theme: Theme) => ({
         ...theme.media(940).max({
             flexDirection: 'column',
             marginTop: theme.rem(2),
-            fontSize: theme.rem(1.6),
         }),
     },
     main: {

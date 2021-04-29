@@ -64,7 +64,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
             width: theme.rem(5),
             height: theme.rem(4),
             margin: theme.rem(0, 0.5),
-            fontSize: theme.rem(1.2),
+            fontSize: theme.rem(1.4),
         }),
     },
     dropdown: {

@@ -33,8 +33,12 @@ const useStyles = createUseStyles((theme: Theme) => ({
         padding: 0,
         boxShadow: 'none',
         background: theme.palette.secondary[0],
-        color: theme.palette.primary[0],
+        color: theme.palette.black[0],
         transitions: theme.transitions[0],
+
+        ...theme.hover({
+            color: theme.palette.primary[0],
+        }),
     },
 }));
 

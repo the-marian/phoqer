@@ -18,7 +18,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         padding: theme.rem(4, 1, 1),
 
         ...theme.media(1060).max({
-            padding: theme.rem(2, 1.5, 12),
+            padding: theme.rem(2, 1.5, 4),
         }),
     },
 }));

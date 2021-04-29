@@ -17,7 +17,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     wrp: {
         position: 'relative',
         width: '100%',
-        height: theme.rem(0.5),
+        height: theme.rem(0.3),
         background: theme.palette.gray[1],
         overflow: 'hidden',
     },

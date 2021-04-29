@@ -3,6 +3,7 @@ import { createUseStyles } from 'react-jss';
 
 import { Theme } from '../../../../assets/theme';
 import ButtonClose from '../../button-close';
+import Logo from '../../logo';
 import { modal } from '../index';
 
 const useStyles = createUseStyles((theme: Theme) => ({
@@ -27,6 +28,11 @@ const useStyles = createUseStyles((theme: Theme) => ({
         top: 0,
         right: 0,
     },
+    logo: {
+        position: 'absolute',
+        top: theme.rem(0.2),
+        left: theme.rem(2),
+    },
 }));
 
 interface IProps {
@@ -37,6 +43,7 @@ const SmallModalWrp = ({ children }: IProps): ReactElement => {
     const css = useStyles();
     return (
         <div className={css.inner}>
+            <Logo className={css.logo} link />
             <ButtonClose className={css.button} onClick={modal.close} />
             {children}
         </div>

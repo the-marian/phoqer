@@ -32,7 +32,11 @@ const useStyles = createUseStyles((theme: Theme) => ({
         fontSize: theme.rem(3),
         '-webkit-background-clip': 'text',
         '-webkit-text-fill-color': 'transparent',
-        background: theme.palette.grad[2],
+        background: theme.palette.primary[0],
+
+        ...theme.media(768).max({
+            fontSize: theme.rem(2),
+        }),
     },
     red: {
         color: theme.palette.red[0],

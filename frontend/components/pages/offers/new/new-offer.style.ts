@@ -187,7 +187,7 @@ const newOfferTemplate = (theme: Theme): Template => ({
             },
 
             ...theme.media(768).max({
-                padding: theme.rem(1.6, 2),
+                padding: theme.rem(1.6, 1),
             }),
         },
         btnWrp: {

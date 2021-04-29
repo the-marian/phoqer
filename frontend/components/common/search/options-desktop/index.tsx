@@ -23,7 +23,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         alignItems: 'center',
         width: '50%',
         height: '100%',
-        padding: theme.rem(2),
+        padding: theme.rem(0.5, 1),
         fontSize: theme.rem(1.6),
         background: 'none',
         border: 'none',

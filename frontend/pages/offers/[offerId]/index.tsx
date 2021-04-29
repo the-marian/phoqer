@@ -58,7 +58,6 @@ const useStyles = createUseStyles((theme: Theme) => ({
         ...theme.media(1100).max({
             flexDirection: 'column',
             marginTop: theme.rem(2),
-            fontSize: theme.rem(1.6),
         }),
     },
     main: {
@@ -79,7 +78,6 @@ const useStyles = createUseStyles((theme: Theme) => ({
 
         ...theme.media(768).max({
             margin: theme.rem(3, 0, 1),
-            fontSize: theme.rem(2.5),
         }),
     },
     calendar: {
@@ -91,7 +89,6 @@ const useStyles = createUseStyles((theme: Theme) => ({
         }),
         ...theme.media(768).max({
             width: '100%',
-            fontSize: theme.rem(1.8),
         }),
 
         '& .DayPicker-wrapper': {

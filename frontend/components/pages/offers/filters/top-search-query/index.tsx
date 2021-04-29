@@ -86,10 +86,6 @@ const useStyles = createUseStyles((theme: Theme) => ({
             textDecoration: 'underline',
             color: theme.palette.primary[0],
         }),
-
-        ...theme.media(768).max({
-            fontSize: theme.rem(1.6),
-        }),
     },
 }));
 

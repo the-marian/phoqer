@@ -21,10 +21,6 @@ const template = (theme: Theme): Template => ({
         transition: theme.transitions[0],
         boxShadow: theme.shadow[1],
 
-        ...theme.media(500).max({
-            fontSize: theme.rem(1.6),
-        }),
-
         ...theme.focus({
             border: theme.border(0.2, theme.palette.primary[0]),
         }),
@@ -57,10 +53,6 @@ const template = (theme: Theme): Template => ({
         boxShadow: theme.shadow[1],
         border: theme.border(0.2, 'transparent'),
         transition: theme.transitions[0],
-
-        ...theme.media(500).max({
-            fontSize: theme.rem(1.6),
-        }),
 
         ...theme.focus({
             border: theme.border(0.2, theme.palette.primary[0]),
