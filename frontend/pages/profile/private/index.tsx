@@ -11,6 +11,7 @@ import Meta from '../../../components/layout/meta';
 import PageLayout from '../../../components/layout/page-layout';
 import ProfileAside from '../../../components/pages/profile/private/personal_area/aside';
 import Content from '../../../components/pages/profile/private/personal_area/content';
+import useMedia from '../../../hooks/media.hook';
 import useTrans from '../../../hooks/trans.hook';
 import { wrapper } from '../../../redux/store';
 
@@ -40,25 +41,30 @@ const useStyles = createUseStyles((theme: Theme) => ({
 const Private = (): ReactElement => {
     const css = useStyles();
     const trans = useTrans();
+    const media = useMedia(1060);
 
     return (
         <>
             <Meta title={trans('personal_area')} h1={trans('user_profile_on_phoqer')} />
             <PageLayout>
                 <Container>
-                    <Breadcrumbs
-                        className={css.breadcrumbs}
-                        end={trans('personal_area')}
-                        data={[{ label: trans('to_home_page'), link: routes.root }]}
-                    />
-                    <div className={css.flex}>
-                        <aside className={css.aside}>
-                            <ProfileAside />
-                        </aside>
-                        <div className={css.content}>
-                            <Content />
+                    <>
+                        {media ? (
+                            <Breadcrumbs
+                                className={css.breadcrumbs}
+                                end={trans('personal_area')}
+                                data={[{ label: trans('to_home_page'), link: routes.root }]}
+                            />
+                        ) : null}
+                        <div className={css.flex}>
+                            <aside className={css.aside}>
+                                <ProfileAside />
+                            </aside>
+                            <div className={css.content}>
+                                <Content />
+                            </div>
                         </div>
-                    </div>
+                    </>
                 </Container>
             </PageLayout>
         </>

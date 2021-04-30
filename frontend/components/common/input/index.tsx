@@ -70,10 +70,10 @@ const useStyles = createUseStyles((theme: Theme) => ({
         left: 0,
     },
     withPassword: {
-        paddingRight: theme.rem(6),
+        paddingRight: theme.rem(4),
     },
     withIcon: {
-        paddingLeft: theme.rem(6),
+        paddingLeft: theme.rem(4),
     },
 }));
 

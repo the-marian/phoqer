@@ -40,7 +40,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
             margin: theme.rem(0.2, 0, 0, 1),
         },
     },
-    bio: {
+    wide: {
         width: '100%',
         marginBottom: theme.rem(4),
         ...theme.media(1060).max({
@@ -102,7 +102,7 @@ const Content = (): ReactElement => {
                     <h3 className={css.cellTitle}>{trans('email')}:</h3>
                     <p className={css.cellText}>{user?.email || trans('no_information_available')}</p>
                 </div>
-                <div className={css.bio}>
+                <div className={css.wide}>
                     <h3 className={css.cellTitle}>{trans('user_bio')}:</h3>
                     <p className={css.cellText}>{user?.bio || trans('no_information_available')}</p>
                 </div>
@@ -117,7 +117,7 @@ const Content = (): ReactElement => {
                         </a>
                     </Link>
                 </div>
-                <div className={css.cell}>
+                <div className={css.wide}>
                     <h3 className={css.cellTitle}>{trans('location')}:</h3>
                     <p className={css.cellText}>{user?.location || trans('no_information_available')}</p>
                 </div>
