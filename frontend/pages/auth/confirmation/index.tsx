@@ -1,5 +1,4 @@
 import { GetServerSidePropsContext } from 'next';
-import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
@@ -13,12 +12,8 @@ import { modal } from '../../../components/common/modal';
 import SmallModalWrp from '../../../components/common/modal/small-modal-wrp';
 import AuthRedirect from '../../../components/context/auth/auth-redirect';
 import Container from '../../../components/layout/container';
-import Meta from '../../../components/layout/meta';
 import useAuth from '../../../hooks/auth.hook';
-import useTrans from '../../../hooks/trans.hook';
 import { wrapper } from '../../../redux/store';
-
-const ConfettiWrp = dynamic(() => import('../../../components/common/confetti'));
 
 const useStyles = createUseStyles((theme: Theme) => ({
     bg: {
@@ -33,9 +28,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
         display: 'flex',
         alignItems: 'center',
     },
-    content: { 
+    content: {
         width: theme.rem(50),
-        maxWidth: '90%'
+        maxWidth: '90%',
     },
     title: {
         fontSize: theme.rem(3.5),
@@ -69,25 +64,22 @@ const useStyles = createUseStyles((theme: Theme) => ({
         ...theme.media(550).max({
             width: '60%',
         }),
-        '&:nth-child(2n+1)': { 
+        '&:nth-child(2n+1)': {
             background: theme.palette.white,
-            color: theme.palette.black[0]
-        }
-
+            color: theme.palette.black[0],
+        },
     },
     btnWrp: {
         display: 'flex',
         ...theme.media(500).max({
             flexDirection: 'column',
         }),
-
     },
 }));
 
 const Confirmation = (): ReactElement => {
     const css = useStyles();
     const auth = useAuth();
-    const trans = useTrans();
 
     const handleLogin = (): void => {
         if (!auth?.access_token) {
@@ -103,15 +95,13 @@ const Confirmation = (): ReactElement => {
     return (
         <>
             <AuthRedirect reverse />
-            <Meta title={trans('join')} h1={trans('join')} />
-            {process.browser && <ConfettiWrp />}
             <div className={css.bg}>
                 <Container className={css.wrp}>
                     <div className={css.content}>
                         <h2 className={css.title}>Спасибо за регистрацию!</h2>
                         <p className={css.text}>
-                            Лол кек чебурек Лол кек чебурек.<span>{' '}
-                            Лол кек чебурек Лол кек чебурек Лол кек чебурек Лол кек чебурек</span>{' '}
+                            Лол кек чебурек Лол кек чебурек.
+                            <span> Лол кек чебурек Лол кек чебурек Лол кек чебурек Лол кек чебурек</span>{' '}
                         </p>
                         <div className={css.btnWrp}>
                             <Link href={routes.root}>
