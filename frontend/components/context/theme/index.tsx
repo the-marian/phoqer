@@ -1,18 +1,19 @@
 import Cookies from 'js-cookie';
 import React, { createContext, ReactElement, useEffect, useState } from 'react';
 
+import config from '../../../assets/config';
 import { Themes } from '../../../interfaces';
 import notificationsModal from '../../common/modal/notifications-modal';
 
-export const Theme = createContext<[theme: Themes, setTheme: ((v: Themes) => void) | null]>(['white', null]);
+export const Theme = createContext<[theme: Themes, setTheme: (v: Themes) => void]>(['blue', () => undefined]);
 
 interface IProps {
     siteTheme?: Themes;
     children: JSX.Element | JSX.Element[] | ReactElement;
 }
 
-const SiteTheme = ({ children, siteTheme = 'white' }: IProps): ReactElement => {
-    const [theme, setTheme] = useState<Themes>(siteTheme);
+const SiteTheme = ({ children, siteTheme = 'blue' }: IProps): ReactElement => {
+    const [theme, setTheme] = useState<Themes>(config.themes.includes(siteTheme) ? siteTheme : 'blue');
 
     useEffect(() => {
         if (process.browser && document.querySelector('html')) {
@@ -23,11 +24,11 @@ const SiteTheme = ({ children, siteTheme = 'white' }: IProps): ReactElement => {
     const handleTheme = (value: Themes): void => {
         try {
             Cookies.set('phoqer_theme', value);
-            setTheme(value);
             if (document.querySelector('html')) {
-                document.querySelector('html')?.classList?.remove(value === 'white' ? 'black' : 'white');
+                document.querySelector('html')?.classList?.remove(theme);
                 document.querySelector('html')?.classList?.add(value);
             }
+            setTheme(value);
         } catch (error) {
             notificationsModal('error', error?.message);
         }

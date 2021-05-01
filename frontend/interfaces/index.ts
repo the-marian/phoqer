@@ -58,7 +58,7 @@ export interface ITabsNum {
     reviews?: number | string;
 }
 
-export type Themes = 'white' | 'black';
+export type Themes = 'blue' | 'green' | 'aqua' | 'black-aqua' | 'black-blue' | 'black-violet';
 
 export interface IConfig {
     warning: boolean;

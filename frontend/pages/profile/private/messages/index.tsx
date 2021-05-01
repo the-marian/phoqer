@@ -52,7 +52,7 @@ const Messages = (): ReactElement => {
                 {media ? (
                     <ProfileChatNav active="messages" />
                 ) : (
-                    <ChatBackBtn href={routes.profile.private.my_offers()}>Back to profile</ChatBackBtn>
+                    <ChatBackBtn href={routes.profile.private.personal_area}>Back to profile</ChatBackBtn>
                 )}
                 <ChatWrp showConversation={media} showSidebar={true}>
                     <div className={css.chat}>

@@ -1,5 +1,5 @@
 import { faHeart } from '@fortawesome/free-regular-svg-icons/faHeart';
-import { faUser } from '@fortawesome/free-regular-svg-icons/faUser';
+import { faUserCircle } from '@fortawesome/free-regular-svg-icons/faUserCircle';
 import { faPlus } from '@fortawesome/free-solid-svg-icons/faPlus';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import clsx from 'clsx';
@@ -23,10 +23,11 @@ const useStyles = createUseStyles((theme: Theme) => ({
         fontSize: theme.rem(1.4),
     },
     item: {
-        marginLeft: theme.rem(4.5),
+        marginLeft: theme.rem(1),
+        borderRadius: theme.radius,
 
         ...theme.media(768).max({
-            marginLeft: theme.rem(1.2),
+            marginLeft: theme.rem(0.4),
         }),
     },
     text: {
@@ -38,6 +39,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
+        padding: theme.rem(0.5, 1.5),
         color: theme.palette.black[0],
 
         ...theme.media(768).max({
@@ -51,7 +53,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
             fontSize: '0',
         }),
         ...theme.hover({
-            color: theme.palette.primary[0],
+            '& svg': {
+                color: theme.palette.primary[0],
+            },
         }),
 
         '& svg': {
@@ -122,7 +126,7 @@ const UserInfo = (): ReactElement => {
             <li className={css.item}>
                 <button type="button" className={clsx(css.link, drop && css.user)} onClick={handleClick}>
                     <NotifNumber className={css.number}>14</NotifNumber>
-                    <FontAwesomeIcon icon={faUser} />
+                    <FontAwesomeIcon icon={faUserCircle} />
                     <span className={css.text}>{userName.length > 20 ? userName.slice(0, 17) + '...' : userName}</span>
                 </button>
                 {drop && <DropWindow onClose={handleClick} />}

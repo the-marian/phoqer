@@ -4,6 +4,7 @@ import React, { ReactElement } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { END } from 'redux-saga';
 
+import { findCategory, findSubCategory } from '../../assets/helpers';
 import About from '../../components/common/about';
 import Pagination from '../../components/common/load-more/pagination';
 import OffersList from '../../components/common/offers/offers-list';
@@ -14,9 +15,9 @@ import Meta from '../../components/layout/meta';
 import PageLayout from '../../components/layout/page-layout';
 import ActiveFilters from '../../components/pages/offers/active-filters';
 import Filters from '../../components/pages/offers/filters';
-import TopOffers from '../../components/pages/single-offer/top-offers';
+import TopOffers from '../../components/pages/offers/top-offers';
 import useTrans from '../../hooks/trans.hook';
-import { IOfferDynamic, IState, IStore } from '../../interfaces';
+import { ICategories, IOfferDynamic, IState, IStore } from '../../interfaces';
 import initState from '../../redux/state';
 import { wrapper } from '../../redux/store';
 import types from '../../redux/types';
@@ -25,7 +26,14 @@ const OffersPage = (): ReactElement => {
     const { query } = useRouter();
     const trans = useTrans();
     const dispatch = useDispatch();
+    const category = String(query.category);
+
     const { data, loading, pagination } = useSelector<IState, IOfferDynamic>(state => state.offers.search);
+    const categories = useSelector<IState, ICategories[]>(state => state.categories);
+    const icon =
+        (findCategory(categories, category) as ICategories)?.image ||
+        (findSubCategory(categories, category) as ICategories)?.image ||
+        null;
 
     const handleClick = (page: number): void => {
         dispatch({ type: types.SEARCH_OFFERS_START, payload: { ...query, page } });
@@ -36,7 +44,7 @@ const OffersPage = (): ReactElement => {
 
     return (
         <>
-            <Meta title={trans('search_offers')} h1={trans('search_offers')} />
+            <Meta title={trans('search_offers')} h1={trans('search_offers')} icon={icon} />
             <PageLayout>
                 <Search shallow />
 
@@ -48,7 +56,7 @@ const OffersPage = (): ReactElement => {
                 <TopOffers />
 
                 <Container>
-                    <SectionTitle>Результаты поиска</SectionTitle>
+                    <SectionTitle>{trans('searching_results')}</SectionTitle>
                     <OffersList loading={loading} data={data?.data} />
                     <Pagination loading={pagination} total={data.total} onClick={handleClick} onMore={handleMore} />
                 </Container>

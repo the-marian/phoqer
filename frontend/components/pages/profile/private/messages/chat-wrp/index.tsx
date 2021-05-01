@@ -81,7 +81,8 @@ const useStyles = createUseStyles((theme: Theme) => ({
         minWidth: theme.rem(40),
         maxWidth: theme.rem(40),
         height: '100%',
-        paddingRight: theme.rem(1),
+        paddingRight: theme.rem(0.5),
+        marginRight: theme.rem(0.5),
         overflow: 'auto',
 
         ...theme.media(1060).max({

@@ -12,7 +12,7 @@ const template = (theme: Theme): Template => ({
     input: {
         display: 'block',
         alignItems: 'center',
-        height: theme.rem(6),
+        height: theme.rem(5),
         width: '100%',
         padding: theme.rem(1.5, 2),
         border: theme.border(0.2, 'transparent'),
@@ -20,10 +20,6 @@ const template = (theme: Theme): Template => ({
         fontSize: theme.rem(1.4),
         transition: theme.transitions[0],
         boxShadow: theme.shadow[1],
-
-        ...theme.media(500).max({
-            fontSize: theme.rem(1.6),
-        }),
 
         ...theme.focus({
             border: theme.border(0.2, theme.palette.primary[0]),
@@ -47,7 +43,7 @@ const template = (theme: Theme): Template => ({
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        height: theme.rem(6),
+        height: theme.rem(5),
         padding: theme.rem(1, 2),
         background: theme.palette.primary[0],
         color: theme.palette.trueWhite,
@@ -57,10 +53,6 @@ const template = (theme: Theme): Template => ({
         boxShadow: theme.shadow[1],
         border: theme.border(0.2, 'transparent'),
         transition: theme.transitions[0],
-
-        ...theme.media(500).max({
-            fontSize: theme.rem(1.6),
-        }),
 
         ...theme.focus({
             border: theme.border(0.2, theme.palette.primary[0]),

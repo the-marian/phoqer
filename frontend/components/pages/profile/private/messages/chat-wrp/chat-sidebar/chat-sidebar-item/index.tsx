@@ -37,7 +37,6 @@ const useStyles = createUseStyles((theme: Theme) => ({
         fontWeight: theme.text.weight[4],
 
         ...theme.media(1060).max({
-            fontSize: theme.rem(1.6),
             fontWeight: theme.text.weight[3],
         }),
     },

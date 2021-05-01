@@ -1,0 +1,62 @@
+.rc-slider-handle {
+    position: absolute;
+    width: 3rem;
+    height: 3rem;
+    margin-top: -1.2rem;
+    cursor: pointer;
+    border-radius: 50%;
+    border: 0.1rem solid #222222;
+    background-color: #fff;
+    touch-action: pan-x;
+    outline: none;
+}
+
+.rc-slider-handle:hover {
+    border-color: #222222;
+}
+
+.rc-slider-handle:active {
+    border-color: #222222;
+    box-shadow: 0 0 2rem #dddddd;
+    cursor: grabbing;
+}
+
+.rc-slider-handle-dragging {
+    width: 4rem;
+    height: 4rem;
+    margin-top: -1.8rem;
+    border-color: #222222;
+    box-shadow: 0 0 0.5rem #eeeeee;
+}
+
+.rc-slider {
+    position: relative;
+    height: 1rem;
+    padding: 0.5rem 0;
+    width: 100%;
+    border-radius: 0.6rem;
+    touch-action: none;
+    box-sizing: border-box;
+}
+
+.rc-slider-rail {
+    position: absolute;
+    width: 100%;
+    background-color: #eeeeee;
+    height: 0.5rem;
+    border-radius: 0.6rem;
+}
+
+.rc-slider-step {
+    position: absolute;
+    width: 100%;
+    height: 0.5rem;
+    background: transparent;
+}
+
+.rc-slider-track {
+    position: absolute;
+    left: 0;
+    height: 0.5rem;
+    border-radius: 0.6rem;
+}

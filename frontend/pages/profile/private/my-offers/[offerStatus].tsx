@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { findCategory, serverRedirect } from '../../../../assets/helpers';
 import routes from '../../../../assets/routes';
 import { Theme } from '../../../../assets/theme';
+import Breadcrumbs from '../../../../components/common/breadcrumbs';
 import DropDown from '../../../../components/common/drop-down';
 import Pagination from '../../../../components/common/load-more/pagination';
 import OffersList from '../../../../components/common/offers/offers-list';
@@ -15,6 +16,7 @@ import AuthRedirect from '../../../../components/context/auth/auth-redirect';
 import Container from '../../../../components/layout/container';
 import Meta from '../../../../components/layout/meta';
 import PageLayout from '../../../../components/layout/page-layout';
+import MobileBackBtn from '../../../../components/pages/profile/private/mobile-back-btn';
 import useMedia from '../../../../hooks/media.hook';
 import useTrans from '../../../../hooks/trans.hook';
 import { IDropValue, IOfferDynamic, IState } from '../../../../interfaces';
@@ -27,6 +29,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
     dropdown: {
         width: '100%',
+        '& p': {
+            background: theme.palette.gray[0],
+        },
         ...theme.media(768).min({
             width: theme.rem(30),
         }),
@@ -41,6 +46,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
             margin: theme.rem(0, 0, 1),
         }),
     },
+    breadcrumbs: {
+        margin: theme.rem(0, 0, 2),
+    },
 }));
 
 const UserOffers = (): ReactElement => {
@@ -52,7 +60,7 @@ const UserOffers = (): ReactElement => {
     const offersTab: IDropValue[] = [
         {
             slug: 'all',
-            name: trans('all'),
+            name: trans('all_offers'),
             type: 'main',
         },
         {
@@ -103,13 +111,28 @@ const UserOffers = (): ReactElement => {
 
     return (
         <>
-            <Meta title={'Мои обьявления'} h1={trans('user_profile_on_phoqer')} />
+            <Meta title={trans('my_offers')} h1={trans('user_profile_on_phoqer')} />
             <AuthRedirect />
             <PageLayout>
                 <Container>
                     <>
-                        {media && <ProfileNav active="my-offers" />}
-                        <h3 className={css.title}>Выберите статус объявления</h3>
+                        {media ? (
+                            <>
+                                <Breadcrumbs
+                                    className={css.breadcrumbs}
+                                    end={trans('my_offers')}
+                                    data={[
+                                        { label: trans('to_home_page'), link: routes.root },
+                                        { label: trans('personal_area'), link: routes.profile.private.personal_area },
+                                    ]}
+                                />
+                                <ProfileNav active="my-offers" />
+                            </>
+                        ) : (
+                            <MobileBackBtn href={routes.profile.private.personal_area}>Back to profile</MobileBackBtn>
+                        )}
+
+                        <h3 className={css.title}>{trans('select_offer_status')}</h3>
                         <DropDown
                             data={offersTab}
                             defaultValue={findCategory(offersTab, offerStatus)}

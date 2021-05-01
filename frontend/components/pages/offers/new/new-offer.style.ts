@@ -97,7 +97,7 @@ const newOfferTemplate = (theme: Theme): Template => ({
         form: {
             padding: theme.rem(3, 10),
             borderRadius: theme.radius,
-            background: theme.palette.soft[0],
+            background: theme.palette.secondary[0],
             maxWidth: theme.rem(80),
             margin: '0 auto',
             color: theme.palette.black[0],
@@ -173,7 +173,7 @@ const newOfferTemplate = (theme: Theme): Template => ({
             }),
         },
         save: {
-            height: theme.rem(6),
+            height: theme.rem(5),
             padding: theme.rem(1, 2),
             background: theme.palette.trueWhite,
             fontSize: theme.rem(1.4),
@@ -187,7 +187,7 @@ const newOfferTemplate = (theme: Theme): Template => ({
             },
 
             ...theme.media(768).max({
-                padding: theme.rem(1.6, 2),
+                padding: theme.rem(1.6, 1),
             }),
         },
         btnWrp: {
@@ -201,7 +201,7 @@ const newOfferTemplate = (theme: Theme): Template => ({
             }),
         },
         next: {
-            height: theme.rem(6),
+            height: theme.rem(5),
             padding: theme.rem(1, 4),
             marginLeft: theme.rem(2),
             background: theme.palette.primary[0],

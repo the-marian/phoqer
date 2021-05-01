@@ -60,8 +60,8 @@ const useStyles = createUseStyles((theme: Theme) => ({
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        height: theme.rem(6),
-        width: theme.rem(6),
+        height: theme.rem(5),
+        width: theme.rem(5),
         fontSize: theme.rem(1.8),
         color: theme.palette.black[0],
     },
@@ -70,10 +70,10 @@ const useStyles = createUseStyles((theme: Theme) => ({
         left: 0,
     },
     withPassword: {
-        paddingRight: theme.rem(6),
+        paddingRight: theme.rem(4),
     },
     withIcon: {
-        paddingLeft: theme.rem(6),
+        paddingLeft: theme.rem(4),
     },
 }));
 

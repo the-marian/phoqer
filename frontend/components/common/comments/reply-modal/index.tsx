@@ -6,6 +6,7 @@ import { useDispatch } from 'react-redux';
 
 import routes from '../../../../assets/routes';
 import { Theme } from '../../../../assets/theme';
+import useTrans from '../../../../hooks/trans.hook';
 import { IComment } from '../../../../interfaces';
 import types from '../../../../redux/types';
 import ButtonClose from '../../button-close';
@@ -75,8 +76,9 @@ interface IProps {
 
 const ReplyModal = ({ comment }: IProps): ReactElement => {
     const css = useStyles();
-    const dispatch = useDispatch();
+    const trans = useTrans();
     const history = useRouter();
+    const dispatch = useDispatch();
 
     const handleSubmit = (body: string, images: string[]): void => {
         dispatch({
@@ -98,12 +100,14 @@ const ReplyModal = ({ comment }: IProps): ReactElement => {
                 <Link href={routes.profile.public(comment.author_id)}>
                     <a>{`${comment.first_name} ${comment.last_name}`}</a>
                 </Link>
-                <p className={css.date}>Дата: {comment.pub_date}</p>
+                <p className={css.date}>
+                    {trans('date')}: {comment.pub_date}
+                </p>
             </h3>
 
             <p className={css.text}>{comment.body.slice(0, MAX_LENGTH) + '...  '}</p>
 
-            <p className={css.text}>Ответить на комментарий:</p>
+            <p className={css.text}>{trans('reply_to_comment')}:</p>
             <CommentsForm onSubmit={handleSubmit} />
         </div>
     );

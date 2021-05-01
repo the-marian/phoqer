@@ -5,6 +5,7 @@ import { createUseStyles } from 'react-jss';
 
 import template from '../../../../../../../assets/template';
 import { Theme } from '../../../../../../../assets/theme';
+import useTrans from '../../../../../../../hooks/trans.hook';
 import Button from '../../../../../../common/button';
 
 const useStyles = createUseStyles((theme: Theme) => ({
@@ -58,12 +59,14 @@ const useStyles = createUseStyles((theme: Theme) => ({
 
 const Avatar = (): ReactElement => {
     const css = useStyles();
+    const trans = useTrans();
+
     return (
         <div className={css.wrp}>
             <img className={css.img} src="/about.jpg" alt="" />
             <Button className={css.file}>
                 <FontAwesomeIcon icon={faRedo} />
-                <span>Изменить фото</span>
+                <span>{trans('change_photo')}</span>
                 <input type="file" />
             </Button>
         </div>

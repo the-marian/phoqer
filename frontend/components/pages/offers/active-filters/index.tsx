@@ -27,10 +27,6 @@ const useStyles = createUseStyles((theme: Theme) => ({
         borderRadius: theme.radius,
         fontSize: theme.rem(1.4),
         color: theme.palette.black[0],
-
-        ...theme.media(768).max({
-            fontSize: theme.rem(1.6),
-        }),
     },
     btn: {
         display: 'flex',
@@ -50,7 +46,6 @@ const useStyles = createUseStyles((theme: Theme) => ({
             height: theme.rem(3),
             width: theme.rem(3),
             marginRight: theme.rem(1.5),
-            fontSize: theme.rem(1.2),
         }),
     },
 }));

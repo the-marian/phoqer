@@ -23,7 +23,7 @@ import OptionsMobile from './options-mobile';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     root: {
-        padding: theme.rem(14, 0, 4),
+        padding: theme.rem(12, 0, 4),
         background: theme.palette.gray[0],
 
         ...theme.media(768).max({
@@ -55,8 +55,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
         border: 'none',
         ...template(theme).outline,
 
-        ...theme.media(768).max({
-            fontSize: theme.rem(1.6),
+        ...theme.media(1100).max({
+            height: theme.rem(5),
+            paddingLeft: theme.rem(1.5),
         }),
     },
     input: {
@@ -71,9 +72,11 @@ const useStyles = createUseStyles((theme: Theme) => ({
     btn: {
         ...template(theme).btn,
         width: '100%',
+        height: theme.rem(6),
 
         ...theme.media(1100).max({
-            width: '31%',
+            width: '33%',
+            height: theme.rem(5),
         }),
         ...theme.media(550).max({
             width: '100%',
@@ -106,10 +109,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
             display: 'flex',
             justifyContent: 'space-between',
             width: '100%',
-            margin: theme.rem(3, 0, 0),
+            margin: theme.rem(1, 0, 0),
         }),
         ...theme.media(550).max({
-            margin: theme.rem(2, 0, 0),
             flexDirection: 'column',
         }),
     },

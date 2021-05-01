@@ -9,11 +9,17 @@ import DropDown from '../../../common/drop-down';
 const useStyles = createUseStyles((theme: Theme) => ({
     wrp: {
         marginLeft: theme.rem(3),
-        background: theme.palette.trueWhite,
         borderRadius: theme.radius,
+
         ...theme.media(768).max({
             marginLeft: '0',
         }),
+    },
+    lang: {
+        '& p': {
+            background: theme.palette.primary[0],
+            color: theme.palette.trueWhite,
+        },
     },
 }));
 
@@ -36,14 +42,15 @@ const Lang = (): ReactElement => {
     const css = useStyles();
     const history = useRouter();
     const handleChange = (value: IDropList | null): void => {
-        history.push(history.pathname, history.asPath, { locale: value?.slug || 'ru' });
+        history.push(history.pathname, history.asPath, { locale: value?.slug || 'ru', scroll: false });
     };
 
     return (
         <div className={css.wrp}>
             <DropDown
+                className={css.lang}
                 minWidth={15}
-                height={3.5}
+                height={3}
                 defaultValue={{ name: history.locale?.toUpperCase() || 'EN', slug: history?.locale || 'en', type: 'main' }}
                 data={LANGS}
                 onChange={handleChange}

@@ -23,8 +23,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         width: '100%',
         padding: theme.rem(6),
         borderRadius: theme.radius,
-        background: theme.palette.soft[1],
-        color: theme.palette.trueBlack,
+        color: theme.palette.black[0],
         textAlign: 'left',
         ...template(theme).outline,
 
@@ -33,7 +32,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         }),
     },
     animation: {
-        background: 'linear-gradient(-45deg, #f9ecff, #e9c4ff, #ddfcf8, #f5f1e5, #ffd0d0, #e4f4f6)',
+        background: `linear-gradient(-45deg, ${theme.palette.grad})`,
         backgroundSize: '400% 400%',
         animation: '$grad 15s ease infinite',
     },
@@ -76,7 +75,7 @@ const Banner = ({ className, animation = false }: IProps): ReactElement => {
     return (
         <button onClick={handleClick} type="button" className={clsx(css.root, className, animation && css.animation)}>
             <h2 className={css.title}>{trans('share_with_others_and_earn')}</h2>
-            <p className={css.text}>Разместите объявление на любую тематику и получайте дополнительный заработок прямо сейчас.</p>
+            <p className={css.text}>{trans('share_with_others_and_earn_text')}</p>
         </button>
     );
 };

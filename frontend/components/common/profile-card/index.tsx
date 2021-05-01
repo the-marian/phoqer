@@ -12,6 +12,7 @@ import routes from '../../../assets/routes';
 import template from '../../../assets/template';
 import { Theme } from '../../../assets/theme';
 import useAuth from '../../../hooks/auth.hook';
+import useTrans from '../../../hooks/trans.hook';
 import { IPublicProfile, IState } from '../../../interfaces';
 import LoginForm from '../auth/login-form';
 import { modal } from '../modal';
@@ -24,7 +25,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         justifyContent: 'space-between',
         padding: theme.rem(2),
         borderRadius: theme.radius,
-        background: theme.palette.gray[1],
+        background: theme.palette.secondary[0],
 
         ...theme.media(450).max({
             flexDirection: 'column',
@@ -56,7 +57,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         marginBottom: theme.rem(2),
     },
     name: {
-        color: theme.palette.black[0],
+        color: theme.palette.primary[0],
         fontSize: theme.rem(2),
         fontWeight: theme.text.weight[3],
 
@@ -117,6 +118,7 @@ const ProfileCard = ({
     column = false,
 }: IProps): ReactElement => {
     const css = useStyles();
+    const trans = useTrans();
     const auth = useAuth();
     const history = useRouter();
     const user = useSelector<IState, IPublicProfile | null>(state => state.user);
@@ -152,19 +154,19 @@ const ProfileCard = ({
                 </div>
 
                 <div className={css.info}>
-                    <p>Дата регистрации: {formatTimestamp(registerDate, history.locale)}</p>
-                    <p>Локация: {userLocation || 'Не указано'}</p>
+                    <p>{trans('registration_date') + ' ' + formatTimestamp(registerDate, history.locale)}</p>
+                    <p>{trans('location') + ' ' + (userLocation || trans('not_indicated'))}</p>
                 </div>
 
                 {!isAuthor ? (
                     <button className={css.btn} type="button" onClick={handleOpenChat}>
-                        Написать автору
+                        {trans('write_to_the_author')}
                     </button>
                 ) : (
                     <Link href={routes.profile.private.settings()}>
                         <a className={css.btn}>
                             <FontAwesomeIcon icon={faSlidersH} />
-                            <span>Настройки профиля</span>
+                            <span>{trans('profile_settings')}</span>
                         </a>
                     </Link>
                 )}

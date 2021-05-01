@@ -5,35 +5,6 @@ import template from '../../../assets/template';
 import { Theme } from '../../../assets/theme';
 import OnlineIndicator from './online-indicator';
 
-const COLORS: { [key: string]: string } = {
-    A: 'rgba(8,139,226,0.2)',
-    B: 'rgba(124,8,226,0.2)',
-    C: 'rgba(2,217,192,0.2)',
-    D: 'rgba(2,56,248,0.2)',
-    E: 'rgba(2,162,248,0.2)',
-    F: 'rgba(2,248,199,0.2)',
-    G: 'rgba(248,2,100,0.2)',
-    H: 'rgba(248,39,2,0.2)',
-    I: 'rgba(47,2,248,0.2)',
-    J: 'rgba(8,139,226,0.2)',
-    K: 'rgba(124,8,226,0.2)',
-    L: 'rgba(2,217,192,0.2)',
-    M: 'rgba(2,56,248,0.2)',
-    N: 'rgba(2,162,248,0.2)',
-    O: 'rgba(2,248,199,0.2)',
-    P: 'rgba(248,2,100,0.2)',
-    Q: 'rgba(248,39,2,0.2)',
-    R: 'rgba(47,2,248,0.2)',
-    S: 'rgba(8,139,226,0.2)',
-    T: 'rgba(124,8,226,0.2)',
-    U: 'rgba(2,217,192,0.2)',
-    V: 'rgba(2,56,248,0.2)',
-    W: 'rgba(2,162,248,0.2)',
-    X: 'rgba(2,248,199,0.2)',
-    Y: 'rgba(248,2,100,0.2)',
-    Z: 'rgba(248,39,2,0.2)',
-};
-
 const useStyles = createUseStyles((theme: Theme) => ({
     root: {
         position: 'relative',
@@ -43,10 +14,12 @@ const useStyles = createUseStyles((theme: Theme) => ({
         alignItems: 'center',
         justifyContent: 'center',
         fontSize: theme.rem(2.3),
-        color: theme.palette.black[0],
+        color: theme.palette.trueWhite,
+        background: theme.palette.primary[0],
         borderRadius: '50%',
         objectFit: 'cover',
         ...template(theme).outline,
+        border: theme.border(0.2, theme.palette.trueWhite),
     },
     mark: {
         position: 'absolute',
@@ -93,7 +66,6 @@ const UserAvatar = ({
                     style={{
                         width: `${width}rem`,
                         height: `${height}rem`,
-                        background: COLORS[firstName[0]] || 'rgba(8,139,226,0.2)',
                     }}
                     className={css.avatar}
                 >

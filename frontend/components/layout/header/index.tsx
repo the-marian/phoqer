@@ -20,9 +20,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         left: 0,
         zIndex: 10000,
         width: '100%',
-        padding: theme.rem(1.4, 0),
-        background: theme.palette.glass[1],
-        backdropFilter: 'blur(2px)',
+        background: theme.palette.gray[0],
         transition: theme.transitions[0],
 
         ...theme.media(768).max({
@@ -31,7 +29,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         }),
     },
     shadow: {
-        background: theme.palette.glass[0],
+        background: theme.palette.white,
         boxShadow: theme.shadow[0],
     },
     transform: {

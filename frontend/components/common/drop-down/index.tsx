@@ -38,9 +38,6 @@ const useStyles = createUseStyles((theme: Theme) => ({
         color: theme.palette.black[0],
         cursor: 'pointer',
         ...template(theme).outline,
-        ...theme.media(450).max({
-            fontSize: theme.rem(1.6),
-        }),
     },
     text: {
         flexGrow: 2,
@@ -136,6 +133,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
                 color: theme.palette.trueWhite,
             }),
             ...theme.media(768).max({
+                padding: theme.rem(1.5, 0),
                 fontSize: theme.rem(1.6),
             }),
         },
@@ -151,6 +149,11 @@ const useStyles = createUseStyles((theme: Theme) => ({
         background: theme.palette.gray[0],
         color: theme.palette.black[0],
         fontSize: theme.rem(1.4),
+
+        ...theme.media(768).max({
+            padding: theme.rem(1.5),
+            fontSize: theme.rem(1.6),
+        }),
         ...theme.hover({
             background: theme.palette.primary[0],
             color: theme.palette.trueWhite,
@@ -187,7 +190,7 @@ const DropDown = ({
     withSub,
     onChange,
     className,
-    height = 6,
+    height = 5,
     transparent,
     placeholder,
     defaultValue,

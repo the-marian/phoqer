@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 import Link from 'next/link';
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
@@ -16,7 +17,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
             color: theme.palette.black[0],
 
             ...theme.media(768).max({
-                lineHeight: '2.2',
+                lineHeight: '1.6',
                 fontSize: theme.rem(1.6),
                 fontWeight: theme.text.weight[1],
             }),
@@ -43,6 +44,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
 }));
 
 interface IProps {
+    className?: string;
     data: {
         label: string;
         link: string;
@@ -50,13 +52,13 @@ interface IProps {
     end: string;
 }
 
-const Breadcrumbs = ({ data, end }: IProps): ReactElement => {
+const Breadcrumbs = ({ data, end, className }: IProps): ReactElement => {
     const css = useStyles();
 
     return (
         <>
             {data?.length ? (
-                <ul className={css.root}>
+                <ul className={clsx(css.root, className)}>
                     {data.map(({ label, link }) => (
                         <li key={link}>
                             <Link href={link} passHref>

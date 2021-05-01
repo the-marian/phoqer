@@ -8,6 +8,7 @@ import { useDispatch } from 'react-redux';
 import routes from '../../../../../assets/routes';
 import { Theme } from '../../../../../assets/theme';
 import useAuth from '../../../../../hooks/auth.hook';
+import useTrans from '../../../../../hooks/trans.hook';
 import { IComment } from '../../../../../interfaces';
 import types from '../../../../../redux/types';
 import LikeDislike from '../../../like-dislike';
@@ -125,7 +126,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         flexWrap: 'wrap',
 
         '& img': {
-            height: theme.rem(6),
+            height: theme.rem(5),
             width: theme.rem(9),
             borderRadius: theme.radius,
             margin: theme.rem(0, 1, 1, 0),
@@ -174,7 +175,7 @@ const SubComment = ({ id, comments }: { id: number; comments: IComment[] }): Rea
 
 interface IProps {
     comment: IComment;
-    extend?: boolean; // show all translations or only first 200 symbols
+    extend?: boolean; // show all translate or only first 200 symbols
     replies?: boolean; // show render replies or not
     inner?: boolean; // if it is inner comment then provide special styles
 }
@@ -182,6 +183,7 @@ interface IProps {
 const CommentsItem = ({ comment, extend = false, replies = false, inner = false }: IProps): ReactElement => {
     const css = useStyles();
     const auth = useAuth();
+    const trans = useTrans();
     const history = useRouter();
     const dispatch = useDispatch();
 
@@ -219,14 +221,16 @@ const CommentsItem = ({ comment, extend = false, replies = false, inner = false 
                 <Link href={routes.profile.public(comment.author_id)}>
                     <a>{`${comment.first_name} ${comment.last_name}`}</a>
                 </Link>
-                <p className={css.date}>Дата: {comment.pub_date}</p>
+                <p className={css.date}>
+                    {trans('date')}: {comment.pub_date}
+                </p>
             </h3>
 
             {!extend && comment.body?.length > MAX_LENGTH ? (
                 <p className={css.text}>
                     <span>{comment.body.slice(0, MAX_LENGTH) + '...  '}</span>
                     <button className={css.link} type="button" onClick={handleModal}>
-                        Read more
+                        {trans('read_more')}
                     </button>
                 </p>
             ) : (
@@ -246,13 +250,13 @@ const CommentsItem = ({ comment, extend = false, replies = false, inner = false 
             <div className={css.flex}>
                 {auth?.access_token && (
                     <button className={css.link} type="button" onClick={handleDelete}>
-                        Удалить
+                        {trans('delete')}
                     </button>
                 )}
 
                 {replies && auth?.access_token && (
                     <button className={css.link} type="button" onClick={handleReply}>
-                        Ответить
+                        {trans('reply')}
                     </button>
                 )}
 

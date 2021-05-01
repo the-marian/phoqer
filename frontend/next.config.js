@@ -24,13 +24,8 @@ module.exports = {
                 permanent: true,
             },
             {
-                source: '/profile/private/',
-                destination: '/profile/private/my-searchHiddenBlocks/all',
-                permanent: true,
-            },
-            {
-                source: '/profile/private/my-searchHiddenBlocks',
-                destination: '/profile/private/my-searchHiddenBlocks/all',
+                source: '/profile/private/my-offers',
+                destination: '/profile/private/my-offers/all',
                 permanent: true,
             },
             {

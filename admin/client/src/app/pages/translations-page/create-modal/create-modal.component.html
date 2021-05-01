@@ -1,0 +1,27 @@
+<h2 mat-dialog-title>Add new content</h2>
+<mat-dialog-content class="content">
+    <form class="flex">
+        <mat-form-field class="input">
+            <mat-label>Unique text id</mat-label>
+            <input matInput placeholder="hello" name="id" [(ngModel)]="id" />
+        </mat-form-field>
+
+        <mat-form-field class="input">
+            <mat-label>Translated content</mat-label>
+            <textarea
+                matInput
+                rows="14"
+                name="content"
+                placeholder="Hello"
+                [(ngModel)]="content"
+            ></textarea>
+        </mat-form-field>
+    </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close [mat-dialog-close]="null">
+        Cancel
+    </button>
+    <button mat-raised-button color="primary" (click)="create()">Save</button>
+</mat-dialog-actions>

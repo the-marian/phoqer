@@ -21,7 +21,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     wrp: {
         display: 'grid',
         gridTemplateColumns: theme.fr(config.category.grid.desktop),
-        gridGap: theme.rem(4, 3),
+        gridGap: theme.rem(2, 1),
         ...theme.media(1200).max({
             gridTemplateColumns: theme.fr(config.category.grid.tablet),
         }),
@@ -42,11 +42,11 @@ const useStyles = createUseStyles((theme: Theme) => ({
         }),
     },
     img: {
-        height: theme.rem(14),
+        height: theme.rem(12),
         borderRadius: theme.radius,
         objectFit: 'cover',
         ...template(theme).outline,
-        ...theme.media(768).max({
+        ...theme.media(500).max({
             height: theme.rem(9),
         }),
     },

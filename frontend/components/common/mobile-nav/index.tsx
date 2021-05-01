@@ -1,6 +1,6 @@
 import { faEnvelope } from '@fortawesome/free-regular-svg-icons/faEnvelope';
 import { faHeart } from '@fortawesome/free-regular-svg-icons/faHeart';
-import { faUser } from '@fortawesome/free-regular-svg-icons/faUser';
+import { faUserCircle } from '@fortawesome/free-regular-svg-icons/faUserCircle';
 import { faPlus } from '@fortawesome/free-solid-svg-icons/faPlus';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Link from 'next/link';
@@ -128,7 +128,7 @@ const MobileNav = (): ReactElement | null => {
             <li className={css.item}>
                 <button type="button" className={css.button} onClick={handleClick}>
                     <div className={css.icon}>
-                        <FontAwesomeIcon icon={faUser} />
+                        <FontAwesomeIcon icon={faUserCircle} />
                         <NotifNumber className={css.number}>14</NotifNumber>
                     </div>
                     <span className={css.text}>

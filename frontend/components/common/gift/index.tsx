@@ -3,6 +3,7 @@ import { createUseStyles } from 'react-jss';
 
 import template from '../../../assets/template';
 import { Theme } from '../../../assets/theme';
+import useTrans from '../../../hooks/trans.hook';
 import Advertising from '../advertising';
 import ConfettiWrp from '../confetti';
 import { modal } from '../modal';
@@ -19,11 +20,11 @@ const useStyles = createUseStyles((theme: Theme) => ({
         justifyContent: 'center',
         width: '100%',
         padding: theme.rem(2, 1),
-        background: 'linear-gradient(-45deg, #f9ecff, #e9c4ff, #ddfcf8, #f5f1e5, #ffd0d0, #e4f4f6)',
+        background: `linear-gradient(-45deg, ${theme.palette.grad})`,
         backgroundSize: '400% 400%',
         animation: '$grad 15s ease infinite',
         borderRadius: theme.radius,
-        color: theme.palette.trueBlack,
+        color: theme.palette.black[0],
         ...template(theme).outline,
     },
     img: {
@@ -49,6 +50,7 @@ interface IProps {
 }
 const Gift = ({ style = {} }: IProps): ReactElement => {
     const css = useStyles();
+    const trans = useTrans();
 
     const handleClick = (): void => {
         modal.open(
@@ -62,9 +64,8 @@ const Gift = ({ style = {} }: IProps): ReactElement => {
     return (
         <button type="button" style={style} className={css.root} onClick={handleClick}>
             <div className={css.wrp}>
-                <h2 className={css.title}>Это ваш подарок</h2>
-                <p>Мы ценим вас, поэтому подготовили для вас подарок</p>
-                <p>Кликай прямо сейчас</p>
+                <h2 className={css.title}>{trans('this_is_your_gift')}</h2>
+                <p>{trans('this_is_your_gift_text')}</p>
             </div>
             <img className={css.img} src="/emoji/gift.png" alt="" />
         </button>

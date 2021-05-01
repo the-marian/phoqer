@@ -11,15 +11,13 @@ const routes = {
     profile: {
         public: (id: ID = ':profileId'): string => `/profile/public/${id}`,
         private: {
+            personal_area: '/profile/private/',
             my_offers: (status = 'all'): string => `/profile/private/my-offers/${status}`,
             messages: (status: string | number = ''): string => `/profile/private/messages/${status}`,
             settings: (status: string | number = 'general'): string => `/profile/private/settings/${status}`,
             reviews: '/profile/private/reviews',
             referral: '/profile/private/referral',
-            analytics: (): string =>
-                process.env.NODE_ENV === 'development'
-                    ? 'http://localhost:4200'
-                    : `http://analytics.phoqer.com/${process.browser ? document.documentElement.lang : ''}`,
+            analytics: (): string => '/profile/private/analytics',
         },
     },
     offers: {

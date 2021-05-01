@@ -26,17 +26,8 @@ import useStyles from './offers-card.styles';
 const MAX_LENGTH = 55;
 const MAX_LENGTH_TITLE = 50;
 
-const USER_ACTIONS = {
-    DO_INACTIVE: 'Деактевировать обьявление',
-    ARCHIVE: 'Поместить в архив',
-    PROMOTE: 'Поместить в топ',
-    EDIT: 'Редактировать',
-    DELETE: 'Удалить',
-    DO_REVIEW: 'Опубликовать',
-};
-
-const formatUserActions = (value: string[]): IDropList[] => {
-    return Object.entries(USER_ACTIONS).reduce<IDropList[]>((acc, cur) => {
+const formatUserActions = (value: string[], actions: { [key: string]: string }): IDropList[] => {
+    return Object.entries(actions).reduce<IDropList[]>((acc, cur) => {
         if (value.includes(cur[0])) acc.push({ name: cur[1], slug: cur[0] });
         return acc;
     }, []);
@@ -80,19 +71,28 @@ const OfferCard = ({ offer, showFavoriteBtn = true }: IProps): ReactElement => {
         dispatch({ type: types.PATCH_FAVORITE_OFFERS_START, payload: offer.id });
     };
 
+    const USER_ACTIONS = {
+        DO_INACTIVE: trans('do_inactive'),
+        ARCHIVE: trans('put_to_archive'),
+        PROMOTE: trans('put_top_top'),
+        EDIT: trans('edit'),
+        DELETE: trans('delete'),
+        DO_REVIEW: trans('publish'),
+    };
+
     const handleSettings = (value: IDropValue | null): void => {
         if (!value) return;
         switch (value.slug) {
             case 'DO_INACTIVE':
-                alert('Деактевировать обьявление');
+                alert(trans('do_inactive'));
                 break;
 
             case 'ARCHIVE':
-                alert('Поместить в архив');
+                alert(trans('put_to_archive'));
                 break;
 
             case 'PROMOTE':
-                alert('Поместить в топ');
+                alert(trans('put_top_top'));
                 break;
 
             case 'EDIT':
@@ -100,11 +100,11 @@ const OfferCard = ({ offer, showFavoriteBtn = true }: IProps): ReactElement => {
                 break;
 
             case 'DELETE':
-                alert('Удалить');
+                alert(trans('delete'));
                 break;
 
             case 'DO_REVIEW':
-                alert('Опубликовать');
+                alert(trans('publish'));
                 break;
 
             default:
@@ -147,7 +147,7 @@ const OfferCard = ({ offer, showFavoriteBtn = true }: IProps): ReactElement => {
                     height={5}
                     className={css.dropdown}
                     onChange={handleSettings}
-                    data={formatUserActions(functions)}
+                    data={formatUserActions(functions, USER_ACTIONS)}
                 />
             ) : null}
 
@@ -164,7 +164,7 @@ const OfferCard = ({ offer, showFavoriteBtn = true }: IProps): ReactElement => {
             <div className={css.action}>
                 <p className={css.price}>
                     <span>{moneyFormat(price)}.00</span>
-                    <small>{`*${trans('uah')}/${trans('day')}`}</small>
+                    <small>{`${trans('uah')} / ${trans('day')}`}</small>
                 </p>
 
                 {showFavoriteBtn && (

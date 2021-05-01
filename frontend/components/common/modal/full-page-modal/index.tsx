@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
@@ -44,17 +45,24 @@ const useStyles = createUseStyles((theme: Theme) => ({
             top: theme.rem(6),
         }),
     },
+    mobile: {
+        top: theme.rem(6),
+    },
 }));
 
 interface IProps {
     children: JSX.Element[] | JSX.Element;
 }
 
+const toMatch = /mobile|iphone|ipod|android|blackberry|opera|mini|windows\sce|palm|smartphone|iemobile|ipad|android 3.0|xoom|sch-i800|playbook|tablet|kindle/i;
+
 const FullPageModal = ({ children }: IProps): ReactElement => {
     const css = useStyles();
+    const isMobile = toMatch.test(window.navigator.userAgent || '');
+
     return (
         <div className={css.wrp}>
-            <ButtonClose className={css.button} onClick={modal.close} />
+            <ButtonClose className={clsx(css.button, isMobile && css.mobile)} onClick={modal.close} />
             <div className={css.inner}>{children}</div>
         </div>
     );

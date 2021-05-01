@@ -107,8 +107,8 @@ const useStyles = createUseStyles((theme: Theme) => ({
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        minWidth: theme.rem(7),
-        height: theme.rem(6),
+        minWidth: theme.rem(6),
+        height: theme.rem(5),
         marginLeft: theme.rem(0.6),
         color: theme.palette.primary[0],
         borderRadius: theme.radius,
@@ -116,7 +116,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         fontSize: theme.rem(1.8),
 
         ...theme.hover({
-            background: theme.palette.gray[0],
+            background: theme.palette.secondary[0],
         }),
 
         ...theme.media(500).max({

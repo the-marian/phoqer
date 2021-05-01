@@ -26,6 +26,8 @@ const useStyles = createUseStyles((theme: Theme) => ({
         ...template(theme).outline,
 
         ...theme.media(1100).max({
+            margin: theme.rem(1, 0),
+            padding: theme.rem(1, 2),
             fontSize: theme.rem(1.6),
         }),
     },

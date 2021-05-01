@@ -71,7 +71,6 @@ export const dateFromTimestamp = (value?: string | number | null | Date): Date |
     try {
         if (!value) throw new Error();
         const date = new Date(value);
-        console.log(value);
         if (!date.getDate()) throw new Error(); // for invalid date
         return date;
     } catch (error) {
@@ -152,12 +151,12 @@ export const formatCatList = (data: ICategories[]): IDropList[] =>
     );
 // find category by slug
 type Dropdown = ICategories | IDropList | IDropValue;
-export const findCategory = (data: Dropdown[], slug: string): IDropList | null => {
+export const findCategory = (data: Dropdown[], slug: string): Dropdown | null => {
     const category: Dropdown | undefined = data.find(item => item.slug === slug);
     return category || null;
 };
 // find sub category by slug
-export const findSubCategory = (data: ICategories[], slug: string): IDropList | null => {
+export const findSubCategory = (data: ICategories[], slug: string): Dropdown | null => {
     const categories: ICategories[] = data.filter(item => item.sub_categories?.[0]);
     let subCategory;
     if (categories.length) {

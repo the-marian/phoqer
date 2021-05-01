@@ -9,6 +9,7 @@ import { CSSTransition } from 'react-transition-group';
 import routes from '../../../../../assets/routes';
 import { Theme } from '../../../../../assets/theme';
 import useConfig from '../../../../../hooks/config.hook';
+import useTrans from '../../../../../hooks/trans.hook';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     root: {
@@ -85,10 +86,6 @@ const useStyles = createUseStyles((theme: Theme) => ({
             textDecoration: 'underline',
             color: theme.palette.primary[0],
         }),
-
-        ...theme.media(768).max({
-            fontSize: theme.rem(1.6),
-        }),
     },
 }));
 
@@ -103,6 +100,7 @@ const POPULAR: string[] = [
 
 const TopSearchQuery = (): ReactElement => {
     const css = useStyles();
+    const trans = useTrans();
     const [config, setConfig] = useConfig();
 
     const handleCloseSearch = () => {
@@ -112,17 +110,17 @@ const TopSearchQuery = (): ReactElement => {
     return (
         <div className={css.root}>
             <div className={css.wrp}>
-                <h2 className={css.title}>Популярные запросы</h2>
+                <h2 className={css.title}>{trans('popular_queries')}</h2>
                 <button type="button" className={css.close} onClick={handleCloseSearch}>
                     {config.hideTopSearchQuery ? (
                         <>
                             <FontAwesomeIcon icon={faChevronDown} />
-                            <span>Показать</span>
+                            <span>{trans('show')}</span>
                         </>
                     ) : (
                         <>
                             <FontAwesomeIcon icon={faChevronUp} />
-                            <span>Скрыть</span>
+                            <span>{trans('hide')}</span>
                         </>
                     )}
                 </button>

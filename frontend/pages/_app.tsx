@@ -49,7 +49,7 @@ const MyApp = ({ Component, pageProps, width, auth, theme, config }: AppProps & 
     }, []);
 
     return (
-        <SiteTheme siteTheme={theme === 'black' ? 'black' : 'white'}>
+        <SiteTheme siteTheme={theme || 'blue'}>
             <ConfigProvider value={config}>
                 <AuthProvider authServer={auth}>
                     <MediaProvider width={width}>

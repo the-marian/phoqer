@@ -1,0 +1,46 @@
+/* Structure */
+table {
+    width: 100%;
+}
+
+.mat-form-field {
+    font-size: 14px;
+    width: 100%;
+}
+
+.input {
+    width: 30rem;
+}
+
+tr:not(.mat-header-row) {
+    cursor: pointer;
+
+    &:hover {
+        background: #efefef;
+    }
+}
+
+tr {
+    th.mat-header-cell,
+    td.mat-cell {
+        width: 8%;
+        padding: 1rem;
+    }
+
+    td.content {
+        width: 65%;
+    }
+}
+
+.delete {
+    min-width: 10rem;
+}
+
+.delete {
+    min-width: 10rem;
+}
+
+.modal {
+    width: 90%;
+    max-width: 50rem;
+}

@@ -26,7 +26,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         },
 
         '&:hover::before': {
-            border: theme.border(0.2, theme.palette.primary[0]),
+            border: theme.border(0.2, theme.palette.primary[1]),
         },
 
         '&::before': {
@@ -36,13 +36,13 @@ const useStyles = createUseStyles((theme: Theme) => ({
             left: theme.rem(0.2),
             zIndex: 1,
             transform: 'translateY(-50%)',
-            height: '91%',
+            height: '90%',
             width: '50%',
             borderRadius: theme.radius,
             background: theme.palette.white,
             transition: theme.transitions[0],
             boxShadow: theme.shadow[1],
-            border: theme.border(0.2, theme.palette.white),
+            border: theme.border(0.2, theme.palette.primary[0]),
         },
     },
     open: {
