@@ -8,16 +8,12 @@ const ConfettiWrp = (): ReactElement => {
     const media = useMedia(768);
 
     const [party, setParty] = useState<boolean>(true);
-    const [size, setSize] = useState<{ y: number; x: number }>({ y: window.innerHeight, x: window.innerWidth - 20 });
+    const [size, setSize] = useState<{ y: number; x: number }>({ y: window.innerHeight, x: window?.innerWidth - 20 });
 
     useEffect(() => {
-        const resize = (): void => {
-            setSize({ y: window.innerHeight, x: window.innerWidth - 20 });
-        };
+        const resize = (): void => setSize({ y: window?.innerHeight, x: window?.innerWidth - 20 });
         window.addEventListener('resize', resize);
-        return () => {
-            window.removeEventListener('resize', resize);
-        };
+        return () => window.removeEventListener('resize', resize);
     }, []);
 
     useEffect(() => {

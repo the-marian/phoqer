@@ -12,6 +12,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         height: theme.rem(2),
         width: theme.rem(2),
         borderRadius: '50%',
+        border: theme.border(0.2, theme.palette.trueWhite),
     },
     green: {
         background: '#22cc52',

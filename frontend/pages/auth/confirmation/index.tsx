@@ -1,4 +1,5 @@
 import { GetServerSidePropsContext } from 'next';
+import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
@@ -12,8 +13,12 @@ import { modal } from '../../../components/common/modal';
 import SmallModalWrp from '../../../components/common/modal/small-modal-wrp';
 import AuthRedirect from '../../../components/context/auth/auth-redirect';
 import Container from '../../../components/layout/container';
+import Meta from '../../../components/layout/meta';
 import useAuth from '../../../hooks/auth.hook';
+import useTrans from '../../../hooks/trans.hook';
 import { wrapper } from '../../../redux/store';
+
+const ConfettiWrp = dynamic(() => import('../../../components/common/confetti'));
 
 const useStyles = createUseStyles((theme: Theme) => ({
     bg: {
@@ -64,6 +69,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
 const Confirmation = (): ReactElement => {
     const css = useStyles();
     const auth = useAuth();
+    const trans = useTrans();
 
     const handleLogin = (): void => {
         if (!auth?.access_token) {
@@ -79,6 +85,8 @@ const Confirmation = (): ReactElement => {
     return (
         <>
             <AuthRedirect reverse />
+            <Meta title={trans('join')} h1={trans('join')} />
+            {process.browser && <ConfettiWrp />}
             <div className={css.bg}>
                 <Container className={css.wrp}>
                     <div>
