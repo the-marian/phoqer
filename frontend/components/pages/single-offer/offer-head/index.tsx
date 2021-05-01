@@ -43,7 +43,6 @@ const useStyles = createUseStyles((theme: Theme) => ({
         color: theme.palette.primary[0],
         borderRadius: theme.radius,
         ...template(theme).outline,
-
         '& svg': {
             height: theme.rem(1.4),
             width: theme.rem(1.4),
@@ -68,6 +67,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
 }));
 
 const OfferHead = (): ReactElement => {
+
     const css = useStyles();
     const trans = useTrans();
     const offer = useSelector<IState, IOfferCard | null>(state => state.offers.single);

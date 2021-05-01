@@ -28,36 +28,54 @@ const useStyles = createUseStyles((theme: Theme) => ({
         display: 'flex',
         alignItems: 'center',
     },
-
+    content: { 
+        width: theme.rem(50),
+        maxWidth: '90%'
+    },
     title: {
         fontSize: theme.rem(3.5),
-        padding: theme.rem(2, 0),
-        color: theme.palette.white,
+        margin: theme.rem(2, 0),
+        color: theme.palette.trueBlack,
+        borderRadius: theme.rem(0.6),
+        background: theme.palette.white,
+        boxShadow: '0px 0px 0px 6px #fff',
     },
     text: {
-        display: 'flex',
+        display: 'inline',
+        background: theme.palette.white,
+        boxShadow: '0px 0px 0px 6px #fff',
+        lineHeight: '2.5',
         flexDirection: 'column',
         fontSize: theme.rem(2),
-        paddingBottom: theme.rem(2.5),
-        color: theme.palette.white,
+        color: theme.palette.trueBlack,
+        borderRadius: theme.rem(0.6),
+        boxDecorationBreak: 'clone',
     },
     btn: {
         ...template(theme).btn,
+        background: theme.palette.primary[0],
         width: theme.rem(25),
         marginTop: theme.rem(5),
         marginRight: theme.rem(2),
+        border: theme.border(0.2, 'transparent'),
         ...theme.media(1100).max({
             width: '31%',
         }),
         ...theme.media(550).max({
             width: '60%',
         }),
+        '&:nth-child(2n+1)': { 
+            background: theme.palette.white,
+            color: theme.palette.black[0]
+        }
+
     },
     btnWrp: {
         display: 'flex',
         ...theme.media(500).max({
             flexDirection: 'column',
         }),
+
     },
 }));
 
@@ -81,11 +99,11 @@ const Confirmation = (): ReactElement => {
             <AuthRedirect reverse />
             <div className={css.bg}>
                 <Container className={css.wrp}>
-                    <div>
+                    <div className={css.content}>
                         <h2 className={css.title}>Спасибо за регистрацию!</h2>
                         <p className={css.text}>
-                            Лол кек чебурек Лол кек чебурек.
-                            <span>Лол кек чебурек Лол кек чебурек Лол кек чебурек Лол кек чебурек</span>{' '}
+                            Лол кек чебурек Лол кек чебурек.<span>{' '}
+                            Лол кек чебурек Лол кек чебурек Лол кек чебурек Лол кек чебурек</span>{' '}
                         </p>
                         <div className={css.btnWrp}>
                             <Link href={routes.root}>
