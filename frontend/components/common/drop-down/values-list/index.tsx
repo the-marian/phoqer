@@ -3,43 +3,52 @@ import React, { ReactElement } from 'react';
 
 import { IDropList } from '../../../../interfaces';
 
-interface Props {
+interface ValueItemProps {
+    css: { [key: string]: string };
+    withSub?: boolean;
+    slug: string;
+    name: string;
+    onSelect: (name: string, slug: string, type: 'main' | 'sub') => void;
+    type?: 'main' | 'sub';
+    sub?: IDropList[];
+}
+const ValueItem = ({ css, withSub, sub, slug, name, onSelect, type = 'main' }: ValueItemProps) => {
+    const handleClick = (): void => {
+        onSelect(name, slug, type);
+    };
+
+    return (
+        <li className={type === 'main' ? clsx(css.item, withSub && css.itemEmpty) : css.sub} key={slug}>
+            <button type="button" onClick={handleClick}>
+                {name}
+            </button>
+
+            {sub?.length ? (
+                <ul>
+                    {sub?.map(({ name, slug }) => (
+                        <ValueItem key={slug} name={name} slug={slug} type="sub" onSelect={onSelect} css={css} />
+                    ))}
+                </ul>
+            ) : null}
+        </li>
+    );
+};
+
+interface ValuesListProps {
     css: { [key: string]: string };
     data: IDropList[];
     withSub?: boolean;
     onSelect: (name: string, slug: string, type: 'main' | 'sub') => void;
 }
 
-const ValuesList = ({ data, onSelect, withSub, css }: Props): ReactElement => (
-    <ul>
-        {data?.map(({ name, slug, sub }) => (
-            <li className={clsx(css.item, withSub && css.itemEmpty)} key={slug}>
-                <button
-                    type="button"
-                    onClick={() => {
-                        onSelect(name, slug, 'main');
-                    }}
-                >
-                    {name}
-                </button>
-
-                <ul>
-                    {sub?.map(({ name, slug }) => (
-                        <li
-                            key={slug}
-                            className={css.sub}
-                            onClick={() => {
-                                onSelect(name, slug, 'sub');
-                            }}
-                            aria-hidden={true}
-                        >
-                            <span>{name}</span>
-                        </li>
-                    ))}
-                </ul>
-            </li>
-        ))}
-    </ul>
-);
+const ValuesList = ({ data, onSelect, withSub, css }: ValuesListProps): ReactElement => {
+    return (
+        <ul>
+            {data?.map(({ name, slug, sub }) => (
+                <ValueItem key={slug} name={name} slug={slug} sub={sub} css={css} onSelect={onSelect} withSub={withSub} />
+            ))}
+        </ul>
+    );
+};
 
 export default ValuesList;

@@ -20,13 +20,17 @@ import { AnyAction, Store } from 'redux';
 export interface IDropList {
     name: string;
     slug: string;
-    sub?: { name: string; slug: string }[];
+    sub?: IDropList[];
 }
 
 export interface IDropValue {
     name: string;
     slug: string;
     type: 'main' | 'sub';
+}
+
+export interface ICheckboxes {
+    [key: string]: boolean | null;
 }
 
 export interface ISearch extends Params {

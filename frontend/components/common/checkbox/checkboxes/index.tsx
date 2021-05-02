@@ -3,6 +3,7 @@ import React, { MouseEvent, ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
 import { Theme } from '../../../../assets/theme';
+import { ICheckboxes, IState } from '../../../../interfaces';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     root: {
@@ -54,19 +55,16 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
 }));
 
-interface IState {
-    [key: string]: boolean | null;
-}
-
 type Entries = [string, boolean | null];
 
 interface IProps {
-    values: IState;
+    className?: string;
+    values: ICheckboxes;
     labels: string[];
-    onChange: (values: { [key: string]: boolean | null }) => void;
+    onChange: (values: ICheckboxes) => void;
 }
 
-const Checkboxes = ({ values, labels, onChange }: IProps): ReactElement => {
+const Checkboxes = ({ className, values, labels, onChange }: IProps): ReactElement => {
     const css = useStyles();
 
     const handleClick = (event: MouseEvent<HTMLButtonElement>): void => {
@@ -78,7 +76,7 @@ const Checkboxes = ({ values, labels, onChange }: IProps): ReactElement => {
     };
 
     return (
-        <div className={css.root}>
+        <div className={clsx(className, css.root)}>
             {Object.entries(values).map((item: Entries, index) => (
                 <button key={item[0]} type="button" name={item[0]} className={css.btn} onClick={handleClick}>
                     <span className={clsx(css.label, !item[1] || css.active)} />

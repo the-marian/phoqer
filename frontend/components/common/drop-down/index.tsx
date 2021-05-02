@@ -144,20 +144,24 @@ const useStyles = createUseStyles((theme: Theme) => ({
         },
     },
     sub: {
-        position: 'relative',
-        padding: theme.rem(2, 2, 2, 4),
-        background: theme.palette.gray[0],
-        color: theme.palette.black[0],
-        fontSize: theme.rem(1.4),
+        '& > button': {
+            position: 'relative',
+            width: '100%',
+            padding: theme.rem(2, 2, 2, 4),
+            background: theme.palette.gray[0],
+            color: theme.palette.black[0],
+            fontSize: theme.rem(1.4),
+            textAlign: 'left',
 
-        ...theme.media(768).max({
-            padding: theme.rem(1.5),
-            fontSize: theme.rem(1.6),
-        }),
-        ...theme.hover({
-            background: theme.palette.primary[0],
-            color: theme.palette.trueWhite,
-        }),
+            ...theme.media(768).max({
+                padding: theme.rem(1.5),
+                fontSize: theme.rem(1.6),
+            }),
+            ...theme.hover({
+                background: theme.palette.primary[0],
+                color: theme.palette.trueWhite,
+            }),
+        },
     },
     white: {
         background: theme.palette.trueWhite,
