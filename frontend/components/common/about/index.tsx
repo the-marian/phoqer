@@ -2,6 +2,7 @@ import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 import Slider from 'react-slick';
 
+import template from '../../../assets/template';
 import { Theme } from '../../../assets/theme';
 import useTrans from '../../../hooks/trans.hook';
 
@@ -60,6 +61,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         }),
     },
     slider: {
+        position: 'relative',
         display: 'flex',
         width: '100%',
         height: theme.rem(70),
@@ -78,6 +80,48 @@ const useStyles = createUseStyles((theme: Theme) => ({
         '& .slick-list': {
             width: '100%',
             overflow: 'hidden',
+        },
+
+        '& .slick-arrow': {
+            position: 'absolute',
+            top: '50%',
+            zIndex: 5,
+            transform: 'translateY(-50%)',
+            opacity: 1,
+            ...template(theme).btn,
+            fontSize: 0,
+            background: theme.palette.gray[1],
+
+            '&::before': {
+                content: '""',
+                position: 'absolute',
+                top: '50%',
+                transform: 'translate(-50%, -50%) rotate(45deg)',
+                height: theme.rem(1),
+                width: theme.rem(1),
+            },
+
+            ...theme.hover({
+                opacity: '0.8',
+            }),
+        },
+
+        '& .slick-next': {
+            right: theme.rem(1),
+            '&::before': {
+                left: '45%',
+                borderTop: theme.border(0.2, theme.palette.black[0]),
+                borderRight: theme.border(0.2, theme.palette.black[0]),
+            },
+        },
+
+        '& .slick-prev': {
+            left: theme.rem(1),
+            '&::before': {
+                left: '55%',
+                borderLeft: theme.border(0.2, theme.palette.black[0]),
+                borderBottom: theme.border(0.2, theme.palette.black[0]),
+            },
         },
     },
     img: {
@@ -137,7 +181,7 @@ const About = (): ReactElement => {
                 swipeToSlide
                 autoplaySpeed={3000}
                 autoplay
-                arrows={false}
+                // arrows={false}
                 draggable
                 infinite
                 lazyLoad="progressive"

@@ -54,6 +54,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         color: theme.palette.gray[2],
     },
     cellText: {
+        color: theme.palette.black[0],
         fontSize: theme.rem(1.6),
     },
     link: {

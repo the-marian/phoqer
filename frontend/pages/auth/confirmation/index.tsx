@@ -11,28 +11,48 @@ import LoginForm from '../../../components/common/auth/login-form';
 import { modal } from '../../../components/common/modal';
 import SmallModalWrp from '../../../components/common/modal/small-modal-wrp';
 import AuthRedirect from '../../../components/context/auth/auth-redirect';
-import Container from '../../../components/layout/container';
 import useAuth from '../../../hooks/auth.hook';
 import { wrapper } from '../../../redux/store';
+import Header from '../../../components/layout/header'
 
 const useStyles = createUseStyles((theme: Theme) => ({
     bg: {
-        backgroundImage: 'url(/about/bg_confirmation.jpg)',
-        backgroundRepeat: 'no-repeat',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        height: '100vh',
+        background: theme.palette.primary[0]
     },
     wrp: {
+        width: '1600px',
+        maxWidth: '100%',
         height: '100vh',
         display: 'flex',
+        justifyContent: 'flex-end',
         alignItems: 'center',
+        flexDirection: 'column',
+        marginLeft: 'auto',
+        paddingLeft: theme.rem(2),
+        paddingRight: theme.rem(2),
+        ...theme.media(500).max({
+            height: 'auto',
+        }),
     },
-    content: { 
-        width: theme.rem(50),
-        maxWidth: '90%'
+    container: { 
+        display: 'flex',
+        paddingRight: theme.rem(3),
+        ...theme.media(1100).max({
+            flexWrap: 'wrap',
+            marginTop: theme.rem(10)
+
+        }),
+    },
+    content: {
+        width: '40%',
+        margin: theme.rem(2),
+        ...theme.media(1100).max({
+            width: '100%'
+            
+        }),
     },
     title: {
+        display: 'table',
         fontSize: theme.rem(3.5),
         margin: theme.rem(2, 0),
         color: theme.palette.trueBlack,
@@ -53,7 +73,8 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
     btn: {
         ...template(theme).btn,
-        background: theme.palette.primary[0],
+        background: theme.palette.white,
+        color: theme.palette.black[0],
         width: theme.rem(25),
         marginTop: theme.rem(5),
         marginRight: theme.rem(2),
@@ -64,11 +85,6 @@ const useStyles = createUseStyles((theme: Theme) => ({
         ...theme.media(550).max({
             width: '60%',
         }),
-        '&:nth-child(2n+1)': { 
-            background: theme.palette.white,
-            color: theme.palette.black[0]
-        }
-
     },
     btnWrp: {
         display: 'flex',
@@ -77,6 +93,22 @@ const useStyles = createUseStyles((theme: Theme) => ({
         }),
 
     },
+    stats: {
+        width: '60%',
+        margin: theme.rem(2),
+        ...theme.media(1100).max({
+            width: '100%'
+        }),
+    },
+    name: {
+        margin: '0',
+        marginLeft: 'auto',
+        fontSize: '14vw',
+        textTransform: 'uppercase',
+        marginRight: theme.rem(15),
+        color: theme.palette.gray[3],
+        opacity: '0.3'
+    }
 }));
 
 const Confirmation = (): ReactElement => {
@@ -97,13 +129,15 @@ const Confirmation = (): ReactElement => {
     return (
         <>
             <AuthRedirect reverse />
+            <Header />
             <div className={css.bg}>
-                <Container className={css.wrp}>
+                <div className={css.wrp}>
+                    <div className={css.container}>
                     <div className={css.content}>
                         <h2 className={css.title}>Спасибо за регистрацию!</h2>
                         <p className={css.text}>
-                            Лол кек чебурек Лол кек чебурек.<span>{' '}
-                            Лол кек чебурек Лол кек чебурек Лол кек чебурек Лол кек чебурек</span>{' '}
+                            Лол кек чебурек Лол кек чебурек.
+                            <span> Лол кек чебурек Лол кек чебурек Лол кек чебурек Лол кек чебурек</span>{' '}
                         </p>
                         <div className={css.btnWrp}>
                             <Link href={routes.root}>
@@ -114,7 +148,12 @@ const Confirmation = (): ReactElement => {
                             </button>
                         </div>
                     </div>
-                </Container>
+                      <div className={css.stats}>
+                        <h1>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eligendi, eos! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam unde eaque sed fugiat est qui dignissimos, reiciendis consequatur id natus?</h1>
+                      </div>
+                    </div>
+                    <h1 className={css.name}>phoqer</h1>
+                </div>
             </div>
         </>
     );
