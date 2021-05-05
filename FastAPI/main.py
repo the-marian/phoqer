@@ -7,6 +7,7 @@ from FastAPI.login import login
 from fastapi.middleware.cors import CORSMiddleware
 from FastAPI.offers import offers
 from FastAPI.users import users
+from FastAPI.categories import categories
 
 origins = [
     "http://localhost:4000",
@@ -24,6 +25,7 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+app.include_router(categories.router)
 app.include_router(comments.router)
 app.include_router(offers.router)
 app.include_router(favorite.router)
