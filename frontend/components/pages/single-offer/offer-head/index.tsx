@@ -67,7 +67,6 @@ const useStyles = createUseStyles((theme: Theme) => ({
 }));
 
 const OfferHead = (): ReactElement => {
-
     const css = useStyles();
     const trans = useTrans();
     const offer = useSelector<IState, IOfferCard | null>(state => state.offers.single);

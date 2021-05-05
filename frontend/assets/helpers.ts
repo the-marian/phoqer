@@ -1,8 +1,7 @@
 import cookie from 'cookie';
 import { GetServerSidePropsContext } from 'next';
 
-import { IAuth, ICategories, IDropList, IDropValue, IStore } from '../interfaces';
-import types from '../redux/types';
+import { IAuth, ICategories, IDropList, IDropValue } from '../interfaces';
 import months from './months';
 import routes from './routes';
 
@@ -18,7 +17,8 @@ import routes from './routes';
  * ├─ 5.1 Production logs
  * ├─ 5.2 Transform category list for dropdowns
  * ├─ 5.3 SSR auth helpers
- * └─ 5.4 Online indicator
+ * ├─ 5.4 Online indicator
+ * └─ 5.5 Time indicator
  */
 
 // ----------------------------------------------
@@ -185,11 +185,7 @@ export const serverRedirect = (ctx: GetServerSidePropsContext, path?: string | n
     }
     return !!redirect;
 };
-// get user in next.js getServerSideProps function
-export const serverUser = (ctx: GetServerSidePropsContext & { store: IStore }): void => {
-    const auth = serverCookie(ctx);
-    if (auth?.access_token) ctx.store.dispatch({ type: types.GET_USER_START });
-};
+
 // ----------------------------------------------
 // ----------------------------------------------
 //  5. Site related helpers
@@ -210,7 +206,23 @@ export const onlineStatus = ({ initDate, locale = 'ru', isAuthor = false }: IOnl
     const isOnline = (date && Date.now() - +date < FIVE_MINUTES_IN_MS) || isAuthor;
     const dif = Date.now() - +date;
     if (dif > HOUR_IN_MS) return formatTimestamp(date, locale);
-    const minutes = Math.floor(dif / 60000);
 
+    const minutes = Math.floor(dif / 60000);
     return isOnline ? 'online' : `${minutes} ${declOfNum(minutes, ['минуту', 'минуты', 'минут'])} назад`;
+};
+
+// ----------------------------------------------
+// ----------------------------------------------
+//  5. Site related helpers
+//  └─ 5.4 Time indicator
+// ----------------------------------------------
+export const timeIndicator = ({ initDate, locale = 'ru' }: IOnlineStatusParams): string => {
+    const date = dateFromTimestamp(initDate);
+    if (!date) return ' - ';
+
+    const dif = Date.now() - +date;
+    if (dif > HOUR_IN_MS) return formatTimestamp(date, locale);
+
+    const minutes = Math.ceil(dif / 60000);
+    return `${minutes} ${declOfNum(minutes, ['минуту', 'минуты', 'минут'])} назад`;
 };

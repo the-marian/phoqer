@@ -1,3 +1,4 @@
+/* SCROLLBAR */
 .windows *::-webkit-scrollbar {
     width: 0.5rem;
     height: 0.5rem;
@@ -23,6 +24,7 @@
     background-color: #343434;
 }
 
+/* SITE BACKGROUND COLOR */
 .black-blue body,
 .black-aqua body,
 .black-violet body {
@@ -35,6 +37,7 @@
     background: #ffffff;
 }
 
+/* SWIPE SLIDER */
 .blue .rc-slider-track,
 .black-blue .rc-slider-track {
     background: #007aff;
