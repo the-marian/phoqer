@@ -37,10 +37,12 @@ interface IProps {
 const DropDownMultiple = ({ className, values, labels, onChange, placeholder = '...' }: IProps): ReactElement => {
     const css = useStyles();
 
-    const text = Object.entries(values).reduce<string>((acc, item, index) => {
-        if (item[1]) acc += labels[index] + ', ';
-        return acc;
-    }, '');
+    const text = Object.entries(values)
+        .reduce<string>((acc, item, index) => {
+            if (item[1]) acc += labels[index] + ', ';
+            return acc;
+        }, '')
+        ?.slice(0, -2);
 
     const handleClick = (): void => {
         modal.open(<DropDownValuesModal values={values} labels={labels} onChange={onChange} />);

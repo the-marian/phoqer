@@ -25,19 +25,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
         objectFit: 'cover',
     },
     file: {
+        ...template(theme).btn,
         position: 'relative',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
         marginBottom: theme.rem(4),
-        padding: theme.rem(1.5, 2),
-        background: theme.palette.gray[0],
-        borderRadius: theme.radius,
-        fontWeight: theme.text.weight[3],
-        fontSize: theme.rem(1.6),
-        color: theme.palette.primary[0],
-        transition: theme.transitions[0],
-        ...template(theme).outline,
 
         '& span': {
             marginLeft: theme.rem(1),
