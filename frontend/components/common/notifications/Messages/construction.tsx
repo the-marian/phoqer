@@ -12,8 +12,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
     btn: {
         ...template(theme).btn,
-        height: theme.rem(3),
+        height: theme.rem(3.5),
         marginTop: theme.rem(1),
+        padding: theme.rem(0.2, 3),
     },
 }));
 

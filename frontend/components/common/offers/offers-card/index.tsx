@@ -21,6 +21,7 @@ import LoginForm from '../../auth/login-form';
 import DropDown from '../../drop-down';
 import { modal } from '../../modal';
 import SmallModalWrp from '../../modal/small-modal-wrp';
+import notifications from '../../notifications';
 import useStyles from './offers-card.styles';
 
 const MAX_LENGTH = 55;
@@ -84,15 +85,15 @@ const OfferCard = ({ offer, showFavoriteBtn = true }: IProps): ReactElement => {
         if (!value) return;
         switch (value.slug) {
             case 'DO_INACTIVE':
-                alert(trans('do_inactive'));
+                notifications.info({ message: 'Do inactive' });
                 break;
 
             case 'ARCHIVE':
-                alert(trans('put_to_archive'));
+                notifications.info({ message: 'Put to archive' });
                 break;
 
             case 'PROMOTE':
-                alert(trans('put_top_top'));
+                notifications.info({ message: 'Put top top' });
                 break;
 
             case 'EDIT':
@@ -100,11 +101,11 @@ const OfferCard = ({ offer, showFavoriteBtn = true }: IProps): ReactElement => {
                 break;
 
             case 'DELETE':
-                alert(trans('delete'));
+                notifications.info({ message: 'Delete' });
                 break;
 
             case 'DO_REVIEW':
-                alert(trans('publish'));
+                notifications.info({ message: 'Publish' });
                 break;
 
             default:

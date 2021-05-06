@@ -1,3 +1,4 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { GetServerSidePropsContext } from 'next';
 import React, { ReactElement, useState } from 'react';
 import { createUseStyles } from 'react-jss';
