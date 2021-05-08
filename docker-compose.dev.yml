@@ -9,7 +9,7 @@ services:
     command: python manage.py runserver 0.0.0.0:8000
     volumes:
       - ./backend/:/home/phoqer/backend/
-      - media_volume:/home/phoqer/FastAPI/mediafiles/
+      - media_volume:/phoqer/FastAPI/mediafiles/
     expose:
       - 8000
     env_file:
@@ -24,7 +24,7 @@ services:
     command: uvicorn main:app --root-path /api/v2 --reload --workers 1 --host 0.0.0.0 --port 8001
     volumes:
       - ./FastAPI/:/home/phoqer/FastAPI/
-      - media_volume:/home/phoqer/FastAPI/mediafiles/
+      - media_volume:/phoqer/FastAPI/mediafiles/
     expose:
       - 8001
     env_file:
@@ -63,7 +63,7 @@ services:
     container_name: nginx
     build: ./nginx
     volumes:
-      - media_volume:/home/phoqer/FastAPI/mediafiles/
+      - media_volume:/phoqer/FastAPI/mediafiles/
     ports:
       - 80:80
     depends_on:
