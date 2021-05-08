@@ -7,20 +7,14 @@ def test_list_categories(client):
     assert response.json() == [
         {
             "icon_image": None,
-            "image":
-                "https://images-na.ssl-images-amazon.com/images/I/4138cqpPWrL._AC_.jpg",
+            "image": "https://example.comm/dickpic.jpg",
             "slug": "kitty",
-            "sub_category": []
+            "sub_category": [],
         },
         {
             "icon_image": None,
             "image": "https://example.com/dic_pic.jpg",
             "slug": "sport",
-            "sub_category": [
-                {
-                    "icon_image": None,
-                    "slug": "bike"
-                }
-            ]
-        }
+            "sub_category": [{"icon_image": None, "slug": "bike"}],
+        },
     ]

@@ -1,6 +1,6 @@
-from pydantic import BaseModel
-from pydantic import AnyUrl
 from typing import List, Optional
+
+from pydantic import AnyUrl, BaseModel
 
 
 class ChildCategory(BaseModel):

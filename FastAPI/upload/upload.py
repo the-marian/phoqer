@@ -21,6 +21,7 @@ def create_upload_file(
         os.mkdir(MEDIA_ROOT)
     except FileExistsError:
         pass
-    with open(f"{MEDIA_ROOT}/{file.filename}-{uuid.uuid4()}", "wb") as buffer:
+    uuid_prefix = uuid.uuid4()
+    with open(f"{MEDIA_ROOT}/{uuid_prefix}-{file.filename}", "wb") as buffer:
         shutil.copyfileobj(file.file, buffer)
-    return {"images_url": MEDIA_URL + file.filename}
+    return {"image_url": f"{MEDIA_URL}{uuid_prefix}-{file.filename}"}
