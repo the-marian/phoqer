@@ -27,7 +27,7 @@ interface ICommentBody {
 const api = {
     // V2
     categories: {
-        get: (): Promise<AxiosResponse<ICategories>> => axios.get(`${url2}/categories/`),
+        get: (): Promise<AxiosResponse<ICategories>> => axios.get(`${url2}/categories`),
     },
     auth: {
         user: (): Promise<AxiosResponse<IPublicProfile>> => axios.get(`${url2}/users/me`),
