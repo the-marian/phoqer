@@ -100,13 +100,16 @@ const NewOffer = (): ReactElement => {
             <PageLayout>
                 <Container>
                     <>
-                        <h2 className={css.title}>{trans('share_with_others_and_earn')}</h2>
-
-                        {page in [1, 2, 3] ? <Stepper titles={STEPS_TITLE} current={+page} /> : null}
+                        {[1, 2, 3].includes(+page) ? (
+                            <>
+                                <h2 className={css.title}>{trans('share_with_others_and_earn')}</h2>
+                                <Stepper titles={STEPS_TITLE} current={+page} />
+                            </>
+                        ) : null}
 
                         {history.query.step !== undefined ? STEPS[page] || STEPS[1] : null}
 
-                        {page in [1, 2] && (
+                        {[1, 2].includes(+page) && (
                             <p className={css.text}>
                                 <span className={css.red}>*</span> Обязательное поле
                             </p>

@@ -13,6 +13,7 @@ import { wrapper } from '../../../../redux/store';
 import types from '../../../../redux/types';
 import PageLayout from "../../../../components/layout/page-layout";
 import useTrans from "../../../../hooks/trans.hook";
+import ErrorComponent from "../../../../components/common/error";
 
 const useStyles = createUseStyles((theme: Theme) => ({
     wrp: {
@@ -53,30 +54,33 @@ const PublicProfilePage = (): ReactElement => {
     const profile = useSelector<IState, IPublicProfile | null>(state => state.profiles.public);
 
     return (
-        <>
-            <Meta title={profile?.first_name + ' ' + profile?.last_name} h1={trans('user_profile_on_phoqer')} />
+
             <PageLayout>
                 <Container>
-                    <div className={css.wrp}>
-                        <div className={css.left}>
-                            <ProfileCard
-                                className={css.sticky}
-                                id={profile?.id}
-                                registerDate={profile?.date_joined}
-                                firstName={profile?.first_name}
-                                lastName={profile?.last_name}
-                                avatar={profile?.profile_img}
-                                userLocation={profile?.location}
-                                lastActivity={profile?.last_activity}
-                            />
+                    {profile ? <>
+                        <Meta title={profile?.first_name + ' ' + profile?.last_name}
+                              h1={trans('user_profile_on_phoqer')}/>
+                        <div className={css.wrp}>
+                            <div className={css.left}>
+                                <ProfileCard
+                                    className={css.sticky}
+                                    id={profile?.id}
+                                    registerDate={profile?.date_joined}
+                                    firstName={profile?.first_name}
+                                    lastName={profile?.last_name}
+                                    avatar={profile?.profile_img}
+                                    userLocation={profile?.location}
+                                    lastActivity={profile?.last_activity}
+                                />
+                            </div>
+                            <div className={css.right}>
+                                <ProfileInfo/>
+                            </div>
                         </div>
-                        <div className={css.right}>
-                            <ProfileInfo />
-                        </div>
-                    </div>
+                    </> : <ErrorComponent title='404' text={trans('404_profile')} />}
                 </Container>
             </PageLayout>
-        </>
+
     );
 };
 

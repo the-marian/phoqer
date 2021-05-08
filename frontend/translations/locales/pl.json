@@ -157,6 +157,9 @@
     "business": "Dla biznesu",
     "hobbies": "Hobby",
     "other": "Inny",
-    "error": "Oops, Something went wrong. Please, reload your browser and try again",
-    "reload": "Перезагрузить страницу"
+    "error": "Ups! Coś poszło nie tak. Proszę, przeładuj przeglądarkę i spróbuj ponownie",
+    "reload": "Odśwież stronę",
+    "404_offer": "Ta oferta nie istnieje lub została usunięta. Zawsze możesz znaleźć podobną ofertę na Phoqer",
+    "404_profile": "Ten użytkownik nie istnieje lub został usunięty.",
+    "404_page": "Ta strona nie istnieje lub została usunięta."
 }

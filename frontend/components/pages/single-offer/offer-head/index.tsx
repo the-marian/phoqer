@@ -6,7 +6,6 @@ import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 import { useDispatch, useSelector } from 'react-redux';
 
-import template from '../../../../assets/template';
 import { Theme } from '../../../../assets/theme';
 import useAuth from '../../../../hooks/auth.hook';
 import useTrans from '../../../../hooks/trans.hook';
@@ -39,10 +38,14 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
     favorite: {
         margin: theme.rem(0, 2),
-        padding: theme.rem(1, 1.5),
+        padding: theme.rem(1.5, 2),
         color: theme.palette.primary[0],
         borderRadius: theme.radius,
-        ...template(theme).outline,
+        transition: theme.transitions[0],
+        ...theme.hover({
+            background: theme.palette.secondary[0],
+        }),
+
         '& svg': {
             height: theme.rem(1.4),
             width: theme.rem(1.4),

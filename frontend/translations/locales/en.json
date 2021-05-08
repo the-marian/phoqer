@@ -158,5 +158,8 @@
     "hobbies": "Hobbies",
     "other": "Other",
     "error": "Oops, Something went wrong. Please, reload your browser and try again",
-    "reload": "Перезагрузить страницу"
+    "reload": "Перезагрузить страницу",
+    "404_offer": "This offer does not exist or has been deleted. You can always find a similar offer on Phoqer",
+    "404_profile": "This user does not exist or has been deleted.",
+    "404_page": "This page does not exist or has been deleted."
 }

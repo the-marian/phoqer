@@ -35,10 +35,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         background: theme.palette.secondary[0],
         color: theme.palette.black[0],
         transitions: theme.transitions[0],
-
-        ...theme.hover({
-            color: theme.palette.primary[0],
-        }),
+        ...template(theme).outline,
     },
 }));
 

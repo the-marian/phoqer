@@ -238,7 +238,7 @@ const SingleOfferPage = (): ReactElement | null => {
                             <RelatedOffers />
                         </>
                     ) : (
-                        <ErrorComponent />
+                        <ErrorComponent title="404" text={trans('404_offer')} />
                     )}
                 </>
             </Container>
