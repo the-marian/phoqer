@@ -100,7 +100,7 @@ export interface ICategories {
     icon_image: string;
     image: string;
     slug: string;
-    sub_categories?: ICategories[];
+    sub_category?: ICategories[];
 }
 
 // =====================================
@@ -129,8 +129,6 @@ export interface IOfferCard {
     city: string;
     currency: string;
     author_id: number;
-    category_name?: null | string;
-    sub_category_name?: null | string;
     status: string;
 }
 

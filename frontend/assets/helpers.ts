@@ -145,7 +145,9 @@ export const logger = (): void => {
 // ----------------------------------------------
 // format category list from backend in relation to IDropList interface
 export const formatCatList = (data: ICategories[]): IDropList[] =>
-    data?.map<IDropList>((item: ICategories): IDropList => (item.sub_categories ? { ...item, sub: item.sub_categories } : item));
+    data?.map<IDropList>(
+        (item: ICategories): IDropList => (item?.sub_category?.length ? { ...item, sub: item.sub_category } : item),
+    );
 // find category by slug
 type Dropdown = ICategories | IDropList | IDropValue;
 export const findCategory = (data: Dropdown[], slug: string): Dropdown | null => {
@@ -154,11 +156,11 @@ export const findCategory = (data: Dropdown[], slug: string): Dropdown | null =>
 };
 // find sub category by slug
 export const findSubCategory = (data: ICategories[], slug: string): Dropdown | null => {
-    const categories: ICategories[] = data.filter(item => item.sub_categories?.[0]);
+    const categories: ICategories[] = data.filter(item => item.sub_category?.[0]);
     let subCategory;
     if (categories.length) {
         for (const cat of categories) {
-            subCategory = cat.sub_categories?.find(item => item.slug === slug);
+            subCategory = cat.sub_category?.find(item => item.slug === slug);
             if (subCategory) break;
         }
     }
