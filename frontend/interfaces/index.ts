@@ -18,7 +18,9 @@ import { AnyAction, Store } from 'redux';
 // 1 GENERAL
 // =====================================
 export interface IDropList {
-    name: string;
+    icon_image?: string;
+    image?: string;
+    name?: string;
     slug: string;
     sub?: IDropList[];
 }
@@ -95,10 +97,10 @@ export interface IAuth {
 // 3 CATEGORIES
 // =====================================
 export interface ICategories {
-    name: string;
+    icon_image: string;
     image: string;
     slug: string;
-    sub_categories?: { name: string; slug: string }[];
+    sub_categories?: ICategories[];
 }
 
 // =====================================

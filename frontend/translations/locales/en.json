@@ -145,5 +145,16 @@
     "comment": "Comment",
     "comment_without_attachments": "Comment without photo",
     "add_attachments": "Add photos",
-    "personal_area": "Personal Area"
+    "personal_area": "Personal Area",
+    "pets": "Fro pets",
+    "fashion": "Fashion",
+    "for_home": "For home",
+    "kids": "For kids",
+    "real_estate": "Real estate",
+    "technics": "Technics",
+    "transport": "Transport",
+    "services": "Services",
+    "business": "Business",
+    "hobbies": "Hobbies",
+    "other": "Other"
 }

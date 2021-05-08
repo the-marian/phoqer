@@ -10,6 +10,7 @@ import { findCategory, findSubCategory, moneyFormat } from '../../../../assets/h
 import routes from '../../../../assets/routes';
 import template from '../../../../assets/template';
 import { Theme } from '../../../../assets/theme';
+import useTrans from '../../../../hooks/trans.hook';
 import { ICategories, ISearch, IState } from '../../../../interfaces';
 import Container from '../../../layout/container';
 
@@ -69,54 +70,60 @@ const SORT: { [key: string]: string } = {
     '-deposit_val': 'Сума залога (по возростанию)',
 };
 
-const filtersToText = (filter: Filter, categories: ICategories[]): string => {
-    switch (filter[0]) {
-        case 'search':
-            return filter[1] as string;
-
-        case 'category':
-            return findCategory(categories, filter[1] as string)?.name || '...';
-
-        case 'sub_category':
-            return findSubCategory(categories, filter[1] as string)?.name || '...';
-
-        case 'period':
-            return PERIOD[filter[1] as string];
-
-        case 'status':
-            return STATUS[filter[1] as string];
-
-        case 'ordering':
-            return SORT[filter[1] as string];
-
-        case 'top':
-            return 'Только ТОП объявления';
-
-        case 'no_deposit':
-            return 'Без залога';
-
-        case 'is_deliverable':
-            return 'C доставкой';
-
-        case 'min_price':
-            return 'минимальная цена: ' + moneyFormat(filter[1]) + '.00';
-
-        case 'max_price':
-            return 'максимальная цена: ' + moneyFormat(filter[1]) + '.00';
-
-        default:
-            return '';
-    }
-};
-
 interface IProps {
     filter: Filter;
 }
+
 const ActiveFiltersItem = ({ filter }: IProps): ReactElement => {
     const css = useStyles();
     const history = useRouter();
+    const trans = useTrans();
     const searchParams = useSelector<IState, ISearch>(state => state.config.searchParams);
     const categories = useSelector<IState, ICategories[]>(state => state.categories);
+
+    const filtersToText = (filter: Filter): string => {
+        switch (filter[0]) {
+            case 'search':
+                return filter[1] as string;
+
+            case 'category': {
+                const category = findCategory(categories, filter[1] as string);
+                return category ? trans(category.slug) : '...';
+            }
+
+            case 'sub_category': {
+                const category = findSubCategory(categories, filter[1] as string);
+                return category ? trans(category.slug) : '...';
+            }
+
+            case 'period':
+                return PERIOD[filter[1] as string];
+
+            case 'status':
+                return STATUS[filter[1] as string];
+
+            case 'ordering':
+                return SORT[filter[1] as string];
+
+            case 'top':
+                return 'Только ТОП объявления';
+
+            case 'no_deposit':
+                return 'Без залога';
+
+            case 'is_deliverable':
+                return 'C доставкой';
+
+            case 'min_price':
+                return 'минимальная цена: ' + moneyFormat(filter[1]) + '.00';
+
+            case 'max_price':
+                return 'максимальная цена: ' + moneyFormat(filter[1]) + '.00';
+
+            default:
+                return '';
+        }
+    };
 
     const handleClick = (): void => {
         history.push(
@@ -134,7 +141,7 @@ const ActiveFiltersItem = ({ filter }: IProps): ReactElement => {
             <button className={css.btn} type="button" onClick={handleClick}>
                 <FontAwesomeIcon icon={faTimes} />
             </button>
-            <span>{filtersToText(filter, categories)}</span>
+            <span>{filtersToText(filter)}</span>
         </li>
     );
 };

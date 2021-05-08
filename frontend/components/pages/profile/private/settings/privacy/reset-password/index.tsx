@@ -1,4 +1,3 @@
-import { faKey } from '@fortawesome/free-solid-svg-icons/faKey';
 import React, { ChangeEvent, ReactElement, useState } from 'react';
 import { createUseStyles } from 'react-jss';
 
@@ -58,7 +57,6 @@ const ResetPassword = (): ReactElement => {
             <label className={css.label}>
                 <p className={css.text}>{trans('old_password')}</p>
                 <Input
-                    icon={faKey}
                     value={value.old_password}
                     errors={error.old_password}
                     onChange={handleChange}
@@ -74,7 +72,6 @@ const ResetPassword = (): ReactElement => {
             <label className={css.label}>
                 <p className={css.text}>{trans('create_new_password')}</p>
                 <Input
-                    icon={faKey}
                     value={value.new_password}
                     errors={error.new_password}
                     onChange={handleChange}
@@ -90,7 +87,6 @@ const ResetPassword = (): ReactElement => {
             <label className={css.label}>
                 <p className={css.text}>{trans('confirm_password')}</p>
                 <Input
-                    icon={faKey}
                     value={value.confirm_password}
                     errors={error.confirm_password}
                     onChange={handleChange}
