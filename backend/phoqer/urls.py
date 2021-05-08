@@ -10,9 +10,6 @@ urlpatterns = [
     path('api/v1/upload/', ImageUpload.as_view(), name='upload'),
     path('admin/', admin.site.urls),
 
-    # REST-FRAMEWORK URLS
-    path('api/v1/categories/', include('categories.urls', namespace='categories')),
-
     # SWAGGER URL
     path('api/schema/', SpectacularAPIView.as_view(), name='schema'),
     path('api/swagger/',
