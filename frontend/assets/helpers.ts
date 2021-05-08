@@ -145,10 +145,7 @@ export const logger = (): void => {
 // ----------------------------------------------
 // format category list from backend in relation to IDropList interface
 export const formatCatList = (data: ICategories[]): IDropList[] =>
-    data?.map<ICategories | IDropList>(
-        (item: ICategories): IDropList =>
-            item.sub_categories ? { name: item.name, slug: item.slug, sub: item.sub_categories } : item,
-    );
+    data?.map<IDropList>((item: ICategories): IDropList => (item.sub_categories ? { ...item, sub: item.sub_categories } : item));
 // find category by slug
 type Dropdown = ICategories | IDropList | IDropValue;
 export const findCategory = (data: Dropdown[], slug: string): Dropdown | null => {

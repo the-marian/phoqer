@@ -145,5 +145,16 @@
     "comment": "Komentować",
     "comment_without_attachments": "Komentarz bez zdjęcia",
     "add_attachments": "Dodaj zdjęcie",
-    "personal_area": "Obszar Osobisty"
+    "personal_area": "Obszar Osobisty",
+    "pets": "Dla zwierząt",
+    "fashion": "Odzież i moda",
+    "for_home": "Dom i ogród",
+    "kids": "Świat dziecka",
+    "real_estate": "Własność",
+    "technics": "Technika",
+    "transport": "Transport",
+    "services": "Usługi",
+    "business": "Dla biznesu",
+    "hobbies": "Hobby",
+    "other": "Inny"
 }

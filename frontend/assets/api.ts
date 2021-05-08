@@ -14,7 +14,7 @@ import {
 import { IBody } from '../redux/offers/new_offer/interfaces';
 import config from './config';
 
-const url1 = config.baseUrl[process.env.NODE_ENV]('v1');
+// const url1 = config.baseUrl[process.env.NODE_ENV]('v1');
 const url2 = config.baseUrl[process.env.NODE_ENV]('v2');
 
 interface ICommentBody {
@@ -25,12 +25,10 @@ interface ICommentBody {
 }
 
 const api = {
-    // V1
-    categories: {
-        get: (): Promise<AxiosResponse<ICategories>> => axios.get(`${url1}/categories/`),
-    },
-
     // V2
+    categories: {
+        get: (): Promise<AxiosResponse<ICategories>> => axios.get(`${url2}/categories/`),
+    },
     auth: {
         user: (): Promise<AxiosResponse<IPublicProfile>> => axios.get(`${url2}/users/me`),
         login: (form: FormData): Promise<AxiosResponse<IAuth>> => axios.post(`${url2}/auth/login`, form),

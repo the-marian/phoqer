@@ -11,6 +11,7 @@ import { CSSTransition } from 'react-transition-group';
 import template from '../../../assets/template';
 import { Theme } from '../../../assets/theme';
 import useMedia from '../../../hooks/media.hook';
+import useTrans from '../../../hooks/trans.hook';
 import { IDropList, IDropValue } from '../../../interfaces';
 import { modal } from '../modal';
 import SmallModalWrp from '../modal/small-modal-wrp';
@@ -204,13 +205,16 @@ const DropDown = ({
 }: Props): ReactElement => {
     const css = useStyles();
     const media = useMedia(768);
+    const trans = useTrans();
 
     const [top, setTop] = useState<boolean>(false);
     const [drop, setDrop] = useState<boolean>(false);
-    const [selected, setSelected] = useState<string>(defaultValue?.name || placeholder || data[0].name);
+    const [selected, setSelected] = useState<string>(
+        defaultValue?.name || defaultValue?.slug || placeholder || data[0].name || data[0].slug,
+    );
 
     useEffect(() => {
-        if (defaultValue) setSelected(defaultValue.name || placeholder || '');
+        if (defaultValue) setSelected(defaultValue.name || defaultValue?.slug || placeholder || '');
         if (!defaultValue && placeholder) setSelected(placeholder);
     }, [defaultValue, placeholder]);
 
@@ -285,7 +289,7 @@ const DropDown = ({
                                 <FontAwesomeIcon icon={faChevronDown} />
                             </span>
                         )}
-                        <span className={css.text}>{selected}</span>
+                        <span className={css.text}>{trans(selected)}</span>
                         {placeholder && selected !== placeholder && (
                             <span className={css.reset} onClick={handleReset} aria-hidden={true}>
                                 <FontAwesomeIcon icon={faTimes} />

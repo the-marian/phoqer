@@ -69,11 +69,11 @@ const Categories = (): ReactElement => {
             <SectionTitle>{trans('rent_here_and_now')}</SectionTitle>
 
             <div className={css.wrp}>
-                {categories?.map(({ name, image, slug }) => (
-                    <Link key={name} href={routes.offers.single(`?category=${slug}`)}>
+                {categories?.map<ReactElement>(({ image, slug }) => (
+                    <Link key={slug} href={routes.offers.single(`?category=${slug}`)}>
                         <div className={css.cat}>
-                            <img className={css.img} src={image} alt={name} />
-                            <p className={css.text}>{name}</p>
+                            <img className={css.img} src={image} alt={trans(slug)} />
+                            <p className={css.text}>{trans(slug)}</p>
                         </div>
                     </Link>
                 ))}

@@ -138,7 +138,7 @@ const Search = ({ shallow = false }: IProps): ReactElement => {
     const desktop = useMedia(1100);
 
     const searchParams = useSelector<IState, ISearch>(state => state.config.searchParams);
-    const { pagination } = useSelector<IState, { pagination: boolean }>(state => state.offers.search);
+    const pagination = useSelector<IState, boolean>(state => state.offers.search.pagination);
 
     const handleChange = (value: IDropValue | null): void => {
         if (shallow) {

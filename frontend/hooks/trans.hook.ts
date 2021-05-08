@@ -14,7 +14,7 @@ type UseTransType = (value: string) => string;
 
 const useTrans = (): UseTransType => (value: string): string => {
     const router = useRouter();
-    return (content as ILocales)[router.locale || 'en'][value] || '...';
+    return (content as ILocales)[router.locale || 'en'][value] || String(value);
 };
 
 export default useTrans;

@@ -1,6 +1,7 @@
 import clsx from 'clsx';
 import React, { ReactElement } from 'react';
 
+import useTrans from '../../../../hooks/trans.hook';
 import { IDropList } from '../../../../interfaces';
 
 interface ValueItemProps {
@@ -13,20 +14,22 @@ interface ValueItemProps {
     sub?: IDropList[];
 }
 const ValueItem = ({ css, withSub, sub, slug, name, onSelect, type = 'main' }: ValueItemProps) => {
+    const trans = useTrans();
+
     const handleClick = (): void => {
-        onSelect(name, slug, type);
+        onSelect(name || trans(slug), slug, type);
     };
 
     return (
         <li className={type === 'main' ? clsx(css.item, withSub && css.itemEmpty) : css.sub} key={slug}>
             <button type="button" onClick={handleClick}>
-                {name}
+                {name || trans(slug)}
             </button>
 
             {sub?.length ? (
                 <ul>
                     {sub?.map(({ name, slug }) => (
-                        <ValueItem key={slug} name={name} slug={slug} type="sub" onSelect={onSelect} css={css} />
+                        <ValueItem key={slug} name={name || trans(slug)} slug={slug} type="sub" onSelect={onSelect} css={css} />
                     ))}
                 </ul>
             ) : null}
@@ -42,10 +45,20 @@ interface ValuesListProps {
 }
 
 const ValuesList = ({ data, onSelect, withSub, css }: ValuesListProps): ReactElement => {
+    const trans = useTrans();
+
     return (
         <ul>
             {data?.map(({ name, slug, sub }) => (
-                <ValueItem key={slug} name={name} slug={slug} sub={sub} css={css} onSelect={onSelect} withSub={withSub} />
+                <ValueItem
+                    key={slug}
+                    name={name || trans(slug)}
+                    slug={slug}
+                    sub={sub}
+                    css={css}
+                    onSelect={onSelect}
+                    withSub={withSub}
+                />
             ))}
         </ul>
     );

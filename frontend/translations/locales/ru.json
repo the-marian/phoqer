@@ -145,5 +145,16 @@
     "comment": "Комментировать",
     "comment_without_attachments": "Комментарий без фото",
     "add_attachments": "Добавить фото",
-    "personal_area": "Личный Кабинет"
+    "personal_area": "Личный Кабинет",
+    "pets": "Для животных",
+    "fashion": "Одежда и мода",
+    "for_home": "Дом и сад",
+    "kids": "Детский мир",
+    "real_estate": "Недвижимость",
+    "technics": "Техника",
+    "transport": "Транспорт",
+    "services": "Услуги",
+    "business": "Бизнес",
+    "hobbies": "Хобби и спорт",
+    "other": "Другое"
 }
