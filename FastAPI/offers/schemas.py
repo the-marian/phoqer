@@ -48,7 +48,6 @@ class OfferDraftRequest(BaseModel):
 
 class OfferDraftReply(OfferDraftRequest):
     author_id: int
-    category_name: Optional[str] = None
     first_name: str
     id: UUID
     is_favorite: bool
@@ -57,7 +56,6 @@ class OfferDraftReply(OfferDraftRequest):
     profile_img: Optional[HttpUrl] = None
     pub_date: date
     status: Status
-    sub_category_name: Optional[str] = None
 
 
 class OffersListItem(BaseModel):
