@@ -5,9 +5,9 @@ import notificationsModal from '../../../components/common/modal/notifications-m
 import { IDropValue, INewOffer, IState } from '../../../interfaces';
 import initState from '../../state';
 import types from '../../types';
-import IAction, { IBody, IImage } from './interfaces';
+import IAction, { IBody } from './interfaces';
 
-const adapter = (value: INewOffer, images: IImage[]): IBody => ({
+const adapter = (value: INewOffer, images: string[]): IBody => ({
     price: value.price,
     title: value.title,
     doc_needed: value.doc_needed,
@@ -20,13 +20,13 @@ const adapter = (value: INewOffer, images: IImage[]): IBody => ({
     min_rent_period: value.min_rent_period,
     extra_requirements: value.extra_requirements,
     images: images || [],
-    cover_image: images && images?.[0]?.url,
+    cover_image: images && images?.[0],
 });
 
 function* postOffer({ payload, callback }: IAction) {
     try {
         const form: INewOffer = yield select<(state: IState) => INewOffer>(state => state.offers.new_offer);
-        const body: IBody = adapter(form, payload as { url: string }[]);
+        const body: IBody = adapter(form, payload as string[]);
         body.category = (form.category as IDropValue)?.type === 'main' ? (form.category as IDropValue)?.slug : null;
         body.sub_category = (form.category as IDropValue)?.type === 'sub' ? (form.category as IDropValue)?.slug : null;
 
@@ -43,7 +43,7 @@ function* postOffer({ payload, callback }: IAction) {
 
 function* updateOffer({ payload, images, offerId, callback }: IAction) {
     try {
-        const body: IBody = adapter(payload as INewOffer, images as IImage[]);
+        const body: IBody = adapter(payload as INewOffer, images as string[]);
         body.category_id =
             ((payload as INewOffer).category as IDropValue)?.type === 'main'
                 ? ((payload as INewOffer).category as IDropValue)?.slug
@@ -66,7 +66,7 @@ function* updateOffer({ payload, images, offerId, callback }: IAction) {
 
 function* publishOffer({ payload, images, offerId, callback }: IAction) {
     try {
-        const body: IBody = adapter(payload as INewOffer, images as IImage[]);
+        const body: IBody = adapter(payload as INewOffer, images as string[]);
         body.category_id =
             ((payload as INewOffer).category as IDropValue)?.type === 'main'
                 ? ((payload as INewOffer).category as IDropValue)?.slug

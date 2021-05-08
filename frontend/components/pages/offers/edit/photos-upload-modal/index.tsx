@@ -23,8 +23,8 @@ const PhotosUploadModal = (): ReactElement => {
                 type: types.ADD_SINGLE_OFFER_IMG,
                 payload:
                     result?.successful?.map<string>(
-                        (value: UploadedUppyFile<unknown, { images_url?: [string] }>) =>
-                            config.img + value?.response?.body?.images_url?.[0],
+                        (value: UploadedUppyFile<unknown, { image_url?: string }>) =>
+                            config.img + value?.response?.body?.image_url,
                     ) || [],
             });
         };

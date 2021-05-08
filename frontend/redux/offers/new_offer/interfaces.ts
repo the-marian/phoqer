@@ -20,7 +20,7 @@ export interface IBody {
     extra_requirements: string;
     city: 'Kiev';
     currency: string;
-    images: { url: string }[];
+    images: string[];
     cover_image: string;
     category?: string | null;
     sub_category?: string | null;
@@ -28,14 +28,10 @@ export interface IBody {
     sub_category_id?: string | null;
 }
 
-export interface IImage {
-    url: string;
-}
-
 export default interface IAction {
     type: Type;
-    payload: INewOffer | IState | IImage[] | null;
-    images?: { url: string }[] | null;
+    payload: INewOffer | IState | string[] | null;
+    images?: string[] | null;
     offerId?: string;
     callback?: () => void;
 }

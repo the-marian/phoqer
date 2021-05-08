@@ -18,17 +18,12 @@ import newOfferTemplate from '../new-offer.style';
 const useStyles = createUseStyles((theme: Theme) => newOfferTemplate(theme).step);
 
 const StepThree = (): ReactElement => {
-    // style
     const css = useStyles();
     const [theme] = useTheme();
-    // general
     const history = useRouter();
     const dispatch = useDispatch();
-    // uppy
     const uppy = useUppy();
-    // media
     const media = useMedia(900);
-
     const [isEmpty, setIsEmpty] = useState<boolean>(true);
 
     useEffect(() => {
@@ -69,9 +64,10 @@ const StepThree = (): ReactElement => {
             dispatch({
                 type: types.POST_OFFER_START,
                 payload:
-                    res?.successful?.map<{ url: string }>((value: UploadedUppyFile<unknown, { images_url?: [string] }>) => ({
-                        url: config.img + value?.response?.body?.images_url?.[0],
-                    })) || [],
+                    res?.successful?.map<string>(
+                        (value: UploadedUppyFile<unknown, { image_url?: string }>) =>
+                            config.img + value?.response?.body?.image_url,
+                    ) || [],
                 callback() {
                     history.push(routes.offers.new(4), undefined, { shallow: true });
                 },
