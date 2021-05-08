@@ -19,6 +19,7 @@ import AsideElement from '../../../../components/pages/offers/edit/aside-element
 import EditContentForm from '../../../../components/pages/offers/edit/edit-content-form';
 import PhotosList from '../../../../components/pages/offers/edit/photos-list';
 import PhotosUploadModal from '../../../../components/pages/offers/edit/photos-upload-modal';
+import useTrans from '../../../../hooks/trans.hook';
 import { IOfferCard, IState, IStore } from '../../../../interfaces';
 import { wrapper } from '../../../../redux/store';
 import types from '../../../../redux/types';
@@ -61,6 +62,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
 
 const SingleOfferPage = (): ReactElement | null => {
     const css = useStyles();
+    const trans = useTrans();
     const dispatch = useDispatch();
     const offer = useSelector<IState, IOfferCard | null>(state => state.offers.single);
 
@@ -95,8 +97,8 @@ const SingleOfferPage = (): ReactElement | null => {
                             { label: 'На главную страницу', link: routes.root },
                             {
                                 label:
-                                    offer.category_name || offer.sub_category_name
-                                        ? `Предложения в разделе ${offer.category_name || offer.sub_category_name}`
+                                    offer.category || offer.sub_category
+                                        ? `Предложения в разделе ${trans(offer.category || offer.sub_category || '...')}`
                                         : 'Поиск вещей и услуг',
                                 link:
                                     offer.category || offer?.sub_category
