@@ -8,6 +8,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from FastAPI.offers import offers
 from FastAPI.users import users
 from FastAPI.categories import categories
+from FastAPI.locations import locations
 
 origins = [
     "http://localhost:4000",
@@ -30,6 +31,7 @@ app.include_router(comments.router)
 app.include_router(offers.router)
 app.include_router(favorite.router)
 app.include_router(login.router)
+app.include_router(locations.router)
 app.include_router(users.router)
 
 
