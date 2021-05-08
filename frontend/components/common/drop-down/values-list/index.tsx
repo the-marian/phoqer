@@ -46,7 +46,6 @@ interface ValuesListProps {
 
 const ValuesList = ({ data, onSelect, withSub, css }: ValuesListProps): ReactElement => {
     const trans = useTrans();
-
     return (
         <ul>
             {data?.map(({ name, slug, sub }) => (
