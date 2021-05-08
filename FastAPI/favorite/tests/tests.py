@@ -4,7 +4,7 @@ from fastapi import status
 def test_get_favorite(client):
     response = client.get(
         "favorite/",
-        headers={"Authorization": "Token 472df9e4e5f55a0bc2a2f1139e2ad49c5d76076a"}
+        headers={"Authorization": "Token 472df9e4e5f55a0bc2a2f1139e2ad49c5d76076a"},
     )
     assert response.status_code == status.HTTP_200_OK
     assert response.json() == [
@@ -33,5 +33,5 @@ def test_get_favorite(client):
             "pub_date": "2021-01-21",
             "title": "Iphone 12",
             "views": 1,
-        }
+        },
     ]

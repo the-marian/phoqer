@@ -23,4 +23,4 @@ def create_upload_file(
         pass
     with open(f"{MEDIA_ROOT}/{file.filename}-{uuid.uuid4()}", "wb") as buffer:
         shutil.copyfileobj(file.file, buffer)
-    return {"images_url": MEDIA_URL + file.filename}
+    return {"image_url": MEDIA_URL + file.filename}

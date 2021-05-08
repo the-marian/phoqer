@@ -6,8 +6,7 @@ services:
     image: "${BACKEND_IMAGE}"
     command: gunicorn phoqer.wsgi:application --bind 0.0.0.0:8000 --access-logfile - --error-logfile -
     volumes:
-      - static_volume:/home/phoqer/backend/staticfiles/
-      - media_volume:/home/phoqer/backend/mediafiles/
+      - media_volume:/home/phoqer/mediafiles/
     expose:
       - 8000
     env_file:
@@ -54,8 +53,7 @@ services:
     container_name: nginx
     image: "${NGINX_IMAGE}"
     volumes:
-      - static_volume:/home/phoqer/backend/staticfiles/
-      - media_volume:/home/phoqer/backend/mediafiles/
+      - media_volume:/home/phoqer/mediafiles/
     ports:
       - 80:80
     depends_on:
@@ -66,6 +64,5 @@ services:
 
 volumes:
   postgres_data:
-  static_volume:
   media_volume:
   pgadmin:

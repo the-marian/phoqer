@@ -1,17 +1,14 @@
-from FastAPI.categories.schemas import ParentCategory, AllCategory
-from FastAPI.categories import crud
 from typing import List
+
 from fastapi import APIRouter
+from FastAPI.categories import crud
+from FastAPI.categories.schemas import AllCategory, ParentCategory
 
-
-router = APIRouter(
-    prefix="/categories",
-    tags=["categories"]
-)
+router = APIRouter(prefix="/categories", tags=["categories"])
 
 
 @router.get("", response_model=List[ParentCategory])
-async def return_category():
+async def return_category() -> List[ParentCategory]:
     parent_category = await crud.get_parent_category()
     child_category = await crud.get_child_category()
     all_categories = parent_category + child_category
