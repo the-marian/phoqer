@@ -28,6 +28,6 @@ SMTP_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD")
 EMAILS_FROM_EMAIL = "foosking@outlook.com"
 EMAILS_FROM_NAME = "Phoqer"
 
-MEDIA_URL = "/mediafiles/"
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+MEDIA_URL = "mediafiles"
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 MEDIA_ROOT = os.path.join(BASE_DIR, MEDIA_URL)
