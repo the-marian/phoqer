@@ -6,7 +6,6 @@ from typing import Dict
 from fastapi import APIRouter, Depends, File, UploadFile
 from FastAPI.config import MEDIA_ROOT, MEDIA_URL
 from FastAPI.utils import get_current_user
-from fastapi.responses import HTMLResponse
 
 router = APIRouter(
     prefix="/upload",
@@ -16,8 +15,7 @@ router = APIRouter(
 
 @router.post("")
 def create_upload_file(
-    file: UploadFile = File(...),
-    # author_id: int = Depends(get_current_user)
+    file: UploadFile = File(...), author_id: int = Depends(get_current_user)
 ) -> Dict[str, str]:
     try:
         os.mkdir(MEDIA_ROOT)
@@ -28,16 +26,3 @@ def create_upload_file(
     with open(os.path.join(MEDIA_ROOT, file_name), "wb") as buffer:
         shutil.copyfileobj(file.file, buffer)
     return {"image_url": f"{MEDIA_URL}/{uuid_prefix}-{file.filename}"}
-
-
-@router.get("/form")
-async def main():
-    content = """
-<body>
-<form action="/upload" enctype="multipart/form-data" method="post">
-<input name="file" type="file" multiple>
-<input type="submit">
-</form>
-</body>
-    """
-    return HTMLResponse(content=content)
