@@ -21,7 +21,7 @@ const config = {
                 ? 'http://backend:8000/api/' + version
                 : 'http://fastapi:8001',
     },
-    uploadsUrl: (version = 'v1'): string => `http://phoqer.com/api/${version}/upload/`,
+    uploadsUrl: (version = 'v2'): string => `http://phoqer.com/api/${version}/upload/`,
     host: (lang = 'pl'): string => `http://phoqer.com${lang === 'pl' ? '' : '/' + lang}`,
     img: 'http://phoqer.com',
     themes: ['blue', 'green', 'aqua', 'black-blue', 'black-violet', 'black-aqua'] as Themes[],

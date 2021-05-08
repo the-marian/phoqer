@@ -156,5 +156,7 @@
     "services": "Услуги",
     "business": "Бизнес",
     "hobbies": "Хобби и спорт",
-    "other": "Другое"
+    "other": "Другое",
+    "error": "Oops, Something went wrong. Please, reload your browser and try again",
+    "reload": "Перезагрузить страницу"
 }

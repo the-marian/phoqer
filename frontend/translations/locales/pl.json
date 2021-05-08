@@ -156,5 +156,7 @@
     "services": "Usługi",
     "business": "Dla biznesu",
     "hobbies": "Hobby",
-    "other": "Inny"
+    "other": "Inny",
+    "error": "Oops, Something went wrong. Please, reload your browser and try again",
+    "reload": "Перезагрузить страницу"
 }

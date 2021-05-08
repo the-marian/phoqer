@@ -9,6 +9,7 @@ import routes from '../../../assets/routes';
 import { Theme } from '../../../assets/theme';
 import Breadcrumbs from '../../../components/common/breadcrumbs';
 import Comments from '../../../components/common/comments';
+import ErrorComponent from '../../../components/common/error';
 import Gift from '../../../components/common/gift';
 import { modal } from '../../../components/common/modal';
 import FullPageModal from '../../../components/common/modal/full-page-modal';
@@ -155,84 +156,94 @@ const SingleOfferPage = (): ReactElement | null => {
         );
     };
 
-    return offer ? (
-        <>
-            <Meta
-                title={offer?.title}
-                h1={offer?.title + offer?.description.slice(0, 60)}
-                description={offer?.description.slice(0, 150)}
-                icon={offer?.cover_image}
-            />
-            <PageLayout>
-                <Container>
-                    {offer.images && offer.images.length > 1 ? (
-                        <OfferSlider images={offer?.images} />
-                    ) : (
-                        <img
-                            className={css.banner}
-                            src={offer?.cover_image || '/no_img.png'}
-                            onClick={handleModal}
-                            aria-hidden="true"
-                            alt=""
-                        />
-                    )}
-                    <Breadcrumbs
-                        end={offer?.title}
-                        data={[
-                            { label: trans('to_home_page'), link: routes.root },
-                            {
-                                label: trans(offer.category || offer.sub_category || '...')
-                                    ? `${trans('offers_in_section')} ${trans(offer.category || offer.sub_category || '...')}`
-                                    : trans('search_for_things'),
-                                link: offer.category
-                                    ? routes.offers.single(
-                                          offer?.category ? `?category=${offer?.category}` : `?sub=${offer?.sub_category}`,
-                                      )
-                                    : routes.offers.list,
-                            },
-                        ]}
-                    />
-
-                    <div className={css.flex}>
-                        <div className={css.main}>
-                            <OfferHead />
-
-                            {!media && <Price />}
-                            <h2 className={css.subtitle}>{trans('description')}</h2>
-                            <p dangerouslySetInnerHTML={{ __html: desc }} />
-
-                            <h2 className={css.subtitle}>{trans('requirements')}</h2>
-                            <Requirements />
-
-                            {other && (
-                                <>
-                                    <h2 className={css.subtitle}>{trans('additionally')}</h2>
-                                    <p dangerouslySetInnerHTML={{ __html: other }} />
-                                </>
+    return (
+        <PageLayout>
+            <Container>
+                <>
+                    {offer ? (
+                        <>
+                            <Meta
+                                title={offer?.title}
+                                h1={offer?.title + offer?.description.slice(0, 60)}
+                                description={offer?.description.slice(0, 150)}
+                                icon={offer?.cover_image}
+                            />
+                            {offer.images && offer.images.length > 1 ? (
+                                <OfferSlider images={offer?.images} />
+                            ) : (
+                                <img
+                                    className={css.banner}
+                                    src={offer?.cover_image || '/no_img.png'}
+                                    onClick={handleModal}
+                                    aria-hidden="true"
+                                    alt=""
+                                />
                             )}
-
-                            <h2 className={css.subtitle}>{trans('availability')}</h2>
-                            <DayPicker
-                                className={css.calendar}
-                                fromMonth={new Date()}
-                                pagedNavigation
-                                fixedWeeks
-                                numberOfMonths={media ? 2 : 1}
+                            <Breadcrumbs
+                                end={offer?.title}
+                                data={[
+                                    { label: trans('to_home_page'), link: routes.root },
+                                    {
+                                        label: trans(offer.category || offer.sub_category || '...')
+                                            ? `${trans('offers_in_section')} ${trans(
+                                                  offer.category || offer.sub_category || '...',
+                                              )}`
+                                            : trans('search_for_things'),
+                                        link: offer.category
+                                            ? routes.offers.single(
+                                                  offer?.category
+                                                      ? `?category=${offer?.category}`
+                                                      : `?sub=${offer?.sub_category}`,
+                                              )
+                                            : routes.offers.list,
+                                    },
+                                ]}
                             />
 
-                            {auth?.access_token ? <Gift style={{ padding: '8rem 4rem' }} /> : null}
+                            <div className={css.flex}>
+                                <div className={css.main}>
+                                    <OfferHead />
 
-                            <Comments />
-                        </div>
+                                    {!media && <Price />}
+                                    <h2 className={css.subtitle}>{trans('description')}</h2>
+                                    <p dangerouslySetInnerHTML={{ __html: desc }} />
 
-                        <AsideElement />
-                    </div>
+                                    <h2 className={css.subtitle}>{trans('requirements')}</h2>
+                                    <Requirements />
 
-                    <RelatedOffers />
-                </Container>
-            </PageLayout>
-        </>
-    ) : null;
+                                    {other && (
+                                        <>
+                                            <h2 className={css.subtitle}>{trans('additionally')}</h2>
+                                            <p dangerouslySetInnerHTML={{ __html: other }} />
+                                        </>
+                                    )}
+
+                                    <h2 className={css.subtitle}>{trans('availability')}</h2>
+                                    <DayPicker
+                                        className={css.calendar}
+                                        fromMonth={new Date()}
+                                        pagedNavigation
+                                        fixedWeeks
+                                        numberOfMonths={media ? 2 : 1}
+                                    />
+
+                                    {auth?.access_token ? <Gift style={{ padding: '8rem 4rem' }} /> : null}
+
+                                    <Comments />
+                                </div>
+
+                                <AsideElement />
+                            </div>
+
+                            <RelatedOffers />
+                        </>
+                    ) : (
+                        <ErrorComponent />
+                    )}
+                </>
+            </Container>
+        </PageLayout>
+    );
 };
 
 export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps(async ctx => {

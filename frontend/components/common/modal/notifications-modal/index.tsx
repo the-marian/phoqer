@@ -9,13 +9,11 @@ type ModalType = 'error' | 'success';
 const notificationsModal = (type: ModalType, text?: string): void => {
     switch (type) {
         case 'error':
-            modal.open(
-                <NotificationError text={text || 'Oops, Something went wrong. Please, reload your browser and try again'} />,
-            );
+            modal.open(<NotificationError text={text} />);
             break;
 
         case 'success':
-            modal.open(<NotificationSuccess text={text || 'Success'} />);
+            modal.open(<NotificationSuccess text={text} />);
             break;
 
         default:

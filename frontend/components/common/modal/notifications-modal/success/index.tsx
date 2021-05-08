@@ -37,7 +37,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
 }));
 interface IProps {
-    text: string;
+    text?: string;
 }
 
 const NotificationSuccess = ({ text }: IProps): ReactElement => {
@@ -47,7 +47,7 @@ const NotificationSuccess = ({ text }: IProps): ReactElement => {
             <>
                 <img className={css.img} src="/emoji/success.png" alt="" />
                 <h4 className={css.title}>Success</h4>
-                <p className={css.text}>{text}</p>
+                <p className={css.text}>{text || 'Success'}</p>
 
                 <div className={css.flex}>
                     <button className={css.button} type="button" onClick={modal.close}>
