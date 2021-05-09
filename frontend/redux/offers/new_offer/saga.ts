@@ -1,4 +1,4 @@
-import { all, call, put, select, takeLatest } from 'redux-saga/effects';
+import { call, put, select, takeLatest } from 'redux-saga/effects';
 
 import api from '../../../assets/api';
 import notificationsModal from '../../../components/common/modal/notifications-modal';

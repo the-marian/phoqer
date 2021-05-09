@@ -70,7 +70,7 @@ const EditContentForm = (): ReactElement => {
         event.preventDefault();
         if (validate({ value, setErrors })) {
             dispatch({
-                type: types.PATCH_OFFER_STATUS_START,
+                type: types.PATCH_EDIT_OFFER_STATUS_START,
                 payload: value,
                 offerId: String(query.offerId || ''),
                 callback() {
