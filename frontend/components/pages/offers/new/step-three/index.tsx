@@ -10,6 +10,7 @@ import routes from '../../../../../assets/routes';
 import { Theme } from '../../../../../assets/theme';
 import useMedia from '../../../../../hooks/media.hook';
 import useTheme from '../../../../../hooks/theme.hook';
+import useTrans from '../../../../../hooks/trans.hook';
 import useUppy from '../../../../../hooks/uppy.hook';
 import types from '../../../../../redux/types';
 import notificationsModal from '../../../../common/modal/notifications-modal';
@@ -20,6 +21,7 @@ const useStyles = createUseStyles((theme: Theme) => newOfferTemplate(theme).step
 const StepThree = (): ReactElement => {
     const css = useStyles();
     const [theme] = useTheme();
+    const trans = useTrans();
     const history = useRouter();
     const dispatch = useDispatch();
     const uppy = useUppy();
@@ -79,8 +81,8 @@ const StepThree = (): ReactElement => {
 
     return (
         <form className={css.form} onSubmit={handleSubmit}>
-            <h4 className={css.title}>Добавьте фото вашего товара</h4>
-            <h5 className={css.subtitle}>Не больше 3мб (.png .jpg .jpeg)</h5>
+            <h4 className={css.title}>{trans('add_product_photo')}</h4>
+            <h5 className={css.subtitle}>{trans('not_more_than_3mb')} (.png .jpg .jpeg)</h5>
 
             <Dashboard
                 theme={theme.includes('black') ? 'dark' : 'light'}
@@ -91,16 +93,16 @@ const StepThree = (): ReactElement => {
 
             <div className={css.btnWrp}>
                 <button type="button" className={css.btn} onClick={handleBack}>
-                    Назад
+                    {trans('back')}
                 </button>
 
                 {isEmpty ? (
                     <button type="button" className={css.next} onClick={handleClick}>
-                        Создать объявление
+                        {trans('create_offer')}
                     </button>
                 ) : (
                     <button type="submit" className={css.next}>
-                        Отправить
+                        {trans('send')}
                     </button>
                 )}
             </div>

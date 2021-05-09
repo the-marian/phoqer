@@ -13,9 +13,7 @@ import { Theme } from '../../../assets/theme';
 import useAuth from '../../../hooks/auth.hook';
 import useMedia from '../../../hooks/media.hook';
 import { IPublicProfile, IState } from '../../../interfaces';
-import { modal } from '../modal';
 import NotifNumber from '../notif-number';
-import MobileNavModal from './mobile-nav-modal';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     list: {
@@ -88,10 +86,6 @@ const MobileNav = (): ReactElement | null => {
     const user = useSelector<IState, IPublicProfile | null>(state => state.user);
     const userName = `${user?.first_name || ''} ${user?.last_name || ''}`;
 
-    const handleClick = (): void => {
-        modal.open(<MobileNavModal />);
-    };
-
     return auth?.access_token && !media && user ? (
         <ul className={css.list}>
             <li className={css.item}>
@@ -126,15 +120,17 @@ const MobileNav = (): ReactElement | null => {
                 </Link>
             </li>
             <li className={css.item}>
-                <button type="button" className={css.button} onClick={handleClick}>
-                    <div className={css.icon}>
-                        <FontAwesomeIcon icon={faUserCircle} />
-                        <NotifNumber className={css.number}>14</NotifNumber>
-                    </div>
-                    <span className={css.text}>
-                        {userName.length > MAX_LENGTH ? userName.slice(0, MAX_LENGTH - 3) + '...' : userName}
-                    </span>
-                </button>
+                <Link href={routes.profile.private.personal_area}>
+                    <a className={css.button}>
+                        <div className={css.icon}>
+                            <FontAwesomeIcon icon={faUserCircle} />
+                            <NotifNumber className={css.number}>14</NotifNumber>
+                        </div>
+                        <span className={css.text}>
+                            {userName.length > MAX_LENGTH ? userName.slice(0, MAX_LENGTH - 3) + '...' : userName}
+                        </span>
+                    </a>
+                </Link>
             </li>
         </ul>
     ) : null;

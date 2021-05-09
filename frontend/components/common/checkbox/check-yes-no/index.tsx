@@ -3,6 +3,7 @@ import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
 import { Theme } from '../../../../assets/theme';
+import useTrans from '../../../../hooks/trans.hook';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     flex: {
@@ -54,6 +55,7 @@ interface Props {
 
 const CheckYesNo = ({ children, value, onChange }: Props): ReactElement => {
     const css = useStyles();
+    const trans = useTrans();
 
     const handleClick = () => {
         onChange(!value);
@@ -65,11 +67,11 @@ const CheckYesNo = ({ children, value, onChange }: Props): ReactElement => {
             <div className={css.flex}>
                 <button type="button" name="checked" className={css.btn} onClick={handleClick}>
                     <span className={clsx(css.label, !value || css.active)} />
-                    <span>Да</span>
+                    <span>{trans('yes')}</span>
                 </button>
                 <button type="button" name="checked" className={css.btn} onClick={handleClick}>
                     <span className={clsx(css.label, value || css.active)} />
-                    <span>Нет</span>
+                    <span>{trans('no')}</span>
                 </button>
             </div>
         </>

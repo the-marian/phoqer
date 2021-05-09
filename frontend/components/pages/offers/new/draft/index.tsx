@@ -6,6 +6,7 @@ import { createUseStyles } from 'react-jss';
 
 import routes from '../../../../../assets/routes';
 import { Theme } from '../../../../../assets/theme';
+import useTrans from '../../../../../hooks/trans.hook';
 import Advertising from '../../../../common/advertising';
 import ConfettiWrp from '../../../../common/confetti';
 import newOfferTemplate from '../new-offer.style';
@@ -14,6 +15,7 @@ const useStyles = createUseStyles((theme: Theme) => newOfferTemplate(theme).end)
 
 const Draft = (): ReactElement => {
     const css = useStyles();
+    const trans = useTrans();
     const { query } = useRouter();
     const offerId = String(query.offerId);
 
@@ -34,17 +36,17 @@ const Draft = (): ReactElement => {
                     />
                 </svg>
 
-                <h2 className={css.title}>Ваше объявление сохранено в Черновики</h2>
+                <h2 className={css.title}>{trans('your_offer_was_saved_in_drafts')}</h2>
 
-                <p className={css.text}>Вы можете в любое время вернутся к его заполнению</p>
+                <p className={css.text}>{trans('you_can_return_to_it')}</p>
 
                 <div className={css.flex}>
                     <Link href={routes.profile.private.my_offers('draft')}>
-                        <a className={css.btn}>Смотреть черновики</a>
+                        <a className={css.btn}>{trans('view_drafts')}</a>
                     </Link>
                     <Link href={routes.offers.single(offerId)}>
                         <a className={clsx(css.btn, css.primary)} type="button">
-                            Просмотреть объявление
+                            {trans('view_offer')}
                         </a>
                     </Link>
                 </div>

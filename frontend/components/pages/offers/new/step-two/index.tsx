@@ -11,6 +11,7 @@ import TextareaAutosize from 'react-textarea-autosize';
 import { moneyFormat, numberValidation } from '../../../../../assets/helpers';
 import routes from '../../../../../assets/routes';
 import { Theme } from '../../../../../assets/theme';
+import useTrans from '../../../../../hooks/trans.hook';
 import { INewOffer, IState } from '../../../../../interfaces';
 import types from '../../../../../redux/types';
 import CheckTitle from '../../../../common/checkbox/check-title';
@@ -29,6 +30,7 @@ interface IError {
 
 const StepTwo = (): ReactElement => {
     const css = useStyles();
+    const trans = useTrans();
     const history = useRouter();
     const dispatch = useDispatch();
 
@@ -74,8 +76,8 @@ const StepTwo = (): ReactElement => {
         setValue({ ...value, [event.target.name]: event.target.value });
     };
     const handleDocs = (doc_needed: boolean): void => {
-        setValue({ ...value, doc_needed });
         setErrors({});
+        setValue({ ...value, doc_needed });
     };
 
     // SUBMISSION
@@ -113,27 +115,27 @@ const StepTwo = (): ReactElement => {
 
         if (!value.description.trim()) {
             window.scrollTo({ top: 0, behavior: 'smooth' });
-            setErrors({ description: 'Это обязательное поле' });
+            setErrors({ description: 'required_field' });
             dispatch({ type: types.NEW_OFFER_FORM, payload: { ...value, isDone: { ...value.isDone, two: false } } });
             return;
         }
 
         if (value.optional.deposit_val && !value.deposit_val) {
-            setErrors({ deposit_val: 'Введите данные или отключите это поле' });
+            setErrors({ deposit_val: 'enter_data_or_disable_field' });
             window.scrollTo({ top: 0, behavior: 'smooth' });
             dispatch({ type: types.NEW_OFFER_FORM, payload: { ...value, isDone: { ...value.isDone, two: false } } });
             return;
         }
 
         if (value.optional.min_rent_period && !value.min_rent_period) {
-            setErrors({ min_rent_period: 'Введите данные или отключите это поле' });
+            setErrors({ min_rent_period: 'enter_data_or_disable_field' });
             window.scrollTo({ top: 200, behavior: 'smooth' });
             dispatch({ type: types.NEW_OFFER_FORM, payload: { ...value, isDone: { ...value.isDone, two: false } } });
             return;
         }
 
         if (value.optional.max_rent_period && !value.max_rent_period) {
-            setErrors({ max_rent_period: 'Введите данные или отключите это поле' });
+            setErrors({ max_rent_period: 'enter_data_or_disable_field' });
             dispatch({ type: types.NEW_OFFER_FORM, payload: { ...value, isDone: { ...value.isDone, two: false } } });
             return;
         }
@@ -159,12 +161,12 @@ const StepTwo = (): ReactElement => {
     return (
         <form className={css.form} onSubmit={handleSubmit}>
             <CheckYesNo value={value.doc_needed} onChange={handleDocs}>
-                Укажите нужно ли предоставить документы в залог для оренды вашего товара
+                {trans('indicate_whether_you_need_provide_documents')}
             </CheckYesNo>
 
             <div className={css.inner}>
                 <h4 className={css.title}>
-                    Описание товара <span className={css.red}>*</span>
+                    {trans('product_description')} <span className={css.red}>*</span>
                 </h4>
                 <TextareaAutosize
                     cacheMeasurements
@@ -173,14 +175,14 @@ const StepTwo = (): ReactElement => {
                     wrap="soft"
                     className={clsx(css.textarea, errors.description && css.errors)}
                     name="description"
-                    placeholder="Описание"
+                    placeholder={trans('description')}
                 />
-                {errors.description && <small className={css.errorsText}>{errors.description}</small>}
+                {errors.description && <small className={css.errorsText}>{trans(errors.description)}</small>}
             </div>
 
             <div className={css.inner}>
                 <CheckTitle value={value.optional.deposit_val} onChange={handleDeposit}>
-                    Залоговая сума (грн)
+                    {trans('deposit') + ' (грн)'}
                 </CheckTitle>
                 <div className={clsx(css.inputWrp, value.optional.deposit_val || css.inactive)}>
                     <Input
@@ -188,7 +190,7 @@ const StepTwo = (): ReactElement => {
                         onChange={handleNumber}
                         className={css.input}
                         name="deposit_val"
-                        placeholder="Введите число"
+                        placeholder={trans('enter_the_number')}
                         readOnly={!value.optional.deposit_val}
                         errors={errors.deposit_val}
                     />
@@ -197,7 +199,7 @@ const StepTwo = (): ReactElement => {
 
             <div className={css.inner}>
                 <CheckTitle value={value.optional.min_rent_period} onChange={handleMin}>
-                    Минимальный срок аренды (дней)
+                    {trans('minimum_rental_period') + ' (дней)'}
                 </CheckTitle>
                 <div className={clsx(css.inputWrp, value.optional.min_rent_period || css.inactive)}>
                     <Input
@@ -205,7 +207,7 @@ const StepTwo = (): ReactElement => {
                         onChange={handleNumber}
                         className={css.input}
                         name="min_rent_period"
-                        placeholder="Введите число"
+                        placeholder={trans('enter_the_number')}
                         readOnly={!value.optional.min_rent_period}
                         errors={errors.min_rent_period}
                     />
@@ -215,7 +217,7 @@ const StepTwo = (): ReactElement => {
 
             <div className={css.inner}>
                 <CheckTitle value={value.optional.max_rent_period} onChange={handleMax}>
-                    Максимальный срок аренды (дней)
+                    {trans('maximum_rental_period') + ' (дней)'}
                 </CheckTitle>
                 <div className={clsx(css.inputWrp, value.optional.max_rent_period || css.inactive)}>
                     <Input
@@ -223,7 +225,7 @@ const StepTwo = (): ReactElement => {
                         onChange={handleNumber}
                         className={css.input}
                         name="max_rent_period"
-                        placeholder="Введите число"
+                        placeholder={trans('enter_the_number')}
                         readOnly={!value.optional.max_rent_period}
                         errors={errors.max_rent_period}
                     />
@@ -231,38 +233,36 @@ const StepTwo = (): ReactElement => {
             </div>
 
             <div className={css.inner}>
-                <h4 className={css.title}>Дополнительные требования</h4>
+                <h4 className={css.title}>{trans('additional_requirements')}</h4>
                 <TextareaAutosize
                     value={value.extra_requirements}
                     onChange={handleText}
                     wrap="soft"
                     className={css.textarea}
                     name="extra_requirements"
-                    placeholder="Дополнительно"
+                    placeholder={trans('additionally')}
                 />
             </div>
 
-            <p>
-                Вы можете прервать заполнение формы и продолжить в любое удобное время. Вся информация останется на своих местах
-            </p>
+            <p>{trans('you_can_interrupt_filling_out_the_form')}</p>
 
             <div className={css.saveWrp}>
                 <button type="button" className={css.save} onClick={handleSave}>
                     <FontAwesomeIcon icon={faSave} />
-                    <span>Сохранить и прервать заполение</span>
+                    <span>{trans('save_and_abort_filling')}</span>
                 </button>
                 <button type="button" className={css.btn} onClick={handleClear}>
                     <FontAwesomeIcon icon={faTrashAlt} />
-                    <span>Очистить</span>
+                    <span>{trans('clear')}</span>
                 </button>
             </div>
 
             <div className={css.btnWrp}>
                 <button type="button" className={css.btn} onClick={handleBack}>
-                    Назад
+                    {trans('back')}
                 </button>
                 <button type="submit" className={css.next}>
-                    Далее
+                    {trans('next')}
                 </button>
             </div>
         </form>

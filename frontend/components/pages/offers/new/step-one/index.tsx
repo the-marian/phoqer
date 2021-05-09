@@ -12,6 +12,7 @@ import * as helpers from '../../../../../assets/helpers';
 import { moneyFormat, numberValidation } from '../../../../../assets/helpers';
 import routes from '../../../../../assets/routes';
 import { Theme } from '../../../../../assets/theme';
+import useTrans from '../../../../../hooks/trans.hook';
 import { ICategories, IDropValue, INewOffer, IState } from '../../../../../interfaces';
 import types from '../../../../../redux/types';
 import CheckYesNo from '../../../../common/checkbox/check-yes-no';
@@ -36,6 +37,7 @@ const notDone = (value: INewOffer, dispatch: Dispatch): void => {
 const StepThree = (): ReactElement => {
     const css = useStyles();
     const history = useRouter();
+    const trans = useTrans();
     const dispatch = useDispatch();
 
     const [errors, setErrors] = useState<IError>({});
@@ -69,19 +71,19 @@ const StepThree = (): ReactElement => {
         event.preventDefault();
 
         if (!value.title.trim()) {
-            setErrors({ title: 'Это обязательное поле' });
+            setErrors({ title: 'required_field' });
             notDone(value, dispatch);
             return;
         }
 
         if (!value.category) {
-            setErrors({ category: 'Это обязательное поле' });
+            setErrors({ category: 'required_field' });
             notDone(value, dispatch);
             return;
         }
 
         if (!value.price && value.price !== 0) {
-            setErrors({ price: 'Это обязательное поле' });
+            setErrors({ price: 'required_field' });
             notDone(value, dispatch);
             return;
         }
@@ -132,7 +134,7 @@ const StepThree = (): ReactElement => {
         <form className={css.form} onSubmit={handleSubmit}>
             <div className={css.inner}>
                 <h4 className={css.title}>
-                    Придумайте название объявления <span className={css.red}>*</span>
+                    {trans('come_up_with_a_title')} <span className={css.red}>*</span>
                 </h4>
                 <Input
                     value={value.title}
@@ -140,7 +142,7 @@ const StepThree = (): ReactElement => {
                     className={css.input}
                     name="name"
                     type="text"
-                    placeholder="Название"
+                    placeholder={trans('name')}
                     errors={errors.title}
                 />
             </div>
@@ -148,47 +150,45 @@ const StepThree = (): ReactElement => {
             <Region />
 
             <CheckYesNo value={value.is_deliverable} onChange={handleDelivery}>
-                Укажите возможность доставки вашего товара в другой город
+                {trans('indicate_possibility_of_delivery')}
             </CheckYesNo>
 
             <div className={css.flex}>
                 {!!categories?.length && (
                     <div className={css.inner}>
                         <h4 className={css.title}>
-                            Выберите категорию товара <span className={css.red}>*</span>
+                            {trans('select_product_category')} <span className={css.red}>*</span>
                         </h4>
                         <div className={clsx(errors.category && css.errors)}>
                             <DropDown
                                 data={categories}
                                 defaultValue={value.category as IDropValue}
-                                placeholder="Выберите категорию"
+                                placeholder={trans('select_category')}
                                 onChange={handleCategory}
                                 withSub
                                 white
                             />
                         </div>
-                        {errors.category && <small className={css.errorsText}>{errors.category}</small>}
+                        {errors.category && <small className={css.errorsText}>{trans(errors.category)}</small>}
                     </div>
                 )}
 
                 <div className={css.inner}>
                     <h4 className={css.title}>
-                        Цена (грн/день) <span className={css.red}>*</span>
+                        {trans('price')} (грн/день) <span className={css.red}>*</span>
                     </h4>
                     <Input
                         value={moneyFormat(value.price || 0)}
                         onChange={handlePrice}
                         className={css.input}
                         type="text"
-                        placeholder="Цена"
+                        placeholder={trans('price')}
                         errors={errors.price}
                     />
                 </div>
             </div>
 
-            <p>
-                Вы можете прервать заполнение формы и продолжить в любое удобное время. Вся информация останется на своих местах
-            </p>
+            <p>{trans('you_can_interrupt_filling_out_the_form')}</p>
 
             <div className={css.saveWrp}>
                 <button
@@ -197,17 +197,17 @@ const StepThree = (): ReactElement => {
                     onClick={handleSave}
                 >
                     <FontAwesomeIcon icon={faSave} />
-                    <span>Сохранить и прервать заполение</span>
+                    <span>{trans('save_and_abort_filling')}</span>
                 </button>
                 <button type="button" className={css.btn} onClick={handleClear}>
                     <FontAwesomeIcon icon={faTrashAlt} />
-                    <span>Очистить</span>
+                    <span>{trans('clear')}</span>
                 </button>
             </div>
 
             <div className={css.btnWrp}>
                 <button type="submit" className={css.next}>
-                    Далее
+                    {trans('next')}
                 </button>
             </div>
         </form>

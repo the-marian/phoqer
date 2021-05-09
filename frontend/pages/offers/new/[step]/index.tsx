@@ -58,13 +58,12 @@ const STEPS: { [key: string]: JSX.Element | JSX.Element[] } = {
     success: <Success />,
 };
 
-const STEPS_TITLE = ['Основное', 'Описание', 'Фото'];
-
 const NewOffer = (): ReactElement => {
     const css = useStyles();
     const history = useRouter();
     const trans = useTrans();
 
+    const STEPS_TITLE = [trans('main'), trans('description'), trans('photo')];
     const [page, setPage] = useState<number | string>(1);
     const value = useSelector<IState, INewOffer>(state => state.offers.new_offer);
 
@@ -111,7 +110,7 @@ const NewOffer = (): ReactElement => {
 
                         {[1, 2].includes(+page) && (
                             <p className={css.text}>
-                                <span className={css.red}>*</span> Обязательное поле
+                                <span className={css.red}>*</span> {trans('required')}
                             </p>
                         )}
                     </>

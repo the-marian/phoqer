@@ -3,6 +3,7 @@ import { createUseStyles } from 'react-jss';
 
 import template from '../../../../../assets/template';
 import { Theme } from '../../../../../assets/theme';
+import useTrans from '../../../../../hooks/trans.hook';
 import { modal } from '../../index';
 import SmallModalWrp from '../../small-modal-wrp';
 
@@ -42,12 +43,14 @@ interface IProps {
 
 const NotificationSuccess = ({ text }: IProps): ReactElement => {
     const css = useStyles();
+    const trans = useTrans();
+
     return (
         <SmallModalWrp>
             <>
                 <img className={css.img} src="/emoji/success.png" alt="" />
-                <h4 className={css.title}>Success</h4>
-                <p className={css.text}>{text || 'Success'}</p>
+                <h4 className={css.title}>{trans('success')}</h4>
+                <p className={css.text}>{trans(text || 'success')}</p>
 
                 <div className={css.flex}>
                     <button className={css.button} type="button" onClick={modal.close}>

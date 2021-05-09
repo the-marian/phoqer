@@ -7,6 +7,7 @@ import { useSelector } from 'react-redux';
 
 import routes from '../../../../../assets/routes';
 import { Theme } from '../../../../../assets/theme';
+import useTrans from '../../../../../hooks/trans.hook';
 import { INewOffer, IState } from '../../../../../interfaces';
 import newOfferTemplate from '../new-offer.style';
 
@@ -15,6 +16,7 @@ const useStyles = createUseStyles((theme: Theme) => newOfferTemplate(theme).end)
 const Draft = (): ReactElement => {
     const css = useStyles();
     const history = useRouter();
+    const trans = useTrans();
     const newOffer = useSelector<IState, INewOffer>(state => state.offers.new_offer);
 
     const handleSubmit = (): void => {
@@ -37,19 +39,16 @@ const Draft = (): ReactElement => {
                 />
             </svg>
 
-            <h2 className={css.title}>Ваше объявление успешно сгенерировано</h2>
+            <h2 className={css.title}>{trans('offer_successfully_generated')}</h2>
 
-            <p className={css.text}>
-                Вы можете поместить его в черновики. Тогда вы сможете изменить его перед публикацией. Или вы можете сразу
-                опубликовать его на сайте
-            </p>
+            <p className={css.text}>{trans('you_can_put_it_in_drafts')}</p>
 
             <div className={css.flex}>
                 <Link href={routes.profile.private.my_offers('draft')}>
-                    <a className={css.btn}>Отправить в черновики</a>
+                    <a className={css.btn}>{trans('send_to_drafts')}</a>
                 </Link>
                 <button type="button" className={clsx(css.btn, css.primary)} onClick={handleSubmit}>
-                    Публиковать
+                    {trans('publish')}
                 </button>
             </div>
         </div>

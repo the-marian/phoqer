@@ -2,6 +2,7 @@ import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
 import { Theme } from '../../../../../../assets/theme';
+import useTrans from '../../../../../../hooks/trans.hook';
 import { modal } from '../../../../../common/modal';
 import RegionModal from '../../../../../common/modal/region-modal';
 
@@ -49,6 +50,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
 
 const Region = (): ReactElement => {
     const css = useStyles();
+    const trans = useTrans();
 
     const handleRegionModal = () => {
         modal.open(<RegionModal />);
@@ -57,7 +59,7 @@ const Region = (): ReactElement => {
     return (
         <div className={css.inner}>
             <h4 className={css.title}>
-                Укажите ваше местоположение <span className={css.red}>*</span>
+                {trans('indicate_your_location')} <span className={css.red}>*</span>
             </h4>
             <button type="button" className={css.input} onClick={handleRegionModal}>
                 <img className={css.map} src="/emoji/map.png" alt="" />
