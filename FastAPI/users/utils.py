@@ -1,5 +1,6 @@
 import logging
-from datetime import datetime, timedelta
+import os.path
+from datetime import datetime, timedelta, date
 from typing import Any, Dict
 
 import emails
@@ -60,7 +61,7 @@ def send_new_account_email(
     activation_token: str,
 ) -> None:
     subject = f"Phoqer - New account for user {username}"
-    with open("users/email-templates/build/new_account.html") as f:
+    with open(os.path.join(os.getcwd(), "email-templates/build/new_account.html")) as f:
         template_str = f.read()
     link = f"http://phoqer.com/api/v2/users/activation/{activation_token}"
     send_email(
@@ -72,5 +73,6 @@ def send_new_account_email(
             "username": username,
             "email": email_to,
             "link": link,
+            "registration_date": date.today().strftime("%d-%m-%Y"),
         },
     )

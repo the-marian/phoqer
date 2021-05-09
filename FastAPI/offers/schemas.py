@@ -59,7 +59,7 @@ class OfferDraftReply(OfferDraftRequest):
 
 
 class OffersListItem(BaseModel):
-    cover_image: HttpUrl
+    cover_image: Optional[HttpUrl] = None
     currency: Currency
     description: str
     id: UUID

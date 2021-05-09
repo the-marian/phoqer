@@ -26,7 +26,7 @@ services:
     image: "${FASTAPI_IMAGE}"
     command: uvicorn main:app --root-path /api/v2 --reload --workers 1 --host 0.0.0.0 --port 8001
     volumes:
-      - media_volume:/home/phoqer/FastAPI/mediafiles/
+      - media_volume:/phoqer/FastAPI/mediafiles/
     expose:
       - 8001
     env_file:
@@ -62,7 +62,7 @@ services:
         - "${NGINX_IMAGE}"
     image: "${NGINX_IMAGE}"
     volumes:
-      - media_volume:/home/phoqer/FastAPI/mediafiles/
+      - media_volume:/phoqer/FastAPI/mediafiles/
     ports:
       - 80:80
     depends_on:
