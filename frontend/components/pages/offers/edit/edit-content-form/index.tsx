@@ -28,38 +28,38 @@ export interface IError {
     extra_requirements?: string;
 }
 
+const newOfferAdapter = (value: IOfferCard | null): INewOffer =>
+    value
+        ? {
+              ...initState.offers.new_offer,
+              title: value.title || '',
+              price: value.price || 0,
+              category:
+                  value.category && value.category
+                      ? { name: value.category, slug: value.category, type: 'main' }
+                      : value.sub_category && value.sub_category
+                      ? { name: value.sub_category, slug: value.sub_category, type: 'sub' }
+                      : null,
+              is_deliverable: value.is_deliverable,
+              doc_needed: value.doc_needed,
+              description: value.description,
+              deposit_val: value.deposit_val || null,
+              min_rent_period: value.min_rent_period || 0,
+              max_rent_period: value.max_rent_period || 0,
+              extra_requirements: value.extra_requirements || '',
+              optional: {
+                  deposit_val: !!value.deposit_val,
+                  min_rent_period: !!value.min_rent_period,
+                  max_rent_period: !!value.max_rent_period,
+              },
+          }
+        : initState.offers.new_offer;
+
 const EditContentForm = (): ReactElement => {
     const css = useStyles();
     const { query } = useRouter();
     const trans = useTrans();
     const dispatch = useDispatch();
-
-    const newOfferAdapter = (value: IOfferCard | null): INewOffer =>
-        value
-            ? {
-                  ...initState.offers.new_offer,
-                  title: value.title || '',
-                  price: value.price || 0,
-                  category:
-                      value.category && value.category
-                          ? { name: trans(value.category), slug: value.category, type: 'main' }
-                          : value.sub_category && value.sub_category
-                          ? { name: trans(value.sub_category), slug: value.sub_category, type: 'sub' }
-                          : null,
-                  is_deliverable: value.is_deliverable,
-                  doc_needed: value.doc_needed,
-                  description: value.description,
-                  deposit_val: value.deposit_val || null,
-                  min_rent_period: value.min_rent_period || 0,
-                  max_rent_period: value.max_rent_period || 0,
-                  extra_requirements: value.extra_requirements || '',
-                  optional: {
-                      deposit_val: !!value.deposit_val,
-                      min_rent_period: !!value.min_rent_period,
-                      max_rent_period: !!value.max_rent_period,
-                  },
-              }
-            : initState.offers.new_offer;
 
     const loading = useSelector<IState, boolean>(state => state.offers.new_offer.loading);
     const init = useSelector<IState, IOfferCard | null>(state => state.offers.single);
@@ -110,7 +110,7 @@ const EditContentForm = (): ReactElement => {
 
             <div className={css.group}>
                 <Button loading={loading} className={css.save} type="button" onClick={handleSave}>
-                    Сохранить изменения
+                    {trans('Сохранить изменения')}
                 </Button>
                 <Button loading={loading} className={css.submit} type="submit">
                     Опубликувать

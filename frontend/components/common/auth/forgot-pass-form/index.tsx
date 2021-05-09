@@ -8,6 +8,7 @@ import { mailRegex } from '../../../../assets/helpers';
 import routes from '../../../../assets/routes';
 import template from '../../../../assets/template';
 import { Theme } from '../../../../assets/theme';
+import useTrans from '../../../../hooks/trans.hook';
 import Button from '../../button';
 import Input from '../../input';
 
@@ -80,6 +81,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
 
 const ForgotPassForm = (): ReactElement => {
     const css = useStyles();
+    const trans = useTrans();
 
     const [error, setError] = useState<string>('');
     const [email, setEmail] = useState<string>('');
@@ -129,17 +131,17 @@ const ForgotPassForm = (): ReactElement => {
             </div>
 
             <Button className={css.btn} type="submit">
-                ВОСТАНОВИТЬ ПАРОЛЬ
+                {trans('restore_password')}
             </Button>
 
             <Link href={routes.auth.login}>
-                <a className={css.link}>Войти в личный кабинет</a>
+                <a className={css.link}>{trans('login')}</a>
             </Link>
 
             <p className={css.text}>или</p>
 
             <Link href={routes.auth.join}>
-                <a className={css.link}>Зарегистрироваться</a>
+                <a className={css.link}>{trans('join')}</a>
             </Link>
         </form>
     );

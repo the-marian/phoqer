@@ -8,6 +8,7 @@ import { createUseStyles } from 'react-jss';
 
 import template from '../../../assets/template';
 import { Theme } from '../../../assets/theme';
+import useTrans from '../../../hooks/trans.hook';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     wrp: {
@@ -107,6 +108,7 @@ const Input = ({
     icon,
 }: IProps): ReactElement => {
     const css = useStyles();
+    const trans = useTrans();
     const [show, setShow] = useState<string>(type || 'text');
 
     const handleClick = (): void => {
@@ -144,7 +146,7 @@ const Input = ({
                     </button>
                 ) : null}
             </div>
-            {errors && !errorsInPlaceholder && <small className={css.errorsText}>{errors}</small>}
+            {errors && !errorsInPlaceholder && <small className={css.errorsText}>{trans(errors)}</small>}
         </div>
     );
 };

@@ -22,3 +22,10 @@
 .save-btn {
     margin-left: 3rem;
 }
+
+.absolute {
+    position: fixed;
+    bottom: 3rem;
+    right: 15rem;
+    z-index: 10;
+}

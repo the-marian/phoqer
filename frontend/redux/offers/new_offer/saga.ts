@@ -41,60 +41,6 @@ function* postOffer({ payload, callback }: IAction) {
     }
 }
 
-function* updateOffer({ payload, images, offerId, callback }: IAction) {
-    try {
-        const body: IBody = adapter(payload as INewOffer, images as string[]);
-        body.category_id =
-            ((payload as INewOffer).category as IDropValue)?.type === 'main'
-                ? ((payload as INewOffer).category as IDropValue)?.slug
-                : null;
-        body.sub_category_id =
-            ((payload as INewOffer).category as IDropValue)?.type === 'sub'
-                ? ((payload as INewOffer).category as IDropValue)?.slug
-                : null;
-
-        const { status } = yield call(api.offers.update, offerId as string, body);
-        if (status < 200 || status >= 300) throw new Error();
-        yield put({ type: types.PATCH_OFFER_SUCCESS });
-        if (callback) callback();
-    } catch (error) {
-        if (error?.response?.status === 401) return;
-        notificationsModal('error');
-        yield put({ type: types.PATCH_OFFER_ERROR });
-    }
-}
-
-function* publishOffer({ payload, images, offerId, callback }: IAction) {
-    try {
-        const body: IBody = adapter(payload as INewOffer, images as string[]);
-        body.category_id =
-            ((payload as INewOffer).category as IDropValue)?.type === 'main'
-                ? ((payload as INewOffer).category as IDropValue)?.slug
-                : null;
-        body.sub_category_id =
-            ((payload as INewOffer).category as IDropValue)?.type === 'sub'
-                ? ((payload as INewOffer).category as IDropValue)?.slug
-                : null;
-
-        const offer: { status: number } = yield call(api.offers.update, offerId as string, body);
-        if (offer.status < 200 || offer.status >= 300) throw new Error();
-
-        const status: { status: number } = yield call(api.offers.status, offerId as string, { status: 'REVIEW' });
-        if (status.status < 200 || status.status >= 300) throw new Error();
-
-        yield put({ type: types.PATCH_OFFER_STATUS_SUCCESS });
-        if (callback) callback();
-    } catch (error) {
-        if (error?.response?.status === 401) return;
-        notificationsModal('error');
-        yield put({ type: types.PATCH_OFFER_STATUS_ERROR });
-    }
-}
-
 export default function* new_offer(): Generator {
-    yield all([
-        takeLatest(types.POST_OFFER_START, postOffer),
-        takeLatest(types.PATCH_OFFER_START, updateOffer),
-        takeLatest(types.PATCH_OFFER_STATUS_START, publishOffer),
-    ]);
+    yield takeLatest(types.POST_OFFER_START, postOffer);
 }

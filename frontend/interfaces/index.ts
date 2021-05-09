@@ -185,6 +185,9 @@ export interface IOffers {
     favorite: IOfferStatic;
     single: IOfferCard | null;
     new_offer: INewOffer;
+    edit_offer: {
+        loading: boolean;
+    };
 }
 
 // =====================================

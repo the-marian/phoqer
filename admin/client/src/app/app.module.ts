@@ -21,6 +21,7 @@ import { CreateModalComponent } from './pages/translations-page/create-modal/cre
 import { DeleteModalComponent } from './pages/translations-page/delete-modal/delete-modal.component';
 import { ScrollTopComponent } from './shared/scroll-top/scroll-top.component';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
+import { ScrollBottomComponent } from './pages/translations-page/scroll-bottom/scroll-bottom.component';
 
 @NgModule({
     declarations: [
@@ -36,6 +37,7 @@ import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
         CreateModalComponent,
         DeleteModalComponent,
         ScrollTopComponent,
+        ScrollBottomComponent,
     ],
     imports: [
         BrowserModule,

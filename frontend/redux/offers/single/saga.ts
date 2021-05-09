@@ -1,7 +1,8 @@
-import { call, put, takeLatest } from 'redux-saga/effects';
+import { all, call, put, takeLatest } from 'redux-saga/effects';
 
 import api from '../../../assets/api';
 import notificationsModal from '../../../components/common/modal/notifications-modal';
+import notifications from '../../../components/common/notifications';
 import types from '../../types';
 import IAction from './interfaces';
 
@@ -18,6 +19,20 @@ function* getOffer({ payload }: IAction) {
     }
 }
 
+function* doReview({ payload }: IAction) {
+    try {
+        const { status } = yield call(api.offers.status, payload as string, { status: 'REVIEW' });
+        if (status < 200 || status >= 300) throw new Error();
+        yield put({ type: types.OFFER_DO_REVIEW_SUCCESS });
+        notifications.info({ message: 'Publish success' });
+    } catch (error) {
+        if (error?.response?.status === 401) return;
+        notificationsModal('error');
+        yield put({ type: types.OFFER_DO_REVIEW_ERROR });
+        notificationsModal('error');
+    }
+}
+
 export default function* single(): Generator {
-    yield takeLatest(types.GET_SINGLE_OFFER_START, getOffer);
+    yield all([takeLatest(types.GET_SINGLE_OFFER_START, getOffer), takeLatest(types.OFFER_DO_REVIEW_START, doReview)]);
 }

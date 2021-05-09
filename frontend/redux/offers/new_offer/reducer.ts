@@ -11,20 +11,9 @@ const new_offer = (state: INewOffer = initState.offers.new_offer, { type, payloa
             return (payload as IState).offers.new_offer;
 
         case types.POST_OFFER_START:
-        case types.PATCH_OFFER_START:
-        case types.PATCH_OFFER_STATUS_START:
             return { ...state, loading: true };
 
         case types.POST_OFFER_ERROR:
-            return { ...state, loading: false };
-
-        case types.POST_OFFER_SUCCESS:
-            return { ...state, id: (payload as INewOffer).id, loading: false };
-
-        case types.PATCH_OFFER_SUCCESS:
-        case types.PATCH_OFFER_STATUS_SUCCESS:
-        case types.PATCH_OFFER_ERROR:
-        case types.PATCH_OFFER_STATUS_ERROR:
             return { ...state, loading: false };
 
         case types.NEW_OFFER_FORM:

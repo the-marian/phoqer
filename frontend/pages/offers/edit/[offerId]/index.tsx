@@ -25,7 +25,6 @@ import { wrapper } from '../../../../redux/store';
 import types from '../../../../redux/types';
 
 const useStyles = createUseStyles((theme: Theme) => ({
-    // main
     flex: {
         display: 'flex',
         marginTop: theme.rem(6),

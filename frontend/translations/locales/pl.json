@@ -161,5 +161,21 @@
     "reload": "Odśwież stronę",
     "404_offer": "Ta oferta nie istnieje lub została usunięta. Zawsze możesz znaleźć podobną ofertę na Phoqer",
     "404_profile": "Ten użytkownik nie istnieje lub został usunięty.",
-    "404_page": "Ta strona nie istnieje lub została usunięta."
+    "404_page": "Ta strona nie istnieje lub została usunięta.",
+    "details": "Więcej szczegółów",
+    "welcome": "Witamy!",
+    "required_field": "To jest wymagane pole",
+    "not_valid_email": "Nieprawidłowy adres e-mail",
+    "forgot_your_password": "Zapomniałeś hasła?",
+    "or": "lub",
+    "login_with": "zaloguj się z",
+    "weak_password_error": "Don't use weak password",
+    "password": "Hasło",
+    "strong_password": "Silne hasło",
+    "weak_password": "Słabe hasło",
+    "minimum_characters": "Минимум 8 символов",
+    "numbers_letters": "Числа и буквы",
+    "uppercase": "Верхний регистр",
+    "special_characters": "Спецсимволы",
+    "restore_password": "Bосстановить пароль"
 }

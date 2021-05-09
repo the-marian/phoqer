@@ -1,9 +1,11 @@
+import clsx from 'clsx';
 import React, { ChangeEvent, FormEvent, MouseEvent, ReactElement, useState } from 'react';
 import { createUseStyles } from 'react-jss';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { isEmpty, mailRegex, passwordRegex } from '../../../../assets/helpers';
 import { Theme } from '../../../../assets/theme';
+import useTrans from '../../../../hooks/trans.hook';
 import { ISignup, IState } from '../../../../interfaces';
 import types from '../../../../redux/types';
 import Button from '../../button';
@@ -32,7 +34,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         display: 'flex',
         justifyContent: 'space-between',
         margin: 0,
-        fontSize: theme.rem(1.2),
+        fontSize: theme.rem(1.4),
         fontWeight: theme.text.weight[3],
         color: theme.palette.black[0],
 
@@ -62,7 +64,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     pass: {
         display: 'block',
         textAlign: 'right',
-        fontSize: theme.rem(1.4),
+        fontSize: theme.rem(1.6),
         color: theme.palette.primary[0],
     },
     btn: {
@@ -72,7 +74,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         padding: theme.rem(1.5, 2),
         fontWeight: theme.text.weight[4],
         textAlign: 'center',
-        fontSize: theme.rem(1.4),
+        fontSize: theme.rem(1.6),
         borderRadius: theme.radius,
         background: theme.palette.primary[0],
         color: theme.palette.trueWhite,
@@ -84,7 +86,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
     text: {
         marginBottom: theme.rem(1),
-        fontSize: theme.rem(1.4),
+        fontSize: theme.rem(1.6),
         fontWeight: theme.text.weight[2],
         color: theme.palette.black[0],
         textAlign: 'center',
@@ -98,13 +100,31 @@ const useStyles = createUseStyles((theme: Theme) => ({
         width: theme.rem(1.5),
         fill: 'inherit',
     },
+    list: {
+        margin: theme.rem(0.5, 0, 1),
+        fontSize: theme.rem(1.4),
+    },
     red: {
-        fontSize: 'inherit',
-        color: theme.palette.red[0],
+        position: 'relative',
+        padding: theme.rem(0, 2, 0, 1),
+        color: theme.palette.gray[2],
+        '&::before': {
+            content: '""',
+            position: 'absolute',
+            top: '48%',
+            left: 0,
+            transform: 'translateY(-50%)',
+            height: theme.rem(0.6),
+            width: theme.rem(0.6),
+            background: theme.palette.gray[2],
+            borderRadius: theme.radius,
+        },
     },
     green: {
-        fontSize: 'inherit',
-        color: theme.palette.green[0],
+        color: theme.palette.black[0],
+        '&::before': {
+            background: theme.palette.green[0],
+        },
     },
 }));
 
@@ -124,6 +144,7 @@ const INIT: ISignup = {
 
 const JoinForm = (): ReactElement => {
     const css = useStyles();
+    const trans = useTrans();
     const dispatch = useDispatch();
 
     const [errors, setErrors] = useState<IError>(INIT);
@@ -143,7 +164,7 @@ const JoinForm = (): ReactElement => {
         const empty: [string, string][] = isEmpty<ISignup>(value);
         if (empty.length) {
             const newErrors: IError = empty.reduce<IError>(
-                (acc: IError, item): IError => ({ ...acc, [item[0]]: 'This is required field' }),
+                (acc: IError, item): IError => ({ ...acc, [item[0]]: 'required_field' }),
                 {},
             );
             setErrors(newErrors);
@@ -153,14 +174,14 @@ const JoinForm = (): ReactElement => {
         // email
         if (!mailRegex.test(value.email)) {
             setValue((prev: ISignup): ISignup => ({ ...prev, email: '' }));
-            setErrors({ email: 'Not valid email' });
+            setErrors({ email: 'not_valid_email' });
             return;
         }
 
         // password
         if (!passwordRegex.test(value.password)) {
             setValue((prev: ISignup): ISignup => ({ ...prev, password: '' }));
-            setErrors({ password: 'Dont use weak password' });
+            setErrors({ password: 'weak_password_error' });
             return;
         }
 
@@ -169,17 +190,17 @@ const JoinForm = (): ReactElement => {
 
     return (
         <form action="#" method="post" onSubmit={handleSubmit}>
-            <h2 className={css.title}>Добро пожаловать!</h2>
+            <h2 className={css.title}>{trans('welcome')}</h2>
 
             <label className={css.wrp}>
-                <p className={css.label}>First Name</p>
+                <p className={css.label}>{trans('first_name')}</p>
                 <Input
                     value={value.first_name}
                     errors={errors.first_name}
                     onChange={handleChange}
                     type="text"
                     name="first_name"
-                    placeholder="first name"
+                    placeholder={trans('first_name')}
                     className={css.input}
                     autoComplete="given-name"
                     errorsInPlaceholder
@@ -187,14 +208,14 @@ const JoinForm = (): ReactElement => {
             </label>
 
             <label className={css.wrp}>
-                <p className={css.label}>Last Name</p>
+                <p className={css.label}>{trans('last_name')}</p>
                 <Input
                     value={value.last_name}
                     errors={errors.last_name}
                     onChange={handleChange}
                     type="text"
                     name="last_name"
-                    placeholder="last name"
+                    placeholder={trans('last_name')}
                     autoComplete="family-name"
                     className={css.input}
                     errorsInPlaceholder
@@ -202,7 +223,7 @@ const JoinForm = (): ReactElement => {
             </label>
 
             <label className={css.wrp}>
-                <p className={css.label}>Email</p>
+                <p className={css.label}>{trans('email')}</p>
                 <Input
                     value={value.email}
                     errors={errors.email}
@@ -210,23 +231,24 @@ const JoinForm = (): ReactElement => {
                     type="email"
                     name="email"
                     autoComplete="email"
-                    placeholder="email"
+                    placeholder={trans('email')}
                     className={css.input}
                     errorsInPlaceholder
                 />
             </label>
 
             <label className={css.wrp}>
-                <p className={css.label}>
-                    <span>Password</span>
-                    {value.password.trim() &&
-                        (passwordRegex.test(value.password) ? (
-                            <small className={css.green}>Strong password</small>
-                        ) : (
-                            <small className={css.red}>Weak password</small>
-                        ))}
-                </p>
-
+                <p className={css.label}>{trans('password')}</p>
+                <ul className={css.list}>
+                    <li className={clsx(css.red, value.password.length > 7 && css.green)}>{trans('minimum_characters')}</li>
+                    <li className={clsx(css.red, /[0-9]+[a-z]+|[a-z]+[0-9]+/.test(value.password) && css.green)}>
+                        {trans('numbers_letters')}
+                    </li>
+                    <li className={clsx(css.red, /[A-Z]/.test(value.password) && css.green)}>{trans('uppercase')}</li>
+                    <li className={clsx(css.red, /[_#?!@$%^&*-]/.test(value.password) && css.green)}>
+                        {trans('special_characters')}
+                    </li>
+                </ul>
                 <div className={css.inner}>
                     <Input
                         value={value.password}
@@ -234,7 +256,7 @@ const JoinForm = (): ReactElement => {
                         onChange={handleChange}
                         type="password"
                         name="password"
-                        placeholder="password"
+                        placeholder={trans('password')}
                         autoComplete="current-password"
                         className={css.input}
                         errorsInPlaceholder
@@ -243,13 +265,13 @@ const JoinForm = (): ReactElement => {
             </label>
 
             <Button loading={loading} className={css.btn} type="submit">
-                ЗАРЕГИСТРИРОВАТЬСЯ
+                {trans('join')}
             </Button>
 
             <p className={css.text}>
-                или
+                {trans('or')}
                 <br />
-                залогинтесь с
+                {trans('login_with')}
             </p>
 
             <GoogleFacebook />

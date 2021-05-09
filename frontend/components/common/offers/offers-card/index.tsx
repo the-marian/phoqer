@@ -105,7 +105,7 @@ const OfferCard = ({ offer, showFavoriteBtn = true }: IProps): ReactElement => {
                 break;
 
             case 'DO_REVIEW':
-                notifications.info({ message: 'Publish' });
+                dispatch({ type: types.OFFER_DO_REVIEW_START, payload: id });
                 break;
 
             default:

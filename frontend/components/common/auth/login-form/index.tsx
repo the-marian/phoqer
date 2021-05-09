@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { isEmpty, mailRegex } from '../../../../assets/helpers';
 import routes from '../../../../assets/routes';
 import { Theme } from '../../../../assets/theme';
+import useTrans from '../../../../hooks/trans.hook';
 import { ILogin, IState } from '../../../../interfaces';
 import types from '../../../../redux/types';
 import Button from '../../button';
@@ -87,6 +88,7 @@ const INIT: ILogin = {
 
 const LoginForm = (): ReactElement => {
     const css = useStyles();
+    const trans = useTrans();
     const dispatch = useDispatch();
 
     const [errors, setErrors] = useState<IError>(INIT);
@@ -106,7 +108,7 @@ const LoginForm = (): ReactElement => {
         const empty: [string, string][] = isEmpty<ILogin>(value);
         if (empty.length) {
             const newErrors: IError = empty.reduce<IError>(
-                (acc: IError, item): IError => ({ ...acc, [item[0]]: 'This is required field' }),
+                (acc: IError, item): IError => ({ ...acc, [item[0]]: 'required_field' }),
                 {},
             );
             setErrors(newErrors);
@@ -116,7 +118,7 @@ const LoginForm = (): ReactElement => {
         // email
         if (!mailRegex.test(value.username)) {
             setValue((prev: ILogin): ILogin => ({ ...prev, username: '' }));
-            setErrors({ username: 'Not valid email' });
+            setErrors({ username: 'not_valid_email' });
             return;
         }
 
@@ -125,7 +127,7 @@ const LoginForm = (): ReactElement => {
 
     return (
         <form action="#" method="post" onSubmit={handleSubmit}>
-            <h2 className={css.title}>Добро пожаловать!</h2>
+            <h2 className={css.title}>{trans('welcome')}</h2>
 
             <div className={css.wrp}>
                 <Input
@@ -154,20 +156,20 @@ const LoginForm = (): ReactElement => {
             </div>
 
             <Link href={routes.auth.forgot_pass}>
-                <a className={css.link}>Забыли пароль?</a>
+                <a className={css.link}>{trans('forgot_your_password')}</a>
             </Link>
             <Link href={routes.auth.join}>
-                <a className={css.link}>Зарегистрироваться</a>
+                <a className={css.link}>{trans('join')}</a>
             </Link>
 
             <Button loading={loading} className={css.btn} type="submit">
-                ВОЙТИ
+                {trans('login')}
             </Button>
 
             <p className={css.text}>
-                или
+                {trans('or')}
                 <br />
-                залогинтесь с
+                {trans('login_with')}
             </p>
 
             <GoogleFacebook />

@@ -181,7 +181,6 @@ const About = (): ReactElement => {
                 swipeToSlide
                 autoplaySpeed={3000}
                 autoplay
-                // arrows={false}
                 draggable
                 infinite
                 lazyLoad="progressive"

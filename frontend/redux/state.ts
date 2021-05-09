@@ -51,6 +51,9 @@ const initState: IState = {
             data: [],
             loading: true,
         },
+        edit_offer: {
+            loading: false,
+        },
         search: {
             data: {
                 data: [],

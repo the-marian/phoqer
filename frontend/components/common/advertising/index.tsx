@@ -3,6 +3,7 @@ import { createUseStyles } from 'react-jss';
 
 import template from '../../../assets/template';
 import { Theme } from '../../../assets/theme';
+import useTrans from '../../../hooks/trans.hook';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     top: {
@@ -44,6 +45,8 @@ const useStyles = createUseStyles((theme: Theme) => ({
 
 const Advertising = (): ReactElement => {
     const css = useStyles();
+    const trans = useTrans();
+
     return (
         <div className={css.top}>
             <img className={css.img} src="/emoji/top.png" alt="" />
@@ -54,7 +57,7 @@ const Advertising = (): ReactElement => {
             </p>
 
             <button className={css.btn} type="button">
-                Подробнее
+                {trans('details')}
             </button>
         </div>
     );
