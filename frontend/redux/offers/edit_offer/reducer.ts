@@ -1,6 +1,6 @@
 import { HYDRATE } from 'next-redux-wrapper';
 
-import { IState } from '../../../interfaces';
+import { IOfferCard, IState } from '../../../interfaces';
 import initState from '../../state';
 import types from '../../types';
 import IAction, { IValue } from './interfaces';

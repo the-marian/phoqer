@@ -14,7 +14,6 @@ import {
 import { IBody } from '../redux/offers/new_offer/interfaces';
 import config from './config';
 
-// const url1 = config.baseUrl[process.env.NODE_ENV]('v1');
 const url2 = config.baseUrl[process.env.NODE_ENV]('v2');
 
 interface ICommentBody {
@@ -62,7 +61,8 @@ const api = {
         },
     },
     locations: {
-        locations: (): Promise<AxiosResponse<IPublicProfile>> => axios.get(`${url2}/users/`),
+        countries: (): Promise<AxiosResponse<void>> => axios.get(`${url2}/locations/countries`),
+        cities: (slug: string): Promise<AxiosResponse<void>> => axios.get(`${url2}/locations/cities/${slug}`),
     },
 };
 

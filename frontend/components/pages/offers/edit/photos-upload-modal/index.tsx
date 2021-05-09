@@ -8,6 +8,7 @@ import useMedia from '../../../../../hooks/media.hook';
 import useTheme from '../../../../../hooks/theme.hook';
 import useUppy from '../../../../../hooks/uppy.hook';
 import types from '../../../../../redux/types';
+import { modal } from '../../../../common/modal';
 import MidModalWrp from '../../../../common/modal/mid-modal-wrp';
 
 const PhotosUploadModal = (): ReactElement => {
@@ -27,6 +28,7 @@ const PhotosUploadModal = (): ReactElement => {
                             config.img + value?.response?.body?.image_url,
                     ) || [],
             });
+            modal.close();
         };
         uppy.on('complete', handler);
         return () => {

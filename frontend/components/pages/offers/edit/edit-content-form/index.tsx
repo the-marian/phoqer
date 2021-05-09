@@ -61,7 +61,7 @@ const EditContentForm = (): ReactElement => {
     const trans = useTrans();
     const dispatch = useDispatch();
 
-    const loading = useSelector<IState, boolean>(state => state.offers.new_offer.loading);
+    const loading = useSelector<IState, boolean>(state => state.offers.edit_offer.loading);
     const init = useSelector<IState, IOfferCard | null>(state => state.offers.single);
     const [value, setValue] = useState<INewOffer>(newOfferAdapter(init));
     const [errors, setErrors] = useState<IError>({});
@@ -71,6 +71,7 @@ const EditContentForm = (): ReactElement => {
         if (validate({ value, setErrors })) {
             dispatch({
                 type: types.PATCH_EDIT_OFFER_STATUS_START,
+                images: init?.images,
                 payload: value,
                 offerId: String(query.offerId || ''),
                 callback() {
@@ -87,6 +88,7 @@ const EditContentForm = (): ReactElement => {
         if (validate({ value, setErrors })) {
             dispatch({
                 type: types.PATCH_OFFER_START,
+                images: init?.images,
                 payload: value,
                 offerId: String(query.offerId || ''),
                 callback() {

@@ -15,7 +15,7 @@ export interface IValue {
 
 export default interface IAction {
     type: Type;
-    payload: INewOffer | IState | string[] | null;
+    payload: INewOffer | IState | string[] | string | null;
     images?: string[] | null;
     offerId?: string;
     callback?: () => void;

@@ -8,6 +8,7 @@ const types = {
      * 5_OFFERS_STATUS
      * 6_COMMENTS
      * 7_PUBLIC_PROFILE
+     * 8_LOCATIONS
      * */
 
     // ========================
@@ -140,9 +141,22 @@ const types = {
     // ========================
     // 7_PUBLIC_PROFILE
     // ========================
+    // GET_PUBLIC_PROFILE
     GET_PUBLIC_PROFILE_START: 'GET_PUBLIC_PROFILE_START',
     GET_PUBLIC_PROFILE_SUCCESS: 'GET_PUBLIC_PROFILE_SUCCESS',
     GET_PUBLIC_PROFILE_ERROR: 'GET_PUBLIC_PROFILE_ERROR',
+
+    // ========================
+    // 8_LOCATIONS
+    // ========================
+    // GET_COUNTRIES
+    GET_COUNTRIES_START: 'GET_COUNTRIES_START',
+    GET_COUNTRIES_SUCCESS: 'GET_COUNTRIES_SUCCESS',
+    GET_COUNTRIES_ERROR: 'GET_COUNTRIES_ERROR',
+    // GET_CITIES
+    GET_CITIES_START: 'GET_CITIES_START',
+    GET_CITIES_SUCCESS: 'GET_CITIES_SUCCESS',
+    GET_CITIES_ERROR: 'GET_CITIES_ERROR',
 };
 
 export default types;
