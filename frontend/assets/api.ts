@@ -61,6 +61,9 @@ const api = {
             userShort: (id: number): Promise<AxiosResponse<IPublicProfile>> => axios.get(`${url2}/users/short/${id}`),
         },
     },
+    locations: {
+        locations: (): Promise<AxiosResponse<IPublicProfile>> => axios.get(`${url2}/users/`),
+    },
 };
 
 export default api;

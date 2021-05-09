@@ -1,4 +1,4 @@
-# share
+# phoqer
 
 Чтобы запустить backend нужно:
 
