@@ -9,7 +9,6 @@ env:
   BACKEND_IMAGE: ${{ secrets.BACKEND_IMAGE }}
   FRONTEND_IMAGE: ${{ secrets.FRONTEND_IMAGE }}
   NGINX_IMAGE: ${{ secrets.NGINX_IMAGE }}
-  FASTAPI_IMAGE: ${{ secrets.FASTAPI_IMAGE }}
 
 jobs:
 
@@ -43,7 +42,6 @@ jobs:
           docker pull ${{ env.BACKEND_IMAGE }} || true
           docker pull ${{ env.FRONTEND_IMAGE }} || true
           docker pull ${{ env.NGINX_IMAGE }} || true
-          docker pull ${{ env.FASTAPI_IMAGE }} || true
       - name: Build images
         run: |
           docker-compose -f docker-compose.ci.yml --env-file ./.env.dev build
@@ -52,7 +50,6 @@ jobs:
           docker push ${{ env.BACKEND_IMAGE }}
           docker push ${{ env.FRONTEND_IMAGE }}
           docker push ${{ env.NGINX_IMAGE }}
-          docker push ${{ env.FASTAPI_IMAGE }}
 
   deploy:
     name: Deploy to Vultr VPS
@@ -81,14 +78,9 @@ jobs:
           echo POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }} >> .env.dev
           echo POSTGRES_HOST=${{ secrets.POSTGRES_HOST }} >> .env.dev
           echo POSTGRES_PORT=${{ secrets.POSTGRES_PORT }} >> .env.dev
-          echo NEXT_PUBLIC_PROD_URL=${{ secrets.NEXT_PUBLIC_PROD_URL }} >> .env.dev
-          echo NEXT_PUBLIC_DEV_URL=${{ secrets.NEXT_PUBLIC_DEV_URL }} >> .env.dev
-          echo PROD_URL=${{ secrets.PROD_URL }} >> .env.dev
-          echo DEV_URL=${{ secrets.DEV_URL }} >> .env.dev
           echo BACKEND_IMAGE=$(echo ${{ env.BACKEND_IMAGE }} | tr '[:upper:]' '[:lower:]') >> .env.dev
           echo FRONTEND_IMAGE=$(echo ${{ env.FRONTEND_IMAGE }} | tr '[:upper:]' '[:lower:]') >> .env.dev
           echo NGINX_IMAGE=$(echo ${{ env.NGINX_IMAGE }} | tr '[:upper:]' '[:lower:]') >> .env.dev
-          echo FASTAPI_IMAGE=$(echo ${{ env.FASTAPI_IMAGE }} | tr '[:upper:]' '[:lower:]') >> .env.dev
       - name: Add the private SSH key to the ssh-agent
         env:
           SSH_AUTH_SOCK: /tmp/ssh_agent.sock
@@ -109,7 +101,6 @@ jobs:
             docker pull $BACKEND_IMAGE
             docker pull $FRONTEND_IMAGE
             docker pull $NGINX_IMAGE
-            docker pull $FASTAPI_IMAGE
             docker-compose -f docker-compose.yml --env-file ./.env.dev up -d
             docker image prune -af
           ENDSSH

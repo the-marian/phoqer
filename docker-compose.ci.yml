@@ -4,26 +4,11 @@ services:
   backend:
     container_name: backend
     build:
-      context: ./backend
-      dockerfile: Dockerfile
-      cache_from:
-        - "${BACKEND_IMAGE}"
-    image: "${BACKEND_IMAGE}"
-    command: python manage.py runserver 0.0.0.0:8000
-    expose:
-      - 8000
-    env_file:
-      - ./.env.dev
-    depends_on:
-      - db
-  fastapi:
-    container_name: FastAPI
-    build:
       context: ./FastAPI
       dockerfile: build/Dockerfile
       cache_from:
-        - "${FASTAPI_IMAGE}"
-    image: "${FASTAPI_IMAGE}"
+        - "${BACKEND_IMAGE}"
+    image: "${BACKEND_IMAGE}"
     command: uvicorn main:app --root-path /api/v2 --reload --workers 1 --host 0.0.0.0 --port 8001
     volumes:
       - media_volume:/phoqer/FastAPI/mediafiles/
@@ -31,8 +16,6 @@ services:
       - 8001
     env_file:
       - ./.env.dev
-    depends_on:
-      - backend
   frontend:
     container_name: frontend
     build:
@@ -67,7 +50,6 @@ services:
       - 80:80
     depends_on:
       - backend
-      - fastapi
       - frontend
 
 volumes:
