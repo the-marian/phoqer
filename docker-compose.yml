@@ -4,16 +4,6 @@ services:
   backend:
     container_name: backend
     image: "${BACKEND_IMAGE}"
-    command: gunicorn phoqer.wsgi:application --bind 0.0.0.0:8000 --access-logfile - --error-logfile -
-    expose:
-      - 8000
-    env_file:
-      - .env.dev
-    depends_on:
-      - db
-  fastapi:
-    container_name: FastAPI
-    image: "${FASTAPI_IMAGE}"
     command: uvicorn main:app --root-path /api/v2 --reload --workers 1 --host 0.0.0.0 --port 8001
     volumes:
       - media_volume:/phoqer/FastAPI/mediafiles/
@@ -21,8 +11,6 @@ services:
       - 8001
     env_file:
       - ./.env.dev
-    depends_on:
-      - backend
   frontend:
     container_name: frontend
     image: "${FRONTEND_IMAGE}"
@@ -58,7 +46,6 @@ services:
       - 80:80
     depends_on:
       - backend
-      - fastapi
       - frontend
       - pgadmin
 
