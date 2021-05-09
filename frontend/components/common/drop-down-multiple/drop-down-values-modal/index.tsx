@@ -20,6 +20,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     buttons: {
         display: 'flex',
         justifyContent: 'flex-end',
+        textTransform: 'capitalize',
     },
     cancel: {
         ...template(theme).btn,
@@ -29,6 +30,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
     save: {
         ...template(theme).btn,
+        textTransform: 'capitalize',
     },
 }));
 

@@ -126,6 +126,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
             width: '100%',
             padding: theme.rem(2),
             textAlign: 'left',
+            textTransform: 'capitalize',
             background: theme.palette.white,
             color: theme.palette.black[0],
             fontSize: theme.rem(1.4),
