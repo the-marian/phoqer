@@ -209,9 +209,9 @@ def test_change_status(client, auth_token):
             "msg": "none is not an allowed value",
             "type": "type_error.none.not_allowed",
         },
-        {"loc": ["category_id"], "msg": "field required", "type": "value_error.missing"},
+        {"loc": ["category"], "msg": "field required", "type": "value_error.missing"},
         {
-            "loc": ["sub_category_id"],
+            "loc": ["sub_category"],
             "msg": "field required",
             "type": "value_error.missing",
         },

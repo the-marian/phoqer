@@ -109,5 +109,5 @@ class ValidOffer(BaseModel):
     pub_date: date
     status: Status
     title: str
-    category_id: str
-    sub_category_id: str
+    category: str
+    sub_category: str
