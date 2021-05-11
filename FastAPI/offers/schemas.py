@@ -110,4 +110,3 @@ class ValidOffer(BaseModel):
     status: Status
     title: str
     category: str
-    sub_category: str
