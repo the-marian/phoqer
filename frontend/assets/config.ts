@@ -19,7 +19,7 @@ const config = {
     uploadsUrl: (version = 'v2'): string => `http://phoqer.com/api/${version}/upload`,
     host: (lang = 'pl'): string => `http://phoqer.com${lang === 'pl' ? '' : '/' + lang}`,
     img: 'http://phoqer.com/',
-    themes: ['blue', 'green', 'aqua', 'black-blue', 'black-violet', 'black-aqua'] as Themes[],
+    themes: ['blue', 'green', 'aqua', 'violet', 'black-blue', 'black-violet', 'black-orange', 'black-aqua'] as Themes[],
     offers: {
         grid: {
             desktop: 4,

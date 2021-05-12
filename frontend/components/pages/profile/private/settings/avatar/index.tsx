@@ -3,18 +3,22 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
-import template from '../../../../../../../assets/template';
-import { Theme } from '../../../../../../../assets/theme';
-import useTrans from '../../../../../../../hooks/trans.hook';
-import Button from '../../../../../../common/button';
+import template from '../../../../../../assets/template';
+import { Theme } from '../../../../../../assets/theme';
+import useTrans from '../../../../../../hooks/trans.hook';
+import Button from '../../../../../common/button';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     wrp: {
+        position: 'relative',
         display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
         flexDirection: 'column',
-        width: '100%',
+        maxWidth: theme.rem(21),
+    },
+    sticky: {
+        position: 'sticky',
+        top: theme.rem(3),
+        left: 0,
     },
     img: {
         display: 'block',
@@ -28,6 +32,8 @@ const useStyles = createUseStyles((theme: Theme) => ({
         ...template(theme).btn,
         position: 'relative',
         marginBottom: theme.rem(4),
+        background: theme.palette.secondary[0],
+        color: theme.palette.black[0],
 
         '& span': {
             marginLeft: theme.rem(1),
@@ -53,12 +59,14 @@ const Avatar = (): ReactElement => {
 
     return (
         <div className={css.wrp}>
-            <img className={css.img} src="/about.jpg" alt="" />
-            <Button className={css.file}>
-                <FontAwesomeIcon icon={faRedo} />
-                <span>{trans('change_photo')}</span>
-                <input type="file" />
-            </Button>
+            <div className={css.sticky}>
+                <img className={css.img} src="/about.jpg" alt="" />
+                <Button className={css.file}>
+                    <FontAwesomeIcon icon={faRedo} />
+                    <span>{trans('change_photo')}</span>
+                    <input type="file" />
+                </Button>
+            </div>
         </div>
     );
 };

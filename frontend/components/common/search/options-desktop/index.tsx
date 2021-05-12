@@ -1,5 +1,3 @@
-import { faCompass } from '@fortawesome/free-regular-svg-icons/faCompass';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 import { useSelector } from 'react-redux';
@@ -9,8 +7,7 @@ import { Theme } from '../../../../assets/theme';
 import useTrans from '../../../../hooks/trans.hook';
 import { ICategories, IDropValue, ISearch, IState } from '../../../../interfaces';
 import DropDown from '../../drop-down';
-import { modal } from '../../modal';
-import RegionModal from '../../modal/region-modal';
+import Region from '../../region';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     container: {
@@ -18,29 +15,19 @@ const useStyles = createUseStyles((theme: Theme) => ({
         alignItems: 'center',
         width: theme.rem(50),
     },
-    location: {
-        display: 'flex',
-        alignItems: 'center',
+    region: {
+        background: theme.palette.gray[1],
+        boxShadow: 'none',
         width: '50%',
-        height: '100%',
-        padding: theme.rem(0.5, 1),
-        fontSize: theme.rem(1.6),
-        background: 'none',
-        border: 'none',
-        color: theme.palette.primary[0],
 
-        '& span': {
-            width: theme.rem(20),
-            fontSize: theme.rem(1.4),
-            marginLeft: theme.rem(1),
-            whiteSpace: 'nowrap',
-            overflow: 'hidden',
-            textOverflow: 'ellipsis',
-            color: theme.palette.black[0],
-        },
-    },
-    icon: {
-        width: theme.rem(2.4),
+        ...theme.hover({
+            color: theme.palette.primary[0],
+            border: theme.border(0.2, 'transparent'),
+        }),
+        ...theme.focus({
+            color: theme.palette.primary[0],
+            border: theme.border(0.2, 'transparent'),
+        }),
     },
     categories: {
         display: 'flex',
@@ -74,10 +61,6 @@ const OptionsDesktop = ({ onChange }: IProps): ReactElement => {
         ? findSubCategory(data, search.sub_category)
         : null;
 
-    const handleRegionModal = () => {
-        modal.open(<RegionModal />);
-    };
-
     return (
         <div className={css.container}>
             <span className={css.line} />
@@ -93,10 +76,7 @@ const OptionsDesktop = ({ onChange }: IProps): ReactElement => {
                 />
             </div>
             <span className={css.line} />
-            <button type="button" className={css.location} onClick={handleRegionModal}>
-                <FontAwesomeIcon icon={faCompass} />
-                <span>Киев, Киевская область Киев, Киевская область Киев, Киевская область</span>
-            </button>
+            <Region className={css.region} />
         </div>
     );
 };

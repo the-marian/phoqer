@@ -11,9 +11,8 @@ const useStyles = createUseStyles((theme: Theme) => ({
     wrp: {
         display: 'flex',
         flexWrap: 'wrap',
-        justifyContent: 'center',
+        justifyContent: 'flex-start',
         width: '100%',
-        maxWidth: theme.rem(60),
     },
     textarea: {
         ...template(theme).input,

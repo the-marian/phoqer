@@ -7,27 +7,27 @@ import { useSelector } from 'react-redux';
 import { Theme } from '../../../../../../../assets/theme';
 import useTrans from '../../../../../../../hooks/trans.hook';
 import { IPublicProfile, IState } from '../../../../../../../interfaces';
-import Banner from '../../../../../../common/banner';
 import Input from '../../../../../../common/input';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     wrp: {
+        display: 'flex',
+        justifyContent: 'space-between',
+        flexWrap: 'wrap',
         width: '100%',
-        maxWidth: theme.rem(60),
-    },
-    banner: {
-        maxWidth: theme.rem(60),
-        margin: '2rem auto 4rem',
-        padding: theme.rem(6, 4),
-        height: 'auto',
+        marginBottom: theme.rem(3),
     },
     input: {
         background: theme.palette.gray[0],
     },
     label: {
         display: 'block',
-        width: '100%',
+        width: '48%',
         marginBottom: theme.rem(2),
+
+        ...theme.media(960).max({
+            width: '100%',
+        }),
     },
     text: {
         marginBottom: theme.rem(0.6),
@@ -116,8 +116,6 @@ const GeneralInfoForm = (): ReactElement => {
                     />
                 </label>
             </div>
-
-            <Banner className={css.banner} animation />
         </>
     );
 };

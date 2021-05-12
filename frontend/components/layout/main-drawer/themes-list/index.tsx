@@ -70,6 +70,11 @@ const useStyles = createUseStyles((theme: Theme) => ({
             background: '#03a8ae',
         },
     },
+    violet: {
+        '& > span:nth-of-type(1)': {
+            background: '#6704be',
+        },
+    },
     'black-blue': {
         background: theme.palette.trueBlack,
         '& > span:nth-of-type(1)': {
@@ -92,6 +97,15 @@ const useStyles = createUseStyles((theme: Theme) => ({
         background: theme.palette.trueBlack,
         '& > span:nth-of-type(1)': {
             background: '#BD00FF',
+        },
+        '& > span:nth-last-of-type(1)': {
+            background: '#454545',
+        },
+    },
+    'black-orange': {
+        background: theme.palette.trueBlack,
+        '& > span:nth-of-type(1)': {
+            background: '#e06800',
         },
         '& > span:nth-last-of-type(1)': {
             background: '#454545',
@@ -127,8 +141,8 @@ const ThemesItem = ({ element }: IProps): ReactElement => {
     );
 };
 
-const white: Themes[] = ['blue', 'green', 'aqua'];
-const black: Themes[] = ['black-blue', 'black-violet', 'black-aqua'];
+const white: Themes[] = ['blue', 'green', 'aqua', 'violet'];
+const black: Themes[] = ['black-blue', 'black-violet', 'black-aqua', 'black-orange'];
 
 const ThemesList = (): ReactElement => {
     const css = useStyles();

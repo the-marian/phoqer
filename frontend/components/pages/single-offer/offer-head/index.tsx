@@ -97,7 +97,7 @@ const OfferHead = (): ReactElement => {
                 </p>
                 <p className={css.eye}>
                     <FontAwesomeIcon icon={faEye} />
-                    <span>{offer?.views}</span>
+                    <span>{(offer?.views || 0) + 1}</span>
                 </p>
                 <button className={css.favorite} onClick={handleFavorite} type="button">
                     {offer?.is_favorite ? <FontAwesomeIcon icon={faFillHeart} /> : <FontAwesomeIcon icon={faHeart} />}

@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 
 import { Theme } from '../../../../assets/theme';
 import types from '../../../../redux/types';
-import SmallModalWrp from '../small-modal-wrp';
+import SmallModalWrp from '../../modal/small-modal-wrp';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     root: {

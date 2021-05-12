@@ -43,7 +43,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         minHeight: theme.rem(5),
         padding: theme.rem(1.5),
         fontSize: theme.rem(1.4),
-        background: theme.palette.gray[1],
+        background: theme.palette.gray[0],
         color: theme.palette.black[0],
 
         ...theme.media(800).max({

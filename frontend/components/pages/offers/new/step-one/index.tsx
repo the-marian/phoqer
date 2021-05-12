@@ -18,8 +18,8 @@ import types from '../../../../../redux/types';
 import CheckYesNo from '../../../../common/checkbox/check-yes-no';
 import DropDown from '../../../../common/drop-down';
 import Input from '../../../../common/input';
+import Region from '../../../../common/region';
 import newOfferTemplate from '../new-offer.style';
-import Region from './region';
 
 const useStyles = createUseStyles((theme: Theme) => newOfferTemplate(theme).step);
 
@@ -147,7 +147,12 @@ const StepThree = (): ReactElement => {
                 />
             </div>
 
-            <Region />
+            <div className={css.inner}>
+                <h4 className={css.title}>
+                    {trans('indicate_your_location')} <span className={css.red}>*</span>
+                </h4>
+                <Region />
+            </div>
 
             <CheckYesNo value={value.is_deliverable} onChange={handleDelivery}>
                 {trans('indicate_possibility_of_delivery')}

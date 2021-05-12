@@ -20,6 +20,7 @@
 
 .windows.black-blue *::-webkit-scrollbar-track,
 .windows.black-aqua *::-webkit-scrollbar-track,
+.windows.black-orange *::-webkit-scrollbar-track,
 .windows.black-violet *::-webkit-scrollbar-track {
     background-color: #343434;
 }
@@ -27,11 +28,13 @@
 /* SITE BACKGROUND COLOR */
 .black-blue body,
 .black-aqua body,
+.black-orange body,
 .black-violet body {
     background: #222222;
 }
 
 .green body,
+.violet body,
 .aqua body,
 .blue body {
     background: #ffffff;
@@ -52,6 +55,14 @@
     background: #32603f;
 }
 
+.violet .rc-slider-track {
+    background: #6704be;
+}
+
 .black-violet .rc-slider-track {
     background: #ff43e6;
+}
+
+.black-orange .rc-slider-track {
+    background: #e06800;
 }
