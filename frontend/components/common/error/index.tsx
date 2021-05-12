@@ -1,9 +1,11 @@
+import clsx from 'clsx';
 import Link from 'next/link';
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
 import routes from '../../../assets/routes';
 import { Theme } from '../../../assets/theme';
+import useAuth from '../../../hooks/auth.hook';
 import useTrans from '../../../hooks/trans.hook';
 import Meta from '../../layout/meta';
 
@@ -14,7 +16,8 @@ const useStyles = createUseStyles((theme: Theme) => ({
         left: 0,
         height: theme.rem(25),
         width: 'auto',
-
+    },
+    imgAuth: {
         ...theme.media(1060).max({
             bottom: theme.rem(5),
             height: theme.rem(18),
@@ -55,12 +58,13 @@ interface IProps {
 const ErrorComponent = ({ title, text }: IProps): ReactElement => {
     const css = useStyles();
     const trans = useTrans();
+    const auth = useAuth();
 
     return (
         <>
             <Meta title={title} />
             <div className={css.container}>
-                <img className={css.img} src="/no_data.gif" alt="no data" />
+                <img className={clsx(css.img, auth?.access_token && css.imgAuth)} src="/no_data.gif" alt="no data" />
                 <h2 className={css.title}>{title}</h2>
                 <p className={css.text}>{text}</p>
                 <Link href={routes.root}>
