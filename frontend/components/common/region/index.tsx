@@ -11,19 +11,23 @@ import RegionModal from './region-modal';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     input: {
+        ...template(theme).input,
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
-        ...template(theme).input,
         background: theme.palette.trueWhite,
         color: theme.palette.black[0],
 
         '& span': {
-            width: 'calc(100% - 2.5rem)',
+            width: 'calc(100% - 3rem)',
             whiteSpace: 'nowrap',
             overflow: 'hidden',
             textOverflow: 'ellipsis',
             textAlign: 'left',
+        },
+
+        '& svg': {
+            fontSize: theme.rem(1.8),
         },
     },
     red: {

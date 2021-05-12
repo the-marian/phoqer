@@ -1,4 +1,3 @@
-import { faCompass } from '@fortawesome/free-regular-svg-icons/faCompass';
 import { faUserCircle } from '@fortawesome/free-regular-svg-icons/faUserCircle';
 import React, { ChangeEvent, ReactElement, useState } from 'react';
 import { createUseStyles } from 'react-jss';
@@ -8,6 +7,7 @@ import { Theme } from '../../../../../../../assets/theme';
 import useTrans from '../../../../../../../hooks/trans.hook';
 import { IPublicProfile, IState } from '../../../../../../../interfaces';
 import Input from '../../../../../../common/input';
+import Region from '../../../../../../common/region';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     wrp: {
@@ -38,13 +38,11 @@ const useStyles = createUseStyles((theme: Theme) => ({
 interface IValue {
     first_name: string;
     last_name: string;
-    location: string;
 }
 
 const errorInit: IValue = {
     first_name: '',
     last_name: '',
-    location: '',
 };
 
 const GeneralInfoForm = (): ReactElement => {
@@ -55,7 +53,6 @@ const GeneralInfoForm = (): ReactElement => {
     const init: IValue = {
         first_name: user?.first_name !== 'loading...' ? user?.first_name || '' : '',
         last_name: user?.last_name !== 'loading...' ? user?.last_name || '' : '',
-        location: user?.location !== 'loading...' ? user?.location || '' : '',
     };
 
     const [error, setError] = useState<IValue>(errorInit);
@@ -102,18 +99,7 @@ const GeneralInfoForm = (): ReactElement => {
 
                 <label className={css.label}>
                     <p className={css.text}>{trans('user_location')}</p>
-                    <Input
-                        icon={faCompass}
-                        value={value.location}
-                        errors={error.location}
-                        onChange={handleChange}
-                        type="text"
-                        name="location"
-                        autoComplete="street-address"
-                        placeholder={trans('user_location')}
-                        className={css.input}
-                        errorsInPlaceholder
-                    />
+                    <Region className={css.input} />
                 </label>
             </div>
         </>

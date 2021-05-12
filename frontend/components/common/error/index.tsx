@@ -8,6 +8,18 @@ import useTrans from '../../../hooks/trans.hook';
 import Meta from '../../layout/meta';
 
 const useStyles = createUseStyles((theme: Theme) => ({
+    img: {
+        position: 'fixed',
+        bottom: 0,
+        left: 0,
+        height: theme.rem(25),
+        width: 'auto',
+
+        ...theme.media(1060).max({
+            bottom: theme.rem(5),
+            height: theme.rem(18),
+        }),
+    },
     container: {
         margin: theme.rem(2, 0),
         padding: theme.rem(10, 5),
@@ -48,6 +60,7 @@ const ErrorComponent = ({ title, text }: IProps): ReactElement => {
         <>
             <Meta title={title} />
             <div className={css.container}>
+                <img className={css.img} src="/no_data.gif" alt="no data" />
                 <h2 className={css.title}>{title}</h2>
                 <p className={css.text}>{text}</p>
                 <Link href={routes.root}>
