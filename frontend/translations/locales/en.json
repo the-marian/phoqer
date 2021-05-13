@@ -242,7 +242,7 @@
     "bydgoszcz": "Bydgoszcz",
     "torun": "Torun",
     "cracow": "Cracow",
-    "boat": "Boat",
+    "lodz": "Lodz",
     "wroclaw": "Wroclaw",
     "gorzow_wielkopolski": "Gorzow Wielkopolski",
     "zielona_gora": "Zielona Gora",
@@ -271,5 +271,6 @@
     "perm": "Perm",
     "volgograd": "Volgograd",
     "krasnodar": "Krasnodar",
-    "saratov": "Saratov"
+    "saratov": "Saratov",
+    "lublin": "Lublin"
 }
