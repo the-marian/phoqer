@@ -12,8 +12,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         width: theme.rem(40),
         height: 'max-content',
         margin: theme.rem(8, 0),
-        padding: theme.rem(2),
-        paddingTop: theme.rem(5),
+        padding: theme.rem(6, 1, 1),
         borderRadius: theme.radius,
         background: theme.palette.white,
         color: theme.palette.black[0],
@@ -25,13 +24,13 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
     button: {
         position: 'absolute',
-        top: 0,
-        right: 0,
+        top: theme.rem(0.5),
+        right: theme.rem(0.5),
     },
     logo: {
         position: 'absolute',
-        top: theme.rem(0.2),
-        left: theme.rem(2),
+        top: theme.rem(0.5),
+        left: theme.rem(1),
     },
 }));
 

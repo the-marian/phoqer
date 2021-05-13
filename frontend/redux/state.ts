@@ -24,6 +24,9 @@ const initState: IState = {
         last_activity: 'loading...',
         description_rate: 'loading...',
     },
+    region: {
+        loading: true,
+    },
     config: {
         drawer: false,
         searchParams: {

@@ -4,18 +4,19 @@ import { AnyAction, Store } from 'redux';
 
 /**
  * Document structure
- * 1 GENERAL
- * 2 AUTH
- * 3 CATEGORIES
- * 4 OFFERS
- * 5 COMMENTS
- * 6 PUBLIC_PROFILE
- * 7 CHAT
+ * 1_GENERAL
+ * 2_AUTH
+ * 3_CATEGORIES
+ * 4_OFFERS
+ * 5_COMMENTS
+ * 6_PUBLIC_PROFILE
+ * 7_CHAT
+ * 8_REGION
  * REDUX STORE
  * */
 
 // =====================================
-// 1 GENERAL
+// 1_GENERAL
 // =====================================
 export interface IDropList {
     icon_image?: string;
@@ -74,7 +75,7 @@ export interface IConfig {
 }
 
 // =====================================
-// 2 AUTH
+// 2_AUTH
 // =====================================
 export interface ILogin {
     username: string;
@@ -94,7 +95,7 @@ export interface IAuth {
 }
 
 // =====================================
-// 3 CATEGORIES
+// 3_CATEGORIES
 // =====================================
 export interface ICategories {
     icon_image: string;
@@ -104,7 +105,7 @@ export interface ICategories {
 }
 
 // =====================================
-// 4 OFFERS
+// 4_OFFERS
 // =====================================
 export interface IOfferCard {
     id: string;
@@ -191,7 +192,7 @@ export interface IOffers {
 }
 
 // =====================================
-// 5 COMMENTS
+// 5_COMMENTS
 // =====================================
 export interface IComment {
     id: number;
@@ -211,7 +212,7 @@ export interface IComment {
     replies: IComment[];
 }
 // =====================================
-// 6 PUBLIC_PROFILE
+// 6_PUBLIC_PROFILE
 // =====================================
 export interface IPublicProfile {
     bio?: string;
@@ -234,7 +235,7 @@ export interface IPublicProfile {
 }
 
 // =====================================
-// 7 CHAT
+// 7_CHAT
 // =====================================
 export interface IChat {
     id: string | number;
@@ -246,11 +247,34 @@ export interface IChat {
 }
 
 // =====================================
+// 8_REGION
+// =====================================
+export interface ICountry {
+    slug: string;
+}
+
+export interface ICity {
+    slug: string;
+    countries_slug: string;
+}
+
+export interface IRegion {
+    loading: boolean;
+    countries?: ICountry[];
+    cities?: ICity[];
+    selected?: {
+        country: string;
+        city: string;
+    };
+}
+
+// =====================================
 // REDUX STORE
 // =====================================
 export interface IState {
     auth: IAuth;
     user: IPublicProfile;
+    region: IRegion;
     config: {
         drawer: boolean;
         searchParams: ISearch;

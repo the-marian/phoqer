@@ -10,10 +10,8 @@ function* getCountries() {
         const { status, data } = yield call(api.locations.countries);
         if (status < 200 || status >= 300) throw new Error();
         yield put({ type: types.GET_COUNTRIES_SUCCESS, payload: data });
-        console.log(data);
     } catch (error) {
         if (error?.response?.status === 401) return;
-        console.log(error);
         notificationsModal('error');
         yield put({ type: types.GET_COUNTRIES_ERROR });
     }
@@ -31,6 +29,6 @@ function* getCities({ payload }: IAction) {
     }
 }
 
-export default function* locations(): Generator {
+export default function* region(): Generator {
     yield all([takeLatest(types.GET_COUNTRIES_START, getCountries), takeLatest(types.GET_CITIES_START, getCities)]);
 }

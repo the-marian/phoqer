@@ -16,11 +16,14 @@ const useStyles = createUseStyles((theme: Theme) => ({
         left: 0,
         height: theme.rem(25),
         width: 'auto',
+
+        ...theme.media(1060).max({
+            height: theme.rem(15),
+        }),
     },
     imgAuth: {
         ...theme.media(1060).max({
             bottom: theme.rem(5),
-            height: theme.rem(18),
         }),
     },
     container: {
