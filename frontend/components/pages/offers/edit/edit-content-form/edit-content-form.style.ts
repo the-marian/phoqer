@@ -64,7 +64,7 @@ const editOfferTemplate = (theme: Theme): Template => ({
         height: theme.rem(10),
         background: theme.palette.gray[1],
         padding: theme.rem(2),
-        boxShadow: theme.shadow[1],
+        color: theme.palette.black[0],
     },
     red: {
         color: theme.palette.red[0],
