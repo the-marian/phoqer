@@ -239,6 +239,7 @@ export interface IPublicProfile {
 // =====================================
 export interface IChat {
     id: string | number;
+    newMessages: number;
     cover_image: null | string;
     first_name: string;
     last_name: string;

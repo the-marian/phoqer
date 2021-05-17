@@ -36,6 +36,18 @@ const useStyles = createUseStyles((theme: Theme) => ({
         background: theme.palette.gray[0],
         borderRadius: theme.radius,
     },
+    inner: {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        flexDirection: 'column',
+        color: theme.palette.gray[3],
+    },
+    img: {
+        height: theme.rem(5),
+        width: theme.rem(5),
+        marginBottom: theme.rem(2),
+    },
 }));
 
 const Messages = (): ReactElement => {
@@ -56,7 +68,10 @@ const Messages = (): ReactElement => {
                 )}
                 <ChatWrp showConversation={media} showSidebar={true}>
                     <div className={css.chat}>
-                        <p>Select the chat in side panel</p>
+                        <div className={css.inner}>
+                            <img className={css.img} src="/emoji/chat.png" alt="" />
+                            <p>Select the chat in side panel</p>
+                        </div>
                     </div>
                 </ChatWrp>
             </main>
@@ -64,10 +79,8 @@ const Messages = (): ReactElement => {
     );
 };
 
-export const getServerSideProps = wrapper.getServerSideProps(
-    async (ctx): Promise<void> => {
-        if (serverRedirect((ctx as unknown) as GetServerSidePropsContext)) return;
-    },
-);
+export const getServerSideProps = wrapper.getServerSideProps(async (ctx): Promise<void> => {
+    if (serverRedirect(ctx as unknown as GetServerSidePropsContext)) return;
+});
 
 export default Messages;

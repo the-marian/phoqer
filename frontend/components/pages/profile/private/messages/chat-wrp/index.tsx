@@ -10,6 +10,7 @@ const test = [
     {
         id: 1,
         cover_image: null,
+        newMessages: 0,
         first_name: 'Ihor',
         last_name: 'Mykhailychenko',
         date: '2021-03-25 20:29',
@@ -18,6 +19,7 @@ const test = [
     {
         id: 2,
         cover_image: '/about.jpg',
+        newMessages: 3,
         first_name: 'Ihor',
         last_name: 'Mykhailychenko',
         date: '2021-05-25 15:32',
@@ -26,6 +28,7 @@ const test = [
     {
         id: 3,
         cover_image: '/login.jpg',
+        newMessages: 1,
         first_name: 'Ihor',
         last_name: 'Mykhailychenko',
         date: '2021-05-25 15:32',
@@ -34,6 +37,7 @@ const test = [
     {
         id: 4,
         cover_image: '/join.jpg',
+        newMessages: 0,
         first_name: 'Ihor',
         last_name: 'Mykhailychenko',
         date: '2021-03-25 15:32',
@@ -42,6 +46,7 @@ const test = [
     {
         id: 5,
         cover_image: null,
+        newMessages: 1,
         first_name: 'Ihor',
         last_name: 'Mykhailychenko',
         date: '2021-03-25 15:32',
@@ -50,6 +55,7 @@ const test = [
     {
         id: 6,
         cover_image: '/forgot_pass.jpg',
+        newMessages: 0,
         first_name: 'Ihor',
         last_name: 'Mykhailychenko',
         date: '2021-03-25 15:32',

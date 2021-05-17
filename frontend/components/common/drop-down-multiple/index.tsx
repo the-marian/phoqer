@@ -19,7 +19,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         overflow: 'hidden',
         textOverflow: 'ellipsis',
         textAlign: 'left',
-        color: theme.palette.black,
+        color: theme.palette.black[0],
     },
     placeholder: {
         color: theme.palette.gray[2],

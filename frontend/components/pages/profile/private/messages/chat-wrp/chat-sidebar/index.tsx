@@ -65,6 +65,7 @@ const ChatSidebar = ({ chats }: IProps): ReactElement => {
                         {index === 3 ? <Gift /> : null}
                         <ChatSidebarItem
                             id={item.id}
+                            newMessages={item.newMessages}
                             active={String(item.id) === (active || '')}
                             firstName={item.first_name}
                             lastName={item.last_name}

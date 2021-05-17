@@ -1,14 +1,17 @@
 import { faChevronLeft } from '@fortawesome/free-solid-svg-icons/faChevronLeft';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React, { ReactElement, useEffect } from 'react';
+import { useRouter } from 'next/router';
+import React, { ChangeEvent, ReactElement, useEffect, useState } from 'react';
 import { createUseStyles } from 'react-jss';
 import { useDispatch, useSelector } from 'react-redux';
 
 import template from '../../../../assets/template';
 import { Theme } from '../../../../assets/theme';
 import useTrans from '../../../../hooks/trans.hook';
-import { IRegion, IState } from '../../../../interfaces';
+import { ICity, IRegion, IState } from '../../../../interfaces';
 import types from '../../../../redux/types';
+import content from '../../../../translations';
+import Input from '../../input';
 import Spinner from '../../loaders/spinner';
 import { modal } from '../../modal';
 import SmallModalWrp from '../../modal/small-modal-wrp';
@@ -36,6 +39,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
         display: 'flex',
         flexDirection: 'column',
     },
+    input: {
+        marginBottom: theme.rem(2),
+    },
     btn: {
         ...template(theme).btn,
         margin: theme.rem(0.4, 0),
@@ -43,6 +49,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         color: theme.palette.black[0],
     },
     back: {
+        color: theme.palette.black[0],
         padding: theme.rem(1, 4, 1, 0),
 
         ...theme.hover({
@@ -55,16 +62,21 @@ const useStyles = createUseStyles((theme: Theme) => ({
             fontSize: theme.rem(1.2),
         },
     },
+    country: {
+        marginBottom: theme.rem(1),
+        color: theme.palette.black[0],
+        fontSize: theme.rem(1.8),
+    },
 }));
 
 interface ICitiesList {
     city: string;
 }
+
 const CitiesList = ({ city }: ICitiesList): ReactElement => {
     const css = useStyles();
     const trans = useTrans();
     const dispatch = useDispatch();
-    console.log(city);
 
     const handleClick = (): void => {
         dispatch({ type: types.SELECT_CITY, payload: city });
@@ -78,15 +90,45 @@ const CitiesList = ({ city }: ICitiesList): ReactElement => {
     );
 };
 
+interface IContent {
+    [key: string]: string;
+}
+
+interface ILocales {
+    [key: string]: IContent;
+}
+
 const CityModal = (): ReactElement => {
     const css = useStyles();
-    const trans = useTrans();
+    const { locale } = useRouter();
     const dispatch = useDispatch();
+
+    const trans = (value: string): string => {
+        return (content as ILocales)[locale || 'en'][value] || String(value);
+    };
+
+    const [search, setSearch] = useState<string>('');
+    const [cities, setCities] = useState<ICity[]>([]);
     const region = useSelector<IState, IRegion>(state => state.region);
+
+    const handleSearch = (event: ChangeEvent<HTMLInputElement>): void => {
+        setCities(
+            region?.cities?.length
+                ? region?.cities?.filter(item =>
+                      event.target.value ? trans(item.slug).toLowerCase().includes(event.target.value.toLowerCase()) : item,
+                  )
+                : [],
+        );
+        setSearch(event.target.value);
+    };
 
     useEffect(() => {
         dispatch({ type: types.GET_CITIES_START, payload: region.selected?.country || 'ukraine' });
     }, []);
+
+    useEffect(() => {
+        if (region?.cities?.length) setCities(region.cities);
+    }, [region]);
 
     const handleBack = (): void => {
         modal.open(<CountryModal />);
@@ -95,16 +137,23 @@ const CityModal = (): ReactElement => {
     return (
         <SmallModalWrp>
             <div className={css.root}>
+                <p className={css.country}>{trans(region.selected?.country || '')}:</p>
+                <Input
+                    type="text"
+                    placeholder={trans('search_city')}
+                    className={css.input}
+                    onChange={handleSearch}
+                    value={search}
+                />
+
                 <button type="button" className={css.back} onClick={handleBack}>
                     <FontAwesomeIcon icon={faChevronLeft} />
                     {trans('back')}
                 </button>
 
-                {!region.loading && region?.cities?.length ? (
+                {!region.loading && cities.length ? (
                     <div className={css.inner}>
-                        {region?.cities?.length
-                            ? region?.cities?.map(item => <CitiesList key={item.slug} city={item.slug} />)
-                            : null}
+                        {cities.length ? cities.map(item => <CitiesList key={item.slug} city={item.slug} />) : null}
                     </div>
                 ) : (
                     <div className={css.center}>

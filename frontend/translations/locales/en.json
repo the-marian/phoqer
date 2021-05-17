@@ -211,9 +211,9 @@
     "view_drafts": "View Drafts",
     "yes": "Yes",
     "no": "No",
-    "ukraine": "Ukraine",
-    "poland": "Poland",
-    "russia": "Russia",
+    "ukraine": "🇺🇦 Ukraine",
+    "poland": "🇵🇱 Poland",
+    "russia": "🇸🇮 Russia",
     "cherkasy": "Cherkasy",
     "chernihiv": "Chernihiv",
     "chernivtsi": "Chernivtsi",
@@ -272,5 +272,7 @@
     "volgograd": "Volgograd",
     "krasnodar": "Krasnodar",
     "saratov": "Saratov",
-    "lublin": "Lublin"
+    "lublin": "Lublin",
+    "search": "Search",
+    "search_city": "Search city"
 }

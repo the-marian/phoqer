@@ -10,6 +10,7 @@ import { Theme } from '../../../assets/theme';
 import useTrans from '../../../hooks/trans.hook';
 import { IRegion, IState } from '../../../interfaces';
 import { modal } from '../modal';
+import CityModal from './city-modal';
 import CountryModal from './country-modal';
 
 const useStyles = createUseStyles((theme: Theme) => ({
@@ -48,7 +49,7 @@ const Region = ({ className }: IProps): ReactElement => {
     const region = useSelector<IState, IRegion>(state => state.region);
 
     const handleRegionModal = () => {
-        modal.open(<CountryModal />);
+        modal.open(region.selected?.country ? <CityModal /> : <CountryModal />);
     };
 
     return (
