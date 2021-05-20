@@ -16,6 +16,10 @@ const useStyles = createUseStyles((theme: Theme) => ({
         flexWrap: 'wrap',
         width: '100%',
         marginBottom: theme.rem(3),
+
+        ...theme.media(768).max({
+            marginBottom: theme.rem(2),
+        }),
     },
     input: {
         background: theme.palette.gray[0],

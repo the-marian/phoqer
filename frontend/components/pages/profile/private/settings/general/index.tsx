@@ -32,6 +32,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
         padding: theme.rem(6, 4, 2),
         borderRadius: theme.radius,
         border: theme.border(0.1, theme.palette.gray[1]),
+        ...theme.media(768).max({
+            padding: theme.rem(2, 2, 0),
+        }),
     },
     banner: {
         margin: theme.rem(6, 0),

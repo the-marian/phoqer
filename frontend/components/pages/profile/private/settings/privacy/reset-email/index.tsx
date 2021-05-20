@@ -14,7 +14,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         width: '100%',
 
         ...theme.media(768).max({
-            marginLeft: '0',
+            marginTop: theme.rem(4),
         }),
     },
     input: {
