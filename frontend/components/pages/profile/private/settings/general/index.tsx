@@ -29,7 +29,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
     box: {
         width: '100%',
-        padding: theme.rem(6, 4, 2),
+        padding: theme.rem(4, 4, 0),
         borderRadius: theme.radius,
         border: theme.border(0.1, theme.palette.gray[1]),
         ...theme.media(768).max({

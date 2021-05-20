@@ -23,7 +23,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         alignItems: 'flex-start',
         flexDirection: 'column',
         width: 'calc(100% - 25rem)',
-        padding: theme.rem(6, 4),
+        padding: theme.rem(4),
         borderRadius: theme.radius,
         border: theme.border(0.1, theme.palette.gray[1]),
 

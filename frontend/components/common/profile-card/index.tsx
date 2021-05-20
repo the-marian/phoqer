@@ -1,4 +1,4 @@
-import { faSlidersH } from '@fortawesome/free-solid-svg-icons/faSlidersH';
+import { faUser } from '@fortawesome/free-regular-svg-icons/faUser';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import clsx from 'clsx';
 import Link from 'next/link';
@@ -163,10 +163,10 @@ const ProfileCard = ({
                         {trans('write_to_the_author')}
                     </button>
                 ) : (
-                    <Link href={routes.profile.private.settings()}>
+                    <Link href={routes.profile.private.personal_area}>
                         <a className={css.btn}>
-                            <FontAwesomeIcon icon={faSlidersH} />
-                            <span>{trans('profile_settings')}</span>
+                            <FontAwesomeIcon icon={faUser} />
+                            <span>{trans('personal_area')}</span>
                         </a>
                     </Link>
                 )}
