@@ -13,8 +13,8 @@ import SectionTitle from '../../components/common/section-title';
 import Container from '../../components/layout/container';
 import Meta from '../../components/layout/meta';
 import PageLayout from '../../components/layout/page-layout';
-import ActiveFilters from '../../components/pages/offers/active-filters';
 import Filters from '../../components/pages/offers/filters';
+import ActiveFilters from '../../components/pages/offers/filters/active-filters';
 import TopOffers from '../../components/pages/offers/top-offers';
 import useTrans from '../../hooks/trans.hook';
 import { ICategories, IOfferDynamic, IState, IStore } from '../../interfaces';
@@ -67,21 +67,19 @@ const OffersPage = (): ReactElement => {
     );
 };
 
-export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps(
-    async (ctx): Promise<void> => {
-        // CATEGORIES
-        ctx?.store?.dispatch({ type: types.GET_CATEGORIES_START });
-        // OFFERS
-        ctx?.store?.dispatch({ type: types.GET_POPULAR_OFFERS_START });
-        ctx?.store?.dispatch({
-            type: types.OFFERS_SEARCH_LOCAL_PARAMS,
-            payload: { ...initState.config.searchParams, ...ctx.query },
-        });
-        ctx?.store?.dispatch({ type: types.SEARCH_OFFERS_START, payload: ctx.query });
-        // GENERAL
-        ctx?.store?.dispatch(END);
-        await (ctx.store as IStore)?.sagaTask?.toPromise();
-    },
-);
+export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps(async (ctx): Promise<void> => {
+    // CATEGORIES
+    ctx?.store?.dispatch({ type: types.GET_CATEGORIES_START });
+    // OFFERS
+    ctx?.store?.dispatch({ type: types.GET_POPULAR_OFFERS_START });
+    ctx?.store?.dispatch({
+        type: types.OFFERS_SEARCH_LOCAL_PARAMS,
+        payload: { ...initState.config.searchParams, ...ctx.query },
+    });
+    ctx?.store?.dispatch({ type: types.SEARCH_OFFERS_START, payload: ctx.query });
+    // GENERAL
+    ctx?.store?.dispatch(END);
+    await (ctx.store as IStore)?.sagaTask?.toPromise();
+});
 
 export default OffersPage;

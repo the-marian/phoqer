@@ -4,12 +4,12 @@ import { useRouter } from 'next/router';
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
-import { onlineStatus } from '../../../../../../../../assets/helpers';
-import routes from '../../../../../../../../assets/routes';
-import template from '../../../../../../../../assets/template';
-import { Theme } from '../../../../../../../../assets/theme';
-import NotifNumber from '../../../../../../../common/notif-number';
-import UserAvatar from '../../../../../../../common/user-avatar';
+import { onlineStatus } from '../../../../../../../assets/helpers';
+import routes from '../../../../../../../assets/routes';
+import template from '../../../../../../../assets/template';
+import { Theme } from '../../../../../../../assets/theme';
+import NotifNumber from '../../../../../../common/notif-number';
+import UserAvatar from '../../../../../../common/user-avatar';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     wrp: {
@@ -19,11 +19,16 @@ const useStyles = createUseStyles((theme: Theme) => ({
         alignItems: 'flex-start',
         margin: theme.rem(1, 0),
         padding: theme.rem(3, 2),
-        background: theme.palette.gray[0],
         borderRadius: theme.radius,
+        border: theme.border(0.1, theme.palette.gray[1]),
         color: theme.palette.black[0],
         fontSize: theme.rem(1.4),
-        ...template(theme).outline,
+        ...theme.hover({
+            background: theme.palette.secondary[0],
+            '& h2': {
+                textDecoration: 'underline',
+            },
+        }),
     },
     unread: {
         background: theme.palette.secondary[0],
@@ -31,6 +36,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     active: {
         background: theme.palette.primary[0],
         color: theme.palette.trueWhite,
+        pointerEvents: 'none',
 
         '& p': {
             color: theme.palette.trueWhite,
@@ -55,7 +61,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     number: {
         position: 'absolute',
         top: theme.rem(0.5),
-        left: theme.rem(0.5),
+        right: theme.rem(0.5),
     },
 }));
 

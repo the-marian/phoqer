@@ -4,7 +4,7 @@ import { createUseStyles } from 'react-jss';
 
 import { Theme } from '../../../../../../assets/theme';
 import ChatEmpty from '../chat-empty';
-import ChatSidebar from './chat-sidebar';
+import ChatSidebar from '../chat-sidebar';
 
 const test = [
     {
@@ -19,7 +19,7 @@ const test = [
     {
         id: 2,
         cover_image: '/about.jpg',
-        newMessages: 3,
+        newMessages: 4,
         first_name: 'Ihor',
         last_name: 'Mykhailychenko',
         date: '2021-05-25 15:32',
@@ -28,7 +28,7 @@ const test = [
     {
         id: 3,
         cover_image: '/login.jpg',
-        newMessages: 1,
+        newMessages: 0,
         first_name: 'Ihor',
         last_name: 'Mykhailychenko',
         date: '2021-05-25 15:32',
@@ -37,7 +37,7 @@ const test = [
     {
         id: 4,
         cover_image: '/join.jpg',
-        newMessages: 0,
+        newMessages: 1,
         first_name: 'Ihor',
         last_name: 'Mykhailychenko',
         date: '2021-03-25 15:32',
@@ -46,7 +46,7 @@ const test = [
     {
         id: 5,
         cover_image: null,
-        newMessages: 1,
+        newMessages: 0,
         first_name: 'Ihor',
         last_name: 'Mykhailychenko',
         date: '2021-03-25 15:32',

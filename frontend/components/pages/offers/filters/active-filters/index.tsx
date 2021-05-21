@@ -6,20 +6,20 @@ import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 import { useSelector } from 'react-redux';
 
-import { findCategory, findSubCategory, moneyFormat } from '../../../../assets/helpers';
-import routes from '../../../../assets/routes';
-import template from '../../../../assets/template';
-import { Theme } from '../../../../assets/theme';
-import useTrans from '../../../../hooks/trans.hook';
-import { ICategories, ISearch, IState } from '../../../../interfaces';
-import Container from '../../../layout/container';
+import { findCategory, findSubCategory, moneyFormat } from '../../../../../assets/helpers';
+import routes from '../../../../../assets/routes';
+import template from '../../../../../assets/template';
+import { Theme } from '../../../../../assets/theme';
+import useTrans from '../../../../../hooks/trans.hook';
+import { ICategories, ISearch, IState } from '../../../../../interfaces';
+import Container from '../../../../layout/container';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     flex: {
         display: 'flex',
         flexWrap: 'wrap',
     },
-    item: {
+    btn: {
         display: 'flex',
         alignItems: 'center',
         margin: theme.rem(0.5, 1, 0.5, 0),
@@ -28,8 +28,18 @@ const useStyles = createUseStyles((theme: Theme) => ({
         borderRadius: theme.radius,
         fontSize: theme.rem(1.4),
         color: theme.palette.black[0],
+        cursor: 'pointer',
+        '& span:nth-of-type(1)': {
+            border: theme.border(0.2, 'transparent'),
+        },
+
+        ...theme.hover({
+            '& span:nth-of-type(1)': {
+                border: theme.border(0.2, theme.palette.primary[0]),
+            },
+        }),
     },
-    btn: {
+    close: {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
@@ -38,10 +48,8 @@ const useStyles = createUseStyles((theme: Theme) => ({
         marginRight: theme.rem(0.6),
         borderRadius: theme.radius,
         background: theme.palette.gray[1],
-        fontSize: theme.rem(1),
         color: theme.palette.black[0],
-
-        ...template(theme).outline,
+        fontSize: theme.rem(1),
 
         ...theme.media(768).max({
             height: theme.rem(3),
@@ -88,12 +96,12 @@ const ActiveFiltersItem = ({ filter }: IProps): ReactElement => {
 
             case 'category': {
                 const category = findCategory(categories, filter[1] as string);
-                return category ? trans(category.slug) : '...';
+                return category ? category.slug : '...';
             }
 
             case 'sub_category': {
                 const category = findSubCategory(categories, filter[1] as string);
-                return category ? trans(category.slug) : '...';
+                return category ? category.slug : '...';
             }
 
             case 'period':
@@ -137,11 +145,13 @@ const ActiveFiltersItem = ({ filter }: IProps): ReactElement => {
     };
 
     return (
-        <li className={css.item}>
+        <li>
             <button className={css.btn} type="button" onClick={handleClick}>
-                <FontAwesomeIcon icon={faTimes} />
+                <span className={css.close}>
+                    <FontAwesomeIcon icon={faTimes} />
+                </span>
+                <span>{trans(filtersToText(filter))}</span>
             </button>
-            <span>{filtersToText(filter)}</span>
         </li>
     );
 };

@@ -2,12 +2,12 @@ import { useRouter } from 'next/router';
 import React, { Fragment, ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
-import template from '../../../../../../../assets/template';
-import { Theme } from '../../../../../../../assets/theme';
-import { IChat } from '../../../../../../../interfaces';
-import Gift from '../../../../../../common/gift';
-import ChatEmpty from '../../chat-empty';
-import ChatSearch from '../../chat-search';
+import template from '../../../../../../assets/template';
+import { Theme } from '../../../../../../assets/theme';
+import { IChat } from '../../../../../../interfaces';
+import Gift from '../../../../../common/gift';
+import ChatEmpty from '../chat-empty';
+import ChatSearch from '../chat-search';
 import ChatSidebarItem from './chat-sidebar-item';
 
 const useStyles = createUseStyles((theme: Theme) => ({
@@ -62,7 +62,7 @@ const ChatSidebar = ({ chats }: IProps): ReactElement => {
             {chats?.length ? (
                 chats.map<ReactElement>((item, index) => (
                     <Fragment key={item.id}>
-                        {index === 3 ? <Gift /> : null}
+                        {index === 5 ? <Gift /> : null}
                         <ChatSidebarItem
                             id={item.id}
                             newMessages={item.newMessages}
