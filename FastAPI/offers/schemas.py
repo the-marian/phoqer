@@ -108,3 +108,5 @@ class ValidOffer(BaseModel):
     status: Status
     title: str
     category: str
+
+#suck
