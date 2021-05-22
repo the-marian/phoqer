@@ -1,4 +1,4 @@
-from typing import List, Mapping, Dict
+from typing import List, Mapping
 from FastAPI.config import database
 
 

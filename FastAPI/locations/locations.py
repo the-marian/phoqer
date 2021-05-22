@@ -1,6 +1,6 @@
 from FastAPI.locations.schemas import Countries, Cities
 from FastAPI.locations import crud
-from typing import List, Dict
+from typing import List
 from fastapi import APIRouter
 
 router = APIRouter(
