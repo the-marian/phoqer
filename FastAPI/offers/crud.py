@@ -427,7 +427,7 @@ async def count_founded_offers_by_statuses(
     return int(count["count"]) if count else 0
 
 
-async def offer_set_status(offer_id: str, status: Status) -> None:
+async def offer_set_status(offer_id: str, status: str) -> None:
     query = """
     UPDATE offers_offer
     SET status = :status

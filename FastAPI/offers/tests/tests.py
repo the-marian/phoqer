@@ -212,3 +212,13 @@ def test_change_status(client, auth_token):
             "type": "value_error.missing",
         },
     ]
+
+
+def test_change_status_2(client, auth_token):
+    data = {"status": "REVIEW"}
+    response = client.patch(
+        "offers/status/57b4b8c9-93fe-4a82-ba94-e87f3ed56961",
+        json=data,
+        headers=auth_token,
+    )
+    assert response.status_code == 204

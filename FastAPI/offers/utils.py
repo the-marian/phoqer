@@ -15,4 +15,4 @@ async def review_status_validator(offer_id: str) -> Optional[str]:
 
 
 async def set_review_status(offer_id: str) -> None:
-    await crud.offer_set_status(offer_id=offer_id, status=Status.ACTIVE)
+    await crud.offer_set_status(offer_id=offer_id, status=Status.ACTIVE.value)

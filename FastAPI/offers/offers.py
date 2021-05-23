@@ -61,13 +61,13 @@ async def get_offers_for_tab(
         "in-rent": ["IN_RENT"],
     }
     functions = {
-        "ACTIVE": ["DO_INACTIVE", "ARCHIVE", "PROMOTE", "EDIT"],
+        "ACTIVE": ["DO_INACTIVE", "ARCHIVE", "PROMOTE", "DO_DRAFT"],
         "ARCHIVED": ["DELETE", "DO_REVIEW"],
-        "DRAFT": ["DO_REVIEW", "ARCHIVE"],
+        "DRAFT": ["DO_REVIEW", "ARCHIVE", "EDIT"],
         "FROZEN": ["ARCHIVE"],
-        "INACTIVE": ["EDIT", "ARCHIVE", "DO_ACTIVE"],
+        "INACTIVE": ["DO_DRAFT", "ARCHIVE", "DO_ACTIVE"],
         "IN_RENT": ["ARCHIVE"],
-        "REJECTED": ["ARCHIVE", "EDIT"],
+        "REJECTED": ["ARCHIVE", "DO_DRAFT"],
         "REVIEW": ["ARCHIVE"],
     }
     offers: list = await crud.get_offers_by_statuses(
