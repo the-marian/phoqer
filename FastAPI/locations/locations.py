@@ -1,12 +1,10 @@
-from FastAPI.locations.schemas import Countries, Cities
-from FastAPI.locations import crud
 from typing import List
-from fastapi import APIRouter
 
-router = APIRouter(
-    prefix="/locations",
-    tags=["locations"]
-)
+from fastapi import APIRouter
+from FastAPI.locations import crud
+from FastAPI.locations.schemas import Cities, Countries
+
+router = APIRouter(prefix="/locations", tags=["locations"])
 
 
 @router.get("/countries/", response_model=List[Countries])

@@ -4,8 +4,8 @@ from FastAPI.categories import categories
 from FastAPI.comments import comments
 from FastAPI.config import database
 from FastAPI.favorite import favorite
-from FastAPI.login import login
 from FastAPI.locations import locations
+from FastAPI.login import login
 from fastapi.middleware.cors import CORSMiddleware
 from FastAPI.offers import offers
 from FastAPI.upload import upload

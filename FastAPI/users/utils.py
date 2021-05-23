@@ -1,6 +1,6 @@
 import logging
 import os.path
-from datetime import datetime, timedelta, date
+from datetime import date, datetime, timedelta
 from typing import Any, Dict
 
 import emails
