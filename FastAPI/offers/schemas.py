@@ -98,9 +98,7 @@ class MyOffersListResponse(BaseModel):
 
 class ValidOffer(BaseModel):
     city: str
-    cover_image: HttpUrl
     currency: Currency
-    deposit_val: int
     description: str
     doc_needed: bool
     extra_requirements: str
