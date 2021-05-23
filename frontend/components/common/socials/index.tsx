@@ -128,7 +128,7 @@ const Socials = ({ center = false, style = {} }: IProps): ReactElement => {
                 <li>
                     <a
                         className={clsx(css.link, center && css.margin)}
-                        href="http://www.google.com/"
+                        href="https://t.me/phoqer"
                         target="_blank"
                         rel="noopener noreferrer"
                     >
