@@ -46,7 +46,7 @@ const UserNavDropdown = ({ className }: IProps): ReactElement => {
 
     const [loading, setLoading] = useState(false);
     const user = useSelector<IState, IPublicProfile | null>(state => state.user);
-    const profileTabs: ITabs[] = config.userNavLinks(trans, String(user?.id), { messages: 5, reviews: 9 });
+    const profileTabs: ITabs[] = config.userNavLinks(String(user?.id), { messages: 5, reviews: 9 });
 
     const handleLogout = () => {
         setLoading(true);
