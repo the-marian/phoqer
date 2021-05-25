@@ -22,7 +22,7 @@ def create_upload_file(
     except FileExistsError:
         pass
     uuid_prefix = uuid.uuid4()
-    file_name = f"{uuid_prefix}-{file.filename}"
+    file_name = f"{uuid_prefix}-{file.filename}".replace(" ", "_")
     with open(os.path.join(MEDIA_ROOT, file_name), "wb") as buffer:
         shutil.copyfileobj(file.file, buffer)
-    return {"image_url": f"/{MEDIA_URL}/{uuid_prefix}-{file.filename}".replace(" ", "_")}
+    return {"image_url": f"/{MEDIA_URL}/{file_name}"}
