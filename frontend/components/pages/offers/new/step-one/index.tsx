@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Dispatch } from 'redux';
 
 import * as helpers from '../../../../../assets/helpers';
-import { moneyFormat, numberValidation } from '../../../../../assets/helpers';
+import { intNumberValidation, moneyFormat } from '../../../../../assets/helpers';
 import routes from '../../../../../assets/routes';
 import { Theme } from '../../../../../assets/theme';
 import useTrans from '../../../../../hooks/trans.hook';
@@ -58,7 +58,7 @@ const StepThree = (): ReactElement => {
     };
     const handlePrice = (event: ChangeEvent<HTMLInputElement>): void => {
         const price = event.target.value.replace(/ /gi, '').trim();
-        if (numberValidation(price)) return;
+        if (intNumberValidation(price)) return;
         setValue({ ...value, price: price === '' ? null : +price });
         setErrors({});
     };

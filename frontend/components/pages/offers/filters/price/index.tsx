@@ -5,7 +5,7 @@ import React, { ChangeEvent, KeyboardEvent, ReactElement, useEffect, useState } 
 import { createUseStyles } from 'react-jss';
 import { useSelector } from 'react-redux';
 
-import { numberValidation } from '../../../../../assets/helpers';
+import { intNumberValidation } from '../../../../../assets/helpers';
 import routes from '../../../../../assets/routes';
 import template from '../../../../../assets/template';
 import { Theme } from '../../../../../assets/theme';
@@ -56,11 +56,11 @@ const PriceFilter = (): ReactElement => {
 
     // manual change
     const handleMin = (event: ChangeEvent<HTMLInputElement>): void => {
-        if (numberValidation(event.target.value)) return;
+        if (intNumberValidation(event.target.value)) return;
         setPrice([+event.target.value, price[1]]);
     };
     const handleMax = (event: ChangeEvent<HTMLInputElement>): void => {
-        if (numberValidation(event.target.value)) return;
+        if (intNumberValidation(event.target.value)) return;
         setPrice([price[0], +event.target.value]);
     };
 

@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Advertising component matches snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="top-0-2-1"
+  >
+    <img
+      alt=""
+      class="img-0-2-2"
+      src="/emoji/top.png"
+    />
+    <h2>
+      Выводите товар в топ на месяц абсолютно бесплатно
+    </h2>
+    <p>
+      Ляля тополя ляля тополя тополя ляля тополя тополя ляля тополя тополя ляля тополя. Тополя ляля тополя тополя ляля тополя.
+    </p>
+    <button
+      class="btn-0-2-3"
+      type="button"
+    >
+      More details
+    </button>
+  </div>
+</DocumentFragment>
+`;
