@@ -166,6 +166,7 @@ export interface INewOffer {
     min_rent_period: number | null;
     max_rent_period: number | null;
     extra_requirements: string;
+    cover_image?: string;
     optional: {
         deposit_val: boolean;
         min_rent_period: boolean;

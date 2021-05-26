@@ -1,7 +1,7 @@
 import React, { ReactElement, useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 
-import OffersLoader from '../../loaders/offers';
+import OffersLoader from '../../loaders/skeletons/offers';
 
 interface IProps {
     onSubmit: (page: number) => void;
@@ -38,7 +38,7 @@ const OffersIntersection = ({ onSubmit, total, loading }: IProps): ReactElement 
         };
     }, [inView]);
 
-    return total > page ? <OffersLoader ref={ref} /> : null;
+    return total > page ? <OffersLoader amount={4} ref={ref} /> : null;
 };
 
 export default OffersIntersection;

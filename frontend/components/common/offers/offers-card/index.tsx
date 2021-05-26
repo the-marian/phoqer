@@ -46,19 +46,8 @@ const OfferCard = ({ offer, showFavoriteBtn = true }: IProps): ReactElement => {
     const history = useRouter();
     const dispatch = useDispatch();
 
-    const {
-        id,
-        title,
-        description,
-        cover_image,
-        is_promoted,
-        is_deliverable,
-        is_favorite,
-        views,
-        pub_date,
-        price,
-        functions,
-    } = offer;
+    const { id, title, description, cover_image, is_promoted, is_deliverable, is_favorite, views, pub_date, price, functions } =
+        offer;
 
     const handleFavorite = (): void => {
         if (!auth?.access_token) {
@@ -77,6 +66,7 @@ const OfferCard = ({ offer, showFavoriteBtn = true }: IProps): ReactElement => {
         ARCHIVE: trans('put_to_archive'),
         PROMOTE: trans('put_top_top'),
         EDIT: trans('edit'),
+        DO_DRAFT: trans('put_top_draft'),
         DELETE: trans('delete'),
         DO_REVIEW: trans('publish'),
     };
@@ -85,11 +75,21 @@ const OfferCard = ({ offer, showFavoriteBtn = true }: IProps): ReactElement => {
         if (!value) return;
         switch (value.slug) {
             case 'DO_INACTIVE':
-                notifications.info({ message: 'Do inactive' });
+                dispatch({
+                    type: types.CHANGE_OFFER_STATUS_START,
+                    status: 'INACTIVE',
+                    offerId: offer.id,
+                    callback: () => notifications.info({ message: 'Do inactive' }),
+                });
                 break;
 
             case 'ARCHIVE':
-                notifications.info({ message: 'Put to archive' });
+                dispatch({
+                    type: types.CHANGE_OFFER_STATUS_START,
+                    status: 'ARCHIVE',
+                    offerId: offer.id,
+                    callback: () => notifications.info({ message: 'Put to archive' }),
+                });
                 break;
 
             case 'PROMOTE':
@@ -98,6 +98,15 @@ const OfferCard = ({ offer, showFavoriteBtn = true }: IProps): ReactElement => {
 
             case 'EDIT':
                 history.push(routes.offers.edit(id));
+                break;
+
+            case 'DO_DRAFT':
+                dispatch({
+                    type: types.CHANGE_OFFER_STATUS_START,
+                    status: 'DRAFT',
+                    offerId: id,
+                    callback: () => notifications.info({ message: 'Put top draft' }),
+                });
                 break;
 
             case 'DELETE':
@@ -144,8 +153,8 @@ const OfferCard = ({ offer, showFavoriteBtn = true }: IProps): ReactElement => {
             {functions?.length ? (
                 <DropDown
                     icon={faCogs}
-                    minWidth={20}
-                    height={5}
+                    minWidth={30}
+                    height={4}
                     className={css.dropdown}
                     onChange={handleSettings}
                     data={formatUserActions(functions, USER_ACTIONS)}

@@ -33,7 +33,7 @@ function* postOffer({ payload, callback }: IAction) {
         const { status, data } = yield call(api.offers.new, body);
         if (status < 200 || status >= 300) throw new Error();
         yield put({ type: types.POST_OFFER_SUCCESS, payload: { ...initState.offers.new_offer, id: data.id } });
-        if (callback) callback();
+        if (callback) callback(data.id);
     } catch (error) {
         if (error?.response?.status === 401) return;
         notificationsModal('error');

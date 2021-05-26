@@ -30,8 +30,8 @@ export interface IBody {
 
 export default interface IAction {
     type: Type;
-    payload: INewOffer | IState | string[] | null;
+    payload: INewOffer | IState | string[] | string;
     images?: string[] | null;
     offerId?: string;
-    callback?: () => void;
+    callback?: (postId?: string) => void;
 }

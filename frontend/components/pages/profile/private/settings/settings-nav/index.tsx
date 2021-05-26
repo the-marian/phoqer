@@ -37,7 +37,7 @@ const SettingsNav = (): ReactElement => {
     const css = useStyles();
     const trans = useTrans();
     const { query } = useRouter();
-    const activeTab = String(query.activeTab);
+    const activeTab = String(query.activeTab || '');
 
     return (
         <ul className={css.list}>

@@ -86,7 +86,7 @@ const UserOffers = (): ReactElement => {
     ];
 
     const history = useRouter();
-    const offerStatus = String(history.query.offerStatus);
+    const offerStatus = String(history.query.offerStatus || '');
 
     const { data, loading, pagination } = useSelector<IState, IOfferDynamic>(state => state.offers.my_offers);
 
@@ -150,10 +150,8 @@ const UserOffers = (): ReactElement => {
     );
 };
 
-export const getServerSideProps = wrapper.getServerSideProps(
-    async (ctx): Promise<void> => {
-        if (serverRedirect((ctx as unknown) as GetServerSidePropsContext)) return;
-    },
-);
+export const getServerSideProps = wrapper.getServerSideProps(async (ctx): Promise<void> => {
+    if (serverRedirect(ctx as unknown as GetServerSidePropsContext)) return;
+});
 
 export default UserOffers;

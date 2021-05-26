@@ -70,8 +70,8 @@ const StepThree = (): ReactElement => {
                         (value: UploadedUppyFile<unknown, { image_url?: string }>) =>
                             config.img + value?.response?.body?.image_url,
                     ) || [],
-                callback() {
-                    history.push(routes.offers.new(4), undefined, { shallow: true });
+                callback(offerId?: string) {
+                    history.push(routes.offers.new(res?.successful?.length < 2 ? 5 : 4, offerId), undefined, { shallow: true });
                 },
             });
         } catch (error) {

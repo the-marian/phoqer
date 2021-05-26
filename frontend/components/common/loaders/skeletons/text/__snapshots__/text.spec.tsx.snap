@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TextSkeleton component matches snapshot, with props 1`] = `
+<DocumentFragment>
+  <div
+    class="text-0-2-5"
+  />
+  <div
+    class="text-0-2-5"
+  />
+  <div
+    class="text-0-2-5"
+  />
+  <div
+    class="text-0-2-5"
+  />
+  <div
+    class="text-0-2-5"
+  />
+  <div
+    class="text-0-2-5 short-0-2-6"
+  />
+</DocumentFragment>
+`;
+
+exports[`TextSkeleton component matches snapshot, without props 1`] = `
+<DocumentFragment>
+  <div
+    class="text-0-2-2"
+  />
+  <div
+    class="text-0-2-2 short-0-2-3"
+  />
+</DocumentFragment>
+`;
