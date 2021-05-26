@@ -11,6 +11,7 @@ import { ICategories, IDropValue, INewOffer, IState } from '../../../../../../in
 import CheckYesNo from '../../../../../common/checkbox/check-yes-no';
 import DropDown from '../../../../../common/drop-down';
 import Input from '../../../../../common/input';
+import Region from '../../../../../common/region';
 import { IError } from '../';
 import editOfferTemplate from '../edit-content-form.style';
 
@@ -69,13 +70,7 @@ const StepOne = ({ value, errors, setErrors, setValue }: IProps): ReactElement =
                 <h3 className={css.subtitle}>
                     Укажите ваше местоположение <span className={css.red}>*</span>
                 </h3>
-                <button type="button" className={css.region}>
-                    <FontAwesomeIcon icon={faCompass} />
-                    <span>
-                        Киев, Киевская область Киев, Киевская область Киев, Киевская область Киев, Киевская область Киев, Киевская
-                        область
-                    </span>
-                </button>
+                <Region className={css.region} error={errors.region} resetError={setErrors} />
             </div>
             <CheckYesNo value={value.is_deliverable} onChange={handleDelivery}>
                 Укажите возможность доставки вашего товара в другой город

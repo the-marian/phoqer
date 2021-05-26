@@ -67,6 +67,11 @@ const SingleOfferPage = (): ReactElement | null => {
     const offer = useSelector<IState, IOfferCard | null>(state => state.offers.single);
 
     useEffect(() => {
+        if (offer?.country) dispatch({ type: types.SELECT_COUNTRY, payload: offer?.country });
+        if (offer?.city) dispatch({ type: types.SELECT_CITY, payload: offer?.city });
+    }, [offer?.city, offer?.country]);
+
+    useEffect(() => {
         if (offer?.author_id) dispatch({ type: types.GET_PUBLIC_PROFILE_START, payload: offer.author_id });
     }, [offer?.author_id]);
 

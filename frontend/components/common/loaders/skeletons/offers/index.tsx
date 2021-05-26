@@ -2,7 +2,6 @@ import clsx from 'clsx';
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
-import config from '../../../../../assets/config';
 import { Theme } from '../../../../../assets/theme';
 
 const useStyles = createUseStyles((theme: Theme) => ({
@@ -16,6 +15,11 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
     card: {
         width: '100%',
+        maxWidth: theme.rem(35),
+        marginRight: theme.rem(2),
+        '&:nth-last-of-type(1)': {
+            marginRight: 0,
+        },
     },
     img: {
         height: theme.rem(25),

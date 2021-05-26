@@ -9,11 +9,11 @@ interface Template {
     title: Styles;
     subtitle: Styles;
     textarea: Styles;
+    region: Styles;
     red: Styles;
     errors: Styles;
     errorsText: Styles;
     mark: Styles;
-    region: Styles;
     group: Styles;
     inactive: Styles;
     submit: Styles;
@@ -66,6 +66,9 @@ const editOfferTemplate = (theme: Theme): Template => ({
         padding: theme.rem(2),
         color: theme.palette.black[0],
     },
+    region: {
+        background: theme.palette.gray[1],
+    },
     red: {
         color: theme.palette.red[0],
     },
@@ -81,22 +84,6 @@ const editOfferTemplate = (theme: Theme): Template => ({
     mark: {
         margin: theme.rem(1, 0, 4),
         fontSize: theme.rem(1.2),
-    },
-    region: {
-        ...template(theme).btn,
-        display: 'flex',
-        justifyContent: 'space-between',
-        width: '100%',
-        background: theme.palette.gray[1],
-        color: theme.palette.black[0],
-
-        '& span': {
-            textAlign: 'left',
-            width: 'calc(100% - 2.5rem)',
-            overflow: 'hidden',
-            whiteSpace: 'nowrap',
-            textOverflow: 'ellipsis',
-        },
     },
     group: {
         display: 'flex',

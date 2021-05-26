@@ -3,8 +3,10 @@ import { useRouter } from 'next/router';
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 import { ReactNotificationOptions, store } from 'react-notifications-component';
+import { v4 as uuid } from 'uuid';
 
 import { timeIndicator } from '../../../assets/helpers';
+import template from '../../../assets/template';
 import { Theme } from '../../../assets/theme';
 
 const useStyles = createUseStyles((theme: Theme) => ({
@@ -41,6 +43,15 @@ const useStyles = createUseStyles((theme: Theme) => ({
     warning: {
         background: theme.palette.yellow[0],
     },
+    text: {
+        color: theme.palette.trueBlack,
+    },
+    btn: {
+        ...template(theme).btn,
+        height: theme.rem(3.5),
+        marginTop: theme.rem(1),
+        padding: theme.rem(0.2, 3),
+    },
 }));
 
 interface IProps {
@@ -64,6 +75,28 @@ const Title = ({ title, date, type }: IProps): ReactElement => {
     );
 };
 
+interface IMessageProps {
+    id: string;
+    message: ReactElement | string;
+}
+
+const Message = ({ id, message }: IMessageProps): ReactElement => {
+    const css = useStyles();
+
+    const handleClick = (): void => {
+        store.removeNotification(id);
+    };
+
+    return (
+        <>
+            <p className={css.text}>{message}</p>
+            <button onClick={handleClick} className={css.btn} type="button">
+                Ok
+            </button>
+        </>
+    );
+};
+
 const defaultOptions: ReactNotificationOptions = {
     type: 'success',
     insert: 'bottom',
@@ -79,9 +112,9 @@ const defaultOptions: ReactNotificationOptions = {
         delay: 0,
     },
     dismiss: {
-        duration: 5_000_000,
+        duration: 5_000,
         showIcon: true,
-        click: false,
+        click: true,
     },
     touchSlidingExit: {
         swipe: {
@@ -101,34 +134,39 @@ interface IParams {
     title?: string;
     date?: number | string | Date;
     message?: string | ReactElement;
-    options?: { [key: string]: string | number | ReactElement };
+    id?: string;
+    withOkBtn?: boolean;
+    options?: Partial<ReactNotificationOptions>;
 }
 
 const notifications = {
-    info: ({ title = 'Success', message = '...', date = new Date(), options }: IParams): void => {
+    info: ({ title = 'Success', message = '...', date = new Date(), withOkBtn, id = uuid(), options }: IParams): void => {
         store.addNotification({
             ...defaultOptions,
             type: 'success',
             title: <Title type="info" date={date} title={title} />,
-            message,
+            message: withOkBtn ? <Message id={id} message={message} /> : message,
+            id,
             ...(options || {}),
         });
     },
-    error: ({ title = 'Error', message = '...', date = new Date(), options }: IParams): void => {
+    error: ({ title = 'Error', message = '...', date = new Date(), withOkBtn, id = uuid(), options }: IParams): void => {
         store.addNotification({
             ...defaultOptions,
             type: 'danger',
             title: <Title type="error" date={date} title={title} />,
-            message,
+            message: withOkBtn ? <Message id={id} message={message} /> : message,
+            id,
             ...(options || {}),
         });
     },
-    warning: ({ title = 'Attention', message = '...', date = new Date(), options }: IParams): void => {
+    warning: ({ title = 'Attention', message = '...', date = new Date(), withOkBtn, id = uuid(), options }: IParams): void => {
         store.addNotification({
             ...defaultOptions,
             type: 'warning',
             title: <Title type="warning" date={date} title={title} />,
-            message,
+            message: withOkBtn ? <Message id={id} message={message} /> : message,
+            id,
             ...(options || {}),
         });
     },

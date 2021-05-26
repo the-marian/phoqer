@@ -114,7 +114,12 @@ const OfferCard = ({ offer, showFavoriteBtn = true }: IProps): ReactElement => {
                 break;
 
             case 'DO_REVIEW':
-                dispatch({ type: types.OFFER_DO_REVIEW_START, payload: id });
+                dispatch({
+                    type: types.OFFER_DO_REVIEW_START,
+                    payload: id,
+                    tab: String(history.query.offerStatus || 'all'),
+                    page: String(history.query.page || '1'),
+                });
                 break;
 
             default:

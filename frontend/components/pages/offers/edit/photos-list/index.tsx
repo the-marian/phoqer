@@ -10,6 +10,10 @@ import types from '../../../../../redux/types';
 import ButtonClose from '../../../../common/button-close';
 
 const useStyles = createUseStyles((theme: Theme) => ({
+    title: {
+        fontSize: theme.rem(1.4),
+        fontWeight: theme.text.weight[3],
+    },
     imgUl: {
         display: 'flex',
         flexWrap: 'wrap',
@@ -85,17 +89,22 @@ const PhotosItem = ({ url, isActive = false }: { url: string; isActive?: boolean
     );
 };
 
-const PhotosList = (): ReactElement | null => {
+const PhotosList = (): ReactElement => {
     const css = useStyles();
     const offer = useSelector<IState, IOfferCard | null>(state => state.offers.single);
 
-    return offer?.images?.length ? (
-        <ul className={css.imgUl}>
-            {offer.images.map<ReactElement>(url => (
-                <PhotosItem url={url} key={url} isActive={offer?.cover_image === url} />
-            ))}
-        </ul>
-    ) : null;
+    return (
+        <>
+            <h3 className={css.title}>Кликните по фотографии чтобы сделать ее главной для вашего объявления</h3>
+            {offer?.images?.length ? (
+                <ul className={css.imgUl}>
+                    {offer.images.map<ReactElement>(url => (
+                        <PhotosItem url={url} key={url} isActive={offer?.cover_image === url} />
+                    ))}
+                </ul>
+            ) : null}
+        </>
+    );
 };
 
 export default PhotosList;

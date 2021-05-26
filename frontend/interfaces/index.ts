@@ -128,6 +128,7 @@ export interface IOfferCard {
     description: string;
     extra_requirements?: string;
     city: string;
+    country: string;
     currency: string;
     author_id: number;
     status: string;
@@ -155,6 +156,8 @@ export interface INewOffer {
     // step one
     title: string;
     price: number | null;
+    city?: string;
+    country?: string;
     category?: IDropValue | null;
     sub_category?: IDropValue | null;
     is_deliverable: boolean;

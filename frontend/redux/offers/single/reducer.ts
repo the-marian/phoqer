@@ -17,7 +17,11 @@ const single = (state: IOfferCard | null = initState.offers.single, { type, payl
             return null;
 
         case types.CHANGE_OFFER_COVER_IMAGE_LOCAL:
-            return { ...state, cover_image: payload as string } as IOfferCard;
+            return {
+                ...state,
+                cover_image: payload as string,
+                images: [payload, ...(state?.images?.filter(img => img !== payload) || [])],
+            } as IOfferCard;
 
         case types.DELETE_SINGLE_OFFER_IMG:
             return { ...state, images: state?.images?.filter(url => url !== (payload as string)) } as IOfferCard;

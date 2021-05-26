@@ -13,7 +13,7 @@ import { intNumberValidation, moneyFormat } from '../../../../../assets/helpers'
 import routes from '../../../../../assets/routes';
 import { Theme } from '../../../../../assets/theme';
 import useTrans from '../../../../../hooks/trans.hook';
-import { ICategories, IDropValue, INewOffer, IState } from '../../../../../interfaces';
+import { ICategories, IDropValue, INewOffer, IRegion, IState } from '../../../../../interfaces';
 import types from '../../../../../redux/types';
 import CheckYesNo from '../../../../common/checkbox/check-yes-no';
 import DropDown from '../../../../common/drop-down';
@@ -27,6 +27,7 @@ interface IError {
     title?: string;
     price?: string;
     category?: string;
+    region?: string;
 }
 
 const notDone = (value: INewOffer, dispatch: Dispatch): void => {
@@ -41,6 +42,7 @@ const StepThree = (): ReactElement => {
     const dispatch = useDispatch();
 
     const [errors, setErrors] = useState<IError>({});
+    const region = useSelector<IState, IRegion>(state => state.region);
     const init = useSelector<IState, INewOffer>(state => state.offers.new_offer);
     const [value, setValue] = useState<INewOffer>(init);
 
@@ -72,6 +74,12 @@ const StepThree = (): ReactElement => {
 
         if (!value.title.trim()) {
             setErrors({ title: 'required_field' });
+            notDone(value, dispatch);
+            return;
+        }
+
+        if (!region.selected) {
+            setErrors({ region: 'required_field' });
             notDone(value, dispatch);
             return;
         }
@@ -151,7 +159,7 @@ const StepThree = (): ReactElement => {
                 <h4 className={css.title}>
                     {trans('indicate_your_location')} <span className={css.red}>*</span>
                 </h4>
-                <Region />
+                <Region error={errors.region} resetError={setErrors} />
             </div>
 
             <CheckYesNo value={value.is_deliverable} onChange={handleDelivery}>
