@@ -54,7 +54,7 @@ interface IProps {
 const ChatSidebar = ({ chats }: IProps): ReactElement => {
     const css = useStyles();
     const { query } = useRouter();
-    const active = String(query.chat);
+    const active = String(query.chat || '');
 
     return (
         <>

@@ -8,7 +8,7 @@ import { createUseStyles } from 'react-jss';
 import { useDispatch, useSelector } from 'react-redux';
 import TextareaAutosize from 'react-textarea-autosize';
 
-import { moneyFormat, numberValidation } from '../../../../../assets/helpers';
+import { intNumberValidation, moneyFormat } from '../../../../../assets/helpers';
 import routes from '../../../../../assets/routes';
 import { Theme } from '../../../../../assets/theme';
 import useTrans from '../../../../../hooks/trans.hook';
@@ -68,7 +68,7 @@ const StepTwo = (): ReactElement => {
     const handleNumber = (event: ChangeEvent<HTMLInputElement>): void => {
         setErrors({});
         const num = event.target.value.replace(/ /gi, '').trim();
-        if (numberValidation(num)) return;
+        if (intNumberValidation(num)) return;
         setValue({ ...value, [event.target.name]: num === '' ? null : +num });
     };
     const handleText = (event: ChangeEvent<HTMLTextAreaElement>): void => {

@@ -17,7 +17,7 @@ const Draft = (): ReactElement => {
     const css = useStyles();
     const trans = useTrans();
     const { query } = useRouter();
-    const offerId = String(query.offerId);
+    const offerId = String(query.offerId || '');
 
     return (
         <>

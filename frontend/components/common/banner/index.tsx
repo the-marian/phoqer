@@ -72,6 +72,7 @@ const Banner = ({ className, animation = false }: IProps): ReactElement => {
             );
         }
     };
+
     return (
         <button onClick={handleClick} type="button" className={clsx(css.root, className, animation && css.animation)}>
             <h2 className={css.title}>{trans('share_with_others_and_earn')}</h2>

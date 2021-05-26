@@ -11,6 +11,7 @@ import routes from '../../../../assets/routes';
 import template from '../../../../assets/template';
 import { Theme } from '../../../../assets/theme';
 import Breadcrumbs from '../../../../components/common/breadcrumbs';
+import ErrorComponent from '../../../../components/common/error';
 import { modal } from '../../../../components/common/modal';
 import Container from '../../../../components/layout/container';
 import Meta from '../../../../components/layout/meta';
@@ -66,64 +67,76 @@ const SingleOfferPage = (): ReactElement | null => {
     const offer = useSelector<IState, IOfferCard | null>(state => state.offers.single);
 
     useEffect(() => {
+        if (offer?.country) dispatch({ type: types.SELECT_COUNTRY, payload: offer?.country });
+        if (offer?.city) dispatch({ type: types.SELECT_CITY, payload: offer?.city });
+    }, [offer?.city, offer?.country]);
+
+    useEffect(() => {
         if (offer?.author_id) dispatch({ type: types.GET_PUBLIC_PROFILE_START, payload: offer.author_id });
-    }, [offer]);
+    }, [offer?.author_id]);
 
     const handleModal = (): void => {
         modal.open(<PhotosUploadModal />);
     };
 
-    return offer ? (
-        <>
-            <Meta
-                title={offer?.title}
-                h1={offer?.title + offer?.description.slice(0, 60)}
-                description={offer?.description.slice(0, 150)}
-                icon={offer?.cover_image}
-            />
-            <PageLayout>
-                <Container>
-                    <PhotosList />
+    return (
+        <PageLayout>
+            <Container>
+                <>
+                    {offer ? (
+                        <>
+                            <Meta
+                                title={offer?.title}
+                                h1={offer?.title + offer?.description.slice(0, 60)}
+                                description={offer?.description.slice(0, 150)}
+                                icon={offer?.cover_image}
+                            />
 
-                    <button className={css.plus} type="button" onClick={handleModal}>
-                        <FontAwesomeIcon icon={faPlus} />
-                        <span>Добавить фотографии</span>
-                    </button>
+                            <PhotosList />
 
-                    <Breadcrumbs
-                        end={offer?.title}
-                        data={[
-                            { label: 'На главную страницу', link: routes.root },
-                            {
-                                label:
-                                    offer.category || offer.sub_category
-                                        ? `Предложения в разделе ${trans(offer.category || offer.sub_category || '...')}`
-                                        : 'Поиск вещей и услуг',
-                                link:
-                                    offer.category || offer?.sub_category
-                                        ? routes.offers.single(
-                                              offer?.category
-                                                  ? `?category=${offer?.category}`
-                                                  : `?sub_category=${offer?.sub_category}`,
-                                          )
-                                        : routes.offers.list,
-                            },
-                        ]}
-                    />
-                    <div className={css.flex}>
-                        <div className={css.main}>
-                            <EditContentForm />
-                        </div>
-                        <AsideElement />
-                    </div>
-                </Container>
-            </PageLayout>
-        </>
-    ) : null;
+                            <button className={css.plus} type="button" onClick={handleModal}>
+                                <FontAwesomeIcon icon={faPlus} />
+                                <span>Добавить фотографии</span>
+                            </button>
+
+                            <Breadcrumbs
+                                end={offer?.title}
+                                data={[
+                                    { label: 'На главную страницу', link: routes.root },
+                                    {
+                                        label:
+                                            offer.category || offer.sub_category
+                                                ? `Предложения в разделе ${trans(offer.category || offer.sub_category || '...')}`
+                                                : 'Поиск вещей и услуг',
+                                        link:
+                                            offer.category || offer?.sub_category
+                                                ? routes.offers.single(
+                                                      offer?.category
+                                                          ? `?category=${offer?.category}`
+                                                          : `?sub_category=${offer?.sub_category}`,
+                                                  )
+                                                : routes.offers.list,
+                                    },
+                                ]}
+                            />
+                            <div className={css.flex}>
+                                <div className={css.main}>
+                                    <EditContentForm />
+                                </div>
+                                <AsideElement />
+                            </div>
+                        </>
+                    ) : (
+                        <ErrorComponent title="404" text={trans('404_offer')} />
+                    )}
+                </>
+            </Container>
+        </PageLayout>
+    );
 };
 
 export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps(async ctx => {
-    if (serverRedirect((ctx as unknown) as GetServerSidePropsContext)) return;
+    if (serverRedirect(ctx as unknown as GetServerSidePropsContext)) return;
 
     ctx?.store?.dispatch({ type: types.GET_CATEGORIES_START });
     ctx.store.dispatch({ type: types.GET_SINGLE_OFFER_START, payload: ctx.query?.offerId });

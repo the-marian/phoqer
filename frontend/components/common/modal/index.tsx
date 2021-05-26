@@ -87,8 +87,8 @@ export default class ModalComponent extends Component<unknown, IState> {
         const { dom } = this.state;
         return (
             <CSSTransition timeout={200} unmountOnExit in={!!dom}>
-                <div className={css.backdrop} onClick={this.handleClickClose} aria-hidden="true">
-                    <div className={css.scroll} onClick={this.handleClickClose} aria-hidden="true">
+                <div id="backdrop" className={css.backdrop} onClick={this.handleClickClose} aria-hidden="true">
+                    <div id="scroll" className={css.scroll} onClick={this.handleClickClose} aria-hidden="true">
                         {dom}
                     </div>
                 </div>

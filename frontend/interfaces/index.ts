@@ -128,6 +128,7 @@ export interface IOfferCard {
     description: string;
     extra_requirements?: string;
     city: string;
+    country: string;
     currency: string;
     author_id: number;
     status: string;
@@ -155,6 +156,8 @@ export interface INewOffer {
     // step one
     title: string;
     price: number | null;
+    city?: string;
+    country?: string;
     category?: IDropValue | null;
     sub_category?: IDropValue | null;
     is_deliverable: boolean;
@@ -166,6 +169,7 @@ export interface INewOffer {
     min_rent_period: number | null;
     max_rent_period: number | null;
     extra_requirements: string;
+    cover_image?: string;
     optional: {
         deposit_val: boolean;
         min_rent_period: boolean;

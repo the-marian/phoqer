@@ -3,8 +3,9 @@ import { createUseStyles } from 'react-jss';
 
 import config from '../../../../assets/config';
 import { Theme } from '../../../../assets/theme';
+import useMedia from '../../../../hooks/media.hook';
 import { IOfferCard } from '../../../../interfaces';
-import OffersLoader from '../../loaders/offers';
+import OffersLoader from '../../loaders/skeletons/offers';
 import EmptyOffers from '../empty-offers';
 import OfferCard from '../offers-card';
 
@@ -39,8 +40,10 @@ interface IProps {
 
 const OffersList = ({ loading, data, showFavoriteBtn = true }: IProps): ReactElement => {
     const css = useStyles();
+    const media = useMedia(1400);
+
     return loading ? (
-        <OffersLoader />
+        <OffersLoader amount={media ? 4 : 1} />
     ) : (
             <>
                 {/* {data?.length ? (

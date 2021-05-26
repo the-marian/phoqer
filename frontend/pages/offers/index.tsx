@@ -26,7 +26,7 @@ const OffersPage = (): ReactElement => {
     const { query } = useRouter();
     const trans = useTrans();
     const dispatch = useDispatch();
-    const category = String(query.category);
+    const category = String(query.category || '');
 
     const { data, loading, pagination } = useSelector<IState, IOfferDynamic>(state => state.offers.search);
     const categories = useSelector<IState, ICategories[]>(state => state.categories);

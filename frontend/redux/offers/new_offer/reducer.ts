@@ -17,7 +17,7 @@ const new_offer = (state: INewOffer = initState.offers.new_offer, { type, payloa
             return { ...state, loading: false };
 
         case types.NEW_OFFER_FORM:
-            return { ...state, ...payload };
+            return { ...state, ...(payload as INewOffer) };
 
         default:
             return state;

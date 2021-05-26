@@ -5,12 +5,13 @@ import React, { ChangeEvent, ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 import { useSelector } from 'react-redux';
 
-import { moneyFormat, numberValidation } from '../../../../../../assets/helpers';
+import { intNumberValidation, moneyFormat } from '../../../../../../assets/helpers';
 import * as helpers from '../../../../../../assets/helpers';
 import { ICategories, IDropValue, INewOffer, IState } from '../../../../../../interfaces';
 import CheckYesNo from '../../../../../common/checkbox/check-yes-no';
 import DropDown from '../../../../../common/drop-down';
 import Input from '../../../../../common/input';
+import Region from '../../../../../common/region';
 import { IError } from '../';
 import editOfferTemplate from '../edit-content-form.style';
 import useTrans from '../../../../../../hooks/trans.hook';
@@ -45,7 +46,7 @@ const StepOne = ({ value, errors, setErrors, setValue }: IProps): ReactElement =
     const handleNumber = (event: ChangeEvent<HTMLInputElement>): void => {
         setErrors({});
         const num = event.target.value.replace(/ /gi, '').trim();
-        if (numberValidation(num)) return;
+        if (intNumberValidation(num)) return;
         setValue({ ...value, [event.target.name]: num === '' ? null : +num });
     };
 
@@ -71,13 +72,7 @@ const StepOne = ({ value, errors, setErrors, setValue }: IProps): ReactElement =
                 <h3 className={css.subtitle}>
                     Укажите ваше местоположение <span className={css.red}>*</span>
                 </h3>
-                <button type="button" className={css.region}>
-                    <FontAwesomeIcon icon={faCompass} />
-                    <span>
-                        Киев, Киевская область Киев, Киевская область Киев, Киевская область Киев, Киевская область Киев, Киевская
-                        область
-                    </span>
-                </button>
+                <Region className={css.region} error={errors.region} resetError={setErrors} />
             </div>
             <CheckYesNo value={value.is_deliverable} onChange={handleDelivery}>
                 Укажите возможность доставки вашего товара в другой город

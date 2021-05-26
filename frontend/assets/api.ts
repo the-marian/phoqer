@@ -46,7 +46,8 @@ const api = {
         popular: (): Promise<AxiosResponse<IOfferPagination>> => axios.get(`${url2}/offers/popular`),
         single: (id: string): Promise<AxiosResponse<IOfferCard>> => axios.get(`${url2}/offers/${id}`),
         new: (body: IBody): Promise<AxiosResponse<void>> => axios.post(`${url2}/offers`, body),
-        update: (id: string, body: IBody): Promise<AxiosResponse<void>> => axios.patch(`${url2}/offers/${id}`, body),
+        update: (id: string, body: IBody | Partial<Body>): Promise<AxiosResponse<void>> =>
+            axios.patch(`${url2}/offers/${id}`, body),
         status: (id: string, body: Params): Promise<AxiosResponse<void>> => axios.patch(`${url2}/offers/status/${id}`, body),
         search: (params: Params): Promise<AxiosResponse<IOfferPagination>> => axios.get(`${url2}/offers/search`, { params }),
         favorite: {

@@ -5,6 +5,7 @@ import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
 import { Theme } from '../../../assets/theme';
+import useTrans from '../../../hooks/trans.hook';
 import { ITabs } from '../../../interfaces';
 import NotifNumber from '../notif-number';
 
@@ -45,6 +46,7 @@ interface INavTabsItem {
 
 const NavTabsItem = ({ item, className, active, classNameText, activeClass }: INavTabsItem): ReactElement => {
     const css = useStyles();
+    const trans = useTrans();
     const history = useRouter();
 
     const handleClick = (): void => {
@@ -66,7 +68,7 @@ const NavTabsItem = ({ item, className, active, classNameText, activeClass }: IN
             <button type="button" onClick={handleClick} className={clsx(active && activeClass, className)}>
                 {item.icon ? <FontAwesomeIcon icon={item.icon} /> : null}
 
-                <span className={classNameText}>{item.text}</span>
+                <span className={classNameText}>{trans(item.text)}</span>
 
                 {item?.count ? <NotifNumber className={css.number}>{item?.count}</NotifNumber> : null}
             </button>

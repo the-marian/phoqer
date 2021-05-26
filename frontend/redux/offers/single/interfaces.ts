@@ -12,4 +12,6 @@ type Type =
 export default interface IAction {
     type: Type;
     payload: IState | IOfferCard | string | string[] | null;
+    tab?: string;
+    page?: string;
 }

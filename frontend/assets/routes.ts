@@ -23,7 +23,7 @@ const routes = {
     offers: {
         single: (id: ID = ':offerId'): string => `/offers/${id}`,
         edit: (id: ID = ':offerId'): string => `/offers/edit/${id}`,
-        new: (step: ID = ':step'): string => `/offers/new/${step}`,
+        new: (step: ID = ':step', offerId?: string): string => `/offers/new/${step}${offerId ? '?offerId=' + offerId : ''}`,
         list: '/offers',
     },
     static: {

@@ -1,0 +1,61 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RectSkeleton component matches snapshot, with className 1`] = `
+<DocumentFragment>
+  <div
+    class="wrp-0-2-8 test"
+  >
+    <div
+      class="cat-0-2-9"
+    />
+    <div
+      class="cat-0-2-9"
+    />
+    <div
+      class="cat-0-2-9"
+    />
+    <div
+      class="cat-0-2-9"
+    />
+    <div
+      class="cat-0-2-9"
+    />
+  </div>
+</DocumentFragment>
+`;
+
+exports[`RectSkeleton component matches snapshot, with props 1`] = `
+<DocumentFragment>
+  <div
+    class="wrp-0-2-5"
+  >
+    <div
+      class="cat-0-2-6"
+    />
+    <div
+      class="cat-0-2-6"
+    />
+    <div
+      class="cat-0-2-6"
+    />
+    <div
+      class="cat-0-2-6"
+    />
+    <div
+      class="cat-0-2-6"
+    />
+  </div>
+</DocumentFragment>
+`;
+
+exports[`RectSkeleton component matches snapshot, without props 1`] = `
+<DocumentFragment>
+  <div
+    class="wrp-0-2-2"
+  >
+    <div
+      class="cat-0-2-3"
+    />
+  </div>
+</DocumentFragment>
+`;

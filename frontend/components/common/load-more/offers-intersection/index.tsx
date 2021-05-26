@@ -1,7 +1,8 @@
 import React, { ReactElement, useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 
-import OffersLoader from '../../loaders/offers';
+import useMedia from '../../../../hooks/media.hook';
+import OffersLoader from '../../loaders/skeletons/offers';
 
 interface IProps {
     onSubmit: (page: number) => void;
@@ -10,6 +11,7 @@ interface IProps {
 }
 
 const OffersIntersection = ({ onSubmit, total, loading }: IProps): ReactElement | null => {
+    const media = useMedia(1400);
     const [innerLoading, setInnerLoading] = useState<boolean>(true);
     const [page, setPage] = useState<number>(1);
     const { ref, inView } = useInView({
@@ -38,7 +40,7 @@ const OffersIntersection = ({ onSubmit, total, loading }: IProps): ReactElement 
         };
     }, [inView]);
 
-    return total > page ? <OffersLoader ref={ref} /> : null;
+    return total > page ? <OffersLoader amount={media ? 4 : 1} ref={ref} /> : null;
 };
 
 export default OffersIntersection;
