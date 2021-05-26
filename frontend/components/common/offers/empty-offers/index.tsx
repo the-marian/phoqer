@@ -4,6 +4,7 @@ import { createUseStyles } from 'react-jss';
 
 import routes from '../../../../assets/routes';
 import { Theme } from '../../../../assets/theme';
+import useTrans from '../../../../hooks/trans.hook';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     empty: {
@@ -42,14 +43,15 @@ interface IProps {
 
 const EmptyOffers = ({ text }: IProps): ReactElement => {
     const css = useStyles();
+    const trans = useTrans()
 
     return (
         <div className={css.empty}>
             <img className={css.emoji} src="/emoji/empty.png" alt="" />
-            <p className={css.emptyText}>{text || 'Кажется здесь пусто. Создайте свое объявление, не тяните резину'}</p>
+            <p className={css.emptyText}>{text || trans('no_offer')}</p>
 
             <Link href={routes.offers.new(1)}>
-                <a className={css.link}>Создать обьявление</a>
+    <a className={css.link}>{trans('make_offer')}</a>
             </Link>
         </div>
     );

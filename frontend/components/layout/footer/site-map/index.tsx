@@ -4,34 +4,35 @@ import { createUseStyles } from 'react-jss';
 
 import routes from '../../../../assets/routes';
 import { Theme } from '../../../../assets/theme';
+import useTrans from '../../../../hooks/trans.hook';
 
 const LINKS: { text: string; href: string }[] = [
     {
-        text: 'Помощь и Обратная связь',
+        text: 'link_1',
         href: routes.static.help,
     },
     {
-        text: 'Реклама на сайте',
+        text: 'link_2',
         href: routes.static.ad,
     },
     {
-        text: 'Условия использования',
+        text: 'link_3', 
         href: routes.static.rules,
     },
     {
-        text: 'Политика конфиденциальности',
+        text: 'link_4',
         href: routes.static.politic,
     },
     {
-        text: 'FAQ',
+        text: 'link_5', 
         href: routes.static.faq,
     },
     {
-        text: 'Правила безопасности',
+        text: 'link_6', 
         href: routes.static.safety,
     },
     {
-        text: 'Карта сайта',
+        text: 'link_7', 
         href: routes.static.map,
     },
 ];
@@ -79,12 +80,13 @@ const useStyles = createUseStyles((theme: Theme) => ({
 
 const SiteMap = (): ReactElement => {
     const css = useStyles();
+    const trans = useTrans();
     return (
         <ul className={css.list}>
             {LINKS.map(({ text, href }) => (
                 <li key={href} className={css.item}>
                     <Link href={href} passHref>
-                        <a className={css.link}>{text}</a>
+                        <a className={css.link}>{trans(text)}</a>
                     </Link>
                 </li>
             ))}

@@ -13,6 +13,7 @@ import DropDown from '../../../../../common/drop-down';
 import Input from '../../../../../common/input';
 import { IError } from '../';
 import editOfferTemplate from '../edit-content-form.style';
+import useTrans from '../../../../../../hooks/trans.hook';
 
 const useStyles = createUseStyles(editOfferTemplate);
 
@@ -27,6 +28,7 @@ const StepOne = ({ value, errors, setErrors, setValue }: IProps): ReactElement =
     const css = useStyles();
     const data = useSelector<IState, ICategories[]>(state => state.categories);
     const categories = helpers.formatCatList(data);
+    const trans = useTrans();
 
     const handleChangeText = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>): void => {
         setValue({ ...(value || {}), [event.target.name]: event.target.value });
@@ -100,7 +102,7 @@ const StepOne = ({ value, errors, setErrors, setValue }: IProps): ReactElement =
                 )}
                 <div className={css.inner}>
                     <h3 className={css.subtitle}>
-                        Цена (грн/день) <span className={css.red}>*</span>
+                        {trans('price_day')} <span className={css.red}>*</span>
                     </h3>
                     <Input
                         value={moneyFormat(value.price || 0)}

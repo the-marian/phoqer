@@ -61,7 +61,7 @@ const Region = ({ className }: IProps): ReactElement => {
                     : null}
 
                 {region?.selected?.country && !region?.selected?.city ? trans(region?.selected.country) : null}
-                {!region?.selected?.country && !region?.selected?.city ? trans('Select your region...') : null}
+                {!region?.selected?.country && !region?.selected?.city ? trans('select_region') : null}
             </span>
         </button>
     );

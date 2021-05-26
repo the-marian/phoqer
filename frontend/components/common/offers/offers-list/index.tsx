@@ -42,18 +42,18 @@ const OffersList = ({ loading, data, showFavoriteBtn = true }: IProps): ReactEle
     return loading ? (
         <OffersLoader />
     ) : (
-        <>
-            {data?.length ? (
+            <>
+                {/* {data?.length ? (
                 <div className={css.grid}>
                     {data?.map(item => (
                         <OfferCard key={item.id} offer={item} showFavoriteBtn={showFavoriteBtn} />
                     ))}
                 </div>
-            ) : (
+            ) : ( */}
                 <EmptyOffers />
-            )}
-        </>
-    );
+                {/* )} */}
+            </>
+        );
 };
 
 export default OffersList;
