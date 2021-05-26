@@ -1,3 +1,4 @@
+import { AxiosResponse } from 'axios';
 import { all, call, put, select, takeLatest } from 'redux-saga/effects';
 
 import api from '../../../assets/api';
@@ -94,7 +95,7 @@ function* changeCoverImage({ payload, offerId, callback }: IAction) {
 
 function* changeOfferStatus({ status, offerId, callback }: IAction) {
     try {
-        const res = yield call(api.offers.status, offerId as string, { status });
+        const res: AxiosResponse<void> = yield call(api.offers.status, offerId as string, { status });
         if (res.status < 200 || res.status >= 300) throw new Error();
         yield put({ type: types.CHANGE_OFFER_STATUS_SUCCESS });
         if (callback) callback();
