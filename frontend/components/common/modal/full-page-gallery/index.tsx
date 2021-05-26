@@ -142,7 +142,8 @@ interface IProps {
     images: string[];
 }
 
-const toMatch = /mobile|iphone|ipod|android|blackberry|opera|mini|windows\sce|palm|smartphone|iemobile|ipad|android 3.0|xoom|sch-i800|playbook|tablet|kindle/i;
+const toMatch =
+    /mobile|iphone|ipod|android|blackberry|opera|mini|windows\sce|palm|smartphone|iemobile|ipad|android 3.0|xoom|sch-i800|playbook|tablet|kindle/i;
 
 const FullPageGallery = ({ images }: IProps): ReactElement => {
     const css = useStyles();

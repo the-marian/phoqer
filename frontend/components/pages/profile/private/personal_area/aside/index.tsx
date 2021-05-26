@@ -1,4 +1,3 @@
-import { router } from 'next/client';
 import Link from 'next/link';
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';

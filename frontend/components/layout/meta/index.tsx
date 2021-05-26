@@ -34,19 +34,6 @@ const Meta = ({ title, description, keywords, icon, h1 = '' }: IProps): ReactEle
     return (
         <>
             <Head>
-                {/*Global site tag (gtag.js) - Google Analytics*/}
-                {process.env.NODE_ENV === 'production' && (
-                    <>
-                        <script async src="https://www.googletagmanager.com/gtag/js?id=G-B57V56EVR8" />
-                        <script>
-                            {`window.dataLayer = window.dataLayer || [];
-                            function gtag(){dataLayer.push(arguments);}
-                            gtag('js', new Date());
-                            gtag('config', 'G-B57V56EVR8');`}
-                        </script>
-                    </>
-                )}
-
                 {/*Primary meta Tags*/}
                 <title>{title?.trim() ? `${title} | Phoqer` : 'Phoqer'}</title>
                 <meta name="title" content={title?.trim() ? `${title} | Phoqer` : 'Phoqer'} />
@@ -121,6 +108,19 @@ const Meta = ({ title, description, keywords, icon, h1 = '' }: IProps): ReactEle
                 <meta name="mobile-web-app-capable" content="yes" />
                 <meta name="msapplication-TileColor" content="#007aff" />
                 <meta name="msapplication-tap-highlight" content="yes" />
+
+                {/*Global site tag (gtag.js) - Google Analytics*/}
+                {process.env.NODE_ENV === 'production' && (
+                    <>
+                        <script async src="https://www.googletagmanager.com/gtag/js?id=G-B57V56EVR8" />
+                        <script>
+                            {`window.dataLayer = window.dataLayer || [];
+                            function gtag(){dataLayer.push(arguments);}
+                            gtag('js', new Date());
+                            gtag('config', 'G-B57V56EVR8');`}
+                        </script>
+                    </>
+                )}
             </Head>
             <h1 className={css.title}>{h1 ? h1 + '. ' + trans('site_desc') : trans('site_desc')}</h1>
         </>

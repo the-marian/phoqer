@@ -3,12 +3,11 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 import routes from '../../../../../assets/routes';
 import { Theme } from '../../../../../assets/theme';
 import useTrans from '../../../../../hooks/trans.hook';
-import { INewOffer, IState } from '../../../../../interfaces';
 import types from '../../../../../redux/types';
 import newOfferTemplate from '../new-offer.style';
 

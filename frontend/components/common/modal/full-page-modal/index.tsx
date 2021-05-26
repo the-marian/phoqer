@@ -54,7 +54,8 @@ interface IProps {
     children: JSX.Element[] | JSX.Element;
 }
 
-const toMatch = /mobile|iphone|ipod|android|blackberry|opera|mini|windows\sce|palm|smartphone|iemobile|ipad|android 3.0|xoom|sch-i800|playbook|tablet|kindle/i;
+const toMatch =
+    /mobile|iphone|ipod|android|blackberry|opera|mini|windows\sce|palm|smartphone|iemobile|ipad|android 3.0|xoom|sch-i800|playbook|tablet|kindle/i;
 
 const FullPageModal = ({ children }: IProps): ReactElement => {
     const css = useStyles();

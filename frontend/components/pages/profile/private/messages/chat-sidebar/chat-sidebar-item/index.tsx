@@ -6,7 +6,6 @@ import { createUseStyles } from 'react-jss';
 
 import { onlineStatus } from '../../../../../../../assets/helpers';
 import routes from '../../../../../../../assets/routes';
-import template from '../../../../../../../assets/template';
 import { Theme } from '../../../../../../../assets/theme';
 import NotifNumber from '../../../../../../common/notif-number';
 import UserAvatar from '../../../../../../common/user-avatar';

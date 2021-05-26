@@ -70,10 +70,8 @@ const Referral = (): ReactElement => {
     );
 };
 
-export const getServerSideProps = wrapper.getServerSideProps(
-    async (ctx): Promise<void> => {
-        if (serverRedirect((ctx as unknown) as GetServerSidePropsContext)) return;
-    },
-);
+export const getServerSideProps = wrapper.getServerSideProps(async (ctx): Promise<void> => {
+    if (serverRedirect(ctx as unknown as GetServerSidePropsContext)) return;
+});
 
 export default Referral;

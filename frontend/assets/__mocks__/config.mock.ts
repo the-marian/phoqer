@@ -8,7 +8,6 @@ import { faBullseye } from '@fortawesome/free-solid-svg-icons/faBullseye';
 import { faSlidersH } from '@fortawesome/free-solid-svg-icons/faSlidersH';
 
 import { ITabs } from '../../interfaces';
-import routes from '../routes';
 
 export const userNavLinks: ITabs[] = [
     {
