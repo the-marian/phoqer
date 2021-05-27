@@ -89,8 +89,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
             transform: 'translateY(-50%)',
             opacity: 1,
             ...template(theme).btn,
+            padding: theme.rem(1, 2.4),
             fontSize: 0,
-            background: theme.palette.gray[1],
+            background: theme.palette.white,
 
             '&::before': {
                 content: '""',
@@ -100,10 +101,6 @@ const useStyles = createUseStyles((theme: Theme) => ({
                 height: theme.rem(1),
                 width: theme.rem(1),
             },
-
-            ...theme.hover({
-                opacity: '0.8',
-            }),
         },
 
         '& .slick-next': {

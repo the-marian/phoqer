@@ -14,8 +14,8 @@ const adapter = (value: INewOffer, images: string[]): IBody => ({
     doc_needed: value.doc_needed,
     description: value.description,
     deposit_val: value.deposit_val,
-    city: value.city as string,
-    country: value.country as string,
+    city: value.city || null,
+    country: value.country || null,
     currency: 'UAH',
     is_deliverable: value.is_deliverable,
     max_rent_period: value.max_rent_period,
@@ -35,8 +35,8 @@ function* updateOffer({ payload, images, offerId, callback }: IAction) {
             {
                 ...(payload as INewOffer),
                 cover_image,
-                city: region.selected?.city || '',
-                country: region.selected?.country || '',
+                city: region.selected?.city || null,
+                country: region.selected?.country || null,
             },
             images as string[],
         );
@@ -70,8 +70,8 @@ function* publishOffer({ payload, images, offerId, callback }: IAction) {
             {
                 ...(payload as INewOffer),
                 cover_image,
-                city: region.selected?.city || '',
-                country: region.selected?.country || '',
+                city: region.selected?.city || null,
+                country: region.selected?.country || null,
             },
             images as string[],
         );

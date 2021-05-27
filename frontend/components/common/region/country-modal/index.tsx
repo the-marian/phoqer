@@ -37,7 +37,8 @@ const useStyles = createUseStyles((theme: Theme) => ({
     btn: {
         ...template(theme).btn,
         margin: theme.rem(0.4, 0),
-        background: theme.palette.gray[0],
+        background: theme.palette.white,
+        boxShadow: theme.palette.shadowBorder,
         color: theme.palette.black[0],
     },
 }));

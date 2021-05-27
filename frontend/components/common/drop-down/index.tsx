@@ -42,10 +42,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
     text: {
         flexGrow: 2,
-        width: '100%',
-        whiteSpace: 'nowrap',
-        overflow: 'hidden',
-        textOverflow: 'ellipsis',
+        ...template(theme).cutString,
     },
     transparent: {
         background: 'none !important',
@@ -139,6 +136,10 @@ const useStyles = createUseStyles((theme: Theme) => ({
             ...theme.media(768).max({
                 padding: theme.rem(1.5, 0),
                 fontSize: theme.rem(1.6),
+                ...theme.hover({
+                    background: theme.palette.white,
+                    color: theme.palette.black[0],
+                }),
             }),
         },
     },
@@ -157,13 +158,17 @@ const useStyles = createUseStyles((theme: Theme) => ({
             fontSize: theme.rem(1.4),
             textAlign: 'left',
 
-            ...theme.media(768).max({
-                padding: theme.rem(1.5),
-                fontSize: theme.rem(1.6),
-            }),
             ...theme.hover({
                 background: theme.palette.primary[0],
                 color: theme.palette.trueWhite,
+            }),
+            ...theme.media(768).max({
+                padding: theme.rem(1.5),
+                fontSize: theme.rem(1.6),
+                ...theme.hover({
+                    background: theme.palette.gray[0],
+                    color: theme.palette.black[0],
+                }),
             }),
         },
     },

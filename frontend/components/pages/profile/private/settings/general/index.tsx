@@ -31,7 +31,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         width: '100%',
         padding: theme.rem(4, 4, 0),
         borderRadius: theme.radius,
-        border: theme.border(0.1, theme.palette.gray[1]),
+        boxShadow: theme.palette.shadowBorder,
         ...theme.media(768).max({
             padding: theme.rem(2, 2, 0),
         }),

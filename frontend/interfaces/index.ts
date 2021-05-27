@@ -156,8 +156,8 @@ export interface INewOffer {
     // step one
     title: string;
     price: number | null;
-    city?: string;
-    country?: string;
+    city?: string | null;
+    country?: string | null;
     category?: IDropValue | null;
     sub_category?: IDropValue | null;
     is_deliverable: boolean;

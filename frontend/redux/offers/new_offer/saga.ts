@@ -12,8 +12,8 @@ const adapter = (value: INewOffer, images: string[] | null): IBody => ({
     doc_needed: value.doc_needed,
     description: value.description,
     deposit_val: value.deposit_val,
-    city: value.city as string,
-    country: value.country as string,
+    city: value.city || null,
+    country: value.country || null,
     currency: 'UAH',
     is_deliverable: value.is_deliverable,
     max_rent_period: value.max_rent_period,
@@ -28,7 +28,7 @@ function* postOffer({ payload, callback }: IAction) {
         const region: IRegion = yield select<(state: IState) => IRegion>(state => state.region);
         const form: INewOffer = yield select<(state: IState) => INewOffer>(state => state.offers.new_offer);
         const body: IBody = adapter(
-            { ...form, city: region.selected?.city || '', country: region.selected?.country || '' },
+            { ...form, city: region.selected?.city || null, country: region.selected?.country || null },
             payload as string[] | null,
         );
         body.category = (form.category as IDropValue)?.type === 'main' ? (form.category as IDropValue)?.slug : null;

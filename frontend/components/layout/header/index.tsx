@@ -52,7 +52,7 @@ const Header = (): ReactElement => {
     const prev = useRef<number>(0);
     const auth = useAuth();
     const css = useStyles();
-    const media = useMedia(1060);
+    const media = useMedia(410);
 
     const [shadow, setShadow] = useState<boolean>(false);
     const [delta, setDelta] = useState<boolean>(false);

@@ -16,9 +16,10 @@ const useStyles = createUseStyles((theme: Theme) => ({
         width: theme.rem(50),
     },
     region: {
+        width: '50%',
+        height: theme.rem(4),
         background: theme.palette.gray[1],
         boxShadow: 'none',
-        width: '50%',
 
         ...theme.hover({
             color: theme.palette.primary[0],

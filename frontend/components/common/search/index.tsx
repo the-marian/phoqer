@@ -135,7 +135,8 @@ const Search = ({ shallow = false }: IProps): ReactElement => {
     const trans = useTrans();
     const history = useRouter();
     const dispatch = useDispatch();
-    const desktop = useMedia(1100);
+    const desktop = useMedia(766);
+    const showBtn = useMedia(1100);
 
     const searchParams = useSelector<IState, ISearch>(state => state.config.searchParams);
     const pagination = useSelector<IState, boolean>(state => state.offers.search.pagination);
@@ -245,9 +246,11 @@ const Search = ({ shallow = false }: IProps): ReactElement => {
 
                         <div className={css.mobile}>
                             {!desktop && <OptionsMobile onChange={handleChange} />}
-                            <Button loading={pagination} type="submit" className={css.btn}>
-                                {trans('find')}
-                            </Button>
+                            {showBtn ? (
+                                <Button loading={pagination} type="submit" className={css.btn}>
+                                    {trans('find')}
+                                </Button>
+                            ) : null}
                         </div>
                     </div>
                 </form>

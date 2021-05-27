@@ -21,15 +21,12 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
     input: {
         ...template(theme).input,
-        background: theme.palette.gray[1],
         color: theme.palette.black[0],
 
         '& span': {
+            ...template(theme).cutString,
             width: '88%',
             marginLeft: theme.rem(1),
-            whiteSpace: 'nowrap',
-            overflow: 'hidden',
-            textOverflow: 'ellipsis',
             textAlign: 'left',
 
             ...theme.media(900).max({

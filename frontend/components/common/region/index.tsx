@@ -23,10 +23,8 @@ const useStyles = createUseStyles((theme: Theme) => ({
         color: theme.palette.black[0],
 
         '& span': {
+            ...template(theme).cutString,
             width: 'calc(100% - 3rem)',
-            whiteSpace: 'nowrap',
-            overflow: 'hidden',
-            textOverflow: 'ellipsis',
             textAlign: 'left',
         },
 

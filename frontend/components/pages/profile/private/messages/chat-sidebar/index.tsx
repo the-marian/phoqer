@@ -62,7 +62,7 @@ const ChatSidebar = ({ chats }: IProps): ReactElement => {
             {chats?.length ? (
                 chats.map<ReactElement>((item, index) => (
                     <Fragment key={item.id}>
-                        {index === 5 ? <Gift /> : null}
+                        {index === 5 ? <Gift style={{ padding: '5rem 2rem' }} /> : null}
                         <ChatSidebarItem
                             id={item.id}
                             newMessages={item.newMessages}
@@ -78,7 +78,7 @@ const ChatSidebar = ({ chats }: IProps): ReactElement => {
             ) : (
                 <>
                     <ChatEmpty />
-                    <Gift />
+                    <Gift style={{ padding: '5rem 2rem' }} />
                 </>
             )}
             <div className={css.end}>

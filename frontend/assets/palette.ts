@@ -12,6 +12,7 @@ export interface IPalette {
     primary: string[];
     secondary: string[];
     modal: string;
+    shadowBorder: string;
 }
 
 const palette: { [key: string]: IPalette } = {
@@ -29,6 +30,7 @@ const palette: { [key: string]: IPalette } = {
         primary: ['#32603f', '#32603f'],
         secondary: ['#dfece2'],
         modal: 'rgba(0, 0, 0, 0.3)',
+        shadowBorder: '0 0 0 0.1rem #e0e0e8',
     },
     blue: {
         white: '#FFFFFF',
@@ -44,6 +46,7 @@ const palette: { [key: string]: IPalette } = {
         primary: ['#007aff', '#0040ff'],
         secondary: ['#e3ecf6'],
         modal: 'rgba(0, 0, 0, 0.3)',
+        shadowBorder: '0 0 0 0.1rem #e0e0e8',
     },
     aqua: {
         white: '#FFFFFF',
@@ -59,6 +62,7 @@ const palette: { [key: string]: IPalette } = {
         primary: ['#03a8ae', '#03a8ae'],
         secondary: ['#e3f4f6'],
         modal: 'rgba(0, 0, 0, 0.3)',
+        shadowBorder: '0 0 0 0.1rem #e0e0e8',
     },
     violet: {
         white: '#FFFFFF',
@@ -74,6 +78,7 @@ const palette: { [key: string]: IPalette } = {
         primary: ['#6704be', '#54039b'],
         secondary: ['#f4edfa'],
         modal: 'rgba(0, 0, 0, 0.3)',
+        shadowBorder: '0 0 0 0.1rem #e0e0e8',
     },
     'black-orange': {
         white: '#222222',
@@ -89,6 +94,7 @@ const palette: { [key: string]: IPalette } = {
         primary: ['#e06800', '#ae5000'],
         secondary: ['#454545'],
         modal: 'rgba(0, 0, 0, 0.3)',
+        shadowBorder: '0 0 0 0.1rem #454545',
     },
     'black-aqua': {
         white: '#222222',
@@ -104,6 +110,7 @@ const palette: { [key: string]: IPalette } = {
         primary: ['#03a8ae', '#03a8ae'],
         secondary: ['#454545'],
         modal: 'rgba(0, 0, 0, 0.3)',
+        shadowBorder: '0 0 0 0.1rem #454545',
     },
     'black-blue': {
         white: '#222222',
@@ -119,6 +126,7 @@ const palette: { [key: string]: IPalette } = {
         primary: ['#007aff', '#0040ff'],
         secondary: ['#454545'],
         modal: 'rgba(0, 0, 0, 0.3)',
+        shadowBorder: '0 0 0 0.1rem #454545',
     },
     'black-violet': {
         white: '#222222',
@@ -134,6 +142,7 @@ const palette: { [key: string]: IPalette } = {
         primary: ['#ff43e6', '#9d43de'],
         secondary: ['#565356'],
         modal: 'rgba(0,0,0,0.3)',
+        shadowBorder: '0 0 0 0.1rem #454545',
     },
 };
 

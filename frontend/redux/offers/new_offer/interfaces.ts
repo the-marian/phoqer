@@ -18,8 +18,8 @@ export interface IBody {
     min_rent_period: number | null;
     max_rent_period: number | null;
     extra_requirements: string;
-    city: string;
-    country: string;
+    city: string | null;
+    country: string | null;
     currency: string;
     images: string[];
     cover_image: string | null;

@@ -3,6 +3,7 @@ import '../styles/index.css';
 import axios from 'axios';
 import App, { AppProps } from 'next/app';
 import { AppContextType } from 'next/dist/next-server/lib/utils';
+import dynamic from 'next/dynamic';
 import { Router, useRouter } from 'next/router';
 import React, { ReactElement, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
@@ -17,6 +18,8 @@ import SiteTheme from '../components/context/theme';
 import Root from '../components/layout/root';
 import { IAuth, IConfig, Themes } from '../interfaces';
 import { wrapper } from '../redux/store';
+
+let ReactTooltip = dynamic(() => import('react-tooltip'), { ssr: false });
 
 interface IProps {
     width: number;
@@ -35,6 +38,7 @@ const MyApp = ({ Component, pageProps, width, auth, theme, config }: AppProps & 
         const handleClear = () => {
             modal.close();
             window.scrollTo({ top: 0, behavior: 'auto' });
+            ReactTooltip = dynamic(() => import('react-tooltip'));
         };
         Router.events.on('routeChangeStart', handleClear);
         return () => {
@@ -54,6 +58,7 @@ const MyApp = ({ Component, pageProps, width, auth, theme, config }: AppProps & 
                 <AuthProvider authServer={auth}>
                     <MediaProvider width={width}>
                         <Root>
+                            <ReactTooltip />
                             <Component {...pageProps} />
                         </Root>
                     </MediaProvider>

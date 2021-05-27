@@ -12,9 +12,19 @@ import { Theme } from '../../../../../assets/theme';
 import { ITabs } from '../../../../../interfaces';
 import types from '../../../../../redux/types';
 import NavTabs from '../../index';
-import nav from '../profile.styles';
+import { item, nav } from '../profile.styles';
 
 const useStyles = createUseStyles((theme: Theme) => ({
+    item: {
+        ...item(theme),
+        height: theme.rem(3),
+        ...theme.media(1300).max({
+            '& span': {
+                fontSize: '0',
+                margin: '0',
+            },
+        }),
+    },
     ...nav(theme),
     chat: {
         margin: theme.rem(0.5, 1.5),

@@ -2,11 +2,15 @@ import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
 import config from '../../../../../assets/config';
+import { Theme } from '../../../../../assets/theme';
 import { ITabs } from '../../../../../interfaces';
 import NavTabs from '../../index';
-import nav from '../profile.styles';
+import { item, nav } from '../profile.styles';
 
-const useStyles = createUseStyles(nav);
+const useStyles = createUseStyles((theme: Theme) => ({
+    item: item(theme),
+    ...nav(theme),
+}));
 
 interface IProps {
     active?: number | string;

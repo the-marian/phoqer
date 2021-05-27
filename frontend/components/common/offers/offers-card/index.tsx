@@ -134,12 +134,12 @@ const OfferCard = ({ offer, showFavoriteBtn = true }: IProps): ReactElement => {
                     <div className={css.imgWrp}>
                         <div className={css.topWrp}>
                             {is_promoted && (
-                                <div className={css.top}>
+                                <div className={css.top} data-tip="Это обьявление находиться в топе">
                                     <FontAwesomeIcon icon={faStar} />
                                 </div>
                             )}
                             {is_deliverable && (
-                                <div className={clsx(css.top, css.delivery)}>
+                                <div className={clsx(css.top, css.delivery)} data-tip="Владелец предоставляет доставку товара">
                                     <FontAwesomeIcon icon={faTruck} />
                                 </div>
                             )}

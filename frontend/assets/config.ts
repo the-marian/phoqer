@@ -28,14 +28,6 @@ const config = {
             mobile: 1,
         },
     },
-    category: {
-        grid: {
-            desktop: 6,
-            tablet: 4,
-            smallTablet: 3,
-            mobile: 2,
-        },
-    },
     userNavLinks: (userId: string, count?: ITabsNum): ITabs[] => [
         {
             id: 'my-profile',

@@ -6,6 +6,7 @@ interface Template {
     input: Styles;
     outline: Styles;
     btn: Styles;
+    cutString: Styles;
 }
 
 const template = (theme: Theme): Template => ({
@@ -19,7 +20,8 @@ const template = (theme: Theme): Template => ({
         borderRadius: theme.radius,
         fontSize: theme.rem(1.4),
         transition: theme.transitions[0],
-        boxShadow: theme.shadow[1],
+        boxShadow: theme.palette.shadowBorder,
+        background: theme.palette.white,
 
         ...theme.focus({
             border: theme.border(0.2, theme.palette.primary[0]),
@@ -44,7 +46,7 @@ const template = (theme: Theme): Template => ({
         alignItems: 'center',
         justifyContent: 'center',
         height: theme.rem(5),
-        padding: theme.rem(1, 2),
+        padding: theme.rem(0, 1),
         background: theme.palette.primary[0],
         color: theme.palette.trueWhite,
         textAlign: 'center',
@@ -60,6 +62,12 @@ const template = (theme: Theme): Template => ({
         ...theme.hover({
             border: theme.border(0.2, theme.palette.primary[0]),
         }),
+    },
+    cutString: {
+        width: '100%',
+        whiteSpace: 'nowrap',
+        overflow: 'hidden',
+        textOverflow: 'ellipsis',
     },
 });
 

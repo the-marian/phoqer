@@ -30,7 +30,8 @@ const useStyles = createUseStyles((theme: Theme) => ({
     dropdown: {
         width: '100%',
         '& p': {
-            background: theme.palette.gray[0],
+            boxShadow: theme.palette.shadowBorder,
+            background: theme.palette.white,
         },
         ...theme.media(768).min({
             width: theme.rem(30),

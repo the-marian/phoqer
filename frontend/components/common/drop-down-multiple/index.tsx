@@ -14,10 +14,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         background: theme.palette.gray[0],
     },
     text: {
-        width: '100%',
-        whiteSpace: 'nowrap',
-        overflow: 'hidden',
-        textOverflow: 'ellipsis',
+        ...template(theme).cutString,
         textAlign: 'left',
         color: theme.palette.black[0],
     },
