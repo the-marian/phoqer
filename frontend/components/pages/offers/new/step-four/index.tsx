@@ -146,7 +146,7 @@ const StepFour = (): ReactElement => {
             type: types.CHANGE_OFFER_COVER_IMAGE_START,
             offerId,
             payload: offer?.images?.[imgIndex] || '',
-            callback: () => history.push(routes.offers.new(5, offerId)),
+            callback: () => history.push(routes.offers.new(5, offerId), undefined, { shallow: true }),
         });
     };
 

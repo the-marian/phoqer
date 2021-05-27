@@ -30,20 +30,27 @@ const useStyles = createUseStyles((theme: Theme) => ({
             margin: '0 auto',
         }),
     },
+    loading: {
+        marginTop: theme.rem(5),
+    },
 }));
 
 interface IProps {
     loading?: boolean;
+    loadMoreLoading?: boolean;
     showFavoriteBtn?: boolean;
     data: IOfferCard[] | null;
 }
 
-const OffersList = ({ loading, data, showFavoriteBtn = true }: IProps): ReactElement => {
+const OffersList = ({ loading, loadMoreLoading, data, showFavoriteBtn = true }: IProps): ReactElement => {
     const css = useStyles();
     const media = useMedia(1400);
 
     return loading ? (
-        <OffersLoader amount={media ? 4 : 1} />
+        <>
+            <OffersLoader amount={media ? 4 : 1} />
+            {media && <OffersLoader className={css.loading} amount={media ? 4 : 1} />}
+        </>
     ) : (
         <>
             {data?.length ? (
@@ -55,6 +62,7 @@ const OffersList = ({ loading, data, showFavoriteBtn = true }: IProps): ReactEle
             ) : (
                 <EmptyOffers />
             )}
+            {loadMoreLoading ? <OffersLoader className={css.loading} amount={media ? 4 : 1} /> : null}
         </>
     );
 };

@@ -20,7 +20,7 @@ const adapter = (value: INewOffer, images: string[] | null): IBody => ({
     min_rent_period: value.min_rent_period,
     extra_requirements: value.extra_requirements,
     images: images || [],
-    cover_image: images?.[0] || '',
+    cover_image: images?.[0] || null,
 });
 
 function* postOffer({ payload, callback }: IAction) {

@@ -22,7 +22,7 @@ export interface IBody {
     country: string;
     currency: string;
     images: string[];
-    cover_image: string;
+    cover_image: string | null;
     category?: string | null;
     sub_category?: string | null;
     category_id?: string | null;
@@ -34,5 +34,5 @@ export default interface IAction {
     payload: INewOffer | IState | string[] | string;
     images?: string[] | null;
     offerId?: string;
-    callback?: (postId?: string) => void;
+    callback?: (offerId?: string) => void;
 }

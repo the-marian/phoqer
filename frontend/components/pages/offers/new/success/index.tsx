@@ -46,9 +46,7 @@ const Success = (): ReactElement => {
                             <a className={css.btn}>{trans('go_to_personal_account')}</a>
                         </Link>
                         <Link href={routes.offers.single(offerId)}>
-                            <a className={clsx(css.btn, css.primary)} type="button">
-                                {trans('view_offer')}
-                            </a>
+                            <a className={clsx(css.btn, css.primary)}>{trans('view_offer')}</a>
                         </Link>
                     </div>
                 </div>

@@ -25,7 +25,7 @@ const StepFive = (): ReactElement => {
             type: types.CHANGE_OFFER_STATUS_START,
             offerId,
             status: 'REVIEW',
-            callback: () => history.push(routes.offers.new('success', offerId)),
+            callback: () => history.push(routes.offers.new('success', offerId), undefined, { shallow: true }),
         });
     };
 

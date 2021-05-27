@@ -54,7 +54,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         ...template(theme).outline,
     },
     delivery: {
-        color: theme.palette.primary[0],
+        color: theme.palette.gray[2],
     },
     title: {
         margin: theme.rem(1, 0),

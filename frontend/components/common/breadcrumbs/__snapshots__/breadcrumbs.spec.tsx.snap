@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Render Breadcrumbs Should match snapshot 1`] = `
+exports[`Test Breadcrumbs component Should match snapshot 1`] = `
 <DocumentFragment>
   <ul
     class="root-0-2-1"
@@ -76,7 +76,7 @@ exports[`Render Breadcrumbs Should match snapshot 1`] = `
 </DocumentFragment>
 `;
 
-exports[`Render Breadcrumbs Should match snapshot 2`] = `
+exports[`Test Breadcrumbs component Should match snapshot 2`] = `
 <DocumentFragment>
   <ul
     class="root-0-2-4"
@@ -104,7 +104,7 @@ exports[`Render Breadcrumbs Should match snapshot 2`] = `
 </DocumentFragment>
 `;
 
-exports[`Render Breadcrumbs Should match snapshot 3`] = `
+exports[`Test Breadcrumbs component Should match snapshot 3`] = `
 <DocumentFragment>
   <ul
     class="root-0-2-7 test"

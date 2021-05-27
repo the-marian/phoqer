@@ -132,9 +132,7 @@ const StepThree = (): ReactElement => {
         dispatch({
             type: types.POST_OFFER_START,
             payload: null,
-            callback() {
-                history.push(routes.offers.new('draft'), undefined, { shallow: true });
-            },
+            callback: (offerId: string) => history.push(routes.offers.new('draft', offerId), undefined, { shallow: true }),
         });
     };
 

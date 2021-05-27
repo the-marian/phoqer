@@ -36,10 +36,16 @@ const OffersPage = (): ReactElement => {
         null;
 
     const handleClick = (page: number): void => {
+        window.scrollTo({ top: (document?.getElementById('offers-list')?.offsetTop || 0) - 50, behavior: 'smooth' });
         dispatch({ type: types.SEARCH_OFFERS_START, payload: { ...query, page } });
     };
     const handleMore = (page: number): void => {
+        const top =
+            (document?.getElementById('offers-list')?.offsetTop || 0) +
+            (document?.getElementById('offers-list')?.offsetHeight || 0) -
+            500;
         dispatch({ type: types.SEARCH_OFFERS_PAGINATION_START, payload: { ...query, page } });
+        window.scrollTo({ top, behavior: 'smooth' });
     };
 
     return (
@@ -55,9 +61,9 @@ const OffersPage = (): ReactElement => {
                 <ActiveFilters />
                 <TopOffers />
 
-                <Container>
+                <Container id="offers-list">
                     <SectionTitle>{trans('searching_results')}</SectionTitle>
-                    <OffersList loading={loading} data={data?.data} />
+                    <OffersList loading={pagination} loadMoreLoading={loading} data={data?.data} />
                     <Pagination loading={pagination} total={data.total} onClick={handleClick} onMore={handleMore} />
                 </Container>
 
