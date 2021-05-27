@@ -30,6 +30,7 @@ class Currency(Enum):
 class OfferDraftRequest(BaseModel):
     category: Optional[str] = None
     city: Optional[str] = None
+    country: Optional[str] = None
     cover_image: Optional[HttpUrl] = None
     currency: Currency = Currency.UAH
     deposit_val: Optional[int] = None
