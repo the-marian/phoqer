@@ -27,6 +27,13 @@ class Currency(Enum):
     USD = "USD"
 
 
+class RentalPeriod(Enum):
+    DAY = "DAY"
+    HOUR = "HOUR"
+    MONTH = "MONTH"
+    NONE = None
+
+
 class OfferDraftRequest(BaseModel):
     category: Optional[str] = None
     city: Optional[str] = None
@@ -42,6 +49,7 @@ class OfferDraftRequest(BaseModel):
     max_rent_period: Optional[int] = None
     min_rent_period: Optional[int] = None
     price: Optional[int] = None
+    rental_period: RentalPeriod = None
     sub_category: Optional[str] = None
     title: Optional[str] = None
     views: int = 0

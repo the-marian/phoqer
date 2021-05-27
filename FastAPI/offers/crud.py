@@ -2,7 +2,7 @@ from typing import Any, List, Mapping, Optional, Set
 from uuid import UUID
 
 from FastAPI.config import PAGE_SIZE, database
-from FastAPI.offers.schemas import OfferDraftRequest, Status
+from FastAPI.offers.schemas import OfferDraftRequest, Status, RentalPeriod
 from pydantic import HttpUrl
 
 
@@ -29,6 +29,7 @@ async def get_offer(offer_id: str) -> Optional[Mapping]:
         offers_offer.deposit_val,
         offers_offer.max_rent_period,
         offers_offer.min_rent_period,
+        offers_offer.rental_period,
         offers_offer.sub_category_id AS "sub_category",
         offers_offer.price,
         offers_offer.description,
@@ -86,6 +87,7 @@ async def create_offer_draft(offer: OfferDraftRequest, author_id: int) -> str:
         min_rent_period,
         price,
         pub_date,
+        rental_period,
         status,
         sub_category_id,
         title,
@@ -106,6 +108,7 @@ async def create_offer_draft(offer: OfferDraftRequest, author_id: int) -> str:
         :max_rent_period,
         :min_rent_period,
         :price,
+        :rental_period,
         current_date,
         :status,
         :sub_category_id,
@@ -130,6 +133,7 @@ async def create_offer_draft(offer: OfferDraftRequest, author_id: int) -> str:
         "min_rent_period": offer.min_rent_period,
         "sub_category_id": offer.sub_category,
         "price": offer.price,
+        "rental_period": RentalPeriod.NONE.value,
         "title": offer.title,
         "views": offer.views,
     }
@@ -186,6 +190,7 @@ async def partial_update_offer(
         max_rent_period = :max_rent_period,
         min_rent_period = :min_rent_period,
         price = :price,
+        rental_period = :rental_period,
         sub_category_id = :sub_category_id,
         title = :title
     WHERE id=:offer_id
@@ -205,6 +210,7 @@ async def partial_update_offer(
         "min_rent_period": updated_offer.min_rent_period,
         "offer_id": offer_id,
         "price": updated_offer.price,
+        "rental_period": updated_offer.rental_period,
         "sub_category_id": updated_offer.sub_category,
         "title": updated_offer.title,
     }

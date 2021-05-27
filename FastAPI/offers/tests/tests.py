@@ -7,7 +7,7 @@ from FastAPI.offers.crud import get_offer
 
 
 def test_get_offer(client):
-    response = client.get("offers/8b186026-a721-44a4-9649-100bb875b565")
+    response = client.get("offers/00bbddd5-92bf-45e5-8d2c-8e23fb03da63")
     assert response.status_code == status.HTTP_200_OK
     assert response.json() == {
         'author_id': 2,
@@ -21,7 +21,7 @@ def test_get_offer(client):
         'doc_needed': True,
         'extra_requirements': 'text exta req',
         'first_name': 'Marian',
-        'id': 'd12c4c64-614f-4964-93ca-a091676b6bae',
+        'id': '00bbddd5-92bf-45e5-8d2c-8e23fb03da63',
         'images': ['http://phoqer.com//mediafiles/image(1)_H802r7h.jpeg',
                    'http://phoqer.com//mediafiles/image(2)_bGKHdms.jpeg',
                    'http://phoqer.com//mediafiles/image(3)_PV4BY6L.jpeg',
@@ -40,6 +40,7 @@ def test_get_offer(client):
         'price': 499,
         'profile_img': None,
         'pub_date': '2021-05-23',
+        'rental_period': None,
         'status': 'DRAFT',
         'sub_category': 'sub_category',
         'title': 'Iphone 12',
