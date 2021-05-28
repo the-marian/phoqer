@@ -70,7 +70,6 @@ const Region = ({ className, error, resetError }: IProps): ReactElement => {
                     {region?.selected?.country && region?.selected?.city
                         ? trans(region?.selected.country) + ', ' + trans(region?.selected.city)
                         : null}
-
                     {region?.selected?.country && !region?.selected?.city ? trans(region?.selected.country) : null}
                     {!region?.selected?.country && region?.selected?.city ? trans('Select your region...') : null}
                     {!region?.selected?.country && !region?.selected?.city ? trans('Select your region...') : null}

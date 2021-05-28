@@ -112,7 +112,7 @@ const ForgotPassForm = (): ReactElement => {
 
     return (
         <form action="#" method="post" onSubmit={handleSubmit}>
-            <h2 className={css.title}>Добро пожаловать!</h2>
+            <h2 className={css.title}>{trans('welcome')}</h2>
 
             <div className={css.wrp}>
                 <div className={css.icon}>
@@ -138,7 +138,7 @@ const ForgotPassForm = (): ReactElement => {
                 <a className={css.link}>{trans('login')}</a>
             </Link>
 
-            <p className={css.text}>или</p>
+    <p className={css.text}>{trans('or')}</p>
 
             <Link href={routes.auth.join}>
                 <a className={css.link}>{trans('join')}</a>

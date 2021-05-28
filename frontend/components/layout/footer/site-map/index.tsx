@@ -4,22 +4,23 @@ import { createUseStyles } from 'react-jss';
 
 import routes from '../../../../assets/routes';
 import { Theme } from '../../../../assets/theme';
+import useTrans from '../../../../hooks/trans.hook';
 
 const LINKS: { text: string; href: string }[] = [
     {
-        text: 'Помощь и Обратная связь',
+        text: 'help_and_feedback',
         href: routes.static.help,
     },
     {
-        text: 'Реклама на сайте',
+        text: 'advertisment_on_site',
         href: routes.static.ad,
     },
     {
-        text: 'Условия использования',
+        text: 'terms_of_service',
         href: routes.static.rules,
     },
     {
-        text: 'Политика конфиденциальности',
+        text: 'privacy_statement',
         href: routes.static.politic,
     },
     {
@@ -27,11 +28,11 @@ const LINKS: { text: string; href: string }[] = [
         href: routes.static.faq,
     },
     {
-        text: 'Правила безопасности',
+        text: 'safety_rules',
         href: routes.static.safety,
     },
     {
-        text: 'Карта сайта',
+        text: 'site_map',
         href: routes.static.map,
     },
 ];
@@ -79,12 +80,13 @@ const useStyles = createUseStyles((theme: Theme) => ({
 
 const SiteMap = (): ReactElement => {
     const css = useStyles();
+    const trans = useTrans();
     return (
         <ul className={css.list}>
             {LINKS.map(({ text, href }) => (
                 <li key={href} className={css.item}>
                     <Link href={href} passHref>
-                        <a className={css.link}>{text}</a>
+                        <a className={css.link}>{trans(text)}</a>
                     </Link>
                 </li>
             ))}

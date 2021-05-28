@@ -70,7 +70,7 @@ const TopOffers = (): ReactElement => {
     return (
         <>
             <Container className={css.checkbox} id="products">
-                <Switcher onClick={handleHide} value={config.hideTopOffers} off="open" on="close">
+                <Switcher onClick={handleHide} value={config.hideTopOffers} off={trans('open')} on={trans('close')}>
                     {config.hideTopOffers ? trans('show_top_offers') : trans('hide_top_offers')}
                 </Switcher>
             </Container>

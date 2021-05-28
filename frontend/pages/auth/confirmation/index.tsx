@@ -16,6 +16,7 @@ import Container from '../../../components/layout/container';
 import Header from '../../../components/layout/header';
 import Meta from '../../../components/layout/meta';
 import useAuth from '../../../hooks/auth.hook';
+import useTrans from '../../../hooks/trans.hook';
 import { wrapper } from '../../../redux/store';
 
 const ConfettiWrp = dynamic(() => import('../../../components/common/confetti'), { ssr: false });
@@ -72,6 +73,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
 const Confirmation = (): ReactElement => {
     const css = useStyles();
     const auth = useAuth();
+    const trans = useTrans();
 
     const handleLogin = (): void => {
         if (!auth?.access_token) {
@@ -94,17 +96,17 @@ const Confirmation = (): ReactElement => {
                 <Container>
                     <div className={css.flex}>
                         <div className={css.row}>
-                            <h2 className={css.title}>Спасибо за регистрацию!</h2>
+                            <h2 className={css.title}>{trans('confirmation')}</h2>
                             <p className={css.text}>
                                 Лол кек чебурек Лол кек чебурек. Лол кек чебурек Лол кек чебурек Лол кек чебурекЛол кек чебурек
                             </p>
 
                             <div className={css.flex}>
                                 <Link href={routes.root}>
-                                    <a className={css.btn}>На главную</a>
+                                    <a className={css.btn}>{trans('to_home')}</a>
                                 </Link>
                                 <button className={css.btn} onClick={handleLogin}>
-                                    Войти
+                                    {trans('login')}
                                 </button>
                             </div>
                         </div>
