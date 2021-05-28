@@ -43,7 +43,6 @@
         "react-redux": "^7.2.4",
         "react-slick": "^0.28.1",
         "react-textarea-autosize": "^8.3.0",
-        "react-tooltip": "^4.2.19",
         "react-transition-group": "^4.4.1",
         "redux": "^4.1.0",
         "redux-saga": "^1.1.3",

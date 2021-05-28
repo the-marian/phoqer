@@ -22,6 +22,7 @@ const Root = ({ children }: IProps): ReactElement => {
     const [config] = useConfig();
 
     useEffect(() => {
+        console.log(window.navigator.userAgent);
         if (process.browser && /windows/i.test(window.navigator.userAgent) && document.querySelector('html')) {
             document.querySelector('html')?.classList?.add('windows');
         }
