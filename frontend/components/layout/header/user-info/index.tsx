@@ -10,6 +10,7 @@ import { createUseStyles } from 'react-jss';
 import { useSelector } from 'react-redux';
 
 import routes from '../../../../assets/routes';
+import template from '../../../../assets/template';
 import { Theme } from '../../../../assets/theme';
 import useTrans from '../../../../hooks/trans.hook';
 import { IPublicProfile, IState } from '../../../../interfaces';
@@ -30,47 +31,31 @@ const useStyles = createUseStyles((theme: Theme) => ({
             marginLeft: theme.rem(0.4),
         }),
     },
-    text: {
-        position: 'relative',
-        marginLeft: theme.rem(1),
-    },
     link: {
         position: 'relative',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
+        fontSize: theme.rem(1.4),
         padding: theme.rem(0.5, 1.5),
         color: theme.palette.black[0],
 
-        ...theme.media(768).max({
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            padding: theme.rem(1, 1.5),
-            borderRadius: theme.radius,
-        }),
-        ...theme.media(768).max({
-            fontSize: '0',
-        }),
         ...theme.hover({
             '& svg': {
                 color: theme.palette.primary[0],
             },
         }),
+    },
+    text: {
+        position: 'relative',
+        marginLeft: theme.rem(1),
+        maxWidth: theme.rem(20),
+        ...template(theme).cutString,
 
-        '& svg': {
-            height: theme.rem(1.4),
-            width: theme.rem(1.4),
-
-            ...theme.media(750).max({
-                height: theme.rem(1.8),
-                width: theme.rem(1.8),
-            }),
-            ...theme.media(350).max({
-                height: theme.rem(1.8),
-                width: theme.rem(1.6),
-            }),
-        },
+        ...theme.media(1200).max({
+            fontSize: '0',
+            margin: '0',
+        }),
     },
     user: {
         position: 'relative',
@@ -90,7 +75,7 @@ const UserInfo = (): ReactElement => {
 
     useEffect(() => {
         const handleClose = (): void => {
-            setDrop(false);
+            if (drop) setDrop(false);
         };
         Router.events.on('routeChangeComplete', handleClose);
 
@@ -101,9 +86,7 @@ const UserInfo = (): ReactElement => {
 
     const userName = user?.first_name + ' ' + user?.last_name;
 
-    const handleClick = () => {
-        setDrop(!drop);
-    };
+    const handleClick = (): void => setDrop(!drop);
 
     return (
         <ul className={css.flex}>
@@ -127,7 +110,7 @@ const UserInfo = (): ReactElement => {
                 <button type="button" className={clsx(css.link, drop && css.user)} onClick={handleClick}>
                     <NotifNumber className={css.number}>14</NotifNumber>
                     <FontAwesomeIcon icon={faUserCircle} />
-                    <span className={css.text}>{userName.length > 20 ? userName.slice(0, 17) + '...' : userName}</span>
+                    <span className={css.text}>{userName}</span>
                 </button>
                 {drop && <DropWindow onClose={handleClick} />}
             </li>

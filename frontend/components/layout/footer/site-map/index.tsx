@@ -8,19 +8,19 @@ import useTrans from '../../../../hooks/trans.hook';
 
 const LINKS: { text: string; href: string }[] = [
     {
-        text: 'help_and_feedback', //Помощь и Обратная связь
+        text: 'help_and_feedback',
         href: routes.static.help,
     },
     {
-        text: 'advertisment_on_site',// Реклама на сайте
+        text: 'advertisment_on_site',
         href: routes.static.ad,
     },
     {
-        text: 'terms_of_service',  // Условия использования
+        text: 'terms_of_service',
         href: routes.static.rules,
     },
     {
-        text: 'privacy_statement', //Политика конфиденциальности
+        text: 'privacy_statement',
         href: routes.static.politic,
     },
     {
@@ -28,11 +28,11 @@ const LINKS: { text: string; href: string }[] = [
         href: routes.static.faq,
     },
     {
-        text: 'safety_rules',  //Правила безопасности
+        text: 'safety_rules',
         href: routes.static.safety,
     },
     {
-        text: 'site_map',   //Карта сайта
+        text: 'site_map',
         href: routes.static.map,
     },
 ];

@@ -1,11 +1,11 @@
+import { faChevronRight } from '@fortawesome/free-solid-svg-icons/faChevronRight';
 import { faPaperclip } from '@fortawesome/free-solid-svg-icons/faPaperclip';
-import { faPaperPlane } from '@fortawesome/free-solid-svg-icons/faPaperPlane';
 import { faTimes } from '@fortawesome/free-solid-svg-icons/faTimes';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { UploadedUppyFile } from '@uppy/core';
 import { Dashboard } from '@uppy/react';
 import clsx from 'clsx';
-import React, { ChangeEvent, FormEvent, KeyboardEvent, ReactElement, useState } from 'react';
+import React, { ChangeEvent, FormEvent, KeyboardEvent, ReactElement, useEffect, useState } from 'react';
 import { createUseStyles } from 'react-jss';
 import TextareaAutosize from 'react-textarea-autosize';
 
@@ -40,11 +40,12 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
     textarea: {
         ...template(theme).input,
-        minHeight: theme.rem(5),
-        padding: theme.rem(1.5),
+        minHeight: theme.rem(4.9),
+        padding: theme.rem(1, 1.5),
         fontSize: theme.rem(1.4),
-        background: theme.palette.gray[0],
+        background: theme.palette.white,
         color: theme.palette.black[0],
+        boxShadow: theme.palette.shadowBorder,
 
         ...theme.media(800).max({
             margin: '0',
@@ -82,18 +83,23 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
     btn: {
         ...template(theme).btn,
-
         ...theme.media(1050).max({
             margin: theme.rem(2, 0),
         }),
     },
     submit: {
         ...template(theme).btn,
-        width: theme.rem(8),
+        width: theme.rem(6),
+        background: theme.palette.gray[0],
+        color: theme.palette.black[0],
         marginLeft: theme.rem(1),
+        boxShadow: theme.palette.shadowBorder,
     },
     disabled: {
         cursor: 'not-allowed',
+    },
+    dashboard: {
+        marginTop: theme.rem(1),
     },
 }));
 
@@ -121,12 +127,17 @@ const CommentsForm = ({ onSubmit }: IProps): ReactElement => {
         setAttachment(!attachment);
     };
 
+    useEffect(() => {
+        if (attachment) document.querySelector<HTMLButtonElement>('.uppy-u-reset.uppy-Dashboard-browse')?.click();
+    }, [attachment]);
+
     const handleSubmit = async (event?: FormEvent<HTMLFormElement>): Promise<void> => {
         event?.preventDefault();
         if (!value.trim().length) {
             setError('Введите текст комментария');
             return;
         }
+
         if (!attachment) {
             onSubmit(value, []);
             setValue('');
@@ -180,21 +191,21 @@ const CommentsForm = ({ onSubmit }: IProps): ReactElement => {
                     placeholder={trans('comment')}
                 />
 
-                {!media && (
-                    <button className={css.submit} type="submit">
-                        <FontAwesomeIcon icon={faPaperPlane} />
-                    </button>
-                )}
+                <button className={css.submit} type="submit">
+                    <FontAwesomeIcon icon={faChevronRight} />
+                </button>
             </div>
             {error && <small className={clsx(css.small, css.errorText)}>{error}</small>}
 
             {attachment && (
-                <Dashboard
-                    theme={theme.includes('black') ? 'dark' : 'light'}
-                    hideUploadButton
-                    uppy={uppy}
-                    height={media ? 230 : 200}
-                />
+                <div className={css.dashboard}>
+                    <Dashboard
+                        theme={theme.includes('black') ? 'dark' : 'light'}
+                        hideUploadButton
+                        uppy={uppy}
+                        height={media ? 230 : 200}
+                    />
+                </div>
             )}
 
             <button type="button" className={css.attachment} onClick={handleAttachment}>

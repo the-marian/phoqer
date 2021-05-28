@@ -16,11 +16,12 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
     link: {
         display: 'block',
-        marginRight: theme.rem(1),
+        margin: theme.rem(1, 1, 0, 0),
         padding: theme.rem(1, 2.5),
         color: theme.palette.black[0],
         fontSize: theme.rem(1.4),
-        background: theme.palette.gray[0],
+        background: theme.palette.white,
+        boxShadow: theme.palette.shadowBorder,
         borderRadius: theme.radius,
         ...template(theme).outline,
     },
@@ -37,7 +38,7 @@ const SettingsNav = (): ReactElement => {
     const css = useStyles();
     const trans = useTrans();
     const { query } = useRouter();
-    const activeTab = String(query.activeTab);
+    const activeTab = String(query.activeTab || '');
 
     return (
         <ul className={css.list}>

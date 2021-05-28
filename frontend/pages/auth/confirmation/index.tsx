@@ -124,7 +124,7 @@ const Confirmation = (): ReactElement => {
 };
 
 export const getServerSideProps = wrapper.getServerSideProps((ctx): void => {
-    serverRedirect((ctx as unknown) as GetServerSidePropsContext, null, true);
+    serverRedirect(ctx as unknown as GetServerSidePropsContext, null, true);
 });
 
 export default Confirmation;

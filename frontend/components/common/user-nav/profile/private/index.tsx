@@ -3,12 +3,12 @@ import { createUseStyles } from 'react-jss';
 
 import config from '../../../../../assets/config';
 import { Theme } from '../../../../../assets/theme';
-import useTrans from '../../../../../hooks/trans.hook';
 import { ITabs } from '../../../../../interfaces';
 import NavTabs from '../../index';
-import nav from '../profile.styles';
+import { item, nav } from '../profile.styles';
 
 const useStyles = createUseStyles((theme: Theme) => ({
+    item: item(theme),
     ...nav(theme),
     nav: {
         maxWidth: '100vw',
@@ -37,8 +37,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
 
 const ProfilePrivateNav = (): ReactElement => {
     const css = useStyles();
-    const trans = useTrans();
-    const profileTabs: ITabs[] = config.userProfileLinks(trans, { messages: 5, reviews: 4 });
+    const profileTabs: ITabs[] = config.userProfileLinks({ messages: 5, reviews: 4 });
     return <NavTabs tabs={profileTabs} classNameWrp={css.nav} className={css.item} activeClass={css.active} />;
 };
 

@@ -1,7 +1,7 @@
 import { faChevronLeft } from '@fortawesome/free-solid-svg-icons/faChevronLeft';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useRouter } from 'next/router';
-import React, { ChangeEvent, ReactElement, useEffect, useState } from 'react';
+import React, { ChangeEvent, ReactElement, useEffect, useRef, useState } from 'react';
 import { createUseStyles } from 'react-jss';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -11,7 +11,6 @@ import useTrans from '../../../../hooks/trans.hook';
 import { ICity, IRegion, IState } from '../../../../interfaces';
 import types from '../../../../redux/types';
 import content from '../../../../translations';
-import Input from '../../input';
 import Spinner from '../../loaders/spinner';
 import { modal } from '../../modal';
 import SmallModalWrp from '../../modal/small-modal-wrp';
@@ -40,12 +39,16 @@ const useStyles = createUseStyles((theme: Theme) => ({
         flexDirection: 'column',
     },
     input: {
+        ...template(theme).input,
+        background: theme.palette.white,
+        boxShadow: theme.palette.shadowBorder,
         marginBottom: theme.rem(2),
     },
     btn: {
         ...template(theme).btn,
         margin: theme.rem(0.4, 0),
-        background: theme.palette.gray[0],
+        background: theme.palette.white,
+        boxShadow: theme.palette.shadowBorder,
         color: theme.palette.black[0],
     },
     back: {
@@ -66,6 +69,12 @@ const useStyles = createUseStyles((theme: Theme) => ({
         marginBottom: theme.rem(1),
         color: theme.palette.black[0],
         fontSize: theme.rem(1.8),
+    },
+    empty: {
+        padding: theme.rem(5),
+        borderRadius: theme.radius,
+        background: theme.palette.gray[0],
+        textAlign: 'center',
     },
 }));
 
@@ -100,6 +109,7 @@ interface ILocales {
 
 const CityModal = (): ReactElement => {
     const css = useStyles();
+    const ref = useRef<HTMLInputElement | null>(null);
     const { locale } = useRouter();
     const dispatch = useDispatch();
 
@@ -123,6 +133,10 @@ const CityModal = (): ReactElement => {
     };
 
     useEffect(() => {
+        if (ref.current) ref.current.focus();
+    }, [ref]);
+
+    useEffect(() => {
         dispatch({ type: types.GET_CITIES_START, payload: region.selected?.country || 'ukraine' });
     }, []);
 
@@ -138,7 +152,8 @@ const CityModal = (): ReactElement => {
         <SmallModalWrp>
             <div className={css.root}>
                 <p className={css.country}>{trans(region.selected?.country || '')}:</p>
-                <Input
+                <input
+                    ref={ref}
                     type="text"
                     placeholder={trans('search_city')}
                     className={css.input}
@@ -151,10 +166,16 @@ const CityModal = (): ReactElement => {
                     {trans('back')}
                 </button>
 
-                {!region.loading && cities.length ? (
-                    <div className={css.inner}>
-                        {cities.length ? cities.map(item => <CitiesList key={item.slug} city={item.slug} />) : null}
-                    </div>
+                {!region.loading ? (
+                    cities.length ? (
+                        <div className={css.inner}>
+                            {cities.map(item => (
+                                <CitiesList key={item.slug} city={item.slug} />
+                            ))}
+                        </div>
+                    ) : (
+                        <p className={css.empty}>Ничего не найдено по вашему запросу &quot;{search}&quot;</p>
+                    )
                 ) : (
                     <div className={css.center}>
                         <Spinner className={css.spinner} />

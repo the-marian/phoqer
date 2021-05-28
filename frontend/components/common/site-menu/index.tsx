@@ -29,6 +29,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
 
         ...theme.media(768).max({
             marginRight: '0',
+            '& span': {
+                fontSize: '0',
+            },
         }),
     },
 }));

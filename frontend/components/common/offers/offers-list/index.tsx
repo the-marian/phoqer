@@ -3,8 +3,9 @@ import { createUseStyles } from 'react-jss';
 
 import config from '../../../../assets/config';
 import { Theme } from '../../../../assets/theme';
+import useMedia from '../../../../hooks/media.hook';
 import { IOfferCard } from '../../../../interfaces';
-import OffersLoader from '../../loaders/offers';
+import OffersLoader from '../../loaders/skeletons/offers';
 import EmptyOffers from '../empty-offers';
 import OfferCard from '../offers-card';
 
@@ -29,29 +30,39 @@ const useStyles = createUseStyles((theme: Theme) => ({
             margin: '0 auto',
         }),
     },
+    loading: {
+        marginTop: theme.rem(5),
+    },
 }));
 
 interface IProps {
     loading?: boolean;
+    loadMoreLoading?: boolean;
     showFavoriteBtn?: boolean;
     data: IOfferCard[] | null;
 }
 
-const OffersList = ({ loading, data, showFavoriteBtn = true }: IProps): ReactElement => {
+const OffersList = ({ loading, loadMoreLoading, data, showFavoriteBtn = true }: IProps): ReactElement => {
     const css = useStyles();
+    const media = useMedia(1400);
+
     return loading ? (
-        <OffersLoader />
+        <>
+            <OffersLoader amount={media ? 4 : 1} />
+            {media && <OffersLoader className={css.loading} amount={media ? 4 : 1} />}
+        </>
     ) : (
             <>
                 {data?.length ? (
-                <div className={css.grid}>
-                    {data?.map(item => (
-                        <OfferCard key={item.id} offer={item} showFavoriteBtn={showFavoriteBtn} />
-                    ))}
-                </div>
-            ) : (
-                <EmptyOffers />
-                )}
+                    <div className={css.grid}>
+                        {data?.map(item => (
+                            <OfferCard key={item.id} offer={item} showFavoriteBtn={showFavoriteBtn} />
+                        ))}
+                    </div>
+                ) : (
+                        <EmptyOffers />
+                    )}
+                {loadMoreLoading ? <OffersLoader className={css.loading} amount={media ? 4 : 1} /> : null}
             </>
         );
 };

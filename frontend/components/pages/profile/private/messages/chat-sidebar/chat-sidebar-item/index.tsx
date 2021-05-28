@@ -18,17 +18,12 @@ const useStyles = createUseStyles((theme: Theme) => ({
         justifyContent: 'space-between',
         alignItems: 'flex-start',
         margin: theme.rem(1, 0),
-        padding: theme.rem(3, 2),
+        padding: theme.rem(2),
         borderRadius: theme.radius,
-        border: theme.border(0.1, theme.palette.gray[1]),
+        boxShadow: theme.palette.shadowBorder,
         color: theme.palette.black[0],
         fontSize: theme.rem(1.4),
-        ...theme.hover({
-            background: theme.palette.secondary[0],
-            '& h2': {
-                textDecoration: 'underline',
-            },
-        }),
+        ...template(theme).outline,
     },
     unread: {
         background: theme.palette.secondary[0],
@@ -43,6 +38,8 @@ const useStyles = createUseStyles((theme: Theme) => ({
         },
     },
     name: {
+        ...template(theme).cutString,
+        width: 'calc(100% - 8.5rem)',
         fontSize: theme.rem(1.6),
         fontWeight: theme.text.weight[3],
 
@@ -55,6 +52,8 @@ const useStyles = createUseStyles((theme: Theme) => ({
         marginLeft: theme.rem(1),
     },
     text: {
+        ...template(theme).cutString,
+        width: 'calc(100% - 8.5rem)',
         marginTop: theme.rem(0.2),
         color: theme.palette.gray[3],
     },
@@ -75,8 +74,6 @@ interface IProps {
     date?: string | null;
     preview?: string | null;
 }
-
-const MAX_LENGTH = 30;
 
 const ChatSidebarItem = ({
     id,
@@ -106,9 +103,7 @@ const ChatSidebarItem = ({
                 <div className={css.inner}>
                     <h2 className={css.name}>{`${firstName} ${lastName}`}</h2>
                     <p>{onlineStatus({ initDate: date, locale: history.locale })}</p>
-                    <p className={css.text}>
-                        {(preview || '').length > MAX_LENGTH ? preview?.slice(0, MAX_LENGTH) + '...' : preview}
-                    </p>
+                    <p className={css.text}>{preview || ''}</p>
                     {newMessages ? <NotifNumber className={css.number}>{newMessages}</NotifNumber> : null}
                 </div>
             </a>

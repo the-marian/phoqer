@@ -6,7 +6,6 @@ import { useSelector } from 'react-redux';
 import config from '../../../../assets/config';
 import template from '../../../../assets/template';
 import { Theme } from '../../../../assets/theme';
-import useTrans from '../../../../hooks/trans.hook';
 import { IPublicProfile, IState, ITabs } from '../../../../interfaces';
 import SmallModalWrp from '../../modal/small-modal-wrp';
 import NavTabs from '../../user-nav';
@@ -68,10 +67,9 @@ const getActiveTab = (route: string): string | undefined => {
 
 const MobileNavModal = (): ReactElement => {
     const css = useStyles();
-    const trans = useTrans();
     const { route } = useRouter();
     const user = useSelector<IState, IPublicProfile | null>(state => state.user);
-    const profileTabs: ITabs[] = config.userNavLinks(trans, String(user?.id), { messages: 5, reviews: 9 });
+    const profileTabs: ITabs[] = config.userNavLinks(String(user?.id), { messages: 5, reviews: 9 });
 
     return (
         <SmallModalWrp>

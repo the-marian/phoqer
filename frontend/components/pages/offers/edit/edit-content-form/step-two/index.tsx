@@ -3,7 +3,7 @@ import React, { ChangeEvent, ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 import TextareaAutosize from 'react-textarea-autosize';
 
-import { moneyFormat, numberValidation } from '../../../../../../assets/helpers';
+import { intNumberValidation, moneyFormat } from '../../../../../../assets/helpers';
 import { INewOffer } from '../../../../../../interfaces';
 import CheckTitle from '../../../../../common/checkbox/check-title';
 import CheckYesNo from '../../../../../common/checkbox/check-yes-no';
@@ -34,7 +34,7 @@ const StepOne = ({ value, errors, setErrors, setValue }: IProps): ReactElement =
     const handleNumber = (event: ChangeEvent<HTMLInputElement>): void => {
         setErrors({});
         const num = event.target.value.replace(/ /gi, '').trim();
-        if (numberValidation(num)) return;
+        if (intNumberValidation(num)) return;
         setValue({ ...value, [event.target.name]: num === '' ? null : +num });
     };
     const handleDeposit = (deposit_val: boolean): void => {

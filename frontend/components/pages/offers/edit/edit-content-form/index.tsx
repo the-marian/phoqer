@@ -3,13 +3,14 @@ import React, { FormEvent, ReactElement, useState } from 'react';
 import { createUseStyles } from 'react-jss';
 import { useDispatch, useSelector } from 'react-redux';
 
+import routes from '../../../../../assets/routes';
 import useTrans from '../../../../../hooks/trans.hook';
-import { INewOffer, IOfferCard, IState } from '../../../../../interfaces';
+import { INewOffer, IOfferCard, IRegion, IState } from '../../../../../interfaces';
 import initState from '../../../../../redux/state';
 import types from '../../../../../redux/types';
 import Button from '../../../../common/button';
 import Progress from '../../../../common/loaders/progress';
-import notificationsModal from '../../../../common/modal/notifications-modal';
+import notifications from '../../../../common/notifications';
 import editOfferTemplate from './edit-content-form.style';
 import validate from './edit-content-form.validations';
 import StepOne from './step-one';
@@ -20,6 +21,7 @@ const useStyles = createUseStyles(editOfferTemplate);
 export interface IError {
     title?: string;
     price?: string;
+    region?: string;
     category?: string;
     description?: string;
     deposit_val?: string;
@@ -57,10 +59,12 @@ const newOfferAdapter = (value: IOfferCard | null): INewOffer =>
 
 const EditContentForm = (): ReactElement => {
     const css = useStyles();
-    const { query } = useRouter();
+    const history = useRouter();
+    const offerId = String(history.query.offerId || '');
     const trans = useTrans();
     const dispatch = useDispatch();
 
+    const region = useSelector<IState, IRegion>(state => state.region);
     const loading = useSelector<IState, boolean>(state => state.offers.edit_offer.loading);
     const init = useSelector<IState, IOfferCard | null>(state => state.offers.single);
     const [value, setValue] = useState<INewOffer>(newOfferAdapter(init));
@@ -68,34 +72,45 @@ const EditContentForm = (): ReactElement => {
 
     const handleSubmit = (event: FormEvent): void => {
         event.preventDefault();
-        if (validate({ value, setErrors })) {
+        if (!offerId) {
+            history.push(routes.profile.private.my_offers());
+            return;
+        }
+
+        if (validate({ value, setErrors, region: !!region.selected?.country && !!region.selected?.city })) {
             dispatch({
                 type: types.PATCH_EDIT_OFFER_STATUS_START,
+                offerId,
                 images: init?.images,
                 payload: value,
-                offerId: String(query.offerId || ''),
-                callback() {
-                    notificationsModal(
-                        'success',
-                        'Ваши изменения успешно сохранены! Чтобы опубликовать обьявления нажмите на кнопку "Опубликувать"',
-                    );
+                callback: () => {
+                    history.push(routes.profile.private.my_offers('active'));
+                    notifications.info({
+                        withOkBtn: true,
+                        message: 'Ваши изменения успешно опубликовано!',
+                    });
                 },
             });
         }
     };
 
     const handleSave = (): void => {
-        if (validate({ value, setErrors })) {
+        if (!offerId) {
+            history.push(routes.profile.private.my_offers());
+            return;
+        }
+
+        if (validate({ value, setErrors, region: !!region.selected?.country && !!region.selected?.city })) {
             dispatch({
                 type: types.PATCH_OFFER_START,
+                offerId,
                 images: init?.images,
                 payload: value,
-                offerId: String(query.offerId || ''),
-                callback() {
-                    notificationsModal(
-                        'success',
-                        'Ваши изменения успешно сохранены! Чтобы опубликовать обьявления нажмите на кнопку "Опубликувать"',
-                    );
+                callback: () => {
+                    notifications.info({
+                        withOkBtn: true,
+                        message: 'Ваши изменения успешно сохранены!',
+                    });
                 },
             });
         }

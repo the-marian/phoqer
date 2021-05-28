@@ -30,7 +30,8 @@ const useStyles = createUseStyles((theme: Theme) => ({
     dropdown: {
         width: '100%',
         '& p': {
-            background: theme.palette.gray[0],
+            boxShadow: theme.palette.shadowBorder,
+            background: theme.palette.white,
         },
         ...theme.media(768).min({
             width: theme.rem(30),
@@ -86,7 +87,7 @@ const UserOffers = (): ReactElement => {
     ];
 
     const history = useRouter();
-    const offerStatus = String(history.query.offerStatus);
+    const offerStatus = String(history.query.offerStatus || '');
 
     const { data, loading, pagination } = useSelector<IState, IOfferDynamic>(state => state.offers.my_offers);
 
@@ -150,10 +151,8 @@ const UserOffers = (): ReactElement => {
     );
 };
 
-export const getServerSideProps = wrapper.getServerSideProps(
-    async (ctx): Promise<void> => {
-        if (serverRedirect((ctx as unknown) as GetServerSidePropsContext)) return;
-    },
-);
+export const getServerSideProps = wrapper.getServerSideProps(async (ctx): Promise<void> => {
+    if (serverRedirect(ctx as unknown as GetServerSidePropsContext)) return;
+});
 
 export default UserOffers;

@@ -9,13 +9,22 @@ import { useDispatch } from 'react-redux';
 import config from '../../../../../assets/config';
 import routes from '../../../../../assets/routes';
 import { Theme } from '../../../../../assets/theme';
-import useTrans from '../../../../../hooks/trans.hook';
 import { ITabs } from '../../../../../interfaces';
 import types from '../../../../../redux/types';
 import NavTabs from '../../index';
-import nav from '../profile.styles';
+import { item, nav } from '../profile.styles';
 
 const useStyles = createUseStyles((theme: Theme) => ({
+    item: {
+        ...item(theme),
+        height: theme.rem(3),
+        ...theme.media(1300).max({
+            '& span': {
+                fontSize: '0',
+                margin: '0',
+            },
+        }),
+    },
     ...nav(theme),
     chat: {
         margin: theme.rem(0.5, 1.5),
@@ -28,10 +37,9 @@ interface IProps {
 
 const ProfileChatNav = ({ active }: IProps): ReactElement | null => {
     const css = useStyles();
-    const trans = useTrans();
     const dispatch = useDispatch();
 
-    const profileTabs: ITabs[] = config.userProfileLinks(trans, { messages: 5, reviews: 4 });
+    const profileTabs: ITabs[] = config.userProfileLinks({ messages: 5, reviews: 4 });
     const extraTabs: ITabs[] = [
         {
             id: 'menu',

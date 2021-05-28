@@ -31,8 +31,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
     file: {
         ...template(theme).btn,
         position: 'relative',
-        marginBottom: theme.rem(4),
+        margin: '0 auto 4rem',
         background: theme.palette.secondary[0],
+        boxShadow: theme.palette.shadowBorder,
         color: theme.palette.black[0],
 
         '& span': {

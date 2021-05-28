@@ -21,9 +21,6 @@ const useStyles = createUseStyles((theme: Theme) => ({
             marginBottom: theme.rem(2),
         }),
     },
-    input: {
-        background: theme.palette.gray[0],
-    },
     label: {
         display: 'block',
         width: '48%',
@@ -80,7 +77,6 @@ const GeneralInfoForm = (): ReactElement => {
                         name="first_name"
                         autoComplete="given-name"
                         placeholder={trans('first_name')}
-                        className={css.input}
                         errorsInPlaceholder
                     />
                 </label>
@@ -96,14 +92,13 @@ const GeneralInfoForm = (): ReactElement => {
                         name="last_name"
                         autoComplete="family-name"
                         placeholder={trans('last_name')}
-                        className={css.input}
                         errorsInPlaceholder
                     />
                 </label>
 
                 <label className={css.label}>
                     <p className={css.text}>{trans('user_location')}</p>
-                    <Region className={css.input} />
+                    <Region />
                 </label>
             </div>
         </>

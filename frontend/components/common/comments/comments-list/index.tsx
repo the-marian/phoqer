@@ -14,6 +14,10 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
     empty: {
         margin: theme.rem(4, 0),
+        padding: theme.rem(6),
+        borderRadius: theme.radius,
+        background: theme.palette.gray[0],
+        textAlign: 'center',
     },
     text: {
         fontSize: theme.rem(1.6),

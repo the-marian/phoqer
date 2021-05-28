@@ -31,7 +31,14 @@ const Root = ({ children }: IProps): ReactElement => {
         if (config?.warning) {
             notifications.warning({
                 message: <ConstructionMessage />,
-                options: { id: 'construction-message' },
+                options: {
+                    id: 'construction-message',
+                    dismiss: {
+                        duration: 5_000_000,
+                        showIcon: true,
+                        click: true,
+                    },
+                },
             });
         }
     }, [config]);

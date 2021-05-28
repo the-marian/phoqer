@@ -1,0 +1,215 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`About component matches snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="wrp-0-2-1"
+  >
+    <div
+      class="slick-slider slider-0-2-2 slick-initialized"
+      dir="ltr"
+    >
+      <button
+        class="slick-arrow slick-prev"
+        data-role="none"
+        style="display: block;"
+        type="button"
+      >
+         Previous
+      </button>
+      <div
+        class="slick-list"
+      >
+        <div
+          class="slick-track"
+          style="opacity: 1; transform: translate3d(0px, 0px, 0px);"
+        >
+          <div
+            aria-hidden="true"
+            class="slick-slide slick-cloned"
+            data-index="-1"
+            style="width: 0px;"
+            tabindex="-1"
+          />
+          <div
+            aria-hidden="false"
+            class="slick-slide slick-active slick-current"
+            data-index="0"
+            style="outline: none; width: 0px;"
+            tabindex="-1"
+          >
+            <div>
+              <picture
+                class="img-0-2-3"
+                style="width: 100%; display: inline-block;"
+                tabindex="-1"
+              >
+                <source
+                  media="(max-width: 640px)"
+                  srcset="/about/camera640.jpeg"
+                />
+                <source
+                  media="(max-width: 1280px)"
+                  srcset="/about/camera1280.jpeg"
+                />
+                <source
+                  media="(max-width: 1280px)"
+                  srcset="/about/camera1280.jpeg"
+                />
+                <source
+                  media="(max-width: 1920px)"
+                  srcset="/about/camera1920.jpeg"
+                />
+                <img
+                  alt="phoqer"
+                  class="img-0-2-3"
+                  src="/about/camera.jpeg"
+                />
+              </picture>
+            </div>
+          </div>
+          <div
+            aria-hidden="true"
+            class="slick-slide"
+            data-index="1"
+            style="outline: none; width: 0px;"
+            tabindex="-1"
+          />
+          <div
+            aria-hidden="true"
+            class="slick-slide"
+            data-index="2"
+            style="outline: none; width: 0px;"
+            tabindex="-1"
+          />
+          <div
+            aria-hidden="true"
+            class="slick-slide"
+            data-index="3"
+            style="outline: none; width: 0px;"
+            tabindex="-1"
+          />
+          <div
+            aria-hidden="true"
+            class="slick-slide"
+            data-index="4"
+            style="outline: none; width: 0px;"
+            tabindex="-1"
+          />
+          <div
+            aria-hidden="true"
+            class="slick-slide"
+            data-index="5"
+            style="outline: none; width: 0px;"
+            tabindex="-1"
+          />
+          <div
+            aria-hidden="true"
+            class="slick-slide slick-cloned"
+            data-index="6"
+            style="width: 0px;"
+            tabindex="-1"
+          >
+            <div>
+              <picture
+                class="img-0-2-3"
+                style="width: 100%; display: inline-block;"
+                tabindex="-1"
+              >
+                <source
+                  media="(max-width: 640px)"
+                  srcset="/about/camera640.jpeg"
+                />
+                <source
+                  media="(max-width: 1280px)"
+                  srcset="/about/camera1280.jpeg"
+                />
+                <source
+                  media="(max-width: 1280px)"
+                  srcset="/about/camera1280.jpeg"
+                />
+                <source
+                  media="(max-width: 1920px)"
+                  srcset="/about/camera1920.jpeg"
+                />
+                <img
+                  alt="phoqer"
+                  class="img-0-2-3"
+                  src="/about/camera.jpeg"
+                />
+              </picture>
+            </div>
+          </div>
+          <div
+            aria-hidden="true"
+            class="slick-slide slick-cloned"
+            data-index="7"
+            style="width: 0px;"
+            tabindex="-1"
+          />
+          <div
+            aria-hidden="true"
+            class="slick-slide slick-cloned"
+            data-index="8"
+            style="width: 0px;"
+            tabindex="-1"
+          />
+          <div
+            aria-hidden="true"
+            class="slick-slide slick-cloned"
+            data-index="9"
+            style="width: 0px;"
+            tabindex="-1"
+          />
+          <div
+            aria-hidden="true"
+            class="slick-slide slick-cloned"
+            data-index="10"
+            style="width: 0px;"
+            tabindex="-1"
+          />
+          <div
+            aria-hidden="true"
+            class="slick-slide slick-cloned"
+            data-index="11"
+            style="width: 0px;"
+            tabindex="-1"
+          />
+        </div>
+      </div>
+      <button
+        class="slick-arrow slick-next"
+        data-role="none"
+        style="display: block;"
+        type="button"
+      >
+         Next
+      </button>
+    </div>
+    <h2
+      class="title-0-2-4"
+    >
+      phoqer
+    </h2>
+    <div
+      class="content-0-2-5"
+    >
+      <p
+        class="text-0-2-6"
+      >
+        Ты – это то, что тебя окружает. Мы полностью согласны с этой фразой. Вещи, которые мы покупаем, формируют человека.
+      </p>
+      <p
+        class="text-0-2-6"
+      >
+        Поэтому мы собрали самые разные товары у нас на сайте, чтобы каждый смог найти желаемое. Легко. Быстро. По приемлемой цене и хорошего качества.
+      </p>
+      <p
+        class="text-0-2-6"
+      >
+        Мы захотели создать что-то лучше, чем обычный супермаркет, где мы ходим с тележкой среди прилавков, в надежде найти конкретную вещь. Онлайн-шоппинг избавляет нас от многих неудобств. Здесь не придется стоять в очереди на кассе.
+      </p>
+    </div>
+  </div>
+</DocumentFragment>
+`;

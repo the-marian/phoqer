@@ -29,12 +29,10 @@ const Favorite = (): ReactElement => {
     );
 };
 
-export const getServerSideProps = wrapper.getServerSideProps(
-    async (ctx): Promise<void> => {
-        ctx.store.dispatch({ type: types.GET_FAVORITE_OFFERS_START });
-        ctx.store.dispatch(END);
-        await (ctx.store as IStore)?.sagaTask?.toPromise();
-    },
-);
+export const getServerSideProps = wrapper.getServerSideProps(async (ctx): Promise<void> => {
+    ctx.store.dispatch({ type: types.GET_FAVORITE_OFFERS_START });
+    ctx.store.dispatch(END);
+    await (ctx.store as IStore)?.sagaTask?.toPromise();
+});
 
 export default Favorite;

@@ -7,7 +7,6 @@ import TextareaAutosize from 'react-textarea-autosize';
 
 import template from '../../../../../../../assets/template';
 import { Theme } from '../../../../../../../assets/theme';
-import useMedia from '../../../../../../../hooks/media.hook';
 import { IDropValue } from '../../../../../../../interfaces';
 import Button from '../../../../../../common/button';
 import DropDown from '../../../../../../common/drop-down';
@@ -37,7 +36,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     textarea: {
         ...template(theme).input,
         maxHeight: '70vh',
-        minHeight: theme.rem(5),
+        minHeight: theme.rem(4),
         padding: theme.rem(0.5),
         border: theme.border(0.2, 'transparent'),
         boxShadow: 'unset',
@@ -51,27 +50,26 @@ const useStyles = createUseStyles((theme: Theme) => ({
         }),
 
         ...theme.media(1060).max({
-            minHeight: theme.rem(4),
             padding: theme.rem(0.5, 1),
         }),
     },
     submit: {
-        width: theme.rem(6),
-        height: theme.rem(5),
+        width: theme.rem(5),
+        height: theme.rem(4),
         background: theme.palette.gray[1],
         color: theme.palette.black[0],
         borderRadius: theme.radius,
-        fontSize: theme.rem(1.6),
+        fontSize: theme.rem(1.4),
         ...template(theme).outline,
 
         ...theme.media(1060).max({
             width: theme.rem(5),
             height: theme.rem(4),
-            fontSize: theme.rem(1.4),
+            fontSize: theme.rem(1.2),
         }),
     },
     dropdown: {
-        width: theme.rem(6),
+        width: theme.rem(5),
         margin: theme.rem(0, 0.5),
 
         '& > p': {
@@ -83,7 +81,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
 
         ...theme.media(1060).max({
             width: theme.rem(5),
-            fontSize: theme.rem(1.2),
+            fontSize: theme.rem(1),
         }),
     },
 }));
@@ -98,7 +96,6 @@ const setting: IDropValue[] = [
 
 const ChatForm = (): ReactElement => {
     const css = useStyles();
-    const media = useMedia(1060);
     const [value, setValue] = useState<string>();
 
     const handleChange = (event: ChangeEvent<HTMLTextAreaElement>): void => {
@@ -120,14 +117,7 @@ const ChatForm = (): ReactElement => {
                 placeholder="Написать сообщение ..."
             />
 
-            <DropDown
-                icon={faEllipsisV}
-                height={media ? 5 : 4}
-                className={css.dropdown}
-                onChange={console.log}
-                data={setting}
-                toLeft
-            />
+            <DropDown icon={faEllipsisV} height={4} className={css.dropdown} onChange={console.log} data={setting} toLeft />
 
             <Button className={css.submit} type="submit">
                 <FontAwesomeIcon icon={faChevronRight} />

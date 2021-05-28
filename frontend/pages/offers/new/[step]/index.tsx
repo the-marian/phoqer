@@ -13,6 +13,7 @@ import Container from '../../../../components/layout/container';
 import Meta from '../../../../components/layout/meta';
 import PageLayout from '../../../../components/layout/page-layout';
 import Draft from '../../../../components/pages/offers/new/draft';
+import StepFive from '../../../../components/pages/offers/new/step-five';
 import StepFour from '../../../../components/pages/offers/new/step-four';
 import StepOne from '../../../../components/pages/offers/new/step-one';
 import StepThree from '../../../../components/pages/offers/new/step-three';
@@ -54,6 +55,7 @@ const STEPS: { [key: string]: JSX.Element | JSX.Element[] } = {
     2: <StepTwo />,
     3: <StepThree />,
     4: <StepFour />,
+    5: <StepFive />,
     draft: <Draft />,
     success: <Success />,
 };
@@ -69,7 +71,7 @@ const NewOffer = (): ReactElement => {
 
     useEffect(() => {
         if (history.query.step) {
-            const step = String(history.query.step);
+            const step = String(history.query.step || '');
 
             /*
              * @desc don't use single if statement as it can brake the navigation logic
@@ -82,7 +84,7 @@ const NewOffer = (): ReactElement => {
                 // *
                 // return to first pages if user dont fill any of required field at step two
                 history.push(routes.offers.new(1));
-            } else if (['4', 'success'].includes(step) && (!value?.isDone?.one || !value?.isDone?.two)) {
+            } else if (['4', '5', 'success'].includes(step) && (!value?.isDone?.one || !value?.isDone?.two)) {
                 // *
                 // return to first pages if user dont fill any of required field at step one and two
                 history.push(routes.offers.new(1));
@@ -120,13 +122,11 @@ const NewOffer = (): ReactElement => {
     );
 };
 
-export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps(
-    async (ctx): Promise<void> => {
-        if (serverRedirect((ctx as unknown) as GetServerSidePropsContext)) return;
-        ctx?.store?.dispatch({ type: types.GET_CATEGORIES_START });
-        ctx?.store?.dispatch(END);
-        await (ctx?.store as IStore)?.sagaTask?.toPromise();
-    },
-);
+export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps(async (ctx): Promise<void> => {
+    if (serverRedirect(ctx as unknown as GetServerSidePropsContext)) return;
+    ctx?.store?.dispatch({ type: types.GET_CATEGORIES_START });
+    ctx?.store?.dispatch(END);
+    await (ctx?.store as IStore)?.sagaTask?.toPromise();
+});
 
 export default NewOffer;

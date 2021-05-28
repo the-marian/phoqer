@@ -3,7 +3,6 @@ import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 import { useSelector } from 'react-redux';
 
-import config from '../../../../assets/config';
 import routes from '../../../../assets/routes';
 import template from '../../../../assets/template';
 import { Theme } from '../../../../assets/theme';
@@ -19,43 +18,61 @@ const useStyles = createUseStyles((theme: Theme) => ({
         }),
     },
     wrp: {
-        display: 'grid',
-        gridTemplateColumns: theme.fr(config.category.grid.desktop),
-        gridGap: theme.rem(2, 1),
-        ...theme.media(1200).max({
-            gridTemplateColumns: theme.fr(config.category.grid.tablet),
+        display: 'flex',
+        flexWrap: 'wrap',
+        margin: '0 -0.25%',
+
+        ...theme.media(980).max({
+            margin: '0 -0.3%',
         }),
-        ...theme.media(960).max({
-            gridTemplateColumns: theme.fr(config.category.grid.smallTablet),
+
+        ...theme.media(766).max({
+            margin: '0 -0.5%',
         }),
-        ...theme.media(550).max({
-            gridTemplateColumns: theme.fr(config.category.grid.mobile),
-            gridGap: theme.rem(2, 1.5),
+
+        ...theme.media(500).max({
+            margin: '0',
         }),
     },
     cat: {
-        cursor: 'pointer',
+        width: '12%',
+        margin: '1rem 0.25%',
         color: theme.palette.black[0],
+        cursor: 'pointer',
+
+        ...theme.media(980).max({
+            width: '16.05%',
+            margin: '1rem 0.3%',
+        }),
+
+        ...theme.media(766).max({
+            width: '19%',
+            margin: '1rem 0.5%',
+        }),
+
+        ...theme.media(650).max({
+            width: '24%',
+        }),
+
+        ...theme.media(500).max({
+            width: '48%',
+            margin: '1rem 1%',
+        }),
 
         ...theme.hover({
             color: theme.palette.primary[0],
         }),
     },
     img: {
-        height: theme.rem(12),
+        height: theme.rem(9),
         borderRadius: theme.radius,
         objectFit: 'cover',
         ...template(theme).outline,
-        ...theme.media(500).max({
-            height: theme.rem(9),
-        }),
     },
     text: {
-        marginTop: theme.rem(1.5),
-        fontSize: theme.rem(1.6),
-        ...theme.media(768).max({
-            marginTop: theme.rem(0.5),
-        }),
+        marginTop: theme.rem(0.5),
+        fontSize: theme.rem(1.4),
+        ...template(theme).cutString,
     },
 }));
 

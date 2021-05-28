@@ -18,5 +18,6 @@ export default interface IAction {
     payload: INewOffer | IState | string[] | string | null;
     images?: string[] | null;
     offerId?: string;
-    callback?: () => void;
+    callback?: (offerId?: string) => void;
+    status: string;
 }

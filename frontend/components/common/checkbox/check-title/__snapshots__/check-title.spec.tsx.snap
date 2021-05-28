@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test CheckTitle component Should match snapshot 1`] = `
+<DocumentFragment>
+  <button
+    class="btn-0-2-1"
+    name="checked"
+    type="button"
+  >
+    <span
+      class="label-0-2-2"
+    />
+    <span>
+      test
+    </span>
+  </button>
+</DocumentFragment>
+`;

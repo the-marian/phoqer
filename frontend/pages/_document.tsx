@@ -10,11 +10,12 @@ export default class JssDocument extends Document {
         ctx.renderPage = () =>
             originalRenderPage({
                 // eslint-disable-next-line react/display-name
-                enhanceApp: App => props => (
-                    <JssProvider registry={registry} generateId={generateId}>
-                        <App {...props} />
-                    </JssProvider>
-                ),
+                enhanceApp: App => props =>
+                    (
+                        <JssProvider registry={registry} generateId={generateId}>
+                            <App {...props} />
+                        </JssProvider>
+                    ),
             });
 
         const initialProps = await Document.getInitialProps(ctx);

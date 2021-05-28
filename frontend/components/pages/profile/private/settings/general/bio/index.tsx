@@ -18,7 +18,6 @@ const useStyles = createUseStyles((theme: Theme) => ({
         ...template(theme).input,
         minHeight: theme.rem(15),
         color: theme.palette.black[0],
-        background: theme.palette.gray[0],
     },
     label: {
         display: 'block',

@@ -17,10 +17,6 @@ const useStyles = createUseStyles((theme: Theme) => ({
 
         ...theme.media(1100).max({
             justifyContent: 'space-between',
-            width: '66%',
-        }),
-        ...theme.media(550).max({
-            justifyContent: 'space-between',
             width: '100%',
         }),
     },

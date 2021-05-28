@@ -19,7 +19,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         marginBottom: theme.rem(4),
         padding: theme.rem(3, 4, 4),
         borderRadius: theme.radius,
-        border: theme.border(0.1, theme.palette.gray[1]),
+        boxShadow: theme.palette.shadowBorder,
         ...theme.media(768).max({
             padding: theme.rem(2, 2, 0),
         }),

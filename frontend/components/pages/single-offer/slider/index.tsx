@@ -153,9 +153,11 @@ const OfferSlider = ({ images }: IProps): ReactElement => {
 
     const slides = images?.length < 5 ? [...images, ...images, ...images] : images;
 
-    const handleNav = (index = 0) => (): void => {
-        slider1?.slickGoTo(index);
-    };
+    const handleNav =
+        (index = 0) =>
+        (): void => {
+            slider1?.slickGoTo(index);
+        };
 
     const handleModal = (): void => {
         modal.open(<FullPageGallery images={images} />);

@@ -19,11 +19,16 @@ function* getOffer({ payload }: IAction) {
     }
 }
 
-function* doReview({ payload }: IAction) {
+function* doReview({ payload, tab, page }: IAction) {
     try {
         const { status } = yield call(api.offers.status, payload as string, { status: 'REVIEW' });
         if (status < 200 || status >= 300) throw new Error();
         yield put({ type: types.OFFER_DO_REVIEW_SUCCESS });
+        yield put({
+            type: types.MY_OFFERS_START,
+            payload: { tab, params: { page } },
+        });
+
         notifications.info({ message: 'Publish success' });
     } catch (error) {
         if (error?.response?.status === 401) return;

@@ -18,10 +18,11 @@ export interface IBody {
     min_rent_period: number | null;
     max_rent_period: number | null;
     extra_requirements: string;
-    city: 'Kiev';
+    city: string | null;
+    country: string | null;
     currency: string;
     images: string[];
-    cover_image: string;
+    cover_image: string | null;
     category?: string | null;
     sub_category?: string | null;
     category_id?: string | null;
@@ -30,8 +31,8 @@ export interface IBody {
 
 export default interface IAction {
     type: Type;
-    payload: INewOffer | IState | string[] | null;
+    payload: INewOffer | IState | string[] | string;
     images?: string[] | null;
     offerId?: string;
-    callback?: () => void;
+    callback?: (offerId?: string) => void;
 }
