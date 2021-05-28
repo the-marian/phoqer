@@ -180,7 +180,7 @@ const StepThree = (): ReactElement => {
 
                 <div className={css.inner}>
                     <h4 className={css.title}>
-                        {trans('price_day')} <span className={css.red}>*</span>
+                    {trans('price')} {trans('per_day')} <span className={css.red}>*</span>
                     </h4>
                     <Input
                         value={moneyFormat(value.price || 0)}

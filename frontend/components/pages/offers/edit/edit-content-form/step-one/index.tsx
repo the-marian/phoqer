@@ -102,7 +102,7 @@ const StepOne = ({ value, errors, setErrors, setValue }: IProps): ReactElement =
                 )}
                 <div className={css.inner}>
                     <h3 className={css.subtitle}>
-                        {trans('price_day')} <span className={css.red}>*</span>
+                    {trans('price')} {trans('per_day')}<span className={css.red}>*</span>
                     </h3>
                     <Input
                         value={moneyFormat(value.price || 0)}

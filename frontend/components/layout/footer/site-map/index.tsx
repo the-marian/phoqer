@@ -8,31 +8,31 @@ import useTrans from '../../../../hooks/trans.hook';
 
 const LINKS: { text: string; href: string }[] = [
     {
-        text: 'link_1',
+        text: 'help_and_feedback', //Помощь и Обратная связь
         href: routes.static.help,
     },
     {
-        text: 'link_2',
+        text: 'advertisment_on_site',// Реклама на сайте
         href: routes.static.ad,
     },
     {
-        text: 'link_3', 
+        text: 'terms_of_service',  // Условия использования
         href: routes.static.rules,
     },
     {
-        text: 'link_4',
+        text: 'privacy_statement', //Политика конфиденциальности
         href: routes.static.politic,
     },
     {
-        text: 'link_5', 
+        text: 'FAQ',
         href: routes.static.faq,
     },
     {
-        text: 'link_6', 
+        text: 'safety_rules',  //Правила безопасности
         href: routes.static.safety,
     },
     {
-        text: 'link_7', 
+        text: 'site_map',   //Карта сайта
         href: routes.static.map,
     },
 ];
