@@ -2,10 +2,11 @@ from datetime import datetime
 from typing import Optional, TypedDict
 
 import jwt
-from fastapi import Depends
+from fastapi import BackgroundTasks, Depends
 from FastAPI import config
 from FastAPI.config import ALGORITHM, database
 from fastapi.security import OAuth2PasswordBearer
+from FastAPI.users import crud
 from pydantic import EmailStr
 
 optional_login = OAuth2PasswordBearer(tokenUrl="auth/login", auto_error=False)
@@ -37,5 +38,10 @@ async def get_current_user_or_none(
         return None
 
 
-async def get_current_user(token: str = Depends(oauth2_schema)) -> int:
-    return decode_jwt(token)["user_id"]
+async def get_current_user(
+    background_tasks: BackgroundTasks,
+    token: str = Depends(oauth2_schema),
+) -> int:
+    user_id = decode_jwt(token)["user_id"]
+    background_tasks.add_task(crud.update_last_login, user_id)
+    return user_id

@@ -63,7 +63,7 @@ async def get_offers_for_tab(
     functions = {
         "ACTIVE": ["DO_INACTIVE", "ARCHIVE", "PROMOTE", "DO_DRAFT"],
         "ARCHIVED": ["DELETE", "DO_REVIEW"],
-        "DRAFT": ["DO_REVIEW", "ARCHIVE", "EDIT"],
+        "DRAFT": ["DO_REVIEW", "DELETE", "EDIT"],
         "FROZEN": ["ARCHIVE"],
         "INACTIVE": ["DO_DRAFT", "ARCHIVE", "DO_ACTIVE"],
         "IN_RENT": ["ARCHIVE"],
