@@ -19,6 +19,7 @@ async def get_favorite_offers_of_user(user_id: int) -> List[Mapping]:
         is_deliverable,
         price,
         pub_date,
+        rental_period,
         title,
         views
     FROM offers_offer

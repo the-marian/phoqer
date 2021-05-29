@@ -88,8 +88,8 @@ async def create_offer_draft(offer: OfferDraftRequest, author_id: int) -> str:
         max_rent_period,
         min_rent_period,
         price,
-        pub_date,
         rental_period,
+        pub_date,
         status,
         sub_category_id,
         title,
@@ -247,6 +247,7 @@ async def find_offers(
     max_deposit: Optional[int] = None,
     min_deposit: Optional[int] = None,
     no_deposit: Optional[bool] = None,
+    rental_period: RentalPeriod = None,
     search: Optional[str] = None,
     ordering: str = "pub_date,-views",
 ) -> List[Mapping[str, Any]]:
@@ -261,6 +262,7 @@ async def find_offers(
         price,
         promote_til_date,
         pub_date,
+        rental_period,
         title,
         views
     FROM offers_offer
@@ -274,6 +276,7 @@ async def find_offers(
       AND ((:max_deposit)::int IS NULL OR deposit_val <= (:max_deposit)::int)
       AND ((:min_deposit)::int IS NULL OR deposit_val >= (:min_deposit)::int)
       AND ((:no_deposit)::bool IS NULL OR deposit_val = 0)
+      AND ((:rental_period)::varchar IS NULL (:rental_period)::varchar)
       AND (((:search)::varchar IS NULL OR title ilike :search)
           OR
           ((:search)::varchar IS NULL OR description ilike :search))
@@ -293,6 +296,7 @@ async def find_offers(
         "max_deposit": max_deposit,
         "min_deposit": min_deposit,
         "no_deposit": no_deposit,
+        "rental_period":rental_period,
         "search": f"%{search}%" if search else None,
     }
     return await database.fetch_all(query=query, values=values)
@@ -308,6 +312,7 @@ async def count_founded_offers(
     max_deposit: Optional[int] = None,
     min_deposit: Optional[int] = None,
     no_deposit: Optional[bool] = None,
+    rental_period: RentalPeriod = None,
     search: Optional[str] = None,
 ) -> int:
     query = """
@@ -323,6 +328,7 @@ async def count_founded_offers(
       AND ((:max_deposit)::int IS NULL OR deposit_val <= (:max_deposit)::int)
       AND ((:min_deposit)::int IS NULL OR deposit_val >= (:min_deposit)::int)
       AND ((:no_deposit)::bool IS NULL OR deposit_val = 0)
+      AND ((:rental_period)::varchar IS NULL (:rental_period)::varchar)
       AND (((:search)::varchar IS NULL OR title ilike :search)
           OR
           ((:search)::varchar IS NULL OR description ilike :search))
@@ -337,6 +343,7 @@ async def count_founded_offers(
         "max_deposit": max_deposit,
         "min_deposit": min_deposit,
         "no_deposit": no_deposit,
+        "rental_period": rental_period,
         "search": f"%{search}%" if search else None,
     }
     count = await database.fetch_one(query=query, values=values)
@@ -372,6 +379,7 @@ async def get_popular_offers() -> List[Mapping]:
         price,
         promote_til_date,
         pub_date,
+        rental_period,
         title,
         views
     FROM offers_offer
@@ -412,6 +420,7 @@ async def get_offers_by_statuses(
         price,
         promote_til_date,
         pub_date,
+        rental_period,
         status,
         title,
         views
