@@ -34,6 +34,7 @@ def test_get_offer(client):
         'is_deliverable': True,
         'is_favorite': False,
         'is_promoted': False,
+        'items_amount': 1,
         'last_name': 'Zozulia',
         'max_rent_period': 10,
         'min_rent_period': 20,

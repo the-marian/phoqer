@@ -46,6 +46,7 @@ class OfferDraftRequest(BaseModel):
     extra_requirements: Optional[str] = None
     images: List[HttpUrl] = []
     is_deliverable: bool = False
+    items_amount: Optional[int] = 1
     max_rent_period: Optional[int] = None
     min_rent_period: Optional[int] = None
     price: Optional[int] = None
