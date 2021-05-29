@@ -12,7 +12,7 @@ import routes from './routes';
 
 const config = {
     baseUrl: {
-        development: (version = 'v1'): string => 'http://phoqer.com/api/' + version,
+        development: (version = 'v1'): string => 'http://localhost:8000',
         test: (version = 'v1'): string => 'http://phoqer.com/api/' + version,
         production: (version = 'v1'): string => (process.browser ? 'http://phoqer.com/api/' + version : 'http://backend:8001'),
     },
