@@ -1,11 +1,8 @@
 from fastapi import status
 
 
-def test_get_favorite(client):
-    response = client.get(
-        "favorite/",
-        headers={"Authorization": "Token 472df9e4e5f55a0bc2a2f1139e2ad49c5d76076a"},
-    )
+def test_get_favorite(client, auth_token):
+    response = client.get("favorite/", headers= auth_token)
     assert response.status_code == status.HTTP_200_OK
     assert response.json() == [
         {

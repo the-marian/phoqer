@@ -27,6 +27,13 @@ class Currency(Enum):
     USD = "USD"
 
 
+class RentalPeriod(Enum):
+    DAY = "DAY"
+    HOUR = "HOUR"
+    MONTH = "MONTH"
+    NONE = None
+
+
 class OfferDraftRequest(BaseModel):
     category: Optional[str] = None
     city: Optional[str] = None
@@ -39,9 +46,11 @@ class OfferDraftRequest(BaseModel):
     extra_requirements: Optional[str] = None
     images: List[HttpUrl] = []
     is_deliverable: bool = False
+    items_amount: Optional[int] = 1
     max_rent_period: Optional[int] = None
     min_rent_period: Optional[int] = None
     price: Optional[int] = None
+    rental_period: RentalPeriod = None
     sub_category: Optional[str] = None
     title: Optional[str] = None
     views: int = 0
@@ -69,6 +78,7 @@ class OffersListItem(BaseModel):
     is_promoted: bool = False
     price: int
     pub_date: date
+    rental_period: RentalPeriod = None
     title: str
     views: int
 
@@ -88,6 +98,7 @@ class MyOffersListItem(BaseModel):
     is_promoted: bool = False
     price: Optional[int] = None
     pub_date: Optional[date] = None
+    rental_period: RentalPeriod = None
     title: Optional[str] = None
     views: Optional[int] = None
 
@@ -107,5 +118,6 @@ class ValidOffer(BaseModel):
     price: int
     pub_date: date
     status: Status
+    rental_period: RentalPeriod
     title: str
     category: str

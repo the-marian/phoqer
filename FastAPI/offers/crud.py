@@ -2,7 +2,7 @@ from typing import Any, List, Mapping, Optional, Set
 from uuid import UUID
 
 from FastAPI.config import PAGE_SIZE, database
-from FastAPI.offers.schemas import OfferDraftRequest, Status
+from FastAPI.offers.schemas import OfferDraftRequest, Status, RentalPeriod
 from pydantic import HttpUrl
 
 
@@ -29,12 +29,14 @@ async def get_offer(offer_id: str) -> Optional[Mapping]:
         offers_offer.deposit_val,
         offers_offer.max_rent_period,
         offers_offer.min_rent_period,
+        offers_offer.rental_period,
         offers_offer.sub_category_id AS "sub_category",
         offers_offer.price,
         offers_offer.description,
         offers_offer.title,
         offers_offer.doc_needed,
         offers_offer.is_deliverable,
+        offers_offer.items_amount,
         offers_offer.extra_requirements,
         users_user.first_name,
         users_user.last_name,
@@ -82,9 +84,11 @@ async def create_offer_draft(offer: OfferDraftRequest, author_id: int) -> str:
         extra_requirements,
         id,
         is_deliverable,
+        items_amount,
         max_rent_period,
         min_rent_period,
         price,
+        rental_period,
         pub_date,
         status,
         sub_category_id,
@@ -103,9 +107,11 @@ async def create_offer_draft(offer: OfferDraftRequest, author_id: int) -> str:
         :extra_requirements,
         uuid_generate_v4(),
         :is_deliverable,
+        :items_amount,
         :max_rent_period,
         :min_rent_period,
         :price,
+        :rental_period,
         current_date,
         :status,
         :sub_category_id,
@@ -126,10 +132,12 @@ async def create_offer_draft(offer: OfferDraftRequest, author_id: int) -> str:
         "doc_needed": offer.doc_needed,
         "extra_requirements": offer.extra_requirements,
         "is_deliverable": offer.is_deliverable,
+        "items_amount": offer.items_amount,
         "max_rent_period": offer.max_rent_period,
         "min_rent_period": offer.min_rent_period,
         "sub_category_id": offer.sub_category,
         "price": offer.price,
+        "rental_period": RentalPeriod.NONE.value,
         "title": offer.title,
         "views": offer.views,
     }
@@ -183,9 +191,11 @@ async def partial_update_offer(
         doc_needed = :doc_needed,
         extra_requirements = :extra_requirements,
         is_deliverable = :is_deliverable,
+        items_amount = :items_amount,
         max_rent_period = :max_rent_period,
         min_rent_period = :min_rent_period,
         price = :price,
+        rental_period = :rental_period,
         sub_category_id = :sub_category_id,
         title = :title
     WHERE id=:offer_id
@@ -201,10 +211,12 @@ async def partial_update_offer(
         "doc_needed": updated_offer.doc_needed,
         "extra_requirements": updated_offer.extra_requirements,
         "is_deliverable": updated_offer.is_deliverable,
+        "items_amount": updated_offer.items_amount,
         "max_rent_period": updated_offer.max_rent_period,
         "min_rent_period": updated_offer.min_rent_period,
         "offer_id": offer_id,
         "price": updated_offer.price,
+        "rental_period": updated_offer.rental_period,
         "sub_category_id": updated_offer.sub_category,
         "title": updated_offer.title,
     }
@@ -235,6 +247,7 @@ async def find_offers(
     max_deposit: Optional[int] = None,
     min_deposit: Optional[int] = None,
     no_deposit: Optional[bool] = None,
+    rental_period: RentalPeriod = None,
     search: Optional[str] = None,
     ordering: str = "pub_date,-views",
 ) -> List[Mapping[str, Any]]:
@@ -249,6 +262,7 @@ async def find_offers(
         price,
         promote_til_date,
         pub_date,
+        rental_period,
         title,
         views
     FROM offers_offer
@@ -262,6 +276,7 @@ async def find_offers(
       AND ((:max_deposit)::int IS NULL OR deposit_val <= (:max_deposit)::int)
       AND ((:min_deposit)::int IS NULL OR deposit_val >= (:min_deposit)::int)
       AND ((:no_deposit)::bool IS NULL OR deposit_val = 0)
+      AND ((:rental_period)::varchar IS NULL (:rental_period)::varchar)
       AND (((:search)::varchar IS NULL OR title ilike :search)
           OR
           ((:search)::varchar IS NULL OR description ilike :search))
@@ -281,6 +296,7 @@ async def find_offers(
         "max_deposit": max_deposit,
         "min_deposit": min_deposit,
         "no_deposit": no_deposit,
+        "rental_period":rental_period,
         "search": f"%{search}%" if search else None,
     }
     return await database.fetch_all(query=query, values=values)
@@ -296,6 +312,7 @@ async def count_founded_offers(
     max_deposit: Optional[int] = None,
     min_deposit: Optional[int] = None,
     no_deposit: Optional[bool] = None,
+    rental_period: RentalPeriod = None,
     search: Optional[str] = None,
 ) -> int:
     query = """
@@ -311,6 +328,7 @@ async def count_founded_offers(
       AND ((:max_deposit)::int IS NULL OR deposit_val <= (:max_deposit)::int)
       AND ((:min_deposit)::int IS NULL OR deposit_val >= (:min_deposit)::int)
       AND ((:no_deposit)::bool IS NULL OR deposit_val = 0)
+      AND ((:rental_period)::varchar IS NULL (:rental_period)::varchar)
       AND (((:search)::varchar IS NULL OR title ilike :search)
           OR
           ((:search)::varchar IS NULL OR description ilike :search))
@@ -325,6 +343,7 @@ async def count_founded_offers(
         "max_deposit": max_deposit,
         "min_deposit": min_deposit,
         "no_deposit": no_deposit,
+        "rental_period": rental_period,
         "search": f"%{search}%" if search else None,
     }
     count = await database.fetch_one(query=query, values=values)
@@ -360,6 +379,7 @@ async def get_popular_offers() -> List[Mapping]:
         price,
         promote_til_date,
         pub_date,
+        rental_period,
         title,
         views
     FROM offers_offer
@@ -400,6 +420,7 @@ async def get_offers_by_statuses(
         price,
         promote_til_date,
         pub_date,
+        rental_period,
         status,
         title,
         views
