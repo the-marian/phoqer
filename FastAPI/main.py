@@ -10,6 +10,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from FastAPI.offers import offers
 from FastAPI.upload import upload
 from FastAPI.users import users
+from FastAPI.chats import chats
 
 origins = [
     "http://localhost:4000",
@@ -35,6 +36,7 @@ app.include_router(login.router)
 app.include_router(locations.router)
 app.include_router(users.router)
 app.include_router(upload.router)
+app.include_router(chats.router)
 
 
 @app.on_event("startup")
