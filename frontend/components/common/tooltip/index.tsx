@@ -8,8 +8,12 @@ import useMedia from '../../../hooks/media.hook';
 const useStyles = createUseStyles((theme: Theme) => ({
     wrp: {
         position: 'relative',
-        zIndex: 10,
+        zIndex: 2,
         '&:hover > .tooltip': {
+            opacity: 1,
+            visibility: 'visible',
+        },
+        '&:focus > .tooltip': {
             opacity: 1,
             visibility: 'visible',
         },
@@ -32,7 +36,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
             height: theme.rem(1),
             width: theme.rem(1),
             background: theme.palette.black[0],
-            zIndex: 9,
+            zIndex: 1,
         },
     },
     top_left: {
@@ -79,13 +83,14 @@ const useStyles = createUseStyles((theme: Theme) => ({
 
 interface IProps {
     className?: string;
+    classNameWrp?: string;
     children: ReactElement | ReactElement[];
     content: string | ReactElement | ReactElement[];
 }
 
 type PositionClassNames = 'top_left' | 'top_right' | 'bottom_left' | 'bottom_right';
 
-const Tooltip = ({ children, className, content }: IProps): ReactElement => {
+const Tooltip = ({ children, className, classNameWrp, content }: IProps): ReactElement => {
     const css = useStyles();
     const media = useMedia(768);
     const ref = useRef<HTMLDivElement | null>(null);
@@ -99,7 +104,7 @@ const Tooltip = ({ children, className, content }: IProps): ReactElement => {
     };
 
     return media ? (
-        <div ref={ref} className={css.wrp} onMouseEnter={handleHover}>
+        <div ref={ref} className={clsx(css.wrp, classNameWrp)} onMouseEnter={handleHover}>
             <div className={clsx(css.tooltip, css[position], 'tooltip', className)}>{content}</div>
             {children}
         </div>
