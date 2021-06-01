@@ -146,6 +146,7 @@ const SubComment = ({ id, comments }: { id: number; comments: IComment[] }): Rea
     const css = useStyles();
     const history = useRouter();
     const dispatch = useDispatch();
+    const offer_id = String(history.query.offerId);
 
     const handleSubmit = (body: string, images: string[]): void => {
         dispatch({
@@ -153,8 +154,8 @@ const SubComment = ({ id, comments }: { id: number; comments: IComment[] }): Rea
             payload: {
                 body,
                 images,
+                offer_id,
                 replies_id: id,
-                offer_id: history.query.offerId,
             },
         });
     };
@@ -186,16 +187,17 @@ const CommentsItem = ({ comment, extend = false, replies = false, inner = false 
     const trans = useTrans();
     const history = useRouter();
     const dispatch = useDispatch();
+    const offerId = String(history.query.offerId);
 
     const [deleting, setDeleting] = useState<number | null>(null);
 
     const handleLike = (value: 'like' | 'dislike'): void => {
-        dispatch({ type: CLICK_TYPE[value], payload: comment.id, offerId: history.query.offerId });
+        dispatch({ type: CLICK_TYPE[value], payload: comment.id, offerId });
     };
 
     const handleDelete = (): void => {
         setDeleting(comment.id);
-        dispatch({ type: types.DELETE_COMMENT_START, payload: comment.id, offerId: history.query.offerId });
+        dispatch({ type: types.DELETE_COMMENT_START, payload: comment.id, offerId });
         modal.close();
     };
 
@@ -270,7 +272,7 @@ const CommentsItem = ({ comment, extend = false, replies = false, inner = false 
 
             {deleting === comment.id && <CommentsLoader top={-1.5} />}
 
-            {replies && !!comment.replies?.length && <SubComment id={comment.id} comments={comment.replies} />}
+            {replies && comment.replies?.length ? <SubComment id={comment.id} comments={comment.replies} /> : null}
         </div>
     );
 };

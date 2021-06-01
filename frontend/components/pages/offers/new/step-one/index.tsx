@@ -157,7 +157,7 @@ const StepThree = (): ReactElement => {
                 <h4 className={css.title}>
                     {trans('indicate_your_location')} <span className={css.red}>*</span>
                 </h4>
-                <Region error={errors.region} resetError={setErrors} />
+                <Region className={css.region} error={errors.region} resetError={setErrors} />
             </div>
 
             <CheckYesNo value={value.is_deliverable} onChange={handleDelivery}>
@@ -186,7 +186,7 @@ const StepThree = (): ReactElement => {
 
                 <div className={css.inner}>
                     <h4 className={css.title}>
-                    {trans('price')} {trans('per_day')} <span className={css.red}>*</span>
+                        {trans('price')} {trans('per_day')} <span className={css.red}>*</span>
                     </h4>
                     <Input
                         value={moneyFormat(value.price || 0)}

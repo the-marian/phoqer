@@ -32,6 +32,7 @@ interface Template {
         disabled: Styles;
         errors: Styles;
         errorsText: Styles;
+        region: Styles;
     };
 }
 
@@ -94,6 +95,9 @@ const newOfferTemplate = (theme: Theme): Template => ({
         },
     },
     step: {
+        region: {
+            color: theme.palette.trueBlack,
+        },
         form: {
             padding: theme.rem(3, 10),
             borderRadius: theme.radius,
@@ -153,6 +157,7 @@ const newOfferTemplate = (theme: Theme): Template => ({
             width: '100%',
             height: theme.rem(10),
             padding: theme.rem(2),
+            background: theme.palette.trueWhite,
             boxShadow: theme.shadow[1],
         },
         inputWrp: {
