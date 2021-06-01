@@ -4,12 +4,7 @@ from datetime import datetime
 from pydantic import BaseModel, HttpUrl
 
 
-class PaginationResponse(BaseModel):
-    total: int = 0
-    data: List
-
-
-class ChatsList(BaseModel):
+class ChatsListItem(BaseModel):
     chat_id: int
     recipient_id: int
     recipient_first_name: str
@@ -19,7 +14,12 @@ class ChatsList(BaseModel):
     cover_image: Optional[str] = None
 
 
-class MessagesList(BaseModel):
+class ChatsListResponse(BaseModel):
+    total: int = 0
+    data: List[ChatsListItem]
+
+
+class MessagesListItem(BaseModel):
     id: int
     text: str
     creation_datetime: datetime
@@ -31,12 +31,6 @@ class MessagesList(BaseModel):
     uploads: List[HttpUrl] = []
 
 
-MessagesList.update_forward_refs()
-
-
-class ChatsListResponse(PaginationResponse):
-    data: List[ChatsList]
-
-
-class MessagesListResponse(PaginationResponse):
-    data: List[MessagesList]
+class MessagesListResponse(BaseModel):
+    total: int = 0
+    data: List[MessagesListItem]

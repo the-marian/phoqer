@@ -1,7 +1,7 @@
 from typing import List, Optional, Mapping, Dict
 
+from FastAPI.chats.schemas import ChatsListItem
 from FastAPI.config import database, CHAT_SIZE, MESSAGES_SIZE
-from FastAPI.chats.schemas import ChatsList
 
 
 async def get_chats(
@@ -9,7 +9,7 @@ async def get_chats(
         offset: int = 0,
         limit: int = CHAT_SIZE,
         search: Optional[str] = None,
-) -> List[ChatsList]:
+) -> List[ChatsListItem]:
     query = """
     SELECT
         chats.chat_id,
