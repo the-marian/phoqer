@@ -3,7 +3,7 @@ from typing import Mapping
 from fastapi import APIRouter, Depends, HTTPException, Response, status
 from fastapi.responses import RedirectResponse
 from FastAPI.users import crud
-from FastAPI.users.schemas import ShortUser, User, UserCreateRequest
+from FastAPI.users.schemas import ShortUser, User, UserCreateRequest, UserPartialUpdate
 from FastAPI.users.utils import (
     get_activation_jwt,
     get_password_hash,
@@ -77,3 +77,17 @@ async def get_user_details(user_id: int) -> Mapping:
     Get user details by user_id
     """
     return await crud.get_user(user_id)
+
+
+@router.patch("/me", status_code=204)
+async def update_user(
+    update_user_data: UserPartialUpdate,
+    author_id: int = Depends(get_current_user),
+) -> Response:
+    stored_user_data = await crud.get_user(author_id)
+    await crud.partial_update_user(
+        user_id=author_id,
+        update_user_data=update_user_data,
+        stored_user_data=stored_user_data,
+    )
+    return Response(status_code=204)

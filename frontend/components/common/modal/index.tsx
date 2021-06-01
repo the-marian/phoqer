@@ -30,6 +30,8 @@ class ModalManagement extends EventEmitter {
     };
 
     close = (): void => {
+        if (!this.dom && !this.scrollY) return;
+
         this.dom = null;
 
         // styles
@@ -37,6 +39,7 @@ class ModalManagement extends EventEmitter {
             document.body.style.position = '';
             document.body.style.top = '';
             window.scrollTo({ top: this.scrollY });
+            this.scrollY = 0;
         }
 
         // emit

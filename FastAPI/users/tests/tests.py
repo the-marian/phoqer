@@ -1,10 +1,16 @@
+import datetime
+
+import pytest
 from fastapi import status
+from FastAPI.main import app
+from FastAPI.users.crud import get_user
+from httpx import AsyncClient
 
 
 def test_user_signup(client):
     post_data = {
         "password": "i_am_hungry",
-        "email": "marian.zozulia@gmail.com",
+        "email": "mariian.zozulia@gmail.com",
         "first_name": "Marian",
         "last_name": "Zozulia",
     }
@@ -33,56 +39,84 @@ def test_logged_in_user_details(client, auth_token):
     r = client.get("users/me", headers=auth_token)
     assert r.status_code == status.HTTP_200_OK
     assert r.json() == {
-        "bio": "lol kek cheburek",
-        "birth_date": "2021-03-01",
+        "bio": "new bio",
+        "birth_date": "1997-11-06",
+        "city": "warsaw",
         "communication_rate": 0,
-        "date_joined": "2021-03-08T00:00:00+00:00",
+        "country": "poland",
+        "date_joined": "2021-03-09",
         "description_rate": 0,
         "dislikes": 0,
         "email": "marian.zozulia@gmail.com",
         "first_name": "Marian",
-        "id": 15,
+        "id": 2,
+        "last_activity": "2021-03-09T00:00:00+00:00",
         "last_name": "Zozulia",
         "likes": 0,
-        "location": "Warsaw",
-        "profile_img": "https://example.com/dic_pic.jpeg",
+        "profile_img": "https://example.com/dic_pic_2.jpeg",
         "response_rate": 0,
         "satisfaction_rate": 0,
     }
 
 
 def test_get_user_details(client):
-    r = client.get("users/15")
+    r = client.get("users/2")
     assert r.status_code == status.HTTP_200_OK
     assert r.json() == {
-        "bio": "lol kek cheburek",
-        "birth_date": "2021-03-01",
+        "bio": "new bio",
+        "birth_date": "1997-11-06",
+        "city": "warsaw",
         "communication_rate": 0,
-        "date_joined": "2021-03-08",
+        "country": "poland",
+        "date_joined": "2021-03-09",
         "description_rate": 0,
         "dislikes": 0,
         "email": "marian.zozulia@gmail.com",
         "first_name": "Marian",
-        "id": 15,
+        "id": 2,
+        "last_activity": "2021-03-09T00:00:00+00:00",
         "last_name": "Zozulia",
         "likes": 0,
-        "location": "Warsaw",
-        "profile_img": "https://example.com/dic_pic.jpeg",
+        "profile_img": "https://example.com/dic_pic_2.jpeg",
         "response_rate": 0,
         "satisfaction_rate": 0,
-        "last_activity": "2021-03-08T00:00:00+00:00",
     }
 
 
 def test_get_short_user_details(client):
-    r = client.get("users/short/15")
+    r = client.get("users/short/2")
     assert r.status_code == status.HTTP_200_OK
     assert r.json() == {
-        "date_joined": "2021-03-08",
+        "city": "warsaw",
+        "country": "poland",
+        "date_joined": "2021-03-09",
         "first_name": "Marian",
-        "id": 15,
-        "last_activity": "2021-03-08T00:00:00+00:00",
+        "id": 2,
+        "last_activity": "2021-03-09T00:00:00+00:00",
         "last_name": "Zozulia",
-        "location": "Warsaw",
-        "profile_img": "https://example.com/dic_pic.jpeg",
+        "profile_img": "https://example.com/dic_pic_2.jpeg",
     }
+
+
+@pytest.mark.asyncio
+async def test_partial_update_user(auth_token):
+    patch_data = {
+        "bio": "new bio",
+        "birth_date": "1997-11-06",
+        "city": "warsaw",
+        "country": "poland",
+        "first_name": "Marian",
+        "last_name": "Zozulia",
+        "profile_img": "https://example.com/dic_pic_2.jpeg",
+    }
+    async with AsyncClient(app=app, base_url="http://test") as ac:
+        response = await ac.patch("users/me", json=patch_data, headers=auth_token)
+    assert response.status_code == 204
+    db_response = await get_user(2)
+    assert db_response.get("bio") == "new bio"
+    assert db_response.get("birth_date") == datetime.date(1997, 11, 6)
+    assert db_response.get("city") == "warsaw"
+    assert db_response.get("country") == "poland"
+    assert db_response.get("first_name") == "Marian"
+    assert db_response.get("last_name") == "Zozulia"
+    assert db_response.get("profile_img") == "https://example.com/dic_pic_2.jpeg"
