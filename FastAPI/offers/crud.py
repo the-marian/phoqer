@@ -296,7 +296,7 @@ async def find_offers(
         "max_deposit": max_deposit,
         "min_deposit": min_deposit,
         "no_deposit": no_deposit,
-        "rental_period":rental_period,
+        "rental_period": rental_period,
         "search": f"%{search}%" if search else None,
     }
     return await database.fetch_all(query=query, values=values)

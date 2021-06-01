@@ -1,6 +1,5 @@
 import pytest
 from fastapi import status
-from httpx import AsyncClient
 
 from FastAPI.main import app
 from FastAPI.offers.crud import get_offer
