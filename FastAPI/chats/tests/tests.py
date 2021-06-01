@@ -20,7 +20,7 @@ def test_get_chats(client, auth_token):
                 "recipient_last_name": "Mykhailychenko",
                 "recipient_last_activity": "2021-03-10T00:00:00+00:00",
                 "new_messages": 1,
-                "cover_image": "http://phoqer.com/mediafiles/4f6f6434-b586-4a27-82e7-21cc2e7fbfe5-image(2).jpeg"
+                "cover_image": "http://phoqer.com/mediafiles/4f6f6434-b586-4a27-82e7-21cc2e7fbfe5-image(2).jpeg",
             },
             {
                 "chat_id": 3,
@@ -29,9 +29,9 @@ def test_get_chats(client, auth_token):
                 "recipient_last_name": "Herzog",
                 "recipient_last_activity": "2021-05-29T00:00:00+00:00",
                 "new_messages": 0,
-                "cover_image": "http://phoqer.com/mediafiles/a4639bcc-82c7-4cfd-bb4a-21bf04994bbb-image.jpeg"
-            }
-        ]
+                "cover_image": "http://phoqer.com/mediafiles/a4639bcc-82c7-4cfd-bb4a-21bf04994bbb-image.jpeg",
+            },
+        ],
     }
 
 
@@ -48,19 +48,16 @@ def test_get_chats_search(client, auth_token):
                 "recipient_last_name": "Mykhailychenko",
                 "recipient_last_activity": "2021-03-10T00:00:00+00:00",
                 "new_messages": 1,
-                "cover_image": "http://phoqer.com/mediafiles/4f6f6434-b586-4a27-82e7-21cc2e7fbfe5-image(2).jpeg"
+                "cover_image": "http://phoqer.com/mediafiles/4f6f6434-b586-4a27-82e7-21cc2e7fbfe5-image(2).jpeg",
             },
-        ]
+        ],
     }
 
 
 def test_get_chats_search_no_result(client, auth_token):
     response = client.get("chats?search=igorigorigor", headers=auth_token)
     assert response.status_code == status.HTTP_200_OK
-    assert response.json() == {
-        "total": 0,
-        "data": []
-    }
+    assert response.json() == {"total": 0, "data": []}
 
 
 def test_get_messages_no_permission(client, auth_token):
@@ -96,10 +93,7 @@ def test_get_messages(client, auth_token):
                 "first_name": "Marian",
                 "last_name": "Zozulia",
                 "profile_img": None,
-                "uploads": [
-                    "http://example.com",
-                    "http://example.com"
-                ]
+                "uploads": ["http://example.com", "http://example.com"],
             },
             {
                 "id": 2,
@@ -110,9 +104,7 @@ def test_get_messages(client, auth_token):
                 "first_name": "Igor",
                 "last_name": "Mykhailychenko",
                 "profile_img": None,
-                "uploads": [
-                    "http://example.com"
-                ]
+                "uploads": ["http://example.com"],
             },
             {
                 "id": 3,
@@ -123,7 +115,7 @@ def test_get_messages(client, auth_token):
                 "first_name": "Marian",
                 "last_name": "Zozulia",
                 "profile_img": None,
-                "uploads": []
-            }
-        ]
+                "uploads": [],
+            },
+        ],
     }

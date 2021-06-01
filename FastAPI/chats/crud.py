@@ -1,15 +1,14 @@
-from typing import List, Optional, Mapping, Dict
+from typing import Any, Dict, List, Mapping, Optional
 
-from FastAPI.chats.schemas import ChatsListItem
-from FastAPI.config import database, CHAT_SIZE, MESSAGES_SIZE
+from FastAPI.config import CHAT_SIZE, MESSAGES_SIZE, database
 
 
 async def get_chats(
-        user_id: int,
-        offset: int = 0,
-        limit: int = CHAT_SIZE,
-        search: Optional[str] = None,
-) -> List[ChatsListItem]:
+    user_id: int,
+    offset: int = 0,
+    limit: int = CHAT_SIZE,
+    search: Optional[str] = None,
+) -> List[Mapping[str, Any]]:
     query = """
     SELECT
         chats.chat_id,
@@ -17,55 +16,47 @@ async def get_chats(
         offers_offer.title,
         (SELECT COUNT(*)
             FROM messages
-            WHERE messages.chat_id = chats.chat_id 
+            WHERE messages.chat_id = chats.chat_id
                 AND messages.is_red = FALSE) AS new_messages,
         users_user.id AS recipient_id,
         users_user.first_name AS recipient_first_name,
         users_user.last_name AS recipient_last_name,
         users_user.last_login AS recipient_last_activity
-    FROM chats 
+    FROM chats
     INNER JOIN offers_offer ON chats.offer_id=offers_offer.id
-    INNER JOIN users_user ON 
-        ((chats.author_id = :user_id AND users_user.id = chats.client_id) 
+    INNER JOIN users_user ON
+        ((chats.author_id = :user_id AND users_user.id = chats.client_id)
             OR (chats.client_id = :user_id AND users_user.id = chats.author_id))
         AND (((:search)::varchar IS NULL OR users_user.first_name ilike :search)
             OR ((:search)::varchar IS NULL OR users_user.last_name ilike :search))
-    WHERE 
-        chats.author_id = :user_id OR chats.client_id = :user_id 
+    WHERE
+        chats.author_id = :user_id OR chats.client_id = :user_id
         AND chats.is_done=FALSE
     LIMIT :limit
     OFFSET :offset
     """
-    values = {
-        "user_id": user_id,
-        "offset": offset,
-        "limit": limit,
-        "search": search
-    }
+    values = {"user_id": user_id, "offset": offset, "limit": limit, "search": search}
     return await database.fetch_all(query=query, values=values)
 
 
 async def count_chats(
-        user_id: int,
-        search: Optional[str] = None,
+    user_id: int,
+    search: Optional[str] = None,
 ) -> int:
     query = """
     SELECT COUNT(*)
-    FROM chats 
+    FROM chats
     INNER JOIN offers_offer ON chats.offer_id=offers_offer.id
-    INNER JOIN users_user ON 
-        ((chats.author_id = :user_id AND users_user.id = chats.client_id) 
+    INNER JOIN users_user ON
+        ((chats.author_id = :user_id AND users_user.id = chats.client_id)
             OR (chats.client_id = :user_id AND users_user.id = chats.author_id))
         AND (((:search)::varchar IS NULL OR users_user.first_name ilike :search)
             OR ((:search)::varchar IS NULL OR users_user.last_name ilike :search))
-    WHERE 
-        chats.author_id = :user_id OR chats.client_id = :user_id 
+    WHERE
+        chats.author_id = :user_id OR chats.client_id = :user_id
         AND chats.is_done=FALSE
     """
-    values = {
-        "user_id": user_id,
-        "search": search
-    }
+    values = {"user_id": user_id, "search": search}
     count = await database.fetch_one(query=query, values=values)
     return int(count["count"]) if count else 0
 
@@ -83,12 +74,12 @@ async def is_chat_exist(chat_id: int) -> Optional[Mapping]:
 
 
 async def get_messages(
-        chat_id: int,
-        offset: int = 0,
-        limit: int = MESSAGES_SIZE,
-) -> List[Dict]:
+    chat_id: int,
+    offset: int = 0,
+    limit: int = MESSAGES_SIZE,
+) -> List[Mapping[str, Any]]:
     query = """
-    SELECT 
+    SELECT
         messages.id,
         messages.text,
         messages.creation_datetime,
@@ -99,7 +90,7 @@ async def get_messages(
         users_user.profile_img
     FROM messages
     INNER JOIN users_user ON users_user.id = messages.author_id
-    WHERE messages.chat_id = :chat_id 
+    WHERE messages.chat_id = :chat_id
     ORDER BY messages.creation_datetime DESC
     LIMIT :limit
     OFFSET :offset
@@ -114,7 +105,7 @@ async def get_messages(
 
 async def get_chat_uploads(chat_id: int) -> Dict[int, List[str]]:
     query = """
-    SELECT 
+    SELECT
         access_url,
         message_id
     FROM messages_uploads

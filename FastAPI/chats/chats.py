@@ -1,9 +1,13 @@
-from fastapi import APIRouter, Depends, HTTPException
 from math import ceil
-from typing import Dict, Optional, List
+from typing import Any, Dict, List, Mapping, Optional, Union
 
+from fastapi import APIRouter, Depends, HTTPException
 from FastAPI.chats import crud
-from FastAPI.chats.schemas import ChatsListResponse, ChatsListItem, MessagesListResponse, MessagesListItem
+from FastAPI.chats.schemas import (
+    ChatsListResponse,
+    MessagesListItem,
+    MessagesListResponse,
+)
 from FastAPI.config import CHAT_SIZE, MESSAGES_SIZE
 from FastAPI.utils import get_current_user
 
@@ -15,10 +19,10 @@ router = APIRouter(
 
 @router.get("", response_model=ChatsListResponse)
 async def get_chats(
-        user_id=Depends(get_current_user),
-        page: int = 1,
-        search: Optional[str] = None,
-) -> Dict[str, List[ChatsListItem]]:
+    user_id: int = Depends(get_current_user),
+    page: int = 1,
+    search: Optional[str] = None,
+) -> Dict[str, Union[int, List[Mapping[str, Any]]]]:
     offset = (page - 1) * CHAT_SIZE
     limit = CHAT_SIZE
 
@@ -30,10 +34,10 @@ async def get_chats(
 
 @router.get("/{chat_id}", response_model=MessagesListResponse)
 async def get_messages(
-        chat_id: int,
-        page: int = 1,
-        user_id=Depends(get_current_user),
-) -> Dict[str, List[MessagesListItem]]:
+    chat_id: int,
+    page: int = 1,
+    user_id: int = Depends(get_current_user),
+) -> Dict[str, Union[int, List[MessagesListItem]]]:
     offset = (page - 1) * MESSAGES_SIZE
     limit = MESSAGES_SIZE
 
@@ -54,5 +58,8 @@ async def get_messages(
 
     return {
         "total": ceil(await crud.count_messages(chat_id) / MESSAGES_SIZE),
-        "data": [MessagesListItem(**message, uploads=uploads.get(message["id"], [])) for message in messages],
+        "data": [
+            MessagesListItem(**message, uploads=uploads.get(message["id"], []))
+            for message in messages
+        ],
     }
