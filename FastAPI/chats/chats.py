@@ -37,8 +37,7 @@ async def get_messages(
     offset = (page - 1) * MESSAGES_SIZE
     limit = MESSAGES_SIZE
 
-    chat = await crud.is_chat_exist(chat_id)
-    if not chat:
+    if not (chat := await crud.is_chat_exist(chat_id)):
         raise HTTPException(
             status_code=404,
             detail=f"Chat with id {chat_id} does not exist",
