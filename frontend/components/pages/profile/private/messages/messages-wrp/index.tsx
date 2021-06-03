@@ -56,7 +56,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
 }));
 
-// HELPER HIDE/SHOW CHAT CONVERSATION
+// HELPER HIDE/SHOW CHAT SIDEBAR
 interface MessagesWrpShowSidebarProps {
     children: ReactElement | null;
     show: boolean;

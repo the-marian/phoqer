@@ -6,6 +6,7 @@ from pydantic import BaseModel, HttpUrl
 
 class ChatsListItem(BaseModel):
     chat_id: int
+    title: str
     recipient_id: int
     recipient_first_name: str
     recipient_last_name: str
