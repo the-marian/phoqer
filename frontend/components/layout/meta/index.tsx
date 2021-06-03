@@ -97,6 +97,7 @@ const Meta = ({ title, description, keywords, icon, h1 = '' }: IProps): ReactEle
                 <link rel="alternate" hrefLang="x-default" href={url()} />
                 <link rel="alternate" hrefLang="en" href={url('en')} />
                 <link rel="alternate" hrefLang="ru" href={url('ru')} />
+                <link rel="alternate" hrefLang="ua" href={url('ua')} />
 
                 {/* PWA */}
                 <meta name="application-name" content="Phoqer App" />

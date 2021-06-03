@@ -187,8 +187,7 @@ const OfferCard = ({ offer, showFavoriteBtn = true }: IProps): ReactElement => {
                         <button type="button" className={css.btn}>
                             {trans('rent')}
                         </button>
-
-                        <button type="button" className={clsx(css.favorite)} onClick={handleFavorite}>
+                        <button type="button" className={clsx(css.favorite)} onClick={handleFavorite} data-tip="Добавить в избранное">
                             {is_favorite ? <FontAwesomeIcon icon={faSolidHeart} /> : <FontAwesomeIcon icon={faHeart} />}
                         </button>
                     </div>
