@@ -1,11 +1,12 @@
 import { GetServerSidePropsContext } from 'next';
-import React, { ReactElement } from 'react';
+import React, { ReactElement, useEffect } from 'react';
 import { createUseStyles } from 'react-jss';
+import { useDispatch } from 'react-redux';
 
 import { serverRedirect } from '../../../../assets/helpers';
 import routes from '../../../../assets/routes';
 import { Theme } from '../../../../assets/theme';
-import ProfileChatNav from '../../../../components/common/user-nav/profile/chat-nav';
+import ProfileChatNav from '../../../../components/common/navigation/profile-nav/chat-nav';
 import AuthRedirect from '../../../../components/context/auth/auth-redirect';
 import Meta from '../../../../components/layout/meta';
 import ChatBackBtn from '../../../../components/pages/profile/private/messages/chat-back-btn';
@@ -13,6 +14,7 @@ import ChatWrp from '../../../../components/pages/profile/private/messages/chat-
 import useMedia from '../../../../hooks/media.hook';
 import useTrans from '../../../../hooks/trans.hook';
 import { wrapper } from '../../../../redux/store';
+import types from '../../../../redux/types';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     main: {
@@ -54,6 +56,11 @@ const Messages = (): ReactElement => {
     const css = useStyles();
     const trans = useTrans();
     const media = useMedia(1060);
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch({ type: types.GET_CHATS_START });
+    }, [dispatch]);
 
     return (
         <>
@@ -66,7 +73,7 @@ const Messages = (): ReactElement => {
                 ) : (
                     <ChatBackBtn href={routes.profile.private.personal_area}>Back to profile</ChatBackBtn>
                 )}
-                <ChatWrp showConversation={media} showSidebar={true}>
+                <ChatWrp showConversation={media}>
                     <div className={css.chat}>
                         <div className={css.inner}>
                             <img className={css.img} src="/emoji/chat.png" alt="" />

@@ -4,10 +4,13 @@ import { Params } from 'next/dist/next-server/server/router';
 import {
     IAuth,
     ICategories,
+    IChats,
     IComment,
+    IMessages,
     IOfferCard,
     IOfferDynamic,
     IOfferPagination,
+    IPagination,
     IPublicProfile,
     ISignup,
 } from '../interfaces';
@@ -60,6 +63,10 @@ const api = {
             get: (id: number): Promise<AxiosResponse<IPublicProfile>> => axios.get(`${url2}/users/${id}`),
             userShort: (id: number): Promise<AxiosResponse<IPublicProfile>> => axios.get(`${url2}/users/short/${id}`),
         },
+    },
+    chat: {
+        chats: (): Promise<AxiosResponse<IPagination<IChats>>> => axios.get(`${url2}/chats`),
+        messages: (id: number): Promise<AxiosResponse<IPagination<IMessages>>> => axios.get(`${url2}/chats/${id}`),
     },
     locations: {
         countries: (): Promise<AxiosResponse<void>> => axios.get(`${url2}/locations/countries`),

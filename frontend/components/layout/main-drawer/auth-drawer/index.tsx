@@ -17,8 +17,8 @@ import LoginForm from '../../../common/auth/login-form';
 import Gift from '../../../common/gift';
 import { modal } from '../../../common/modal';
 import SmallModalWrp from '../../../common/modal/small-modal-wrp';
+import UserNavDropdown from '../../../common/navigation/user-dropdown-nav';
 import ProfileCard from '../../../common/profile-card';
-import UserNavDropdown from '../../../common/user-nav/user-nav-dropdown';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     buttons: {

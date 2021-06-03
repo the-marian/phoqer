@@ -1,15 +1,15 @@
 import clsx from 'clsx';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
-import { onlineStatus } from '../../../../../../../assets/helpers';
 import routes from '../../../../../../../assets/routes';
 import template from '../../../../../../../assets/template';
 import { Theme } from '../../../../../../../assets/theme';
+import { IChats } from '../../../../../../../interfaces';
 import NotifNumber from '../../../../../../common/notif-number';
 import UserAvatar from '../../../../../../common/user-avatar';
+import OnlineIndicator from '../../../../../../common/user-avatar/online-indicator';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     wrp: {
@@ -37,7 +37,10 @@ const useStyles = createUseStyles((theme: Theme) => ({
             color: theme.palette.trueWhite,
         },
     },
-    name: {
+    flex: {
+        display: 'flex',
+    },
+    title: {
         ...template(theme).cutString,
         width: 'calc(100% - 8.5rem)',
         fontSize: theme.rem(1.6),
@@ -51,11 +54,8 @@ const useStyles = createUseStyles((theme: Theme) => ({
         width: '100%',
         marginLeft: theme.rem(1),
     },
-    text: {
-        ...template(theme).cutString,
-        width: 'calc(100% - 8.5rem)',
-        marginTop: theme.rem(0.2),
-        color: theme.palette.gray[3],
+    online: {
+        marginRight: theme.rem(0.4),
     },
     number: {
         position: 'absolute',
@@ -65,46 +65,25 @@ const useStyles = createUseStyles((theme: Theme) => ({
 }));
 
 interface IProps {
-    id: string | number;
     active?: boolean;
-    newMessages?: number;
-    avatar?: string | null;
-    firstName?: string | null;
-    lastName?: string | null;
-    date?: string | null;
-    preview?: string | null;
+    chat: IChats;
 }
 
-const ChatSidebarItem = ({
-    id,
-    newMessages = 0,
-    active = false,
-    avatar,
-    firstName = '',
-    lastName = '',
-    date,
-    preview = '',
-}: IProps): ReactElement => {
+const ChatSidebarItem = ({ chat, active = false }: IProps): ReactElement => {
     const css = useStyles();
-    const history = useRouter();
 
     return (
-        <Link href={routes.profile.private.messages(id)}>
-            <a className={clsx(css.wrp, active && css.active, newMessages && css.unread)}>
-                <UserAvatar
-                    width={7}
-                    height={7}
-                    firstName={firstName || ''}
-                    lastName={lastName || ''}
-                    avatar={avatar}
-                    time={date}
-                />
+        <Link href={routes.profile.private.messages(chat.chat_id)}>
+            <a className={clsx(css.wrp, active && css.active, chat.new_messages && css.unread)}>
+                <UserAvatar width={7} height={7} avatar={chat.cover_image || '/no_img.png'} />
 
                 <div className={css.inner}>
-                    <h2 className={css.name}>{`${firstName} ${lastName}`}</h2>
-                    <p>{onlineStatus({ initDate: date, locale: history.locale })}</p>
-                    <p className={css.text}>{preview || ''}</p>
-                    {newMessages ? <NotifNumber className={css.number}>{newMessages}</NotifNumber> : null}
+                    <h2 className={css.title}>{chat.title || '...'}</h2>
+                    <div className={css.flex}>
+                        <OnlineIndicator className={css.online} time={chat.recipient_last_activity} />
+                        <p>{`${chat.recipient_first_name} ${chat.recipient_last_name}`}</p>
+                    </div>
+                    {chat.new_messages ? <NotifNumber className={css.number}>{chat.new_messages}</NotifNumber> : null}
                 </div>
             </a>
         </Link>

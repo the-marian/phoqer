@@ -1,50 +1,6 @@
 import { useRouter } from 'next/router';
 
-const months: { [key: string]: string[] } = {
-    ru: ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'],
-    ua: [
-        'Січень',
-        'Лютий',
-        'Березень',
-        'Квітень',
-        'Травень',
-        'Червень',
-        'Липень',
-        'Серпень',
-        'Вересень',
-        'Жовтень',
-        'Листопад',
-        'Грудень',
-    ],
-    pl: [
-        'Styczeń',
-        'Luty',
-        'Marzec',
-        'Kwiecień',
-        'Maj',
-        'Czerwiec',
-        'Lipiec',
-        'Sierpień',
-        'Wrzesień',
-        'Październik',
-        'Listopad',
-        'Grudzień',
-    ],
-    en: [
-        'January',
-        'February',
-        'March',
-        'April',
-        'May',
-        'June',
-        'July',
-        'August',
-        'September',
-        'October',
-        'November',
-        'December',
-    ],
-};
+import months from '../assets/months';
 
 const useMonths = (): string[] => {
     const router = useRouter();

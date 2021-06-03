@@ -7,7 +7,7 @@ import routes from '../../../../assets/routes';
 import { Theme } from '../../../../assets/theme';
 import Breadcrumbs from '../../../../components/common/breadcrumbs';
 import DropDownMultiple from '../../../../components/common/drop-down-multiple';
-import ProfileNav from '../../../../components/common/user-nav/profile/root-nav';
+import ProfileNav from '../../../../components/common/navigation/profile-nav/root-nav';
 import AuthRedirect from '../../../../components/context/auth/auth-redirect';
 import Container from '../../../../components/layout/container';
 import Meta from '../../../../components/layout/meta';

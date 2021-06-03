@@ -10,14 +10,19 @@ import { AnyAction, Store } from 'redux';
  * 4_OFFERS
  * 5_COMMENTS
  * 6_PUBLIC_PROFILE
- * 7_CHAT
- * 8_REGION
- * REDUX STORE
+ * 7_REGION
+ * 8_MESSAGES
+ * REDUX_STORE
  * */
 
 // =====================================
 // 1_GENERAL
 // =====================================
+export interface IPagination<T> {
+    total: number;
+    data: T[];
+}
+
 export interface IDropList {
     icon_image?: string;
     image?: string;
@@ -134,10 +139,7 @@ export interface IOfferCard {
     status: string;
 }
 
-export interface IOfferPagination {
-    data: IOfferCard[];
-    total: number;
-}
+export type IOfferPagination = IPagination<IOfferCard>;
 
 export interface IOfferDynamic {
     data: IOfferPagination;
@@ -239,20 +241,7 @@ export interface IPublicProfile {
 }
 
 // =====================================
-// 7_CHAT
-// =====================================
-export interface IChat {
-    id: string | number;
-    newMessages: number;
-    cover_image: null | string;
-    first_name: string;
-    last_name: string;
-    date: string;
-    preview: string;
-}
-
-// =====================================
-// 8_REGION
+// 7_REGION
 // =====================================
 export interface ICountry {
     slug: string;
@@ -274,7 +263,43 @@ export interface IRegion {
 }
 
 // =====================================
-// REDUX STORE
+// 8_MESSAGES
+// =====================================
+export interface IChats {
+    chat_id: number;
+    title: string;
+    recipient_id: number;
+    recipient_first_name: string;
+    recipient_last_name: string;
+    recipient_last_activity: string;
+    new_messages: number;
+    cover_image: string | null;
+}
+
+export interface IChatsList {
+    loading: boolean;
+    data: IPagination<IChats>;
+}
+
+export interface IMessages {
+    id: number;
+    text: string;
+    creation_datetime: string;
+    is_red: boolean;
+    users_user: number;
+    first_name: string;
+    last_name: string;
+    profile_img: string | null;
+    uploads: string[];
+}
+
+export interface IMessagesList {
+    loading: boolean;
+    data: IPagination<IMessages>;
+}
+
+// =====================================
+// REDUX_STORE
 // =====================================
 export interface IState {
     auth: IAuth;
@@ -290,6 +315,10 @@ export interface IState {
     profiles: {
         public: IPublicProfile | null;
         private: null;
+    };
+    chat: {
+        chats: IChatsList;
+        messages: IMessagesList;
     };
 }
 

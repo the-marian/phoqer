@@ -12,12 +12,11 @@ import { Theme } from '../../../../../assets/theme';
 import { ITabs } from '../../../../../interfaces';
 import types from '../../../../../redux/types';
 import NavTabs from '../../index';
-import { item, nav } from '../profile.styles';
+import { item, nav } from '../profile-nav.styles';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     item: {
         ...item(theme),
-        height: theme.rem(3),
         ...theme.media(1300).max({
             '& span': {
                 fontSize: '0',

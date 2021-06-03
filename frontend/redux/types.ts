@@ -9,6 +9,7 @@ const types = {
      * 6_COMMENTS
      * 7_PUBLIC_PROFILE
      * 8_LOCATIONS
+     * 9_MESSAGES
      * */
 
     // ========================
@@ -170,6 +171,18 @@ const types = {
     // OTHER
     SELECT_COUNTRY: 'SELECT_COUNTRY',
     SELECT_CITY: 'SELECT_CITY',
+
+    // ========================
+    // 9_MESSAGES
+    // ========================
+    // GET_CHATS
+    GET_CHATS_START: 'GET_CHATS_START',
+    GET_CHATS_SUCCESS: 'GET_CHATS_SUCCESS',
+    GET_CHATS_ERROR: 'GET_CHATS_ERROR',
+    // GET_MESSAGES
+    GET_MESSAGES_START: 'GET_MESSAGES_START',
+    GET_MESSAGES_SUCCESS: 'GET_MESSAGES_SUCCESS',
+    GET_MESSAGES_ERROR: 'GET_MESSAGES_ERROR',
 };
 
 export default types;

@@ -1,19 +1,24 @@
 import { GetServerSidePropsContext } from 'next';
-import React, { ReactElement } from 'react';
+import { useRouter } from 'next/router';
+import React, { ReactElement, useEffect } from 'react';
 import { createUseStyles } from 'react-jss';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { serverRedirect } from '../../../../../assets/helpers';
 import routes from '../../../../../assets/routes';
 import { Theme } from '../../../../../assets/theme';
-import ProfileChatNav from '../../../../../components/common/user-nav/profile/chat-nav';
+import ProfileChatNav from '../../../../../components/common/navigation/profile-nav/chat-nav';
 import AuthRedirect from '../../../../../components/context/auth/auth-redirect';
 import Meta from '../../../../../components/layout/meta';
 import ChatBackBtn from '../../../../../components/pages/profile/private/messages/chat-back-btn';
 import Conversation from '../../../../../components/pages/profile/private/messages/chat-conversation';
 import ChatWrp from '../../../../../components/pages/profile/private/messages/chat-wrp';
+import MessagesWrp from '../../../../../components/pages/profile/private/messages/messages-wrp';
 import useMedia from '../../../../../hooks/media.hook';
 import useTrans from '../../../../../hooks/trans.hook';
+import { IChatsList, IState } from '../../../../../interfaces';
 import { wrapper } from '../../../../../redux/store';
+import types from '../../../../../redux/types';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     main: {
@@ -36,6 +41,16 @@ const MessagesChat = (): ReactElement => {
     const css = useStyles();
     const trans = useTrans();
     const media = useMedia(1060);
+    const history = useRouter();
+    const chatId = +String(history.query.chat || '0');
+
+    const dispatch = useDispatch();
+    const chats = useSelector<IState, IChatsList>(state => state.chat.chats);
+
+    useEffect(() => {
+        if (chats.loading) dispatch({ type: types.GET_CHATS_START });
+        if (chatId) dispatch({ type: types.GET_MESSAGES_START, payload: +chatId });
+    }, [dispatch, chatId]);
 
     return (
         <>
@@ -49,9 +64,9 @@ const MessagesChat = (): ReactElement => {
                     <ChatBackBtn href={routes.profile.private.messages()}>Back to messages</ChatBackBtn>
                 )}
 
-                <ChatWrp showSidebar={media} showConversation={true}>
+                <MessagesWrp showSidebar={media}>
                     <Conversation />
-                </ChatWrp>
+                </MessagesWrp>
             </main>
         </>
     );

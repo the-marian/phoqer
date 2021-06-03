@@ -106,6 +106,22 @@ const initState: IState = {
             },
         },
     },
+    chat: {
+        chats: {
+            loading: true,
+            data: {
+                total: 0,
+                data: [],
+            },
+        },
+        messages: {
+            loading: true,
+            data: {
+                total: 0,
+                data: [],
+            },
+        },
+    },
 };
 
 export default initState;

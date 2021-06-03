@@ -1,19 +1,19 @@
 import { render } from '../../../../../tests/tests.utils';
-import RectSkeleton from './index';
+import ChatsLoader from './index';
 
-describe('RectSkeleton component', () => {
+describe('ChatsLoader component', () => {
     it('matches snapshot, without props', () => {
-        const { asFragment } = render(<RectSkeleton />, {});
+        const { asFragment } = render(<ChatsLoader />, {});
         expect(asFragment()).toMatchSnapshot();
     });
 
     it('matches snapshot, with amount', () => {
-        const { asFragment } = render(<RectSkeleton amount={5} />, {});
+        const { asFragment } = render(<ChatsLoader amount={5} />, {});
         expect(asFragment()).toMatchSnapshot();
     });
 
     it('matches snapshot, with className', () => {
-        const { asFragment } = render(<RectSkeleton amount={5} className="test" />, {});
+        const { asFragment } = render(<ChatsLoader amount={5} className="test" />, {});
         expect(asFragment()).toMatchSnapshot();
     });
 });

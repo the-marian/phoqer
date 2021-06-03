@@ -4,7 +4,7 @@ import { createUseStyles } from 'react-jss';
 
 import template from '../../../../../../assets/template';
 import { Theme } from '../../../../../../assets/theme';
-import { IChat } from '../../../../../../interfaces';
+import { IChats } from '../../../../../../interfaces';
 import Gift from '../../../../../common/gift';
 import ChatEmpty from '../chat-empty';
 import ChatSearch from '../chat-search';
@@ -48,31 +48,22 @@ const useStyles = createUseStyles((theme: Theme) => ({
 }));
 
 interface IProps {
-    chats: IChat[];
+    chats: IChats[];
 }
 
 const ChatSidebar = ({ chats }: IProps): ReactElement => {
     const css = useStyles();
     const { query } = useRouter();
-    const active = String(query.chat || '');
+    const active = +String(query.chat || '0');
 
     return (
         <>
             <ChatSearch />
             {chats?.length ? (
                 chats.map<ReactElement>((item, index) => (
-                    <Fragment key={item.id}>
+                    <Fragment key={item.chat_id}>
                         {index === 5 ? <Gift style={{ padding: '5rem 2rem' }} /> : null}
-                        <ChatSidebarItem
-                            id={item.id}
-                            newMessages={item.newMessages}
-                            active={String(item.id) === (active || '')}
-                            firstName={item.first_name}
-                            lastName={item.last_name}
-                            avatar={item.cover_image}
-                            date={item.date}
-                            preview={item.preview}
-                        />
+                        <ChatSidebarItem chat={item} active={active === item.chat_id} />
                     </Fragment>
                 ))
             ) : (

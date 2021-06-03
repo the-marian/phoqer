@@ -6,8 +6,8 @@ import { useSelector } from 'react-redux';
 import routes from '../../../../../../assets/routes';
 import { Theme } from '../../../../../../assets/theme';
 import { IPublicProfile, IState } from '../../../../../../interfaces';
+import ProfilePrivateNav from '../../../../../common/navigation/profile-nav/private';
 import UserAvatar from '../../../../../common/user-avatar';
-import ProfilePrivateNav from '../../../../../common/user-nav/profile/private';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     flex: {

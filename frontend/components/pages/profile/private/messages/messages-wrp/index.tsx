@@ -4,8 +4,9 @@ import { createUseStyles } from 'react-jss';
 import { useSelector } from 'react-redux';
 
 import { Theme } from '../../../../../../assets/theme';
-import { IChats, IChatsList, IState } from '../../../../../../interfaces';
+import { IChats, IChatsList, IMessages, IMessagesList, IState } from '../../../../../../interfaces';
 import ChatsLoaders from '../../../../../common/loaders/skeletons/chats';
+import ChatForm from '../chat-conversation/chat-form';
 import ChatEmpty from '../chat-empty';
 import ChatLoading from '../chat-loading';
 import ChatSidebar from '../chat-sidebar';
@@ -56,49 +57,49 @@ const useStyles = createUseStyles((theme: Theme) => ({
 }));
 
 // HELPER HIDE/SHOW CHAT CONVERSATION
-interface ChatWrpShowConversationProps {
-    show?: boolean;
+interface MessagesWrpShowSidebarProps {
     children: ReactElement | null;
+    show: boolean;
 }
-const ChatWrpShowConversation = ({ show = false, children }: ChatWrpShowConversationProps): ReactElement | null =>
-    show ? children : null;
+const MessagesWrpShowSidebar = ({ show, children }: MessagesWrpShowSidebarProps): ReactElement | null => (show ? children : null);
 
 // HELPER HIDE/SHOW CHAT CONVERSATION
-interface ChatWrpShowLoaderProps {
+interface MessagesWrpShowLoaderProps {
     children: ReactElement | null;
     loading: boolean;
-    data: IChats[];
+    data: IMessages[];
 }
-const ChatWrpShowLoader = ({ loading, data, children }: ChatWrpShowLoaderProps): ReactElement | null =>
+const MessagesWrpShowLoader = ({ loading, data, children }: MessagesWrpShowLoaderProps): ReactElement | null =>
     loading ? <ChatLoading /> : data.length ? children : <ChatEmpty />;
 
 interface IProps {
     children: ReactElement | null;
-    showConversation?: boolean;
+    showSidebar?: boolean;
 }
 
 // MAIN COMPONENT
-const ChatWrp = ({ children, showConversation = false }: IProps): ReactElement => {
+const MessagesWrp = ({ children, showSidebar = false }: IProps): ReactElement => {
     const css = useStyles();
     const chats = useSelector<IState, IChatsList>(state => state.chat.chats);
+    const messages = useSelector<IState, IMessagesList>(state => state.chat.messages);
 
     return (
         <>
-            <div className={clsx(css.root, css.sidebar)}>
-                <aside className={css.aside}>
-                    <div className={css.inner}>
-                        {chats.loading ? <ChatsLoaders amount={5} /> : <ChatSidebar chats={chats.data.data} />}
-                    </div>
-                </aside>
+            <div className={clsx(css.root, showSidebar && css.sidebar)}>
+                <MessagesWrpShowSidebar show={showSidebar}>
+                    <aside className={css.aside}>
+                        <div className={css.inner}>
+                            {chats.loading ? <ChatsLoaders amount={5} /> : <ChatSidebar chats={chats.data.data} />}
+                        </div>
+                    </aside>
+                </MessagesWrpShowSidebar>
 
-                <ChatWrpShowConversation show={showConversation}>
-                    <ChatWrpShowLoader data={chats.data.data} loading={chats.loading}>
-                        {children}
-                    </ChatWrpShowLoader>
-                </ChatWrpShowConversation>
+                <MessagesWrpShowLoader data={messages.data.data} loading={messages.loading}>
+                    {children}
+                </MessagesWrpShowLoader>
             </div>
         </>
     );
 };
 
-export default ChatWrp;
+export default MessagesWrp;

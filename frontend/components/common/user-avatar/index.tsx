@@ -72,7 +72,7 @@ const UserAvatar = ({
                     {(firstName[0] + lastName[0])?.toUpperCase()}
                 </div>
             )}
-            <OnlineIndicator className={css.mark} online={online} time={time} />
+            {time || online ? <OnlineIndicator className={css.mark} online={online} time={time} /> : null}
         </div>
     );
 };

@@ -4,6 +4,7 @@ import { createUseStyles } from 'react-jss';
 
 import { dateFromTimestamp } from '../../../../assets/helpers';
 import { Theme } from '../../../../assets/theme';
+import Tooltip from '../../tooltip';
 
 const FIVE_MINUTES_IN_MS = 300000;
 
@@ -31,7 +32,11 @@ const OnlineIndicator = ({ className, time, online = false }: IProps): ReactElem
     const css = useStyles();
     const date: Date | null = dateFromTimestamp(time);
     const isOnline = (date && Date.now() - +date < FIVE_MINUTES_IN_MS) || online;
-    return <div className={clsx(css.root, isOnline ? css.green : css.gray, className)} />;
+    return (
+        <Tooltip content={isOnline ? 'online' : 'offline'}>
+            <div className={clsx(css.root, isOnline ? css.green : css.gray, className)} />
+        </Tooltip>
+    );
 };
 
 export default OnlineIndicator;

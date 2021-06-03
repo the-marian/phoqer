@@ -5,7 +5,7 @@ import config from '../../../../../assets/config';
 import { Theme } from '../../../../../assets/theme';
 import { ITabs } from '../../../../../interfaces';
 import NavTabs from '../../index';
-import { item, nav } from '../profile.styles';
+import { item, nav } from '../profile-nav.styles';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     item: item(theme),

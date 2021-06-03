@@ -20,7 +20,7 @@ module.exports = {
             },
             {
                 source: '/profile',
-                destination: '/',
+                destination: '/profile/private',
                 permanent: true,
             },
             {

@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { createUseStyles } from 'react-jss';
 
 import { Theme } from '../../../../../assets/theme';
-import UserNavDropdown from '../../../../common/user-nav/user-nav-dropdown';
+import UserNavDropdown from '../../../../common/navigation/user-dropdown-nav';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     root: {

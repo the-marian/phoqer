@@ -13,10 +13,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
     wrp: {
         display: 'flex',
     },
-    cat: {
+    item: {
         width: '100%',
         marginRight: theme.rem(2),
-        height: theme.rem(14),
         borderRadius: theme.radius,
         background: `linear-gradient(45deg, ${theme.palette.gray[1]}, ${theme.palette.gray[0]}, ${theme.palette.gray[1]})`,
         backgroundSize: '400% 400%',
@@ -36,7 +35,7 @@ const RectSkeleton = ({ className, amount = 1 }: IProps): ReactElement => {
     return (
         <div className={clsx(css.wrp, className)}>
             {[...Array(amount)].map<ReactElement>((_, index) => (
-                <div key={index} className={css.cat} />
+                <div key={index} className={css.item} />
             ))}
         </div>
     );
