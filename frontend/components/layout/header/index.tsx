@@ -71,6 +71,7 @@ const Header = (): ReactElement => {
             prev.current = window.scrollY;
         }, 300);
         window.addEventListener('scroll', handleScroll);
+
         return () => {
             window.removeEventListener('scroll', handleScroll);
         };

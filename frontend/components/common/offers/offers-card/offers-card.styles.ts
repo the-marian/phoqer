@@ -17,6 +17,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
             textDecoration: 'underline',
         },
     },
+    tooltip: {
+        minWidth: theme.rem(20),
+    },
     imgWrp: {
         position: 'relative',
     },
@@ -51,7 +54,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         fontSize: theme.rem(1.4),
         boxShadow: theme.shadow[0],
         color: theme.palette.yellow[0],
-        ...template(theme).outline,
+        cursor: 'default',
     },
     delivery: {
         color: theme.palette.gray[2],

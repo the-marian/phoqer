@@ -1,6 +1,7 @@
 import uvicorn
 from fastapi import FastAPI
 from FastAPI.categories import categories
+from FastAPI.chats import chats
 from FastAPI.comments import comments
 from FastAPI.config import database
 from FastAPI.favorite import favorite
@@ -28,6 +29,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 app.include_router(categories.router)
+app.include_router(chats.router)
 app.include_router(comments.router)
 app.include_router(offers.router)
 app.include_router(favorite.router)

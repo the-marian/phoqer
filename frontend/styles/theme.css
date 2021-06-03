@@ -1,4 +1,10 @@
 /* SCROLLBAR */
+.windows * {
+    /* custom scrollbar - firefox */
+    scrollbar-width: thin;
+    scrollbar-color: #999999 #f5f5f5;
+}
+
 .windows *::-webkit-scrollbar {
     width: 0.5rem;
     height: 0.5rem;
@@ -23,6 +29,13 @@
 .windows.black-orange *::-webkit-scrollbar-track,
 .windows.black-violet *::-webkit-scrollbar-track {
     background-color: #343434;
+}
+
+.windows.black-blue *,
+.windows.black-aqua *,
+.windows.black-orange *,
+.windows.black-violet * {
+    scrollbar-color: #999999 #343434;
 }
 
 /* SITE BACKGROUND COLOR */

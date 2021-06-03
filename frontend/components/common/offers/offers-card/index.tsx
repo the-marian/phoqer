@@ -22,6 +22,7 @@ import DropDown from '../../drop-down';
 import { modal } from '../../modal';
 import SmallModalWrp from '../../modal/small-modal-wrp';
 import notifications from '../../notifications';
+import Tooltip from '../../tooltip';
 import useStyles from './offers-card.styles';
 
 const MAX_LENGTH = 55;
@@ -134,14 +135,18 @@ const OfferCard = ({ offer, showFavoriteBtn = true }: IProps): ReactElement => {
                     <div className={css.imgWrp}>
                         <div className={css.topWrp}>
                             {is_promoted && (
-                                <div className={css.top} data-tip="Это обьявление находиться в топе">
-                                    <FontAwesomeIcon icon={faStar} />
-                                </div>
+                                <Tooltip className={css.tooltip} content="Это объявление находится в топе">
+                                    <div className={css.top}>
+                                        <FontAwesomeIcon icon={faStar} />
+                                    </div>
+                                </Tooltip>
                             )}
                             {is_deliverable && (
-                                <div className={clsx(css.top, css.delivery)} data-tip="Владелец предоставляет доставку товара">
-                                    <FontAwesomeIcon icon={faTruck} />
-                                </div>
+                                <Tooltip className={css.tooltip} content="Автор предоставляет доставку товара">
+                                    <div className={clsx(css.top, css.delivery)}>
+                                        <FontAwesomeIcon icon={faTruck} />
+                                    </div>
+                                </Tooltip>
                             )}
                         </div>
                         <img className={css.img} src={cover_image || '/no_img.png'} alt={title} />
@@ -187,9 +192,11 @@ const OfferCard = ({ offer, showFavoriteBtn = true }: IProps): ReactElement => {
                         <button type="button" className={css.btn}>
                             {trans('rent')}
                         </button>
-                        <button type="button" className={clsx(css.favorite)} onClick={handleFavorite} data-tip="Добавить в избранное">
+                        <Tooltip className={css.tooltip} content="Добавить в избранное">
+                        <button type="button" className={clsx(css.favorite)} onClick={handleFavorite}>
                             {is_favorite ? <FontAwesomeIcon icon={faSolidHeart} /> : <FontAwesomeIcon icon={faHeart} />}
                         </button>
+                        </Tooltip>
                     </div>
                 )}
             </div>

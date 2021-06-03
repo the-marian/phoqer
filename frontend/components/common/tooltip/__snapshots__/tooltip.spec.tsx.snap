@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Tooltip component matches snapshot 1`] = `
+<DocumentFragment>
+  <p>
+    test
+  </p>
+</DocumentFragment>
+`;
+
+exports[`Tooltip component matches snapshot 2`] = `
+<DocumentFragment>
+  <p>
+    test
+  </p>
+</DocumentFragment>
+`;
+
+exports[`Tooltip component matches snapshot 3`] = `
+<DocumentFragment>
+  <p>
+    test
+  </p>
+</DocumentFragment>
+`;

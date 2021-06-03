@@ -37,6 +37,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
         transitions: theme.transitions[0],
         ...template(theme).outline,
     },
+    wrp: {
+        margin: theme.rem(0, 0.5),
+    },
 }));
 
 const AuthDrawer = (): ReactElement | null => {
@@ -92,8 +95,10 @@ const AuthDrawer = (): ReactElement | null => {
                 userLocation={user?.location}
                 registerDate={user?.date_joined}
             />
+            <div className={css.wrp}>
+                <UserNavDropdown />
+            </div>
             <Gift style={{ margin: '3rem 0' }} />
-            <UserNavDropdown />
         </>
     );
 };

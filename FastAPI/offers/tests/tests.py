@@ -1,49 +1,52 @@
 import pytest
 from fastapi import status
-from httpx import AsyncClient
 
 from FastAPI.main import app
 from FastAPI.offers.crud import get_offer
+from httpx import AsyncClient
 
 
 def test_get_offer(client):
-    response = client.get("offers/8b186026-a721-44a4-9649-100bb875b565")
+    response = client.get("offers/00bbddd5-92bf-45e5-8d2c-8e23fb03da63")
     assert response.status_code == status.HTTP_200_OK
     assert response.json() == {
-        'author_id': 2,
-        'category': 'business',
-        'city': 'kyiv',
-        'country': 'poland',
-        'cover_image': 'https://example.com/iphone.jpeg',
-        'currency': 'UAH',
-        'deposit_val': 666,
-        'description': 'New Phone',
-        'doc_needed': True,
-        'extra_requirements': 'text exta req',
-        'first_name': 'Marian',
-        'id': 'd12c4c64-614f-4964-93ca-a091676b6bae',
-        'images': ['http://phoqer.com//mediafiles/image(1)_H802r7h.jpeg',
-                   'http://phoqer.com//mediafiles/image(2)_bGKHdms.jpeg',
-                   'http://phoqer.com//mediafiles/image(3)_PV4BY6L.jpeg',
-                   'http://phoqer.com//mediafiles/image(4)_SCiBiMz.jpeg',
-                   'http://phoqer.com//mediafiles/5_zDDUs4j.jpg',
-                   'http://phoqer.com//mediafiles/4_QsbenAd.jpg',
-                   'http://phoqer.com//mediafiles/3_5vqrqhm.jpg',
-                   'http://phoqer.com//mediafiles/2_5jbRqfd.jpg',
-                   'http://phoqer.com//mediafiles/1_RrQEWYc.jpg'],
-        'is_deliverable': True,
-        'is_favorite': False,
-        'is_promoted': False,
-        'last_name': 'Zozulia',
-        'max_rent_period': 10,
-        'min_rent_period': 20,
-        'price': 499,
-        'profile_img': None,
-        'pub_date': '2021-05-23',
-        'status': 'DRAFT',
-        'sub_category': 'sub_category',
-        'title': 'Iphone 12',
-        'views': 0}
+        "author_id": 2,
+        "category": "business",
+        "city": "kyiv",
+        "country": "poland",
+        "cover_image": "https://example.com/iphone.jpeg",
+        "currency": "UAH",
+        "deposit_val": 666,
+        "description": "New Phone",
+        "doc_needed": True,
+        "extra_requirements": "text exta req",
+        "first_name": "Marian",
+        "id": "d12c4c64-614f-4964-93ca-a091676b6bae",
+        "images": [
+            "http://phoqer.com//mediafiles/image(1)_H802r7h.jpeg",
+            "http://phoqer.com//mediafiles/image(2)_bGKHdms.jpeg",
+            "http://phoqer.com//mediafiles/image(3)_PV4BY6L.jpeg",
+            "http://phoqer.com//mediafiles/image(4)_SCiBiMz.jpeg",
+            "http://phoqer.com//mediafiles/5_zDDUs4j.jpg",
+            "http://phoqer.com//mediafiles/4_QsbenAd.jpg",
+            "http://phoqer.com//mediafiles/3_5vqrqhm.jpg",
+            "http://phoqer.com//mediafiles/2_5jbRqfd.jpg",
+            "http://phoqer.com//mediafiles/1_RrQEWYc.jpg",
+        ],
+        "is_deliverable": True,
+        "is_favorite": False,
+        "is_promoted": False,
+        "last_name": "Zozulia",
+        "max_rent_period": 10,
+        "min_rent_period": 20,
+        "price": 499,
+        "profile_img": None,
+        "pub_date": "2021-05-23",
+        "status": "DRAFT",
+        "sub_category": "sub_category",
+        "title": "Iphone 12",
+        "views": 0,
+    }
 
 
 def test_is_favorite_user_with_favorite(client, auth_token):
@@ -65,8 +68,8 @@ def test_is_favorite_user_with_no_favorite(client, auth_token):
 @pytest.mark.asyncio
 async def test_create_offer_draft(client, auth_token):
     post_data = {
-        "category": "business",
-        "city": "kyiv",
+        "category": "sport",
+        "city": "Kiev",
         "country": "poland",
         "cover_image": "https://example.com/iphone.jpeg",
         "currency": "UAH",
@@ -86,10 +89,12 @@ async def test_create_offer_draft(client, auth_token):
             "http://phoqer.com//mediafiles/1_RrQEWYc.jpg",
         ],
         "is_deliverable": True,
+        'items_amount': 3,
         "max_rent_period": 10,
         "min_rent_period": 20,
         "price": 499,
-        "sub_category": "sub_category",
+        "rental_period": "MONTH",
+        "sub_category": "bike",
         "title": "Iphone 12",
     }
     async with AsyncClient(app=app, base_url="http://test") as ac:
@@ -223,12 +228,55 @@ def test_change_status_2(client, auth_token):
 
 @pytest.mark.asyncio
 async def test_update_offer_country(client, auth_token):
-    post_data = {
-        "country": "ukraine"
-    }
+    post_data = {"country": "ukraine"}
     async with AsyncClient(app=app, base_url="http://test") as ac:
-        response = await ac.patch("offers/8b186026-a721-44a4-9649-100bb875b565", json=post_data, headers=auth_token)
+        response = await ac.patch(
+            "offers/8b186026-a721-44a4-9649-100bb875b565",
+            json=post_data,
+            headers=auth_token,
+        )
 
     assert response.status_code == 204
     db_response = await get_offer("8b186026-a721-44a4-9649-100bb875b565")
     assert db_response.get("country") == "ukraine"
+
+
+def test_search(client, auth_token):
+    response = client.get("/search/?rental_period=DAY", headers=auth_token)
+    assert response.json() == {
+        'author_id': 2,
+        'category': 'business',
+        'city': 'kyiv',
+        'country': 'poland',
+        'cover_image': 'https://example.com/iphone.jpeg',
+        'currency': 'UAH',
+        'deposit_val': 666,
+        'description': 'New Phone',
+        'doc_needed': True,
+        'extra_requirements': 'text exta req',
+        'first_name': 'Marian',
+        'id': '00bbddd5-92bf-45e5-8d2c-8e23fb03da63',
+        'images': ['http://phoqer.com//mediafiles/image(1)_H802r7h.jpeg',
+                   'http://phoqer.com//mediafiles/image(2)_bGKHdms.jpeg',
+                   'http://phoqer.com//mediafiles/image(3)_PV4BY6L.jpeg',
+                   'http://phoqer.com//mediafiles/image(4)_SCiBiMz.jpeg',
+                   'http://phoqer.com//mediafiles/5_zDDUs4j.jpg',
+                   'http://phoqer.com//mediafiles/4_QsbenAd.jpg',
+                   'http://phoqer.com//mediafiles/3_5vqrqhm.jpg',
+                   'http://phoqer.com//mediafiles/2_5jbRqfd.jpg',
+                   'http://phoqer.com//mediafiles/1_RrQEWYc.jpg'],
+        'is_deliverable': True,
+        'is_favorite': False,
+        'is_promoted': False,
+        'items_amount': 1,
+        'last_name': 'Zozulia',
+        'max_rent_period': 10,
+        'min_rent_period': 20,
+        'price': 499,
+        'profile_img': None,
+        'pub_date': '2021-05-23',
+        'rental_period': None,
+        'status': 'DRAFT',
+        'sub_category': 'sub_category',
+        'title': 'Iphone 12',
+        'views': 0}

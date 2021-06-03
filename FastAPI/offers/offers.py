@@ -13,6 +13,7 @@ from FastAPI.offers.schemas import (
     OffersListItem,
     OffersListResponse,
     Status,
+    RentalPeriod,
 )
 from FastAPI.offers.utils import review_status_validator, set_review_status
 from FastAPI.utils import get_current_user, get_current_user_or_none
@@ -63,7 +64,7 @@ async def get_offers_for_tab(
     functions = {
         "ACTIVE": ["DO_INACTIVE", "ARCHIVE", "PROMOTE", "DO_DRAFT"],
         "ARCHIVED": ["DELETE", "DO_REVIEW"],
-        "DRAFT": ["DO_REVIEW", "ARCHIVE", "EDIT"],
+        "DRAFT": ["DO_REVIEW", "DELETE", "EDIT"],
         "FROZEN": ["ARCHIVE"],
         "INACTIVE": ["DO_DRAFT", "ARCHIVE", "DO_ACTIVE"],
         "IN_RENT": ["ARCHIVE"],
@@ -132,6 +133,7 @@ async def search_offers(
     no_deposit: Optional[bool] = None,
     ordering: str = "pub_date",
     page: int = 1,
+    rental_period: RentalPeriod = None,
     search: Optional[str] = None,
     sub_category: Optional[str] = None,
     user_id: Optional[int] = Depends(get_current_user_or_none),
@@ -150,6 +152,7 @@ async def search_offers(
         max_deposit=max_deposit,
         min_deposit=min_deposit,
         no_deposit=no_deposit,
+        rental_period=rental_period,
         search=search,
         ordering=ordering,
     )
@@ -181,6 +184,7 @@ async def search_offers(
                 max_deposit=max_deposit,
                 min_deposit=min_deposit,
                 no_deposit=no_deposit,
+                rental_period=rental_period,
                 search=search,
             )
             / PAGE_SIZE

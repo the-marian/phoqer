@@ -17,6 +17,7 @@ import useTheme from '../../../../hooks/theme.hook';
 import useTrans from '../../../../hooks/trans.hook';
 import useUppy from '../../../../hooks/uppy.hook';
 import notificationsModal from '../../modal/notifications-modal';
+import Tooltip from '../../tooltip';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     flex: {
@@ -50,6 +51,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
         ...theme.media(800).max({
             margin: '0',
         }),
+    },
+    tooltip: {
+        width: '100%',
     },
     error: {
         border: theme.border(0.2, theme.palette.red[0]),
@@ -178,18 +182,19 @@ const CommentsForm = ({ onSubmit }: IProps): ReactElement => {
 
     return (
         <form action="#" method="post" onSubmit={handleSubmit}>
-            {media && <small className={css.small}>* {trans('press_enter_send')}</small>}
             <div className={css.flex}>
-                <TextareaAutosize
-                    value={value}
-                    className={clsx(css.textarea, error && css.error)}
-                    onChange={handleChange}
-                    onKeyPress={handleKeyPress}
-                    name="comment"
-                    wrap="soft"
-                    title={trans('press_enter_send')}
-                    placeholder={trans('comment')}
-                />
+                <Tooltip classNameWrp={css.tooltip} content={trans('press_enter_send')}>
+                    <TextareaAutosize
+                        value={value}
+                        className={clsx(css.textarea, error && css.error)}
+                        onChange={handleChange}
+                        onKeyPress={handleKeyPress}
+                        name="comment"
+                        wrap="soft"
+                        title={trans('press_enter_send')}
+                        placeholder={trans('comment')}
+                    />
+                </Tooltip>
 
                 <button className={css.submit} type="submit">
                     <FontAwesomeIcon icon={faChevronRight} />

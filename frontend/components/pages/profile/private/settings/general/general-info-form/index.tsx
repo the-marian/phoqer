@@ -34,6 +34,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
         marginBottom: theme.rem(0.6),
         fontSize: theme.rem(1.6),
     },
+    region: {
+        background: theme.palette.white,
+    },
 }));
 
 interface IValue {
@@ -98,7 +101,7 @@ const GeneralInfoForm = (): ReactElement => {
 
                 <label className={css.label}>
                     <p className={css.text}>{trans('user_location')}</p>
-                    <Region />
+                    <Region className={css.region} />
                 </label>
             </div>
         </>
