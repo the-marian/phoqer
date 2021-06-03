@@ -36,7 +36,7 @@ module.exports = {
         ];
     },
     i18n: {
-        locales: ['en', 'pl', 'ru'],
+        locales: ['en', 'pl', 'ru', 'ua'],
         defaultLocale: 'pl',
     },
     images: {

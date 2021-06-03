@@ -36,6 +36,10 @@ const LANGS: IDropList[] = [
         name: 'PL',
         slug: 'pl',
     },
+    {
+        name: 'UA',
+        slug: 'ua',
+    },
 ];
 
 const Lang = (): ReactElement => {

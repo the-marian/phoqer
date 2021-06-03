@@ -40,6 +40,10 @@ describe('Test config functions', () => {
         expect(config.host('en')).toBe('http://phoqer.com/en');
     });
 
+    it('Get site url with ua lang', () => {
+        expect(config.host('ua')).toBe('http://phoqer.com/ua');
+    });
+
     it('Test userNavLinks', () => {
         expect(JSON.stringify(config.userNavLinks('userId', { reviews: 0, messages: 0 }))).toBe(JSON.stringify(userNavLinks));
     });
