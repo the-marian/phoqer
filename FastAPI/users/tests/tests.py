@@ -10,7 +10,7 @@ from httpx import AsyncClient
 def test_user_signup(client):
     post_data = {
         "password": "i_am_hungry",
-        "email": "mariian.zozulia@gmail.com",
+        "email": "maric0naric@gmail.com",
         "first_name": "Marian",
         "last_name": "Zozulia",
     }
