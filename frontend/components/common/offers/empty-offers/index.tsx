@@ -43,7 +43,7 @@ interface IProps {
 
 const EmptyOffers = ({ text }: IProps): ReactElement => {
     const css = useStyles();
-    const trans = useTrans()
+    const trans = useTrans();
 
     return (
         <div className={css.empty}>
@@ -51,7 +51,7 @@ const EmptyOffers = ({ text }: IProps): ReactElement => {
             <p className={css.emptyText}>{text || trans('no_offer')}</p>
 
             <Link href={routes.offers.new(1)}>
-    <a className={css.link}>{trans('make_offer')}</a>
+                <a className={css.link}>{trans('make_offer')}</a>
             </Link>
         </div>
     );

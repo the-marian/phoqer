@@ -4,9 +4,8 @@ import { createUseStyles } from 'react-jss';
 import { useSelector } from 'react-redux';
 
 import { Theme } from '../../../../../../assets/theme';
-import { IChats, IChatsList, IMessages, IMessagesList, IState } from '../../../../../../interfaces';
+import { IChatsList, IMessages, IMessagesList, IState } from '../../../../../../interfaces';
 import ChatsLoaders from '../../../../../common/loaders/skeletons/chats';
-import ChatForm from '../chat-conversation/chat-form';
 import ChatEmpty from '../chat-empty';
 import ChatLoading from '../chat-loading';
 import ChatSidebar from '../chat-sidebar';

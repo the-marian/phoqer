@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux';
 
 import { intNumberValidation, moneyFormat } from '../../../../../../assets/helpers';
 import * as helpers from '../../../../../../assets/helpers';
+import useTrans from '../../../../../../hooks/trans.hook';
 import { ICategories, IDropValue, INewOffer, IState } from '../../../../../../interfaces';
 import CheckYesNo from '../../../../../common/checkbox/check-yes-no';
 import DropDown from '../../../../../common/drop-down';
@@ -12,7 +13,6 @@ import Input from '../../../../../common/input';
 import Region from '../../../../../common/region';
 import { IError } from '../';
 import editOfferTemplate from '../edit-content-form.style';
-import useTrans from '../../../../../../hooks/trans.hook';
 
 const useStyles = createUseStyles(editOfferTemplate);
 
@@ -95,7 +95,8 @@ const StepOne = ({ value, errors, setErrors, setValue }: IProps): ReactElement =
                 )}
                 <div className={css.inner}>
                     <h3 className={css.subtitle}>
-                    {trans('price')} {trans('per_day')}<span className={css.red}>*</span>
+                        {trans('price')} {trans('per_day')}
+                        <span className={css.red}>*</span>
                     </h3>
                     <Input
                         value={moneyFormat(value.price || 0)}

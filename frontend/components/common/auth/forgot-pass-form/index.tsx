@@ -138,7 +138,7 @@ const ForgotPassForm = (): ReactElement => {
                 <a className={css.link}>{trans('login')}</a>
             </Link>
 
-    <p className={css.text}>{trans('or')}</p>
+            <p className={css.text}>{trans('or')}</p>
 
             <Link href={routes.auth.join}>
                 <a className={css.link}>{trans('join')}</a>

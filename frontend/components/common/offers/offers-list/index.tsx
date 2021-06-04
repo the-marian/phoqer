@@ -52,19 +52,19 @@ const OffersList = ({ loading, loadMoreLoading, data, showFavoriteBtn = true }: 
             {media && <OffersLoader className={css.loading} amount={media ? 4 : 1} />}
         </>
     ) : (
-            <>
-                {data?.length ? (
-                    <div className={css.grid}>
-                        {data?.map(item => (
-                            <OfferCard key={item.id} offer={item} showFavoriteBtn={showFavoriteBtn} />
-                        ))}
-                    </div>
-                ) : (
-                        <EmptyOffers />
-                    )}
-                {loadMoreLoading ? <OffersLoader className={css.loading} amount={media ? 4 : 1} /> : null}
-            </>
-        );
+        <>
+            {data?.length ? (
+                <div className={css.grid}>
+                    {data?.map(item => (
+                        <OfferCard key={item.id} offer={item} showFavoriteBtn={showFavoriteBtn} />
+                    ))}
+                </div>
+            ) : (
+                <EmptyOffers />
+            )}
+            {loadMoreLoading ? <OffersLoader className={css.loading} amount={media ? 4 : 1} /> : null}
+        </>
+    );
 };
 
 export default OffersList;
