@@ -7,7 +7,7 @@ import emails
 import jwt
 from emails.template import JinjaTemplate
 from FastAPI import config
-from FastAPI.config import ALGORITHM, SECRET_KEY, BASE_DIR
+from FastAPI.config import ALGORITHM, BASE_DIR, SECRET_KEY
 from passlib.context import CryptContext
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
@@ -62,7 +62,7 @@ def send_new_account_email(
 ) -> None:
     subject = f"Phoqer - New account for user {username}"
     with open(
-            os.path.join(BASE_DIR, "users/email-templates/build/new_account.html")
+        os.path.join(BASE_DIR, "users/email-templates/build/new_account.html")
     ) as f:
         template_str = f.read()
     link = f"http://phoqer.com/api/v2/users/activation/{activation_token}"
