@@ -11,7 +11,7 @@ import { useRouter } from 'next/router';
 import React, { ReactElement } from 'react';
 import { useDispatch } from 'react-redux';
 
-import { moneyFormat } from '../../../../assets/helpers';
+import { cutString, moneyFormat } from '../../../../assets/helpers';
 import routes from '../../../../assets/routes';
 import useAuth from '../../../../hooks/auth.hook';
 import useTrans from '../../../../hooks/trans.hook';
@@ -24,9 +24,6 @@ import SmallModalWrp from '../../modal/small-modal-wrp';
 import notifications from '../../notifications';
 import Tooltip from '../../tooltip';
 import useStyles from './offers-card.styles';
-
-const MAX_LENGTH = 55;
-const MAX_LENGTH_TITLE = 50;
 
 const formatUserActions = (value: string[], actions: { [key: string]: string }): IDropList[] => {
     return Object.entries(actions).reduce<IDropList[]>((acc, cur) => {
@@ -151,12 +148,8 @@ const OfferCard = ({ offer, showFavoriteBtn = true }: IProps): ReactElement => {
                         </div>
                         <img className={css.img} src={cover_image || '/no_img.png'} alt={title} />
                     </div>
-                    <h3 className={css.title}>
-                        {title.length > MAX_LENGTH_TITLE ? title.slice(0, MAX_LENGTH_TITLE - 3) + '...' : title}
-                    </h3>
-                    <p className={css.desc}>
-                        {description.length > MAX_LENGTH ? `${description.slice(0, MAX_LENGTH - 3)}...` : description}
-                    </p>
+                    <h3 className={css.title}>{cutString(title, 30)}</h3>
+                    <p className={css.desc}>{cutString(description, 50)}</p>
                 </a>
             </Link>
 
@@ -193,9 +186,9 @@ const OfferCard = ({ offer, showFavoriteBtn = true }: IProps): ReactElement => {
                             {trans('rent')}
                         </button>
                         <Tooltip className={css.tooltip} content="Добавить в избранное">
-                        <button type="button" className={clsx(css.favorite)} onClick={handleFavorite}>
-                            {is_favorite ? <FontAwesomeIcon icon={faSolidHeart} /> : <FontAwesomeIcon icon={faHeart} />}
-                        </button>
+                            <button type="button" className={clsx(css.favorite)} onClick={handleFavorite}>
+                                {is_favorite ? <FontAwesomeIcon icon={faSolidHeart} /> : <FontAwesomeIcon icon={faHeart} />}
+                            </button>
                         </Tooltip>
                     </div>
                 )}

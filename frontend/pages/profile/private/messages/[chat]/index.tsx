@@ -12,7 +12,6 @@ import AuthRedirect from '../../../../../components/context/auth/auth-redirect';
 import Meta from '../../../../../components/layout/meta';
 import ChatBackBtn from '../../../../../components/pages/profile/private/messages/chat-back-btn';
 import Conversation from '../../../../../components/pages/profile/private/messages/chat-conversation';
-import ChatWrp from '../../../../../components/pages/profile/private/messages/chat-wrp';
 import MessagesWrp from '../../../../../components/pages/profile/private/messages/messages-wrp';
 import useMedia from '../../../../../hooks/media.hook';
 import useTrans from '../../../../../hooks/trans.hook';
@@ -26,7 +25,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         flexDirection: 'column',
         alignItems: 'flex-start',
         justifyContent: 'flex-start',
-        padding: theme.rem(0, 1, 2),
+        padding: theme.rem(0, 0, 2),
         height: '100vh',
         background: theme.palette.white,
 

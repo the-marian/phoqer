@@ -10,7 +10,8 @@ import routes from './routes';
  * 1. Validation
  * 2. Value formatting
  * ├─ 2.1 Number formatting
- * └─ 2.2 Date formatting
+ * ├─ 2.2 Date formatting
+ * └─ 2.3 String
  * 3. From lodash
  * 4. Work with cookies
  * 5. Site related helpers
@@ -78,6 +79,14 @@ export const dateFromTimestamp = (value?: string | number | null | Date): Date |
         return null;
     }
 };
+
+// ----------------------------------------------
+// ----------------------------------------------
+//  2. Value formatting
+//  └─ 2.3 String
+// ----------------------------------------------
+// cut string
+export const cutString = (value: string, max: number): string => (value.length > max ? `${value.slice(0, max - 3)}...` : value);
 
 // format date string from timestamp or valid date string.
 // 'Fri Mar 12 2021 10:51:16 GMT+0200 (Eastern European Standard Time)' => 12-03-2021 10:51

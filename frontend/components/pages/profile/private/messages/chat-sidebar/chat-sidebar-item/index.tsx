@@ -3,6 +3,7 @@ import Link from 'next/link';
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
+import { cutString } from '../../../../../../../assets/helpers';
 import routes from '../../../../../../../assets/routes';
 import template from '../../../../../../../assets/template';
 import { Theme } from '../../../../../../../assets/theme';
@@ -41,8 +42,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         display: 'flex',
     },
     title: {
-        ...template(theme).cutString,
-        width: 'calc(100% - 8.5rem)',
+        width: '100%',
         fontSize: theme.rem(1.6),
         fontWeight: theme.text.weight[3],
 
@@ -78,7 +78,7 @@ const ChatSidebarItem = ({ chat, active = false }: IProps): ReactElement => {
                 <UserAvatar width={7} height={7} avatar={chat.cover_image || '/no_img.png'} />
 
                 <div className={css.inner}>
-                    <h2 className={css.title}>{chat.title || '...'}</h2>
+                    <h2 className={css.title}>{cutString(chat.title, 40)}</h2>
                     <div className={css.flex}>
                         <OnlineIndicator className={css.online} time={chat.recipient_last_activity} />
                         <p>{`${chat.recipient_first_name} ${chat.recipient_last_name}`}</p>

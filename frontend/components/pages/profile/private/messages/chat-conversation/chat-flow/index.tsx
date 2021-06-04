@@ -1,12 +1,16 @@
+import clsx from 'clsx';
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
+import { useSelector } from 'react-redux';
 
 import { Theme } from '../../../../../../../assets/theme';
+import { IMessagesList, IPublicProfile, IState } from '../../../../../../../interfaces';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     root: {
         flexGrow: 2,
         height: '100%',
+        width: '100%',
         marginBottom: theme.rem(1),
         borderRadius: theme.radius,
         background: theme.palette.gray[0],
@@ -17,57 +21,47 @@ const useStyles = createUseStyles((theme: Theme) => ({
         }),
     },
     inner: {
+        display: 'flex',
+        flexDirection: 'column-reverse',
+        justifyContent: 'flex-start',
+        minHeight: '100%',
         padding: theme.rem(4, 1, 1),
 
         ...theme.media(1060).max({
             padding: theme.rem(2, 1.5, 4),
         }),
     },
+    messages: {
+        width: 'max-content',
+        maxWidth: '60%',
+        margin: theme.rem(0.5, 1),
+        padding: theme.rem(1, 2),
+        background: theme.palette.white,
+        borderRadius: theme.radius,
+        boxShadow: theme.shadow[1],
+    },
+    right: {
+        alignSelf: 'flex-end',
+        background: theme.palette.primary[0],
+        color: theme.palette.trueWhite,
+    },
 }));
 const ChatFlow = (): ReactElement => {
     const css = useStyles();
 
+    const user = useSelector<IState, IPublicProfile>(state => state.user);
+    const messages = useSelector<IState, IMessagesList>(state => state.chat.messages);
+
     return (
         <div className={css.root}>
             <div className={css.inner}>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur culpa cupiditate dicta enim eos fugiat harum
-                illum in iste itaque, natus, neque praesentium, provident ratione tenetur veniam vero? Aspernatur, totam!Lorem
-                ipsum dolor sit amet, consectetur adipisicing elit. Consectetur culpa cupiditate dicta enim eos fugiat harum illum
-                in iste itaque, natus, neque praesentium, provident ratione tenetur veniam vero? Aspernatur, totam!Lorem ipsum
-                dolor sit amet, consectetur adipisicing elit. Consectetur culpa cupiditate dicta enim eos fugiat harum illum in
-                iste itaque, natus, neque praesentium, provident ratione tenetur veniam vero? Aspernatur, totam!Lorem ipsum dolor
-                sit amet, consectetur adipisicing elit. Consectetur culpa cupiditate dicta enim eos fugiat harum illum in iste
-                itaque, natus, neque praesentium, provident ratione tenetur veniam vero? Aspernatur, totam!Lorem ipsum dolor sit
-                amet, consectetur adipisicing elit. Consectetur culpa cupiditate dicta enim eos fugiat harum illum in iste itaque,
-                natus, neque praesentium, provident ratione tenetur veniam vero? Aspernatur, totam!Lorem ipsum dolor sit amet,
-                consectetur adipisicing elit. Consectetur culpa cupiditate dicta enim eos fugiat harum illum in iste itaque,
-                natus, neque praesentium, provident ratione tenetur veniam vero? Aspernatur, totam!Lorem ipsum dolor sit amet,
-                consectetur adipisicing elit. Consectetur culpa cupiditate dicta enim eos fugiat harum illum in iste itaque,
-                natus, neque praesentium, provident ratione tenetur veniam vero? Aspernatur, totam!Lorem ipsum dolor sit amet,
-                consectetur adipisicing elit. Consectetur culpa cupiditate dicta enim eos fugiat harum illum in iste itaque,
-                natus, neque praesentium, provident ratione tenetur veniam vero? Aspernatur, totam!Lorem ipsum dolor sit amet,
-                consectetur adipisicing elit. Consectetur culpa cupiditate dicta enim eos fugiat harum illum in iste itaque,
-                natus, neque praesentium, provident ratione tenetur veniam vero? Aspernatur, totam!Lorem ipsum dolor sit amet,
-                consectetur adipisicing elit. Consectetur culpa cupiditate dicta enim eos fugiat harum illum in iste itaque,
-                natus, neque praesentium, provident ratione tenetur veniam vero? Aspernatur, totam!Lorem ipsum dolor sit amet,
-                consectetur adipisicing elit. Consectetur culpa cupiditate dicta enim eos fugiat harum illum in iste itaque,
-                natus, neque praesentium, provident ratione tenetur veniam vero? Aspernatur, totam!Lorem ipsum dolor sit amet,
-                consectetur adipisicing elit. Consectetur culpa cupiditate dicta enim eos fugiat harum illum in iste itaque,
-                natus, neque praesentium, provident ratione tenetur veniam vero? Aspernatur, totam!Lorem ipsum dolor sit amet,
-                consectetur adipisicing elit. Consectetur culpa cupiditate dicta enim eos fugiat harum illum in iste itaque,
-                natus, neque praesentium, provident ratione tenetur veniam vero? Aspernatur, totam!Lorem ipsum dolor sit amet,
-                consectetur adipisicing elit. Consectetur culpa cupiditate dicta enim eos fugiat harum illum in iste itaque,
-                natus, neque praesentium, provident ratione tenetur veniam vero? Aspernatur, totam!Lorem ipsum dolor sit amet,
-                consectetur adipisicing elit. Consectetur culpa cupiditate dicta enim eos fugiat harum illum in iste itaque,
-                natus, neque praesentium, provident ratione tenetur veniam vero? Aspernatur, totam!Lorem ipsum dolor sit amet,
-                consectetur adipisicing elit. Consectetur culpa cupiditate dicta enim eos fugiat harum illum in iste itaque,
-                natus, neque praesentium, provident ratione tenetur veniam vero? Aspernatur, totam!Lorem ipsum dolor sit amet,
-                consectetur adipisicing elit. Consectetur culpa cupiditate dicta enim eos fugiat harum illum in iste itaque,
-                natus, neque praesentium, provident ratione tenetur veniam vero? Aspernatur, totam!Lorem ipsum dolor sit amet,
-                consectetur adipisicing elit. Consectetur culpa cupiditate dicta enim eos fugiat harum illum in iste itaque,
-                natus, neque praesentium, provident ratione tenetur veniam vero? Aspernatur, totam!Lorem ipsum dolor sit amet,
-                consectetur adipisicing elit. Consectetur culpa cupiditate dicta enim eos fugiat harum illum in iste itaque,
-                natus, neque praesentium, provident ratione tenetur veniam vero? Aspernatur, totam!
+                {messages.data.data.length
+                    ? messages.data.data.map<ReactElement>(item => (
+                          <div key={item.id} className={clsx(css.messages, user.id === item.users_user && css.right)}>
+                              {item.text}
+                          </div>
+                      ))
+                    : null}
             </div>
         </div>
     );
