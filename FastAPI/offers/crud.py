@@ -276,7 +276,7 @@ async def find_offers(
       AND ((:max_deposit)::int IS NULL OR deposit_val <= (:max_deposit)::int)
       AND ((:min_deposit)::int IS NULL OR deposit_val >= (:min_deposit)::int)
       AND ((:no_deposit)::bool IS NULL OR deposit_val = 0)
-      AND ((:rental_period)::varchar IS NULL (:rental_period)::varchar)
+      AND ((:rental_period)::varchar IS NULL OR rental_period = (:rental_period)::varchar)
       AND (((:search)::varchar IS NULL OR title ilike :search)
           OR
           ((:search)::varchar IS NULL OR description ilike :search))
@@ -328,7 +328,7 @@ async def count_founded_offers(
       AND ((:max_deposit)::int IS NULL OR deposit_val <= (:max_deposit)::int)
       AND ((:min_deposit)::int IS NULL OR deposit_val >= (:min_deposit)::int)
       AND ((:no_deposit)::bool IS NULL OR deposit_val = 0)
-      AND ((:rental_period)::varchar IS NULL (:rental_period)::varchar)
+      AND ((:rental_period)::varchar IS NULL OR rental_period = (:rental_period)::varchar)
       AND (((:search)::varchar IS NULL OR title ilike :search)
           OR
           ((:search)::varchar IS NULL OR description ilike :search))
