@@ -20,8 +20,7 @@ def test_get_chats(client, auth_token):
                 "recipient_last_name": "Mykhailychenko",
                 "recipient_last_activity": "2021-03-10T00:00:00+00:00",
                 "new_messages": 1,
-                "cover_image":
-                    "http://example.com",
+                "cover_image": "http://example.com",
             },
             {
                 "chat_id": 3,
