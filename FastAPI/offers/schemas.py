@@ -50,7 +50,7 @@ class OfferDraftRequest(BaseModel):
     max_rent_period: Optional[int] = None
     min_rent_period: Optional[int] = None
     price: Optional[int] = None
-    rental_period: RentalPeriod = None
+    rental_period: RentalPeriod = RentalPeriod.NONE
     sub_category: Optional[str] = None
     title: Optional[str] = None
     views: int = 0
@@ -78,7 +78,7 @@ class OffersListItem(BaseModel):
     is_promoted: bool = False
     price: int
     pub_date: date
-    rental_period: RentalPeriod = None
+    rental_period: RentalPeriod = RentalPeriod.NONE
     title: str
     views: int
 
@@ -98,7 +98,7 @@ class MyOffersListItem(BaseModel):
     is_promoted: bool = False
     price: Optional[int] = None
     pub_date: Optional[date] = None
-    rental_period: RentalPeriod = None
+    rental_period: RentalPeriod = RentalPeriod.NONE
     title: Optional[str] = None
     views: Optional[int] = None
 
