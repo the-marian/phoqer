@@ -19,8 +19,9 @@ async def get_chats(
             WHERE
               messages.chat_id = chats.chat_id
               AND
-              messages.is_red = FALSE 
-              AND NOT messages.author_id = :user_id)
+              messages.is_red = FALSE
+              AND NOT
+              messages.author_id = :user_id)
         AS new_messages,
         users_user.id AS recipient_id,
         users_user.first_name AS recipient_first_name,
