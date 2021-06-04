@@ -61,8 +61,9 @@ def send_new_account_email(
     activation_token: str,
 ) -> None:
     subject = f"Phoqer - New account for user {username}"
-    with open(os.path.join(
-            BASE_DIR, "users/email-templates/build/new_account.html")) as f:
+    with open(
+            os.path.join(BASE_DIR, "users/email-templates/build/new_account.html")
+    ) as f:
         template_str = f.read()
     link = f"http://phoqer.com/api/v2/users/activation/{activation_token}"
     send_email(
