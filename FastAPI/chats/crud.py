@@ -17,7 +17,7 @@ async def get_chats(
         (SELECT COUNT(*)
             FROM messages
             WHERE messages.chat_id = chats.chat_id
-                AND messages.is_red = FALSE) AS new_messages,
+                AND messages.is_red = FALSE AND NOT messages.author_id = :user_id) AS new_messages,
         users_user.id AS recipient_id,
         users_user.first_name AS recipient_first_name,
         users_user.last_name AS recipient_last_name,
@@ -84,7 +84,7 @@ async def get_messages(
         messages.text,
         messages.creation_datetime,
         messages.is_red,
-        users_user.id as users_user,
+        users_user.id as user_id,
         users_user.first_name,
         users_user.last_name,
         users_user.profile_img

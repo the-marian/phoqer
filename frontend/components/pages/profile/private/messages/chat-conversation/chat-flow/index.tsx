@@ -57,7 +57,7 @@ const ChatFlow = (): ReactElement => {
             <div className={css.inner}>
                 {messages.data.data.length
                     ? messages.data.data.map<ReactElement>(item => (
-                          <div key={item.id} className={clsx(css.messages, user.id === item.users_user && css.right)}>
+                          <div key={item.id} className={clsx(css.messages, user.id === item.user_id && css.right)}>
                               {item.text}
                           </div>
                       ))

@@ -25,7 +25,7 @@ class MessagesListItem(BaseModel):
     text: str
     creation_datetime: datetime
     is_red: bool
-    users_user: int
+    user_id: int
     first_name: str
     last_name: str
     profile_img: Optional[str] = None
