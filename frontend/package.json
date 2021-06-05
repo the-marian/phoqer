@@ -9,14 +9,10 @@
         "lint": "prettier --write './**/*.{js,jsx,ts,tsx,css,json}' --config ./.prettierrc && eslint --fix ./",
         "format": "prettier --write './**/*.{js,jsx,ts,tsx,css,json}' --config ./.prettierrc",
         "type-check": "tsc --pretty --noEmit",
-        "postinstall": "husky install frontend/husky",
-        "prepare": "cd .. && husky install frontend/.husky",
+        "husky": "cd .. && husky install frontend/.husky",
         "test": "jest",
         "test-all": "yarn lint && yarn type-check && yarn test",
         "tsc": "tsc"
-    },
-    "hooks": {
-        "pre-commit": "npm run lint && npm run test",
     },
     "dependencies": {
         "@fortawesome/fontawesome-svg-core": "^1.2.31",
@@ -87,7 +83,6 @@
         "jest-dom": "^4.0.0",
         "jest-watch-typeahead": "^0.6.3",
         "lint-staged": "^11.0.0",
-        "pinst": "^2.1.6",
         "prettier": "^2.3.0",
         "redux-devtools-extension": "^2.13.8",
         "terser-webpack-plugin": "^5.1.2",
