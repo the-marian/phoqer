@@ -26,6 +26,7 @@ jobs:
           echo POSTGRES_ENGINE=django.db.backends.postgresql >> .env.dev
           echo DATABASE=postgres >> .env.dev
           echo SECRET_KEY=${{ secrets.SECRET_KEY }} >> .env.dev
+          echo FERNET_SECRET_KEY=${{ secrets.FERNET_SECRET_KEY }} >> .env.dev
           echo EMAIL_HOST_USER=${{ secrets.EMAIL_HOST_USER }} >> .env.dev
           echo EMAIL_HOST_PASSWORD=${{ secrets.EMAIL_HOST_PASSWORD }} >> .env.dev
           echo POSTGRES_DB=${{ secrets.POSTGRES_DB }} >> .env.dev
@@ -64,6 +65,7 @@ jobs:
       - name: Add environment variables to .env.dev
         run: |
           echo SECRET_KEY=${{ secrets.SECRET_KEY }} >> .env.dev
+          echo FERNET_SECRET_KEY=${{ secrets.FERNET_SECRET_KEY }} >> .env.dev
           echo PGADMIN_LISTEN_PORT=${{ secrets.PGADMIN_LISTEN_PORT }} >> .env.dev
           echo PGADMIN_DEFAULT_EMAIL=${{ secrets.PGADMIN_DEFAULT_EMAIL }} >> .env.dev
           echo PGADMIN_DEFAULT_PASSWORD=${{ secrets.PGADMIN_DEFAULT_PASSWORD }} >> .env.dev

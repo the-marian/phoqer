@@ -1,20 +1,84 @@
+import json
 from math import ceil
 from typing import Any, Dict, List, Mapping, Optional, Union
 
-from fastapi import APIRouter, Depends, HTTPException
+from cryptography.fernet import Fernet
+from fastapi import (
+    APIRouter,
+    Depends,
+    Header,
+    HTTPException,
+    WebSocket,
+    WebSocketDisconnect,
+)
 from FastAPI.chats import crud
 from FastAPI.chats.schemas import (
     ChatsListResponse,
     MessagesListItem,
     MessagesListResponse,
 )
-from FastAPI.config import CHAT_SIZE, MESSAGES_SIZE
-from FastAPI.utils import get_current_user
+from FastAPI.config import CHAT_SIZE, FERNET_SECRET_KEY, MESSAGES_SIZE
+from FastAPI.utils import decode_jwt, get_current_user
 
 router = APIRouter(
     prefix="/chats",
     tags=["chats"],
 )
+
+
+class ConnectionManager:
+    def __init__(self) -> None:
+        self.active_connections: Dict[int, WebSocket] = {}
+
+    async def connect(self, websocket: WebSocket, user_id: int) -> None:
+        await websocket.accept()
+        self.active_connections[user_id] = websocket
+
+    def disconnect(self, client_id: int) -> None:
+        self.active_connections.pop(client_id)
+
+    async def send_msg(self, message: dict, user_id: int) -> None:
+        if connection := self.active_connections.get(user_id):
+            data = json.dumps(message, default=str)
+            await connection.send_text(data)
+
+
+manager = ConnectionManager()
+
+
+@router.websocket("/chat/{chat_id}")
+async def chat_endpoint(
+    websocket: WebSocket,
+    chat_id: int,
+    authorization: str = Header(None),
+) -> None:
+    f = Fernet(FERNET_SECRET_KEY)
+    token = authorization.split(" ")[1]
+    user_id = decode_jwt(token)["user_id"]
+    if not (chat_data := await crud.is_chat_exist(chat_id=chat_id)):
+        raise Exception(f"Chat with id {chat_id} does not exist")
+    client_id, author_id = chat_data["client_id"], chat_data["author_id"]
+    if user_id not in (client_id, author_id):
+        raise Exception("The user does not have access to this chat")
+    await manager.connect(websocket, user_id=user_id)
+    try:
+        while True:
+            message_data = await websocket.receive_json()
+            message_text = message_data["text"]
+            encoded_message = message_text.encode()
+            encrypted_message = f.encrypt(encoded_message).decode()
+            message_id = await crud.create_message(
+                message=encrypted_message, chat_id=chat_id, user_id=user_id
+            )
+            if message := await crud.get_message(message_id):
+                message = dict(message)
+                message["text"] = f.decrypt(message["text"].encode()).decode()
+            else:
+                raise Exception("Message does not created")
+            await manager.send_msg(message=message, user_id=client_id)
+            await manager.send_msg(message=message, user_id=author_id)
+    except WebSocketDisconnect:
+        manager.disconnect(client_id=user_id)
 
 
 @router.get("", response_model=ChatsListResponse)

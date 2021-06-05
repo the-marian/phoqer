@@ -2,7 +2,7 @@ from typing import Any, List, Mapping, Optional, Set
 from uuid import UUID
 
 from FastAPI.config import PAGE_SIZE, database
-from FastAPI.offers.schemas import OfferDraftRequest, Status, RentalPeriod
+from FastAPI.offers.schemas import OfferDraftRequest, RentalPeriod, Status
 from pydantic import HttpUrl
 
 
