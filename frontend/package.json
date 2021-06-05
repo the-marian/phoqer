@@ -3,8 +3,8 @@
     "version": "1.0.0",
     "license": "MIT",
     "scripts": {
-        "dev": "NODE_ENV=development node server.js",
         "build": "next build",
+        "dev": "NODE_ENV=development node server.js",
         "start": "NODE_ENV=production node server.js",
         "lint": "prettier --write './**/*.{js,jsx,ts,tsx,css,json}' --config ./.prettierrc && eslint --fix ./",
         "format": "prettier --write './**/*.{js,jsx,ts,tsx,css,json}' --config ./.prettierrc",
