@@ -5,12 +5,14 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { isEmpty, mailRegex, passwordRegex } from '../../../../assets/helpers';
 import { Theme } from '../../../../assets/theme';
+import useMedia from '../../../../hooks/media.hook';
 import useTrans from '../../../../hooks/trans.hook';
 import { ISignup, IState } from '../../../../interfaces';
 import types from '../../../../redux/types';
 import Button from '../../button';
 import GoogleFacebook from '../../google-facebook';
 import Input from '../../input';
+import Tooltip from '../../tooltip';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     title: {
@@ -121,7 +123,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         },
     },
     green: {
-        color: theme.palette.black[0],
+        color: theme.palette.white,
         '&::before': {
             background: theme.palette.green[0],
         },
@@ -145,6 +147,7 @@ const INIT: ISignup = {
 const JoinForm = (): ReactElement => {
     const css = useStyles();
     const trans = useTrans();
+    const media = useMedia(768);
     const dispatch = useDispatch();
 
     const [errors, setErrors] = useState<IError>(INIT);
@@ -187,6 +190,17 @@ const JoinForm = (): ReactElement => {
 
         dispatch({ type: types.SIGNUP_START, payload: value });
     };
+
+    const renderTooltip = (): ReactElement => (
+        <ul className={css.list}>
+            <li className={clsx(css.red, value.password.length > 7 && css.green)}>{trans('minimum_characters')}</li>
+            <li className={clsx(css.red, /[0-9]+[a-z]+|[a-z]+[0-9]+/.test(value.password) && css.green)}>
+                {trans('numbers_letters')}
+            </li>
+            <li className={clsx(css.red, /[A-Z]/.test(value.password) && css.green)}>{trans('uppercase')}</li>
+            <li className={clsx(css.red, /[_#?!@$%^&*-]/.test(value.password) && css.green)}>{trans('special_characters')}</li>
+        </ul>
+    );
 
     return (
         <form action="#" method="post" onSubmit={handleSubmit}>
@@ -239,28 +253,21 @@ const JoinForm = (): ReactElement => {
 
             <label className={css.wrp}>
                 <p className={css.label}>{trans('password')}</p>
-                <ul className={css.list}>
-                    <li className={clsx(css.red, value.password.length > 7 && css.green)}>{trans('minimum_characters')}</li>
-                    <li className={clsx(css.red, /[0-9]+[a-z]+|[a-z]+[0-9]+/.test(value.password) && css.green)}>
-                        {trans('numbers_letters')}
-                    </li>
-                    <li className={clsx(css.red, /[A-Z]/.test(value.password) && css.green)}>{trans('uppercase')}</li>
-                    <li className={clsx(css.red, /[_#?!@$%^&*-]/.test(value.password) && css.green)}>
-                        {trans('special_characters')}
-                    </li>
-                </ul>
+                {!media && renderTooltip()}
                 <div className={css.inner}>
-                    <Input
-                        value={value.password}
-                        errors={errors.password}
-                        onChange={handleChange}
-                        type="password"
-                        name="password"
-                        placeholder={trans('password')}
-                        autoComplete="current-password"
-                        className={css.input}
-                        errorsInPlaceholder
-                    />
+                    <Tooltip content={renderTooltip()}>
+                        <Input
+                            value={value.password}
+                            errors={errors.password}
+                            onChange={handleChange}
+                            type="password"
+                            name="password"
+                            placeholder={trans('password')}
+                            autoComplete="current-password"
+                            className={css.input}
+                            errorsInPlaceholder
+                        />
+                    </Tooltip>
                 </div>
             </label>
 

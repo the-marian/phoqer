@@ -33,7 +33,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     link: {
         display: 'block',
         textAlign: 'center',
-        margin: theme.rem(2, 0, 1),
+        margin: theme.rem(1, 0),
         fontSize: theme.rem(1.4),
         color: theme.palette.primary[0],
 
@@ -42,14 +42,13 @@ const useStyles = createUseStyles((theme: Theme) => ({
         }),
 
         ...theme.media(500).max({
-            margin: theme.rem(3, 0),
             fontSize: theme.rem(1.6),
         }),
     },
     btn: {
         display: 'block',
         minWidth: theme.rem(20),
-        margin: '2rem auto 1rem',
+        margin: '2rem auto',
         padding: theme.rem(1.5, 2),
         fontWeight: theme.text.weight[4],
         textAlign: 'center',
@@ -59,7 +58,6 @@ const useStyles = createUseStyles((theme: Theme) => ({
         color: theme.palette.trueWhite,
 
         ...theme.media(500).max({
-            margin: '1rem auto 3rem',
             padding: theme.rem(2),
         }),
     },

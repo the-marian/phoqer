@@ -134,7 +134,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
                 color: theme.palette.trueWhite,
             }),
             ...theme.media(768).max({
-                padding: theme.rem(1.5, 0),
+                padding: theme.rem(1.5, 1),
                 fontSize: theme.rem(1.6),
                 ...theme.hover({
                     background: theme.palette.white,
