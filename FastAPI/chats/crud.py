@@ -131,3 +131,44 @@ async def count_messages(chat_id: int) -> int:
     """
     count = await database.fetch_one(query=query, values={"chat_id": chat_id})
     return int(count["count"]) if count else 0
+
+
+async def create_message(
+    message: str,
+    chat_id: int,
+    user_id: int,
+) -> int:
+    query = """
+    INSERT INTO messages (
+        text,
+        chat_id,
+        author_id,
+        creation_datetime)
+    VALUES (
+        :text,
+        :chat_id,
+        :author_id,
+        current_timestamp)
+    RETURNING id
+    """
+    values = {"text": message, "chat_id": chat_id, "author_id": user_id}
+    return int(await database.execute(query=query, values=values))
+
+
+async def get_message(message_id: int) -> Optional[Mapping]:
+    query = """
+    SELECT
+        messages.id,
+        messages.text,
+        messages.creation_datetime,
+        messages.is_red,
+        users_user.id as users_user,
+        users_user.first_name,
+        users_user.last_name,
+        users_user.profile_img
+    FROM messages
+    INNER JOIN users_user ON users_user.id = messages.author_id
+    WHERE messages.id = :message_id
+    """
+    values = {"message_id": message_id}
+    return await database.fetch_one(query=query, values=values)

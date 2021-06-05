@@ -12,8 +12,8 @@ from FastAPI.offers.schemas import (
     OfferDraftRequest,
     OffersListItem,
     OffersListResponse,
-    Status,
     RentalPeriod,
+    Status,
 )
 from FastAPI.offers.utils import review_status_validator, set_review_status
 from FastAPI.utils import get_current_user, get_current_user_or_none
