@@ -10,7 +10,10 @@ const handle = app.getRequestHandler();
 app.prepare().then(() => {
     createServer((req, res) => {
         const parsedUrl = parse(req.url, true);
-        handle(req, res, parsedUrl);
+        handle(req, res, parsedUrl).catch(error => {
+            console.log('---LOGGER-FOR-MARIAN---');
+            console.log(error);
+        });
         process.on('SIGILL', signal => {
             console.log('---LOGGER-FOR-MARIAN---');
             console.log(signal);
@@ -20,6 +23,6 @@ app.prepare().then(() => {
             console.log(err);
             throw err;
         }
-        console.log('Start front-end dich on port: ' + PORT);
+        console.log('Front-end is run on port: ' + PORT);
     });
 });
