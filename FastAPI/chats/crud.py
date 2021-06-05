@@ -134,7 +134,7 @@ async def count_messages(chat_id: int) -> int:
 
 
 async def create_message(
-    message: dict,
+    message: str,
     chat_id: int,
     user_id: int,
 ) -> int:
@@ -151,7 +151,7 @@ async def create_message(
         current_timestamp)
     RETURNING id
     """
-    values = {"text": message["text"], "chat_id": chat_id, "author_id": user_id}
+    values = {"text": message, "chat_id": chat_id, "author_id": user_id}
     return int(await database.execute(query=query, values=values))
 
 

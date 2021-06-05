@@ -2,6 +2,7 @@ import json
 from math import ceil
 from typing import Any, Dict, List, Mapping, Optional, Union
 
+from cryptography.fernet import Fernet
 from fastapi import (
     APIRouter,
     Depends,
@@ -16,7 +17,7 @@ from FastAPI.chats.schemas import (
     MessagesListItem,
     MessagesListResponse,
 )
-from FastAPI.config import CHAT_SIZE, MESSAGES_SIZE
+from FastAPI.config import CHAT_SIZE, FERNET_SECRET_KEY, MESSAGES_SIZE
 from FastAPI.utils import decode_jwt, get_current_user
 
 router = APIRouter(
@@ -51,6 +52,7 @@ async def chat_endpoint(
     chat_id: int,
     authorization: str = Header(None),
 ) -> None:
+    f = Fernet(FERNET_SECRET_KEY)
     token = authorization.split(" ")[1]
     user_id = decode_jwt(token)["user_id"]
     if not (chat_data := await crud.is_chat_exist(chat_id=chat_id)):
@@ -62,11 +64,15 @@ async def chat_endpoint(
     try:
         while True:
             message_data = await websocket.receive_json()
+            message_text = message_data["text"]
+            encoded_message = message_text.encode()
+            encrypted_message = f.encrypt(encoded_message).decode()
             message_id = await crud.create_message(
-                message=message_data, chat_id=chat_id, user_id=user_id
+                message=encrypted_message, chat_id=chat_id, user_id=user_id
             )
             if message := await crud.get_message(message_id):
                 message = dict(message)
+                message["text"] = f.decrypt(message["text"].encode()).decode()
             else:
                 raise Exception("Message does not created")
             await manager.send_msg(message=message, user_id=client_id)
