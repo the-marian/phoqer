@@ -122,10 +122,10 @@ const ActiveFiltersItem = ({ filter }: IProps): ReactElement => {
                 return 'C доставкой';
 
             case 'min_price':
-                return 'минимальная цена: ' + moneyFormat(filter[1]) + '.00';
+                return 'минимальная цена: ' + moneyFormat(filter[1]);
 
             case 'max_price':
-                return 'максимальная цена: ' + moneyFormat(filter[1]) + '.00';
+                return 'максимальная цена: ' + moneyFormat(filter[1]);
 
             default:
                 return '';

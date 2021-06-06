@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Dispatch } from 'redux';
 
 import * as helpers from '../../../../../assets/helpers';
-import { intNumberValidation, moneyFormat } from '../../../../../assets/helpers';
+import { intNumberValidation } from '../../../../../assets/helpers';
 import routes from '../../../../../assets/routes';
 import { Theme } from '../../../../../assets/theme';
 import useTrans from '../../../../../hooks/trans.hook';
@@ -189,7 +189,7 @@ const StepThree = (): ReactElement => {
                         {trans('price')} {trans('per_day')} <span className={css.red}>*</span>
                     </h4>
                     <Input
-                        value={moneyFormat(value.price || 0)}
+                        value={value.price || 0}
                         onChange={handlePrice}
                         className={css.input}
                         type="text"

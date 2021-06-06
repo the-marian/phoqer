@@ -47,15 +47,20 @@ export const isEmpty = <T>(value: T): [string, string][] =>
 // add zero to decimals. 2 => '02', 12 => '12'
 export const addZeroToNumber = (value: string | number): string => String(value).padStart(2, '0');
 // transform init value to string with separators. 1000000 => 1 000 000, 90 => 90
-export const moneyFormat = (value: number | string = 0, separator = '   '): string => {
+export const moneyFormat = (value: number | string = 0, separator = ' '): string => {
     if (!value) return '';
-    return String(value)
+    const data = String(value).split('.');
+    let result = data[0]
         .split('')
         .reverse()
         .map<string>((item, index): string => (index % 3 ? item : item + separator))
         .reverse()
         .join('')
         .trim();
+
+    if (result.length && result[result.length - 1] === separator) result = result.slice(0, result.length - 1);
+
+    return result + '.' + (data[1] ? (data[1].length > 1 ? data[1].slice(0, 2) : data[1] + '0') : '00');
 };
 // declines words according to number. 1 день 2 дня 5 дней ...
 export const declOfNum = (number: number, titles: string[]): string => {
@@ -95,9 +100,11 @@ export const cutString = (value: string, max: number): string => (value.length >
 export const formatTimestamp = (value?: string | number | Date | null, locale = 'ru'): string => {
     const date = dateFromTimestamp(value);
     if (!date) return ' - ';
-    return `${months[locale][date.getMonth()]} ${addZeroToNumber(date.getDate())}, ${date.getFullYear()} ${addZeroToNumber(
-        date.getHours(),
-    )}:${addZeroToNumber(date.getMinutes())}`;
+    return `${months[locale][date.getMonth()]} ${addZeroToNumber(date.getDate())}, ${date.getFullYear()}${
+        typeof value !== 'string' || value?.length > 10
+            ? ' ' + addZeroToNumber(date.getHours()) + ':' + addZeroToNumber(date.getMinutes())
+            : ''
+    }`;
 };
 
 // ----------------------------------------------
@@ -156,7 +163,10 @@ export const logger = (): void => {
 // format category list from backend in relation to IDropList interface
 export const formatCatList = (data: ICategories[]): IDropList[] =>
     data?.map<IDropList>(
-        (item: ICategories): IDropList => (item?.sub_category?.length ? { ...item, sub: item.sub_category } : item),
+        (item: ICategories): IDropList =>
+            item?.sub_category?.length
+                ? { icon_image: item.icon_image, image: item.image, slug: item.slug, sub: item.sub_category }
+                : item,
     );
 // find category by slug
 type Dropdown = ICategories | IDropList | IDropValue;
@@ -183,7 +193,11 @@ export const findSubCategory = (data: ICategories[], slug: string): Dropdown | n
 //  └─ 5.3 SSR auth helpers
 // ----------------------------------------------
 // get server side cookies in next.js getServerSideProps function
-export const serverCookie = (ctx: GetServerSidePropsContext): IAuth | null => parseCookie<IAuth | null>(ctx.req.headers.cookie);
+interface IServerCookie {
+    req: { headers: { cookie: string } };
+}
+export const serverCookie = (ctx: GetServerSidePropsContext | IServerCookie): IAuth | null =>
+    parseCookie<IAuth | null>(ctx.req.headers.cookie);
 // redirect user in next.js getServerSideProps function
 export const serverRedirect = (ctx: GetServerSidePropsContext, path?: string | null, reverse = false): boolean => {
     const auth = serverCookie(ctx);
@@ -203,11 +217,13 @@ export const serverRedirect = (ctx: GetServerSidePropsContext, path?: string | n
 // generate user online status
 const FIVE_MINUTES_IN_MS = 300000;
 const HOUR_IN_MS = 3600000;
+
 interface IOnlineStatusParams {
     initDate?: Date | string | number | null;
     locale?: string;
     isAuthor?: boolean;
 }
+
 export const onlineStatus = ({ initDate, locale = 'ru', isAuthor = false }: IOnlineStatusParams): string => {
     const date = dateFromTimestamp(initDate);
     if (!date) return ' - ';

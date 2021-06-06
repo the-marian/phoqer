@@ -3,7 +3,7 @@ import React, { ChangeEvent, ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 import { useSelector } from 'react-redux';
 
-import { intNumberValidation, moneyFormat } from '../../../../../../assets/helpers';
+import { intNumberValidation } from '../../../../../../assets/helpers';
 import * as helpers from '../../../../../../assets/helpers';
 import useTrans from '../../../../../../hooks/trans.hook';
 import { ICategories, IDropValue, INewOffer, IState } from '../../../../../../interfaces';
@@ -99,7 +99,7 @@ const StepOne = ({ value, errors, setErrors, setValue }: IProps): ReactElement =
                         <span className={css.red}>*</span>
                     </h3>
                     <Input
-                        value={moneyFormat(value.price || 0)}
+                        value={value.price || 0}
                         onChange={handleNumber}
                         type="text"
                         placeholder="Цена"
