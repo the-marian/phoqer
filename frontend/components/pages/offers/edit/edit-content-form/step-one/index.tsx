@@ -99,7 +99,7 @@ const StepOne = ({ value, errors, setErrors, setValue }: IProps): ReactElement =
                         <span className={css.red}>*</span>
                     </h3>
                     <Input
-                        value={moneyFormat(value.price || 0)}
+                        value={value.price || 0}
                         onChange={handleNumber}
                         type="text"
                         placeholder="Цена"

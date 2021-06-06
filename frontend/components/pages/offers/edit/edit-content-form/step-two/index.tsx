@@ -3,7 +3,7 @@ import React, { ChangeEvent, ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 import TextareaAutosize from 'react-textarea-autosize';
 
-import { intNumberValidation, moneyFormat } from '../../../../../../assets/helpers';
+import { intNumberValidation } from '../../../../../../assets/helpers';
 import { INewOffer } from '../../../../../../interfaces';
 import CheckTitle from '../../../../../common/checkbox/check-title';
 import CheckYesNo from '../../../../../common/checkbox/check-yes-no';
@@ -91,7 +91,7 @@ const StepOne = ({ value, errors, setErrors, setValue }: IProps): ReactElement =
                 </CheckTitle>
                 <div className={clsx(css.group, value.optional.deposit_val || css.inactive)}>
                     <Input
-                        value={moneyFormat(value.deposit_val || 0)}
+                        value={value.deposit_val || 0}
                         onChange={handleNumber}
                         name="deposit_val"
                         placeholder="Введите число"
@@ -106,7 +106,7 @@ const StepOne = ({ value, errors, setErrors, setValue }: IProps): ReactElement =
                 </CheckTitle>
                 <div className={clsx(css.group, value.optional.min_rent_period || css.inactive)}>
                     <Input
-                        value={moneyFormat(value.min_rent_period || 0)}
+                        value={value.min_rent_period || 0}
                         onChange={handleNumber}
                         name="min_rent_period"
                         placeholder="Введите число"
@@ -122,7 +122,7 @@ const StepOne = ({ value, errors, setErrors, setValue }: IProps): ReactElement =
                 </CheckTitle>
                 <div className={clsx(css.group, value.optional.max_rent_period || css.inactive)}>
                     <Input
-                        value={moneyFormat(value.max_rent_period || 0)}
+                        value={value.max_rent_period || 0}
                         onChange={handleNumber}
                         name="max_rent_period"
                         placeholder="Введите число"

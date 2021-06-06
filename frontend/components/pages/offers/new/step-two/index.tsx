@@ -8,7 +8,7 @@ import { createUseStyles } from 'react-jss';
 import { useDispatch, useSelector } from 'react-redux';
 import TextareaAutosize from 'react-textarea-autosize';
 
-import { intNumberValidation, moneyFormat } from '../../../../../assets/helpers';
+import { intNumberValidation } from '../../../../../assets/helpers';
 import routes from '../../../../../assets/routes';
 import { Theme } from '../../../../../assets/theme';
 import useTrans from '../../../../../hooks/trans.hook';
@@ -184,7 +184,7 @@ const StepTwo = (): ReactElement => {
                 </CheckTitle>
                 <div className={clsx(css.inputWrp, value.optional.deposit_val || css.inactive)}>
                     <Input
-                        value={moneyFormat(value.deposit_val || 0)}
+                        value={value.deposit_val || 0}
                         onChange={handleNumber}
                         className={css.input}
                         name="deposit_val"
@@ -201,7 +201,7 @@ const StepTwo = (): ReactElement => {
                 </CheckTitle>
                 <div className={clsx(css.inputWrp, value.optional.min_rent_period || css.inactive)}>
                     <Input
-                        value={moneyFormat(value.min_rent_period || 0)}
+                        value={value.min_rent_period || 0}
                         onChange={handleNumber}
                         className={css.input}
                         name="min_rent_period"
@@ -219,7 +219,7 @@ const StepTwo = (): ReactElement => {
                 </CheckTitle>
                 <div className={clsx(css.inputWrp, value.optional.max_rent_period || css.inactive)}>
                     <Input
-                        value={moneyFormat(value.max_rent_period || 0)}
+                        value={value.max_rent_period || 0}
                         onChange={handleNumber}
                         className={css.input}
                         name="max_rent_period"
