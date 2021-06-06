@@ -2,7 +2,6 @@ import '@testing-library/react';
 
 import { authCookies, catList, dropValue, siteCookies, siteCookiesReverse } from '../__mocks__/config.mock';
 import * as helpers from '../helpers';
-import { serverCookie } from '../helpers';
 
 describe('1. Validation', () => {
     describe('Number', () => {
