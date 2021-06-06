@@ -4,6 +4,7 @@
     "license": "MIT",
     "scripts": {
         "build": "next build",
+        "postbuild": "next-sitemap",
         "dev": "NODE_ENV=development node server.js",
         "start": "NODE_ENV=production node server.js",
         "lint": "prettier --write './**/*.{js,jsx,ts,tsx,css,json}' --config ./.prettierrc && eslint --fix ./",
@@ -11,8 +12,7 @@
         "type-check": "tsc --pretty --noEmit",
         "husky": "cd .. && husky install frontend/.husky",
         "test": "jest",
-        "test-all": "yarn lint && yarn test",
-        "tsc": "tsc"
+        "test-all": "yarn lint && yarn type-check && yarn test"
     },
     "husky": {
         "hooks": {
@@ -88,6 +88,7 @@
         "jest-dom": "^4.0.0",
         "jest-watch-typeahead": "^0.6.3",
         "lint-staged": "^11.0.0",
+        "next-sitemap": "^1.6.102",
         "prettier": "^2.3.0",
         "redux-devtools-extension": "^2.13.8",
         "terser-webpack-plugin": "^5.1.2",
