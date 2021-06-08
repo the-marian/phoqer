@@ -6,9 +6,9 @@ import { useSelector } from 'react-redux';
 import { Theme } from '../../../../../../assets/theme';
 import { IChatsList, IMessages, IMessagesList, IState } from '../../../../../../interfaces';
 import ChatsLoaders from '../../../../../common/loaders/skeletons/chats';
-import ChatEmpty from '../chat-empty';
 import ChatLoading from '../chat-loading';
 import ChatSidebar from '../chat-sidebar';
+import MessagesEmpty from '../messages-empty';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     root: {
@@ -69,7 +69,7 @@ interface MessagesWrpShowLoaderProps {
     data: IMessages[];
 }
 const MessagesWrpShowLoader = ({ loading, data, children }: MessagesWrpShowLoaderProps): ReactElement | null =>
-    loading ? <ChatLoading /> : data.length ? children : <ChatEmpty />;
+    loading ? <ChatLoading /> : data.length ? children : <MessagesEmpty />;
 
 interface IProps {
     children: ReactElement | null;

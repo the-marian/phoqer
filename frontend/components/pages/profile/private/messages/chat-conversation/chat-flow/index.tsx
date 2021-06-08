@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import React, { ReactElement, useEffect, useRef } from 'react';
+import React, { Fragment, ReactElement, useEffect, useRef } from 'react';
 import { createUseStyles } from 'react-jss';
 import { useSelector } from 'react-redux';
 
@@ -132,8 +132,8 @@ const ChatFlow = (): ReactElement => {
             <div className={css.inner}>
                 {messages.data.data.length
                     ? messages.data.data.map<ReactElement>((item, index, array) => (
-                          <>
-                              <div key={item.id} className={clsx(css.messages, user.id === item.user_id && css.right)}>
+                          <Fragment key={item.id}>
+                              <div className={clsx(css.messages, user.id === item.user_id && css.right)}>
                                   {array[index + 1]?.user_id !== item.user_id && (
                                       <p className={css.date}>{formatTime(item.creation_datetime)}</p>
                                   )}
@@ -146,7 +146,7 @@ const ChatFlow = (): ReactElement => {
                                   prevDate={array[index + 1]?.creation_datetime}
                                   currentDate={item.creation_datetime}
                               />
-                          </>
+                          </Fragment>
                       ))
                     : null}
             </div>
