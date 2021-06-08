@@ -6,6 +6,7 @@ import { serverRedirect } from '../../../../assets/helpers';
 import routes from '../../../../assets/routes';
 import { Theme } from '../../../../assets/theme';
 import Breadcrumbs from '../../../../components/common/breadcrumbs';
+import Construction from '../../../../components/common/construction';
 import ProfileNav from '../../../../components/common/navigation/profile-nav/root-nav';
 import AuthRedirect from '../../../../components/context/auth/auth-redirect';
 import Container from '../../../../components/layout/container';
@@ -55,9 +56,7 @@ const Analytics = (): ReactElement => {
                             <MobileBackBtn href={routes.profile.private.personal_area}>Back to profile</MobileBackBtn>
                         )}
                         <div className={css.root}>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias aliquid aperiam dolorem dolores eaque
-                            et, excepturi fugiat impedit incidunt magni maiores molestiae neque quasi quidem, soluta sunt vero.
-                            Sequi, voluptatibus?
+                            <Construction />
                         </div>
                     </>
                 </Container>

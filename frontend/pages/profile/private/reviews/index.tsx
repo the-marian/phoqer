@@ -1,12 +1,12 @@
 import { GetServerSidePropsContext } from 'next';
-import React, { ReactElement, useState } from 'react';
+import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
 import { serverRedirect } from '../../../../assets/helpers';
 import routes from '../../../../assets/routes';
 import { Theme } from '../../../../assets/theme';
 import Breadcrumbs from '../../../../components/common/breadcrumbs';
-import DropDownMultiple from '../../../../components/common/drop-down-multiple';
+import Construction from '../../../../components/common/construction';
 import ProfileNav from '../../../../components/common/navigation/profile-nav/root-nav';
 import AuthRedirect from '../../../../components/context/auth/auth-redirect';
 import Container from '../../../../components/layout/container';
@@ -15,7 +15,6 @@ import PageLayout from '../../../../components/layout/page-layout';
 import MobileBackBtn from '../../../../components/pages/profile/private/mobile-back-btn';
 import useMedia from '../../../../hooks/media.hook';
 import useTrans from '../../../../hooks/trans.hook';
-import { ICheckboxes } from '../../../../interfaces';
 import { wrapper } from '../../../../redux/store';
 
 const useStyles = createUseStyles((theme: Theme) => ({
@@ -40,7 +39,6 @@ const Reviews = (): ReactElement => {
     const css = useStyles();
     const trans = useTrans();
     const media = useMedia(1060);
-    const [dropDownValue, setDropDown] = useState<ICheckboxes>({ bar: false, foo: false, fiz: false });
 
     return (
         <>
@@ -66,17 +64,7 @@ const Reviews = (): ReactElement => {
                         )}
 
                         <div className={css.root}>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias aliquid aperiam dolorem dolores eaque
-                            et, excepturi fugiat impedit incidunt magni maiores molestiae neque quasi quidem, soluta sunt vero.
-                            Sequi, voluptatibus?
-                        </div>
-                        <div className={css.wrp}>
-                            <DropDownMultiple
-                                placeholder="excepturi fugiat impedit incidunt magni maiores molestiae neque"
-                                values={dropDownValue}
-                                labels={['Bar fugiat', 'Foo impedit incidunt', 'Fiz molestiae']}
-                                onChange={setDropDown}
-                            />
+                            <Construction />
                         </div>
                     </>
                 </Container>
