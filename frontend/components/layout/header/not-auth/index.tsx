@@ -2,6 +2,7 @@ import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
 import { Theme } from '../../../../assets/theme';
+import useMedia from '../../../../hooks/media.hook';
 import useTrans from '../../../../hooks/trans.hook';
 import JoinForm from '../../../common/auth/join-form';
 import LoginForm from '../../../common/auth/login-form';
@@ -33,6 +34,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
 const NotAuth = (): ReactElement | null => {
     const css = useStyles();
     const trans = useTrans();
+    const media = useMedia(768);
 
     const handleLoginModal = () => {
         modal.open(
@@ -54,9 +56,11 @@ const NotAuth = (): ReactElement | null => {
             <button className={css.btn} type="button" onClick={handleLoginModal}>
                 {trans('login')}
             </button>
-            <button className={css.btn} type="button" onClick={handleRegisterModal}>
-                {trans('join')}
-            </button>
+            {media && (
+                <button className={css.btn} type="button" onClick={handleRegisterModal}>
+                    {trans('join')}
+                </button>
+            )}
         </div>
     );
 };
