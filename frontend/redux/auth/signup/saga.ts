@@ -13,7 +13,7 @@ function* signupUser({ payload }: IAction) {
         if (status < 200 || status >= 300) throw new Error();
         yield put({ type: types.SIGNUP_SUCCESS });
         modal.close();
-        notificationsModal('success', 'We have sent a verification link on your email, please open it to complete registration');
+        notificationsModal('success', 'we_have_sent_verification_link');
     } catch (error) {
         if (error?.response?.status === 401) return;
         // TODO add error text

@@ -288,5 +288,7 @@
     "privacy_statement": "Privacy statement",
     "FAQ": "FAQ",
     "safety_rules": "Safety rules",
-    "site_map": "Site map"
+    "site_map": "Site map",
+    "your_account_has_not_been_verified": "Your account has not been verified! We sent an email to you to confirm your profile. If you cannot find the letter in your mail, check the \"Spam\" folder",
+    "we_have_sent_verification_link": "We have sent a verification link on your email, please open it to complete registration. If you cannot find the letter in your mail, check the \"Spam\" folder"
 }

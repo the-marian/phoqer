@@ -4,7 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { CreateModalComponent } from './create-modal/create-modal.component';
 import { TranslationsPageService } from './translations-page.service';
 
-type Links = 'en' | 'pl' | 'ru';
+type Links = 'en' | 'pl' | 'ru' | 'ua';
 interface Languages {
     value: string;
     link: Links;
@@ -20,6 +20,7 @@ export class TranslationsPageComponent implements OnInit {
         { value: 'English', link: 'en' },
         { value: 'Poland', link: 'pl' },
         { value: 'Russian', link: 'ru' },
+        { value: 'Ukraine', link: 'ua' },
     ];
     selected: Links = 'en';
 

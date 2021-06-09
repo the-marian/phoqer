@@ -13,7 +13,7 @@ const LINKS: { text: string; href: string }[] = [
     },
     {
         text: 'advertisment_on_site',
-        href: routes.static.ad,
+        href: routes.static.business,
     },
     {
         text: 'terms_of_service',

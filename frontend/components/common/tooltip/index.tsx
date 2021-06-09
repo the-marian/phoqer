@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import React, { ReactElement, useRef, useState } from 'react';
+import React, { ReactElement, useEffect, useRef, useState } from 'react';
 import { createUseStyles } from 'react-jss';
 
 import { Theme } from '../../../assets/theme';
@@ -96,11 +96,19 @@ const Tooltip = ({ children, className, classNameWrp, content }: IProps): ReactE
     const ref = useRef<HTMLDivElement | null>(null);
     const [position, setPosition] = useState<PositionClassNames>('top_right');
 
-    const handleHover = (): void => {
+    const handleTooltipPosition = (): void => {
         if (!ref.current) return;
         const isTop = ref.current?.getBoundingClientRect().top / window.innerHeight > 0.1;
         const isLeft = ref.current?.getBoundingClientRect().left / window.innerHeight > 0.6;
         setPosition(`${isTop ? 'top' : 'bottom'}_${isLeft ? 'left' : 'right'}` as PositionClassNames);
+    };
+
+    useEffect(() => {
+        handleTooltipPosition();
+    }, [ref.current, handleTooltipPosition]);
+
+    const handleHover = (): void => {
+        handleTooltipPosition();
     };
 
     return media ? (

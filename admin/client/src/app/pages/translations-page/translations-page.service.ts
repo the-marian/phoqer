@@ -4,7 +4,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-type Links = 'en' | 'pl' | 'ru';
+type Links = 'en' | 'pl' | 'ru' | 'ua';
 export interface Translations {
     id: string;
     content: string;
@@ -17,9 +17,8 @@ export class TranslationsPageService {
     baseUrl = 'http://localhost:4201/api/translations/';
     language: Links = 'en';
 
-    data: MatTableDataSource<Translations> = new MatTableDataSource<
-        Translations
-    >([]);
+    data: MatTableDataSource<Translations> =
+        new MatTableDataSource<Translations>([]);
 
     constructor(private http: HttpClient) {}
 

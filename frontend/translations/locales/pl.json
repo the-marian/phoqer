@@ -288,5 +288,7 @@
     "privacy_statement": "Polityka prywatności",
     "FAQ": "FAQ",
     "safety_rules": "Zasady bezpieczeństwa",
-    "site_map": "Mapa strony"
+    "site_map": "Mapa strony",
+    "your_account_has_not_been_verified": "Twoje konto nie zostało zweryfikowane! Wysłaliśmy do Ciebie wiadomość e-mail, aby potwierdzić Twój profil. Jeśli nie możesz znaleźć listu w swojej poczcie, sprawdź folder „Spam”",
+    "we_have_sent_verification_link": "Wysłaliśmy link weryfikacyjny na Twój e-mail, otwórz go, aby zakończyć rejestrację. Jeśli nie możesz znaleźć listu w swojej poczcie, sprawdź folder „Spam”"
 }

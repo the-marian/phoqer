@@ -28,7 +28,7 @@ const routes = {
     },
     static: {
         help: '/static/help',
-        ad: '/static/ad',
+        business: '/static/business',
         rules: '/static/rules',
         politic: '/static/politic',
         faq: '/static/faq',
