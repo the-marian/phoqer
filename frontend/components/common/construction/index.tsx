@@ -40,7 +40,7 @@ interface IProps {
 const Construction = ({ text }: IProps): ReactElement => {
     const css = useStyles();
     const trans = useTrans();
-    const [img, setImg] = useState('');
+    const [img, setImg] = useState('/spinner.gif');
 
     useEffect(() => {
         if (process.browser) {
