@@ -5,9 +5,11 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import template from '../../../../../assets/template';
 import { Theme } from '../../../../../assets/theme';
+import useTrans from '../../../../../hooks/trans.hook';
 import { IOfferCard, IState } from '../../../../../interfaces';
 import types from '../../../../../redux/types';
 import ButtonClose from '../../../../common/button-close';
+import Tooltip from '../../../../common/tooltip';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     title: {
@@ -78,24 +80,27 @@ const PhotosItem = ({ url, isActive = false }: { url: string; isActive?: boolean
         <li className={css.imgLi} key={url}>
             {isActive && <p className={css.activeText}>Главное фото</p>}
             <ButtonClose className={css.close} onClick={handleClick} />
-            <img
-                aria-hidden="true"
-                onClick={handleChangeCoverImage}
-                className={clsx(css.img, isActive && css.active)}
-                src={url}
-                alt=""
-            />
+            <Tooltip content="click_to_select_main">
+                <img
+                    aria-hidden="true"
+                    onClick={handleChangeCoverImage}
+                    className={clsx(css.img, isActive && css.active)}
+                    src={url}
+                    alt=""
+                />
+            </Tooltip>
         </li>
     );
 };
 
 const PhotosList = (): ReactElement => {
     const css = useStyles();
+    const trans = useTrans();
     const offer = useSelector<IState, IOfferCard | null>(state => state.offers.single);
 
     return (
         <>
-            <h3 className={css.title}>Кликните по фотографии чтобы сделать ее главной для вашего объявления</h3>
+            <h3 className={css.title}>{trans('click_to_select_main')}</h3>
             {offer?.images?.length ? (
                 <ul className={css.imgUl}>
                     {offer.images.map<ReactElement>(url => (
