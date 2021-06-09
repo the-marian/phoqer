@@ -11,6 +11,7 @@ import types from '../../../../../redux/types';
 import Button from '../../../../common/button';
 import Progress from '../../../../common/loaders/progress';
 import notifications from '../../../../common/notifications';
+import Tooltip from '../../../../common/tooltip';
 import editOfferTemplate from './edit-content-form.style';
 import validate from './edit-content-form.validations';
 import StepOne from './step-one';
@@ -23,8 +24,11 @@ export interface IError {
     price?: string;
     region?: string;
     category?: string;
+    currency?: string;
     description?: string;
     deposit_val?: string;
+    items_amount?: string;
+    rental_period?: string;
     min_rent_period?: string;
     max_rent_period?: string;
     extra_requirements?: string;
@@ -87,7 +91,7 @@ const EditContentForm = (): ReactElement => {
                     history.push(routes.profile.private.my_offers('active'));
                     notifications.info({
                         withOkBtn: true,
-                        message: 'Ваши изменения успешно опубликовано!',
+                        message: 'your_changes_successfully_published',
                     });
                 },
             });
@@ -109,7 +113,7 @@ const EditContentForm = (): ReactElement => {
                 callback: () => {
                     notifications.info({
                         withOkBtn: true,
-                        message: 'Ваши изменения успешно сохранены!',
+                        message: 'your_changes_successfully_saved',
                     });
                 },
             });
@@ -122,15 +126,17 @@ const EditContentForm = (): ReactElement => {
             <StepTwo value={value} setValue={setValue} errors={errors} setErrors={setErrors} />
             <Progress loading={loading} />
             <p className={css.mark}>
-                <span className={css.red}>*</span> Обязательные поля
+                <span className={css.red}>*</span> {trans('required_fields')}
             </p>
 
             <div className={css.group}>
-                <Button loading={loading} className={css.save} type="button" onClick={handleSave}>
-                    {trans('Сохранить изменения')}
-                </Button>
+                <Tooltip content="all_your_changes_will_be_saved">
+                    <Button loading={loading} className={css.save} type="button" onClick={handleSave}>
+                        {trans('save_changes')}
+                    </Button>
+                </Tooltip>
                 <Button loading={loading} className={css.submit} type="submit">
-                    Опубликувать
+                    {trans('publish')}
                 </Button>
             </div>
         </form>

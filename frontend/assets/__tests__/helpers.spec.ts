@@ -6,10 +6,12 @@ import * as helpers from '../helpers';
 describe('1. Validation', () => {
     describe('Number', () => {
         it('Test valid number', () => {
-            expect(helpers.intNumberValidation('1')).toBe(false);
-            expect(helpers.intNumberValidation('a1')).toBe(true);
-            expect(helpers.intNumberValidation('12345.123')).toBe(true);
-            expect(helpers.intNumberValidation('1234,1244')).toBe(true);
+            expect(helpers.numberValidation('1')).toBe(false);
+            expect(helpers.numberValidation('a1')).toBe(true);
+            expect(helpers.numberValidation('12345.123')).toBe(false);
+            expect(helpers.numberValidation('1234,1244')).toBe(true);
+            expect(helpers.numberValidation('234,124.4')).toBe(true);
+            expect(helpers.numberValidation('234e12')).toBe(true);
         });
     });
 

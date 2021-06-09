@@ -152,24 +152,29 @@ export interface IOfferStatic {
     loading: boolean;
 }
 
+export type IRentalPeriod = 'DAY' | 'HOUR' | 'MONTH';
+export type ICurrency = 'EUR' | 'PLN' | 'UAH' | 'USD' | null;
+
 export interface INewOffer {
     loading: boolean;
     id?: string | null;
     // step one
     title: string;
-    price: number | null;
+    price: number | string | null;
     city?: string | null;
     country?: string | null;
     category?: IDropValue | null;
     sub_category?: IDropValue | null;
-    is_deliverable: boolean;
-    currency: 'EUR' | 'PLN' | 'UAH' | 'USD' | null;
+    items_amount?: number | string | null;
+    rental_period: IDropValue | null;
+    currency: IDropValue | null;
     // step two
+    is_deliverable: boolean;
     doc_needed: boolean;
     description: string;
-    deposit_val: number | null;
-    min_rent_period: number | null;
-    max_rent_period: number | null;
+    deposit_val: number | string | null;
+    min_rent_period: number | string | null;
+    max_rent_period: number | string | null;
     extra_requirements: string;
     cover_image?: string;
     optional: {

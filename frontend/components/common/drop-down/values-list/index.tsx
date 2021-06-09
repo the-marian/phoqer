@@ -17,19 +17,19 @@ const ValueItem = ({ css, withSub, sub, slug, name, onSelect, type = 'main' }: V
     const trans = useTrans();
 
     const handleClick = (): void => {
-        onSelect(name || trans(slug), slug, type);
+        onSelect(trans(name || slug), slug, type);
     };
 
     return (
         <li className={type === 'main' ? clsx(css.item, withSub && css.itemEmpty) : css.sub} key={slug}>
             <button type="button" onClick={handleClick}>
-                {name || trans(slug)}
+                {trans(name || slug)}
             </button>
 
             {sub?.length ? (
                 <ul>
                     {sub?.map(({ name, slug }) => (
-                        <ValueItem key={slug} name={name || trans(slug)} slug={slug} type="sub" onSelect={onSelect} css={css} />
+                        <ValueItem key={slug} name={trans(name || slug)} slug={slug} type="sub" onSelect={onSelect} css={css} />
                     ))}
                 </ul>
             ) : null}

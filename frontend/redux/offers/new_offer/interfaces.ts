@@ -10,14 +10,16 @@ type Type =
 
 export interface IBody {
     title: string;
-    price: number | null;
+    price: number | string | null;
     is_deliverable: boolean;
     doc_needed: boolean;
     description: string;
-    deposit_val: number | null;
-    min_rent_period: number | null;
-    max_rent_period: number | null;
+    deposit_val: number | string | null;
+    min_rent_period: number | string | null;
+    max_rent_period: number | string | null;
     extra_requirements: string;
+    items_amount: number | string | null;
+    rental_period: string | null;
     city: string | null;
     country: string | null;
     currency: string;

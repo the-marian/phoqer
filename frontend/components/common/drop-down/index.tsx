@@ -66,7 +66,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         }),
     },
     placeholder: {
-        color: theme.palette.gray[3],
+        color: theme.palette.gray[2] + '!important',
     },
     container: {
         position: 'absolute',
@@ -95,6 +95,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         '&.exit': {
             opacity: 0,
             transform: 'translateY(-2rem)',
+            pointerEvents: 'none',
         },
     },
     top: {
@@ -112,6 +113,20 @@ const useStyles = createUseStyles((theme: Theme) => ({
             maxHeight: theme.rem(35),
         }),
     },
+    '.capitalize': {
+        button: {
+            display: 'block',
+            width: '100%',
+            padding: theme.rem(2),
+            textAlign: 'left',
+            background: theme.palette.white,
+            color: theme.palette.black[0],
+            fontSize: theme.rem(1.4),
+            '&::first-letter': {
+                textTransform: 'capitalize',
+            },
+        },
+    },
     item: {
         cursor: 'pointer',
         borderBottom: theme.border(0.1, theme.palette.gray[1]),
@@ -126,9 +141,6 @@ const useStyles = createUseStyles((theme: Theme) => ({
             background: theme.palette.white,
             color: theme.palette.black[0],
             fontSize: theme.rem(1.4),
-            '&::first-letter': {
-                textTransform: 'uppercase',
-            },
             ...theme.hover({
                 background: theme.palette.primary[0],
                 color: theme.palette.trueWhite,
@@ -175,7 +187,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     white: {
         background: theme.palette.trueWhite,
         color: theme.palette.trueBlack,
-        boxShadow: theme.shadow[1],
+        boxShadow: theme.palette.shadowBorder,
         ...template(theme).outline,
     },
 }));
@@ -191,6 +203,7 @@ interface Props {
     className?: string;
     placeholder?: string;
     transparent?: boolean;
+    capitalize?: boolean;
     closeOnScroll?: boolean;
     defaultValue?: IDropValue | IDropList | null;
     onChange: (value: IDropValue | null) => void;
@@ -209,6 +222,7 @@ const DropDown = ({
     defaultValue,
     minWidth = 30,
     toLeft = false,
+    capitalize = true,
     closeOnScroll = false,
 }: Props): ReactElement => {
     const css = useStyles();
@@ -244,14 +258,13 @@ const DropDown = ({
         if (!media) return;
         setTimeout(() => {
             setDrop(false);
-        }, 150);
+        }, 300);
     };
 
     const handleSelect = (name: string, slug: string, type: 'main' | 'sub'): void => {
         onChange({ name, slug, type });
         setSelected(name);
-        if (media) setDrop(!drop);
-        if (!media) modal.close();
+        media ? setDrop(!drop) : modal.close();
     };
 
     const handleReset = (event: MouseEvent<HTMLSpanElement>): void => {
@@ -309,7 +322,7 @@ const DropDown = ({
 
             <CSSTransition timeout={200} unmountOnExit in={drop && media}>
                 <div
-                    className={clsx(css.container, top && css.top)}
+                    className={clsx(css.container, top && css.top, capitalize && 'capitalize')}
                     style={toLeft ? { right: 0, minWidth: minWidth + 'rem' } : { left: 0, minWidth: minWidth + 'rem' }}
                 >
                     <div className={clsx(css.box, 'box')}>

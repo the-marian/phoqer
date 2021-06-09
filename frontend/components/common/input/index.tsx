@@ -78,6 +78,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
 interface IProps {
     value: string | number;
     onChange: (event: ChangeEvent<HTMLInputElement>) => void;
+    onBlur?: (event: ChangeEvent<HTMLInputElement>) => void;
     id?: string;
     className?: string;
     name?: string;
@@ -93,6 +94,7 @@ interface IProps {
 const Input = ({
     value,
     onChange,
+    onBlur,
     className,
     id,
     name,
@@ -124,6 +126,7 @@ const Input = ({
                     id={id}
                     value={value}
                     onChange={onChange}
+                    onBlur={onBlur}
                     className={clsx(
                         css.input,
                         className,
@@ -131,7 +134,7 @@ const Input = ({
                         icon && css.withIcon,
                         errors && css.errors,
                     )}
-                    placeholder={errorsInPlaceholder ? errors || placeholder : placeholder}
+                    placeholder={trans(errorsInPlaceholder ? errors || placeholder : placeholder)}
                     name={name}
                     type={show}
                     readOnly={readOnly}

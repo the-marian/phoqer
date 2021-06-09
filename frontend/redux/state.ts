@@ -84,8 +84,10 @@ const initState: IState = {
             title: '',
             price: null,
             category: null,
-            currency: 'UAH',
             is_deliverable: false,
+            items_amount: 1,
+            currency: { name: 'uah', slug: 'UAH', type: 'main' },
+            rental_period: { name: 'daily', slug: 'DAY', type: 'main' },
             // step 2
             doc_needed: false,
             description: '',

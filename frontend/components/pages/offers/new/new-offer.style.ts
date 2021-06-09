@@ -67,7 +67,6 @@ const newOfferTemplate = (theme: Theme): Template => ({
         },
         flex: {
             display: 'flex',
-            marginTop: theme.rem(3),
 
             ...theme.media(768).max({
                 flexWrap: 'wrap',
@@ -139,6 +138,7 @@ const newOfferTemplate = (theme: Theme): Template => ({
         flex: {
             display: 'flex',
             justifyContent: 'space-between',
+            alignItems: 'flex-end',
 
             '& > div': {
                 flexBasis: '48%',

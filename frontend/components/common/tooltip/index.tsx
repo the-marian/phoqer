@@ -4,6 +4,7 @@ import { createUseStyles } from 'react-jss';
 
 import { Theme } from '../../../assets/theme';
 import useMedia from '../../../hooks/media.hook';
+import useTrans from '../../../hooks/trans.hook';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     wrp: {
@@ -92,6 +93,7 @@ type PositionClassNames = 'top_left' | 'top_right' | 'bottom_left' | 'bottom_rig
 
 const Tooltip = ({ children, className, classNameWrp, content }: IProps): ReactElement => {
     const css = useStyles();
+    const trans = useTrans();
     const media = useMedia(768);
     const ref = useRef<HTMLDivElement | null>(null);
     const [position, setPosition] = useState<PositionClassNames>('top_right');
@@ -113,7 +115,9 @@ const Tooltip = ({ children, className, classNameWrp, content }: IProps): ReactE
 
     return media ? (
         <div ref={ref} className={clsx(css.wrp, classNameWrp)} onMouseEnter={handleHover}>
-            <div className={clsx(css.tooltip, css[position], 'tooltip', className)}>{content}</div>
+            <div className={clsx(css.tooltip, css[position], 'tooltip', className)}>
+                {typeof content === 'string' ? trans(content) : content}
+            </div>
             {children}
         </div>
     ) : (

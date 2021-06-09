@@ -9,7 +9,6 @@ interface Template {
     title: Styles;
     subtitle: Styles;
     textarea: Styles;
-    region: Styles;
     red: Styles;
     errors: Styles;
     errorsText: Styles;
@@ -24,6 +23,7 @@ const editOfferTemplate = (theme: Theme): Template => ({
     flex: {
         display: 'flex',
         justifyContent: 'space-between',
+        alignItems: 'flex-end',
 
         '& > div': {
             flexBasis: '48%',
@@ -62,12 +62,8 @@ const editOfferTemplate = (theme: Theme): Template => ({
         ...template(theme).input,
         width: '100%',
         height: theme.rem(10),
-        background: theme.palette.gray[1],
         padding: theme.rem(2),
         color: theme.palette.black[0],
-    },
-    region: {
-        background: theme.palette.gray[1],
     },
     red: {
         color: theme.palette.red[0],

@@ -8,7 +8,7 @@ import { createUseStyles } from 'react-jss';
 import { useDispatch, useSelector } from 'react-redux';
 import TextareaAutosize from 'react-textarea-autosize';
 
-import { intNumberValidation } from '../../../../../assets/helpers';
+import { numberValidation } from '../../../../../assets/helpers';
 import routes from '../../../../../assets/routes';
 import { Theme } from '../../../../../assets/theme';
 import useTrans from '../../../../../hooks/trans.hook';
@@ -17,6 +17,7 @@ import types from '../../../../../redux/types';
 import CheckTitle from '../../../../common/checkbox/check-title';
 import CheckYesNo from '../../../../common/checkbox/check-yes-no';
 import Input from '../../../../common/input';
+import Tooltip from '../../../../common/tooltip';
 import newOfferTemplate from '../new-offer.style';
 
 const useStyles = createUseStyles((theme: Theme) => newOfferTemplate(theme).step);
@@ -65,11 +66,20 @@ const StepTwo = (): ReactElement => {
     };
 
     // TYPING
-    const handleNumber = (event: ChangeEvent<HTMLInputElement>): void => {
+    const handleDelivery = (is_deliverable: boolean): void => {
+        setValue({ ...value, is_deliverable });
+    };
+    const validateNumber = (event: ChangeEvent<HTMLInputElement>): void => {
+        const name = event.target.name as 'deposit_val' | 'min_rent_period' | 'max_rent_period';
+        const num = value[name];
+        if (numberValidation(String(num))) return setValue({ ...value, [name]: null });
+        setValue({ ...value, [name]: num ? Math.round(+num * 100) / 100 : null });
         setErrors({});
-        const num = event.target.value.replace(/ /gi, '').trim();
-        if (intNumberValidation(num)) return;
-        setValue({ ...value, [event.target.name]: num === '' ? null : +num });
+    };
+    const handleNumber = (event: ChangeEvent<HTMLInputElement>): void => {
+        const num = event.target.value;
+        setValue({ ...value, [event.target.name]: num ? num : null });
+        setErrors({});
     };
     const handleText = (event: ChangeEvent<HTMLTextAreaElement>): void => {
         setErrors({});
@@ -88,6 +98,7 @@ const StepTwo = (): ReactElement => {
     const handleClear = (): void => {
         const reset: INewOffer = {
             ...value,
+            is_deliverable: false,
             doc_needed: false,
             description: '',
             deposit_val: null,
@@ -161,7 +172,9 @@ const StepTwo = (): ReactElement => {
             <CheckYesNo value={value.doc_needed} onChange={handleDocs}>
                 {trans('indicate_whether_you_need_provide_documents')}
             </CheckYesNo>
-
+            <CheckYesNo value={value.is_deliverable} onChange={handleDelivery}>
+                {trans('indicate_possibility_of_delivery')}
+            </CheckYesNo>
             <div className={css.inner}>
                 <h4 className={css.title}>
                     {trans('product_description')} <span className={css.red}>*</span>
@@ -178,14 +191,59 @@ const StepTwo = (): ReactElement => {
                 {errors.description && <small className={css.errorsText}>{trans(errors.description)}</small>}
             </div>
 
+            <div className={css.flex}>
+                <div className={css.inner}>
+                    <CheckTitle value={value.optional.min_rent_period} onChange={handleMin}>
+                        <>
+                            {trans('minimum_rental_period')} ({trans(value.rental_period?.slug.toLowerCase() || 'day')})
+                        </>
+                    </CheckTitle>
+                    <div className={clsx(css.inputWrp, value.optional.min_rent_period || css.inactive)}>
+                        <Input
+                            value={value.min_rent_period || ''}
+                            onChange={handleNumber}
+                            onBlur={validateNumber}
+                            className={css.input}
+                            name="min_rent_period"
+                            placeholder={trans('enter_the_number')}
+                            readOnly={!value.optional.min_rent_period}
+                            errors={errors.min_rent_period}
+                        />
+                    </div>
+                    {errors.min_rent_period && <small className={css.errorsText}>{errors.min_rent_period}</small>}
+                </div>
+                <div className={css.inner}>
+                    <CheckTitle value={value.optional.max_rent_period} onChange={handleMax}>
+                        <>
+                            {trans('maximum_rental_period')} ({trans(value.rental_period?.slug.toLowerCase() || 'day')})
+                        </>
+                    </CheckTitle>
+                    <div className={clsx(css.inputWrp, value.optional.max_rent_period || css.inactive)}>
+                        <Input
+                            value={value.max_rent_period || ''}
+                            onChange={handleNumber}
+                            onBlur={validateNumber}
+                            className={css.input}
+                            name="max_rent_period"
+                            placeholder={trans('enter_the_number')}
+                            readOnly={!value.optional.max_rent_period}
+                            errors={errors.max_rent_period}
+                        />
+                    </div>
+                </div>
+            </div>
+
             <div className={css.inner}>
                 <CheckTitle value={value.optional.deposit_val} onChange={handleDeposit}>
-                    {trans('deposit') + ' (грн)'}
+                    <>
+                        {trans('deposit')} ({trans(value.currency?.slug.toLowerCase() || 'uah')})
+                    </>
                 </CheckTitle>
                 <div className={clsx(css.inputWrp, value.optional.deposit_val || css.inactive)}>
                     <Input
-                        value={value.deposit_val || 0}
+                        value={value.deposit_val || ''}
                         onChange={handleNumber}
+                        onBlur={validateNumber}
                         className={css.input}
                         name="deposit_val"
                         placeholder={trans('enter_the_number')}
@@ -196,59 +254,28 @@ const StepTwo = (): ReactElement => {
             </div>
 
             <div className={css.inner}>
-                <CheckTitle value={value.optional.min_rent_period} onChange={handleMin}>
-                    {trans('minimum_rental_period') + ' (дней)'}
-                </CheckTitle>
-                <div className={clsx(css.inputWrp, value.optional.min_rent_period || css.inactive)}>
-                    <Input
-                        value={value.min_rent_period || 0}
-                        onChange={handleNumber}
-                        className={css.input}
-                        name="min_rent_period"
-                        placeholder={trans('enter_the_number')}
-                        readOnly={!value.optional.min_rent_period}
-                        errors={errors.min_rent_period}
-                    />
-                </div>
-                {errors.min_rent_period && <small className={css.errorsText}>{errors.min_rent_period}</small>}
-            </div>
-
-            <div className={css.inner}>
-                <CheckTitle value={value.optional.max_rent_period} onChange={handleMax}>
-                    {trans('maximum_rental_period') + ' (дней)'}
-                </CheckTitle>
-                <div className={clsx(css.inputWrp, value.optional.max_rent_period || css.inactive)}>
-                    <Input
-                        value={value.max_rent_period || 0}
-                        onChange={handleNumber}
-                        className={css.input}
-                        name="max_rent_period"
-                        placeholder={trans('enter_the_number')}
-                        readOnly={!value.optional.max_rent_period}
-                        errors={errors.max_rent_period}
-                    />
-                </div>
-            </div>
-
-            <div className={css.inner}>
                 <h4 className={css.title}>{trans('additional_requirements')}</h4>
-                <TextareaAutosize
-                    value={value.extra_requirements}
-                    onChange={handleText}
-                    wrap="soft"
-                    className={css.textarea}
-                    name="extra_requirements"
-                    placeholder={trans('additionally')}
-                />
+                <Tooltip content="you_can_indicate_here_extra_requirements">
+                    <TextareaAutosize
+                        value={value.extra_requirements}
+                        onChange={handleText}
+                        wrap="soft"
+                        className={css.textarea}
+                        name="extra_requirements"
+                        placeholder={trans('additionally')}
+                    />
+                </Tooltip>
             </div>
 
             <p>{trans('you_can_interrupt_filling_out_the_form')}</p>
 
             <div className={css.saveWrp}>
-                <button type="button" className={css.save} onClick={handleSave}>
-                    <FontAwesomeIcon icon={faSave} />
-                    <span>{trans('save_and_abort_filling')}</span>
-                </button>
+                <Tooltip content="all_your_changes_will_be_saved">
+                    <button type="button" className={css.save} onClick={handleSave}>
+                        <FontAwesomeIcon icon={faSave} />
+                        <span>{trans('save_and_abort_filling')}</span>
+                    </button>
+                </Tooltip>
                 <button type="button" className={css.btn} onClick={handleClear}>
                     <FontAwesomeIcon icon={faTrashAlt} />
                     <span>{trans('clear')}</span>

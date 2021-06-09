@@ -33,6 +33,23 @@ const validate = ({ value, setErrors, region }: IParams): boolean => {
         });
         return false;
     }
+    if (!value.rental_period) {
+        setErrors({ rental_period: 'required_field' });
+        window.scrollTo({
+            top: (document.getElementById('general')?.offsetTop || 300) - 100,
+            behavior: 'smooth',
+        });
+        return false;
+    }
+
+    if (!value.currency) {
+        setErrors({ currency: 'required_field' });
+        window.scrollTo({
+            top: (document.getElementById('general')?.offsetTop || 300) - 100,
+            behavior: 'smooth',
+        });
+        return false;
+    }
     if (!value.price) {
         setErrors({ price: 'required_field' });
         window.scrollTo({

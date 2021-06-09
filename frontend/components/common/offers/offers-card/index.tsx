@@ -176,7 +176,7 @@ const OfferCard = ({ offer, showFavoriteBtn = true }: IProps): ReactElement => {
 
             <div className={css.action}>
                 <p className={css.price}>
-                    <span>{moneyFormat(price)}.00</span>
+                    <span>{moneyFormat(price)}</span>
                     <small>{`${trans('uah')} / ${trans('day')}`}</small>
                 </p>
 
