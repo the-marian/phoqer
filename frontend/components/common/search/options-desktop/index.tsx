@@ -18,9 +18,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     region: {
         width: '50%',
         height: theme.rem(4),
-        background: theme.palette.gray[1],
         boxShadow: 'none',
-
         ...theme.hover({
             color: theme.palette.primary[0],
             border: theme.border(0.2, 'transparent'),
@@ -28,6 +26,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
         ...theme.focus({
             color: theme.palette.primary[0],
             border: theme.border(0.2, 'transparent'),
+        }),
+        ...theme.media(1100).min({
+            background: theme.palette.gray[1],
         }),
     },
     categories: {

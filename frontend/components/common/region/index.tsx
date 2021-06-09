@@ -19,7 +19,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
-        background: theme.palette.trueWhite,
+        background: theme.palette.white,
         color: theme.palette.black[0],
 
         '& span': {

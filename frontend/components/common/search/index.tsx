@@ -52,12 +52,13 @@ const useStyles = createUseStyles((theme: Theme) => ({
         background: theme.palette.gray[1],
         fontSize: theme.rem(1.4),
         borderRadius: theme.radius,
-        border: 'none',
         ...template(theme).outline,
 
         ...theme.media(1100).max({
             height: theme.rem(5),
             paddingLeft: theme.rem(1.5),
+            background: theme.palette.white,
+            boxShadow: theme.palette.shadowBorder,
         }),
     },
     input: {

@@ -183,7 +183,6 @@ const StepThree = (): ReactElement => {
                 <Input
                     value={value.title}
                     onChange={handleChange}
-                    className={css.input}
                     name="title"
                     type="text"
                     placeholder="name"
@@ -258,7 +257,6 @@ const StepThree = (): ReactElement => {
                         value={value.price || ''}
                         onChange={handleChange}
                         onBlur={validatePrice}
-                        className={css.input}
                         name="price"
                         type="text"
                         placeholder="price"
@@ -272,7 +270,7 @@ const StepThree = (): ReactElement => {
                     <h4 className={css.title}>
                         {trans('indicate_your_location')} <span className={css.red}>*</span>
                     </h4>
-                    <Region className={css.region} error={errors.region} resetError={setErrors} />
+                    <Region error={errors.region} resetError={setErrors} />
                 </div>
                 <div className={css.inner}>
                     <h4 className={css.title}>{trans('amount_of_goods')}</h4>
@@ -281,7 +279,6 @@ const StepThree = (): ReactElement => {
                             value={value.items_amount || ''}
                             onChange={handleChange}
                             onBlur={validateAmount}
-                            className={css.input}
                             name="items_amount"
                             type="text"
                             placeholder="amount"

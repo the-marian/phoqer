@@ -5,7 +5,6 @@ import { createUseStyles } from 'react-jss';
 import { throttle } from '../../../assets/helpers';
 import { Theme } from '../../../assets/theme';
 import useAuth from '../../../hooks/auth.hook';
-import useMedia from '../../../hooks/media.hook';
 import Logo from '../../common/logo';
 import SiteMenu from '../../common/site-menu';
 import Container from '../container';
@@ -52,7 +51,6 @@ const Header = (): ReactElement => {
     const prev = useRef<number>(0);
     const auth = useAuth();
     const css = useStyles();
-    const media = useMedia(410);
 
     const [shadow, setShadow] = useState<boolean>(false);
     const [delta, setDelta] = useState<boolean>(false);
@@ -87,7 +85,7 @@ const Header = (): ReactElement => {
                     </div>
 
                     <div className={css.wrp}>
-                        {media ? auth?.access_token ? <UserInfo /> : <NotAuth /> : null}
+                        {auth?.access_token ? <UserInfo /> : <NotAuth />}
                         <Lang />
                     </div>
                 </div>

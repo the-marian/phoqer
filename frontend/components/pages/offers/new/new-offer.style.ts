@@ -20,7 +20,6 @@ interface Template {
         subtitle: Styles;
         icon: Styles;
         flex: Styles;
-        input: Styles;
         textarea: Styles;
         inputWrp: Styles;
         inactive: Styles;
@@ -32,7 +31,6 @@ interface Template {
         disabled: Styles;
         errors: Styles;
         errorsText: Styles;
-        region: Styles;
     };
 }
 
@@ -94,9 +92,6 @@ const newOfferTemplate = (theme: Theme): Template => ({
         },
     },
     step: {
-        region: {
-            color: theme.palette.trueBlack,
-        },
         form: {
             padding: theme.rem(3, 10),
             borderRadius: theme.radius,
@@ -148,17 +143,11 @@ const newOfferTemplate = (theme: Theme): Template => ({
                 display: 'block',
             }),
         },
-        input: {
-            color: theme.palette.trueBlack,
-            background: theme.palette.trueWhite,
-        },
         textarea: {
             ...template(theme).input,
             width: '100%',
             height: theme.rem(10),
             padding: theme.rem(2),
-            background: theme.palette.trueWhite,
-            boxShadow: theme.shadow[1],
         },
         inputWrp: {
             display: 'flex',

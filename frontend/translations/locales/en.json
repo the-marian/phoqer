@@ -309,5 +309,6 @@
     "your_changes_successfully_saved": "Ваши изменения успешно сохранены!",
     "your_changes_successfully_published": "Ваши изменения успешно опубликовано",
     "required_fields": "Обязательные поля",
-    "click_to_select_main": "Кликни на фото чтобы сделать его главным для того объявления"
+    "click_to_select_main": "Кликни на фото чтобы сделать его главным для того объявления",
+    "main_photo": "Главное фото"
 }

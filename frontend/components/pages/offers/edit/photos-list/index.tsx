@@ -15,6 +15,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     title: {
         fontSize: theme.rem(1.4),
         fontWeight: theme.text.weight[3],
+        color: theme.palette.black[0],
     },
     imgUl: {
         display: 'flex',
@@ -35,6 +36,10 @@ const useStyles = createUseStyles((theme: Theme) => ({
             width: '45%',
             margin: '2.5%',
         }),
+    },
+    inner: {
+        width: '100%',
+        height: '100%',
     },
     img: {
         width: '100%',
@@ -66,6 +71,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
 
 const PhotosItem = ({ url, isActive = false }: { url: string; isActive?: boolean }): ReactElement | null => {
     const css = useStyles();
+    const trans = useTrans();
     const dispatch = useDispatch();
 
     const handleClick = (): void => {
@@ -78,16 +84,18 @@ const PhotosItem = ({ url, isActive = false }: { url: string; isActive?: boolean
 
     return (
         <li className={css.imgLi} key={url}>
-            {isActive && <p className={css.activeText}>Главное фото</p>}
-            <ButtonClose className={css.close} onClick={handleClick} />
-            <Tooltip content="click_to_select_main">
-                <img
-                    aria-hidden="true"
-                    onClick={handleChangeCoverImage}
-                    className={clsx(css.img, isActive && css.active)}
-                    src={url}
-                    alt=""
-                />
+            <Tooltip content="click_to_select_main" classNameWrp={css.inner}>
+                <>
+                    {isActive && <p className={css.activeText}>{trans('main_photo')}</p>}
+                    <ButtonClose className={css.close} onClick={handleClick} />
+                    <img
+                        aria-hidden="true"
+                        onClick={handleChangeCoverImage}
+                        className={clsx(css.img, isActive && css.active)}
+                        src={url}
+                        alt=""
+                    />
+                </>
             </Tooltip>
         </li>
     );

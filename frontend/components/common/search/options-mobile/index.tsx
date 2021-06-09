@@ -21,17 +21,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         }),
     },
     region: {
-        background: theme.palette.gray[1],
-        boxShadow: 'none',
         width: '49%',
-        ...theme.hover({
-            color: theme.palette.primary[0],
-            border: theme.border(0.2, 'transparent'),
-        }),
-        ...theme.focus({
-            color: theme.palette.primary[0],
-            border: theme.border(0.2, 'transparent'),
-        }),
     },
     drop: {
         width: '49%',
@@ -67,6 +57,7 @@ const OptionsMobile = ({ onChange }: IProps): ReactElement => {
                     onChange={onChange}
                     height={tablet ? 6 : 5}
                     withSub
+                    white
                 />
             </div>
             <Region className={css.region} />

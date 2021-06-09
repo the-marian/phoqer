@@ -12,6 +12,7 @@ import { useSelector } from 'react-redux';
 import routes from '../../../../assets/routes';
 import template from '../../../../assets/template';
 import { Theme } from '../../../../assets/theme';
+import useMedia from '../../../../hooks/media.hook';
 import useTrans from '../../../../hooks/trans.hook';
 import { IPublicProfile, IState } from '../../../../interfaces';
 import NotifNumber from '../../../common/notif-number';
@@ -22,6 +23,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
         display: 'flex',
         alignItems: 'center',
         fontSize: theme.rem(1.4),
+        ...theme.media(500).max({
+            marginRight: theme.rem(2),
+        }),
     },
     item: {
         marginLeft: theme.rem(1),
@@ -39,6 +43,10 @@ const useStyles = createUseStyles((theme: Theme) => ({
         fontSize: theme.rem(1.4),
         padding: theme.rem(0.5, 1.5),
         color: theme.palette.black[0],
+
+        ...theme.media(500).max({
+            padding: theme.rem(0.5),
+        }),
 
         ...theme.hover({
             '& svg': {
@@ -69,6 +77,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
 const UserInfo = (): ReactElement => {
     const css = useStyles();
     const trans = useTrans();
+    const media = useMedia(410);
 
     const [drop, setDrop] = useState<boolean>(false);
     const user = useSelector<IState, IPublicProfile | null>(state => state.user);
@@ -98,14 +107,16 @@ const UserInfo = (): ReactElement => {
                     </a>
                 </Link>
             </li>
-            <li className={css.item}>
-                <Link href={routes.favorite}>
-                    <a className={css.link}>
-                        <FontAwesomeIcon icon={faHeart} />
-                        <span className={css.text}>{trans('favorites')}</span>
-                    </a>
-                </Link>
-            </li>
+            {media && (
+                <li className={css.item}>
+                    <Link href={routes.favorite}>
+                        <a className={css.link}>
+                            <FontAwesomeIcon icon={faHeart} />
+                            <span className={css.text}>{trans('favorites')}</span>
+                        </a>
+                    </Link>
+                </li>
+            )}
             <li className={css.item}>
                 <button type="button" className={clsx(css.link, drop && css.user)} onClick={handleClick}>
                     <NotifNumber className={css.number}>14</NotifNumber>

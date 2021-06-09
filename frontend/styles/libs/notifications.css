@@ -1,3 +1,7 @@
+.notification {
+    max-width: 30rem;
+}
+
 .notification-container--bottom-center,
 .notification-container--bottom-full,
 .notification-container--bottom-left,

@@ -10,14 +10,22 @@ const useStyles = createUseStyles((theme: Theme) => ({
     wrp: {
         position: 'relative',
         zIndex: 2,
-        '&:hover > .tooltip': {
-            opacity: 1,
-            visibility: 'visible',
-        },
-        '&:focus > .tooltip': {
-            opacity: 1,
-            visibility: 'visible',
-        },
+        ...theme.hover({
+            zIndex: '10',
+            '& > .tooltip': {
+                opacity: 1,
+                visibility: 'visible',
+                zIndex: 10,
+            },
+        }),
+        ...theme.focus({
+            zIndex: '10',
+            '& > .tooltip': {
+                opacity: 1,
+                visibility: 'visible',
+                zIndex: 10,
+            },
+        }),
     },
     tooltip: {
         position: 'absolute',

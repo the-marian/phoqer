@@ -203,7 +203,6 @@ const StepTwo = (): ReactElement => {
                             value={value.min_rent_period || ''}
                             onChange={handleNumber}
                             onBlur={validateNumber}
-                            className={css.input}
                             name="min_rent_period"
                             placeholder={trans('enter_the_number')}
                             readOnly={!value.optional.min_rent_period}
@@ -223,7 +222,6 @@ const StepTwo = (): ReactElement => {
                             value={value.max_rent_period || ''}
                             onChange={handleNumber}
                             onBlur={validateNumber}
-                            className={css.input}
                             name="max_rent_period"
                             placeholder={trans('enter_the_number')}
                             readOnly={!value.optional.max_rent_period}
@@ -244,7 +242,6 @@ const StepTwo = (): ReactElement => {
                         value={value.deposit_val || ''}
                         onChange={handleNumber}
                         onBlur={validateNumber}
-                        className={css.input}
                         name="deposit_val"
                         placeholder={trans('enter_the_number')}
                         readOnly={!value.optional.deposit_val}

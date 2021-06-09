@@ -185,8 +185,8 @@ const useStyles = createUseStyles((theme: Theme) => ({
         },
     },
     white: {
-        background: theme.palette.trueWhite,
-        color: theme.palette.trueBlack,
+        background: theme.palette.white,
+        color: theme.palette.black[0],
         boxShadow: theme.palette.shadowBorder,
         ...template(theme).outline,
     },
