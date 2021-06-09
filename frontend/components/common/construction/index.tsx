@@ -26,6 +26,11 @@ const useStyles = createUseStyles((theme: Theme) => ({
     img: {
         width: 'auto',
         height: theme.rem(30),
+        ...theme.media(768).max({
+            height: 'auto',
+            width: '100%',
+            maxWidth: theme.rem(28),
+        }),
     },
 }));
 
