@@ -11,6 +11,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class CreateModalComponent {
     id = '';
     content = '';
+
     constructor(
         private trans: TranslationsPageService,
         public dialogRef: MatDialogRef<CreateModalComponent>,
@@ -51,17 +52,17 @@ export class CreateModalComponent {
 
         this.trans
             .addContent({ id: this.id, content: this.content })
-            .subscribe((res) => {
+            .subscribe(() => {
                 this.trans.data.data = [
-                    ...this.trans.data.data,
                     {
                         id: this.id,
                         content: this.content,
                     },
+                    ...this.trans.data.data,
                 ];
                 this.dialogRef.close();
                 this.notif.open(
-                    "The new content was successfully CREATED. Fields have been added into all tables. Don't forget to add translations there",
+                    `The new content was successfully CREATED. Fields have been added into all tables. Don't forget to add translations there`,
                     'ok',
                     {
                         duration: 4500,

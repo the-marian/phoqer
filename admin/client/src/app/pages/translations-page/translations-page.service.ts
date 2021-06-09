@@ -31,20 +31,18 @@ export class TranslationsPageService {
             .get<Translations>(this.baseUrl + this.language)
             .subscribe((res) => {
                 this.data.data = res
-                    ? Object.entries(res).map<Translations>((item) => ({
-                          id: item[0],
-                          content: item[1],
-                      }))
+                    ? Object.entries(res)
+                          .map<Translations>((item) => ({
+                              id: item[0],
+                              content: item[1],
+                          }))
+                          .reverse()
                     : [];
             });
     }
 
     updateContent(value: Translations): Observable<Translations> {
         return this.http.put<Translations>(this.baseUrl + this.language, value);
-    }
-
-    updateAll(): void {
-        console.log(this.data);
     }
 
     addContent(value: Translations): Observable<Translations> {

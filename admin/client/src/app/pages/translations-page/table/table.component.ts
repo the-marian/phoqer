@@ -31,13 +31,13 @@ export class TableComponent implements AfterViewInit {
         private routerParams: ActivatedRoute
     ) {}
 
-    ngAfterViewInit() {
+    ngAfterViewInit(): void {
         this.routerParams.params.subscribe(() => {
             this.trans.data.sort = this.sort;
         });
     }
 
-    applyFilter(event: Event) {
+    applyFilter(event: Event): void {
         const filterValue = (event.target as HTMLInputElement).value;
         this.trans.data.filter = filterValue.trim().toLowerCase();
     }
