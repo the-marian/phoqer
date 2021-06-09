@@ -28,8 +28,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         height: theme.rem(30),
         ...theme.media(768).max({
             height: 'auto',
-            width: '100%',
-            maxWidth: theme.rem(28),
+            width: theme.rem(30),
         }),
     },
 }));
@@ -46,7 +45,7 @@ const Construction = ({ text }: IProps): ReactElement => {
     useEffect(() => {
         if (process.browser) {
             const random = Math.round(Math.random() * 10);
-            setImg(`/construction/${random}.gif`);
+            setImg(`/construction/${random || 1}.gif`);
         }
     }, []);
 
