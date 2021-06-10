@@ -124,7 +124,6 @@ const NewChatWrp = ({ children, showConversation = false }: IProps): ReactElemen
         }
     }, [offer, profile]);
 
-    console.log({ chats: chats.loading, offer: !offer, profile: !profile });
     const loading = chats.loading || !offer || !profile;
     const data = [...chats.data.data, newChat];
 
