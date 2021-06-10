@@ -25,9 +25,12 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
     img: {
         width: 'auto',
+        minWidth: theme.rem(30),
         height: theme.rem(30),
+        background: theme.palette.gray[1],
         ...theme.media(768).max({
             height: 'auto',
+            minHeight: theme.rem(30),
             width: theme.rem(30),
         }),
     },
@@ -40,7 +43,7 @@ interface IProps {
 const Construction = ({ text }: IProps): ReactElement => {
     const css = useStyles();
     const trans = useTrans();
-    const [img, setImg] = useState('/spinner.gif');
+    const [img, setImg] = useState('');
 
     useEffect(() => {
         if (process.browser) {

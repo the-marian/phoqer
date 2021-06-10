@@ -9,6 +9,7 @@ import { createUseStyles } from 'react-jss';
 import { useSelector } from 'react-redux';
 
 import routes from '../../../assets/routes';
+import template from '../../../assets/template';
 import { Theme } from '../../../assets/theme';
 import useAuth from '../../../hooks/auth.hook';
 import useMedia from '../../../hooks/media.hook';
@@ -65,6 +66,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     text: {
         fontSize: theme.rem(1.2),
         textAlign: 'center',
+        ...template(theme).cutString,
     },
     icon: {
         display: 'flex',
@@ -75,8 +77,6 @@ const useStyles = createUseStyles((theme: Theme) => ({
         fontSize: theme.rem(1.4),
     },
 }));
-
-const MAX_LENGTH = 12;
 
 const MobileNav = (): ReactElement | null => {
     const css = useStyles();
@@ -126,9 +126,7 @@ const MobileNav = (): ReactElement | null => {
                             <FontAwesomeIcon icon={faUserCircle} />
                             <NotifNumber className={css.number}>14</NotifNumber>
                         </div>
-                        <span className={css.text}>
-                            {userName.length > MAX_LENGTH ? userName.slice(0, MAX_LENGTH - 3) + '...' : userName}
-                        </span>
+                        <span className={css.text}>{userName}</span>
                     </a>
                 </Link>
             </li>

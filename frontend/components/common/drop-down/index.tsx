@@ -102,6 +102,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
         top: 'unset',
         bottom: '120%',
     },
+    iconImageText: {
+        marginLeft: theme.rem(1),
+    },
     box: {
         position: 'relative',
         maxHeight: theme.rem(45),

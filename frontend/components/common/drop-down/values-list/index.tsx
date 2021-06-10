@@ -1,19 +1,23 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import clsx from 'clsx';
 import React, { ReactElement } from 'react';
 
+import icons from '../../../../assets/icons-map';
 import useTrans from '../../../../hooks/trans.hook';
 import { IDropList } from '../../../../interfaces';
 
 interface ValueItemProps {
     css: { [key: string]: string };
     withSub?: boolean;
+    iconImage?: string;
     slug: string;
     name: string;
     onSelect: (name: string, slug: string, type: 'main' | 'sub') => void;
     type?: 'main' | 'sub';
     sub?: IDropList[];
 }
-const ValueItem = ({ css, withSub, sub, slug, name, onSelect, type = 'main' }: ValueItemProps) => {
+
+const ValueItem = ({ css, withSub, iconImage, sub, slug, name, onSelect, type = 'main' }: ValueItemProps) => {
     const trans = useTrans();
 
     const handleClick = (): void => {
@@ -23,13 +27,22 @@ const ValueItem = ({ css, withSub, sub, slug, name, onSelect, type = 'main' }: V
     return (
         <li className={type === 'main' ? clsx(css.item, withSub && css.itemEmpty) : css.sub} key={slug}>
             <button type="button" onClick={handleClick}>
-                {trans(name || slug)}
+                {iconImage && icons[iconImage] && <FontAwesomeIcon icon={icons[iconImage]} />}
+                <span className={iconImage && icons[iconImage] && css.iconImageText}>{trans(name || slug)}</span>
             </button>
 
             {sub?.length ? (
                 <ul>
-                    {sub?.map(({ name, slug }) => (
-                        <ValueItem key={slug} name={trans(name || slug)} slug={slug} type="sub" onSelect={onSelect} css={css} />
+                    {sub?.map(({ name, slug, icon_image }) => (
+                        <ValueItem
+                            key={slug}
+                            name={trans(name || slug)}
+                            iconImage={icon_image}
+                            onSelect={onSelect}
+                            slug={slug}
+                            type="sub"
+                            css={css}
+                        />
                     ))}
                 </ul>
             ) : null}
@@ -45,17 +58,17 @@ interface ValuesListProps {
 }
 
 const ValuesList = ({ data, onSelect, withSub, css }: ValuesListProps): ReactElement => {
-    const trans = useTrans();
     return (
         <ul>
-            {data?.map(({ name, slug, sub }) => (
+            {data?.map<ReactElement>(({ name, slug, sub, icon_image }) => (
                 <ValueItem
                     key={slug}
-                    name={name || trans(slug)}
+                    name={name || slug}
                     slug={slug}
                     sub={sub}
                     css={css}
                     onSelect={onSelect}
+                    iconImage={icon_image}
                     withSub={withSub}
                 />
             ))}
