@@ -9,18 +9,22 @@ const useStyles = createUseStyles({
         display: 'flex',
         alignItems: 'flex-start',
         flexDirection: 'column',
-        height: '100%',
+        height: '99%',
         width: '100%',
     },
 });
 
-const Conversation = (): ReactElement => {
+interface IProps {
+    children?: ReactElement;
+}
+
+const Conversation = ({ children }: IProps): ReactElement => {
     const css = useStyles();
 
     return (
         <div className={css.flex}>
-            <ChatFlow />
-            <ChatForm />
+            <ChatFlow>{children}</ChatFlow>
+            {children ? null : <ChatForm />}
         </div>
     );
 };

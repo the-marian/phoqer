@@ -12,7 +12,7 @@ import AuthRedirect from '../../../../../components/context/auth/auth-redirect';
 import Meta from '../../../../../components/layout/meta';
 import ChatBackBtn from '../../../../../components/pages/profile/private/messages/chat-back-btn';
 import Conversation from '../../../../../components/pages/profile/private/messages/chat-conversation';
-import MessagesWrp from '../../../../../components/pages/profile/private/messages/messages-wrp';
+import MessagesWrp from '../../../../../components/pages/profile/private/messages/wrappers/messages-wrp';
 import useMedia from '../../../../../hooks/media.hook';
 import useTrans from '../../../../../hooks/trans.hook';
 import { IChatsList, IState } from '../../../../../interfaces';

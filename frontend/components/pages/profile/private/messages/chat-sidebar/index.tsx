@@ -4,10 +4,11 @@ import { createUseStyles } from 'react-jss';
 
 import template from '../../../../../../assets/template';
 import { Theme } from '../../../../../../assets/theme';
+import useMedia from '../../../../../../hooks/media.hook';
 import { IChats } from '../../../../../../interfaces';
 import Gift from '../../../../../common/gift';
-import ChatEmpty from '../chat-empty';
-import ChatSearch from '../chat-search';
+import ChatEmpty from '../empty-state/chat-empty';
+import ChatSearch from './chat-search';
 import ChatSidebarItem from './chat-sidebar-item';
 
 const useStyles = createUseStyles((theme: Theme) => ({
@@ -53,6 +54,7 @@ interface IProps {
 
 const ChatSidebar = ({ chats }: IProps): ReactElement => {
     const css = useStyles();
+    const media = useMedia(768);
     const { query } = useRouter();
     const active = +String(query.chat || '0');
 
@@ -67,10 +69,7 @@ const ChatSidebar = ({ chats }: IProps): ReactElement => {
                     </Fragment>
                 ))
             ) : (
-                <>
-                    <ChatEmpty />
-                    <Gift style={{ padding: '5rem 2rem' }} />
-                </>
+                <ChatEmpty height={media ? 50 : 40} />
             )}
             <div className={css.end}>
                 <h5>Phoqer</h5>

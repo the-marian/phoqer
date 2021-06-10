@@ -8,6 +8,9 @@ const messages = (state: IMessagesList = initState.chat.messages, { type, payloa
         case types.GET_MESSAGES_START:
             return { ...state, loading: true };
 
+        case types.REMOVE_ALL_MESSAGES:
+            return { data: initState.chat.messages.data, loading: false };
+
         case types.GET_MESSAGES_SUCCESS:
             return { data: payload as IPagination<IMessages>, loading: false };
 

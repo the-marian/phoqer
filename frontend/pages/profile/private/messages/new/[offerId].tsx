@@ -5,12 +5,15 @@ import { useDispatch } from 'react-redux';
 
 import { serverRedirect } from '../../../../../assets/helpers';
 import routes from '../../../../../assets/routes';
+import template from '../../../../../assets/template';
 import { Theme } from '../../../../../assets/theme';
+import Button from '../../../../../components/common/button';
 import ProfileChatNav from '../../../../../components/common/navigation/profile-nav/chat-nav';
 import AuthRedirect from '../../../../../components/context/auth/auth-redirect';
 import Meta from '../../../../../components/layout/meta';
 import ChatBackBtn from '../../../../../components/pages/profile/private/messages/chat-back-btn';
-import NewChatWrp from '../../../../../components/pages/profile/private/messages/new-chat-wrp';
+import Conversation from '../../../../../components/pages/profile/private/messages/chat-conversation';
+import NewChatWrp from '../../../../../components/pages/profile/private/messages/wrappers/new-chat-wrp';
 import useMedia from '../../../../../hooks/media.hook';
 import useTrans from '../../../../../hooks/trans.hook';
 import { wrapper } from '../../../../../redux/store';
@@ -30,25 +33,19 @@ const useStyles = createUseStyles((theme: Theme) => ({
             padding: theme.rem(6, 0, 8),
         }),
     },
-    chat: {
+    center: {
         display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        width: '100%',
-        background: theme.palette.gray[0],
-        borderRadius: theme.radius,
-    },
-    inner: {
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
         flexDirection: 'column',
-        color: theme.palette.gray[3],
+        alignItems: 'center',
+        justifyContent: 'center',
+        margin: theme.rem(3, 0, 1),
+        color: theme.palette.primary[0],
+        fontWeight: theme.text.weight[3],
     },
-    img: {
-        height: theme.rem(5),
-        width: theme.rem(5),
-        marginBottom: theme.rem(2),
+    button: {
+        ...template(theme).btn,
+        minWidth: theme.rem(15),
+        marginTop: theme.rem(2),
     },
 }));
 
@@ -59,6 +56,7 @@ const NewChat = (): ReactElement => {
     const dispatch = useDispatch();
 
     useEffect(() => {
+        dispatch({ type: types.REMOVE_ALL_MESSAGES });
         dispatch({ type: types.GET_CHATS_START });
     }, [dispatch]);
 
@@ -73,13 +71,18 @@ const NewChat = (): ReactElement => {
                 ) : (
                     <ChatBackBtn href={routes.profile.private.personal_area}>Back to profile</ChatBackBtn>
                 )}
-                <NewChatWrp showConversation={media}>
-                    <div className={css.chat}>
-                        <div className={css.inner}>
-                            <img className={css.img} src="/emoji/chat.png" alt="" />
-                            <p>Select the chat in side panel</p>
+                <NewChatWrp showSidebar={media}>
+                    <Conversation>
+                        <div className={css.center}>
+                            <p>
+                                Чтобы арендовать этот товар/услугу нажмите &quot;Ok&quot;. После этого вы откроете чат с автором
+                                объявления
+                            </p>
+                            <Button className={css.button} onClick={console.log}>
+                                Ok
+                            </Button>
                         </div>
-                    </div>
+                    </Conversation>
                 </NewChatWrp>
             </main>
         </>

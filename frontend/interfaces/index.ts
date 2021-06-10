@@ -122,6 +122,7 @@ export interface IOfferCard {
     pub_date?: string;
     cover_image: string;
     images?: string[];
+    rental_period?: IRentalPeriod;
     functions?: ('DO_INACTIVE' | 'ARCHIVE' | 'PROMOTE' | 'EDIT' | 'DELETE' | 'DO_REVIEW')[];
     is_favorite: boolean;
     is_promoted: boolean;

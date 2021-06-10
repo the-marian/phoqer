@@ -3,12 +3,12 @@ import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 import { useSelector } from 'react-redux';
 
-import { Theme } from '../../../../../../assets/theme';
-import { IChatsList, IMessages, IMessagesList, IState } from '../../../../../../interfaces';
-import ChatsLoaders from '../../../../../common/loaders/skeletons/chats';
-import ChatLoading from '../chat-loading';
-import ChatSidebar from '../chat-sidebar';
-import MessagesEmpty from '../messages-empty';
+import { Theme } from '../../../../../../../assets/theme';
+import { IChatsList, IMessages, IMessagesList, IState } from '../../../../../../../interfaces';
+import ChatsLoaders from '../../../../../../common/loaders/skeletons/chats';
+import ChatLoading from '../../chat-loading';
+import ChatSidebar from '../../chat-sidebar';
+import MessagesEmpty from '../../empty-state/messages-empty';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     root: {
@@ -32,7 +32,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     aside: {
         minWidth: theme.rem(40),
         maxWidth: theme.rem(40),
-        height: '100%',
+        height: '99%',
         paddingRight: theme.rem(0.5),
         marginRight: theme.rem(0.5),
         overflow: 'auto',

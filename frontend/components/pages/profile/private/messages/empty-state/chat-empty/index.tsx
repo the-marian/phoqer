@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
-import { Theme } from '../../../../../../assets/theme';
+import { Theme } from '../../../../../../../assets/theme';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     empty: {
@@ -10,7 +10,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         justifyContent: 'center',
         alignItems: 'center',
         width: '100%',
-        height: 'calc(100vh - 6.5rem)',
+        height: 'calc(100vh - 8rem)',
         padding: theme.rem(2),
         background: theme.palette.gray[0],
         borderRadius: theme.radius,
@@ -24,10 +24,14 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
 }));
 
-const ChatEmpty = (): ReactElement => {
+interface IProps {
+    height?: number;
+}
+
+const ChatEmpty = ({ height }: IProps): ReactElement => {
     const css = useStyles();
     return (
-        <div className={css.empty}>
+        <div className={css.empty} style={{ height: `${height}rem` }}>
             <img className={css.img} src="/emoji/empty.png" alt="" />
             <p>У вас пока нету сообщений</p>
         </div>

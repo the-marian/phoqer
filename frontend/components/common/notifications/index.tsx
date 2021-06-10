@@ -5,7 +5,7 @@ import { createUseStyles } from 'react-jss';
 import { ReactNotificationOptions, store } from 'react-notifications-component';
 import { v4 as uuid } from 'uuid';
 
-import { timeIndicator } from '../../../assets/helpers';
+import { formatTimestamp } from '../../../assets/helpers';
 import template from '../../../assets/template';
 import { Theme } from '../../../assets/theme';
 
@@ -66,7 +66,7 @@ const Title = ({ title, date, type }: IProps): ReactElement => {
 
     return (
         <div>
-            {date && <p className={css.date}>{timeIndicator({ initDate: date, locale })}</p>}
+            {date && <p className={css.date}>{formatTimestamp(date, locale)}</p>}
             <h2 className={clsx(css.title, type === 'error' && css.errorTitle)}>
                 <span className={clsx(css.indicator, css[type])} />
                 <span>{title}</span>

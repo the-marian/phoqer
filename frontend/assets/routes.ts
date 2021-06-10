@@ -15,8 +15,7 @@ const routes = {
             personal_area: '/profile/private',
             my_offers: (status = 'all'): string => `/profile/private/my-offers/${status}`,
             messages: (chat: Primitive = ''): string => `/profile/private/messages/${chat}`,
-            newMessage: (offerId: Primitive = '', authorId: Primitive): string =>
-                `/profile/private/messages/new/${offerId}?authorId=${authorId}`,
+            newMessage: (offerId: Primitive = ''): string => `/profile/private/messages/new/${offerId}`,
             settings: (status: Primitive = 'general'): string => `/profile/private/settings/${status}`,
             reviews: '/profile/private/reviews',
             referral: '/profile/private/referral',

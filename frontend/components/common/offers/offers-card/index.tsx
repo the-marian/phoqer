@@ -44,20 +44,8 @@ const OfferCard = ({ offer, showFavoriteBtn = true }: IProps): ReactElement => {
     const history = useRouter();
     const dispatch = useDispatch();
 
-    const {
-        id,
-        author_id,
-        title,
-        description,
-        cover_image,
-        is_promoted,
-        is_deliverable,
-        is_favorite,
-        views,
-        pub_date,
-        price,
-        functions,
-    } = offer;
+    const { id, title, description, cover_image, is_promoted, is_deliverable, is_favorite, views, pub_date, price, functions } =
+        offer;
 
     const isLogin = (): boolean => {
         if (!auth?.access_token) {
@@ -78,7 +66,7 @@ const OfferCard = ({ offer, showFavoriteBtn = true }: IProps): ReactElement => {
 
     const handleOpenChat = (): void => {
         if (!isLogin()) return;
-        history.push(routes.profile.private.newMessage(id, author_id));
+        history.push(routes.profile.private.newMessage(id));
     };
 
     const USER_ACTIONS = {

@@ -10,7 +10,7 @@ import ProfileChatNav from '../../../../components/common/navigation/profile-nav
 import AuthRedirect from '../../../../components/context/auth/auth-redirect';
 import Meta from '../../../../components/layout/meta';
 import ChatBackBtn from '../../../../components/pages/profile/private/messages/chat-back-btn';
-import ChatWrp from '../../../../components/pages/profile/private/messages/chat-wrp';
+import ChatWrp from '../../../../components/pages/profile/private/messages/wrappers/chat-wrp';
 import useMedia from '../../../../hooks/media.hook';
 import useTrans from '../../../../hooks/trans.hook';
 import { wrapper } from '../../../../redux/store';

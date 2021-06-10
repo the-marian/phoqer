@@ -94,7 +94,11 @@ const setting: IDropValue[] = [
     },
 ];
 
-const ChatForm = (): ReactElement => {
+interface IProps {
+    onSubmit?: (event: FormEvent) => void;
+}
+
+const ChatForm = ({ onSubmit }: IProps): ReactElement => {
     const css = useStyles();
     const [value, setValue] = useState<string>();
 
@@ -103,6 +107,7 @@ const ChatForm = (): ReactElement => {
     };
     const handleSubmit = (event: FormEvent): void => {
         event.preventDefault();
+        if (onSubmit) onSubmit(event);
         console.log(value);
     };
 

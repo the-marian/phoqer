@@ -8,6 +8,8 @@ import { Theme } from '../../../../../../../assets/theme';
 import useMedia from '../../../../../../../hooks/media.hook';
 import useMonths from '../../../../../../../hooks/month.hook';
 import { IMessagesList, IPublicProfile, IState } from '../../../../../../../interfaces';
+import Tooltip from '../../../../../../common/tooltip';
+import ChatInitConversation from '../chat-init-conversation';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     root: {
@@ -71,6 +73,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
         marginTop: theme.rem(4),
         textAlign: 'center',
     },
+    tooltip: {
+        width: 'max-content',
+    },
 }));
 
 const validateDate = (value: string): Date => {
@@ -112,7 +117,11 @@ const DateSeparator = ({ prevDate, currentDate }: IDateSeparatorProps): ReactEle
     ) : null;
 };
 
-const ChatFlow = (): ReactElement => {
+interface IProps {
+    children?: ReactElement;
+}
+
+const ChatFlow = ({ children }: IProps): ReactElement => {
     const css = useStyles();
     const media = useMedia(1060);
     const ref = useRef<HTMLDivElement | null>(null);
@@ -122,8 +131,9 @@ const ChatFlow = (): ReactElement => {
 
     useEffect(() => {
         if (ref.current) {
-            if (!media) window.scrollTo({ top: ref.current?.offsetHeight || 0 });
-            if (media) ref.current?.scrollTo({ top: ref.current?.offsetHeight || 0 });
+            media
+                ? ref.current?.scrollTo({ top: ref.current?.offsetHeight || 0 })
+                : window.scrollTo({ top: ref.current?.offsetHeight || 0 });
         }
     }, [ref.current]);
 
@@ -138,9 +148,11 @@ const ChatFlow = (): ReactElement => {
                                       <p className={css.date}>{formatTime(item.creation_datetime)}</p>
                                   )}
 
-                                  <button type="button" className={clsx(css.box, user.id === item.user_id && css.primary)}>
-                                      {item.text}
-                                  </button>
+                                  <Tooltip className={css.tooltip} content={`${item.first_name} ${item.last_name}`}>
+                                      <button type="button" className={clsx(css.box, user.id === item.user_id && css.primary)}>
+                                          {item.text}
+                                      </button>
+                                  </Tooltip>
                               </div>
                               <DateSeparator
                                   prevDate={array[index + 1]?.creation_datetime}
@@ -149,6 +161,7 @@ const ChatFlow = (): ReactElement => {
                           </Fragment>
                       ))
                     : null}
+                <ChatInitConversation>{children}</ChatInitConversation>
             </div>
         </div>
     );

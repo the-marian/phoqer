@@ -3,12 +3,12 @@ import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 import { useSelector } from 'react-redux';
 
-import { Theme } from '../../../../../../assets/theme';
-import { IChats, IChatsList, IState } from '../../../../../../interfaces';
-import ChatsLoaders from '../../../../../common/loaders/skeletons/chats';
-import ChatEmpty from '../chat-empty';
-import ChatLoading from '../chat-loading';
-import ChatSidebar from '../chat-sidebar';
+import { Theme } from '../../../../../../../assets/theme';
+import { IChats, IChatsList, IState } from '../../../../../../../interfaces';
+import ChatsLoaders from '../../../../../../common/loaders/skeletons/chats';
+import ChatLoading from '../../chat-loading';
+import ChatSidebar from '../../chat-sidebar';
+import ChatEmpty from '../../empty-state/chat-empty';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     root: {
@@ -32,7 +32,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     aside: {
         minWidth: theme.rem(40),
         maxWidth: theme.rem(40),
-        height: '100%',
+        height: '99%',
         paddingRight: theme.rem(0.5),
         marginRight: theme.rem(0.5),
         overflow: 'auto',

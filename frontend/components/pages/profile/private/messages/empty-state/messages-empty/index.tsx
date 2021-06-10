@@ -1,8 +1,8 @@
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
-import { Theme } from '../../../../../../assets/theme';
-import ChatForm from '../chat-conversation/chat-form';
+import { Theme } from '../../../../../../../assets/theme';
+import ChatForm from '../../chat-conversation/chat-form';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     root: {

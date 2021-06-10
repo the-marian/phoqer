@@ -1,8 +1,10 @@
+import { useRouter } from 'next/router';
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 import { useSelector } from 'react-redux';
 
 import { moneyFormat } from '../../../../assets/helpers';
+import routes from '../../../../assets/routes';
 import template from '../../../../assets/template';
 import { Theme } from '../../../../assets/theme';
 import useAuth from '../../../../hooks/auth.hook';
@@ -11,7 +13,6 @@ import { IOfferCard, IState } from '../../../../interfaces';
 import LoginForm from '../../../common/auth/login-form';
 import { modal } from '../../../common/modal';
 import SmallModalWrp from '../../../common/modal/small-modal-wrp';
-import RentModal from '../rent-modal';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     priceTitle: {
@@ -51,6 +52,8 @@ const Price = (): ReactElement => {
     const css = useStyles();
     const auth = useAuth();
     const trans = useTrans();
+    const history = useRouter();
+
     const offer = useSelector<IState, IOfferCard | null>(state => state.offers.single);
 
     const handleRent = (): void => {
@@ -63,8 +66,9 @@ const Price = (): ReactElement => {
             return;
         }
 
-        modal.open(<RentModal />);
+        history.push(routes.profile.private.newMessage(offer?.id));
     };
+
     return (
         <>
             <h3 className={css.priceTitle}>{trans('price')}:</h3>
