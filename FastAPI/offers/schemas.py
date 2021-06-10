@@ -31,7 +31,6 @@ class RentalPeriod(Enum):
     DAY = "DAY"
     HOUR = "HOUR"
     MONTH = "MONTH"
-    NONE = None
 
 
 class OfferDraftRequest(BaseModel):
@@ -50,7 +49,7 @@ class OfferDraftRequest(BaseModel):
     max_rent_period: Optional[int] = None
     min_rent_period: Optional[int] = None
     price: Optional[int] = None
-    rental_period: RentalPeriod = RentalPeriod.NONE
+    rental_period: RentalPeriod = RentalPeriod.DAY
     sub_category: Optional[str] = None
     title: Optional[str] = None
     views: int = 0
@@ -78,7 +77,7 @@ class OffersListItem(BaseModel):
     is_promoted: bool = False
     price: int
     pub_date: date
-    rental_period: RentalPeriod = RentalPeriod.NONE
+    rental_period: RentalPeriod
     title: str
     views: int
 
@@ -98,7 +97,7 @@ class MyOffersListItem(BaseModel):
     is_promoted: bool = False
     price: Optional[int] = None
     pub_date: Optional[date] = None
-    rental_period: RentalPeriod = RentalPeriod.NONE
+    rental_period: RentalPeriod = RentalPeriod.DAY
     title: Optional[str] = None
     views: Optional[int] = None
 

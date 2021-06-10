@@ -137,7 +137,7 @@ async def create_offer_draft(offer: OfferDraftRequest, author_id: int) -> str:
         "min_rent_period": offer.min_rent_period,
         "sub_category_id": offer.sub_category,
         "price": offer.price,
-        "rental_period": RentalPeriod.NONE.value,
+        "rental_period": RentalPeriod.DAY.value,
         "title": offer.title,
         "views": offer.views,
     }
@@ -216,7 +216,7 @@ async def partial_update_offer(
         "min_rent_period": updated_offer.min_rent_period,
         "offer_id": offer_id,
         "price": updated_offer.price,
-        "rental_period": updated_offer.rental_period,
+        "rental_period": updated_offer.rental_period.value,
         "sub_category_id": updated_offer.sub_category,
         "title": updated_offer.title,
     }
@@ -247,7 +247,7 @@ async def find_offers(
     max_deposit: Optional[int] = None,
     min_deposit: Optional[int] = None,
     no_deposit: Optional[bool] = None,
-    rental_period: RentalPeriod = None,
+    rental_period: RentalPeriod = RentalPeriod.DAY,
     search: Optional[str] = None,
     ordering: str = "pub_date,-views",
 ) -> List[Mapping[str, Any]]:
@@ -296,7 +296,7 @@ async def find_offers(
         "max_deposit": max_deposit,
         "min_deposit": min_deposit,
         "no_deposit": no_deposit,
-        "rental_period": rental_period,
+        "rental_period": rental_period.value,
         "search": f"%{search}%" if search else None,
     }
     return await database.fetch_all(query=query, values=values)
@@ -312,7 +312,7 @@ async def count_founded_offers(
     max_deposit: Optional[int] = None,
     min_deposit: Optional[int] = None,
     no_deposit: Optional[bool] = None,
-    rental_period: RentalPeriod = None,
+    rental_period: RentalPeriod = RentalPeriod.DAY,
     search: Optional[str] = None,
 ) -> int:
     query = """
@@ -343,7 +343,7 @@ async def count_founded_offers(
         "max_deposit": max_deposit,
         "min_deposit": min_deposit,
         "no_deposit": no_deposit,
-        "rental_period": rental_period,
+        "rental_period": rental_period.value,
         "search": f"%{search}%" if search else None,
     }
     count = await database.fetch_one(query=query, values=values)

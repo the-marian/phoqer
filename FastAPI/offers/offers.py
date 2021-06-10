@@ -133,7 +133,7 @@ async def search_offers(
     no_deposit: Optional[bool] = None,
     ordering: str = "pub_date",
     page: int = 1,
-    rental_period: RentalPeriod = None,
+    rental_period: RentalPeriod = RentalPeriod.DAY,
     search: Optional[str] = None,
     sub_category: Optional[str] = None,
     user_id: Optional[int] = Depends(get_current_user_or_none),
