@@ -1,3 +1,5 @@
+import { faChevronDown } from '@fortawesome/free-solid-svg-icons/faChevronDown';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 import { useSelector } from 'react-redux';
@@ -26,6 +28,21 @@ const useStyles = createUseStyles((theme: Theme) => ({
     drop: {
         width: '49%',
     },
+    submit: {
+        marginTop: theme.rem(2),
+        fontSize: theme.rem(1.6),
+        color: theme.palette.primary[0],
+        fontWeight: theme.text.weight[3],
+
+        ...theme.hover({
+            textDecoration: 'underline',
+        }),
+
+        '& svg': {
+            marginLeft: theme.rem(1),
+            fontSize: theme.rem(1.2),
+        },
+    },
 }));
 
 interface IProps {
@@ -48,20 +65,26 @@ const OptionsMobile = ({ onChange }: IProps): ReactElement => {
         : null;
 
     return (
-        <div className={css.root}>
-            <div className={css.drop}>
-                <DropDown
-                    data={categories}
-                    defaultValue={defaultValue}
-                    placeholder={trans('select_category')}
-                    onChange={onChange}
-                    height={tablet ? 6 : 5}
-                    withSub
-                    white
-                />
+        <>
+            <div className={css.root}>
+                <div className={css.drop}>
+                    <DropDown
+                        data={categories}
+                        defaultValue={defaultValue}
+                        placeholder={trans('select_category')}
+                        onChange={onChange}
+                        height={tablet ? 6 : 5}
+                        withSub
+                        white
+                    />
+                </div>
+                <Region className={css.region} />
             </div>
-            <Region className={css.region} />
-        </div>
+            <button className={css.submit} type="submit">
+                <span>{trans('search')}</span>
+                <FontAwesomeIcon icon={faChevronDown} />
+            </button>
+        </>
     );
 };
 

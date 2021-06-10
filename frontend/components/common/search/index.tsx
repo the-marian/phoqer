@@ -48,7 +48,6 @@ const useStyles = createUseStyles((theme: Theme) => ({
         alignItems: 'center',
         height: theme.rem(6),
         width: '100%',
-        paddingLeft: theme.rem(2.5),
         background: theme.palette.gray[1],
         fontSize: theme.rem(1.4),
         borderRadius: theme.radius,
@@ -56,7 +55,6 @@ const useStyles = createUseStyles((theme: Theme) => ({
 
         ...theme.media(1100).max({
             height: theme.rem(5),
-            paddingLeft: theme.rem(1.5),
             background: theme.palette.white,
             boxShadow: theme.palette.shadowBorder,
         }),
@@ -65,7 +63,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         display: 'block',
         flexGrow: 2,
         height: '100%',
-        padding: theme.rem(2),
+        padding: theme.rem(1),
         background: 'none',
         border: 'none',
         color: theme.palette.black[0],
@@ -85,8 +83,26 @@ const useStyles = createUseStyles((theme: Theme) => ({
         }),
     },
     icon: {
+        position: 'relative',
+        height: '100%',
+        width: theme.rem(5),
         fontSize: theme.rem(1.4),
         color: theme.palette.primary[0],
+
+        ...theme.media(768).max({
+            width: theme.rem(4),
+        }),
+
+        '&::before': {
+            content: '""',
+            position: 'absolute',
+            top: '50%',
+            right: 0,
+            transform: 'translateY(-50%)',
+            height: '50%',
+            width: 0,
+            borderRight: theme.border(0.1, theme.palette.gray[2]),
+        },
 
         '& svg': {
             height: theme.rem(1.4),
@@ -207,6 +223,7 @@ const Search = ({ shallow = false }: IProps): ReactElement => {
             undefined,
             { shallow },
         );
+        window.scrollTo({ top: document.getElementById('products')?.offsetTop || 0, behavior: 'smooth' });
     };
 
     return (

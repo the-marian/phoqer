@@ -48,6 +48,7 @@ const Sort = (): ReactElement => {
                 data={FILTERS}
                 onChange={handleChange}
                 placeholder={trans('specify_sorting_type')}
+                white
             />
         </div>
     );

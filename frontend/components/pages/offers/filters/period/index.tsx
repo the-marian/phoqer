@@ -38,7 +38,7 @@ const Period = (): ReactElement => {
     return (
         <div className={css.root}>
             <h4 className={css.title}>{trans('rental_period')}</h4>
-            <DropDown defaultValue={defaultValue} data={FILTERS} onChange={handleChange} placeholder={trans('payment')} />
+            <DropDown defaultValue={defaultValue} data={FILTERS} onChange={handleChange} placeholder={trans('payment')} white />
         </div>
     );
 };

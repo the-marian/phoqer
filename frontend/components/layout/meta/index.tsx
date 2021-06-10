@@ -38,7 +38,6 @@ const Meta = ({ title, description, keywords, icon, h1 = '' }: IProps): ReactEle
                 <title>{title?.trim() ? `${title} | Phoqer` : 'Phoqer'}</title>
                 <meta name="title" content={title?.trim() ? `${title} | Phoqer` : 'Phoqer'} />
                 <meta name="description" content={description || trans('site_desc')} />
-                <meta property="og:url" content={url(history.locale)} />
 
                 {/*Internal meta Tags*/}
                 <meta
@@ -49,12 +48,11 @@ const Meta = ({ title, description, keywords, icon, h1 = '' }: IProps): ReactEle
                 <meta name="robots" content="index,follow" />
 
                 {/*Open Graph / Facebook*/}
-                <meta property="og:type" content="website" />
                 <meta property="og:url" content={url(history.locale)} />
+                <meta property="og:type" content="website" />
                 <meta property="og:title" content={title?.trim() ? `${title} | Phoqer` : 'Phoqer'} />
                 <meta property="og:description" content={description || trans('site_desc')} />
                 <meta property="og:image" content={icon || `${url()}/about.jpg`} />
-                <meta property="og:url" content={url(history.locale)} />
                 <meta property="og:site_name" content="Phoqer" />
 
                 {/*Twitter*/}
@@ -93,7 +91,6 @@ const Meta = ({ title, description, keywords, icon, h1 = '' }: IProps): ReactEle
                 <link href="/icons/icon-512.png" rel="apple-touch-icon" type="image/png" sizes="512x512" />
 
                 <link rel="mask-icon" href="/phoqer-512.png" color="#007aff" />
-
                 <link rel="canonical" href={url(history.locale)} />
                 <link rel="alternate" hrefLang="x-default" href={url()} />
                 <link rel="alternate" hrefLang="en" href={url('en')} />

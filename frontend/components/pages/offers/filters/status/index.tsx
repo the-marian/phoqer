@@ -38,7 +38,13 @@ const Status = (): ReactElement => {
     return (
         <div className={css.root}>
             <h4 className={css.title}>{trans('status')}</h4>
-            <DropDown defaultValue={defaultValue} data={FILTERS} onChange={handleChange} placeholder={trans('offer_status')} />
+            <DropDown
+                defaultValue={defaultValue}
+                data={FILTERS}
+                onChange={handleChange}
+                placeholder={trans('offer_status')}
+                white
+            />
         </div>
     );
 };

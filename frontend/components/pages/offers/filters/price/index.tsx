@@ -28,9 +28,8 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
     input: {
         ...template(theme).input,
-        background: theme.palette.gray[1],
-        fontSize: 'inherit',
         color: theme.palette.black[0],
+        fontSize: 'inherit',
     },
     title: {
         marginBottom: theme.rem(1),

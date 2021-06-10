@@ -44,19 +44,42 @@ const OfferCard = ({ offer, showFavoriteBtn = true }: IProps): ReactElement => {
     const history = useRouter();
     const dispatch = useDispatch();
 
-    const { id, title, description, cover_image, is_promoted, is_deliverable, is_favorite, views, pub_date, price, functions } =
-        offer;
+    const {
+        id,
+        author_id,
+        title,
+        description,
+        cover_image,
+        is_promoted,
+        is_deliverable,
+        is_favorite,
+        views,
+        pub_date,
+        price,
+        functions,
+    } = offer;
 
-    const handleFavorite = (): void => {
+    const isLogin = (): boolean => {
         if (!auth?.access_token) {
             modal.open(
                 <SmallModalWrp>
                     <LoginForm />
                 </SmallModalWrp>,
             );
-            return;
+            return false;
         }
+        return true;
+    };
+
+    const handleFavorite = (): void => {
+        if (!isLogin()) return;
         dispatch({ type: types.PATCH_FAVORITE_OFFERS_START, payload: offer.id });
+    };
+
+    const handleOpenChat = (): void => {
+        if (!isLogin()) return;
+        console.log({ author_id });
+        history.push(routes.profile.private.newMessage(id, author_id));
     };
 
     const USER_ACTIONS = {
@@ -182,7 +205,7 @@ const OfferCard = ({ offer, showFavoriteBtn = true }: IProps): ReactElement => {
 
                 {showFavoriteBtn && (
                     <div className={css.actionBtn}>
-                        <button type="button" className={css.btn}>
+                        <button type="button" className={css.btn} onClick={handleOpenChat}>
                             {trans('rent')}
                         </button>
                         <Tooltip className={css.tooltip} content="Добавить в избранное">
