@@ -38,6 +38,7 @@ const Meta = ({ title, description, keywords, icon, h1 = '' }: IProps): ReactEle
                 <title>{title?.trim() ? `${title} | Phoqer` : 'Phoqer'}</title>
                 <meta name="title" content={title?.trim() ? `${title} | Phoqer` : 'Phoqer'} />
                 <meta name="description" content={description || trans('site_desc')} />
+                <meta property="og:url" content={url(history.locale)} />
 
                 {/*Internal meta Tags*/}
                 <meta
