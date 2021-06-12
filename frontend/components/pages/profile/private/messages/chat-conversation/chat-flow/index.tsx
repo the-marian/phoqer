@@ -3,12 +3,14 @@ import React, { Fragment, ReactElement, useEffect, useRef } from 'react';
 import { createUseStyles } from 'react-jss';
 import { useSelector } from 'react-redux';
 
+import { addZeroToNumber } from '../../../../../../../assets/helpers';
 import template from '../../../../../../../assets/template';
 import { Theme } from '../../../../../../../assets/theme';
 import useMedia from '../../../../../../../hooks/media.hook';
 import useMonths from '../../../../../../../hooks/month.hook';
 import { IMessagesList, IPublicProfile, IState } from '../../../../../../../interfaces';
 import Tooltip from '../../../../../../common/tooltip';
+import ChatEmpty from '../../empty-state/chat-empty';
 import ChatInitConversation from '../chat-init-conversation';
 
 const useStyles = createUseStyles((theme: Theme) => ({
@@ -55,16 +57,17 @@ const useStyles = createUseStyles((theme: Theme) => ({
         width: 'max-content',
         maxWidth: '100%',
         padding: theme.rem(1, 2),
-        background: theme.palette.white,
         borderRadius: theme.radius,
         boxShadow: theme.shadow[1],
+        background: theme.palette.trueWhite,
+        color: theme.palette.trueBlack,
         wordWrap: 'break-word',
         textAlign: 'left',
         ...template(theme).outline,
     },
     primary: {
-        background: theme.palette.primary[0],
         color: theme.palette.trueWhite,
+        background: theme.palette.primary[0],
         ...theme.hover({
             opacity: '0.7',
         }),
@@ -97,7 +100,7 @@ const validateDate = (value: string): Date => {
 
 const formatTime = (value: string): string => {
     const date = validateDate(value);
-    return `${date.getHours()}:${date.getMinutes()}`;
+    return `${addZeroToNumber(date.getHours())}:${addZeroToNumber(date.getMinutes())}`;
 };
 
 interface IDateSeparatorProps {
@@ -113,7 +116,7 @@ const DateSeparator = ({ prevDate, currentDate }: IDateSeparatorProps): ReactEle
     if (!prevDate) {
         return (
             <p className={css.day}>
-                {currentDay.getDate()} {month[currentDay.getMonth()]}
+                {addZeroToNumber(currentDay.getDate())} {month[currentDay.getMonth()]}
             </p>
         );
     }
@@ -149,31 +152,30 @@ const ChatFlow = ({ children }: IProps): ReactElement => {
     return (
         <div ref={ref} className={css.root}>
             <div className={css.inner}>
-                {messages.data.data.length
-                    ? messages.data.data.map<ReactElement>((item, index, array) => (
-                          <Fragment key={item.id}>
-                              <div className={clsx(css.messages, user.id === item.user_id && css.right)}>
-                                  {array[index + 1]?.user_id !== item.user_id && (
-                                      <p className={css.date}>{formatTime(item.creation_datetime)}</p>
-                                  )}
+                {messages.data.data.length ? (
+                    messages.data.data.map<ReactElement>((item, index, array) => (
+                        <Fragment key={item.id}>
+                            <div className={clsx(css.messages, user.id === item.user_id && css.right)}>
+                                {array[index + 1]?.user_id !== item.user_id && (
+                                    <p className={css.date}>{formatTime(item.creation_datetime)}</p>
+                                )}
 
-                                  <Tooltip
-                                      className={css.tooltip}
-                                      classNameWrp={css.tooltipWrp}
-                                      content={`${item.first_name} ${item.last_name}`}
-                                  >
-                                      <button type="button" className={clsx(css.box, user.id === item.user_id && css.primary)}>
-                                          {item.text}
-                                      </button>
-                                  </Tooltip>
-                              </div>
-                              <DateSeparator
-                                  prevDate={array[index + 1]?.creation_datetime}
-                                  currentDate={item.creation_datetime}
-                              />
-                          </Fragment>
-                      ))
-                    : null}
+                                <Tooltip
+                                    className={css.tooltip}
+                                    classNameWrp={css.tooltipWrp}
+                                    content={`${item.first_name} ${item.last_name}`}
+                                >
+                                    <button type="button" className={clsx(css.box, user.id === item.user_id && css.primary)}>
+                                        {item.text}
+                                    </button>
+                                </Tooltip>
+                            </div>
+                            <DateSeparator prevDate={array[index + 1]?.creation_datetime} currentDate={item.creation_datetime} />
+                        </Fragment>
+                    ))
+                ) : (
+                    <ChatEmpty />
+                )}
                 <ChatInitConversation>{children}</ChatInitConversation>
             </div>
         </div>

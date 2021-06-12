@@ -66,10 +66,9 @@ const MessagesWrpShowSidebar = ({ show, children }: MessagesWrpShowSidebarProps)
 interface MessagesWrpShowLoaderProps {
     children: ReactElement | null;
     loading: boolean;
-    data: IMessages[];
 }
-const MessagesWrpShowLoader = ({ loading, data, children }: MessagesWrpShowLoaderProps): ReactElement | null =>
-    loading ? <ChatLoading /> : data.length ? children : <MessagesEmpty />;
+const MessagesWrpShowLoader = ({ loading, children }: MessagesWrpShowLoaderProps): ReactElement | null =>
+    loading ? <ChatLoading /> : children;
 
 interface IProps {
     children: ReactElement | null;
@@ -93,9 +92,7 @@ const MessagesWrp = ({ children, showSidebar = false }: IProps): ReactElement =>
                     </aside>
                 </MessagesWrpShowSidebar>
 
-                <MessagesWrpShowLoader data={messages.data.data} loading={messages.loading}>
-                    {children}
-                </MessagesWrpShowLoader>
+                <MessagesWrpShowLoader loading={messages.loading}>{children}</MessagesWrpShowLoader>
             </div>
         </>
     );

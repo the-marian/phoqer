@@ -127,17 +127,16 @@ const ChatForm = ({ onSubmit }: IProps): ReactElement => {
         setValue(event.target.value);
     };
 
-    const handleSubmit = (event: FormEvent): void => {
+    const handleSubmit = (event: FormEvent | KeyboardEvent<HTMLTextAreaElement>): void => {
         event.preventDefault();
         if (onSubmit) onSubmit(value, uploads);
+        setValue('');
     };
 
     const handleKeyPress = async (event: KeyboardEvent<HTMLTextAreaElement>): Promise<void> => {
         if (event.key === 'Enter' && !event.shiftKey) {
             if (!media) return;
-
-            event.preventDefault();
-            if (onSubmit) onSubmit(value, uploads);
+            handleSubmit(event);
         }
     };
 
