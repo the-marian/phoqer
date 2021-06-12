@@ -13,7 +13,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        fontSize: theme.rem(2.3),
+        fontSize: theme.em(2.3),
         color: theme.palette.trueWhite,
         background: theme.palette.primary[0],
         borderRadius: '50%',

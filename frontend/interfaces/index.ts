@@ -134,8 +134,8 @@ export interface IOfferCard {
     description: string;
     extra_requirements?: string;
     city: string;
-    country: string;
-    currency: string;
+    country: string | null;
+    currency: string | null;
     author_id: number;
     status: string;
 }
@@ -240,7 +240,8 @@ export interface IPublicProfile {
     last_activity?: string;
     last_name?: string;
     likes?: number;
-    location?: string;
+    city?: string;
+    country?: string;
     profile_img?: string | null;
     response_rate?: number;
     satisfaction_rate?: number;

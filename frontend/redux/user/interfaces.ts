@@ -8,10 +8,17 @@ type Type =
     | typeof types.GET_USER_START
     | typeof types.GET_USER_ERROR
     | typeof types.GET_USER_SUCCESS
+    | typeof types.UPDATE_USER_START
+    | typeof types.UPDATE_USER_ERROR
+    | typeof types.UPDATE_USER_SUCCESS
+    | typeof types.UPDATE_USER_AVATAR_START
+    | typeof types.UPDATE_USER_AVATAR_ERROR
+    | typeof types.UPDATE_USER_AVATAR_SUCCESS
     | typeof types.LOGOUT_INIT
     | typeof types.LOGOUT_END;
 
 export default interface IAction {
     type: Type;
-    payload?: IAuth | IPublicProfile;
+    payload?: IAuth | IPublicProfile | File;
+    callback?: () => void;
 }

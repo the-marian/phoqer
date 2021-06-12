@@ -86,7 +86,8 @@ const ChatInitConversation = ({ children }: IProps): ReactElement | null => {
             </Link>
             <h3 className={css.price}>{trans('price')}</h3>
             <p className={css.text}>
-                {offer.price} {trans(offer.currency.toLowerCase() || 'uah')}/{trans(offer.rental_period?.toLowerCase() || 'day')}
+                {offer.price} {trans(offer?.currency?.toLowerCase() || 'uah')}/
+                {trans(offer.rental_period?.toLowerCase() || 'day')}
             </p>
             {children}
         </div>

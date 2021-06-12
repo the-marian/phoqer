@@ -38,7 +38,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         ...template(theme).outline,
     },
     wrp: {
-        margin: theme.rem(0, 0.5),
+        margin: theme.rem(2, 0, 1),
     },
 }));
 
@@ -92,7 +92,7 @@ const AuthDrawer = (): ReactElement | null => {
                 lastName={user?.last_name}
                 avatar={user?.profile_img}
                 lastActivity={user?.last_activity}
-                userLocation={user?.location}
+                userLocation={user?.city}
                 registerDate={user?.date_joined}
             />
             <div className={css.wrp}>

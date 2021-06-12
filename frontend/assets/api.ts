@@ -32,7 +32,6 @@ const api = {
         get: (): Promise<AxiosResponse<ICategories>> => axios.get(`${url2}/categories`),
     },
     auth: {
-        user: (): Promise<AxiosResponse<IPublicProfile>> => axios.get(`${url2}/users/me`),
         login: (form: FormData): Promise<AxiosResponse<IAuth>> => axios.post(`${url2}/auth/login`, form),
         signup: (body: ISignup): Promise<AxiosResponse<void>> => axios.post(`${url2}/users/signup`, body),
     },
@@ -59,6 +58,11 @@ const api = {
         },
     },
     profiles: {
+        private: {
+            user: (): Promise<AxiosResponse<IPublicProfile>> => axios.get(`${url2}/users/me`),
+            userUpdate: (body: Partial<IPublicProfile>): Promise<AxiosResponse<IPublicProfile>> =>
+                axios.patch(`${url2}/users/me`, body),
+        },
         public: {
             get: (id: number): Promise<AxiosResponse<IPublicProfile>> => axios.get(`${url2}/users/${id}`),
             userShort: (id: number): Promise<AxiosResponse<IPublicProfile>> => axios.get(`${url2}/users/short/${id}`),
@@ -72,6 +76,8 @@ const api = {
         countries: (): Promise<AxiosResponse<void>> => axios.get(`${url2}/locations/countries`),
         cities: (slug: string): Promise<AxiosResponse<void>> => axios.get(`${url2}/locations/cities/${slug}`),
     },
+    uploads: (form: FormData): Promise<AxiosResponse<{ image_url: string }>> =>
+        axios.post(`${url2}/upload`, form, { headers: { 'content-type': 'multipart/form-data' } }),
 };
 
 export default api;

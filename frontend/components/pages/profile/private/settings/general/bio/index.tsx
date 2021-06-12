@@ -1,4 +1,4 @@
-import React, { ChangeEvent, ReactElement, useState } from 'react';
+import React, { ChangeEvent, ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 import TextareaAutosize from 'react-textarea-autosize';
 
@@ -34,14 +34,15 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
 }));
 
-const Bio = (): ReactElement => {
+interface IProps {
+    loading: boolean;
+    value: string;
+    onChange: (event: ChangeEvent<HTMLTextAreaElement>) => void;
+}
+
+const Bio = ({ value, onChange, loading }: IProps): ReactElement => {
     const css = useStyles();
     const trans = useTrans();
-
-    const [value, setValue] = useState<string>('');
-    const handleChange = (event: ChangeEvent<HTMLTextAreaElement>): void => {
-        setValue(event.target.value);
-    };
 
     return (
         <div className={css.wrp}>
@@ -49,7 +50,7 @@ const Bio = (): ReactElement => {
                 <p className={css.text}>{trans('user_bio')}</p>
                 <TextareaAutosize
                     value={value}
-                    onChange={handleChange}
+                    onChange={onChange}
                     className={css.textarea}
                     name="bio"
                     wrap="soft"
@@ -57,7 +58,9 @@ const Bio = (): ReactElement => {
                 />
             </label>
 
-            <Button className={css.btn}>{trans('apply_changes')}</Button>
+            <Button loading={loading} type="submit" className={css.btn}>
+                {trans('apply_changes')}
+            </Button>
         </div>
     );
 };

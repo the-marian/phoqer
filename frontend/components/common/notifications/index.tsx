@@ -8,6 +8,7 @@ import { v4 as uuid } from 'uuid';
 import { formatTimestamp } from '../../../assets/helpers';
 import template from '../../../assets/template';
 import { Theme } from '../../../assets/theme';
+import useTrans from '../../../hooks/trans.hook';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     title: {
@@ -82,6 +83,7 @@ interface IMessageProps {
 
 const Message = ({ id, message }: IMessageProps): ReactElement => {
     const css = useStyles();
+    const trans = useTrans();
 
     const handleClick = (): void => {
         store.removeNotification(id);
@@ -89,7 +91,7 @@ const Message = ({ id, message }: IMessageProps): ReactElement => {
 
     return (
         <>
-            <p className={css.text}>{message}</p>
+            <p className={css.text}>{typeof message === 'string' ? trans(message) : message}</p>
             <button onClick={handleClick} className={css.btn} type="button">
                 Ok
             </button>
@@ -135,37 +137,36 @@ interface IParams {
     date?: number | string | Date;
     message?: string | ReactElement;
     id?: string;
-    withOkBtn?: boolean;
     options?: Partial<ReactNotificationOptions>;
 }
 
 const notifications = {
-    info: ({ title = 'Success', message = '...', date = new Date(), withOkBtn, id = uuid(), options }: IParams): void => {
+    info: ({ title = 'Success', message = '...', date = new Date(), id = uuid(), options }: IParams): void => {
         store.addNotification({
             ...defaultOptions,
             type: 'success',
             title: <Title type="info" date={date} title={title} />,
-            message: withOkBtn ? <Message id={id} message={message} /> : message,
+            message: <Message id={id} message={message} />,
             id,
             ...(options || {}),
         });
     },
-    error: ({ title = 'Error', message = '...', date = new Date(), withOkBtn, id = uuid(), options }: IParams): void => {
+    error: ({ title = 'Error', message = '...', date = new Date(), id = uuid(), options }: IParams): void => {
         store.addNotification({
             ...defaultOptions,
             type: 'danger',
             title: <Title type="error" date={date} title={title} />,
-            message: withOkBtn ? <Message id={id} message={message} /> : message,
+            message: <Message id={id} message={message} />,
             id,
             ...(options || {}),
         });
     },
-    warning: ({ title = 'Attention', message = '...', date = new Date(), withOkBtn, id = uuid(), options }: IParams): void => {
+    warning: ({ title = 'Attention', message = '...', date = new Date(), id = uuid(), options }: IParams): void => {
         store.addNotification({
             ...defaultOptions,
             type: 'warning',
             title: <Title type="warning" date={date} title={title} />,
-            message: withOkBtn ? <Message id={id} message={message} /> : message,
+            message: <Message id={id} message={message} />,
             id,
             ...(options || {}),
         });

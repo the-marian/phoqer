@@ -15,9 +15,11 @@ const useStyles = createUseStyles((theme: Theme) => ({
         margin: theme.rem(0, 0, 4),
     },
     link: {
-        display: 'block',
+        display: 'flex',
+        alignItems: 'center',
+        height: theme.rem(4),
         margin: theme.rem(1, 1, 0, 0),
-        padding: theme.rem(1, 2.5),
+        padding: theme.rem(0.5, 2.5),
         color: theme.palette.black[0],
         fontSize: theme.rem(1.4),
         background: theme.palette.white,

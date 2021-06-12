@@ -211,9 +211,9 @@
     "view_drafts": "View Drafts",
     "yes": "Yes",
     "no": "No",
-    "ukraine": "🇺🇦 Ukraine",
-    "poland": "🇵🇱 Poland",
-    "russia": "🇸🇮 Russia",
+    "ukraine": "Ukraine",
+    "poland": "Poland",
+    "russia": "Russia",
     "cherkasy": "Cherkasy",
     "chernihiv": "Chernihiv",
     "chernivtsi": "Chernivtsi",
@@ -310,5 +310,7 @@
     "your_changes_successfully_published": "Ваши изменения успешно опубликовано",
     "required_fields": "Обязательные поля",
     "click_to_select_main": "Кликни на фото чтобы сделать его главным для того объявления",
-    "main_photo": "Главное фото"
+    "main_photo": "Главное фото",
+    "birth_date": "Birth date",
+    "your_changes_saved": "Ваши изменения успешно сохранены"
 }

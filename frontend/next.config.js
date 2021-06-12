@@ -6,7 +6,7 @@ const pwa =
         ? {}
         : withPWA({
               pwa: {
-                  dist: '/public',
+                  dest: '/public',
                   runtimeCaching,
               },
           });

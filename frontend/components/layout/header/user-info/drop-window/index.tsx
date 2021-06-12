@@ -12,7 +12,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         right: '15%',
         zIndex: 10001,
         minWidth: theme.rem(30),
-        padding: theme.rem(2, 4),
+        padding: theme.rem(2),
         background: theme.palette.white,
         borderRadius: theme.radius,
         transition: theme.transitions[0],

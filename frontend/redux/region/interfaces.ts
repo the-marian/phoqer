@@ -1,4 +1,4 @@
-import { ICity, ICountry, IRegion } from '../../interfaces';
+import { ICity, ICountry, IPublicProfile, IRegion } from '../../interfaces';
 import types from '../types';
 
 type Type =
@@ -13,5 +13,5 @@ type Type =
 
 export default interface IAction {
     type: Type;
-    payload?: ICountry[] | ICity[] | IRegion | string;
+    payload?: ICountry[] | ICity[] | IRegion | IPublicProfile | string;
 }

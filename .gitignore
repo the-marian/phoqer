@@ -181,3 +181,4 @@ backend/mediafiles/*
 postgres_data
 phoqer.bak
 phoqer.dump
+*.dump

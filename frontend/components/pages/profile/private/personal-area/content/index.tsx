@@ -123,7 +123,17 @@ const Content = (): ReactElement => {
                 </div>
                 <div className={css.wide}>
                     <h3 className={css.cellTitle}>{trans('location')}:</h3>
-                    <p className={css.cellText}>{user?.location || trans('no_information_available')}</p>
+                    <p className={css.cellText}>
+                        {user?.country
+                            ? user?.city
+                                ? trans(user.country) + ' ' + trans(user?.city)
+                                : trans(user.country)
+                            : trans('no_information_available')}
+                    </p>
+                </div>
+                <div className={css.wide}>
+                    <h3 className={css.cellTitle}>{trans('birth_date')}:</h3>
+                    <p className={css.cellText}>{user?.birth_date || trans('no_information_available')}</p>
                 </div>
             </div>
 

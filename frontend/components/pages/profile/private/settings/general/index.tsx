@@ -4,7 +4,6 @@ import { createUseStyles } from 'react-jss';
 import { Theme } from '../../../../../../assets/theme';
 import Banner from '../../../../../common/banner';
 import Avatar from '../avatar';
-import Bio from './bio';
 import GeneralInfoForm from './general-info-form';
 
 const useStyles = createUseStyles((theme: Theme) => ({
@@ -27,15 +26,6 @@ const useStyles = createUseStyles((theme: Theme) => ({
             width: '100%',
         }),
     },
-    box: {
-        width: '100%',
-        padding: theme.rem(4, 4, 0),
-        borderRadius: theme.radius,
-        boxShadow: theme.palette.shadowBorder,
-        ...theme.media(768).max({
-            padding: theme.rem(2, 2, 0),
-        }),
-    },
     banner: {
         margin: theme.rem(6, 0),
         padding: theme.rem(6, 4),
@@ -45,14 +35,12 @@ const useStyles = createUseStyles((theme: Theme) => ({
 
 const General = (): ReactElement => {
     const css = useStyles();
+
     return (
         <div className={css.flex}>
             <Avatar />
             <div className={css.inner}>
-                <div className={css.box}>
-                    <GeneralInfoForm />
-                    <Bio />
-                </div>
+                <GeneralInfoForm />
                 <Banner className={css.banner} animation />
             </div>
         </div>

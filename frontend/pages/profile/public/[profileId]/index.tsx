@@ -69,7 +69,7 @@ const PublicProfilePage = (): ReactElement => {
                                     firstName={profile?.first_name}
                                     lastName={profile?.last_name}
                                     avatar={profile?.profile_img}
-                                    userLocation={profile?.location}
+                                    userLocation={profile?.city}
                                     lastActivity={profile?.last_activity}
                                 />
                             </div>

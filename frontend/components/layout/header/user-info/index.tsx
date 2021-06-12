@@ -15,6 +15,9 @@ import { Theme } from '../../../../assets/theme';
 import useMedia from '../../../../hooks/media.hook';
 import useTrans from '../../../../hooks/trans.hook';
 import { IPublicProfile, IState } from '../../../../interfaces';
+import { modal } from '../../../common/modal';
+import SmallModalWrp from '../../../common/modal/small-modal-wrp';
+import UserNavDropdown from '../../../common/navigation/user-dropdown-nav';
 import NotifNumber from '../../../common/notif-number';
 import DropWindow from './drop-window';
 
@@ -95,7 +98,15 @@ const UserInfo = (): ReactElement => {
 
     const userName = user?.first_name + ' ' + user?.last_name;
 
-    const handleClick = (): void => setDrop(!drop);
+    const handleClick = (): void => {
+        window.innerHeight > 660
+            ? setDrop(!drop)
+            : modal.open(
+                  <SmallModalWrp>
+                      <UserNavDropdown />
+                  </SmallModalWrp>,
+              );
+    };
 
     return (
         <ul className={css.flex}>

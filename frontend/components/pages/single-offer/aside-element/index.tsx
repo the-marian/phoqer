@@ -41,7 +41,7 @@ const AsideElement = (): ReactElement => {
                     lastName={profile?.last_name}
                     lastActivity={profile?.last_activity}
                     avatar={profile?.profile_img}
-                    userLocation={profile?.location}
+                    userLocation={profile?.city}
                     registerDate={profile?.date_joined}
                 />
                 <Price />

@@ -9,6 +9,7 @@ import LikeDislike from '../../../../common/like-dislike';
 import { modal } from '../../../../common/modal';
 import MidModalWrp from '../../../../common/modal/mid-modal-wrp';
 import useTrans from "../../../../../hooks/trans.hook";
+import {cutString} from "../../../../../assets/helpers";
 
 const useStyles = createUseStyles((theme: Theme) => ({
     info: {
@@ -137,8 +138,8 @@ const ProfileInfo = (): ReactElement => {
                 <p>
                     {profile?.bio ? (
                         <>
-                            {profile?.bio?.length > 150 ? profile?.bio?.slice(0, 150) + '... ' : profile?.bio}
-                            {profile?.bio?.length > 150 && (
+                            {cutString(profile.bio, 150)}
+                            {profile.bio.length > 150 && (
                                 <button type="button" onClick={handleReadMore} className={css.link}>
                                     {trans('read_more')}
                                 </button>

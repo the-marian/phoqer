@@ -1,4 +1,4 @@
-import { ICity, ICountry, IRegion } from '../../interfaces';
+import { ICity, ICountry, IPublicProfile, IRegion } from '../../interfaces';
 import initState from '../state';
 import types from '../types';
 import IAction from './interfaces';
@@ -11,6 +11,15 @@ const region = (state: IRegion = initState.region, { type, payload }: IAction): 
 
         case types.GET_COUNTRIES_SUCCESS:
             return { ...state, countries: payload as ICountry[], loading: false };
+
+        case types.GET_USER_SUCCESS:
+            return {
+                ...state,
+                selected: {
+                    city: state.selected?.city || (payload as IPublicProfile)?.city || '',
+                    country: state.selected?.country || (payload as IPublicProfile)?.country || '',
+                },
+            };
 
         case types.GET_CITIES_SUCCESS:
             return { ...state, cities: payload as ICity[], loading: false };

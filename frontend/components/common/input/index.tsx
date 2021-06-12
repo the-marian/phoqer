@@ -3,7 +3,7 @@ import { faEye } from '@fortawesome/free-regular-svg-icons/faEye';
 import { faEyeSlash } from '@fortawesome/free-regular-svg-icons/faEyeSlash';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import clsx from 'clsx';
-import React, { ChangeEvent, ReactElement, useState } from 'react';
+import React, { ChangeEvent, FocusEvent, KeyboardEvent, ReactElement, useState } from 'react';
 import { createUseStyles } from 'react-jss';
 
 import template from '../../../assets/template';
@@ -77,8 +77,10 @@ const useStyles = createUseStyles((theme: Theme) => ({
 
 interface IProps {
     value: string | number;
-    onChange: (event: ChangeEvent<HTMLInputElement>) => void;
+    onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
     onBlur?: (event: ChangeEvent<HTMLInputElement>) => void;
+    onFocus?: (event: FocusEvent<HTMLInputElement>) => void;
+    onKeyDown?: (event: KeyboardEvent<HTMLInputElement>) => void;
     id?: string;
     className?: string;
     name?: string;
@@ -89,12 +91,16 @@ interface IProps {
     readOnly?: boolean;
     autoComplete?: string;
     icon?: IconProp;
+    min?: string;
+    max?: string;
 }
 
 const Input = ({
     value,
     onChange,
     onBlur,
+    onFocus,
+    onKeyDown,
     className,
     id,
     name,
@@ -105,6 +111,8 @@ const Input = ({
     errorsInPlaceholder = false, // show error text in input placeholder
     readOnly = false,
     icon,
+    min,
+    max,
 }: IProps): ReactElement => {
     const css = useStyles();
     const trans = useTrans();
@@ -127,6 +135,8 @@ const Input = ({
                     value={value}
                     onChange={onChange}
                     onBlur={onBlur}
+                    onFocus={onFocus}
+                    onKeyDown={onKeyDown}
                     className={clsx(
                         css.input,
                         className,
@@ -139,6 +149,8 @@ const Input = ({
                     type={show}
                     readOnly={readOnly}
                     autoComplete={autoComplete}
+                    min={min}
+                    max={max}
                 />
                 {type === 'password' ? (
                     <button className={css.icon} onClick={handleClick} type="button">

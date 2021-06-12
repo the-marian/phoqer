@@ -90,7 +90,6 @@ const EditContentForm = (): ReactElement => {
                 callback: () => {
                     history.push(routes.profile.private.my_offers('active'));
                     notifications.info({
-                        withOkBtn: true,
                         message: 'your_changes_successfully_published',
                     });
                 },
@@ -112,7 +111,6 @@ const EditContentForm = (): ReactElement => {
                 payload: value,
                 callback: () => {
                     notifications.info({
-                        withOkBtn: true,
                         message: 'your_changes_successfully_saved',
                     });
                 },

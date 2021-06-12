@@ -19,11 +19,15 @@ const useStyles = createUseStyles((theme: Theme) => ({
         display: 'flex',
         alignItems: 'center',
         color: theme.palette.black[0],
-        margin: theme.rem(2.5, 0),
+        margin: theme.rem(0.5, 0),
+        padding: theme.rem(1.5),
+        width: '100%',
+        borderRadius: theme.radius,
         fontSize: theme.rem(1.6),
 
         ...theme.hover({
             color: theme.palette.primary[0],
+            background: theme.palette.gray[0],
         }),
 
         ...theme.media(1100).max({

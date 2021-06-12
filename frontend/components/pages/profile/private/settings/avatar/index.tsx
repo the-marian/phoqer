@@ -1,12 +1,16 @@
 import { faRedo } from '@fortawesome/free-solid-svg-icons/faRedo';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React, { ReactElement } from 'react';
+import React, { ChangeEvent, ReactElement, useState } from 'react';
 import { createUseStyles } from 'react-jss';
+import { useDispatch, useSelector } from 'react-redux';
 
 import template from '../../../../../../assets/template';
 import { Theme } from '../../../../../../assets/theme';
 import useTrans from '../../../../../../hooks/trans.hook';
+import { IPublicProfile, IState } from '../../../../../../interfaces';
+import types from '../../../../../../redux/types';
 import Button from '../../../../../common/button';
+import UserAvatar from '../../../../../common/user-avatar';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     wrp: {
@@ -17,16 +21,14 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
     sticky: {
         position: 'sticky',
-        top: theme.rem(3),
+        top: theme.rem(8),
         left: 0,
     },
-    img: {
-        display: 'block',
-        height: theme.rem(20),
-        width: theme.rem(20),
+    avatar: {
+        display: 'flex',
+        justifyContent: 'center',
         marginBottom: theme.rem(2),
-        borderRadius: '50%',
-        objectFit: 'cover',
+        pointerEvents: 'none',
     },
     file: {
         ...template(theme).btn,
@@ -35,37 +37,60 @@ const useStyles = createUseStyles((theme: Theme) => ({
         background: theme.palette.secondary[0],
         boxShadow: theme.palette.shadowBorder,
         color: theme.palette.black[0],
-
-        '& span': {
-            marginLeft: theme.rem(1),
-        },
-
-        '& input': {
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            zIndex: 2,
-            display: 'block',
-            width: '100%',
-            height: '100%',
-            opacity: 0,
-            cursor: 'pointer',
-        },
+    },
+    text: {
+        marginLeft: theme.rem(1),
+    },
+    input: {
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        zIndex: 2,
+        display: 'block',
+        width: '100%',
+        height: '100%',
+        opacity: 0,
+        cursor: 'pointer',
     },
 }));
 
 const Avatar = (): ReactElement => {
     const css = useStyles();
     const trans = useTrans();
+    const dispatch = useDispatch();
+
+    const [avatar, setAvatar] = useState<string>('');
+    const [loading, setLoading] = useState<boolean>(false);
+    const user = useSelector<IState, IPublicProfile | null>(state => state.user);
+
+    const handleChange = (event: ChangeEvent<HTMLInputElement>): void => {
+        setLoading(true);
+        if (event.target.files?.[0]) {
+            setAvatar(window.URL.createObjectURL(event.target.files[0]));
+            dispatch({
+                type: types.UPDATE_USER_AVATAR_START,
+                payload: event.target.files[0],
+                callback: () => setLoading(false),
+            });
+        }
+    };
 
     return (
         <div className={css.wrp}>
             <div className={css.sticky}>
-                <img className={css.img} src="/about.jpg" alt="" />
-                <Button className={css.file}>
+                <div className={css.avatar}>
+                    <UserAvatar
+                        firstName={user?.first_name}
+                        lastName={user?.last_name}
+                        avatar={avatar || user?.profile_img}
+                        height={15}
+                        width={15}
+                    />
+                </div>
+                <Button loading={loading} className={css.file}>
                     <FontAwesomeIcon icon={faRedo} />
-                    <span>{trans('change_photo')}</span>
-                    <input type="file" />
+                    <span className={css.text}>{trans('change_photo')}</span>
+                    <input onChange={handleChange} className={css.input} type="file" accept=".png, .jpg, .jpeg" />
                 </Button>
             </div>
         </div>
