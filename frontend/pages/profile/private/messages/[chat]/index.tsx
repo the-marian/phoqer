@@ -13,6 +13,7 @@ import Meta from '../../../../../components/layout/meta';
 import ChatBackBtn from '../../../../../components/pages/profile/private/messages/chat-back-btn';
 import Conversation from '../../../../../components/pages/profile/private/messages/chat-conversation';
 import MessagesWrp from '../../../../../components/pages/profile/private/messages/wrappers/messages-wrp';
+import useChat from '../../../../../hooks/chat.hook';
 import useMedia from '../../../../../hooks/media.hook';
 import useTrans from '../../../../../hooks/trans.hook';
 import { IChatsList, IState } from '../../../../../interfaces';
@@ -42,6 +43,7 @@ const MessagesChat = (): ReactElement => {
     const media = useMedia(1060);
     const history = useRouter();
     const chatId = +String(history.query.chat || '0');
+    const chat = useChat(chatId);
 
     const dispatch = useDispatch();
     const chats = useSelector<IState, IChatsList>(state => state.chat.chats);
@@ -50,6 +52,14 @@ const MessagesChat = (): ReactElement => {
         if (chats.loading) dispatch({ type: types.GET_CHATS_START });
         if (chatId) dispatch({ type: types.GET_MESSAGES_START, payload: +chatId });
     }, [dispatch, chatId]);
+
+    useEffect(() => {
+        if (chat) {
+            chat.onmessage = event => {
+                console.log(event);
+            };
+        }
+    }, [chat]);
 
     return (
         <>

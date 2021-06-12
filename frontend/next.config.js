@@ -1,13 +1,15 @@
 const withPWA = require('next-pwa');
 const runtimeCaching = require('next-pwa/cache');
 
-const pwa = withPWA({
-    pwa: {
-        disable: process.env.NODE_ENV !== 'production',
-        dest: '/public',
-        runtimeCaching,
-    },
-});
+const pwa =
+    process.env.NODE_ENV === 'development'
+        ? {}
+        : withPWA({
+              pwa: {
+                  dist: '/public',
+                  runtimeCaching,
+              },
+          });
 
 module.exports = {
     async redirects() {

@@ -1,18 +1,23 @@
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
+import { Theme } from '../../../../../../assets/theme';
 import ChatFlow from './chat-flow';
 import ChatForm from './chat-form';
 
-const useStyles = createUseStyles({
+const useStyles = createUseStyles((theme: Theme) => ({
     flex: {
         display: 'flex',
         alignItems: 'flex-start',
         flexDirection: 'column',
         height: '99%',
-        width: '100%',
+        width: 'calc(100% - 40rem)',
+
+        ...theme.media(1060).max({
+            width: '100%',
+        }),
     },
-});
+}));
 
 interface IProps {
     children?: ReactElement;

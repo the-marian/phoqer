@@ -93,13 +93,14 @@ const useStyles = createUseStyles((theme: Theme) => ({
 interface IProps {
     className?: string;
     classNameWrp?: string;
+    showInMobile?: boolean;
     children: ReactElement | ReactElement[];
     content: string | ReactElement | ReactElement[];
 }
 
 type PositionClassNames = 'top_left' | 'top_right' | 'bottom_left' | 'bottom_right';
 
-const Tooltip = ({ children, className, classNameWrp, content }: IProps): ReactElement => {
+const Tooltip = ({ children, showInMobile = false, className, classNameWrp, content }: IProps): ReactElement => {
     const css = useStyles();
     const trans = useTrans();
     const media = useMedia(768);
@@ -117,11 +118,9 @@ const Tooltip = ({ children, className, classNameWrp, content }: IProps): ReactE
         handleTooltipPosition();
     }, [ref.current, handleTooltipPosition]);
 
-    const handleHover = (): void => {
-        handleTooltipPosition();
-    };
+    const handleHover = (): void => handleTooltipPosition();
 
-    return media ? (
+    return media || showInMobile ? (
         <div ref={ref} className={clsx(css.wrp, classNameWrp)} onMouseEnter={handleHover}>
             <div className={clsx(css.tooltip, css[position], 'tooltip', className)}>
                 {typeof content === 'string' ? trans(content) : content}

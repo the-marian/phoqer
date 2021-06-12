@@ -13,6 +13,8 @@ import DropDown from '../../../../../../common/drop-down';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     flex: {
+        position: 'relative',
+        zIndex: 12,
         display: 'flex',
         alignItems: 'flex-start',
         flexGrow: 1,

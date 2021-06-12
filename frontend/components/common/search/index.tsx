@@ -27,7 +27,8 @@ const useStyles = createUseStyles((theme: Theme) => ({
         background: theme.palette.gray[0],
 
         ...theme.media(768).max({
-            padding: theme.rem(8, 0, 4),
+            padding: theme.rem(8, 0, 2),
+            background: theme.palette.secondary[0],
         }),
     },
     wrp: {
@@ -85,7 +86,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     icon: {
         position: 'relative',
         height: '100%',
-        width: theme.rem(5),
+        width: theme.rem(6),
         fontSize: theme.rem(1.4),
         color: theme.palette.gray[4],
         transition: theme.transitions[0],
@@ -95,8 +96,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
             color: theme.palette.primary[0],
         }),
 
-        ...theme.media(768).max({
-            width: theme.rem(4),
+        ...theme.media(450).max({
+            background: theme.palette.gray[0],
+            width: theme.rem(4.5),
         }),
 
         '&::before': {
@@ -108,6 +110,11 @@ const useStyles = createUseStyles((theme: Theme) => ({
             height: '50%',
             width: 0,
             borderRight: theme.border(0.1, theme.palette.gray[2]),
+
+            ...theme.media(766).max({
+                left: '0',
+                right: 'unset',
+            }),
         },
 
         '& svg': {
@@ -195,6 +202,7 @@ const Search = ({ shallow = false }: IProps): ReactElement => {
     const handleInput = (event: ChangeEvent<HTMLInputElement>): void => {
         dispatch({ type: types.OFFERS_SEARCH_LOCAL_PARAMS, payload: { ...searchParams, search: event.target.value || null } });
     };
+
     const handleReset = (): void => {
         if (shallow) {
             history.push(
@@ -247,9 +255,11 @@ const Search = ({ shallow = false }: IProps): ReactElement => {
                     <div className={css.wrp}>
                         <div className={css.form}>
                             <div className={css.search}>
-                                <button type="submit" className={css.icon}>
-                                    <FontAwesomeIcon icon={faSearch} />
-                                </button>
+                                {desktop && (
+                                    <button type="submit" className={css.icon}>
+                                        <FontAwesomeIcon icon={faSearch} />
+                                    </button>
+                                )}
                                 <input
                                     value={searchParams.search || ''}
                                     onChange={handleInput}
@@ -264,6 +274,11 @@ const Search = ({ shallow = false }: IProps): ReactElement => {
                                 >
                                     <FontAwesomeIcon icon={faTimes} />
                                 </button>
+                                {!desktop && (
+                                    <button type="submit" className={css.icon}>
+                                        <FontAwesomeIcon icon={faSearch} />
+                                    </button>
+                                )}
                                 {desktop && <OptionsDesktop onChange={handleChange} />}
                             </div>
                         </div>

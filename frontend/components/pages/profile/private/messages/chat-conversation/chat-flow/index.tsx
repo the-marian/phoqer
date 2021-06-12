@@ -38,22 +38,28 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
     messages: {
         width: 'max-content',
-        maxWidth: '60%',
+        maxWidth: '50%',
         margin: theme.rem(0.5, 1),
+
+        ...theme.media(1500).max({
+            maxWidth: '80%',
+        }),
     },
     right: {
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'flex-end',
         alignSelf: 'flex-end',
-        textAlign: 'right',
     },
     box: {
         width: 'max-content',
+        maxWidth: '100%',
         padding: theme.rem(1, 2),
         background: theme.palette.white,
         borderRadius: theme.radius,
         boxShadow: theme.shadow[1],
+        wordWrap: 'break-word',
+        textAlign: 'left',
         ...template(theme).outline,
     },
     primary: {
@@ -72,6 +78,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
         width: '100%',
         marginTop: theme.rem(4),
         textAlign: 'center',
+    },
+    tooltipWrp: {
+        width: '100%',
     },
     tooltip: {
         width: 'max-content',
@@ -148,7 +157,11 @@ const ChatFlow = ({ children }: IProps): ReactElement => {
                                       <p className={css.date}>{formatTime(item.creation_datetime)}</p>
                                   )}
 
-                                  <Tooltip className={css.tooltip} content={`${item.first_name} ${item.last_name}`}>
+                                  <Tooltip
+                                      className={css.tooltip}
+                                      classNameWrp={css.tooltipWrp}
+                                      content={`${item.first_name} ${item.last_name}`}
+                                  >
                                       <button type="button" className={clsx(css.box, user.id === item.user_id && css.primary)}>
                                           {item.text}
                                       </button>

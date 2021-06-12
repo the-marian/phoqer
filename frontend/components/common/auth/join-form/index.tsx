@@ -5,7 +5,6 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { isEmpty, mailRegex, passwordRegex } from '../../../../assets/helpers';
 import { Theme } from '../../../../assets/theme';
-import useMedia from '../../../../hooks/media.hook';
 import useTrans from '../../../../hooks/trans.hook';
 import { ISignup, IState } from '../../../../interfaces';
 import types from '../../../../redux/types';
@@ -43,9 +42,6 @@ const useStyles = createUseStyles((theme: Theme) => ({
         ...theme.media(500).max({
             fontSize: theme.rem(1.6),
         }),
-    },
-    input: {
-        background: theme.palette.gray[1],
     },
     eye: {
         position: 'absolute',
@@ -147,7 +143,6 @@ const INIT: ISignup = {
 const JoinForm = (): ReactElement => {
     const css = useStyles();
     const trans = useTrans();
-    const media = useMedia(768);
     const dispatch = useDispatch();
 
     const [errors, setErrors] = useState<IError>(INIT);
@@ -215,7 +210,6 @@ const JoinForm = (): ReactElement => {
                     type="text"
                     name="first_name"
                     placeholder={trans('first_name')}
-                    className={css.input}
                     autoComplete="given-name"
                     errorsInPlaceholder
                 />
@@ -231,7 +225,6 @@ const JoinForm = (): ReactElement => {
                     name="last_name"
                     placeholder={trans('last_name')}
                     autoComplete="family-name"
-                    className={css.input}
                     errorsInPlaceholder
                 />
             </label>
@@ -246,16 +239,14 @@ const JoinForm = (): ReactElement => {
                     name="email"
                     autoComplete="email"
                     placeholder={trans('email')}
-                    className={css.input}
                     errorsInPlaceholder
                 />
             </label>
 
             <label className={css.wrp}>
                 <p className={css.label}>{trans('password')}</p>
-                {!media && renderTooltip()}
                 <div className={css.inner}>
-                    <Tooltip content={renderTooltip()}>
+                    <Tooltip content={renderTooltip()} showInMobile>
                         <Input
                             value={value.password}
                             errors={errors.password}
@@ -264,7 +255,6 @@ const JoinForm = (): ReactElement => {
                             name="password"
                             placeholder={trans('password')}
                             autoComplete="current-password"
-                            className={css.input}
                             errorsInPlaceholder
                         />
                     </Tooltip>
