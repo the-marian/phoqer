@@ -8,6 +8,7 @@ import { serverRedirect } from '../../../../../assets/helpers';
 import routes from '../../../../../assets/routes';
 import { Theme } from '../../../../../assets/theme';
 import ProfileChatNav from '../../../../../components/common/navigation/profile-nav/chat-nav';
+import notifications from '../../../../../components/common/notifications';
 import AuthRedirect from '../../../../../components/context/auth/auth-redirect';
 import Meta from '../../../../../components/layout/meta';
 import ChatBackBtn from '../../../../../components/pages/profile/private/messages/chat-back-btn';
@@ -16,7 +17,7 @@ import MessagesWrp from '../../../../../components/pages/profile/private/message
 import useChat from '../../../../../hooks/chat.hook';
 import useMedia from '../../../../../hooks/media.hook';
 import useTrans from '../../../../../hooks/trans.hook';
-import { IChatsList, IState } from '../../../../../interfaces';
+import { IChatsList, IMessages, IState } from '../../../../../interfaces';
 import { wrapper } from '../../../../../redux/store';
 import types from '../../../../../redux/types';
 
@@ -55,11 +56,32 @@ const MessagesChat = (): ReactElement => {
 
     useEffect(() => {
         if (chat) {
-            chat.onmessage = event => {
-                console.log(event);
+            chat.onmessage = (message: MessageEvent): void => {
+                try {
+                    const data = JSON.parse(message.data);
+                    const payload: IMessages = {
+                        ...data,
+                        user_id: data.users_user as number,
+                        uploads: [],
+                    };
+                    dispatch({ type: types.RECEIVE_MESSAGE, payload });
+                } catch (error) {
+                    notifications.warning({ message: 'error' });
+                }
             };
         }
     }, [chat]);
+
+    const handleSubmit = (text: string): void => {
+        if (chat) {
+            try {
+                const data = JSON.stringify({ text });
+                chat.send(data);
+            } catch (error) {
+                notifications.warning({ message: 'error' });
+            }
+        }
+    };
 
     return (
         <>
@@ -74,7 +96,7 @@ const MessagesChat = (): ReactElement => {
                 )}
 
                 <MessagesWrp showSidebar={media}>
-                    <Conversation />
+                    <Conversation onSubmit={handleSubmit} />
                 </MessagesWrp>
             </main>
         </>

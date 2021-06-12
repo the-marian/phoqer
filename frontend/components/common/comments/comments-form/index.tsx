@@ -116,6 +116,7 @@ const CommentsForm = ({ onSubmit }: IProps): ReactElement => {
     const uppy = useUppy();
     const trans = useTrans();
     const [theme] = useTheme();
+    const mobile = useMedia(768);
     const media = useMedia(900);
 
     const [error, setError] = useState<string>('');
@@ -173,7 +174,7 @@ const CommentsForm = ({ onSubmit }: IProps): ReactElement => {
 
     const handleKeyPress = async (event: KeyboardEvent<HTMLTextAreaElement>): Promise<void> => {
         if (event.key === 'Enter' && !event.shiftKey) {
-            if (!media) return;
+            if (!mobile) return;
 
             event.preventDefault();
             await handleSubmit();

@@ -11,6 +11,9 @@ const messages = (state: IMessagesList = initState.chat.messages, { type, payloa
         case types.REMOVE_ALL_MESSAGES:
             return { data: initState.chat.messages.data, loading: false };
 
+        case types.RECEIVE_MESSAGE:
+            return { data: { ...state.data, data: [payload as IMessages, ...state.data.data] }, loading: false };
+
         case types.GET_MESSAGES_SUCCESS:
             return { data: payload as IPagination<IMessages>, loading: false };
 

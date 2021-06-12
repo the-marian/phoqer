@@ -21,15 +21,16 @@ const useStyles = createUseStyles((theme: Theme) => ({
 
 interface IProps {
     children?: ReactElement;
+    onSubmit?: (value: string, uploads: File[]) => void;
 }
 
-const Conversation = ({ children }: IProps): ReactElement => {
+const Conversation = ({ children, onSubmit }: IProps): ReactElement => {
     const css = useStyles();
 
     return (
         <div className={css.flex}>
             <ChatFlow>{children}</ChatFlow>
-            {children ? null : <ChatForm />}
+            {children ? null : <ChatForm onSubmit={onSubmit} />}
         </div>
     );
 };

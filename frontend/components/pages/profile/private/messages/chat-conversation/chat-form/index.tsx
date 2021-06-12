@@ -1,15 +1,18 @@
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons/faChevronRight';
 import { faEllipsisV } from '@fortawesome/free-solid-svg-icons/faEllipsisV';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React, { ChangeEvent, FormEvent, ReactElement, useState } from 'react';
+import React, { ChangeEvent, FormEvent, KeyboardEvent, ReactElement, useState } from 'react';
 import { createUseStyles } from 'react-jss';
 import TextareaAutosize from 'react-textarea-autosize';
 
 import template from '../../../../../../../assets/template';
 import { Theme } from '../../../../../../../assets/theme';
+import useMedia from '../../../../../../../hooks/media.hook';
+import useTrans from '../../../../../../../hooks/trans.hook';
 import { IDropValue } from '../../../../../../../interfaces';
 import Button from '../../../../../../common/button';
 import DropDown from '../../../../../../common/drop-down';
+import Tooltip from '../../../../../../common/tooltip';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     flex: {
@@ -55,6 +58,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
             padding: theme.rem(0.5, 1),
         }),
     },
+    tooltip: {
+        width: '100%',
+    },
     submit: {
         width: theme.rem(5),
         height: theme.rem(4),
@@ -97,34 +103,59 @@ const setting: IDropValue[] = [
 ];
 
 interface IProps {
-    onSubmit?: (event: FormEvent) => void;
+    onSubmit?: (value: string, uploads: File[]) => void;
 }
 
 const ChatForm = ({ onSubmit }: IProps): ReactElement => {
     const css = useStyles();
-    const [value, setValue] = useState<string>();
+    const trans = useTrans();
+    const media = useMedia(768);
+
+    const [uploads, setUploads] = useState<File[]>([]);
+    const [value, setValue] = useState<string>('');
+
+    const handleDropDown = (value: IDropValue | null): void => {
+        if (!value) return;
+        switch (value.slug) {
+            case 'files':
+                console.log(setUploads);
+                return;
+        }
+    };
 
     const handleChange = (event: ChangeEvent<HTMLTextAreaElement>): void => {
         setValue(event.target.value);
     };
+
     const handleSubmit = (event: FormEvent): void => {
         event.preventDefault();
-        if (onSubmit) onSubmit(event);
-        console.log(value);
+        if (onSubmit) onSubmit(value, uploads);
+    };
+
+    const handleKeyPress = async (event: KeyboardEvent<HTMLTextAreaElement>): Promise<void> => {
+        if (event.key === 'Enter' && !event.shiftKey) {
+            if (!media) return;
+
+            event.preventDefault();
+            if (onSubmit) onSubmit(value, uploads);
+        }
     };
 
     return (
         <form action="#" method="post" className={css.flex} onSubmit={handleSubmit}>
-            <TextareaAutosize
-                value={value}
-                className={css.textarea}
-                onChange={handleChange}
-                name="comment"
-                wrap="soft"
-                placeholder="Написать сообщение ..."
-            />
+            <Tooltip classNameWrp={css.tooltip} content={trans('press_enter_send')}>
+                <TextareaAutosize
+                    value={value}
+                    className={css.textarea}
+                    onChange={handleChange}
+                    onKeyPress={handleKeyPress}
+                    name="comment"
+                    wrap="soft"
+                    placeholder="Написать сообщение ..."
+                />
+            </Tooltip>
 
-            <DropDown icon={faEllipsisV} height={4} className={css.dropdown} onChange={console.log} data={setting} toLeft />
+            <DropDown icon={faEllipsisV} height={4} className={css.dropdown} onChange={handleDropDown} data={setting} toLeft />
 
             <Button className={css.submit} type="submit">
                 <FontAwesomeIcon icon={faChevronRight} />

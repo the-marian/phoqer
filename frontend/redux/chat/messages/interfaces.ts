@@ -5,5 +5,5 @@ type Type = typeof types.GET_MESSAGES_START | typeof types.GET_MESSAGES_ERROR | 
 
 export default interface IAction {
     type: Type;
-    payload: IPagination<IMessages> | number;
+    payload: IPagination<IMessages> | IMessages | number;
 }
