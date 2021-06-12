@@ -6,8 +6,8 @@ from cryptography.fernet import Fernet
 from fastapi import (
     APIRouter,
     Depends,
-    Header,
     HTTPException,
+    Query,
     WebSocket,
     WebSocketDisconnect,
 )
@@ -50,10 +50,9 @@ manager = ConnectionManager()
 async def chat_endpoint(
     websocket: WebSocket,
     chat_id: int,
-    authorization: str = Header(None),
+    token: str = Query(None),
 ) -> None:
     f = Fernet(FERNET_SECRET_KEY)
-    token = authorization.split(" ")[1]
     user_id = decode_jwt(token)["user_id"]
     if not (chat_data := await crud.is_chat_exist(chat_id=chat_id)):
         raise Exception(f"Chat with id {chat_id} does not exist")
