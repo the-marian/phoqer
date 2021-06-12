@@ -6,9 +6,9 @@ import { useSelector } from 'react-redux';
 import { Theme } from '../../../../../../../assets/theme';
 import { IChats, IChatsList, IState } from '../../../../../../../interfaces';
 import ChatsLoaders from '../../../../../../common/loaders/skeletons/chats';
+import ChatEmpty from '../../chat-empty';
 import ChatLoading from '../../chat-loading';
 import ChatSidebar from '../../chat-sidebar';
-import ChatEmpty from '../../empty-state/chat-empty';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     root: {

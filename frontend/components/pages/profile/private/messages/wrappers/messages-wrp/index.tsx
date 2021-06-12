@@ -4,11 +4,10 @@ import { createUseStyles } from 'react-jss';
 import { useSelector } from 'react-redux';
 
 import { Theme } from '../../../../../../../assets/theme';
-import { IChatsList, IMessages, IMessagesList, IState } from '../../../../../../../interfaces';
+import { IChatsList, IMessagesList, IState } from '../../../../../../../interfaces';
 import ChatsLoaders from '../../../../../../common/loaders/skeletons/chats';
 import ChatLoading from '../../chat-loading';
 import ChatSidebar from '../../chat-sidebar';
-import MessagesEmpty from '../../empty-state/messages-empty';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     root: {

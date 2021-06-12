@@ -10,7 +10,7 @@ import useMedia from '../../../../../../../hooks/media.hook';
 import useMonths from '../../../../../../../hooks/month.hook';
 import { IMessagesList, IPublicProfile, IState } from '../../../../../../../interfaces';
 import Tooltip from '../../../../../../common/tooltip';
-import ChatEmpty from '../../empty-state/chat-empty';
+import ChatEmpty from '../../chat-empty';
 import ChatInitConversation from '../chat-init-conversation';
 
 const useStyles = createUseStyles((theme: Theme) => ({

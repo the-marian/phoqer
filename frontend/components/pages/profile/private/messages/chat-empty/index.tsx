@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
-import { Theme } from '../../../../../../../assets/theme';
+import { Theme } from '../../../../../../assets/theme';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     empty: {
@@ -33,7 +33,7 @@ const ChatEmpty = ({ height }: IProps): ReactElement => {
     return (
         <div className={css.empty} style={{ height: `${height}rem` }}>
             <img className={css.img} src="/emoji/empty.png" alt="" />
-            <p>У вас пока нету сообщений</p>
+            <p>У вас пока нету сообщений. Напишите ваше первое сообщение</p>
         </div>
     );
 };

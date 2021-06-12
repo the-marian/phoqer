@@ -7,7 +7,7 @@ import { Theme } from '../../../../../../assets/theme';
 import useMedia from '../../../../../../hooks/media.hook';
 import { IChats } from '../../../../../../interfaces';
 import Gift from '../../../../../common/gift';
-import ChatEmpty from '../empty-state/chat-empty';
+import ChatEmpty from '../chat-empty';
 import ChatSearch from './chat-search';
 import ChatSidebarItem from './chat-sidebar-item';
 
