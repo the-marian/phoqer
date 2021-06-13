@@ -64,14 +64,19 @@ async def chat_endpoint(
         while True:
             message_data = await websocket.receive_json()
             message_text = message_data["text"]
+            message_uploads = message_data.get("uploads")
             encoded_message = message_text.encode()
             encrypted_message = f.encrypt(encoded_message).decode()
             message_id = await crud.create_message(
-                message=encrypted_message, chat_id=chat_id, user_id=user_id
+                message=encrypted_message,
+                chat_id=chat_id,
+                user_id=user_id,
+                access_urls=message_uploads,
             )
             if message := await crud.get_message(message_id):
                 message = dict(message)
                 message["text"] = f.decrypt(message["text"].encode()).decode()
+                message["uploads"] = message_uploads
             else:
                 raise Exception("Message does not created")
             await manager.send_msg(message=message, user_id=client_id)

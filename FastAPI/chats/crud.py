@@ -1,6 +1,7 @@
 from typing import Any, Dict, List, Mapping, Optional
 
 from FastAPI.config import CHAT_SIZE, MESSAGES_SIZE, database
+from pydantic import HttpUrl
 
 
 async def get_chats(
@@ -133,10 +134,12 @@ async def count_messages(chat_id: int) -> int:
     return int(count["count"]) if count else 0
 
 
+@database.transaction()
 async def create_message(
     message: str,
     chat_id: int,
     user_id: int,
+    access_urls: List[HttpUrl],
 ) -> int:
     query = """
     INSERT INTO messages (
@@ -152,7 +155,29 @@ async def create_message(
     RETURNING id
     """
     values = {"text": message, "chat_id": chat_id, "author_id": user_id}
-    return int(await database.execute(query=query, values=values))
+    message_id = int(await database.execute(query=query, values=values))
+    if access_urls:
+        await create_messages_uploads(
+            access_urls=access_urls, chat_id=chat_id, message_id=message_id
+        )
+    return message_id
+
+
+async def create_messages_uploads(
+    access_urls: List[HttpUrl],
+    chat_id: int,
+    message_id: int,
+) -> None:
+    query = """
+    INSERT INTO messages_uploads (access_url, message_id, chat_id)
+    VALUES (:access_url, :message_id, :chat_id)
+    """
+    values = []
+    for access_url in access_urls:
+        values.append(
+            {"access_url": access_url, "message_id": message_id, "chat_id": chat_id}
+        )
+    return await database.execute_many(query=query, values=values)
 
 
 async def get_message(message_id: int) -> Optional[Mapping]:
