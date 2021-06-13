@@ -77,26 +77,14 @@ const Title = ({ title, date, type }: IProps): ReactElement => {
 };
 
 interface IMessageProps {
-    id: string;
     message: ReactElement | string;
 }
 
-const Message = ({ id, message }: IMessageProps): ReactElement => {
+const Message = ({ message }: IMessageProps): ReactElement => {
     const css = useStyles();
     const trans = useTrans();
 
-    const handleClick = (): void => {
-        store.removeNotification(id);
-    };
-
-    return (
-        <>
-            <p className={css.text}>{typeof message === 'string' ? trans(message) : message}</p>
-            <button onClick={handleClick} className={css.btn} type="button">
-                Ok
-            </button>
-        </>
-    );
+    return <p className={css.text}>{typeof message === 'string' ? trans(message) : message}</p>;
 };
 
 const defaultOptions: ReactNotificationOptions = {
@@ -146,7 +134,7 @@ const notifications = {
             ...defaultOptions,
             type: 'success',
             title: <Title type="info" date={date} title={title} />,
-            message: <Message id={id} message={message} />,
+            message: <Message message={message} />,
             id,
             ...(options || {}),
         });
@@ -156,7 +144,7 @@ const notifications = {
             ...defaultOptions,
             type: 'danger',
             title: <Title type="error" date={date} title={title} />,
-            message: <Message id={id} message={message} />,
+            message: <Message message={message} />,
             id,
             ...(options || {}),
         });
@@ -166,7 +154,7 @@ const notifications = {
             ...defaultOptions,
             type: 'warning',
             title: <Title type="warning" date={date} title={title} />,
-            message: <Message id={id} message={message} />,
+            message: <Message message={message} />,
             id,
             ...(options || {}),
         });

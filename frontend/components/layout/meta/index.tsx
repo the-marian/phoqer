@@ -64,7 +64,7 @@ const Meta = ({ title, description, keywords, icon, h1 = '' }: IProps): ReactEle
 
                 <meta name="parsely-link" content={url(history.locale)} />
 
-                <meta name="theme-color" content="007aff" />
+                <meta name="theme-color" content="#32603F" />
                 <link href="/manifest.json" rel="manifest" />
                 <link href={icon || `${url()}/icons/icon-512.png`} rel="icon" type="image/png" />
                 <link href="/icons/icon-72.png" rel="icon" type="image/png" sizes="16x16" />
@@ -78,7 +78,7 @@ const Meta = ({ title, description, keywords, icon, h1 = '' }: IProps): ReactEle
                 <link href="/icons/icon-384.png" rel="icon" type="image/png" sizes="384x384" />
                 <link href="/icons/icon-512.png" rel="icon" type="image/png" sizes="512x512" />
 
-                <link href="/icons/icon-512.png" rel="apple-touch-icon" />
+                <link href="/icons/mask-icon.png" rel="apple-touch-icon" />
                 <link href="/icons/icon-72.png" rel="apple-touch-icon" type="image/png" sizes="16x16" />
                 <link href="/icons/icon-72.png" rel="apple-touch-icon" type="image/png" sizes="32x32" />
                 <link href="/icons/icon-72.png" rel="apple-touch-icon" type="image/png" sizes="72x72" />
@@ -90,7 +90,7 @@ const Meta = ({ title, description, keywords, icon, h1 = '' }: IProps): ReactEle
                 <link href="/icons/icon-384.png" rel="apple-touch-icon" type="image/png" sizes="384x384" />
                 <link href="/icons/icon-512.png" rel="apple-touch-icon" type="image/png" sizes="512x512" />
 
-                <link rel="mask-icon" href="/phoqer-512.png" color="#007aff" />
+                <link rel="mask-icon" href="/icons/mask-icon.png" color="#32603F" />
                 <link rel="canonical" href={url(history.locale)} />
                 <link rel="alternate" hrefLang="x-default" href={url()} />
                 <link rel="alternate" hrefLang="en" href={url('en')} />
@@ -105,7 +105,7 @@ const Meta = ({ title, description, keywords, icon, h1 = '' }: IProps): ReactEle
                 <meta name="description" content={description || trans('site_desc')} />
                 <meta name="format-detection" content="telephone=yes" />
                 <meta name="mobile-web-app-capable" content="yes" />
-                <meta name="msapplication-TileColor" content="#007aff" />
+                <meta name="msapplication-TileColor" content="#32603F" />
                 <meta name="msapplication-tap-highlight" content="yes" />
 
                 {/*Global site tag (gtag.js) - Google Analytics*/}

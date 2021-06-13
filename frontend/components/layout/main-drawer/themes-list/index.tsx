@@ -47,7 +47,6 @@ const useStyles = createUseStyles((theme: Theme) => ({
             width: '46%',
             height: theme.rem(1),
             borderRadius: theme.rem(0.2),
-            background: '#e0e0e8',
         },
 
         '& > span:nth-last-of-type(1)': {
@@ -55,61 +54,8 @@ const useStyles = createUseStyles((theme: Theme) => ({
             height: theme.rem(2),
         },
     },
-    blue: {
-        '& > span:nth-of-type(1)': {
-            background: '#007AFF',
-        },
-    },
-    green: {
-        '& > span:nth-of-type(1)': {
-            background: '#32603F',
-        },
-    },
-    aqua: {
-        '& > span:nth-of-type(1)': {
-            background: '#03a8ae',
-        },
-    },
-    violet: {
-        '& > span:nth-of-type(1)': {
-            background: '#6704be',
-        },
-    },
-    'black-blue': {
+    black: {
         background: theme.palette.trueBlack,
-        '& > span:nth-of-type(1)': {
-            background: '#007AFF',
-        },
-        '& > span:nth-last-of-type(1)': {
-            background: '#454545',
-        },
-    },
-    'black-aqua': {
-        background: theme.palette.trueBlack,
-        '& > span:nth-of-type(1)': {
-            background: '#03a8ae',
-        },
-        '& > span:nth-last-of-type(1)': {
-            background: '#454545',
-        },
-    },
-    'black-violet': {
-        background: theme.palette.trueBlack,
-        '& > span:nth-of-type(1)': {
-            background: '#BD00FF',
-        },
-        '& > span:nth-last-of-type(1)': {
-            background: '#454545',
-        },
-    },
-    'black-orange': {
-        background: theme.palette.trueBlack,
-        '& > span:nth-of-type(1)': {
-            background: '#e06800',
-        },
-        '& > span:nth-last-of-type(1)': {
-            background: '#454545',
-        },
     },
     active: {
         border: theme.border(0.2, theme.palette.primary[0]),
@@ -119,6 +65,17 @@ const useStyles = createUseStyles((theme: Theme) => ({
 interface IProps {
     element: Themes;
 }
+
+const palette: { [key: string]: { primary: string; secondary: string } } = {
+    green: { primary: '#32603F', secondary: '#e0e0e8' },
+    blue: { primary: '#007AFF', secondary: '#e0e0e8' },
+    aqua: { primary: '#03a8ae', secondary: '#e0e0e8' },
+    violet: { primary: '#6704be', secondary: '#e0e0e8' },
+    'black-blue': { primary: '#007AFF', secondary: '#454545' },
+    'black-violet': { primary: '#BD00FF', secondary: '#454545' },
+    'black-aqua': { primary: '#03a8ae', secondary: '#454545' },
+    'black-orange': { primary: '#e06800', secondary: '#454545' },
+};
 
 const ThemesItem = ({ element }: IProps): ReactElement => {
     const css = useStyles();
@@ -130,18 +87,18 @@ const ThemesItem = ({ element }: IProps): ReactElement => {
 
     return (
         <li
-            className={clsx(css.item, css[element], theme === element && css.active)}
+            className={clsx(css.item, theme === element && css.active, element.includes('black') && css.black)}
             key={element}
             onClick={handleClick}
             aria-hidden="true"
         >
-            <span />
-            <span />
+            <span style={{ background: palette[element].primary || palette.green.primary }} />
+            <span style={{ background: palette[element].secondary || palette.green.secondary }} />
         </li>
     );
 };
 
-const white: Themes[] = ['blue', 'green', 'aqua', 'violet'];
+const white: Themes[] = ['green', 'blue', 'aqua', 'violet'];
 const black: Themes[] = ['black-blue', 'black-violet', 'black-aqua', 'black-orange'];
 
 const ThemesList = (): ReactElement => {
