@@ -61,7 +61,6 @@ const MessagesChat = (): ReactElement => {
                     const data = JSON.parse(message.data);
                     const payload: IMessages = {
                         ...data,
-                        user_id: data.users_user as number,
                         uploads: [],
                     };
                     dispatch({ type: types.RECEIVE_MESSAGE, payload });
