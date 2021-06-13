@@ -86,7 +86,7 @@ async def get_messages(
     query = """
     SELECT
         messages.id,
-        messages.text,
+        messages.text AS encrypted_text,
         messages.creation_datetime,
         messages.is_red,
         users_user.id as user_id,
@@ -162,7 +162,7 @@ async def get_message(message_id: int) -> Optional[Mapping]:
         messages.text,
         messages.creation_datetime,
         messages.is_red,
-        users_user.id as users_user,
+        users_user.id as user_id,
         users_user.first_name,
         users_user.last_name,
         users_user.profile_img
