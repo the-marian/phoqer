@@ -197,3 +197,21 @@ async def get_message(message_id: int) -> Optional[Mapping]:
     """
     values = {"message_id": message_id}
     return await database.fetch_one(query=query, values=values)
+
+
+async def create_chat(offer_id: str, author_id: int, client_id: int) -> int:
+    query = """
+    INSERT INTO chats (
+        author_id,
+        client_id,
+        offer_id,
+        creation_datetime)
+    VALUES (
+        :author_id,
+        :client_id,
+        :offer_id,
+        current_timestamp)
+    RETURNING chat_id
+    """
+    values = {"author_id": author_id, "client_id": client_id, "offer_id": offer_id}
+    return int(await database.execute(query=query, values=values))

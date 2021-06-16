@@ -35,3 +35,7 @@ class MessagesListItem(BaseModel):
 class MessagesListResponse(BaseModel):
     total: int = 0
     data: List[MessagesListItem]
+
+
+class CreateChatResponse(BaseModel):
+    id: int

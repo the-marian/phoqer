@@ -119,3 +119,11 @@ def test_get_messages(client, auth_token):
             },
         ],
     }
+
+
+def test_create_chat(client, auth_token):
+    post_data = {
+        "offer_id": "5df94edd-9cf1-4727-8251-76b4cab94d37",
+    }
+    response = client.post("chats", json=post_data, headers=auth_token)
+    assert type(response.json()["id"]) is int

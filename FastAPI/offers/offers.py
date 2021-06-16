@@ -6,6 +6,7 @@ from fastapi import APIRouter, Body, Depends, HTTPException, Response
 from FastAPI.config import PAGE_SIZE
 from FastAPI.offers import crud
 from FastAPI.offers.schemas import (
+    CreateOfferResponse,
     MyOffersListItem,
     MyOffersListResponse,
     OfferDraftReply,
@@ -218,7 +219,7 @@ async def get_offer(
     )
 
 
-@router.post("", status_code=201)
+@router.post("", status_code=201, response_model=CreateOfferResponse)
 async def create_offer(
     offer: OfferDraftRequest, author_id: int = Depends(get_current_user)
 ) -> Dict[str, str]:

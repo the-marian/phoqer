@@ -120,3 +120,7 @@ class ValidOffer(BaseModel):
     rental_period: RentalPeriod
     title: str
     category: str
+
+
+class CreateOfferResponse(BaseModel):
+    id: UUID

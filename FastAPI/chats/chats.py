@@ -5,6 +5,7 @@ from typing import Any, Dict, List, Mapping, Optional, Union
 from cryptography.fernet import Fernet
 from fastapi import (
     APIRouter,
+    Body,
     Depends,
     HTTPException,
     Query,
@@ -14,10 +15,12 @@ from fastapi import (
 from FastAPI.chats import crud
 from FastAPI.chats.schemas import (
     ChatsListResponse,
+    CreateChatResponse,
     MessagesListItem,
     MessagesListResponse,
 )
 from FastAPI.config import CHAT_SIZE, FERNET_SECRET_KEY, MESSAGES_SIZE
+from FastAPI.offers.crud import get_offer
 from FastAPI.utils import decode_jwt, get_current_user
 
 router = APIRouter(
@@ -97,6 +100,23 @@ async def get_chats(
     return {
         "total": ceil(await crud.count_chats(user_id, search) / CHAT_SIZE),
         "data": await crud.get_chats(user_id, offset, limit, search),
+    }
+
+
+@router.post("", status_code=201, response_model=CreateChatResponse)
+async def create_chat(
+    offer_id: str = Body(..., embed=True), client_id: int = Depends(get_current_user)
+) -> Dict[str, int]:
+    if not (offer := await get_offer(offer_id)):
+        raise HTTPException(
+            status_code=400,
+            detail=f"Offer with id: {offer_id} does not exist",
+        )
+    author_id = offer["author_id"]
+    return {
+        "id": await crud.create_chat(
+            offer_id=offer_id, client_id=client_id, author_id=author_id
+        )
     }
 
 
