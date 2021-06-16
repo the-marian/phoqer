@@ -244,3 +244,23 @@ async def update_offer(
         stored_offer_data=stored_offer_data,
     )
     return Response(status_code=204)
+
+
+@router.delete("/{offer_id}", status_code=204)
+async def delete_offer(
+    offer_id: str,
+    author_id: Optional[int] = Depends(get_current_user),
+) -> Response:
+    offer = await crud.get_offer(offer_id)
+    if not offer:
+        raise HTTPException(
+            status_code=404,
+            detail=f"Offer with id {offer_id} does not exist",
+        )
+    if not offer["status"] in ("DRAFT", "ARCHIVED"):
+        raise HTTPException(
+            status_code=403,
+            detail="Deletion allowed only for offers in status 'DRAFT' or 'ARCHIVED'",
+        )
+    await crud.delete_offer(offer_id)
+    return Response(status_code=204)

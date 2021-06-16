@@ -471,3 +471,9 @@ async def increment_views_counter(offer_id: str) -> None:
     query = "UPDATE offers_offer SET views = views + 1 WHERE id = :offer_id"
     values = {"offer_id": offer_id}
     await database.execute(query=query, values=values)
+
+
+async def delete_offer(offer_id: str) -> None:
+    query = "DELETE FROM offers_offer WHERE id = :offer_id"
+    values = {"offer_id": offer_id}
+    await database.execute(query=query, values=values)
