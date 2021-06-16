@@ -91,11 +91,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
 }));
 
 const validateDate = (value: string): Date => {
-    try {
-        return new Date(value);
-    } catch (error) {
-        return new Date();
-    }
+    const date = new Date(value);
+    if (isNaN(date.getTime())) return new Date();
+    return date;
 };
 
 const formatTime = (value: string): string => {

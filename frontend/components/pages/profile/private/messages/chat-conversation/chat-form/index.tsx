@@ -105,6 +105,7 @@ const ChatForm = ({ onSubmit }: IProps): ReactElement => {
     const css = useStyles();
     const trans = useTrans();
     const media = useMedia(768);
+    const desktop = useMedia(1024);
 
     const [emoji, setEmoji] = useState<boolean>(false);
     const handleEmoji = (): void => setEmoji(!emoji);
@@ -168,9 +169,11 @@ const ChatForm = ({ onSubmit }: IProps): ReactElement => {
                 </>
             )}
 
-            <Button className={css.btn} type="button" onClick={handleEmoji}>
-                <FontAwesomeIcon icon={faSmile} />
-            </Button>
+            {desktop && (
+                <Button className={css.btn} type="button" onClick={handleEmoji}>
+                    <FontAwesomeIcon icon={faSmile} />
+                </Button>
+            )}
 
             <Button className={css.btn} type="button" onClick={handleUploads}>
                 <FontAwesomeIcon icon={faPaperclip} />

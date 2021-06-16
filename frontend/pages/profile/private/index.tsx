@@ -6,6 +6,7 @@ import { serverRedirect } from '../../../assets/helpers';
 import routes from '../../../assets/routes';
 import { Theme } from '../../../assets/theme';
 import Breadcrumbs from '../../../components/common/breadcrumbs';
+import AuthRedirect from '../../../components/context/auth/auth-redirect';
 import Container from '../../../components/layout/container';
 import Meta from '../../../components/layout/meta';
 import PageLayout from '../../../components/layout/page-layout';
@@ -28,6 +29,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         }),
     },
     aside: {
+        position: 'relative',
         width: theme.rem(30),
         ...theme.media(1060).max({
             width: '100%',
@@ -45,6 +47,7 @@ const Private = (): ReactElement => {
 
     return (
         <>
+            <AuthRedirect />
             <Meta title={trans('personal_area')} h1={trans('user_profile_on_phoqer')} />
             <PageLayout>
                 <Container>

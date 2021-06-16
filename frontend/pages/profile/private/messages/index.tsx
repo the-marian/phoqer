@@ -64,9 +64,9 @@ const Messages = (): ReactElement => {
 
     return (
         <>
+            <AuthRedirect />
             <Meta title={'Мои сообщения'} h1={trans('user_profile_on_phoqer')} />
 
-            <AuthRedirect />
             <main className={css.main}>
                 {media ? (
                     <ProfileChatNav active="messages" />

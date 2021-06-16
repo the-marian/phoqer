@@ -112,8 +112,8 @@ const UserOffers = (): ReactElement => {
 
     return (
         <>
-            <Meta title={trans('my_offers')} h1={trans('user_profile_on_phoqer')} />
             <AuthRedirect />
+            <Meta title={trans('my_offers')} h1={trans('user_profile_on_phoqer')} />
             <PageLayout>
                 <Container>
                     <>

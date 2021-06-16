@@ -115,13 +115,8 @@ const GeneralInfoForm = (): ReactElement => {
         if (!value.first_name.length) return setError({ ...error, first_name: 'required_field' });
         if (!value.last_name.length) return setError({ ...error, last_name: 'required_field' });
         if (value.birth_date.length) {
-            let date: Date;
-            try {
-                date = new Date(value.birth_date);
-            } catch (error) {
-                return setError({ ...error, birth_date: 'invalid_date' });
-            }
-
+            const date = new Date(value.birth_date);
+            if (isNaN(date.getTime())) return setError({ ...error, birth_date: 'invalid_date' });
             if (date.getFullYear() < 1900 || date.getFullYear() < 1900) return setError({ ...error, birth_date: 'invalid_date' });
         }
 

@@ -62,8 +62,8 @@ const NewChat = (): ReactElement => {
 
     return (
         <>
-            <Meta title={'Мои сообщения'} h1={trans('user_profile_on_phoqer')} />
             <AuthRedirect />
+            <Meta title={'Мои сообщения'} h1={trans('user_profile_on_phoqer')} />
 
             <main className={css.main}>
                 {media ? (

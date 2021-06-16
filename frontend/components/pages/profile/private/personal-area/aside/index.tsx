@@ -10,6 +10,11 @@ import ProfilePrivateNav from '../../../../../common/navigation/profile-nav/priv
 import UserAvatar from '../../../../../common/user-avatar';
 
 const useStyles = createUseStyles((theme: Theme) => ({
+    sticky: {
+        position: 'sticky',
+        top: theme.rem(8),
+        left: 0,
+    },
     flex: {
         display: 'flex',
         alignItems: 'center',
@@ -35,7 +40,7 @@ const ProfileAside = (): ReactElement => {
     const user = useSelector<IState, IPublicProfile | null>(state => state.user);
 
     return (
-        <>
+        <div className={css.sticky}>
             <Link href={routes.profile.public(user?.id)}>
                 <a className={css.flex}>
                     <UserAvatar
@@ -53,7 +58,7 @@ const ProfileAside = (): ReactElement => {
                 </a>
             </Link>
             <ProfilePrivateNav />
-        </>
+        </div>
     );
 };
 

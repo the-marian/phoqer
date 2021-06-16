@@ -53,8 +53,8 @@ const Settings = (): ReactElement => {
 
     return (
         <>
-            <Meta title={trans('my_settings')} h1={trans('user_profile_on_phoqer')} />
             <AuthRedirect />
+            <Meta title={trans('my_settings')} h1={trans('user_profile_on_phoqer')} />
             <PageLayout>
                 <Container>
                     <>

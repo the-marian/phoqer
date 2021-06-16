@@ -58,11 +58,7 @@ const MessagesChat = (): ReactElement => {
         if (chat) {
             chat.onmessage = (message: MessageEvent): void => {
                 try {
-                    const data = JSON.parse(message.data);
-                    const payload: IMessages = {
-                        ...data,
-                        uploads: [],
-                    };
+                    const payload: IMessages = JSON.parse(message.data);
                     dispatch({ type: types.RECEIVE_MESSAGE, payload });
                 } catch (error) {
                     notifications.warning({ message: 'error' });
@@ -84,9 +80,9 @@ const MessagesChat = (): ReactElement => {
 
     return (
         <>
+            <AuthRedirect />
             <Meta title={'Мои сообщения'} h1={trans('user_profile_on_phoqer')} />
 
-            <AuthRedirect />
             <main className={css.main}>
                 {media ? (
                     <ProfileChatNav active="messages" />
