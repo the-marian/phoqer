@@ -147,36 +147,37 @@ const ChatFlow = ({ children }: IProps): ReactElement => {
                 ? ref.current?.scrollTo({ top: ref.current?.offsetHeight || 0 })
                 : window.scrollTo({ top: ref.current?.offsetHeight || 0 });
         }
-    }, [ref.current]);
+    }, [ref.current, messages.data.data]);
 
     return (
         <div ref={ref} className={css.root}>
             <div className={css.inner}>
-                {messages.data.data.length ? (
-                    messages.data.data.map<ReactElement>((item, index, array) => (
-                        <Fragment key={item.id}>
-                            <div className={clsx(css.messages, user.id === item.user_id && css.right)}>
-                                {array[index + 1]?.user_id !== item.user_id && (
-                                    <p className={css.date}>{formatTime(item.creation_datetime)}</p>
-                                )}
+                {messages.data.data.length
+                    ? messages.data.data.map<ReactElement>((item, index, array) => (
+                          <Fragment key={item.id}>
+                              <div className={clsx(css.messages, user.id === item.user_id && css.right)}>
+                                  {array[index + 1]?.user_id !== item.user_id && (
+                                      <p className={css.date}>{formatTime(item.creation_datetime)}</p>
+                                  )}
 
-                                <Tooltip
-                                    className={css.tooltip}
-                                    classNameWrp={css.tooltipWrp}
-                                    content={`${item.first_name} ${item.last_name}`}
-                                >
-                                    <button type="button" className={clsx(css.box, user.id === item.user_id && css.primary)}>
-                                        {item.text}
-                                    </button>
-                                </Tooltip>
-                            </div>
-                            <DateSeparator prevDate={array[index + 1]?.creation_datetime} currentDate={item.creation_datetime} />
-                        </Fragment>
-                    ))
-                ) : (
-                    <ChatEmpty />
-                )}
-                <ChatInitConversation>{children}</ChatInitConversation>
+                                  <Tooltip
+                                      className={css.tooltip}
+                                      classNameWrp={css.tooltipWrp}
+                                      content={`${item.first_name} ${item.last_name}`}
+                                  >
+                                      <button type="button" className={clsx(css.box, user.id === item.user_id && css.primary)}>
+                                          {item.text}
+                                      </button>
+                                  </Tooltip>
+                              </div>
+                              <DateSeparator
+                                  prevDate={array[index + 1]?.creation_datetime}
+                                  currentDate={item.creation_datetime}
+                              />
+                          </Fragment>
+                      ))
+                    : null}
+                <ChatInitConversation>{children || <ChatEmpty />}</ChatInitConversation>
             </div>
         </div>
     );

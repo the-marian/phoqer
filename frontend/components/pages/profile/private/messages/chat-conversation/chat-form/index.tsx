@@ -1,7 +1,10 @@
+import { faSmile } from '@fortawesome/free-regular-svg-icons/faSmile';
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons/faChevronRight';
-import { faEllipsisV } from '@fortawesome/free-solid-svg-icons/faEllipsisV';
+import { faPaperclip } from '@fortawesome/free-solid-svg-icons/faPaperclip';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React, { ChangeEvent, FormEvent, KeyboardEvent, ReactElement, useState } from 'react';
+import { IEmojiData } from 'emoji-picker-react';
+import dynamic from 'next/dynamic';
+import React, { ChangeEvent, FormEvent, KeyboardEvent, MouseEvent, ReactElement, useState } from 'react';
 import { createUseStyles } from 'react-jss';
 import TextareaAutosize from 'react-textarea-autosize';
 
@@ -9,10 +12,10 @@ import template from '../../../../../../../assets/template';
 import { Theme } from '../../../../../../../assets/theme';
 import useMedia from '../../../../../../../hooks/media.hook';
 import useTrans from '../../../../../../../hooks/trans.hook';
-import { IDropValue } from '../../../../../../../interfaces';
 import Button from '../../../../../../common/button';
-import DropDown from '../../../../../../common/drop-down';
 import Tooltip from '../../../../../../common/tooltip';
+
+const Picker = dynamic(() => import('emoji-picker-react'), { ssr: false });
 
 const useStyles = createUseStyles((theme: Theme) => ({
     flex: {
@@ -61,10 +64,11 @@ const useStyles = createUseStyles((theme: Theme) => ({
     tooltip: {
         width: '100%',
     },
-    submit: {
+    btn: {
         width: theme.rem(5),
         height: theme.rem(4),
-        background: theme.palette.gray[1],
+        marginLeft: theme.rem(0.5),
+        background: theme.palette.gray[0],
         color: theme.palette.black[0],
         borderRadius: theme.radius,
         fontSize: theme.rem(1.4),
@@ -76,31 +80,22 @@ const useStyles = createUseStyles((theme: Theme) => ({
             fontSize: theme.rem(1.2),
         }),
     },
-    dropdown: {
-        width: theme.rem(5),
-        margin: theme.rem(0, 0.5),
-
-        '& > p': {
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            padding: 0,
-        },
-
-        ...theme.media(1060).max({
-            width: theme.rem(5),
-            fontSize: theme.rem(1),
-        }),
+    emoji: {
+        position: 'absolute',
+        bottom: theme.rem(7),
+        right: theme.rem(1),
+        zIndex: 11,
+    },
+    backdrop: {
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        zIndex: 10,
+        width: '100%',
+        height: '100%',
+        cursor: 'pointer',
     },
 }));
-
-const setting: IDropValue[] = [
-    {
-        slug: 'files',
-        name: 'Add files',
-        type: 'main',
-    },
-];
 
 interface IProps {
     onSubmit?: (value: string, uploads: File[]) => void;
@@ -111,17 +106,13 @@ const ChatForm = ({ onSubmit }: IProps): ReactElement => {
     const trans = useTrans();
     const media = useMedia(768);
 
-    const [uploads, setUploads] = useState<File[]>([]);
-    const [value, setValue] = useState<string>('');
+    const [emoji, setEmoji] = useState<boolean>(false);
+    const handleEmoji = (): void => setEmoji(!emoji);
 
-    const handleDropDown = (value: IDropValue | null): void => {
-        if (!value) return;
-        switch (value.slug) {
-            case 'files':
-                console.log(setUploads);
-                return;
-        }
-    };
+    const [uploads, setUploads] = useState<File[]>([]);
+    const handleUploads = (): void => console.log(setUploads);
+
+    const [value, setValue] = useState<string>('');
 
     const handleChange = (event: ChangeEvent<HTMLTextAreaElement>): void => {
         setValue(event.target.value);
@@ -129,6 +120,7 @@ const ChatForm = ({ onSubmit }: IProps): ReactElement => {
 
     const handleSubmit = (event: FormEvent | KeyboardEvent<HTMLTextAreaElement>): void => {
         event.preventDefault();
+        if (!value.trim().length) return;
         if (onSubmit) onSubmit(value, uploads);
         setValue('');
     };
@@ -138,6 +130,10 @@ const ChatForm = ({ onSubmit }: IProps): ReactElement => {
             if (!media) return;
             handleSubmit(event);
         }
+    };
+
+    const onEmojiClick = (_: MouseEvent, data: IEmojiData): void => {
+        setValue(val => val + data.emoji);
     };
 
     return (
@@ -154,9 +150,33 @@ const ChatForm = ({ onSubmit }: IProps): ReactElement => {
                 />
             </Tooltip>
 
-            <DropDown icon={faEllipsisV} height={4} className={css.dropdown} onChange={handleDropDown} data={setting} toLeft />
+            {emoji && (
+                <>
+                    <div className={css.backdrop} onClick={handleEmoji} aria-hidden="true" />
+                    <div className={css.emoji}>
+                        <Picker
+                            onEmojiClick={onEmojiClick}
+                            pickerStyle={{
+                                width: '50rem',
+                                height: '70rem',
+                                maxWidth: '95vw',
+                                maxHeight: '70vh',
+                                boxShadow: 'none',
+                            }}
+                        />
+                    </div>
+                </>
+            )}
 
-            <Button className={css.submit} type="submit">
+            <Button className={css.btn} type="button" onClick={handleEmoji}>
+                <FontAwesomeIcon icon={faSmile} />
+            </Button>
+
+            <Button className={css.btn} type="button" onClick={handleUploads}>
+                <FontAwesomeIcon icon={faPaperclip} />
+            </Button>
+
+            <Button className={css.btn} type="submit">
                 <FontAwesomeIcon icon={faChevronRight} />
             </Button>
         </form>

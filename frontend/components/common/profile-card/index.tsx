@@ -155,14 +155,10 @@ const ProfileCard = ({
 
                 <div className={css.info}>
                     <p>{trans('registration_date') + ' ' + formatTimestamp(registerDate, history.locale)}</p>
-                    <p>{trans('location') + ' ' + (userLocation || trans('not_indicated'))}</p>
+                    <p>{trans('location') + ': ' + (userLocation || trans('not_indicated'))}</p>
                 </div>
 
-                {!isAuthor ? (
-                    <button className={css.btn} type="button" onClick={handleOpenChat}>
-                        {trans('write_to_the_author')}
-                    </button>
-                ) : (
+                {isAuthor && (
                     <Link href={routes.profile.private.personal_area}>
                         <a className={css.btn}>
                             <FontAwesomeIcon icon={faUser} />
