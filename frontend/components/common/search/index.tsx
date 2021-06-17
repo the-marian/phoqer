@@ -89,6 +89,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         width: theme.rem(6),
         fontSize: theme.rem(1.4),
         color: theme.palette.gray[4],
+        borderRadius: theme.radius,
         transition: theme.transitions[0],
 
         ...theme.hover({
