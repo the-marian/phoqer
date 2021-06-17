@@ -70,7 +70,17 @@ export interface ITabsNum {
     reviews?: number | string;
 }
 
-export type Themes = 'blue' | 'green' | 'aqua' | 'violet' | 'black-aqua' | 'black-blue' | 'black-violet' | 'black-orange';
+export type Themes =
+    | 'green'
+    | 'blue'
+    | 'red'
+    | 'aqua'
+    | 'violet'
+    | 'black-aqua'
+    | 'black-blue'
+    | 'black-violet'
+    | 'black-orange'
+    | 'black-green';
 
 export interface IConfig {
     warning: boolean;

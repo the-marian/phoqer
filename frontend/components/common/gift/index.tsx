@@ -11,7 +11,7 @@ import { modal } from '../modal';
 const useStyles = createUseStyles((theme: Theme) => ({
     '@keyframes grad': {
         '0%': { backgroundPosition: '0% 50%' },
-        '50%': { backgroundPosition: '100% 50%' },
+        '50%': { backgroundPosition: '99% 50%' },
         '100%': { backgroundPosition: '0% 50%' },
     },
     root: {
@@ -20,9 +20,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
         justifyContent: 'center',
         width: '100%',
         padding: theme.rem(2, 1),
-        background: `linear-gradient(-45deg, ${theme.palette.grad})`,
-        backgroundSize: '400% 400%',
-        animation: '$grad 15s ease infinite',
+        background: `linear-gradient(-50deg, ${theme.palette.grad})`,
+        backgroundSize: '300% 300%',
+        animation: '$grad 10s ease infinite',
         borderRadius: theme.radius,
         color: theme.palette.black[0],
         ...template(theme).outline,

@@ -2,6 +2,7 @@ import clsx from 'clsx';
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
+import palette from '../../../../assets/palette';
 import template from '../../../../assets/template';
 import { Theme } from '../../../../assets/theme';
 import useTheme from '../../../../hooks/theme.hook';
@@ -46,7 +47,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
             display: 'block',
             width: '46%',
             height: theme.rem(1),
-            borderRadius: theme.rem(0.2),
+            borderRadius: theme.rem(0.25),
         },
 
         '& > span:nth-last-of-type(1)': {
@@ -66,16 +67,24 @@ interface IProps {
     element: Themes;
 }
 
-const palette: { [key: string]: { primary: string; secondary: string } } = {
-    green: { primary: '#32603F', secondary: '#e0e0e8' },
-    blue: { primary: '#007AFF', secondary: '#e0e0e8' },
-    aqua: { primary: '#03a8ae', secondary: '#e0e0e8' },
-    violet: { primary: '#6704be', secondary: '#e0e0e8' },
-    'black-blue': { primary: '#007AFF', secondary: '#454545' },
-    'black-violet': { primary: '#BD00FF', secondary: '#454545' },
-    'black-aqua': { primary: '#03a8ae', secondary: '#454545' },
-    'black-orange': { primary: '#e06800', secondary: '#454545' },
-};
+const allThemes: Themes[] = [
+    'green',
+    'red',
+    'blue',
+    'aqua',
+    'violet',
+    'black-aqua',
+    'black-blue',
+    'black-violet',
+    'black-orange',
+    'black-green',
+];
+type Colors = { [key: string]: { primary: string; secondary: string } };
+
+const colors: Colors = allThemes.reduce<Colors>((acc, item) => {
+    acc[item] = { primary: palette[item].primary[0], secondary: item.includes('black') ? '#454545' : '#e0e0e8' };
+    return acc;
+}, {});
 
 const ThemesItem = ({ element }: IProps): ReactElement => {
     const css = useStyles();
@@ -92,14 +101,14 @@ const ThemesItem = ({ element }: IProps): ReactElement => {
             onClick={handleClick}
             aria-hidden="true"
         >
-            <span style={{ background: palette[element].primary || palette.green.primary }} />
-            <span style={{ background: palette[element].secondary || palette.green.secondary }} />
+            <span style={{ background: colors[element].primary || colors.green.primary }} />
+            <span style={{ background: colors[element].secondary || colors.green.secondary }} />
         </li>
     );
 };
 
-const white: Themes[] = ['green', 'blue', 'aqua', 'violet'];
-const black: Themes[] = ['black-blue', 'black-violet', 'black-aqua', 'black-orange'];
+const white: Themes[] = ['green', 'red', 'blue', 'aqua', 'violet'];
+const black: Themes[] = ['black-green', 'black-blue', 'black-violet', 'black-aqua', 'black-orange'];
 
 const ThemesList = (): ReactElement => {
     const css = useStyles();
