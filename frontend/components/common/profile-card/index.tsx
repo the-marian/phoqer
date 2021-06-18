@@ -11,12 +11,8 @@ import { formatTimestamp, onlineStatus } from '../../../assets/helpers';
 import routes from '../../../assets/routes';
 import template from '../../../assets/template';
 import { Theme } from '../../../assets/theme';
-import useAuth from '../../../hooks/auth.hook';
 import useTrans from '../../../hooks/trans.hook';
 import { IPublicProfile, IState } from '../../../interfaces';
-import LoginForm from '../auth/login-form';
-import { modal } from '../modal';
-import SmallModalWrp from '../modal/small-modal-wrp';
 import UserAvatar from '../user-avatar';
 
 const useStyles = createUseStyles((theme: Theme) => ({
@@ -119,22 +115,8 @@ const ProfileCard = ({
 }: IProps): ReactElement => {
     const css = useStyles();
     const trans = useTrans();
-    const auth = useAuth();
     const history = useRouter();
     const user = useSelector<IState, IPublicProfile | null>(state => state.user);
-
-    const handleOpenChat = (): void => {
-        if (!auth?.access_token) {
-            modal.open(
-                <SmallModalWrp>
-                    <LoginForm />
-                </SmallModalWrp>,
-            );
-            return;
-        }
-
-        alert('hi!');
-    };
 
     const isAuthor = user?.id === id;
 
