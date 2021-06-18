@@ -12,6 +12,7 @@ import { IMessagesList, IPublicProfile, IState } from '../../../../../../../inte
 import Tooltip from '../../../../../../common/tooltip';
 import ChatEmpty from '../../chat-empty';
 import ChatInitConversation from '../chat-init-conversation';
+import { createHTML, formatTime, validateDate } from './chat-flow.utils';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     root: {
@@ -64,6 +65,10 @@ const useStyles = createUseStyles((theme: Theme) => ({
         wordWrap: 'break-word',
         textAlign: 'left',
         ...template(theme).outline,
+
+        '& > a': {
+            color: theme.palette.trueWhite,
+        },
     },
     primary: {
         color: theme.palette.trueWhite,
@@ -89,17 +94,6 @@ const useStyles = createUseStyles((theme: Theme) => ({
         width: 'max-content',
     },
 }));
-
-const validateDate = (value: string): Date => {
-    const date = new Date(value);
-    if (isNaN(date.getTime())) return new Date();
-    return date;
-};
-
-const formatTime = (value: string): string => {
-    const date = validateDate(value);
-    return `${addZeroToNumber(date.getHours())}:${addZeroToNumber(date.getMinutes())}`;
-};
 
 interface IDateSeparatorProps {
     prevDate?: string;
@@ -163,9 +157,11 @@ const ChatFlow = ({ children }: IProps): ReactElement => {
                                       classNameWrp={css.tooltipWrp}
                                       content={`${item.first_name} ${item.last_name}`}
                                   >
-                                      <button type="button" className={clsx(css.box, user.id === item.user_id && css.primary)}>
-                                          {item.text}
-                                      </button>
+                                      <button
+                                          type="button"
+                                          className={clsx(css.box, user.id === item.user_id && css.primary)}
+                                          dangerouslySetInnerHTML={{ __html: createHTML(item.text || '') }}
+                                      />
                                   </Tooltip>
                               </div>
                               <DateSeparator

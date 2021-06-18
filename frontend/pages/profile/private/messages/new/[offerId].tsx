@@ -1,5 +1,6 @@
 import { GetServerSidePropsContext } from 'next';
-import React, { ReactElement, useEffect } from 'react';
+import { useRouter } from 'next/router';
+import React, { ReactElement, useEffect, useState } from 'react';
 import { createUseStyles } from 'react-jss';
 import { useDispatch } from 'react-redux';
 
@@ -53,12 +54,28 @@ const NewChat = (): ReactElement => {
     const css = useStyles();
     const trans = useTrans();
     const media = useMedia(1060);
+    const history = useRouter();
+    const offerId = String(history.query.offerId || '');
     const dispatch = useDispatch();
+
+    const [loading, setLoading] = useState<boolean>(false);
 
     useEffect(() => {
         dispatch({ type: types.REMOVE_ALL_MESSAGES });
         dispatch({ type: types.GET_CHATS_START });
     }, [dispatch]);
+
+    const handleCreateChat = (): void => {
+        setLoading(true);
+        dispatch({
+            type: types.CREATE_CHAT_START,
+            payload: { offer_id: offerId },
+            callback: (id: number) => {
+                setLoading(false);
+                history.push(routes.profile.private.messages(id));
+            },
+        });
+    };
 
     return (
         <>
@@ -78,7 +95,7 @@ const NewChat = (): ReactElement => {
                                 Чтобы арендовать этот товар/услугу нажмите &quot;Ok&quot;. После этого вы откроете чат с автором
                                 объявления
                             </p>
-                            <Button className={css.button} onClick={console.log}>
+                            <Button loading={loading} className={css.button} onClick={handleCreateChat}>
                                 Ok
                             </Button>
                         </div>

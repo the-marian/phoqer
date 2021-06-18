@@ -12,7 +12,7 @@ function* getMessages({ payload }: IAction) {
         yield put({ type: types.GET_MESSAGES_SUCCESS, payload: data });
     } catch (error) {
         if (error?.response?.status === 401) return;
-        notifications.error({ message: error?.response?.data || '...' });
+        notifications.error({ message: error?.response?.data?.detail || '...' });
         yield put({ type: types.GET_MESSAGES_ERROR });
     }
 }

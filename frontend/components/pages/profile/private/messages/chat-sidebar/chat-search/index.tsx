@@ -22,7 +22,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         top: 0,
         right: 0,
         height: theme.rem(5),
-        width: theme.rem(7),
+        width: theme.rem(6),
         color: theme.palette.gray[4],
         borderRadius: theme.radius,
         transition: theme.transitions[0],
@@ -35,12 +35,13 @@ const useStyles = createUseStyles((theme: Theme) => ({
             left: 0,
             transform: 'translateY(-50%)',
             height: '65%',
-            width: theme.rem(0.1),
-            background: theme.palette.gray[1],
+            width: 0,
+            borderLeft: theme.border(0.1, theme.palette.gray[1]),
         },
 
         ...theme.hover({
             color: theme.palette.primary[0],
+            background: theme.palette.gray[0],
         }),
     },
 }));

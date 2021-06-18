@@ -129,34 +129,34 @@ interface IParams {
 }
 
 const notifications = {
-    info: ({ title = 'Success', message = '...', date = new Date(), id = uuid(), options }: IParams): void => {
+    info: ({ title = 'Success', message = '...', date = new Date(), id = uuid(), options = {} }: IParams): void => {
         store.addNotification({
             ...defaultOptions,
             type: 'success',
             title: <Title type="info" date={date} title={title} />,
             message: <Message message={message} />,
             id,
-            ...(options || {}),
+            ...options,
         });
     },
-    error: ({ title = 'Error', message = '...', date = new Date(), id = uuid(), options }: IParams): void => {
+    error: ({ title = 'Error', message = '...', date = new Date(), id = uuid(), options = {} }: IParams): void => {
         store.addNotification({
             ...defaultOptions,
             type: 'danger',
             title: <Title type="error" date={date} title={title} />,
             message: <Message message={message} />,
             id,
-            ...(options || {}),
+            ...options,
         });
     },
-    warning: ({ title = 'Attention', message = '...', date = new Date(), id = uuid(), options }: IParams): void => {
+    warning: ({ title = 'Attention', message = '...', date = new Date(), id = uuid(), options = {} }: IParams): void => {
         store.addNotification({
             ...defaultOptions,
             type: 'warning',
             title: <Title type="warning" date={date} title={title} />,
             message: <Message message={message} />,
             id,
-            ...(options || {}),
+            ...options,
         });
     },
 };

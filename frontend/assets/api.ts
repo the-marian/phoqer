@@ -14,6 +14,7 @@ import {
     IPublicProfile,
     ISignup,
 } from '../interfaces';
+import { INewChat } from '../redux/chat/chats/interfaces';
 import { IBody } from '../redux/offers/new_offer/interfaces';
 import config from './config';
 
@@ -70,6 +71,7 @@ const api = {
     },
     chat: {
         chats: (): Promise<AxiosResponse<IPagination<IChats>>> => axios.get(`${url2}/chats`),
+        createChat: (body: INewChat): Promise<AxiosResponse<INewChat>> => axios.post(`${url2}/chats`, body),
         messages: (id: number): Promise<AxiosResponse<IPagination<IMessages>>> => axios.get(`${url2}/chats/${id}`),
     },
     locations: {

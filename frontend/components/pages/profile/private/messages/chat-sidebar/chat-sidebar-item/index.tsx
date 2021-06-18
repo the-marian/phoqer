@@ -32,7 +32,6 @@ const useStyles = createUseStyles((theme: Theme) => ({
     active: {
         background: theme.palette.primary[0],
         color: theme.palette.trueWhite,
-        pointerEvents: 'none',
 
         '& p': {
             color: theme.palette.trueWhite,

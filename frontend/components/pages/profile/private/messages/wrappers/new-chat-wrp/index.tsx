@@ -12,6 +12,7 @@ import ChatsLoaders from '../../../../../../common/loaders/skeletons/chats';
 import notifications from '../../../../../../common/notifications';
 import ChatLoading from '../../chat-loading';
 import ChatSidebar from '../../chat-sidebar';
+import ChatSearch from '../../chat-sidebar/chat-search';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     root: {
@@ -138,6 +139,7 @@ const NewChatWrp = ({ children, showSidebar = false }: IProps): ReactElement => 
                 <MessagesWrpShowSidebar show={showSidebar}>
                     <aside className={css.aside}>
                         <div className={css.inner}>
+                            <ChatSearch />
                             {chats.loading ? <ChatsLoaders amount={5} /> : <ChatSidebar chats={data} />}
                         </div>
                     </aside>
