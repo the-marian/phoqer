@@ -13,6 +13,8 @@ from FastAPI.offers.schemas import (
     OfferDraftRequest,
     OffersListItem,
     OffersListResponse,
+    PublicOffersListItem,
+    PublicOffersListResponse,
     RentalPeriod,
     Status,
 )
@@ -92,6 +94,42 @@ async def get_offers_for_tab(
             await crud.count_founded_offers_by_statuses(
                 user_id=user_id,
                 statuses=statuses[tab_name],
+                limit=limit,
+                offset=offset,
+            )
+            / PAGE_SIZE
+        ),
+    }
+
+
+# offers list for public profile page (only active offers)
+@router.get("/public/{user_id}", response_model=PublicOffersListResponse)
+async def get_public_profile_offers(
+    user_id: int,
+    page: int = 1,
+) -> Dict:
+    offset = (page - 1) * PAGE_SIZE
+    limit = PAGE_SIZE
+
+    offers: list = await crud.get_offers_by_statuses(
+        user_id=user_id,
+        statuses=["ACTIVE"],
+        limit=limit,
+        offset=offset,
+    )
+    return {
+        "data": [
+            PublicOffersListItem(
+                **offer,
+                is_promoted=date.today()
+                < (offer.get("promote_til_date") or date.today()),
+            )
+            for offer in offers
+        ],
+        "total": ceil(
+            await crud.count_founded_offers_by_statuses(
+                user_id=user_id,
+                statuses=["ACTIVE"],
                 limit=limit,
                 offset=offset,
             )

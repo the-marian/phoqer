@@ -182,6 +182,64 @@ def test_get_my_offers(client, auth_token):
     }
 
 
+def test_get_public_profile_offers(client):
+    response = client.get("offers/public/1")
+    assert response.status_code == status.HTTP_200_OK
+    assert response.json() == {
+        "data": [
+            {
+                "cover_image": "https://example.com/iphone.jpeg",
+                "currency": "UAH",
+                "description": "New Phone 17",
+                "id": "6c2d804e-b916-4d1c-82ec-73508ebd2845",
+                "is_deliverable": True,
+                "is_promoted": False,
+                "price": None,
+                "pub_date": "2021-01-15",
+                "title": None,
+                "views": 0,
+            },
+            {
+                "cover_image": None,
+                "currency": None,
+                "description": None,
+                "id": "0e5b47f0-ac19-4d67-83d8-3046a987bc86",
+                "is_deliverable": None,
+                "is_promoted": False,
+                "price": None,
+                "pub_date": "2021-01-15",
+                "title": None,
+                "views": 0,
+            },
+            {
+                "cover_image": None,
+                "currency": None,
+                "description": None,
+                "id": "d9560917-3db3-44a0-89a7-9b5076df73cd",
+                "is_deliverable": None,
+                "is_promoted": False,
+                "price": None,
+                "pub_date": "2021-01-15",
+                "title": None,
+                "views": 0,
+            },
+            {
+                "cover_image": "http://phoqer.com//mediafiles/0_PrBB7kx.jpg",
+                "currency": None,
+                "description": "sfsdsdf",
+                "id": "ffbaafb0-b94e-4b27-9699-c04e25f09190",
+                "is_deliverable": False,
+                "is_promoted": False,
+                "price": 4334,
+                "pub_date": "2021-01-21",
+                "title": "name",
+                "views": 0,
+            },
+        ],
+        "total": 20,
+    }
+
+
 def test_change_status(client, auth_token):
     data = {"status": "REVIEW"}
     response = client.patch(
