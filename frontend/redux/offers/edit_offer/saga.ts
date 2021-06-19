@@ -43,7 +43,7 @@ function* updateOffer({ payload, images, offerId, callback }: IAction) {
             images as string[],
         );
         body.category = ((payload as INewOffer).category as IDropValue)?.slug || null;
-        body.sub_category = ((payload as INewOffer).category as IDropValue)?.slug || null;
+        body.sub_category = ((payload as INewOffer).sub_category as IDropValue)?.slug || null;
 
         const { status } = yield call(api.offers.update, offerId as string, body);
         if (status < 200 || status >= 300) throw new Error();
@@ -72,7 +72,7 @@ function* publishOffer({ payload, images, offerId, callback }: IAction) {
             images as string[],
         );
         body.category = ((payload as INewOffer).category as IDropValue)?.slug || null;
-        body.sub_category = ((payload as INewOffer).category as IDropValue)?.slug || null;
+        body.sub_category = ((payload as INewOffer).sub_category as IDropValue)?.slug || null;
 
         const offer: { status: number } = yield call(api.offers.update, offerId as string, body);
         if (offer.status < 200 || offer.status >= 300) throw new Error();
