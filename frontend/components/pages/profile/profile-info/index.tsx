@@ -3,13 +3,13 @@ import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 import { useSelector } from 'react-redux';
 
-import { Theme } from '../../../../../assets/theme';
-import { IPublicProfile, IState } from '../../../../../interfaces';
-import LikeDislike from '../../../../common/like-dislike';
-import { modal } from '../../../../common/modal';
-import MidModalWrp from '../../../../common/modal/mid-modal-wrp';
-import useTrans from "../../../../../hooks/trans.hook";
-import {cutString} from "../../../../../assets/helpers";
+import { cutString } from '../../../../assets/helpers';
+import { Theme } from '../../../../assets/theme';
+import useTrans from '../../../../hooks/trans.hook';
+import { IPublicProfile, IState } from '../../../../interfaces';
+import LikeDislike from '../../../common/like-dislike';
+import { modal } from '../../../common/modal';
+import MidModalWrp from '../../../common/modal/mid-modal-wrp';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     info: {

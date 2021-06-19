@@ -14,6 +14,10 @@ const useStyles = createUseStyles((theme: Theme) => ({
         position: 'sticky',
         top: theme.rem(8),
         left: 0,
+
+        ...theme.media(1060).max({
+            position: 'unset',
+        }),
     },
     flex: {
         display: 'flex',

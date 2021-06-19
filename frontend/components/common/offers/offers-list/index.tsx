@@ -42,7 +42,7 @@ interface IProps {
     data: IOfferCard[] | null;
 }
 
-const OffersList = ({ loading, loadMoreLoading, data, showFavoriteBtn = true }: IProps): ReactElement => {
+const OffersList = ({ loading, loadMoreLoading = false, data, showFavoriteBtn = true }: IProps): ReactElement => {
     const css = useStyles();
     const media = useMedia(1400);
 

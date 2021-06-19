@@ -24,6 +24,7 @@ interface IProps {
     theme: Themes | null;
     config: IConfig | null;
 }
+
 const MyApp = ({ Component, pageProps, width, auth, theme, config }: AppProps & IProps): ReactElement => {
     const history = useRouter();
     const dispatch = useDispatch();

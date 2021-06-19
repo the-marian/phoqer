@@ -13,7 +13,7 @@ export const userNavLinks: ITabs[] = [
     {
         id: 'my-profile',
         text: 'my_profile',
-        link: '/profile/public/userId',
+        link: '/profile/userId',
         icon: faUserCircle,
     },
     {

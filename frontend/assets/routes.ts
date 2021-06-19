@@ -10,7 +10,7 @@ const routes = {
         confirmation: '/auth/confirmation',
     },
     profile: {
-        public: (id: ID = ':profileId'): string => `/profile/public/${id}`,
+        public: (id: ID = ':profileId'): string => `/profile/${id}`,
         private: {
             personal_area: '/profile/private',
             my_offers: (status = 'all'): string => `/profile/private/my-offers/${status}`,
