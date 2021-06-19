@@ -14,4 +14,6 @@ export default interface IAction {
     payload: IState | IOfferCard | string | string[] | null;
     tab?: string;
     page?: string;
+    offerId?: string;
+    callback?: () => void;
 }

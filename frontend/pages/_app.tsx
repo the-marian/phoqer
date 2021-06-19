@@ -48,8 +48,22 @@ const MyApp = ({ Component, pageProps, width, auth, theme, config }: AppProps & 
         if (style) style?.parentNode?.removeChild(style);
     }, []);
 
+    const allThemes: Themes[] = [
+        'green',
+        'blue',
+        'red',
+        'aqua',
+        'violet',
+        'black-aqua',
+        'black-blue',
+        'black-violet',
+        'black-orange',
+        'black-green',
+    ];
+    const themeIndex = Math.ceil(Math.random() * 10);
+
     return (
-        <SiteTheme siteTheme={theme || 'green'}>
+        <SiteTheme siteTheme={theme || allThemes[themeIndex]}>
             <ConfigProvider value={config}>
                 <AuthProvider authServer={auth}>
                     <MediaProvider width={width}>

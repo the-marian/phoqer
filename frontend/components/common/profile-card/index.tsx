@@ -136,8 +136,8 @@ const ProfileCard = ({
                 </div>
 
                 <div className={css.info}>
-                    <p>{trans('registration_date') + ' ' + formatTimestamp(registerDate, history.locale)}</p>
-                    <p>{trans('location') + ': ' + (userLocation || trans('not_indicated'))}</p>
+                    <p>{trans('registration_date') + '  ' + formatTimestamp(registerDate, history.locale)}</p>
+                    <p>{trans('location') + ':  ' + trans(userLocation || 'not_indicated')}</p>
                 </div>
 
                 {isAuthor && (

@@ -94,7 +94,7 @@ const OfferCard = ({ offer, showFavoriteBtn = true }: IProps): ReactElement => {
             case 'ARCHIVE':
                 dispatch({
                     type: types.CHANGE_OFFER_STATUS_START,
-                    status: 'ARCHIVE',
+                    status: 'ARCHIVED',
                     offerId: offer.id,
                     callback: () => notifications.info({ message: 'Put to archive' }),
                 });
@@ -118,15 +118,20 @@ const OfferCard = ({ offer, showFavoriteBtn = true }: IProps): ReactElement => {
                 break;
 
             case 'DELETE':
-                notifications.info({ message: 'Delete' });
+                dispatch({
+                    type: types.DELETE_OFFER_START,
+                    offerId: id,
+                    callback: () => notifications.info({ message: 'Your offer successfully deleted' }),
+                });
                 break;
 
             case 'DO_REVIEW':
                 dispatch({
                     type: types.OFFER_DO_REVIEW_START,
-                    payload: id,
+                    offerId: id,
                     tab: String(history.query.offerStatus || 'all'),
                     page: String(history.query.page || '1'),
+                    callback: () => notifications.info({ message: 'Publish success' }),
                 });
                 break;
 

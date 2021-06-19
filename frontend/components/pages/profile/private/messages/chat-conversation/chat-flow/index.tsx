@@ -68,14 +68,15 @@ const useStyles = createUseStyles((theme: Theme) => ({
 
         '& > a': {
             color: theme.palette.trueWhite,
+            textDecoration: 'underline',
+            ...theme.hover({
+                textDecoration: 'none',
+            }),
         },
     },
     primary: {
         color: theme.palette.trueWhite,
         background: theme.palette.primary[0],
-        ...theme.hover({
-            opacity: '0.7',
-        }),
     },
     date: {
         margin: theme.rem(0.2, 0, 0.2, 0.4),

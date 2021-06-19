@@ -60,7 +60,7 @@ const newOfferTemplate = (theme: Theme): Template => ({
         },
         text: {
             maxWidth: theme.rem(50),
-            margin: '0 auto',
+            margin: '2rem auto 4rem',
             color: theme.palette.black[0],
         },
         flex: {

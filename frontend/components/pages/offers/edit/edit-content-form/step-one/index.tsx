@@ -3,7 +3,7 @@ import React, { ChangeEvent, ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 import { useSelector } from 'react-redux';
 
-import { numberValidation } from '../../../../../../assets/helpers';
+import { findParentCategory, numberValidation } from '../../../../../../assets/helpers';
 import * as helpers from '../../../../../../assets/helpers';
 import useTrans from '../../../../../../hooks/trans.hook';
 import { ICategories, IDropList, IDropValue, INewOffer, IState } from '../../../../../../interfaces';
@@ -53,9 +53,22 @@ const StepOne = ({ value, errors, setErrors, setValue }: IProps): ReactElement =
         setValue({ ...value, currency });
         setErrors({});
     };
-    const handleCategory = (category: IDropValue | null): void => {
-        setValue({ ...value, category });
-        setErrors({});
+    const handleCategory = (dropValue: IDropValue | null): void => {
+        if (dropValue?.type === 'main') {
+            setValue({ ...value, category: dropValue, sub_category: null });
+            return setErrors({});
+        }
+
+        if (dropValue?.type === 'sub') {
+            const parentCategory = findParentCategory(categories, dropValue?.slug);
+            if (parentCategory)
+                setValue({
+                    ...value,
+                    category: { type: 'main', name: parentCategory?.name || parentCategory?.slug, slug: parentCategory?.slug },
+                    sub_category: dropValue,
+                });
+            return setErrors({});
+        }
     };
 
     const validateNumber = (name: 'price' | 'items_amount', defaultValue: number | null = null): void => {

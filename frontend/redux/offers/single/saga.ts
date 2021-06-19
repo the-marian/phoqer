@@ -2,7 +2,6 @@ import { all, call, put, takeLatest } from 'redux-saga/effects';
 
 import api from '../../../assets/api';
 import notificationsModal from '../../../components/common/modal/notifications-modal';
-import notifications from '../../../components/common/notifications';
 import types from '../../types';
 import IAction from './interfaces';
 
@@ -19,17 +18,16 @@ function* getOffer({ payload }: IAction) {
     }
 }
 
-function* doReview({ payload, tab, page }: IAction) {
+function* doReview({ offerId, tab, page, callback }: IAction) {
     try {
-        const { status } = yield call(api.offers.status, payload as string, { status: 'REVIEW' });
+        const { status } = yield call(api.offers.status, offerId as string, { status: 'REVIEW' });
         if (status < 200 || status >= 300) throw new Error();
         yield put({ type: types.OFFER_DO_REVIEW_SUCCESS });
         yield put({
             type: types.MY_OFFERS_START,
             payload: { tab, params: { page } },
         });
-
-        notifications.info({ message: 'Publish success' });
+        if (callback) callback();
     } catch (error) {
         if (error?.response?.status === 401) return;
         notificationsModal('error');
@@ -38,6 +36,23 @@ function* doReview({ payload, tab, page }: IAction) {
     }
 }
 
+function* deleteOffer({ offerId, callback }: IAction) {
+    try {
+        const { status } = yield call(api.offers.deleteOffer, offerId as string);
+        if (status < 200 || status >= 300) throw new Error();
+        yield put({ type: types.DELETE_OFFER_SUCCESS, payload: offerId });
+        if (callback) callback();
+    } catch (error) {
+        if (error?.response?.status === 401) return;
+        notificationsModal('error');
+        yield put({ type: types.DELETE_OFFER_ERROR });
+    }
+}
+
 export default function* single(): Generator {
-    yield all([takeLatest(types.GET_SINGLE_OFFER_START, getOffer), takeLatest(types.OFFER_DO_REVIEW_START, doReview)]);
+    yield all([
+        yield takeLatest(types.GET_SINGLE_OFFER_START, getOffer),
+        yield takeLatest(types.OFFER_DO_REVIEW_START, doReview),
+        yield takeLatest(types.DELETE_OFFER_START, deleteOffer),
+    ]);
 }

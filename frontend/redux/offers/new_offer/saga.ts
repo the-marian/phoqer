@@ -33,8 +33,8 @@ function* postOffer({ payload, callback }: IAction) {
             { ...form, city: region.selected?.city || null, country: region.selected?.country || null },
             payload as string[] | null,
         );
-        body.category = (form.category as IDropValue)?.type === 'main' ? (form.category as IDropValue)?.slug : null;
-        body.sub_category = (form.category as IDropValue)?.type === 'sub' ? (form.category as IDropValue)?.slug : null;
+        body.category = (form.category as IDropValue)?.slug || null;
+        body.sub_category = (form.sub_category as IDropValue)?.slug || null;
 
         const { status, data } = yield call(api.offers.new, body);
         if (status < 200 || status >= 300) throw new Error();

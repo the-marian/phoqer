@@ -188,6 +188,21 @@ export const findSubCategory = (data: ICategories[], slug: string): Dropdown | n
     return subCategory || null;
 };
 
+// find sub category by slug
+export const findParentCategory = (data: IDropList[], slug: string): IDropList | null => {
+    const categories: IDropList[] = data.filter(item => item?.sub?.[0]);
+    let parentCategory;
+    if (categories.length) {
+        for (const cat of categories) {
+            if (cat.sub?.find(item => item.slug === slug)) {
+                parentCategory = cat;
+                break;
+            }
+        }
+    }
+    return parentCategory || null;
+};
+
 // ----------------------------------------------
 // ----------------------------------------------
 //  5. Site related helpers

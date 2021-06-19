@@ -158,9 +158,9 @@ const ChatForm = ({ onSubmit }: IProps): ReactElement => {
                         <Picker
                             onEmojiClick={onEmojiClick}
                             pickerStyle={{
-                                width: '50rem',
-                                height: '70rem',
-                                maxWidth: '95vw',
+                                width: '40rem',
+                                height: '60rem',
+                                maxWidth: '90vw',
                                 maxHeight: '70vh',
                                 boxShadow: 'none',
                             }}

@@ -24,6 +24,7 @@
     background: #999999;
 }
 
+.windows.black-green *::-webkit-scrollbar-track,
 .windows.black-blue *::-webkit-scrollbar-track,
 .windows.black-aqua *::-webkit-scrollbar-track,
 .windows.black-orange *::-webkit-scrollbar-track,
@@ -31,6 +32,7 @@
     background-color: #343434;
 }
 
+.windows.black-green *,
 .windows.black-blue *,
 .windows.black-aqua *,
 .windows.black-orange *,
@@ -39,6 +41,7 @@
 }
 
 /* SITE BACKGROUND COLOR */
+.black-green body,
 .black-blue body,
 .black-aqua body,
 .black-orange body,
@@ -47,6 +50,7 @@
 }
 
 .green body,
+.red body,
 .violet body,
 .aqua body,
 .blue body {
@@ -64,8 +68,16 @@
     background: #007991;
 }
 
+.red .rc-slider-track {
+    background: #f80759;
+}
+
 .green .rc-slider-track {
     background: #32603f;
+}
+
+.black-green .rc-slider-track {
+    background: #3ca55c;
 }
 
 .violet .rc-slider-track {

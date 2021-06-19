@@ -42,14 +42,8 @@ function* updateOffer({ payload, images, offerId, callback }: IAction) {
             },
             images as string[],
         );
-        body.category =
-            ((payload as INewOffer).category as IDropValue)?.type === 'main'
-                ? ((payload as INewOffer).category as IDropValue)?.slug
-                : null;
-        body.sub_category =
-            ((payload as INewOffer).category as IDropValue)?.type === 'sub'
-                ? ((payload as INewOffer).category as IDropValue)?.slug
-                : null;
+        body.category = ((payload as INewOffer).category as IDropValue)?.slug || null;
+        body.sub_category = ((payload as INewOffer).category as IDropValue)?.slug || null;
 
         const { status } = yield call(api.offers.update, offerId as string, body);
         if (status < 200 || status >= 300) throw new Error();
@@ -77,14 +71,8 @@ function* publishOffer({ payload, images, offerId, callback }: IAction) {
             },
             images as string[],
         );
-        body.category =
-            ((payload as INewOffer).category as IDropValue)?.type === 'main'
-                ? ((payload as INewOffer).category as IDropValue)?.slug
-                : null;
-        body.sub_category =
-            ((payload as INewOffer).category as IDropValue)?.type === 'sub'
-                ? ((payload as INewOffer).category as IDropValue)?.slug
-                : null;
+        body.category = ((payload as INewOffer).category as IDropValue)?.slug || null;
+        body.sub_category = ((payload as INewOffer).category as IDropValue)?.slug || null;
 
         const offer: { status: number } = yield call(api.offers.update, offerId as string, body);
         if (offer.status < 200 || offer.status >= 300) throw new Error();
@@ -139,9 +127,9 @@ function* changeOfferStatus({ status, offerId, callback }: IAction) {
 
 export default function* edit_offer(): Generator {
     yield all([
-        takeLatest(types.PATCH_OFFER_START, updateOffer),
-        takeLatest(types.PATCH_EDIT_OFFER_STATUS_START, publishOffer),
-        takeLatest(types.CHANGE_OFFER_COVER_IMAGE_START, changeCoverImage),
-        takeLatest(types.CHANGE_OFFER_STATUS_START, changeOfferStatus),
+        yield takeLatest(types.PATCH_OFFER_START, updateOffer),
+        yield takeLatest(types.PATCH_EDIT_OFFER_STATUS_START, publishOffer),
+        yield takeLatest(types.CHANGE_OFFER_COVER_IMAGE_START, changeCoverImage),
+        yield takeLatest(types.CHANGE_OFFER_STATUS_START, changeOfferStatus),
     ]);
 }

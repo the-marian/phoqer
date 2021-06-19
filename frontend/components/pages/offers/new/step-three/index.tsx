@@ -50,7 +50,7 @@ const StepThree = (): ReactElement => {
             type: types.POST_OFFER_START,
             payload: null,
             callback() {
-                history.push(routes.offers.new(4), undefined, { shallow: true });
+                history.push(routes.offers.new(5), undefined, { shallow: true });
             },
         });
     };
@@ -71,7 +71,16 @@ const StepThree = (): ReactElement => {
                             config.img + value?.response?.body?.image_url,
                     ) || [],
                 callback(offerId?: string) {
-                    history.push(routes.offers.new(res?.successful?.length < 2 ? 5 : 4, offerId), undefined, { shallow: true });
+                    history.push(
+                        routes.offers.new(
+                            /* if we have less then 2 photos we should go to step 5 and skip step 4 */
+                            /* step 4 created in order to select main photo for offer but if we have only 1 photo it always be the main photo*/
+                            res?.successful?.length <= 1 ? 5 : 4,
+                            offerId,
+                        ),
+                        undefined,
+                        { shallow: true },
+                    );
                 },
             });
         } catch (error) {

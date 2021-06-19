@@ -71,6 +71,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         margin: '4rem auto 0',
         fontSize: theme.rem(1.6),
         textAlign: 'center',
+        color: theme.palette.black[0],
     },
     btnWrp: {
         display: 'flex',

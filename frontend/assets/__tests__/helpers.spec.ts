@@ -134,6 +134,27 @@ describe('5. Site related helpers 5.2 Work with categories list', () => {
             slug: 'test3.2',
         });
     });
+
+    it('findParentCategory', () => {
+        expect(helpers.findParentCategory(dropValue, 'not_exist')).toBe(null);
+        expect(helpers.findParentCategory(dropValue, 'test3.2')).toStrictEqual({
+            icon_image: 'test3',
+            image: 'test3',
+            slug: 'test3',
+            sub: [
+                {
+                    icon_image: 'test3.1',
+                    image: 'test3.1',
+                    slug: 'test3.1',
+                },
+                {
+                    icon_image: 'test3.2',
+                    image: 'test3.2',
+                    slug: 'test3.2',
+                },
+            ],
+        });
+    });
 });
 
 describe('5. Site related helpers 5.3 SSR auth helpers', () => {

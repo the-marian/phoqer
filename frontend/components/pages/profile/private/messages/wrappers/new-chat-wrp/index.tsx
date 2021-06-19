@@ -11,8 +11,8 @@ import types from '../../../../../../../redux/types';
 import ChatsLoaders from '../../../../../../common/loaders/skeletons/chats';
 import notifications from '../../../../../../common/notifications';
 import ChatLoading from '../../chat-loading';
+import ChatSearch from '../../chat-search';
 import ChatSidebar from '../../chat-sidebar';
-import ChatSearch from '../../chat-sidebar/chat-search';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     root: {

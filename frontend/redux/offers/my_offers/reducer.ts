@@ -17,6 +17,13 @@ const my_offers = (state: IOfferDynamic = initState.offers.my_offers, { type, pa
                 pagination: false,
             };
 
+        case types.DELETE_OFFER_SUCCESS:
+            return {
+                data: { ...state.data, data: state.data.data.filter(item => item.id !== (payload as string)) },
+                loading: false,
+                pagination: false,
+            };
+
         case types.MY_OFFERS_SUCCESS:
             return { data: payload as IOfferPagination, loading: false, pagination: false };
 

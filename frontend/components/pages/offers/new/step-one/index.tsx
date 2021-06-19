@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Dispatch } from 'redux';
 
 import * as helpers from '../../../../../assets/helpers';
-import { numberValidation } from '../../../../../assets/helpers';
+import { findParentCategory, numberValidation } from '../../../../../assets/helpers';
 import routes from '../../../../../assets/routes';
 import { Theme } from '../../../../../assets/theme';
 import useTrans from '../../../../../hooks/trans.hook';
@@ -78,9 +78,22 @@ const StepThree = (): ReactElement => {
         setValue({ ...value, currency });
         setErrors({});
     };
-    const handleCategory = (category: IDropValue | null): void => {
-        setValue({ ...value, category });
-        setErrors({});
+    const handleCategory = (dropValue: IDropValue | null): void => {
+        if (dropValue?.type === 'main') {
+            setValue({ ...value, category: dropValue, sub_category: null });
+            return setErrors({});
+        }
+
+        if (dropValue?.type === 'sub') {
+            const parentCategory = findParentCategory(categories, dropValue?.slug);
+            if (parentCategory)
+                setValue({
+                    ...value,
+                    category: { type: 'main', name: parentCategory?.name || parentCategory?.slug, slug: parentCategory?.slug },
+                    sub_category: dropValue,
+                });
+            return setErrors({});
+        }
     };
 
     const validateNumber = (name: 'price' | 'items_amount', defaultValue: number | null = null): void => {

@@ -53,6 +53,7 @@ const api = {
             axios.patch(`${url2}/offers/${id}`, body),
         status: (id: string, body: Params): Promise<AxiosResponse<void>> => axios.patch(`${url2}/offers/status/${id}`, body),
         search: (params: Params): Promise<AxiosResponse<IOfferPagination>> => axios.get(`${url2}/offers/search`, { params }),
+        deleteOffer: (id: string): Promise<AxiosResponse<void>> => axios.delete(`${url2}/offers/${id}`),
         favorite: {
             get: (): Promise<AxiosResponse<IOfferCard[]>> => axios.get(`${url2}/favorite`),
             patch: (id: string): Promise<AxiosResponse<IOfferCard[]>> => axios.patch(`${url2}/favorite/${id}`),

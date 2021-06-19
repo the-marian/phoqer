@@ -16,5 +16,5 @@ export default interface IAction {
         | typeof types.MY_OFFERS_PAGINATION_START
         | typeof types.MY_OFFERS_PAGINATION_ERROR
         | typeof types.MY_OFFERS_PAGINATION_SUCCESS;
-    payload: IOfferCard[] | IState | IParams | IOfferPagination | null;
+    payload: IOfferCard[] | IState | IParams | IOfferPagination | string | null;
 }

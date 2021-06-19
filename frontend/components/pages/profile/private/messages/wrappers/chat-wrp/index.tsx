@@ -8,8 +8,8 @@ import { IChats, IChatsList, IState } from '../../../../../../../interfaces';
 import ChatsLoaders from '../../../../../../common/loaders/skeletons/chats';
 import ChatEmpty from '../../chat-empty';
 import ChatLoading from '../../chat-loading';
+import ChatSearch from '../../chat-search';
 import ChatSidebar from '../../chat-sidebar';
-import ChatSearch from '../../chat-sidebar/chat-search';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     root: {

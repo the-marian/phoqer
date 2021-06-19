@@ -31,7 +31,7 @@ function* getMyOffersPagination({ payload }: IAction) {
 
 export default function* myOffers(): Generator {
     yield all([
-        takeLatest(types.MY_OFFERS_START, getMyOffers),
-        takeLatest(types.MY_OFFERS_PAGINATION_START, getMyOffersPagination),
+        yield takeLatest(types.MY_OFFERS_START, getMyOffers),
+        yield takeLatest(types.MY_OFFERS_PAGINATION_START, getMyOffersPagination),
     ]);
 }

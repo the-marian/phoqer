@@ -22,6 +22,7 @@ const template = (theme: Theme): Template => ({
         transition: theme.transitions[0],
         boxShadow: theme.palette.shadowBorder,
         background: theme.palette.white,
+        color: theme.palette.black[0],
 
         ...theme.focus({
             border: theme.border(0.2, theme.palette.primary[0]),

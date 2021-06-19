@@ -3,8 +3,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
-import template from '../../../../../../../assets/template';
-import { Theme } from '../../../../../../../assets/theme';
+import template from '../../../../../../assets/template';
+import { Theme } from '../../../../../../assets/theme';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     root: {
@@ -32,7 +32,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
             content: '""',
             position: 'absolute',
             top: '50%',
-            left: 0,
+            left: theme.rem(-0.3),
             transform: 'translateY(-50%)',
             height: '65%',
             width: 0,

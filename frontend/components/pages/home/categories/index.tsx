@@ -18,60 +18,51 @@ const useStyles = createUseStyles((theme: Theme) => ({
         }),
     },
     wrp: {
-        display: 'flex',
-        flexWrap: 'wrap',
-        margin: '0 -0.25%',
+        display: 'grid',
+        gridTemplateColumns: theme.fr(7),
+        gridGap: theme.rem(3, 1),
 
-        ...theme.media(980).max({
-            margin: '0 -0.3%',
+        ...theme.media(1150).max({
+            gridTemplateColumns: theme.fr(6),
         }),
-
-        ...theme.media(766).max({
-            margin: '0 -0.5%',
+        ...theme.media(768).max({
+            gridTemplateColumns: theme.fr(5),
         }),
-
-        ...theme.media(500).max({
-            margin: '0',
+        ...theme.media(640).max({
+            gridTemplateColumns: theme.fr(4),
+            gridGap: theme.rem(2, 1),
+        }),
+        ...theme.media(510).max({
+            gridTemplateColumns: theme.fr(3),
+        }),
+        ...theme.media(410).max({
+            gridTemplateColumns: theme.fr(2),
         }),
     },
     cat: {
-        width: '12%',
-        margin: '1rem 0.25%',
         color: theme.palette.black[0],
         cursor: 'pointer',
-
-        ...theme.media(980).max({
-            width: '16.05%',
-            margin: '1rem 0.3%',
-        }),
-
-        ...theme.media(766).max({
-            width: '19%',
-            margin: '1rem 0.5%',
-        }),
-
-        ...theme.media(650).max({
-            width: '24%',
-        }),
-
-        ...theme.media(500).max({
-            width: '48%',
-            margin: '1rem 1%',
-        }),
 
         ...theme.hover({
             color: theme.palette.primary[0],
         }),
     },
     img: {
-        height: theme.rem(9),
+        height: theme.rem(10),
         borderRadius: theme.radius,
         objectFit: 'cover',
         ...template(theme).outline,
+
+        ...theme.media(1150).max({
+            height: theme.rem(8),
+        }),
+        ...theme.media(640).max({
+            height: theme.rem(7),
+        }),
     },
     text: {
         marginTop: theme.rem(0.5),
-        fontSize: theme.rem(1.4),
+        fontSize: theme.rem(1.3),
         ...template(theme).cutString,
     },
 }));
