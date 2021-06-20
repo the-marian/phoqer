@@ -107,6 +107,25 @@ class MyOffersListResponse(BaseModel):
     data: List[MyOffersListItem]
 
 
+class PublicOffersListItem(BaseModel):
+    cover_image: Optional[HttpUrl] = None
+    currency: Optional[Currency] = None
+    description: Optional[str] = None
+    id: UUID
+    is_deliverable: Optional[bool] = None
+    is_promoted: bool = False
+    price: Optional[int] = None
+    pub_date: Optional[date] = None
+    rental_period: RentalPeriod = RentalPeriod.DAY
+    title: Optional[str] = None
+    views: Optional[int] = None
+
+
+class PublicOffersListResponse(BaseModel):
+    total: int = 0
+    data: List[PublicOffersListItem]
+
+
 class ValidOffer(BaseModel):
     city: str
     currency: Currency
