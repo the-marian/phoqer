@@ -6,10 +6,10 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { cutString } from '../../../../../../../assets/helpers';
 import routes from '../../../../../../../assets/routes';
-import { Theme } from '../../../../../../../theming/theme';
 import useTrans from '../../../../../../../hooks/trans.hook';
 import { IOfferCard, IState } from '../../../../../../../interfaces';
 import types from '../../../../../../../redux/types';
+import { Theme } from '../../../../../../../theming/theme';
 import Tooltip from '../../../../../../common/tooltip';
 
 const useStyles = createUseStyles((theme: Theme) => ({

@@ -7,10 +7,10 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { isEmpty, mailRegex } from '../../../../assets/helpers';
 import routes from '../../../../assets/routes';
-import { Theme } from '../../../../theming/theme';
 import useTrans from '../../../../hooks/trans.hook';
 import { ILogin, IState } from '../../../../interfaces';
 import types from '../../../../redux/types';
+import { Theme } from '../../../../theming/theme';
 import Button from '../../button';
 import GoogleFacebook from '../../google-facebook';
 import Input from '../../input';

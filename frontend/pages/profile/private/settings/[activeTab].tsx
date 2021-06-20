@@ -5,7 +5,6 @@ import { createUseStyles } from 'react-jss';
 
 import { serverRedirect } from '../../../../assets/helpers';
 import routes from '../../../../assets/routes';
-import { Theme } from '../../../../theming/theme';
 import Breadcrumbs from '../../../../components/common/breadcrumbs';
 import ProfileNav from '../../../../components/common/navigation/profile-nav/root-nav';
 import AuthRedirect from '../../../../components/context/auth/auth-redirect';
@@ -19,6 +18,7 @@ import SettingsNav from '../../../../components/pages/profile/private/settings/s
 import useMedia from '../../../../hooks/media.hook';
 import useTrans from '../../../../hooks/trans.hook';
 import { wrapper } from '../../../../redux/store';
+import { Theme } from '../../../../theming/theme';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     root: {

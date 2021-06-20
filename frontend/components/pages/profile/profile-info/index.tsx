@@ -4,9 +4,9 @@ import { createUseStyles } from 'react-jss';
 import { useSelector } from 'react-redux';
 
 import { cutString } from '../../../../assets/helpers';
-import { Theme } from '../../../../theming/theme';
 import useTrans from '../../../../hooks/trans.hook';
 import { IPublicProfile, IState } from '../../../../interfaces';
+import { Theme } from '../../../../theming/theme';
 import LikeDislike from '../../../common/like-dislike';
 import { modal } from '../../../common/modal';
 import MidModalWrp from '../../../common/modal/mid-modal-wrp';

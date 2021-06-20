@@ -5,7 +5,6 @@ import { useDispatch } from 'react-redux';
 
 import { serverRedirect } from '../../../../assets/helpers';
 import routes from '../../../../assets/routes';
-import { Theme } from '../../../../theming/theme';
 import ProfileChatNav from '../../../../components/common/navigation/profile-nav/chat-nav';
 import AuthRedirect from '../../../../components/context/auth/auth-redirect';
 import Meta from '../../../../components/meta';
@@ -15,6 +14,7 @@ import useMedia from '../../../../hooks/media.hook';
 import useTrans from '../../../../hooks/trans.hook';
 import { wrapper } from '../../../../redux/store';
 import types from '../../../../redux/types';
+import { Theme } from '../../../../theming/theme';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     main: {

@@ -7,12 +7,12 @@ import { useDispatch } from 'react-redux';
 
 import config from '../../../../../assets/config';
 import routes from '../../../../../assets/routes';
-import { Theme } from '../../../../../theming/theme';
 import useMedia from '../../../../../hooks/media.hook';
 import useTheme from '../../../../../hooks/theme.hook';
 import useTrans from '../../../../../hooks/trans.hook';
 import useUppy from '../../../../../hooks/uppy.hook';
 import types from '../../../../../redux/types';
+import { Theme } from '../../../../../theming/theme';
 import notificationsModal from '../../../../common/modal/notifications-modal';
 import newOfferTemplate from '../new-offer.style';
 

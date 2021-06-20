@@ -3,8 +3,8 @@ import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 import { useSelector } from 'react-redux';
 
-import { Theme } from '../../../../../../../theming/theme';
 import { IChats, IChatsList, IState } from '../../../../../../../interfaces';
+import { Theme } from '../../../../../../../theming/theme';
 import ChatsLoaders from '../../../../../../common/loaders/skeletons/chats';
 import ChatEmpty from '../../chat-empty';
 import ChatLoading from '../../chat-loading';

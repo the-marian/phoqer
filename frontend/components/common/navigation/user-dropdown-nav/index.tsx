@@ -6,10 +6,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { CSSTransition } from 'react-transition-group';
 
 import config from '../../../../assets/config';
-import { Theme } from '../../../../theming/theme';
 import useTrans from '../../../../hooks/trans.hook';
 import { IPublicProfile, IState, ITabs } from '../../../../interfaces';
 import types from '../../../../redux/types';
+import { Theme } from '../../../../theming/theme';
 import Spinner from '../../loaders/spinner';
 import NavTabs from '../';
 

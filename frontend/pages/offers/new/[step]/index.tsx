@@ -7,7 +7,6 @@ import { END } from 'redux-saga';
 
 import { serverRedirect } from '../../../../assets/helpers';
 import routes from '../../../../assets/routes';
-import { Theme } from '../../../../theming/theme';
 import AuthRedirect from '../../../../components/context/auth/auth-redirect';
 import Container from '../../../../components/layout/container';
 import PageLayout from '../../../../components/layout/page-layout';
@@ -24,6 +23,7 @@ import useTrans from '../../../../hooks/trans.hook';
 import { INewOffer, IState, IStore } from '../../../../interfaces';
 import { wrapper } from '../../../../redux/store';
 import types from '../../../../redux/types';
+import { Theme } from '../../../../theming/theme';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     title: {

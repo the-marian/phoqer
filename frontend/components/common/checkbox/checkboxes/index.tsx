@@ -2,8 +2,8 @@ import clsx from 'clsx';
 import React, { MouseEvent, ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
-import { Theme } from '../../../../theming/theme';
 import { ICheckboxes } from '../../../../interfaces';
+import { Theme } from '../../../../theming/theme';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     root: {

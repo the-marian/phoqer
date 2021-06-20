@@ -2,9 +2,9 @@ import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
 import config from '../../../../assets/config';
-import { Theme } from '../../../../theming/theme';
 import useMedia from '../../../../hooks/media.hook';
 import { IOfferCard } from '../../../../interfaces';
+import { Theme } from '../../../../theming/theme';
 import OffersLoader from '../../loaders/skeletons/offers';
 import EmptyOffers from '../empty-offers';
 import OfferCard from '../offers-card';

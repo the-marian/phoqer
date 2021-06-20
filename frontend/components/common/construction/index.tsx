@@ -1,8 +1,8 @@
 import React, { ReactElement, useEffect, useState } from 'react';
 import { createUseStyles } from 'react-jss';
 
-import { Theme } from '../../../theming/theme';
 import useTrans from '../../../hooks/trans.hook';
+import { Theme } from '../../../theming/theme';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     root: {

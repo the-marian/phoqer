@@ -4,10 +4,10 @@ import { useSelector } from 'react-redux';
 import { CSSTransition } from 'react-transition-group';
 
 import routes from '../../../../assets/routes';
-import { Theme } from '../../../../theming/theme';
 import useConfig from '../../../../hooks/config.hook';
 import useTrans from '../../../../hooks/trans.hook';
 import { IOfferStatic, IState } from '../../../../interfaces';
+import { Theme } from '../../../../theming/theme';
 import OffersList from '../../../common/offers/offers-list';
 import SectionTitle from '../../../common/section-title';
 import Switcher from '../../../common/switcher';

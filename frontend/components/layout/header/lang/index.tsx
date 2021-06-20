@@ -2,8 +2,8 @@ import { useRouter } from 'next/router';
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
-import { Theme } from '../../../../theming/theme';
 import { IDropList } from '../../../../interfaces';
+import { Theme } from '../../../../theming/theme';
 import DropDown from '../../../common/drop-down';
 
 const useStyles = createUseStyles((theme: Theme) => ({

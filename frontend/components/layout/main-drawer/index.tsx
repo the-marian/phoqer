@@ -2,10 +2,10 @@ import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { Theme } from '../../../theming/theme';
 import useAuth from '../../../hooks/auth.hook';
 import { IState } from '../../../interfaces';
 import types from '../../../redux/types';
+import { Theme } from '../../../theming/theme';
 import Drawer from '../../common/drawer';
 import Logo from '../../common/logo';
 import Socials from '../../common/socials';

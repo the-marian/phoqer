@@ -3,9 +3,9 @@ import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 import { useSelector } from 'react-redux';
 
-import { Theme } from '../../../../theming/theme';
 import useTrans from '../../../../hooks/trans.hook';
 import { IComment, IState } from '../../../../interfaces';
+import { Theme } from '../../../../theming/theme';
 import CommentsItem from './comments-item';
 
 const useStyles = createUseStyles((theme: Theme) => ({

@@ -8,9 +8,9 @@ import { useDispatch } from 'react-redux';
 
 import config from '../../../../../assets/config';
 import routes from '../../../../../assets/routes';
-import { Theme } from '../../../../../theming/theme';
 import { ITabs } from '../../../../../interfaces';
 import types from '../../../../../redux/types';
+import { Theme } from '../../../../../theming/theme';
 import NavTabs from '../../index';
 import { item, nav } from '../profile-nav.styles';
 

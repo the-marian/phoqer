@@ -5,8 +5,8 @@ import clsx from 'clsx';
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
-import { Theme } from '../../../theming/theme';
 import useAuth from '../../../hooks/auth.hook';
+import { Theme } from '../../../theming/theme';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     action: {

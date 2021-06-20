@@ -2,7 +2,6 @@ import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 import { END } from 'redux-saga';
 
-import { Theme } from '../theming/theme';
 import About from '../components/common/about';
 import Banner from '../components/common/banner';
 import TopPopular from '../components/common/offers/popular-offers';
@@ -15,6 +14,7 @@ import useTrans from '../hooks/trans.hook';
 import { IStore } from '../interfaces';
 import { wrapper } from '../redux/store';
 import types from '../redux/types';
+import { Theme } from '../theming/theme';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     banner: {

@@ -3,10 +3,10 @@ import React, { ChangeEvent, FormEvent, ReactElement, useEffect, useState } from
 import { createUseStyles } from 'react-jss';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { Theme } from '../../../../../../../theming/theme';
 import useTrans from '../../../../../../../hooks/trans.hook';
 import { IPublicProfile, IRegion, IState } from '../../../../../../../interfaces';
 import types from '../../../../../../../redux/types';
+import { Theme } from '../../../../../../../theming/theme';
 import Input from '../../../../../../common/input';
 import Region from '../../../../../../common/region';
 import Bio from '../bio';

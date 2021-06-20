@@ -2,9 +2,9 @@ import clsx from 'clsx';
 import React, { ReactElement, useEffect, useRef, useState } from 'react';
 import { createUseStyles } from 'react-jss';
 
-import { Theme } from '../../../theming/theme';
 import useMedia from '../../../hooks/media.hook';
 import useTrans from '../../../hooks/trans.hook';
+import { Theme } from '../../../theming/theme';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     wrp: {

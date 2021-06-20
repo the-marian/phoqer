@@ -1,8 +1,8 @@
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
-import { Theme } from '../../../../../../theming/theme';
 import useMedia from '../../../../../../hooks/media.hook';
+import { Theme } from '../../../../../../theming/theme';
 import SiteMenu from '../../../../../common/site-menu';
 import MobileBackBtn from '../../mobile-back-btn';
 

@@ -6,9 +6,9 @@ import { createUseStyles } from 'react-jss';
 import { useDispatch } from 'react-redux';
 
 import routes from '../../../../../assets/routes';
-import { Theme } from '../../../../../theming/theme';
 import useTrans from '../../../../../hooks/trans.hook';
 import types from '../../../../../redux/types';
+import { Theme } from '../../../../../theming/theme';
 import newOfferTemplate from '../new-offer.style';
 
 const useStyles = createUseStyles((theme: Theme) => newOfferTemplate(theme).end);

@@ -6,9 +6,9 @@ import { createUseStyles } from 'react-jss';
 import { useSelector } from 'react-redux';
 
 import routes from '../../../../../../assets/routes';
-import { Theme } from '../../../../../../theming/theme';
 import useTrans from '../../../../../../hooks/trans.hook';
 import { IPublicProfile, IState } from '../../../../../../interfaces';
+import { Theme } from '../../../../../../theming/theme';
 import Banner from '../../../../../common/banner';
 
 const useStyles = createUseStyles((theme: Theme) => ({

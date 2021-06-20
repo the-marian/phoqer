@@ -3,9 +3,9 @@ import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 import { useDispatch } from 'react-redux';
 
-import { Theme } from '../../../theming/theme';
 import useTrans from '../../../hooks/trans.hook';
 import types from '../../../redux/types';
+import { Theme } from '../../../theming/theme';
 import MenuIcon from './menu-icon';
 
 const useStyles = createUseStyles((theme: Theme) => ({

@@ -4,10 +4,10 @@ import { createUseStyles } from 'react-jss';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { isEmpty, mailRegex, passwordRegex } from '../../../../assets/helpers';
-import { Theme } from '../../../../theming/theme';
 import useTrans from '../../../../hooks/trans.hook';
 import { ISignup, IState } from '../../../../interfaces';
 import types from '../../../../redux/types';
+import { Theme } from '../../../../theming/theme';
 import Button from '../../button';
 import GoogleFacebook from '../../google-facebook';
 import Input from '../../input';

@@ -4,9 +4,9 @@ import { useRouter } from 'next/router';
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
-import { Theme } from '../../../theming/theme';
 import useTrans from '../../../hooks/trans.hook';
 import { ITabs } from '../../../interfaces';
+import { Theme } from '../../../theming/theme';
 import NotifNumber from '../notif-number';
 
 const useStyles = createUseStyles((theme: Theme) => ({

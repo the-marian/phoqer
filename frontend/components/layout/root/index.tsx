@@ -2,9 +2,9 @@ import React, { ReactElement, useEffect } from 'react';
 import { ThemeProvider } from 'react-jss';
 import ReactNotification from 'react-notifications-component';
 
-import { theme } from '../../../theming/theme';
 import useConfig from '../../../hooks/config.hook';
 import useTheme from '../../../hooks/theme.hook';
+import { theme } from '../../../theming/theme';
 import RouterProgress from '../../common/loaders/progress/router-progress';
 import MobileNav from '../../common/mobile-nav';
 import ModalComponent from '../../common/modal';
