@@ -8,7 +8,7 @@ import { useSelector } from 'react-redux';
 
 import { findCategory, findSubCategory, moneyFormat } from '../../../../../assets/helpers';
 import routes from '../../../../../assets/routes';
-import { Theme } from '../../../../../assets/theme';
+import { Theme } from '../../../../../theming/theme';
 import useTrans from '../../../../../hooks/trans.hook';
 import { ICategories, ISearch, IState } from '../../../../../interfaces';
 import Container from '../../../../layout/container';

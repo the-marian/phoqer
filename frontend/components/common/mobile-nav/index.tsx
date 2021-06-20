@@ -9,11 +9,11 @@ import { createUseStyles } from 'react-jss';
 import { useSelector } from 'react-redux';
 
 import routes from '../../../assets/routes';
-import template from '../../../assets/template';
-import { Theme } from '../../../assets/theme';
 import useAuth from '../../../hooks/auth.hook';
 import useMedia from '../../../hooks/media.hook';
 import { IPublicProfile, IState } from '../../../interfaces';
+import template from '../../../theming/template';
+import { Theme } from '../../../theming/theme';
 import NotifNumber from '../notif-number';
 
 const useStyles = createUseStyles((theme: Theme) => ({

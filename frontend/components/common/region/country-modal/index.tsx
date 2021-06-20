@@ -2,11 +2,11 @@ import React, { ReactElement, useEffect } from 'react';
 import { createUseStyles } from 'react-jss';
 import { useDispatch, useSelector } from 'react-redux';
 
-import template from '../../../../assets/template';
-import { Theme } from '../../../../assets/theme';
 import useTrans from '../../../../hooks/trans.hook';
 import { IRegion, IState } from '../../../../interfaces';
 import types from '../../../../redux/types';
+import template from '../../../../theming/template';
+import { Theme } from '../../../../theming/theme';
 import Spinner from '../../loaders/spinner';
 import { modal } from '../../modal';
 import SmallModalWrp from '../../modal/small-modal-wrp';

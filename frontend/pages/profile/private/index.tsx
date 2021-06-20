@@ -4,12 +4,12 @@ import { createUseStyles } from 'react-jss';
 
 import { serverRedirect } from '../../../assets/helpers';
 import routes from '../../../assets/routes';
-import { Theme } from '../../../assets/theme';
+import { Theme } from '../../../theming/theme';
 import Breadcrumbs from '../../../components/common/breadcrumbs';
 import AuthRedirect from '../../../components/context/auth/auth-redirect';
 import Container from '../../../components/layout/container';
-import Meta from '../../../components/layout/meta';
 import PageLayout from '../../../components/layout/page-layout';
+import Meta from '../../../components/meta';
 import ProfileAside from '../../../components/pages/profile/private/personal-area/aside';
 import Content from '../../../components/pages/profile/private/personal-area/content';
 import useMedia from '../../../hooks/media.hook';

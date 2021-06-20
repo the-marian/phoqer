@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { CSSTransition } from 'react-transition-group';
 
 import config from '../../../../assets/config';
-import { Theme } from '../../../../assets/theme';
+import { Theme } from '../../../../theming/theme';
 import useTrans from '../../../../hooks/trans.hook';
 import { IPublicProfile, IState, ITabs } from '../../../../interfaces';
 import types from '../../../../redux/types';

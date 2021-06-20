@@ -4,7 +4,7 @@ import { createUseStyles } from 'react-jss';
 import { useSelector } from 'react-redux';
 
 import routes from '../../../../../../assets/routes';
-import { Theme } from '../../../../../../assets/theme';
+import { Theme } from '../../../../../../theming/theme';
 import { IPublicProfile, IState } from '../../../../../../interfaces';
 import ProfilePrivateNav from '../../../../../common/navigation/profile-nav/private';
 import UserAvatar from '../../../../../common/user-avatar';

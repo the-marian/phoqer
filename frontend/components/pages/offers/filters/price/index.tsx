@@ -7,10 +7,10 @@ import { useSelector } from 'react-redux';
 
 import { numberValidation } from '../../../../../assets/helpers';
 import routes from '../../../../../assets/routes';
-import template from '../../../../../assets/template';
-import { Theme } from '../../../../../assets/theme';
 import useTrans from '../../../../../hooks/trans.hook';
 import { ISearch, IState } from '../../../../../interfaces';
+import template from '../../../../../theming/template';
+import { Theme } from '../../../../../theming/theme';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     root: {

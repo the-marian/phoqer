@@ -46,6 +46,8 @@ const api = {
     offers: {
         myOffers: ({ tab, params }: { tab: string; params: Params }): Promise<AxiosResponse<IOfferDynamic>> =>
             axios.get(`${url2}/offers/status/${tab}`, { params }),
+        publicOffers: (id: string, params: Params): Promise<AxiosResponse<IOfferPagination>> =>
+            axios.get(`${url2}/offers/public/${id}`, { params }),
         popular: (): Promise<AxiosResponse<IOfferPagination>> => axios.get(`${url2}/offers/popular`),
         single: (id: string): Promise<AxiosResponse<IOfferCard>> => axios.get(`${url2}/offers/${id}`),
         new: (body: IBody): Promise<AxiosResponse<void>> => axios.post(`${url2}/offers`, body),

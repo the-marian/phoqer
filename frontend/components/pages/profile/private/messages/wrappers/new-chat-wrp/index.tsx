@@ -5,7 +5,7 @@ import { createUseStyles } from 'react-jss';
 import { useDispatch, useSelector } from 'react-redux';
 
 import routes from '../../../../../../../assets/routes';
-import { Theme } from '../../../../../../../assets/theme';
+import { Theme } from '../../../../../../../theming/theme';
 import { IChats, IChatsList, IOfferCard, IPublicProfile, IState } from '../../../../../../../interfaces';
 import types from '../../../../../../../redux/types';
 import ChatsLoaders from '../../../../../../common/loaders/skeletons/chats';

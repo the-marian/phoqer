@@ -7,11 +7,11 @@ import { END } from 'redux-saga';
 
 import { serverRedirect } from '../../../../assets/helpers';
 import routes from '../../../../assets/routes';
-import { Theme } from '../../../../assets/theme';
+import { Theme } from '../../../../theming/theme';
 import AuthRedirect from '../../../../components/context/auth/auth-redirect';
 import Container from '../../../../components/layout/container';
-import Meta from '../../../../components/layout/meta';
 import PageLayout from '../../../../components/layout/page-layout';
+import Meta from '../../../../components/meta';
 import Draft from '../../../../components/pages/offers/new/draft';
 import StepFive from '../../../../components/pages/offers/new/step-five';
 import StepFour from '../../../../components/pages/offers/new/step-four';

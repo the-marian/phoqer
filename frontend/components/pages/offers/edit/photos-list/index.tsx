@@ -3,11 +3,11 @@ import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 import { useDispatch, useSelector } from 'react-redux';
 
-import template from '../../../../../assets/template';
-import { Theme } from '../../../../../assets/theme';
 import useTrans from '../../../../../hooks/trans.hook';
 import { IOfferCard, IState } from '../../../../../interfaces';
 import types from '../../../../../redux/types';
+import template from '../../../../../theming/template';
+import { Theme } from '../../../../../theming/theme';
 import ButtonClose from '../../../../common/button-close';
 import Tooltip from '../../../../common/tooltip';
 

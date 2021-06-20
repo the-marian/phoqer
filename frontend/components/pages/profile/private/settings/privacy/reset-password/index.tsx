@@ -1,9 +1,9 @@
 import React, { ChangeEvent, ReactElement, useState } from 'react';
 import { createUseStyles } from 'react-jss';
 
-import template from '../../../../../../../assets/template';
-import { Theme } from '../../../../../../../assets/theme';
 import useTrans from '../../../../../../../hooks/trans.hook';
+import template from '../../../../../../../theming/template';
+import { Theme } from '../../../../../../../theming/theme';
 import Button from '../../../../../../common/button';
 import Input from '../../../../../../common/input';
 

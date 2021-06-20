@@ -4,7 +4,7 @@ import { createUseStyles } from 'react-jss';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { isEmpty, mailRegex, passwordRegex } from '../../../../assets/helpers';
-import { Theme } from '../../../../assets/theme';
+import { Theme } from '../../../../theming/theme';
 import useTrans from '../../../../hooks/trans.hook';
 import { ISignup, IState } from '../../../../interfaces';
 import types from '../../../../redux/types';

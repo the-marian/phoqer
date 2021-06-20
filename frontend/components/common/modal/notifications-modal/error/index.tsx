@@ -1,9 +1,9 @@
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
-import template from '../../../../../assets/template';
-import { Theme } from '../../../../../assets/theme';
 import useTrans from '../../../../../hooks/trans.hook';
+import template from '../../../../../theming/template';
+import { Theme } from '../../../../../theming/theme';
 import { modal } from '../../index';
 import SmallModalWrp from '../../small-modal-wrp';
 

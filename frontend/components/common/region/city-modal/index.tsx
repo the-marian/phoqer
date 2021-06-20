@@ -5,11 +5,11 @@ import React, { ChangeEvent, ReactElement, useEffect, useRef, useState } from 'r
 import { createUseStyles } from 'react-jss';
 import { useDispatch, useSelector } from 'react-redux';
 
-import template from '../../../../assets/template';
-import { Theme } from '../../../../assets/theme';
 import useTrans from '../../../../hooks/trans.hook';
 import { ICity, IRegion, IState } from '../../../../interfaces';
 import types from '../../../../redux/types';
+import template from '../../../../theming/template';
+import { Theme } from '../../../../theming/theme';
 import content from '../../../../translations';
 import Spinner from '../../loaders/spinner';
 import { modal } from '../../modal';

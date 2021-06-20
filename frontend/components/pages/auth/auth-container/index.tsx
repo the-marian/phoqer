@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
-import { Theme } from '../../../../assets/theme';
+import { Theme } from '../../../../theming/theme';
 import Container from '../../../layout/container';
 import PageLayout from '../../../layout/page-layout';
 

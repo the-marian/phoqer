@@ -5,11 +5,11 @@ import { useSelector } from 'react-redux';
 
 import { moneyFormat } from '../../../../assets/helpers';
 import routes from '../../../../assets/routes';
-import template from '../../../../assets/template';
-import { Theme } from '../../../../assets/theme';
 import useAuth from '../../../../hooks/auth.hook';
 import useTrans from '../../../../hooks/trans.hook';
 import { IOfferCard, IState } from '../../../../interfaces';
+import template from '../../../../theming/template';
+import { Theme } from '../../../../theming/theme';
 import LoginForm from '../../../common/auth/login-form';
 import { modal } from '../../../common/modal';
 import SmallModalWrp from '../../../common/modal/small-modal-wrp';
@@ -73,8 +73,7 @@ const Price = (): ReactElement => {
         <>
             <h3 className={css.priceTitle}>{trans('price')}:</h3>
             <p className={css.price}>
-                <span className={css.num}>{moneyFormat(offer?.price)}</span>
-                <span className={css.point}>.00</span> {trans('uah')} / {trans('day')}
+                <span className={css.num}>{moneyFormat(offer?.price)}</span> {trans('uah')} / {trans('day')}
             </p>
             <button className={css.buy} onClick={handleRent} type="button">
                 {trans('rent')}

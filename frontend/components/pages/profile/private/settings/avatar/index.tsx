@@ -4,11 +4,11 @@ import React, { ChangeEvent, ReactElement, useState } from 'react';
 import { createUseStyles } from 'react-jss';
 import { useDispatch, useSelector } from 'react-redux';
 
-import template from '../../../../../../assets/template';
-import { Theme } from '../../../../../../assets/theme';
 import useTrans from '../../../../../../hooks/trans.hook';
 import { IPublicProfile, IState } from '../../../../../../interfaces';
 import types from '../../../../../../redux/types';
+import template from '../../../../../../theming/template';
+import { Theme } from '../../../../../../theming/theme';
 import Button from '../../../../../common/button';
 import UserAvatar from '../../../../../common/user-avatar';
 

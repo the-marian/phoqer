@@ -5,7 +5,7 @@ import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
 import routes from '../../../../../assets/routes';
-import { Theme } from '../../../../../assets/theme';
+import { Theme } from '../../../../../theming/theme';
 import useTrans from '../../../../../hooks/trans.hook';
 import Advertising from '../../../../common/advertising';
 import ConfettiWrp from '../../../../common/confetti';

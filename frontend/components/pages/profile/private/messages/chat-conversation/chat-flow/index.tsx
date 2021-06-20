@@ -4,11 +4,11 @@ import { createUseStyles } from 'react-jss';
 import { useSelector } from 'react-redux';
 
 import { addZeroToNumber } from '../../../../../../../assets/helpers';
-import template from '../../../../../../../assets/template';
-import { Theme } from '../../../../../../../assets/theme';
 import useMedia from '../../../../../../../hooks/media.hook';
 import useMonths from '../../../../../../../hooks/month.hook';
 import { IMessagesList, IPublicProfile, IState } from '../../../../../../../interfaces';
+import template from '../../../../../../../theming/template';
+import { Theme } from '../../../../../../../theming/theme';
 import Tooltip from '../../../../../../common/tooltip';
 import ChatEmpty from '../../chat-empty';
 import ChatInitConversation from '../chat-init-conversation';

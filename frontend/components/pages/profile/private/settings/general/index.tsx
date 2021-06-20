@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
-import { Theme } from '../../../../../../assets/theme';
+import { Theme } from '../../../../../../theming/theme';
 import Banner from '../../../../../common/banner';
 import Avatar from '../avatar';
 import GeneralInfoForm from './general-info-form';

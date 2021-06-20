@@ -8,14 +8,12 @@ import { END } from 'redux-saga';
 
 import { serverRedirect } from '../../../../assets/helpers';
 import routes from '../../../../assets/routes';
-import template from '../../../../assets/template';
-import { Theme } from '../../../../assets/theme';
 import Breadcrumbs from '../../../../components/common/breadcrumbs';
 import ErrorComponent from '../../../../components/common/error';
 import { modal } from '../../../../components/common/modal';
 import Container from '../../../../components/layout/container';
-import Meta from '../../../../components/layout/meta';
 import PageLayout from '../../../../components/layout/page-layout';
+import Meta from '../../../../components/meta';
 import AsideElement from '../../../../components/pages/offers/edit/aside-element';
 import EditContentForm from '../../../../components/pages/offers/edit/edit-content-form';
 import PhotosList from '../../../../components/pages/offers/edit/photos-list';
@@ -24,6 +22,8 @@ import useTrans from '../../../../hooks/trans.hook';
 import { IOfferCard, IState, IStore } from '../../../../interfaces';
 import { wrapper } from '../../../../redux/store';
 import types from '../../../../redux/types';
+import template from '../../../../theming/template';
+import { Theme } from '../../../../theming/theme';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     flex: {

@@ -7,7 +7,7 @@ import { createUseStyles } from 'react-jss';
 import { CSSTransition } from 'react-transition-group';
 
 import routes from '../../../../../assets/routes';
-import { Theme } from '../../../../../assets/theme';
+import { Theme } from '../../../../../theming/theme';
 import useConfig from '../../../../../hooks/config.hook';
 import useTrans from '../../../../../hooks/trans.hook';
 

@@ -5,9 +5,9 @@ import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
 import routes from '../../../../../../assets/routes';
-import template from '../../../../../../assets/template';
-import { Theme } from '../../../../../../assets/theme';
 import useTrans from '../../../../../../hooks/trans.hook';
+import template from '../../../../../../theming/template';
+import { Theme } from '../../../../../../theming/theme';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     list: {

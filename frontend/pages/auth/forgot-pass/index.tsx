@@ -4,7 +4,7 @@ import React, { ReactElement } from 'react';
 import { serverRedirect } from '../../../assets/helpers';
 import ForgotPassForm from '../../../components/common/auth/forgot-pass-form';
 import AuthRedirect from '../../../components/context/auth/auth-redirect';
-import Meta from '../../../components/layout/meta';
+import Meta from '../../../components/meta';
 import AuthContainer from '../../../components/pages/auth/auth-container';
 import useTrans from '../../../hooks/trans.hook';
 import { wrapper } from '../../../redux/store';

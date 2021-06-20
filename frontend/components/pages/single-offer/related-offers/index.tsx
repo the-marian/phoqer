@@ -4,10 +4,10 @@ import { createUseStyles } from 'react-jss';
 import { useSelector } from 'react-redux';
 
 import routes from '../../../../assets/routes';
-import template from '../../../../assets/template';
-import { Theme } from '../../../../assets/theme';
 import useTrans from '../../../../hooks/trans.hook';
 import { IOfferStatic, IState } from '../../../../interfaces';
+import template from '../../../../theming/template';
+import { Theme } from '../../../../theming/theme';
 import OffersList from '../../../common/offers/offers-list';
 import SectionTitle from '../../../common/section-title';
 

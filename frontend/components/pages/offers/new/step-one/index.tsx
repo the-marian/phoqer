@@ -11,7 +11,7 @@ import { Dispatch } from 'redux';
 import * as helpers from '../../../../../assets/helpers';
 import { findParentCategory, numberValidation } from '../../../../../assets/helpers';
 import routes from '../../../../../assets/routes';
-import { Theme } from '../../../../../assets/theme';
+import { Theme } from '../../../../../theming/theme';
 import useTrans from '../../../../../hooks/trans.hook';
 import { ICategories, IDropList, IDropValue, INewOffer, IRegion, IState } from '../../../../../interfaces';
 import types from '../../../../../redux/types';

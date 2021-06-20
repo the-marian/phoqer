@@ -10,12 +10,12 @@ import { useSelector } from 'react-redux';
 import { CSSTransition } from 'react-transition-group';
 
 import routes from '../../../../../assets/routes';
-import template from '../../../../../assets/template';
-import { Theme } from '../../../../../assets/theme';
 import useConfig from '../../../../../hooks/config.hook';
 import useTrans from '../../../../../hooks/trans.hook';
 import { ISearch, IState } from '../../../../../interfaces';
 import initState from '../../../../../redux/state';
+import template from '../../../../../theming/template';
+import { Theme } from '../../../../../theming/theme';
 import Checkboxes from '../../../../common/checkbox/checkboxes';
 import Period from '../period';
 import PriceFilter from '../price';

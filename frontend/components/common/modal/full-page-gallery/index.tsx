@@ -3,8 +3,8 @@ import React, { ReactElement, useEffect, useRef } from 'react';
 import { createUseStyles } from 'react-jss';
 import Slider from 'react-slick';
 
-import template from '../../../../assets/template';
-import { Theme } from '../../../../assets/theme';
+import template from '../../../../theming/template';
+import { Theme } from '../../../../theming/theme';
 import FullPageModal from '../full-page-modal';
 
 const useStyles = createUseStyles((theme: Theme) => ({

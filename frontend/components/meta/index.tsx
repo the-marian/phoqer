@@ -3,8 +3,8 @@ import { useRouter } from 'next/router';
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
-import config from '../../../assets/config';
-import useTrans from '../../../hooks/trans.hook';
+import config from '../../assets/config';
+import useTrans from '../../hooks/trans.hook';
 
 const useStyles = createUseStyles({
     title: {
@@ -29,7 +29,7 @@ const Meta = ({ title, description, keywords, icon, h1 = '' }: IProps): ReactEle
     const trans = useTrans();
     const history = useRouter();
 
-    const url = (lang = 'pl'): string => config.host(lang);
+    const url = (lang = 'en'): string => config.host(lang);
 
     return (
         <>
@@ -66,7 +66,7 @@ const Meta = ({ title, description, keywords, icon, h1 = '' }: IProps): ReactEle
 
                 <meta name="theme-color" content="#32603F" />
                 <link href="/manifest.json" rel="manifest" />
-                <link href={icon || `${url()}/icons/icon-512.png`} rel="icon" type="image/png" />
+                <link href={icon || `${url()}/icons/mask-icon.png`} rel="icon" type="image/png" />
                 <link href="/icons/icon-72.png" rel="icon" type="image/png" sizes="16x16" />
                 <link href="/icons/icon-72.png" rel="icon" type="image/png" sizes="32x32" />
                 <link href="/icons/icon-72.png" rel="icon" type="image/png" sizes="72x72" />
@@ -93,7 +93,7 @@ const Meta = ({ title, description, keywords, icon, h1 = '' }: IProps): ReactEle
                 <link rel="mask-icon" href="/icons/mask-icon.png" color="#32603F" />
                 <link rel="canonical" href={url(history.locale)} />
                 <link rel="alternate" hrefLang="x-default" href={url()} />
-                <link rel="alternate" hrefLang="en" href={url('en')} />
+                <link rel="alternate" hrefLang="en" href={url('pl')} />
                 <link rel="alternate" hrefLang="ru" href={url('ru')} />
                 <link rel="alternate" hrefLang="ua" href={url('ua')} />
 

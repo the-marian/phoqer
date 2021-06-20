@@ -5,10 +5,10 @@ import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 import { useSelector } from 'react-redux';
 
-import template from '../../../assets/template';
-import { Theme } from '../../../assets/theme';
 import useTrans from '../../../hooks/trans.hook';
 import { IRegion, IState } from '../../../interfaces';
+import template from '../../../theming/template';
+import { Theme } from '../../../theming/theme';
 import { modal } from '../modal';
 import CityModal from './city-modal';
 import CountryModal from './country-modal';

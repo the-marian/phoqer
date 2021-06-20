@@ -2,8 +2,8 @@ import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 import { useSelector } from 'react-redux';
 
-import { Theme } from '../../../../assets/theme';
 import { IPublicProfile, IState } from '../../../../interfaces';
+import { Theme } from '../../../../theming/theme';
 import ProfileCard from '../../../common/profile-card';
 import Price from '../price';
 

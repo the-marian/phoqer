@@ -4,10 +4,10 @@ import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
 import routes from '../../../assets/routes';
-import { Theme } from '../../../assets/theme';
+import { Theme } from '../../../theming/theme';
 import useAuth from '../../../hooks/auth.hook';
 import useTrans from '../../../hooks/trans.hook';
-import Meta from '../../layout/meta';
+import Meta from '../../meta';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     img: {

@@ -10,7 +10,7 @@ import TextareaAutosize from 'react-textarea-autosize';
 
 import { numberValidation } from '../../../../../assets/helpers';
 import routes from '../../../../../assets/routes';
-import { Theme } from '../../../../../assets/theme';
+import { Theme } from '../../../../../theming/theme';
 import useTrans from '../../../../../hooks/trans.hook';
 import { INewOffer, IState } from '../../../../../interfaces';
 import types from '../../../../../redux/types';

@@ -2,7 +2,7 @@ import clsx from 'clsx';
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
-import { Theme } from '../../../../assets/theme';
+import { Theme } from '../../../../theming/theme';
 import ButtonClose from '../../button-close';
 import { modal } from '../index';
 

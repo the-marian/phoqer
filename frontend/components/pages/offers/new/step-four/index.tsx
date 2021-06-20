@@ -5,11 +5,11 @@ import { createUseStyles } from 'react-jss';
 import { useDispatch, useSelector } from 'react-redux';
 
 import routes from '../../../../../assets/routes';
-import template from '../../../../../assets/template';
-import { Theme } from '../../../../../assets/theme';
 import useTrans from '../../../../../hooks/trans.hook';
 import { IOfferCard, IPublicProfile, IState } from '../../../../../interfaces';
 import types from '../../../../../redux/types';
+import template from '../../../../../theming/template';
+import { Theme } from '../../../../../theming/theme';
 import Button from '../../../../common/button';
 import OffersLoader from '../../../../common/loaders/skeletons/offers';
 import RectSkeleton from '../../../../common/loaders/skeletons/rect';

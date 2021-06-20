@@ -5,7 +5,7 @@ import { createUseStyles } from 'react-jss';
 import { useDispatch } from 'react-redux';
 
 import routes from '../../../../assets/routes';
-import { Theme } from '../../../../assets/theme';
+import { Theme } from '../../../../theming/theme';
 import useTrans from '../../../../hooks/trans.hook';
 import { IComment } from '../../../../interfaces';
 import types from '../../../../redux/types';

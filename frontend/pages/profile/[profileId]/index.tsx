@@ -3,20 +3,20 @@ import { createUseStyles } from 'react-jss';
 import { useDispatch, useSelector } from 'react-redux';
 import { END } from 'redux-saga';
 
-import { Theme } from '../../../assets/theme';
 import ErrorComponent from '../../../components/common/error';
 import Pagination from '../../../components/common/load-more/pagination';
 import OffersList from '../../../components/common/offers/offers-list';
 import ProfileCard from '../../../components/common/profile-card';
 import SectionTitle from '../../../components/common/section-title';
 import Container from '../../../components/layout/container';
-import Meta from '../../../components/layout/meta';
 import PageLayout from '../../../components/layout/page-layout';
+import Meta from '../../../components/meta';
 import ProfileInfo from '../../../components/pages/profile/profile-info';
 import useTrans from '../../../hooks/trans.hook';
 import { IOfferDynamic, IPublicProfile, IState, IStore } from '../../../interfaces';
 import { wrapper } from '../../../redux/store';
 import types from '../../../redux/types';
+import { Theme } from '../../../theming/theme';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     wrp: {
@@ -64,14 +64,14 @@ const PublicProfilePage = (): ReactElement => {
 
     const handleClick = (page: number): void => {
         window.scrollTo({ top: (document?.getElementById('offers-list')?.offsetTop || 0) - 50, behavior: 'smooth' });
-        dispatch({ type: types.MY_OFFERS_START, payload: { tab: 'active', params: { page } } });
+        dispatch({ type: types.PUBLIC_OFFERS_START, payload: profile?.id, params: { page } });
     };
     const handleMore = (page: number): void => {
         const top =
             (document?.getElementById('offers-list')?.offsetTop || 0) +
             (document?.getElementById('offers-list')?.offsetHeight || 0) -
             500;
-        dispatch({ type: types.MY_OFFERS_PAGINATION_START, payload: { tab: 'active', params: { page } } });
+        dispatch({ type: types.PUBLIC_OFFERS_PAGINATION_START, payload: profile?.id, params: { page } });
         window.scrollTo({ top, behavior: 'smooth' });
     };
 
@@ -113,8 +113,12 @@ const PublicProfilePage = (): ReactElement => {
 };
 
 export const getServerSideProps = wrapper.getServerSideProps(async (ctx): Promise<void> => {
-    ctx.store.dispatch({ type: types.GET_PUBLIC_PROFILE_START, payload: +(ctx.query?.profileId || 0) });
-    ctx.store.dispatch({ type: types.MY_OFFERS_START, payload: { tab: 'active', params: { page: ctx.query?.page || '1' } } });
+    ctx.store.dispatch({ type: types.GET_PUBLIC_PROFILE_START, payload: ctx.query?.profileId || '' });
+    ctx.store.dispatch({
+        type: types.PUBLIC_OFFERS_START,
+        payload: ctx.query?.profileId || '',
+        params: { page: ctx.query?.page || '1' },
+    });
     ctx.store.dispatch(END);
     await (ctx.store as IStore).sagaTask?.toPromise();
 });

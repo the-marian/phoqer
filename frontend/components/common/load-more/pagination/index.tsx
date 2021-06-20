@@ -7,11 +7,11 @@ import React, { ReactElement, useEffect, useState } from 'react';
 import { createUseStyles } from 'react-jss';
 import ReactPaginate from 'react-paginate';
 
-import template from '../../../../assets/template';
-import { Theme } from '../../../../assets/theme';
 import useMedia from '../../../../hooks/media.hook';
 import useShallowRouter from '../../../../hooks/routing.hook';
 import useTrans from '../../../../hooks/trans.hook';
+import template from '../../../../theming/template';
+import { Theme } from '../../../../theming/theme';
 import Button from '../../button';
 
 const useStyles = createUseStyles((theme: Theme) => ({

@@ -15,6 +15,13 @@ export default interface IAction {
         | typeof types.MY_OFFERS_SUCCESS
         | typeof types.MY_OFFERS_PAGINATION_START
         | typeof types.MY_OFFERS_PAGINATION_ERROR
-        | typeof types.MY_OFFERS_PAGINATION_SUCCESS;
+        | typeof types.MY_OFFERS_PAGINATION_SUCCESS
+        | typeof types.PUBLIC_OFFERS_START
+        | typeof types.PUBLIC_OFFERS_ERROR
+        | typeof types.PUBLIC_OFFERS_SUCCESS
+        | typeof types.PUBLIC_OFFERS_PAGINATION_START
+        | typeof types.PUBLIC_OFFERS_PAGINATION_ERROR
+        | typeof types.PUBLIC_OFFERS_PAGINATION_SUCCESS;
     payload: IOfferCard[] | IState | IParams | IOfferPagination | string | null;
+    params?: Params;
 }

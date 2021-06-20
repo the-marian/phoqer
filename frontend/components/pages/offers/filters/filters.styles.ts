@@ -1,6 +1,6 @@
 import { createUseStyles } from 'react-jss';
 
-import { Theme } from '../../../../assets/theme';
+import { Theme } from '../../../../theming/theme';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     root: {

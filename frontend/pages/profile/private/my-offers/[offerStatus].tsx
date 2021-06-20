@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { findCategory, serverRedirect } from '../../../../assets/helpers';
 import routes from '../../../../assets/routes';
-import { Theme } from '../../../../assets/theme';
+import { Theme } from '../../../../theming/theme';
 import Breadcrumbs from '../../../../components/common/breadcrumbs';
 import DropDown from '../../../../components/common/drop-down';
 import Pagination from '../../../../components/common/load-more/pagination';
@@ -14,8 +14,8 @@ import ProfileNav from '../../../../components/common/navigation/profile-nav/roo
 import OffersList from '../../../../components/common/offers/offers-list';
 import AuthRedirect from '../../../../components/context/auth/auth-redirect';
 import Container from '../../../../components/layout/container';
-import Meta from '../../../../components/layout/meta';
 import PageLayout from '../../../../components/layout/page-layout';
+import Meta from '../../../../components/meta';
 import MobileBackBtn from '../../../../components/pages/profile/private/mobile-back-btn';
 import useMedia from '../../../../hooks/media.hook';
 import useTrans from '../../../../hooks/trans.hook';

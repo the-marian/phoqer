@@ -11,6 +11,7 @@ const my_offers = (state: IOfferDynamic = initState.offers.my_offers, { type, pa
             return (payload as IState).offers.my_offers;
 
         case types.MY_OFFERS_PAGINATION_SUCCESS:
+        case types.PUBLIC_OFFERS_PAGINATION_SUCCESS:
             return {
                 data: { ...state.data, data: [...state.data.data, ...(payload as IOfferPagination).data] },
                 loading: false,
@@ -25,15 +26,20 @@ const my_offers = (state: IOfferDynamic = initState.offers.my_offers, { type, pa
             };
 
         case types.MY_OFFERS_SUCCESS:
+        case types.PUBLIC_OFFERS_SUCCESS:
             return { data: payload as IOfferPagination, loading: false, pagination: false };
 
         case types.MY_OFFERS_START:
+        case types.PUBLIC_OFFERS_START:
             return { ...state, loading: true };
         case types.MY_OFFERS_PAGINATION_START:
+        case types.PUBLIC_OFFERS_PAGINATION_START:
             return { ...state, pagination: true };
 
         case types.MY_OFFERS_ERROR:
+        case types.PUBLIC_OFFERS_ERROR:
         case types.MY_OFFERS_PAGINATION_ERROR:
+        case types.PUBLIC_OFFERS_PAGINATION_ERROR:
             return { ...state, loading: false, pagination: false };
 
         default:

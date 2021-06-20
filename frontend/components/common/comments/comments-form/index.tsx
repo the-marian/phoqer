@@ -10,12 +10,12 @@ import { createUseStyles } from 'react-jss';
 import TextareaAutosize from 'react-textarea-autosize';
 
 import config from '../../../../assets/config';
-import template from '../../../../assets/template';
-import { Theme } from '../../../../assets/theme';
 import useMedia from '../../../../hooks/media.hook';
 import useTheme from '../../../../hooks/theme.hook';
 import useTrans from '../../../../hooks/trans.hook';
 import useUppy from '../../../../hooks/uppy.hook';
+import template from '../../../../theming/template';
+import { Theme } from '../../../../theming/theme';
 import notificationsModal from '../../modal/notifications-modal';
 import Tooltip from '../../tooltip';
 

@@ -3,8 +3,8 @@ module.exports = {
     generateRobotsTxt: true,
     alternateRefs: [
         {
-            href: 'http://phoqer.com/en',
-            hreflang: 'en',
+            href: 'http://phoqer.com/pl',
+            hreflang: 'pl',
         },
         {
             href: 'http://phoqer.com/ru',

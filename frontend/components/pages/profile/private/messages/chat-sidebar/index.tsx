@@ -2,10 +2,10 @@ import { useRouter } from 'next/router';
 import React, { Fragment, ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
-import template from '../../../../../../assets/template';
-import { Theme } from '../../../../../../assets/theme';
 import useMedia from '../../../../../../hooks/media.hook';
 import { IChats } from '../../../../../../interfaces';
+import template from '../../../../../../theming/template';
+import { Theme } from '../../../../../../theming/theme';
 import Gift from '../../../../../common/gift';
 import ChatEmpty from '../chat-empty';
 import ChatSidebarItem from './chat-sidebar-item';

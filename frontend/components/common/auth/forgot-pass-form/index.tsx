@@ -6,9 +6,9 @@ import { createUseStyles } from 'react-jss';
 
 import { mailRegex } from '../../../../assets/helpers';
 import routes from '../../../../assets/routes';
-import template from '../../../../assets/template';
-import { Theme } from '../../../../assets/theme';
 import useTrans from '../../../../hooks/trans.hook';
+import template from '../../../../theming/template';
+import { Theme } from '../../../../theming/theme';
 import Button from '../../button';
 import Input from '../../input';
 

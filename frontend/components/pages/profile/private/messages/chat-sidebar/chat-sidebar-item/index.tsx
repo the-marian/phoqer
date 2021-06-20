@@ -5,9 +5,9 @@ import { createUseStyles } from 'react-jss';
 
 import { cutString } from '../../../../../../../assets/helpers';
 import routes from '../../../../../../../assets/routes';
-import template from '../../../../../../../assets/template';
-import { Theme } from '../../../../../../../assets/theme';
 import { IChats } from '../../../../../../../interfaces';
+import template from '../../../../../../../theming/template';
+import { Theme } from '../../../../../../../theming/theme';
 import NotifNumber from '../../../../../../common/notif-number';
 import UserAvatar from '../../../../../../common/user-avatar';
 import OnlineIndicator from '../../../../../../common/user-avatar/online-indicator';

@@ -3,7 +3,7 @@ import { createUseStyles } from 'react-jss';
 import { useSelector } from 'react-redux';
 
 import { declOfNum, moneyFormat } from '../../../../assets/helpers';
-import { Theme } from '../../../../assets/theme';
+import { Theme } from '../../../../theming/theme';
 import useTrans from '../../../../hooks/trans.hook';
 import { IOfferCard, IState } from '../../../../interfaces';
 

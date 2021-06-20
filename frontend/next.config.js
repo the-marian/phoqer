@@ -38,7 +38,7 @@ module.exports = {
     },
     i18n: {
         locales: ['en', 'pl', 'ru', 'ua'],
-        defaultLocale: 'pl',
+        defaultLocale: 'en',
     },
     images: {
         domains: ['phoqer.com'],

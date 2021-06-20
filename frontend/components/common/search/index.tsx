@@ -9,12 +9,12 @@ import { createUseStyles } from 'react-jss';
 import { useDispatch, useSelector } from 'react-redux';
 
 import routes from '../../../assets/routes';
-import template from '../../../assets/template';
-import { Theme } from '../../../assets/theme';
 import useMedia from '../../../hooks/media.hook';
 import useTrans from '../../../hooks/trans.hook';
 import { IDropValue, ISearch, IState } from '../../../interfaces';
 import types from '../../../redux/types';
+import template from '../../../theming/template';
+import { Theme } from '../../../theming/theme';
 import Container from '../../layout/container';
 import Button from '../button';
 import LinkArrow from '../link-arrow';

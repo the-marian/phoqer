@@ -5,10 +5,10 @@ import { useDispatch } from 'react-redux';
 
 import { serverRedirect } from '../../../../assets/helpers';
 import routes from '../../../../assets/routes';
-import { Theme } from '../../../../assets/theme';
+import { Theme } from '../../../../theming/theme';
 import ProfileChatNav from '../../../../components/common/navigation/profile-nav/chat-nav';
 import AuthRedirect from '../../../../components/context/auth/auth-redirect';
-import Meta from '../../../../components/layout/meta';
+import Meta from '../../../../components/meta';
 import ChatBackBtn from '../../../../components/pages/profile/private/messages/chat-back-btn';
 import ChatWrp from '../../../../components/pages/profile/private/messages/wrappers/chat-wrp';
 import useMedia from '../../../../hooks/media.hook';

@@ -4,8 +4,8 @@ import routes from '../../../assets/routes';
 import Breadcrumbs from '../../../components/common/breadcrumbs';
 import Construction from '../../../components/common/construction';
 import Container from '../../../components/layout/container';
-import Meta from '../../../components/layout/meta';
 import PageLayout from '../../../components/layout/page-layout';
+import Meta from '../../../components/meta';
 
 const Rules = (): ReactElement => {
     return (

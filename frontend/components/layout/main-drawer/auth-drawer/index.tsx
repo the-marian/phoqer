@@ -9,10 +9,10 @@ import { createUseStyles } from 'react-jss';
 import { useSelector } from 'react-redux';
 
 import routes from '../../../../assets/routes';
-import template from '../../../../assets/template';
-import { Theme } from '../../../../assets/theme';
 import useAuth from '../../../../hooks/auth.hook';
 import { IPublicProfile, IState } from '../../../../interfaces';
+import template from '../../../../theming/template';
+import { Theme } from '../../../../theming/theme';
 import LoginForm from '../../../common/auth/login-form';
 import Gift from '../../../common/gift';
 import { modal } from '../../../common/modal';

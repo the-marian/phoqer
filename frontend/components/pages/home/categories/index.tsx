@@ -4,10 +4,10 @@ import { createUseStyles } from 'react-jss';
 import { useSelector } from 'react-redux';
 
 import routes from '../../../../assets/routes';
-import template from '../../../../assets/template';
-import { Theme } from '../../../../assets/theme';
 import useTrans from '../../../../hooks/trans.hook';
 import { ICategories, IState } from '../../../../interfaces';
+import template from '../../../../theming/template';
+import { Theme } from '../../../../theming/theme';
 import SectionTitle from '../../../common/section-title';
 
 const useStyles = createUseStyles((theme: Theme) => ({

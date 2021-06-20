@@ -1,9 +1,9 @@
 import React, { CSSProperties, ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
-import template from '../../../assets/template';
-import { Theme } from '../../../assets/theme';
 import useTrans from '../../../hooks/trans.hook';
+import template from '../../../theming/template';
+import { Theme } from '../../../theming/theme';
 import Advertising from '../advertising';
 import ConfettiWrp from '../confetti';
 import { modal } from '../modal';

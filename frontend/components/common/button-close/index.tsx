@@ -2,8 +2,8 @@ import clsx from 'clsx';
 import React, { MouseEvent, ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
-import template from '../../../assets/template';
-import { Theme } from '../../../assets/theme';
+import template from '../../../theming/template';
+import { Theme } from '../../../theming/theme';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     btn: {

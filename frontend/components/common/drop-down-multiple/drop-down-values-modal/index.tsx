@@ -1,10 +1,10 @@
 import React, { ReactElement, useEffect, useState } from 'react';
 import { createUseStyles } from 'react-jss';
 
-import template from '../../../../assets/template';
-import { Theme } from '../../../../assets/theme';
 import useTrans from '../../../../hooks/trans.hook';
 import { ICheckboxes } from '../../../../interfaces';
+import template from '../../../../theming/template';
+import { Theme } from '../../../../theming/theme';
 import Checkboxes from '../../checkbox/checkboxes';
 import { modal } from '../../modal';
 import SmallModalWrp from '../../modal/small-modal-wrp';

@@ -2,9 +2,9 @@ import clsx from 'clsx';
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
-import template from '../../../assets/template';
-import { Theme } from '../../../assets/theme';
 import { ICheckboxes } from '../../../interfaces';
+import template from '../../../theming/template';
+import { Theme } from '../../../theming/theme';
 import { modal } from '../modal';
 import DropDownValuesModal from './drop-down-values-modal';
 

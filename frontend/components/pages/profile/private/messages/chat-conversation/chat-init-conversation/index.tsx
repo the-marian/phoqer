@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { cutString } from '../../../../../../../assets/helpers';
 import routes from '../../../../../../../assets/routes';
-import { Theme } from '../../../../../../../assets/theme';
+import { Theme } from '../../../../../../../theming/theme';
 import useTrans from '../../../../../../../hooks/trans.hook';
 import { IOfferCard, IState } from '../../../../../../../interfaces';
 import types from '../../../../../../../redux/types';

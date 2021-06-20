@@ -2,7 +2,7 @@ import React, { ReactElement, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import { createUseStyles } from 'react-jss';
 
-import { Theme } from '../../../../../assets/theme';
+import { Theme } from '../../../../../theming/theme';
 import UserNavDropdown from '../../../../common/navigation/user-dropdown-nav';
 
 const useStyles = createUseStyles((theme: Theme) => ({

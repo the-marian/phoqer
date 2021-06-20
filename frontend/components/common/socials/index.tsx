@@ -2,7 +2,7 @@ import clsx from 'clsx';
 import React, { CSSProperties, ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
-import { Theme } from '../../../assets/theme';
+import { Theme } from '../../../theming/theme';
 import useTrans from '../../../hooks/trans.hook';
 
 const useStyles = createUseStyles((theme: Theme) => ({

@@ -3,7 +3,7 @@ import React, { ReactElement, useEffect, useState } from 'react';
 import { createUseStyles } from 'react-jss';
 import Slider from 'react-slick';
 
-import { Theme } from '../../../../assets/theme';
+import { Theme } from '../../../../theming/theme';
 import { modal } from '../../../common/modal';
 import FullPageGallery from '../../../common/modal/full-page-gallery';
 

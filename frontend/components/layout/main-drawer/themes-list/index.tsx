@@ -2,12 +2,12 @@ import clsx from 'clsx';
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
-import palette from '../../../../assets/palette';
-import template from '../../../../assets/template';
-import { Theme } from '../../../../assets/theme';
 import useTheme from '../../../../hooks/theme.hook';
 import useTrans from '../../../../hooks/trans.hook';
 import { Themes } from '../../../../interfaces';
+import palette from '../../../../theming/palette';
+import template from '../../../../theming/template';
+import { Theme } from '../../../../theming/theme';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     box: {

@@ -6,12 +6,10 @@ import { useDispatch } from 'react-redux';
 
 import { serverRedirect } from '../../../../../assets/helpers';
 import routes from '../../../../../assets/routes';
-import template from '../../../../../assets/template';
-import { Theme } from '../../../../../assets/theme';
 import Button from '../../../../../components/common/button';
 import ProfileChatNav from '../../../../../components/common/navigation/profile-nav/chat-nav';
 import AuthRedirect from '../../../../../components/context/auth/auth-redirect';
-import Meta from '../../../../../components/layout/meta';
+import Meta from '../../../../../components/meta';
 import ChatBackBtn from '../../../../../components/pages/profile/private/messages/chat-back-btn';
 import Conversation from '../../../../../components/pages/profile/private/messages/chat-conversation';
 import NewChatWrp from '../../../../../components/pages/profile/private/messages/wrappers/new-chat-wrp';
@@ -19,6 +17,8 @@ import useMedia from '../../../../../hooks/media.hook';
 import useTrans from '../../../../../hooks/trans.hook';
 import { wrapper } from '../../../../../redux/store';
 import types from '../../../../../redux/types';
+import template from '../../../../../theming/template';
+import { Theme } from '../../../../../theming/theme';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     main: {

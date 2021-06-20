@@ -7,7 +7,7 @@ import { useDispatch } from 'react-redux';
 
 import config from '../../../../../assets/config';
 import routes from '../../../../../assets/routes';
-import { Theme } from '../../../../../assets/theme';
+import { Theme } from '../../../../../theming/theme';
 import useMedia from '../../../../../hooks/media.hook';
 import useTheme from '../../../../../hooks/theme.hook';
 import useTrans from '../../../../../hooks/trans.hook';

@@ -8,11 +8,11 @@ import React, { MouseEvent, ReactElement, useEffect, useState } from 'react';
 import { createUseStyles } from 'react-jss';
 import { CSSTransition } from 'react-transition-group';
 
-import template from '../../../assets/template';
-import { Theme } from '../../../assets/theme';
 import useMedia from '../../../hooks/media.hook';
 import useTrans from '../../../hooks/trans.hook';
 import { IDropList, IDropValue } from '../../../interfaces';
+import template from '../../../theming/template';
+import { Theme } from '../../../theming/theme';
 import { modal } from '../modal';
 import SmallModalWrp from '../modal/small-modal-wrp';
 import ValuesList from './values-list';

@@ -6,9 +6,9 @@ import { ReactNotificationOptions, store } from 'react-notifications-component';
 import { v4 as uuid } from 'uuid';
 
 import { formatTimestamp } from '../../../assets/helpers';
-import template from '../../../assets/template';
-import { Theme } from '../../../assets/theme';
 import useTrans from '../../../hooks/trans.hook';
+import template from '../../../theming/template';
+import { Theme } from '../../../theming/theme';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     title: {

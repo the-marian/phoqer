@@ -2,9 +2,9 @@ import React, { ChangeEvent, ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 import TextareaAutosize from 'react-textarea-autosize';
 
-import template from '../../../../../../../assets/template';
-import { Theme } from '../../../../../../../assets/theme';
 import useTrans from '../../../../../../../hooks/trans.hook';
+import template from '../../../../../../../theming/template';
+import { Theme } from '../../../../../../../theming/theme';
 import Button from '../../../../../../common/button';
 
 const useStyles = createUseStyles((theme: Theme) => ({

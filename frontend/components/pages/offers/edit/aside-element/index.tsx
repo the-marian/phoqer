@@ -2,7 +2,7 @@ import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 import { useSelector } from 'react-redux';
 
-import { Theme } from '../../../../../assets/theme';
+import { Theme } from '../../../../../theming/theme';
 import { IPublicProfile, IState } from '../../../../../interfaces';
 import Gift from '../../../../common/gift';
 import ProfileCard from '../../../../common/profile-card';

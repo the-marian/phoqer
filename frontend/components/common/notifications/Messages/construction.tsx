@@ -2,9 +2,9 @@ import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 import { store } from 'react-notifications-component';
 
-import template from '../../../../assets/template';
-import { Theme } from '../../../../assets/theme';
 import useConfig from '../../../../hooks/config.hook';
+import template from '../../../../theming/template';
+import { Theme } from '../../../../theming/theme';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     text: {

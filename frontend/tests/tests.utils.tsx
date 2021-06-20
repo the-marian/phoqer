@@ -2,7 +2,7 @@ import { render, RenderOptions, RenderResult } from '@testing-library/react';
 import React, { ReactElement } from 'react';
 import { ThemeProvider } from 'react-jss';
 
-import { theme } from '../assets/theme';
+import { theme } from '../theming/theme';
 import useTheme from '../hooks/theme.hook';
 import { IAuth, IConfig, Themes } from '../interfaces';
 import { wrapper } from '../redux/store';

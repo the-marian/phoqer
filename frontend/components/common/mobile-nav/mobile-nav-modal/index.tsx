@@ -4,9 +4,9 @@ import { createUseStyles } from 'react-jss';
 import { useSelector } from 'react-redux';
 
 import config from '../../../../assets/config';
-import template from '../../../../assets/template';
-import { Theme } from '../../../../assets/theme';
 import { IPublicProfile, IState, ITabs } from '../../../../interfaces';
+import template from '../../../../theming/template';
+import { Theme } from '../../../../theming/theme';
 import SmallModalWrp from '../../modal/small-modal-wrp';
 import NavTabs from '../../navigation';
 

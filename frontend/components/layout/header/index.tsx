@@ -3,7 +3,7 @@ import React, { ReactElement, useEffect, useRef, useState } from 'react';
 import { createUseStyles } from 'react-jss';
 
 import { throttle } from '../../../assets/helpers';
-import { Theme } from '../../../assets/theme';
+import { Theme } from '../../../theming/theme';
 import useAuth from '../../../hooks/auth.hook';
 import Logo from '../../common/logo';
 import SiteMenu from '../../common/site-menu';

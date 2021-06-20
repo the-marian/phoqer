@@ -3,7 +3,7 @@ import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { Theme } from '../../../assets/theme';
+import { Theme } from '../../../theming/theme';
 import useAuth from '../../../hooks/auth.hook';
 import useTrans from '../../../hooks/trans.hook';
 import { IState } from '../../../interfaces';

@@ -6,7 +6,7 @@ import { createUseStyles } from 'react-jss';
 import { useSelector } from 'react-redux';
 
 import routes from '../../../../../../assets/routes';
-import { Theme } from '../../../../../../assets/theme';
+import { Theme } from '../../../../../../theming/theme';
 import useTrans from '../../../../../../hooks/trans.hook';
 import { IPublicProfile, IState } from '../../../../../../interfaces';
 import Banner from '../../../../../common/banner';
