@@ -114,6 +114,7 @@ class PublicOffersListItem(BaseModel):
     id: UUID
     is_deliverable: Optional[bool] = None
     is_promoted: bool = False
+    is_favorite: bool = False
     price: Optional[int] = None
     pub_date: Optional[date] = None
     rental_period: RentalPeriod = RentalPeriod.DAY

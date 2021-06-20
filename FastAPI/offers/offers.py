@@ -106,6 +106,7 @@ async def get_offers_for_tab(
 @router.get("/public/{user_id}", response_model=PublicOffersListResponse)
 async def get_public_profile_offers(
     user_id: int,
+    auth_user_id: Optional[int] = Depends(get_current_user_or_none),
     page: int = 1,
 ) -> Dict:
     offset = (page - 1) * PAGE_SIZE
@@ -117,10 +118,18 @@ async def get_public_profile_offers(
         limit=limit,
         offset=offset,
     )
+    founded_offer_ids = [offer["id"] for offer in offers]
+    user_favorite_offers = set()
+    if auth_user_id:
+        user_favorite_offers = await crud.get_user_favorite_popular_offers(
+            user_id=auth_user_id,
+            popular_offer_ids=founded_offer_ids,
+        )
     return {
         "data": [
             PublicOffersListItem(
                 **offer,
+                is_favorite=offer["id"] in user_favorite_offers,
                 is_promoted=date.today()
                 < (offer.get("promote_til_date") or date.today()),
             )

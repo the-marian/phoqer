@@ -10,6 +10,7 @@ import { Theme } from '../../../../theming/theme';
 import LikeDislike from '../../../common/like-dislike';
 import { modal } from '../../../common/modal';
 import MidModalWrp from '../../../common/modal/mid-modal-wrp';
+import Tooltip from '../../../common/tooltip';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     info: {
@@ -131,7 +132,9 @@ const ProfileInfo = (): ReactElement => {
                 </div>
             </div>
 
-            <LikeDislike like={profile?.likes || 0} dislike={profile?.dislikes || 0} active="like" onClick={console.log} />
+            <Tooltip content="Оценка автора ставиться ">
+                <LikeDislike like={profile?.likes || 0} dislike={profile?.dislikes || 0} active="like" onClick={console.log} />
+            </Tooltip>
 
             <div className={css.bio}>
                 <h5 className={css.title}>{trans('about_author')}</h5>

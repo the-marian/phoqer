@@ -59,6 +59,7 @@ const PublicProfilePage = (): ReactElement => {
     const trans = useTrans();
     const dispatch = useDispatch();
 
+    const user = useSelector<IState, IPublicProfile | null>(state => state.user);
     const profile = useSelector<IState, IPublicProfile | null>(state => state.profiles.public);
     const { data, loading, pagination } = useSelector<IState, IOfferDynamic>(state => state.offers.my_offers);
 
@@ -100,7 +101,12 @@ const PublicProfilePage = (): ReactElement => {
                         </div>
                         <div id="offers-list" className={css.container}>
                             <SectionTitle>{trans('Активные объявления')}</SectionTitle>
-                            <OffersList loading={pagination} loadMoreLoading={loading} data={data?.data} />
+                            <OffersList
+                                loading={pagination}
+                                loadMoreLoading={loading}
+                                showFavoriteBtn={user?.id !== profile?.id}
+                                data={data?.data}
+                            />
                             <Pagination loading={pagination} total={data.total} onClick={handleClick} onMore={handleMore} />
                         </div>
                     </>

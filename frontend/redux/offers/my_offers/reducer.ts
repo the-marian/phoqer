@@ -1,6 +1,6 @@
 import { HYDRATE } from 'next-redux-wrapper';
 
-import { IOfferDynamic, IOfferPagination, IState } from '../../../interfaces';
+import { IOfferCard, IOfferDynamic, IOfferPagination, IState } from '../../../interfaces';
 import initState from '../../state';
 import types from '../../types';
 import IAction from './interfaces';
@@ -41,6 +41,20 @@ const my_offers = (state: IOfferDynamic = initState.offers.my_offers, { type, pa
         case types.MY_OFFERS_PAGINATION_ERROR:
         case types.PUBLIC_OFFERS_PAGINATION_ERROR:
             return { ...state, loading: false, pagination: false };
+
+        case types.PATCH_FAVORITE_OFFERS_SUCCESS:
+            return state.data.data.length
+                ? {
+                      data: {
+                          ...state.data,
+                          data: state.data.data.map<IOfferCard>(item =>
+                              item.id === (payload as string) ? { ...item, is_favorite: !item.is_favorite } : item,
+                          ),
+                      },
+                      loading: false,
+                      pagination: false,
+                  }
+                : state;
 
         default:
             return state;
