@@ -92,7 +92,7 @@ const NewOffer = (): ReactElement => {
                 setPage(step);
             }
         }
-    }, [history.query.step]);
+    }, [history, history.query.step, value?.isDone?.one, value?.isDone?.two]);
 
     return (
         <>

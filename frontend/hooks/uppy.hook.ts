@@ -35,7 +35,7 @@ const useUppy = (): Uppy.Uppy<Uppy.StrictTypes> => {
         return () => {
             uppy.close();
         };
-    }, []);
+    }, [auth?.access_token, uppy]);
 
     return uppy;
 };

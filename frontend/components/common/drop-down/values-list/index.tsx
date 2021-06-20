@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import clsx from 'clsx';
-import React, { ReactElement } from 'react';
+import React, { memo, ReactElement } from 'react';
 
 import icons from '../../../../assets/icons-map';
 import useTrans from '../../../../hooks/trans.hook';
@@ -17,7 +17,7 @@ interface ValueItemProps {
     sub?: IDropList[];
 }
 
-const ValueItem = ({ css, withSub, iconImage, sub, slug, name, onSelect, type = 'main' }: ValueItemProps) => {
+const ValueItem = memo(({ css, withSub, iconImage, sub, slug, name, onSelect, type = 'main' }: ValueItemProps) => {
     const trans = useTrans();
 
     const handleClick = (): void => {
@@ -48,7 +48,9 @@ const ValueItem = ({ css, withSub, iconImage, sub, slug, name, onSelect, type = 
             ) : null}
         </li>
     );
-};
+});
+
+ValueItem.displayName = 'ValueItem';
 
 interface ValuesListProps {
     css: { [key: string]: string };
@@ -76,4 +78,4 @@ const ValuesList = ({ data, onSelect, withSub, css }: ValuesListProps): ReactEle
     );
 };
 
-export default ValuesList;
+export default memo(ValuesList);

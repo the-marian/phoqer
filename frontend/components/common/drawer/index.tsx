@@ -98,7 +98,7 @@ const Root = ({ children, open, onToggle }: IProps) => {
             // event
             window.removeEventListener('keydown', close);
         };
-    }, []);
+    }, [onToggle]);
 
     return (
         <div className={css.backdrop} onClick={handleToggle} aria-hidden="true" role="button">

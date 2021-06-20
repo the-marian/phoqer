@@ -69,11 +69,11 @@ const SingleOfferPage = (): ReactElement | null => {
     useEffect(() => {
         if (offer?.country) dispatch({ type: types.SELECT_COUNTRY, payload: offer?.country });
         if (offer?.city) dispatch({ type: types.SELECT_CITY, payload: offer?.city });
-    }, [offer?.city, offer?.country]);
+    }, [offer?.city, offer?.country, dispatch]);
 
     useEffect(() => {
         if (offer?.author_id) dispatch({ type: types.GET_PUBLIC_PROFILE_START, payload: offer.author_id });
-    }, [offer?.author_id]);
+    }, [offer?.author_id, dispatch]);
 
     const handleModal = (): void => {
         modal.open(<PhotosUploadModal />);

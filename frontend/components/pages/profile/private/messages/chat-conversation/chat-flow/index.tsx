@@ -135,12 +135,12 @@ const ChatFlow = ({ children }: IProps): ReactElement => {
     const messages = useSelector<IState, IMessagesList>(state => state.chat.messages);
 
     useEffect(() => {
-        if (ref.current) {
+        if (ref.current && messages.data.data.length) {
             media
                 ? ref.current?.scrollTo({ top: ref.current?.offsetHeight || 0 })
                 : window.scrollTo({ top: ref.current?.offsetHeight || 0 });
         }
-    }, [ref.current, messages.data.data]);
+    }, [media, ref, messages.data.data]);
 
     return (
         <div ref={ref} className={css.root}>

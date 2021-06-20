@@ -39,7 +39,7 @@ const StepThree = (): ReactElement => {
             uppy.off('file-removed', handler);
             uppy.off('file-added', handler);
         };
-    }, []);
+    }, [uppy]);
 
     const handleBack = () => {
         history.push(routes.offers.new(2), undefined, { shallow: true });

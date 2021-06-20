@@ -38,7 +38,7 @@ const OffersIntersection = ({ onSubmit, total, loading }: IProps): ReactElement 
         return () => {
             if (id !== null) clearTimeout(id);
         };
-    }, [inView]);
+    }, [inView, innerLoading, loading, onSubmit, page]);
 
     return total > page ? <OffersLoader amount={media ? 4 : 1} ref={ref} /> : null;
 };

@@ -135,11 +135,11 @@ const StepFour = (): ReactElement => {
             if (offer?.author_id && offer.author_id !== user.id) history.push(routes.root);
             if (!offer?.images || offer.images?.length < 2) history.push(routes.offers.new(5, offerId));
         }
-    }, [offer]);
+    }, [history, offer, offerId, user.id]);
 
     useEffect(() => {
         if (offerId) dispatch({ type: types.GET_SINGLE_OFFER_START, payload: offerId });
-    }, [offerId]);
+    }, [dispatch, offerId]);
 
     const handleClick = (): void => {
         setLoading(true);

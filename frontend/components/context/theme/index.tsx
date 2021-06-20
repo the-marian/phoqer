@@ -19,7 +19,7 @@ const SiteTheme = ({ children, siteTheme = 'blue' }: IProps): ReactElement => {
         if (process.browser && document.querySelector('html')) {
             document.querySelector('html')?.classList?.add(siteTheme);
         }
-    }, []);
+    }, [siteTheme]);
 
     const handleTheme = (value: Themes): void => {
         try {

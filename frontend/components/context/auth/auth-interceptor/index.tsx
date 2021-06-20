@@ -16,7 +16,7 @@ const AuthInterceptor = (): null => {
         } else {
             delete axios.defaults.headers.common.Authorization;
         }
-    }, [token]);
+    }, [dispatch, token]);
 
     return null;
 };

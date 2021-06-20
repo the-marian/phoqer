@@ -2,7 +2,7 @@ import { faTimes } from '@fortawesome/free-solid-svg-icons/faTimes';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useRouter } from 'next/router';
 import queryString from 'query-string';
-import React, { ReactElement } from 'react';
+import React, { ReactElement, useCallback } from 'react';
 import { createUseStyles } from 'react-jss';
 import { useSelector } from 'react-redux';
 
@@ -88,49 +88,52 @@ const ActiveFiltersItem = ({ filter }: IProps): ReactElement => {
     const searchParams = useSelector<IState, ISearch>(state => state.config.searchParams);
     const categories = useSelector<IState, ICategories[]>(state => state.categories);
 
-    const filtersToText = (filter: Filter): string => {
-        switch (filter[0]) {
-            case 'search':
-                return filter[1] as string;
+    const filtersToText = useCallback(
+        (filter: Filter): string => {
+            switch (filter[0]) {
+                case 'search':
+                    return filter[1] as string;
 
-            case 'category': {
-                const category = findCategory(categories, filter[1] as string);
-                return category ? category.slug : '...';
+                case 'category': {
+                    const category = findCategory(categories, filter[1] as string);
+                    return category ? category.slug : '...';
+                }
+
+                case 'sub_category': {
+                    const category = findSubCategory(categories, filter[1] as string);
+                    return category ? category.slug : '...';
+                }
+
+                case 'period':
+                    return PERIOD[filter[1] as string];
+
+                case 'status':
+                    return STATUS[filter[1] as string];
+
+                case 'ordering':
+                    return SORT[filter[1] as string];
+
+                case 'top':
+                    return 'Только ТОП объявления';
+
+                case 'no_deposit':
+                    return 'Без залога';
+
+                case 'is_deliverable':
+                    return 'C доставкой';
+
+                case 'min_price':
+                    return 'минимальная цена: ' + moneyFormat(filter[1]);
+
+                case 'max_price':
+                    return 'максимальная цена: ' + moneyFormat(filter[1]);
+
+                default:
+                    return '';
             }
-
-            case 'sub_category': {
-                const category = findSubCategory(categories, filter[1] as string);
-                return category ? category.slug : '...';
-            }
-
-            case 'period':
-                return PERIOD[filter[1] as string];
-
-            case 'status':
-                return STATUS[filter[1] as string];
-
-            case 'ordering':
-                return SORT[filter[1] as string];
-
-            case 'top':
-                return 'Только ТОП объявления';
-
-            case 'no_deposit':
-                return 'Без залога';
-
-            case 'is_deliverable':
-                return 'C доставкой';
-
-            case 'min_price':
-                return 'минимальная цена: ' + moneyFormat(filter[1]);
-
-            case 'max_price':
-                return 'максимальная цена: ' + moneyFormat(filter[1]);
-
-            default:
-                return '';
-        }
-    };
+        },
+        [categories],
+    );
 
     const handleClick = (): void => {
         history.push(

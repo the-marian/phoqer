@@ -18,7 +18,7 @@ const AuthRedirect = ({ path, reverse = false }: IProps): null => {
         if (reverse ? token : !token) {
             history.replace(path || routes.auth.login);
         }
-    }, [token]);
+    }, [history, path, reverse, token]);
 
     return null;
 };

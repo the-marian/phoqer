@@ -96,7 +96,7 @@ const UserOffers = (): ReactElement => {
             type: types.MY_OFFERS_START,
             payload: { tab: offerStatus, params: { page: String(history.query.page || '1') } },
         });
-    }, [offerStatus]);
+    }, [offerStatus, dispatch, history.query.page]);
 
     const handleTab = (value: IDropValue | null): void => {
         if (!value) return;

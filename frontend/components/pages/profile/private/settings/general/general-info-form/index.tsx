@@ -102,7 +102,7 @@ const GeneralInfoForm = (): ReactElement => {
 
     useEffect(() => {
         if (value.bio === 'loading...' && user) setValue(generateInitVal(user));
-    }, [user]);
+    }, [user, value.bio]);
 
     const handleChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>): void => {
         setError({});

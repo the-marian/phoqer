@@ -94,7 +94,7 @@ const UserInfo = (): ReactElement => {
         return () => {
             Router.events.off('routeChangeComplete', handleClose);
         };
-    }, []);
+    }, [drop]);
 
     const userName = user?.first_name + ' ' + user?.last_name;
 

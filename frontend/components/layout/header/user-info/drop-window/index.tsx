@@ -60,7 +60,7 @@ const DropWindow = ({ onClose }: Props): ReactElement => {
         window.addEventListener('keydown', handleClose);
 
         return () => window.removeEventListener('keydown', handleClose);
-    }, []);
+    }, [onClose]);
 
     return ReactDOM.createPortal(
         <>

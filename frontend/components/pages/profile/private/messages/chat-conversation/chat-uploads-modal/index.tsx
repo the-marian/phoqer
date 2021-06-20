@@ -34,7 +34,7 @@ const ChatUploadsModal = (): ReactElement => {
         return () => {
             uppy.off('complete', handler);
         };
-    }, []);
+    }, [dispatch, uppy]);
 
     return (
         <MidModalWrp>

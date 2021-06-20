@@ -27,8 +27,8 @@ const useStyles = createUseStyles((theme: Theme) => ({
         background: theme.palette.gray[0],
 
         ...theme.media(768).max({
-            padding: theme.rem(8, 0, 2),
-            background: theme.palette.secondary[0],
+            padding: theme.rem(11, 0, 5),
+            background: theme.palette.primary[0],
         }),
     },
     wrp: {
@@ -98,7 +98,6 @@ const useStyles = createUseStyles((theme: Theme) => ({
         }),
 
         ...theme.media(450).max({
-            background: theme.palette.gray[0],
             width: theme.rem(4.5),
         }),
 
@@ -140,7 +139,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
             display: 'flex',
             justifyContent: 'space-between',
             width: '100%',
-            margin: theme.rem(1, 0, 0),
+            margin: theme.rem(2, 0, 0),
         }),
         ...theme.media(550).max({
             flexDirection: 'column',

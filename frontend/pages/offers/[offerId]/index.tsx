@@ -147,7 +147,7 @@ const SingleOfferPage = (): ReactElement | null => {
 
     useEffect(() => {
         if (offer?.author_id) dispatch({ type: types.GET_PUBLIC_PROFILE_START, payload: offer.author_id });
-    }, [offer]);
+    }, [offer, dispatch]);
 
     const desc = offer?.description ? offer.description.replace(/\n/g, '<br>') : '';
     const other = offer?.extra_requirements ? offer.extra_requirements.replace(/\n/g, '<br>') : '';

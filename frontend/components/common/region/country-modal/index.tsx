@@ -70,7 +70,7 @@ const CountryModal = (): ReactElement => {
 
     useEffect(() => {
         dispatch({ type: types.GET_COUNTRIES_START });
-    }, []);
+    }, [dispatch]);
 
     return (
         <SmallModalWrp>

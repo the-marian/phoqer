@@ -52,14 +52,14 @@ const GoogleMap = ({ city }: IProps): ReactElement => {
                 map: map.current,
             });
         };
-        if (ref.current) connect(ref.current).catch(error => console.error(error));
+        if (ref.current && city) connect(ref.current).catch(error => console.error(error));
 
         return () => {
             loader.current = null;
             map.current = null;
             marker.current = null;
         };
-    }, [ref, loader]);
+    }, [ref, loader, city]);
 
     return <div className={css.map} ref={ref} />;
 };

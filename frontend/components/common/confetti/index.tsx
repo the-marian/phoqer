@@ -21,7 +21,7 @@ const ConfettiWrp = (): ReactElement => {
         setTimeout(() => {
             setParty(false);
         }, time);
-    }, []);
+    }, [media]);
 
     return ReactDOM.createPortal(
         <Confetti

@@ -73,7 +73,7 @@ const Header = (): ReactElement => {
         return () => {
             window.removeEventListener('scroll', handleScroll);
         };
-    }, []);
+    }, [delta]);
 
     return (
         <header className={clsx(css.header, delta && css.transform, shadow && css.shadow)}>

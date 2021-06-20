@@ -50,12 +50,15 @@ const MessagesChat = (): ReactElement => {
     const chats = useSelector<IState, IChatsList>(state => state.chat.chats);
 
     useEffect(() => {
-        if (chats.loading) dispatch({ type: types.GET_CHATS_START });
         if (chatId) dispatch({ type: types.GET_MESSAGES_START, payload: +chatId });
     }, [dispatch, chatId]);
 
     useEffect(() => {
-        if (chat) {
+        if (chats.loading) dispatch({ type: types.GET_CHATS_START });
+    }, [dispatch, chats.loading]);
+
+    useEffect(() => {
+        if (chat && !chat.onmessage) {
             chat.onmessage = (message: MessageEvent): void => {
                 try {
                     const payload: IMessages = JSON.parse(message.data);
@@ -65,7 +68,7 @@ const MessagesChat = (): ReactElement => {
                 }
             };
         }
-    }, [chat]);
+    }, [chat, dispatch]);
 
     const handleSubmit = (text: string): void => {
         if (chat) {

@@ -113,7 +113,7 @@ const NewChatWrp = ({ children, showSidebar = false }: IProps): ReactElement => 
         } else {
             if (offer) dispatch({ type: types.GET_PUBLIC_PROFILE_START, payload: offer.author_id });
         }
-    }, [dispatch, offer, user]);
+    }, [dispatch, history, offer, user]);
 
     useEffect(() => {
         if (offer && profile) {

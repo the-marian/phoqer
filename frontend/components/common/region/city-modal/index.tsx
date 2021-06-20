@@ -138,7 +138,7 @@ const CityModal = (): ReactElement => {
 
     useEffect(() => {
         dispatch({ type: types.GET_CITIES_START, payload: region.selected?.country || 'ukraine' });
-    }, []);
+    }, [dispatch, region.selected?.country]);
 
     useEffect(() => {
         if (region?.cities?.length) setCities(region.cities);
