@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 import { useSelector } from 'react-redux';
@@ -36,6 +37,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     gray: {
         filter: 'grayscale(100%)',
         color: theme.palette.gray[3],
+        textDecoration: 'line-through',
     },
     value: {
         whiteSpace: 'nowrap',
@@ -54,7 +56,7 @@ const Requirements = (): ReactElement => {
                     <span>{trans('deposit')}:</span>
                     <span className={css.dots} />
                     <span className={css.value}>
-                        {offer?.deposit_val ? `${moneyFormat(offer?.deposit_val)}.00 ${trans('uah')}` : trans('not_indicated')}
+                        {offer?.deposit_val ? `${moneyFormat(offer?.deposit_val)} ${trans('uah')}` : trans('not_indicated')}
                     </span>
                 </li>
                 <li>
@@ -85,11 +87,11 @@ const Requirements = (): ReactElement => {
                 </li>
             </ul>
             <ul className={css.emoji}>
-                <li className={offer?.is_deliverable ? undefined : css.gray}>
+                <li className={clsx(offer?.is_deliverable && css.gray)}>
                     <img src="/emoji/delivery.png" alt="" />
                     <span>{offer?.is_deliverable ? trans('owner_delivers_good') : trans('owner_not_deliver_goods')}</span>
                 </li>
-                <li className={offer?.doc_needed ? undefined : css.gray}>
+                <li className={clsx(offer?.doc_needed && css.gray)}>
                     <img src="/emoji/documents.png" alt="" />
                     <span>{offer?.doc_needed ? trans('client_provide_documents') : trans('client_dont_provide_documents')}</span>
                 </li>

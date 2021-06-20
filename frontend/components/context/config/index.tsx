@@ -8,7 +8,7 @@ const init: IConfig = {
     warning: true,
     hideSearchFilters: false,
     hideTopSearchQuery: false,
-    hideTopOffers: false,
+    hideTopOffers: true,
 };
 export type IConfigValue = [config: IConfig, setConfig: (value: IConfig) => void];
 export const Config = createContext<IConfigValue>([init, () => undefined]);

@@ -83,8 +83,7 @@ interface IMessageProps {
 const Message = ({ message }: IMessageProps): ReactElement => {
     const css = useStyles();
     const trans = useTrans();
-
-    return <p className={css.text}>{typeof message === 'string' ? trans(message) : message}</p>;
+    return <div className={css.text}>{typeof message === 'string' ? trans(message) : message}</div>;
 };
 
 const defaultOptions: ReactNotificationOptions = {

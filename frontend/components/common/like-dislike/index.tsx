@@ -70,7 +70,7 @@ interface IProps {
     like: number;
     dislike: number;
     active?: 'like' | 'dislike' | null;
-    onClick: (type: 'like' | 'dislike') => void;
+    onClick?: (type: 'like' | 'dislike') => void;
 }
 
 const LikeDislike = ({ like, dislike, active, onClick }: IProps): ReactElement => {
@@ -79,11 +79,11 @@ const LikeDislike = ({ like, dislike, active, onClick }: IProps): ReactElement =
 
     const handleClick = (type: 'like' | 'dislike') => (): void => {
         if (!auth?.access_token) return;
-        onClick(type);
+        if (onClick) onClick(type);
     };
 
     return (
-        <div className={clsx(css.action, !auth?.access_token && css.none)}>
+        <div className={clsx(css.action, (!auth?.access_token || !onClick) && css.none)}>
             <button className={clsx(css.like, active === 'like' && css.active)} type="button" onClick={handleClick('like')}>
                 <FontAwesomeIcon icon={faThumbsUp} />
                 <span>{like}</span>

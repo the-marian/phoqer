@@ -1,6 +1,6 @@
 import { GetServerSideProps } from 'next';
 import React, { ReactElement, useEffect } from 'react';
-import DayPicker from 'react-day-picker';
+// import DayPicker from 'react-day-picker';
 import { createUseStyles } from 'react-jss';
 import { useDispatch, useSelector } from 'react-redux';
 import { END } from 'redux-saga';
@@ -10,6 +10,7 @@ import Breadcrumbs from '../../../components/common/breadcrumbs';
 import Comments from '../../../components/common/comments';
 import ErrorComponent from '../../../components/common/error';
 import Gift from '../../../components/common/gift';
+import GoogleMap from '../../../components/common/google-map';
 import { modal } from '../../../components/common/modal';
 import FullPageModal from '../../../components/common/modal/full-page-modal';
 import Container from '../../../components/layout/container';
@@ -130,6 +131,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
             }),
         },
     },
+    other: {
+        marginBottom: theme.rem(4),
+    },
 }));
 
 const SingleOfferPage = (): ReactElement | null => {
@@ -214,18 +218,20 @@ const SingleOfferPage = (): ReactElement | null => {
                                     {other && (
                                         <>
                                             <h2 className={css.subtitle}>{trans('additionally')}</h2>
-                                            <p dangerouslySetInnerHTML={{ __html: other }} />
+                                            <p className={css.other} dangerouslySetInnerHTML={{ __html: other }} />
                                         </>
                                     )}
 
-                                    <h2 className={css.subtitle}>{trans('availability')}</h2>
-                                    <DayPicker
-                                        className={css.calendar}
-                                        fromMonth={new Date()}
-                                        pagedNavigation
-                                        fixedWeeks
-                                        numberOfMonths={media ? 2 : 1}
-                                    />
+                                    {offer.city && <GoogleMap city={offer.city} />}
+
+                                    {/*<h2 className={css.subtitle}>{trans('availability')}</h2>*/}
+                                    {/*<DayPicker*/}
+                                    {/*    className={css.calendar}*/}
+                                    {/*    fromMonth={new Date()}*/}
+                                    {/*    pagedNavigation*/}
+                                    {/*    fixedWeeks*/}
+                                    {/*    numberOfMonths={media ? 2 : 1}*/}
+                                    {/*/>*/}
 
                                     {auth?.access_token ? <Gift style={{ padding: '8rem 4rem' }} /> : null}
 

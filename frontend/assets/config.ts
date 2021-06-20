@@ -10,6 +10,47 @@ import { faSlidersH } from '@fortawesome/free-solid-svg-icons/faSlidersH';
 import { ITabs, ITabsNum, Themes } from '../interfaces';
 import routes from './routes';
 
+const generateBaseNavLink = (count?: ITabsNum): ITabs[] => [
+    {
+        id: 'my-offers',
+        text: 'my_offers',
+        link: routes.profile.private.my_offers(),
+        icon: faBullseye,
+    },
+    {
+        id: 'messages',
+        text: 'messages',
+        link: routes.profile.private.messages(),
+        icon: faEnvelope,
+        count: count?.messages,
+    },
+    {
+        id: 'reviews',
+        text: 'reviews',
+        link: routes.profile.private.reviews,
+        icon: faCommentAlt,
+        count: count?.reviews,
+    },
+    {
+        id: 'referral',
+        text: 'invite_friends',
+        link: routes.profile.private.referral,
+        icon: faPlusSquare,
+    },
+    {
+        id: 'settings',
+        text: 'settings',
+        link: routes.profile.private.settings(),
+        icon: faSlidersH,
+    },
+    {
+        id: 'analytics',
+        text: 'analytics',
+        link: routes.profile.private.analytics(),
+        icon: faChartBar,
+    },
+];
+
 const config = {
     baseUrl: {
         development: (version = 'v1'): string => 'http://phoqer.com/api/' + version,
@@ -39,6 +80,8 @@ const config = {
             mobile: 1,
         },
     },
+    googleApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAP_API_KEY || 'AIzaSyDAxCmU098YF_pqjtUzqTPwGF7JaH5ytyI',
+    userProfileLinks: (count?: ITabsNum): ITabs[] => generateBaseNavLink(count),
     userNavLinks: (userId: string, count?: ITabsNum): ITabs[] => [
         {
             id: 'my-profile',
@@ -52,84 +95,7 @@ const config = {
             link: routes.profile.private.personal_area,
             icon: faFlag,
         },
-        {
-            id: 'my-offers',
-            text: 'my_offers',
-            link: routes.profile.private.my_offers(),
-            icon: faBullseye,
-        },
-        {
-            id: 'messages',
-            text: 'messages',
-            link: routes.profile.private.messages(),
-            icon: faEnvelope,
-            count: count?.messages,
-        },
-        {
-            id: 'reviews',
-            text: 'reviews',
-            link: routes.profile.private.reviews,
-            icon: faCommentAlt,
-            count: count?.reviews,
-        },
-        {
-            id: 'referral',
-            text: 'invite_friends',
-            link: routes.profile.private.referral,
-            icon: faPlusSquare,
-        },
-        {
-            id: 'settings',
-            text: 'settings',
-            link: routes.profile.private.settings(),
-            icon: faSlidersH,
-        },
-        {
-            id: 'analytics',
-            text: 'analytics',
-            link: routes.profile.private.analytics(),
-            icon: faChartBar,
-        },
-    ],
-    userProfileLinks: (count?: ITabsNum): ITabs[] => [
-        {
-            id: 'my-offers',
-            text: 'my_offers',
-            link: routes.profile.private.my_offers(),
-            icon: faBullseye,
-        },
-        {
-            id: 'messages',
-            text: 'messages',
-            link: routes.profile.private.messages(),
-            icon: faEnvelope,
-            count: count?.messages,
-        },
-        {
-            id: 'reviews',
-            text: 'reviews',
-            link: routes.profile.private.reviews,
-            icon: faCommentAlt,
-            count: count?.reviews,
-        },
-        {
-            id: 'referral',
-            text: 'invite_friends',
-            link: routes.profile.private.referral,
-            icon: faPlusSquare,
-        },
-        {
-            id: 'settings',
-            text: 'settings',
-            link: routes.profile.private.settings(),
-            icon: faSlidersH,
-        },
-        {
-            id: 'analytics',
-            text: 'analytics',
-            link: routes.profile.private.analytics(),
-            icon: faChartBar,
-        },
+        ...generateBaseNavLink(count),
     ],
 };
 

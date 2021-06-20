@@ -97,6 +97,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
     modal: {
         fontSize: theme.rem(2),
     },
+    tooltip: {
+        minWidth: theme.rem(25),
+    },
 }));
 
 const ProfileInfo = (): ReactElement => {
@@ -132,8 +135,11 @@ const ProfileInfo = (): ReactElement => {
                 </div>
             </div>
 
-            <Tooltip content="Оценка автора ставиться ">
-                <LikeDislike like={profile?.likes || 0} dislike={profile?.dislikes || 0} active="like" onClick={console.log} />
+            <Tooltip
+                className={css.tooltip}
+                content="Вы можете оценить этот профиль только после того как арендуете что-то у него"
+            >
+                <LikeDislike like={profile?.likes || 0} dislike={profile?.dislikes || 0} />
             </Tooltip>
 
             <div className={css.bio}>
