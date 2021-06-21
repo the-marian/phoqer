@@ -3,7 +3,7 @@ import { createUseStyles } from 'react-jss';
 
 import useMedia from '../../../../hooks/media.hook';
 import useTrans from '../../../../hooks/trans.hook';
-import { Theme } from '../../../../theming/theme';
+import { Theme } from '../../../../utils/theming/theme';
 import JoinForm from '../../../common/auth/join-form';
 import LoginForm from '../../../common/auth/login-form';
 import { modal } from '../../../common/modal';

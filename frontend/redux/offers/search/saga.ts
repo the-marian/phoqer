@@ -1,8 +1,8 @@
 import { Params } from 'next/dist/next-server/server/router';
 import { all, call, put, takeLatest } from 'redux-saga/effects';
 
-import api from '../../../assets/api';
 import notificationsModal from '../../../components/common/modal/notifications-modal';
+import api from '../../../utils/api';
 import types from '../../types';
 import IAction from './interfaces';
 

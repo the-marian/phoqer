@@ -2,9 +2,9 @@ import Link from 'next/link';
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
-import routes from '../../../../assets/routes';
 import useTrans from '../../../../hooks/trans.hook';
-import { Theme } from '../../../../theming/theme';
+import routes from '../../../../utils/routes';
+import { Theme } from '../../../../utils/theming/theme';
 
 const LINKS: { text: string; href: string }[] = [
     {

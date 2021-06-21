@@ -3,11 +3,11 @@ import { useRouter } from 'next/router';
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
-import routes from '../../../assets/routes';
 import useAuth from '../../../hooks/auth.hook';
 import useTrans from '../../../hooks/trans.hook';
-import template from '../../../theming/template';
-import { Theme } from '../../../theming/theme';
+import routes from '../../../utils/routes';
+import template from '../../../utils/theming/template';
+import { Theme } from '../../../utils/theming/theme';
 import LoginForm from '../auth/login-form';
 import { modal } from '../modal';
 import SmallModalWrp from '../modal/small-modal-wrp';

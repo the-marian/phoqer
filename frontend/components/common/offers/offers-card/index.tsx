@@ -11,12 +11,12 @@ import { useRouter } from 'next/router';
 import React, { ReactElement } from 'react';
 import { useDispatch } from 'react-redux';
 
-import { cutString, moneyFormat } from '../../../../assets/helpers';
-import routes from '../../../../assets/routes';
 import useAuth from '../../../../hooks/auth.hook';
 import useTrans from '../../../../hooks/trans.hook';
 import { IDropList, IDropValue, IOfferCard } from '../../../../interfaces';
 import types from '../../../../redux/types';
+import { cutString, moneyFormat } from '../../../../utils/helpers';
+import routes from '../../../../utils/routes';
 import LoginForm from '../../auth/login-form';
 import DropDown from '../../drop-down';
 import { modal } from '../../modal';

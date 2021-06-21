@@ -5,10 +5,10 @@ import { createUseStyles } from 'react-jss';
 import { ReactNotificationOptions, store } from 'react-notifications-component';
 import { v4 as uuid } from 'uuid';
 
-import { formatTimestamp } from '../../../assets/helpers';
 import useTrans from '../../../hooks/trans.hook';
-import template from '../../../theming/template';
-import { Theme } from '../../../theming/theme';
+import { formatTimestamp } from '../../../utils/helpers';
+import template from '../../../utils/theming/template';
+import { Theme } from '../../../utils/theming/theme';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     title: {

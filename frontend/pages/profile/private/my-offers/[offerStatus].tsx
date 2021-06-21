@@ -4,8 +4,6 @@ import React, { ReactElement, useEffect } from 'react';
 import { createUseStyles } from 'react-jss';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { findCategory, serverRedirect } from '../../../../assets/helpers';
-import routes from '../../../../assets/routes';
 import Breadcrumbs from '../../../../components/common/breadcrumbs';
 import DropDown from '../../../../components/common/drop-down';
 import Pagination from '../../../../components/common/load-more/pagination';
@@ -15,13 +13,15 @@ import AuthRedirect from '../../../../components/context/auth/auth-redirect';
 import Container from '../../../../components/layout/container';
 import PageLayout from '../../../../components/layout/page-layout';
 import Meta from '../../../../components/meta';
-import MobileBackBtn from '../../../../components/pages/profile/private/mobile-back-btn';
+import MobileBackBtn from '../../../../components/per-pages/profile/mobile-back-btn';
 import useMedia from '../../../../hooks/media.hook';
 import useTrans from '../../../../hooks/trans.hook';
 import { IDropValue, IOfferDynamic, IState } from '../../../../interfaces';
 import { wrapper } from '../../../../redux/store';
 import types from '../../../../redux/types';
-import { Theme } from '../../../../theming/theme';
+import { findCategory, serverRedirect } from '../../../../utils/helpers';
+import routes from '../../../../utils/routes';
+import { Theme } from '../../../../utils/theming/theme';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     root: {

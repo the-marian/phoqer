@@ -2,9 +2,9 @@ import { Loader } from '@googlemaps/js-api-loader';
 import React, { ReactElement, useEffect, useRef } from 'react';
 import { createUseStyles } from 'react-jss';
 
-import config from '../../../assets/config';
-import locations from '../../../assets/map';
-import { Theme } from '../../../theming/theme';
+import config from '../../../utils/config';
+import locations from '../../../utils/map';
+import { Theme } from '../../../utils/theming/theme';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     map: {

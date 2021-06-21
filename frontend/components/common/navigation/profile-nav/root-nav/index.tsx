@@ -1,9 +1,9 @@
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
-import config from '../../../../../assets/config';
 import { ITabs } from '../../../../../interfaces';
-import { Theme } from '../../../../../theming/theme';
+import config from '../../../../../utils/config';
+import { Theme } from '../../../../../utils/theming/theme';
 import NavTabs from '../../index';
 import { item, nav } from '../profile-nav.styles';
 

@@ -3,8 +3,8 @@ import { createUseStyles } from 'react-jss';
 
 import useTrans from '../../../../hooks/trans.hook';
 import { ICheckboxes } from '../../../../interfaces';
-import template from '../../../../theming/template';
-import { Theme } from '../../../../theming/theme';
+import template from '../../../../utils/theming/template';
+import { Theme } from '../../../../utils/theming/theme';
 import Checkboxes from '../../checkbox/checkboxes';
 import { modal } from '../../modal';
 import SmallModalWrp from '../../modal/small-modal-wrp';

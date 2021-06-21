@@ -8,13 +8,13 @@ import React, { ChangeEvent, FormEvent, ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 import { useDispatch, useSelector } from 'react-redux';
 
-import routes from '../../../assets/routes';
 import useMedia from '../../../hooks/media.hook';
 import useTrans from '../../../hooks/trans.hook';
 import { IDropValue, ISearch, IState } from '../../../interfaces';
 import types from '../../../redux/types';
-import template from '../../../theming/template';
-import { Theme } from '../../../theming/theme';
+import routes from '../../../utils/routes';
+import template from '../../../utils/theming/template';
+import { Theme } from '../../../utils/theming/theme';
 import Container from '../../layout/container';
 import Button from '../button';
 import LinkArrow from '../link-arrow';

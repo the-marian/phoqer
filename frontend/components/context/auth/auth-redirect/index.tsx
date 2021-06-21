@@ -2,8 +2,8 @@ import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
-import routes from '../../../../assets/routes';
 import { IState } from '../../../../interfaces';
+import routes from '../../../../utils/routes';
 
 interface IProps {
     path?: string;

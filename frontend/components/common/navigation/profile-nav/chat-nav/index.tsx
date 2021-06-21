@@ -6,11 +6,11 @@ import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 import { useDispatch } from 'react-redux';
 
-import config from '../../../../../assets/config';
-import routes from '../../../../../assets/routes';
 import { ITabs } from '../../../../../interfaces';
 import types from '../../../../../redux/types';
-import { Theme } from '../../../../../theming/theme';
+import config from '../../../../../utils/config';
+import routes from '../../../../../utils/routes';
+import { Theme } from '../../../../../utils/theming/theme';
 import NavTabs from '../../index';
 import { item, nav } from '../profile-nav.styles';
 

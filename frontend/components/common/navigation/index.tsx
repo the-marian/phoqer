@@ -6,7 +6,7 @@ import { createUseStyles } from 'react-jss';
 
 import useTrans from '../../../hooks/trans.hook';
 import { ITabs } from '../../../interfaces';
-import { Theme } from '../../../theming/theme';
+import { Theme } from '../../../utils/theming/theme';
 import NotifNumber from '../notif-number';
 
 const useStyles = createUseStyles((theme: Theme) => ({

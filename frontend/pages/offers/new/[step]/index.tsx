@@ -5,25 +5,25 @@ import { createUseStyles } from 'react-jss';
 import { useSelector } from 'react-redux';
 import { END } from 'redux-saga';
 
-import { serverRedirect } from '../../../../assets/helpers';
-import routes from '../../../../assets/routes';
 import AuthRedirect from '../../../../components/context/auth/auth-redirect';
 import Container from '../../../../components/layout/container';
 import PageLayout from '../../../../components/layout/page-layout';
 import Meta from '../../../../components/meta';
-import Draft from '../../../../components/pages/offers/new/draft';
-import StepFive from '../../../../components/pages/offers/new/step-five';
-import StepFour from '../../../../components/pages/offers/new/step-four';
-import StepOne from '../../../../components/pages/offers/new/step-one';
-import StepThree from '../../../../components/pages/offers/new/step-three';
-import StepTwo from '../../../../components/pages/offers/new/step-two';
-import Stepper from '../../../../components/pages/offers/new/stepper';
-import Success from '../../../../components/pages/offers/new/success';
+import Draft from '../../../../components/per-pages/offers/new/draft';
+import StepFive from '../../../../components/per-pages/offers/new/step-five';
+import StepFour from '../../../../components/per-pages/offers/new/step-four';
+import StepOne from '../../../../components/per-pages/offers/new/step-one';
+import StepThree from '../../../../components/per-pages/offers/new/step-three';
+import StepTwo from '../../../../components/per-pages/offers/new/step-two';
+import Stepper from '../../../../components/per-pages/offers/new/stepper';
+import Success from '../../../../components/per-pages/offers/new/success';
 import useTrans from '../../../../hooks/trans.hook';
 import { INewOffer, IState, IStore } from '../../../../interfaces';
 import { wrapper } from '../../../../redux/store';
 import types from '../../../../redux/types';
-import { Theme } from '../../../../theming/theme';
+import { serverRedirect } from '../../../../utils/helpers';
+import routes from '../../../../utils/routes';
+import { Theme } from '../../../../utils/theming/theme';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     title: {
@@ -78,15 +78,15 @@ const NewOffer = (): ReactElement => {
              * */
             if (step === '2' && !value?.isDone?.one) {
                 // *
-                // return to first pages if user dont fill any of required field at step one
+                // return to first per-pages if user dont fill any of required field at step one
                 history.push(routes.offers.new(1));
             } else if (step === '3' && !value?.isDone?.two) {
                 // *
-                // return to first pages if user dont fill any of required field at step two
+                // return to first per-pages if user dont fill any of required field at step two
                 history.push(routes.offers.new(1));
             } else if (['4', '5', 'success'].includes(step) && (!value?.isDone?.one || !value?.isDone?.two)) {
                 // *
-                // return to first pages if user dont fill any of required field at step one and two
+                // return to first per-pages if user dont fill any of required field at step one and two
                 history.push(routes.offers.new(1));
             } else {
                 setPage(step);

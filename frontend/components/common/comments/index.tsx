@@ -7,7 +7,7 @@ import useAuth from '../../../hooks/auth.hook';
 import useTrans from '../../../hooks/trans.hook';
 import { IState } from '../../../interfaces';
 import types from '../../../redux/types';
-import { Theme } from '../../../theming/theme';
+import { Theme } from '../../../utils/theming/theme';
 import JoinForm from '../auth/join-form';
 import LoginForm from '../auth/login-form';
 import CommentsLoader from '../loaders/comments-loader';

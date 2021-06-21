@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
-import { Theme } from '../../../../../theming/theme';
+import { Theme } from '../../../../../utils/theming/theme';
 import RectSkeleton from '../rect';
 import TextSkeleton from '../text';
 

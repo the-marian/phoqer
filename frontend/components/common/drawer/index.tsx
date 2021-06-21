@@ -2,7 +2,7 @@ import React, { MouseEvent, ReactElement, useEffect } from 'react';
 import { createUseStyles } from 'react-jss';
 import { CSSTransition } from 'react-transition-group';
 
-import { Theme } from '../../../theming/theme';
+import { Theme } from '../../../utils/theming/theme';
 import ButtonClose from '../button-close';
 
 const useStyles = createUseStyles((theme: Theme) => ({

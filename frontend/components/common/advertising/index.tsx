@@ -2,8 +2,8 @@ import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
 import useTrans from '../../../hooks/trans.hook';
-import template from '../../../theming/template';
-import { Theme } from '../../../theming/theme';
+import template from '../../../utils/theming/template';
+import { Theme } from '../../../utils/theming/theme';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     top: {

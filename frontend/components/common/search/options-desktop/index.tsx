@@ -2,10 +2,10 @@ import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 import { useSelector } from 'react-redux';
 
-import { findCategory, findSubCategory, formatCatList } from '../../../../assets/helpers';
 import useTrans from '../../../../hooks/trans.hook';
 import { ICategories, IDropValue, ISearch, IState } from '../../../../interfaces';
-import { Theme } from '../../../../theming/theme';
+import { findCategory, findSubCategory, formatCatList } from '../../../../utils/helpers';
+import { Theme } from '../../../../utils/theming/theme';
 import DropDown from '../../drop-down';
 import Region from '../../region';
 

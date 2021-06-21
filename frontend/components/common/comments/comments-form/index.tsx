@@ -9,13 +9,13 @@ import React, { ChangeEvent, FormEvent, KeyboardEvent, ReactElement, useEffect, 
 import { createUseStyles } from 'react-jss';
 import TextareaAutosize from 'react-textarea-autosize';
 
-import config from '../../../../assets/config';
 import useMedia from '../../../../hooks/media.hook';
 import useTheme from '../../../../hooks/theme.hook';
 import useTrans from '../../../../hooks/trans.hook';
 import useUppy from '../../../../hooks/uppy.hook';
-import template from '../../../../theming/template';
-import { Theme } from '../../../../theming/theme';
+import config from '../../../../utils/config';
+import template from '../../../../utils/theming/template';
+import { Theme } from '../../../../utils/theming/theme';
 import notificationsModal from '../../modal/notifications-modal';
 import Tooltip from '../../tooltip';
 

@@ -3,7 +3,7 @@ import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
 import { IDropList } from '../../../../interfaces';
-import { Theme } from '../../../../theming/theme';
+import { Theme } from '../../../../utils/theming/theme';
 import DropDown from '../../../common/drop-down';
 
 const useStyles = createUseStyles((theme: Theme) => ({

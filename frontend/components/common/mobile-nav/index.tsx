@@ -8,12 +8,12 @@ import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 import { useSelector } from 'react-redux';
 
-import routes from '../../../assets/routes';
 import useAuth from '../../../hooks/auth.hook';
 import useMedia from '../../../hooks/media.hook';
 import { IPublicProfile, IState } from '../../../interfaces';
-import template from '../../../theming/template';
-import { Theme } from '../../../theming/theme';
+import routes from '../../../utils/routes';
+import template from '../../../utils/theming/template';
+import { Theme } from '../../../utils/theming/theme';
 import NotifNumber from '../notif-number';
 
 const useStyles = createUseStyles((theme: Theme) => ({
@@ -89,7 +89,7 @@ const MobileNav = (): ReactElement | null => {
     return auth?.access_token && !media && user ? (
         <ul className={css.list}>
             <li className={css.item}>
-                <Link href={routes.profile.private.messages()}>
+                <Link href={routes.profile.private.chat()}>
                     <a className={css.button}>
                         <div className={css.icon}>
                             <FontAwesomeIcon icon={faEnvelope} />

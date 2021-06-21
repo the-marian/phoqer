@@ -4,11 +4,11 @@ import Link from 'next/link';
 import React, { ChangeEvent, FormEvent, ReactElement, useState } from 'react';
 import { createUseStyles } from 'react-jss';
 
-import { mailRegex } from '../../../../assets/helpers';
-import routes from '../../../../assets/routes';
 import useTrans from '../../../../hooks/trans.hook';
-import template from '../../../../theming/template';
-import { Theme } from '../../../../theming/theme';
+import { mailRegex } from '../../../../utils/helpers';
+import routes from '../../../../utils/routes';
+import template from '../../../../utils/theming/template';
+import { Theme } from '../../../../utils/theming/theme';
 import Button from '../../button';
 import Input from '../../input';
 

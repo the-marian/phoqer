@@ -7,8 +7,8 @@ import { useSelector } from 'react-redux';
 
 import useTrans from '../../../hooks/trans.hook';
 import { IRegion, IState } from '../../../interfaces';
-import template from '../../../theming/template';
-import { Theme } from '../../../theming/theme';
+import template from '../../../utils/theming/template';
+import { Theme } from '../../../utils/theming/theme';
 import { modal } from '../modal';
 import CityModal from './city-modal';
 import CountryModal from './country-modal';

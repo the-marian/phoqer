@@ -2,9 +2,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import clsx from 'clsx';
 import React, { memo, ReactElement } from 'react';
 
-import icons from '../../../../assets/icons-map';
 import useTrans from '../../../../hooks/trans.hook';
 import { IDropList } from '../../../../interfaces';
+import icons from '../../../../utils/icons-map';
 
 interface ValueItemProps {
     css: { [key: string]: string };

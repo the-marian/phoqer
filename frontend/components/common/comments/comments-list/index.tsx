@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 
 import useTrans from '../../../../hooks/trans.hook';
 import { IComment, IState } from '../../../../interfaces';
-import { Theme } from '../../../../theming/theme';
+import { Theme } from '../../../../utils/theming/theme';
 import CommentsItem from './comments-item';
 
 const useStyles = createUseStyles((theme: Theme) => ({

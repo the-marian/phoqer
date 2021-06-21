@@ -8,11 +8,11 @@ import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 import { useSelector } from 'react-redux';
 
-import routes from '../../../../assets/routes';
 import useAuth from '../../../../hooks/auth.hook';
 import { IPublicProfile, IState } from '../../../../interfaces';
-import template from '../../../../theming/template';
-import { Theme } from '../../../../theming/theme';
+import routes from '../../../../utils/routes';
+import template from '../../../../utils/theming/template';
+import { Theme } from '../../../../utils/theming/theme';
 import LoginForm from '../../../common/auth/login-form';
 import Gift from '../../../common/gift';
 import { modal } from '../../../common/modal';

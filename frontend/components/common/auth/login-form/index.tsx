@@ -5,12 +5,12 @@ import React, { ChangeEvent, FormEvent, MouseEvent, ReactElement, useState } fro
 import { createUseStyles } from 'react-jss';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { isEmpty, mailRegex } from '../../../../assets/helpers';
-import routes from '../../../../assets/routes';
 import useTrans from '../../../../hooks/trans.hook';
 import { ILogin, IState } from '../../../../interfaces';
 import types from '../../../../redux/types';
-import { Theme } from '../../../../theming/theme';
+import { isEmpty, mailRegex } from '../../../../utils/helpers';
+import routes from '../../../../utils/routes';
+import { Theme } from '../../../../utils/theming/theme';
 import Button from '../../button';
 import GoogleFacebook from '../../google-facebook';
 import Input from '../../input';

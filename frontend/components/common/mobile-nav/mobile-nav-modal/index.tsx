@@ -3,10 +3,10 @@ import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 import { useSelector } from 'react-redux';
 
-import config from '../../../../assets/config';
 import { IPublicProfile, IState, ITabs } from '../../../../interfaces';
-import template from '../../../../theming/template';
-import { Theme } from '../../../../theming/theme';
+import config from '../../../../utils/config';
+import template from '../../../../utils/theming/template';
+import { Theme } from '../../../../utils/theming/theme';
 import SmallModalWrp from '../../modal/small-modal-wrp';
 import NavTabs from '../../navigation';
 
@@ -47,8 +47,8 @@ const getActiveTab = (route: string): string | undefined => {
         case '/profile/public/[profileId]':
             return 'my-profile';
 
-        case '/profile/private/messages':
-        case '/profile/private/messages/[chat]':
+        case '/profile/private/chat':
+        case '/profile/private/chat/[chat]':
             return 'messages';
 
         case '/profile/private/reviews':

@@ -5,11 +5,11 @@ import { createUseStyles } from 'react-jss';
 import { useDispatch, useSelector } from 'react-redux';
 import { CSSTransition } from 'react-transition-group';
 
-import config from '../../../../assets/config';
 import useTrans from '../../../../hooks/trans.hook';
 import { IPublicProfile, IState, ITabs } from '../../../../interfaces';
 import types from '../../../../redux/types';
-import { Theme } from '../../../../theming/theme';
+import config from '../../../../utils/config';
+import { Theme } from '../../../../utils/theming/theme';
 import Spinner from '../../loaders/spinner';
 import NavTabs from '../';
 

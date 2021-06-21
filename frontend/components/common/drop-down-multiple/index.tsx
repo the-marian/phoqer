@@ -3,8 +3,8 @@ import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
 import { ICheckboxes } from '../../../interfaces';
-import template from '../../../theming/template';
-import { Theme } from '../../../theming/theme';
+import template from '../../../utils/theming/template';
+import { Theme } from '../../../utils/theming/theme';
 import { modal } from '../modal';
 import DropDownValuesModal from './drop-down-values-modal';
 

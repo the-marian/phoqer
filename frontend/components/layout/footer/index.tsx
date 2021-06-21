@@ -2,7 +2,7 @@ import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
 import useMedia from '../../../hooks/media.hook';
-import { Theme } from '../../../theming/theme';
+import { Theme } from '../../../utils/theming/theme';
 import Logo from '../../common/logo';
 import Socials from '../../common/socials';
 import Container from '../container';

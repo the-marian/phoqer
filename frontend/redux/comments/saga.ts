@@ -1,8 +1,8 @@
 import { all, call, put, takeLatest } from 'redux-saga/effects';
 
-import api from '../../assets/api';
 import { modal } from '../../components/common/modal';
 import notificationsModal from '../../components/common/modal/notifications-modal';
+import api from '../../utils/api';
 import types from '../types';
 import { IAction, IBody } from './interfaces';
 

@@ -5,12 +5,12 @@ import React, { ReactElement, useState } from 'react';
 import { createUseStyles } from 'react-jss';
 import { useDispatch } from 'react-redux';
 
-import routes from '../../../../../assets/routes';
 import useAuth from '../../../../../hooks/auth.hook';
 import useTrans from '../../../../../hooks/trans.hook';
 import { IComment } from '../../../../../interfaces';
 import types from '../../../../../redux/types';
-import { Theme } from '../../../../../theming/theme';
+import routes from '../../../../../utils/routes';
+import { Theme } from '../../../../../utils/theming/theme';
 import LikeDislike from '../../../like-dislike';
 import CommentsLoader from '../../../loaders/comments-loader';
 import { modal } from '../../../modal';

@@ -5,7 +5,6 @@ import { createUseStyles } from 'react-jss';
 import { useDispatch, useSelector } from 'react-redux';
 import { END } from 'redux-saga';
 
-import routes from '../../../assets/routes';
 import Breadcrumbs from '../../../components/common/breadcrumbs';
 import Comments from '../../../components/common/comments';
 import ErrorComponent from '../../../components/common/error';
@@ -16,19 +15,20 @@ import FullPageModal from '../../../components/common/modal/full-page-modal';
 import Container from '../../../components/layout/container';
 import PageLayout from '../../../components/layout/page-layout';
 import Meta from '../../../components/meta';
-import AsideElement from '../../../components/pages/single-offer/aside-element';
-import OfferHead from '../../../components/pages/single-offer/offer-head';
-import Price from '../../../components/pages/single-offer/price';
-import RelatedOffers from '../../../components/pages/single-offer/related-offers';
-import Requirements from '../../../components/pages/single-offer/requirements';
-import OfferSlider from '../../../components/pages/single-offer/slider';
+import AsideElement from '../../../components/per-pages/single-offer/aside-element';
+import OfferHead from '../../../components/per-pages/single-offer/offer-head';
+import Price from '../../../components/per-pages/single-offer/price';
+import RelatedOffers from '../../../components/per-pages/single-offer/related-offers';
+import Requirements from '../../../components/per-pages/single-offer/requirements';
+import OfferSlider from '../../../components/per-pages/single-offer/slider';
 import useAuth from '../../../hooks/auth.hook';
 import useMedia from '../../../hooks/media.hook';
 import useTrans from '../../../hooks/trans.hook';
 import { IOfferCard, IState, IStore } from '../../../interfaces';
 import { wrapper } from '../../../redux/store';
 import types from '../../../redux/types';
-import { Theme } from '../../../theming/theme';
+import routes from '../../../utils/routes';
+import { Theme } from '../../../utils/theming/theme';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     // top translate

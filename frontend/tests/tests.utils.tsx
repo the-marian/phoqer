@@ -5,7 +5,7 @@ import { ThemeProvider } from 'react-jss';
 import useTheme from '../hooks/theme.hook';
 import { IAuth, IConfig, Themes } from '../interfaces';
 import { wrapper } from '../redux/store';
-import { theme } from '../theming/theme';
+import { theme } from '../utils/theming/theme';
 
 interface IProps {
     width: number;

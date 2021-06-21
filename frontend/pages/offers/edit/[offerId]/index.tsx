@@ -6,24 +6,24 @@ import { createUseStyles } from 'react-jss';
 import { useDispatch, useSelector } from 'react-redux';
 import { END } from 'redux-saga';
 
-import { serverRedirect } from '../../../../assets/helpers';
-import routes from '../../../../assets/routes';
 import Breadcrumbs from '../../../../components/common/breadcrumbs';
 import ErrorComponent from '../../../../components/common/error';
 import { modal } from '../../../../components/common/modal';
 import Container from '../../../../components/layout/container';
 import PageLayout from '../../../../components/layout/page-layout';
 import Meta from '../../../../components/meta';
-import AsideElement from '../../../../components/pages/offers/edit/aside-element';
-import EditContentForm from '../../../../components/pages/offers/edit/edit-content-form';
-import PhotosList from '../../../../components/pages/offers/edit/photos-list';
-import PhotosUploadModal from '../../../../components/pages/offers/edit/photos-upload-modal';
+import AsideElement from '../../../../components/per-pages/offers/edit/aside-element';
+import EditContentForm from '../../../../components/per-pages/offers/edit/edit-content-form';
+import PhotosList from '../../../../components/per-pages/offers/edit/photos-list';
+import PhotosUploadModal from '../../../../components/per-pages/offers/edit/photos-upload-modal';
 import useTrans from '../../../../hooks/trans.hook';
 import { IOfferCard, IState, IStore } from '../../../../interfaces';
 import { wrapper } from '../../../../redux/store';
 import types from '../../../../redux/types';
-import template from '../../../../theming/template';
-import { Theme } from '../../../../theming/theme';
+import { serverRedirect } from '../../../../utils/helpers';
+import routes from '../../../../utils/routes';
+import template from '../../../../utils/theming/template';
+import { Theme } from '../../../../utils/theming/theme';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     flex: {

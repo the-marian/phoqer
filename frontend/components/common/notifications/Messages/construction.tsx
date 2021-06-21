@@ -3,8 +3,8 @@ import { createUseStyles } from 'react-jss';
 import { store } from 'react-notifications-component';
 
 import useConfig from '../../../../hooks/config.hook';
-import template from '../../../../theming/template';
-import { Theme } from '../../../../theming/theme';
+import template from '../../../../utils/theming/template';
+import { Theme } from '../../../../utils/theming/theme';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     text: {

@@ -3,7 +3,7 @@ import React, { MouseEvent, ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
 import { ICheckboxes } from '../../../../interfaces';
-import { Theme } from '../../../../theming/theme';
+import { Theme } from '../../../../utils/theming/theme';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     root: {

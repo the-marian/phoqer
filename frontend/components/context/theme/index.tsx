@@ -1,8 +1,8 @@
 import Cookies from 'js-cookie';
 import React, { createContext, ReactElement, useEffect, useState } from 'react';
 
-import config from '../../../assets/config';
 import { Themes } from '../../../interfaces';
+import config from '../../../utils/config';
 import notificationsModal from '../../common/modal/notifications-modal';
 
 export const Theme = createContext<[theme: Themes, setTheme: (v: Themes) => void]>(['blue', () => undefined]);

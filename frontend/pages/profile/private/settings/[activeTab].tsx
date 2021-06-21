@@ -3,22 +3,22 @@ import { useRouter } from 'next/router';
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
-import { serverRedirect } from '../../../../assets/helpers';
-import routes from '../../../../assets/routes';
 import Breadcrumbs from '../../../../components/common/breadcrumbs';
 import ProfileNav from '../../../../components/common/navigation/profile-nav/root-nav';
 import AuthRedirect from '../../../../components/context/auth/auth-redirect';
 import Container from '../../../../components/layout/container';
 import PageLayout from '../../../../components/layout/page-layout';
 import Meta from '../../../../components/meta';
-import MobileBackBtn from '../../../../components/pages/profile/private/mobile-back-btn';
-import General from '../../../../components/pages/profile/private/settings/general';
-import Privacy from '../../../../components/pages/profile/private/settings/privacy';
-import SettingsNav from '../../../../components/pages/profile/private/settings/settings-nav';
+import MobileBackBtn from '../../../../components/per-pages/profile/mobile-back-btn';
+import General from '../../../../components/per-pages/settings/general';
+import Privacy from '../../../../components/per-pages/settings/privacy';
+import SettingsNav from '../../../../components/per-pages/settings/settings-nav';
 import useMedia from '../../../../hooks/media.hook';
 import useTrans from '../../../../hooks/trans.hook';
 import { wrapper } from '../../../../redux/store';
-import { Theme } from '../../../../theming/theme';
+import { serverRedirect } from '../../../../utils/helpers';
+import routes from '../../../../utils/routes';
+import { Theme } from '../../../../utils/theming/theme';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     root: {

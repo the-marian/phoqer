@@ -1,7 +1,7 @@
 import { Styles } from 'jss';
 
-import template from '../../../../theming/template';
-import { Theme } from '../../../../theming/theme';
+import template from '../../../../utils/theming/template';
+import { Theme } from '../../../../utils/theming/theme';
 
 interface INav {
     nav: Styles;

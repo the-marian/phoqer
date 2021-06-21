@@ -2,7 +2,7 @@ import Uppy from '@uppy/core';
 import XHRUpload from '@uppy/xhr-upload';
 import { useEffect, useMemo } from 'react';
 
-import config from '../assets/config';
+import config from '../utils/config';
 import useAuth from './auth.hook';
 
 const useUppy = (): Uppy.Uppy<Uppy.StrictTypes> => {

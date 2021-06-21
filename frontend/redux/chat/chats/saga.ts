@@ -1,8 +1,8 @@
 import { AxiosResponse } from 'axios';
 import { all, call, put, takeLatest } from 'redux-saga/effects';
 
-import api from '../../../assets/api';
 import notifications from '../../../components/common/notifications';
+import api from '../../../utils/api';
 import types from '../../types';
 import IAction, { INewChat } from './interfaces';
 

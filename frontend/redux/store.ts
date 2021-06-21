@@ -3,7 +3,7 @@ import { applyMiddleware, createStore, Middleware, Store } from 'redux';
 import createSagaMiddleware, { SagaMiddleware } from 'redux-saga';
 
 import { IStore } from '../interfaces';
-import Persist from '../middleware/persist.middleware';
+import Persist from './middleware/persist.middleware';
 import rootReducer from './reducers';
 import rootSaga from './sagas';
 

@@ -5,9 +5,9 @@ import { createUseStyles } from 'react-jss';
 import useTheme from '../../../../hooks/theme.hook';
 import useTrans from '../../../../hooks/trans.hook';
 import { Themes } from '../../../../interfaces';
-import palette from '../../../../theming/palette';
-import template from '../../../../theming/template';
-import { Theme } from '../../../../theming/theme';
+import palette from '../../../../utils/theming/palette';
+import template from '../../../../utils/theming/template';
+import { Theme } from '../../../../utils/theming/theme';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     box: {

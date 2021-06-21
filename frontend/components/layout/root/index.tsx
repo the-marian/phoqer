@@ -4,7 +4,7 @@ import ReactNotification from 'react-notifications-component';
 
 import useConfig from '../../../hooks/config.hook';
 import useTheme from '../../../hooks/theme.hook';
-import { theme } from '../../../theming/theme';
+import { theme } from '../../../utils/theming/theme';
 import RouterProgress from '../../common/loaders/progress/router-progress';
 import MobileNav from '../../common/mobile-nav';
 import ModalComponent from '../../common/modal';

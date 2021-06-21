@@ -4,7 +4,6 @@ import React, { ReactElement } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { END } from 'redux-saga';
 
-import { findCategory, findSubCategory } from '../../assets/helpers';
 import About from '../../components/common/about';
 import Pagination from '../../components/common/load-more/pagination';
 import OffersList from '../../components/common/offers/offers-list';
@@ -13,14 +12,15 @@ import SectionTitle from '../../components/common/section-title';
 import Container from '../../components/layout/container';
 import PageLayout from '../../components/layout/page-layout';
 import Meta from '../../components/meta';
-import Filters from '../../components/pages/offers/filters';
-import ActiveFilters from '../../components/pages/offers/filters/active-filters';
-import TopOffers from '../../components/pages/offers/top-offers';
+import Filters from '../../components/per-pages/offers/filters';
+import ActiveFilters from '../../components/per-pages/offers/filters/active-filters';
+import TopOffers from '../../components/per-pages/offers/top-offers';
 import useTrans from '../../hooks/trans.hook';
 import { ICategories, IOfferDynamic, IState, IStore } from '../../interfaces';
 import initState from '../../redux/state';
 import { wrapper } from '../../redux/store';
 import types from '../../redux/types';
+import { findCategory, findSubCategory } from '../../utils/helpers';
 
 const OffersPage = (): ReactElement => {
     const { query } = useRouter();

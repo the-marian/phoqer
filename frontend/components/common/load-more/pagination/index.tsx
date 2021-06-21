@@ -10,8 +10,8 @@ import ReactPaginate from 'react-paginate';
 import useMedia from '../../../../hooks/media.hook';
 import useShallowRouter from '../../../../hooks/routing.hook';
 import useTrans from '../../../../hooks/trans.hook';
-import template from '../../../../theming/template';
-import { Theme } from '../../../../theming/theme';
+import template from '../../../../utils/theming/template';
+import { Theme } from '../../../../utils/theming/theme';
 import Button from '../../button';
 
 const useStyles = createUseStyles((theme: Theme) => ({

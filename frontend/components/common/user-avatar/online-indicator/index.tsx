@@ -2,8 +2,8 @@ import clsx from 'clsx';
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
-import { dateFromTimestamp } from '../../../../assets/helpers';
-import { Theme } from '../../../../theming/theme';
+import { dateFromTimestamp } from '../../../../utils/helpers';
+import { Theme } from '../../../../utils/theming/theme';
 import Tooltip from '../../tooltip';
 
 const FIVE_MINUTES_IN_MS = 300000;

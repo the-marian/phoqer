@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import useAuth from '../../../hooks/auth.hook';
 import { IState } from '../../../interfaces';
 import types from '../../../redux/types';
-import { Theme } from '../../../theming/theme';
+import { Theme } from '../../../utils/theming/theme';
 import Drawer from '../../common/drawer';
 import Logo from '../../common/logo';
 import Socials from '../../common/socials';

@@ -1,7 +1,7 @@
 import React, { CSSProperties, ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
-import { Theme } from '../../../theming/theme';
+import { Theme } from '../../../utils/theming/theme';
 import LinkArrow from '../link-arrow';
 
 const useStyles = createUseStyles((theme: Theme) => ({

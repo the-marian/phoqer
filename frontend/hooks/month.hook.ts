@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 
-import months from '../assets/months';
+import months from '../utils/months';
 
 const useMonths = (): string[] => {
     const router = useRouter();

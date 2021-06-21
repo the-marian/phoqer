@@ -3,8 +3,8 @@ import { useRouter } from 'next/router';
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
-import config from '../../assets/config';
 import useTrans from '../../hooks/trans.hook';
+import config from '../../utils/config';
 
 const useStyles = createUseStyles({
     title: {

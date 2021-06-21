@@ -11,12 +11,12 @@ import SectionTitle from '../../../components/common/section-title';
 import Container from '../../../components/layout/container';
 import PageLayout from '../../../components/layout/page-layout';
 import Meta from '../../../components/meta';
-import ProfileInfo from '../../../components/pages/profile/profile-info';
+import ProfileInfo from '../../../components/per-pages/profile/profile-info';
 import useTrans from '../../../hooks/trans.hook';
 import { IOfferDynamic, IPublicProfile, IState, IStore } from '../../../interfaces';
 import { wrapper } from '../../../redux/store';
 import types from '../../../redux/types';
-import { Theme } from '../../../theming/theme';
+import { Theme } from '../../../utils/theming/theme';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     wrp: {

@@ -4,8 +4,6 @@ import Link from 'next/link';
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
-import { serverRedirect } from '../../../assets/helpers';
-import routes from '../../../assets/routes';
 import LoginForm from '../../../components/common/auth/login-form';
 import { modal } from '../../../components/common/modal';
 import SmallModalWrp from '../../../components/common/modal/small-modal-wrp';
@@ -16,8 +14,10 @@ import Meta from '../../../components/meta';
 import useAuth from '../../../hooks/auth.hook';
 import useTrans from '../../../hooks/trans.hook';
 import { wrapper } from '../../../redux/store';
-import template from '../../../theming/template';
-import { Theme } from '../../../theming/theme';
+import { serverRedirect } from '../../../utils/helpers';
+import routes from '../../../utils/routes';
+import template from '../../../utils/theming/template';
+import { Theme } from '../../../utils/theming/theme';
 
 const ConfettiWrp = dynamic(() => import('../../../components/common/confetti'), { ssr: false });
 

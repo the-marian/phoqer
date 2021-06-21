@@ -3,8 +3,8 @@ import { createUseStyles } from 'react-jss';
 import Slider from 'react-slick';
 
 import useTrans from '../../../hooks/trans.hook';
-import template from '../../../theming/template';
-import { Theme } from '../../../theming/theme';
+import template from '../../../utils/theming/template';
+import { Theme } from '../../../utils/theming/theme';
 
 interface ISlides {
     src: string;

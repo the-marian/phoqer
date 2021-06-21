@@ -7,8 +7,6 @@ import { Router, useRouter } from 'next/router';
 import React, { ReactElement, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
-import { logger, parseCookie } from '../assets/helpers';
-import interceptors from '../assets/interceptors';
 import { modal } from '../components/common/modal';
 import AuthProvider from '../components/context/auth/auth-context';
 import ConfigProvider from '../components/context/config';
@@ -17,6 +15,8 @@ import SiteTheme from '../components/context/theme';
 import Root from '../components/layout/root';
 import { IAuth, IConfig, Themes } from '../interfaces';
 import { wrapper } from '../redux/store';
+import { logger, parseCookie } from '../utils/helpers';
+import interceptors from '../utils/interceptors';
 
 interface IProps {
     width: number;

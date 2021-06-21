@@ -2,7 +2,7 @@ import React, { ReactElement, useEffect, useRef, useState } from 'react';
 import { createUseStyles } from 'react-jss';
 import { CSSTransition } from 'react-transition-group';
 
-import { Theme } from '../../../theming/theme';
+import { Theme } from '../../../utils/theming/theme';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     btn: {

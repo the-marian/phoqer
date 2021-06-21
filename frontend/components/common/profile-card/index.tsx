@@ -7,12 +7,12 @@ import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 import { useSelector } from 'react-redux';
 
-import { formatTimestamp, onlineStatus } from '../../../assets/helpers';
-import routes from '../../../assets/routes';
 import useTrans from '../../../hooks/trans.hook';
 import { IPublicProfile, IState } from '../../../interfaces';
-import template from '../../../theming/template';
-import { Theme } from '../../../theming/theme';
+import { formatTimestamp, onlineStatus } from '../../../utils/helpers';
+import routes from '../../../utils/routes';
+import template from '../../../utils/theming/template';
+import { Theme } from '../../../utils/theming/theme';
 import UserAvatar from '../user-avatar';
 
 const useStyles = createUseStyles((theme: Theme) => ({

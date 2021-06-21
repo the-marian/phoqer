@@ -1,11 +1,11 @@
 import { AxiosResponse } from 'axios';
 import { all, call, put, takeLatest } from 'redux-saga/effects';
 
-import api from '../../assets/api';
-import config from '../../assets/config';
 import notificationsModal from '../../components/common/modal/notifications-modal';
 import notifications from '../../components/common/notifications';
 import { IPublicProfile } from '../../interfaces';
+import api from '../../utils/api';
+import config from '../../utils/config';
 import types from '../types';
 import IAction from './interfaces';
 
