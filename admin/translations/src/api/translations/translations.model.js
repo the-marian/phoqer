@@ -6,7 +6,7 @@ import { CustomError } from '../../services/helpers';
 const fsPromises = fs.promises;
 
 export default class Translations {
-    static dirPath = path.join(process.cwd(), '..', '..', 'frontend', 'translations', 'locales');
+    static dirPath = path.join(process.cwd(), '..', '..', 'frontend', 'assets', 'translations', 'locales');
     constructor(id, content) {
         this.id = id;
         this.content = content;
