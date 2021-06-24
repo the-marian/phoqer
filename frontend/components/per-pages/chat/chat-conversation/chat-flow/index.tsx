@@ -179,7 +179,7 @@ const ChatFlow = ({ children }: IProps): ReactElement => {
                                       <p className={css.date}>{formatTime(item.creation_datetime)}</p>
                                   )}
 
-                                  {item.uploads.length ? (
+                                  {item?.uploads?.length ? (
                                       <div className={clsx(css.uploadsList, user.id === item.user_id && css.uploadsListRight)}>
                                           {item.uploads.map<ReactElement>(src => (
                                               <img

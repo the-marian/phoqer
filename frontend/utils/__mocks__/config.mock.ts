@@ -9,19 +9,7 @@ import { faSlidersH } from '@fortawesome/free-solid-svg-icons/faSlidersH';
 
 import { ICategories, IDropList, ITabs } from '../../interfaces';
 
-export const userNavLinks: ITabs[] = [
-    {
-        id: 'my-profile',
-        text: 'my_profile',
-        link: '/profile/userId',
-        icon: faUserCircle,
-    },
-    {
-        id: 'personal-area',
-        text: 'personal_area',
-        link: '/profile/private',
-        icon: faFlag,
-    },
+export const userProfileLinks: ITabs[] = [
     {
         id: 'my-offers',
         text: 'my_offers',
@@ -62,45 +50,20 @@ export const userNavLinks: ITabs[] = [
     },
 ];
 
-export const userProfileLinks: ITabs[] = [
+export const userNavLinks: ITabs[] = [
     {
-        id: 'my-offers',
-        text: 'my_offers',
-        link: '/profile/private/my-offers/all',
-        icon: faBullseye,
+        id: 'my-profile',
+        text: 'my_profile',
+        link: '/profile/userId',
+        icon: faUserCircle,
     },
     {
-        id: 'chat',
-        text: 'chat',
-        link: '/profile/private/chat/',
-        icon: faEnvelope,
-        count: 0,
+        id: 'personal-area',
+        text: 'personal_area',
+        link: '/profile/private',
+        icon: faFlag,
     },
-    {
-        id: 'reviews',
-        text: 'reviews',
-        link: '/profile/private/reviews',
-        icon: faCommentAlt,
-        count: 0,
-    },
-    {
-        id: 'referral',
-        text: 'invite_friends',
-        link: '/profile/private/referral',
-        icon: faPlusSquare,
-    },
-    {
-        id: 'settings',
-        text: 'settings',
-        link: '/profile/private/settings/general',
-        icon: faSlidersH,
-    },
-    {
-        id: 'analytics',
-        text: 'analytics',
-        link: '/profile/private/analytics',
-        icon: faChartBar,
-    },
+    ...userProfileLinks,
 ];
 
 export const authCookies = 'phoqer_auth={%22loading%22:false%2C%22access_token%22:null}';
