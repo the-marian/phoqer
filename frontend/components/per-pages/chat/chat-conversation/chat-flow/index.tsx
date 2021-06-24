@@ -65,8 +65,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
         ...template(theme).outline,
 
         '& > a': {
-            color: theme.palette.black[0],
+            color: theme.palette.primary[0],
             textDecoration: 'underline',
+            fontWeight: theme.text.weight[3],
             ...theme.hover({
                 textDecoration: 'none',
             }),
