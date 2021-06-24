@@ -51,6 +51,10 @@ const useStyles = createUseStyles((theme: Theme) => ({
         flexDirection: 'column',
         alignItems: 'flex-end',
         alignSelf: 'flex-end',
+
+        '& > a': {
+            color: theme.palette.black[0],
+        },
     },
     box: {
         width: 'max-content',
