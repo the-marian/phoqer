@@ -51,10 +51,6 @@ const useStyles = createUseStyles((theme: Theme) => ({
         flexDirection: 'column',
         alignItems: 'flex-end',
         alignSelf: 'flex-end',
-
-        '& > a': {
-            color: theme.palette.black[0],
-        },
     },
     box: {
         width: 'max-content',
@@ -69,7 +65,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         ...template(theme).outline,
 
         '& > a': {
-            color: theme.palette.trueWhite,
+            color: theme.palette.black[0],
             textDecoration: 'underline',
             ...theme.hover({
                 textDecoration: 'none',
@@ -79,6 +75,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
     primary: {
         color: theme.palette.trueWhite,
         background: theme.palette.primary[0],
+        '& > a': {
+            color: theme.palette.trueWhite,
+        },
     },
     date: {
         margin: theme.rem(0.2, 0, 0.2, 0.4),
