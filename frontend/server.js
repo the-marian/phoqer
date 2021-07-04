@@ -20,6 +20,7 @@ app.prepare().then(() => {
         });
     }).listen(PORT, err => {
         if (err) {
+            console.log('---LOGGER-FOR-MARIAN---');
             console.log(err);
             throw err;
         }
