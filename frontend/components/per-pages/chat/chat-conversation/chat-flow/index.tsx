@@ -112,6 +112,8 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
     uploads: {
         display: 'block',
+        height: theme.rem(15),
+        width: theme.rem(20),
         margin: theme.rem(0, 0.5, 1, 0),
         objectFit: 'cover',
         borderRadius: theme.radius,
@@ -187,7 +189,7 @@ const ChatFlow = ({ children }: IProps): ReactElement => {
                                               <img
                                                   key={src}
                                                   src={src}
-                                                  height="150"
+                                                  height="160"
                                                   width="200"
                                                   onClick={openSlider(item.uploads)}
                                                   className={css.uploads}
