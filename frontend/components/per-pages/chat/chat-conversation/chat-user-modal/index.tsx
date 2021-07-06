@@ -1,4 +1,3 @@
-import clsx from 'clsx';
 import Link from 'next/link';
 import React, { ReactElement, useEffect } from 'react';
 import { createUseStyles } from 'react-jss';
@@ -14,7 +13,6 @@ import TextSkeleton from '../../../../common/loaders/skeletons/text';
 import { modal } from '../../../../common/modal';
 import FullPageGallery from '../../../../common/modal/full-page-gallery';
 import SmallModalWrp from '../../../../common/modal/small-modal-wrp';
-import Tooltip from '../../../../common/tooltip';
 import UserAvatar from '../../../../common/user-avatar';
 import { createHTML } from '../chat-flow/chat-flow.utils';
 
