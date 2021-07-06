@@ -11,8 +11,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         alignItems: 'flex-start',
         flexDirection: 'column',
         height: '99%',
-        width: 'calc(100% - 40rem)',
-
+        width: '80vw',
         ...theme.media(1060).max({
             width: '100%',
         }),

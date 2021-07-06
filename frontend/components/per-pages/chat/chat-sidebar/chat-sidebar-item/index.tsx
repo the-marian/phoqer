@@ -19,7 +19,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         justifyContent: 'space-between',
         alignItems: 'flex-start',
         margin: theme.rem(1, 0),
-        padding: theme.rem(2),
+        padding: theme.rem(0.6),
         borderRadius: theme.radius,
         boxShadow: theme.palette.shadowBorder,
         color: theme.palette.black[0],
@@ -42,11 +42,12 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
     title: {
         width: '100%',
-        fontSize: theme.rem(1.6),
-        fontWeight: theme.text.weight[3],
+        fontSize: theme.rem(1.4),
+        fontWeight: theme.text.weight[2],
+        marginBottom: theme.rem(0.6),
 
         ...theme.media(1060).max({
-            fontWeight: theme.text.weight[3],
+            fontWeight: theme.text.weight[2],
         }),
     },
     inner: {
@@ -59,7 +60,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     number: {
         position: 'absolute',
         top: theme.rem(0.5),
-        right: theme.rem(0.5),
+        left: theme.rem(0.5),
     },
 }));
 
@@ -77,7 +78,7 @@ const ChatSidebarItem = ({ chat, active = false }: IProps): ReactElement => {
                 <UserAvatar width={7} height={7} avatar={chat.cover_image || '/no_img.png'} />
 
                 <div className={css.inner}>
-                    <h2 className={css.title}>{cutString(chat.title, 55)}</h2>
+                    <h2 className={css.title}>{cutString(chat.title, 50)}</h2>
                     <div className={css.flex}>
                         <OnlineIndicator className={css.online} time={chat.recipient_last_activity} />
                         <p>{`${chat.recipient_first_name} ${chat.recipient_last_name}`}</p>

@@ -13,8 +13,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         maxWidth: theme.rem(100),
         height: 'max-content',
         margin: theme.rem(8, 0),
-        padding: theme.rem(4),
-        paddingTop: theme.rem(5),
+        padding: theme.rem(5, 1, 1),
         borderRadius: theme.radius,
         background: theme.palette.white,
         color: theme.palette.black[0],
@@ -32,7 +31,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     logo: {
         position: 'absolute',
         top: theme.rem(0.2),
-        left: theme.rem(2),
+        left: theme.rem(1),
     },
 }));
 
@@ -44,7 +43,7 @@ const MidModalWrp = ({ children }: IProps): ReactElement => {
     const css = useStyles();
     return (
         <div className={css.inner}>
-            <Logo className={css.logo} link />
+            <Logo className={css.logo} />
             <ButtonClose className={css.button} onClick={modal.close} />
             {children}
         </div>

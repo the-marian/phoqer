@@ -1,63 +1,17 @@
 import clsx from 'clsx';
 import { useRouter } from 'next/router';
 import React, { ReactElement, useEffect, useState } from 'react';
-import { createUseStyles } from 'react-jss';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { IChats, IChatsList, IOfferCard, IPublicProfile, IState } from '../../../../../interfaces';
 import types from '../../../../../redux/types';
 import routes from '../../../../../utils/routes';
-import { Theme } from '../../../../../utils/theming/theme';
 import ChatsLoaders from '../../../../common/loaders/skeletons/chats';
 import notifications from '../../../../common/notifications';
 import ChatLoading from '../../chat-loading';
 import ChatSearch from '../../chat-search';
 import ChatSidebar from '../../chat-sidebar';
-
-const useStyles = createUseStyles((theme: Theme) => ({
-    root: {
-        display: 'flex',
-        justifyContent: 'space-between',
-        width: '100%',
-        height: 'calc(100vh - 6.5rem)',
-        flexGrow: 2,
-        padding: theme.rem(0, 2),
-        fontSize: theme.rem(1.6),
-        color: theme.palette.black[0],
-
-        ...theme.media(1060).max({
-            height: 'unset',
-            padding: theme.rem(0, 0, 1),
-        }),
-    },
-    sidebar: theme.media(1060).max({
-        height: 'unset',
-    }),
-    aside: {
-        minWidth: theme.rem(40),
-        maxWidth: theme.rem(40),
-        height: '99%',
-        paddingRight: theme.rem(0.5),
-        marginRight: theme.rem(0.5),
-        overflow: 'auto',
-
-        ...theme.media(1060).max({
-            minWidth: 'unset',
-            maxWidth: 'unset',
-            height: 'unset',
-            width: '100%',
-            padding: theme.rem(0, 1.5),
-            overflow: 'unset',
-        }),
-    },
-    inner: {
-        height: 'auto',
-        padding: theme.rem(0.1),
-        ...theme.media(1060).max({
-            height: 'unset',
-        }),
-    },
-}));
+import useWrapperStyles from '../wrappers.styles';
 
 // HELPER HIDE/SHOW CHAT SIDEBAR
 interface MessagesWrpShowSidebarProps {
@@ -81,7 +35,7 @@ interface IProps {
 
 // MAIN COMPONENT
 const NewChatWrp = ({ children, showSidebar = false }: IProps): ReactElement => {
-    const css = useStyles();
+    const css = useWrapperStyles();
     const dispatch = useDispatch();
     const history = useRouter();
     const offerId = String(history.query.offerId || '');
