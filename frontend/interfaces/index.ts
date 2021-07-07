@@ -82,11 +82,14 @@ export type Themes =
     | 'black-orange'
     | 'black-green';
 
+export type IOfferCardSize = 'small' | 'big';
+
 export interface IConfig {
     warning: boolean;
     hideSearchFilters: boolean;
     hideTopSearchQuery: boolean;
     hideTopOffers: boolean;
+    offerCardSize: IOfferCardSize;
 }
 
 // =====================================

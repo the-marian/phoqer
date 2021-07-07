@@ -25,7 +25,7 @@ interface IProps {
     config: IConfig | null;
 }
 
-const MyApp = ({ Component, pageProps, width, auth, theme, config }: AppProps & IProps): ReactElement => {
+const PhoqerApp = ({ Component, pageProps, width, auth, theme, config }: AppProps & IProps): ReactElement => {
     const history = useRouter();
     const dispatch = useDispatch();
 
@@ -49,22 +49,8 @@ const MyApp = ({ Component, pageProps, width, auth, theme, config }: AppProps & 
         if (style) style?.parentNode?.removeChild(style);
     }, []);
 
-    const allThemes: Themes[] = [
-        'green',
-        'blue',
-        'red',
-        'aqua',
-        'violet',
-        'black-aqua',
-        'black-blue',
-        'black-violet',
-        'black-orange',
-        'black-green',
-    ];
-    const themeIndex = Math.ceil(Math.random() * 10);
-
     return (
-        <SiteTheme siteTheme={theme || allThemes[themeIndex]}>
+        <SiteTheme siteTheme={theme || 'green'}>
             <ConfigProvider value={config}>
                 <AuthProvider authServer={auth}>
                     <MediaProvider width={width}>
@@ -78,7 +64,7 @@ const MyApp = ({ Component, pageProps, width, auth, theme, config }: AppProps & 
     );
 };
 
-MyApp.getInitialProps = async (appContext: AppContextType<Router>): Promise<IProps> => {
+PhoqerApp.getInitialProps = async (appContext: AppContextType<Router>): Promise<IProps> => {
     const toMatch =
         /mobile|iphone|ipod|android|blackberry|opera|mini|windows\sce|palm|smartphone|iemobile|ipad|android 3.0|xoom|sch-i800|playbook|tablet|kindle/i;
     const isMobile = toMatch.test(appContext?.ctx?.req?.headers?.['user-agent'] || '');
@@ -98,4 +84,4 @@ MyApp.getInitialProps = async (appContext: AppContextType<Router>): Promise<IPro
     return { ...props, width: isMobile ? 500 : 1400, auth, theme, config };
 };
 
-export default wrapper.withRedux(MyApp);
+export default wrapper.withRedux(PhoqerApp);

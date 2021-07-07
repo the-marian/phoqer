@@ -23,7 +23,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     imgWrp: {
         position: 'relative',
     },
-    img: {
+    imgBig: {
         height: theme.rem(20),
         objectFit: 'cover',
         objectPosition: 'center',
@@ -35,6 +35,15 @@ const useStyles = createUseStyles((theme: Theme) => ({
         ...theme.media(680).max({
             height: theme.rem(30),
         }),
+    },
+    imgSmall: {
+        height: theme.rem(11),
+        objectFit: 'cover',
+        objectPosition: 'center',
+        borderRadius: theme.radius,
+        boxShadow: theme.shadow[1],
+        background: theme.palette.gray[1],
+        ...template(theme).outline,
     },
     topWrp: {
         position: 'absolute',
@@ -59,7 +68,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     delivery: {
         color: theme.palette.gray[2],
     },
-    title: {
+    titleBig: {
         margin: theme.rem(1, 0),
         fontSize: theme.rem(1.5),
         fontWeight: theme.text.weight[3],
@@ -67,6 +76,11 @@ const useStyles = createUseStyles((theme: Theme) => ({
         ...theme.media(500).max({
             fontSize: theme.rem(1.8),
         }),
+    },
+    titleSmall: {
+        margin: theme.rem(1, 0),
+        fontSize: theme.rem(1.4),
+        fontWeight: theme.text.weight[2],
     },
     desc: {
         margin: 0,
@@ -122,6 +136,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         borderRadius: theme.radius,
         transition: theme.transitions[0],
         fontSize: theme.rem(1.8),
+        background: theme.palette.gray[0],
 
         ...theme.hover({
             background: theme.palette.secondary[0],
