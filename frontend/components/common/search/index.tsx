@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import clsx from 'clsx';
 import { useRouter } from 'next/router';
 import queryString from 'query-string';
-import React, { ChangeEvent, FormEvent, ReactElement } from 'react';
+import React, { ChangeEvent, FormEvent, ReactElement, useEffect, useState } from 'react';
 import { createUseStyles } from 'react-jss';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -16,19 +16,19 @@ import routes from '../../../utils/routes';
 import template from '../../../utils/theming/template';
 import { Theme } from '../../../utils/theming/theme';
 import Container from '../../layout/container';
-import Button from '../button';
-import LinkArrow from '../link-arrow';
 import OptionsDesktop from './options-desktop';
 import OptionsMobile from './options-mobile';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     root: {
-        padding: theme.rem(12, 0, 4),
-        background: theme.palette.gray[0],
+        padding: theme.rem(50, 0, 12),
+        backgroundColor: theme.palette.gray[1],
+        backgroundRepeat: 'no-repeat',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
 
         ...theme.media(768).max({
-            padding: theme.rem(11, 0, 5),
-            background: theme.palette.secondary[0],
+            padding: theme.rem(25, 0, 5),
         }),
     },
     wrp: {
@@ -49,14 +49,14 @@ const useStyles = createUseStyles((theme: Theme) => ({
         alignItems: 'center',
         height: theme.rem(6),
         width: '100%',
-        background: theme.palette.gray[1],
+        background: theme.palette.trueWhite,
         fontSize: theme.rem(1.4),
         borderRadius: theme.radius,
+        boxShadow: theme.shadow[5],
         ...template(theme).outline,
 
         ...theme.media(1100).max({
             height: theme.rem(5),
-            background: theme.palette.white,
             boxShadow: theme.palette.shadowBorder,
         }),
     },
@@ -67,21 +67,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         padding: theme.rem(1),
         background: 'none',
         border: 'none',
-        color: theme.palette.black[0],
-    },
-    btn: {
-        ...template(theme).btn,
-        width: '100%',
-        height: theme.rem(6),
-
-        ...theme.media(1100).max({
-            width: '33%',
-            height: theme.rem(5),
-        }),
-        ...theme.media(550).max({
-            width: '100%',
-            margin: theme.rem(2, 0, 0),
-        }),
+        color: theme.palette.trueBlack,
     },
     icon: {
         position: 'relative',
@@ -122,15 +108,6 @@ const useStyles = createUseStyles((theme: Theme) => ({
             width: theme.rem(1.4),
         },
     },
-    toHome: {
-        marginBottom: theme.rem(2),
-        fontSize: theme.rem(1.6),
-        fontWeight: theme.text.weight[3],
-        color: theme.palette.primary[0],
-        ...theme.hover({
-            textDecoration: 'underline',
-        }),
-    },
     mobile: {
         width: theme.rem(30),
         marginLeft: theme.rem(2),
@@ -148,7 +125,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     reset: {
         fontSize: theme.rem(1.1),
         padding: theme.rem(2),
-        color: theme.palette.black[0],
+        color: theme.palette.trueBlack,
     },
     resetHidden: {
         opacity: 0,
@@ -166,10 +143,16 @@ const Search = ({ shallow = false }: IProps): ReactElement => {
     const history = useRouter();
     const dispatch = useDispatch();
     const desktop = useMedia(766);
-    const showBtn = useMedia(1100);
+    const [img, setImg] = useState('');
+
+    useEffect(() => {
+        if (process.browser) {
+            const random = Math.round(Math.random() * 10);
+            setImg(`/backdrop/${random || 1}.jpeg`);
+        }
+    }, []);
 
     const searchParams = useSelector<IState, ISearch>(state => state.config.searchParams);
-    const pagination = useSelector<IState, boolean>(state => state.offers.search.pagination);
 
     const handleChange = (value: IDropValue | null): void => {
         if (shallow) {
@@ -241,17 +224,9 @@ const Search = ({ shallow = false }: IProps): ReactElement => {
     };
 
     return (
-        <div className={css.root}>
+        <div className={css.root} style={{ backgroundImage: `url(${img})` }}>
             <Container>
                 <form action="#" method="post" onSubmit={handleSubmit}>
-                    {history.pathname !== routes.root && (
-                        <div className={css.toHome}>
-                            <LinkArrow href={routes.root} toLeft>
-                                {trans('to_home')}
-                            </LinkArrow>
-                        </div>
-                    )}
-
                     <div className={css.wrp}>
                         <div className={css.form}>
                             <div className={css.search}>
@@ -283,14 +258,11 @@ const Search = ({ shallow = false }: IProps): ReactElement => {
                             </div>
                         </div>
 
-                        <div className={css.mobile}>
-                            {!desktop && <OptionsMobile onChange={handleChange} />}
-                            {showBtn ? (
-                                <Button loading={pagination} type="submit" className={css.btn}>
-                                    {trans('find')}
-                                </Button>
-                            ) : null}
-                        </div>
+                        {!desktop && (
+                            <div className={css.mobile}>
+                                <OptionsMobile onChange={handleChange} />
+                            </div>
+                        )}
                     </div>
                 </form>
             </Container>

@@ -150,14 +150,16 @@ const OfferCard = ({ offer, showFavoriteBtn = true }: IProps): ReactElement => {
                         <div className={css.topWrp}>
                             {is_promoted && (
                                 <Tooltip className={css.tooltip} content="Это объявление находится в топе">
-                                    <div className={css.top}>
+                                    <div className={clsx(css.top, config.offerCardSize === 'small' && css.topSmall)}>
                                         <FontAwesomeIcon icon={faStar} />
                                     </div>
                                 </Tooltip>
                             )}
                             {is_deliverable && (
                                 <Tooltip className={css.tooltip} content="Автор предоставляет доставку товара">
-                                    <div className={clsx(css.top, css.delivery)}>
+                                    <div
+                                        className={clsx(css.top, css.delivery, config.offerCardSize === 'small' && css.topSmall)}
+                                    >
                                         <FontAwesomeIcon icon={faTruck} />
                                     </div>
                                 </Tooltip>
@@ -195,8 +197,8 @@ const OfferCard = ({ offer, showFavoriteBtn = true }: IProps): ReactElement => {
                 <DropDown
                     icon={faCogs}
                     minWidth={30}
-                    height={4}
-                    className={css.dropdown}
+                    height={config.offerCardSize === 'small' ? 3 : 4}
+                    className={clsx(css.dropdown, config.offerCardSize === 'small' && css.dropdownSmall)}
                     onChange={handleSettings}
                     data={formatUserActions(functions, USER_ACTIONS)}
                 />
@@ -215,7 +217,7 @@ const OfferCard = ({ offer, showFavoriteBtn = true }: IProps): ReactElement => {
             )}
 
             <div className={css.action}>
-                <p className={css.price}>
+                <p className={clsx(css.price, config.offerCardSize === 'small' && css.priceSmall)}>
                     <span>{moneyFormat(price)}</span>
                     <small>{`${trans('uah')} / ${trans('day')}`}</small>
                 </p>

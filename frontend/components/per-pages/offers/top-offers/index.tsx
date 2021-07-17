@@ -52,7 +52,17 @@ const useStyles = createUseStyles((theme: Theme) => ({
             opacity: 0,
         },
     },
+    title: {
+        margin: theme.rem(2, 0, 1),
+        fontWeight: theme.text.weight[2],
+        fontSize: theme.rem(1.4),
+        color: theme.palette.black[0],
+    },
     checkbox: {
+        display: 'flex',
+        justifyContent: 'center',
+        flexDirection: 'column',
+        alignItems: 'center',
         margin: '3rem auto',
     },
 }));
@@ -70,9 +80,8 @@ const TopOffers = (): ReactElement => {
     return (
         <>
             <Container className={css.checkbox} id="products">
-                <Switcher onClick={handleHide} value={config.hideTopOffers} off={trans('open')} on={trans('close')}>
-                    {config.hideTopOffers ? trans('show_top_offers') : trans('hide_top_offers')}
-                </Switcher>
+                <h4 className={css.title}>{config.hideTopOffers ? trans('show_top_offers') : trans('hide_top_offers')}</h4>
+                <Switcher onClick={handleHide} value={config.hideTopOffers} off={trans('open')} on={trans('close')} />
             </Container>
 
             <CSSTransition timeout={600} unmountOnExit in={!config.hideTopOffers}>

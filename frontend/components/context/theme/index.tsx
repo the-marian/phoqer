@@ -5,21 +5,21 @@ import { Themes } from '../../../interfaces';
 import config from '../../../utils/config';
 import notificationsModal from '../../common/modal/notifications-modal';
 
-export const Theme = createContext<[theme: Themes, setTheme: (v: Themes) => void]>(['blue', () => undefined]);
+export const Theme = createContext<[theme: Themes, setTheme: (v: Themes) => void]>(['white', () => undefined]);
 
 interface IProps {
-    siteTheme?: Themes;
+    siteTheme?: Themes | null;
     children: JSX.Element | JSX.Element[] | ReactElement;
 }
 
-const SiteTheme = ({ children, siteTheme = 'blue' }: IProps): ReactElement => {
-    const [theme, setTheme] = useState<Themes>(config.themes.includes(siteTheme) ? siteTheme : 'blue');
+const SiteTheme = ({ children, siteTheme = 'white' }: IProps): ReactElement => {
+    const [theme, setTheme] = useState<Themes>(siteTheme && config.themes.includes(siteTheme) ? siteTheme : 'white');
 
     useEffect(() => {
         if (process.browser && document.querySelector('html')) {
-            document.querySelector('html')?.classList?.add(siteTheme);
+            document.querySelector('html')?.classList?.add(theme);
         }
-    }, [siteTheme]);
+    }, [theme]);
 
     const handleTheme = (value: Themes): void => {
         try {

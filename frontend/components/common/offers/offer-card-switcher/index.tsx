@@ -9,6 +9,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     root: {
         marginBottom: theme.rem(2),
         fontSize: theme.rem(1.4),
+        color: theme.palette.black[0],
     },
 }));
 
@@ -22,7 +23,7 @@ const OfferCardSwitcher = (): ReactElement => {
 
     return (
         <div className={css.root}>
-            <CheckYesNo value={config.offerCardSize === 'big'} onChange={handleChange} titles={['big cards', 'small cards']}>
+            <CheckYesNo value={config.offerCardSize === 'big'} onChange={handleChange} titles={['Big cards', 'Small cards']}>
                 Change view mode
             </CheckYesNo>
         </div>

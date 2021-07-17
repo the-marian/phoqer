@@ -19,11 +19,6 @@ const useStyles = createUseStyles((theme: Theme) => ({
 
         ...template(theme).outline,
 
-        ...theme.media(768).max({
-            height: theme.rem(4),
-            width: theme.rem(4),
-        }),
-
         '&::after': {
             content: '""',
             position: 'absolute',

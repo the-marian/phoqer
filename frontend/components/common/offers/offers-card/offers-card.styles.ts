@@ -65,11 +65,17 @@ const useStyles = createUseStyles((theme: Theme) => ({
         color: theme.palette.yellow[0],
         cursor: 'default',
     },
+    topSmall: {
+        height: theme.rem(3),
+        width: theme.rem(3),
+        fontSize: theme.rem(1.2),
+        borderRadius: theme.rem(0.6),
+    },
     delivery: {
         color: theme.palette.gray[2],
     },
     titleBig: {
-        margin: theme.rem(1, 0),
+        margin: theme.rem(1, 0, 0),
         fontSize: theme.rem(1.5),
         fontWeight: theme.text.weight[3],
 
@@ -78,7 +84,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         }),
     },
     titleSmall: {
-        margin: theme.rem(1, 0),
+        margin: theme.rem(1, 0, 0),
         fontSize: theme.rem(1.4),
         fontWeight: theme.text.weight[2],
     },
@@ -94,7 +100,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     info: {
         display: 'flex',
         justifyContent: 'space-between',
-        margin: theme.rem(1, 0),
+        margin: theme.rem(0.3, 0),
     },
     text: {
         display: 'flex',
@@ -130,7 +136,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         alignItems: 'center',
         justifyContent: 'center',
         minWidth: theme.rem(6),
-        height: theme.rem(5),
+        height: theme.rem(4),
         marginLeft: theme.rem(0.6),
         color: theme.palette.primary[0],
         borderRadius: theme.radius,
@@ -164,12 +170,16 @@ const useStyles = createUseStyles((theme: Theme) => ({
 
         ...theme.media(500).max({
             fontSize: theme.rem(1.8),
-            flexDirection: 'column',
-            alignItems: 'flex-start',
 
             '& small': {
                 fontSize: theme.rem(1.4),
             },
+        }),
+    },
+    priceSmall: {
+        ...theme.media(500).max({
+            flexDirection: 'column',
+            alignItems: 'flex-start',
         }),
     },
     dropdown: {
@@ -188,10 +198,13 @@ const useStyles = createUseStyles((theme: Theme) => ({
             textAlign: 'center',
             background: theme.palette.white,
         },
-        ...theme.media(500).max({
-            top: theme.rem(1),
-            left: theme.rem(1),
-        }),
+    },
+    dropdownSmall: {
+        '& > p': {
+            width: theme.rem(3),
+            fontSize: theme.rem(1.4),
+            borderRadius: theme.rem(0.7),
+        },
     },
 }));
 

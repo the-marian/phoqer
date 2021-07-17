@@ -18,8 +18,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
     btn: {
         ...template(theme).btn,
-        width: theme.rem(25),
+        width: 'max-content',
         margin: '10rem auto 0',
+        padding: theme.rem(1, 2),
 
         ...theme.media(550).max({
             margin: '4rem auto 0',

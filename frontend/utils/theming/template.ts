@@ -46,7 +46,7 @@ const template = (theme: Theme): Template => ({
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        height: theme.rem(5),
+        height: theme.rem(4),
         padding: theme.rem(0, 1),
         background: theme.palette.primary[0],
         color: theme.palette.trueWhite,

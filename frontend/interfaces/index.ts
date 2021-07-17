@@ -70,17 +70,7 @@ export interface ITabsNum {
     reviews?: number | string;
 }
 
-export type Themes =
-    | 'green'
-    | 'blue'
-    | 'red'
-    | 'aqua'
-    | 'violet'
-    | 'black-aqua'
-    | 'black-blue'
-    | 'black-violet'
-    | 'black-orange'
-    | 'black-green';
+export type Themes = 'white' | 'black';
 
 export type IOfferCardSize = 'small' | 'big';
 

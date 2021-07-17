@@ -17,8 +17,8 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
     lang: {
         '& p': {
-            background: theme.palette.primary[0],
-            color: theme.palette.trueWhite,
+            background: theme.palette.gray[1],
+            color: theme.palette.black[0],
         },
     },
 }));

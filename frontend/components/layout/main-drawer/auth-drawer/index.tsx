@@ -1,6 +1,8 @@
 import { faHeart } from '@fortawesome/free-solid-svg-icons/faHeart';
 import { faHome } from '@fortawesome/free-solid-svg-icons/faHome';
+import { faMoon } from '@fortawesome/free-solid-svg-icons/faMoon';
 import { faPlus } from '@fortawesome/free-solid-svg-icons/faPlus';
+import { faSun } from '@fortawesome/free-solid-svg-icons/faSun';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
@@ -9,6 +11,7 @@ import { createUseStyles } from 'react-jss';
 import { useSelector } from 'react-redux';
 
 import useAuth from '../../../../hooks/auth.hook';
+import useTheme from '../../../../hooks/theme.hook';
 import { IPublicProfile, IState } from '../../../../interfaces';
 import routes from '../../../../utils/routes';
 import template from '../../../../utils/theming/template';
@@ -32,8 +35,8 @@ const useStyles = createUseStyles((theme: Theme) => ({
         marginRight: theme.rem(1),
         padding: 0,
         boxShadow: 'none',
-        background: theme.palette.secondary[0],
-        color: theme.palette.black[0],
+        background: theme.palette.gray[0],
+        color: theme.palette.primary[0],
         transitions: theme.transitions[0],
         ...template(theme).outline,
     },
@@ -46,6 +49,7 @@ const AuthDrawer = (): ReactElement | null => {
     const css = useStyles();
     const auth = useAuth();
     const history = useRouter();
+    const [theme, setTheme] = useTheme();
     const user = useSelector<IState, IPublicProfile | null>(state => state.user);
 
     const linksRedirect = (route: string): void => {
@@ -68,8 +72,23 @@ const AuthDrawer = (): ReactElement | null => {
         linksRedirect(routes.offers.new(1));
     };
 
+    const toggleTheme = (): void => {
+        setTheme(theme === 'white' ? 'black' : 'white');
+    };
+
     return (
         <>
+            <ProfileCard
+                column
+                id={user?.id}
+                firstName={user?.first_name}
+                lastName={user?.last_name}
+                avatar={user?.profile_img}
+                lastActivity={user?.last_activity}
+                userLocation={user?.city}
+                registerDate={user?.date_joined}
+            />
+
             <div className={css.buttons}>
                 <Link href={routes.root}>
                     <a className={css.btn} type="button">
@@ -84,17 +103,12 @@ const AuthDrawer = (): ReactElement | null => {
                 <button className={css.btn} type="button" onClick={handleNewOffer}>
                     <FontAwesomeIcon icon={faPlus} />
                 </button>
+
+                <button className={css.btn} type="button" onClick={toggleTheme}>
+                    {theme === 'white' ? <FontAwesomeIcon icon={faMoon} /> : <FontAwesomeIcon icon={faSun} />}
+                </button>
             </div>
-            <ProfileCard
-                column
-                id={user?.id}
-                firstName={user?.first_name}
-                lastName={user?.last_name}
-                avatar={user?.profile_img}
-                lastActivity={user?.last_activity}
-                userLocation={user?.city}
-                registerDate={user?.date_joined}
-            />
+
             <div className={css.wrp}>
                 <UserNavDropdown />
             </div>

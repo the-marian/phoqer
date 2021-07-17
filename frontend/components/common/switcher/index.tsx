@@ -18,6 +18,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         marginRight: theme.rem(1),
         background: theme.palette.gray[1],
         borderRadius: theme.radius,
+        textTransform: 'capitalize',
 
         '& span': {
             position: 'relative',
@@ -33,21 +34,20 @@ const useStyles = createUseStyles((theme: Theme) => ({
             content: '""',
             position: 'absolute',
             top: '50%',
-            left: theme.rem(0.2),
+            left: theme.rem(0.35),
             zIndex: 1,
             transform: 'translateY(-50%)',
-            height: '90%',
+            height: '85%',
             width: '50%',
-            borderRadius: theme.radius,
+            borderRadius: theme.rem(0.7),
             background: theme.palette.white,
             transition: theme.transitions[0],
             boxShadow: theme.shadow[1],
-            border: theme.border(0.2, theme.palette.primary[0]),
         },
     },
     open: {
         '&::before': {
-            left: 'calc(50% - 0.2rem)',
+            left: 'calc(50% - 0.35rem)',
         },
     },
 }));

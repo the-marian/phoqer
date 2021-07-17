@@ -50,7 +50,7 @@ const PhoqerApp = ({ Component, pageProps, width, auth, theme, config }: AppProp
     }, []);
 
     return (
-        <SiteTheme siteTheme={theme || 'green'}>
+        <SiteTheme siteTheme={theme}>
             <ConfigProvider value={config}>
                 <AuthProvider authServer={auth}>
                     <MediaProvider width={width}>
