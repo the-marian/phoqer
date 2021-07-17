@@ -46,7 +46,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         flexDirection: 'column',
         width: '100%',
         height: '100%',
-        padding: theme.rem(0.5),
+        padding: theme.rem(0.5, 0.5, 1.5),
         color: theme.palette.black[0],
     },
     number: {
