@@ -176,7 +176,17 @@ const OfferCard = ({ offer, showFavoriteBtn = true }: IProps): ReactElement => {
                             <p className={css.desc}>{cutString(description, 50)}</p>
                         </>
                     ) : (
-                        <h3 className={css.titleSmall}>{cutString(title, 21)}</h3>
+                        <Tooltip
+                            content={
+                                <>
+                                    <h4>{title}</h4>
+                                    <p>{cutString(description, 50)}</p>
+                                </>
+                            }
+                            showInMobile
+                        >
+                            <h3 className={css.titleSmall}>{cutString(title, 19)}</h3>
+                        </Tooltip>
                     )}
                 </a>
             </Link>

@@ -164,6 +164,8 @@ const useStyles = createUseStyles((theme: Theme) => ({
 
         ...theme.media(500).max({
             fontSize: theme.rem(1.8),
+            flexDirection: 'column',
+            alignItems: 'flex-start',
 
             '& small': {
                 fontSize: theme.rem(1.4),

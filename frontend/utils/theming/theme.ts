@@ -28,7 +28,7 @@ export interface Theme {
 
 export const theme = (value: Themes): Theme => ({
     fr: (value: number): string => Array(value).fill('1fr').join(' '),
-    border: (value: number, color: string) => `${value}rem solid ${color}`,
+    border: (value: number | string, color: string) => `${value}rem solid ${color}`,
     rem: (one: number, two?: number, three?: number, four?: number): string =>
         `${one}rem${two || two === 0 ? ` ${two}rem` : ''}${three || three === 0 ? ` ${three}rem` : ''}${
             four || four === 0 ? ` ${four}rem` : ''

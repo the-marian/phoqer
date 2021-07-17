@@ -28,7 +28,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
 
         ...theme.media(768).max({
             padding: theme.rem(11, 0, 5),
-            background: theme.palette.primary[0],
+            background: theme.palette.secondary[0],
         }),
     },
     wrp: {

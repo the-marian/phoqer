@@ -7,6 +7,7 @@ import { IOfferCard } from '../../../../interfaces';
 import { Theme } from '../../../../utils/theming/theme';
 import OffersLoader from '../../loaders/skeletons/offers';
 import EmptyOffers from '../empty-offers';
+import OfferCardSwitcher from '../offer-card-switcher';
 import OfferCard from '../offers-card';
 
 const useStyles = createUseStyles((theme: Theme) => ({
@@ -33,7 +34,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     gridSmall: {
         display: 'grid',
         gridTemplateColumns: theme.fr(6),
-        gridGap: theme.rem(5, 1.5),
+        gridGap: theme.rem(3, 1.5),
         fontSize: theme.rem(1.5),
         fontWeight: theme.text.weight[3],
 
@@ -72,17 +73,20 @@ const OffersList = ({ loading, loadMoreLoading = false, data, showFavoriteBtn = 
 
     return loading ? (
         <>
-            <OffersLoader amount={media ? 4 : 1} />
+            <OffersLoader amount={media ? 4 : 2} />
             {media && <OffersLoader className={css.loading} amount={media ? 4 : 1} />}
         </>
     ) : (
         <>
             {data?.length ? (
-                <div className={config.offerCardSize === 'big' ? css.gridBig : css.gridSmall}>
-                    {data?.map(item => (
-                        <OfferCard key={item.id} offer={item} showFavoriteBtn={showFavoriteBtn} />
-                    ))}
-                </div>
+                <>
+                    <OfferCardSwitcher />
+                    <div className={config.offerCardSize === 'big' ? css.gridBig : css.gridSmall}>
+                        {data?.map(item => (
+                            <OfferCard key={item.id} offer={item} showFavoriteBtn={showFavoriteBtn} />
+                        ))}
+                    </div>
+                </>
             ) : (
                 <EmptyOffers />
             )}

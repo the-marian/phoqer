@@ -2,7 +2,9 @@ import clsx from 'clsx';
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
+import useConfig from '../../../../../hooks/config.hook';
 import { Theme } from '../../../../../utils/theming/theme';
+import TextSkeleton from '../text';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     '@keyframes loader': {
@@ -21,6 +23,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
             marginRight: 0,
         },
     },
+    cardSmall: {
+        maxWidth: theme.rem(19),
+    },
     img: {
         height: theme.rem(25),
         borderRadius: theme.radius,
@@ -28,30 +33,8 @@ const useStyles = createUseStyles((theme: Theme) => ({
         backgroundSize: '400% 400%',
         animation: '$loader 2s ease infinite',
     },
-    title: {
-        height: theme.rem(3),
-        margin: theme.rem(1, 0),
-        borderRadius: theme.radius,
-        background: `linear-gradient(45deg, ${theme.palette.gray[1]}, ${theme.palette.gray[0]}, ${theme.palette.gray[1]})`,
-        backgroundSize: '400% 400%',
-        animation: '$loader 2s ease infinite',
-    },
-    text: {
-        height: theme.rem(2),
-        margin: theme.rem(1, 0),
-        borderRadius: theme.radius,
-        background: `linear-gradient(45deg, ${theme.palette.gray[1]}, ${theme.palette.gray[0]}, ${theme.palette.gray[1]})`,
-        backgroundSize: '400% 400%',
-        animation: '$loader 2s ease infinite',
-    },
-    textShort: {
-        width: '60%',
-        height: theme.rem(2),
-        margin: theme.rem(1, 0),
-        borderRadius: theme.radius,
-        background: `linear-gradient(45deg, ${theme.palette.gray[1]}, ${theme.palette.gray[0]}, ${theme.palette.gray[1]})`,
-        backgroundSize: '400% 400%',
-        animation: '$loader 2s ease infinite',
+    imgSmall: {
+        height: theme.rem(11),
     },
 }));
 
@@ -62,15 +45,15 @@ interface IProps {
 
 const OffersLoader = React.forwardRef<HTMLDivElement | null, IProps>(({ amount = 1, className }, ref): ReactElement => {
     const css = useStyles();
+    const [config] = useConfig();
+    const isSmallCard = config.offerCardSize === 'small';
 
     return (
         <div ref={ref} className={clsx(css.wrp, className)}>
             {[...Array(amount)].map((_, index) => (
-                <div className={css.card} key={index}>
-                    <div className={css.img} />
-                    <div className={css.text} />
-                    <div className={css.text} />
-                    <div className={css.textShort} />
+                <div className={clsx(css.card, isSmallCard && css.cardSmall)} key={index}>
+                    <div className={clsx(css.img, isSmallCard && css.imgSmall)} />
+                    <TextSkeleton amount={isSmallCard ? 1 : 2} />
                 </div>
             ))}
         </div>
