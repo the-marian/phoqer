@@ -1,6 +1,7 @@
-import { faHeart } from '@fortawesome/free-regular-svg-icons/faHeart';
-import { faUserCircle } from '@fortawesome/free-regular-svg-icons/faUserCircle';
+import { faHeart } from '@fortawesome/free-solid-svg-icons/faHeart';
+import { faMoon } from '@fortawesome/free-solid-svg-icons/faMoon';
 import { faPlus } from '@fortawesome/free-solid-svg-icons/faPlus';
+import { faSun } from '@fortawesome/free-solid-svg-icons/faSun';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import clsx from 'clsx';
 import Link from 'next/link';
@@ -10,6 +11,7 @@ import { createUseStyles } from 'react-jss';
 import { useSelector } from 'react-redux';
 
 import useMedia from '../../../../hooks/media.hook';
+import useTheme from '../../../../hooks/theme.hook';
 import useTrans from '../../../../hooks/trans.hook';
 import { IPublicProfile, IState } from '../../../../interfaces';
 import routes from '../../../../utils/routes';
@@ -19,6 +21,8 @@ import { modal } from '../../../common/modal';
 import SmallModalWrp from '../../../common/modal/small-modal-wrp';
 import UserNavDropdown from '../../../common/navigation/user-dropdown-nav';
 import NotifNumber from '../../../common/notif-number';
+import Tooltip from '../../../common/tooltip';
+import UserAvatar from '../../../common/user-avatar';
 import DropWindow from './drop-window';
 
 const useStyles = createUseStyles((theme: Theme) => ({
@@ -57,16 +61,27 @@ const useStyles = createUseStyles((theme: Theme) => ({
             },
         }),
     },
-    text: {
-        position: 'relative',
-        marginLeft: theme.rem(1),
+    textWrp: {
+        display: 'flex',
+        flexDirection: 'column',
+        textAlign: 'left',
         maxWidth: theme.rem(20),
-        ...template(theme).cutString,
+        fontSize: theme.rem(1.2),
 
-        ...theme.media(1200).max({
-            fontSize: '0',
-            margin: '0',
+        ...theme.media(560).max({
+            display: 'none',
         }),
+    },
+    text: {
+        width: '100%',
+        marginLeft: theme.rem(1),
+        ...template(theme).cutString,
+    },
+    small: {
+        width: '100%',
+        marginLeft: theme.rem(1),
+        color: theme.palette.gray[2],
+        ...template(theme).cutString,
     },
     user: {
         position: 'relative',
@@ -75,12 +90,17 @@ const useStyles = createUseStyles((theme: Theme) => ({
     number: {
         marginRight: theme.rem(0.5),
     },
+    tooltip: {
+        minWidth: theme.rem(10),
+    },
 }));
 
 const UserInfo = (): ReactElement => {
     const css = useStyles();
     const trans = useTrans();
-    const media = useMedia(410);
+    const tablet = useMedia(650);
+    const desktop = useMedia(900);
+    const [theme, setTheme] = useTheme();
 
     const [drop, setDrop] = useState<boolean>(false);
     const user = useSelector<IState, IPublicProfile | null>(state => state.user);
@@ -108,31 +128,58 @@ const UserInfo = (): ReactElement => {
               );
     };
 
+    const toggleTheme = (): void => {
+        setTheme(theme === 'white' ? 'black' : 'white');
+    };
+
     return (
         <ul className={css.flex}>
-            <li className={css.item}>
-                <Link href={routes.offers.new(1)}>
-                    <a className={css.link}>
-                        <FontAwesomeIcon icon={faPlus} />
-                        <span className={css.text}>{trans('create_offer')}</span>
-                    </a>
-                </Link>
-            </li>
-            {media && (
+            {tablet && (
                 <li className={css.item}>
-                    <Link href={routes.favorite}>
-                        <a className={css.link}>
-                            <FontAwesomeIcon icon={faHeart} />
-                            <span className={css.text}>{trans('favorites')}</span>
-                        </a>
-                    </Link>
+                    <Tooltip className={css.tooltip} content={trans('Change theme')}>
+                        <button type="button" className={css.link} onClick={toggleTheme}>
+                            {theme === 'white' ? <FontAwesomeIcon icon={faMoon} /> : <FontAwesomeIcon icon={faSun} />}
+                        </button>
+                    </Tooltip>
                 </li>
+            )}
+
+            {desktop && (
+                <>
+                    <li className={css.item}>
+                        <Tooltip className={css.tooltip} content={trans('create_offer')}>
+                            <Link href={routes.offers.new(1)}>
+                                <a className={css.link}>
+                                    <FontAwesomeIcon icon={faPlus} />
+                                </a>
+                            </Link>
+                        </Tooltip>
+                    </li>
+                    <li className={css.item}>
+                        <Tooltip className={css.tooltip} content={trans('favorites')}>
+                            <Link href={routes.favorite}>
+                                <a className={css.link}>
+                                    <FontAwesomeIcon icon={faHeart} />
+                                </a>
+                            </Link>
+                        </Tooltip>
+                    </li>
+                </>
             )}
             <li className={css.item}>
                 <button type="button" className={clsx(css.link, drop && css.user)} onClick={handleClick}>
                     <NotifNumber className={css.number}>14</NotifNumber>
-                    <FontAwesomeIcon icon={faUserCircle} />
-                    <span className={css.text}>{userName}</span>
+                    <UserAvatar
+                        width={3.5}
+                        height={3.5}
+                        firstName={user?.first_name}
+                        lastName={user?.first_name}
+                        avatar={user?.profile_img}
+                    />
+                    <div className={css.textWrp}>
+                        <span className={css.text}>{userName}</span>
+                        <span className={css.small}>{user?.email || 'no email'}</span>
+                    </div>
                 </button>
                 {drop && <DropWindow onClose={handleClick} />}
             </li>

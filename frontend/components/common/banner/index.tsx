@@ -32,7 +32,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         }),
     },
     animation: {
-        background: theme.palette.gray[0],
+        background: theme.palette.gray[1],
     },
     title: {
         maxWidth: theme.rem(50),

@@ -22,7 +22,7 @@ const palette: { [key: string]: IPalette } = {
         trueWhite: '#FFFFFF',
         trueBlack: '#222222',
         glass: ['rgba(255, 255, 255, 0.8)', 'rgba(250, 250, 250, 0.8)'],
-        gray: ['#f9f9f9', '#e0e0e8', '#909bac', '#999999', '#444444'],
+        gray: ['#f9f9f9', '#eeeeee', '#909bac', '#999999', '#444444'],
         red: ['#DB162F'],
         green: ['#227dcc'],
         grad: ['#fef1ff', '#f4f6ff', '#f0fcf6'],

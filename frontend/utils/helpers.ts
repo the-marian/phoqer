@@ -2,7 +2,6 @@ import cookie from 'cookie';
 import { GetServerSidePropsContext } from 'next';
 
 import { IAuth, ICategories, IDropList, IDropValue } from '../interfaces';
-import config from './config';
 import months from './months';
 import routes from './routes';
 

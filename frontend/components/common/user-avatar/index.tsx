@@ -13,7 +13,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        fontSize: theme.em(2.3),
+        fontSize: 'inherit',
         color: theme.palette.trueWhite,
         background: theme.palette.primary[0],
         borderRadius: '50%',
@@ -36,6 +36,7 @@ interface IProps {
     height?: number;
     time?: string | null;
     online?: boolean;
+    fontSize?: number;
 }
 const UserAvatar = ({
     firstName = 'A',
@@ -45,6 +46,7 @@ const UserAvatar = ({
     height = 8,
     online = false,
     time,
+    fontSize,
 }: IProps): ReactElement => {
     const css = useStyles();
     return (
@@ -66,6 +68,7 @@ const UserAvatar = ({
                     style={{
                         width: `${width}rem`,
                         height: `${height}rem`,
+                        fontSize: fontSize || (width + height) / 6 + 'rem',
                     }}
                     className={css.avatar}
                 >
