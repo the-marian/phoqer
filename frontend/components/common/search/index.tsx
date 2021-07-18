@@ -34,7 +34,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         backgroundSize: 'cover',
 
         ...theme.media(768).max({
-            minHeight: '88vh',
+            minHeight: '92vh',
             backgroundAttachment: 'unset',
         }),
 
@@ -180,6 +180,7 @@ const Search = ({ shallow = false }: IProps): ReactElement => {
         if (process.browser) {
             const random = Math.round(Math.random() * 10);
             setImg(`/backdrop/${random || 1}.jpeg`);
+            window.scrollTo({ top: document.getElementById('products')?.offsetTop || 0, behavior: 'smooth' });
         }
     }, []);
 

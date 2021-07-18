@@ -7,8 +7,8 @@ import { IPublicProfile, IState, ITabs } from '../../../../interfaces';
 import config from '../../../../utils/config';
 import template from '../../../../utils/theming/template';
 import { Theme } from '../../../../utils/theming/theme';
-import SmallModalWrp from '../../modal/small-modal-wrp';
-import NavTabs from '../../navigation';
+import SmallModalWrp from '../../../common/modal/small-modal-wrp';
+import NavTabs from '../../../common/navigation';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     item: {

@@ -14,7 +14,7 @@ import { IPublicProfile, IState } from '../../../interfaces';
 import routes from '../../../utils/routes';
 import template from '../../../utils/theming/template';
 import { Theme } from '../../../utils/theming/theme';
-import NotifNumber from '../notif-number';
+import NotifNumber from '../../common/notif-number';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     list: {
@@ -46,7 +46,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         flexDirection: 'column',
         width: '100%',
         height: '100%',
-        padding: theme.rem(0.2, 0.5, 1.6),
+        padding: theme.rem(0, 0.5, 1.65),
         color: theme.palette.black[0],
     },
     number: {

@@ -6,12 +6,12 @@ import useConfig from '../../../hooks/config.hook';
 import useTheme from '../../../hooks/theme.hook';
 import { theme } from '../../../utils/theming/theme';
 import RouterProgress from '../../common/loaders/progress/router-progress';
-import MobileNav from '../../common/mobile-nav';
 import ModalComponent from '../../common/modal';
 import notifications from '../../common/notifications';
 import ConstructionMessage from '../../common/notifications/Messages/construction';
 import AuthInterceptor from '../../context/auth/auth-interceptor';
 import MainDrawer from '../main-drawer';
+import MobileNav from '../mobile-nav';
 
 interface IProps {
     children: JSX.Element | JSX.Element[];
