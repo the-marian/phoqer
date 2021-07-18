@@ -1,5 +1,6 @@
 import { faUserCircle } from '@fortawesome/free-regular-svg-icons/faUserCircle';
 import { faKey } from '@fortawesome/free-solid-svg-icons/faKey';
+import clsx from 'clsx';
 import Link from 'next/link';
 import React, { ChangeEvent, FormEvent, MouseEvent, ReactElement, useState } from 'react';
 import { createUseStyles } from 'react-jss';
@@ -61,6 +62,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
             padding: theme.rem(2),
         }),
     },
+    btnLeft: {
+        margin: '2rem 0',
+    },
     text: {
         marginBottom: theme.rem(1),
         fontSize: theme.rem(1.4),
@@ -71,6 +75,18 @@ const useStyles = createUseStyles((theme: Theme) => ({
         ...theme.media(500).max({
             marginBottom: theme.rem(3),
         }),
+    },
+    left: {
+        textAlign: 'left',
+    },
+    socials: {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    socialsLeft: {
+        justifyContent: 'flex-start',
+        marginLeft: theme.rem(-1),
     },
 }));
 
@@ -84,7 +100,11 @@ const INIT: ILogin = {
     password: '',
 };
 
-const LoginForm = (): ReactElement => {
+interface IProps {
+    left?: boolean;
+}
+
+const LoginForm = ({ left = false }: IProps): ReactElement => {
     const css = useStyles();
     const trans = useTrans();
     const dispatch = useDispatch();
@@ -125,7 +145,7 @@ const LoginForm = (): ReactElement => {
 
     return (
         <form action="#" method="post" onSubmit={handleSubmit}>
-            <h2 className={css.title}>{trans('welcome')}</h2>
+            <h2 className={clsx(css.title, left && css.left)}>{trans('welcome')}</h2>
 
             <div className={css.wrp}>
                 <Input
@@ -154,23 +174,25 @@ const LoginForm = (): ReactElement => {
             </div>
 
             <Link href={routes.auth.forgot_pass}>
-                <a className={css.link}>{trans('forgot_your_password')}</a>
+                <a className={clsx(css.link, left && css.left)}>{trans('forgot_your_password')}</a>
             </Link>
             <Link href={routes.auth.join}>
-                <a className={css.link}>{trans('join')}</a>
+                <a className={clsx(css.link, left && css.left)}>{trans('join')}</a>
             </Link>
 
-            <Button loading={loading} className={css.btn} type="submit">
+            <Button loading={loading} className={clsx(css.btn, left && css.btnLeft)} type="submit">
                 {trans('login')}
             </Button>
 
-            <p className={css.text}>
+            <p className={clsx(css.text, left && css.left)}>
                 {trans('or')}
                 <br />
                 {trans('login_with')}
             </p>
 
-            <GoogleFacebook />
+            <div className={clsx(css.socials, left && css.socialsLeft)}>
+                <GoogleFacebook />
+            </div>
         </form>
     );
 };

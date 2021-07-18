@@ -21,15 +21,48 @@ import OptionsMobile from './options-mobile';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     root: {
-        padding: theme.rem(50, 0, 12),
+        position: 'relative',
+        display: 'flex',
+        flexDirection: 'column-reverse',
+        minHeight: '77vh',
+        padding: theme.rem(0, 0, 15),
         backgroundColor: theme.palette.gray[1],
+        // parallax
+        backgroundAttachment: 'fixed',
+        backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
         backgroundSize: 'cover',
-        backgroundPosition: 'center',
 
         ...theme.media(768).max({
-            padding: theme.rem(25, 0, 5),
+            padding: theme.rem(10, 0, 5),
         }),
+
+        '&::before': {
+            content: '""',
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            zIndex: 0,
+            width: '100%',
+            height: '100%',
+            background: theme.palette.modal,
+        },
+    },
+    container: {
+        position: 'relative',
+        zIndex: 1,
+    },
+    title: {
+        fontSize: theme.rem(4),
+        color: theme.palette.trueWhite,
+        fontWeight: theme.text.weight[4],
+    },
+    subtitle: {
+        maxWidth: theme.rem(50),
+        paddingBottom: theme.rem(6),
+        fontSize: theme.rem(2),
+        color: theme.palette.trueWhite,
+        fontWeight: theme.text.weight[3],
     },
     wrp: {
         display: 'flex',
@@ -79,7 +112,6 @@ const useStyles = createUseStyles((theme: Theme) => ({
         transition: theme.transitions[0],
 
         ...theme.hover({
-            background: theme.palette.gray[0],
             color: theme.palette.primary[0],
         }),
 
@@ -110,13 +142,11 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
     mobile: {
         width: theme.rem(30),
-        marginLeft: theme.rem(2),
 
         ...theme.media(1100).max({
             display: 'flex',
             justifyContent: 'space-between',
             width: '100%',
-            margin: theme.rem(2, 0, 0),
         }),
         ...theme.media(550).max({
             flexDirection: 'column',
@@ -225,7 +255,11 @@ const Search = ({ shallow = false }: IProps): ReactElement => {
 
     return (
         <div className={css.root} style={{ backgroundImage: `url(${img})` }}>
-            <Container>
+            <Container className={css.container}>
+                <h2 className={css.title}>Phoqer</h2>
+                <p className={css.subtitle}>
+                    Is an online advertising platform that brings people together to exchange goods and services
+                </p>
                 <form action="#" method="post" onSubmit={handleSubmit}>
                     <div className={css.wrp}>
                         <div className={css.form}>

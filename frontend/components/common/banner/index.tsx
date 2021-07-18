@@ -32,9 +32,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         }),
     },
     animation: {
-        background: `linear-gradient(-50deg, ${theme.palette.grad})`,
-        backgroundSize: '300% 300%',
-        animation: '$grad 10s ease infinite',
+        background: theme.palette.gray[0],
     },
     title: {
         maxWidth: theme.rem(50),

@@ -62,7 +62,8 @@ const config = {
     host: (lang = 'pl'): string => `http://phoqer.com${lang === 'pl' ? '' : '/' + lang}`,
     img: 'http://phoqer.com',
     themes: ['white', 'black'] as Themes[],
-    googleApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAP_API_KEY || 'AIzaSyDAxCmU098YF_pqjtUzqTPwGF7JaH5ytyI',
+    googleApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAP_API_KEY,
+    appSecretKey: process.env.NEXT_PUBLIC_SECRET_KEY,
     userProfileLinks: (count?: ITabsNum): ITabs[] => generateBaseNavLink(count),
     userNavLinks: (userId: string, count?: ITabsNum): ITabs[] => [
         {

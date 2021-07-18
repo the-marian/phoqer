@@ -22,9 +22,20 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
     region: {
         width: '49%',
+        padding: 0,
+        background: 'transparent',
+        boxShadow: 'none',
+        color: theme.palette.trueWhite,
     },
     drop: {
         width: '49%',
+        background: 'transparent',
+        borderRadius: theme.radius,
+        '& p': {
+            padding: 0,
+            color: theme.palette.trueWhite + '!important',
+            fontWeight: theme.text.weight[3],
+        },
     },
 }));
 
@@ -57,7 +68,7 @@ const OptionsMobile = ({ onChange }: IProps): ReactElement => {
                     onChange={onChange}
                     height={tablet ? 6 : 5}
                     withSub
-                    white
+                    transparent
                 />
             </div>
             <Region className={css.region} />

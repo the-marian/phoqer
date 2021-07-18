@@ -25,7 +25,7 @@ const palette: { [key: string]: IPalette } = {
         gray: ['#f9f9f9', '#e0e0e8', '#909bac', '#999999', '#444444'],
         red: ['#DB162F'],
         green: ['#227dcc'],
-        grad: ['#c9f5e6', '#f5faf4', '#cfeaca'],
+        grad: ['#fef1ff', '#f4f6ff', '#f0fcf6'],
         yellow: ['#EDBF18', '#FAF0CA'],
         primary: ['#32603f', '#32603f'],
         secondary: ['#dfece2'],

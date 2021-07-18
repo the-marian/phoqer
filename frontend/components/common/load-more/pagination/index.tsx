@@ -84,8 +84,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         alignItems: 'center',
         margin: theme.rem(4, 0, 1),
         padding: theme.rem(1.2, 3),
-        background: theme.palette.gray[2],
-        color: theme.palette.trueWhite,
+        color: theme.palette.black[0],
         fontSize: theme.rem(1.6),
         borderRadius: theme.radius,
 
