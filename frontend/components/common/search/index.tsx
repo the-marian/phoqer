@@ -25,7 +25,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         display: 'flex',
         flexDirection: 'column-reverse',
         minHeight: '78vh',
-        padding: theme.rem(0, 0, 15),
+        padding: theme.rem(15, 0),
         backgroundColor: theme.palette.gray[1],
         // parallax
         backgroundAttachment: 'fixed',
