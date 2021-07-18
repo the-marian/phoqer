@@ -24,7 +24,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         position: 'relative',
         display: 'flex',
         flexDirection: 'column-reverse',
-        minHeight: '77vh',
+        minHeight: '78vh',
         padding: theme.rem(0, 0, 15),
         backgroundColor: theme.palette.gray[1],
         // parallax
@@ -34,6 +34,8 @@ const useStyles = createUseStyles((theme: Theme) => ({
         backgroundSize: 'cover',
 
         ...theme.media(768).max({
+            minHeight: '94vh',
+            backgroundAttachment: 'unset',
             padding: theme.rem(10, 0, 5),
         }),
 
