@@ -1,3 +1,4 @@
+import { hover } from '@testing-library/user-event/dist/hover';
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 import { useSelector } from 'react-redux';
@@ -24,12 +25,21 @@ const useStyles = createUseStyles((theme: Theme) => ({
         width: '49%',
         padding: 0,
         background: 'transparent',
-        boxShadow: 'none',
         color: theme.palette.trueWhite,
+        boxShadow: 'none',
+        '& span': {
+            color: theme.palette.trueWhite,
+        },
+
+        ...theme.hover({
+            border: theme.border(0.2, 'transparent'),
+        }),
+        ...theme.focus({
+            border: theme.border(0.2, 'transparent'),
+        }),
     },
     drop: {
         width: '49%',
-        background: 'transparent',
         borderRadius: theme.radius,
         '& p': {
             padding: 0,

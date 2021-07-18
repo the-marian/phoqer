@@ -36,7 +36,6 @@ const useStyles = createUseStyles((theme: Theme) => ({
         ...theme.media(768).max({
             minHeight: '88vh',
             backgroundAttachment: 'unset',
-            padding: theme.rem(10, 0, 5),
         }),
 
         '&::before': {
