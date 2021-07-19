@@ -8,8 +8,8 @@ import useTrans from '../../../hooks/trans.hook';
 import routes from '../../../utils/routes';
 import template from '../../../utils/theming/template';
 import { Theme } from '../../../utils/theming/theme';
+import AnimatedBackdrop from '../animated-backdrop';
 import LoginForm from '../auth/login-form';
-import GradientBackdrop from '../gradient-backdrop';
 import { modal } from '../modal';
 import SmallModalWrp from '../modal/small-modal-wrp';
 
@@ -71,7 +71,7 @@ const Banner = ({ className }: IProps): ReactElement => {
 
     return (
         <button onClick={handleClick} type="button" className={clsx(css.root, className)}>
-            <GradientBackdrop />
+            <AnimatedBackdrop />
             <h2 className={css.title}>{trans('share_with_others_and_earn')}</h2>
             <p className={css.text}>{trans('share_with_others_and_earn_text')}</p>
         </button>
