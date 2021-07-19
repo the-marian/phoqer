@@ -3,16 +3,23 @@
 exports[`Banner component matches snapshot 1`] = `
 <DocumentFragment>
   <button
-    class="root-0-2-2"
+    class="root-0-2-1"
     type="button"
   >
+    <div
+      class="root-0-2-7"
+    >
+      <span />
+      <span />
+      <span />
+    </div>
     <h2
-      class="title-0-2-4"
+      class="title-0-2-2"
     >
       # Share with others and earn
     </h2>
     <p
-      class="text-0-2-5"
+      class="text-0-2-3"
     >
       Place an advertisement on any category and get additional income right now.
     </p>

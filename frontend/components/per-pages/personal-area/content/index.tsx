@@ -137,7 +137,7 @@ const Content = (): ReactElement => {
                 </div>
             </div>
 
-            <Banner className={css.banner} animation />
+            <Banner className={css.banner} />
         </>
     );
 };

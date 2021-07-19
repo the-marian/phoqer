@@ -1,4 +1,3 @@
-import { hover } from '@testing-library/user-event/dist/hover';
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 import { useSelector } from 'react-redux';

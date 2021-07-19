@@ -90,7 +90,7 @@ const MessagesChat = (): ReactElement => {
 
             <main className={css.main}>
                 {media ? (
-                    <ProfileChatNav active="messages" />
+                    <ProfileChatNav active="chat" />
                 ) : (
                     <ChatBackBtn href={routes.profile.private.chat()}>Back to messages</ChatBackBtn>
                 )}

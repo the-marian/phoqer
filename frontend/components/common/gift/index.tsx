@@ -6,32 +6,31 @@ import template from '../../../utils/theming/template';
 import { Theme } from '../../../utils/theming/theme';
 import Advertising from '../advertising';
 import ConfettiWrp from '../confetti';
+import GradientBackdrop from '../gradient-backdrop';
 import { modal } from '../modal';
 
 const useStyles = createUseStyles((theme: Theme) => ({
-    '@keyframes grad': {
-        '0%': { backgroundPosition: '0% 50%' },
-        '50%': { backgroundPosition: '99% 50%' },
-        '100%': { backgroundPosition: '0% 50%' },
-    },
     root: {
+        position: 'relative',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
         width: '100%',
         padding: theme.rem(2, 1),
-        background: `linear-gradient(-50deg, ${theme.palette.grad})`,
-        backgroundSize: '300% 300%',
-        animation: '$grad 10s ease infinite',
+        background: theme.palette.gray[0],
         borderRadius: theme.radius,
         color: theme.palette.black[0],
         ...template(theme).outline,
     },
     img: {
+        position: 'relative',
+        zIndex: 2,
         height: theme.rem(10),
         width: theme.rem(10),
     },
     wrp: {
+        position: 'relative',
+        zIndex: 2,
         width: '60%',
         marginRight: theme.rem(3),
         textAlign: 'left',
@@ -63,6 +62,7 @@ const Gift = ({ style = {} }: IProps): ReactElement => {
 
     return (
         <button type="button" style={style} className={css.root} onClick={handleClick}>
+            <GradientBackdrop />
             <div className={css.wrp}>
                 <h2 className={css.title}>{trans('this_is_your_gift')}</h2>
                 <p>{trans('this_is_your_gift_text')}</p>

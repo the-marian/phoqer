@@ -41,7 +41,7 @@ const General = (): ReactElement => {
             <Avatar />
             <div className={css.inner}>
                 <GeneralInfoForm />
-                <Banner className={css.banner} animation />
+                <Banner className={css.banner} />
             </div>
         </div>
     );
