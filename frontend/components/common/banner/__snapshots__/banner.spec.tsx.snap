@@ -8,10 +8,17 @@ exports[`Banner component matches snapshot 1`] = `
   >
     <div
       class="root-0-2-7"
+      style="--blur: 0px;"
     >
-      <span />
-      <span />
-      <span />
+      <span
+        style="height: 0px; width: 0px;"
+      />
+      <span
+        style="height: 0px; width: 0px;"
+      />
+      <span
+        style="height: 0px; width: 0px;"
+      />
     </div>
     <h2
       class="title-0-2-2"

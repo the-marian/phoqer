@@ -1,27 +1,27 @@
 import clsx from 'clsx';
-import React, { ReactElement } from 'react';
+import React, { ReactElement, useEffect, useRef, useState } from 'react';
 import { createUseStyles } from 'react-jss';
 
 import { Theme } from '../../../utils/theming/theme';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     '@keyframes one': {
-        '0%': { top: '50%', left: '25%', height: '16vh', width: '16vh' },
-        '35%': { top: '35%', left: '32%', height: '26vh', width: '26vh' },
-        '75%': { top: '90%', left: '20%', height: '6vh', width: '6vh' },
-        '100%': { top: '50%', left: '25%', height: '16vh', width: '16vh' },
+        '0%': { top: '50%', left: '25%' },
+        '35%': { top: '35%', left: '32%' },
+        '75%': { top: '90%', left: '20%' },
+        '100%': { top: '50%', left: '25%' },
     },
     '@keyframes two': {
-        '0%': { top: '80%', left: '85%', height: '20vh', width: '20vh' },
-        '75%': { top: '65%', left: '80%', height: '10vh', width: '10vh' },
-        '35%': { top: '76%', left: '72%', height: '10vh', width: '10vh' },
-        '100%': { top: '80%', left: '85%', height: '20vh', width: '20vh' },
+        '0%': { top: '80%', left: '85%' },
+        '75%': { top: '65%', left: '80%' },
+        '35%': { top: '76%', left: '72%' },
+        '100%': { top: '80%', left: '85%' },
     },
     '@keyframes three': {
-        '0%': { top: '40%', left: '55%', height: '14vh', width: '14vh' },
-        '75%': { top: '20%', left: '80%', height: '20vh', width: '20vh' },
-        '35%': { top: '36%', left: '62%', height: '14vh', width: '14vh' },
-        '100%': { top: '40%', left: '55%', height: '14vh', width: '14vh' },
+        '0%': { top: '40%', left: '55%' },
+        '75%': { top: '20%', left: '80%' },
+        '35%': { top: '36%', left: '62%' },
+        '100%': { top: '40%', left: '55%' },
     },
 
     root: {
@@ -41,7 +41,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
             bottom: 0,
             left: 0,
             right: 0,
-            backdropFilter: 'blur(6rem)',
+            backdropFilter: 'blur(var(--blur, 4rem))',
         },
 
         '& span': {
@@ -49,6 +49,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
             transform: 'translate(-50%, -50%)',
             borderRadius: '100%',
             background: theme.palette.primary[0],
+            opacity: 0.3,
         },
 
         '& span:nth-of-type(1)': {
@@ -71,11 +72,21 @@ interface IProps {
 
 const AnimatedBackdrop = ({ className }: IProps): ReactElement => {
     const css = useStyles();
+    const ref = useRef<HTMLDivElement>(null);
+    const [containerWidth, setContainerWidth] = useState<number>(0);
+
+    useEffect(() => {
+        if (ref.current) {
+            setContainerWidth(ref.current?.offsetWidth || 0);
+            ref.current.style.setProperty('--blur', ((ref.current?.offsetWidth || 0) / window.innerWidth) * 40 + 'px');
+        }
+    }, [ref]);
+
     return (
-        <div className={clsx(css.root, className)}>
-            <span />
-            <span />
-            <span />
+        <div ref={ref} className={clsx(css.root, className)}>
+            <span style={{ height: containerWidth * 0.2, width: containerWidth * 0.2 }} />
+            <span style={{ height: containerWidth * 0.22, width: containerWidth * 0.22 }} />
+            <span style={{ height: containerWidth * 0.45, width: containerWidth * 0.45 }} />
         </div>
     );
 };
