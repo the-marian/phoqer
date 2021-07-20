@@ -1,17 +1,24 @@
 import os
+import sys
 
 import databases
 
 ALGORITHM = "HS256"
 
 PG_DB = os.environ.get("POSTGRES_DB", "phoqer_dev")
+TEST_PG_DB = os.environ.get("POSTGRES_DB", "test_phoqer_dev")
 PG_HOST = os.environ.get("POSTGRES_HOST", "localhost")
 PG_PASSWORD = os.environ.get("POSTGRES_PASSWORD", "apple-b@nana-f1re")
 PG_PORT = os.environ.get("POSTGRES_PORT", "5432")
 PG_USER = os.environ.get("POSTGRES_USER", "phoqer")
 
 DATABASE_URL = f"postgresql://{PG_USER}:{PG_PASSWORD}@{PG_HOST}:{PG_PORT}/{PG_DB}"
+TEST_DATABASE_URL = (
+    f"postgresql://{PG_USER}:{PG_PASSWORD}@{PG_HOST}:{PG_PORT}/{TEST_PG_DB}"
+)
 database = databases.Database(DATABASE_URL)
+if "pytest" in sys.modules:
+    database = databases.Database(TEST_DATABASE_URL)
 
 # pagination
 CHAT_SIZE = 15
