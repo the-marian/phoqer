@@ -16,7 +16,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         alignItems: 'center',
         justifyContent: 'center',
         width: '100%',
-        padding: theme.rem(2, 1),
+        padding: theme.rem(8, 3),
         background: theme.palette.gray[0],
         borderRadius: theme.radius,
         color: theme.palette.black[0],

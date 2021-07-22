@@ -113,7 +113,7 @@ const newOfferTemplate = (theme: Theme): Template => ({
             color: theme.palette.red[0],
         },
         inner: {
-            margin: theme.rem(3, 0),
+            margin: theme.rem(2, 0),
         },
         title: {
             marginBottom: theme.rem(1),
@@ -167,7 +167,7 @@ const newOfferTemplate = (theme: Theme): Template => ({
             }),
         },
         save: {
-            height: theme.rem(5),
+            height: theme.rem(4),
             padding: theme.rem(1, 2),
             background: theme.palette.trueWhite,
             fontSize: theme.rem(1.4),
@@ -181,7 +181,7 @@ const newOfferTemplate = (theme: Theme): Template => ({
             },
 
             ...theme.media(768).max({
-                padding: theme.rem(1.6, 1),
+                padding: theme.rem(1),
             }),
         },
         btnWrp: {
@@ -195,8 +195,8 @@ const newOfferTemplate = (theme: Theme): Template => ({
             }),
         },
         next: {
-            height: theme.rem(5),
-            padding: theme.rem(1, 4),
+            height: theme.rem(4),
+            padding: theme.rem(1, 2),
             marginLeft: theme.rem(2),
             background: theme.palette.primary[0],
             fontSize: theme.rem(1.4),
@@ -205,7 +205,6 @@ const newOfferTemplate = (theme: Theme): Template => ({
 
             ...theme.media(768).max({
                 margin: theme.rem(2, 0, 0),
-                padding: theme.rem(2, 4),
             }),
         },
         btn: {

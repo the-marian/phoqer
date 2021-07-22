@@ -28,8 +28,12 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
     banner: {
         margin: theme.rem(6, 0),
-        padding: theme.rem(6, 4),
+        padding: theme.rem(16, 8),
         height: 'auto',
+
+        ...theme.media(768).max({
+            padding: theme.rem(10, 4),
+        }),
     },
 }));
 

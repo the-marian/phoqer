@@ -41,8 +41,8 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
     textarea: {
         ...template(theme).input,
-        minHeight: theme.rem(4.9),
-        padding: theme.rem(1, 1.5),
+        minHeight: theme.rem(3.9),
+        padding: theme.rem(0.4, 1.5),
         fontSize: theme.rem(1.4),
         background: theme.palette.white,
         color: theme.palette.black[0],
@@ -197,9 +197,11 @@ const CommentsForm = ({ onSubmit }: IProps): ReactElement => {
                     />
                 </Tooltip>
 
-                <button className={css.submit} type="submit">
-                    <FontAwesomeIcon icon={faChevronRight} />
-                </button>
+                <Tooltip content={trans('Отправить')}>
+                    <button className={css.submit} type="submit">
+                        <FontAwesomeIcon icon={faChevronRight} />
+                    </button>
+                </Tooltip>
             </div>
             {error && <small className={clsx(css.small, css.errorText)}>{error}</small>}
 

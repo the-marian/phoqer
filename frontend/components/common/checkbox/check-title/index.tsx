@@ -27,7 +27,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         marginRight: theme.rem(1.5),
         border: theme.border(0.2, theme.palette.primary[0]),
         background: theme.palette.trueWhite,
-        borderRadius: theme.radius,
+        borderRadius: theme.rem(0.5),
     },
     active: {
         position: 'relative',

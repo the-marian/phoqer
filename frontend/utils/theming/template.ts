@@ -13,7 +13,7 @@ const template = (theme: Theme): Template => ({
     input: {
         display: 'flex',
         alignItems: 'center',
-        height: theme.rem(5),
+        height: theme.rem(4),
         width: '100%',
         padding: theme.rem(0.5, 1),
         border: theme.border(0.2, 'transparent'),

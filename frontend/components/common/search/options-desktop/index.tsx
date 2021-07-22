@@ -17,7 +17,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
     region: {
         width: '50%',
-        height: theme.rem(4),
+        height: theme.rem(5),
         background: theme.palette.trueWhite,
         color: theme.palette.trueBlack,
         boxShadow: 'none',

@@ -189,7 +189,7 @@ const Search = ({ shallow = false }: IProps): ReactElement => {
     useEffect(() => {
         const handler = (): void => {
             if (!ref.current) return;
-            if (window.scrollY > 200) return;
+            if (window.scrollY > 200 && ref.current.style.getPropertyValue('--blur')) return;
             ref.current.style.setProperty('--blur', window.scrollY / 100 + 'rem');
         };
 

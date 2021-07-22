@@ -21,8 +21,8 @@ const useStyles = createUseStyles((theme: Theme) => ({
         position: 'absolute',
         top: 0,
         right: 0,
-        height: theme.rem(5),
-        width: theme.rem(6),
+        height: theme.rem(4),
+        width: theme.rem(5),
         color: theme.palette.gray[4],
         borderRadius: theme.radius,
         transition: theme.transitions[0],
@@ -41,7 +41,6 @@ const useStyles = createUseStyles((theme: Theme) => ({
 
         ...theme.hover({
             color: theme.palette.primary[0],
-            background: theme.palette.gray[0],
         }),
     },
 }));
