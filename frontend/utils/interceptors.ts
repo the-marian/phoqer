@@ -41,11 +41,17 @@ const interceptors = ({ history, dispatch }: { history: NextRouter; dispatch: Di
         },
         error => {
             if (!process.browser) {
+                const date = new Date();
                 console.log(
                     '\x1b[31m',
                     'Error:',
                     '\x1b[0m',
                     `url: ${error.config.url} |`,
+                    `time: ${addZeroToNumber(date.getDate())}-${addZeroToNumber(
+                        date.getMonth(),
+                    )}-${date.getFullYear()} ${addZeroToNumber(date.getHours())}:${addZeroToNumber(
+                        date.getMinutes(),
+                    )}:${addZeroToNumber(date.getSeconds())} |`,
                     `method: ${error.config.method} |`,
                     `status: ${error?.response?.status} |`,
                     `text: ${error?.response?.statusText} |`,

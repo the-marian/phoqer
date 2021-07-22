@@ -48,19 +48,21 @@ const useStyles = createUseStyles((theme: Theme) => ({
             position: 'absolute',
             transform: 'translate(-50%, -50%)',
             borderRadius: '100%',
-            background: theme.palette.primary[0],
             opacity: 0.3,
         },
 
         '& span:nth-of-type(1)': {
+            background: theme.palette.red[0],
             animation: '$one 8s ease-in-out infinite',
         },
 
         '& span:nth-of-type(2)': {
+            background: theme.palette.green[0],
             animation: '$two 6s ease-in-out infinite',
         },
 
         '& span:nth-of-type(3)': {
+            background: theme.palette.primary[0],
             animation: '$three 12s ease-in-out infinite',
         },
     },
