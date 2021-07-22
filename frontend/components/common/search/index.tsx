@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import clsx from 'clsx';
 import { useRouter } from 'next/router';
 import queryString from 'query-string';
-import React, { ChangeEvent, FormEvent, ReactElement, useEffect, useState } from 'react';
+import React, { ChangeEvent, FormEvent, ReactElement, useEffect, useRef, useState } from 'react';
 import { createUseStyles } from 'react-jss';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -46,6 +46,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
             zIndex: 0,
             width: '100%',
             height: '100%',
+            backdropFilter: 'blur(var(--blur, 0))',
             background: theme.palette.modal,
         },
     },
@@ -174,6 +175,7 @@ const Search = ({ shallow = false }: IProps): ReactElement => {
     const history = useRouter();
     const dispatch = useDispatch();
     const desktop = useMedia(766);
+    const ref = useRef<HTMLDivElement>(null);
     const [img, setImg] = useState('');
 
     useEffect(() => {
@@ -182,6 +184,18 @@ const Search = ({ shallow = false }: IProps): ReactElement => {
             setImg(`/backdrop/${random || 1}.jpeg`);
             window.scrollTo({ top: document.getElementById('products')?.offsetTop || 0, behavior: 'smooth' });
         }
+    }, []);
+
+    useEffect(() => {
+        const handler = (): void => {
+            if (!ref.current) return;
+            if (window.scrollY > 200) return;
+            ref.current.style.setProperty('--blur', window.scrollY / 100 + 'rem');
+        };
+
+        window.addEventListener('scroll', handler);
+
+        return () => window.removeEventListener('scroll', handler);
     }, []);
 
     const searchParams = useSelector<IState, ISearch>(state => state.config.searchParams);
@@ -256,7 +270,7 @@ const Search = ({ shallow = false }: IProps): ReactElement => {
     };
 
     return (
-        <div className={css.root} style={{ backgroundImage: `url(${img})` }}>
+        <div ref={ref} className={css.root} style={{ backgroundImage: `url(${img})` }}>
             <Container className={css.container}>
                 <h2 className={css.title}>Phoqer</h2>
                 <p className={css.subtitle}>
