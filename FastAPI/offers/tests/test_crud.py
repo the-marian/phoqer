@@ -5,52 +5,46 @@ from FastAPI.offers.crud import get_offer
 from httpx import AsyncClient
 
 
-def test_get_offer(client):
-    response = client.get("offers/00bbddd5-92bf-45e5-8d2c-8e23fb03da63")
+def test_get_offer(client, offer_ps4):
+    response = client.get("offers/a30b8a1e-1c60-4bbc-ac3d-37df2d224000")
     assert response.status_code == status.HTTP_200_OK
     assert response.json() == {
-        "author_id": 2,
-        "category": "business",
-        "city": "kyiv",
+        "author_id": 1,
+        "category": "technics",
+        "city": "warsaw",
         "country": "poland",
-        "cover_image": "https://example.com/iphone.jpeg",
-        "currency": "UAH",
-        "deposit_val": 666,
-        "description": "New Phone",
-        "doc_needed": True,
-        "extra_requirements": "text exta req",
+        "cover_image": "http://phoqer.com/mediafiles/"
+        "52cade24-63d6-4f04-bf8c-34489d0c67f1-2368.png",
+        "currency": "PLN",
+        "deposit_val": 500,
+        "description": "Konsola Sony PlayStation 4 Nowa!",
+        "doc_needed": False,
+        "extra_requirements": "Zdęcie dowodu osobistego",
         "first_name": "Marian",
-        "id": "d12c4c64-614f-4964-93ca-a091676b6bae",
-        "images": [
-            "http://phoqer.com//mediafiles/image(1)_H802r7h.jpeg",
-            "http://phoqer.com//mediafiles/image(2)_bGKHdms.jpeg",
-            "http://phoqer.com//mediafiles/image(3)_PV4BY6L.jpeg",
-            "http://phoqer.com//mediafiles/image(4)_SCiBiMz.jpeg",
-            "http://phoqer.com//mediafiles/5_zDDUs4j.jpg",
-            "http://phoqer.com//mediafiles/4_QsbenAd.jpg",
-            "http://phoqer.com//mediafiles/3_5vqrqhm.jpg",
-            "http://phoqer.com//mediafiles/2_5jbRqfd.jpg",
-            "http://phoqer.com//mediafiles/1_RrQEWYc.jpg",
-        ],
+        "id": "a30b8a1e-1c60-4bbc-ac3d-37df2d224000",
+        "images": [],
         "is_deliverable": True,
         "is_favorite": False,
-        "is_promoted": False,
+        "is_promoted": True,
+        "items_amount": 1,
         "last_name": "Zozulia",
-        "max_rent_period": 10,
-        "min_rent_period": 20,
-        "price": 499,
-        "profile_img": None,
-        "pub_date": "2021-05-23",
-        "status": "DRAFT",
-        "sub_category": "sub_category",
-        "title": "Iphone 12",
-        "views": 0,
+        "max_rent_period": 100,
+        "min_rent_period": 3,
+        "price": 100,
+        "profile_img": "http://phoqer.com/mediafiles/"
+        "0f13df9c-772c-4216-b6e0-7894cdaaa2dd-2021-06-14_15.42.25.jpg",
+        "pub_date": "2021-05-21",
+        "rental_period": "DAY",
+        "status": "ACTIVE",
+        "sub_category": "consoles",
+        "title": "SONY PlayStation 4",
+        "views": 1,
     }
 
 
-def test_is_favorite_user_with_favorite(client, auth_token):
+def test_is_favorite_user_with_favorite(client, auth_token, offer_ps4):
     response = client.get(
-        "offers/1a114c8e-14b7-46e4-8ad0-f251a35a6938", headers=auth_token
+        "offers/a30b8a1e-1c60-4bbc-ac3d-37df2d224000", headers=auth_token
     )
     assert response.status_code == status.HTTP_200_OK
     assert response.json()["is_favorite"] is True
@@ -67,8 +61,8 @@ def test_is_favorite_user_with_no_favorite(client, auth_token):
 @pytest.mark.asyncio
 async def test_create_offer_draft(client, auth_token):
     post_data = {
-        "category": "sport",
-        "city": "Kiev",
+        "category": "business",
+        "city": "kyiv",
         "country": "poland",
         "cover_image": "https://example.com/iphone.jpeg",
         "currency": "UAH",
@@ -92,8 +86,7 @@ async def test_create_offer_draft(client, auth_token):
         "max_rent_period": 10,
         "min_rent_period": 20,
         "price": 499,
-        "rental_period": "MONTH",
-        "sub_category": "bike",
+        "sub_category": "sub_category",
         "title": "Iphone 12",
     }
     async with AsyncClient(app=app, base_url="http://test") as ac:
@@ -276,7 +269,7 @@ def test_change_status(client, auth_token):
 def test_change_status_2(client, auth_token):
     data = {"status": "REVIEW"}
     response = client.patch(
-        "offers/status/57b4b8c9-93fe-4a82-ba94-e87f3ed56961",
+        "offers/status/412498ef-4a3e-4ad3-9af0-e8dcc513c92a",
         json=data,
         headers=auth_token,
     )
@@ -288,13 +281,13 @@ async def test_update_offer_country(client, auth_token):
     post_data = {"country": "ukraine"}
     async with AsyncClient(app=app, base_url="http://test") as ac:
         response = await ac.patch(
-            "offers/8b186026-a721-44a4-9649-100bb875b565",
+            "offers/412498ef-4a3e-4ad3-9af0-e8dcc513c92a",
             json=post_data,
             headers=auth_token,
         )
 
     assert response.status_code == 204
-    db_response = await get_offer("8b186026-a721-44a4-9649-100bb875b565")
+    db_response = await get_offer("412498ef-4a3e-4ad3-9af0-e8dcc513c92a")
     assert db_response.get("country") == "ukraine"
 
 
@@ -340,3 +333,10 @@ def test_search(client, auth_token):
         "title": "Iphone 12",
         "views": 0,
     }
+
+
+def test_delete_offer(client, auth_token):
+    response = client.delete(
+        "/offers/4f3b43f0-9eb1-463d-8eaa-69eb428f5639", headers=auth_token
+    )
+    assert response.status_code == 204
