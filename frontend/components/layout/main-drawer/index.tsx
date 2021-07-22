@@ -47,7 +47,7 @@ const MainDrawer = (): ReactElement => {
             <Logo className={css.link} link />
 
             <div className={css.content}>{auth?.access_token ? <AuthDrawer /> : <NotAuthDrawer />}</div>
-            <Socials style={{ marginTop: '8rem' }} />
+            <Socials style={{ marginTop: '4rem' }} />
         </Drawer>
     );
 };

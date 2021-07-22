@@ -56,10 +56,6 @@ const useStyles = createUseStyles((theme: Theme) => ({
         borderRadius: theme.radius,
         background: theme.palette.primary[0],
         color: theme.palette.trueWhite,
-
-        ...theme.media(500).max({
-            padding: theme.rem(2),
-        }),
     },
     btnLeft: {
         margin: '2rem 0',
