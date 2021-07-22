@@ -3,13 +3,12 @@ import os
 import psycopg2
 import pytest
 from FastAPI.config import BASE_DIR, PG_DB, TEST_PG_DB
+from FastAPI.main import app
+from fastapi.testclient import TestClient
 
 
 @pytest.fixture
-def client(create_test_db):
-    from FastAPI.main import app
-    from fastapi.testclient import TestClient
-
+def client(_create_test_db):
     with TestClient(app) as client:
         yield client
 
@@ -23,7 +22,7 @@ def auth_token(client):
 
 
 @pytest.fixture
-def create_test_db():
+def _create_test_db():
     conn = psycopg2.connect(
         database=PG_DB,
         user="phoqer",
@@ -32,18 +31,22 @@ def create_test_db():
         port="5432",
     )
     conn.autocommit = True
-    cursor = conn.cursor()
-    create_query = f"CREATE database {TEST_PG_DB};"
-    drop_query = f"DROP DATABASE IF EXISTS {TEST_PG_DB};"
-    cursor.execute(drop_query)
-    cursor.execute(create_query)
-    yield
-    cursor.execute(drop_query)
-    conn.close()
+    try:
+        with conn:
+            with conn.cursor() as curs:
+                curs = conn.cursor()
+                create_query = f"CREATE database {TEST_PG_DB};"
+                drop_query = f"DROP DATABASE IF EXISTS {TEST_PG_DB};"
+                curs.execute(drop_query)
+                curs.execute(create_query)
+                yield
+                curs.execute(drop_query)
+    finally:
+        conn.close()
 
 
 @pytest.fixture
-def migrate(create_test_db):
+def _migrate(_create_test_db):
     conn = psycopg2.connect(
         database=TEST_PG_DB,
         user="phoqer",
@@ -70,7 +73,7 @@ def migrate(create_test_db):
 
 
 @pytest.fixture
-def db(migrate):
+def db(_migrate):
     conn = psycopg2.connect(
         database=TEST_PG_DB,
         user="phoqer",
@@ -92,6 +95,7 @@ def country_ukraine(db):
     query = "INSERT INTO countries (slug) VALUES (%s)"
     values = ("ukraine",)
     db.execute(query, values)
+    return "ukraine"
 
 
 @pytest.fixture
@@ -99,6 +103,7 @@ def country_poland(db):
     query = "INSERT INTO countries (slug) VALUES (%s)"
     values = ("poland",)
     db.execute(query, values)
+    return "poland"
 
 
 @pytest.fixture
@@ -106,6 +111,7 @@ def city_kiev(db, country_ukraine):
     query = "INSERT INTO cities (slug, countries_slug) VALUES (%s, %s)"
     values = ("kyiv", "ukraine")
     db.execute(query, values)
+    return "kyiv"
 
 
 @pytest.fixture
@@ -113,27 +119,28 @@ def city_warsaw(db, country_ukraine):
     query = "INSERT INTO cities (slug, countries_slug) VALUES (%s, %s)"
     values = ("warsaw", "poland")
     db.execute(query, values)
+    return "warsaw"
 
 
 @pytest.fixture
 def user_marian(db, country_poland, city_warsaw):
     query = """
     INSERT INTO users_user (
-    id, 
-    password, 
-    last_login, 
-    is_superuser, 
-    first_name, 
-    last_name, 
-    is_staff, 
-    is_active, 
-    date_joined, 
-    bio, 
-    birth_date, 
-    email, 
-    profile_img, 
-    country, 
-    city) 
+        id,
+        password,
+        last_login,
+        is_superuser,
+        first_name,
+        last_name,
+        is_staff,
+        is_active,
+        date_joined,
+        bio,
+        birth_date,
+        email,
+        profile_img,
+        country,
+        city)
     VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"""
     values = (
         "1",  # id
@@ -148,32 +155,34 @@ def user_marian(db, country_poland, city_warsaw):
         "Made on Earth by humans... Currently hanging out in Warsaw",  # bio
         "1997-11-06",  # birth_date
         "marian.zozulia@gmail.com",  # email
-        "http://phoqer.com/mediafiles/0f13df9c-772c-4216-b6e0-7894cdaaa2dd-2021-06-14_15.42.25.jpg",  # profile_img
+        "http://phoqer.com/mediafiles/"
+        "0f13df9c-772c-4216-b6e0-7894cdaaa2dd-2021-06-14_15.42.25.jpg",  # profile_img
         "poland",  # country
         "warsaw",  # city
     )
     db.execute(query, values)
+    return "1"
 
 
 @pytest.fixture
 def user_egor(db, country_ukraine, city_kiev):
     query = """
     INSERT INTO users_user (
-    id, 
-    password, 
-    last_login, 
-    is_superuser, 
-    first_name, 
-    last_name, 
-    is_staff, 
-    is_active, 
-    date_joined, 
-    bio, 
-    birth_date, 
-    email, 
-    profile_img, 
-    country, 
-    city) 
+        id,
+        password,
+        last_login,
+        is_superuser,
+        first_name,
+        last_name,
+        is_staff,
+        is_active,
+        date_joined,
+        bio,
+        birth_date,
+        email,
+        profile_img,
+        country,
+        city)
     VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"""
     values = (
         "2",  # id
@@ -193,35 +202,38 @@ def user_egor(db, country_ukraine, city_kiev):
         "kyiv",  # city
     )
     db.execute(query, values)
+    return "2"
 
 
 @pytest.fixture
 def categoty_technics(db):
     query = """
     INSERT INTO categories_parentcategories (
-    image, 
-    is_active, 
-    priority, 
-    slug, 
-    icon_image) 
+        image,
+        is_active,
+        priority,
+        slug,
+        icon_image)
     VALUES (%s, %s, %s, %s, %s)"""
     values = (
-        "http://phoqer.com/mediafiles/cfd89389-3dcd-4581-aafc-97b5fbb83ba7-техника.jpg",  # image
+        "http://phoqer.com/mediafiles/"
+        "cfd89389-3dcd-4581-aafc-97b5fbb83ba7-техника.jpg",  # image
         True,  # is_active
         "1",  # priority
         "technics",  # slug
         "technics",  # icon_image
     )
     db.execute(query, values)
+    return "slug"
 
 
 @pytest.fixture
 def sub_categoty_consoles(db, categoty_technics):
     query = """
     INSERT INTO categories_childcategories (
-    slug, 
-    parent_id, 
-    icon_image) 
+        slug,
+        parent_id,
+        icon_image)
     VALUES (%s, %s, %s)"""
     values = (
         "consoles",  # slug
@@ -229,6 +241,7 @@ def sub_categoty_consoles(db, categoty_technics):
         "consoles",  # icon_image
     )
     db.execute(query, values)
+    return "consoles"
 
 
 @pytest.fixture
@@ -237,33 +250,36 @@ def offer_ps4(
 ):
     query = """
     INSERT INTO offers_offer (
-    city, 
-    cover_image, 
-    currency, 
-    deposit_val, 
-    description, 
-    doc_needed, 
-    extra_requirements, 
-    id, 
-    is_deliverable, 
-    price, 
-    promote_til_date, 
-    pub_date, 
-    status, 
-    title, 
-    views, 
-    author_id, 
-    category_id, 
-    sub_category_id, 
-    max_rent_period, 
-    min_rent_period, 
-    country, 
-    items_amount, 
-    rental_period) 
-    VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"""
+        city,
+        cover_image,
+        currency,
+        deposit_val,
+        description,
+        doc_needed,
+        extra_requirements,
+        id,
+        is_deliverable,
+        price,
+        promote_til_date,
+        pub_date,
+        status,
+        title,
+        views,
+        author_id,
+        category_id,
+        sub_category_id,
+        max_rent_period,
+        min_rent_period,
+        country,
+        items_amount,
+        rental_period)
+    VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
+    %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+    RETURNING id"""
     values = (
         "warsaw",  # city
-        "http://phoqer.com/mediafiles/52cade24-63d6-4f04-bf8c-34489d0c67f1-2368.png",  # cover_image
+        "http://phoqer.com/mediafiles/"
+        "52cade24-63d6-4f04-bf8c-34489d0c67f1-2368.png",  # cover_image
         "PLN",  # currency
         "500",  # deposit_val
         "Konsola Sony PlayStation 4 Nowa!",  # description
@@ -287,3 +303,4 @@ def offer_ps4(
         "DAY",  # rental_period
     )
     db.execute(query, values)
+    return "a30b8a1e-1c60-4bbc-ac3d-37df2d224000"

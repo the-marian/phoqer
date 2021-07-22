@@ -13,7 +13,8 @@ def test_get_offer(client, offer_ps4):
         "category": "technics",
         "city": "warsaw",
         "country": "poland",
-        "cover_image": "http://phoqer.com/mediafiles/52cade24-63d6-4f04-bf8c-34489d0c67f1-2368.png",
+        "cover_image": "http://phoqer.com/mediafiles/"
+        "52cade24-63d6-4f04-bf8c-34489d0c67f1-2368.png",
         "currency": "PLN",
         "deposit_val": 500,
         "description": "Konsola Sony PlayStation 4 Nowa!",
@@ -30,7 +31,8 @@ def test_get_offer(client, offer_ps4):
         "max_rent_period": 100,
         "min_rent_period": 3,
         "price": 100,
-        "profile_img": "http://phoqer.com/mediafiles/0f13df9c-772c-4216-b6e0-7894cdaaa2dd-2021-06-14_15.42.25.jpg",
+        "profile_img": "http://phoqer.com/mediafiles/"
+        "0f13df9c-772c-4216-b6e0-7894cdaaa2dd-2021-06-14_15.42.25.jpg",
         "pub_date": "2021-05-21",
         "rental_period": "DAY",
         "status": "ACTIVE",
@@ -40,9 +42,9 @@ def test_get_offer(client, offer_ps4):
     }
 
 
-def test_is_favorite_user_with_favorite(client, auth_token):
+def test_is_favorite_user_with_favorite(client, auth_token, offer_ps4):
     response = client.get(
-        "offers/1a114c8e-14b7-46e4-8ad0-f251a35a6938", headers=auth_token
+        "offers/a30b8a1e-1c60-4bbc-ac3d-37df2d224000", headers=auth_token
     )
     assert response.status_code == status.HTTP_200_OK
     assert response.json()["is_favorite"] is True
