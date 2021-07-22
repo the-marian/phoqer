@@ -48,10 +48,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
     btn: {
         display: 'block',
-        minWidth: theme.rem(20),
+        minWidth: 'max-content',
         margin: '2rem auto',
-        padding: theme.rem(1.5, 2),
-        fontWeight: theme.text.weight[4],
+        padding: theme.rem(1, 4),
         textAlign: 'center',
         fontSize: theme.rem(1.4),
         borderRadius: theme.radius,

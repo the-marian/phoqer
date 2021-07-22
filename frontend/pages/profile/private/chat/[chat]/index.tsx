@@ -8,9 +8,9 @@ import ProfileChatNav from '../../../../../components/common/navigation/profile-
 import notifications from '../../../../../components/common/notifications';
 import AuthRedirect from '../../../../../components/context/auth/auth-redirect';
 import Meta from '../../../../../components/meta';
-import ChatBackBtn from '../../../../../components/per-pages/chat/chat-back-btn';
 import Conversation from '../../../../../components/per-pages/chat/chat-conversation';
-import MessagesWrp from '../../../../../components/per-pages/chat/wrappers/messages-wrp';
+import ChatBackBtn from '../../../../../components/per-pages/chat/components/chat-back-btn';
+import MessagesWrp from '../../../../../components/per-pages/chat/components/wrappers/messages-wrp';
 import useChat from '../../../../../hooks/chat.hook';
 import useMedia from '../../../../../hooks/media.hook';
 import useTrans from '../../../../../hooks/trans.hook';

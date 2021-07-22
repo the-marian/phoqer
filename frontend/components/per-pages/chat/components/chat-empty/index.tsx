@@ -1,7 +1,8 @@
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
-import { Theme } from '../../../../utils/theming/theme';
+import { Theme } from '../../../../../utils/theming/theme';
+import { width } from '../../chat.config';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     empty: {
@@ -9,13 +10,17 @@ const useStyles = createUseStyles((theme: Theme) => ({
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
-        width: '100%',
+        width: width.desktopLg.center,
         height: 'calc(100vh - 8rem)',
         padding: theme.rem(2),
         background: theme.palette.gray[0],
         borderRadius: theme.radius,
         textAlign: 'center',
         color: theme.palette.gray[2],
+
+        ...theme.media(1500).max({
+            width: width.desktopSm.center,
+        }),
     },
     img: {
         height: theme.rem(8),

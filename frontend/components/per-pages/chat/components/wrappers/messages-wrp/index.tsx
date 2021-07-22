@@ -2,11 +2,13 @@ import clsx from 'clsx';
 import React, { ReactElement } from 'react';
 import { useSelector } from 'react-redux';
 
-import { IChatsList, IMessagesList, IState } from '../../../../../interfaces';
-import ChatsLoaders from '../../../../common/loaders/skeletons/chats';
+import useMedia from '../../../../../../hooks/media.hook';
+import { IChatsList, IMessagesList, IState } from '../../../../../../interfaces';
+import ChatsLoaders from '../../../../../common/loaders/skeletons/chats';
+import ChatSidebarLeft from '../../../chat-sidebar-left';
+import ChatSidebarRight from '../../../chat-sidebar-right';
 import ChatLoading from '../../chat-loading';
 import ChatSearch from '../../chat-search';
-import ChatSidebar from '../../chat-sidebar';
 import useWrapperStyles from '../wrappers.styles';
 
 // HELPER HIDE/SHOW CHAT SIDEBAR
@@ -32,6 +34,7 @@ interface IProps {
 // MAIN COMPONENT
 const MessagesWrp = ({ children, showSidebar = false }: IProps): ReactElement => {
     const css = useWrapperStyles();
+    const desktop = useMedia(1500);
     const chats = useSelector<IState, IChatsList>(state => state.chat.chats);
     const messages = useSelector<IState, IMessagesList>(state => state.chat.messages);
 
@@ -42,12 +45,20 @@ const MessagesWrp = ({ children, showSidebar = false }: IProps): ReactElement =>
                     <aside className={css.aside}>
                         <div className={css.inner}>
                             <ChatSearch />
-                            {chats.loading ? <ChatsLoaders amount={5} /> : <ChatSidebar chats={chats.data.data} />}
+                            {chats.loading ? <ChatsLoaders amount={5} /> : <ChatSidebarLeft chats={chats.data.data} />}
                         </div>
                     </aside>
                 </MessagesWrpShowSidebar>
 
                 <MessagesWrpShowLoader loading={messages.loading}>{children}</MessagesWrpShowLoader>
+
+                {desktop && (
+                    <MessagesWrpShowSidebar show={showSidebar}>
+                        <aside className={css.aside}>
+                            <div className={css.inner}>{chats.loading ? <ChatsLoaders amount={5} /> : <ChatSidebarRight />}</div>
+                        </aside>
+                    </MessagesWrpShowSidebar>
+                )}
             </div>
         </>
     );

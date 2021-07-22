@@ -3,14 +3,16 @@ import { useRouter } from 'next/router';
 import React, { ReactElement, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { IChats, IChatsList, IOfferCard, IPublicProfile, IState } from '../../../../../interfaces';
-import types from '../../../../../redux/types';
-import routes from '../../../../../utils/routes';
-import ChatsLoaders from '../../../../common/loaders/skeletons/chats';
-import notifications from '../../../../common/notifications';
+import useMedia from '../../../../../../hooks/media.hook';
+import { IChats, IChatsList, IOfferCard, IPublicProfile, IState } from '../../../../../../interfaces';
+import types from '../../../../../../redux/types';
+import routes from '../../../../../../utils/routes';
+import ChatsLoaders from '../../../../../common/loaders/skeletons/chats';
+import notifications from '../../../../../common/notifications';
+import ChatSidebarLeft from '../../../chat-sidebar-left';
+import ChatSidebarRight from '../../../chat-sidebar-right';
 import ChatLoading from '../../chat-loading';
 import ChatSearch from '../../chat-search';
-import ChatSidebar from '../../chat-sidebar';
 import useWrapperStyles from '../wrappers.styles';
 
 // HELPER HIDE/SHOW CHAT SIDEBAR
@@ -38,6 +40,7 @@ const NewChatWrp = ({ children, showSidebar = false }: IProps): ReactElement => 
     const css = useWrapperStyles();
     const dispatch = useDispatch();
     const history = useRouter();
+    const desktop = useMedia(1500);
     const offerId = String(history.query.offerId || '');
 
     const [newChat, setNewChat] = useState<IChats>({
@@ -94,12 +97,20 @@ const NewChatWrp = ({ children, showSidebar = false }: IProps): ReactElement => 
                     <aside className={css.aside}>
                         <div className={css.inner}>
                             <ChatSearch />
-                            {chats.loading ? <ChatsLoaders amount={5} /> : <ChatSidebar chats={data} />}
+                            {chats.loading ? <ChatsLoaders amount={5} /> : <ChatSidebarLeft chats={data} />}
                         </div>
                     </aside>
                 </MessagesWrpShowSidebar>
 
                 <MessagesWrpShowLoader loading={loading}>{children}</MessagesWrpShowLoader>
+
+                {desktop && (
+                    <MessagesWrpShowSidebar show={showSidebar}>
+                        <aside className={css.aside}>
+                            <div className={css.inner}>{chats.loading ? <ChatsLoaders amount={5} /> : <ChatSidebarRight />}</div>
+                        </aside>
+                    </MessagesWrpShowSidebar>
+                )}
             </div>
         </>
     );

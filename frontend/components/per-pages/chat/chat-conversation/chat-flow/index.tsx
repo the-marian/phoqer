@@ -12,7 +12,7 @@ import { Theme } from '../../../../../utils/theming/theme';
 import { modal } from '../../../../common/modal';
 import FullPageGallery from '../../../../common/modal/full-page-gallery';
 import Tooltip from '../../../../common/tooltip';
-import ChatEmpty from '../../chat-empty';
+import ChatEmpty from '../../components/chat-empty';
 import ChatInitConversation from '../chat-init-conversation';
 import ChatUserModal from '../chat-user-modal';
 import { createHTML, formatTime, validateDate } from './chat-flow.utils';

@@ -1,6 +1,7 @@
 import { createUseStyles } from 'react-jss';
 
-import { Theme } from '../../../../utils/theming/theme';
+import { Theme } from '../../../../../utils/theming/theme';
+import { width } from '../../chat.config';
 
 const useWrapperStyles = createUseStyles((theme: Theme) => ({
     root: {
@@ -22,12 +23,16 @@ const useWrapperStyles = createUseStyles((theme: Theme) => ({
         height: 'unset',
     }),
     aside: {
-        maxWidth: '20vw',
-        minWidth: '20vw',
+        maxWidth: width.desktopLg.sidebar,
+        minWidth: width.desktopLg.sidebar,
         height: '99%',
         paddingRight: theme.rem(0.5),
-        marginRight: theme.rem(0.5),
         overflow: 'auto',
+
+        ...theme.media(1500).max({
+            maxWidth: width.desktopSm.sidebar,
+            minWidth: width.desktopSm.sidebar,
+        }),
 
         '&::before': {
             content: '""',

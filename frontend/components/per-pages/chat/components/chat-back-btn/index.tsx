@@ -1,10 +1,10 @@
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
-import useMedia from '../../../../hooks/media.hook';
-import { Theme } from '../../../../utils/theming/theme';
-import SiteMenu from '../../../layout/header/site-menu';
-import MobileBackBtn from '../../profile/mobile-back-btn';
+import useMedia from '../../../../../hooks/media.hook';
+import { Theme } from '../../../../../utils/theming/theme';
+import SiteMenu from '../../../../layout/header/site-menu';
+import MobileBackBtn from '../../../profile/mobile-back-btn';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     wrp: {

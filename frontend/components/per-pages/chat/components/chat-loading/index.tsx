@@ -1,8 +1,8 @@
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
-import { Theme } from '../../../../utils/theming/theme';
-import TextSkeleton from '../../../common/loaders/skeletons/text';
+import { Theme } from '../../../../../utils/theming/theme';
+import TextSkeleton from '../../../../common/loaders/skeletons/text';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     root: {

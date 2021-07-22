@@ -7,7 +7,7 @@ import { IChats } from '../../../../interfaces';
 import template from '../../../../utils/theming/template';
 import { Theme } from '../../../../utils/theming/theme';
 import Gift from '../../../common/gift';
-import ChatEmpty from '../chat-empty';
+import ChatEmpty from '../components/chat-empty';
 import ChatSidebarItem from './chat-sidebar-item';
 
 const useStyles = createUseStyles((theme: Theme) => ({
@@ -51,7 +51,7 @@ interface IProps {
     chats: IChats[];
 }
 
-const ChatSidebar = ({ chats }: IProps): ReactElement => {
+const ChatSidebarLeft = ({ chats }: IProps): ReactElement => {
     const css = useStyles();
     const media = useMedia(768);
     const { query } = useRouter();
@@ -78,4 +78,4 @@ const ChatSidebar = ({ chats }: IProps): ReactElement => {
     );
 };
 
-export default ChatSidebar;
+export default ChatSidebarLeft;
