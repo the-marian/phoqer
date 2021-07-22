@@ -1,4 +1,5 @@
 import json
+from datetime import date
 from math import ceil
 from typing import Any, Dict, List, Mapping, Optional, Union
 
@@ -13,6 +14,7 @@ from fastapi import (
     WebSocketDisconnect,
 )
 from FastAPI.chats import crud
+from FastAPI.offers.crud import get_offers_images
 from FastAPI.chats.schemas import (
     ChatsListResponse,
     CreateChatResponse,
@@ -21,7 +23,8 @@ from FastAPI.chats.schemas import (
 )
 from FastAPI.config import CHAT_SIZE, FERNET_SECRET_KEY, MESSAGES_SIZE
 from FastAPI.offers.crud import get_offer
-from FastAPI.utils import decode_jwt, get_current_user
+from FastAPI.offers.schemas import OfferDraftReply
+from FastAPI.utils import decode_jwt, get_current_user, get_current_user_or_none
 
 router = APIRouter(
     prefix="/chats",
@@ -155,3 +158,24 @@ async def get_messages(
             for message in messages
         ],
     }
+
+
+@router.get("/offers/{chat_id}", response_model=OfferDraftReply)
+async def offer_via_chat(
+        chat_id: int, user_id: Optional[int] = Depends(get_current_user_or_none)
+) -> OfferDraftReply:
+    offer_id = await crud.chat_reference_offer_id(chat_id)
+    offer = await get_offer(offer_id['offer_id'])
+    offer_images = await get_offers_images(offer_id['offer_id'])
+    is_favorite = False
+    is_promoted = False
+    if promote_til_date := offer.get("promote_til_date"):
+        is_promoted = date.today() < promote_til_date
+    if user_id:
+        is_favorite = await crud.is_offer_in_favorite_of_user(offer_id, user_id)
+    return OfferDraftReply(
+        **offer,
+        images=offer_images,
+        is_promoted=is_promoted,
+        is_favorite=is_favorite,
+    )

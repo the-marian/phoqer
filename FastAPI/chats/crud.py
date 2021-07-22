@@ -67,6 +67,11 @@ async def count_chats(
     return int(count["count"]) if count else 0
 
 
+async def chat_reference_offer_id(chat_id: int) -> Optional[Mapping]:
+    query = "SELECT offer_id FROM chats WHERE chat_id = :chat_id"
+    return await database.fetch_one(query=query, values={"chat_id": chat_id})
+
+
 async def is_chat_exist(chat_id: int) -> Optional[Mapping]:
     query = """
     SELECT
