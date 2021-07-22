@@ -87,11 +87,11 @@ const Requirements = (): ReactElement => {
                 </li>
             </ul>
             <ul className={css.emoji}>
-                <li className={clsx(offer?.is_deliverable && css.gray)}>
+                <li className={clsx(!offer?.is_deliverable && css.gray)}>
                     <img src="/emoji/delivery.png" alt="" />
                     <span>{offer?.is_deliverable ? trans('owner_delivers_good') : trans('owner_not_deliver_goods')}</span>
                 </li>
-                <li className={clsx(offer?.doc_needed && css.gray)}>
+                <li className={clsx(!offer?.doc_needed && css.gray)}>
                     <img src="/emoji/documents.png" alt="" />
                     <span>{offer?.doc_needed ? trans('client_provide_documents') : trans('client_dont_provide_documents')}</span>
                 </li>
