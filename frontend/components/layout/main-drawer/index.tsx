@@ -11,7 +11,6 @@ import Logo from '../../common/logo';
 import Socials from '../../common/socials';
 import AuthDrawer from './auth-drawer';
 import NotAuthDrawer from './not-auth-drawer';
-import ThemesList from './themes-list';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     wrp: {
@@ -30,10 +29,6 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
     content: {
         margin: theme.rem(4, 0),
-
-        ...theme.media(768).max({
-            margin: theme.rem(2, 0),
-        }),
     },
 }));
 
@@ -50,9 +45,9 @@ const MainDrawer = (): ReactElement => {
     return (
         <Drawer onToggle={handleToggle} open={drawer}>
             <Logo className={css.link} link />
-            <ThemesList />
+
             <div className={css.content}>{auth?.access_token ? <AuthDrawer /> : <NotAuthDrawer />}</div>
-            <Socials style={{ marginTop: '8rem' }} />
+            <Socials style={{ marginTop: '4rem' }} />
         </Drawer>
     );
 };

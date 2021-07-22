@@ -19,10 +19,10 @@ import { Theme } from '../utils/theming/theme';
 const useStyles = createUseStyles((theme: Theme) => ({
     banner: {
         margin: theme.rem(8, 0),
-        padding: theme.rem(14, 8, 10),
+        padding: theme.rem(24, 12),
 
         ...theme.media(767).max({
-            padding: theme.rem(10, 3),
+            padding: theme.rem(16, 4),
             margin: theme.rem(4, 0),
         }),
     },
@@ -39,7 +39,7 @@ const Index = (): ReactElement => {
                 <Search />
                 <Container>
                     <Categories />
-                    <Banner className={css.banner} animation />
+                    <Banner className={css.banner} />
                     <TopPopular />
                 </Container>
 

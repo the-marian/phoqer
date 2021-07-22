@@ -12,6 +12,7 @@ import React, { ReactElement } from 'react';
 import { useDispatch } from 'react-redux';
 
 import useAuth from '../../../../hooks/auth.hook';
+import useConfig from '../../../../hooks/config.hook';
 import useTrans from '../../../../hooks/trans.hook';
 import { IDropList, IDropValue, IOfferCard } from '../../../../interfaces';
 import types from '../../../../redux/types';
@@ -43,6 +44,7 @@ const OfferCard = ({ offer, showFavoriteBtn = true }: IProps): ReactElement => {
     const trans = useTrans();
     const history = useRouter();
     const dispatch = useDispatch();
+    const [config] = useConfig();
 
     const { id, title, description, cover_image, is_promoted, is_deliverable, is_favorite, views, pub_date, price, functions } =
         offer;
@@ -148,23 +150,46 @@ const OfferCard = ({ offer, showFavoriteBtn = true }: IProps): ReactElement => {
                         <div className={css.topWrp}>
                             {is_promoted && (
                                 <Tooltip className={css.tooltip} content="Это объявление находится в топе">
-                                    <div className={css.top}>
+                                    <div className={clsx(css.top, config.offerCardSize === 'small' && css.topSmall)}>
                                         <FontAwesomeIcon icon={faStar} />
                                     </div>
                                 </Tooltip>
                             )}
                             {is_deliverable && (
                                 <Tooltip className={css.tooltip} content="Автор предоставляет доставку товара">
-                                    <div className={clsx(css.top, css.delivery)}>
+                                    <div
+                                        className={clsx(css.top, css.delivery, config.offerCardSize === 'small' && css.topSmall)}
+                                    >
                                         <FontAwesomeIcon icon={faTruck} />
                                     </div>
                                 </Tooltip>
                             )}
                         </div>
-                        <img className={css.img} src={cover_image || '/no_img.png'} alt={title} />
+                        <img
+                            className={config.offerCardSize === 'big' ? css.imgBig : css.imgSmall}
+                            src={cover_image || '/no_img.png'}
+                            alt={title}
+                        />
                     </div>
-                    <h3 className={css.title}>{cutString(title, 30)}</h3>
-                    <p className={css.desc}>{cutString(description, 50)}</p>
+
+                    {config.offerCardSize === 'big' ? (
+                        <>
+                            <h3 className={css.titleBig}>{cutString(title, 30)}</h3>
+                            <p className={css.desc}>{cutString(description, 50)}</p>
+                        </>
+                    ) : (
+                        <Tooltip
+                            content={
+                                <>
+                                    <h4>{title}</h4>
+                                    <p>{cutString(description, 50)}</p>
+                                </>
+                            }
+                            showInMobile
+                        >
+                            <h3 className={css.titleSmall}>{cutString(title, 19)}</h3>
+                        </Tooltip>
+                    )}
                 </a>
             </Link>
 
@@ -172,34 +197,37 @@ const OfferCard = ({ offer, showFavoriteBtn = true }: IProps): ReactElement => {
                 <DropDown
                     icon={faCogs}
                     minWidth={30}
-                    height={4}
-                    className={css.dropdown}
+                    height={config.offerCardSize === 'small' ? 3 : 4}
+                    className={clsx(css.dropdown, config.offerCardSize === 'small' && css.dropdownSmall)}
                     onChange={handleSettings}
                     data={formatUserActions(functions, USER_ACTIONS)}
                 />
             ) : null}
 
-            <div className={css.info}>
-                <p className={css.text}>
-                    <FontAwesomeIcon icon={faEye} />
-                    <span className={css.view}>{views}</span>
-                </p>
-                <p className={css.text}>
-                    {trans('date')}: {pub_date}
-                </p>
-            </div>
+            {config.offerCardSize === 'big' && (
+                <div className={css.info}>
+                    <p className={css.text}>
+                        <FontAwesomeIcon icon={faEye} />
+                        <span className={css.view}>{views}</span>
+                    </p>
+                    <p className={css.text}>
+                        {trans('date')}: {pub_date}
+                    </p>
+                </div>
+            )}
 
             <div className={css.action}>
-                <p className={css.price}>
+                <p className={clsx(css.price, config.offerCardSize === 'small' && css.priceSmall)}>
                     <span>{moneyFormat(price)}</span>
                     <small>{`${trans('uah')} / ${trans('day')}`}</small>
                 </p>
 
-                {showFavoriteBtn && (
+                {showFavoriteBtn && config.offerCardSize === 'big' && (
                     <div className={css.actionBtn}>
                         <button type="button" className={css.btn} onClick={handleOpenChat}>
                             {trans('rent')}
                         </button>
+
                         <Tooltip className={css.tooltip} content="Добавить в избранное">
                             <button type="button" className={clsx(css.favorite)} onClick={handleFavorite}>
                                 {is_favorite ? <FontAwesomeIcon icon={faSolidHeart} /> : <FontAwesomeIcon icon={faHeart} />}

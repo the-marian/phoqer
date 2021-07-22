@@ -56,8 +56,8 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
     button: {
         position: 'absolute',
-        top: 0,
-        right: 0,
+        top: theme.rem(0.7),
+        right: theme.rem(1.5),
         zIndex: 10,
     },
 }));

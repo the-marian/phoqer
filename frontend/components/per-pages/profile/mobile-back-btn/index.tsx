@@ -15,7 +15,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         width: 'max-content',
         height: theme.rem(4),
         padding: theme.rem(0.5, 1.5),
-        marginBottom: theme.rem(4),
+        marginBottom: theme.rem(2),
         color: theme.palette.primary[0],
         fontWeight: theme.text.weight[3],
         fontSize: theme.rem(1.4),

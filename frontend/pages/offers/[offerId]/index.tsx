@@ -188,18 +188,15 @@ const SingleOfferPage = (): ReactElement | null => {
                                 data={[
                                     { label: trans('to_home_page'), link: routes.root },
                                     {
-                                        label: trans(offer.category || offer.sub_category || '...')
-                                            ? `${trans('offers_in_section')} ${trans(
-                                                  offer.category || offer.sub_category || '...',
-                                              )}`
-                                            : trans('search_for_things'),
-                                        link: offer.category
-                                            ? routes.offers.single(
-                                                  offer?.category
-                                                      ? `?category=${offer?.category}`
-                                                      : `?sub=${offer?.sub_category}`,
-                                              )
-                                            : routes.offers.list,
+                                        label: trans(offer.category || offer.sub_category || 'search_for_things'),
+                                        link:
+                                            offer?.category || offer?.sub_category
+                                                ? routes.offers.single(
+                                                      offer?.category
+                                                          ? `?category=${offer?.category}`
+                                                          : `?sub=${offer?.sub_category}`,
+                                                  )
+                                                : routes.offers.list,
                                     },
                                 ]}
                             />

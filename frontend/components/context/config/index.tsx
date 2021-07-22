@@ -9,6 +9,7 @@ const init: IConfig = {
     hideSearchFilters: false,
     hideTopSearchQuery: false,
     hideTopOffers: true,
+    offerCardSize: 'big',
 };
 export type IConfigValue = [config: IConfig, setConfig: (value: IConfig) => void];
 export const Config = createContext<IConfigValue>([init, () => undefined]);

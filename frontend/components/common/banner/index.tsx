@@ -8,35 +8,30 @@ import useTrans from '../../../hooks/trans.hook';
 import routes from '../../../utils/routes';
 import template from '../../../utils/theming/template';
 import { Theme } from '../../../utils/theming/theme';
+import AnimatedBackdrop from '../animated-backdrop';
 import LoginForm from '../auth/login-form';
 import { modal } from '../modal';
 import SmallModalWrp from '../modal/small-modal-wrp';
 
 const useStyles = createUseStyles((theme: Theme) => ({
-    '@keyframes grad': {
-        '0%': { backgroundPosition: '0% 50%' },
-        '50%': { backgroundPosition: '99% 50%' },
-        '100%': { backgroundPosition: '0% 50%' },
-    },
     root: {
+        position: 'relative',
         display: 'block',
         width: '100%',
         padding: theme.rem(6),
         borderRadius: theme.radius,
         color: theme.palette.black[0],
         textAlign: 'left',
+        background: theme.palette.gray[0],
         ...template(theme).outline,
 
         ...theme.media(550).max({
             padding: theme.rem(3),
         }),
     },
-    animation: {
-        background: `linear-gradient(-50deg, ${theme.palette.grad})`,
-        backgroundSize: '300% 300%',
-        animation: '$grad 10s ease infinite',
-    },
     title: {
+        position: 'relative',
+        zIndex: 1,
         maxWidth: theme.rem(50),
         marginBottom: theme.rem(1.5),
         fontWeight: theme.text.weight[4],
@@ -44,6 +39,8 @@ const useStyles = createUseStyles((theme: Theme) => ({
         color: 'inherit',
     },
     text: {
+        position: 'relative',
+        zIndex: 1,
         maxWidth: theme.rem(50),
         fontSize: theme.rem(1.8),
         color: 'inherit',
@@ -51,11 +48,10 @@ const useStyles = createUseStyles((theme: Theme) => ({
 }));
 
 interface IProps {
-    animation?: boolean;
     className?: string;
 }
 
-const Banner = ({ className, animation = false }: IProps): ReactElement => {
+const Banner = ({ className }: IProps): ReactElement => {
     const css = useStyles();
     const auth = useAuth();
     const trans = useTrans();
@@ -74,7 +70,8 @@ const Banner = ({ className, animation = false }: IProps): ReactElement => {
     };
 
     return (
-        <button onClick={handleClick} type="button" className={clsx(css.root, className, animation && css.animation)}>
+        <button onClick={handleClick} type="button" className={clsx(css.root, className)}>
+            <AnimatedBackdrop />
             <h2 className={css.title}>{trans('share_with_others_and_earn')}</h2>
             <p className={css.text}>{trans('share_with_others_and_earn_text')}</p>
         </button>

@@ -6,10 +6,10 @@ import useAuth from '../../../hooks/auth.hook';
 import { throttle } from '../../../utils/helpers';
 import { Theme } from '../../../utils/theming/theme';
 import Logo from '../../common/logo';
-import SiteMenu from '../../common/site-menu';
 import Container from '../container';
 import Lang from './lang';
 import NotAuth from './not-auth';
+import SiteMenu from './site-menu';
 import UserInfo from './user-info';
 
 const useStyles = createUseStyles((theme: Theme) => ({

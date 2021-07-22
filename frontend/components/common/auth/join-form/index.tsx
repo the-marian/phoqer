@@ -67,10 +67,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
     btn: {
         display: 'block',
-        minWidth: theme.rem(20),
+        minWidth: 'max-content',
         margin: '3rem auto 2rem',
-        padding: theme.rem(1.5, 2),
-        fontWeight: theme.text.weight[4],
+        padding: theme.rem(1, 4),
         textAlign: 'center',
         fontSize: theme.rem(1.6),
         borderRadius: theme.radius,
@@ -79,7 +78,6 @@ const useStyles = createUseStyles((theme: Theme) => ({
 
         ...theme.media(500).max({
             margin: '5rem auto 3rem',
-            padding: theme.rem(2),
         }),
     },
     text: {

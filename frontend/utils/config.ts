@@ -61,26 +61,9 @@ const config = {
     uploadsUrl: (version = 'v2'): string => `http://phoqer.com/api/${version}/upload`,
     host: (lang = 'pl'): string => `http://phoqer.com${lang === 'pl' ? '' : '/' + lang}`,
     img: 'http://phoqer.com',
-    themes: [
-        'blue',
-        'green',
-        'aqua',
-        'violet',
-        'black-blue',
-        'black-violet',
-        'black-orange',
-        'black-aqua',
-        'black-green',
-    ] as Themes[],
-    offers: {
-        grid: {
-            desktop: 4,
-            tablet: 3,
-            smallTablet: 2,
-            mobile: 1,
-        },
-    },
-    googleApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAP_API_KEY || 'AIzaSyDAxCmU098YF_pqjtUzqTPwGF7JaH5ytyI',
+    themes: ['white', 'black'] as Themes[],
+    googleApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAP_API_KEY,
+    appSecretKey: process.env.NEXT_PUBLIC_SECRET_KEY,
     userProfileLinks: (count?: ITabsNum): ITabs[] => generateBaseNavLink(count),
     userNavLinks: (userId: string, count?: ITabsNum): ITabs[] => [
         {

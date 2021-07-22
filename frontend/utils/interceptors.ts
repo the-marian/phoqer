@@ -3,6 +3,7 @@ import { NextRouter } from 'next/router';
 import { Dispatch } from 'redux';
 
 import types from '../redux/types';
+import { addZeroToNumber } from './helpers';
 import routes from './routes';
 
 const interceptors = ({ history, dispatch }: { history: NextRouter; dispatch: Dispatch }): void => {
@@ -13,11 +14,17 @@ const interceptors = ({ history, dispatch }: { history: NextRouter; dispatch: Di
     axios.interceptors.response.use(
         response => {
             if (!process.browser) {
+                const date = new Date();
                 console.log(
                     '\x1b[32m',
                     'Success:',
                     '\x1b[0m',
                     `url: ${response.config.url} |`,
+                    `time: ${addZeroToNumber(date.getDate())}-${addZeroToNumber(
+                        date.getMonth(),
+                    )}-${date.getFullYear()} ${addZeroToNumber(date.getHours())}:${addZeroToNumber(
+                        date.getMinutes(),
+                    )}:${addZeroToNumber(date.getSeconds())} |`,
                     `method: ${response.config.method} |`,
                     `status: ${response.status} |`,
                     `auth-token: ${!!response.config.headers.Authorization}`,
@@ -34,11 +41,17 @@ const interceptors = ({ history, dispatch }: { history: NextRouter; dispatch: Di
         },
         error => {
             if (!process.browser) {
+                const date = new Date();
                 console.log(
                     '\x1b[31m',
                     'Error:',
                     '\x1b[0m',
                     `url: ${error.config.url} |`,
+                    `time: ${addZeroToNumber(date.getDate())}-${addZeroToNumber(
+                        date.getMonth(),
+                    )}-${date.getFullYear()} ${addZeroToNumber(date.getHours())}:${addZeroToNumber(
+                        date.getMinutes(),
+                    )}:${addZeroToNumber(date.getSeconds())} |`,
                     `method: ${error.config.method} |`,
                     `status: ${error?.response?.status} |`,
                     `text: ${error?.response?.statusText} |`,

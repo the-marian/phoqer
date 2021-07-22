@@ -8,9 +8,9 @@ import Button from '../../../../../components/common/button';
 import ProfileChatNav from '../../../../../components/common/navigation/profile-nav/chat-nav';
 import AuthRedirect from '../../../../../components/context/auth/auth-redirect';
 import Meta from '../../../../../components/meta';
-import ChatBackBtn from '../../../../../components/per-pages/chat/chat-back-btn';
 import Conversation from '../../../../../components/per-pages/chat/chat-conversation';
-import NewChatWrp from '../../../../../components/per-pages/chat/wrappers/new-chat-wrp';
+import ChatBackBtn from '../../../../../components/per-pages/chat/components/chat-back-btn';
+import NewChatWrp from '../../../../../components/per-pages/chat/components/wrappers/new-chat-wrp';
 import useMedia from '../../../../../hooks/media.hook';
 import useTrans from '../../../../../hooks/trans.hook';
 import { wrapper } from '../../../../../redux/store';
@@ -84,7 +84,7 @@ const NewChat = (): ReactElement => {
 
             <main className={css.main}>
                 {media ? (
-                    <ProfileChatNav active="messages" />
+                    <ProfileChatNav active="chat" />
                 ) : (
                     <ChatBackBtn href={routes.profile.private.personal_area}>Back to profile</ChatBackBtn>
                 )}

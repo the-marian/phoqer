@@ -17,7 +17,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
     region: {
         width: '50%',
-        height: theme.rem(4),
+        height: theme.rem(5),
+        background: theme.palette.trueWhite,
+        color: theme.palette.trueBlack,
         boxShadow: 'none',
         ...theme.hover({
             color: theme.palette.primary[0],
@@ -27,14 +29,14 @@ const useStyles = createUseStyles((theme: Theme) => ({
             color: theme.palette.primary[0],
             border: theme.border(0.2, 'transparent'),
         }),
-        ...theme.media(1100).min({
-            background: theme.palette.gray[1],
-        }),
     },
     categories: {
         display: 'flex',
         alignItems: 'center',
         width: '50%',
+        '& p': {
+            color: theme.palette.trueBlack,
+        },
     },
     line: {
         display: 'block',

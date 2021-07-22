@@ -23,7 +23,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     imgWrp: {
         position: 'relative',
     },
-    img: {
+    imgBig: {
         height: theme.rem(20),
         objectFit: 'cover',
         objectPosition: 'center',
@@ -35,6 +35,15 @@ const useStyles = createUseStyles((theme: Theme) => ({
         ...theme.media(680).max({
             height: theme.rem(30),
         }),
+    },
+    imgSmall: {
+        height: theme.rem(11),
+        objectFit: 'cover',
+        objectPosition: 'center',
+        borderRadius: theme.radius,
+        boxShadow: theme.shadow[1],
+        background: theme.palette.gray[1],
+        ...template(theme).outline,
     },
     topWrp: {
         position: 'absolute',
@@ -56,17 +65,28 @@ const useStyles = createUseStyles((theme: Theme) => ({
         color: theme.palette.yellow[0],
         cursor: 'default',
     },
+    topSmall: {
+        height: theme.rem(3),
+        width: theme.rem(3),
+        fontSize: theme.rem(1.2),
+        borderRadius: theme.rem(0.6),
+    },
     delivery: {
         color: theme.palette.gray[2],
     },
-    title: {
-        margin: theme.rem(1, 0),
+    titleBig: {
+        margin: theme.rem(1, 0, 0),
         fontSize: theme.rem(1.5),
         fontWeight: theme.text.weight[3],
 
         ...theme.media(500).max({
             fontSize: theme.rem(1.8),
         }),
+    },
+    titleSmall: {
+        margin: theme.rem(1, 0, 0),
+        fontSize: theme.rem(1.4),
+        fontWeight: theme.text.weight[2],
     },
     desc: {
         margin: 0,
@@ -80,7 +100,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     info: {
         display: 'flex',
         justifyContent: 'space-between',
-        margin: theme.rem(1, 0),
+        margin: theme.rem(0.3, 0),
     },
     text: {
         display: 'flex',
@@ -116,12 +136,13 @@ const useStyles = createUseStyles((theme: Theme) => ({
         alignItems: 'center',
         justifyContent: 'center',
         minWidth: theme.rem(6),
-        height: theme.rem(5),
+        height: theme.rem(4),
         marginLeft: theme.rem(0.6),
         color: theme.palette.primary[0],
         borderRadius: theme.radius,
         transition: theme.transitions[0],
         fontSize: theme.rem(1.8),
+        background: theme.palette.gray[0],
 
         ...theme.hover({
             background: theme.palette.secondary[0],
@@ -155,6 +176,12 @@ const useStyles = createUseStyles((theme: Theme) => ({
             },
         }),
     },
+    priceSmall: {
+        ...theme.media(500).max({
+            flexDirection: 'column',
+            alignItems: 'flex-start',
+        }),
+    },
     dropdown: {
         position: 'absolute',
         top: theme.rem(0.5),
@@ -171,10 +198,13 @@ const useStyles = createUseStyles((theme: Theme) => ({
             textAlign: 'center',
             background: theme.palette.white,
         },
-        ...theme.media(500).max({
-            top: theme.rem(1),
-            left: theme.rem(1),
-        }),
+    },
+    dropdownSmall: {
+        '& > p': {
+            width: theme.rem(3),
+            fontSize: theme.rem(1.4),
+            borderRadius: theme.rem(0.7),
+        },
     },
 }));
 

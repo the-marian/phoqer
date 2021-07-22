@@ -6,8 +6,9 @@ import { useDispatch } from 'react-redux';
 import ProfileChatNav from '../../../../components/common/navigation/profile-nav/chat-nav';
 import AuthRedirect from '../../../../components/context/auth/auth-redirect';
 import Meta from '../../../../components/meta';
-import ChatBackBtn from '../../../../components/per-pages/chat/chat-back-btn';
-import ChatWrp from '../../../../components/per-pages/chat/wrappers/chat-wrp';
+import { width } from '../../../../components/per-pages/chat/chat.config';
+import ChatBackBtn from '../../../../components/per-pages/chat/components/chat-back-btn';
+import ChatWrp from '../../../../components/per-pages/chat/components/wrappers/chat-wrp';
 import useMedia from '../../../../hooks/media.hook';
 import useTrans from '../../../../hooks/trans.hook';
 import { wrapper } from '../../../../redux/store';
@@ -34,9 +35,13 @@ const useStyles = createUseStyles((theme: Theme) => ({
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        width: '100%',
+        width: width.desktopLg.center,
         background: theme.palette.gray[0],
         borderRadius: theme.radius,
+
+        ...theme.media(1500).max({
+            width: width.desktopSm.center,
+        }),
     },
     inner: {
         display: 'flex',
@@ -69,7 +74,7 @@ const Messages = (): ReactElement => {
 
             <main className={css.main}>
                 {media ? (
-                    <ProfileChatNav active="messages" />
+                    <ProfileChatNav active="chat" />
                 ) : (
                     <ChatBackBtn href={routes.profile.private.personal_area}>Back to profile</ChatBackBtn>
                 )}

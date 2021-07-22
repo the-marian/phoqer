@@ -14,6 +14,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
             zIndex: '10',
             '& > .tooltip': {
                 opacity: 1,
+                display: 'block',
                 visibility: 'visible',
                 zIndex: 10,
             },
@@ -22,6 +23,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
             zIndex: '10',
             '& > .tooltip': {
                 opacity: 1,
+                display: 'block',
                 visibility: 'visible',
                 zIndex: 10,
             },
@@ -35,6 +37,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         color: theme.palette.white,
         opacity: '0',
         visibility: 'hidden',
+        display: 'none',
         transition: 'opacity 0.2s cubic-bezier(0.4, 0, 0.2, 1)',
         fontSize: theme.rem(1.2),
         fontWeight: theme.text.weight[3],

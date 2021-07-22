@@ -39,7 +39,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     buy: {
         display: 'block',
         marginTop: theme.rem(2),
-        padding: theme.rem(1.5, 4),
+        padding: theme.rem(1, 4),
         borderRadius: theme.radius,
         background: theme.palette.green[0],
         fontSize: theme.rem(1.8),

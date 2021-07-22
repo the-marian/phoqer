@@ -2,6 +2,7 @@ import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
 import { Theme } from '../../../../utils/theming/theme';
+import { width } from '../chat.config';
 import ChatFlow from './chat-flow';
 import ChatForm from './chat-form';
 
@@ -11,8 +12,11 @@ const useStyles = createUseStyles((theme: Theme) => ({
         alignItems: 'flex-start',
         flexDirection: 'column',
         height: '99%',
-        width: 'calc(100% - 40rem)',
+        width: width.desktopLg.center,
 
+        ...theme.media(1500).max({
+            width: width.desktopSm.center,
+        }),
         ...theme.media(1060).max({
             width: '100%',
         }),

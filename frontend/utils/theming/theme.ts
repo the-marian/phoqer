@@ -14,7 +14,7 @@ export interface Theme {
     rem: (one: number, two?: number, three?: number, four?: number) => string;
     em: (one: number, two?: number, three?: number, four?: number) => string;
     radius: string;
-    shadow: [string, string, string, string, string];
+    shadow: [string, string, string, string, string, string];
     palette: IPalette;
     media: (size: number) => IMedia;
     hover: (value: Styles) => Styles;
@@ -28,7 +28,7 @@ export interface Theme {
 
 export const theme = (value: Themes): Theme => ({
     fr: (value: number): string => Array(value).fill('1fr').join(' '),
-    border: (value: number, color: string) => `${value}rem solid ${color}`,
+    border: (value: number | string, color: string) => `${value}rem solid ${color}`,
     rem: (one: number, two?: number, three?: number, four?: number): string =>
         `${one}rem${two || two === 0 ? ` ${two}rem` : ''}${three || three === 0 ? ` ${three}rem` : ''}${
             four || four === 0 ? ` ${four}rem` : ''
@@ -44,6 +44,7 @@ export const theme = (value: Themes): Theme => ({
         '0 1rem 2rem rgba(0,0,0,0.08), 0 0.6rem 0.6rem rgba(0,0,0,0.1)',
         '0 1.4rem 2.8rem rgba(0,0,0,0.08), 0 1rem 1rem rgba(0,0,0,0.12)',
         '0 0 20rem 0 rgba(0,0,0,0.2)',
+        '0 0 20rem 0 rgba(0,0,0,0.9)',
     ],
     media: (size: number) => ({
         max: (value: Styles): Styles => ({ [`@media(max-width: ${size}px)`]: value }),

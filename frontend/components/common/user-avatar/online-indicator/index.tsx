@@ -6,7 +6,7 @@ import { dateFromTimestamp } from '../../../../utils/helpers';
 import { Theme } from '../../../../utils/theming/theme';
 import Tooltip from '../../tooltip';
 
-const FIVE_MINUTES_IN_MS = 300000;
+const TEN_MINUTES_IN_MS = 600000;
 
 const useStyles = createUseStyles((theme: Theme) => ({
     root: {
@@ -31,7 +31,7 @@ interface IProps {
 const OnlineIndicator = ({ className, time, online = false }: IProps): ReactElement => {
     const css = useStyles();
     const date: Date | null = dateFromTimestamp(time);
-    const isOnline = (date && Date.now() - +date < FIVE_MINUTES_IN_MS) || online;
+    const isOnline = (date && Date.now() - +date < TEN_MINUTES_IN_MS) || online;
     return (
         <Tooltip content={isOnline ? 'online' : 'offline'}>
             <div className={clsx(css.root, isOnline ? css.green : css.gray, className)} />

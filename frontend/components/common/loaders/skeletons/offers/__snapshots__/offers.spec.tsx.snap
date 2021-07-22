@@ -3,86 +3,86 @@
 exports[`Offers component matches snapshot, with className 1`] = `
 <DocumentFragment>
   <div
-    class="wrp-0-2-16 test"
+    class="wrp-0-2-20 test"
   >
     <div
-      class="card-0-2-17"
+      class="card-0-2-21"
     >
       <div
-        class="img-0-2-18"
+        class="img-0-2-23"
       />
       <div
-        class="text-0-2-20"
+        class="text-0-2-26"
       />
       <div
-        class="text-0-2-20"
+        class="text-0-2-26"
       />
       <div
-        class="textShort-0-2-21"
+        class="text-0-2-26 short-0-2-27"
       />
     </div>
     <div
-      class="card-0-2-17"
+      class="card-0-2-21"
     >
       <div
-        class="img-0-2-18"
+        class="img-0-2-23"
       />
       <div
-        class="text-0-2-20"
+        class="text-0-2-26"
       />
       <div
-        class="text-0-2-20"
+        class="text-0-2-26"
       />
       <div
-        class="textShort-0-2-21"
+        class="text-0-2-26 short-0-2-27"
       />
     </div>
     <div
-      class="card-0-2-17"
+      class="card-0-2-21"
     >
       <div
-        class="img-0-2-18"
+        class="img-0-2-23"
       />
       <div
-        class="text-0-2-20"
+        class="text-0-2-26"
       />
       <div
-        class="text-0-2-20"
+        class="text-0-2-26"
       />
       <div
-        class="textShort-0-2-21"
+        class="text-0-2-26 short-0-2-27"
       />
     </div>
     <div
-      class="card-0-2-17"
+      class="card-0-2-21"
     >
       <div
-        class="img-0-2-18"
+        class="img-0-2-23"
       />
       <div
-        class="text-0-2-20"
+        class="text-0-2-26"
       />
       <div
-        class="text-0-2-20"
+        class="text-0-2-26"
       />
       <div
-        class="textShort-0-2-21"
+        class="text-0-2-26 short-0-2-27"
       />
     </div>
     <div
-      class="card-0-2-17"
+      class="card-0-2-21"
     >
       <div
-        class="img-0-2-18"
+        class="img-0-2-23"
       />
       <div
-        class="text-0-2-20"
+        class="text-0-2-26"
       />
       <div
-        class="text-0-2-20"
+        class="text-0-2-26"
       />
       <div
-        class="textShort-0-2-21"
+        class="text-0-2-26 short-0-2-27"
       />
     </div>
   </div>
@@ -92,86 +92,86 @@ exports[`Offers component matches snapshot, with className 1`] = `
 exports[`Offers component matches snapshot, with props 1`] = `
 <DocumentFragment>
   <div
-    class="wrp-0-2-9"
+    class="wrp-0-2-11"
   >
     <div
-      class="card-0-2-10"
+      class="card-0-2-12"
     >
       <div
-        class="img-0-2-11"
+        class="img-0-2-14"
       />
       <div
-        class="text-0-2-13"
+        class="text-0-2-17"
       />
       <div
-        class="text-0-2-13"
+        class="text-0-2-17"
       />
       <div
-        class="textShort-0-2-14"
+        class="text-0-2-17 short-0-2-18"
       />
     </div>
     <div
-      class="card-0-2-10"
+      class="card-0-2-12"
     >
       <div
-        class="img-0-2-11"
+        class="img-0-2-14"
       />
       <div
-        class="text-0-2-13"
+        class="text-0-2-17"
       />
       <div
-        class="text-0-2-13"
+        class="text-0-2-17"
       />
       <div
-        class="textShort-0-2-14"
+        class="text-0-2-17 short-0-2-18"
       />
     </div>
     <div
-      class="card-0-2-10"
+      class="card-0-2-12"
     >
       <div
-        class="img-0-2-11"
+        class="img-0-2-14"
       />
       <div
-        class="text-0-2-13"
+        class="text-0-2-17"
       />
       <div
-        class="text-0-2-13"
+        class="text-0-2-17"
       />
       <div
-        class="textShort-0-2-14"
+        class="text-0-2-17 short-0-2-18"
       />
     </div>
     <div
-      class="card-0-2-10"
+      class="card-0-2-12"
     >
       <div
-        class="img-0-2-11"
+        class="img-0-2-14"
       />
       <div
-        class="text-0-2-13"
+        class="text-0-2-17"
       />
       <div
-        class="text-0-2-13"
+        class="text-0-2-17"
       />
       <div
-        class="textShort-0-2-14"
+        class="text-0-2-17 short-0-2-18"
       />
     </div>
     <div
-      class="card-0-2-10"
+      class="card-0-2-12"
     >
       <div
-        class="img-0-2-11"
+        class="img-0-2-14"
       />
       <div
-        class="text-0-2-13"
+        class="text-0-2-17"
       />
       <div
-        class="text-0-2-13"
+        class="text-0-2-17"
       />
       <div
-        class="textShort-0-2-14"
+        class="text-0-2-17 short-0-2-18"
       />
     </div>
   </div>
@@ -187,16 +187,16 @@ exports[`Offers component matches snapshot, without props 1`] = `
       class="card-0-2-3"
     >
       <div
-        class="img-0-2-4"
+        class="img-0-2-5"
       />
       <div
-        class="text-0-2-6"
+        class="text-0-2-8"
       />
       <div
-        class="text-0-2-6"
+        class="text-0-2-8"
       />
       <div
-        class="textShort-0-2-7"
+        class="text-0-2-8 short-0-2-9"
       />
     </div>
   </div>

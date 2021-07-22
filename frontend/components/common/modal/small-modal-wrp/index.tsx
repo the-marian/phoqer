@@ -12,7 +12,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         width: theme.rem(40),
         height: 'max-content',
         margin: theme.rem(8, 0),
-        padding: theme.rem(6, 1, 1),
+        padding: theme.rem(5, 1, 1),
         borderRadius: theme.radius,
         background: theme.palette.white,
         color: theme.palette.black[0],
@@ -42,7 +42,7 @@ const SmallModalWrp = ({ children }: IProps): ReactElement => {
     const css = useStyles();
     return (
         <div className={css.inner}>
-            <Logo className={css.logo} link />
+            <Logo className={css.logo} />
             <ButtonClose className={css.button} onClick={modal.close} />
             {children}
         </div>

@@ -14,8 +14,11 @@ const useStyles = createUseStyles((theme: Theme) => ({
         fontSize: 'inherit',
         width: 'max-content',
         color: 'inherit',
+        padding: theme.rem(1),
+        borderRadius: theme.radius,
+        transition: theme.transitions[1],
         ...theme.hover({
-            textDecoration: 'underline',
+            background: theme.palette.gray[1],
         }),
     },
     text: {

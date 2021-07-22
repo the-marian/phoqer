@@ -219,7 +219,7 @@ const DropDown = ({
     withSub,
     onChange,
     className,
-    height = 5,
+    height = 4,
     transparent,
     placeholder,
     defaultValue,

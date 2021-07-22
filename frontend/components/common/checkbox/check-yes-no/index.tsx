@@ -27,7 +27,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         marginRight: theme.rem(1.5),
         border: theme.border(0.2, theme.palette.primary[0]),
         background: theme.palette.trueWhite,
-        borderRadius: theme.radius,
+        borderRadius: theme.rem(0.5),
         color: theme.palette.black[0],
     },
     active: {
@@ -51,9 +51,10 @@ interface Props {
     children: JSX.Element | string;
     value?: boolean;
     onChange: (value: boolean) => void;
+    titles?: [string, string];
 }
 
-const CheckYesNo = ({ children, value, onChange }: Props): ReactElement => {
+const CheckYesNo = ({ children, value, onChange, titles }: Props): ReactElement => {
     const css = useStyles();
     const trans = useTrans();
 
@@ -67,11 +68,11 @@ const CheckYesNo = ({ children, value, onChange }: Props): ReactElement => {
             <div className={css.flex}>
                 <button type="button" name="checked" className={css.btn} onClick={handleClick}>
                     <span className={clsx(css.label, !value || css.active)} />
-                    <span>{trans('yes')}</span>
+                    <span>{trans(titles?.[0] || 'yes')}</span>
                 </button>
                 <button type="button" name="checked" className={css.btn} onClick={handleClick}>
                     <span className={clsx(css.label, value || css.active)} />
-                    <span>{trans('no')}</span>
+                    <span>{trans(titles?.[1] || 'no')}</span>
                 </button>
             </div>
         </>

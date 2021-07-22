@@ -5,15 +5,16 @@ import { useSelector } from 'react-redux';
 
 import useMedia from '../../../../../hooks/media.hook';
 import useMonths from '../../../../../hooks/month.hook';
-import { IMessagesList, IPublicProfile, IState } from '../../../../../interfaces';
+import { IMessages, IMessagesList, IPublicProfile, IState } from '../../../../../interfaces';
 import { addZeroToNumber } from '../../../../../utils/helpers';
 import template from '../../../../../utils/theming/template';
 import { Theme } from '../../../../../utils/theming/theme';
 import { modal } from '../../../../common/modal';
 import FullPageGallery from '../../../../common/modal/full-page-gallery';
 import Tooltip from '../../../../common/tooltip';
-import ChatEmpty from '../../chat-empty';
+import ChatEmpty from '../../components/chat-empty';
 import ChatInitConversation from '../chat-init-conversation';
+import ChatUserModal from '../chat-user-modal';
 import { createHTML, formatTime, validateDate } from './chat-flow.utils';
 
 const useStyles = createUseStyles((theme: Theme) => ({
@@ -44,7 +45,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     messages: {
         width: 'max-content',
         maxWidth: '80%',
-        margin: theme.rem(0.5, 1),
+        margin: theme.rem(0.2, 1),
     },
     right: {
         display: 'flex',
@@ -103,18 +104,19 @@ const useStyles = createUseStyles((theme: Theme) => ({
     uploadsList: {
         display: 'flex',
         flexWrap: 'wrap',
+        marginTop: theme.rem(2),
     },
     uploadsListRight: {
         justifyContent: 'flex-end',
         '& img': {
-            margin: theme.rem(0, 0, 1, 0.5),
+            margin: theme.rem(0, 0, 0.4, 0.4),
         },
     },
     uploads: {
         display: 'block',
-        width: theme.rem(20),
         height: theme.rem(15),
-        margin: theme.rem(0, 0.5, 1, 0),
+        width: theme.rem(20),
+        margin: theme.rem(0, 0.4, 0.4, 0),
         objectFit: 'cover',
         borderRadius: theme.radius,
         cursor: 'zoom-in',
@@ -163,13 +165,17 @@ const ChatFlow = ({ children }: IProps): ReactElement => {
     useEffect(() => {
         if (ref.current && messages.data.data.length) {
             media
-                ? ref.current?.scrollTo({ top: ref.current?.offsetHeight || 0 })
+                ? ref.current?.scrollTo({ top: (ref.current?.children?.[0] as HTMLDivElement)?.offsetHeight || 0 })
                 : window.scrollTo({ top: ref.current?.offsetHeight || 0 });
         }
     }, [media, ref, messages.data.data]);
 
     const openSlider = (images: string[]) => (): void => {
         modal.open(<FullPageGallery images={images} />);
+    };
+
+    const openUserModal = (message: IMessages) => (): void => {
+        modal.open(<ChatUserModal message={message} />);
     };
 
     return (
@@ -189,6 +195,8 @@ const ChatFlow = ({ children }: IProps): ReactElement => {
                                               <img
                                                   key={src}
                                                   src={src}
+                                                  height="160"
+                                                  width="200"
                                                   onClick={openSlider(item.uploads)}
                                                   className={css.uploads}
                                                   aria-hidden="true"
@@ -206,10 +214,12 @@ const ChatFlow = ({ children }: IProps): ReactElement => {
                                       <button
                                           type="button"
                                           className={clsx(css.box, user.id === item.user_id && css.primary)}
+                                          onClick={openUserModal(item)}
                                           dangerouslySetInnerHTML={{ __html: createHTML(item.text || '') }}
                                       />
                                   </Tooltip>
                               </div>
+
                               <DateSeparator
                                   prevDate={array[index + 1]?.creation_datetime}
                                   currentDate={item.creation_datetime}

@@ -71,9 +71,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
         }),
     },
     banner: {
-        padding: theme.rem(14, 8, 10),
-        ...theme.media(767).max({
-            padding: theme.rem(10, 3),
+        padding: theme.rem(16, 10),
+        ...theme.media(768).max({
+            padding: theme.rem(10, 4),
         }),
     },
 }));
@@ -137,7 +137,7 @@ const Content = (): ReactElement => {
                 </div>
             </div>
 
-            <Banner className={css.banner} animation />
+            <Banner className={css.banner} />
         </>
     );
 };
