@@ -307,15 +307,15 @@ def offer_ps4(
 
 
 @pytest.fixture
-def chat(db):
+def chat_marian_egor(db, user_marian, user_egor):
     query = """
     INSERT INTO chats (
-    chat_id,
-    author_id,
-    client_id,
-    offer_id,
-    creation_datetime,
-    is_done)
+        chat_id,
+        author_id,
+        client_id,
+        offer_id,
+        creation_datetime,
+        is_done)
     VALUES (%s, %s, %s, %s, %s, %s)
     RETURNING offer_id
     """
@@ -328,4 +328,4 @@ def chat(db):
         False  # is_done
     )
     db.execute(query, values)
-    return "a30b8a1e-1c60-4bbc-ac3d-37df2d224000"
+    return "20"

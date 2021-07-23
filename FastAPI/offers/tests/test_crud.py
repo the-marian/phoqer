@@ -42,7 +42,7 @@ def test_get_offer(client, offer_ps4):
     }
 
 
-def test_offer_via_chat(client, offer_ps4, user_marian, user_egor, chat):
+def test_offer_via_chat(client, offer_ps4, chat_marian_egor):
     response = client.get("offers/offers/20/")
     assert response.status_code == status.HTTP_200_OK
     assert response.json() == {
@@ -79,7 +79,7 @@ def test_offer_via_chat(client, offer_ps4, user_marian, user_egor, chat):
     }
 
 
-def test_offer_via_chat_404(client, offer_ps4, user_marian, user_egor, chat):
+def test_offer_via_chat_404(client, offer_ps4, chat_marian_egor):
     response = client.get("offers/offers/21/")
     assert response.status_code == status.HTTP_404_NOT_FOUND
 
