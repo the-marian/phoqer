@@ -27,6 +27,39 @@ router = APIRouter(
 )
 
 
+@router.get("/offers/{chat_id}", response_model=OfferDraftReply)
+async def get_offer_via_chat_id(
+    chat_id: int, user_id: Optional[int] = Depends(get_current_user_or_none)
+) -> OfferDraftReply:
+    offer_id = await crud.chat_reference_offer_id(chat_id)
+    if not offer_id:
+        raise HTTPException(
+            status_code=404,
+            detail=f"Offer related with chat_id {chat_id} does not exist",
+        )
+    offer = await crud.get_offer(offer_id["offer_id"])
+    if not offer:
+        raise HTTPException(
+            status_code=404,
+            detail=f"No record in DB for offer with id {offer_id['offer_id']}",
+        )
+    offer_images = await crud.get_offers_images(offer_id["offer_id"])
+    is_favorite = False
+    is_promoted = False
+    if promote_til_date := offer.get("promote_til_date"):
+        is_promoted = date.today() < promote_til_date
+    if user_id:
+        is_favorite = await crud.is_offer_in_favorite_of_user(
+            offer_id["offer_id"], user_id
+        )
+    return OfferDraftReply(
+        **offer,
+        images=offer_images,
+        is_promoted=is_promoted,
+        is_favorite=is_favorite,
+    )
+
+
 @router.patch("/status/{offer_id}")
 async def change_status(
     offer_id: str,
