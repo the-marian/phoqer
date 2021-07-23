@@ -42,6 +42,48 @@ def test_get_offer(client, offer_ps4):
     }
 
 
+def test_offer_via_chat(client, offer_ps4, user_marian, user_egor, chat):
+    response = client.get("offers/offers/20/")
+    assert response.status_code == status.HTTP_200_OK
+    assert response.json() == {
+        "author_id": 1,
+        "category": "technics",
+        "city": "warsaw",
+        "country": "poland",
+        "cover_image": "http://phoqer.com/mediafiles/"
+        "52cade24-63d6-4f04-bf8c-34489d0c67f1-2368.png",
+        "currency": "PLN",
+        "deposit_val": 500,
+        "description": "Konsola Sony PlayStation 4 Nowa!",
+        "doc_needed": False,
+        "extra_requirements": "Zdęcie dowodu osobistego",
+        "first_name": "Marian",
+        "id": "a30b8a1e-1c60-4bbc-ac3d-37df2d224000",
+        "images": [],
+        "is_deliverable": True,
+        "is_favorite": False,
+        "is_promoted": True,
+        "items_amount": 1,
+        "last_name": "Zozulia",
+        "max_rent_period": 100,
+        "min_rent_period": 3,
+        "price": 100,
+        "profile_img": "http://phoqer.com/mediafiles/"
+        "0f13df9c-772c-4216-b6e0-7894cdaaa2dd-2021-06-14_15.42.25.jpg",
+        "pub_date": "2021-05-21",
+        "rental_period": "DAY",
+        "status": "ACTIVE",
+        "sub_category": "consoles",
+        "title": "SONY PlayStation 4",
+        "views": 1,
+    }
+
+
+def test_offer_via_chat_404(client, offer_ps4, user_marian, user_egor, chat):
+    response = client.get("offers/offers/21/")
+    assert response.status_code == status.HTTP_404_NOT_FOUND
+
+
 def test_is_favorite_user_with_favorite(client, auth_token, offer_ps4):
     response = client.get(
         "offers/a30b8a1e-1c60-4bbc-ac3d-37df2d224000", headers=auth_token
