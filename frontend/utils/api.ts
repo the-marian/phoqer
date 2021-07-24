@@ -76,6 +76,7 @@ const api = {
         chats: (): Promise<AxiosResponse<IPagination<IChats>>> => axios.get(`${url2}/chats`),
         createChat: (body: INewChat): Promise<AxiosResponse<INewChat>> => axios.post(`${url2}/chats`, body),
         messages: (id: number): Promise<AxiosResponse<IPagination<IMessages>>> => axios.get(`${url2}/chats/${id}`),
+        offerInfo: (id: number): Promise<AxiosResponse<IPagination<IMessages>>> => axios.get(`${url2}offers/offers/${id}`),
     },
     locations: {
         countries: (): Promise<AxiosResponse<void>> => axios.get(`${url2}/locations/countries`),
