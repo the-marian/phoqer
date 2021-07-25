@@ -254,6 +254,7 @@ async def find_offers(
     order_by_params = get_order_by_params(ordering_query=ordering)
     query = f"""
     SELECT
+        author_id,
         cover_image,
         currency,
         description,
@@ -371,6 +372,7 @@ async def get_user_favorite_founded_offers(
 async def get_popular_offers() -> List[Mapping]:
     query = """
     SELECT
+        author_id,
         cover_image,
         currency,
         description,
