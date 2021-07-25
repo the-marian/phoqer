@@ -308,6 +308,11 @@ export interface IMessagesList {
     data: IPagination<IMessages>;
 }
 
+export interface IChatOfferInfo {
+    loading: boolean;
+    data: IOfferCard | null;
+}
+
 // =====================================
 // REDUX_STORE
 // =====================================
@@ -329,6 +334,7 @@ export interface IState {
     chat: {
         chats: IChatsList;
         messages: IMessagesList;
+        info: IChatOfferInfo;
     };
 }
 

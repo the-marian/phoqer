@@ -17,6 +17,7 @@ import useTrans from '../../../../../hooks/trans.hook';
 import { IChatsList, IMessages, IState } from '../../../../../interfaces';
 import { wrapper } from '../../../../../redux/store';
 import types from '../../../../../redux/types';
+import api from '../../../../../utils/api';
 import { serverRedirect } from '../../../../../utils/helpers';
 import routes from '../../../../../utils/routes';
 import { Theme } from '../../../../../utils/theming/theme';
@@ -69,6 +70,15 @@ const MessagesChat = (): ReactElement => {
             };
         }
     }, [chat, dispatch]);
+
+    useEffect(() => {
+        const getInfo = async (): Promise<void> => {
+            const { data } = await api.chat.offerInfo(chatId);
+            console.log(data);
+        };
+
+        getInfo().then(console.log);
+    }, [chatId]);
 
     const handleSubmit = (text: string, uploads: string[]): void => {
         if (chat) {

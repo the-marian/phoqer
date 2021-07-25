@@ -124,6 +124,10 @@ const initState: IState = {
                 data: [],
             },
         },
+        info: {
+            loading: true,
+            data: null,
+        },
     },
 };
 
