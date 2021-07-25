@@ -1,5 +1,9 @@
 #!/bin/sh
-. "$(dirname "$0")/_/husky.sh"
+frontend_dir_path="$(dirname "$(dirname "$0")")"
+files_changed=$(git diff --cached --name-only --diff-filter=ACM "$frontend_dir_path" | wc -l)
+if [ "$files_changed" -gt 0 ]; then
+  . "$(dirname "$0")/_/husky.sh"
 
-cd ./frontend/ || exit
-yarn test-all
+  cd ./frontend/ || exit
+  yarn test-all
+fi
