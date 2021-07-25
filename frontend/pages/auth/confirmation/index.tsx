@@ -4,7 +4,7 @@ import Link from 'next/link';
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
-import LoginForm from '../../../components/common/auth/login-form';
+import LoginForm from '../../../components/common/auth-form/login-form';
 import { modal } from '../../../components/common/modal';
 import SmallModalWrp from '../../../components/common/modal/small-modal-wrp';
 import AuthRedirect from '../../../components/context/auth/auth-redirect';
@@ -16,7 +16,7 @@ import useTrans from '../../../hooks/trans.hook';
 import { wrapper } from '../../../redux/store';
 import { serverRedirect } from '../../../utils/helpers';
 import routes from '../../../utils/routes';
-import template from '../../../utils/theming/template';
+import mixin from '../../../utils/theming/mixin';
 import { Theme } from '../../../utils/theming/theme';
 
 const ConfettiWrp = dynamic(() => import('../../../components/common/confetti'), { ssr: false });
@@ -35,7 +35,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         width: '48%',
     },
     btn: {
-        ...template(theme).btn,
+        ...mixin(theme).btn,
         background: theme.palette.white,
         color: theme.palette.black[0],
         marginRight: theme.rem(1),

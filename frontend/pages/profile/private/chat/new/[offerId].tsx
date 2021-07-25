@@ -5,11 +5,11 @@ import { createUseStyles } from 'react-jss';
 import { useDispatch } from 'react-redux';
 
 import Button from '../../../../../components/common/button';
-import ProfileChatNav from '../../../../../components/common/navigation/profile-nav/chat-nav';
 import AuthRedirect from '../../../../../components/context/auth/auth-redirect';
 import Meta from '../../../../../components/meta';
 import Conversation from '../../../../../components/per-pages/chat/chat-conversation';
 import ChatBackBtn from '../../../../../components/per-pages/chat/components/chat-back-btn';
+import ChatTabs from '../../../../../components/per-pages/chat/components/chat-tabs';
 import NewChatWrp from '../../../../../components/per-pages/chat/components/wrappers/new-chat-wrp';
 import useMedia from '../../../../../hooks/media.hook';
 import useTrans from '../../../../../hooks/trans.hook';
@@ -17,7 +17,7 @@ import { wrapper } from '../../../../../redux/store';
 import types from '../../../../../redux/types';
 import { serverRedirect } from '../../../../../utils/helpers';
 import routes from '../../../../../utils/routes';
-import template from '../../../../../utils/theming/template';
+import mixin from '../../../../../utils/theming/mixin';
 import { Theme } from '../../../../../utils/theming/theme';
 
 const useStyles = createUseStyles((theme: Theme) => ({
@@ -44,7 +44,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         fontWeight: theme.text.weight[3],
     },
     button: {
-        ...template(theme).btn,
+        ...mixin(theme).btn,
         minWidth: theme.rem(15),
         marginTop: theme.rem(2),
     },
@@ -83,11 +83,8 @@ const NewChat = (): ReactElement => {
             <Meta title={'Мои сообщения'} h1={trans('user_profile_on_phoqer')} />
 
             <main className={css.main}>
-                {media ? (
-                    <ProfileChatNav active="chat" />
-                ) : (
-                    <ChatBackBtn href={routes.profile.private.personal_area}>Back to profile</ChatBackBtn>
-                )}
+                {media ? <ChatTabs /> : <ChatBackBtn href={routes.profile.private.personal_area}>Back to profile</ChatBackBtn>}
+
                 <NewChatWrp showSidebar={media}>
                     <Conversation>
                         <div className={css.center}>

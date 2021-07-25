@@ -17,7 +17,7 @@ import routes from './routes';
  * 5. Site related helpers
  * ├─ 5.1 Production logs
  * ├─ 5.2 Transform category list for dropdowns
- * ├─ 5.3 SSR auth helpers
+ * ├─ 5.3 SSR auth-form helpers
  * ├─ 5.4 Online indicator
  * └─ 5.5 Time indicator
  */
@@ -206,7 +206,7 @@ export const findParentCategory = (data: IDropList[], slug: string): IDropList |
 // ----------------------------------------------
 // ----------------------------------------------
 //  5. Site related helpers
-//  └─ 5.3 SSR auth helpers
+//  └─ 5.3 SSR auth-form helpers
 // ----------------------------------------------
 // get server side cookies in next.js getServerSideProps function
 interface IServerCookie {

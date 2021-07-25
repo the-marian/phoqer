@@ -4,9 +4,9 @@ import { createUseStyles } from 'react-jss';
 
 import useMedia from '../../../../hooks/media.hook';
 import { IChats } from '../../../../interfaces';
-import template from '../../../../utils/theming/template';
+import mixin from '../../../../utils/theming/mixin';
 import { Theme } from '../../../../utils/theming/theme';
-import Gift from '../../../common/gift';
+import Gift from '../../../common/advertising/gift';
 import ChatEmpty from '../components/chat-empty';
 import ChatSidebarItem from './chat-sidebar-item';
 
@@ -22,7 +22,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         color: theme.palette.black[0],
         fontSize: theme.rem(1.4),
 
-        ...template(theme).outline,
+        ...mixin(theme).outline,
     },
     active: {
         background: theme.palette.gray[1],

@@ -4,12 +4,12 @@ import React, { ReactElement, useEffect } from 'react';
 import { createUseStyles } from 'react-jss';
 import { useDispatch, useSelector } from 'react-redux';
 
-import ProfileChatNav from '../../../../../components/common/navigation/profile-nav/chat-nav';
 import notifications from '../../../../../components/common/notifications';
 import AuthRedirect from '../../../../../components/context/auth/auth-redirect';
 import Meta from '../../../../../components/meta';
 import Conversation from '../../../../../components/per-pages/chat/chat-conversation';
 import ChatBackBtn from '../../../../../components/per-pages/chat/components/chat-back-btn';
+import ChatTabs from '../../../../../components/per-pages/chat/components/chat-tabs';
 import MessagesWrp from '../../../../../components/per-pages/chat/components/wrappers/messages-wrp';
 import useChat from '../../../../../hooks/chat.hook';
 import useMedia from '../../../../../hooks/media.hook';
@@ -89,11 +89,7 @@ const MessagesChat = (): ReactElement => {
             <Meta title={'Мои сообщения'} h1={trans('user_profile_on_phoqer')} />
 
             <main className={css.main}>
-                {media ? (
-                    <ProfileChatNav active="chat" />
-                ) : (
-                    <ChatBackBtn href={routes.profile.private.chat()}>Back to messages</ChatBackBtn>
-                )}
+                {media ? <ChatTabs /> : <ChatBackBtn href={routes.profile.private.chat()}>Back to messages</ChatBackBtn>}
 
                 <MessagesWrp showSidebar={media}>
                     <Conversation onSubmit={handleSubmit} />

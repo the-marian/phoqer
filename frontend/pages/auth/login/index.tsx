@@ -1,7 +1,7 @@
 import { GetServerSidePropsContext } from 'next';
 import React, { ReactElement } from 'react';
 
-import LoginForm from '../../../components/common/auth/login-form';
+import LoginForm from '../../../components/common/auth-form/login-form';
 import AuthRedirect from '../../../components/context/auth/auth-redirect';
 import Meta from '../../../components/meta';
 import AuthContainer from '../../../components/per-pages/auth/auth-container';

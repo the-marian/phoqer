@@ -14,7 +14,7 @@ import useTrans from '../../../../../hooks/trans.hook';
 import { ISearch, IState } from '../../../../../interfaces';
 import initState from '../../../../../redux/state';
 import routes from '../../../../../utils/routes';
-import template from '../../../../../utils/theming/template';
+import mixin from '../../../../../utils/theming/mixin';
 import { Theme } from '../../../../../utils/theming/theme';
 import Checkboxes from '../../../../common/checkbox/checkboxes';
 import Period from '../period';
@@ -111,7 +111,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         marginTop: theme.rem(3),
     },
     reset: {
-        ...template(theme).btn,
+        ...mixin(theme).btn,
         marginRight: theme.rem(2),
         background: theme.palette.primary[0],
         color: theme.palette.trueWhite,

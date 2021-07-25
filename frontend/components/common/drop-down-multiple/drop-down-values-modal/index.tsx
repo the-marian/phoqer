@@ -3,7 +3,7 @@ import { createUseStyles } from 'react-jss';
 
 import useTrans from '../../../../hooks/trans.hook';
 import { ICheckboxes } from '../../../../interfaces';
-import template from '../../../../utils/theming/template';
+import mixin from '../../../../utils/theming/mixin';
 import { Theme } from '../../../../utils/theming/theme';
 import Checkboxes from '../../checkbox/checkboxes';
 import { modal } from '../../modal';
@@ -23,13 +23,13 @@ const useStyles = createUseStyles((theme: Theme) => ({
         textTransform: 'capitalize',
     },
     cancel: {
-        ...template(theme).btn,
+        ...mixin(theme).btn,
         marginRight: theme.rem(1),
         background: theme.palette.gray[1],
         color: theme.palette.black[0],
     },
     save: {
-        ...template(theme).btn,
+        ...mixin(theme).btn,
         textTransform: 'capitalize',
     },
 }));

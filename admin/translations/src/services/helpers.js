@@ -3,7 +3,7 @@ export const errorWrapper = func => async (req, res, next) => {
         await func(req, res, next);
     } catch (err) {
         res.status(err.code || 500).send({
-            massage: err.message || 'Internal error',
+            massage: err.message || 'Internal error-template',
         });
     }
 };

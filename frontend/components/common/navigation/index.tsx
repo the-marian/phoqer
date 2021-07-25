@@ -1,5 +1,4 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import clsx from 'clsx';
 import { useRouter } from 'next/router';
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
@@ -10,106 +9,74 @@ import { Theme } from '../../../utils/theming/theme';
 import NotifNumber from '../notif-number';
 
 const useStyles = createUseStyles((theme: Theme) => ({
-    noText: {
-        '& button': {
-            fontSize: 0,
-            background: theme.palette.secondary[0],
-
-            '& svg': {
-                height: theme.rem(1.6),
-                width: theme.rem(1.6),
-            },
-
-            '& span': {
-                display: 'none',
-                margin: 0,
-            },
-        },
-
-        '&:nth-last-of-type(1) > button': {
-            marginRight: theme.rem(4),
-        },
+    item: {
+        margin: theme.rem(0.2, 0),
     },
-    number: {
-        marginLeft: theme.rem(0.5),
+    button: {
+        display: 'flex',
+        alignItems: 'center',
+        width: '100%',
+        padding: theme.rem(1.4, 1),
+        borderRadius: theme.radius,
+        fontSize: theme.rem(1.4),
+        transition: theme.transitions[0],
+        color: theme.palette.black[0],
+
+        ...theme.hover({
+            background: theme.palette.gray[0],
+            color: theme.palette.primary[0],
+        }),
+    },
+    text: {
+        margin: theme.rem(0, 1),
     },
 }));
 
-interface INavTabsItem {
-    item: ITabs;
-    active: boolean;
-    className?: string;
-    activeClass?: string;
-    classNameWrp?: string;
-    classNameText?: string;
+interface NavigationItemProp {
+    tab: ITabs;
 }
 
-const NavTabsItem = ({ item, className, active, classNameText, activeClass }: INavTabsItem): ReactElement => {
+export const NavigationItem = ({ tab }: NavigationItemProp): ReactElement => {
     const css = useStyles();
     const trans = useTrans();
     const history = useRouter();
 
     const handleClick = (): void => {
-        if (item.blank) {
-            window.open(item.link, '_blank')?.focus();
+        if (tab.onClick) {
+            tab.onClick();
             return;
         }
 
-        if (item.onClick) {
-            item.onClick();
-            return;
-        }
-
-        if (item.link) history.push(item.link);
+        if (tab.link) history.push(tab.link);
     };
 
     return (
-        <li key={item.id} className={clsx(!item.text && item.icon && css.noText)}>
-            <button type="button" onClick={handleClick} className={clsx(active && activeClass, className)}>
-                {item.icon ? <FontAwesomeIcon icon={item.icon} /> : null}
-
-                <span className={classNameText}>{trans(item.text)}</span>
-
-                {item?.count ? <NotifNumber className={css.number}>{item?.count}</NotifNumber> : null}
+        <li className={css.item}>
+            <button className={css.button} type="button" onClick={handleClick}>
+                {tab.icon ? <FontAwesomeIcon icon={tab.icon} /> : null}
+                <span className={css.text}>{trans(tab.text)}</span>
+                {tab?.count ? <NotifNumber>{tab.count}</NotifNumber> : null}
             </button>
         </li>
     );
 };
 
-interface INavTabs {
-    tabs: ITabs[];
-    active?: number | string;
+interface IProps {
     className?: string;
-    activeClass?: string;
-    classNameWrp?: string;
-    classNameText?: string;
-    children?: JSX.Element | JSX.Element[] | string | null;
+    children?: ReactElement;
+    tabs: ITabs[];
 }
 
-const NavTabs = ({
-    tabs,
-    active,
-    className,
-    activeClass,
-    classNameWrp,
-    classNameText,
-    children = null,
-}: INavTabs): ReactElement => (
-    <nav className={classNameWrp}>
-        <ul>
-            {tabs.map(item => (
-                <NavTabsItem
-                    key={item.id}
-                    item={item}
-                    active={item.id === active}
-                    className={className}
-                    activeClass={activeClass}
-                    classNameText={classNameText}
-                />
+const Navigation = ({ className, children, tabs }: IProps): ReactElement => {
+    return (
+        <ul className={className}>
+            {tabs.map<ReactElement>(item => (
+                <NavigationItem key={item.id} tab={item} />
             ))}
+
             {children}
         </ul>
-    </nav>
-);
+    );
+};
 
-export default NavTabs;
+export default Navigation;

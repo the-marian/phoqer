@@ -38,7 +38,7 @@ export default class Translations {
         // check duplicate
         if (trans[data.id]) throw new CustomError('id duplicate', 409);
 
-        // add content
+        // add profile-content
         trans[data.id] = data.content;
         await fsPromises.writeFile(this.getFilePath(lang), JSON.stringify(trans, null, 4), 'utf8');
     }
@@ -49,7 +49,7 @@ export default class Translations {
         // return if field not exist
         if (trans[id] === undefined) return;
 
-        // delete content
+        // delete profile-content
         delete trans[id];
         await fsPromises.writeFile(this.getFilePath(lang), JSON.stringify(trans, null, 4), 'utf8');
     }

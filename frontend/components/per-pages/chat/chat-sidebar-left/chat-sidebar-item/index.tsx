@@ -6,7 +6,7 @@ import { createUseStyles } from 'react-jss';
 import { IChats } from '../../../../../interfaces';
 import { cutString } from '../../../../../utils/helpers';
 import routes from '../../../../../utils/routes';
-import template from '../../../../../utils/theming/template';
+import mixin from '../../../../../utils/theming/mixin';
 import { Theme } from '../../../../../utils/theming/theme';
 import NotifNumber from '../../../../common/notif-number';
 import UserAvatar from '../../../../common/user-avatar';
@@ -24,7 +24,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         boxShadow: theme.palette.shadowBorder,
         color: theme.palette.black[0],
         fontSize: theme.rem(1.4),
-        ...template(theme).outline,
+        ...mixin(theme).outline,
     },
     unread: {
         background: theme.palette.secondary[0],

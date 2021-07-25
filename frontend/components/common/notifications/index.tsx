@@ -7,7 +7,7 @@ import { v4 as uuid } from 'uuid';
 
 import useTrans from '../../../hooks/trans.hook';
 import { formatTimestamp } from '../../../utils/helpers';
-import template from '../../../utils/theming/template';
+import mixin from '../../../utils/theming/mixin';
 import { Theme } from '../../../utils/theming/theme';
 
 const useStyles = createUseStyles((theme: Theme) => ({
@@ -48,7 +48,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         color: theme.palette.trueBlack,
     },
     btn: {
-        ...template(theme).btn,
+        ...mixin(theme).btn,
         height: theme.rem(3.5),
         marginTop: theme.rem(1),
         padding: theme.rem(0.2, 3),

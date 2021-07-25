@@ -7,7 +7,7 @@ import { createUseStyles } from 'react-jss';
 import useTrans from '../../../../../hooks/trans.hook';
 import routes from '../../../../../utils/routes';
 import { Theme } from '../../../../../utils/theming/theme';
-import Advertising from '../../../../common/advertising';
+import Advertising from '../../../../common/advertising/gift-modal';
 import ConfettiWrp from '../../../../common/confetti';
 import newOfferTemplate from '../new-offer.style';
 

@@ -1,6 +1,6 @@
 import { Styles } from 'jss';
 
-import template from '../../../../../utils/theming/template';
+import mixin from '../../../../../utils/theming/mixin';
 import { Theme } from '../../../../../utils/theming/theme';
 
 interface Template {
@@ -59,7 +59,7 @@ const editOfferTemplate = (theme: Theme): Template => ({
         fontWeight: theme.text.weight[2],
     },
     textarea: {
-        ...template(theme).input,
+        ...mixin(theme).input,
         width: '100%',
         height: theme.rem(10),
         padding: theme.rem(2),
@@ -91,7 +91,7 @@ const editOfferTemplate = (theme: Theme): Template => ({
         opacity: '0.4',
     },
     submit: {
-        ...template(theme).btn,
+        ...mixin(theme).btn,
         background: theme.palette.primary[0],
 
         ...theme.media(768).max({
@@ -99,7 +99,7 @@ const editOfferTemplate = (theme: Theme): Template => ({
         }),
     },
     save: {
-        ...template(theme).btn,
+        ...mixin(theme).btn,
         marginRight: theme.rem(2),
         background: theme.palette.gray[1],
         color: theme.palette.black[0],

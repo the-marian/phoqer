@@ -4,15 +4,15 @@ import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
 import Breadcrumbs from '../../../../components/common/breadcrumbs';
-import ProfileNav from '../../../../components/common/navigation/profile-nav/root-nav';
+import SegmentedControl from '../../../../components/common/segmented-control';
 import AuthRedirect from '../../../../components/context/auth/auth-redirect';
 import Container from '../../../../components/layout/container';
 import PageLayout from '../../../../components/layout/page-layout';
 import Meta from '../../../../components/meta';
 import MobileBackBtn from '../../../../components/per-pages/profile/mobile-back-btn';
-import General from '../../../../components/per-pages/settings/general';
-import Privacy from '../../../../components/per-pages/settings/privacy';
-import SettingsNav from '../../../../components/per-pages/settings/settings-nav';
+import ProfileTabs from '../../../../components/per-pages/profile/profile-tabs';
+import General from '../../../../components/per-pages/profile/settings/general';
+import Privacy from '../../../../components/per-pages/profile/settings/privacy';
 import useMedia from '../../../../hooks/media.hook';
 import useTrans from '../../../../hooks/trans.hook';
 import { wrapper } from '../../../../redux/store';
@@ -40,6 +40,17 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
 }));
 
+const tabsConfig = [
+    {
+        id: 'general',
+        text: 'general',
+    },
+    {
+        id: 'privacy',
+        text: 'privacy',
+    },
+];
+
 const tabs: { [key: string]: ReactElement } = {
     general: <General />,
     privacy: <Privacy />,
@@ -48,8 +59,13 @@ const tabs: { [key: string]: ReactElement } = {
 const Settings = (): ReactElement => {
     const css = useStyles();
     const trans = useTrans();
-    const { query } = useRouter();
+    const history = useRouter();
     const media = useMedia(1060);
+    const activeTab = String(history.query.activeTab);
+
+    const handleClick = (value: string): void => {
+        history.push(routes.profile.private.settings(value));
+    };
 
     return (
         <>
@@ -62,20 +78,22 @@ const Settings = (): ReactElement => {
                             <>
                                 <Breadcrumbs
                                     className={css.breadcrumbs}
-                                    end={query.activeTab === 'general' ? trans('general') : trans('privacy')}
+                                    end={activeTab === 'general' ? trans('general') : trans('privacy')}
                                     data={[
                                         { label: trans('to_home_page'), link: routes.root },
                                         { label: trans('personal_area'), link: routes.profile.private.personal_area },
                                     ]}
                                 />
-                                <ProfileNav active="settings" />
+
+                                <ProfileTabs active="settings" />
                             </>
                         ) : (
                             <MobileBackBtn href={routes.profile.private.personal_area}>Back to profile</MobileBackBtn>
                         )}
 
-                        <SettingsNav />
-                        <div className={css.root}>{tabs[String(query.activeTab || '')] || tabs.general}</div>
+                        <SegmentedControl tabs={tabsConfig} active={activeTab} onClick={handleClick} />
+
+                        <div className={css.root}>{tabs[activeTab] || tabs.general}</div>
                     </>
                 </Container>
             </PageLayout>

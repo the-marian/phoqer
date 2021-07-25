@@ -3,18 +3,18 @@ import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
 import { ICheckboxes } from '../../../interfaces';
-import template from '../../../utils/theming/template';
+import mixin from '../../../utils/theming/mixin';
 import { Theme } from '../../../utils/theming/theme';
 import { modal } from '../modal';
 import DropDownValuesModal from './drop-down-values-modal';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     input: {
-        ...template(theme).input,
+        ...mixin(theme).input,
         background: theme.palette.gray[0],
     },
     text: {
-        ...template(theme).cutString,
+        ...mixin(theme).cutString,
         textAlign: 'left',
         color: theme.palette.black[0],
     },

@@ -4,10 +4,10 @@ type Primitive = string | number;
 const routes = {
     root: '/',
     auth: {
-        login: '/auth/login',
-        join: '/auth/join',
-        forgot_pass: '/auth/forgot-pass',
-        confirmation: '/auth/confirmation',
+        login: '/auth-form/login',
+        join: '/auth-form/join',
+        forgot_pass: '/auth-form/forgot-pass',
+        confirmation: '/auth-form/confirmation',
     },
     profile: {
         public: (id: ID = ':profileId'): string => `/profile/${id}`,
@@ -19,7 +19,7 @@ const routes = {
             settings: (status: Primitive = 'general'): string => `/profile/private/settings/${status}`,
             reviews: '/profile/private/reviews',
             referral: '/profile/private/referral',
-            analytics: (): string => '/profile/private/analytics',
+            analytics: '/profile/private/analytics',
         },
     },
     offers: {

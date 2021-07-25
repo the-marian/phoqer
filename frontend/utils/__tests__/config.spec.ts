@@ -1,6 +1,5 @@
 import '@testing-library/react';
 
-import { userNavLinks, userProfileLinks } from '../__mocks__/config.mock';
 import config from '../config';
 
 describe('Test config functions', () => {
@@ -43,44 +42,6 @@ describe('Test config functions', () => {
 
         it('Get site url with ua lang', () => {
             expect(config.host('ua')).toBe('http://phoqer.com/ua');
-        });
-    });
-
-    describe('test nav links', () => {
-        it('Test userNavLinks', () => {
-            expect(JSON.stringify(config.userNavLinks('userId', { reviews: 0, messages: 0 }))).toBe(JSON.stringify(userNavLinks));
-        });
-
-        it('Test userNavLinks params "User Id"', () => {
-            expect(JSON.stringify(config.userNavLinks('1', { reviews: 0, messages: 0 }))).not.toBe(JSON.stringify(userNavLinks));
-        });
-
-        it('Test userNavLinks params "reviews"', () => {
-            expect(JSON.stringify(config.userNavLinks('userId', { reviews: 1, messages: 0 }))).not.toBe(
-                JSON.stringify(userNavLinks),
-            );
-        });
-
-        it('Test userNavLinks params "chat', () => {
-            expect(JSON.stringify(config.userNavLinks('userId', { reviews: 0, messages: 1 }))).not.toBe(
-                JSON.stringify(userNavLinks),
-            );
-        });
-
-        it('Test userNavLinks', () => {
-            expect(JSON.stringify(config.userProfileLinks({ reviews: 0, messages: 0 }))).toBe(JSON.stringify(userProfileLinks));
-        });
-
-        it('Test userProfileLinks params "reviews"', () => {
-            expect(JSON.stringify(config.userProfileLinks({ reviews: 1, messages: 0 }))).not.toBe(
-                JSON.stringify(userProfileLinks),
-            );
-        });
-
-        it('Test userProfileLinks params "chat', () => {
-            expect(JSON.stringify(config.userProfileLinks({ reviews: 0, messages: 1 }))).not.toBe(
-                JSON.stringify(userProfileLinks),
-            );
         });
     });
 });

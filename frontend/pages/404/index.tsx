@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react';
 
-import ErrorComponent from '../../components/common/error';
+import ErrorComponent from '../../components/common/error-template';
 import Container from '../../components/layout/container';
 import PageLayout from '../../components/layout/page-layout';
 import useTrans from '../../hooks/trans.hook';

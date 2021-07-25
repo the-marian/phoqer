@@ -10,7 +10,7 @@ import TextareaAutosize from 'react-textarea-autosize';
 
 import useMedia from '../../../../../hooks/media.hook';
 import useTrans from '../../../../../hooks/trans.hook';
-import template from '../../../../../utils/theming/template';
+import mixin from '../../../../../utils/theming/mixin';
 import { Theme } from '../../../../../utils/theming/theme';
 import Button from '../../../../common/button';
 import ButtonClose from '../../../../common/button-close';
@@ -49,7 +49,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         }),
     },
     textarea: {
-        ...template(theme).input,
+        ...mixin(theme).input,
         maxHeight: '70vh',
         minHeight: theme.rem(4),
         padding: theme.rem(0.5),
@@ -79,7 +79,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         color: theme.palette.black[0],
         borderRadius: theme.radius,
         fontSize: theme.rem(1.4),
-        ...template(theme).outline,
+        ...mixin(theme).outline,
 
         ...theme.media(1060).max({
             width: theme.rem(5),

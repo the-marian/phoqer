@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import useTrans from '../../../../../hooks/trans.hook';
 import { IOfferCard, IState } from '../../../../../interfaces';
 import types from '../../../../../redux/types';
-import template from '../../../../../utils/theming/template';
+import mixin from '../../../../../utils/theming/mixin';
 import { Theme } from '../../../../../utils/theming/theme';
 import ButtonClose from '../../../../common/button-close';
 import Tooltip from '../../../../common/tooltip';
@@ -47,7 +47,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         borderRadius: theme.radius,
         objectFit: 'cover',
         cursor: 'pointer',
-        ...template(theme).outline,
+        ...mixin(theme).outline,
     },
     active: {
         border: theme.border(0.2, theme.palette.primary[0]),

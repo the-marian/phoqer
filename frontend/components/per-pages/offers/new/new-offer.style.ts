@@ -1,6 +1,6 @@
 import { Styles } from 'jss';
 
-import template from '../../../../utils/theming/template';
+import mixin from '../../../../utils/theming/mixin';
 import { Theme } from '../../../../utils/theming/theme';
 
 interface Template {
@@ -72,7 +72,7 @@ const newOfferTemplate = (theme: Theme): Template => ({
             }),
         },
         btn: {
-            ...template(theme).btn,
+            ...mixin(theme).btn,
             background: theme.palette.gray[0],
             color: theme.palette.black[0],
 
@@ -144,7 +144,7 @@ const newOfferTemplate = (theme: Theme): Template => ({
             }),
         },
         textarea: {
-            ...template(theme).input,
+            ...mixin(theme).input,
             width: '100%',
             height: theme.rem(10),
             padding: theme.rem(2),
@@ -208,7 +208,7 @@ const newOfferTemplate = (theme: Theme): Template => ({
             }),
         },
         btn: {
-            ...template(theme).btn,
+            ...mixin(theme).btn,
             marginLeft: theme.rem(2),
             background: theme.palette.trueWhite,
             color: theme.palette.trueBlack,

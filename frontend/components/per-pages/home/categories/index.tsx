@@ -10,7 +10,7 @@ import useTrans from '../../../../hooks/trans.hook';
 import { ICategories, IState } from '../../../../interfaces';
 import icons from '../../../../utils/icons-map';
 import routes from '../../../../utils/routes';
-import template from '../../../../utils/theming/template';
+import mixin from '../../../../utils/theming/mixin';
 import { Theme } from '../../../../utils/theming/theme';
 import SectionTitle from '../../../common/section-title';
 
@@ -59,7 +59,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         height: theme.rem(10),
         borderRadius: theme.radius,
         objectFit: 'cover',
-        ...template(theme).outline,
+        ...mixin(theme).outline,
 
         ...theme.media(1150).max({
             height: theme.rem(8),
@@ -68,7 +68,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     text: {
         marginTop: theme.rem(0.5),
         fontSize: theme.rem(1.3),
-        ...template(theme).cutString,
+        ...mixin(theme).cutString,
 
         ...theme.media(768).max({
             margin: '0 1rem',

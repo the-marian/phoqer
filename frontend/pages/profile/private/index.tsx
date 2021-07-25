@@ -7,8 +7,8 @@ import AuthRedirect from '../../../components/context/auth/auth-redirect';
 import Container from '../../../components/layout/container';
 import PageLayout from '../../../components/layout/page-layout';
 import Meta from '../../../components/meta';
-import ProfileAside from '../../../components/per-pages/personal-area/aside';
-import Content from '../../../components/per-pages/personal-area/content';
+import ProfileAside from '../../../components/per-pages/profile/personal-area/aside';
+import ProfileContent from '../../../components/per-pages/profile/personal-area/profile-content';
 import useMedia from '../../../hooks/media.hook';
 import useTrans from '../../../hooks/trans.hook';
 import { wrapper } from '../../../redux/store';
@@ -49,6 +49,7 @@ const Private = (): ReactElement => {
         <>
             <AuthRedirect />
             <Meta title={trans('personal_area')} h1={trans('user_profile_on_phoqer')} />
+
             <PageLayout>
                 <Container>
                     <>
@@ -59,12 +60,13 @@ const Private = (): ReactElement => {
                                 data={[{ label: trans('to_home_page'), link: routes.root }]}
                             />
                         ) : null}
+
                         <div className={css.flex}>
                             <aside className={css.aside}>
                                 <ProfileAside />
                             </aside>
                             <div className={css.content}>
-                                <Content />
+                                <ProfileContent />
                             </div>
                         </div>
                     </>

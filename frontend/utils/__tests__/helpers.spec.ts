@@ -53,7 +53,7 @@ describe('2. Value formatting - 2.1 Number formatting', () => {
 });
 
 describe('2. Value formatting - 2.2 Date formatting', () => {
-    it('dateFromTimestamp error', () => {
+    it('dateFromTimestamp error-template', () => {
         expect(helpers.dateFromTimestamp('2020-21-21')).toBe(null);
         expect(helpers.dateFromTimestamp('2020-01-01')).toStrictEqual(new Date('2020-01-01'));
         expect(helpers.dateFromTimestamp('2021-03-10T00:00:00+00:00')).toStrictEqual(new Date('2021-03-10T00:00:00+00:00'));
@@ -157,7 +157,7 @@ describe('5. Site related helpers 5.2 Work with categories list', () => {
     });
 });
 
-describe('5. Site related helpers 5.3 SSR auth helpers', () => {
+describe('5. Site related helpers 5.3 SSR auth-form helpers', () => {
     it('serverCookie', () => {
         expect(helpers.serverCookie({ req: { headers: { cookie: 'phoqer_auth=null' } } })).toBe(null);
         expect(helpers.serverCookie({ req: { headers: { cookie: authCookies } } })).toStrictEqual({

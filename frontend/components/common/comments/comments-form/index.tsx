@@ -14,7 +14,7 @@ import useTheme from '../../../../hooks/theme.hook';
 import useTrans from '../../../../hooks/trans.hook';
 import useUppy from '../../../../hooks/uppy.hook';
 import config from '../../../../utils/config';
-import template from '../../../../utils/theming/template';
+import mixin from '../../../../utils/theming/mixin';
 import { Theme } from '../../../../utils/theming/theme';
 import notificationsModal from '../../modal/notifications-modal';
 import Tooltip from '../../tooltip';
@@ -40,7 +40,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         },
     },
     textarea: {
-        ...template(theme).input,
+        ...mixin(theme).input,
         minHeight: theme.rem(3.9),
         padding: theme.rem(0.4, 1.5),
         fontSize: theme.rem(1.4),
@@ -86,13 +86,13 @@ const useStyles = createUseStyles((theme: Theme) => ({
         },
     },
     btn: {
-        ...template(theme).btn,
+        ...mixin(theme).btn,
         ...theme.media(1050).max({
             margin: theme.rem(2, 0),
         }),
     },
     submit: {
-        ...template(theme).btn,
+        ...mixin(theme).btn,
         width: theme.rem(6),
         background: theme.palette.gray[0],
         color: theme.palette.black[0],

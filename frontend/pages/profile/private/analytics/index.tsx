@@ -3,13 +3,13 @@ import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
 import Breadcrumbs from '../../../../components/common/breadcrumbs';
-import Construction from '../../../../components/common/construction';
-import ProfileNav from '../../../../components/common/navigation/profile-nav/root-nav';
+import Construction from '../../../../components/common/notifications/construction';
 import AuthRedirect from '../../../../components/context/auth/auth-redirect';
 import Container from '../../../../components/layout/container';
 import PageLayout from '../../../../components/layout/page-layout';
 import Meta from '../../../../components/meta';
 import MobileBackBtn from '../../../../components/per-pages/profile/mobile-back-btn';
+import ProfileTabs from '../../../../components/per-pages/profile/profile-tabs';
 import useMedia from '../../../../hooks/media.hook';
 import useTrans from '../../../../hooks/trans.hook';
 import { wrapper } from '../../../../redux/store';
@@ -51,7 +51,8 @@ const Analytics = (): ReactElement => {
                                         { label: trans('personal_area'), link: routes.profile.private.personal_area },
                                     ]}
                                 />
-                                <ProfileNav active="analytics" />
+
+                                <ProfileTabs active="analytics" />
                             </>
                         ) : (
                             <MobileBackBtn href={routes.profile.private.personal_area}>Back to profile</MobileBackBtn>

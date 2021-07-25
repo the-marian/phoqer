@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react';
 
-import LoginForm from '../../../common/auth/login-form';
+import LoginForm from '../../../common/auth-form/login-form';
 import ControlButtons from '../control-buttons';
 
 const NotAuthDrawer = (): ReactElement => {

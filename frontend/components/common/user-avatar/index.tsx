@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
-import template from '../../../utils/theming/template';
+import mixin from '../../../utils/theming/mixin';
 import { Theme } from '../../../utils/theming/theme';
 import OnlineIndicator from './online-indicator';
 
@@ -18,7 +18,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         background: theme.palette.primary[0],
         borderRadius: '50%',
         objectFit: 'cover',
-        ...template(theme).outline,
+        ...mixin(theme).outline,
         border: theme.border(0.2, theme.palette.trueWhite),
     },
     mark: {

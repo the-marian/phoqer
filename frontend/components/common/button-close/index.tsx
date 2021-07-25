@@ -2,7 +2,7 @@ import clsx from 'clsx';
 import React, { MouseEvent, ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
-import template from '../../../utils/theming/template';
+import mixin from '../../../utils/theming/mixin';
 import { Theme } from '../../../utils/theming/theme';
 
 const useStyles = createUseStyles((theme: Theme) => ({
@@ -14,10 +14,10 @@ const useStyles = createUseStyles((theme: Theme) => ({
         margin: '0.5rem 0.5rem 0 auto',
         fontSize: 0,
         background: theme.palette.gray[1],
-        borderRadius: theme.radius,
+        borderRadius: theme.rem(0.6),
         transition: theme.transitions[0],
 
-        ...template(theme).outline,
+        ...mixin(theme).outline,
 
         '&::after': {
             content: '""',

@@ -3,7 +3,7 @@ import { createUseStyles } from 'react-jss';
 import { useDispatch, useSelector } from 'react-redux';
 import { END } from 'redux-saga';
 
-import ErrorComponent from '../../../components/common/error';
+import ErrorComponent from '../../../components/common/error-template';
 import Pagination from '../../../components/common/load-more/pagination';
 import OffersList from '../../../components/common/offers/offers-list';
 import ProfileCard from '../../../components/common/profile-card';

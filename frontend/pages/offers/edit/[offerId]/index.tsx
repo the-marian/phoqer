@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { END } from 'redux-saga';
 
 import Breadcrumbs from '../../../../components/common/breadcrumbs';
-import ErrorComponent from '../../../../components/common/error';
+import ErrorComponent from '../../../../components/common/error-template';
 import { modal } from '../../../../components/common/modal';
 import Container from '../../../../components/layout/container';
 import PageLayout from '../../../../components/layout/page-layout';
@@ -22,7 +22,7 @@ import { wrapper } from '../../../../redux/store';
 import types from '../../../../redux/types';
 import { serverRedirect } from '../../../../utils/helpers';
 import routes from '../../../../utils/routes';
-import template from '../../../../utils/theming/template';
+import mixin from '../../../../utils/theming/mixin';
 import { Theme } from '../../../../utils/theming/theme';
 
 const useStyles = createUseStyles((theme: Theme) => ({
@@ -51,7 +51,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         }),
     },
     plus: {
-        ...template(theme).btn,
+        ...mixin(theme).btn,
         margin: '2rem auto',
 
         '& span': {

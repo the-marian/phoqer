@@ -9,7 +9,7 @@ import useTrans from '../../../../../hooks/trans.hook';
 import { ISearch, IState } from '../../../../../interfaces';
 import { numberValidation } from '../../../../../utils/helpers';
 import routes from '../../../../../utils/routes';
-import template from '../../../../../utils/theming/template';
+import mixin from '../../../../../utils/theming/mixin';
 import { Theme } from '../../../../../utils/theming/theme';
 
 const useStyles = createUseStyles((theme: Theme) => ({
@@ -27,7 +27,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         }),
     },
     input: {
-        ...template(theme).input,
+        ...mixin(theme).input,
         color: theme.palette.black[0],
         fontSize: 'inherit',
     },

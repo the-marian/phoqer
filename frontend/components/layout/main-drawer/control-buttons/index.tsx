@@ -12,9 +12,9 @@ import { createUseStyles } from 'react-jss';
 import useAuth from '../../../../hooks/auth.hook';
 import useTheme from '../../../../hooks/theme.hook';
 import routes from '../../../../utils/routes';
-import template from '../../../../utils/theming/template';
+import mixin from '../../../../utils/theming/mixin';
 import { Theme } from '../../../../utils/theming/theme';
-import LoginForm from '../../../common/auth/login-form';
+import LoginForm from '../../../common/auth-form/login-form';
 import { modal } from '../../../common/modal';
 import SmallModalWrp from '../../../common/modal/small-modal-wrp';
 
@@ -25,7 +25,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         margin: theme.rem(2, 0),
     },
     btn: {
-        ...template(theme).btn,
+        ...mixin(theme).btn,
         height: theme.rem(4.5),
         width: '22%',
         padding: 0,
@@ -33,7 +33,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         background: theme.palette.gray[0],
         color: theme.palette.black[0],
         transitions: theme.transitions[0],
-        ...template(theme).outline,
+        ...mixin(theme).outline,
     },
 }));
 

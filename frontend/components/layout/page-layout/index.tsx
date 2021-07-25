@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router';
 import React, { ReactElement } from 'react';
 
+import ScrollTop from '../../common/scroll-top-btn';
 import Footer from '../footer';
 import Header from '../header';
 import Main from '../tag-main';
@@ -20,6 +21,7 @@ const PageLayout = ({ children }: IProps): ReactElement => {
         <>
             <Header />
             <Main padding={!withPadding[history.route]}>{children}</Main>
+            <ScrollTop />
             <Footer />
         </>
     );

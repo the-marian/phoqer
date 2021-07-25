@@ -18,7 +18,7 @@ import { IDropList, IDropValue, IOfferCard } from '../../../../interfaces';
 import types from '../../../../redux/types';
 import { cutString, moneyFormat } from '../../../../utils/helpers';
 import routes from '../../../../utils/routes';
-import LoginForm from '../../auth/login-form';
+import LoginForm from '../../auth-form/login-form';
 import DropDown from '../../drop-down';
 import { modal } from '../../modal';
 import SmallModalWrp from '../../modal/small-modal-wrp';

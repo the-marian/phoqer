@@ -10,7 +10,7 @@ import ReactPaginate from 'react-paginate';
 import useMedia from '../../../../hooks/media.hook';
 import useShallowRouter from '../../../../hooks/routing.hook';
 import useTrans from '../../../../hooks/trans.hook';
-import template from '../../../../utils/theming/template';
+import mixin from '../../../../utils/theming/mixin';
 import { Theme } from '../../../../utils/theming/theme';
 import Button from '../../button';
 
@@ -48,7 +48,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         textAlign: 'center',
         transition: theme.transitions[0],
         cursor: 'pointer',
-        ...template(theme).outline,
+        ...mixin(theme).outline,
 
         ...theme.media(768).max({
             margin: theme.rem(0.2),
@@ -59,7 +59,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         background: theme.palette.primary[0],
         color: theme.palette.trueWhite,
         pointerEvents: 'none',
-        ...template(theme).outline,
+        ...mixin(theme).outline,
     },
     nav: {
         display: 'block',
@@ -73,7 +73,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         textAlign: 'center',
         transition: theme.transitions[0],
         cursor: 'pointer',
-        ...template(theme).outline,
+        ...mixin(theme).outline,
     },
     disabled: {
         opacity: 0.1,

@@ -5,7 +5,7 @@ import Link from 'next/link';
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
-import template from '../../../../utils/theming/template';
+import mixin from '../../../../utils/theming/mixin';
 import { Theme } from '../../../../utils/theming/theme';
 
 const useStyles = createUseStyles((theme: Theme) => ({
@@ -21,7 +21,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         fontSize: theme.rem(1.4),
         borderRadius: theme.radius,
         background: theme.palette.gray[0],
-        ...template(theme).outline,
+        ...mixin(theme).outline,
 
         '& span': {
             marginLeft: theme.rem(0.5),

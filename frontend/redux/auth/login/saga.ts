@@ -19,7 +19,7 @@ function* loginUser({ payload }: IAction) {
         modal.close();
     } catch (error) {
         if (error?.response?.status === 401) return;
-        // TODO add error text
+        // TODO add error-template text
         yield put({ type: types.LOGIN_ERROR });
         if (error?.response?.data?.detail === 'Inactive user')
             return notificationsModal('error', 'your_account_has_not_been_verified');

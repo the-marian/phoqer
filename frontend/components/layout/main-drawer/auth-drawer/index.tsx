@@ -1,11 +1,14 @@
+import { faFlag } from '@fortawesome/free-regular-svg-icons/faFlag';
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 import { useSelector } from 'react-redux';
 
 import { IPublicProfile, IState } from '../../../../interfaces';
+import routes from '../../../../utils/routes';
 import { Theme } from '../../../../utils/theming/theme';
-import Gift from '../../../common/gift';
-import UserNavDropdown from '../../../common/navigation/user-dropdown-nav';
+import Gift from '../../../common/advertising/gift';
+import Navigation from '../../../common/navigation';
+import { getBaseNavList } from '../../../common/navigation/navigation.config';
 import ProfileCard from '../../../common/profile-card';
 import ControlButtons from '../control-buttons';
 
@@ -35,8 +38,19 @@ const AuthDrawer = (): ReactElement | null => {
             <ControlButtons />
 
             <div className={css.wrp}>
-                <UserNavDropdown />
+                <Navigation
+                    tabs={[
+                        {
+                            id: 'personal-area',
+                            text: 'personal_area',
+                            link: routes.profile.private.personal_area,
+                            icon: faFlag,
+                        },
+                        ...getBaseNavList({ userId: user?.id }),
+                    ]}
+                />
             </div>
+
             <Gift style={{ margin: '3rem 0' }} />
         </>
     );

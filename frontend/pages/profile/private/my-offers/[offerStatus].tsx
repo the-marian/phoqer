@@ -7,13 +7,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import Breadcrumbs from '../../../../components/common/breadcrumbs';
 import DropDown from '../../../../components/common/drop-down';
 import Pagination from '../../../../components/common/load-more/pagination';
-import ProfileNav from '../../../../components/common/navigation/profile-nav/root-nav';
 import OffersList from '../../../../components/common/offers/offers-list';
 import AuthRedirect from '../../../../components/context/auth/auth-redirect';
 import Container from '../../../../components/layout/container';
 import PageLayout from '../../../../components/layout/page-layout';
 import Meta from '../../../../components/meta';
 import MobileBackBtn from '../../../../components/per-pages/profile/mobile-back-btn';
+import ProfileTabs from '../../../../components/per-pages/profile/profile-tabs';
 import useMedia from '../../../../hooks/media.hook';
 import useTrans from '../../../../hooks/trans.hook';
 import { IDropValue, IOfferDynamic, IState } from '../../../../interfaces';
@@ -127,7 +127,8 @@ const UserOffers = (): ReactElement => {
                                         { label: trans('personal_area'), link: routes.profile.private.personal_area },
                                     ]}
                                 />
-                                <ProfileNav active="my-offers" />
+
+                                <ProfileTabs active="my-offers" />
                             </>
                         ) : (
                             <MobileBackBtn href={routes.profile.private.personal_area}>Back to profile</MobileBackBtn>

@@ -25,9 +25,13 @@ export class DeleteModalComponent {
                 (item) => item.id !== id
             );
             this.dialogRef.close();
-            this.notif.open('The content was successfully DELETED', 'ok', {
-                duration: 2500,
-            });
+            this.notif.open(
+                'The profile-content was successfully DELETED',
+                'ok',
+                {
+                    duration: 2500,
+                }
+            );
         });
     }
 }

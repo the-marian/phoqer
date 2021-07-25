@@ -7,7 +7,7 @@ import useMedia from '../../../../../hooks/media.hook';
 import useMonths from '../../../../../hooks/month.hook';
 import { IMessages, IMessagesList, IPublicProfile, IState } from '../../../../../interfaces';
 import { addZeroToNumber } from '../../../../../utils/helpers';
-import template from '../../../../../utils/theming/template';
+import mixin from '../../../../../utils/theming/mixin';
 import { Theme } from '../../../../../utils/theming/theme';
 import { modal } from '../../../../common/modal';
 import FullPageGallery from '../../../../common/modal/full-page-gallery';
@@ -63,7 +63,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         color: theme.palette.trueBlack,
         wordWrap: 'break-word',
         textAlign: 'left',
-        ...template(theme).outline,
+        ...mixin(theme).outline,
 
         '& > a': {
             color: theme.palette.primary[0],
@@ -120,7 +120,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         objectFit: 'cover',
         borderRadius: theme.radius,
         cursor: 'zoom-in',
-        ...template(theme).outline,
+        ...mixin(theme).outline,
     },
 }));
 

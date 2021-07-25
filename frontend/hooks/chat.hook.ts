@@ -21,7 +21,10 @@ const useChat = (id: string | number): WebSocket | null => {
     socket = new WebSocket(`${config.socketUrl('v2')}/chat/${id}?token=${auth.access_token}`);
     socket.onclose = (ev): void => console.log(ev);
     socket.onerror = (): void => {
-        notifications.error({ title: 'Chat error', message: 'Some error with chat. Try to reload your browser' });
+        notifications.error({
+            title: 'Chat error-template',
+            message: 'Some error-template with chat. Try to reload your browser',
+        });
     };
 
     return socket;

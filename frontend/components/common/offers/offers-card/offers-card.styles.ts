@@ -1,6 +1,6 @@
 import { createUseStyles } from 'react-jss';
 
-import template from '../../../../utils/theming/template';
+import mixin from '../../../../utils/theming/mixin';
 import { Theme } from '../../../../utils/theming/theme';
 
 const useStyles = createUseStyles((theme: Theme) => ({
@@ -30,7 +30,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         borderRadius: theme.radius,
         boxShadow: theme.shadow[1],
         background: theme.palette.gray[1],
-        ...template(theme).outline,
+        ...mixin(theme).outline,
 
         ...theme.media(680).max({
             height: theme.rem(30),
@@ -43,7 +43,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         borderRadius: theme.radius,
         boxShadow: theme.shadow[1],
         background: theme.palette.gray[1],
-        ...template(theme).outline,
+        ...mixin(theme).outline,
     },
     topWrp: {
         position: 'absolute',
@@ -122,7 +122,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         alignItems: 'center',
     },
     btn: {
-        ...template(theme).btn,
+        ...mixin(theme).btn,
         background: theme.palette.green[0],
         color: theme.palette.trueWhite,
 

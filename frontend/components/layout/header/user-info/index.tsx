@@ -1,3 +1,4 @@
+import { faFlag } from '@fortawesome/free-regular-svg-icons/faFlag';
 import { faHeart } from '@fortawesome/free-solid-svg-icons/faHeart';
 import { faMoon } from '@fortawesome/free-solid-svg-icons/faMoon';
 import { faPlus } from '@fortawesome/free-solid-svg-icons/faPlus';
@@ -15,11 +16,12 @@ import useTheme from '../../../../hooks/theme.hook';
 import useTrans from '../../../../hooks/trans.hook';
 import { IPublicProfile, IState } from '../../../../interfaces';
 import routes from '../../../../utils/routes';
-import template from '../../../../utils/theming/template';
+import mixin from '../../../../utils/theming/mixin';
 import { Theme } from '../../../../utils/theming/theme';
 import { modal } from '../../../common/modal';
 import SmallModalWrp from '../../../common/modal/small-modal-wrp';
-import UserNavDropdown from '../../../common/navigation/user-dropdown-nav';
+import Navigation from '../../../common/navigation';
+import { getBaseNavList } from '../../../common/navigation/navigation.config';
 import NotifNumber from '../../../common/notif-number';
 import Tooltip from '../../../common/tooltip';
 import UserAvatar from '../../../common/user-avatar';
@@ -75,13 +77,13 @@ const useStyles = createUseStyles((theme: Theme) => ({
     text: {
         width: '100%',
         marginLeft: theme.rem(1),
-        ...template(theme).cutString,
+        ...mixin(theme).cutString,
     },
     small: {
         width: '100%',
         marginLeft: theme.rem(1),
         color: theme.palette.gray[2],
-        ...template(theme).cutString,
+        ...mixin(theme).cutString,
     },
     user: {
         position: 'relative',
@@ -123,7 +125,17 @@ const UserInfo = (): ReactElement => {
             ? setDrop(!drop)
             : modal.open(
                   <SmallModalWrp>
-                      <UserNavDropdown />
+                      <Navigation
+                          tabs={[
+                              {
+                                  id: 'personal-area',
+                                  text: 'personal_area',
+                                  link: routes.profile.private.personal_area,
+                                  icon: faFlag,
+                              },
+                              ...getBaseNavList({ userId: user?.id }),
+                          ]}
+                      />
                   </SmallModalWrp>,
               );
     };
@@ -166,6 +178,7 @@ const UserInfo = (): ReactElement => {
                     </li>
                 </>
             )}
+
             <li className={css.item}>
                 <button type="button" className={clsx(css.link, drop && css.user)} onClick={handleClick}>
                     <NotifNumber className={css.number}>14</NotifNumber>
@@ -181,6 +194,7 @@ const UserInfo = (): ReactElement => {
                         <span className={css.small}>{user?.email || 'no email'}</span>
                     </div>
                 </button>
+
                 {drop && <DropWindow onClose={handleClick} />}
             </li>
         </ul>

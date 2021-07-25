@@ -7,7 +7,7 @@ import { useSelector } from 'react-redux';
 
 import useTrans from '../../../hooks/trans.hook';
 import { IRegion, IState } from '../../../interfaces';
-import template from '../../../utils/theming/template';
+import mixin from '../../../utils/theming/mixin';
 import { Theme } from '../../../utils/theming/theme';
 import { modal } from '../modal';
 import CityModal from './city-modal';
@@ -15,7 +15,7 @@ import CountryModal from './country-modal';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     input: {
-        ...template(theme).input,
+        ...mixin(theme).input,
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
@@ -23,7 +23,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         color: theme.palette.black[0],
 
         '& span': {
-            ...template(theme).cutString,
+            ...mixin(theme).cutString,
             width: 'calc(100% - 3rem)',
             textAlign: 'left',
         },

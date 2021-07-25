@@ -2,7 +2,7 @@ import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
 import useTrans from '../../../../../hooks/trans.hook';
-import template from '../../../../../utils/theming/template';
+import mixin from '../../../../../utils/theming/mixin';
 import { Theme } from '../../../../../utils/theming/theme';
 import { modal } from '../../index';
 import SmallModalWrp from '../../small-modal-wrp';
@@ -32,7 +32,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         margin: theme.rem(3, 0, 0),
     },
     button: {
-        ...template(theme).btn,
+        ...mixin(theme).btn,
         minWidth: theme.rem(20),
         background: theme.palette.green[0],
     },

@@ -11,7 +11,7 @@ import { CSSTransition } from 'react-transition-group';
 import useMedia from '../../../hooks/media.hook';
 import useTrans from '../../../hooks/trans.hook';
 import { IDropList, IDropValue } from '../../../interfaces';
-import template from '../../../utils/theming/template';
+import mixin from '../../../utils/theming/mixin';
 import { Theme } from '../../../utils/theming/theme';
 import { modal } from '../modal';
 import SmallModalWrp from '../modal/small-modal-wrp';
@@ -38,11 +38,11 @@ const useStyles = createUseStyles((theme: Theme) => ({
         fontSize: theme.rem(1.4),
         color: theme.palette.black[0],
         cursor: 'pointer',
-        ...template(theme).outline,
+        ...mixin(theme).outline,
     },
     text: {
         flexGrow: 2,
-        ...template(theme).cutString,
+        ...mixin(theme).cutString,
     },
     transparent: {
         background: 'none !important',
@@ -191,7 +191,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         background: theme.palette.white,
         color: theme.palette.black[0],
         boxShadow: theme.palette.shadowBorder,
-        ...template(theme).outline,
+        ...mixin(theme).outline,
     },
 }));
 

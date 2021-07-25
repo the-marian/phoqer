@@ -3,7 +3,7 @@ import { createUseStyles } from 'react-jss';
 import { END } from 'redux-saga';
 
 import About from '../components/common/about';
-import Banner from '../components/common/banner';
+import Banner from '../components/common/advertising/banner';
 import TopPopular from '../components/common/offers/popular-offers';
 import Search from '../components/common/search';
 import Container from '../components/layout/container';
@@ -19,7 +19,7 @@ import { Theme } from '../utils/theming/theme';
 const useStyles = createUseStyles((theme: Theme) => ({
     banner: {
         margin: theme.rem(8, 0),
-        padding: theme.rem(24, 12),
+        padding: theme.rem(20, 12),
 
         ...theme.media(767).max({
             padding: theme.rem(16, 4),

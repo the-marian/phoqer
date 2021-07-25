@@ -40,7 +40,7 @@ const Persist: Middleware = store => next => action => {
              * */
             case HYDRATE:
                 try {
-                    // auth
+                    // auth-form
                     const authStr: string | null = Cookies.get('phoqer_auth') || null;
                     const auth: IAuth = authStr ? JSON.parse(authStr) : initState.auth;
 

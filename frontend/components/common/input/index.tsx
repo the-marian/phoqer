@@ -7,7 +7,7 @@ import React, { ChangeEvent, FocusEvent, KeyboardEvent, ReactElement, useState }
 import { createUseStyles } from 'react-jss';
 
 import useTrans from '../../../hooks/trans.hook';
-import template from '../../../utils/theming/template';
+import mixin from '../../../utils/theming/mixin';
 import { Theme } from '../../../utils/theming/theme';
 
 const useStyles = createUseStyles((theme: Theme) => ({
@@ -20,11 +20,11 @@ const useStyles = createUseStyles((theme: Theme) => ({
         width: '100%',
     },
     input: {
-        ...template(theme).input,
+        ...mixin(theme).input,
         color: theme.palette.black[0],
 
         '& span': {
-            ...template(theme).cutString,
+            ...mixin(theme).cutString,
             width: '88%',
             marginLeft: theme.rem(1),
             textAlign: 'left',
@@ -108,7 +108,7 @@ const Input = ({
     errors,
     autoComplete,
     placeholder = '',
-    errorsInPlaceholder = false, // show error text in input placeholder
+    errorsInPlaceholder = false, // show error-template text in input placeholder
     readOnly = false,
     icon,
     min,

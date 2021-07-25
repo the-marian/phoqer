@@ -26,7 +26,7 @@ export class EditModalComponent implements OnInit {
 
     save(id: string) {
         if (!this.content.trim()) {
-            this.notif.open('Fill in the content', 'ok', {
+            this.notif.open('Fill in the profile-content', 'ok', {
                 duration: 2500,
             });
             return;
@@ -40,9 +40,13 @@ export class EditModalComponent implements OnInit {
                         item.id === id ? { id, content: this.content } : item
                 );
                 this.dialogRef.close();
-                this.notif.open('The content was successfully UPDATED', 'ok', {
-                    duration: 2500,
-                });
+                this.notif.open(
+                    'The profile-content was successfully UPDATED',
+                    'ok',
+                    {
+                        duration: 2500,
+                    }
+                );
             });
     }
 }

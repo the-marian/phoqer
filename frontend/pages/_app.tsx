@@ -73,7 +73,7 @@ PhoqerApp.getInitialProps = async (appContext: AppContextType<Router>): Promise<
     const theme = parseCookie<Themes>(appContext?.ctx?.req?.headers?.cookie, 'phoqer_theme', true);
     const props = await App.getInitialProps(appContext);
 
-    // auth
+    // auth-form
     const auth = parseCookie<IAuth>(appContext?.ctx?.req?.headers?.cookie);
     if (auth?.access_token) axios.defaults.headers.common.Authorization = `Bearer ${auth?.access_token}`;
 

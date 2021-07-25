@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react';
 
 import Breadcrumbs from '../../../components/common/breadcrumbs';
-import Construction from '../../../components/common/construction';
+import Construction from '../../../components/common/notifications/construction';
 import Container from '../../../components/layout/container';
 import PageLayout from '../../../components/layout/page-layout';
 import Meta from '../../../components/meta';

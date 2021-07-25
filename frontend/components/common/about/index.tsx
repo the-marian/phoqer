@@ -3,7 +3,7 @@ import { createUseStyles } from 'react-jss';
 import Slider from 'react-slick';
 
 import useTrans from '../../../hooks/trans.hook';
-import template from '../../../utils/theming/template';
+import mixin from '../../../utils/theming/mixin';
 import { Theme } from '../../../utils/theming/theme';
 
 interface ISlides {
@@ -88,7 +88,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
             zIndex: 5,
             transform: 'translateY(-50%)',
             opacity: 1,
-            ...template(theme).btn,
+            ...mixin(theme).btn,
             padding: theme.rem(1, 2.4),
             fontSize: 0,
             background: theme.palette.white,

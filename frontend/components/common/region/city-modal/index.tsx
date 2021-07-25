@@ -9,7 +9,7 @@ import content from '../../../../assets/translations';
 import useTrans from '../../../../hooks/trans.hook';
 import { ICity, IRegion, IState } from '../../../../interfaces';
 import types from '../../../../redux/types';
-import template from '../../../../utils/theming/template';
+import mixin from '../../../../utils/theming/mixin';
 import { Theme } from '../../../../utils/theming/theme';
 import Spinner from '../../loaders/spinner';
 import { modal } from '../../modal';
@@ -39,13 +39,13 @@ const useStyles = createUseStyles((theme: Theme) => ({
         flexDirection: 'column',
     },
     input: {
-        ...template(theme).input,
+        ...mixin(theme).input,
         background: theme.palette.white,
         boxShadow: theme.palette.shadowBorder,
         marginBottom: theme.rem(2),
     },
     btn: {
-        ...template(theme).btn,
+        ...mixin(theme).btn,
         margin: theme.rem(0.4, 0),
         background: theme.palette.white,
         boxShadow: theme.palette.shadowBorder,

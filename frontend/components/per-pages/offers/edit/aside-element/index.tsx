@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 
 import { IPublicProfile, IState } from '../../../../../interfaces';
 import { Theme } from '../../../../../utils/theming/theme';
-import Gift from '../../../../common/gift';
+import Gift from '../../../../common/advertising/gift';
 import ProfileCard from '../../../../common/profile-card';
 
 const useStyles = createUseStyles((theme: Theme) => ({

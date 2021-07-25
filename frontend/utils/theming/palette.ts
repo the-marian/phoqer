@@ -7,7 +7,6 @@ export interface IPalette {
     gray: string[];
     red: string[];
     green: string[];
-    grad: string[];
     yellow: string[];
     primary: string[];
     secondary: string[];
@@ -15,7 +14,12 @@ export interface IPalette {
     shadowBorder: string;
 }
 
-const palette: { [key: string]: IPalette } = {
+export interface ThemedPalette {
+    white: IPalette;
+    black: IPalette;
+}
+
+const palette: ThemedPalette = {
     white: {
         white: '#FFFFFF',
         black: ['#222222', '#242424'],
@@ -25,9 +29,8 @@ const palette: { [key: string]: IPalette } = {
         gray: ['#f9f9f9', '#eeeeee', '#909bac', '#999999', '#444444'],
         red: ['#DB162F'],
         green: ['#227dcc'],
-        grad: ['#fef1ff', '#f4f6ff', '#f0fcf6'],
         yellow: ['#EDBF18', '#FAF0CA'],
-        primary: ['#32603f', '#32603f'],
+        primary: ['#32603f', '#1c512b'],
         secondary: ['#dfece2'],
         modal: 'rgba(0, 0, 0, 0.3)',
         shadowBorder: '0 0 0 0.1rem #e0e0e8',
@@ -41,9 +44,8 @@ const palette: { [key: string]: IPalette } = {
         gray: ['#343434', '#454545', '#999999', '#AAAAAA', '#AAAAAA'],
         red: ['#DB162F'],
         green: ['#227dcc'],
-        grad: ['#47a53c', '#38ba61', '#20909f'],
         yellow: ['#EDBF18', '#FAF0CA'],
-        primary: ['#3CA55C', '#239649'],
+        primary: ['#3CA55C', '#197533'],
         secondary: ['#454545'],
         modal: 'rgba(0, 0, 0, 0.3)',
         shadowBorder: '0 0 0 0.1rem #454545',

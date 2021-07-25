@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
-import template from '../../../../../utils/theming/template';
+import mixin from '../../../../../utils/theming/mixin';
 import { Theme } from '../../../../../utils/theming/theme';
 
 const useStyles = createUseStyles((theme: Theme) => ({
@@ -12,7 +12,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         marginBottom: theme.rem(1),
     },
     input: {
-        ...template(theme).input,
+        ...mixin(theme).input,
         paddingRight: theme.rem(8),
         background: theme.palette.white,
         boxShadow: theme.palette.shadowBorder,

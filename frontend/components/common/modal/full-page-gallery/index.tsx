@@ -3,7 +3,7 @@ import React, { ReactElement, useEffect, useRef } from 'react';
 import { createUseStyles } from 'react-jss';
 import Slider from 'react-slick';
 
-import template from '../../../../utils/theming/template';
+import mixin from '../../../../utils/theming/mixin';
 import { Theme } from '../../../../utils/theming/theme';
 import FullPageModal from '../full-page-modal';
 
@@ -38,7 +38,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
             fontSize: 0,
             transition: theme.transitions[0],
             background: theme.palette.gray[4],
-            ...template(theme).outline,
+            ...mixin(theme).outline,
 
             ...theme.media(768).max({
                 top: 'unset',

@@ -13,7 +13,7 @@ import useTrans from '../../../hooks/trans.hook';
 import { IDropValue, ISearch, IState } from '../../../interfaces';
 import types from '../../../redux/types';
 import routes from '../../../utils/routes';
-import template from '../../../utils/theming/template';
+import mixin from '../../../utils/theming/mixin';
 import { Theme } from '../../../utils/theming/theme';
 import Container from '../../layout/container';
 import OptionsDesktop from './options-desktop';
@@ -88,7 +88,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         fontSize: theme.rem(1.4),
         borderRadius: theme.radius,
         boxShadow: theme.shadow[5],
-        ...template(theme).outline,
+        ...mixin(theme).outline,
 
         ...theme.media(1100).max({
             height: theme.rem(5),

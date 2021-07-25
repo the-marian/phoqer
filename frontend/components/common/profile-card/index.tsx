@@ -11,7 +11,7 @@ import useTrans from '../../../hooks/trans.hook';
 import { IPublicProfile, IState } from '../../../interfaces';
 import { formatTimestamp, onlineStatus } from '../../../utils/helpers';
 import routes from '../../../utils/routes';
-import template from '../../../utils/theming/template';
+import mixin from '../../../utils/theming/mixin';
 import { Theme } from '../../../utils/theming/theme';
 import UserAvatar from '../user-avatar';
 
@@ -75,7 +75,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         }),
     },
     btn: {
-        ...template(theme).btn,
+        ...mixin(theme).btn,
         width: 'max-content',
         color: theme.palette.black[0],
         background: theme.palette.white,

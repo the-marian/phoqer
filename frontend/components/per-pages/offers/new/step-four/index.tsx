@@ -8,7 +8,7 @@ import useTrans from '../../../../../hooks/trans.hook';
 import { IOfferCard, IPublicProfile, IState } from '../../../../../interfaces';
 import types from '../../../../../redux/types';
 import routes from '../../../../../utils/routes';
-import template from '../../../../../utils/theming/template';
+import mixin from '../../../../../utils/theming/mixin';
 import { Theme } from '../../../../../utils/theming/theme';
 import Button from '../../../../common/button';
 import OffersLoader from '../../../../common/loaders/skeletons/offers';
@@ -60,7 +60,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         height: theme.rem(14),
         objectFit: 'cover',
         borderRadius: theme.radius,
-        ...template(theme).outline,
+        ...mixin(theme).outline,
     },
     active: {
         pointerEvents: 'none',

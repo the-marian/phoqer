@@ -1,37 +1,17 @@
+import { faFlag } from '@fortawesome/free-regular-svg-icons/faFlag';
 import React, { ReactElement, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import { createUseStyles } from 'react-jss';
+import { useSelector } from 'react-redux';
 
+import { IPublicProfile, IState } from '../../../../../interfaces';
+import routes from '../../../../../utils/routes';
 import { Theme } from '../../../../../utils/theming/theme';
-import UserNavDropdown from '../../../../common/navigation/user-dropdown-nav';
+import Navigation from '../../../../common/navigation';
+import { getBaseNavList } from '../../../../common/navigation/navigation.config';
 
 const useStyles = createUseStyles((theme: Theme) => ({
-    root: {
-        position: 'fixed',
-        top: theme.rem(7),
-        right: '15%',
-        zIndex: 10001,
-        minWidth: theme.rem(30),
-        padding: theme.rem(2),
-        background: theme.palette.white,
-        borderRadius: theme.radius,
-        transition: theme.transitions[0],
-        border: theme.border(0.1, theme.palette.gray[1]),
-
-        ...theme.media(500).max({
-            top: theme.rem(6),
-            right: '5%',
-        }),
-        '&.appear': {
-            transform: 'translateY(-5rem)',
-            opacity: 0,
-        },
-        '&.appear-done': {
-            transform: 'translateY(0)',
-            opacity: 1,
-        },
-    },
-    wrp: {
+    backdrop: {
         position: 'fixed',
         top: 0,
         bottom: 0,
@@ -43,6 +23,26 @@ const useStyles = createUseStyles((theme: Theme) => ({
         background: theme.palette.modal,
         zIndex: 10000,
     },
+    wrp: {
+        position: 'fixed',
+        top: theme.rem(7),
+        right: 'calc((100% - 120rem) / 2)',
+        zIndex: 10001,
+        minWidth: theme.rem(30),
+        padding: theme.rem(2),
+        background: theme.palette.white,
+        borderRadius: theme.radius,
+        border: theme.border(0.1, theme.palette.gray[1]),
+        transition: theme.transitions[0],
+
+        ...theme.media(1300).max({
+            right: '5%',
+        }),
+
+        ...theme.media(500).max({
+            top: theme.rem(6),
+        }),
+    },
 }));
 
 interface Props {
@@ -51,6 +51,7 @@ interface Props {
 
 const DropWindow = ({ onClose }: Props): ReactElement => {
     const css = useStyles();
+    const user = useSelector<IState, IPublicProfile | null>(state => state.user);
 
     useEffect(() => {
         const handleClose = (event: KeyboardEvent): void => {
@@ -64,8 +65,20 @@ const DropWindow = ({ onClose }: Props): ReactElement => {
 
     return ReactDOM.createPortal(
         <>
-            <div className={css.wrp} onClick={onClose} aria-hidden="true" />
-            <UserNavDropdown className={css.root} />
+            <div className={css.backdrop} onClick={onClose} aria-hidden="true" />
+            <div className={css.wrp}>
+                <Navigation
+                    tabs={[
+                        {
+                            id: 'personal-area',
+                            text: 'personal_area',
+                            link: routes.profile.private.personal_area,
+                            icon: faFlag,
+                        },
+                        ...getBaseNavList({ userId: user?.id }),
+                    ]}
+                />
+            </div>
         </>,
         document.body,
     );

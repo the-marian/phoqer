@@ -12,7 +12,7 @@ import useAuth from '../../../hooks/auth.hook';
 import useMedia from '../../../hooks/media.hook';
 import { IPublicProfile, IState } from '../../../interfaces';
 import routes from '../../../utils/routes';
-import template from '../../../utils/theming/template';
+import mixin from '../../../utils/theming/mixin';
 import { Theme } from '../../../utils/theming/theme';
 import NotifNumber from '../../common/notif-number';
 
@@ -66,7 +66,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     text: {
         fontSize: theme.rem(1.2),
         textAlign: 'center',
-        ...template(theme).cutString,
+        ...mixin(theme).cutString,
     },
     icon: {
         display: 'flex',

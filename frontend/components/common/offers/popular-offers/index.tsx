@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 import useTrans from '../../../../hooks/trans.hook';
 import { IOfferStatic, IState } from '../../../../interfaces';
 import routes from '../../../../utils/routes';
-import template from '../../../../utils/theming/template';
+import mixin from '../../../../utils/theming/mixin';
 import { Theme } from '../../../../utils/theming/theme';
 import SectionTitle from '../../section-title';
 import OffersList from '../offers-list';
@@ -17,7 +17,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         fontWeight: theme.text.weight[3],
     },
     btn: {
-        ...template(theme).btn,
+        ...mixin(theme).btn,
         width: 'max-content',
         margin: '7rem auto 0',
         padding: theme.rem(1, 2),

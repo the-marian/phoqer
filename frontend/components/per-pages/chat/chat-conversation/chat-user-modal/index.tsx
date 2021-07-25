@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { IMessages, IPublicProfile, IState } from '../../../../../interfaces';
 import types from '../../../../../redux/types';
 import routes from '../../../../../utils/routes';
-import template from '../../../../../utils/theming/template';
+import mixin from '../../../../../utils/theming/mixin';
 import { Theme } from '../../../../../utils/theming/theme';
 import RectSkeleton from '../../../../common/loaders/skeletons/rect';
 import TextSkeleton from '../../../../common/loaders/skeletons/text';
@@ -67,7 +67,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         objectFit: 'cover',
         borderRadius: theme.radius,
         cursor: 'zoom-in',
-        ...template(theme).outline,
+        ...mixin(theme).outline,
     },
     // loaders
     text: {

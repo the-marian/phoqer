@@ -16,7 +16,7 @@ function* signupUser({ payload }: IAction) {
         notificationsModal('success', 'we_have_sent_verification_link');
     } catch (error) {
         if (error?.response?.status === 401) return;
-        // TODO add error text
+        // TODO add error-template text
         notificationsModal('error', '');
         yield put({ type: types.SIGNUP_ERROR });
     }
