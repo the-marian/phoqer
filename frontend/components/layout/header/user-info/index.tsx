@@ -2,6 +2,7 @@ import { faFlag } from '@fortawesome/free-regular-svg-icons/faFlag';
 import { faHeart } from '@fortawesome/free-solid-svg-icons/faHeart';
 import { faMoon } from '@fortawesome/free-solid-svg-icons/faMoon';
 import { faPlus } from '@fortawesome/free-solid-svg-icons/faPlus';
+import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons/faSignOutAlt';
 import { faSun } from '@fortawesome/free-solid-svg-icons/faSun';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import clsx from 'clsx';
@@ -9,12 +10,13 @@ import Link from 'next/link';
 import { Router } from 'next/router';
 import React, { ReactElement, useEffect, useState } from 'react';
 import { createUseStyles } from 'react-jss';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import useMedia from '../../../../hooks/media.hook';
 import useTheme from '../../../../hooks/theme.hook';
 import useTrans from '../../../../hooks/trans.hook';
 import { IPublicProfile, IState } from '../../../../interfaces';
+import types from '../../../../redux/types';
 import routes from '../../../../utils/routes';
 import mixin from '../../../../utils/theming/mixin';
 import { Theme } from '../../../../utils/theming/theme';
@@ -100,6 +102,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
 const UserInfo = (): ReactElement => {
     const css = useStyles();
     const trans = useTrans();
+    const dispatch = useDispatch();
     const tablet = useMedia(650);
     const desktop = useMedia(900);
     const [theme, setTheme] = useTheme();
@@ -120,8 +123,12 @@ const UserInfo = (): ReactElement => {
 
     const userName = user?.first_name + ' ' + user?.last_name;
 
+    const handleLogout = () => {
+        dispatch({ type: types.LOGOUT_INIT });
+    };
+
     const handleClick = (): void => {
-        window.innerHeight > 660
+        tablet
             ? setDrop(!drop)
             : modal.open(
                   <SmallModalWrp>
@@ -134,6 +141,12 @@ const UserInfo = (): ReactElement => {
                                   icon: faFlag,
                               },
                               ...getBaseNavList({ userId: user?.id }),
+                              {
+                                  id: 'logout',
+                                  text: 'logout',
+                                  onClick: handleLogout,
+                                  icon: faSignOutAlt,
+                              },
                           ]}
                       />
                   </SmallModalWrp>,

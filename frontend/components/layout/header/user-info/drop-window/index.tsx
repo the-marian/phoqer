@@ -1,10 +1,12 @@
 import { faFlag } from '@fortawesome/free-regular-svg-icons/faFlag';
+import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons/faSignOutAlt';
 import React, { ReactElement, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import { createUseStyles } from 'react-jss';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { IPublicProfile, IState } from '../../../../../interfaces';
+import types from '../../../../../redux/types';
 import routes from '../../../../../utils/routes';
 import { Theme } from '../../../../../utils/theming/theme';
 import Navigation from '../../../../common/navigation';
@@ -51,6 +53,7 @@ interface Props {
 
 const DropWindow = ({ onClose }: Props): ReactElement => {
     const css = useStyles();
+    const dispatch = useDispatch();
     const user = useSelector<IState, IPublicProfile | null>(state => state.user);
 
     useEffect(() => {
@@ -62,6 +65,10 @@ const DropWindow = ({ onClose }: Props): ReactElement => {
 
         return () => window.removeEventListener('keydown', handleClose);
     }, [onClose]);
+
+    const handleLogout = () => {
+        dispatch({ type: types.LOGOUT_INIT });
+    };
 
     return ReactDOM.createPortal(
         <>
@@ -76,6 +83,12 @@ const DropWindow = ({ onClose }: Props): ReactElement => {
                             icon: faFlag,
                         },
                         ...getBaseNavList({ userId: user?.id }),
+                        {
+                            id: 'logout',
+                            text: 'logout',
+                            onClick: handleLogout,
+                            icon: faSignOutAlt,
+                        },
                     ]}
                 />
             </div>

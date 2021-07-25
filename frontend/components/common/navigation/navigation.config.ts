@@ -1,7 +1,6 @@
 import { faChartBar } from '@fortawesome/free-regular-svg-icons/faChartBar';
 import { faCommentAlt } from '@fortawesome/free-regular-svg-icons/faCommentAlt';
 import { faEnvelope } from '@fortawesome/free-regular-svg-icons/faEnvelope';
-import { faFlag } from '@fortawesome/free-regular-svg-icons/faFlag';
 import { faPlusSquare } from '@fortawesome/free-regular-svg-icons/faPlusSquare';
 import { faUserCircle } from '@fortawesome/free-regular-svg-icons/faUserCircle';
 import { faBullseye } from '@fortawesome/free-solid-svg-icons/faBullseye';

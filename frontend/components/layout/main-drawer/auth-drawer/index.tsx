@@ -1,9 +1,11 @@
 import { faFlag } from '@fortawesome/free-regular-svg-icons/faFlag';
+import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons/faSignOutAlt';
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { IPublicProfile, IState } from '../../../../interfaces';
+import types from '../../../../redux/types';
 import routes from '../../../../utils/routes';
 import { Theme } from '../../../../utils/theming/theme';
 import Gift from '../../../common/advertising/gift';
@@ -20,7 +22,12 @@ const useStyles = createUseStyles((theme: Theme) => ({
 
 const AuthDrawer = (): ReactElement | null => {
     const css = useStyles();
+    const dispatch = useDispatch();
     const user = useSelector<IState, IPublicProfile | null>(state => state.user);
+
+    const handleLogout = () => {
+        dispatch({ type: types.LOGOUT_INIT });
+    };
 
     return (
         <>
@@ -47,6 +54,12 @@ const AuthDrawer = (): ReactElement | null => {
                             icon: faFlag,
                         },
                         ...getBaseNavList({ userId: user?.id }),
+                        {
+                            id: 'logout',
+                            text: 'logout',
+                            onClick: handleLogout,
+                            icon: faSignOutAlt,
+                        },
                     ]}
                 />
             </div>

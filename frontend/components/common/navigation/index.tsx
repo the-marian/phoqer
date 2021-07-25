@@ -11,6 +11,10 @@ import NotifNumber from '../notif-number';
 const useStyles = createUseStyles((theme: Theme) => ({
     item: {
         margin: theme.rem(0.2, 0),
+
+        ...theme.media(768).max({
+            margin: theme.rem(1, 0),
+        }),
     },
     button: {
         display: 'flex',
@@ -21,6 +25,11 @@ const useStyles = createUseStyles((theme: Theme) => ({
         fontSize: theme.rem(1.4),
         transition: theme.transitions[0],
         color: theme.palette.black[0],
+
+        ...theme.media(768).max({
+            padding: theme.rem(1.4, 2),
+            background: theme.palette.gray[0],
+        }),
 
         ...theme.hover({
             background: theme.palette.gray[0],
@@ -63,18 +72,15 @@ export const NavigationItem = ({ tab }: NavigationItemProp): ReactElement => {
 
 interface IProps {
     className?: string;
-    children?: ReactElement;
     tabs: ITabs[];
 }
 
-const Navigation = ({ className, children, tabs }: IProps): ReactElement => {
+const Navigation = ({ className, tabs }: IProps): ReactElement => {
     return (
         <ul className={className}>
             {tabs.map<ReactElement>(item => (
                 <NavigationItem key={item.id} tab={item} />
             ))}
-
-            {children}
         </ul>
     );
 };
