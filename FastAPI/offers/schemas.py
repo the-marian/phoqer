@@ -57,6 +57,7 @@ class OfferDraftRequest(BaseModel):
 
 class OfferDraftReply(OfferDraftRequest):
     author_id: int
+    can_rent: bool
     first_name: str
     id: UUID
     is_favorite: bool
@@ -68,6 +69,7 @@ class OfferDraftReply(OfferDraftRequest):
 
 
 class OffersListItem(BaseModel):
+    can_rent: bool
     cover_image: Optional[HttpUrl] = None
     currency: Currency
     description: str
@@ -108,6 +110,7 @@ class MyOffersListResponse(BaseModel):
 
 
 class PublicOffersListItem(BaseModel):
+    can_rent = bool
     cover_image: Optional[HttpUrl] = None
     currency: Optional[Currency] = None
     description: Optional[str] = None

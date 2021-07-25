@@ -44,8 +44,11 @@ async def get_offer_via_chat_id(
             detail=f"No record in DB for offer with id {offer_id['offer_id']}",
         )
     offer_images = await crud.get_offers_images(offer_id["offer_id"])
+    can_rent = False
     is_favorite = False
     is_promoted = False
+    if user_id != offer['author_id']:
+        can_rent = True
     if promote_til_date := offer.get("promote_til_date"):
         is_promoted = date.today() < promote_til_date
     if user_id:
@@ -54,6 +57,7 @@ async def get_offer_via_chat_id(
         )
     return OfferDraftReply(
         **offer,
+        can_rent=can_rent,
         images=offer_images,
         is_promoted=is_promoted,
         is_favorite=is_favorite,
@@ -195,6 +199,7 @@ async def get_popular_offers(
     return [
         OffersListItem(
             **offer,
+            can_rent=True if user_id != offer['author_id'] else False,
             is_promoted=True,
             is_favorite=offer["id"] in user_favorite_popular_offers,
         )
@@ -247,6 +252,7 @@ async def search_offers(
     data = []
     for offer in founded_offers:
         offer_schema = OffersListItem(**offer)
+        offer_schema.can_rent = True if user_id != offer['author_id'] else False
         if promote_til_date := offer.get("promote_til_date"):
             offer_schema.is_promoted = date.today() < promote_til_date
         if user_id:
@@ -285,14 +291,18 @@ async def get_offer(
             detail=f"Offer with id {offer_id} does not exist",
         )
     offer_images = await crud.get_offers_images(offer_id)
+    can_rent = False
     is_favorite = False
     is_promoted = False
+    if user_id != offer['author_id']:
+        can_rent = True
     if promote_til_date := offer.get("promote_til_date"):
         is_promoted = date.today() < promote_til_date
     if user_id:
         is_favorite = await crud.is_offer_in_favorite_of_user(offer_id, user_id)
     return OfferDraftReply(
         **offer,
+        can_rent=can_rent,
         images=offer_images,
         is_promoted=is_promoted,
         is_favorite=is_favorite,
