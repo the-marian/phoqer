@@ -1,18 +1,25 @@
 from datetime import datetime
+from enum import Enum
 from typing import List, Optional
 
 from pydantic import BaseModel, HttpUrl
 
 
+class MessageType(Enum):
+    MESSAGE = "MESSAGE"
+    RENT_REQUEST = "RENT_REQUEST"
+    RETURN_REQUEST = "RETURN_REQUEST"
+
+
 class ChatsListItem(BaseModel):
     chat_id: int
-    title: str
-    recipient_id: int
-    recipient_first_name: str
-    recipient_last_name: str
-    recipient_last_activity: datetime
-    new_messages: int = 0
     cover_image: Optional[str] = None
+    new_messages: int = 0
+    recipient_first_name: str
+    recipient_id: int
+    recipient_last_activity: datetime
+    recipient_last_name: str
+    title: str
 
 
 class ChatsListResponse(BaseModel):
@@ -21,15 +28,16 @@ class ChatsListResponse(BaseModel):
 
 
 class MessagesListItem(BaseModel):
-    id: int
-    text: str
     creation_datetime: datetime
-    is_red: bool
-    user_id: int
     first_name: str
+    id: int
+    is_red: bool
     last_name: str
+    message_type: MessageType
     profile_img: Optional[str] = None
+    text: str
     uploads: List[HttpUrl] = []
+    user_id: int
 
 
 class MessagesListResponse(BaseModel):

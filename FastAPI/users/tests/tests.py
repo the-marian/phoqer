@@ -35,8 +35,8 @@ def test_user_already_exist(client):
     assert response.status_code == status.HTTP_400_BAD_REQUEST
 
 
-def test_logged_in_user_details(client, auth_token):
-    r = client.get("users/me", headers=auth_token)
+def test_logged_in_user_details(client, marian_auth_token):
+    r = client.get("users/me", headers=marian_auth_token)
     assert r.status_code == status.HTTP_200_OK
     assert r.json() == {
         "bio": "new bio",
@@ -99,7 +99,7 @@ def test_get_short_user_details(client):
 
 
 @pytest.mark.asyncio
-async def test_partial_update_user(auth_token):
+async def test_partial_update_user(marian_auth_token):
     patch_data = {
         "bio": "new bio",
         "birth_date": "1997-11-06",
@@ -110,7 +110,7 @@ async def test_partial_update_user(auth_token):
         "profile_img": "https://example.com/dic_pic_2.jpeg",
     }
     async with AsyncClient(app=app, base_url="http://test") as ac:
-        response = await ac.patch("users/me", json=patch_data, headers=auth_token)
+        response = await ac.patch("users/me", json=patch_data, headers=marian_auth_token)
     assert response.status_code == 204
     db_response = await get_user(2)
     assert db_response.get("bio") == "new bio"

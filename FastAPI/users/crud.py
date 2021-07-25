@@ -1,3 +1,4 @@
+import datetime
 from typing import Mapping
 
 from FastAPI.config import database
@@ -136,5 +137,8 @@ async def partial_update_user(
 
 
 async def update_last_login(user_id: int) -> None:
-    query = "UPDATE users_user SET last_login = current_timestamp WHERE id = :user_id"
-    await database.execute(query=query, values={"user_id": user_id})
+    query = "UPDATE users_user SET last_login = :current_timestamp WHERE id = :user_id"
+    await database.execute(
+        query=query,
+        values={"user_id": user_id, "current_timestamp": datetime.datetime.now()},
+    )

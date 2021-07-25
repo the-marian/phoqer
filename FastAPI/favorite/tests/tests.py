@@ -1,8 +1,8 @@
 from fastapi import status
 
 
-def test_get_favorite(client, auth_token):
-    response = client.get("favorite/", headers=auth_token)
+def test_get_favorite(client, marian_auth_token):
+    response = client.get("favorite/", headers=marian_auth_token)
     assert response.status_code == status.HTTP_200_OK
     assert response.json() == [
         {

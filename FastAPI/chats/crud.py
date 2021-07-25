@@ -1,3 +1,4 @@
+import datetime
 from typing import Any, Dict, List, Mapping, Optional
 
 from FastAPI.config import CHAT_SIZE, MESSAGES_SIZE, database
@@ -88,10 +89,11 @@ async def get_messages(
 ) -> List[Mapping[str, Any]]:
     query = """
     SELECT
-        messages.id,
-        messages.text AS encrypted_text,
         messages.creation_datetime,
+        messages.id,
         messages.is_red,
+        messages.message_type,
+        messages.text AS encrypted_text,
         users_user.id as user_id,
         users_user.first_name,
         users_user.last_name,
@@ -138,25 +140,33 @@ async def count_messages(chat_id: int) -> int:
 
 @database.transaction()
 async def create_message(
-    message: str,
-    chat_id: int,
-    user_id: int,
     access_urls: List[HttpUrl],
+    chat_id: int,
+    message: str,
+    message_type: str,
+    user_id: int,
 ) -> int:
     query = """
     INSERT INTO messages (
-        text,
-        chat_id,
         author_id,
-        creation_datetime)
+        chat_id,
+        creation_datetime,
+        message_type,
+        text)
     VALUES (
-        :text,
-        :chat_id,
         :author_id,
-        current_timestamp)
+        :chat_id,
+        current_timestamp,
+        :message_type,
+        :text)
     RETURNING id
     """
-    values = {"text": message, "chat_id": chat_id, "author_id": user_id}
+    values = {
+        "text": message,
+        "chat_id": chat_id,
+        "author_id": user_id,
+        "message_type": message_type,
+    }
     message_id = int(await database.execute(query=query, values=values))
     if access_urls:
         await create_messages_uploads(
@@ -185,10 +195,11 @@ async def create_messages_uploads(
 async def get_message(message_id: int) -> Optional[Mapping]:
     query = """
     SELECT
-        messages.id,
-        messages.text,
         messages.creation_datetime,
+        messages.id,
         messages.is_red,
+        messages.message_type,
+        messages.text,
         users_user.id as user_id,
         users_user.first_name,
         users_user.last_name,
@@ -212,8 +223,13 @@ async def create_chat(offer_id: str, author_id: int, client_id: int) -> int:
         :author_id,
         :client_id,
         :offer_id,
-        current_timestamp)
+        :current_timestamp)
     RETURNING chat_id
     """
-    values = {"author_id": author_id, "client_id": client_id, "offer_id": offer_id}
+    values = {
+        "author_id": author_id,
+        "client_id": client_id,
+        "offer_id": offer_id,
+        "current_timestamp": datetime.datetime.now(),
+    }
     return int(await database.execute(query=query, values=values))

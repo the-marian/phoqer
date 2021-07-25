@@ -6,7 +6,7 @@ import databases
 ALGORITHM = "HS256"
 
 PG_DB = os.environ.get("POSTGRES_DB", "phoqer_dev")
-TEST_PG_DB = os.environ.get("POSTGRES_DB", "test_phoqer_dev")
+TEST_PG_DB = os.environ.get("TEST_POSTGRES_DB", "test_phoqer_dev")
 PG_HOST = os.environ.get("POSTGRES_HOST", "localhost")
 PG_PASSWORD = os.environ.get("POSTGRES_PASSWORD", "apple-b@nana-f1re")
 PG_PORT = os.environ.get("POSTGRES_PORT", "5432")

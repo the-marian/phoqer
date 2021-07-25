@@ -1,5 +1,5 @@
 CREATE TABLE IF NOT EXISTS chats (
-    chat_id integer PRIMARY KEY,
+    chat_id SERIAL PRIMARY KEY,
     author_id integer REFERENCES users_user(id) ON DELETE CASCADE,
     client_id integer REFERENCES users_user(id) ON DELETE CASCADE,
     offer_id uuid REFERENCES offers_offer(id) ON DELETE CASCADE,

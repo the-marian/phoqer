@@ -1,4 +1,7 @@
 from fastapi import status
+from FastAPI.main import app
+from fastapi.testclient import TestClient
+from freezegun import freeze_time
 
 
 def test_get_chats_not_auth(client):
@@ -127,34 +130,3 @@ def test_create_chat(client, auth_token):
     }
     response = client.post("chats", json=post_data, headers=auth_token)
     assert type(response.json()["id"]) is int
-
-
-def test_get_chat(client, auth_token, chat_marian_egor, chat_egor_marian):
-    response = client.get("/chats/", headers=auth_token)
-    assert response.json() == {
-        "data": [
-            {
-                "chat_id": 2,
-                "cover_image": "http://phoqer.com/mediafiles/"
-                "52cade24-63d6-4f04-bf8c-34489d0c67f1-2369.png",
-                "new_messages": 0,
-                "recipient_first_name": "Egor",
-                "recipient_id": 2,
-                "recipient_last_activity": "2020-07-07T11:35:14.330296+00:00",
-                "recipient_last_name": "Leletsky",
-                "title": "Iphone 12",
-            },
-            {
-                "chat_id": 1,
-                "cover_image": "http://phoqer.com/mediafiles/"
-                "52cade24-63d6-4f04-bf8c-34489d0c67f1-2368.png",
-                "new_messages": 0,
-                "recipient_first_name": "Egor",
-                "recipient_id": 2,
-                "recipient_last_activity": "2020-07-07T11:35:14.330296+00:00",
-                "recipient_last_name": "Leletsky",
-                "title": "SONY PlayStation 4",
-            },
-        ],
-        "total": 1,
-    }

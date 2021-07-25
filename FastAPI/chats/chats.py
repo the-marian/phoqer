@@ -3,25 +3,19 @@ from math import ceil
 from typing import Any, Dict, List, Mapping, Optional, Union
 
 from cryptography.fernet import Fernet
-from fastapi import (
-    APIRouter,
-    Body,
-    Depends,
-    HTTPException,
-    Query,
-    WebSocket,
-    WebSocketDisconnect,
-)
+from fastapi import APIRouter, Body, Depends, HTTPException, Query
 from FastAPI.chats import crud
 from FastAPI.chats.schemas import (
     ChatsListResponse,
     CreateChatResponse,
     MessagesListItem,
     MessagesListResponse,
+    MessageType,
 )
 from FastAPI.config import CHAT_SIZE, FERNET_SECRET_KEY, MESSAGES_SIZE
 from FastAPI.offers.crud import get_offer
 from FastAPI.utils import decode_jwt, get_current_user
+from fastapi.websockets import WebSocket, WebSocketDisconnect
 
 router = APIRouter(
     prefix="/chats",
@@ -71,10 +65,11 @@ async def chat_endpoint(
             encoded_message = message_text.encode()
             encrypted_message = f.encrypt(encoded_message).decode()
             message_id = await crud.create_message(
-                message=encrypted_message,
-                chat_id=chat_id,
-                user_id=user_id,
                 access_urls=message_uploads,
+                chat_id=chat_id,
+                message=encrypted_message,
+                message_type=MessageType.MESSAGE.value,
+                user_id=user_id,
             )
             if message := await crud.get_message(message_id):
                 message = dict(message)
@@ -113,11 +108,17 @@ async def create_chat(
             detail=f"Offer with id: {offer_id} does not exist",
         )
     author_id = offer["author_id"]
-    return {
-        "id": await crud.create_chat(
-            offer_id=offer_id, client_id=client_id, author_id=author_id
-        )
-    }
+    chat_id = await crud.create_chat(
+        offer_id=offer_id, client_id=client_id, author_id=author_id
+    )
+    await crud.create_message(
+        access_urls=[],
+        chat_id=chat_id,
+        message="",
+        message_type=MessageType.RENT_REQUEST.value,
+        user_id=author_id,
+    )
+    return {"id": chat_id}
 
 
 @router.get("/{chat_id}", response_model=MessagesListResponse)

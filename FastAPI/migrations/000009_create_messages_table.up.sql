@@ -1,6 +1,6 @@
 BEGIN;
 CREATE TABLE IF NOT EXISTS messages (
-    id integer PRIMARY KEY,
+    id SERIAL PRIMARY KEY,
     text text,
     chat_id integer REFERENCES chats(chat_id) ON DELETE CASCADE,
     author_id integer REFERENCES users_user(id) ON DELETE CASCADE,
