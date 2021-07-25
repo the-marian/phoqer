@@ -10,6 +10,7 @@ def test_get_offer(client, offer_ps4):
     assert response.status_code == status.HTTP_200_OK
     assert response.json() == {
         "author_id": 1,
+        "can_rent": True,
         "category": "technics",
         "city": "warsaw",
         "country": "poland",
@@ -47,6 +48,7 @@ def test_get_offer_via_chat(client, chat_marian_egor):
     assert response.status_code == status.HTTP_200_OK
     assert response.json() == {
         "author_id": 1,
+        "can_rent": True,
         "category": "technics",
         "city": "warsaw",
         "country": "poland",
@@ -79,7 +81,7 @@ def test_get_offer_via_chat(client, chat_marian_egor):
     }
 
 
-def test_offer_via_chat_404(client, offer_ps4, chat_marian_egor):
+def test_offer_via_chat_404(client, chat_marian_egor):
     response = client.get("offers/offers/21/")
     assert response.status_code == status.HTTP_404_NOT_FOUND
 
@@ -337,6 +339,7 @@ def test_search(client, auth_token):
     response = client.get("/search/?rental_period=DAY", headers=auth_token)
     assert response.json() == {
         "author_id": 2,
+        "can_rent": True,
         "category": "business",
         "city": "kyiv",
         "country": "poland",
@@ -382,3 +385,30 @@ def test_delete_offer(client, auth_token):
         "/offers/4f3b43f0-9eb1-463d-8eaa-69eb428f5639", headers=auth_token
     )
     assert response.status_code == 204
+
+
+def test_can_rent_get_offer(client, offer_ps4):
+    response = client.get("offers/a30b8a1e-1c60-4bbc-ac3d-37df2d224000")
+    assert response.status_code == status.HTTP_200_OK
+    assert response.json()["can_rent"] is True
+
+
+def test_can_rent_get_offer_via_chat_id(client, chat_marian_egor):
+    response = client.get(f"offers/offers/{chat_marian_egor}/")
+    assert response.status_code == status.HTTP_200_OK
+    assert response.json()["can_rent"] is True
+
+
+def test_can_rent_get_popular_offers(client):
+    response = client.get("offers/popular/")
+    assert response.status_code == status.HTTP_200_OK
+    for i in response.json():
+        assert i["can_rent"] is True
+
+
+def test_cannot_rent(client, auth_token, offer_ps4):
+    response = client.get(
+        "offers/a30b8a1e-1c60-4bbc-ac3d-37df2d224000", headers=auth_token
+    )
+    assert response.status_code == status.HTTP_200_OK
+    assert response.json()["can_rent"] is False
