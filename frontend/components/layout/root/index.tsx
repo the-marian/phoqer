@@ -46,9 +46,9 @@ const Root = ({ children }: IProps): ReactElement => {
     return (
         <ThemeProvider theme={theme(siteTheme)}>
             <AuthInterceptor />
+            <RouterProgress />
             <ModalComponent />
             <MainDrawer />
-            <RouterProgress />
             <MobileNav />
             <ReactNotification />
             {children}

@@ -13,6 +13,11 @@ const useStyles = createUseStyles((theme: Theme) => ({
     root: {
         width: width.desktopLg.sidebar,
         height: '100%',
+
+        ...theme.media(1500).max({
+            width: '100%',
+            paddingTop: theme.rem(4),
+        }),
     },
     banner: {
         height: 'calc(100vh - 10rem)',

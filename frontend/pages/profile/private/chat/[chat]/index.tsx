@@ -8,6 +8,8 @@ import notifications from '../../../../../components/common/notifications';
 import AuthRedirect from '../../../../../components/context/auth/auth-redirect';
 import Meta from '../../../../../components/meta';
 import Conversation from '../../../../../components/per-pages/chat/chat-conversation';
+import ChatMobileDrawer from '../../../../../components/per-pages/chat/chat-sidebar-right/chat-drawer';
+import ChatMobileDrawerButton from '../../../../../components/per-pages/chat/chat-sidebar-right/chat-drawer-button';
 import ChatBackBtn from '../../../../../components/per-pages/chat/components/chat-back-btn';
 import ChatTabs from '../../../../../components/per-pages/chat/components/chat-tabs';
 import MessagesWrp from '../../../../../components/per-pages/chat/components/wrappers/messages-wrp';
@@ -17,7 +19,6 @@ import useTrans from '../../../../../hooks/trans.hook';
 import { IChatsList, IMessages, IState } from '../../../../../interfaces';
 import { wrapper } from '../../../../../redux/store';
 import types from '../../../../../redux/types';
-import api from '../../../../../utils/api';
 import { serverRedirect } from '../../../../../utils/helpers';
 import routes from '../../../../../utils/routes';
 import { Theme } from '../../../../../utils/theming/theme';
@@ -42,6 +43,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
 const MessagesChat = (): ReactElement => {
     const css = useStyles();
     const trans = useTrans();
+    const desktop = useMedia(1500);
     const media = useMedia(1060);
     const history = useRouter();
     const chatId = +String(history.query.chat || '0');
@@ -93,9 +95,11 @@ const MessagesChat = (): ReactElement => {
             <AuthRedirect />
             <Meta title={'Мои сообщения'} h1={trans('user_profile_on_phoqer')} />
 
+            <ChatMobileDrawer />
+            {!desktop && <ChatMobileDrawerButton />}
+
             <main className={css.main}>
                 {media ? <ChatTabs /> : <ChatBackBtn href={routes.profile.private.chat()}>Back to messages</ChatBackBtn>}
-
                 <MessagesWrp showSidebar={media}>
                     <Conversation onSubmit={handleSubmit} />
                 </MessagesWrp>

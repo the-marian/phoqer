@@ -238,7 +238,9 @@ const ChatForm = ({ onSubmit }: IProps): ReactElement => {
                 </Button>
 
                 <Button className={css.btn} type="submit">
-                    <FontAwesomeIcon icon={faChevronRight} />
+                    <Tooltip content={trans('Отправить сообщение')}>
+                        <FontAwesomeIcon icon={faChevronRight} />
+                    </Tooltip>
                 </Button>
             </form>
         </div>

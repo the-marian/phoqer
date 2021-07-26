@@ -19,31 +19,57 @@ const useStyles = createUseStyles((theme: Theme) => ({
         transition: theme.transitions[0],
         cursor: 'pointer',
 
-        '&.enter .inner': {
+        // left
+        '&.enter .left': {
             transform: 'translateX(-100%)',
         },
-        '&.enter-done .inner': {
+        '&.enter-done .left': {
+            transform: 'translateX(0%)',
+            transition: theme.transitions[0],
+        },
+
+        '&.exit .left': {
+            transform: 'translateX(-100%)',
+            transition: theme.transitions[0],
+        },
+        '&.exit-done .left': {
             transform: 'translateX(0%)',
         },
 
-        '&.exit .inner': {
-            transform: 'translateX(-100%)',
+        // right
+        '&.enter .right': {
+            transform: 'translateX(100%)',
         },
-        '&.exit-done .inner': {
+        '&.enter-done .right': {
+            transform: 'translateX(0%)',
+            transition: theme.transitions[0],
+        },
+
+        '&.exit .right': {
+            transform: 'translateX(100%)',
+            transition: theme.transitions[0],
+        },
+        '&.exit-done .right': {
             transform: 'translateX(0%)',
         },
 
+        // core
+        '& .right': {
+            right: 0,
+            transform: 'translateX(-100%)',
+        },
+        '& .left': {
+            left: 0,
+            transform: 'translateX(-100%)',
+        },
         '& .inner': {
             position: 'absolute',
             top: 0,
-            left: 0,
-            transform: 'translateX(0%)',
             height: '100%',
             width: '95%',
             padding: theme.rem(5, 2, 2),
             background: theme.palette.white,
             borderRight: theme.border(0.1, theme.palette.gray[1]),
-            transition: theme.transitions[0],
             overflow: 'auto',
             cursor: 'auto',
             scrollBehavior: 'smooth',
@@ -65,6 +91,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
 interface IProps {
     open: boolean;
     width?: number;
+    right?: boolean;
     onToggle: (value: boolean) => void;
     children: ReactElement | ReactElement[];
 }
@@ -107,7 +134,7 @@ const Root = ({ children, open, onToggle }: IProps) => {
     );
 };
 
-const Drawer = ({ children, width = 40, open, onToggle }: IProps): ReactElement | null => {
+const Drawer = ({ children, width = 40, open, onToggle, right = false }: IProps): ReactElement | null => {
     const css = useStyles();
 
     const handleToggle = (): void => {
@@ -117,7 +144,10 @@ const Drawer = ({ children, width = 40, open, onToggle }: IProps): ReactElement 
     return (
         <CSSTransition timeout={200} unmountOnExit in={open}>
             <Root onToggle={onToggle} open={open}>
-                <div className="inner" style={{ maxWidth: `${width}rem`, minWidth: `${width - 10}rem` }}>
+                <div
+                    className={right ? 'inner right' : 'inner left'}
+                    style={{ maxWidth: `${width}rem`, minWidth: `${width - 10}rem` }}
+                >
                     <ButtonClose className={css.button} onClick={handleToggle} />
                     {children}
                 </div>

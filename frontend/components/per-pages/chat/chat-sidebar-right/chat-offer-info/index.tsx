@@ -11,6 +11,7 @@ import { cutString } from '../../../../../utils/helpers';
 import routes from '../../../../../utils/routes';
 import mixin from '../../../../../utils/theming/mixin';
 import { Theme } from '../../../../../utils/theming/theme';
+import Tooltip from '../../../../common/tooltip';
 import Price from '../../../offers/single-offer/price';
 import Requirements from '../../../offers/single-offer/requirements';
 
@@ -148,8 +149,10 @@ const ChatOfferInfo = (): ReactElement | null => {
 
             <Link href={routes.offers.single(offer.id)}>
                 <a className={css.link}>
-                    <h2 className={css.title}>{offer.title}</h2>
-                    <p className={css.text}>{cutString(offer.description, 100)}</p>
+                    <Tooltip content="Просмотреть объявление">
+                        <h2 className={css.title}>{offer.title}</h2>
+                        <p className={css.text}>{cutString(offer.description, 100)}</p>
+                    </Tooltip>
                 </a>
             </Link>
 

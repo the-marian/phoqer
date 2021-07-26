@@ -30,6 +30,7 @@ const initState: IState = {
     },
     config: {
         drawer: false,
+        chatDrawer: false,
         searchParams: {
             search: null,
             category: null,

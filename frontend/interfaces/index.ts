@@ -322,6 +322,7 @@ export interface IState {
     region: IRegion;
     config: {
         drawer: boolean;
+        chatDrawer: boolean;
         searchParams: ISearch;
     };
     categories: ICategories[];
