@@ -2,7 +2,7 @@ import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 import { useSelector } from 'react-redux';
 
-import { IPublicProfile, IState } from '../../../../../interfaces';
+import { IOfferCard, IPublicProfile, IState } from '../../../../../interfaces';
 import { Theme } from '../../../../../utils/theming/theme';
 import ProfileCard from '../../../../common/profile-card';
 import Price from '../price';
@@ -31,6 +31,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
 const AsideElement = (): ReactElement => {
     const css = useStyles();
     const profile = useSelector<IState, IPublicProfile | null>(state => state.profiles.public);
+    const offer = useSelector<IState, IOfferCard | null>(state => state.offers.single);
 
     return (
         <aside className={css.aside}>
@@ -44,7 +45,7 @@ const AsideElement = (): ReactElement => {
                     userLocation={profile?.city}
                     registerDate={profile?.date_joined}
                 />
-                <Price />
+                {offer && <Price offer={offer} withButton />}
             </div>
         </aside>
     );

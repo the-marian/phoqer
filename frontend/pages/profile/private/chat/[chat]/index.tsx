@@ -69,16 +69,11 @@ const MessagesChat = (): ReactElement => {
                 }
             };
         }
-    }, [chat, dispatch]);
+    }, [dispatch, chat]);
 
     useEffect(() => {
-        const getInfo = async (): Promise<void> => {
-            const { data } = await api.chat.offerInfo(chatId);
-            console.log(data);
-        };
-
-        getInfo().then(console.log);
-    }, [chatId]);
+        dispatch({ type: types.GET_CHAT_OFFER_INFO_START, payload: chatId });
+    }, [dispatch, chatId]);
 
     const handleSubmit = (text: string, uploads: string[]): void => {
         if (chat) {

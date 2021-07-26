@@ -105,11 +105,9 @@ const NewChatWrp = ({ children, showSidebar = false }: IProps): ReactElement => 
                 <MessagesWrpShowLoader loading={loading}>{children}</MessagesWrpShowLoader>
 
                 {desktop && (
-                    <MessagesWrpShowSidebar show={showSidebar}>
-                        <aside className={css.aside}>
-                            <div className={css.inner}>{chats.loading ? <ChatsLoaders amount={5} /> : <ChatSidebarRight />}</div>
-                        </aside>
-                    </MessagesWrpShowSidebar>
+                    <aside className={css.aside}>
+                        <ChatSidebarRight />
+                    </aside>
                 )}
             </div>
         </>

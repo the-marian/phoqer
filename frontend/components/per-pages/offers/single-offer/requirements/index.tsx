@@ -1,10 +1,9 @@
 import clsx from 'clsx';
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
-import { useSelector } from 'react-redux';
 
 import useTrans from '../../../../../hooks/trans.hook';
-import { IOfferCard, IState } from '../../../../../interfaces';
+import { IOfferCard } from '../../../../../interfaces';
 import { declOfNum, moneyFormat } from '../../../../../utils/helpers';
 import { Theme } from '../../../../../utils/theming/theme';
 
@@ -44,10 +43,13 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
 }));
 
-const Requirements = (): ReactElement => {
+interface IProps {
+    offer: IOfferCard;
+}
+
+const Requirements = ({ offer }: IProps): ReactElement => {
     const css = useStyles();
     const trans = useTrans();
-    const offer = useSelector<IState, IOfferCard | null>(state => state.offers.single);
 
     return (
         <>
@@ -63,30 +65,22 @@ const Requirements = (): ReactElement => {
                     <span>{trans('minimum_rental_period')}:</span>
                     <span className={css.dots} />
                     <span className={css.value}>
-                        {trans(
-                            offer?.min_rent_period
-                                ? `${moneyFormat(offer?.min_rent_period)} ${declOfNum(offer?.min_rent_period, [
-                                      'day',
-                                      'day_2',
-                                      'day_3',
-                                  ])}`
-                                : 'not_indicated',
-                        )}
+                        {offer?.min_rent_period
+                            ? `${moneyFormat(offer?.min_rent_period)} ${trans(
+                                  declOfNum(offer?.min_rent_period, ['day', 'day_2', 'day_3']),
+                              )}`
+                            : trans('not_indicated')}
                     </span>
                 </li>
                 <li>
                     <span>{trans('maximum_rental_period')}:</span>
                     <span className={css.dots} />
                     <span className={css.value}>
-                        {trans(
-                            offer?.max_rent_period
-                                ? `${moneyFormat(offer?.max_rent_period)} ${declOfNum(offer?.max_rent_period, [
-                                      'day',
-                                      'day_2',
-                                      'day_3',
-                                  ])}`
-                                : 'not_indicated',
-                        )}
+                        {offer?.max_rent_period
+                            ? `${moneyFormat(offer?.max_rent_period)} ${trans(
+                                  declOfNum(offer?.max_rent_period, ['day', 'day_2', 'day_3']),
+                              )}`
+                            : trans('not_indicated')}
                     </span>
                 </li>
             </ul>

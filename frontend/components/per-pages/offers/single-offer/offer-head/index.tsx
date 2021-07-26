@@ -4,11 +4,11 @@ import { faHeart as faFillHeart } from '@fortawesome/free-solid-svg-icons/faHear
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 import useAuth from '../../../../../hooks/auth.hook';
 import useTrans from '../../../../../hooks/trans.hook';
-import { IOfferCard, IState } from '../../../../../interfaces';
+import { IOfferCard } from '../../../../../interfaces';
 import types from '../../../../../redux/types';
 import { Theme } from '../../../../../utils/theming/theme';
 import LoginForm from '../../../../common/auth-form/login-form';
@@ -69,10 +69,13 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
 }));
 
-const OfferHead = (): ReactElement => {
+interface IProps {
+    offer: IOfferCard;
+}
+
+const OfferHead = ({ offer }: IProps): ReactElement => {
     const css = useStyles();
     const trans = useTrans();
-    const offer = useSelector<IState, IOfferCard | null>(state => state.offers.single);
     const auth = useAuth();
     const dispatch = useDispatch();
 
@@ -90,7 +93,6 @@ const OfferHead = (): ReactElement => {
 
     return (
         <>
-            <h2 className={css.title}>{offer?.title}</h2>
             <div className={css.action}>
                 <p>
                     {trans('date')}: {offer?.pub_date}

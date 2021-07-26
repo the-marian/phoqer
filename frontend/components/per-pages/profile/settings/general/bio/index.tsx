@@ -26,7 +26,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
     text: {
         marginBottom: theme.rem(0.6),
-        fontSize: theme.rem(1.6),
+        fontSize: theme.rem(1.4),
     },
     btn: {
         ...mixin(theme).btn,

@@ -79,6 +79,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         color: theme.palette.black[0],
         borderRadius: theme.radius,
         fontSize: theme.rem(1.4),
+        boxShadow: theme.palette.shadowBorder,
         ...mixin(theme).outline,
 
         ...theme.media(1060).max({

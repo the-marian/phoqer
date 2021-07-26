@@ -51,20 +51,16 @@ const ChatWrp = ({ children, showConversation = false }: IProps): ReactElement =
                 </aside>
 
                 <ChatWrpShowConversation show={showConversation}>
-                    <>
-                        <ChatWrpShowLoader data={chats.data.data} loading={chats.loading}>
-                            {children}
-                        </ChatWrpShowLoader>
-
-                        {desktop && (
-                            <aside className={css.aside}>
-                                <div className={css.inner}>
-                                    {chats.loading ? <ChatsLoaders amount={5} /> : <ChatSidebarRight />}
-                                </div>
-                            </aside>
-                        )}
-                    </>
+                    <ChatWrpShowLoader data={chats.data.data} loading={chats.loading}>
+                        {children}
+                    </ChatWrpShowLoader>
                 </ChatWrpShowConversation>
+
+                {desktop && (
+                    <aside className={css.aside}>
+                        <ChatSidebarRight />
+                    </aside>
+                )}
             </div>
         </>
     );

@@ -131,6 +131,17 @@ const useStyles = createUseStyles((theme: Theme) => ({
             }),
         },
     },
+    title: {
+        margin: theme.rem(0, 0, 1),
+        fontSize: theme.rem(3),
+        fontWeight: theme.text.weight[3],
+        lineHeight: 1.4,
+        color: theme.palette.black[0],
+
+        ...theme.media(768).max({
+            fontSize: theme.rem(2.5),
+        }),
+    },
     other: {
         marginBottom: theme.rem(4),
     },
@@ -203,14 +214,15 @@ const SingleOfferPage = (): ReactElement | null => {
 
                             <div className={css.flex}>
                                 <div className={css.main}>
-                                    <OfferHead />
+                                    <h2 className={css.title}>{offer?.title}</h2>
+                                    <OfferHead offer={offer} />
 
-                                    {!media && <Price />}
+                                    {!media && <Price offer={offer} withButton />}
                                     <h2 className={css.subtitle}>{trans('description')}</h2>
                                     <p dangerouslySetInnerHTML={{ __html: desc }} />
 
                                     <h2 className={css.subtitle}>{trans('requirements')}</h2>
-                                    <Requirements />
+                                    <Requirements offer={offer} />
 
                                     {other && (
                                         <>

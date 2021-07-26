@@ -1,11 +1,10 @@
 import { useRouter } from 'next/router';
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
-import { useSelector } from 'react-redux';
 
 import useAuth from '../../../../../hooks/auth.hook';
 import useTrans from '../../../../../hooks/trans.hook';
-import { IOfferCard, IState } from '../../../../../interfaces';
+import { IOfferCard } from '../../../../../interfaces';
 import { moneyFormat } from '../../../../../utils/helpers';
 import routes from '../../../../../utils/routes';
 import mixin from '../../../../../utils/theming/mixin';
@@ -48,13 +47,16 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
 }));
 
-const Price = (): ReactElement => {
+interface IProps {
+    withButton?: boolean;
+    offer: IOfferCard;
+}
+
+const Price = ({ offer, withButton = false }: IProps): ReactElement => {
     const css = useStyles();
     const auth = useAuth();
     const trans = useTrans();
     const history = useRouter();
-
-    const offer = useSelector<IState, IOfferCard | null>(state => state.offers.single);
 
     const handleRent = (): void => {
         if (!auth?.access_token) {
@@ -75,9 +77,11 @@ const Price = (): ReactElement => {
             <p className={css.price}>
                 <span className={css.num}>{moneyFormat(offer?.price)}</span> {trans('uah')} / {trans('day')}
             </p>
-            <button className={css.buy} onClick={handleRent} type="button">
-                {trans('rent')}
-            </button>
+            {withButton && (
+                <button className={css.buy} onClick={handleRent} type="button">
+                    {trans('rent')}
+                </button>
+            )}
         </>
     );
 };
