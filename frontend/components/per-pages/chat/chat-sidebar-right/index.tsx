@@ -31,7 +31,13 @@ const ChatSidebarRight = (): ReactElement => {
 
     return (
         <div className={css.root}>
-            {!offerInfo ? <Banner className={css.banner} /> : offerInfo?.loading ? <ChatDrawerSkeleton /> : <ChatOfferInfo />}
+            {!offerInfo?.data ? (
+                <Banner className={css.banner} />
+            ) : offerInfo?.loading ? (
+                <ChatDrawerSkeleton />
+            ) : (
+                <ChatOfferInfo />
+            )}
         </div>
     );
 };
