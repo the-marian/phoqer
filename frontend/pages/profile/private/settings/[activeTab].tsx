@@ -62,7 +62,6 @@ const Settings = (): ReactElement => {
     const history = useRouter();
     const media = useMedia(1060);
     const activeTab = String(history.query.activeTab);
-
     const handleClick = (value: string): void => {
         history.push(routes.profile.private.settings(value));
     };

@@ -7,7 +7,7 @@
         "postbuild": "next-sitemap",
         "dev": "yarn run husky && NODE_ENV=development node server.js",
         "start": "NODE_ENV=production node server.js",
-        "lint": "prettier --write './**/*.{js,jsx,ts,tsx,css,json}' --config ./.prettierrc && eslint --fix ./",
+        "lint": "prettier --write \"./**/*.{js,jsx,ts,tsx,css,json}\" --config ./.prettierrc && eslint --fix ./",
         "format": "prettier --write './**/*.{js,jsx,ts,tsx,css,json}' --config ./.prettierrc",
         "type-check": "tsc --pretty --noEmit",
         "husky": "cd .. && husky install frontend/.husky",

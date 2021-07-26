@@ -5,9 +5,9 @@ import { createUseStyles } from 'react-jss';
 import { useDispatch, useSelector } from 'react-redux';
 
 import Breadcrumbs from '../../../../components/common/breadcrumbs';
-import DropDown from '../../../../components/common/drop-down';
 import Pagination from '../../../../components/common/load-more/pagination';
 import OffersList from '../../../../components/common/offers/offers-list';
+import SegmentedControl from '../../../../components/common/segmented-control';
 import AuthRedirect from '../../../../components/context/auth/auth-redirect';
 import Container from '../../../../components/layout/container';
 import PageLayout from '../../../../components/layout/page-layout';
@@ -16,26 +16,16 @@ import MobileBackBtn from '../../../../components/per-pages/profile/mobile-back-
 import ProfileTabs from '../../../../components/per-pages/profile/profile-tabs';
 import useMedia from '../../../../hooks/media.hook';
 import useTrans from '../../../../hooks/trans.hook';
-import { IDropValue, IOfferDynamic, IState } from '../../../../interfaces';
+import { IOfferDynamic, IState } from '../../../../interfaces';
 import { wrapper } from '../../../../redux/store';
 import types from '../../../../redux/types';
-import { findCategory, serverRedirect } from '../../../../utils/helpers';
+import { serverRedirect } from '../../../../utils/helpers';
 import routes from '../../../../utils/routes';
 import { Theme } from '../../../../utils/theming/theme';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     root: {
         margin: theme.rem(4, 0, 0),
-    },
-    dropdown: {
-        width: '100%',
-        '& p': {
-            boxShadow: theme.palette.shadowBorder,
-            background: theme.palette.white,
-        },
-        ...theme.media(768).min({
-            width: theme.rem(30),
-        }),
     },
     title: {
         margin: theme.rem(3, 0, 1),
@@ -52,41 +42,36 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
 }));
 
+const offersTab = [
+    {
+        id: 'all',
+        text: 'all',
+    },
+    {
+        id: 'draft',
+        text: 'draft',
+    },
+    {
+        id: 'active',
+        text: 'active',
+    },
+    {
+        id: 'in-rent',
+        text: 'in-rent',
+    },
+    {
+        id: 'archive',
+        text: 'archive',
+    },
+];
+
 const UserOffers = (): ReactElement => {
     const css = useStyles();
     const trans = useTrans();
     const media = useMedia(1060);
     const dispatch = useDispatch();
-
-    const offersTab: IDropValue[] = [
-        {
-            slug: 'all',
-            name: trans('all_offers'),
-            type: 'main',
-        },
-        {
-            slug: 'draft',
-            name: trans('draft'),
-            type: 'main',
-        },
-        {
-            slug: 'active',
-            name: trans('active'),
-            type: 'main',
-        },
-        {
-            slug: 'in-rent',
-            name: trans('in_rent'),
-            type: 'main',
-        },
-        {
-            slug: 'archive',
-            name: trans('archive'),
-            type: 'main',
-        },
-    ];
-
     const history = useRouter();
+
     const offerStatus = String(history.query.offerStatus || '');
 
     const { data, loading, pagination } = useSelector<IState, IOfferDynamic>(state => state.offers.my_offers);
@@ -98,16 +83,15 @@ const UserOffers = (): ReactElement => {
         });
     }, [offerStatus, dispatch, history.query.page]);
 
-    const handleTab = (value: IDropValue | null): void => {
-        if (!value) return;
-        history.push(routes.profile.private.my_offers(value.slug), undefined, { shallow: true });
-    };
-
     const handleClick = (page: number): void => {
         dispatch({ type: types.MY_OFFERS_START, payload: { tab: offerStatus, params: { page } } });
     };
     const handleMore = (page: number): void => {
         dispatch({ type: types.MY_OFFERS_PAGINATION_START, payload: { tab: offerStatus, params: { page } } });
+    };
+
+    const handleTab = (value: string): void => {
+        history.push(routes.profile.private.my_offers(value));
     };
 
     return (
@@ -131,16 +115,12 @@ const UserOffers = (): ReactElement => {
                                 <ProfileTabs active="my-offers" />
                             </>
                         ) : (
-                            <MobileBackBtn href={routes.profile.private.personal_area}>Back to profile</MobileBackBtn>
-                        )}
+                                <MobileBackBtn href={routes.profile.private.personal_area}>Back to profile</MobileBackBtn>
+                            )}
 
                         <h3 className={css.title}>{trans('select_offer_status')}</h3>
-                        <DropDown
-                            data={offersTab}
-                            defaultValue={findCategory(offersTab, offerStatus)}
-                            className={css.dropdown}
-                            onChange={handleTab}
-                        />
+
+                        <SegmentedControl tabs={offersTab} active={offerStatus} onClick={handleTab} />
                         <div className={css.root}>
                             <OffersList loading={loading} data={data?.data} showFavoriteBtn={false} />
                             <Pagination loading={pagination} total={data.total} onClick={handleClick} onMore={handleMore} />
