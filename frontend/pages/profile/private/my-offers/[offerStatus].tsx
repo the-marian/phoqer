@@ -115,8 +115,8 @@ const UserOffers = (): ReactElement => {
                                 <ProfileTabs active="my-offers" />
                             </>
                         ) : (
-                                <MobileBackBtn href={routes.profile.private.personal_area}>Back to profile</MobileBackBtn>
-                            )}
+                            <MobileBackBtn href={routes.profile.private.personal_area}>Back to profile</MobileBackBtn>
+                        )}
 
                         <h3 className={css.title}>{trans('select_offer_status')}</h3>
 
