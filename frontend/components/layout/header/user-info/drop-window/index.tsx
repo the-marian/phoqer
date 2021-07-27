@@ -3,9 +3,8 @@ import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons/faSignOutAlt';
 import React, { ReactElement, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import { createUseStyles } from 'react-jss';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
-import { IPublicProfile, IState } from '../../../../../interfaces';
 import types from '../../../../../redux/types';
 import routes from '../../../../../utils/routes';
 import { Theme } from '../../../../../utils/theming/theme';
@@ -54,7 +53,6 @@ interface Props {
 const DropWindow = ({ onClose }: Props): ReactElement => {
     const css = useStyles();
     const dispatch = useDispatch();
-    const user = useSelector<IState, IPublicProfile | null>(state => state.user);
 
     useEffect(() => {
         const handleClose = (event: KeyboardEvent): void => {
@@ -82,7 +80,7 @@ const DropWindow = ({ onClose }: Props): ReactElement => {
                             link: routes.profile.private.personal_area,
                             icon: faFlag,
                         },
-                        ...getBaseNavList({ userId: user?.id }),
+                        ...getBaseNavList(),
                         {
                             id: 'logout',
                             text: 'logout',

@@ -53,7 +53,7 @@ const AuthDrawer = (): ReactElement | null => {
                             link: routes.profile.private.personal_area,
                             icon: faFlag,
                         },
-                        ...getBaseNavList({ userId: user?.id }),
+                        ...getBaseNavList(),
                         {
                             id: 'logout',
                             text: 'logout',

@@ -66,7 +66,7 @@ const ProfileAside = (): ReactElement => {
                 </a>
             </Link>
 
-            {media && <Navigation tabs={getBaseNavList({ userId: user?.id })} />}
+            {media && <Navigation tabs={getBaseNavList()} />}
         </div>
     );
 };
