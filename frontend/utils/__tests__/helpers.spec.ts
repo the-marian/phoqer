@@ -67,7 +67,10 @@ describe('2. Value formatting - 2.3 String', () => {
     });
 
     it('formatTimestamp', () => {
-        expect(helpers.formatTimestamp('2021-03-10T00:00:00+00:00', 'ru')).toBe('Март 10, 2021 00:00');
+        const date = new Date('2021-03-10T00:00:00+00:00');
+        expect(helpers.formatTimestamp('2021-03-10T00:00:00+00:00', 'ru')).toBe(
+            `Март 10, 2021 ${helpers.addZeroToNumber(date.getHours())}:00`,
+        );
         expect(helpers.formatTimestamp('2021-03-10', 'ru')).toBe('Март 10, 2021');
     });
 });

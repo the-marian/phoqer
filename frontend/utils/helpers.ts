@@ -79,7 +79,7 @@ export const dateFromTimestamp = (value?: string | number | null | Date): Date |
     try {
         if (!value) throw new Error();
         const date = new Date(value);
-        if (!date.getUTCDate()) throw new Error(); // for invalid date
+        if (!date.getDate()) throw new Error(); // for invalid date
         return date;
     } catch (error) {
         return null;
@@ -88,7 +88,7 @@ export const dateFromTimestamp = (value?: string | number | null | Date): Date |
 
 export const addMonthToDate = (amount = 1): Date => {
     const today = new Date();
-    return new Date(today.setDate(today.getUTCMonth() + amount));
+    return new Date(today.setDate(today.getMonth() + amount));
 };
 
 // ----------------------------------------------
@@ -106,9 +106,9 @@ export const cutString = (value: string, max: number): string => (value.length >
 export const formatTimestamp = (value?: string | number | Date | null, locale = 'ru'): string => {
     const date = dateFromTimestamp(value);
     if (!date) return ' - ';
-    return `${months[locale][date.getUTCMonth()]} ${addZeroToNumber(date.getUTCDate())}, ${date.getUTCFullYear()}${
+    return `${months[locale][date.getMonth()]} ${addZeroToNumber(date.getDate())}, ${date.getFullYear()}${
         typeof value !== 'string' || value?.length > 10
-            ? ' ' + addZeroToNumber(date.getUTCHours()) + ':' + addZeroToNumber(date.getUTCMinutes())
+            ? ' ' + addZeroToNumber(date.getHours()) + ':' + addZeroToNumber(date.getMinutes())
             : ''
     }`;
 };
