@@ -88,7 +88,7 @@ export const dateFromTimestamp = (value?: string | number | null | Date): Date |
 
 export const addMonthToDate = (amount = 1): Date => {
     const today = new Date();
-    return new Date(today.setDate(today.getMonth() + amount));
+    return new Date(today.setMonth(today.getMonth() + amount));
 };
 
 // ----------------------------------------------

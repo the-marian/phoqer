@@ -73,6 +73,12 @@ describe('2. Value formatting - 2.3 String', () => {
         );
         expect(helpers.formatTimestamp('2021-03-10', 'ru')).toBe('Март 10, 2021');
     });
+
+    it('addMonthToDate', () => {
+        const date1 = new Date();
+        expect(helpers.addMonthToDate().getMonth() - date1.getMonth()).toBe(1);
+        expect(helpers.addMonthToDate(3).getMonth() - date1.getMonth()).toBe(3);
+    });
 });
 
 describe('3. From lodash', () => {
