@@ -56,11 +56,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
         // core
         '& .right': {
             right: 0,
-            transform: 'translateX(-100%)',
         },
         '& .left': {
             left: 0,
-            transform: 'translateX(-100%)',
         },
         '& .inner': {
             position: 'absolute',
