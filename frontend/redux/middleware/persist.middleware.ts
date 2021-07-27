@@ -4,6 +4,7 @@ import { Middleware } from 'redux';
 
 import notificationsModal from '../../components/common/modal/notifications-modal';
 import { IAuth, IState } from '../../interfaces';
+import { addMonthToDate } from '../../utils/helpers';
 import initState from '../state';
 import types from '../types';
 
@@ -16,7 +17,9 @@ const Persist: Middleware = store => next => action => {
             case types.LOGIN_SUCCESS:
                 try {
                     const state: IState = store.getState();
-                    Cookies.set('phoqer_auth', JSON.stringify({ ...state.auth, ...action.payload }));
+                    Cookies.set('phoqer_auth', JSON.stringify({ ...state.auth, ...action.payload }), {
+                        expires: addMonthToDate(1),
+                    });
                 } catch (error) {
                     notificationsModal('error');
                 }
@@ -28,7 +31,7 @@ const Persist: Middleware = store => next => action => {
              * */
             case types.LOGOUT_END:
                 try {
-                    Cookies.set('phoqer_auth', JSON.stringify(initState.auth));
+                    Cookies.set('phoqer_auth', JSON.stringify(initState.auth), { expires: addMonthToDate(1) });
                 } catch (error) {
                     notificationsModal('error');
                 }

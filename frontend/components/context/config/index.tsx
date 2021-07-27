@@ -2,6 +2,7 @@ import Cookies from 'js-cookie';
 import React, { createContext, ReactElement, useState } from 'react';
 
 import { IConfig } from '../../../interfaces';
+import { addMonthToDate } from '../../../utils/helpers';
 import notificationsModal from '../../common/modal/notifications-modal';
 
 const init: IConfig = {
@@ -23,7 +24,7 @@ const ConfigProvider = ({ children, value }: IProps): ReactElement => {
     const [config, setConfig] = useState<IConfig>(value || init);
     const handleConfig = (data: IConfig): void => {
         try {
-            Cookies.set('phoqer_config', JSON.stringify(data));
+            Cookies.set('phoqer_config', JSON.stringify(data), { expires: addMonthToDate(1) });
             setConfig(data);
         } catch (error) {
             notificationsModal('error');

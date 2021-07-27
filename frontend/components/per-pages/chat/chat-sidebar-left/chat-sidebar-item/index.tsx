@@ -23,7 +23,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         borderRadius: theme.radius,
         boxShadow: theme.palette.shadowBorder,
         color: theme.palette.black[0],
-        fontSize: theme.rem(1.4),
+        fontSize: theme.rem(1.2),
         ...mixin(theme).outline,
     },
     unread: {

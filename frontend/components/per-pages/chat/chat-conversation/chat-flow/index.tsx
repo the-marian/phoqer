@@ -56,13 +56,14 @@ const useStyles = createUseStyles((theme: Theme) => ({
     box: {
         width: 'max-content',
         maxWidth: '100%',
-        padding: theme.rem(1, 2),
+        padding: theme.rem(0.5, 1),
         borderRadius: theme.radius,
         boxShadow: theme.shadow[1],
         background: theme.palette.trueWhite,
         color: theme.palette.trueBlack,
         wordWrap: 'break-word',
         textAlign: 'left',
+        fontSize: theme.rem(1.4),
         ...mixin(theme).outline,
 
         '& > a': {
@@ -114,8 +115,8 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
     uploads: {
         display: 'block',
-        height: theme.rem(15),
-        width: theme.rem(20),
+        height: theme.rem(8),
+        width: theme.rem(12),
         margin: theme.rem(0, 0.4, 0.4, 0),
         objectFit: 'cover',
         borderRadius: theme.radius,
@@ -195,8 +196,8 @@ const ChatFlow = ({ children }: IProps): ReactElement => {
                                               <img
                                                   key={src}
                                                   src={src}
-                                                  height="160"
-                                                  width="200"
+                                                  height="80"
+                                                  width="120"
                                                   onClick={openSlider(item.uploads)}
                                                   className={css.uploads}
                                                   aria-hidden="true"

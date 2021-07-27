@@ -29,7 +29,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
     title: {
         margin: theme.rem(3, 0, 1),
-        fontSize: theme.rem(1.6),
+        fontSize: theme.rem(1.4),
         fontWeight: theme.text.weight[2],
         color: theme.palette.black[0],
 
@@ -57,7 +57,7 @@ const offersTab = [
     },
     {
         id: 'in-rent',
-        text: 'in-rent',
+        text: 'in_rent',
     },
     {
         id: 'archive',
