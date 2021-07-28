@@ -13,28 +13,29 @@ import Tooltip from '../../../../common/tooltip';
 const useStyles = createUseStyles((theme: Theme) => ({
     btn: {
         position: 'fixed',
-        top: theme.rem(0.4),
+        top: theme.rem(0.7),
         right: 0,
         zIndex: 25,
 
         ...theme.media(1060).min({
-            top: theme.rem(6),
+            top: theme.rem(1),
         }),
     },
     inner: {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        height: theme.rem(5),
+        height: theme.rem(4),
         width: theme.rem(6),
         fontSize: theme.rem(1.4),
         background: theme.palette.primary[1],
         color: theme.palette.trueWhite,
         borderRadius: '0.5rem 0 0 0.5rem',
+        boxShadow: theme.shadow[2],
 
         ...theme.media(1060).min({
-            height: theme.rem(5),
-            width: theme.rem(5),
+            height: theme.rem(4),
+            width: theme.rem(6),
         }),
     },
 }));

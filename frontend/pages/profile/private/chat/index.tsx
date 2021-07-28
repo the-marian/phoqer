@@ -65,6 +65,7 @@ const Messages = (): ReactElement => {
 
     useEffect(() => {
         dispatch({ type: types.GET_CHATS_START });
+        dispatch({ type: types.RESET_CHAT_SIDEBAR });
     }, [dispatch]);
 
     return (
