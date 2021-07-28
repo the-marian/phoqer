@@ -61,6 +61,7 @@ const NewChat = (): ReactElement => {
     const [loading, setLoading] = useState<boolean>(false);
 
     useEffect(() => {
+        dispatch({ type: types.RESET_CHAT_SIDEBAR });
         dispatch({ type: types.REMOVE_ALL_MESSAGES });
         dispatch({ type: types.GET_CHATS_START });
     }, [dispatch]);
