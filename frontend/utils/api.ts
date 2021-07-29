@@ -73,9 +73,10 @@ const api = {
         },
     },
     chat: {
-        chats: (): Promise<AxiosResponse<IPagination<IChats>>> => axios.get(`${url2}/chats`),
+        chats: (page = 1): Promise<AxiosResponse<IPagination<IChats>>> => axios.get(`${url2}/chats`, { params: { page } }),
         createChat: (body: INewChat): Promise<AxiosResponse<INewChat>> => axios.post(`${url2}/chats`, body),
-        messages: (id: number): Promise<AxiosResponse<IPagination<IMessages>>> => axios.get(`${url2}/chats/${id}`),
+        messages: (id: number, page = 1): Promise<AxiosResponse<IPagination<IMessages>>> =>
+            axios.get(`${url2}/chats/${id}`, { params: { page } }),
         offerInfo: (id: number): Promise<AxiosResponse<IOfferCard>> => axios.get(`${url2}/offers/offers/${id}`),
     },
     locations: {

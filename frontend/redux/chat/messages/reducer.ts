@@ -17,7 +17,17 @@ const messages = (state: IMessagesList = initState.chat.messages, { type, payloa
         case types.GET_MESSAGES_SUCCESS:
             return { data: payload as IPagination<IMessages>, loading: false };
 
+        case types.LOAD_MORE_MESSAGES_SUCCESS:
+            return {
+                data: {
+                    total: (payload as IPagination<IMessages>).total,
+                    data: [...state.data.data, ...(payload as IPagination<IMessages>).data],
+                },
+                loading: false,
+            };
+
         case types.GET_MESSAGES_ERROR:
+        case types.LOAD_MORE_MESSAGES_ERROR:
             return { ...state, loading: false };
 
         default:
