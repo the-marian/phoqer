@@ -24,13 +24,6 @@ const useStyles = createUseStyles((theme: Theme) => ({
         alignItems: 'flex-end',
         alignSelf: 'flex-end',
     },
-    primary: {
-        color: theme.palette.trueWhite,
-        background: theme.palette.primary[0],
-        '& > a': {
-            color: theme.palette.trueWhite,
-        },
-    },
     box: {
         width: 'max-content',
         maxWidth: '100%',
@@ -51,6 +44,13 @@ const useStyles = createUseStyles((theme: Theme) => ({
             ...theme.hover({
                 textDecoration: 'none',
             }),
+        },
+    },
+    primary: {
+        color: theme.palette.trueWhite,
+        background: theme.palette.primary[0],
+        '& > a': {
+            color: theme.palette.trueWhite,
         },
     },
     time: {
