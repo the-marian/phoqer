@@ -47,7 +47,7 @@ async def get_offer_via_chat_id(
     can_rent = False
     is_favorite = False
     is_promoted = False
-    if user_id != offer['author_id']:
+    if user_id != offer["author_id"]:
         can_rent = True
     if promote_til_date := offer.get("promote_til_date"):
         is_promoted = date.today() < promote_til_date
@@ -199,7 +199,7 @@ async def get_popular_offers(
     return [
         OffersListItem(
             **offer,
-            can_rent=True if user_id != offer['author_id'] else False,
+            can_rent=True if user_id != offer["author_id"] else False,
             is_promoted=True,
             is_favorite=offer["id"] in user_favorite_popular_offers,
         )
@@ -251,12 +251,13 @@ async def search_offers(
         )
     data = []
     for offer in founded_offers:
-        offer_schema = OffersListItem(**offer)
-        offer_schema.can_rent = True if user_id != offer['author_id'] else False
+        offer_schema = OffersListItem(
+            **offer,
+            can_rent=True if user_id != offer["author_id"] else False,
+            is_favorite=offer["id"] in user_favorite_offers_set,
+        )
         if promote_til_date := offer.get("promote_til_date"):
             offer_schema.is_promoted = date.today() < promote_til_date
-        if user_id:
-            offer_schema.is_favorite = offer_schema.id in user_favorite_offers_set
         data.append(offer_schema)
     return {
         "data": data,
@@ -294,7 +295,7 @@ async def get_offer(
     can_rent = False
     is_favorite = False
     is_promoted = False
-    if user_id != offer['author_id']:
+    if user_id != offer["author_id"]:
         can_rent = True
     if promote_til_date := offer.get("promote_til_date"):
         is_promoted = date.today() < promote_til_date

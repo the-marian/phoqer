@@ -254,6 +254,7 @@ async def find_offers(
     order_by_params = get_order_by_params(ordering_query=ordering)
     query = f"""
     SELECT
+        author_id,
         cover_image,
         currency,
         description,

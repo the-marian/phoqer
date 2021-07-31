@@ -69,7 +69,7 @@ class OfferDraftReply(OfferDraftRequest):
 
 
 class OffersListItem(BaseModel):
-    can_rent: bool
+    can_rent: bool = False
     cover_image: Optional[HttpUrl] = None
     currency: Currency
     description: str

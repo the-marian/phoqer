@@ -245,6 +245,23 @@ def sub_categoty_consoles(db, categoty_technics):
 
 
 @pytest.fixture
+def sub_category_phones(db, categoty_technics):
+    query = """
+    INSERT INTO categories_childcategories (
+        slug,
+        parent_id,
+        icon_image)
+    VALUES (%s, %s, %s)"""
+    values = (
+        "phones",  # slug
+        "technics",  # parent_id
+        "phones",  # icon_image
+    )
+    db.execute(query, values)
+    return "phones"
+
+
+@pytest.fixture
 def offer_ps4(
     db, user_marian, categoty_technics, sub_categoty_consoles, country_poland, city_warsaw
 ):
@@ -304,6 +321,68 @@ def offer_ps4(
     )
     db.execute(query, values)
     return "a30b8a1e-1c60-4bbc-ac3d-37df2d224000"
+
+
+@pytest.fixture
+def offer_iphone12(
+    db, user_egor, categoty_technics, sub_category_phones, country_ukraine, city_kiev
+):
+    query = """
+    INSERT INTO offers_offer (
+        city,
+        cover_image,
+        currency,
+        deposit_val,
+        description,
+        doc_needed,
+        extra_requirements,
+        id,
+        is_deliverable,
+        price,
+        promote_til_date,
+        pub_date,
+        status,
+        title,
+        views,
+        author_id,
+        category_id,
+        sub_category_id,
+        max_rent_period,
+        min_rent_period,
+        country,
+        items_amount,
+        rental_period)
+    VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
+    %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+    RETURNING id"""
+    values = (
+        "kyiv",  # city
+        "http://phoqer.com/mediafiles/"
+        "52cade24-63d6-4f04-bf8c-34489d0c67f1-2369.png",  # cover_image
+        "PLN",  # currency
+        "200",  # deposit_val
+        "Nowy Iphone 12!",  # description
+        False,  # doc_needed
+        "Zdęcie dowodu osobistego",  # extra_requirements
+        "a30b8a1e-1c60-4bbc-ac3d-37df2d224001",  # id
+        True,  # is_deliverable
+        "200",  # price
+        "2022-01-01",  # promote_til_date
+        "2021-05-21",  # pub_date
+        "ACTIVE",  # status
+        "Iphone 12",  # title
+        "1101",  # views
+        "2",  # author_id
+        "technics",  # category_id
+        "phones",  # sub_category_id
+        "7",  # max_rent_period
+        "1",  # min_rent_period
+        "ukraine",  # country
+        "1",  # items_amount
+        "DAY",  # rental_period
+    )
+    db.execute(query, values)
+    return "a30b8a1e-1c60-4bbc-ac3d-37df2d224001"
 
 
 @pytest.fixture
