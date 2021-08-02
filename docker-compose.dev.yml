@@ -19,6 +19,7 @@ services:
     build:
       context: ./frontend
       dockerfile: Dockerfile
+    command: yarn run start
     expose:
       - 4000
     env_file:

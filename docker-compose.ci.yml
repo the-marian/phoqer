@@ -24,6 +24,7 @@ services:
       cache_from:
         - "${FRONTEND_IMAGE}"
     image: "${FRONTEND_IMAGE}"
+    command: yarn run start
     expose:
       - 4000
     env_file:
