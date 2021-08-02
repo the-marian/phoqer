@@ -432,4 +432,4 @@ def chat_egor_marian(db, user_marian, user_egor, offer_iphone12):
         False,  # is_done
     )
     db.execute(query, values)
-    return "2"
+    return "2"  # комментарий для комита
