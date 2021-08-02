@@ -1,7 +1,7 @@
 FROM node:alpine
 WORKDIR /home/frontend
 COPY package.json ./
-RUN yarn install
-COPY . /home/frontend
+COPY yarn.lock ./
+RUN yarn install --frozen-lockfile
+COPY . .
 RUN yarn run build
-CMD yarn start
