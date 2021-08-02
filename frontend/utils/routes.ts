@@ -4,10 +4,10 @@ type Primitive = string | number;
 const routes = {
     root: '/',
     auth: {
-        login: '/auth-form/login',
-        join: '/auth-form/join',
-        forgot_pass: '/auth-form/forgot-pass',
-        confirmation: '/auth-form/confirmation',
+        login: '/auth/login',
+        join: '/auth/join',
+        forgot_pass: '/auth/forgot-pass',
+        confirmation: '/auth/confirmation',
     },
     profile: {
         public: (id: ID = ':profileId'): string => `/profile/${id}`,

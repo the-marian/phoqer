@@ -1,5 +1,5 @@
 const config = {
-    port: 4201,
+    port: process.env.TRANSLATION_PORT || 4201,
 };
 
 export default config;

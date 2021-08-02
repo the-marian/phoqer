@@ -60,7 +60,7 @@ exports[`ForgotPassForm component matches snapshot 1`] = `
     </button>
     <a
       class="link-0-2-5"
-      href="/auth-form/login"
+      href="/auth/login"
     >
       Login
     </a>
@@ -71,7 +71,7 @@ exports[`ForgotPassForm component matches snapshot 1`] = `
     </p>
     <a
       class="link-0-2-5"
-      href="/auth-form/join"
+      href="/auth/join"
     >
       Join Phoqer
     </a>

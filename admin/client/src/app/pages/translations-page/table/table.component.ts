@@ -1,10 +1,4 @@
-import {
-    AfterContentInit,
-    AfterViewInit,
-    Component,
-    Input,
-    ViewChild,
-} from '@angular/core';
+import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { EditModalComponent } from '../edit-modal/edit-modal.component';
 

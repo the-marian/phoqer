@@ -111,13 +111,13 @@ exports[`LoginForm component matches snapshot 1`] = `
     </div>
     <a
       class="link-0-2-3"
-      href="/auth-form/forgot-pass"
+      href="/auth/forgot-pass"
     >
       Forgot your password?
     </a>
     <a
       class="link-0-2-3"
-      href="/auth-form/join"
+      href="/auth/join"
     >
       Join Phoqer
     </a>
