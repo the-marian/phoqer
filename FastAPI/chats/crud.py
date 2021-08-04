@@ -16,7 +16,6 @@ async def get_chats(
     query = """
     SELECT
         chats.chat_id,
-        chats.creation_datetime,
         offers_offer.cover_image,
         offers_offer.title,
         (SELECT COUNT(*)
