@@ -9,7 +9,7 @@ import AuthRedirect from '../../../../../components/context/auth/auth-redirect';
 import Meta from '../../../../../components/meta';
 import Conversation from '../../../../../components/per-pages/chat/chat-conversation';
 import ChatMobileDrawer from '../../../../../components/per-pages/chat/chat-sidebar-right/chat-drawer';
-import ChatMobileDrawerButton from '../../../../../components/per-pages/chat/chat-sidebar-right/chat-drawer-button';
+import ChatMobileDrawerButton from '../../../../../components/per-pages/chat/chat-sidebar-right/chat-drawer/chat-drawer-button';
 import ChatBackBtn from '../../../../../components/per-pages/chat/components/chat-back-btn';
 import ChatTabs from '../../../../../components/per-pages/chat/components/chat-tabs';
 import MessagesWrp from '../../../../../components/per-pages/chat/components/wrappers/messages-wrp';

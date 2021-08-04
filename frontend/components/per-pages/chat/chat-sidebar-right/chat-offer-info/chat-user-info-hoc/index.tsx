@@ -6,7 +6,6 @@ import { IPublicProfile, IState } from '../../../../../../interfaces';
 import types from '../../../../../../redux/types';
 import { Theme } from '../../../../../../utils/theming/theme';
 import RectSkeleton from '../../../../../common/loaders/skeletons/rect';
-import ProfileCard from '../../../../../common/profile-card';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     root: {
@@ -19,37 +18,23 @@ const useStyles = createUseStyles((theme: Theme) => ({
 }));
 
 interface IProps {
-    id: string | number;
+    id?: string | number;
+    children: (profile: IPublicProfile | null) => ReactElement;
 }
 
-const ChatAuthorInfo = ({ id }: IProps): ReactElement => {
+const ChatUserInfoHOC = ({ id, children }: IProps): ReactElement => {
     const css = useStyles();
     const dispatch = useDispatch();
     const loading = useSelector<IState, boolean>(state => state.profiles.loading);
     const profile = useSelector<IState, IPublicProfile | null>(state => state.profiles.public);
 
     useEffect(() => {
-        dispatch({ type: types.GET_PUBLIC_PROFILE_START, payload: id });
+        if (id) {
+            dispatch({ type: types.GET_PUBLIC_PROFILE_START, payload: id });
+        }
     }, [dispatch, id]);
 
-    return (
-        <div className={css.root}>
-            {loading ? (
-                <RectSkeleton className={css.img} />
-            ) : (
-                <ProfileCard
-                    column
-                    id={profile?.id}
-                    firstName={profile?.first_name}
-                    lastName={profile?.last_name}
-                    lastActivity={profile?.last_activity}
-                    avatar={profile?.profile_img}
-                    userLocation={profile?.city}
-                    registerDate={profile?.date_joined}
-                />
-            )}
-        </div>
-    );
+    return <div className={css.root}>{loading ? <RectSkeleton className={css.img} /> : children(profile)}</div>;
 };
 
-export default ChatAuthorInfo;
+export default ChatUserInfoHOC;

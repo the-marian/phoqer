@@ -1,9 +1,9 @@
 import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 
-import { Theme } from '../../../../../utils/theming/theme';
-import RectSkeleton from '../../../../common/loaders/skeletons/rect';
-import TextSkeleton from '../../../../common/loaders/skeletons/text';
+import { Theme } from '../../../../../../utils/theming/theme';
+import RectSkeleton from '../../../../../common/loaders/skeletons/rect';
+import TextSkeleton from '../../../../../common/loaders/skeletons/text';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     img: {

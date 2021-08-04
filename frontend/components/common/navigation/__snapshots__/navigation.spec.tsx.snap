@@ -197,10 +197,10 @@ exports[`Navigation component matches snapshot 2`] = `
     class="test"
   >
     <li
-      class="item-0-2-5"
+      class="item-0-2-6"
     >
       <button
-        class="button-0-2-6"
+        class="button-0-2-7"
         type="button"
       >
         <svg
@@ -219,17 +219,17 @@ exports[`Navigation component matches snapshot 2`] = `
           />
         </svg>
         <span
-          class="text-0-2-7"
+          class="text-0-2-8"
         >
           My offers
         </span>
       </button>
     </li>
     <li
-      class="item-0-2-5"
+      class="item-0-2-6"
     >
       <button
-        class="button-0-2-6"
+        class="button-0-2-7"
         type="button"
       >
         <svg
@@ -248,22 +248,22 @@ exports[`Navigation component matches snapshot 2`] = `
           />
         </svg>
         <span
-          class="text-0-2-7"
+          class="text-0-2-8"
         >
           My messages
         </span>
         <span
-          class="num-0-2-8"
+          class="num-0-2-9"
         >
           4
         </span>
       </button>
     </li>
     <li
-      class="item-0-2-5"
+      class="item-0-2-6"
     >
       <button
-        class="button-0-2-6"
+        class="button-0-2-7"
         type="button"
       >
         <svg
@@ -282,22 +282,22 @@ exports[`Navigation component matches snapshot 2`] = `
           />
         </svg>
         <span
-          class="text-0-2-7"
+          class="text-0-2-8"
         >
           Reviews
         </span>
         <span
-          class="num-0-2-8"
+          class="num-0-2-9"
         >
           5
         </span>
       </button>
     </li>
     <li
-      class="item-0-2-5"
+      class="item-0-2-6"
     >
       <button
-        class="button-0-2-6"
+        class="button-0-2-7"
         type="button"
       >
         <svg
@@ -316,17 +316,17 @@ exports[`Navigation component matches snapshot 2`] = `
           />
         </svg>
         <span
-          class="text-0-2-7"
+          class="text-0-2-8"
         >
           Invite friends
         </span>
       </button>
     </li>
     <li
-      class="item-0-2-5"
+      class="item-0-2-6"
     >
       <button
-        class="button-0-2-6"
+        class="button-0-2-7"
         type="button"
       >
         <svg
@@ -345,17 +345,17 @@ exports[`Navigation component matches snapshot 2`] = `
           />
         </svg>
         <span
-          class="text-0-2-7"
+          class="text-0-2-8"
         >
           Settings
         </span>
       </button>
     </li>
     <li
-      class="item-0-2-5"
+      class="item-0-2-6"
     >
       <button
-        class="button-0-2-6"
+        class="button-0-2-7"
         type="button"
       >
         <svg
@@ -374,7 +374,7 @@ exports[`Navigation component matches snapshot 2`] = `
           />
         </svg>
         <span
-          class="text-0-2-7"
+          class="text-0-2-8"
         >
           analytics
         </span>

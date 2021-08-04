@@ -8,7 +8,7 @@ exports[`Advertising component matches snapshot 1`] = `
     <img
       alt=""
       class="img-0-2-2"
-      src="/emoji/top.png"
+      src="/emoji/success.png"
     />
     <h2>
       Выводите товар в топ на месяц абсолютно бесплатно
