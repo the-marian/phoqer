@@ -12,7 +12,7 @@ import RectSkeleton from '../../../../common/loaders/skeletons/rect';
 import TextSkeleton from '../../../../common/loaders/skeletons/text';
 import { modal } from '../../../../common/modal';
 import FullPageGallery from '../../../../common/modal/full-page-gallery';
-import SmallModalWrp from '../../../../common/modal/small-modal-wrp';
+import MidModalWrp from '../../../../common/modal/mid-modal-wrp';
 import UserAvatar from '../../../../common/user-avatar';
 import { createHTML } from '../chat-flow/chat-flow.utils';
 
@@ -101,7 +101,7 @@ const ChatUserModal = ({ message }: IProps): ReactElement => {
     };
 
     return (
-        <SmallModalWrp>
+        <MidModalWrp>
             <>
                 {profile ? (
                     <>
@@ -157,7 +157,7 @@ const ChatUserModal = ({ message }: IProps): ReactElement => {
                     </>
                 )}
             </>
-        </SmallModalWrp>
+        </MidModalWrp>
     );
 };
 

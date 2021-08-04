@@ -6,7 +6,7 @@ import { createUseStyles } from 'react-jss';
 import useTrans from '../../../hooks/trans.hook';
 import { ITabs } from '../../../interfaces';
 import { Theme } from '../../../utils/theming/theme';
-import NotifNumber from '../notif-number';
+import Badge from '../badge';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     item: {
@@ -64,7 +64,7 @@ export const NavigationItem = ({ tab }: NavigationItemProp): ReactElement => {
             <button className={css.button} type="button" onClick={handleClick}>
                 {tab.icon ? <FontAwesomeIcon icon={tab.icon} /> : null}
                 <span className={css.text}>{trans(tab.text)}</span>
-                {tab?.count ? <NotifNumber>{tab.count}</NotifNumber> : null}
+                {tab?.count ? <Badge>{tab.count}</Badge> : null}
             </button>
         </li>
     );

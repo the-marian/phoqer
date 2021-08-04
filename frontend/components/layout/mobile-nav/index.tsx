@@ -14,7 +14,7 @@ import { IPublicProfile, IState } from '../../../interfaces';
 import routes from '../../../utils/routes';
 import mixin from '../../../utils/theming/mixin';
 import { Theme } from '../../../utils/theming/theme';
-import NotifNumber from '../../common/notif-number';
+import Badge from '../../common/badge';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     list: {
@@ -93,7 +93,7 @@ const MobileNav = (): ReactElement | null => {
                     <a className={css.button}>
                         <div className={css.icon}>
                             <FontAwesomeIcon icon={faEnvelope} />
-                            <NotifNumber className={css.number}>2</NotifNumber>
+                            <Badge className={css.number}>2</Badge>
                         </div>
                         <span className={css.text}>Chat</span>
                     </a>
@@ -124,7 +124,7 @@ const MobileNav = (): ReactElement | null => {
                     <a className={css.button}>
                         <div className={css.icon}>
                             <FontAwesomeIcon icon={faUserCircle} />
-                            <NotifNumber className={css.number}>14</NotifNumber>
+                            <Badge className={css.number}>14</Badge>
                         </div>
                         <span className={css.text}>{userName}</span>
                     </a>

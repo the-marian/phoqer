@@ -7,6 +7,7 @@ import TextSkeleton from '../../../../common/loaders/skeletons/text';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     img: {
+        margin: theme.rem(0, 0, 4),
         height: theme.rem(20),
         width: '100%',
     },
@@ -20,6 +21,7 @@ const ChatDrawerSkeleton = (): ReactElement => {
 
     return (
         <div>
+            <RectSkeleton className={css.img} />
             <RectSkeleton className={css.img} />
 
             <div className={css.separator} />

@@ -14,9 +14,11 @@ import { Theme } from '../../../../../utils/theming/theme';
 import Tooltip from '../../../../common/tooltip';
 import Price from '../../../offers/single-offer/price';
 import Requirements from '../../../offers/single-offer/requirements';
+import ChatAuthorInfo from './chat-author-info';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     root: {
+        paddingBottom: theme.rem(8),
         fontSize: theme.rem(1.2),
     },
     banner: {
@@ -130,6 +132,7 @@ const ChatOfferInfo = (): ReactElement | null => {
 
     return offer ? (
         <div className={css.root}>
+            <ChatAuthorInfo id={offer.author_id} />
             <Slider
                 slidesToShow={1}
                 slidesToScroll={1}
@@ -146,7 +149,6 @@ const ChatOfferInfo = (): ReactElement | null => {
                     <img key={item} className={css.img} src={item} alt="phoqer" />
                 ))}
             </Slider>
-
             <Link href={routes.offers.single(offer.id)}>
                 <a className={css.link}>
                     <Tooltip content="Просмотреть объявление">
@@ -155,14 +157,11 @@ const ChatOfferInfo = (): ReactElement | null => {
                     </Tooltip>
                 </a>
             </Link>
-
             <p className={css.eye}>
                 <FontAwesomeIcon icon={faEye} />
                 <span>{(offer?.views || 0) + 1}</span>
             </p>
-
             <Requirements offer={offer} />
-
             <Price offer={offer} />
         </div>
     ) : null;

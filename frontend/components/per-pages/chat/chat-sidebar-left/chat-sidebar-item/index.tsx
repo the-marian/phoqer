@@ -8,7 +8,7 @@ import { cutString } from '../../../../../utils/helpers';
 import routes from '../../../../../utils/routes';
 import mixin from '../../../../../utils/theming/mixin';
 import { Theme } from '../../../../../utils/theming/theme';
-import NotifNumber from '../../../../common/notif-number';
+import Badge from '../../../../common/badge';
 import UserAvatar from '../../../../common/user-avatar';
 import OnlineIndicator from '../../../../common/user-avatar/online-indicator';
 
@@ -83,7 +83,7 @@ const ChatSidebarItem = ({ chat, active = false }: IProps): ReactElement => {
                         <OnlineIndicator className={css.online} time={chat.recipient_last_activity} />
                         <p>{`${chat.recipient_first_name} ${chat.recipient_last_name}`}</p>
                     </div>
-                    {chat.new_messages ? <NotifNumber className={css.number}>{chat.new_messages}</NotifNumber> : null}
+                    {chat.new_messages ? <Badge className={css.number}>{chat.new_messages}</Badge> : null}
                 </div>
             </a>
         </Link>

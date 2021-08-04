@@ -9,14 +9,20 @@ const useStyles = createUseStyles((theme: Theme) => ({
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        height: theme.rem(1.8),
-        maxWidth: theme.rem(1.8),
-        minWidth: theme.rem(1.8),
+        height: theme.rem(2),
+        maxWidth: theme.rem(2),
+        minWidth: theme.rem(2),
         background: theme.palette.red[0],
         borderRadius: '50%',
         color: theme.palette.trueWhite,
-        fontSize: theme.rem(0.9),
+        fontSize: theme.rem(1.1),
         fontWeight: theme.text.weight[2],
+        border: theme.border(0.1, theme.palette.trueWhite),
+    },
+    long: {
+        maxWidth: theme.rem(2.5),
+        minWidth: theme.rem(2.5),
+        borderRadius: '5rem',
     },
 }));
 
@@ -25,9 +31,10 @@ interface Props {
     className?: string;
 }
 
-const NotifNumber = ({ children, className }: Props): ReactElement => {
+const Badge = ({ children, className }: Props): ReactElement => {
     const css = useStyles();
-    return <span className={clsx(css.num, className)}>{+children < 10 ? children : '+9'}</span>;
+    const long = +children > 10;
+    return <span className={clsx(css.num, long && css.long, className)}>{long ? '+9' : children}</span>;
 };
 
-export default NotifNumber;
+export default Badge;

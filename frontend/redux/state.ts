@@ -49,6 +49,7 @@ const initState: IState = {
     profiles: {
         public: null,
         private: null,
+        loading: false,
     },
     comments: { loading: false, data: [] },
     offers: {

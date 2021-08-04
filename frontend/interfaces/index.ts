@@ -331,6 +331,7 @@ export interface IState {
     profiles: {
         public: IPublicProfile | null;
         private: null;
+        loading: boolean;
     };
     chat: {
         chats: IChatsList;

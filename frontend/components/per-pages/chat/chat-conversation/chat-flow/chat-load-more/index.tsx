@@ -9,12 +9,17 @@ import { Theme } from '../../../../../../utils/theming/theme';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     btn: {
+        margin: theme.rem(0, 3, 8),
         padding: theme.rem(2),
         fontSize: theme.rem(1.4),
         color: theme.palette.primary[0],
         backgroundColor: theme.palette.gray[1],
         borderRadius: theme.radius,
         transition: theme.transitions[0],
+
+        ...theme.media(1060).max({
+            margin: theme.rem(0, 0, 8),
+        }),
 
         ...theme.hover({
             backgroundColor: theme.palette.secondary[0],

@@ -20,11 +20,11 @@ import types from '../../../../redux/types';
 import routes from '../../../../utils/routes';
 import mixin from '../../../../utils/theming/mixin';
 import { Theme } from '../../../../utils/theming/theme';
+import Badge from '../../../common/badge';
 import { modal } from '../../../common/modal';
 import SmallModalWrp from '../../../common/modal/small-modal-wrp';
 import Navigation from '../../../common/navigation';
 import { getBaseNavList } from '../../../common/navigation/navigation.config';
-import NotifNumber from '../../../common/notif-number';
 import Tooltip from '../../../common/tooltip';
 import UserAvatar from '../../../common/user-avatar';
 import DropWindow from './drop-window';
@@ -194,7 +194,7 @@ const UserInfo = (): ReactElement => {
 
             <li className={css.item}>
                 <button type="button" className={clsx(css.link, drop && css.user)} onClick={handleClick}>
-                    <NotifNumber className={css.number}>14</NotifNumber>
+                    <Badge className={css.number}>14</Badge>
                     <UserAvatar
                         width={3.5}
                         height={3.5}

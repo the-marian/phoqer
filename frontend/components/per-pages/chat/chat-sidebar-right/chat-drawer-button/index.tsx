@@ -13,7 +13,7 @@ import Tooltip from '../../../../common/tooltip';
 const useStyles = createUseStyles((theme: Theme) => ({
     btn: {
         position: 'fixed',
-        top: theme.rem(0.7),
+        top: theme.rem(0.8),
         right: 0,
         zIndex: 25,
 

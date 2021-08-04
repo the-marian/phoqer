@@ -4,7 +4,7 @@ import { createUseStyles } from 'react-jss';
 
 import useTrans from '../../../hooks/trans.hook';
 import { Theme } from '../../../utils/theming/theme';
-import NotifNumber from '../notif-number';
+import Badge from '../badge';
 import { ITabsItem } from './tabs.config';
 
 const useStyles = createUseStyles((theme: Theme) => ({
@@ -80,7 +80,7 @@ const TabsItem = ({ tab, active, onClick }: TabsItemProps) => {
         <li>
             <button className={clsx(css.button, active === tab.id && css.active)} type="button" onClick={handleClick}>
                 <span className={css.text}>{trans(tab.text)}</span>
-                {tab.count && <NotifNumber>{tab.count}</NotifNumber>}
+                {tab.count && <Badge>{tab.count}</Badge>}
             </button>
         </li>
     );
