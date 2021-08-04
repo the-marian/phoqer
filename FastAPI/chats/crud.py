@@ -13,6 +13,7 @@ async def get_chats(
     query = """
     SELECT
         chats.chat_id,
+        chats.creation_datetime,
         offers_offer.cover_image,
         offers_offer.title,
         (SELECT COUNT(*)
@@ -38,6 +39,7 @@ async def get_chats(
     WHERE
         chats.author_id = :user_id OR chats.client_id = :user_id
         AND chats.is_done=FALSE
+    ORDER BY creation_datetime DESC
     LIMIT :limit
     OFFSET :offset
     """
