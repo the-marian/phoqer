@@ -8,10 +8,7 @@ import React, { ReactElement, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { modal } from '../components/common/modal';
-import AuthProvider from '../components/context/auth/auth-context';
-import ConfigProvider from '../components/context/config';
-import MediaProvider from '../components/context/media';
-import SiteTheme from '../components/context/theme';
+import RootProvider from '../components/context/root-provider';
 import Root from '../components/layout/root';
 import { IAuth, IConfig, Themes } from '../interfaces';
 import { wrapper } from '../redux/store';
@@ -50,17 +47,11 @@ const PhoqerApp = ({ Component, pageProps, width, auth, theme, config }: AppProp
     }, []);
 
     return (
-        <SiteTheme siteTheme={theme}>
-            <ConfigProvider value={config}>
-                <AuthProvider authServer={auth}>
-                    <MediaProvider width={width}>
-                        <Root>
-                            <Component {...pageProps} />
-                        </Root>
-                    </MediaProvider>
-                </AuthProvider>
-            </ConfigProvider>
-        </SiteTheme>
+        <RootProvider width={width} auth={auth} theme={theme} config={config}>
+            <Root>
+                <Component {...pageProps} />
+            </Root>
+        </RootProvider>
     );
 };
 

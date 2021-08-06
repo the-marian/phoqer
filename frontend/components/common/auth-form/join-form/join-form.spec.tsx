@@ -3,7 +3,7 @@ import JoinForm from './index';
 
 describe('JoinForm component', () => {
     it('matches snapshot', () => {
-        const { asFragment } = render(<JoinForm />, {});
+        const { asFragment } = render(<JoinForm />);
         expect(asFragment()).toMatchSnapshot();
     });
 });

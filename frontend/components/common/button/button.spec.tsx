@@ -5,7 +5,7 @@ import Button from './index';
 
 describe('Test Button component', () => {
     it('Should match snapshot', () => {
-        const { asFragment } = render(<Button>test</Button>, {});
+        const { asFragment } = render(<Button>test</Button>);
         expect(asFragment()).toMatchSnapshot();
     });
 

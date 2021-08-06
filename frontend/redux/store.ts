@@ -1,11 +1,12 @@
-import { createWrapper } from 'next-redux-wrapper';
-import { applyMiddleware, createStore, Middleware, Store } from 'redux';
+import { createWrapper, MakeStore } from 'next-redux-wrapper';
+import { AnyAction, applyMiddleware, createStore, Middleware, Store } from 'redux';
 import createSagaMiddleware, { SagaMiddleware } from 'redux-saga';
 
-import { IStore } from '../interfaces';
+import { IState, IStore } from '../interfaces';
 import Persist from './middleware/persist.middleware';
 import rootReducer from './reducers';
 import rootSaga from './sagas';
+import initState from './state';
 
 const bindMiddleware = (middleware: (SagaMiddleware | Middleware)[]) => {
     if (process.env.NODE_ENV !== 'production') {
@@ -15,11 +16,11 @@ const bindMiddleware = (middleware: (SagaMiddleware | Middleware)[]) => {
     return applyMiddleware(...middleware);
 };
 
-export const makeStore = (): Store => {
+export const makeStore = (preloadedState = initState): Store => {
     const sagaMiddleware = createSagaMiddleware();
-    const store: IStore = createStore(rootReducer, bindMiddleware([sagaMiddleware, Persist]));
+    const store: IStore = createStore(rootReducer, preloadedState, bindMiddleware([sagaMiddleware, Persist]));
     store.sagaTask = sagaMiddleware.run(rootSaga);
     return store;
 };
 
-export const wrapper = createWrapper(makeStore, { debug: false });
+export const wrapper = createWrapper(makeStore as MakeStore<IState, AnyAction>, { debug: false });
