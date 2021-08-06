@@ -6,13 +6,13 @@ import CheckTitle from './index';
 describe('Test CheckTitle component', () => {
     it('Should match snapshot', () => {
         const handleClick = jest.fn();
-        const { asFragment } = render(<CheckTitle onChange={handleClick}>test</CheckTitle>, {});
+        const { asFragment } = render(<CheckTitle onChange={handleClick}>test</CheckTitle>);
         expect(asFragment()).toMatchSnapshot();
     });
 
     it('Test onClick', () => {
         const handleClick = jest.fn();
-        render(<CheckTitle onChange={handleClick}>test</CheckTitle>, {});
+        render(<CheckTitle onChange={handleClick}>test</CheckTitle>);
         fireEvent.click(screen.getByRole(/button/i));
         expect(handleClick).toHaveBeenCalledTimes(1);
     });

@@ -330,7 +330,6 @@ export interface IState {
     comments: { loading: boolean; data: IComment[] };
     profiles: {
         public: IPublicProfile | null;
-        private: null;
         loading: boolean;
     };
     chat: {
