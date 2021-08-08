@@ -1,6 +1,4 @@
 from fastapi import status
-from FastAPI.main import app
-from fastapi.testclient import TestClient
 from freezegun import freeze_time
 
 
@@ -10,31 +8,83 @@ def test_get_chats_not_auth(client):
     assert response.json() == {"detail": "Not authenticated"}
 
 
-def test_get_chats(client, marian_auth_token):
-    response = client.get("chats", headers=marian_auth_token)
+def test_get_chats_i_am_author(
+    client, marian_auth_token, chat_marian_egor, chat_egor_marian
+):
+    response = client.get("chats?i_am_author=true", headers=marian_auth_token)
     assert response.status_code == status.HTTP_200_OK
     assert response.json() == {
+        "data": [
+            {
+                "chat_id": 2,
+                "cover_image": "http://phoqer.com/mediafiles/"
+                "52cade24-63d6-4f04-bf8c-34489d0c67f1-2369.png",
+                "new_messages": 0,
+                "recipient_first_name": "Egor",
+                "recipient_id": 2,
+                "recipient_last_activity": "2020-07-07T11:35:14.330296+00:00",
+                "recipient_last_name": "Leletsky",
+                "title": "Iphone 12",
+            }
+        ],
         "total": 1,
+    }
+
+
+def test_get_chats_i_am_client(
+    client, marian_auth_token, chat_marian_egor, chat_egor_marian
+):
+    response = client.get("chats?i_am_client=true", headers=marian_auth_token)
+    assert response.status_code == status.HTTP_200_OK
+    assert response.json() == {
         "data": [
             {
                 "chat_id": 1,
-                "recipient_id": 1,
-                "recipient_first_name": "Igor",
-                "recipient_last_name": "Mykhailychenko",
-                "recipient_last_activity": "2021-03-10T00:00:00+00:00",
-                "new_messages": 1,
-                "cover_image": "http://example.com",
+                "cover_image": "http://phoqer.com/mediafiles/"
+                "52cade24-63d6-4f04-bf8c-34489d0c67f1-2368.png",
+                "new_messages": 0,
+                "recipient_first_name": "Egor",
+                "recipient_id": 2,
+                "recipient_last_activity": "2020-07-07T11:35:14.330296+00:00",
+                "recipient_last_name": "Leletsky",
+                "title": "SONY PlayStation 4",
+            }
+        ],
+        "total": 1,
+    }
+
+
+def test_get_chats_with_no_query_params(
+    client, marian_auth_token, chat_marian_egor, chat_egor_marian
+):
+    response = client.get("chats", headers=marian_auth_token)
+    assert response.status_code == status.HTTP_200_OK
+    assert response.json() == {
+        "data": [
+            {
+                "chat_id": 2,
+                "cover_image": "http://phoqer.com/mediafiles/"
+                "52cade24-63d6-4f04-bf8c-34489d0c67f1-2369.png",
+                "new_messages": 0,
+                "recipient_first_name": "Egor",
+                "recipient_id": 2,
+                "recipient_last_activity": "2020-07-07T11:35:14.330296+00:00",
+                "recipient_last_name": "Leletsky",
+                "title": "Iphone 12",
             },
             {
-                "chat_id": 3,
-                "recipient_id": 1021,
-                "recipient_first_name": "Vita",
-                "recipient_last_name": "Herzog",
-                "recipient_last_activity": "2021-05-29T00:00:00+00:00",
+                "chat_id": 1,
+                "cover_image": "http://phoqer.com/mediafiles/"
+                "52cade24-63d6-4f04-bf8c-34489d0c67f1-2368.png",
                 "new_messages": 0,
-                "cover_image": "http://example.com",
+                "recipient_first_name": "Egor",
+                "recipient_id": 2,
+                "recipient_last_activity": "2020-07-07T11:35:14.330296+00:00",
+                "recipient_last_name": "Leletsky",
+                "title": "SONY PlayStation 4",
             },
         ],
+        "total": 1,
     }
 
 
@@ -94,7 +144,8 @@ def test_get_messages(client, marian_auth_token, _messages):
                 "is_red": True,
                 "last_name": "Zozulia",
                 "message_type": "MESSAGE",
-                "profile_img": "http://phoqer.com/mediafiles/0f13df9c-772c-4216-b6e0-7894cdaaa2dd-2021-06-14_15.42.25.jpg",
+                "profile_img": "http://phoqer.com/mediafiles/"
+                "0f13df9c-772c-4216-b6e0-7894cdaaa2dd-2021-06-14_15.42.25.jpg",
                 "text": "test",
                 "uploads": [],
                 "user_id": 1,
@@ -118,7 +169,8 @@ def test_get_messages(client, marian_auth_token, _messages):
                 "is_red": True,
                 "last_name": "Zozulia",
                 "message_type": "MESSAGE",
-                "profile_img": "http://phoqer.com/mediafiles/0f13df9c-772c-4216-b6e0-7894cdaaa2dd-2021-06-14_15.42.25.jpg",
+                "profile_img": "http://phoqer.com/mediafiles/"
+                "0f13df9c-772c-4216-b6e0-7894cdaaa2dd-2021-06-14_15.42.25.jpg",
                 "text": "test",
                 "uploads": [],
                 "user_id": 1,
@@ -142,7 +194,8 @@ def test_get_messages(client, marian_auth_token, _messages):
                 "is_red": True,
                 "last_name": "Zozulia",
                 "message_type": "MESSAGE",
-                "profile_img": "http://phoqer.com/mediafiles/0f13df9c-772c-4216-b6e0-7894cdaaa2dd-2021-06-14_15.42.25.jpg",
+                "profile_img": "http://phoqer.com/mediafiles/"
+                "0f13df9c-772c-4216-b6e0-7894cdaaa2dd-2021-06-14_15.42.25.jpg",
                 "text": "test",
                 "uploads": [],
                 "user_id": 1,
@@ -166,7 +219,8 @@ def test_get_messages(client, marian_auth_token, _messages):
                 "is_red": True,
                 "last_name": "Zozulia",
                 "message_type": "MESSAGE",
-                "profile_img": "http://phoqer.com/mediafiles/0f13df9c-772c-4216-b6e0-7894cdaaa2dd-2021-06-14_15.42.25.jpg",
+                "profile_img": "http://phoqer.com/mediafiles/"
+                "0f13df9c-772c-4216-b6e0-7894cdaaa2dd-2021-06-14_15.42.25.jpg",
                 "text": "test",
                 "uploads": [],
                 "user_id": 1,
@@ -190,7 +244,8 @@ def test_get_messages(client, marian_auth_token, _messages):
                 "is_red": True,
                 "last_name": "Zozulia",
                 "message_type": "MESSAGE",
-                "profile_img": "http://phoqer.com/mediafiles/0f13df9c-772c-4216-b6e0-7894cdaaa2dd-2021-06-14_15.42.25.jpg",
+                "profile_img": "http://phoqer.com/mediafiles/"
+                "0f13df9c-772c-4216-b6e0-7894cdaaa2dd-2021-06-14_15.42.25.jpg",
                 "text": "test",
                 "uploads": [],
                 "user_id": 1,
@@ -214,7 +269,8 @@ def test_get_messages(client, marian_auth_token, _messages):
                 "is_red": True,
                 "last_name": "Zozulia",
                 "message_type": "MESSAGE",
-                "profile_img": "http://phoqer.com/mediafiles/0f13df9c-772c-4216-b6e0-7894cdaaa2dd-2021-06-14_15.42.25.jpg",
+                "profile_img": "http://phoqer.com/mediafiles/"
+                "0f13df9c-772c-4216-b6e0-7894cdaaa2dd-2021-06-14_15.42.25.jpg",
                 "text": "test",
                 "uploads": [],
                 "user_id": 1,
@@ -238,7 +294,8 @@ def test_get_messages(client, marian_auth_token, _messages):
                 "is_red": True,
                 "last_name": "Zozulia",
                 "message_type": "MESSAGE",
-                "profile_img": "http://phoqer.com/mediafiles/0f13df9c-772c-4216-b6e0-7894cdaaa2dd-2021-06-14_15.42.25.jpg",
+                "profile_img": "http://phoqer.com/mediafiles/"
+                "0f13df9c-772c-4216-b6e0-7894cdaaa2dd-2021-06-14_15.42.25.jpg",
                 "text": "test",
                 "uploads": [],
                 "user_id": 1,
@@ -262,7 +319,8 @@ def test_get_messages(client, marian_auth_token, _messages):
                 "is_red": True,
                 "last_name": "Zozulia",
                 "message_type": "MESSAGE",
-                "profile_img": "http://phoqer.com/mediafiles/0f13df9c-772c-4216-b6e0-7894cdaaa2dd-2021-06-14_15.42.25.jpg",
+                "profile_img": "http://phoqer.com/mediafiles/"
+                "0f13df9c-772c-4216-b6e0-7894cdaaa2dd-2021-06-14_15.42.25.jpg",
                 "text": "test",
                 "uploads": [],
                 "user_id": 1,
@@ -286,7 +344,8 @@ def test_get_messages(client, marian_auth_token, _messages):
                 "is_red": True,
                 "last_name": "Zozulia",
                 "message_type": "MESSAGE",
-                "profile_img": "http://phoqer.com/mediafiles/0f13df9c-772c-4216-b6e0-7894cdaaa2dd-2021-06-14_15.42.25.jpg",
+                "profile_img": "http://phoqer.com/mediafiles/"
+                "0f13df9c-772c-4216-b6e0-7894cdaaa2dd-2021-06-14_15.42.25.jpg",
                 "text": "test",
                 "uploads": [],
                 "user_id": 1,
@@ -310,7 +369,8 @@ def test_get_messages(client, marian_auth_token, _messages):
                 "is_red": True,
                 "last_name": "Zozulia",
                 "message_type": "MESSAGE",
-                "profile_img": "http://phoqer.com/mediafiles/0f13df9c-772c-4216-b6e0-7894cdaaa2dd-2021-06-14_15.42.25.jpg",
+                "profile_img": "http://phoqer.com/mediafiles/"
+                "0f13df9c-772c-4216-b6e0-7894cdaaa2dd-2021-06-14_15.42.25.jpg",
                 "text": "test",
                 "uploads": [],
                 "user_id": 1,
@@ -334,7 +394,8 @@ def test_get_messages(client, marian_auth_token, _messages):
                 "is_red": True,
                 "last_name": "Zozulia",
                 "message_type": "MESSAGE",
-                "profile_img": "http://phoqer.com/mediafiles/0f13df9c-772c-4216-b6e0-7894cdaaa2dd-2021-06-14_15.42.25.jpg",
+                "profile_img": "http://phoqer.com/mediafiles/"
+                "0f13df9c-772c-4216-b6e0-7894cdaaa2dd-2021-06-14_15.42.25.jpg",
                 "text": "test",
                 "uploads": [],
                 "user_id": 1,
@@ -358,7 +419,8 @@ def test_get_messages(client, marian_auth_token, _messages):
                 "is_red": True,
                 "last_name": "Zozulia",
                 "message_type": "MESSAGE",
-                "profile_img": "http://phoqer.com/mediafiles/0f13df9c-772c-4216-b6e0-7894cdaaa2dd-2021-06-14_15.42.25.jpg",
+                "profile_img": "http://phoqer.com/mediafiles/"
+                "0f13df9c-772c-4216-b6e0-7894cdaaa2dd-2021-06-14_15.42.25.jpg",
                 "text": "test",
                 "uploads": [],
                 "user_id": 1,
@@ -382,7 +444,8 @@ def test_get_messages(client, marian_auth_token, _messages):
                 "is_red": True,
                 "last_name": "Zozulia",
                 "message_type": "MESSAGE",
-                "profile_img": "http://phoqer.com/mediafiles/0f13df9c-772c-4216-b6e0-7894cdaaa2dd-2021-06-14_15.42.25.jpg",
+                "profile_img": "http://phoqer.com/mediafiles/"
+                "0f13df9c-772c-4216-b6e0-7894cdaaa2dd-2021-06-14_15.42.25.jpg",
                 "text": "test",
                 "uploads": [],
                 "user_id": 1,
@@ -406,7 +469,8 @@ def test_get_messages(client, marian_auth_token, _messages):
                 "is_red": True,
                 "last_name": "Zozulia",
                 "message_type": "MESSAGE",
-                "profile_img": "http://phoqer.com/mediafiles/0f13df9c-772c-4216-b6e0-7894cdaaa2dd-2021-06-14_15.42.25.jpg",
+                "profile_img": "http://phoqer.com/mediafiles/"
+                "0f13df9c-772c-4216-b6e0-7894cdaaa2dd-2021-06-14_15.42.25.jpg",
                 "text": "test",
                 "uploads": [],
                 "user_id": 1,
@@ -430,7 +494,8 @@ def test_get_messages(client, marian_auth_token, _messages):
                 "is_red": True,
                 "last_name": "Zozulia",
                 "message_type": "MESSAGE",
-                "profile_img": "http://phoqer.com/mediafiles/0f13df9c-772c-4216-b6e0-7894cdaaa2dd-2021-06-14_15.42.25.jpg",
+                "profile_img": "http://phoqer.com/mediafiles/"
+                "0f13df9c-772c-4216-b6e0-7894cdaaa2dd-2021-06-14_15.42.25.jpg",
                 "text": "test",
                 "uploads": [],
                 "user_id": 1,
@@ -463,7 +528,8 @@ def test_get_messages_page_2(client, marian_auth_token, _messages):
                 "is_red": True,
                 "last_name": "Zozulia",
                 "message_type": "MESSAGE",
-                "profile_img": "http://phoqer.com/mediafiles/0f13df9c-772c-4216-b6e0-7894cdaaa2dd-2021-06-14_15.42.25.jpg",
+                "profile_img": "http://phoqer.com/mediafiles/"
+                "0f13df9c-772c-4216-b6e0-7894cdaaa2dd-2021-06-14_15.42.25.jpg",
                 "text": "test",
                 "uploads": [],
                 "user_id": 1,
@@ -487,7 +553,8 @@ def test_get_messages_page_2(client, marian_auth_token, _messages):
                 "is_red": True,
                 "last_name": "Zozulia",
                 "message_type": "MESSAGE",
-                "profile_img": "http://phoqer.com/mediafiles/0f13df9c-772c-4216-b6e0-7894cdaaa2dd-2021-06-14_15.42.25.jpg",
+                "profile_img": "http://phoqer.com/mediafiles/"
+                "0f13df9c-772c-4216-b6e0-7894cdaaa2dd-2021-06-14_15.42.25.jpg",
                 "text": "test",
                 "uploads": [],
                 "user_id": 1,
@@ -511,7 +578,8 @@ def test_get_messages_page_2(client, marian_auth_token, _messages):
                 "is_red": True,
                 "last_name": "Zozulia",
                 "message_type": "MESSAGE",
-                "profile_img": "http://phoqer.com/mediafiles/0f13df9c-772c-4216-b6e0-7894cdaaa2dd-2021-06-14_15.42.25.jpg",
+                "profile_img": "http://phoqer.com/mediafiles/"
+                "0f13df9c-772c-4216-b6e0-7894cdaaa2dd-2021-06-14_15.42.25.jpg",
                 "text": "test",
                 "uploads": [],
                 "user_id": 1,
@@ -535,7 +603,8 @@ def test_get_messages_page_2(client, marian_auth_token, _messages):
                 "is_red": True,
                 "last_name": "Zozulia",
                 "message_type": "MESSAGE",
-                "profile_img": "http://phoqer.com/mediafiles/0f13df9c-772c-4216-b6e0-7894cdaaa2dd-2021-06-14_15.42.25.jpg",
+                "profile_img": "http://phoqer.com/mediafiles/"
+                "0f13df9c-772c-4216-b6e0-7894cdaaa2dd-2021-06-14_15.42.25.jpg",
                 "text": "test",
                 "uploads": [],
                 "user_id": 1,
@@ -559,7 +628,8 @@ def test_get_messages_page_2(client, marian_auth_token, _messages):
                 "is_red": True,
                 "last_name": "Zozulia",
                 "message_type": "MESSAGE",
-                "profile_img": "http://phoqer.com/mediafiles/0f13df9c-772c-4216-b6e0-7894cdaaa2dd-2021-06-14_15.42.25.jpg",
+                "profile_img": "http://phoqer.com/mediafiles/"
+                "0f13df9c-772c-4216-b6e0-7894cdaaa2dd-2021-06-14_15.42.25.jpg",
                 "text": "test",
                 "uploads": [],
                 "user_id": 1,
@@ -583,7 +653,8 @@ def test_get_messages_page_2(client, marian_auth_token, _messages):
                 "is_red": True,
                 "last_name": "Zozulia",
                 "message_type": "RENT_REQUEST",
-                "profile_img": "http://phoqer.com/mediafiles/0f13df9c-772c-4216-b6e0-7894cdaaa2dd-2021-06-14_15.42.25.jpg",
+                "profile_img": "http://phoqer.com/mediafiles/"
+                "0f13df9c-772c-4216-b6e0-7894cdaaa2dd-2021-06-14_15.42.25.jpg",
                 "text": "test",
                 "uploads": [],
                 "user_id": 1,
@@ -609,7 +680,8 @@ def test_create_chat(db, client, marian_auth_token, offer_ps4):
         "data": [
             {
                 "chat_id": 1,
-                "cover_image": "http://phoqer.com/mediafiles/52cade24-63d6-4f04-bf8c-34489d0c67f1-2368.png",
+                "cover_image": "http://phoqer.com/mediafiles/"
+                "52cade24-63d6-4f04-bf8c-34489d0c67f1-2368.png",
                 "new_messages": 0,
                 "recipient_first_name": "Marian",
                 "recipient_id": 1,
@@ -622,4 +694,4 @@ def test_create_chat(db, client, marian_auth_token, offer_ps4):
     db.execute("SELECT id, message_type FROM messages WHERE chat_id = 1")
     message = db.fetchone()
     assert message[0] == 1
-    assert message[1] == 'RENT_REQUEST'
+    assert message[1] == "RENT_REQUEST"
