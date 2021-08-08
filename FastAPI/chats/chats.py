@@ -85,15 +85,32 @@ async def chat_endpoint(
 
 @router.get("", response_model=ChatsListResponse)
 async def get_chats(
-    user_id: int = Depends(get_current_user),
+    i_am_author: Optional[bool] = None,
+    i_am_client: Optional[bool] = None,
     page: int = 1,
     search: Optional[str] = None,
+    user_id: int = Depends(get_current_user),
 ) -> Dict[str, Union[int, List[Mapping[str, Any]]]]:
     offset = (page - 1) * CHAT_SIZE
     limit = CHAT_SIZE
     return {
-        "total": ceil(await crud.count_chats(user_id, search) / CHAT_SIZE),
-        "data": await crud.get_chats(user_id, offset, limit, search),
+        "total": ceil(
+            await crud.count_chats(
+                user_id=user_id,
+                search=search,
+                i_am_author=i_am_author,
+                i_am_client=i_am_client,
+            )
+            / CHAT_SIZE
+        ),
+        "data": await crud.get_chats(
+            i_am_author=i_am_author,
+            i_am_client=i_am_client,
+            limit=limit,
+            offset=offset,
+            search=search,
+            user_id=user_id,
+        ),
     }
 
 

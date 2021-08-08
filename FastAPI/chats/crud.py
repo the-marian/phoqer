@@ -10,6 +10,8 @@ async def get_chats(
     offset: int = 0,
     limit: int = CHAT_SIZE,
     search: Optional[str] = None,
+    i_am_client: Optional[bool] = None,
+    i_am_author: Optional[bool] = None,
 ) -> List[Mapping[str, Any]]:
     query = """
     SELECT
@@ -38,18 +40,28 @@ async def get_chats(
         AND (((:search)::varchar IS NULL OR users_user.first_name ilike :search)
             OR ((:search)::varchar IS NULL OR users_user.last_name ilike :search))
     WHERE
-        chats.author_id = :user_id OR chats.client_id = :user_id
-        AND chats.is_done=FALSE
+        chats.is_done=FALSE
+      AND ((:i_am_author)::bool IS NULL OR chats.author_id = (:user_id)::int)
+      AND ((:i_am_client)::bool IS NULL OR chats.client_id = (:user_id)::int)
     ORDER BY creation_datetime DESC
     LIMIT :limit
     OFFSET :offset
     """
-    values = {"user_id": user_id, "offset": offset, "limit": limit, "search": search}
+    values = {
+        "i_am_author": i_am_author,
+        "i_am_client": i_am_client,
+        "limit": limit,
+        "offset": offset,
+        "search": search,
+        "user_id": user_id,
+    }
     return await database.fetch_all(query=query, values=values)
 
 
 async def count_chats(
     user_id: int,
+    i_am_author: Optional[bool] = None,
+    i_am_client: Optional[bool] = None,
     search: Optional[str] = None,
 ) -> int:
     query = """
@@ -62,10 +74,16 @@ async def count_chats(
         AND (((:search)::varchar IS NULL OR users_user.first_name ilike :search)
             OR ((:search)::varchar IS NULL OR users_user.last_name ilike :search))
     WHERE
-        chats.author_id = :user_id OR chats.client_id = :user_id
-        AND chats.is_done=FALSE
+        chats.is_done=FALSE
+      AND ((:i_am_author)::bool IS NULL OR chats.author_id = (:user_id)::int)
+      AND ((:i_am_client)::bool IS NULL OR chats.client_id = (:user_id)::int)
     """
-    values = {"user_id": user_id, "search": search}
+    values = {
+        "i_am_author": i_am_author,
+        "i_am_client": i_am_client,
+        "search": search,
+        "user_id": user_id,
+    }
     count = await database.fetch_one(query=query, values=values)
     return int(count["count"]) if count else 0
 
