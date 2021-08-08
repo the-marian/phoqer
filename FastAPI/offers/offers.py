@@ -18,7 +18,12 @@ from FastAPI.offers.schemas import (
     RentalPeriod,
     Status,
 )
-from FastAPI.offers.utils import review_status_validator, set_review_status
+from FastAPI.offers.utils import (
+    in_rent_status_validator,
+    review_status_validator,
+    set_in_rent_status,
+    set_review_status,
+)
 from FastAPI.utils import get_current_user, get_current_user_or_none
 
 router = APIRouter(
@@ -70,7 +75,10 @@ async def change_status(
     status: Status = Body(..., embed=True),
     user_id: int = Depends(get_current_user),
 ) -> Response:
-    actions_for_status = {"REVIEW": (review_status_validator, set_review_status)}
+    actions_for_status = {
+        "REVIEW": (review_status_validator, set_review_status),
+        "IN_RENT": (in_rent_status_validator, set_in_rent_status),
+    }
     if errors := await actions_for_status[status.value][0](offer_id):
         return Response(status_code=500, content=errors)
     await actions_for_status[status.value][1](offer_id)

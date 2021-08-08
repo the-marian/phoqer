@@ -91,7 +91,6 @@ async def get_chats(
 ) -> Dict[str, Union[int, List[Mapping[str, Any]]]]:
     offset = (page - 1) * CHAT_SIZE
     limit = CHAT_SIZE
-
     return {
         "total": ceil(await crud.count_chats(user_id, search) / CHAT_SIZE),
         "data": await crud.get_chats(user_id, offset, limit, search),
