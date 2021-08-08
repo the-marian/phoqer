@@ -492,13 +492,13 @@ def _messages(db, chat_marian_egor):
         is_red,
         message_type,
         text)
-    VALUES 
+    VALUES
     """
     data = [
         (
             1,  # author_id
             chat_marian_egor,  # chat_id
-            f"2021-06-20 15:01:32.639425+00",  # creation_datetime
+            "2021-06-20 15:01:32.639425+00",  # creation_datetime
             1,  # id
             True,  # is_red
             MessageType.RENT_REQUEST.value,  # message_type
