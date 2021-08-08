@@ -1,7 +1,4 @@
 from fastapi import status
-from FastAPI.main import app
-from fastapi.testclient import TestClient
-from freezegun import freeze_time
 
 
 def test_get_chats_not_auth(client):
