@@ -12,6 +12,7 @@ def test_get_offer(client, offer_ps4):
         "author_id": 1,
         "can_rent": True,
         "category": "technics",
+        "chat_id": None,
         "city": "warsaw",
         "country": "poland",
         "cover_image": "http://phoqer.com/mediafiles/"
@@ -50,6 +51,7 @@ def test_get_offer_via_chat(client, chat_marian_egor):
         "author_id": 1,
         "can_rent": True,
         "category": "technics",
+        "chat_id": 1,
         "city": "warsaw",
         "country": "poland",
         "cover_image": "http://phoqer.com/mediafiles/"

@@ -58,6 +58,7 @@ class OfferDraftRequest(BaseModel):
 class OfferDraftReply(OfferDraftRequest):
     author_id: int
     can_rent: bool
+    chat_id: Optional[int] = None
     first_name: str
     id: UUID
     is_favorite: bool

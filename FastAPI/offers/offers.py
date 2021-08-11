@@ -58,6 +58,7 @@ async def get_offer_via_chat_id(
     return OfferDraftReply(
         **offer,
         can_rent=can_rent,
+        chat_id=chat_id,
         images=offer_images,
         is_promoted=is_promoted,
         is_favorite=is_favorite,
@@ -291,6 +292,10 @@ async def get_offer(
             status_code=404,
             detail=f"Offer with id {offer_id} does not exist",
         )
+    chat_id = await crud.chat_id_via_offer_id(offer_id)
+    if chat_id:
+        for i in chat_id.values():
+            offer_chat_id = i
     offer_images = await crud.get_offers_images(offer_id)
     can_rent = False
     is_favorite = False
@@ -304,6 +309,7 @@ async def get_offer(
     return OfferDraftReply(
         **offer,
         can_rent=can_rent,
+        chat_id=offer_chat_id if chat_id else None,
         images=offer_images,
         is_promoted=is_promoted,
         is_favorite=is_favorite,
