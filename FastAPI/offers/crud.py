@@ -489,3 +489,8 @@ async def chat_reference_offer_id(chat_id: int) -> Optional[Mapping]:
 async def decrease_items_amount(offer_id: str) -> None:
     query = "UPDATE offers_offer SET items_amount = items_amount - 1 WHERE id = :offer_id"
     await database.execute(query=query, values={"offer_id": offer_id})
+
+
+async def chat_id_via_offer_id(offer_id: str) -> Optional[Mapping]:
+    query = "SELECT chat_id FROM chats WHERE offer_id =:offer_id"
+    return await database.fetch_one(query=query, values={"offer_id": offer_id})
