@@ -15,7 +15,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
     button: {
         display: 'flex',
-        padding: theme.rem(1, 1.5),
+        alignItems: 'center',
+        minHeight: theme.rem(4),
+        padding: theme.rem(0.2, 1.5),
         background: theme.palette.gray[0],
         border: theme.border(0.05, theme.palette.gray[1]),
         borderBottom: 'none',

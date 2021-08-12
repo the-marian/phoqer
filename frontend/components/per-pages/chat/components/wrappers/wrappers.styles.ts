@@ -34,17 +34,6 @@ const useWrapperStyles = createUseStyles((theme: Theme) => ({
             minWidth: width.desktopSm.sidebar,
         }),
 
-        '&::before': {
-            content: '""',
-            position: 'fixed',
-            bottom: 0,
-            left: 0,
-            zIndex: 5,
-            height: theme.rem(5),
-            width: '100%',
-            background: `linear-gradient(180deg, rgba(255,255,255,0) 0%, ${theme.palette.white} 55%)`,
-        },
-
         ...theme.media(1060).max({
             minWidth: 'unset',
             maxWidth: 'unset',
