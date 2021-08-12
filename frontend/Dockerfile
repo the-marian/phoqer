@@ -3,4 +3,4 @@ WORKDIR /home/frontend
 COPY package.json yarn.lock ./
 RUN yarn install
 COPY . .
-RUN yarn run build
+CMD ["yarn run build", "yarn run start"]

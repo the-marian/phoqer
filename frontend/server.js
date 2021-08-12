@@ -17,7 +17,7 @@ app.prepare().then(() => {
         process.on('SIGILL', signal => {
             console.log('---LOGGER-FOR-MARIAN---', signal);
         });
-    }).listen(PORT, HOST, err => {
+    }).listen(PORT, err => {
         if (err) {
             console.log('---LOGGER-FOR-MARIAN---', err);
             throw err;
