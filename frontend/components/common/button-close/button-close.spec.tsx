@@ -5,12 +5,12 @@ import ButtonClose from './index';
 
 describe('Test ButtonClose component', () => {
     it('Should match snapshot', () => {
-        const { asFragment } = render(<ButtonClose />);
+        const { asFragment } = render(<ButtonClose />, {});
         expect(asFragment()).toMatchSnapshot();
     });
 
     it('Should match snapshot', () => {
-        const { asFragment } = render(<ButtonClose className="test" type="submit" />);
+        const { asFragment } = render(<ButtonClose className="test" type="submit" />, {});
         expect(asFragment()).toMatchSnapshot();
     });
 

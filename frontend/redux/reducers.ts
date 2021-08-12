@@ -1,6 +1,5 @@
-import { combineReducers, Reducer } from 'redux';
+import { combineReducers } from 'redux';
 
-import { IState } from '../interfaces';
 import auth from './auth/reducer';
 import categories from './categories/reducer';
 import chat from './chat/reducer';
@@ -11,7 +10,7 @@ import profiles from './profiles/reducer';
 import region from './region/reducer';
 import user from './user/reducer';
 
-const rootReducer = combineReducers<Reducer<IState>>({
+const rootReducer = combineReducers({
     auth,
     user,
     region,

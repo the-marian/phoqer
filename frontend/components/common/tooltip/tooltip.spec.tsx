@@ -7,6 +7,7 @@ describe('Tooltip component', () => {
             <Tooltip content="test">
                 <p>test</p>
             </Tooltip>,
+            {},
         );
         expect(asFragment()).toMatchSnapshot();
     });
@@ -16,6 +17,7 @@ describe('Tooltip component', () => {
             <Tooltip content={<p>test</p>}>
                 <p>test</p>
             </Tooltip>,
+            {},
         );
         expect(asFragment()).toMatchSnapshot();
     });
@@ -25,6 +27,7 @@ describe('Tooltip component', () => {
             <Tooltip className="test" content={<p>test</p>}>
                 <p>test</p>
             </Tooltip>,
+            {},
         );
         expect(asFragment()).toMatchSnapshot();
     });

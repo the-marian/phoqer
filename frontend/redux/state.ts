@@ -48,6 +48,7 @@ const initState: IState = {
     categories: [],
     profiles: {
         public: null,
+        private: null,
         loading: false,
     },
     comments: { loading: false, data: [] },

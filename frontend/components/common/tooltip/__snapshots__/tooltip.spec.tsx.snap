@@ -2,55 +2,24 @@
 
 exports[`Tooltip component matches snapshot 1`] = `
 <DocumentFragment>
-  <div
-    class="wrp-0-2-1"
-  >
-    <div
-      class="tooltip-0-2-2 bottom_right-0-2-6 tooltip"
-    >
-      test
-    </div>
-    <p>
-      test
-    </p>
-  </div>
+  <p>
+    test
+  </p>
 </DocumentFragment>
 `;
 
 exports[`Tooltip component matches snapshot 2`] = `
 <DocumentFragment>
-  <div
-    class="wrp-0-2-7"
-  >
-    <div
-      class="tooltip-0-2-8 bottom_right-0-2-12 tooltip"
-    >
-      <p>
-        test
-      </p>
-    </div>
-    <p>
-      test
-    </p>
-  </div>
+  <p>
+    test
+  </p>
 </DocumentFragment>
 `;
 
 exports[`Tooltip component matches snapshot 3`] = `
 <DocumentFragment>
-  <div
-    class="wrp-0-2-13"
-  >
-    <div
-      class="tooltip-0-2-14 bottom_right-0-2-18 tooltip test"
-    >
-      <p>
-        test
-      </p>
-    </div>
-    <p>
-      test
-    </p>
-  </div>
+  <p>
+    test
+  </p>
 </DocumentFragment>
 `;

@@ -4,17 +4,17 @@ import Breadcrumbs from './index';
 
 describe('Test Breadcrumbs component', () => {
     it('Should match snapshot', () => {
-        const { asFragment } = render(<Breadcrumbs data={longList} end="end" />);
+        const { asFragment } = render(<Breadcrumbs data={longList} end="end" />, {});
         expect(asFragment()).toMatchSnapshot();
     });
 
     it('Should match snapshot', () => {
-        const { asFragment } = render(<Breadcrumbs data={shortList} end="end" />);
+        const { asFragment } = render(<Breadcrumbs data={shortList} end="end" />, {});
         expect(asFragment()).toMatchSnapshot();
     });
 
     it('Should match snapshot', () => {
-        const { asFragment } = render(<Breadcrumbs data={shortList} className="test" end="end" />);
+        const { asFragment } = render(<Breadcrumbs data={shortList} className="test" end="end" />, {});
         expect(asFragment()).toMatchSnapshot();
     });
 });

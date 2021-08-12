@@ -5,13 +5,13 @@ import ModalComponent, { modal } from './index';
 
 describe('Modal component', () => {
     it('Modal should be opened', () => {
-        const { getByText } = render(<ModalComponent />);
+        const { getByText } = render(<ModalComponent />, {});
         modal.open(<p>open modal</p>);
         expect(getByText('open modal')).toBeInTheDocument();
     });
 
     it('Modal should be closed', () => {
-        const { getByText, queryByText } = render(<ModalComponent />);
+        const { getByText, queryByText } = render(<ModalComponent />, {});
         modal.open(<p>open modal</p>);
         expect(getByText('open modal')).toBeInTheDocument();
         modal.close();
@@ -19,7 +19,7 @@ describe('Modal component', () => {
     });
 
     it('Close modal by Escape key', () => {
-        const { getByText, queryByText } = render(<ModalComponent />);
+        const { getByText, queryByText } = render(<ModalComponent />, {});
         modal.open(<p>open modal</p>);
         expect(getByText('open modal')).toBeInTheDocument();
 
@@ -28,7 +28,7 @@ describe('Modal component', () => {
     });
 
     it('Dont close modal by inner click', () => {
-        const { getByText } = render(<ModalComponent />);
+        const { getByText } = render(<ModalComponent />, {});
         modal.open(<p>open modal</p>);
         expect(getByText('open modal')).toBeInTheDocument();
 
@@ -37,7 +37,7 @@ describe('Modal component', () => {
     });
 
     it('Close modal by backdrop click', () => {
-        const { getByText, queryByText, container } = render(<ModalComponent />);
+        const { getByText, queryByText, container } = render(<ModalComponent />, {});
         modal.open(<p data-testid="test">open modal</p>);
         expect(getByText('open modal')).toBeInTheDocument();
 
@@ -48,7 +48,7 @@ describe('Modal component', () => {
     });
 
     it('Close modal by scroll element click', () => {
-        const { getByText, queryByText, container } = render(<ModalComponent />);
+        const { getByText, queryByText, container } = render(<ModalComponent />, {});
         modal.open(<p data-testid="test">open modal</p>);
         expect(getByText('open modal')).toBeInTheDocument();
 
