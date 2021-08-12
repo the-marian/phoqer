@@ -10,6 +10,7 @@ def test_get_offer(client, offer_ps4):
     assert response.status_code == status.HTTP_200_OK
     assert response.json() == {
         "author_id": 1,
+        "can_rent": True,
         "category": "technics",
         "chat_id": None,
         "city": "warsaw",
@@ -48,9 +49,10 @@ def test_get_offer_via_chat(client, chat_marian_egor):
     assert response.status_code == status.HTTP_200_OK
     assert response.json() == {
         "author_id": 1,
+        "can_rent": True,
         "category": "technics",
-        "city": "warsaw",
         "chat_id": 1,
+        "city": "warsaw",
         "country": "poland",
         "cover_image": "http://phoqer.com/mediafiles/"
         "52cade24-63d6-4f04-bf8c-34489d0c67f1-2368.png",
