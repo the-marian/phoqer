@@ -24,9 +24,6 @@ services:
       cache_from:
         - "${FRONTEND_IMAGE}"
     image: "${FRONTEND_IMAGE}"
-    command: yarn run start
-    stdin_open: true
-    tty: true
     expose:
       - 4000
     env_file:
