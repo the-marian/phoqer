@@ -233,7 +233,7 @@ def categoty_technics(db):
         "technics",  # icon_image
     )
     db.execute(query, values)
-    return "slug"
+    return "technics"
 
 
 @pytest.fixture
@@ -268,6 +268,7 @@ def sub_category_phones(db, categoty_technics):
     )
     db.execute(query, values)
     return "phones"
+
 
 @pytest.fixture
 def offer_ps4(
@@ -454,6 +455,7 @@ def offer_iphone12(
     db.execute(query, values)
     return "a30b8a1e-1c60-4bbc-ac3d-37df2d224001"
 
+
 @pytest.fixture
 def chat_marian_egor(db, user_marian, user_egor, offer_ps4):
     query = """
@@ -477,6 +479,31 @@ def chat_marian_egor(db, user_marian, user_egor, offer_ps4):
     )
     db.execute(query, values)
     return "1"
+
+
+@pytest.fixture
+def chat_egor_marian(db, user_marian, user_egor, offer_iphone12):
+    query = """
+    INSERT INTO chats (
+        chat_id,
+        author_id,
+        client_id,
+        offer_id,
+        creation_datetime,
+        is_done)
+    VALUES (%s, %s, %s, %s, %s, %s)
+    RETURNING offer_id
+    """
+    values = (
+        "2",  # chat_id
+        user_egor,  # author_id
+        user_marian,  # client_id
+        offer_iphone12,  # offer_id
+        "2021-07-21 07:52:21.609079+00",  # creation_datetime
+        False,  # is_done
+    )
+    db.execute(query, values)
+    return "2"
 
 
 @pytest.fixture
