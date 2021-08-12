@@ -11,6 +11,7 @@ def test_get_offer(client, offer_ps4):
     assert response.json() == {
         "author_id": 1,
         "category": "technics",
+        "chat_id": None,
         "city": "warsaw",
         "country": "poland",
         "cover_image": "http://phoqer.com/mediafiles/"
@@ -49,6 +50,7 @@ def test_get_offer_via_chat(client, chat_marian_egor):
         "author_id": 1,
         "category": "technics",
         "city": "warsaw",
+        "chat_id": 1,
         "country": "poland",
         "cover_image": "http://phoqer.com/mediafiles/"
         "52cade24-63d6-4f04-bf8c-34489d0c67f1-2368.png",
