@@ -12,10 +12,11 @@ def test_get_offer(client, offer_ps4):
     assert response.json() == {
         "author_id": 1,
         "category": "technics",
+        "chat_id": None,
         "city": "warsaw",
         "country": "poland",
         "cover_image": "http://phoqer.com/mediafiles/"
-                       "52cade24-63d6-4f04-bf8c-34489d0c67f1-2368.png",
+        "52cade24-63d6-4f04-bf8c-34489d0c67f1-2368.png",
         "currency": "PLN",
         "deposit_val": 500,
         "description": "Konsola Sony PlayStation 4 Nowa!",
@@ -49,10 +50,11 @@ def test_get_offer_via_chat(client, chat_marian_egor):
     assert response.json() == {
         "author_id": 1,
         "category": "technics",
+        "chat_id": 1,
         "city": "warsaw",
         "country": "poland",
         "cover_image": "http://phoqer.com/mediafiles/"
-                       "52cade24-63d6-4f04-bf8c-34489d0c67f1-2368.png",
+        "52cade24-63d6-4f04-bf8c-34489d0c67f1-2368.png",
         "currency": "PLN",
         "deposit_val": 500,
         "description": "Konsola Sony PlayStation 4 Nowa!",

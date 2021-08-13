@@ -299,6 +299,9 @@ async def get_offer(
             status_code=404,
             detail=f"Offer with id {offer_id} does not exist",
         )
+    chat_id = await crud.chat_id_via_offer_id(offer_id)
+    if chat_id:
+        offer_chat_id = chat_id["chat_id"]
     offer_images = await crud.get_offers_images(offer_id)
     can_rent = False
     is_favorite = False
