@@ -11,6 +11,7 @@ def test_get_offer(client, offer_ps4):
     assert response.status_code == status.HTTP_200_OK
     assert response.json() == {
         "author_id": 1,
+        "can_rent": True,
         "category": "technics",
         "chat_id": None,
         "city": "warsaw",
@@ -34,7 +35,7 @@ def test_get_offer(client, offer_ps4):
         "min_rent_period": 3,
         "price": 100,
         "profile_img": "http://phoqer.com/mediafiles/"
-                       "0f13df9c-772c-4216-b6e0-7894cdaaa2dd-2021-06-14_15.42.25.jpg",
+        "0f13df9c-772c-4216-b6e0-7894cdaaa2dd-2021-06-14_15.42.25.jpg",
         "pub_date": "2021-05-21",
         "rental_period": "DAY",
         "status": "ACTIVE",
@@ -49,6 +50,7 @@ def test_get_offer_via_chat(client, chat_marian_egor):
     assert response.status_code == status.HTTP_200_OK
     assert response.json() == {
         "author_id": 1,
+        "can_rent": True,
         "category": "technics",
         "chat_id": 1,
         "city": "warsaw",
@@ -72,7 +74,7 @@ def test_get_offer_via_chat(client, chat_marian_egor):
         "min_rent_period": 3,
         "price": 100,
         "profile_img": "http://phoqer.com/mediafiles/"
-                       "0f13df9c-772c-4216-b6e0-7894cdaaa2dd-2021-06-14_15.42.25.jpg",
+        "0f13df9c-772c-4216-b6e0-7894cdaaa2dd-2021-06-14_15.42.25.jpg",
         "pub_date": "2021-05-21",
         "rental_period": "DAY",
         "status": "ACTIVE",

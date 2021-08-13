@@ -315,6 +315,7 @@ async def get_offer(
     return OfferDraftReply(
         **offer,
         can_rent=can_rent,
+        chat_id=offer_chat_id if chat_id else None,
         images=offer_images,
         is_promoted=is_promoted,
         is_favorite=is_favorite,
