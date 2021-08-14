@@ -491,6 +491,10 @@ async def decrease_items_amount(offer_id: str) -> None:
     await database.execute(query=query, values={"offer_id": offer_id})
 
 
-async def chat_id_via_offer_id(offer_id: str) -> Optional[Mapping]:
-    query = "SELECT chat_id FROM chats WHERE offer_id =:offer_id"
-    return await database.fetch_one(query=query, values={"offer_id": offer_id})
+async def chat_id_via_offer_id(offer_id: str, user_id: int) -> Optional[Mapping]:
+    query = (
+        "SELECT chat_id FROM chats " "WHERE offer_id = :offer_id AND author_id = :user_id"
+    )
+    return await database.fetch_one(
+        query=query, values={"offer_id": offer_id, "user_id": user_id}
+    )

@@ -269,6 +269,7 @@ def sub_category_phones(db, categoty_technics):
     db.execute(query, values)
     return "phones"
 
+
 @pytest.fixture
 def offer_ps4(
     db, user_marian, categoty_technics, sub_categoty_consoles, country_poland, city_warsaw
@@ -453,6 +454,7 @@ def offer_iphone12(
     )
     db.execute(query, values)
     return "a30b8a1e-1c60-4bbc-ac3d-37df2d224001"
+
 
 @pytest.fixture
 def chat_marian_egor(db, user_marian, user_egor, offer_ps4):

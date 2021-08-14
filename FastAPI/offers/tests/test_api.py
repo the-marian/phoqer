@@ -1,9 +1,8 @@
 import pytest
 from fastapi import status
-from httpx import AsyncClient
-
 from FastAPI.main import app
 from FastAPI.offers.crud import get_offer
+from httpx import AsyncClient
 
 
 def test_get_offer(client, offer_ps4):
@@ -52,7 +51,7 @@ def test_get_offer_via_chat(client, chat_marian_egor):
         "author_id": 1,
         "can_rent": True,
         "category": "technics",
-        "chat_id": 1,
+        "chat_id": None,
         "city": "warsaw",
         "country": "poland",
         "cover_image": "http://phoqer.com/mediafiles/"
@@ -333,11 +332,13 @@ def test_change_status_to_in_rent(db, client, marian_auth_token, offer_ps4):
     assert response.status_code == 204
     db.execute(f"SELECT status, items_amount FROM offers_offer WHERE id = '{offer_ps4}'")
     offer = db.fetchone()
-    assert offer[0] == 'IN_RENT'
+    assert offer[0] == "IN_RENT"
     assert offer[1] == 0
 
 
-def test_change_status_to_in_rent_items_amount_eq_2(db, client, marian_auth_token, offer_with_two_ps4):
+def test_change_status_to_in_rent_items_amount_eq_2(
+    db, client, marian_auth_token, offer_with_two_ps4
+):
     data = {"status": "IN_RENT"}
     response = client.patch(
         f"offers/status/{offer_with_two_ps4}",
@@ -345,9 +346,11 @@ def test_change_status_to_in_rent_items_amount_eq_2(db, client, marian_auth_toke
         headers=marian_auth_token,
     )
     assert response.status_code == 204
-    db.execute(f"SELECT status, items_amount FROM offers_offer WHERE id = '{offer_with_two_ps4}'")
+    db.execute(
+        f"SELECT status, items_amount FROM offers_offer WHERE id = '{offer_with_two_ps4}'"
+    )
     offer = db.fetchone()
-    assert offer[0] == 'ACTIVE'
+    assert offer[0] == "ACTIVE"
     assert offer[1] == 1
 
 
@@ -424,7 +427,7 @@ def test_can_rent_get_popular_offers(client, offer_ps4):
         {
             "can_rent": True,
             "cover_image": "http://phoqer.com/mediafiles/"
-                           "52cade24-63d6-4f04-bf8c-34489d0c67f1-2368.png",
+            "52cade24-63d6-4f04-bf8c-34489d0c67f1-2368.png",
             "currency": "PLN",
             "description": "Konsola Sony PlayStation 4 Nowa!",
             "id": "a30b8a1e-1c60-4bbc-ac3d-37df2d224000",
