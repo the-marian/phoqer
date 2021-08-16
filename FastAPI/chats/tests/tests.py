@@ -622,4 +622,4 @@ def test_create_chat(db, client, marian_auth_token, offer_ps4):
     db.execute("SELECT id, message_type FROM messages WHERE chat_id = 1")
     message = db.fetchone()
     assert message[0] == 1
-    assert message[1] == 'RENT_REQUEST'
+    assert message[1] == "RENT_REQUEST"
