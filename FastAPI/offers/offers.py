@@ -130,7 +130,10 @@ async def get_offers_for_tab(
             MyOffersListItem(
                 **offer,
                 functions=functions[offer["status"]],
-                is_promoted=date.today() < (offer.get("promote_til_date")),
+                is_promoted=True
+                if offer.get("promote_til_date")
+                and date.today() < offer.get("promote_til_date")
+                else False,
             )
             for offer in offers
         ],
@@ -174,7 +177,10 @@ async def get_public_profile_offers(
             PublicOffersListItem(
                 **offer,
                 is_favorite=offer["id"] in user_favorite_offers,
-                is_promoted=date.today() < (offer.get("promote_til_date")),
+                is_promoted=True
+                if offer.get("promote_til_date")
+                and date.today() < offer.get("promote_til_date")
+                else False,
             )
             for offer in offers
         ],
