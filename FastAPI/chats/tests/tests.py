@@ -1,4 +1,5 @@
 from fastapi import status
+from FastAPI.config import TECH_RENT_REQUEST
 from freezegun import freeze_time
 
 
@@ -691,7 +692,8 @@ def test_create_chat(db, client, marian_auth_token, offer_ps4):
             }
         ],
     }
-    db.execute("SELECT id, message_type FROM messages WHERE chat_id = 1")
+    db.execute("SELECT id, message_type, text FROM messages WHERE chat_id = 1")
     message = db.fetchone()
     assert message[0] == 1
     assert message[1] == "RENT_REQUEST"
+    assert message[2] == TECH_RENT_REQUEST

@@ -42,3 +42,8 @@ EMAILS_FROM_NAME = "Phoqer"
 MEDIA_URL = "mediafiles"
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 MEDIA_ROOT = os.path.join(BASE_DIR, MEDIA_URL)
+
+TECH_RENT_REQUEST = (
+    "gAAAAABg_XqcM-NDoS8mDdWYrdJ-7zr5zjezCcOMwqjRDl4Dr-"
+    "s1bSUyE8_zF3SWjFHOlvbaRN0yD7hSpD1QCLW2-fNP6PLhhg=="
+)

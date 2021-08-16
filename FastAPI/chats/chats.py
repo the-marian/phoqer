@@ -12,7 +12,7 @@ from FastAPI.chats.schemas import (
     MessagesListResponse,
     MessageType,
 )
-from FastAPI.config import CHAT_SIZE, FERNET_SECRET_KEY, MESSAGES_SIZE
+from FastAPI.config import CHAT_SIZE, FERNET_SECRET_KEY, MESSAGES_SIZE, TECH_RENT_REQUEST
 from FastAPI.offers.crud import get_offer
 from FastAPI.utils import decode_jwt, get_current_user
 from fastapi.websockets import WebSocket, WebSocketDisconnect
@@ -130,7 +130,7 @@ async def create_chat(
     await crud.create_message(
         access_urls=[],
         chat_id=chat_id,
-        message="",
+        message=TECH_RENT_REQUEST,
         message_type=MessageType.RENT_REQUEST.value,
         user_id=author_id,
     )
