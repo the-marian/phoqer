@@ -3,4 +3,4 @@ WORKDIR /home/frontend
 COPY package.json yarn.lock ./
 RUN yarn install --frozen-lockfile
 COPY . .
-CMD yarn run build
+RUN yarn run build
