@@ -6,7 +6,7 @@
         "build": "next build",
         "postbuild": "next-sitemap",
         "dev": "NODE_ENV=development node server.js",
-        "start": "NODE_ENV=production node server.js",
+        "start": "next build && NODE_ENV=production node server.js",
         "lint": "prettier --write \"./**/*.{js,jsx,ts,tsx,css,json}\" --config ./.prettierrc && eslint --fix ./",
         "format": "prettier --write './**/*.{js,jsx,ts,tsx,css,json}' --config ./.prettierrc",
         "type-check": "tsc --pretty --noEmit",
