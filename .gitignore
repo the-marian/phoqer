@@ -151,12 +151,6 @@ node_modules
 /frontend/.idea
 .pnp.js
 
-#pwa
-/frontend/public/sw.js
-/frontend/public/sw.js.map
-/frontend/public/workbox-*.js
-/frontend/public/workbox-*.js.map
-
 # testing
 /frontend/coverage
 
