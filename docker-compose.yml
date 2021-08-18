@@ -14,7 +14,7 @@ services:
   frontend:
     container_name: frontend
     image: "${FRONTEND_IMAGE}"
-    command: yarn run start:build
+    command: yarn run start
     stdin_open: true
     tty: true
     expose:
