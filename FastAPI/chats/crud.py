@@ -12,6 +12,7 @@ async def get_chats(
     search: Optional[str] = None,
     i_am_client: Optional[bool] = None,
     i_am_author: Optional[bool] = None,
+    is_done: Optional[bool] = None,
 ) -> List[Mapping[str, Any]]:
     query = """
     SELECT
@@ -40,7 +41,7 @@ async def get_chats(
         AND (((:search)::varchar IS NULL OR users_user.first_name ilike :search)
             OR ((:search)::varchar IS NULL OR users_user.last_name ilike :search))
     WHERE
-        chats.is_done=FALSE
+        ((:is_done)::bool IS NULL OR chats.is_done = (:is_done)::bool)
       AND ((:i_am_author)::bool IS NULL OR chats.author_id = (:user_id)::int)
       AND ((:i_am_client)::bool IS NULL OR chats.client_id = (:user_id)::int)
     ORDER BY creation_datetime DESC
@@ -50,6 +51,7 @@ async def get_chats(
     values = {
         "i_am_author": i_am_author,
         "i_am_client": i_am_client,
+        "is_done": is_done,
         "limit": limit,
         "offset": offset,
         "search": search,
@@ -62,6 +64,7 @@ async def count_chats(
     user_id: int,
     i_am_author: Optional[bool] = None,
     i_am_client: Optional[bool] = None,
+    is_done: Optional[bool] = None,
     search: Optional[str] = None,
 ) -> int:
     query = """
@@ -74,13 +77,14 @@ async def count_chats(
         AND (((:search)::varchar IS NULL OR users_user.first_name ilike :search)
             OR ((:search)::varchar IS NULL OR users_user.last_name ilike :search))
     WHERE
-        chats.is_done=FALSE
+        ((:is_done)::bool IS NULL OR chats.is_done = (:is_done)::bool)
       AND ((:i_am_author)::bool IS NULL OR chats.author_id = (:user_id)::int)
       AND ((:i_am_client)::bool IS NULL OR chats.client_id = (:user_id)::int)
     """
     values = {
         "i_am_author": i_am_author,
         "i_am_client": i_am_client,
+        "is_done": is_done,
         "search": search,
         "user_id": user_id,
     }
