@@ -720,3 +720,17 @@ def test_archived_chats(client, marian_auth_token, chat_marian_egor):
     }
     response = client.get("chats?is_done=true", headers=marian_auth_token)
     assert response.json() == {"data": [], "total": 0}
+
+
+def test_archived_chats_bad_query(client, marian_auth_token):
+    response = client.get("chats?is_done=wtf", headers=marian_auth_token)
+    assert response.status_code == status.HTTP_422_UNPROCESSABLE_ENTITY
+    assert response.json() == {
+        "detail": [
+            {
+                "loc": ["query", "is_done"],
+                "msg": "value could not be parsed to a boolean",
+                "type": "type_error.bool",
+            }
+        ]
+    }
