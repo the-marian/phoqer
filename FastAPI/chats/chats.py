@@ -87,6 +87,7 @@ async def chat_endpoint(
 async def get_chats(
     i_am_author: Optional[bool] = None,
     i_am_client: Optional[bool] = None,
+    is_done: Optional[bool] = None,
     page: int = 1,
     search: Optional[str] = None,
     user_id: int = Depends(get_current_user),
@@ -100,12 +101,14 @@ async def get_chats(
                 search=search,
                 i_am_author=i_am_author,
                 i_am_client=i_am_client,
+                is_done=is_done,
             )
             / CHAT_SIZE
         ),
         "data": await crud.get_chats(
             i_am_author=i_am_author,
             i_am_client=i_am_client,
+            is_done=is_done,
             limit=limit,
             offset=offset,
             search=search,

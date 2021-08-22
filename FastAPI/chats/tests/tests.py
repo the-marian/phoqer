@@ -697,3 +697,40 @@ def test_create_chat(db, client, marian_auth_token, offer_ps4):
     assert message[0] == 1
     assert message[1] == "RENT_REQUEST"
     assert message[2] == TECH_RENT_REQUEST
+
+
+def test_archived_chats(client, marian_auth_token, chat_marian_egor):
+    response = client.get("chats?is_done=false", headers=marian_auth_token)
+    assert response.status_code == status.HTTP_200_OK
+    assert response.json() == {
+        "data": [
+            {
+                "chat_id": 1,
+                "cover_image": "http://phoqer.com/mediafiles/"
+                "52cade24-63d6-4f04-bf8c-34489d0c67f1-2368.png",
+                "new_messages": 0,
+                "recipient_first_name": "Egor",
+                "recipient_id": 2,
+                "recipient_last_activity": "2020-07-07T11:35:14.330296+00:00",
+                "recipient_last_name": "Leletsky",
+                "title": "SONY PlayStation 4",
+            }
+        ],
+        "total": 1,
+    }
+    response = client.get("chats?is_done=true", headers=marian_auth_token)
+    assert response.json() == {"data": [], "total": 0}
+
+
+def test_archived_chats_bad_query(client, marian_auth_token):
+    response = client.get("chats?is_done=wtf", headers=marian_auth_token)
+    assert response.status_code == status.HTTP_422_UNPROCESSABLE_ENTITY
+    assert response.json() == {
+        "detail": [
+            {
+                "loc": ["query", "is_done"],
+                "msg": "value could not be parsed to a boolean",
+                "type": "type_error.bool",
+            }
+        ]
+    }
