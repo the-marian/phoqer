@@ -16,10 +16,8 @@ jobs:
     name: Build Docker Images
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout master
+      - name: Checkout commit with latest tag
         uses: actions/checkout@v2
-        with:
-          ref: master
       - name: Add environment variables to .env
         run: |
           echo EMAIL_HOST_PASSWORD=${{ secrets.EMAIL_HOST_PASSWORD }} >> .env
