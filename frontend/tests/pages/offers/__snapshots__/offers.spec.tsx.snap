@@ -813,10 +813,6 @@ exports[`Offers component match snapshot 1`] = `
                     srcset="/about/camera1280.jpeg"
                   />
                   <source
-                    media="(max-width: 1280px)"
-                    srcset="/about/camera1280.jpeg"
-                  />
-                  <source
                     media="(max-width: 1920px)"
                     srcset="/about/camera1920.jpeg"
                   />
@@ -879,10 +875,6 @@ exports[`Offers component match snapshot 1`] = `
                   <source
                     media="(max-width: 640px)"
                     srcset="/about/camera640.jpeg"
-                  />
-                  <source
-                    media="(max-width: 1280px)"
-                    srcset="/about/camera1280.jpeg"
                   />
                   <source
                     media="(max-width: 1280px)"
