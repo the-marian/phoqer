@@ -39,8 +39,8 @@ const Index = (): ReactElement => {
                 <Search />
                 <Container>
                     <Categories />
-                    <Banner className={css.banner} />
                     <TopPopular />
+                    <Banner className={css.banner} />
                 </Container>
 
                 <About />
