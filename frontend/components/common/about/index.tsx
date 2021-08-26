@@ -187,7 +187,6 @@ const About = (): ReactElement => {
                     <picture key={item.src} className={css.img}>
                         <source media="(max-width: 640px)" srcSet={item.src640} />
                         <source media="(max-width: 1280px)" srcSet={item.src1280} />
-                        <source media="(max-width: 1280px)" srcSet={item.src1280} />
                         <source media="(max-width: 1920px)" srcSet={item.src1920} />
                         <img className={css.img} src={item.src} alt="phoqer" />
                     </picture>

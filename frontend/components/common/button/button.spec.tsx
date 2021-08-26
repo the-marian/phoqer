@@ -14,14 +14,13 @@ describe('Test Button component', () => {
             <Button className="test" type="submit" loading>
                 test
             </Button>,
-            {},
         );
         expect(asFragment()).toMatchSnapshot();
     });
 
     it('Test onClick', () => {
         const handleClick = jest.fn();
-        render(<Button onClick={handleClick}>test</Button>, {});
+        render(<Button onClick={handleClick}>test</Button>);
         fireEvent.click(screen.getByRole(/button/i));
         expect(handleClick).toHaveBeenCalledTimes(1);
     });
