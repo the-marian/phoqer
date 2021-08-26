@@ -1,6 +1,7 @@
 import { Themes } from '../interfaces';
 
 const host = process.env.NEXT_PUBLIC_HOST || 'http://phoqer.com';
+console.log('NEXT_PUBLIC_HOST', host);
 const api = host + '/api/';
 
 const config = {
