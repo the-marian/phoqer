@@ -20,18 +20,18 @@ jobs:
         uses: actions/checkout@v2
         with:
           ref: master
-      - name: Add environment variables to .env.dev
+      - name: Add environment variables to .env
         run: |
-          echo EMAIL_HOST_PASSWORD=${{ secrets.EMAIL_HOST_PASSWORD }} >> .env.dev
-          echo EMAIL_HOST_USER=${{ secrets.EMAIL_HOST_USER }} >> .env.dev
-          echo FERNET_SECRET_KEY=${{ secrets.FERNET_SECRET_KEY }} >> .env.dev
-          echo NEXT_PUBLIC_HOST=${{ secrets.NEXT_PUBLIC_DEV_HOST }} >> .env.dev
-          echo POSTGRES_DB=${{ secrets.POSTGRES_DB }} >> .env.dev
-          echo POSTGRES_HOST=${{ secrets.POSTGRES_HOST }} >> .env.dev
-          echo POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }} >> .env.dev
-          echo POSTGRES_PORT=${{ secrets.POSTGRES_PORT }} >> .env.dev
-          echo POSTGRES_USER=${{ secrets.POSTGRES_USER }} >> .env.dev
-          echo SECRET_KEY=${{ secrets.SECRET_KEY }} >> .env.dev
+          echo EMAIL_HOST_PASSWORD=${{ secrets.EMAIL_HOST_PASSWORD }} >> .env
+          echo EMAIL_HOST_USER=${{ secrets.EMAIL_HOST_USER }} >> .env
+          echo FERNET_SECRET_KEY=${{ secrets.FERNET_SECRET_KEY }} >> .env
+          echo NEXT_PUBLIC_HOST=${{ secrets.NEXT_PUBLIC_DEV_HOST }} >> .env
+          echo POSTGRES_DB=${{ secrets.POSTGRES_DB }} >> .env
+          echo POSTGRES_HOST=${{ secrets.POSTGRES_HOST }} >> .env
+          echo POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }} >> .env
+          echo POSTGRES_PORT=${{ secrets.POSTGRES_PORT }} >> .env
+          echo POSTGRES_USER=${{ secrets.POSTGRES_USER }} >> .env
+          echo SECRET_KEY=${{ secrets.SECRET_KEY }} >> .env
       - name: Log in to GitHub Packages
         run: echo ${GITHUB_TOKEN} | docker login -u ${GITHUB_ACTOR} --password-stdin docker.pkg.github.com
         env:
@@ -43,7 +43,7 @@ jobs:
           docker pull ${{ env.NGINX_IMAGE }} || true
       - name: Build images
         run: |
-          docker-compose -f docker-compose.ci.yml --env-file ./.env.dev build
+          docker-compose -f docker-compose.ci.yml --env-file ./.env build
       - name: Push images
         run: |
           docker push ${{ env.BACKEND_IMAGE }}
@@ -60,24 +60,24 @@ jobs:
         uses: actions/checkout@v2
         with:
           ref: master
-      - name: Add environment variables to .env.dev
+      - name: Add environment variables to .env
         run: |
-          echo BACKEND_IMAGE=$(echo ${{ env.BACKEND_IMAGE }} | tr '[:upper:]' '[:lower:]') >> .env.dev
-          echo EMAIL_HOST_PASSWORD=${{ secrets.EMAIL_HOST_PASSWORD }} >> .env.dev
-          echo EMAIL_HOST_USER=${{ secrets.EMAIL_HOST_USER }} >> .env.dev
-          echo FERNET_SECRET_KEY=${{ secrets.FERNET_SECRET_KEY }} >> .env.dev
-          echo FRONTEND_IMAGE=$(echo ${{ env.FRONTEND_IMAGE }} | tr '[:upper:]' '[:lower:]') >> .env.dev
-          echo NEXT_PUBLIC_HOST=${{ secrets.NEXT_PUBLIC_DEV_HOST }} >> .env.dev
-          echo NGINX_IMAGE=$(echo ${{ env.NGINX_IMAGE }} | tr '[:upper:]' '[:lower:]') >> .env.dev
-          echo PGADMIN_DEFAULT_EMAIL=${{ secrets.PGADMIN_DEFAULT_EMAIL }} >> .env.dev
-          echo PGADMIN_DEFAULT_PASSWORD=${{ secrets.PGADMIN_DEFAULT_PASSWORD }} >> .env.dev
-          echo PGADMIN_LISTEN_PORT=${{ secrets.PGADMIN_LISTEN_PORT }} >> .env.dev
-          echo POSTGRES_DB=${{ secrets.POSTGRES_DB }} >> .env.dev
-          echo POSTGRES_HOST=${{ secrets.POSTGRES_HOST }} >> .env.dev
-          echo POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }} >> .env.dev
-          echo POSTGRES_PORT=${{ secrets.POSTGRES_PORT }} >> .env.dev
-          echo POSTGRES_USER=${{ secrets.POSTGRES_USER }} >> .env.dev
-          echo SECRET_KEY=${{ secrets.SECRET_KEY }} >> .env.dev
+          echo BACKEND_IMAGE=$(echo ${{ env.BACKEND_IMAGE }} | tr '[:upper:]' '[:lower:]') >> .env
+          echo EMAIL_HOST_PASSWORD=${{ secrets.EMAIL_HOST_PASSWORD }} >> .env
+          echo EMAIL_HOST_USER=${{ secrets.EMAIL_HOST_USER }} >> .env
+          echo FERNET_SECRET_KEY=${{ secrets.FERNET_SECRET_KEY }} >> .env
+          echo FRONTEND_IMAGE=$(echo ${{ env.FRONTEND_IMAGE }} | tr '[:upper:]' '[:lower:]') >> .env
+          echo NEXT_PUBLIC_HOST=${{ secrets.NEXT_PUBLIC_DEV_HOST }} >> .env
+          echo NGINX_IMAGE=$(echo ${{ env.NGINX_IMAGE }} | tr '[:upper:]' '[:lower:]') >> .env
+          echo PGADMIN_DEFAULT_EMAIL=${{ secrets.PGADMIN_DEFAULT_EMAIL }} >> .env
+          echo PGADMIN_DEFAULT_PASSWORD=${{ secrets.PGADMIN_DEFAULT_PASSWORD }} >> .env
+          echo PGADMIN_LISTEN_PORT=${{ secrets.PGADMIN_LISTEN_PORT }} >> .env
+          echo POSTGRES_DB=${{ secrets.POSTGRES_DB }} >> .env
+          echo POSTGRES_HOST=${{ secrets.POSTGRES_HOST }} >> .env
+          echo POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }} >> .env
+          echo POSTGRES_PORT=${{ secrets.POSTGRES_PORT }} >> .env
+          echo POSTGRES_USER=${{ secrets.POSTGRES_USER }} >> .env
+          echo SECRET_KEY=${{ secrets.SECRET_KEY }} >> .env
       - name: Add the private SSH key to the ssh-agent
         env:
           SSH_AUTH_SOCK: /tmp/ssh_agent.sock
@@ -90,14 +90,14 @@ jobs:
         env:
           SSH_AUTH_SOCK: /tmp/ssh_agent.sock
         run: |
-          scp  -o StrictHostKeyChecking=no -r ./.env.dev ./docker-compose.yml root@${{ secrets.VPS_DEV_IP_ADDRESS }}:/home
+          scp  -o StrictHostKeyChecking=no -r ./.env ./docker-compose.yml root@${{ secrets.VPS_DEV_IP_ADDRESS }}:/home
           ssh -o StrictHostKeyChecking=no root@${{ secrets.VPS_DEV_IP_ADDRESS }} << 'ENDSSH'
             cd /home
-            source .env.dev
+            source .env
             docker login docker.pkg.github.com -u ${{ secrets.USERNAME }} -p ${{ secrets.TOKEN }}
             docker pull $BACKEND_IMAGE
             docker pull $FRONTEND_IMAGE
             docker pull $NGINX_IMAGE
-            docker-compose -f docker-compose.yml --env-file ./.env.dev up -d
+            docker-compose -f docker-compose.yml --env-file ./.env up -d
             docker image prune -af
           ENDSSH

@@ -15,7 +15,7 @@ services:
     expose:
       - 8001
     env_file:
-      - ./.env.dev
+      - ./.env
   frontend:
     container_name: frontend
     build:
@@ -30,7 +30,7 @@ services:
     expose:
       - 4000
     env_file:
-      - ./.env.dev
+      - ./.env
     depends_on:
       - backend
   db:
@@ -39,7 +39,7 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data/
     env_file:
-      - ./.env.dev
+      - ./.env
   nginx:
     container_name: nginx
     build:
