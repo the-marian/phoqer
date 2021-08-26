@@ -22,18 +22,16 @@ jobs:
           ref: dev
       - name: Add environment variables to .env.dev
         run: |
-          echo DEBUG=1 >> .env.dev
-          echo POSTGRES_ENGINE=django.db.backends.postgresql >> .env.dev
-          echo DATABASE=postgres >> .env.dev
-          echo SECRET_KEY=${{ secrets.SECRET_KEY }} >> .env.dev
-          echo FERNET_SECRET_KEY=${{ secrets.FERNET_SECRET_KEY }} >> .env.dev
-          echo EMAIL_HOST_USER=${{ secrets.EMAIL_HOST_USER }} >> .env.dev
           echo EMAIL_HOST_PASSWORD=${{ secrets.EMAIL_HOST_PASSWORD }} >> .env.dev
+          echo EMAIL_HOST_USER=${{ secrets.EMAIL_HOST_USER }} >> .env.dev
+          echo FERNET_SECRET_KEY=${{ secrets.FERNET_SECRET_KEY }} >> .env.dev
+          echo NEXT_PUBLIC_HOST=${{ secrets.NEXT_PUBLIC_HOST }} >> .env.dev
           echo POSTGRES_DB=${{ secrets.POSTGRES_DB }} >> .env.dev
-          echo POSTGRES_USER=${{ secrets.POSTGRES_USER }} >> .env.dev
-          echo POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }} >> .env.dev
           echo POSTGRES_HOST=${{ secrets.POSTGRES_HOST }} >> .env.dev
+          echo POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }} >> .env.dev
           echo POSTGRES_PORT=${{ secrets.POSTGRES_PORT }} >> .env.dev
+          echo POSTGRES_USER=${{ secrets.POSTGRES_USER }} >> .env.dev
+          echo SECRET_KEY=${{ secrets.SECRET_KEY }} >> .env.dev
       - name: Log in to GitHub Packages
         run: echo ${GITHUB_TOKEN} | docker login -u ${GITHUB_ACTOR} --password-stdin docker.pkg.github.com
         env:
@@ -64,25 +62,22 @@ jobs:
           ref: dev
       - name: Add environment variables to .env.dev
         run: |
-          echo SECRET_KEY=${{ secrets.SECRET_KEY }} >> .env.dev
+          echo BACKEND_IMAGE=$(echo ${{ env.BACKEND_IMAGE }} | tr '[:upper:]' '[:lower:]') >> .env.dev
+          echo EMAIL_HOST_PASSWORD=${{ secrets.EMAIL_HOST_PASSWORD }} >> .env.dev
+          echo EMAIL_HOST_USER=${{ secrets.EMAIL_HOST_USER }} >> .env.dev
           echo FERNET_SECRET_KEY=${{ secrets.FERNET_SECRET_KEY }} >> .env.dev
-          echo PGADMIN_LISTEN_PORT=${{ secrets.PGADMIN_LISTEN_PORT }} >> .env.dev
+          echo FRONTEND_IMAGE=$(echo ${{ env.FRONTEND_IMAGE }} | tr '[:upper:]' '[:lower:]') >> .env.dev
+          echo NEXT_PUBLIC_HOST=${{ secrets.NEXT_PUBLIC_HOST }} >> .env.dev
+          echo NGINX_IMAGE=$(echo ${{ env.NGINX_IMAGE }} | tr '[:upper:]' '[:lower:]') >> .env.dev
           echo PGADMIN_DEFAULT_EMAIL=${{ secrets.PGADMIN_DEFAULT_EMAIL }} >> .env.dev
           echo PGADMIN_DEFAULT_PASSWORD=${{ secrets.PGADMIN_DEFAULT_PASSWORD }} >> .env.dev
-          echo DEBUG=1 >> .env.dev
-          echo DATABASE=postgres >> .env.dev
-          echo DJANGO_ALLOWED_HOSTS=${{ secrets.DJANGO_ALLOWED_HOSTS }} >> .env.dev
-          echo EMAIL_HOST_USER=${{ secrets.EMAIL_HOST_USER }} >> .env.dev
-          echo EMAIL_HOST_PASSWORD=${{ secrets.EMAIL_HOST_PASSWORD }} >> .env.dev
-          echo POSTGRES_ENGINE=django.db.backends.postgresql >> .env.dev
+          echo PGADMIN_LISTEN_PORT=${{ secrets.PGADMIN_LISTEN_PORT }} >> .env.dev
           echo POSTGRES_DB=${{ secrets.POSTGRES_DB }} >> .env.dev
-          echo POSTGRES_USER=${{ secrets.POSTGRES_USER }} >> .env.dev
-          echo POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }} >> .env.dev
           echo POSTGRES_HOST=${{ secrets.POSTGRES_HOST }} >> .env.dev
+          echo POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }} >> .env.dev
           echo POSTGRES_PORT=${{ secrets.POSTGRES_PORT }} >> .env.dev
-          echo BACKEND_IMAGE=$(echo ${{ env.BACKEND_IMAGE }} | tr '[:upper:]' '[:lower:]') >> .env.dev
-          echo FRONTEND_IMAGE=$(echo ${{ env.FRONTEND_IMAGE }} | tr '[:upper:]' '[:lower:]') >> .env.dev
-          echo NGINX_IMAGE=$(echo ${{ env.NGINX_IMAGE }} | tr '[:upper:]' '[:lower:]') >> .env.dev
+          echo POSTGRES_USER=${{ secrets.POSTGRES_USER }} >> .env.dev
+          echo SECRET_KEY=${{ secrets.SECRET_KEY }} >> .env.dev
       - name: Add the private SSH key to the ssh-agent
         env:
           SSH_AUTH_SOCK: /tmp/ssh_agent.sock

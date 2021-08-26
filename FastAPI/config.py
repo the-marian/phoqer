@@ -12,6 +12,8 @@ PG_PASSWORD = os.environ.get("POSTGRES_PASSWORD", "apple-b@nana-f1re")
 PG_PORT = os.environ.get("POSTGRES_PORT", "5432")
 PG_USER = os.environ.get("POSTGRES_USER", "phoqer")
 
+NEXT_PUBLIC_HOST = os.environ.get("NEXT_PUBLIC_HOST", "http://phoqer.com")
+
 DATABASE_URL = f"postgresql://{PG_USER}:{PG_PASSWORD}@{PG_HOST}:{PG_PORT}/{PG_DB}"
 TEST_DATABASE_URL = (
     f"postgresql://{PG_USER}:{PG_PASSWORD}@{PG_HOST}:{PG_PORT}/{TEST_PG_DB}"
