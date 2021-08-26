@@ -31,6 +31,7 @@
         "@uppy/react": "^1.11.8",
         "@uppy/xhr-upload": "^1.6.7",
         "axios": "^0.21.1",
+        "axios-logger": "^2.5.0",
         "clsx": "^1.1.1",
         "cookie": "^0.4.1",
         "emoji-picker-react": "^3.4.8",

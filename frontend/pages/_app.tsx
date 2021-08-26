@@ -3,7 +3,7 @@ import '../styles/index.css';
 import axios from 'axios';
 import App, { AppProps } from 'next/app';
 import { AppContextType } from 'next/dist/next-server/lib/utils';
-import { Router, useRouter } from 'next/router';
+import { Router } from 'next/router';
 import React, { ReactElement, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
@@ -12,7 +12,7 @@ import RootProvider from '../components/context/root-provider';
 import Root from '../components/layout/root';
 import { IAuth, IConfig, Themes } from '../interfaces';
 import { wrapper } from '../redux/store';
-import { logger, parseCookie } from '../utils/helpers';
+import { parseCookie } from '../utils/helpers';
 import interceptors from '../utils/interceptors';
 
 interface IProps {
@@ -23,11 +23,8 @@ interface IProps {
 }
 
 const PhoqerApp = ({ Component, pageProps, width, auth, theme, config }: AppProps & IProps): ReactElement => {
-    const history = useRouter();
     const dispatch = useDispatch();
-
-    interceptors({ history, dispatch });
-    logger();
+    interceptors(dispatch);
 
     useEffect(() => {
         const handleClear = () => {

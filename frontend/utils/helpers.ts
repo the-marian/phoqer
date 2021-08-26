@@ -153,7 +153,7 @@ export const parseCookie = <T>(value = '', key = 'phoqer_auth', parsed = false):
 // custom console log for site identity
 export const logger = (): void => {
     if (process.browser) {
-        if (process.env.NODE_ENV === 'production') console.clear();
+        console.clear();
         console.log(
             '%c Phoqer %c v0.0.1 Made with love ...',
             'padding: 6px 15px; border-radius: 10px; background: #eee; text-transform: uppercase; color: #007aff; font-size: 1rem; font-weight: 600; font-family: Montserrat, sans-serif',
@@ -219,6 +219,7 @@ export const findParentCategory = (data: IDropList[], slug: string): IDropList |
 interface IServerCookie {
     req: { headers: { cookie: string } };
 }
+
 export const serverCookie = (ctx: GetServerSidePropsContext | IServerCookie): IAuth | null =>
     parseCookie<IAuth | null>(ctx.req.headers.cookie);
 // redirect user in next.js getServerSideProps function
