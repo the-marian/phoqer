@@ -6,7 +6,6 @@ const initState: IState = {
         access_token: null,
     },
     user: {
-        id: 0,
         likes: 0,
         dislikes: 0,
         response_rate: 0,

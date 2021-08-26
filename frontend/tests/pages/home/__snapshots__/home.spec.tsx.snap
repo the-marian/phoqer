@@ -295,37 +295,8 @@ exports[`Home component match snapshot 1`] = `
           class="wrp-0-2-59"
         />
       </div>
-      <button
-        class="root-0-2-66 banner-0-2-1"
-        type="button"
-      >
-        <div
-          class="root-0-2-72"
-          style="--blur: 0px;"
-        >
-          <span
-            style="height: 0px; width: 0px;"
-          />
-          <span
-            style="height: 0px; width: 0px;"
-          />
-          <span
-            style="height: 0px; width: 0px;"
-          />
-        </div>
-        <h2
-          class="title-0-2-67"
-        >
-          # Share with others and earn
-        </h2>
-        <p
-          class="text-0-2-68"
-        >
-          Place an advertisement on any category and get additional income right now.
-        </p>
-      </button>
       <div
-        class="root-0-2-73"
+        class="root-0-2-66"
       >
         <div
           class="wrp-0-2-63"
@@ -339,16 +310,16 @@ exports[`Home component match snapshot 1`] = `
             class="link-0-2-65"
           >
             <a
-              class="link-0-2-75"
+              class="link-0-2-68"
               href="/offers?top=true"
             >
               <span
-                class="text-0-2-76"
+                class="text-0-2-69"
               >
                 See all
               </span>
               <span
-                class="icon-0-2-77"
+                class="icon-0-2-70"
               >
                 <svg
                   aria-hidden="true"
@@ -370,32 +341,61 @@ exports[`Home component match snapshot 1`] = `
           </div>
         </div>
         <div
-          class="empty-0-2-82"
+          class="empty-0-2-75"
         >
           <img
             alt=""
-            class="emoji-0-2-83"
+            class="emoji-0-2-76"
             src="/emoji/empty.png"
           />
           <p
-            class="emptyText-0-2-84"
+            class="emptyText-0-2-77"
           >
             You don't have any offers yet. Don't be shy, create the first one
           </p>
           <a
-            class="link-0-2-85"
+            class="link-0-2-78"
             href="/offers/new/1"
           >
             Make an offer
           </a>
         </div>
         <a
-          class="btn-0-2-74"
+          class="btn-0-2-67"
           href="/offers"
         >
           See all
         </a>
       </div>
+      <button
+        class="root-0-2-79 banner-0-2-1"
+        type="button"
+      >
+        <div
+          class="root-0-2-85"
+          style="--blur: 0px;"
+        >
+          <span
+            style="height: 0px; width: 0px;"
+          />
+          <span
+            style="height: 0px; width: 0px;"
+          />
+          <span
+            style="height: 0px; width: 0px;"
+          />
+        </div>
+        <h2
+          class="title-0-2-80"
+        >
+          # Share with others and earn
+        </h2>
+        <p
+          class="text-0-2-81"
+        >
+          Place an advertisement on any category and get additional income right now.
+        </p>
+      </button>
     </div>
     <div
       class="wrp-0-2-86"

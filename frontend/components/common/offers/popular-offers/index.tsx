@@ -13,8 +13,13 @@ import OffersList from '../offers-list';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     root: {
+        marginTop: theme.rem(10),
         fontSize: theme.rem(1.5),
         fontWeight: theme.text.weight[3],
+
+        ...theme.media(550).max({
+            marginTop: theme.rem(5),
+        }),
     },
     btn: {
         ...mixin(theme).btn,
