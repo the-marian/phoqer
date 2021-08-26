@@ -3,7 +3,7 @@ name: Prod CI/CD
 on:
   push:
     tags:
-      - v*
+      - "v*"
 
 env:
   BACKEND_IMAGE: ${{ secrets.BACKEND_IMAGE }}
