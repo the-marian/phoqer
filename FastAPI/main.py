@@ -22,15 +22,15 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-app.include_router(categories.router)
-app.include_router(chats.router)
+# app.include_router(categories.router)
+# app.include_router(chats.router)
 app.include_router(comments.router)
-app.include_router(offers.router)
-app.include_router(favorite.router)
-app.include_router(login.router)
-app.include_router(locations.router)
-app.include_router(users.router)
-app.include_router(upload.router)
+# app.include_router(offers.router)
+# app.include_router(favorite.router)
+# app.include_router(login.router)
+# app.include_router(locations.router)
+# app.include_router(users.router)
+# app.include_router(upload.router)
 
 
 @app.on_event("startup")
