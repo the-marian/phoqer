@@ -13,6 +13,7 @@ const interceptors = ({ history, dispatch }: { history: NextRouter; dispatch: Di
     );
     axios.interceptors.response.use(
         response => {
+            console.log('NEXT_PUBLIC_HOST', process.env.NEXT_PUBLIC_HOST);
             if (!process.browser) {
                 const date = new Date();
                 console.log(
