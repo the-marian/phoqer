@@ -12,7 +12,10 @@ from FastAPI.offers import offers
 from FastAPI.upload import upload
 from FastAPI.users import users
 
-origins = [NEXT_PUBLIC_HOST]
+origins = [
+    "http://localhost:4000",
+    NEXT_PUBLIC_HOST
+]
 
 app = FastAPI()
 app.add_middleware(
