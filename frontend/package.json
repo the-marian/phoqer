@@ -5,8 +5,8 @@
     "scripts": {
         "build": "next build",
         "postbuild": "next-sitemap",
-        "dev": "NODE_ENV=development node server.js",
-        "start": "NODE_ENV=production node server.js",
+        "dev": "NEXT_PUBLIC_HOST=http://phoqer.com NODE_ENV=development node server.js",
+        "start": "NEXT_PUBLIC_HOST=http://phoqer.com NODE_ENV=production node server.js",
         "start:build": "yarn run build && NODE_ENV=production node server.js",
         "eslint": "eslint --config ./.eslintrc --fix ./",
         "prettier": "prettier --write \"./**/*.{js,jsx,ts,tsx,css,json}\" --config ./.prettierrc",
