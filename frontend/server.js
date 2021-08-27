@@ -1,6 +1,7 @@
+const next = require('next');
+
 const { createServer } = require('http');
 const { parse } = require('url');
-const next = require('next');
 
 const PORT = 4000;
 const HOST = process.env.HOST || '0.0.0.0';
@@ -13,20 +14,20 @@ app.prepare()
         createServer((req, res) => {
             const parsedUrl = parse(req.url, true);
             handle(req, res, parsedUrl).catch(error => {
-                console.log('---LOGGER-FOR-MARIAN---', error);
+                console.log('Frontend server error', error);
             });
         }).listen(PORT, err => {
             if (err) {
-                console.log('---LOGGER-FOR-MARIAN---', err);
+                console.log('Frontend server error', err);
                 throw err;
             }
 
             process.on('SIGILL', signal => {
-                console.log('---LOGGER-FOR-MARIAN---', signal);
+                console.log('Frontend server error', signal);
             });
             console.log('Front-end is run on port: ' + PORT + ', end host: ' + HOST);
         });
     })
     .catch(error => {
-        console.log('---LOGGER-FOR-MARIAN---', error);
+        console.log('Frontend server error', error);
     });

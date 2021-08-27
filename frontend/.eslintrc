@@ -1,6 +1,8 @@
 {
   "plugins": [
-    "simple-import-sort",
+    "import",
+    "@typescript-eslint",
+    "eslint-plugin-jest",
     "react-hooks"
   ],
   "root": true,
@@ -39,13 +41,33 @@
         "usePrettierrc": true
       }
     ],
+    "import/first": "error",
+    "import/order": [
+      "error",
+      {
+        "alphabetize": { "order": "asc", "caseInsensitive": false },
+        "groups": ["external", "builtin", "parent", "sibling", "index"],
+        "pathGroups": [
+          {
+            "pattern": "react",
+            "group": "external",
+            "position": "before",
+            "newlines-between": "never"
+          }
+        ],
+        "pathGroupsExcludedImportTypes": ["builtin"],
+        "newlines-between": "always"
+      }
+    ],
+    "import/newline-after-import": "error",
+    "import/no-duplicates": "error",
+    "import/no-mutable-exports": "error",
     "react/react-in-jsx-scope": "off",
     "react/prop-types": "off",
     "@typescript-eslint/no-var-requires": "off",
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
     "@typescript-eslint/explicit-function-return-type": "off",
-    "simple-import-sort/imports": "error",
     "jsx-a11y/label-has-associated-control": "off",
     "jsx-a11y/anchor-is-valid": [
       "error",

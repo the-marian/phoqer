@@ -1,0 +1,69 @@
+import React, { ReactElement } from 'react';
+
+import { createUseStyles } from 'react-jss';
+
+import useMedia from '../../../../hooks/media.hook';
+import useTrans from '../../../../hooks/trans.hook';
+import { Theme } from '../../../../utils/theming/theme';
+import JoinForm from '../../../common/auth-form/join-form';
+import LoginForm from '../../../common/auth-form/login-form';
+import { modal } from '../../../common/modal';
+import SmallModalWrp from '../../../common/modal/small-modal-wrp';
+
+const useStyles = createUseStyles((theme: Theme) => ({
+    btn: {
+        paddingRight: theme.rem(2),
+        fontWeight: theme.text.weight[3],
+        fontSize: theme.rem(1.3),
+        color: theme.palette.black[0],
+
+        ...theme.hover({
+            color: theme.palette.primary[0],
+        }),
+    },
+    menuWrp: {
+        position: 'relative',
+    },
+    menu: {
+        position: 'relative',
+        zIndex: 101,
+        padding: theme.rem(0, 1),
+        fontSize: theme.rem(2),
+    },
+}));
+
+const NotAuth = (): ReactElement | null => {
+    const css = useStyles();
+    const trans = useTrans();
+    const media = useMedia(768);
+
+    const handleLoginModal = () => {
+        modal.open(
+            <SmallModalWrp>
+                <LoginForm />
+            </SmallModalWrp>,
+        );
+    };
+    const handleRegisterModal = () => {
+        modal.open(
+            <SmallModalWrp>
+                <JoinForm />
+            </SmallModalWrp>,
+        );
+    };
+
+    return (
+        <div>
+            <button className={css.btn} type="button" onClick={handleLoginModal}>
+                {trans('login')}
+            </button>
+            {media && (
+                <button className={css.btn} type="button" onClick={handleRegisterModal}>
+                    {trans('join')}
+                </button>
+            )}
+        </div>
+    );
+};
+
+export default NotAuth;
