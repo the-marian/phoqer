@@ -255,3 +255,35 @@ async def create_chat(offer_id: str, author_id: int, client_id: int) -> int:
         "current_timestamp": datetime.datetime.now(),
     }
     return int(await database.execute(query=query, values=values))
+
+
+async def get_single_chat(user_id: int, chat_id: int):
+    query = """
+    SELECT
+        chat_id,
+        author_id,
+        client_id,
+        offer_id,
+        creation_datetime,
+        is_done
+    FROM chats
+    WHERE chat_id = :chat_id
+    """
+    values = {"chat_id": chat_id}
+    return await database.fetch_one(query=query, values=values)
+
+
+@database.transaction()
+async def change_is_done(user_id: int, chat_id: int, is_done: bool):
+    query = """
+    UPDATE chats
+    SET
+        is_done = :is_done
+    WHERE author_id = :user_id AND chat_id = :chat_id
+    """
+    values = {
+        "is_done": is_done,
+        "user_id": user_id,
+        "chat_id": chat_id,
+    }
+    await database.execute(query=query, values=values)
