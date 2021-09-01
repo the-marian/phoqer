@@ -736,7 +736,7 @@ def test_archived_chats_bad_query(client, marian_auth_token):
     }
 
 
-def test_update_is_done(db, client, marian_auth_token, chat_marian_egor):
+def test_update_is_done_true(db, client, marian_auth_token, chat_marian_egor):
     data = {"is_done": True}
     response = client.patch(
         f"chats/{chat_marian_egor}",
@@ -746,5 +746,24 @@ def test_update_is_done(db, client, marian_auth_token, chat_marian_egor):
     assert response.status_code == 204
     db.execute(f"SELECT is_done FROM chats WHERE chat_id ='{chat_marian_egor}'")
     chat = db.fetchone()
-    assert chat[0] == "True"
-    assert chat[1] == 1
+    assert chat[0] is True
+
+
+def test_update_is_done_false(db, client, egor_auth_token, chat_egor_marian):
+    data = {"is_done": True}
+    response = client.patch(
+        f"chats/{chat_egor_marian}",
+        json=data,
+        headers=egor_auth_token,
+    )
+    assert response.status_code == 204
+    data = {"is_done": False}
+    response = client.patch(
+        f"chats/{chat_egor_marian}",
+        json=data,
+        headers=egor_auth_token,
+    )
+    assert response.status_code == 204
+    db.execute(f"SELECT is_done FROM chats WHERE chat_id ='{chat_egor_marian}'")
+    chat = db.fetchone()
+    assert chat[0] is False
