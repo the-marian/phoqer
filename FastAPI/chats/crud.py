@@ -273,8 +273,7 @@ async def get_single_chat(chat_id: int):
     return await database.fetch_one(query=query, values=values)
 
 
-@database.transaction()
-async def change_is_done(user_id: int, chat_id: int, is_done: bool):
+async def change_is_done(chat_id: int, is_done: bool):
     query = """
     UPDATE chats
     SET
@@ -283,7 +282,6 @@ async def change_is_done(user_id: int, chat_id: int, is_done: bool):
     """
     values = {
         "is_done": is_done,
-        "user_id": user_id,
         "chat_id": chat_id,
     }
     await database.execute(query=query, values=values)
