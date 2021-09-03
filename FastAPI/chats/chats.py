@@ -181,13 +181,12 @@ async def get_messages(
 async def update_is_done(
     chat_id: int,
     is_done: bool = Body(..., embed=True),
-    user_id: int = Depends(get_current_user),
 ):
-    chat_data = await crud.get_single_chat(user_id=user_id, chat_id=chat_id)
+    chat_data = await crud.get_single_chat(chat_id=chat_id)
     if not chat_data:
         raise HTTPException(
             status_code=404,
             detail="Chat does not exist",
         )
-    await crud.change_is_done(chat_id=chat_id, user_id=user_id, is_done=is_done)
+    await crud.change_is_done(chat_id=chat_id, is_done=is_done)
     return Response(status_code=204)
