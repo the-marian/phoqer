@@ -257,7 +257,7 @@ async def create_chat(offer_id: str, author_id: int, client_id: int) -> int:
     return int(await database.execute(query=query, values=values))
 
 
-async def get_single_chat(user_id: int, chat_id: int):
+async def get_single_chat(chat_id: int):
     query = """
     SELECT
         chat_id,
@@ -279,7 +279,7 @@ async def change_is_done(user_id: int, chat_id: int, is_done: bool):
     UPDATE chats
     SET
         is_done = :is_done
-    WHERE author_id = :user_id AND chat_id = :chat_id
+    WHERE chat_id = :chat_id
     """
     values = {
         "is_done": is_done,
