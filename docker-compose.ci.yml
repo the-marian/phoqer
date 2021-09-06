@@ -29,6 +29,8 @@ services:
     expose:
       - 4000
     env_file: .env
+    args:
+      - NEXT_PUBLIC_HOST=${NEXT_PUBLIC_HOST}
     depends_on:
       - backend
   db:

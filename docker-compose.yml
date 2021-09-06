@@ -9,8 +9,7 @@ services:
       - media_volume:/phoqer/FastAPI/mediafiles/
     expose:
       - 8001
-    env_file:
-      - ./.env
+    env_file: .env
   frontend:
     container_name: frontend
     image: "${FRONTEND_IMAGE}"
@@ -21,8 +20,7 @@ services:
       - 4000
     environment:
       - HOST=0.0.0.0
-    env_file:
-      - ./.env
+    env_file: .env
     depends_on:
       - backend
   db:
@@ -35,8 +33,7 @@ services:
   pgadmin:
     container_name: pgadmin
     image: dpage/pgadmin4
-    env_file:
-      - ./.env
+    env_file: .env
     volumes:
       - pgadmin:/root/.pgadmin
     expose:
