@@ -41,7 +41,7 @@ jobs:
           docker pull ${{ env.NGINX_IMAGE }} || true
       - name: Build images
         run: |
-          docker-compose -f docker-compose.ci.yml --env-file ./.env build
+          docker-compose -f docker-compose.ci.yml --env-file .env build
       - name: Push images
         run: |
           docker push ${{ env.BACKEND_IMAGE }}
@@ -93,6 +93,6 @@ jobs:
             docker pull $BACKEND_IMAGE
             docker pull $FRONTEND_IMAGE
             docker pull $NGINX_IMAGE
-            docker-compose -f docker-compose.yml --env-file ./.env up -d
+            docker-compose -f docker-compose.yml --env-file .env up -d
             docker image prune -af
           ENDSSH
