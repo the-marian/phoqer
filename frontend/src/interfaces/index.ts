@@ -117,6 +117,7 @@ export interface ICategories {
 // =====================================
 export interface IOfferCard {
     id: string;
+    can_rent: boolean;
     category?: string | null;
     sub_category?: string | null;
     deposit_val?: number | null;
@@ -287,8 +288,11 @@ export interface IChats {
     cover_image: string | null;
 }
 
+export type ChatType = 'i_am_client' | 'i_am_author';
+
 export interface IChatsList {
     loading: boolean;
+    type: ChatType;
     data: IPagination<IChats>;
 }
 

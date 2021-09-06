@@ -85,7 +85,7 @@ const ControlButtons = (): ReactElement => {
             </button>
 
             <button className={css.btn} type="button" onClick={toggleTheme}>
-                {theme === 'white' ? <FontAwesomeIcon icon={faMoon} /> : <FontAwesomeIcon icon={faSun} />}
+                {theme === 'white' ? <FontAwesomeIcon icon={faSun} /> : <FontAwesomeIcon icon={faMoon} />}
             </button>
         </div>
     );

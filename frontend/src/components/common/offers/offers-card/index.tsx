@@ -3,6 +3,7 @@ import React, { ReactElement } from 'react';
 import { faEye } from '@fortawesome/free-regular-svg-icons/faEye';
 import { faHeart } from '@fortawesome/free-regular-svg-icons/faHeart';
 import { faCogs } from '@fortawesome/free-solid-svg-icons/faCogs';
+import { faDotCircle } from '@fortawesome/free-solid-svg-icons/faDotCircle';
 import { faHeart as faSolidHeart } from '@fortawesome/free-solid-svg-icons/faHeart';
 import { faStar } from '@fortawesome/free-solid-svg-icons/faStar';
 import { faTruck } from '@fortawesome/free-solid-svg-icons/faTruck';
@@ -48,8 +49,20 @@ const OfferCard = ({ offer, showFavoriteBtn = true }: IProps): ReactElement => {
     const dispatch = useDispatch();
     const [config] = useConfig();
 
-    const { id, title, description, cover_image, is_promoted, is_deliverable, is_favorite, views, pub_date, price, functions } =
-        offer;
+    const {
+        id,
+        can_rent,
+        title,
+        description,
+        cover_image,
+        is_promoted,
+        is_deliverable,
+        is_favorite,
+        views,
+        pub_date,
+        price,
+        functions,
+    } = offer;
 
     const isLogin = (): boolean => {
         if (!auth?.access_token) {
@@ -166,6 +179,13 @@ const OfferCard = ({ offer, showFavoriteBtn = true }: IProps): ReactElement => {
                                     </div>
                                 </Tooltip>
                             )}
+                            {can_rent && (
+                                <Tooltip className={css.tooltip} content="Вы являетесь автором этого объявления">
+                                    <div className={clsx(css.top, css.author, config.offerCardSize === 'small' && css.topSmall)}>
+                                        <FontAwesomeIcon icon={faDotCircle} />
+                                    </div>
+                                </Tooltip>
+                            )}
                         </div>
                         <img
                             className={config.offerCardSize === 'big' ? css.imgBig : css.imgSmall}
@@ -226,15 +246,25 @@ const OfferCard = ({ offer, showFavoriteBtn = true }: IProps): ReactElement => {
 
                 {showFavoriteBtn && config.offerCardSize === 'big' && (
                     <div className={css.actionBtn}>
-                        <button type="button" className={css.btn} onClick={handleOpenChat}>
-                            {trans('rent')}
-                        </button>
+                        {can_rent ? (
+                            <>
+                                <button type="button" className={css.btn} onClick={handleOpenChat}>
+                                    {trans('rent')}
+                                </button>
 
-                        <Tooltip className={css.tooltip} content="Добавить в избранное">
-                            <button type="button" className={clsx(css.favorite)} onClick={handleFavorite}>
-                                {is_favorite ? <FontAwesomeIcon icon={faSolidHeart} /> : <FontAwesomeIcon icon={faHeart} />}
-                            </button>
-                        </Tooltip>
+                                <Tooltip className={css.tooltip} content="Добавить в избранное">
+                                    <button type="button" className={clsx(css.favorite)} onClick={handleFavorite}>
+                                        {is_favorite ? (
+                                            <FontAwesomeIcon icon={faSolidHeart} />
+                                        ) : (
+                                            <FontAwesomeIcon icon={faHeart} />
+                                        )}
+                                    </button>
+                                </Tooltip>
+                            </>
+                        ) : (
+                            <p className={css.cantRent}>Вы являетесь автором этого объявления</p>
+                        )}
                     </div>
                 )}
             </div>

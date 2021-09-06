@@ -9,7 +9,7 @@ const config = {
         test: (version = 'v1'): string => api + version,
         production: (version = 'v1'): string => (process.browser ? api + version : 'http://backend:8001'),
     },
-    socketUrl: (version = 'v1'): string => 'ws' + api.split('://')[1] + version,
+    socketUrl: (version = 'v1'): string => 'ws://' + api.split('://')[1] + version,
     uploadsUrl: (version = 'v2'): string => `${api}${version}/upload`,
     host: (lang = 'pl'): string => `${host}${lang === 'pl' ? '' : '/' + lang}`,
     img: host,

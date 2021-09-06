@@ -1,7 +1,8 @@
 import { AxiosResponse } from 'axios';
-import { all, call, put, takeLatest } from 'redux-saga/effects';
+import { all, call, put, select, takeLatest } from 'redux-saga/effects';
 
 import notifications from '../../../components/common/notifications';
+import { ChatType, IState } from '../../../interfaces';
 import api from '../../../utils/api';
 import types from '../../types';
 
@@ -9,7 +10,8 @@ import IAction, { INewChat } from './interfaces';
 
 function* getChats() {
     try {
-        const { status, data } = yield call(api.chat.chats);
+        const type: ChatType = yield select<(state: IState) => ChatType>(state => state.chat.chats.type);
+        const { status, data } = yield call(api.chat.chats, 1, type);
         if (status < 200 || status >= 300) throw new Error();
         yield put({ type: types.GET_CHATS_SUCCESS, payload: data });
     } catch (error) {

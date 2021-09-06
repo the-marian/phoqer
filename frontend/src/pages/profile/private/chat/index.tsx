@@ -6,10 +6,10 @@ import { useDispatch } from 'react-redux';
 
 import AuthRedirect from '../../../../components/context/auth/auth-redirect';
 import Meta from '../../../../components/meta';
-import { width } from '../../../../components/per-pages/chat/chat.config';
-import ChatBackBtn from '../../../../components/per-pages/chat/components/chat-back-btn';
-import ChatTabs from '../../../../components/per-pages/chat/components/chat-tabs';
-import ChatWrp from '../../../../components/per-pages/chat/components/wrappers/chat-wrp';
+import { width } from '../../../../components/pages/chat/chat.config';
+import ChatBackBtn from '../../../../components/pages/chat/components/chat-back-btn';
+import ChatTabs from '../../../../components/pages/chat/components/chat-tabs';
+import ChatWrp from '../../../../components/pages/chat/components/wrappers/chat-wrp';
 import useMedia from '../../../../hooks/media.hook';
 import useTrans from '../../../../hooks/trans.hook';
 import { wrapper } from '../../../../redux/store';

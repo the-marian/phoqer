@@ -72,7 +72,10 @@ const useStyles = createUseStyles((theme: Theme) => ({
         borderRadius: theme.rem(0.6),
     },
     delivery: {
-        color: theme.palette.gray[2],
+        color: theme.palette.primary[0],
+    },
+    author: {
+        color: theme.palette.primary[0],
     },
     titleBig: {
         margin: theme.rem(1, 0, 0),
@@ -205,6 +208,14 @@ const useStyles = createUseStyles((theme: Theme) => ({
             fontSize: theme.rem(1.4),
             borderRadius: theme.rem(0.7),
         },
+    },
+    cantRent: {
+        padding: theme.rem(1),
+        borderRadius: theme.radius,
+        background: theme.palette.secondary[0],
+        fontSize: theme.rem(1.2),
+        color: theme.palette.primary[0],
+        fontWeight: theme.text.weight[3],
     },
 }));
 

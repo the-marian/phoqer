@@ -25,7 +25,7 @@
     overflow-y: auto;
     scroll-behavior: smooth;
     -webkit-overflow-scrolling: touch;
-    transform: translateY(-5rem);
+    transform: translateY(5rem);
     opacity: 0;
     transition: 0.2s ease-in-out;
 }

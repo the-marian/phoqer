@@ -1,4 +1,4 @@
-import { IChats, IChatsList, IPagination } from '../../../interfaces';
+import { ChatType, IChats, IChatsList, IPagination } from '../../../interfaces';
 import initState from '../../state';
 import types from '../../types';
 
@@ -10,10 +10,13 @@ const chats = (state: IChatsList = initState.chat.chats, { type, payload }: IAct
             return { ...state, loading: true };
 
         case types.GET_CHATS_SUCCESS:
-            return { data: payload as IPagination<IChats>, loading: false };
+            return { ...state, data: payload as IPagination<IChats>, loading: false };
 
         case types.GET_CHATS_ERROR:
             return { ...state, loading: false };
+
+        case types.CHANGE_CHAT_TYPE:
+            return { ...state, type: payload as ChatType };
 
         default:
             return state;

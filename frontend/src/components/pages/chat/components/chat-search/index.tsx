@@ -3,11 +3,22 @@ import React, { ReactElement } from 'react';
 import { faSearch } from '@fortawesome/free-solid-svg-icons/faSearch';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { createUseStyles } from 'react-jss';
+import { useDispatch, useSelector } from 'react-redux';
 
+import { ChatType, IState } from '../../../../../interfaces';
+import types from '../../../../../redux/types';
 import mixin from '../../../../../utils/theming/mixin';
 import { Theme } from '../../../../../utils/theming/theme';
+import SegmentedControl, { ISegmentedControlItem } from '../../../../common/segmented-control';
 
 const useStyles = createUseStyles((theme: Theme) => ({
+    control: {
+        marginBottom: theme.rem(1),
+
+        '& ul': {
+            width: '100%',
+        },
+    },
     root: {
         position: 'relative',
         marginBottom: theme.rem(1),
@@ -46,15 +57,37 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
 }));
 
+const tabs: ISegmentedControlItem[] = [
+    {
+        id: 'i_am_client',
+        text: 'Я арендаю',
+    },
+    {
+        id: 'i_am_author',
+        text: 'Я сдаю в аренду',
+    },
+];
+
 const ChatSearch = (): ReactElement => {
     const css = useStyles();
+    const dispatch = useDispatch();
+    const activeTab = useSelector<IState, ChatType>(state => state.chat.chats.type);
+
+    const changeChatType = (value: string): void => {
+        dispatch({ type: types.CHANGE_CHAT_TYPE, payload: value });
+        dispatch({ type: types.GET_CHATS_START });
+    };
+
     return (
-        <div className={css.root}>
-            <input type="text" placeholder="Search" className={css.input} />
-            <button type="button" className={css.search}>
-                <FontAwesomeIcon icon={faSearch} />
-            </button>
-        </div>
+        <>
+            <SegmentedControl classNameWrp={css.control} active={activeTab} tabs={tabs} onClick={changeChatType} />
+            <div className={css.root}>
+                <input type="text" placeholder="Search" className={css.input} />
+                <button type="button" className={css.search}>
+                    <FontAwesomeIcon icon={faSearch} />
+                </button>
+            </div>
+        </>
     );
 };
 

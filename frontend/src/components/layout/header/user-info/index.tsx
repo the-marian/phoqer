@@ -1,4 +1,4 @@
-import React, { ReactElement, useEffect, useState } from 'react';
+import React, { ReactElement } from 'react';
 
 import { faFlag } from '@fortawesome/free-regular-svg-icons/faFlag';
 import { faHeart } from '@fortawesome/free-solid-svg-icons/faHeart';
@@ -7,9 +7,7 @@ import { faPlus } from '@fortawesome/free-solid-svg-icons/faPlus';
 import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons/faSignOutAlt';
 import { faSun } from '@fortawesome/free-solid-svg-icons/faSun';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import clsx from 'clsx';
 import Link from 'next/link';
-import { Router } from 'next/router';
 import { createUseStyles } from 'react-jss';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -23,13 +21,11 @@ import mixin from '../../../../utils/theming/mixin';
 import { Theme } from '../../../../utils/theming/theme';
 import Badge from '../../../common/badge';
 import { modal } from '../../../common/modal';
-import SmallModalWrp from '../../../common/modal/small-modal-wrp';
+import StickyModal from '../../../common/modal/sticky-modal';
 import Navigation from '../../../common/navigation';
 import { getBaseNavList } from '../../../common/navigation/navigation.config';
 import Tooltip from '../../../common/tooltip';
 import UserAvatar from '../../../common/user-avatar';
-
-import DropWindow from './drop-window';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     flex: {
@@ -89,10 +85,6 @@ const useStyles = createUseStyles((theme: Theme) => ({
         color: theme.palette.gray[2],
         ...mixin(theme).cutString,
     },
-    user: {
-        position: 'relative',
-        zIndex: 101,
-    },
     number: {
         marginRight: theme.rem(0.5),
     },
@@ -109,20 +101,7 @@ const UserInfo = (): ReactElement => {
     const desktop = useMedia(900);
     const [theme, setTheme] = useTheme();
 
-    const [drop, setDrop] = useState<boolean>(false);
     const user = useSelector<IState, IPublicProfile | null>(state => state.user);
-
-    useEffect(() => {
-        const handleClose = (): void => {
-            if (drop) setDrop(false);
-        };
-        Router.events.on('routeChangeComplete', handleClose);
-
-        return () => {
-            Router.events.off('routeChangeComplete', handleClose);
-        };
-    }, [drop]);
-
     const userName = user?.first_name + ' ' + user?.last_name;
 
     const handleLogout = () => {
@@ -130,29 +109,27 @@ const UserInfo = (): ReactElement => {
     };
 
     const handleClick = (): void => {
-        tablet
-            ? setDrop(!drop)
-            : modal.open(
-                  <SmallModalWrp>
-                      <Navigation
-                          tabs={[
-                              {
-                                  id: 'personal-area',
-                                  text: 'personal_area',
-                                  link: routes.profile.private.personal_area,
-                                  icon: faFlag,
-                              },
-                              ...getBaseNavList(),
-                              {
-                                  id: 'logout',
-                                  text: 'logout',
-                                  onClick: handleLogout,
-                                  icon: faSignOutAlt,
-                              },
-                          ]}
-                      />
-                  </SmallModalWrp>,
-              );
+        modal.open(
+            <StickyModal>
+                <Navigation
+                    tabs={[
+                        {
+                            id: 'personal-area',
+                            text: 'personal_area',
+                            link: routes.profile.private.personal_area,
+                            icon: faFlag,
+                        },
+                        ...getBaseNavList(),
+                        {
+                            id: 'logout',
+                            text: 'logout',
+                            onClick: handleLogout,
+                            icon: faSignOutAlt,
+                        },
+                    ]}
+                />
+            </StickyModal>,
+        );
     };
 
     const toggleTheme = (): void => {
@@ -165,7 +142,7 @@ const UserInfo = (): ReactElement => {
                 <li className={css.item}>
                     <Tooltip className={css.tooltip} content={trans('Change theme')}>
                         <button type="button" className={css.link} onClick={toggleTheme}>
-                            {theme === 'white' ? <FontAwesomeIcon icon={faMoon} /> : <FontAwesomeIcon icon={faSun} />}
+                            {theme === 'white' ? <FontAwesomeIcon icon={faSun} /> : <FontAwesomeIcon icon={faMoon} />}
                         </button>
                     </Tooltip>
                 </li>
@@ -195,7 +172,7 @@ const UserInfo = (): ReactElement => {
             )}
 
             <li className={css.item}>
-                <button type="button" className={clsx(css.link, drop && css.user)} onClick={handleClick}>
+                <button type="button" className={css.link} onClick={handleClick}>
                     <Badge className={css.number}>14</Badge>
                     <UserAvatar
                         width={3.5}
@@ -209,8 +186,6 @@ const UserInfo = (): ReactElement => {
                         <span className={css.small}>{user?.email || 'no email'}</span>
                     </div>
                 </button>
-
-                {drop && <DropWindow onClose={handleClick} />}
             </li>
         </ul>
     );

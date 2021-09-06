@@ -79,7 +79,7 @@ const Meta = ({ title, description, keywords, icon, h1 = '' }: IProps): ReactEle
                 <link href="/icons/icon-384.png" rel="icon" type="image/png" sizes="384x384" />
                 <link href="/icons/icon-512.png" rel="icon" type="image/png" sizes="512x512" />
 
-                <link href="/icons/mask-icon.png" rel="apple-touch-icon" />
+                <link href={`${url()}/icons/mask-icon.png`} rel="apple-touch-icon" />
                 <link href="/icons/icon-72.png" rel="apple-touch-icon" type="image/png" sizes="16x16" />
                 <link href="/icons/icon-72.png" rel="apple-touch-icon" type="image/png" sizes="32x32" />
                 <link href="/icons/icon-72.png" rel="apple-touch-icon" type="image/png" sizes="72x72" />
@@ -91,7 +91,7 @@ const Meta = ({ title, description, keywords, icon, h1 = '' }: IProps): ReactEle
                 <link href="/icons/icon-384.png" rel="apple-touch-icon" type="image/png" sizes="384x384" />
                 <link href="/icons/icon-512.png" rel="apple-touch-icon" type="image/png" sizes="512x512" />
 
-                <link rel="mask-icon" href="/icons/mask-icon.png" color="#32603F" />
+                <link rel="mask-icon" href={`${url()}/icons/mask-icon.png`} color="#32603F" />
                 <link rel="canonical" href={url(history.locale)} />
                 <link rel="alternate" hrefLang="x-default" href={url()} />
                 <link rel="alternate" hrefLang="en" href={url('pl')} />

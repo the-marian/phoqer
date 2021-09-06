@@ -20,7 +20,7 @@ const initState: IState = {
         first_name: 'loading...',
         birth_date: 'loading...',
         date_joined: 'loading...',
-        profile_img: 'loading...',
+        profile_img: null,
         last_activity: 'loading...',
         description_rate: 'loading...',
     },
@@ -112,6 +112,7 @@ const initState: IState = {
     chat: {
         chats: {
             loading: true,
+            type: 'i_am_client',
             data: {
                 total: 0,
                 data: [],

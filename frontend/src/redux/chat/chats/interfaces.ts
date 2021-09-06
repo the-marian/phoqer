@@ -1,4 +1,4 @@
-import { IChats, IPagination } from '../../../interfaces';
+import { ChatType, IChats, IPagination } from '../../../interfaces';
 import types from '../../types';
 
 type Type = typeof types.GET_CHATS_START | typeof types.GET_CHATS_ERROR | typeof types.GET_CHATS_SUCCESS;
@@ -9,6 +9,6 @@ export interface INewChat {
 
 export default interface IAction {
     type: Type;
-    payload: IPagination<IChats> | INewChat;
+    payload: IPagination<IChats> | INewChat | ChatType;
     callback?: (id: number) => void;
 }

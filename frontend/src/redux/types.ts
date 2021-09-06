@@ -197,6 +197,8 @@ const types = {
     // ========================
     // 9_MESSAGES
     // ========================
+    // CHANGE_CHAT_TYPE
+    CHANGE_CHAT_TYPE: 'CHANGE_CHAT_TYPE',
     // GET_CHATS
     GET_CHATS_START: 'GET_CHATS_START',
     GET_CHATS_SUCCESS: 'GET_CHATS_SUCCESS',

@@ -10,7 +10,7 @@ import Search from '../components/common/search';
 import Container from '../components/layout/container';
 import PageLayout from '../components/layout/page-layout';
 import Meta from '../components/meta';
-import Categories from '../components/per-pages/home/categories';
+import Categories from '../components/pages/home/categories';
 import useTrans from '../hooks/trans.hook';
 import { IStore } from '../interfaces';
 import { wrapper } from '../redux/store';

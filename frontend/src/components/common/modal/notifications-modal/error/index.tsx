@@ -6,7 +6,7 @@ import useTrans from '../../../../../hooks/trans.hook';
 import mixin from '../../../../../utils/theming/mixin';
 import { Theme } from '../../../../../utils/theming/theme';
 import { modal } from '../../index';
-import SmallModalWrp from '../../small-modal-wrp';
+import StickyModal from '../../sticky-modal';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     title: {
@@ -49,7 +49,7 @@ const NotificationError = ({ text }: IProps): ReactElement => {
     const trans = useTrans();
 
     return (
-        <SmallModalWrp>
+        <StickyModal>
             <img className={css.img} src="/emoji/error.png" alt="" />
             <h4 className={css.title}>Oops</h4>
             <p className={css.text}>{text || trans('error')}</p>
@@ -59,7 +59,7 @@ const NotificationError = ({ text }: IProps): ReactElement => {
                     Ok
                 </button>
             </div>
-        </SmallModalWrp>
+        </StickyModal>
     );
 };
 

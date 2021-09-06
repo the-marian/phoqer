@@ -83,16 +83,17 @@ export interface ISegmentedControlItem {
 
 interface IProps {
     className?: string;
+    classNameWrp?: string;
     active: string;
     tabs: ISegmentedControlItem[];
     onClick: (value: string) => void;
 }
 
-const SegmentedControl = ({ className, active, tabs, onClick }: IProps): ReactElement => {
+const SegmentedControl = ({ className, classNameWrp, active, tabs, onClick }: IProps): ReactElement => {
     const css = useStyles();
 
     return (
-        <div className={css.container}>
+        <div className={clsx(css.container, classNameWrp)}>
             <ul className={clsx(css.list, className)}>
                 {tabs.map<ReactElement>(item => (
                     <SegmentedControlItem key={item.id} tab={item} active={active} onClick={onClick} />

@@ -1,21 +1,28 @@
 import React, { ReactElement } from 'react';
 
 import { faEnvelope } from '@fortawesome/free-regular-svg-icons/faEnvelope';
+import { faFlag } from '@fortawesome/free-regular-svg-icons/faFlag';
 import { faHeart } from '@fortawesome/free-regular-svg-icons/faHeart';
 import { faUserCircle } from '@fortawesome/free-regular-svg-icons/faUserCircle';
 import { faPlus } from '@fortawesome/free-solid-svg-icons/faPlus';
+import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons/faSignOutAlt';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Link from 'next/link';
 import { createUseStyles } from 'react-jss';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import useAuth from '../../../hooks/auth.hook';
 import useMedia from '../../../hooks/media.hook';
 import { IPublicProfile, IState } from '../../../interfaces';
+import types from '../../../redux/types';
 import routes from '../../../utils/routes';
 import mixin from '../../../utils/theming/mixin';
 import { Theme } from '../../../utils/theming/theme';
 import Badge from '../../common/badge';
+import { modal } from '../../common/modal';
+import StickyModal from '../../common/modal/sticky-modal';
+import Navigation from '../../common/navigation';
+import { getBaseNavList } from '../../common/navigation/navigation.config';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     list: {
@@ -83,9 +90,38 @@ const MobileNav = (): ReactElement | null => {
     const css = useStyles();
     const auth = useAuth();
     const media = useMedia(1060);
+    const dispatch = useDispatch();
 
     const user = useSelector<IState, IPublicProfile | null>(state => state.user);
     const userName = `${user?.first_name || ''} ${user?.last_name || ''}`;
+
+    const handleLogout = () => {
+        dispatch({ type: types.LOGOUT_INIT });
+    };
+
+    const openUserNav = (): void => {
+        modal.open(
+            <StickyModal>
+                <Navigation
+                    tabs={[
+                        {
+                            id: 'personal-area',
+                            text: 'personal_area',
+                            link: routes.profile.private.personal_area,
+                            icon: faFlag,
+                        },
+                        ...getBaseNavList(),
+                        {
+                            id: 'logout',
+                            text: 'logout',
+                            onClick: handleLogout,
+                            icon: faSignOutAlt,
+                        },
+                    ]}
+                />
+            </StickyModal>,
+        );
+    };
 
     return auth?.access_token && !media && user ? (
         <ul className={css.list}>
@@ -121,15 +157,13 @@ const MobileNav = (): ReactElement | null => {
                 </Link>
             </li>
             <li className={css.item}>
-                <Link href={routes.profile.private.personal_area}>
-                    <a className={css.button}>
-                        <div className={css.icon}>
-                            <FontAwesomeIcon icon={faUserCircle} />
-                            <Badge className={css.number}>14</Badge>
-                        </div>
-                        <span className={css.text}>{userName}</span>
-                    </a>
-                </Link>
+                <button type="button" className={css.button} onClick={openUserNav}>
+                    <div className={css.icon}>
+                        <FontAwesomeIcon icon={faUserCircle} />
+                        <Badge className={css.number}>14</Badge>
+                    </div>
+                    <span className={css.text}>{userName}</span>
+                </button>
             </li>
         </ul>
     ) : null;
