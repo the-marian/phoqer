@@ -24,7 +24,7 @@ services:
       cache_from:
         - "${FRONTEND_IMAGE}"
     image: "${FRONTEND_IMAGE}"
-    command: yarn run start:build
+    command: yarn run start
     stdin_open: true
     tty: true
     expose:
