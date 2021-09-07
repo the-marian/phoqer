@@ -27,13 +27,17 @@ const useStyles = createUseStyles((theme: Theme) => ({
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
-        padding: theme.rem(0.5, 2),
+        padding: theme.rem(0.5, 1),
 
         ...theme.media(768).max({
             position: 'relative',
             cursor: 'grab',
             userSelect: 'none',
         }),
+    },
+
+    btn: {
+        margin: '0',
     },
 
     inner: {
@@ -71,7 +75,7 @@ const StickyModal = ({ children }: IProps): ReactElement => {
         <div className={css.root}>
             <header className={css.header}>
                 <Logo />
-                <ButtonClose onClick={modal.close} />
+                <ButtonClose className={css.btn} onClick={modal.close} />
             </header>
             <div className={css.inner}>{children}</div>
         </div>

@@ -15,7 +15,7 @@ import { IDropList, IDropValue } from '../../../interfaces';
 import mixin from '../../../utils/theming/mixin';
 import { Theme } from '../../../utils/theming/theme';
 import { modal } from '../modal';
-import SmallModalWrp from '../modal/small-modal-wrp';
+import StickyModal from '../modal/sticky-modal';
 
 import ValuesList from './values-list';
 
@@ -252,9 +252,9 @@ const DropDown = ({
             setDrop(!drop);
         } else {
             modal.open(
-                <SmallModalWrp>
+                <StickyModal>
                     <ValuesList data={data} onSelect={handleSelect} withSub={withSub} css={css} />
-                </SmallModalWrp>,
+                </StickyModal>,
             );
         }
     };

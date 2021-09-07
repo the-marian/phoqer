@@ -20,12 +20,17 @@ const useStyles = createUseStyles((theme: Theme) => ({
 
         ...theme.media(1060).max({
             position: 'unset',
+            marginBottom: theme.rem(2),
         }),
     },
     flex: {
         display: 'flex',
         alignItems: 'center',
         marginBottom: theme.rem(4),
+
+        ...theme.media(1060).max({
+            marginBottom: theme.rem(1),
+        }),
     },
     user: {
         marginLeft: theme.rem(1),
@@ -45,7 +50,6 @@ const useStyles = createUseStyles((theme: Theme) => ({
 
 const ProfileAside = (): ReactElement => {
     const css = useStyles();
-    const media = useMedia(1060);
     const user = useSelector<IState, IPublicProfile | null>(state => state.user);
 
     return (
@@ -67,7 +71,7 @@ const ProfileAside = (): ReactElement => {
                 </a>
             </Link>
 
-            {media && <Navigation tabs={getBaseNavList()} />}
+            <Navigation tabs={getBaseNavList()} />
         </div>
     );
 };

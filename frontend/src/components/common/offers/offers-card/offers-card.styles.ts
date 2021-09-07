@@ -90,11 +90,13 @@ const useStyles = createUseStyles((theme: Theme) => ({
         margin: theme.rem(1, 0, 0),
         fontSize: theme.rem(1.4),
         fontWeight: theme.text.weight[2],
+        wordBreak: 'break-all',
     },
     desc: {
         margin: 0,
         fontSize: theme.rem(1.4),
         fontWeight: theme.text.weight[2],
+        wordBreak: 'break-all',
 
         ...theme.media(500).max({
             fontSize: theme.rem(1.6),

@@ -179,7 +179,7 @@ const OfferCard = ({ offer, showFavoriteBtn = true }: IProps): ReactElement => {
                                     </div>
                                 </Tooltip>
                             )}
-                            {can_rent && (
+                            {!can_rent && (
                                 <Tooltip className={css.tooltip} content="Вы являетесь автором этого объявления">
                                     <div className={clsx(css.top, css.author, config.offerCardSize === 'small' && css.topSmall)}>
                                         <FontAwesomeIcon icon={faDotCircle} />
@@ -197,7 +197,7 @@ const OfferCard = ({ offer, showFavoriteBtn = true }: IProps): ReactElement => {
                     {config.offerCardSize === 'big' ? (
                         <>
                             <h3 className={css.titleBig}>{cutString(title, 30)}</h3>
-                            <p className={css.desc}>{cutString(description, 50)}</p>
+                            <p className={css.desc}>{cutString(description, 70)}</p>
                         </>
                     ) : (
                         <Tooltip
@@ -209,7 +209,7 @@ const OfferCard = ({ offer, showFavoriteBtn = true }: IProps): ReactElement => {
                             }
                             showInMobile
                         >
-                            <h3 className={css.titleSmall}>{cutString(title, 19)}</h3>
+                            <h3 className={css.titleSmall}>{cutString(title, 45)}</h3>
                         </Tooltip>
                     )}
                 </a>
