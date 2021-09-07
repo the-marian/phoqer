@@ -40,7 +40,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
             transform: 'translateY(-50%)',
             height: '85%',
             width: '50%',
-            borderRadius: theme.rem(0.7),
+            borderRadius: theme.rem(0.4),
             background: theme.palette.white,
             transition: theme.transitions[0],
             boxShadow: theme.shadow[1],
