@@ -3,11 +3,12 @@ from typing import Optional, TypedDict
 
 import jwt
 from fastapi import BackgroundTasks, Depends
+from fastapi.security import OAuth2PasswordBearer
+from pydantic import EmailStr
+
 from FastAPI import config
 from FastAPI.config import ALGORITHM, database
-from fastapi.security import OAuth2PasswordBearer
 from FastAPI.users import crud
-from pydantic import EmailStr
 
 optional_login = OAuth2PasswordBearer(tokenUrl="auth/login", auto_error=False)
 oauth2_schema = OAuth2PasswordBearer(tokenUrl="auth/login")

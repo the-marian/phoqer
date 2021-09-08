@@ -6,9 +6,10 @@ from typing import Any, Dict
 import emails
 import jwt
 from emails.template import JinjaTemplate
+from passlib.context import CryptContext
+
 from FastAPI import config
 from FastAPI.config import ALGORITHM, BASE_DIR, SECRET_KEY
-from passlib.context import CryptContext
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 

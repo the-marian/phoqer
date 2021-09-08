@@ -1,21 +1,19 @@
 import uvicorn
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+
 from FastAPI.categories import categories
 from FastAPI.chats import chats
 from FastAPI.comments import comments
-from FastAPI.config import database, NEXT_PUBLIC_HOST
+from FastAPI.config import NEXT_PUBLIC_HOST, database
 from FastAPI.favorite import favorite
 from FastAPI.locations import locations
 from FastAPI.login import login
-from fastapi.middleware.cors import CORSMiddleware
 from FastAPI.offers import offers
 from FastAPI.upload import upload
 from FastAPI.users import users
 
-origins = [
-    "http://localhost:4000",
-    NEXT_PUBLIC_HOST
-]
+origins = ["http://localhost:4000", NEXT_PUBLIC_HOST]
 
 app = FastAPI()
 app.add_middleware(

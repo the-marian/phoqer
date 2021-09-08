@@ -1,9 +1,10 @@
 from typing import Any, List, Mapping, Optional, Set
 from uuid import UUID
 
+from pydantic import HttpUrl
+
 from FastAPI.config import PAGE_SIZE, database
 from FastAPI.offers.schemas import OfferDraftRequest, RentalPeriod, Status
-from pydantic import HttpUrl
 
 
 async def get_user_id(token: str) -> Optional[int]:

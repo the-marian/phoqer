@@ -4,6 +4,8 @@ from typing import Any, Dict, List, Mapping, Optional, Union
 
 from cryptography.fernet import Fernet
 from fastapi import APIRouter, Body, Depends, HTTPException, Query, Response
+from fastapi.websockets import WebSocket, WebSocketDisconnect
+
 from FastAPI.chats import crud
 from FastAPI.chats.schemas import (
     ChatsListResponse,
@@ -15,7 +17,6 @@ from FastAPI.chats.schemas import (
 from FastAPI.config import CHAT_SIZE, FERNET_SECRET_KEY, MESSAGES_SIZE, TECH_RENT_REQUEST
 from FastAPI.offers.crud import get_offer
 from FastAPI.utils import decode_jwt, get_current_user
-from fastapi.websockets import WebSocket, WebSocketDisconnect
 
 router = APIRouter(
     prefix="/chats",
@@ -181,7 +182,7 @@ async def get_messages(
 async def update_is_done(
     chat_id: int,
     is_done: bool = Body(..., embed=True),
-):
+) -> Response:
     chat_data = await crud.get_single_chat(chat_id=chat_id)
     if not chat_data:
         raise HTTPException(

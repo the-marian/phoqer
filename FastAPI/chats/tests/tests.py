@@ -1,6 +1,7 @@
 from fastapi import status
-from FastAPI.config import TECH_RENT_REQUEST
 from freezegun import freeze_time
+
+from FastAPI.config import TECH_RENT_REQUEST
 
 
 def test_get_chats_not_auth(client):

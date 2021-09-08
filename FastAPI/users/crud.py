@@ -1,9 +1,10 @@
 import datetime
 from typing import Mapping
 
+from pydantic import EmailStr
+
 from FastAPI.config import database
 from FastAPI.users.schemas import UserCreateRequest, UserPartialUpdate
-from pydantic import EmailStr
 
 
 async def user_exist(email: EmailStr) -> bool:

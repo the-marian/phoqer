@@ -1,8 +1,9 @@
 import datetime
 from typing import Any, Dict, List, Mapping, Optional
 
-from FastAPI.config import CHAT_SIZE, MESSAGES_SIZE, database
 from pydantic import HttpUrl
+
+from FastAPI.config import CHAT_SIZE, MESSAGES_SIZE, database
 
 
 async def get_chats(
@@ -257,7 +258,7 @@ async def create_chat(offer_id: str, author_id: int, client_id: int) -> int:
     return int(await database.execute(query=query, values=values))
 
 
-async def get_single_chat(chat_id: int):
+async def get_single_chat(chat_id: int) -> Optional[Mapping]:
     query = """
     SELECT
         chat_id,
@@ -273,7 +274,7 @@ async def get_single_chat(chat_id: int):
     return await database.fetch_one(query=query, values=values)
 
 
-async def change_is_done(chat_id: int, is_done: bool):
+async def change_is_done(chat_id: int, is_done: bool) -> None:
     query = """
     UPDATE chats
     SET

@@ -1,6 +1,7 @@
 from typing import List, Mapping
 
 from fastapi import APIRouter
+
 from FastAPI.locations import crud
 from FastAPI.locations.schemas import Cities, Countries
 

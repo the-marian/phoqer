@@ -3,6 +3,7 @@ from math import ceil
 from typing import Dict, List, Optional
 
 from fastapi import APIRouter, Body, Depends, HTTPException, Response
+
 from FastAPI.config import PAGE_SIZE
 from FastAPI.offers import crud
 from FastAPI.offers.schemas import (

@@ -1,6 +1,7 @@
 from typing import List
 
 from fastapi import APIRouter
+
 from FastAPI.categories import crud
 from FastAPI.categories.schemas import AllCategory, ParentCategory
 

@@ -4,6 +4,7 @@ import uuid
 from typing import Dict
 
 from fastapi import APIRouter, Depends, File, UploadFile
+
 from FastAPI.config import MEDIA_ROOT, MEDIA_URL
 from FastAPI.utils import get_current_user
 

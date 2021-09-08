@@ -2,9 +2,10 @@ import datetime
 
 import pytest
 from fastapi import status
+from httpx import AsyncClient
+
 from FastAPI.main import app
 from FastAPI.users.crud import get_user
-from httpx import AsyncClient
 
 
 def test_user_signup(client):

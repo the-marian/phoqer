@@ -2,6 +2,7 @@ from typing import Mapping
 
 from fastapi import APIRouter, Depends, HTTPException, Response, status
 from fastapi.responses import RedirectResponse
+
 from FastAPI.users import crud
 from FastAPI.users.schemas import ShortUser, User, UserCreateRequest, UserPartialUpdate
 from FastAPI.users.utils import (

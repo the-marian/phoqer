@@ -1,8 +1,9 @@
 from datetime import datetime, timedelta
 
 import jwt
-from FastAPI.config import ACCESS_TOKEN_EXPIRE_MINUTES, ALGORITHM, SECRET_KEY
 from passlib.context import CryptContext
+
+from FastAPI.config import ACCESS_TOKEN_EXPIRE_MINUTES, ALGORITHM, SECRET_KEY
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 

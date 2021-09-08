@@ -2,10 +2,11 @@ import os
 
 import psycopg2
 import pytest
+from fastapi.testclient import TestClient
+
 from FastAPI.chats.schemas import MessageType
 from FastAPI.config import BASE_DIR, PG_DB, TEST_PG_DB
 from FastAPI.main import app
-from fastapi.testclient import TestClient
 
 
 @pytest.fixture

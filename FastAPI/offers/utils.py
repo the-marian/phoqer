@@ -1,8 +1,9 @@
 from typing import Optional
 
+from pydantic import ValidationError
+
 from FastAPI.offers import crud
 from FastAPI.offers.schemas import Status, ValidOffer
-from pydantic import ValidationError
 
 
 async def review_status_validator(offer_id: str) -> Optional[str]:

@@ -1,6 +1,7 @@
 from typing import List
 
 from fastapi import APIRouter, Depends, Response, status
+
 from FastAPI.favorite import crud
 from FastAPI.offers.schemas import OffersListItem
 from FastAPI.utils import get_current_user

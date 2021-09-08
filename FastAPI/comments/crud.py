@@ -1,8 +1,9 @@
 from typing import Dict, List, Mapping, Union
 
+from pydantic import HttpUrl
+
 from FastAPI.comments.schemas import CommentRequest
 from FastAPI.config import database
-from pydantic import HttpUrl
 
 
 @database.transaction()
