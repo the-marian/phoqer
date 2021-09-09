@@ -19,5 +19,5 @@ jobs:
       - name: Install flake8 and plugins
         run: pip install flake8==3.8.4 flake8-pytest-style==1.3.0 flake8-formatter-abspath==1.0.1
       - name: Run flake8
-        run: flake8 --config=scripts/setup.cfg
+        run: flake8 --config=setup.cfg
         working-directory: ./FastAPI
