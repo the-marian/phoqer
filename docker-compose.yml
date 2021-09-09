@@ -45,7 +45,6 @@ services:
     restart: unless-stopped
     volumes:
       - media_volume:/phoqer/FastAPI/mediafiles
-      - ./data/nginx:/etc/nginx/conf.d
       - ./data/certbot/conf:/etc/letsencrypt
       - ./data/certbot/www:/var/www/certbot/
     ports:
