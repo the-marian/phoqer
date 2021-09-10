@@ -1,5 +1,6 @@
 import React, { ReactElement } from 'react';
 
+import clsx from 'clsx';
 import { createUseStyles } from 'react-jss';
 
 import { Theme } from '../../../../../utils/theming/theme';
@@ -11,8 +12,8 @@ const useStyles = createUseStyles((theme: Theme) => ({
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
-        width: width.desktopLg.center,
         height: 'calc(100vh - 8rem)',
+        width: width.desktopLg.center,
         padding: theme.rem(2),
         background: theme.palette.gray[0],
         borderRadius: theme.radius,
@@ -23,6 +24,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
             width: width.desktopSm.center,
         }),
     },
+    aside: {
+        width: '100% !important',
+    },
     img: {
         height: theme.rem(8),
         width: theme.rem(8),
@@ -31,13 +35,15 @@ const useStyles = createUseStyles((theme: Theme) => ({
 }));
 
 interface IProps {
+    aside?: boolean;
     height?: number;
 }
 
-const ChatEmpty = ({ height }: IProps): ReactElement => {
+const ChatEmpty = ({ height, aside = false }: IProps): ReactElement => {
     const css = useStyles();
+
     return (
-        <div className={css.empty} style={{ height: `${height}rem` }}>
+        <div className={clsx(css.empty, aside && css.aside)} style={{ height: `${height}rem` }}>
             <img className={css.img} src="/emoji/empty.png" alt="" />
             <p>У вас пока нету сообщений. Напишите ваше первое сообщение</p>
         </div>
