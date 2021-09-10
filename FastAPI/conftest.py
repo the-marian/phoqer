@@ -1,37 +1,40 @@
+import asyncio
 import os
+import pdb
 
 import psycopg2
 import pytest
-from fastapi.testclient import TestClient
+from async_asgi_testclient import TestClient
+from databases import Database
 
 from FastAPI.chats.schemas import MessageType
-from FastAPI.config import BASE_DIR, PG_DB, TEST_PG_DB
+from FastAPI.config import BASE_DIR, PG_DB, TEST_DATABASE_URL, TEST_PG_DB
 from FastAPI.main import app
 
 
 @pytest.fixture
-def client(db):
-    with TestClient(app) as client:
+async def client(db):
+    async with TestClient(app) as client:
         yield client
 
+#
+# @pytest.fixture
+# def marian_auth_token(client, user_marian):
+#     data = {"username": "marian.zozulia@gmail.com", "password": "apple-b@nana-f1re"}
+#     r = client.post("auth/login", data=data)
+#     auth_token = r.json()["access_token"]
+#     return {"Authorization": f"Bearer {auth_token}"}
+#
+#
+# @pytest.fixture
+# def egor_auth_token(client, user_egor):
+#     data = {"username": "fatamorganaa933@gmail.com", "password": "apple-b@nana-f1re"}
+#     r = client.post("auth/login", data=data)
+#     auth_token = r.json()["access_token"]
+#     return {"Authorization": f"Bearer {auth_token}"}
 
-@pytest.fixture
-def marian_auth_token(client, user_marian):
-    data = {"username": "marian.zozulia@gmail.com", "password": "apple-b@nana-f1re"}
-    r = client.post("auth/login", data=data)
-    auth_token = r.json()["access_token"]
-    return {"Authorization": f"Bearer {auth_token}"}
 
-
-@pytest.fixture
-def egor_auth_token(client, user_egor):
-    data = {"username": "fatamorganaa933@gmail.com", "password": "apple-b@nana-f1re"}
-    r = client.post("auth/login", data=data)
-    auth_token = r.json()["access_token"]
-    return {"Authorization": f"Bearer {auth_token}"}
-
-
-@pytest.fixture
+@pytest.fixture(scope="session")
 def _create_test_db():
     conn = psycopg2.connect(
         database=PG_DB,
@@ -50,12 +53,12 @@ def _create_test_db():
                 curs.execute(drop_query)
                 curs.execute(create_query)
                 yield
-                curs.execute(drop_query)
     finally:
+        curs.execute(drop_query)
         conn.close()
 
 
-@pytest.fixture
+@pytest.fixture(scope="session")
 def _migrate(_create_test_db):
     conn = psycopg2.connect(
         database=TEST_PG_DB,
@@ -82,141 +85,40 @@ def _migrate(_create_test_db):
         conn.close()
 
 
-@pytest.fixture
-def db(_migrate):
-    conn = psycopg2.connect(
-        database=TEST_PG_DB,
-        user="phoqer",
-        password="apple-b@nana-f1re",
-        host="localhost",
-        port="5432",
-    )
-    conn.autocommit = True
-    try:
-        with conn:
-            with conn.cursor() as curs:
-                yield curs
-    finally:
-        conn.close()
+@pytest.fixture(scope="session")
+def event_loop():
+    loop = asyncio.get_event_loop()
+    yield loop
+    loop.close()
 
 
 @pytest.fixture
-def country_ukraine(db):
-    query = "INSERT INTO countries (slug) VALUES (%s)"
-    values = ("ukraine",)
-    db.execute(query, values)
-    return "ukraine"
-
-
-@pytest.fixture
-def country_poland(db):
-    query = "INSERT INTO countries (slug) VALUES (%s)"
-    values = ("poland",)
-    db.execute(query, values)
-    return "poland"
-
-
-@pytest.fixture
-def city_kiev(db, country_ukraine):
-    query = "INSERT INTO cities (slug, countries_slug) VALUES (%s, %s)"
-    values = ("kyiv", "ukraine")
-    db.execute(query, values)
-    return "kyiv"
-
-
-@pytest.fixture
-def city_warsaw(db, country_ukraine):
-    query = "INSERT INTO cities (slug, countries_slug) VALUES (%s, %s)"
-    values = ("warsaw", "poland")
-    db.execute(query, values)
-    return "warsaw"
-
+async def db(_migrate):
+    async with Database(TEST_DATABASE_URL) as database:
+        yield database
+        await database.execute(query="TRUNCATE categories_childcategories CASCADE")
+        await database.execute(query="TRUNCATE categories_parentcategories CASCADE")
+        await database.execute(query="TRUNCATE countries CASCADE")
+        await database.execute(query="TRUNCATE cities CASCADE")
+        await database.execute(query="TRUNCATE users_userdislike CASCADE")
+        await database.execute(query="TRUNCATE users_userlike CASCADE")
+        await database.execute(query="TRUNCATE users_descriptionrating CASCADE")
+        await database.execute(query="TRUNCATE users_communicationrating CASCADE")
+        await database.execute(query="TRUNCATE users_user CASCADE")
+        await database.execute(query="TRUNCATE offers_offerimages CASCADE")
+        await database.execute(query="TRUNCATE offers_offer_favorite CASCADE")
+        await database.execute(query="TRUNCATE offers_offer CASCADE")
+        await database.execute(query="TRUNCATE notifications_notification CASCADE")
+        await database.execute(query="TRUNCATE comments_dislike CASCADE")
+        await database.execute(query="TRUNCATE comments_like CASCADE")
+        await database.execute(query="TRUNCATE comments_commentimage CASCADE")
+        await database.execute(query="TRUNCATE comments_comment CASCADE")
+        await database.execute(query="TRUNCATE chats CASCADE")
+        await database.execute(query="TRUNCATE messages_uploads CASCADE")
+        await database.execute(query="TRUNCATE messages CASCADE")
 
 @pytest.fixture
-def user_marian(db, country_poland, city_warsaw):
-    query = """
-    INSERT INTO users_user (
-        id,
-        password,
-        last_login,
-        is_superuser,
-        first_name,
-        last_name,
-        is_staff,
-        is_active,
-        date_joined,
-        bio,
-        birth_date,
-        email,
-        profile_img,
-        country,
-        city)
-    VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"""
-    values = (
-        "1",  # id
-        "$2b$12$6DVnORNuohV8olN5cNzqKufCRGGnUYiYZJkjAjPcAt8roFRGyo4/e",  # password
-        "2021-07-07 11:35:14.330296+00",  # last_login
-        False,  # is_superuser
-        "Marian",  # first_name
-        "Zozulia",  # last_name
-        False,  # is_staff
-        True,  # is_active
-        "2021-03-09 00:00:00+00",  # date_joined
-        "Made on Earth by humans... Currently hanging out in Warsaw",  # bio
-        "1997-11-06",  # birth_date
-        "marian.zozulia@gmail.com",  # email
-        "http://phoqer.com/mediafiles/"
-        "0f13df9c-772c-4216-b6e0-7894cdaaa2dd-2021-06-14_15.42.25.jpg",  # profile_img
-        "poland",  # country
-        "warsaw",  # city
-    )
-    db.execute(query, values)
-    return "1"
-
-
-@pytest.fixture
-def user_egor(db, country_ukraine, city_kiev):
-    query = """
-    INSERT INTO users_user (
-        id,
-        password,
-        last_login,
-        is_superuser,
-        first_name,
-        last_name,
-        is_staff,
-        is_active,
-        date_joined,
-        bio,
-        birth_date,
-        email,
-        profile_img,
-        country,
-        city)
-    VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"""
-    values = (
-        "2",  # id
-        "$2b$12$6DVnORNuohV8olN5cNzqKufCRGGnUYiYZJkjAjPcAt8roFRGyo4/e",  # password
-        "2020-07-07 11:35:14.330296+00",  # last_login
-        False,  # is_superuser
-        "Egor",  # first_name
-        "Leletsky",  # last_name
-        False,  # is_staff
-        True,  # is_active
-        "2020-03-09 00:00:00+00",  # date_joined
-        "Nie mam opisu profilu i co ty na to ?",  # bio
-        "1997-03-19",  # birth_date
-        "fatamorganaa933@gmail.com",  # email
-        None,  # profile_img
-        "ukraine",  # country
-        "kyiv",  # city
-    )
-    db.execute(query, values)
-    return "2"
-
-
-@pytest.fixture
-def categoty_technics(db):
+async def category_technics(db):
     query = """
     INSERT INTO categories_parentcategories (
         image,
@@ -224,345 +126,470 @@ def categoty_technics(db):
         priority,
         slug,
         icon_image)
-    VALUES (%s, %s, %s, %s, %s)"""
-    values = (
-        "http://phoqer.com/mediafiles/"
-        "cfd89389-3dcd-4581-aafc-97b5fbb83ba7-техника.jpg",  # image
-        True,  # is_active
-        "1",  # priority
-        "technics",  # slug
-        "technics",  # icon_image
-    )
-    db.execute(query, values)
+    VALUES (
+        :image,
+        :is_active,
+        :priority,
+        :slug,
+        :icon_image
+    )"""
+    values = {
+        "image": "http://phoqer.com/mediafiles/"
+                 "cfd89389-3dcd-4581-aafc-97b5fbb83ba7-техника.jpg",
+        "is_active": True,
+        "priority": 1,
+        "slug": "technics",
+        "icon_image": "technics",
+    }
+    await db.execute(query=query, values=values)
     return "technics"
 
 
 @pytest.fixture
-def sub_categoty_consoles(db, categoty_technics):
+async def sub_category_consoles(db, category_technics):
     query = """
     INSERT INTO categories_childcategories (
         slug,
         parent_id,
         icon_image)
-    VALUES (%s, %s, %s)"""
-    values = (
-        "consoles",  # slug
-        "technics",  # parent_id
-        "consoles",  # icon_image
-    )
-    db.execute(query, values)
+    VALUES (
+        :slug,
+        :parent_id,
+        :icon_image
+    )"""
+    values = {
+        "slug": "consoles",
+        "parent_id": "technics",
+        "icon_image": "consoles",
+    }
+    await db.execute(query=query, values=values)
     return "consoles"
 
+# @pytest.fixture
+# def country_ukraine(db):
+#     query = "INSERT INTO countries (slug) VALUES (%s)"
+#     values = ("ukraine",)
+#     db.execute(query, values)
+#     return "ukraine"
+#
+#
+# @pytest.fixture
+# def country_poland(db):
+#     query = "INSERT INTO countries (slug) VALUES (%s)"
+#     values = ("poland",)
+#     db.execute(query, values)
+#     return "poland"
+#
+#
+# @pytest.fixture
+# def city_kiev(db, country_ukraine):
+#     query = "INSERT INTO cities (slug, countries_slug) VALUES (%s, %s)"
+#     values = ("kyiv", "ukraine")
+#     db.execute(query, values)
+#     return "kyiv"
+#
+#
+# @pytest.fixture
+# def city_warsaw(db, country_ukraine):
+#     query = "INSERT INTO cities (slug, countries_slug) VALUES (%s, %s)"
+#     values = ("warsaw", "poland")
+#     db.execute(query, values)
+#     return "warsaw"
+#
+#
+# @pytest.fixture
+# def user_marian(db, country_poland, city_warsaw):
+#     query = """
+#     INSERT INTO users_user (
+#         id,
+#         password,
+#         last_login,
+#         is_superuser,
+#         first_name,
+#         last_name,
+#         is_staff,
+#         is_active,
+#         date_joined,
+#         bio,
+#         birth_date,
+#         email,
+#         profile_img,
+#         country,
+#         city)
+#     VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"""
+#     values = (
+#         "1",  # id
+#         "$2b$12$6DVnORNuohV8olN5cNzqKufCRGGnUYiYZJkjAjPcAt8roFRGyo4/e",  # password
+#         "2021-07-07 11:35:14.330296+00",  # last_login
+#         False,  # is_superuser
+#         "Marian",  # first_name
+#         "Zozulia",  # last_name
+#         False,  # is_staff
+#         True,  # is_active
+#         "2021-03-09 00:00:00+00",  # date_joined
+#         "Made on Earth by humans... Currently hanging out in Warsaw",  # bio
+#         "1997-11-06",  # birth_date
+#         "marian.zozulia@gmail.com",  # email
+#         "http://phoqer.com/mediafiles/"
+#         "0f13df9c-772c-4216-b6e0-7894cdaaa2dd-2021-06-14_15.42.25.jpg",  # profile_img
+#         "poland",  # country
+#         "warsaw",  # city
+#     )
+#     db.execute(query, values)
+#     return "1"
+#
+#
+# @pytest.fixture
+# def user_egor(db, country_ukraine, city_kiev):
+#     query = """
+#     INSERT INTO users_user (
+#         id,
+#         password,
+#         last_login,
+#         is_superuser,
+#         first_name,
+#         last_name,
+#         is_staff,
+#         is_active,
+#         date_joined,
+#         bio,
+#         birth_date,
+#         email,
+#         profile_img,
+#         country,
+#         city)
+#     VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"""
+#     values = (
+#         "2",  # id
+#         "$2b$12$6DVnORNuohV8olN5cNzqKufCRGGnUYiYZJkjAjPcAt8roFRGyo4/e",  # password
+#         "2020-07-07 11:35:14.330296+00",  # last_login
+#         False,  # is_superuser
+#         "Egor",  # first_name
+#         "Leletsky",  # last_name
+#         False,  # is_staff
+#         True,  # is_active
+#         "2020-03-09 00:00:00+00",  # date_joined
+#         "Nie mam opisu profilu i co ty na to ?",  # bio
+#         "1997-03-19",  # birth_date
+#         "fatamorganaa933@gmail.com",  # email
+#         None,  # profile_img
+#         "ukraine",  # country
+#         "kyiv",  # city
+#     )
+#     db.execute(query, values)
+#     return "2"
+#
 
-@pytest.fixture
-def sub_category_phones(db, categoty_technics):
-    query = """
-    INSERT INTO categories_childcategories (
-        slug,
-        parent_id,
-        icon_image)
-    VALUES (%s, %s, %s)"""
-    values = (
-        "phones",  # slug
-        "technics",  # parent_id
-        "phones",  # icon_image
-    )
-    db.execute(query, values)
-    return "phones"
-
-
-@pytest.fixture
-def offer_ps4(
-    db, user_marian, categoty_technics, sub_categoty_consoles, country_poland, city_warsaw
-):
-    query = """
-    INSERT INTO offers_offer (
-        city,
-        cover_image,
-        currency,
-        deposit_val,
-        description,
-        doc_needed,
-        extra_requirements,
-        id,
-        is_deliverable,
-        price,
-        promote_til_date,
-        pub_date,
-        status,
-        title,
-        views,
-        author_id,
-        category_id,
-        sub_category_id,
-        max_rent_period,
-        min_rent_period,
-        country,
-        items_amount,
-        rental_period)
-    VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
-    %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
-    RETURNING id"""
-    values = (
-        "warsaw",  # city
-        "http://phoqer.com/mediafiles/"
-        "52cade24-63d6-4f04-bf8c-34489d0c67f1-2368.png",  # cover_image
-        "PLN",  # currency
-        "500",  # deposit_val
-        "Konsola Sony PlayStation 4 Nowa!",  # description
-        False,  # doc_needed
-        "Zdęcie dowodu osobistego",  # extra_requirements
-        "a30b8a1e-1c60-4bbc-ac3d-37df2d224000",  # id
-        True,  # is_deliverable
-        "100",  # price
-        "2022-01-01",  # promote_til_date
-        "2021-05-21",  # pub_date
-        "ACTIVE",  # status
-        "SONY PlayStation 4",  # title
-        "1",  # views
-        "1",  # author_id
-        "technics",  # category_id
-        "consoles",  # sub_category_id
-        "100",  # max_rent_period
-        "3",  # min_rent_period
-        "poland",  # country
-        "1",  # items_amount
-        "DAY",  # rental_period
-    )
-    db.execute(query, values)
-    return "a30b8a1e-1c60-4bbc-ac3d-37df2d224000"
-
-
-@pytest.fixture
-def offer_with_two_ps4(
-    db, user_marian, categoty_technics, sub_categoty_consoles, country_poland, city_warsaw
-):
-    query = """
-    INSERT INTO offers_offer (
-        city,
-        cover_image,
-        currency,
-        deposit_val,
-        description,
-        doc_needed,
-        extra_requirements,
-        id,
-        is_deliverable,
-        price,
-        promote_til_date,
-        pub_date,
-        status,
-        title,
-        views,
-        author_id,
-        category_id,
-        sub_category_id,
-        max_rent_period,
-        min_rent_period,
-        country,
-        items_amount,
-        rental_period)
-    VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
-    %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
-    RETURNING id"""
-    values = (
-        "warsaw",  # city
-        "http://phoqer.com/mediafiles/"
-        "52cade24-63d6-4f04-bf8c-34489d0c67f1-2368.png",  # cover_image
-        "PLN",  # currency
-        "500",  # deposit_val
-        "Konsola Sony PlayStation 4 Nowa!",  # description
-        False,  # doc_needed
-        "Zdęcie dowodu osobistego",  # extra_requirements
-        "a30b8a1e-1c60-4bbc-ac3d-37df2d224002",  # id
-        True,  # is_deliverable
-        "100",  # price
-        "2022-01-01",  # promote_til_date
-        "2021-05-21",  # pub_date
-        "ACTIVE",  # status
-        "SONY PlayStation 4",  # title
-        "1",  # views
-        "1",  # author_id
-        "technics",  # category_id
-        "consoles",  # sub_category_id
-        "100",  # max_rent_period
-        "3",  # min_rent_period
-        "poland",  # country
-        "2",  # items_amount
-        "DAY",  # rental_period
-    )
-    db.execute(query, values)
-    return "a30b8a1e-1c60-4bbc-ac3d-37df2d224002"
-
-
-@pytest.fixture
-def offer_iphone12(
-    db, user_egor, categoty_technics, sub_category_phones, country_ukraine, city_kiev
-):
-    query = """
-    INSERT INTO offers_offer (
-        city,
-        cover_image,
-        currency,
-        deposit_val,
-        description,
-        doc_needed,
-        extra_requirements,
-        id,
-        is_deliverable,
-        price,
-        promote_til_date,
-        pub_date,
-        status,
-        title,
-        views,
-        author_id,
-        category_id,
-        sub_category_id,
-        max_rent_period,
-        min_rent_period,
-        country,
-        items_amount,
-        rental_period)
-    VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
-    %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
-    RETURNING id"""
-    values = (
-        "kyiv",  # city
-        "http://phoqer.com/mediafiles/"
-        "52cade24-63d6-4f04-bf8c-34489d0c67f1-2369.png",  # cover_image
-        "PLN",  # currency
-        "200",  # deposit_val
-        "Nowy Iphone 12!",  # description
-        False,  # doc_needed
-        "Zdęcie dowodu osobistego",  # extra_requirements
-        "a30b8a1e-1c60-4bbc-ac3d-37df2d224001",  # id
-        True,  # is_deliverable
-        "200",  # price
-        "2022-01-01",  # promote_til_date
-        "2021-05-21",  # pub_date
-        "ACTIVE",  # status
-        "Iphone 12",  # title
-        "1101",  # views
-        "2",  # author_id
-        "technics",  # category_id
-        "phones",  # sub_category_id
-        "7",  # max_rent_period
-        "1",  # min_rent_period
-        "ukraine",  # country
-        "1",  # items_amount
-        "DAY",  # rental_period
-    )
-    db.execute(query, values)
-    return "a30b8a1e-1c60-4bbc-ac3d-37df2d224001"
-
-
-@pytest.fixture
-def chat_marian_egor(db, user_marian, user_egor, offer_ps4):
-    query = """
-    INSERT INTO chats (
-        chat_id,
-        author_id,
-        client_id,
-        offer_id,
-        creation_datetime,
-        is_done)
-    VALUES (%s, %s, %s, %s, %s, %s)
-    RETURNING offer_id
-    """
-    values = (
-        "1",  # chat_id
-        user_marian,  # author_id
-        user_egor,  # client_id
-        offer_ps4,  # offer_id
-        "2021-06-21 07:52:21.609079+00",  # creation_datetime
-        False,  # is_done
-    )
-    db.execute(query, values)
-    return "1"
-
-
-@pytest.fixture
-def chat_egor_marian(db, user_marian, user_egor, offer_iphone12):
-    query = """
-    INSERT INTO chats (
-        chat_id,
-        author_id,
-        client_id,
-        offer_id,
-        creation_datetime,
-        is_done)
-    VALUES (%s, %s, %s, %s, %s, %s)
-    RETURNING offer_id
-    """
-    values = (
-        "2",  # chat_id
-        user_egor,  # author_id
-        user_marian,  # client_id
-        offer_iphone12,  # offer_id
-        "2021-07-21 07:52:21.609079+00",  # creation_datetime
-        False,  # is_done
-    )
-    db.execute(query, values)
-    return "2"
-
-
-@pytest.fixture
-def _messages(db, chat_marian_egor):
-    query = """
-    INSERT INTO messages (
-        author_id,
-        chat_id,
-        creation_datetime,
-        id,
-        is_red,
-        message_type,
-        text)
-    VALUES
-    """
-    data = [
-        (
-            1,  # author_id
-            chat_marian_egor,  # chat_id
-            "2021-06-20 15:01:32.639425+00",  # creation_datetime
-            1,  # id
-            True,  # is_red
-            MessageType.RENT_REQUEST.value,  # message_type
-            "gAAAAABgz1xIJTxsDDfVoveXWFpFIl-Mk55Gp8iLX--cAZUE6na_F6jL"
-            "bDy4pMnlQkxeskt0hKp1glOHxzoDaKlhD0pzpFdDWQ==",  # text
-        )
-    ]
-    data.extend(
-        [
-            (
-                1,  # author_id
-                chat_marian_egor,  # chat_id
-                f"2021-06-20 15:{i}:32.639425+00",  # creation_datetime
-                i,  # id
-                True,  # is_red
-                MessageType.MESSAGE.value,  # message_type
-                "gAAAAABgz1xIJTxsDDfVoveXWFpFIl-Mk55Gp8iLX--cAZUE6na_F6jL"
-                "bDy4pMnlQkxeskt0hKp1glOHxzoDaKlhD0pzpFdDWQ==",  # text
-            )
-            for i in range(11, 51, 2)
-        ]
-    )
-    data.extend(
-        [
-            (
-                2,  # author_id
-                chat_marian_egor,  # chat_id
-                f"2021-06-20 15:{i}:32.639425+00",  # creation_datetime
-                i,  # id
-                True,  # is_red
-                MessageType.MESSAGE.value,  # message_type
-                "gAAAAABgz1xIJTxsDDfVoveXWFpFIl-Mk55Gp8iLX--cAZUE6na_F6jL"
-                "bDy4pMnlQkxeskt0hKp1glOHxzoDaKlhD0pzpFdDWQ==",  # text
-            )
-            for i in range(10, 50, 2)
-        ]
-    )
-    args_str = ",".join(
-        db.mogrify("(%s, %s, %s, %s, %s, %s, %s)", x).decode("utf-8") for x in data
-    )
-    db.execute(query + args_str)
+#
+# @pytest.fixture
+# def sub_category_phones(db, categoty_technics):
+#     query = """
+#     INSERT INTO categories_childcategories (
+#         slug,
+#         parent_id,
+#         icon_image)
+#     VALUES (%s, %s, %s)"""
+#     values = (
+#         "phones",  # slug
+#         "technics",  # parent_id
+#         "phones",  # icon_image
+#     )
+#     db.execute(query, values)
+#     return "phones"
+#
+#
+# @pytest.fixture
+# def offer_ps4(
+#     db, user_marian, categoty_technics, sub_category_consoles, country_poland, city_warsaw
+# ):
+#     query = """
+#     INSERT INTO offers_offer (
+#         city,
+#         cover_image,
+#         currency,
+#         deposit_val,
+#         description,
+#         doc_needed,
+#         extra_requirements,
+#         id,
+#         is_deliverable,
+#         price,
+#         promote_til_date,
+#         pub_date,
+#         status,
+#         title,
+#         views,
+#         author_id,
+#         category_id,
+#         sub_category_id,
+#         max_rent_period,
+#         min_rent_period,
+#         country,
+#         items_amount,
+#         rental_period)
+#     VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
+#     %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+#     RETURNING id"""
+#     values = (
+#         "warsaw",  # city
+#         "http://phoqer.com/mediafiles/"
+#         "52cade24-63d6-4f04-bf8c-34489d0c67f1-2368.png",  # cover_image
+#         "PLN",  # currency
+#         "500",  # deposit_val
+#         "Konsola Sony PlayStation 4 Nowa!",  # description
+#         False,  # doc_needed
+#         "Zdęcie dowodu osobistego",  # extra_requirements
+#         "a30b8a1e-1c60-4bbc-ac3d-37df2d224000",  # id
+#         True,  # is_deliverable
+#         "100",  # price
+#         "2022-01-01",  # promote_til_date
+#         "2021-05-21",  # pub_date
+#         "ACTIVE",  # status
+#         "SONY PlayStation 4",  # title
+#         "1",  # views
+#         "1",  # author_id
+#         "technics",  # category_id
+#         "consoles",  # sub_category_id
+#         "100",  # max_rent_period
+#         "3",  # min_rent_period
+#         "poland",  # country
+#         "1",  # items_amount
+#         "DAY",  # rental_period
+#     )
+#     db.execute(query, values)
+#     return "a30b8a1e-1c60-4bbc-ac3d-37df2d224000"
+#
+#
+# @pytest.fixture
+# def offer_with_two_ps4(
+#     db, user_marian, categoty_technics, sub_category_consoles, country_poland, city_warsaw
+# ):
+#     query = """
+#     INSERT INTO offers_offer (
+#         city,
+#         cover_image,
+#         currency,
+#         deposit_val,
+#         description,
+#         doc_needed,
+#         extra_requirements,
+#         id,
+#         is_deliverable,
+#         price,
+#         promote_til_date,
+#         pub_date,
+#         status,
+#         title,
+#         views,
+#         author_id,
+#         category_id,
+#         sub_category_id,
+#         max_rent_period,
+#         min_rent_period,
+#         country,
+#         items_amount,
+#         rental_period)
+#     VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
+#     %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+#     RETURNING id"""
+#     values = (
+#         "warsaw",  # city
+#         "http://phoqer.com/mediafiles/"
+#         "52cade24-63d6-4f04-bf8c-34489d0c67f1-2368.png",  # cover_image
+#         "PLN",  # currency
+#         "500",  # deposit_val
+#         "Konsola Sony PlayStation 4 Nowa!",  # description
+#         False,  # doc_needed
+#         "Zdęcie dowodu osobistego",  # extra_requirements
+#         "a30b8a1e-1c60-4bbc-ac3d-37df2d224002",  # id
+#         True,  # is_deliverable
+#         "100",  # price
+#         "2022-01-01",  # promote_til_date
+#         "2021-05-21",  # pub_date
+#         "ACTIVE",  # status
+#         "SONY PlayStation 4",  # title
+#         "1",  # views
+#         "1",  # author_id
+#         "technics",  # category_id
+#         "consoles",  # sub_category_id
+#         "100",  # max_rent_period
+#         "3",  # min_rent_period
+#         "poland",  # country
+#         "2",  # items_amount
+#         "DAY",  # rental_period
+#     )
+#     db.execute(query, values)
+#     return "a30b8a1e-1c60-4bbc-ac3d-37df2d224002"
+#
+#
+# @pytest.fixture
+# def offer_iphone12(
+#     db, user_egor, categoty_technics, sub_category_phones, country_ukraine, city_kiev
+# ):
+#     query = """
+#     INSERT INTO offers_offer (
+#         city,
+#         cover_image,
+#         currency,
+#         deposit_val,
+#         description,
+#         doc_needed,
+#         extra_requirements,
+#         id,
+#         is_deliverable,
+#         price,
+#         promote_til_date,
+#         pub_date,
+#         status,
+#         title,
+#         views,
+#         author_id,
+#         category_id,
+#         sub_category_id,
+#         max_rent_period,
+#         min_rent_period,
+#         country,
+#         items_amount,
+#         rental_period)
+#     VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
+#     %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+#     RETURNING id"""
+#     values = (
+#         "kyiv",  # city
+#         "http://phoqer.com/mediafiles/"
+#         "52cade24-63d6-4f04-bf8c-34489d0c67f1-2369.png",  # cover_image
+#         "PLN",  # currency
+#         "200",  # deposit_val
+#         "Nowy Iphone 12!",  # description
+#         False,  # doc_needed
+#         "Zdęcie dowodu osobistego",  # extra_requirements
+#         "a30b8a1e-1c60-4bbc-ac3d-37df2d224001",  # id
+#         True,  # is_deliverable
+#         "200",  # price
+#         "2022-01-01",  # promote_til_date
+#         "2021-05-21",  # pub_date
+#         "ACTIVE",  # status
+#         "Iphone 12",  # title
+#         "1101",  # views
+#         "2",  # author_id
+#         "technics",  # category_id
+#         "phones",  # sub_category_id
+#         "7",  # max_rent_period
+#         "1",  # min_rent_period
+#         "ukraine",  # country
+#         "1",  # items_amount
+#         "DAY",  # rental_period
+#     )
+#     db.execute(query, values)
+#     return "a30b8a1e-1c60-4bbc-ac3d-37df2d224001"
+#
+#
+# @pytest.fixture
+# def chat_marian_egor(db, user_marian, user_egor, offer_ps4):
+#     query = """
+#     INSERT INTO chats (
+#         chat_id,
+#         author_id,
+#         client_id,
+#         offer_id,
+#         creation_datetime,
+#         is_done)
+#     VALUES (%s, %s, %s, %s, %s, %s)
+#     RETURNING offer_id
+#     """
+#     values = (
+#         "1",  # chat_id
+#         user_marian,  # author_id
+#         user_egor,  # client_id
+#         offer_ps4,  # offer_id
+#         "2021-06-21 07:52:21.609079+00",  # creation_datetime
+#         False,  # is_done
+#     )
+#     db.execute(query, values)
+#     return "1"
+#
+#
+# @pytest.fixture
+# def chat_egor_marian(db, user_marian, user_egor, offer_iphone12):
+#     query = """
+#     INSERT INTO chats (
+#         chat_id,
+#         author_id,
+#         client_id,
+#         offer_id,
+#         creation_datetime,
+#         is_done)
+#     VALUES (%s, %s, %s, %s, %s, %s)
+#     RETURNING offer_id
+#     """
+#     values = (
+#         "2",  # chat_id
+#         user_egor,  # author_id
+#         user_marian,  # client_id
+#         offer_iphone12,  # offer_id
+#         "2021-07-21 07:52:21.609079+00",  # creation_datetime
+#         False,  # is_done
+#     )
+#     db.execute(query, values)
+#     return "2"
+#
+#
+# @pytest.fixture
+# def _messages(db, chat_marian_egor):
+#     query = """
+#     INSERT INTO messages (
+#         author_id,
+#         chat_id,
+#         creation_datetime,
+#         id,
+#         is_red,
+#         message_type,
+#         text)
+#     VALUES
+#     """
+#     data = [
+#         (
+#             1,  # author_id
+#             chat_marian_egor,  # chat_id
+#             "2021-06-20 15:01:32.639425+00",  # creation_datetime
+#             1,  # id
+#             True,  # is_red
+#             MessageType.RENT_REQUEST.value,  # message_type
+#             "gAAAAABgz1xIJTxsDDfVoveXWFpFIl-Mk55Gp8iLX--cAZUE6na_F6jL"
+#             "bDy4pMnlQkxeskt0hKp1glOHxzoDaKlhD0pzpFdDWQ==",  # text
+#         )
+#     ]
+#     data.extend(
+#         [
+#             (
+#                 1,  # author_id
+#                 chat_marian_egor,  # chat_id
+#                 f"2021-06-20 15:{i}:32.639425+00",  # creation_datetime
+#                 i,  # id
+#                 True,  # is_red
+#                 MessageType.MESSAGE.value,  # message_type
+#                 "gAAAAABgz1xIJTxsDDfVoveXWFpFIl-Mk55Gp8iLX--cAZUE6na_F6jL"
+#                 "bDy4pMnlQkxeskt0hKp1glOHxzoDaKlhD0pzpFdDWQ==",  # text
+#             )
+#             for i in range(11, 51, 2)
+#         ]
+#     )
+#     data.extend(
+#         [
+#             (
+#                 2,  # author_id
+#                 chat_marian_egor,  # chat_id
+#                 f"2021-06-20 15:{i}:32.639425+00",  # creation_datetime
+#                 i,  # id
+#                 True,  # is_red
+#                 MessageType.MESSAGE.value,  # message_type
+#                 "gAAAAABgz1xIJTxsDDfVoveXWFpFIl-Mk55Gp8iLX--cAZUE6na_F6jL"
+#                 "bDy4pMnlQkxeskt0hKp1glOHxzoDaKlhD0pzpFdDWQ==",  # text
+#             )
+#             for i in range(10, 50, 2)
+#         ]
+#     )
+#     args_str = ",".join(
+#         db.mogrify("(%s, %s, %s, %s, %s, %s, %s)", x).decode("utf-8") for x in data
+#     )
+#     db.execute(query + args_str)
