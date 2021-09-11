@@ -274,15 +274,17 @@ async def get_single_chat(chat_id: int) -> Optional[Mapping]:
     return await database.fetch_one(query=query, values=values)
 
 
-async def change_is_done(chat_id: int, is_done: bool) -> None:
+async def chat_partial_update(chat_id: int, is_done: bool, is_approved: bool) -> None:
     query = """
     UPDATE chats
     SET
-        is_done = :is_done
+        is_done = :is_done,
+        is_approved = :is_approved
     WHERE chat_id = :chat_id
     """
     values = {
         "is_done": is_done,
+        "is_approved": is_approved,
         "chat_id": chat_id,
     }
     await database.execute(query=query, values=values)

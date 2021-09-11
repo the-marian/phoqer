@@ -179,9 +179,10 @@ async def get_messages(
 
 
 @router.patch("/{chat_id}", status_code=204)
-async def update_is_done(
+async def chat_partial_update(
     chat_id: int,
     is_done: bool = Body(..., embed=True),
+    is_approved: bool = Body(..., embed=True),
 ) -> Response:
     chat_data = await crud.get_single_chat(chat_id=chat_id)
     if not chat_data:
@@ -189,5 +190,9 @@ async def update_is_done(
             status_code=404,
             detail="Chat does not exist",
         )
-    await crud.change_is_done(chat_id=chat_id, is_done=is_done)
+    await crud.chat_partial_update(
+        chat_id=chat_id,
+        is_done=is_done,
+        is_approved=is_approved
+    )
     return Response(status_code=204)
