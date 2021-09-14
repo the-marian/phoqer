@@ -1,13 +1,11 @@
 import asyncio
 import os
-import pdb
 
 import psycopg2
 import pytest
 from async_asgi_testclient import TestClient
 from databases import Database
 
-from FastAPI.chats.schemas import MessageType
 from FastAPI.config import BASE_DIR, PG_DB, TEST_DATABASE_URL, TEST_PG_DB
 from FastAPI.main import app
 
@@ -16,6 +14,7 @@ from FastAPI.main import app
 async def client(db):
     async with TestClient(app) as client:
         yield client
+
 
 #
 # @pytest.fixture
@@ -97,6 +96,7 @@ async def db(_migrate):
     async with Database(TEST_DATABASE_URL) as database:
         yield database
 
+
 @pytest.fixture
 async def category_technics(db):
     query = """
@@ -115,7 +115,7 @@ async def category_technics(db):
     )"""
     values = {
         "image": "http://phoqer.com/mediafiles/"
-                 "cfd89389-3dcd-4581-aafc-97b5fbb83ba7-техника.jpg",
+        "cfd89389-3dcd-4581-aafc-97b5fbb83ba7-техника.jpg",
         "is_active": True,
         "priority": 1,
         "slug": "technics",
@@ -148,6 +148,7 @@ async def sub_category_consoles(db, category_technics):
     yield "consoles"
     delete_query = "DELETE FROM categories_childcategories WHERE slug='consoles'"
     await db.execute(query=delete_query)
+
 
 # @pytest.fixture
 # def country_ukraine(db):
@@ -284,7 +285,12 @@ async def sub_category_consoles(db, category_technics):
 #
 # @pytest.fixture
 # def offer_ps4(
-#     db, user_marian, categoty_technics, sub_category_consoles, country_poland, city_warsaw
+#     db,
+#     user_marian,
+#     categoty_technics,
+#     sub_category_consoles,
+#     country_poland,
+#     city_warsaw
 # ):
 #     query = """
 #     INSERT INTO offers_offer (
@@ -346,7 +352,12 @@ async def sub_category_consoles(db, category_technics):
 #
 # @pytest.fixture
 # def offer_with_two_ps4(
-#     db, user_marian, categoty_technics, sub_category_consoles, country_poland, city_warsaw
+#     db,
+#     user_marian,
+#     categoty_technics,
+#     sub_category_consoles,
+#     country_poland,
+#     city_warsaw
 # ):
 #     query = """
 #     INSERT INTO offers_offer (
