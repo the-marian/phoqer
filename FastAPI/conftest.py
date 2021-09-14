@@ -96,26 +96,6 @@ def event_loop():
 async def db(_migrate):
     async with Database(TEST_DATABASE_URL) as database:
         yield database
-        await database.execute(query="TRUNCATE categories_childcategories CASCADE")
-        await database.execute(query="TRUNCATE categories_parentcategories CASCADE")
-        await database.execute(query="TRUNCATE countries CASCADE")
-        await database.execute(query="TRUNCATE cities CASCADE")
-        await database.execute(query="TRUNCATE users_userdislike CASCADE")
-        await database.execute(query="TRUNCATE users_userlike CASCADE")
-        await database.execute(query="TRUNCATE users_descriptionrating CASCADE")
-        await database.execute(query="TRUNCATE users_communicationrating CASCADE")
-        await database.execute(query="TRUNCATE users_user CASCADE")
-        await database.execute(query="TRUNCATE offers_offerimages CASCADE")
-        await database.execute(query="TRUNCATE offers_offer_favorite CASCADE")
-        await database.execute(query="TRUNCATE offers_offer CASCADE")
-        await database.execute(query="TRUNCATE notifications_notification CASCADE")
-        await database.execute(query="TRUNCATE comments_dislike CASCADE")
-        await database.execute(query="TRUNCATE comments_like CASCADE")
-        await database.execute(query="TRUNCATE comments_commentimage CASCADE")
-        await database.execute(query="TRUNCATE comments_comment CASCADE")
-        await database.execute(query="TRUNCATE chats CASCADE")
-        await database.execute(query="TRUNCATE messages_uploads CASCADE")
-        await database.execute(query="TRUNCATE messages CASCADE")
 
 @pytest.fixture
 async def category_technics(db):
@@ -142,7 +122,9 @@ async def category_technics(db):
         "icon_image": "technics",
     }
     await db.execute(query=query, values=values)
-    return "technics"
+    yield "technics"
+    delete_query = "DELETE FROM categories_parentcategories WHERE slug='technics'"
+    await db.execute(query=delete_query)
 
 
 @pytest.fixture
@@ -163,7 +145,9 @@ async def sub_category_consoles(db, category_technics):
         "icon_image": "consoles",
     }
     await db.execute(query=query, values=values)
-    return "consoles"
+    yield "consoles"
+    delete_query = "DELETE FROM categories_childcategories WHERE slug='consoles'"
+    await db.execute(query=delete_query)
 
 # @pytest.fixture
 # def country_ukraine(db):
