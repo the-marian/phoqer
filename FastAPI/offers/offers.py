@@ -2,7 +2,7 @@ from datetime import date
 from math import ceil
 from typing import Dict, List, Optional
 
-from fastapi import APIRouter, Body, Depends, HTTPException, Response
+from fastapi import APIRouter, Depends, HTTPException, Response
 
 from FastAPI.config import PAGE_SIZE
 from FastAPI.offers import crud
@@ -17,12 +17,13 @@ from FastAPI.offers.schemas import (
     PublicOffersListItem,
     PublicOffersListResponse,
     RentalPeriod,
-    Status,
     StatusBodyData,
 )
 from FastAPI.offers.utils import (
+    active_status_validator,
     in_rent_status_validator,
     review_status_validator,
+    set_active_status,
     set_in_rent_status,
     set_review_status,
 )
@@ -78,6 +79,7 @@ async def change_status(
     user_id: int = Depends(get_current_user),
 ) -> Response:
     actions_for_status = {
+        "ACTIVE": (active_status_validator, set_active_status),
         "REVIEW": (review_status_validator, set_review_status),
         "IN_RENT": (in_rent_status_validator, set_in_rent_status),
     }

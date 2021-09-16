@@ -286,3 +286,16 @@ async def chat_is_approved_update(chat_id: int) -> None:
         "chat_id": chat_id,
     }
     await database.execute(query=query, values=values)
+
+
+async def chat_is_done_update(chat_id: int) -> None:
+    query = """
+    UPDATE chats
+    SET
+        is_done = True
+    WHERE chat_id = :chat_id
+    """
+    values = {
+        "chat_id": chat_id,
+    }
+    await database.execute(query=query, values=values)
