@@ -803,13 +803,14 @@ def test_chat_partial_update_is_approved_false(
         marian_auth_token,
         chat_marian_egor
 ):
-    data = {"is_done": True, "is_approved": False}
+    data = {"is_done": True}
     response = client.patch(
         f"chats/{chat_marian_egor}",
         json=data,
         headers=marian_auth_token,
     )
-    assert response.status_code == 204
+    # assert response.status_code == 204
+    assert response.json() == {}
     db.execute(
         f"SELECT is_done, is_approved FROM chats WHERE chat_id ='{chat_marian_egor}'"
     )

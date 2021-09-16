@@ -18,6 +18,7 @@ from FastAPI.offers.schemas import (
     PublicOffersListResponse,
     RentalPeriod,
     Status,
+    StatusBodyData,
 )
 from FastAPI.offers.utils import (
     in_rent_status_validator,
@@ -73,16 +74,16 @@ async def get_offer_via_chat_id(
 @router.patch("/status/{offer_id}")
 async def change_status(
     offer_id: str,
-    status: Status = Body(..., embed=True),
+    data: StatusBodyData,
     user_id: int = Depends(get_current_user),
 ) -> Response:
     actions_for_status = {
         "REVIEW": (review_status_validator, set_review_status),
         "IN_RENT": (in_rent_status_validator, set_in_rent_status),
     }
-    if errors := await actions_for_status[status.value][0](offer_id):
+    if errors := await actions_for_status[data.status.value][0](offer_id):
         return Response(status_code=500, content=errors)
-    await actions_for_status[status.value][1](offer_id)
+    await actions_for_status[data.status.value][1](offer_id, data.chat_id)
     return Response(status_code=204)
 
 

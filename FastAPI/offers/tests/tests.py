@@ -323,18 +323,21 @@ def test_change_status_to_review(client, marian_auth_token, offer_ps4):
     assert response.status_code == 204
 
 
-def test_change_status_to_in_rent(db, client, marian_auth_token, offer_ps4):
-    data = {"status": "IN_RENT"}
+def test_change_status_to_in_rent(db, client, marian_auth_token, offer_ps4, chat_marian_egor):
+    data = {"status": "IN_RENT", "chat_id": chat_marian_egor}
     response = client.patch(
         f"offers/status/{offer_ps4}",
         json=data,
         headers=marian_auth_token,
     )
     assert response.status_code == 204
+    db.execute(f"SELECT is_approved FROM chats WHERE chat_id='{chat_marian_egor}'")
+    chat = db.fetchone()
+    assert chat[0] is True
     db.execute(f"SELECT status, items_amount FROM offers_offer WHERE id = '{offer_ps4}'")
     offer = db.fetchone()
     assert offer[0] == "IN_RENT"
-    assert offer[1] == 0
+    assert offer[1] == 1
 
 
 def test_change_status_to_in_rent_items_amount_eq_2(
