@@ -355,6 +355,7 @@ def test_status_from_in_rent_to_active(
     db.execute(f"SELECT is_done FROM chats WHERE chat_id='{chat_marian_egor}'")
     chat = db.fetchone()
     assert chat[0] is False
+    # test starts from here
     data = {"status": "ACTIVE", "chat_id": chat_marian_egor}
     response = client.patch(
         f"offers/status/{offer_ps4}",
