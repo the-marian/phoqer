@@ -3,7 +3,7 @@ from math import ceil
 from typing import Any, Dict, List, Mapping, Optional, Union
 
 from cryptography.fernet import Fernet
-from fastapi import APIRouter, Body, Depends, HTTPException, Query, Response
+from fastapi import APIRouter, Body, Depends, HTTPException, Query
 from fastapi.websockets import WebSocket, WebSocketDisconnect
 
 from FastAPI.chats import crud
