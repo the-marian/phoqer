@@ -20,6 +20,11 @@ const useStyles = createUseStyles((theme: Theme) => ({
         textAlign: 'center',
         color: theme.palette.gray[2],
 
+        '& > p': {
+            maxWidth: theme.rem(40),
+            margin: '0 auto',
+        },
+
         ...theme.media(1500).max({
             width: width.desktopSm.center,
         }),
@@ -36,15 +41,19 @@ const useStyles = createUseStyles((theme: Theme) => ({
 
 interface IProps {
     aside?: boolean;
-    height?: number;
+    height?: number | string;
+    small?: boolean;
 }
 
-const ChatEmpty = ({ height, aside = false }: IProps): ReactElement => {
+const ChatEmpty = ({ height, aside = false, small = false }: IProps): ReactElement => {
     const css = useStyles();
 
     return (
-        <div className={clsx(css.empty, aside && css.aside)} style={{ height: `${height}rem` }}>
-            <img className={css.img} src="/emoji/empty.png" alt="" />
+        <div
+            className={clsx(css.empty, aside && css.aside)}
+            style={{ height: typeof height === 'string' ? height : `${height}rem` }}
+        >
+            {!small && <img className={css.img} src="/emoji/empty.png" alt="" />}
             <p>У вас пока нету сообщений. Напишите ваше первое сообщение</p>
         </div>
     );

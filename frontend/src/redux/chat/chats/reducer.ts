@@ -10,9 +10,11 @@ const chats = (state: IChatsList = initState.chat.chats, { type, payload }: IAct
             return { ...state, loading: true };
 
         case types.GET_CHATS_SUCCESS:
+        case types.REFRESH_CHATS_SUCCESS:
             return { ...state, data: payload as IPagination<IChats>, loading: false };
 
         case types.GET_CHATS_ERROR:
+        case types.REFRESH_CHATS_ERROR:
             return { ...state, loading: false };
 
         case types.CHANGE_CHAT_TYPE:

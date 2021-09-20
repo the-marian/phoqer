@@ -40,12 +40,18 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
     flex: {
         display: 'flex',
+        alignItems: 'center',
+
+        '& > p': {
+            wordBreak: 'break-all',
+        },
     },
     title: {
         width: '100%',
         fontSize: theme.rem(1.4),
         fontWeight: theme.text.weight[2],
         marginBottom: theme.rem(0.6),
+        wordBreak: 'break-all',
 
         ...theme.media(1060).max({
             fontWeight: theme.text.weight[2],
@@ -56,6 +62,8 @@ const useStyles = createUseStyles((theme: Theme) => ({
         marginLeft: theme.rem(1),
     },
     online: {
+        height: theme.rem(1),
+        width: theme.rem(1),
         marginRight: theme.rem(0.4),
     },
     number: {

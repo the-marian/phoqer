@@ -1,4 +1,8 @@
-import notifications from '../components/common/notifications';
+import { useEffect } from 'react';
+
+import { useDispatch } from 'react-redux';
+
+import types from '../redux/types';
 import config from '../utils/config';
 
 import useAuth from './auth.hook';
@@ -22,13 +26,25 @@ const useChat = (id: string | number): WebSocket | null => {
     socket = new WebSocket(`${config.socketUrl('v2')}/chat/${id}?token=${auth.access_token}`);
     socket.onclose = (ev): void => console.log(ev);
     socket.onerror = (): void => {
-        notifications.error({
-            title: 'Chat error-template',
-            message: 'Some error-template with chat. Try to reload your browser',
-        });
+        socket?.close(1000, 'Close chat');
+        socket = new WebSocket(`${config.socketUrl('v2')}/chat/${id}?token=${auth.access_token}`);
     };
 
     return socket;
+};
+
+export const useChatListUpdate = (): void => {
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch({ type: types.GET_CHATS_START });
+        dispatch({ type: types.RESET_CHAT_SIDEBAR });
+
+        const id = setInterval(() => {
+            dispatch({ type: types.REFRESH_CHATS_START });
+        }, 10000);
+        return () => clearInterval(id);
+    }, [dispatch]);
 };
 
 export default useChat;

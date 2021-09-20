@@ -87,8 +87,7 @@ const RentRequest = ({ message }: IProps): ReactElement | null => {
 
     const clientText = (
         <p>
-            Вы успешно отправили запрос {message.first_name} {message.last_name} на аренду &quot;{offerInfo.data?.title}&quot;. Вы
-            можете задать дополнительные вопросы автору объявления в этом чате.
+            Вы успешно отправили запрос {message.first_name} {message.last_name} на аренду &quot;{offerInfo.data?.title}&quot;.
         </p>
     );
 
@@ -129,7 +128,7 @@ const RentRequest = ({ message }: IProps): ReactElement | null => {
         user && (
             <div className={css.root}>
                 <div className={css.img}>
-                    <img src="/target.png" alt="" />
+                    <img src={message.user_id === user.id ? '/case.png' : '/target.png'} alt="" />
                 </div>
                 <div className={css.text}>{message.user_id === user.id ? authorText : clientText}</div>
             </div>

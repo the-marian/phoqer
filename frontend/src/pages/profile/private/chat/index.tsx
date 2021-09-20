@@ -1,8 +1,7 @@
-import React, { ReactElement, useEffect } from 'react';
+import React, { ReactElement } from 'react';
 
 import { GetServerSidePropsContext } from 'next';
 import { createUseStyles } from 'react-jss';
-import { useDispatch } from 'react-redux';
 
 import AuthRedirect from '../../../../components/context/auth/auth-redirect';
 import Meta from '../../../../components/meta';
@@ -10,10 +9,10 @@ import { width } from '../../../../components/pages/chat/chat.config';
 import ChatBackBtn from '../../../../components/pages/chat/components/chat-back-btn';
 import ChatTabs from '../../../../components/pages/chat/components/chat-tabs';
 import ChatWrp from '../../../../components/pages/chat/components/wrappers/chat-wrp';
+import { useChatListUpdate } from '../../../../hooks/chat.hook';
 import useMedia from '../../../../hooks/media.hook';
 import useTrans from '../../../../hooks/trans.hook';
 import { wrapper } from '../../../../redux/store';
-import types from '../../../../redux/types';
 import { serverRedirect } from '../../../../utils/helpers';
 import routes from '../../../../utils/routes';
 import { Theme } from '../../../../utils/theming/theme';
@@ -59,15 +58,11 @@ const useStyles = createUseStyles((theme: Theme) => ({
 }));
 
 const Messages = (): ReactElement => {
+    useChatListUpdate();
+
     const css = useStyles();
     const trans = useTrans();
     const media = useMedia(1060);
-    const dispatch = useDispatch();
-
-    useEffect(() => {
-        dispatch({ type: types.GET_CHATS_START });
-        dispatch({ type: types.RESET_CHAT_SIDEBAR });
-    }, [dispatch]);
 
     return (
         <>

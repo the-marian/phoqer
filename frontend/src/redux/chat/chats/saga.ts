@@ -21,6 +21,19 @@ function* getChats() {
     }
 }
 
+function* refreshChats() {
+    try {
+        const type: ChatType = yield select<(state: IState) => ChatType>(state => state.chat.chats.type);
+        const { status, data } = yield call(api.chat.chats, 1, type);
+        if (status < 200 || status >= 300) throw new Error();
+        yield put({ type: types.REFRESH_CHATS_SUCCESS, payload: data });
+    } catch (error) {
+        if (error?.response?.status === 401) return;
+        notifications.error({ message: error?.response?.data?.detail || '...' });
+        yield put({ type: types.REFRESH_CHATS_ERROR });
+    }
+}
+
 function* createChat({ payload, callback }: IAction) {
     try {
         const { status, data }: AxiosResponse<INewChat> = yield call(api.chat.createChat, payload as INewChat);
@@ -36,5 +49,9 @@ function* createChat({ payload, callback }: IAction) {
 }
 
 export default function* chats(): Generator {
-    yield all([yield takeLatest(types.GET_CHATS_START, getChats), yield takeLatest(types.CREATE_CHAT_START, createChat)]);
+    yield all([
+        yield takeLatest(types.GET_CHATS_START, getChats),
+        yield takeLatest(types.REFRESH_CHATS_START, refreshChats),
+        yield takeLatest(types.CREATE_CHAT_START, createChat),
+    ]);
 }

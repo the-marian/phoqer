@@ -12,6 +12,7 @@ import Conversation from '../../../../../components/pages/chat/chat-conversation
 import ChatBackBtn from '../../../../../components/pages/chat/components/chat-back-btn';
 import ChatTabs from '../../../../../components/pages/chat/components/chat-tabs';
 import NewChatWrp from '../../../../../components/pages/chat/components/wrappers/new-chat-wrp';
+import { useChatListUpdate } from '../../../../../hooks/chat.hook';
 import useMedia from '../../../../../hooks/media.hook';
 import useTrans from '../../../../../hooks/trans.hook';
 import { wrapper } from '../../../../../redux/store';
@@ -61,10 +62,9 @@ const NewChat = (): ReactElement => {
 
     const [loading, setLoading] = useState<boolean>(false);
 
+    useChatListUpdate();
     useEffect(() => {
-        dispatch({ type: types.RESET_CHAT_SIDEBAR });
         dispatch({ type: types.REMOVE_ALL_MESSAGES });
-        dispatch({ type: types.GET_CHATS_START });
     }, [dispatch]);
 
     const handleCreateChat = (): void => {
