@@ -89,7 +89,9 @@ const ChatConfirmation = ({ profile, offerTitle }: IProps): ReactElement => {
             </h2>
 
             <div className={css.flex}>
-                <Button className={css.approve}>Approve</Button>
+                <Button primary className={css.approve}>
+                    Approve
+                </Button>
                 <Button className={css.cancel}>Cancel</Button>
             </div>
         </div>

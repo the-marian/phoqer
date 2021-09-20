@@ -14,6 +14,7 @@ import TextSkeleton from '../../../../common/loaders/skeletons/text';
 import { modal } from '../../../../common/modal';
 import FullPageGallery from '../../../../common/modal/full-page-gallery';
 import MidModalWrp from '../../../../common/modal/mid-modal-wrp';
+import SmallModalWrp from '../../../../common/modal/small-modal-wrp';
 import UserAvatar from '../../../../common/user-avatar';
 import { createHTML } from '../chat-flow/chat-flow.utils';
 
@@ -101,64 +102,68 @@ const ChatUserModal = ({ message }: IProps): ReactElement => {
         modal.open(<FullPageGallery images={images} />);
     };
 
-    return (
-        <MidModalWrp>
-            <>
-                {profile ? (
-                    <>
-                        <Link href={routes.profile.public(profile?.id)}>
-                            <a className={css.flex}>
-                                <UserAvatar
-                                    width={6}
-                                    height={6}
-                                    time={profile?.last_activity}
-                                    firstName={profile?.first_name}
-                                    lastName={profile?.last_name}
-                                    avatar={profile?.profile_img}
+    const renderContent: ReactElement = (
+        <>
+            {profile ? (
+                <>
+                    <Link href={routes.profile.public(profile?.id)}>
+                        <a className={css.flex}>
+                            <UserAvatar
+                                width={6}
+                                height={6}
+                                time={profile?.last_activity}
+                                firstName={profile?.first_name}
+                                lastName={profile?.last_name}
+                                avatar={profile?.profile_img}
+                            />
+                            <div className={css.user}>
+                                <p className={css.name}>{profile?.first_name + ' ' + profile?.last_name}</p>
+                                <p className={css.email}>{profile?.email || 'no email'}</p>
+                            </div>
+                        </a>
+                    </Link>
+
+                    <h3 className={css.title}>Message:</h3>
+
+                    <p className={css.message} dangerouslySetInnerHTML={{ __html: createHTML(message.text || '') }} />
+
+                    {message?.uploads?.length ? (
+                        <div className={css.uploads}>
+                            {message.uploads.map<ReactElement>(src => (
+                                <img
+                                    key={src}
+                                    src={src}
+                                    height="160"
+                                    width="200"
+                                    onClick={openSlider(message.uploads)}
+                                    className={css.image}
+                                    aria-hidden="true"
+                                    alt=""
                                 />
-                                <div className={css.user}>
-                                    <p className={css.name}>{profile?.first_name + ' ' + profile?.last_name}</p>
-                                    <p className={css.email}>{profile?.email || 'no email'}</p>
-                                </div>
-                            </a>
-                        </Link>
-
-                        <h3 className={css.title}>Message:</h3>
-
-                        <p className={css.message} dangerouslySetInnerHTML={{ __html: createHTML(message.text || '') }} />
-
-                        {message?.uploads?.length ? (
-                            <div className={css.uploads}>
-                                {message.uploads.map<ReactElement>(src => (
-                                    <img
-                                        key={src}
-                                        src={src}
-                                        height="160"
-                                        width="200"
-                                        onClick={openSlider(message.uploads)}
-                                        className={css.image}
-                                        aria-hidden="true"
-                                        alt=""
-                                    />
-                                ))}
-                            </div>
-                        ) : null}
-                    </>
-                ) : (
-                    <>
-                        <div className={css.flex}>
-                            <RectSkeleton className={css.avatar} />
-                            <div className={css.text}>
-                                <TextSkeleton />
-                            </div>
+                            ))}
                         </div>
+                    ) : null}
+                </>
+            ) : (
+                <>
+                    <div className={css.flex}>
+                        <RectSkeleton className={css.avatar} />
                         <div className={css.text}>
-                            <TextSkeleton amount={2} />
+                            <TextSkeleton />
                         </div>
-                    </>
-                )}
-            </>
-        </MidModalWrp>
+                    </div>
+                    <div className={css.text}>
+                        <TextSkeleton amount={2} />
+                    </div>
+                </>
+            )}
+        </>
+    );
+
+    return message.text.length < 170 ? (
+        <SmallModalWrp>{renderContent}</SmallModalWrp>
+    ) : (
+        <MidModalWrp>{renderContent}</MidModalWrp>
     );
 };
 

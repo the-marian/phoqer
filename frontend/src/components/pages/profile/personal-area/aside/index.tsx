@@ -4,7 +4,6 @@ import Link from 'next/link';
 import { createUseStyles } from 'react-jss';
 import { useSelector } from 'react-redux';
 
-import useMedia from '../../../../../hooks/media.hook';
 import { IPublicProfile, IState } from '../../../../../interfaces';
 import routes from '../../../../../utils/routes';
 import { Theme } from '../../../../../utils/theming/theme';

@@ -18,7 +18,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         position: 'relative',
         display: 'flex',
         justifyContent: 'space-between',
-        alignItems: 'flex-start',
+        alignItems: 'center',
         margin: theme.rem(1, 0),
         padding: theme.rem(0.6),
         borderRadius: theme.radius,

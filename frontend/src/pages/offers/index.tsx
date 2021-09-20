@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react';
+import React, { ReactElement, useEffect, useRef } from 'react';
 
 import { GetServerSideProps } from 'next';
 import { useRouter } from 'next/router';
@@ -25,6 +25,7 @@ import { findCategory, findSubCategory } from '../../utils/helpers';
 
 const OffersPage = (): ReactElement => {
     const { query } = useRouter();
+    const scroll = useRef(true);
     const trans = useTrans();
     const dispatch = useDispatch();
     const category = String(query?.category || '');
@@ -36,6 +37,15 @@ const OffersPage = (): ReactElement => {
         (findSubCategory(categories, category) as ICategories)?.image ||
         null;
 
+    useEffect(() => {
+        const top = document?.getElementById('offers-list')?.offsetTop || 0;
+        if (scroll.current) {
+            window.scrollTo({ top, behavior: 'smooth' });
+        } else {
+            scroll.current = true;
+        }
+    }, [data]);
+
     const handleClick = (page: number): void => {
         window.scrollTo({ top: (document?.getElementById('offers-list')?.offsetTop || 0) - 50, behavior: 'smooth' });
         dispatch({ type: types.SEARCH_OFFERS_START, payload: { ...query, page } });
@@ -46,6 +56,7 @@ const OffersPage = (): ReactElement => {
             (document?.getElementById('offers-list')?.offsetHeight || 0) -
             500;
         dispatch({ type: types.SEARCH_OFFERS_PAGINATION_START, payload: { ...query, page } });
+        scroll.current = false;
         window.scrollTo({ top, behavior: 'smooth' });
     };
 

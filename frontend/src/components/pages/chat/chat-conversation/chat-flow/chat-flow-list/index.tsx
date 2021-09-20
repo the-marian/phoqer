@@ -13,6 +13,8 @@ import ChatUserModal from '../../chat-user-modal';
 import ChatDateSeparator from '../chat-date-separator';
 import { createHTML, formatTime } from '../chat-flow.utils';
 
+import RentRequest from './special-messages/rent-request';
+
 const useStyles = createUseStyles((theme: Theme) => ({
     messages: {
         width: 'max-content',
@@ -108,49 +110,56 @@ const ChatFlowList = ({ messages, user }: IProps): ReactElement => {
         modal.open(<ChatUserModal message={message} />);
     };
 
+    const MessageTypeMap = (item: IMessages, index: number, array: IMessages[]): { [key: string]: ReactElement } => ({
+        RENT_REQUEST: <RentRequest message={item} />,
+        none: (
+            <div className={clsx(css.messages, user.id === item.user_id && css.right)}>
+                {array[index + 1]?.user_id !== item.user_id && <p className={css.time}>{formatTime(item.creation_datetime)}</p>}
+
+                {item?.uploads?.length ? (
+                    <div className={clsx(css.uploadsList, user.id === item.user_id && css.uploadsListRight)}>
+                        {item.uploads.map<ReactElement>(src => (
+                            <img
+                                key={src}
+                                src={src}
+                                height="80"
+                                width="120"
+                                onClick={openSlider(item.uploads)}
+                                className={css.uploads}
+                                aria-hidden="true"
+                                alt=""
+                            />
+                        ))}
+                    </div>
+                ) : null}
+
+                <Tooltip
+                    className={css.tooltip}
+                    classNameWrp={clsx(css.tooltipWrp, user.id === item.user_id && css.tooltipWrpRight)}
+                    content={`${item.first_name} ${item.last_name}`}
+                >
+                    <button
+                        type="button"
+                        className={clsx(css.box, user.id === item.user_id && css.primary)}
+                        onClick={openUserModal(item)}
+                        dangerouslySetInnerHTML={{ __html: createHTML(item.text || '') }}
+                    />
+                </Tooltip>
+            </div>
+        ),
+    });
+
     return (
         <>
-            {messages.data.data.map<ReactElement>((item, index, array) => (
-                <Fragment key={item.id}>
-                    <div className={clsx(css.messages, user.id === item.user_id && css.right)}>
-                        {array[index + 1]?.user_id !== item.user_id && (
-                            <p className={css.time}>{formatTime(item.creation_datetime)}</p>
-                        )}
-
-                        {item?.uploads?.length ? (
-                            <div className={clsx(css.uploadsList, user.id === item.user_id && css.uploadsListRight)}>
-                                {item.uploads.map<ReactElement>(src => (
-                                    <img
-                                        key={src}
-                                        src={src}
-                                        height="80"
-                                        width="120"
-                                        onClick={openSlider(item.uploads)}
-                                        className={css.uploads}
-                                        aria-hidden="true"
-                                        alt=""
-                                    />
-                                ))}
-                            </div>
-                        ) : null}
-
-                        <Tooltip
-                            className={css.tooltip}
-                            classNameWrp={clsx(css.tooltipWrp, user.id === item.user_id && css.tooltipWrpRight)}
-                            content={`${item.first_name} ${item.last_name}`}
-                        >
-                            <button
-                                type="button"
-                                className={clsx(css.box, user.id === item.user_id && css.primary)}
-                                onClick={openUserModal(item)}
-                                dangerouslySetInnerHTML={{ __html: createHTML(item.text || '') }}
-                            />
-                        </Tooltip>
-                    </div>
-
-                    <ChatDateSeparator prevDate={array[index + 1]?.creation_datetime} currentDate={item.creation_datetime} />
-                </Fragment>
-            ))}
+            {messages.data.data.map<ReactElement>((item, index, array) => {
+                const messageTypeMap = MessageTypeMap(item, index, array);
+                return (
+                    <Fragment key={item.id}>
+                        {messageTypeMap[item.text] || messageTypeMap.none}
+                        <ChatDateSeparator prevDate={array[index + 1]?.creation_datetime} currentDate={item.creation_datetime} />
+                    </Fragment>
+                );
+            })}
         </>
     );
 };
