@@ -148,3 +148,8 @@ class ValidOffer(BaseModel):
 
 class CreateOfferResponse(BaseModel):
     id: UUID
+
+
+class StatusBodyData(BaseModel):
+    status: Status
+    chat_id: Optional[int] = None

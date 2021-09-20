@@ -2,7 +2,7 @@ from datetime import date
 from math import ceil
 from typing import Dict, List, Optional
 
-from fastapi import APIRouter, Body, Depends, HTTPException, Response
+from fastapi import APIRouter, Depends, HTTPException, Response
 
 from FastAPI.config import PAGE_SIZE
 from FastAPI.offers import crud
@@ -17,11 +17,13 @@ from FastAPI.offers.schemas import (
     PublicOffersListItem,
     PublicOffersListResponse,
     RentalPeriod,
-    Status,
+    StatusBodyData,
 )
 from FastAPI.offers.utils import (
+    active_status_validator,
     in_rent_status_validator,
     review_status_validator,
+    set_active_status,
     set_in_rent_status,
     set_review_status,
 )
@@ -73,16 +75,17 @@ async def get_offer_via_chat_id(
 @router.patch("/status/{offer_id}")
 async def change_status(
     offer_id: str,
-    status: Status = Body(..., embed=True),
+    data: StatusBodyData,
     user_id: int = Depends(get_current_user),
 ) -> Response:
     actions_for_status = {
+        "ACTIVE": (active_status_validator, set_active_status),
         "REVIEW": (review_status_validator, set_review_status),
         "IN_RENT": (in_rent_status_validator, set_in_rent_status),
     }
-    if errors := await actions_for_status[status.value][0](offer_id):
+    if errors := await actions_for_status[data.status.value][0](offer_id):
         return Response(status_code=500, content=errors)
-    await actions_for_status[status.value][1](offer_id)
+    await actions_for_status[data.status.value][1](offer_id, data.chat_id)
     return Response(status_code=204)
 
 

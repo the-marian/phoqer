@@ -3,7 +3,7 @@ from math import ceil
 from typing import Any, Dict, List, Mapping, Optional, Union
 
 from cryptography.fernet import Fernet
-from fastapi import APIRouter, Body, Depends, HTTPException, Query, Response
+from fastapi import APIRouter, Body, Depends, HTTPException, Query
 from fastapi.websockets import WebSocket, WebSocketDisconnect
 
 from FastAPI.chats import crud
@@ -176,18 +176,3 @@ async def get_messages(
             for message in messages
         ],
     }
-
-
-@router.patch("/{chat_id}", status_code=204)
-async def update_is_done(
-    chat_id: int,
-    is_done: bool = Body(..., embed=True),
-) -> Response:
-    chat_data = await crud.get_single_chat(chat_id=chat_id)
-    if not chat_data:
-        raise HTTPException(
-            status_code=404,
-            detail="Chat does not exist",
-        )
-    await crud.change_is_done(chat_id=chat_id, is_done=is_done)
-    return Response(status_code=204)

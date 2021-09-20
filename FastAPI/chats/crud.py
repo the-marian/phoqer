@@ -266,7 +266,8 @@ async def get_single_chat(chat_id: int) -> Optional[Mapping]:
         client_id,
         offer_id,
         creation_datetime,
-        is_done
+        is_done,
+        is_approved
     FROM chats
     WHERE chat_id = :chat_id
     """
@@ -274,15 +275,27 @@ async def get_single_chat(chat_id: int) -> Optional[Mapping]:
     return await database.fetch_one(query=query, values=values)
 
 
-async def change_is_done(chat_id: int, is_done: bool) -> None:
+async def chat_is_approved_update(chat_id: int) -> None:
     query = """
     UPDATE chats
     SET
-        is_done = :is_done
+        is_approved = True
     WHERE chat_id = :chat_id
     """
     values = {
-        "is_done": is_done,
+        "chat_id": chat_id,
+    }
+    await database.execute(query=query, values=values)
+
+
+async def chat_is_done_update(chat_id: int) -> None:
+    query = """
+    UPDATE chats
+    SET
+        is_done = True
+    WHERE chat_id = :chat_id
+    """
+    values = {
         "chat_id": chat_id,
     }
     await database.execute(query=query, values=values)
