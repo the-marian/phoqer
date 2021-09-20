@@ -140,11 +140,11 @@ exports[`LoginForm component matches snapshot 1`] = `
       class="socials-0-2-8"
     >
       <ul
-        class="list-0-2-23"
+        class="list-0-2-24"
       >
         <li>
           <button
-            class="socials-0-2-24 facebook-0-2-25"
+            class="socials-0-2-25 facebook-0-2-26"
             type="button"
           >
             <svg
@@ -166,7 +166,7 @@ exports[`LoginForm component matches snapshot 1`] = `
         </li>
         <li>
           <button
-            class="socials-0-2-24 google-0-2-26"
+            class="socials-0-2-25 google-0-2-27"
             type="button"
           >
             <svg

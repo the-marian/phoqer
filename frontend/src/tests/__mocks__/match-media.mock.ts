@@ -8,6 +8,8 @@ window.matchMedia = jest.fn().mockImplementation(query => ({
     removeListener: jest.fn(),
 }));
 
+window.scrollTo = jest.fn();
+
 jest.mock('react-confetti', () => () => null);
 
 jest.mock('next/router', () => ({

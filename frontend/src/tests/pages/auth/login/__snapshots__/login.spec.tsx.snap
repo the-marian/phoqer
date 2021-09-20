@@ -269,11 +269,11 @@ exports[`Login component match snapshot 1`] = `
               class="socials-0-2-47"
             >
               <ul
-                class="list-0-2-62"
+                class="list-0-2-63"
               >
                 <li>
                   <button
-                    class="socials-0-2-63 facebook-0-2-64"
+                    class="socials-0-2-64 facebook-0-2-65"
                     type="button"
                   >
                     <svg
@@ -295,7 +295,7 @@ exports[`Login component match snapshot 1`] = `
                 </li>
                 <li>
                   <button
-                    class="socials-0-2-63 google-0-2-65"
+                    class="socials-0-2-64 google-0-2-66"
                     type="button"
                   >
                     <svg
@@ -340,7 +340,7 @@ exports[`Login component match snapshot 1`] = `
     </div>
   </main>
   <footer
-    class="footer-0-2-67"
+    class="footer-0-2-68"
   >
     <div
       class="container-0-2-10"
@@ -365,76 +365,76 @@ exports[`Login component match snapshot 1`] = `
         </small>
       </div>
       <div
-        class="wrp-0-2-68"
+        class="wrp-0-2-69"
       >
         <ul
-          class="list-0-2-69"
+          class="list-0-2-70"
         >
           <li
-            class="item-0-2-70"
+            class="item-0-2-71"
           >
             <a
-              class="link-0-2-71"
+              class="link-0-2-72"
               href="/static/help"
             >
               Help and Feedback
             </a>
           </li>
           <li
-            class="item-0-2-70"
+            class="item-0-2-71"
           >
             <a
-              class="link-0-2-71"
+              class="link-0-2-72"
               href="/static/business"
             >
               Advertising preferences
             </a>
           </li>
           <li
-            class="item-0-2-70"
+            class="item-0-2-71"
           >
             <a
-              class="link-0-2-71"
+              class="link-0-2-72"
               href="/static/rules"
             >
               Terms of service
             </a>
           </li>
           <li
-            class="item-0-2-70"
+            class="item-0-2-71"
           >
             <a
-              class="link-0-2-71"
+              class="link-0-2-72"
               href="/static/politic"
             >
               Privacy statement
             </a>
           </li>
           <li
-            class="item-0-2-70"
+            class="item-0-2-71"
           >
             <a
-              class="link-0-2-71"
+              class="link-0-2-72"
               href="/static/faq"
             >
               FAQ
             </a>
           </li>
           <li
-            class="item-0-2-70"
+            class="item-0-2-71"
           >
             <a
-              class="link-0-2-71"
+              class="link-0-2-72"
               href="/static/safety"
             >
               Safety rules
             </a>
           </li>
           <li
-            class="item-0-2-70"
+            class="item-0-2-71"
           >
             <a
-              class="link-0-2-71"
+              class="link-0-2-72"
               href="/static/map"
             >
               Site map
@@ -443,22 +443,22 @@ exports[`Login component match snapshot 1`] = `
         </ul>
         <div>
           <h3
-            class="title-0-2-74"
+            class="title-0-2-75"
           >
             Social networks:
           </h3>
           <ul
-            class="list-0-2-72"
+            class="list-0-2-73"
           >
             <li>
               <a
-                class="link-0-2-75"
+                class="link-0-2-76"
                 href="https://www.facebook.com/phoqer.inc"
                 rel="noopener noreferrer"
                 target="_blank"
               >
                 <svg
-                  class="svg-0-2-77"
+                  class="svg-0-2-78"
                   enable-background="new 0 0 24 24"
                   id="Bold"
                   viewBox="0 0 24 24"
@@ -472,13 +472,13 @@ exports[`Login component match snapshot 1`] = `
             </li>
             <li>
               <a
-                class="link-0-2-75"
+                class="link-0-2-76"
                 href="https://www.instagram.com/phoqer/"
                 rel="noopener noreferrer"
                 target="_blank"
               >
                 <svg
-                  class="svg-0-2-77"
+                  class="svg-0-2-78"
                   enable-background="new 0 0 24 24"
                   id="Bold"
                   viewBox="0 0 24 24"
@@ -500,13 +500,13 @@ exports[`Login component match snapshot 1`] = `
             </li>
             <li>
               <a
-                class="link-0-2-75"
+                class="link-0-2-76"
                 href="http://www.google.com/"
                 rel="noopener noreferrer"
                 target="_blank"
               >
                 <svg
-                  class="svg-0-2-77"
+                  class="svg-0-2-78"
                   viewBox="0 -47 512.00004 512"
                   xmlns="http://www.w3.org/2000/svg"
                 >
@@ -518,13 +518,13 @@ exports[`Login component match snapshot 1`] = `
             </li>
             <li>
               <a
-                class="link-0-2-75"
+                class="link-0-2-76"
                 href="https://t.me/phoqer"
                 rel="noopener noreferrer"
                 target="_blank"
               >
                 <svg
-                  class="svg-0-2-77"
+                  class="svg-0-2-78"
                   viewBox="0 -39 512.00011 512"
                   xmlns="http://www.w3.org/2000/svg"
                 >

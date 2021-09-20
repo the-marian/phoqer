@@ -183,11 +183,11 @@ exports[`JoinForm component matches snapshot 1`] = `
       login with
     </p>
     <ul
-      class="list-0-2-32"
+      class="list-0-2-33"
     >
       <li>
         <button
-          class="socials-0-2-33 facebook-0-2-34"
+          class="socials-0-2-34 facebook-0-2-35"
           type="button"
         >
           <svg
@@ -209,7 +209,7 @@ exports[`JoinForm component matches snapshot 1`] = `
       </li>
       <li>
         <button
-          class="socials-0-2-33 google-0-2-35"
+          class="socials-0-2-34 google-0-2-36"
           type="button"
         >
           <svg

@@ -312,11 +312,11 @@ exports[`Join component match snapshot 1`] = `
               login with
             </p>
             <ul
-              class="list-0-2-71"
+              class="list-0-2-72"
             >
               <li>
                 <button
-                  class="socials-0-2-72 facebook-0-2-73"
+                  class="socials-0-2-73 facebook-0-2-74"
                   type="button"
                 >
                   <svg
@@ -338,7 +338,7 @@ exports[`Join component match snapshot 1`] = `
               </li>
               <li>
                 <button
-                  class="socials-0-2-72 google-0-2-74"
+                  class="socials-0-2-73 google-0-2-75"
                   type="button"
                 >
                   <svg
@@ -382,7 +382,7 @@ exports[`Join component match snapshot 1`] = `
     </div>
   </main>
   <footer
-    class="footer-0-2-76"
+    class="footer-0-2-77"
   >
     <div
       class="container-0-2-10"
@@ -407,76 +407,76 @@ exports[`Join component match snapshot 1`] = `
         </small>
       </div>
       <div
-        class="wrp-0-2-77"
+        class="wrp-0-2-78"
       >
         <ul
-          class="list-0-2-78"
+          class="list-0-2-79"
         >
           <li
-            class="item-0-2-79"
+            class="item-0-2-80"
           >
             <a
-              class="link-0-2-80"
+              class="link-0-2-81"
               href="/static/help"
             >
               Help and Feedback
             </a>
           </li>
           <li
-            class="item-0-2-79"
+            class="item-0-2-80"
           >
             <a
-              class="link-0-2-80"
+              class="link-0-2-81"
               href="/static/business"
             >
               Advertising preferences
             </a>
           </li>
           <li
-            class="item-0-2-79"
+            class="item-0-2-80"
           >
             <a
-              class="link-0-2-80"
+              class="link-0-2-81"
               href="/static/rules"
             >
               Terms of service
             </a>
           </li>
           <li
-            class="item-0-2-79"
+            class="item-0-2-80"
           >
             <a
-              class="link-0-2-80"
+              class="link-0-2-81"
               href="/static/politic"
             >
               Privacy statement
             </a>
           </li>
           <li
-            class="item-0-2-79"
+            class="item-0-2-80"
           >
             <a
-              class="link-0-2-80"
+              class="link-0-2-81"
               href="/static/faq"
             >
               FAQ
             </a>
           </li>
           <li
-            class="item-0-2-79"
+            class="item-0-2-80"
           >
             <a
-              class="link-0-2-80"
+              class="link-0-2-81"
               href="/static/safety"
             >
               Safety rules
             </a>
           </li>
           <li
-            class="item-0-2-79"
+            class="item-0-2-80"
           >
             <a
-              class="link-0-2-80"
+              class="link-0-2-81"
               href="/static/map"
             >
               Site map
@@ -485,22 +485,22 @@ exports[`Join component match snapshot 1`] = `
         </ul>
         <div>
           <h3
-            class="title-0-2-83"
+            class="title-0-2-84"
           >
             Social networks:
           </h3>
           <ul
-            class="list-0-2-81"
+            class="list-0-2-82"
           >
             <li>
               <a
-                class="link-0-2-84"
+                class="link-0-2-85"
                 href="https://www.facebook.com/phoqer.inc"
                 rel="noopener noreferrer"
                 target="_blank"
               >
                 <svg
-                  class="svg-0-2-86"
+                  class="svg-0-2-87"
                   enable-background="new 0 0 24 24"
                   id="Bold"
                   viewBox="0 0 24 24"
@@ -514,13 +514,13 @@ exports[`Join component match snapshot 1`] = `
             </li>
             <li>
               <a
-                class="link-0-2-84"
+                class="link-0-2-85"
                 href="https://www.instagram.com/phoqer/"
                 rel="noopener noreferrer"
                 target="_blank"
               >
                 <svg
-                  class="svg-0-2-86"
+                  class="svg-0-2-87"
                   enable-background="new 0 0 24 24"
                   id="Bold"
                   viewBox="0 0 24 24"
@@ -542,13 +542,13 @@ exports[`Join component match snapshot 1`] = `
             </li>
             <li>
               <a
-                class="link-0-2-84"
+                class="link-0-2-85"
                 href="http://www.google.com/"
                 rel="noopener noreferrer"
                 target="_blank"
               >
                 <svg
-                  class="svg-0-2-86"
+                  class="svg-0-2-87"
                   viewBox="0 -47 512.00004 512"
                   xmlns="http://www.w3.org/2000/svg"
                 >
@@ -560,13 +560,13 @@ exports[`Join component match snapshot 1`] = `
             </li>
             <li>
               <a
-                class="link-0-2-84"
+                class="link-0-2-85"
                 href="https://t.me/phoqer"
                 rel="noopener noreferrer"
                 target="_blank"
               >
                 <svg
-                  class="svg-0-2-86"
+                  class="svg-0-2-87"
                   viewBox="0 -39 512.00011 512"
                   xmlns="http://www.w3.org/2000/svg"
                 >
