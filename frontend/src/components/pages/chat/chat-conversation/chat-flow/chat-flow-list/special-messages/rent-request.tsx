@@ -98,12 +98,12 @@ const RentRequest = ({ message }: IProps): ReactElement | null => {
                 &quot;
             </p>
             {profile && (
-                <Link href={routes.profile.public(user?.id)}>
+                <Link href={routes.profile.public(profile?.id)}>
                     <a className={css.flex}>
                         <UserAvatar
                             width={5}
                             height={5}
-                            online={true}
+                            time={profile?.last_activity}
                             firstName={profile?.first_name}
                             lastName={profile?.last_name}
                             avatar={profile?.profile_img}
