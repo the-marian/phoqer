@@ -46,7 +46,7 @@ const AsideElement = (): ReactElement => {
                     userLocation={profile?.city}
                     registerDate={profile?.date_joined}
                 />
-                {offer && <Price offer={offer} withButton />}
+                {offer && <Price offer={offer} withButton={offer.can_rent} />}
             </div>
         </aside>
     );

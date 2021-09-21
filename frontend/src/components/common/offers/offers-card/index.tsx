@@ -263,7 +263,7 @@ const OfferCard = ({ offer, showFavoriteBtn = true }: IProps): ReactElement => {
                                 </Tooltip>
                             </>
                         ) : (
-                            <p className={css.cantRent}>Вы являетесь автором этого объявления</p>
+                            <p className={css.cantRent}>Вы не можете арендовать это объявление</p>
                         )}
                     </div>
                 )}
