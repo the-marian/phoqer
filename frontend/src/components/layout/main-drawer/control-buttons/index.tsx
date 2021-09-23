@@ -31,7 +31,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         width: '22%',
         padding: 0,
         boxShadow: 'none',
-        background: theme.palette.gray[0],
+        background: theme.palette.secondary[0],
         color: theme.palette.black[0],
         transitions: theme.transitions[0],
         ...mixin(theme).outline,

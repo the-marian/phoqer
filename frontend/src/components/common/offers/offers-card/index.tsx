@@ -2,9 +2,9 @@ import React, { ReactElement } from 'react';
 
 import { faEye } from '@fortawesome/free-regular-svg-icons/faEye';
 import { faHeart } from '@fortawesome/free-regular-svg-icons/faHeart';
-import { faCogs } from '@fortawesome/free-solid-svg-icons/faCogs';
 import { faDotCircle } from '@fortawesome/free-solid-svg-icons/faDotCircle';
 import { faHeart as faSolidHeart } from '@fortawesome/free-solid-svg-icons/faHeart';
+import { faSlidersH } from '@fortawesome/free-solid-svg-icons/faSlidersH';
 import { faStar } from '@fortawesome/free-solid-svg-icons/faStar';
 import { faTruck } from '@fortawesome/free-solid-svg-icons/faTruck';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -217,7 +217,7 @@ const OfferCard = ({ offer, showFavoriteBtn = true }: IProps): ReactElement => {
 
             {functions?.length ? (
                 <DropDown
-                    icon={faCogs}
+                    icon={faSlidersH}
                     minWidth={30}
                     height={config.offerCardSize === 'small' ? 3 : 4}
                     className={clsx(css.dropdown, config.offerCardSize === 'small' && css.dropdownSmall)}

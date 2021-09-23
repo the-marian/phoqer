@@ -10,6 +10,7 @@ import Container from '../../../../components/layout/container';
 import PageLayout from '../../../../components/layout/page-layout';
 import Meta from '../../../../components/meta';
 import MobileBackBtn from '../../../../components/pages/profile/mobile-back-btn';
+import ProfileHeader from '../../../../components/pages/profile/profile-header';
 import ProfileTabs from '../../../../components/pages/profile/profile-tabs';
 import useMedia from '../../../../hooks/media.hook';
 import useTrans from '../../../../hooks/trans.hook';
@@ -50,6 +51,7 @@ const Reviews = (): ReactElement => {
                     <>
                         {media ? (
                             <>
+                                <ProfileHeader />
                                 <Breadcrumbs
                                     className={css.breadcrumbs}
                                     end={trans('reviews')}

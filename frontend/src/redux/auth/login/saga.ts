@@ -17,7 +17,7 @@ function* loginUser({ payload }: IAction) {
         const { status, data } = yield call(api.auth.login, value);
         if (status < 200 || status >= 300) throw new Error();
         yield put({ type: types.LOGIN_SUCCESS, payload: data });
-        modal.close();
+        window.location.reload();
     } catch (error) {
         if (error?.response?.status === 401) return;
         // TODO add error-template text

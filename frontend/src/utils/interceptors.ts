@@ -12,11 +12,8 @@ const interceptors = (dispatch: Dispatch): void => {
     axios.interceptors.response.use(
         res => AxiosLogger.responseLogger(res, { data: false }),
         error => {
-            console.log('process.env.NEXT_PUBLIC_HOST', process.env.NEXT_PUBLIC_HOST);
-
             if (error?.response?.status === 401) {
-                delete axios.defaults.headers.common.Authorization;
-                dispatch({ type: types.LOGOUT_END });
+                dispatch({ type: types.LOGOUT_INIT });
             }
 
             return Promise.reject(error);

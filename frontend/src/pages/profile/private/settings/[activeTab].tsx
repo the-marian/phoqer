@@ -20,6 +20,7 @@ import { wrapper } from '../../../../redux/store';
 import { serverRedirect } from '../../../../utils/helpers';
 import routes from '../../../../utils/routes';
 import { Theme } from '../../../../utils/theming/theme';
+import ProfileHeader from "../../../../components/pages/profile/profile-header";
 
 const useStyles = createUseStyles((theme: Theme) => ({
     root: {
@@ -76,6 +77,7 @@ const Settings = (): ReactElement => {
                     <>
                         {media ? (
                             <>
+                                <ProfileHeader />
                                 <Breadcrumbs
                                     className={css.breadcrumbs}
                                     end={activeTab === 'general' ? trans('general') : trans('privacy')}

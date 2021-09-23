@@ -60,7 +60,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         marginRight: theme.rem(0.5),
         background: theme.palette.white,
         borderRadius: theme.radius,
-        fontSize: theme.rem(1.4),
+        fontSize: theme.rem(1.2),
         boxShadow: theme.shadow[0],
         color: theme.palette.yellow[0],
         cursor: 'default',
@@ -83,7 +83,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         fontWeight: theme.text.weight[3],
 
         ...theme.media(500).max({
-            fontSize: theme.rem(1.8),
+            fontSize: theme.rem(1.6),
         }),
     },
     titleSmall: {
@@ -94,12 +94,12 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
     desc: {
         margin: 0,
-        fontSize: theme.rem(1.4),
+        fontSize: theme.rem(1.2),
         fontWeight: theme.text.weight[2],
         wordBreak: 'break-all',
 
         ...theme.media(500).max({
-            fontSize: theme.rem(1.6),
+            fontSize: theme.rem(1.4),
         }),
     },
     info: {
@@ -113,7 +113,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         margin: 0,
         color: theme.palette.gray[3],
         fontWeight: theme.text.weight[2],
-        fontSize: theme.rem(1.4),
+        fontSize: theme.rem(1.2),
     },
     view: {
         paddingLeft: theme.rem(1),
@@ -133,7 +133,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
 
         ...theme.media(500).max({
             padding: theme.rem(1, 4),
-            fontSize: theme.rem(1.8),
+            fontSize: theme.rem(1.6),
         }),
     },
     favorite: {
@@ -162,7 +162,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         alignItems: 'center',
         justifyContent: 'space-between',
         margin: theme.rem(0, 0, 1, 0),
-        fontSize: theme.rem(1.5),
+        fontSize: theme.rem(1.4),
         fontWeight: theme.text.weight[3],
         color: theme.palette.black[0],
         textTransform: 'lowercase',
@@ -199,7 +199,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
             alignItems: 'center',
             width: theme.rem(4),
             padding: theme.rem(0),
-            fontSize: theme.rem(2),
+            fontSize: theme.rem(1.4),
             textAlign: 'center',
             background: theme.palette.white,
         },

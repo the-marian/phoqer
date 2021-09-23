@@ -29,7 +29,6 @@ const useStyles = createUseStyles((theme: Theme) => ({
 
         ...theme.media(768).max({
             padding: theme.rem(1.4, 2),
-            background: theme.palette.gray[0],
         }),
 
         ...theme.hover({

@@ -7,6 +7,7 @@ import { IAuth, IState } from '../../interfaces';
 import { addMonthToDate } from '../../utils/helpers';
 import initState from '../state';
 import types from '../types';
+import axios from "axios";
 
 const Persist: Middleware = store => next => action => {
     if (process.browser) {
@@ -32,6 +33,7 @@ const Persist: Middleware = store => next => action => {
             case types.LOGOUT_END:
                 try {
                     Cookies.set('phoqer_auth', JSON.stringify(initState.auth), { expires: addMonthToDate(1) });
+                    delete axios.defaults.headers.common.Authorization;
                 } catch (error) {
                     notificationsModal('error');
                 }
