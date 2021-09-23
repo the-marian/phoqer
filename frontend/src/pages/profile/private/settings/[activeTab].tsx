@@ -11,6 +11,7 @@ import Container from '../../../../components/layout/container';
 import PageLayout from '../../../../components/layout/page-layout';
 import Meta from '../../../../components/meta';
 import MobileBackBtn from '../../../../components/pages/profile/mobile-back-btn';
+import ProfileHeader from '../../../../components/pages/profile/profile-header';
 import ProfileTabs from '../../../../components/pages/profile/profile-tabs';
 import General from '../../../../components/pages/profile/settings/general';
 import Privacy from '../../../../components/pages/profile/settings/privacy';
@@ -20,7 +21,6 @@ import { wrapper } from '../../../../redux/store';
 import { serverRedirect } from '../../../../utils/helpers';
 import routes from '../../../../utils/routes';
 import { Theme } from '../../../../utils/theming/theme';
-import ProfileHeader from "../../../../components/pages/profile/profile-header";
 
 const useStyles = createUseStyles((theme: Theme) => ({
     root: {

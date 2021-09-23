@@ -1,3 +1,4 @@
+import axios from 'axios';
 import Cookies from 'js-cookie';
 import { HYDRATE } from 'next-redux-wrapper';
 import { Middleware } from 'redux';
@@ -7,7 +8,6 @@ import { IAuth, IState } from '../../interfaces';
 import { addMonthToDate } from '../../utils/helpers';
 import initState from '../state';
 import types from '../types';
-import axios from "axios";
 
 const Persist: Middleware = store => next => action => {
     if (process.browser) {

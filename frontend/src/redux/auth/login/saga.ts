@@ -1,6 +1,5 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
 
-import { modal } from '../../../components/common/modal';
 import notificationsModal from '../../../components/common/modal/notifications-modal';
 import { ILogin } from '../../../interfaces';
 import api from '../../../utils/api';
