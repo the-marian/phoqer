@@ -7,22 +7,18 @@ services:
     command: uvicorn main:app --root-path /api/v2 --reload --workers 1 --host 0.0.0.0 --port 8001
     volumes:
       - media_volume:/phoqer/FastAPI/mediafiles/
-    expose:
-      - 8001
     env_file: .env
+
   frontend:
     container_name: frontend
     image: "${FRONTEND_IMAGE}"
-    command: yarn run start
-    stdin_open: true
-    tty: true
-    expose:
-      - 4000
+    command: yarn start
     environment:
       - HOST=0.0.0.0
     env_file: .env
     depends_on:
       - backend
+
   db:
     container_name: db
     image: postgres:12.0-alpine
@@ -30,22 +26,22 @@ services:
       - postgres_data:/var/lib/postgresql/data/
     env_file:
       - .env
+
   pgadmin:
     container_name: pgadmin
     image: dpage/pgadmin4
     env_file: .env
     volumes:
       - pgadmin:/root/.pgadmin
-    expose:
-      - 5050
     restart: unless-stopped
+
   nginx:
     container_name: nginx
     image: "${NGINX_IMAGE}"
     volumes:
       - media_volume:/phoqer/FastAPI/mediafiles/
     ports:
-      - 80:80
+      - "80:80"
     depends_on:
       - backend
       - frontend

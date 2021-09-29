@@ -12,9 +12,8 @@ services:
     command: uvicorn main:app --root-path /api/v2 --reload --workers 1 --host 0.0.0.0 --port 8001
     volumes:
       - media_volume:/phoqer/FastAPI/mediafiles/
-    expose:
-      - 8001
-    env_file: .env
+    env_file: ./.env
+
   frontend:
     container_name: frontend
     build:
@@ -25,20 +24,18 @@ services:
       cache_from:
         - "${FRONTEND_IMAGE}"
     image: "${FRONTEND_IMAGE}"
-    command: yarn run start
-    stdin_open: true
-    tty: true
-    expose:
-      - 4000
-    env_file: .env
+    command: yarn start:build
+    env_file: ./.env
     depends_on:
       - backend
+
   db:
     container_name: db
     image: postgres:12.0-alpine
     volumes:
       - postgres_data:/var/lib/postgresql/data/
     env_file: .env
+
   nginx:
     container_name: nginx
     build:
@@ -49,7 +46,7 @@ services:
     volumes:
       - media_volume:/phoqer/FastAPI/mediafiles/
     ports:
-      - 80:80
+      - "80:80"
     depends_on:
       - backend
       - frontend

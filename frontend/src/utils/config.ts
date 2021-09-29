@@ -1,6 +1,6 @@
 import { Themes } from '../interfaces';
 
-const host = 'http://phoqer.com';
+const host = '';
 const api = host + '/api/';
 
 const config = {
@@ -11,7 +11,7 @@ const config = {
     },
     socketUrl: (version = 'v1'): string => 'ws://' + api.split('://')[1] + version,
     uploadsUrl: (version = 'v2'): string => `${api}${version}/upload`,
-    host: (lang = 'pl'): string => `${host}${lang === 'pl' ? '' : '/' + lang}`,
+    host: (lang = 'pl'): string => `${host}/${lang}`,
     img: host,
     themes: ['white', 'black'] as Themes[],
     googleApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAP_API_KEY,
