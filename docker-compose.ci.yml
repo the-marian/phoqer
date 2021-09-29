@@ -24,7 +24,7 @@ services:
       cache_from:
         - "${FRONTEND_IMAGE}"
     image: "${FRONTEND_IMAGE}"
-    command: yarn start:build
+    command: yarn start
     env_file: ./.env
     depends_on:
       - backend

@@ -12,7 +12,7 @@ services:
   frontend:
     container_name: frontend
     image: "${FRONTEND_IMAGE}"
-    command: yarn start
+    command: yarn start:build
     environment:
       - HOST=0.0.0.0
     env_file: .env
