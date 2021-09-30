@@ -112,11 +112,6 @@ const Meta = ({ title, description, keywords, icon, h1 = '' }: IProps): ReactEle
                 {/*Global site tag (gtag.js) - Google Analytics*/}
                 {process.env.NODE_ENV === 'production' && (
                     <>
-                        <script
-                            async
-                            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2424155820333209"
-                            crossOrigin="anonymous"
-                        />
                         <script async src="https://www.googletagmanager.com/gtag/js?id=G-B57V56EVR8" />
                         <script
                             dangerouslySetInnerHTML={{
