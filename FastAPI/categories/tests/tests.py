@@ -1,20 +1,18 @@
-from fastapi import status
+import pytest
+
+# decorate all tests with @pytest.mark.asyncio
+pytestmark = pytest.mark.asyncio
 
 
-def test_list_categories(client):
-    response = client.get("categories/")
-    assert response.status_code == status.HTTP_200_OK
+async def test_list_categories(client, category_technics, sub_category_consoles):
+    response = await client.get("/categories")
+    assert response.status_code == 200
     assert response.json() == [
         {
-            "icon_image": None,
-            "image": "https://example.comm/dickpic.jpg",
-            "slug": "kitty",
-            "sub_category": [],
-        },
-        {
-            "icon_image": None,
-            "image": "https://example.com/dic_pic.jpg",
-            "slug": "sport",
-            "sub_category": [{"icon_image": None, "slug": "bike"}],
-        },
+            "icon_image": "technics",
+            "image": "http://phoqer.com/mediafiles/"
+            "cfd89389-3dcd-4581-aafc-97b5fbb83ba7-техника.jpg",
+            "slug": "technics",
+            "sub_category": [{"icon_image": "consoles", "slug": "consoles"}],
+        }
     ]

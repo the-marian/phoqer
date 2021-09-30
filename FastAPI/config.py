@@ -20,7 +20,7 @@ TEST_DATABASE_URL = (
 )
 database = databases.Database(DATABASE_URL)
 if "pytest" in sys.modules:
-    database = databases.Database(TEST_DATABASE_URL)
+    database = databases.Database(TEST_DATABASE_URL, force_rollback=True)
 
 # pagination
 CHAT_SIZE = 15
