@@ -13,6 +13,8 @@ services:
     container_name: frontend
     image: "${FRONTEND_IMAGE}"
     command: yarn start
+    expose:
+      - 4000
     environment:
       - HOST=0.0.0.0
     env_file: .env
@@ -41,7 +43,7 @@ services:
     volumes:
       - media_volume:/phoqer/FastAPI/mediafiles/
     ports:
-      - "80:80"
+      - 80:80
     depends_on:
       - backend
       - frontend
