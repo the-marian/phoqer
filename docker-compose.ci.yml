@@ -12,7 +12,7 @@ services:
     command: uvicorn main:app --root-path /api/v2 --reload --workers 1 --host 0.0.0.0 --port 8001
     volumes:
       - media_volume:/phoqer/FastAPI/mediafiles/
-    env_file: ./.env
+    env_file: .env
 
   frontend:
     container_name: frontend
@@ -25,7 +25,7 @@ services:
         - "${FRONTEND_IMAGE}"
     image: "${FRONTEND_IMAGE}"
     command: yarn start
-    env_file: ./.env
+    env_file: .env
     depends_on:
       - backend
 
@@ -46,7 +46,7 @@ services:
     volumes:
       - media_volume:/phoqer/FastAPI/mediafiles/
     ports:
-      - "80:80"
+      - 80:80
     depends_on:
       - backend
       - frontend

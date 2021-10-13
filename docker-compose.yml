@@ -5,8 +5,6 @@ services:
     container_name: backend
     image: "${BACKEND_IMAGE}"
     command: uvicorn main:app --root-path /api/v2 --reload --workers 1 --host 0.0.0.0 --port 8001
-    expose:
-      - 8001
     volumes:
       - media_volume:/phoqer/FastAPI/mediafiles/
     env_file: .env
@@ -15,10 +13,6 @@ services:
     container_name: frontend
     image: "${FRONTEND_IMAGE}"
     command: yarn start
-    expose:
-      - 4000
-    environment:
-      - HOST=0.0.0.0
     env_file: .env
     depends_on:
       - backend
