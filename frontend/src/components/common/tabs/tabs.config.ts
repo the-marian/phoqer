@@ -13,6 +13,10 @@ const temp: ITabsNum = {
 
 export const userPrivateTabs = (count: ITabsNum = temp): ITabsItem[] => [
     {
+        id: 'rented-offers',
+        text: 'rented_offers',
+    },
+    {
         id: 'my-offers',
         text: 'my_offers',
     },

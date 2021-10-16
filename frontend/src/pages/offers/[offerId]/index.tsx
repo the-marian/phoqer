@@ -62,6 +62,10 @@ const useStyles = createUseStyles((theme: Theme) => ({
             flexDirection: 'column',
             marginTop: theme.rem(2),
         }),
+
+        ...theme.media(768).max({
+            fontSize: theme.rem(1.4),
+        }),
     },
     main: {
         width: 'calc(100% - 45rem)',
@@ -81,6 +85,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
 
         ...theme.media(768).max({
             margin: theme.rem(3, 0, 1),
+            fontSize: theme.rem(1.6),
         }),
     },
     calendar: {

@@ -34,7 +34,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         color: theme.palette.black[0],
 
         ...theme.media(768).max({
-            fontSize: theme.rem(1.6),
+            fontSize: theme.rem(1.2),
         }),
     },
     favorite: {
@@ -44,6 +44,11 @@ const useStyles = createUseStyles((theme: Theme) => ({
         borderRadius: theme.radius,
         transition: theme.transitions[0],
         ...theme.hover({
+            background: theme.palette.secondary[0],
+        }),
+
+        ...theme.media(768).max({
+            margin: theme.rem(0, 2, 0.5),
             background: theme.palette.secondary[0],
         }),
 
@@ -58,14 +63,17 @@ const useStyles = createUseStyles((theme: Theme) => ({
         },
     },
     eye: {
+        display: 'flex',
+        alignItems: 'center',
         margin: theme.rem(0, 0, 0, 6),
         fontSize: theme.rem(1.4),
         '& span': {
+            lineHeight: 1,
             margin: theme.rem(0, 1),
         },
         ...theme.media(768).max({
-            margin: theme.rem(0, 0, 0, 3),
-            fontSize: theme.rem(2),
+            margin: theme.rem(0, 0, 0.3, 2),
+            fontSize: theme.rem(1.4),
         }),
     },
 }));

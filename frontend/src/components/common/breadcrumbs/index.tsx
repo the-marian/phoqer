@@ -19,7 +19,6 @@ const useStyles = createUseStyles((theme: Theme) => ({
 
             ...theme.media(768).max({
                 lineHeight: '1.6',
-                fontSize: theme.rem(1.6),
                 fontWeight: theme.text.weight[1],
             }),
         },

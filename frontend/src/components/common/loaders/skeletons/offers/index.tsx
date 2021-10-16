@@ -15,6 +15,10 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
     wrp: {
         display: 'flex',
+        ...theme.media(768).max({
+            justifyContent: 'center',
+            flexWrap: 'wrap',
+        }),
     },
     card: {
         width: '100%',
@@ -23,9 +27,26 @@ const useStyles = createUseStyles((theme: Theme) => ({
         '&:nth-last-of-type(1)': {
             marginRight: 0,
         },
+
+        ...theme.media(768).max({
+            maxWidth: '47%',
+        }),
+
+        ...theme.media(500).max({
+            maxWidth: '100%',
+            marginRight: '0',
+        }),
     },
     cardSmall: {
-        maxWidth: theme.rem(19),
+        maxWidth: theme.rem(15),
+        marginRight: theme.rem(2.5),
+        '&:nth-last-of-type(1)': {
+            marginRight: 0,
+        },
+
+        ...theme.media(500).max({
+            maxWidth: '45%',
+        }),
     },
     img: {
         height: theme.rem(25),

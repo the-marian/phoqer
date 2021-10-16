@@ -19,6 +19,7 @@ interface IProps {
 }
 
 const routesMap: { [key: string]: string } = {
+    'rented-offers': routes.profile.private.rented_offers(),
     'my-offers': routes.profile.private.my_offers(),
     chat: routes.profile.private.chat(),
     reviews: routes.profile.private.reviews,
@@ -31,13 +32,13 @@ const ProfileTabs = ({ active }: IProps): ReactElement => {
     const css = useStyles();
     const history = useRouter();
 
-    const handlerClick = (value: string): void => {
+    const handleClick = (value: string): void => {
         history.push(routesMap[value]);
     };
 
     return (
         <div className={css.root}>
-            <Tabs tabs={userPrivateTabs()} active={active} onClick={handlerClick} />
+            <Tabs tabs={userPrivateTabs()} active={active} onClick={handleClick} />
         </div>
     );
 };

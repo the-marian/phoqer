@@ -12,16 +12,45 @@ exports[`Navigation component matches snapshot 1`] = `
       >
         <svg
           aria-hidden="true"
-          class="svg-inline--fa fa-bullseye fa-w-16 "
-          data-icon="bullseye"
-          data-prefix="fas"
+          class="svg-inline--fa fa-caret-square-right fa-w-14 "
+          data-icon="caret-square-right"
+          data-prefix="far"
           focusable="false"
           role="img"
-          viewBox="0 0 496 512"
+          viewBox="0 0 448 512"
           xmlns="http://www.w3.org/2000/svg"
         >
           <path
-            d="M248 8C111.03 8 0 119.03 0 256s111.03 248 248 248 248-111.03 248-248S384.97 8 248 8zm0 432c-101.69 0-184-82.29-184-184 0-101.69 82.29-184 184-184 101.69 0 184 82.29 184 184 0 101.69-82.29 184-184 184zm0-312c-70.69 0-128 57.31-128 128s57.31 128 128 128 128-57.31 128-128-57.31-128-128-128zm0 192c-35.29 0-64-28.71-64-64s28.71-64 64-64 64 28.71 64 64-28.71 64-64 64z"
+            d="M176 354.9V157.1c0-10.7 13-16.1 20.5-8.5l98.3 98.9c4.7 4.7 4.7 12.2 0 16.9l-98.3 98.9c-7.5 7.7-20.5 2.3-20.5-8.4zM448 80v352c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V80c0-26.5 21.5-48 48-48h352c26.5 0 48 21.5 48 48zm-48 346V86c0-3.3-2.7-6-6-6H54c-3.3 0-6 2.7-6 6v340c0 3.3 2.7 6 6 6h340c3.3 0 6-2.7 6-6z"
+            fill="currentColor"
+          />
+        </svg>
+        <span
+          class="text-0-2-3"
+        >
+          Rented offers
+        </span>
+      </button>
+    </li>
+    <li
+      class="item-0-2-1"
+    >
+      <button
+        class="button-0-2-2"
+        type="button"
+      >
+        <svg
+          aria-hidden="true"
+          class="svg-inline--fa fa-caret-square-left fa-w-14 "
+          data-icon="caret-square-left"
+          data-prefix="far"
+          focusable="false"
+          role="img"
+          viewBox="0 0 448 512"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M272 157.1v197.8c0 10.7-13 16.1-20.5 8.5l-98.3-98.9c-4.7-4.7-4.7-12.2 0-16.9l98.3-98.9c7.5-7.7 20.5-2.3 20.5 8.4zM448 80v352c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V80c0-26.5 21.5-48 48-48h352c26.5 0 48 21.5 48 48zm-48 346V86c0-3.3-2.7-6-6-6H54c-3.3 0-6 2.7-6 6v340c0 3.3 2.7 6 6 6h340c3.3 0 6-2.7 6-6z"
             fill="currentColor"
           />
         </svg>
@@ -91,7 +120,7 @@ exports[`Navigation component matches snapshot 1`] = `
         <span
           class="text-0-2-3"
         >
-          Reviews
+          Notifications
         </span>
         <span
           class="num-0-2-4"
@@ -205,16 +234,45 @@ exports[`Navigation component matches snapshot 2`] = `
       >
         <svg
           aria-hidden="true"
-          class="svg-inline--fa fa-bullseye fa-w-16 "
-          data-icon="bullseye"
-          data-prefix="fas"
+          class="svg-inline--fa fa-caret-square-right fa-w-14 "
+          data-icon="caret-square-right"
+          data-prefix="far"
           focusable="false"
           role="img"
-          viewBox="0 0 496 512"
+          viewBox="0 0 448 512"
           xmlns="http://www.w3.org/2000/svg"
         >
           <path
-            d="M248 8C111.03 8 0 119.03 0 256s111.03 248 248 248 248-111.03 248-248S384.97 8 248 8zm0 432c-101.69 0-184-82.29-184-184 0-101.69 82.29-184 184-184 101.69 0 184 82.29 184 184 0 101.69-82.29 184-184 184zm0-312c-70.69 0-128 57.31-128 128s57.31 128 128 128 128-57.31 128-128-57.31-128-128-128zm0 192c-35.29 0-64-28.71-64-64s28.71-64 64-64 64 28.71 64 64-28.71 64-64 64z"
+            d="M176 354.9V157.1c0-10.7 13-16.1 20.5-8.5l98.3 98.9c4.7 4.7 4.7 12.2 0 16.9l-98.3 98.9c-7.5 7.7-20.5 2.3-20.5-8.4zM448 80v352c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V80c0-26.5 21.5-48 48-48h352c26.5 0 48 21.5 48 48zm-48 346V86c0-3.3-2.7-6-6-6H54c-3.3 0-6 2.7-6 6v340c0 3.3 2.7 6 6 6h340c3.3 0 6-2.7 6-6z"
+            fill="currentColor"
+          />
+        </svg>
+        <span
+          class="text-0-2-8"
+        >
+          Rented offers
+        </span>
+      </button>
+    </li>
+    <li
+      class="item-0-2-6"
+    >
+      <button
+        class="button-0-2-7"
+        type="button"
+      >
+        <svg
+          aria-hidden="true"
+          class="svg-inline--fa fa-caret-square-left fa-w-14 "
+          data-icon="caret-square-left"
+          data-prefix="far"
+          focusable="false"
+          role="img"
+          viewBox="0 0 448 512"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M272 157.1v197.8c0 10.7-13 16.1-20.5 8.5l-98.3-98.9c-4.7-4.7-4.7-12.2 0-16.9l98.3-98.9c7.5-7.7 20.5-2.3 20.5 8.4zM448 80v352c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V80c0-26.5 21.5-48 48-48h352c26.5 0 48 21.5 48 48zm-48 346V86c0-3.3-2.7-6-6-6H54c-3.3 0-6 2.7-6 6v340c0 3.3 2.7 6 6 6h340c3.3 0 6-2.7 6-6z"
             fill="currentColor"
           />
         </svg>
@@ -284,7 +342,7 @@ exports[`Navigation component matches snapshot 2`] = `
         <span
           class="text-0-2-8"
         >
-          Reviews
+          Notifications
         </span>
         <span
           class="num-0-2-9"

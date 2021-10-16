@@ -3,14 +3,16 @@ import React, { ReactElement } from 'react';
 import clsx from 'clsx';
 import { createUseStyles } from 'react-jss';
 
+import useMedia from '../../../hooks/media.hook';
 import useTrans from '../../../hooks/trans.hook';
+import { IDropValue } from '../../../interfaces';
 import mixin from '../../../utils/theming/mixin';
 import { Theme } from '../../../utils/theming/theme';
+import DropDown from '../drop-down';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     container: {
         maxWidth: '100%',
-        overflow: 'auto',
         marginBottom: theme.rem(4),
     },
     list: {
@@ -18,7 +20,6 @@ const useStyles = createUseStyles((theme: Theme) => ({
         width: 'max-content',
         borderRadius: theme.radius,
         border: theme.border(0.1, theme.palette.primary[0]),
-        overflow: 'hidden',
     },
     item: {
         flex: 1,
@@ -91,8 +92,11 @@ interface IProps {
 
 const SegmentedControl = ({ className, classNameWrp, active, tabs, onClick }: IProps): ReactElement => {
     const css = useStyles();
+    const media = useMedia(768);
 
-    return (
+    const onDropdownClick = (value: IDropValue | null): void => onClick(value?.slug || '');
+
+    return media ? (
         <div className={clsx(css.container, classNameWrp)}>
             <ul className={clsx(css.list, className)}>
                 {tabs.map<ReactElement>(item => (
@@ -100,6 +104,13 @@ const SegmentedControl = ({ className, classNameWrp, active, tabs, onClick }: IP
                 ))}
             </ul>
         </div>
+    ) : (
+        <DropDown
+            height={4}
+            minWidth={15}
+            data={tabs.map(item => ({ name: item.text, slug: item.id }))}
+            onChange={onDropdownClick}
+        />
     );
 };
 

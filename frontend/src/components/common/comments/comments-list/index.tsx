@@ -20,6 +20,10 @@ const useStyles = createUseStyles((theme: Theme) => ({
         borderRadius: theme.radius,
         background: theme.palette.gray[0],
         textAlign: 'center',
+
+        ...theme.media(768).max({
+            margin: theme.rem(1, 0),
+        }),
     },
     text: {
         fontSize: theme.rem(1.6),

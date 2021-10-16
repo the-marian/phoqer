@@ -1,0 +1,8 @@
+const categoriesTypes = {
+    // GET_CATEGORIES
+    GET_CATEGORIES_START: 'GET_CATEGORIES_START',
+    GET_CATEGORIES_SUCCESS: 'GET_CATEGORIES_SUCCESS',
+    GET_CATEGORIES_ERROR: 'GET_CATEGORIES_ERROR',
+};
+
+export default categoriesTypes;

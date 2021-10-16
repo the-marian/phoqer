@@ -102,7 +102,7 @@ const defaultOptions: ReactNotificationOptions = {
         delay: 0,
     },
     dismiss: {
-        duration: 5_000,
+        duration: 10_000,
         showIcon: true,
         click: true,
     },

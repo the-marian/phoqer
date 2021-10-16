@@ -59,8 +59,10 @@ const useStyles = createUseStyles((theme: Theme) => ({
         alignItems: 'center',
         margin: theme.rem(0, 0, 2),
 
-        ...theme.media(550).max({
-            display: 'block',
+        ...theme.media(768).max({
+            '& > div': {
+                margin: theme.rem(0, 1, 0.4),
+            },
         }),
     },
     author: {
@@ -71,8 +73,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
         marginBottom: theme.rem(2),
         lineHeight: 1,
 
-        ...theme.media(500).max({
-            fontSize: theme.rem(1.8),
+        ...theme.media(768).max({
+            fontSize: theme.rem(1.2),
+            marginBottom: theme.rem(1),
         }),
 
         '& a': {
@@ -90,9 +93,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
         fontSize: theme.rem(1.4),
         color: theme.palette.primary[0],
 
-        ...theme.media(550).max({
-            margin: theme.rem(0, 1, 1.6, 0),
-            fontSize: theme.rem(1.8),
+        ...theme.media(768).max({
+            margin: theme.rem(0, 1, 0, 0),
+            fontSize: theme.rem(1.4),
         }),
 
         ...theme.hover({
@@ -104,6 +107,10 @@ const useStyles = createUseStyles((theme: Theme) => ({
         fontSize: theme.rem(1.4),
         fontWeight: theme.text.weight[2],
         color: theme.palette.gray[3],
+
+        ...theme.media(768).max({
+            fontSize: theme.rem(1.2),
+        }),
     },
     empty: {
         margin: theme.rem(4, 0),
@@ -117,8 +124,8 @@ const useStyles = createUseStyles((theme: Theme) => ({
             marginBottom: theme.rem(2),
         },
 
-        ...theme.media(500).max({
-            fontSize: theme.rem(1.8),
+        ...theme.media(768).max({
+            fontSize: theme.rem(1.4),
         }),
     },
     img: {

@@ -20,6 +20,10 @@ const useStyles = createUseStyles((theme: Theme) => ({
         fontSize: theme.rem(2),
         fontWeight: theme.text.weight[2],
         color: theme.palette.black[0],
+
+        ...theme.media(768).max({
+            margin: theme.rem(1, 0, 0),
+        }),
     },
     price: {
         fontSize: theme.rem(1.6),

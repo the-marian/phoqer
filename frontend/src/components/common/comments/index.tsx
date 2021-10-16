@@ -33,7 +33,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
 
         ...theme.media(768).max({
             margin: theme.rem(3, 0, 1),
-            fontSize: theme.rem(2.5),
+            fontSize: theme.rem(1.5),
         }),
     },
     link: {

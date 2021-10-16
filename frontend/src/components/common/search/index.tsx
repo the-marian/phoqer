@@ -36,7 +36,8 @@ const useStyles = createUseStyles((theme: Theme) => ({
         backgroundSize: 'cover',
 
         ...theme.media(768).max({
-            minHeight: '92vh',
+            minHeight: theme.rem(50),
+            padding: theme.rem(15, 0, 4),
             backgroundAttachment: 'unset',
         }),
 
@@ -60,6 +61,10 @@ const useStyles = createUseStyles((theme: Theme) => ({
         fontSize: theme.rem(4),
         color: theme.palette.trueWhite,
         fontWeight: theme.text.weight[4],
+
+        ...theme.media(768).max({
+            fontSize: theme.rem(3),
+        }),
     },
     subtitle: {
         maxWidth: theme.rem(50),
@@ -67,6 +72,11 @@ const useStyles = createUseStyles((theme: Theme) => ({
         fontSize: theme.rem(2),
         color: theme.palette.trueWhite,
         fontWeight: theme.text.weight[3],
+
+        ...theme.media(768).max({
+            fontSize: theme.rem(1.5),
+            paddingBottom: theme.rem(3),
+        }),
     },
     wrp: {
         display: 'flex',

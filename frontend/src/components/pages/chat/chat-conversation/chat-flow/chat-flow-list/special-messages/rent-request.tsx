@@ -117,9 +117,9 @@ const RentRequest = ({ message }: IProps): ReactElement | null => {
             )}
             <div className={css.flex}>
                 <Button primary className={css.approve}>
-                    Approve
+                    Одобрить запрос
                 </Button>
-                <Button className={css.cancel}>Cancel</Button>
+                <Button className={css.cancel}>Отклонить</Button>
             </div>
         </>
     );

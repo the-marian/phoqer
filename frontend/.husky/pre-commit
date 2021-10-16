@@ -6,4 +6,5 @@ if [ "$files_changed" -gt 0 ]; then
 
   cd ./frontend/ || exit
   yarn test-all
+  git add .
 fi

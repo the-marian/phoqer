@@ -85,14 +85,14 @@ const ChatConfirmation = ({ profile, offerTitle }: IProps): ReactElement => {
                         {profile?.first_name} {profile?.last_name}
                     </a>
                 </Link>{' '}
-                желает арендовать у вас &quot;{offerTitle}&quot;
+                желает арендовать у вас &quot;{offerTitle}&quot;.
             </h2>
 
             <div className={css.flex}>
                 <Button primary className={css.approve}>
-                    Approve
+                    Одобрить запрос
                 </Button>
-                <Button className={css.cancel}>Cancel</Button>
+                <Button className={css.cancel}>Отклонить</Button>
             </div>
         </div>
     );

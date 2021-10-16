@@ -1,0 +1,8 @@
+const generalTypes = {
+    // TOGGLE_DRAWER
+    TOGGLE_DRAWER: 'TOGGLE_DRAWER',
+    // OFFERS_SEARCH_LOCAL_PARAMS
+    OFFERS_SEARCH_LOCAL_PARAMS: 'OFFERS_SEARCH_LOCAL_PARAMS',
+};
+
+export default generalTypes;

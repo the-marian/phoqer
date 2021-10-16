@@ -75,6 +75,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         fontSize: theme.rem(1.2),
         textAlign: 'center',
         ...mixin(theme).cutString,
+        width: '21vw',
     },
     icon: {
         display: 'flex',
