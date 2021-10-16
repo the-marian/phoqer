@@ -34,11 +34,11 @@ SECRET_KEY: str = os.environ.get("SECRET_KEY", "please_change_me")
 FERNET_SECRET_KEY: str = os.environ.get("FERNET_SECRET_KEY", "please_change_me")
 
 SMTP_TLS = True
-SMTP_PORT = 587
-SMTP_HOST = os.environ.get("EMAIL_HOST", "smtp.office365.com")
+SMTP_PORT = 465
+SMTP_HOST = os.environ.get("EMAIL_HOST", "smtp.hostinger.com")
 SMTP_USER = os.environ.get("EMAIL_HOST_USER")
 SMTP_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD")
-EMAILS_FROM_EMAIL = "foosking@outlook.com"
+EMAILS_FROM_EMAIL = "noreply@phoqer.com"
 EMAILS_FROM_NAME = "Phoqer"
 
 MEDIA_URL = "mediafiles"
