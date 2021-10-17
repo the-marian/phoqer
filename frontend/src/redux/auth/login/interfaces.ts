@@ -1,5 +1,5 @@
 import { IAuth, ILogin, IState } from '../../../interfaces';
-import types from '../../types';
+import types from '../types';
 
 type Type =
     | typeof types.LOGIN_START

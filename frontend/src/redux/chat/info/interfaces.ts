@@ -1,5 +1,5 @@
 import { IOfferCard } from '../../../interfaces';
-import types from '../../types';
+import types from '../types';
 
 type Type =
     | typeof types.GET_CHAT_OFFER_INFO_START

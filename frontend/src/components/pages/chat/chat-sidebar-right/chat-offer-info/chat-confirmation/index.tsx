@@ -76,8 +76,6 @@ const ChatConfirmation = ({ profile, offerTitle }: IProps): ReactElement => {
 
     return (
         <div className={css.root}>
-            <img className={css.img} src="/emoji/party.png" alt="" />
-
             <h2 className={css.title}>
                 Пользователь{' '}
                 <Link href={routes.profile.public(profile?.id)}>

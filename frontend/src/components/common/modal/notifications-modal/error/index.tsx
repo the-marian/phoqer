@@ -50,7 +50,7 @@ const NotificationError = ({ text }: IProps): ReactElement => {
 
     return (
         <StickyModal>
-            <img className={css.img} src="/emoji/error.png" alt="" />
+            <img className={css.img} src="/icons/error.png" alt="" />
             <h4 className={css.title}>Oops</h4>
             <p className={css.text}>{text || trans('error')}</p>
 

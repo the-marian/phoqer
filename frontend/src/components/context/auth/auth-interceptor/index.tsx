@@ -15,7 +15,7 @@ const AuthInterceptor = (): null => {
             axios.defaults.headers.common.Authorization = `Bearer ${token}`;
             dispatch({ type: types.GET_USER_START });
         } else {
-            delete axios.defaults.headers.common.Authorization;
+            dispatch({ type: types.LOGOUT_INIT });
         }
     }, [dispatch, token]);
 

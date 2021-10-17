@@ -21,7 +21,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
 const routesMap: { [key: string]: string } = {
     'my-offers': routes.profile.private.my_offers(),
     chat: routes.profile.private.chat(),
-    reviews: routes.profile.private.reviews,
+    notifications: routes.profile.private.notifications,
     referral: routes.profile.private.referral,
     settings: routes.profile.private.settings(),
     analytics: routes.profile.private.analytics,

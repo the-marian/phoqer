@@ -1,5 +1,7 @@
 {
-  "sellerId": "pub-2424155820333209",
-  "sellerType": "PUBLISHER",
-  "name": "Example Company Inc."
+  "seller_id": "pub-2424155820333209",
+  "is_confidential": 1,
+  "seller_type": "BOTH",
+  "name": "Игорь Михайличенко",
+  "domain": "phoqer.com"
 }

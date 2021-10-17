@@ -1,10 +1,10 @@
 import { ICity, ICountry, IPublicProfile, IRegion } from '../../interfaces';
-import initState from '../state';
 import types from '../types';
 
+import regionInit from './init-state';
 import IAction from './interfaces';
 
-const region = (state: IRegion = initState.region, { type, payload }: IAction): IRegion => {
+const region = (state: IRegion = regionInit, { type, payload }: IAction): IRegion => {
     switch (type) {
         case types.GET_CITIES_START:
         case types.GET_COUNTRIES_START:

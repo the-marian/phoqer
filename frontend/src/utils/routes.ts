@@ -18,7 +18,7 @@ const routes = {
             chat: (chat: Primitive = ''): string => `/profile/private/chat/${chat}`,
             newMessage: (offerId: Primitive = ''): string => `/profile/private/chat/new/${offerId}`,
             settings: (status: Primitive = 'general'): string => `/profile/private/settings/${status}`,
-            reviews: '/profile/private/reviews',
+            notifications: '/profile/private/notifications',
             referral: '/profile/private/referral',
             analytics: '/profile/private/analytics',
         },

@@ -1,8 +1,9 @@
-import types from '../../types';
+import profilesInit from '../init-state';
+import types from '../types';
 
 import IAction from './interfaces';
 
-const loading = (state = true, { type }: IAction): boolean => {
+const loading = (state = profilesInit.loading, { type }: IAction): boolean => {
     switch (type) {
         case types.GET_PUBLIC_PROFILE_START:
             return true;

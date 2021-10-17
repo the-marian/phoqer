@@ -2,14 +2,14 @@ import { Params } from 'next/dist/server/router';
 import { all, call, put, takeLatest } from 'redux-saga/effects';
 
 import notificationsModal from '../../../components/common/modal/notifications-modal';
-import api from '../../../utils/api';
-import types from '../../types';
+import services from '../services';
+import types from '../types';
 
 import IAction from './interfaces';
 
 function* searchOffers({ payload }: IAction) {
     try {
-        const { status, data } = yield call(api.offers.search, payload as Params);
+        const { status, data } = yield call(services.search, payload as Params);
         if (status < 200 || status >= 300) throw new Error();
         yield put({ type: types.SEARCH_OFFERS_SUCCESS, payload: data });
     } catch (error) {
@@ -21,7 +21,7 @@ function* searchOffers({ payload }: IAction) {
 
 function* searchOffersPagination({ payload }: IAction) {
     try {
-        const { status, data } = yield call(api.offers.search, payload as Params);
+        const { status, data } = yield call(services.search, payload as Params);
         if (status < 200 || status >= 300) throw new Error();
         yield put({ type: types.SEARCH_OFFERS_PAGINATION_SUCCESS, payload: data });
     } catch (error) {

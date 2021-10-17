@@ -3,9 +3,9 @@ import { all, call, put, select, takeLatest } from 'redux-saga/effects';
 
 import notificationsModal from '../../../components/common/modal/notifications-modal';
 import { IDropValue, INewOffer, IRegion, IState } from '../../../interfaces';
-import api from '../../../utils/api';
-import types from '../../types';
 import { IBody } from '../new_offer/interfaces';
+import services from '../services';
+import types from '../types';
 
 import IAction from './interfaces';
 
@@ -46,7 +46,7 @@ function* updateOffer({ payload, images, offerId, callback }: IAction) {
         body.category = ((payload as INewOffer).category as IDropValue)?.slug || null;
         body.sub_category = ((payload as INewOffer).sub_category as IDropValue)?.slug || null;
 
-        const { status } = yield call(api.offers.update, offerId as string, body);
+        const { status } = yield call(services.update, offerId as string, body);
         if (status < 200 || status >= 300) throw new Error();
         yield put({ type: types.PATCH_OFFER_SUCCESS });
         if (callback) callback();
@@ -75,10 +75,10 @@ function* publishOffer({ payload, images, offerId, callback }: IAction) {
         body.category = ((payload as INewOffer).category as IDropValue)?.slug || null;
         body.sub_category = ((payload as INewOffer).sub_category as IDropValue)?.slug || null;
 
-        const offer: { status: number } = yield call(api.offers.update, offerId as string, body);
+        const offer: { status: number } = yield call(services.update, offerId as string, body);
         if (offer.status < 200 || offer.status >= 300) throw new Error();
 
-        const status: { status: number } = yield call(api.offers.status, offerId as string, { status: 'REVIEW' });
+        const status: { status: number } = yield call(services.status, offerId as string, { status: 'REVIEW' });
         if (status.status < 200 || status.status >= 300) throw new Error();
 
         yield put({ type: types.PATCH_EDIT_OFFER_STATUS_SUCCESS });
@@ -96,7 +96,7 @@ function* changeCoverImage({ payload, offerId, callback }: IAction) {
             state => state.offers.single?.images,
         );
         const { status } = yield call(
-            api.offers.update,
+            services.update,
             offerId as string,
             {
                 cover_image: payload as string,
@@ -115,7 +115,7 @@ function* changeCoverImage({ payload, offerId, callback }: IAction) {
 
 function* changeOfferStatus({ status, offerId, callback }: IAction) {
     try {
-        const res: AxiosResponse<void> = yield call(api.offers.status, offerId as string, { status });
+        const res: AxiosResponse<void> = yield call(services.status, offerId as string, { status });
         if (res.status < 200 || res.status >= 300) throw new Error();
         yield put({ type: types.CHANGE_OFFER_STATUS_SUCCESS });
         if (callback) callback();

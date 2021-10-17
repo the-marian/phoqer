@@ -75,9 +75,9 @@ describe('2. Value formatting - 2.3 String', () => {
     });
 
     it('addMonthToDate', () => {
-        const date1 = new Date();
-        expect(helpers.addMonthToDate().getMonth() - date1.getMonth()).toBe(1);
-        // expect(helpers.addMonthToDate(3).getMonth() - date1.getMonth()).toBe(3);
+        const date1 = new Date('2020-03-10');
+        expect(helpers.addMonthToDate(1, date1).getMonth() - date1.getMonth()).toBe(1);
+        expect(helpers.addMonthToDate(3, date1).getMonth() - date1.getMonth()).toBe(3);
     });
 });
 

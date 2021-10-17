@@ -15,6 +15,8 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
     wrp: {
         display: 'flex',
+        width: '100%',
+
         ...theme.media(768).max({
             justifyContent: 'center',
             flexWrap: 'wrap',

@@ -1,12 +1,12 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
 
 import notificationsModal from '../../../components/common/modal/notifications-modal';
-import api from '../../../utils/api';
-import types from '../../types';
+import services from '../services';
+import types from '../types';
 
 function* getPopular() {
     try {
-        const { status, data } = yield call(api.offers.popular);
+        const { status, data } = yield call(services.popular);
         if (status < 200 || status >= 300) throw new Error();
         yield put({ type: types.GET_POPULAR_OFFERS_SUCCESS, payload: data });
     } catch (error) {

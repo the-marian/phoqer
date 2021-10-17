@@ -12,8 +12,8 @@ export const dateFromTimestamp = (value?: string | number | null | Date): Date |
     }
 };
 
-export const addMonthToDate = (amount = 1): Date => {
-    const today = new Date();
+export const addMonthToDate = (amount = 1, date?: Date): Date => {
+    const today = date ? new Date(date) : new Date(); // avoid mutation
     return new Date(today.setMonth(today.getMonth() + amount));
 };
 

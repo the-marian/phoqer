@@ -128,7 +128,7 @@ const RentRequest = ({ message }: IProps): ReactElement | null => {
         user && (
             <div className={css.root}>
                 <div className={css.img}>
-                    <img src={message.user_id === user.id ? '/case.png' : '/target.png'} alt="" />
+                    <img src={message.user_id === user.id ? '/icons/case.png' : '/icons/target.png'} alt="" />
                 </div>
                 <div className={css.text}>{message.user_id === user.id ? authorText : clientText}</div>
             </div>

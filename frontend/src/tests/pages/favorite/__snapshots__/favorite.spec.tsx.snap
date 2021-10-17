@@ -137,8 +137,8 @@ exports[`Favorite component match snapshot 1`] = `
       >
         <img
           alt=""
-          class="emoji-0-2-44"
-          src="/emoji/empty.png"
+          class="img-0-2-44"
+          src="/icons/empty.png"
         />
         <p
           class="emptyText-0-2-45"

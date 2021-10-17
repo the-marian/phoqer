@@ -1,12 +1,12 @@
 import { HYDRATE } from 'next-redux-wrapper';
 
 import { INewOffer, IState } from '../../../interfaces';
-import initState from '../../state';
-import types from '../../types';
+import offersInit from '../init-state';
+import types from '../types';
 
 import IAction from './interfaces';
 
-const new_offer = (state: INewOffer = initState.offers.new_offer, { type, payload }: IAction): INewOffer => {
+const new_offer = (state: INewOffer = offersInit.new_offer, { type, payload }: IAction): INewOffer => {
     switch (type) {
         case HYDRATE:
             return (payload as IState).offers.new_offer;

@@ -1,5 +1,5 @@
 import { ChatType, IChats, IPagination } from '../../../interfaces';
-import types from '../../types';
+import types from '../types';
 
 type Type =
     | typeof types.GET_CHATS_START

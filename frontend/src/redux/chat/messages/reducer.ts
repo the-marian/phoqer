@@ -1,10 +1,11 @@
 import { IMessages, IMessagesList, IPagination } from '../../../interfaces';
 import initState from '../../state';
-import types from '../../types';
+import chatInit from '../init-state';
+import types from '../types';
 
 import IAction from './interfaces';
 
-const messages = (state: IMessagesList = initState.chat.messages, { type, payload }: IAction): IMessagesList => {
+const messages = (state: IMessagesList = chatInit.messages, { type, payload }: IAction): IMessagesList => {
     switch (type) {
         case types.GET_MESSAGES_START:
             return { ...state, loading: true };

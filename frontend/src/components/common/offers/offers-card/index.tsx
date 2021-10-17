@@ -189,7 +189,7 @@ const OfferCard = ({ offer, showFavoriteBtn = true }: IProps): ReactElement => {
                         </div>
                         <img
                             className={config.offerCardSize === 'big' ? css.imgBig : css.imgSmall}
-                            src={cover_image || '/no_img.png'}
+                            src={cover_image || '/icons/no_img.png'}
                             alt={title}
                         />
                     </div>

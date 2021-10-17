@@ -1,12 +1,12 @@
 import { HYDRATE } from 'next-redux-wrapper';
 
 import { ISearch, IState } from '../../../interfaces';
-import initState from '../../state';
-import types from '../../types';
+import configInit from '../init-state';
+import types from '../types';
 
 import IAction from './interfaces';
 
-const searchParams = (state: ISearch = initState.config.searchParams, { type, payload }: IAction): ISearch => {
+const searchParams = (state: ISearch = configInit.searchParams, { type, payload }: IAction): ISearch => {
     switch (type) {
         case HYDRATE:
             return (payload as IState).config.searchParams;

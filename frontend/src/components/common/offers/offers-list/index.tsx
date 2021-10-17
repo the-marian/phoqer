@@ -74,7 +74,7 @@ const OffersList = ({ loading, loadMoreLoading = false, data, showFavoriteBtn = 
 
     return loading ? (
         <>
-            <OffersLoader amount={media ? 4 : 2} />
+            <OffersLoader amount={media ? (config.offerCardSize === 'big' ? 4 : 7) : 2} />
             {media && <OffersLoader className={css.loading} amount={media ? 4 : 1} />}
         </>
     ) : (

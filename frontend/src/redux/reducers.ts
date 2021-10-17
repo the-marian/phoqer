@@ -7,6 +7,7 @@ import categories from './categories/reducer';
 import chat from './chat/reducer';
 import comments from './comments/reducer';
 import config from './config/reducer';
+import notifications from './notifications/reducer';
 import offers from './offers/reducer';
 import profiles from './profiles/reducer';
 import region from './region/reducer';
@@ -22,6 +23,7 @@ const rootReducer = combineReducers<Reducer<IState>>({
     categories,
     profiles,
     chat,
+    notifications,
 });
 
 export default rootReducer;

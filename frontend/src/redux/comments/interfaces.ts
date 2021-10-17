@@ -1,5 +1,6 @@
 import { IComment, IState } from '../../interfaces';
-import types from '../types';
+
+import types from './types';
 
 type Type =
     | typeof types.GET_COMMENTS_START

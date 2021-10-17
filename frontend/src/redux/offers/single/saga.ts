@@ -1,14 +1,14 @@
 import { all, call, put, takeLatest } from 'redux-saga/effects';
 
 import notificationsModal from '../../../components/common/modal/notifications-modal';
-import api from '../../../utils/api';
-import types from '../../types';
+import services from '../services';
+import types from '../types';
 
 import IAction from './interfaces';
 
 function* getOffer({ payload }: IAction) {
     try {
-        const { status, data } = yield call(api.offers.single, payload as string);
+        const { status, data } = yield call(services.single, payload as string);
         if (status < 200 || status >= 300) throw new Error();
         yield put({ type: types.GET_SINGLE_OFFER_SUCCESS, payload: data });
     } catch (error) {
@@ -21,7 +21,7 @@ function* getOffer({ payload }: IAction) {
 
 function* doReview({ offerId, tab, page, callback }: IAction) {
     try {
-        const { status } = yield call(api.offers.status, offerId as string, { status: 'REVIEW' });
+        const { status } = yield call(services.status, offerId as string, { status: 'REVIEW' });
         if (status < 200 || status >= 300) throw new Error();
         yield put({ type: types.OFFER_DO_REVIEW_SUCCESS });
         yield put({
@@ -39,7 +39,7 @@ function* doReview({ offerId, tab, page, callback }: IAction) {
 
 function* deleteOffer({ offerId, callback }: IAction) {
     try {
-        const { status } = yield call(api.offers.deleteOffer, offerId as string);
+        const { status } = yield call(services.deleteOffer, offerId as string);
         if (status < 200 || status >= 300) throw new Error();
         yield put({ type: types.DELETE_OFFER_SUCCESS, payload: offerId });
         if (callback) callback();

@@ -2,8 +2,8 @@ import { call, put, takeLatest } from 'redux-saga/effects';
 
 import notificationsModal from '../../../components/common/modal/notifications-modal';
 import { ILogin } from '../../../interfaces';
-import api from '../../../utils/api';
-import types from '../../types';
+import services from '../services';
+import types from '../types';
 
 import IAction from './interfaces';
 
@@ -13,7 +13,7 @@ function* loginUser({ payload }: IAction) {
     value.append('password', (payload as ILogin).password);
 
     try {
-        const { status, data } = yield call(api.auth.login, value);
+        const { status, data } = yield call(services.login, value);
         if (status < 200 || status >= 300) throw new Error();
         yield put({ type: types.LOGIN_SUCCESS, payload: data });
         window.location.reload();

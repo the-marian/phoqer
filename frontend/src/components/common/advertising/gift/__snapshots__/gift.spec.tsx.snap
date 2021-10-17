@@ -35,7 +35,7 @@ exports[`Gift component matches snapshot 1`] = `
     <img
       alt=""
       class="img-0-2-2"
-      src="/emoji/gift.png"
+      src="/icons/gift.png"
     />
   </button>
 </DocumentFragment>
@@ -77,7 +77,7 @@ exports[`Gift component matches snapshot 2`] = `
     <img
       alt=""
       class="img-0-2-10"
-      src="/emoji/gift.png"
+      src="/icons/gift.png"
     />
   </button>
 </DocumentFragment>

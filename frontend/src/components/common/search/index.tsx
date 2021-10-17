@@ -49,7 +49,6 @@ const useStyles = createUseStyles((theme: Theme) => ({
             zIndex: 0,
             width: '100%',
             height: '100%',
-            backdropFilter: 'blur(var(--blur, 0))',
             background: theme.palette.modal,
         },
     },
@@ -196,18 +195,6 @@ const Search = ({ shallow = false }: IProps): ReactElement => {
             setImg(`/backdrop/${random || 1}.jpeg`);
             window.scrollTo({ top: document.getElementById('products')?.offsetTop || 0, behavior: 'smooth' });
         }
-    }, []);
-
-    useEffect(() => {
-        const handler = (): void => {
-            if (!ref.current) return;
-            if (window.scrollY > 200 && ref.current.style.getPropertyValue('--blur')) return;
-            ref.current.style.setProperty('--blur', window.scrollY / 100 + 'rem');
-        };
-
-        window.addEventListener('scroll', handler);
-
-        return () => window.removeEventListener('scroll', handler);
     }, []);
 
     const searchParams = useSelector<IState, ISearch>(state => state.config.searchParams);

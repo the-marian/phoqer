@@ -345,8 +345,8 @@ exports[`Home component match snapshot 1`] = `
         >
           <img
             alt=""
-            class="emoji-0-2-76"
-            src="/emoji/empty.png"
+            class="img-0-2-76"
+            src="/icons/empty.png"
           />
           <p
             class="emptyText-0-2-77"

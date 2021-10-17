@@ -50,7 +50,7 @@ const Advertising = (): ReactElement => {
 
     return (
         <div className={css.top}>
-            <img className={css.img} src="/emoji/success.png" alt="" />
+            <img className={css.img} src="/icons/success.png" alt="" />
             <h2>Выводите товар в топ на месяц абсолютно бесплатно</h2>
             <p>
                 Ляля тополя ляля тополя тополя ляля тополя тополя ляля тополя тополя ляля тополя. Тополя ляля тополя тополя ляля

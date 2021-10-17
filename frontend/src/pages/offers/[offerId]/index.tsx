@@ -17,6 +17,7 @@ import Container from '../../../components/layout/container';
 import PageLayout from '../../../components/layout/page-layout';
 import Meta from '../../../components/meta';
 import AsideElement from '../../../components/pages/offers/single-offer/aside-element';
+import OfferFunctions from '../../../components/pages/offers/single-offer/offer-functions';
 import OfferHead from '../../../components/pages/offers/single-offer/offer-head';
 import Price from '../../../components/pages/offers/single-offer/price';
 import RelatedOffers from '../../../components/pages/offers/single-offer/related-offers';
@@ -172,7 +173,7 @@ const SingleOfferPage = (): ReactElement | null => {
     const handleModal = (): void => {
         modal.open(
             <FullPageModal>
-                <img className={css.modal} draggable={false} src={offer?.cover_image || '/no_img.png'} alt="" />
+                <img className={css.modal} draggable={false} src={offer?.cover_image || '/icons/no_img.png'} alt="" />
             </FullPageModal>,
         );
     };
@@ -194,7 +195,7 @@ const SingleOfferPage = (): ReactElement | null => {
                             ) : (
                                 <img
                                     className={css.banner}
-                                    src={offer?.cover_image || '/no_img.png'}
+                                    src={offer?.cover_image || '/icons/no_img.png'}
                                     onClick={handleModal}
                                     aria-hidden="true"
                                     alt=""
@@ -217,6 +218,8 @@ const SingleOfferPage = (): ReactElement | null => {
                                     },
                                 ]}
                             />
+
+                            <OfferFunctions />
 
                             <div className={css.flex}>
                                 <div className={css.main}>

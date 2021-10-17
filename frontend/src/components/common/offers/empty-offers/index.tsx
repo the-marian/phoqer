@@ -16,11 +16,12 @@ const useStyles = createUseStyles((theme: Theme) => ({
         borderRadius: theme.radius,
         padding: theme.rem(6, 2),
     },
-    emoji: {
-        width: theme.rem(10),
-        marginBottom: theme.rem(4),
+    img: {
+        width: theme.rem(20),
+        marginBottom: theme.rem(2),
     },
     emptyText: {
+        maxWidth: theme.rem(40),
         marginBottom: theme.rem(2),
         fontSize: theme.rem(1.6),
         color: theme.palette.gray[3],
@@ -48,7 +49,7 @@ const EmptyOffers = ({ text }: IProps): ReactElement => {
 
     return (
         <div className={css.empty}>
-            <img className={css.emoji} src="/emoji/empty.png" alt="" />
+            <img className={css.img} src="/icons/empty.png" alt="" />
             <p className={css.emptyText}>{text || trans('no_offer')}</p>
 
             <Link href={routes.offers.new(1)}>

@@ -1,14 +1,14 @@
 import { all, call, put, takeLatest } from 'redux-saga/effects';
 
 import notificationsModal from '../../../components/common/modal/notifications-modal';
-import api from '../../../utils/api';
-import types from '../../types';
+import services from '../services';
+import types from '../types';
 
 import IAction from './interfaces';
 
 function* getFavorite() {
     try {
-        const { status, data } = yield call(api.offers.favorite.get);
+        const { status, data } = yield call(services.favorite.get);
         if (status < 200 || status >= 300) throw new Error();
         yield put({ type: types.GET_FAVORITE_OFFERS_SUCCESS, payload: data });
     } catch (error) {
@@ -20,7 +20,7 @@ function* getFavorite() {
 
 function* patchFavorite({ payload }: IAction) {
     try {
-        const { status } = yield call(api.offers.favorite.patch, payload as string);
+        const { status } = yield call(services.favorite.patch, payload as string);
         if (status < 200 || status >= 300) throw new Error();
         yield put({ type: types.PATCH_FAVORITE_OFFERS_SUCCESS, payload });
     } catch (error) {

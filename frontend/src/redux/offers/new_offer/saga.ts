@@ -2,8 +2,8 @@ import { call, put, select, takeLatest } from 'redux-saga/effects';
 
 import notificationsModal from '../../../components/common/modal/notifications-modal';
 import { IDropValue, INewOffer, IRegion, IState } from '../../../interfaces';
-import api from '../../../utils/api';
-import types from '../../types';
+import services from '../services';
+import types from '../types';
 
 import IAction, { IBody } from './interfaces';
 
@@ -37,7 +37,7 @@ function* postOffer({ payload, callback }: IAction) {
         body.category = (form.category as IDropValue)?.slug || null;
         body.sub_category = (form.sub_category as IDropValue)?.slug || null;
 
-        const { status, data } = yield call(api.offers.new, body);
+        const { status, data } = yield call(services.new, body);
         if (status < 200 || status >= 300) throw new Error();
         yield put({ type: types.POST_OFFER_SUCCESS });
         if (callback) callback(data.id);

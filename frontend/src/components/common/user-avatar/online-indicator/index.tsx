@@ -11,8 +11,8 @@ const TEN_MINUTES_IN_MS = 600000;
 
 const useStyles = createUseStyles((theme: Theme) => ({
     root: {
-        height: theme.rem(2),
-        width: theme.rem(2),
+        height: theme.rem(1.5),
+        width: theme.rem(1.5),
         borderRadius: '50%',
         border: theme.border(0.1, theme.palette.trueWhite),
     },

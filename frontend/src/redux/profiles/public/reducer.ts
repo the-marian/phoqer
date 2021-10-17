@@ -1,11 +1,11 @@
 import { HYDRATE } from 'next-redux-wrapper';
 
 import { IPublicProfile, IState } from '../../../interfaces';
-import types from '../../types';
+import types from '../types';
 import IAction from './interfaces';
-import initState from "../../state";
+import profilesInit from "../init-state";
 
-const publicProfile = (state: IPublicProfile | null = initState.profiles.public, { type, payload }: IAction): IPublicProfile | null => {
+const publicProfile = (state: IPublicProfile | null = profilesInit.public, { type, payload }: IAction): IPublicProfile | null => {
     switch (type) {
         case HYDRATE:
             return (payload as IState).profiles.public;

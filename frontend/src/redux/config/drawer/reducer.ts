@@ -1,11 +1,12 @@
 import { HYDRATE } from 'next-redux-wrapper';
 
 import { IState } from '../../../interfaces';
-import types from '../../types';
+import configInit from '../init-state';
+import types from '../types';
 
 import IAction from './interfaces';
 
-const drawer = (state = false, { type, payload }: IAction): boolean => {
+const drawer = (state = configInit.drawer, { type, payload }: IAction): boolean => {
     switch (type) {
         case HYDRATE:
             return (payload as IState).config.drawer;

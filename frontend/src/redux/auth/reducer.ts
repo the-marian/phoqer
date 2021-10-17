@@ -1,13 +1,12 @@
 import { HYDRATE } from 'next-redux-wrapper';
 
 import { IAuth, IState } from '../../interfaces';
-import types from '../types';
 
+import authInit from './init-state';
 import IAction from './login/interfaces';
+import types from './types';
 
-const INIT: IAuth = { access_token: null, loading: false };
-
-const auth = (state: IAuth = INIT, { type, payload }: IAction): IAuth => {
+const auth = (state: IAuth = authInit, { type, payload }: IAction): IAuth => {
     switch (type) {
         case HYDRATE:
             return (payload as IState).auth;
@@ -16,7 +15,7 @@ const auth = (state: IAuth = INIT, { type, payload }: IAction): IAuth => {
             return { access_token: (payload as IAuth).access_token, loading: false };
 
         case types.LOGOUT_END:
-            return INIT;
+            return authInit;
 
         case types.LOGIN_START:
         case types.SIGNUP_START:

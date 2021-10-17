@@ -51,9 +51,10 @@ const useStyles = createUseStyles((theme: Theme) => ({
         color: theme.palette.gray[3],
     },
     img: {
-        height: theme.rem(5),
-        width: theme.rem(5),
+        width: theme.rem(28),
+        height: 'auto',
         marginBottom: theme.rem(2),
+        objectFit: 'contain',
     },
 }));
 
@@ -74,7 +75,7 @@ const Messages = (): ReactElement => {
                 <ChatWrp showConversation={media}>
                     <div className={css.chat}>
                         <div className={css.inner}>
-                            <img className={css.img} src="/emoji/chat.png" alt="" />
+                            <img className={css.img} src="/icons/chat.png" alt="" />
                             <p>Select the chat in side panel</p>
                         </div>
                     </div>

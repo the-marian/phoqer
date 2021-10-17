@@ -20,6 +20,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         width: 'max-content',
         borderRadius: theme.radius,
         border: theme.border(0.1, theme.palette.primary[0]),
+        overflow: 'hidden',
     },
     item: {
         flex: 1,

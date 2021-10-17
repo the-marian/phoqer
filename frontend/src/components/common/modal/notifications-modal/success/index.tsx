@@ -49,7 +49,7 @@ const NotificationSuccess = ({ text }: IProps): ReactElement => {
     return (
         <StickyModal>
             <>
-                <img className={css.img} src="/emoji/success.png" alt="" />
+                <img className={css.img} src="/icons/success.png" alt="" />
                 <h4 className={css.title}>{trans('success')}</h4>
                 <p className={css.text}>{trans(text || 'success')}</p>
 

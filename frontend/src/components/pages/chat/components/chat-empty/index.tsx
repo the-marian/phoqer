@@ -53,7 +53,7 @@ const ChatEmpty = ({ height, aside = false, small = false }: IProps): ReactEleme
             className={clsx(css.empty, aside && css.aside)}
             style={{ height: typeof height === 'string' ? height : `${height}rem` }}
         >
-            {!small && <img className={css.img} src="/emoji/empty.png" alt="" />}
+            {!small && <img className={css.img} src="/icons/empty.png" alt="" />}
             <p>У вас пока нету сообщений. Напишите ваше первое сообщение</p>
         </div>
     );

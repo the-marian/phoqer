@@ -11,6 +11,7 @@ import { Theme } from '../../../../utils/theming/theme';
 import LikeDislike from '../../../common/like-dislike';
 import { modal } from '../../../common/modal';
 import MidModalWrp from '../../../common/modal/mid-modal-wrp';
+import StickyModal from '../../../common/modal/sticky-modal';
 import Tooltip from '../../../common/tooltip';
 
 const useStyles = createUseStyles((theme: Theme) => ({
@@ -93,10 +94,11 @@ const useStyles = createUseStyles((theme: Theme) => ({
     link: {
         display: 'inline',
         color: theme.palette.primary[0],
-        textDecoration: 'underline',
+        marginLeft: theme.rem(1),
+        fontWeight: theme.text.weight[3],
     },
     modal: {
-        fontSize: theme.rem(2),
+        fontSize: theme.rem(1.5),
     },
     tooltip: {
         minWidth: theme.rem(25),
@@ -110,9 +112,9 @@ const ProfileInfo = (): ReactElement => {
 
     const handleReadMore = (): void => {
         modal.open(
-            <MidModalWrp>
+            <StickyModal>
                 <p className={css.modal} dangerouslySetInnerHTML={{ __html: profile?.bio?.replace(/\n/, '<br>') || '' }} />
-            </MidModalWrp>,
+            </StickyModal>,
         );
     };
 
@@ -148,8 +150,8 @@ const ProfileInfo = (): ReactElement => {
                 <p>
                     {profile?.bio ? (
                         <>
-                            {cutString(profile.bio, 150)}
-                            {profile.bio.length > 150 && (
+                            {cutString(profile.bio, 400)}
+                            {profile.bio.length > 400 && (
                                 <button type="button" onClick={handleReadMore} className={css.link}>
                                     {trans('read_more')}
                                 </button>

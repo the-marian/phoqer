@@ -3,14 +3,14 @@ import { call, put, takeLatest } from 'redux-saga/effects';
 import { modal } from '../../../components/common/modal';
 import notificationsModal from '../../../components/common/modal/notifications-modal';
 import { ISignup } from '../../../interfaces';
-import api from '../../../utils/api';
-import types from '../../types';
+import services from '../services';
+import types from '../types';
 
 import IAction from './interfaces';
 
 function* signupUser({ payload }: IAction) {
     try {
-        const { status } = yield call(api.auth.signup, payload as ISignup);
+        const { status } = yield call(services.signup, payload as ISignup);
         if (status < 200 || status >= 300) throw new Error();
         yield put({ type: types.SIGNUP_SUCCESS });
         modal.close();

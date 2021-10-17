@@ -1,10 +1,10 @@
 import { IChatOfferInfo, IOfferCard } from '../../../interfaces';
-import initState from '../../state';
-import types from '../../types';
+import chatInit from '../init-state';
+import types from '../types';
 
 import IAction from './interfaces';
 
-const info = (state: IChatOfferInfo = initState.chat.info, { type, payload }: IAction): IChatOfferInfo => {
+const info = (state: IChatOfferInfo = chatInit.info, { type, payload }: IAction): IChatOfferInfo => {
     switch (type) {
         case types.GET_CHAT_OFFER_INFO_START:
             return { ...state, loading: true };

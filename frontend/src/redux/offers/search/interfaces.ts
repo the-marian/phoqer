@@ -1,7 +1,7 @@
 import { Params } from 'next/dist/server/router';
 
 import { IOfferCard, IState } from '../../../interfaces';
-import types from '../../types';
+import types from '../types';
 
 export default interface IAction {
     type:

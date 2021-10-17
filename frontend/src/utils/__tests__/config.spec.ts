@@ -4,24 +4,12 @@ import config from '../config';
 
 describe('Test config functions', () => {
     describe('test url formation', () => {
-        it('Get development base url without params', () => {
-            expect(config.baseUrl.development()).toBe('/api/v1');
-        });
-
-        it('Get development base url with params', () => {
-            expect(config.baseUrl.development('v20')).toBe('/api/v20');
-        });
-
-        it('Get production url', () => {
-            expect(config.baseUrl.production()).toBe('http://backend:8001');
-        });
-
         it('Get uploads url without params', () => {
-            expect(config.uploadsUrl()).toBe('/api/v2/upload');
+            expect(config.uploadsUrl()).toBe('/v2/upload');
         });
 
         it('Get uploads url with params', () => {
-            expect(config.uploadsUrl('v20')).toBe('/api/v20/upload');
+            expect(config.uploadsUrl('v20')).toBe('/v20/upload');
         });
 
         it('Get site url without lags params', () => {

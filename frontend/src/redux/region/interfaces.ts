@@ -9,6 +9,7 @@ type Type =
     | typeof types.GET_CITIES_ERROR
     | typeof types.GET_CITIES_SUCCESS
     | typeof types.SELECT_COUNTRY
+    | typeof types.GET_USER_SUCCESS
     | typeof types.SELECT_CITY;
 
 export default interface IAction {

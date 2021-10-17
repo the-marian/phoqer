@@ -87,11 +87,11 @@ const Requirements = ({ offer }: IProps): ReactElement => {
             </ul>
             <ul className={css.emoji}>
                 <li className={clsx(!offer?.is_deliverable && css.gray)}>
-                    <img src="/emoji/delivery.png" alt="" />
+                    <img src="/icons/delivery.png" alt="" />
                     <span>{trans(offer?.is_deliverable ? 'owner_delivers_good' : 'owner_not_deliver_goods')}</span>
                 </li>
                 <li className={clsx(!offer?.doc_needed && css.gray)}>
-                    <img src="/emoji/documents.png" alt="" />
+                    <img src="/icons/documents.png" alt="" />
                     <span>{trans(offer?.doc_needed ? 'client_provide_documents' : 'client_dont_provide_documents')}</span>
                 </li>
             </ul>

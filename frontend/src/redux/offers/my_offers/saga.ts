@@ -2,14 +2,14 @@ import { Params } from 'next/dist/server/router';
 import { all, call, put, takeLatest } from 'redux-saga/effects';
 
 import notificationsModal from '../../../components/common/modal/notifications-modal';
-import api from '../../../utils/api';
-import types from '../../types';
+import services from '../services';
+import types from '../types';
 
 import IAction, { IParams } from './interfaces';
 
 function* getMyOffers({ payload }: IAction) {
     try {
-        const { status, data } = yield call(api.offers.myOffers, payload as IParams);
+        const { status, data } = yield call(services.myOffers, payload as IParams);
         if (status < 200 || status >= 300) throw new Error();
         yield put({ type: types.MY_OFFERS_SUCCESS, payload: data });
     } catch (error) {
@@ -21,7 +21,7 @@ function* getMyOffers({ payload }: IAction) {
 
 function* getMyOffersPagination({ payload }: IAction) {
     try {
-        const { status, data } = yield call(api.offers.myOffers, payload as IParams);
+        const { status, data } = yield call(services.myOffers, payload as IParams);
         if (status < 200 || status >= 300) throw new Error();
         yield put({ type: types.MY_OFFERS_PAGINATION_SUCCESS, payload: data });
     } catch (error) {
@@ -33,7 +33,7 @@ function* getMyOffersPagination({ payload }: IAction) {
 
 function* getPublicOffers({ payload, params }: IAction) {
     try {
-        const { status, data } = yield call(api.offers.publicOffers, payload as string, params as Params);
+        const { status, data } = yield call(services.publicOffers, payload as string, params as Params);
         if (status < 200 || status >= 300) throw new Error();
         yield put({ type: types.PUBLIC_OFFERS_SUCCESS, payload: data });
     } catch (error) {
@@ -45,7 +45,7 @@ function* getPublicOffers({ payload, params }: IAction) {
 
 function* getPublicOffersPagination({ payload, params }: IAction) {
     try {
-        const { status, data } = yield call(api.offers.publicOffers, payload as string, params as Params);
+        const { status, data } = yield call(services.publicOffers, payload as string, params as Params);
         if (status < 200 || status >= 300) throw new Error();
         yield put({ type: types.PUBLIC_OFFERS_PAGINATION_SUCCESS, payload: data });
     } catch (error) {

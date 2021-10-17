@@ -68,7 +68,7 @@ const Gift = ({ style = {} }: IProps): ReactElement => {
                 <h2 className={css.title}>{trans('this_is_your_gift')}</h2>
                 <p>{trans('this_is_your_gift_text')}</p>
             </div>
-            <img className={css.img} src="/emoji/gift.png" alt="" />
+            <img className={css.img} src="/icons/gift.png" alt="" />
         </button>
     );
 };

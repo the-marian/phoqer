@@ -11,7 +11,7 @@ import routes from '../../../utils/routes';
 
 const temp: ITabsNum = {
     messages: 4,
-    reviews: 5,
+    notifications: 5,
 };
 
 export const getBaseNavList = (count: ITabsNum = temp): ITabs[] => [
@@ -35,11 +35,11 @@ export const getBaseNavList = (count: ITabsNum = temp): ITabs[] => [
         count: count?.messages,
     },
     {
-        id: 'reviews',
-        text: 'reviews',
-        link: routes.profile.private.reviews,
+        id: 'notifications',
+        text: 'notifications',
+        link: routes.profile.private.notifications,
         icon: faCommentAlt,
-        count: count?.reviews,
+        count: count?.notifications,
     },
     {
         id: 'referral',

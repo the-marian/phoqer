@@ -22,7 +22,7 @@ const routesMap: { [key: string]: string } = {
     'rented-offers': routes.profile.private.rented_offers(),
     'my-offers': routes.profile.private.my_offers(),
     chat: routes.profile.private.chat(),
-    reviews: routes.profile.private.reviews,
+    notifications: routes.profile.private.notifications,
     referral: routes.profile.private.referral,
     settings: routes.profile.private.settings(),
     analytics: routes.profile.private.analytics,

@@ -1,10 +1,10 @@
 import { ChatType, IChats, IChatsList, IPagination } from '../../../interfaces';
-import initState from '../../state';
-import types from '../../types';
+import chatInit from '../init-state';
+import types from '../types';
 
 import IAction from './interfaces';
 
-const chats = (state: IChatsList = initState.chat.chats, { type, payload }: IAction): IChatsList => {
+const chats = (state: IChatsList = chatInit.chats, { type, payload }: IAction): IChatsList => {
     switch (type) {
         case types.GET_CHATS_START:
             return { ...state, loading: true };

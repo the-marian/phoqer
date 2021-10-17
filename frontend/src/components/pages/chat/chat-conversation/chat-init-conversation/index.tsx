@@ -79,7 +79,7 @@ const ChatInitConversation = ({ children }: IProps): ReactElement | null => {
             <Link href={routes.offers.single(offer?.id)}>
                 <a className={css.link}>
                     <Tooltip content="Нажмите чтобы просмотреть объявление">
-                        <img className={css.img} src={offer?.cover_image || '/no_img.png'} alt="" />
+                        <img className={css.img} src={offer?.cover_image || '/icons/no_img.png'} alt="" />
                     </Tooltip>
                     <h2 className={css.title}>{offer?.title}</h2>
                     <p className={css.text}>{cutString(offer.description, 80)}</p>

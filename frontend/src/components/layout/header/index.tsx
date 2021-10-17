@@ -96,4 +96,4 @@ const Header = (): ReactElement => {
     );
 };
 
-export default React.memo(Header);
+export default Header;

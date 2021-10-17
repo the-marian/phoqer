@@ -8,7 +8,7 @@ export interface ITabsItem {
 
 const temp: ITabsNum = {
     messages: 4,
-    reviews: 5,
+    notifications: 5,
 };
 
 export const userPrivateTabs = (count: ITabsNum = temp): ITabsItem[] => [
@@ -26,9 +26,9 @@ export const userPrivateTabs = (count: ITabsNum = temp): ITabsItem[] => [
         count: count?.messages,
     },
     {
-        id: 'reviews',
-        text: 'reviews',
-        count: count?.reviews,
+        id: 'notifications',
+        text: 'notifications',
+        count: count?.notifications,
     },
     {
         id: 'referral',

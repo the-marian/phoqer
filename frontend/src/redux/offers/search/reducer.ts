@@ -1,12 +1,12 @@
 import { HYDRATE } from 'next-redux-wrapper';
 
 import { IOfferCard, IOfferDynamic, IOfferPagination, IState } from '../../../interfaces';
-import initState from '../../state';
-import types from '../../types';
+import offersInit from '../init-state';
+import types from '../types';
 
 import IAction from './interfaces';
 
-const search = (state: IOfferDynamic = initState.offers.search, { type, payload }: IAction): IOfferDynamic => {
+const search = (state: IOfferDynamic = offersInit.search, { type, payload }: IAction): IOfferDynamic => {
     switch (type) {
         case HYDRATE:
             return (payload as IState).offers.search;
@@ -28,7 +28,7 @@ const search = (state: IOfferDynamic = initState.offers.search, { type, payload 
 
         case types.SEARCH_OFFERS_ERROR:
         case types.SEARCH_OFFERS_PAGINATION_ERROR:
-            return initState.offers.search;
+            return offersInit.search;
 
         case types.PATCH_FAVORITE_OFFERS_SUCCESS:
             return state.data.data.length

@@ -45,7 +45,7 @@ const RentedOffers = (): ReactElement => {
     return (
         <>
             <AuthRedirect />
-            <Meta title={trans('reviews')} h1={trans('user_profile_on_phoqer')} />
+            <Meta title={trans('rented_offers')} h1={trans('user_profile_on_phoqer')} />
             <PageLayout>
                 <Container>
                     <>
@@ -54,7 +54,7 @@ const RentedOffers = (): ReactElement => {
                                 <ProfileHeader />
                                 <Breadcrumbs
                                     className={css.breadcrumbs}
-                                    end={trans('reviews')}
+                                    end={trans('rented_offers')}
                                     data={[
                                         { label: trans('to_home_page'), link: routes.root },
                                         { label: trans('personal_area'), link: routes.profile.private.personal_area },

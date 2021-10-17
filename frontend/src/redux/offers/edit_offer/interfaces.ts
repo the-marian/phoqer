@@ -1,5 +1,5 @@
 import { INewOffer, IState } from '../../../interfaces';
-import types from '../../types';
+import types from '../types';
 
 type Type =
     | typeof types.PATCH_OFFER_START
