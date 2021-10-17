@@ -2,8 +2,8 @@ from typing import Optional
 
 from pydantic import ValidationError
 
-from FastAPI.offers import crud
 from FastAPI.chats.crud import chat_is_approved_update, chat_is_done_update
+from FastAPI.offers import crud
 from FastAPI.offers.schemas import Status, ValidOffer
 
 

@@ -9,6 +9,7 @@ from FastAPI.config import NEXT_PUBLIC_HOST, database
 from FastAPI.favorite import favorite
 from FastAPI.locations import locations
 from FastAPI.login import login
+from FastAPI.notifications import notifications
 from FastAPI.offers import offers
 from FastAPI.upload import upload
 from FastAPI.users import users
@@ -30,6 +31,7 @@ app.include_router(offers.router)
 app.include_router(favorite.router)
 app.include_router(login.router)
 app.include_router(locations.router)
+app.include_router(notifications.router)
 app.include_router(users.router)
 app.include_router(upload.router)
 

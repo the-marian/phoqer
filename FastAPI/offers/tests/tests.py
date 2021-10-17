@@ -324,7 +324,7 @@ def test_change_status_to_review(client, marian_auth_token, offer_ps4):
 
 
 def test_change_status_to_in_rent(
-        db, client, marian_auth_token, offer_ps4, chat_marian_egor
+    db, client, marian_auth_token, offer_ps4, chat_marian_egor
 ):
     data = {"status": "IN_RENT", "chat_id": chat_marian_egor}
     response = client.patch(
@@ -343,7 +343,7 @@ def test_change_status_to_in_rent(
 
 
 def test_status_from_in_rent_to_active(
-        db, client, marian_auth_token, offer_ps4, chat_marian_egor
+    db, client, marian_auth_token, offer_ps4, chat_marian_egor
 ):
     data = {"status": "IN_RENT", "chat_id": chat_marian_egor}
     response = client.patch(

@@ -12,6 +12,6 @@ async def get_notifications(user_id: int):
         notifications.recipient_id,
         notifications.viewed
     FROM notifications
-    WHERE user_id=:recipient_id       
+    WHERE recipient_id=:user_id
     """
     return await database.fetch_one(query=query, values={"user_id": user_id})
