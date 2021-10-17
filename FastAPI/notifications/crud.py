@@ -1,7 +1,12 @@
 from FastAPI.config import database
+from FastAPI.config import NOTIFICATION_SIZE
 
 
-async def get_notifications(user_id: int):
+async def get_notifications(
+        user_id: int,
+        offset: int = 0,
+        limit: int = NOTIFICATION_SIZE
+):
     query = """
     SELECT
         notifications.id,
@@ -13,8 +18,16 @@ async def get_notifications(user_id: int):
         notifications.viewed
     FROM notifications
     WHERE recipient_id=:user_id
+    ORDER BY pub_date DESC
+    LIMIT :limit
+    OFFSET :offset
     """
-    return await database.fetch_all(query=query, values={"user_id": user_id})
+    values = {
+        "user_id": user_id,
+        "limit": limit,
+        "offset": offset,
+    }
+    return await database.fetch_all(query=query, values=values)
 
 
 async def count_notifications(user_id) -> int:
