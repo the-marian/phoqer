@@ -15,3 +15,13 @@ async def get_notifications(user_id: int):
     WHERE recipient_id=:user_id
     """
     return await database.fetch_all(query=query, values={"user_id": user_id})
+
+
+async def count_notifications(user_id) -> int:
+    query = """
+    SELECT COUNT(*)
+    FROM notifications
+    WHERE recipient_id=:user_id
+    """
+    count = await database.fetch_one(query=query, values={"user_id": user_id})
+    return int(count["count"]) if count else 0

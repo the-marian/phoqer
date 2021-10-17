@@ -25,6 +25,7 @@ if "pytest" in sys.modules:
 # pagination
 CHAT_SIZE = 15
 MESSAGES_SIZE = 30
+NOTIFICATION_SIZE = 10
 PAGE_SIZE = 12
 
 # 60 minutes * 24 hours * 8 days = 8 days
