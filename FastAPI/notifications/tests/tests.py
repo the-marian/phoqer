@@ -5,7 +5,7 @@ pytestmark = pytest.mark.asyncio
 
 
 async def test_get_notification1(client, marian_auth_token, offer_ps4, notification1):
-    response = await client.get("/notifications", headers=marian_auth_token)
+    response = await client.get("/notifications?page=1", headers=marian_auth_token)
     assert response.status_code == status.HTTP_200_OK
     assert response.json() == {
         "data": [
@@ -36,7 +36,13 @@ async def test_get_notification2(client, egor_auth_token, offer_iphone12, notifi
                 "offer_id": "a30b8a1e-1c60-4bbc-ac3d-37df2d224001",
                 "recipient_id": 2,
                 "viewed": True,
-             },
+            },
         ],
         "total": 1,
     }
+
+
+async def test_pagination(client, marian_auth_token):
+    response = await client.get("/notifications?page=2", headers=marian_auth_token)
+    assert response.status_code == status.HTTP_200_OK
+    assert response.json() == {'data': [], 'total': 0}
