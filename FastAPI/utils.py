@@ -2,8 +2,9 @@ from datetime import datetime
 from typing import Optional, TypedDict
 
 import jwt
-from fastapi import BackgroundTasks, Depends
+from fastapi import BackgroundTasks, Depends, HTTPException
 from fastapi.security import OAuth2PasswordBearer
+from jwt import InvalidSignatureError
 from pydantic import EmailStr
 
 from FastAPI import config
@@ -21,7 +22,13 @@ class JWTPayload(TypedDict):
 
 
 def decode_jwt(token: str) -> JWTPayload:
-    return jwt.decode(token, config.SECRET_KEY, algorithms=[ALGORITHM])  # type: ignore
+    try:
+        return jwt.decode(token, config.SECRET_KEY, algorithms=[ALGORITHM])  # type: ignore
+    except InvalidSignatureError:
+        raise HTTPException(
+            status_code=401,
+            detail="Signature verification failed",
+        )
 
 
 async def get_user_id(token: str) -> Optional[int]:
