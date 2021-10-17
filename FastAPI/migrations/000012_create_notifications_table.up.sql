@@ -1,5 +1,5 @@
 CREATE TABLE notifications (
-id INT NOT NULL,
+id SERIAL PRIMARY KEY,
 notification_type VARCHAR NOT NULL,
 body VARCHAR NOT NULL,
 offer_id UUID REFERENCES offers_offer(id) ON DELETE CASCADE,
