@@ -1,6 +1,7 @@
 from datetime import datetime
 from enum import Enum
 from uuid import UUID
+from typing import List
 
 from pydantic import BaseModel
 
@@ -12,7 +13,7 @@ class NotificationType(Enum):
     RETURN_ITEM_REQUEST = "RETURN_ITEM_REQUEST"
 
 
-class NotificationReply(BaseModel):
+class NotificationsList(BaseModel):
     id: int
     notification_type: NotificationType
     body: str
@@ -20,3 +21,8 @@ class NotificationReply(BaseModel):
     pub_date: datetime
     recipient_id: int
     viewed: bool
+
+
+class NotificationsListResponse(BaseModel):
+    total: int = 0
+    data: List[NotificationsList]

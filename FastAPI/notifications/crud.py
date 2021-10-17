@@ -14,4 +14,4 @@ async def get_notifications(user_id: int):
     FROM notifications
     WHERE recipient_id=:user_id
     """
-    return await database.fetch_one(query=query, values={"user_id": user_id})
+    return await database.fetch_all(query=query, values={"user_id": user_id})
