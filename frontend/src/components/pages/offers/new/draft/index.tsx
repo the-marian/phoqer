@@ -42,7 +42,7 @@ const Draft = (): ReactElement => {
                 <p className={css.text}>{trans('you_can_return_to_it')}</p>
 
                 <div className={css.flex}>
-                    <Link href={routes.profile.private.my_offers('draft')}>
+                    <Link href={routes.my_offers('draft')}>
                         <a className={css.btn}>{trans('view_drafts')}</a>
                     </Link>
                     <Link href={routes.offers.single(offerId)}>

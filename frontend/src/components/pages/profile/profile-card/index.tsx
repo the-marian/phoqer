@@ -40,7 +40,7 @@ const ProfilePrivateCard = ({ className }: IProps): ReactElement => {
     const user = useSelector<IState, IPublicProfile | null>(state => state.user);
 
     return (
-        <Link href={routes.profile.private.personal_area}>
+        <Link href={routes.profile.private}>
             <a className={clsx(css.flex, className)}>
                 <UserAvatar
                     width={5}

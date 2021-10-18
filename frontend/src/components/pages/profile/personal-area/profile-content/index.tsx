@@ -88,7 +88,7 @@ const ProfileContent = (): ReactElement => {
         <>
             <div className={css.box}>
                 <div className={css.edit}>
-                    <Link href={routes.profile.private.settings()}>
+                    <Link href={routes.settings()}>
                         <a className={css.link}>
                             <FontAwesomeIcon icon={faEdit} />
                             <span>{trans('edit')}</span>
@@ -115,7 +115,7 @@ const ProfileContent = (): ReactElement => {
 
             <div className={css.box}>
                 <div className={css.edit}>
-                    <Link href={routes.profile.private.settings()}>
+                    <Link href={routes.settings()}>
                         <a className={css.link}>
                             <FontAwesomeIcon icon={faEdit} />
                             <span>{trans('edit')}</span>

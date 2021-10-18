@@ -82,7 +82,7 @@ const ChatSidebarItem = ({ chat, active = false }: IProps): ReactElement => {
     const css = useStyles();
 
     return (
-        <Link href={routes.profile.private.chat(chat.chat_id)}>
+        <Link href={routes.chat(chat.chat_id)}>
             <a className={clsx(css.wrp, active && css.active, chat.new_messages && css.unread)}>
                 <UserAvatar width={7} height={7} avatar={chat.cover_image || '/icons/no_img.png'} />
 

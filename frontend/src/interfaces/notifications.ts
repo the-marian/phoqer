@@ -2,19 +2,52 @@ import { IPagination } from './general';
 
 export enum NotificationsType {
     RENT_START = 'RENT_START',
+    RENT_END = 'RENT_END',
+    RENT_CONFIRMED = 'RENT_CONFIRMED',
+    RENT_CANCELLED = 'RENT_CANCELLED',
+    NEW_COMMENT = 'NEW_COMMENT',
 }
 
-export interface INotifications {
+export interface INotificationBase {
     id: number;
-    notification_type: NotificationsType;
-    body: string;
-    offer_id?: string;
+    offer_id: string;
+    offer_title: string;
     pub_date: string;
     recipient_id: number;
+    recipient_first_name: string;
+    recipient_last_name: string;
+    recipient_avatar: string | null;
     viewed: boolean;
 }
 
-export type NotificationsResponse = IPagination<INotifications>;
+export interface INotificationRentStart extends INotificationBase {
+    notification_type: NotificationsType.RENT_START;
+}
+
+export type INotificationRentConfirmation = INotificationBase & {
+    notification_type: NotificationsType.RENT_CONFIRMED;
+};
+
+export type INotificationRentCancelled = INotificationBase & {
+    notification_type: NotificationsType.RENT_CANCELLED;
+};
+
+export interface INotificationRentEnd extends INotificationBase {
+    notification_type: NotificationsType.RENT_END;
+}
+
+export interface INotificationNewComment extends INotificationBase {
+    notification_type: NotificationsType.NEW_COMMENT;
+}
+
+export type INotification =
+    | INotificationRentStart
+    | INotificationRentEnd
+    | INotificationRentConfirmation
+    | INotificationRentCancelled
+    | INotificationNewComment;
+
+export type NotificationsResponse = IPagination<INotification>;
 
 export type NotificationsState = {
     loading: boolean;

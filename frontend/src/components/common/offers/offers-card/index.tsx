@@ -83,7 +83,7 @@ const OfferCard = ({ offer, showFavoriteBtn = true }: IProps): ReactElement => {
 
     const handleOpenChat = (): void => {
         if (!isLogin()) return;
-        history.push(routes.profile.private.newMessage(id));
+        history.push(routes.newMessage(id));
     };
 
     const USER_ACTIONS = {

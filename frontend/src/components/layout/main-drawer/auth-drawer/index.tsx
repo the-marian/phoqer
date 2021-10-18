@@ -51,7 +51,7 @@ const AuthDrawer = (): ReactElement | null => {
                         {
                             id: 'personal-area',
                             text: 'personal_area',
-                            link: routes.profile.private.personal_area,
+                            link: routes.profile.private,
                             icon: faFlag,
                         },
                         ...getBaseNavList(),

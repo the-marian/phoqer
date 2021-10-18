@@ -5,22 +5,22 @@ import { useRouter } from 'next/router';
 import { createUseStyles } from 'react-jss';
 import { useDispatch } from 'react-redux';
 
-import Button from '../../../../../components/common/button';
-import AuthRedirect from '../../../../../components/context/auth/auth-redirect';
-import Meta from '../../../../../components/meta';
-import Conversation from '../../../../../components/pages/chat/chat-conversation';
-import ChatBackBtn from '../../../../../components/pages/chat/components/chat-back-btn';
-import ChatTabs from '../../../../../components/pages/chat/components/chat-tabs';
-import NewChatWrp from '../../../../../components/pages/chat/components/wrappers/new-chat-wrp';
-import { useChatListUpdate } from '../../../../../hooks/chat.hook';
-import useMedia from '../../../../../hooks/media.hook';
-import useTrans from '../../../../../hooks/trans.hook';
-import { wrapper } from '../../../../../redux/store';
-import types from '../../../../../redux/types';
-import { serverRedirect } from '../../../../../utils/helpers';
-import routes from '../../../../../utils/routes';
-import mixin from '../../../../../utils/theming/mixin';
-import { Theme } from '../../../../../utils/theming/theme';
+import Button from '../../../components/common/button';
+import AuthRedirect from '../../../components/context/auth/auth-redirect';
+import Meta from '../../../components/meta';
+import Conversation from '../../../components/pages/chat/chat-conversation';
+import ChatBackBtn from '../../../components/pages/chat/components/chat-back-btn';
+import ChatTabs from '../../../components/pages/chat/components/chat-tabs';
+import NewChatWrp from '../../../components/pages/chat/components/wrappers/new-chat-wrp';
+import { useChatListUpdate } from '../../../hooks/chat.hook';
+import useMedia from '../../../hooks/media.hook';
+import useTrans from '../../../hooks/trans.hook';
+import { wrapper } from '../../../redux/store';
+import types from '../../../redux/types';
+import { serverRedirect } from '../../../utils/helpers';
+import routes from '../../../utils/routes';
+import mixin from '../../../utils/theming/mixin';
+import { Theme } from '../../../utils/theming/theme';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     main: {
@@ -74,7 +74,7 @@ const NewChat = (): ReactElement => {
             payload: { offer_id: offerId },
             callback: (id: number) => {
                 setLoading(false);
-                history.push(routes.profile.private.chat(id));
+                history.push(routes.chat(id));
             },
         });
     };
@@ -85,7 +85,7 @@ const NewChat = (): ReactElement => {
             <Meta title={'Мои сообщения'} h1={trans('user_profile_on_phoqer')} />
 
             <main className={css.main}>
-                {media ? <ChatTabs /> : <ChatBackBtn href={routes.profile.private.personal_area}>Back to profile</ChatBackBtn>}
+                {media ? <ChatTabs /> : <ChatBackBtn href={routes.profile.private}>Back to profile</ChatBackBtn>}
 
                 <NewChatWrp showSidebar={media}>
                     <Conversation>

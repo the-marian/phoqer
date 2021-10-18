@@ -47,7 +47,7 @@ const OfferFunctions = (): ReactElement | null => {
             offerId: offer?.id,
             callback: () => notifications.info({ message: 'Your offer successfully deleted' }),
         });
-        history.push(routes.profile.private.my_offers('draft'));
+        history.push(routes.my_offers('draft'));
     };
 
     const editOffer = (): void => {

@@ -4,23 +4,23 @@ import { GetServerSidePropsContext } from 'next';
 import { useRouter } from 'next/router';
 import { createUseStyles } from 'react-jss';
 
-import Breadcrumbs from '../../../../components/common/breadcrumbs';
-import SegmentedControl from '../../../../components/common/segmented-control';
-import AuthRedirect from '../../../../components/context/auth/auth-redirect';
-import Container from '../../../../components/layout/container';
-import PageLayout from '../../../../components/layout/page-layout';
-import Meta from '../../../../components/meta';
-import MobileBackBtn from '../../../../components/pages/profile/mobile-back-btn';
-import ProfileHeader from '../../../../components/pages/profile/profile-header';
-import ProfileTabs from '../../../../components/pages/profile/profile-tabs';
-import General from '../../../../components/pages/profile/settings/general';
-import Privacy from '../../../../components/pages/profile/settings/privacy';
-import useMedia from '../../../../hooks/media.hook';
-import useTrans from '../../../../hooks/trans.hook';
-import { wrapper } from '../../../../redux/store';
-import { serverRedirect } from '../../../../utils/helpers';
-import routes from '../../../../utils/routes';
-import { Theme } from '../../../../utils/theming/theme';
+import Breadcrumbs from '../../components/common/breadcrumbs';
+import SegmentedControl from '../../components/common/segmented-control';
+import AuthRedirect from '../../components/context/auth/auth-redirect';
+import Container from '../../components/layout/container';
+import PageLayout from '../../components/layout/page-layout';
+import Meta from '../../components/meta';
+import MobileBackBtn from '../../components/pages/profile/mobile-back-btn';
+import ProfileHeader from '../../components/pages/profile/profile-header';
+import ProfileTabs from '../../components/pages/profile/profile-tabs';
+import General from '../../components/pages/profile/settings/general';
+import Privacy from '../../components/pages/profile/settings/privacy';
+import useMedia from '../../hooks/media.hook';
+import useTrans from '../../hooks/trans.hook';
+import { wrapper } from '../../redux/store';
+import { serverRedirect } from '../../utils/helpers';
+import routes from '../../utils/routes';
+import { Theme } from '../../utils/theming/theme';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     root: {
@@ -65,7 +65,7 @@ const Settings = (): ReactElement => {
     const media = useMedia(1060);
     const activeTab = String(history.query.activeTab);
     const handleClick = (value: string): void => {
-        history.push(routes.profile.private.settings(value));
+        history.push(routes.settings(value));
     };
 
     return (
@@ -83,14 +83,14 @@ const Settings = (): ReactElement => {
                                     end={activeTab === 'general' ? trans('general') : trans('privacy')}
                                     data={[
                                         { label: trans('to_home_page'), link: routes.root },
-                                        { label: trans('personal_area'), link: routes.profile.private.personal_area },
+                                        { label: trans('personal_area'), link: routes.profile.private },
                                     ]}
                                 />
 
                                 <ProfileTabs active="settings" />
                             </>
                         ) : (
-                            <MobileBackBtn href={routes.profile.private.personal_area}>Back to profile</MobileBackBtn>
+                            <MobileBackBtn href={routes.profile.private}>Back to profile</MobileBackBtn>
                         )}
 
                         <SegmentedControl tabs={tabsConfig} active={activeTab} onClick={handleClick} />

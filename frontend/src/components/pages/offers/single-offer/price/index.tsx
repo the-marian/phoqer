@@ -73,7 +73,7 @@ const Price = ({ offer, withButton = false }: IProps): ReactElement => {
             return;
         }
 
-        history.push(routes.profile.private.newMessage(offer?.id));
+        history.push(routes.newMessage(offer?.id));
     };
 
     return (

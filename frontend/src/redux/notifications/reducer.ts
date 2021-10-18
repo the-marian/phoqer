@@ -15,11 +15,11 @@ const notifications = (state: NotificationsState = notificationsInit, { type, pa
             return { ...state, loading: true };
 
         case types.GET_NOTIFICATIONS_SUCCESS:
-            return { ...state, data: payload as NotificationsResponse };
+            return { loading: false, data: payload as NotificationsResponse };
 
         case types.GET_NOTIFICATIONS_PAGINATION_SUCCESS:
             return {
-                ...state,
+                loading: false,
                 data: {
                     total: (payload as NotificationsResponse).total,
                     data: [...state.data.data, ...(payload as NotificationsResponse).data],

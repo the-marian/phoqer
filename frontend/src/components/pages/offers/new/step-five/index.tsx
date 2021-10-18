@@ -50,7 +50,7 @@ const StepFive = (): ReactElement => {
             <p className={css.text}>{trans('you_can_put_it_in_drafts')}</p>
 
             <div className={css.flex}>
-                <Link href={routes.profile.private.my_offers('draft')}>
+                <Link href={routes.my_offers('draft')}>
                     <a className={css.btn}>{trans('send_to_drafts')}</a>
                 </Link>
                 <button type="button" className={clsx(css.btn, css.primary)} onClick={handleSubmit}>

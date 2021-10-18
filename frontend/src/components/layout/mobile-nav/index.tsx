@@ -108,7 +108,7 @@ const MobileNav = (): ReactElement | null => {
                         {
                             id: 'personal-area',
                             text: 'personal_area',
-                            link: routes.profile.private.personal_area,
+                            link: routes.profile.private,
                             icon: faFlag,
                         },
                         ...getBaseNavList(),
@@ -127,7 +127,7 @@ const MobileNav = (): ReactElement | null => {
     return auth?.access_token && !media && user ? (
         <ul className={css.list}>
             <li className={css.item}>
-                <Link href={routes.profile.private.chat()}>
+                <Link href={routes.chat()}>
                     <a className={css.button}>
                         <div className={css.icon}>
                             <FontAwesomeIcon icon={faEnvelope} />

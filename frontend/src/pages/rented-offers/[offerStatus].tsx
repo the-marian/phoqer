@@ -3,21 +3,21 @@ import React, { ReactElement } from 'react';
 import { GetServerSidePropsContext } from 'next';
 import { createUseStyles } from 'react-jss';
 
-import Breadcrumbs from '../../../../components/common/breadcrumbs';
-import Construction from '../../../../components/common/notifications/construction';
-import AuthRedirect from '../../../../components/context/auth/auth-redirect';
-import Container from '../../../../components/layout/container';
-import PageLayout from '../../../../components/layout/page-layout';
-import Meta from '../../../../components/meta';
-import MobileBackBtn from '../../../../components/pages/profile/mobile-back-btn';
-import ProfileHeader from '../../../../components/pages/profile/profile-header';
-import ProfileTabs from '../../../../components/pages/profile/profile-tabs';
-import useMedia from '../../../../hooks/media.hook';
-import useTrans from '../../../../hooks/trans.hook';
-import { wrapper } from '../../../../redux/store';
-import { serverRedirect } from '../../../../utils/helpers';
-import routes from '../../../../utils/routes';
-import { Theme } from '../../../../utils/theming/theme';
+import Breadcrumbs from '../../components/common/breadcrumbs';
+import Construction from '../../components/common/notifications/construction';
+import AuthRedirect from '../../components/context/auth/auth-redirect';
+import Container from '../../components/layout/container';
+import PageLayout from '../../components/layout/page-layout';
+import Meta from '../../components/meta';
+import MobileBackBtn from '../../components/pages/profile/mobile-back-btn';
+import ProfileHeader from '../../components/pages/profile/profile-header';
+import ProfileTabs from '../../components/pages/profile/profile-tabs';
+import useMedia from '../../hooks/media.hook';
+import useTrans from '../../hooks/trans.hook';
+import { wrapper } from '../../redux/store';
+import { serverRedirect } from '../../utils/helpers';
+import routes from '../../utils/routes';
+import { Theme } from '../../utils/theming/theme';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     root: {
@@ -57,14 +57,14 @@ const RentedOffers = (): ReactElement => {
                                     end={trans('rented_offers')}
                                     data={[
                                         { label: trans('to_home_page'), link: routes.root },
-                                        { label: trans('personal_area'), link: routes.profile.private.personal_area },
+                                        { label: trans('personal_area'), link: routes.profile.private },
                                     ]}
                                 />
 
                                 <ProfileTabs active="rented-offers" />
                             </>
                         ) : (
-                            <MobileBackBtn href={routes.profile.private.personal_area}>Back to profile</MobileBackBtn>
+                            <MobileBackBtn href={routes.profile.private}>Back to profile</MobileBackBtn>
                         )}
 
                         <div className={css.root}>

@@ -79,7 +79,7 @@ const EditContentForm = (): ReactElement => {
     const handleSubmit = (event: FormEvent): void => {
         event.preventDefault();
         if (!offerId) {
-            history.push(routes.profile.private.my_offers());
+            history.push(routes.my_offers());
             return;
         }
 
@@ -90,7 +90,7 @@ const EditContentForm = (): ReactElement => {
                 images: init?.images,
                 payload: value,
                 callback: () => {
-                    history.push(routes.profile.private.my_offers('active'));
+                    history.push(routes.my_offers('active'));
                     notifications.info({
                         message: 'your_changes_successfully_published',
                     });
@@ -101,7 +101,7 @@ const EditContentForm = (): ReactElement => {
 
     const handleSave = (): void => {
         if (!offerId) {
-            history.push(routes.profile.private.my_offers());
+            history.push(routes.my_offers());
             return;
         }
 

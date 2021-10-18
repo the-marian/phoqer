@@ -142,7 +142,7 @@ const ProfileCard = ({
                 </div>
 
                 {isAuthor && (
-                    <Link href={routes.profile.private.personal_area}>
+                    <Link href={routes.profile.private}>
                         <a className={css.btn}>
                             <FontAwesomeIcon icon={faUser} />
                             <span>{trans('personal_area')}</span>

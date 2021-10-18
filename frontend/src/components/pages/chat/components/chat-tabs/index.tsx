@@ -19,12 +19,12 @@ const useStyles = createUseStyles((theme: Theme) => ({
 }));
 
 const routesMap: { [key: string]: string } = {
-    'my-offers': routes.profile.private.my_offers(),
-    chat: routes.profile.private.chat(),
-    notifications: routes.profile.private.notifications,
-    referral: routes.profile.private.referral,
-    settings: routes.profile.private.settings(),
-    analytics: routes.profile.private.analytics,
+    'my-offers': routes.my_offers(),
+    chat: routes.chat(),
+    notifications: routes.notifications,
+    referral: routes.referral,
+    settings: routes.settings(),
+    analytics: routes.analytics,
 };
 
 const ChatTabs = (): ReactElement => {

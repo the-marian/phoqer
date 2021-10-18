@@ -10,7 +10,6 @@ import { cutString } from '../../../../utils/helpers';
 import { Theme } from '../../../../utils/theming/theme';
 import LikeDislike from '../../../common/like-dislike';
 import { modal } from '../../../common/modal';
-import MidModalWrp from '../../../common/modal/mid-modal-wrp';
 import StickyModal from '../../../common/modal/sticky-modal';
 import Tooltip from '../../../common/tooltip';
 

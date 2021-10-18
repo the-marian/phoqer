@@ -43,7 +43,7 @@ const Success = (): ReactElement => {
                     <p className={css.text}>{trans('we_will_review_your_offer')}</p>
 
                     <div className={css.flex}>
-                        <Link href={routes.profile.private.my_offers('all')}>
+                        <Link href={routes.my_offers('all')}>
                             <a className={css.btn}>{trans('go_to_personal_account')}</a>
                         </Link>
                         <Link href={routes.offers.single(offerId)}>

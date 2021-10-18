@@ -5,25 +5,25 @@ import { useRouter } from 'next/router';
 import { createUseStyles } from 'react-jss';
 import { useDispatch, useSelector } from 'react-redux';
 
-import Breadcrumbs from '../../../../components/common/breadcrumbs';
-import Pagination from '../../../../components/common/load-more/pagination';
-import OffersList from '../../../../components/common/offers/offers-list';
-import SegmentedControl from '../../../../components/common/segmented-control';
-import AuthRedirect from '../../../../components/context/auth/auth-redirect';
-import Container from '../../../../components/layout/container';
-import PageLayout from '../../../../components/layout/page-layout';
-import Meta from '../../../../components/meta';
-import MobileBackBtn from '../../../../components/pages/profile/mobile-back-btn';
-import ProfileHeader from '../../../../components/pages/profile/profile-header';
-import ProfileTabs from '../../../../components/pages/profile/profile-tabs';
-import useMedia from '../../../../hooks/media.hook';
-import useTrans from '../../../../hooks/trans.hook';
-import { IOfferDynamic, IState } from '../../../../interfaces';
-import { wrapper } from '../../../../redux/store';
-import types from '../../../../redux/types';
-import { serverRedirect } from '../../../../utils/helpers';
-import routes from '../../../../utils/routes';
-import { Theme } from '../../../../utils/theming/theme';
+import Breadcrumbs from '../../components/common/breadcrumbs';
+import Pagination from '../../components/common/load-more/pagination';
+import OffersList from '../../components/common/offers/offers-list';
+import SegmentedControl from '../../components/common/segmented-control';
+import AuthRedirect from '../../components/context/auth/auth-redirect';
+import Container from '../../components/layout/container';
+import PageLayout from '../../components/layout/page-layout';
+import Meta from '../../components/meta';
+import MobileBackBtn from '../../components/pages/profile/mobile-back-btn';
+import ProfileHeader from '../../components/pages/profile/profile-header';
+import ProfileTabs from '../../components/pages/profile/profile-tabs';
+import useMedia from '../../hooks/media.hook';
+import useTrans from '../../hooks/trans.hook';
+import { IOfferDynamic, IState } from '../../interfaces';
+import { wrapper } from '../../redux/store';
+import types from '../../redux/types';
+import { serverRedirect } from '../../utils/helpers';
+import routes from '../../utils/routes';
+import { Theme } from '../../utils/theming/theme';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     root: {
@@ -93,7 +93,7 @@ const UserOffers = (): ReactElement => {
     };
 
     const handleTab = (value: string): void => {
-        history.push(routes.profile.private.my_offers(value));
+        history.push(routes.my_offers(value));
     };
 
     return (
@@ -111,14 +111,14 @@ const UserOffers = (): ReactElement => {
                                     end={trans('my_offers')}
                                     data={[
                                         { label: trans('to_home_page'), link: routes.root },
-                                        { label: trans('personal_area'), link: routes.profile.private.personal_area },
+                                        { label: trans('personal_area'), link: routes.profile.private },
                                     ]}
                                 />
 
                                 <ProfileTabs active="my-offers" />
                             </>
                         ) : (
-                            <MobileBackBtn href={routes.profile.private.personal_area}>Back to profile</MobileBackBtn>
+                            <MobileBackBtn href={routes.profile.private}>Back to profile</MobileBackBtn>
                         )}
 
                         <h3 className={css.title}>{trans('select_offer_status')}</h3>
