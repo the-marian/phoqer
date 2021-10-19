@@ -6,6 +6,7 @@ import Slider from 'react-slick';
 import useTrans from '../../../hooks/trans.hook';
 import mixin from '../../../utils/theming/mixin';
 import { Theme } from '../../../utils/theming/theme';
+import AdSense from '../ads';
 
 interface ISlides {
     src: string;
@@ -175,16 +176,7 @@ const About = (): ReactElement => {
 
     return (
         <>
-            <div className={css.box}>
-                <ins
-                    className="adsbygoogle"
-                    style={{ display: 'block' }}
-                    data-ad-client="ca-pub-2424155820333209"
-                    data-ad-slot="2195671586"
-                    data-ad-format="auto"
-                    data-full-width-responsive="true"
-                />
-            </div>
+            <AdSense type="horizontal" className={css.box} />
             <div className={css.wrp}>
                 <Slider
                     slidesToShow={1}

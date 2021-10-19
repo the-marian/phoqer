@@ -6,6 +6,7 @@ import useConfig from '../../../../hooks/config.hook';
 import useMedia from '../../../../hooks/media.hook';
 import { IOfferCard } from '../../../../interfaces';
 import { Theme } from '../../../../utils/theming/theme';
+import AdSense from '../../ads';
 import OffersLoader from '../../loaders/skeletons/offers';
 import EmptyOffers from '../empty-offers';
 import OfferCardSwitcher from '../offer-card-switcher';
@@ -55,7 +56,8 @@ const useStyles = createUseStyles((theme: Theme) => ({
             margin: '0 auto',
         }),
     },
-    cardInner: {
+    box: {
+        margin: 0,
         maxHeight: theme.rem(38),
     },
     loading: {
@@ -89,18 +91,7 @@ const OffersList = ({ loading, loadMoreLoading = false, data, showFavoriteBtn = 
                         {data?.map((item, index) => (
                             <>
                                 <OfferCard key={item.id} offer={item} showFavoriteBtn={showFavoriteBtn} />
-                                {!(index % 6) && (
-                                    <div className={css.cardInner}>
-                                        <ins
-                                            className="adsbygoogle"
-                                            style={{ display: 'block' }}
-                                            data-ad-client="ca-pub-2424155820333209"
-                                            data-ad-slot="7611310481"
-                                            data-ad-format="auto"
-                                            data-full-width-responsive="true"
-                                        />
-                                    </div>
-                                )}
+                                {!(index % 6) && <AdSense type="horizontal" className={css.box} />}
                             </>
                         ))}
                     </div>

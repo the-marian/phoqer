@@ -10,6 +10,7 @@ import useTrans from '../../../../../hooks/trans.hook';
 import types from '../../../../../redux/types';
 import routes from '../../../../../utils/routes';
 import { Theme } from '../../../../../utils/theming/theme';
+import AdSense from '../../../../common/ads';
 import newOfferTemplate from '../new-offer.style';
 
 const useStyles = createUseStyles((theme: Theme) => newOfferTemplate(theme).end);
@@ -58,16 +59,7 @@ const StepFive = (): ReactElement => {
                 </button>
             </div>
 
-            <div className={css.box}>
-                <ins
-                    className="adsbygoogle"
-                    style={{ display: 'block' }}
-                    data-ad-client="ca-pub-2424155820333209"
-                    data-ad-slot="2195671586"
-                    data-ad-format="auto"
-                    data-full-width-responsive="true"
-                />
-            </div>
+            <AdSense type="horizontal" className={css.box} />
         </div>
     );
 };

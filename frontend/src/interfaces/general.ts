@@ -67,3 +67,5 @@ export interface IConfig {
 export interface Params {
     [key: string]: unknown;
 }
+
+export type AdType = 'horizontal' | 'square';

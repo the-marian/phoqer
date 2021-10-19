@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux';
 
 import { IOfferCard, IPublicProfile, IState } from '../../../../../interfaces';
 import { Theme } from '../../../../../utils/theming/theme';
+import AdSense from '../../../../common/ads';
 import ProfileCard from '../../../../common/profile-card';
 import Price from '../price';
 
@@ -52,16 +53,7 @@ const AsideElement = (): ReactElement => {
                 />
                 {offer && <Price offer={offer} withButton={offer.can_rent} />}
 
-                <div className={css.box}>
-                    <ins
-                        className="adsbygoogle"
-                        style={{ display: 'block' }}
-                        data-ad-client="ca-pub-2424155820333209"
-                        data-ad-slot="2195671586"
-                        data-ad-format="auto"
-                        data-full-width-responsive="true"
-                    />
-                </div>
+                <AdSense type="square" className={css.box} />
             </div>
         </aside>
     );

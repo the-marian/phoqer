@@ -6,6 +6,7 @@ import { createUseStyles } from 'react-jss';
 import { useDispatch, useSelector } from 'react-redux';
 import { END } from 'redux-saga';
 
+import AdSense from '../../../components/common/ads';
 import Gift from '../../../components/common/advertising/gift';
 import Breadcrumbs from '../../../components/common/breadcrumbs';
 import Comments from '../../../components/common/comments';
@@ -255,16 +256,7 @@ const SingleOfferPage = (): ReactElement | null => {
                                     {/*    numberOfMonths={media ? 2 : 1}*/}
                                     {/*/>*/}
 
-                                    <div className={css.box}>
-                                        <ins
-                                            className="adsbygoogle"
-                                            style={{ display: 'block' }}
-                                            data-ad-client="ca-pub-2424155820333209"
-                                            data-ad-slot="2195671586"
-                                            data-ad-format="auto"
-                                            data-full-width-responsive="true"
-                                        />
-                                    </div>
+                                    <AdSense type="horizontal" className={css.box} />
 
                                     {auth?.access_token ? <Gift style={{ padding: '8rem 4rem' }} /> : null}
 

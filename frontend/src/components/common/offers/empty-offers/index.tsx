@@ -6,6 +6,7 @@ import { createUseStyles } from 'react-jss';
 import useTrans from '../../../../hooks/trans.hook';
 import routes from '../../../../utils/routes';
 import { Theme } from '../../../../utils/theming/theme';
+import AdSense from '../../ads';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     empty: {
@@ -61,16 +62,7 @@ const EmptyOffers = ({ text }: IProps): ReactElement => {
                     <a className={css.link}>{trans('make_offer')}</a>
                 </Link>
             </div>
-            <div className={css.box}>
-                <ins
-                    className="adsbygoogle"
-                    style={{ display: 'block' }}
-                    data-ad-client="ca-pub-2424155820333209"
-                    data-ad-slot="2195671586"
-                    data-ad-format="auto"
-                    data-full-width-responsive="true"
-                />
-            </div>
+            <AdSense type="horizontal" className={css.box} />
         </>
     );
 };
