@@ -56,7 +56,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         }),
     },
     cardInner: {
-        position: 'relative',
+        maxHeight: theme.rem(38),
     },
     loading: {
         marginTop: theme.rem(5),
