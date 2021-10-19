@@ -264,11 +264,6 @@ const SingleOfferPage = (): ReactElement | null => {
                                             data-ad-format="auto"
                                             data-full-width-responsive="true"
                                         />
-                                        <script
-                                            dangerouslySetInnerHTML={{
-                                                __html: '(adsbygoogle = window.adsbygoogle || []).push({});',
-                                            }}
-                                        />
                                     </div>
 
                                     {auth?.access_token ? <Gift style={{ padding: '8rem 4rem' }} /> : null}

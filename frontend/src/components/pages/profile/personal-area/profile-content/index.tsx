@@ -147,11 +147,6 @@ const ProfileContent = (): ReactElement => {
                     data-ad-format="auto"
                     data-full-width-responsive="true"
                 />
-                <script
-                    dangerouslySetInnerHTML={{
-                        __html: '(adsbygoogle = window.adsbygoogle || []).push({});',
-                    }}
-                />
             </div>
 
             <Banner className={css.banner} />

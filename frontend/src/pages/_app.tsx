@@ -48,6 +48,11 @@ const PhoqerApp = ({ Component, pageProps, width, auth, theme, config }: AppProp
         <RootProvider width={width} auth={auth} theme={theme} config={config}>
             <Root>
                 <Component {...pageProps} />
+                <script
+                    dangerouslySetInnerHTML={{
+                        __html: '(adsbygoogle = window.adsbygoogle || []).push({});',
+                    }}
+                />
             </Root>
         </RootProvider>
     );
