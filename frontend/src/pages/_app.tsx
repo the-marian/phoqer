@@ -5,6 +5,7 @@ import React, { ReactElement, useEffect } from 'react';
 import axios from 'axios';
 import App, { AppProps } from 'next/app';
 import { AppContextType } from 'next/dist/shared/lib/utils';
+import { Head } from 'next/document';
 import { Router } from 'next/router';
 import { useDispatch } from 'react-redux';
 
@@ -45,11 +46,34 @@ const PhoqerApp = ({ Component, pageProps, width, auth, theme, config }: AppProp
     }, []);
 
     return (
-        <RootProvider width={width} auth={auth} theme={theme} config={config}>
-            <Root>
-                <Component {...pageProps} />
-            </Root>
-        </RootProvider>
+        <>
+            <Head>
+                <title>Phoqer</title>
+                {process.env.NODE_ENV === 'production' && !process.browser && (
+                    <>
+                        <script
+                            async
+                            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2424155820333209"
+                            crossOrigin="anonymous"
+                        />
+                        <script async src="https://www.googletagmanager.com/gtag/js?id=G-B57V56EVR8" />
+                        <script
+                            dangerouslySetInnerHTML={{
+                                __html: `window.dataLayer = window.dataLayer || [];
+                                    function gtag(){dataLayer.push(arguments);}
+                                    gtag('js', new Date());
+                                    gtag('config', 'G-B57V56EVR8');`,
+                            }}
+                        />
+                    </>
+                )}
+            </Head>
+            <RootProvider width={width} auth={auth} theme={theme} config={config}>
+                <Root>
+                    <Component {...pageProps} />
+                </Root>
+            </RootProvider>
+        </>
     );
 };
 

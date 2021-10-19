@@ -29,12 +29,6 @@ const AdSense = ({ className, type = 'horizontal' }: IProps): ReactElement => {
         <>
             {!process.browser && (
                 <div className={clsx(css.root, className)}>
-                    <script
-                        async
-                        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2424155820333209"
-                        crossOrigin="anonymous"
-                    />
-
                     <ins
                         className="adsbygoogle"
                         style={{ display: 'block' }}
