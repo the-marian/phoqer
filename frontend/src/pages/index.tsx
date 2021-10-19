@@ -19,12 +19,11 @@ import { Theme } from '../utils/theming/theme';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     banner: {
-        margin: theme.rem(8, 0),
+        margin: theme.rem(8, 0, 0),
         padding: theme.rem(20, 12),
 
         ...theme.media(767).max({
             padding: theme.rem(16, 4),
-            margin: theme.rem(4, 0),
         }),
     },
 }));

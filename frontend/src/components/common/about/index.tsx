@@ -54,12 +54,15 @@ const slides: ISlides[] = [
 
 const useStyles = createUseStyles((theme: Theme) => ({
     wrp: {
-        padding: theme.rem(20, 0),
+        padding: theme.rem(8, 0),
         color: theme.palette.black[0],
 
         ...theme.media(500).max({
             padding: theme.rem(15, 0),
         }),
+    },
+    box: {
+        padding: theme.rem(8, 0),
     },
     slider: {
         position: 'relative',
@@ -171,36 +174,53 @@ const About = (): ReactElement => {
     const trans = useTrans();
 
     return (
-        <div className={css.wrp}>
-            <Slider
-                slidesToShow={1}
-                slidesToScroll={1}
-                initialSlide={0}
-                swipeToSlide
-                autoplaySpeed={3000}
-                autoplay
-                draggable
-                infinite
-                lazyLoad="progressive"
-                className={css.slider}
-            >
-                {slides.map(item => (
-                    <picture key={item.src} className={css.img}>
-                        <source media="(max-width: 640px)" srcSet={item.src640} />
-                        <source media="(max-width: 1280px)" srcSet={item.src1280} />
-                        <source media="(max-width: 1920px)" srcSet={item.src1920} />
-                        <img className={css.img} src={item.src} alt="phoqer" />
-                    </picture>
-                ))}
-            </Slider>
-
-            <h2 className={css.title}>phoqer</h2>
-            <div className={css.content}>
-                <p className={css.text}>{trans('about_1')}</p>
-                <p className={css.text}>{trans('about_2')}</p>
-                <p className={css.text}>{trans('about_3')}</p>
+        <>
+            <div className={css.box}>
+                <ins
+                    className="adsbygoogle"
+                    style={{ display: 'block' }}
+                    data-ad-client="ca-pub-2424155820333209"
+                    data-ad-slot="2195671586"
+                    data-ad-format="auto"
+                    data-full-width-responsive="true"
+                />
+                <script
+                    dangerouslySetInnerHTML={{
+                        __html: '(adsbygoogle = window.adsbygoogle || []).push({});',
+                    }}
+                />
             </div>
-        </div>
+            <div className={css.wrp}>
+                <Slider
+                    slidesToShow={1}
+                    slidesToScroll={1}
+                    initialSlide={0}
+                    swipeToSlide
+                    autoplaySpeed={3000}
+                    autoplay
+                    draggable
+                    infinite
+                    lazyLoad="progressive"
+                    className={css.slider}
+                >
+                    {slides.map(item => (
+                        <picture key={item.src} className={css.img}>
+                            <source media="(max-width: 640px)" srcSet={item.src640} />
+                            <source media="(max-width: 1280px)" srcSet={item.src1280} />
+                            <source media="(max-width: 1920px)" srcSet={item.src1920} />
+                            <img className={css.img} src={item.src} alt="phoqer" />
+                        </picture>
+                    ))}
+                </Slider>
+
+                <h2 className={css.title}>phoqer</h2>
+                <div className={css.content}>
+                    <p className={css.text}>{trans('about_1')}</p>
+                    <p className={css.text}>{trans('about_2')}</p>
+                    <p className={css.text}>{trans('about_3')}</p>
+                </div>
+            </div>
+        </>
     );
 };
 

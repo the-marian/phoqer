@@ -37,6 +37,10 @@ const useStyles = createUseStyles((theme: Theme) => ({
             textDecoration: 'underline',
         }),
     },
+    box: {
+        margin: theme.rem(4, 0),
+        maxHeight: theme.rem(40),
+    },
 }));
 
 interface IProps {
@@ -48,14 +52,31 @@ const EmptyOffers = ({ text }: IProps): ReactElement => {
     const trans = useTrans();
 
     return (
-        <div className={css.empty}>
-            <img className={css.img} src="/icons/empty.png" alt="" />
-            <p className={css.emptyText}>{text || trans('no_offer')}</p>
+        <>
+            <div className={css.empty}>
+                <img className={css.img} src="/icons/empty.png" alt="" />
+                <p className={css.emptyText}>{text || trans('no_offer')}</p>
 
-            <Link href={routes.offers.new(1)}>
-                <a className={css.link}>{trans('make_offer')}</a>
-            </Link>
-        </div>
+                <Link href={routes.offers.new(1)}>
+                    <a className={css.link}>{trans('make_offer')}</a>
+                </Link>
+            </div>
+            <div className={css.box}>
+                <ins
+                    className="adsbygoogle"
+                    style={{ display: 'block' }}
+                    data-ad-client="ca-pub-2424155820333209"
+                    data-ad-slot="2195671586"
+                    data-ad-format="auto"
+                    data-full-width-responsive="true"
+                />
+                <script
+                    dangerouslySetInnerHTML={{
+                        __html: '(adsbygoogle = window.adsbygoogle || []).push({});',
+                    }}
+                />
+            </div>
+        </>
     );
 };
 

@@ -152,6 +152,10 @@ const useStyles = createUseStyles((theme: Theme) => ({
     other: {
         marginBottom: theme.rem(4),
     },
+    box: {
+        margin: theme.rem(4, 0),
+        maxHeight: theme.rem(40),
+    },
 }));
 
 const SingleOfferPage = (): ReactElement | null => {
@@ -250,6 +254,22 @@ const SingleOfferPage = (): ReactElement | null => {
                                     {/*    fixedWeeks*/}
                                     {/*    numberOfMonths={media ? 2 : 1}*/}
                                     {/*/>*/}
+
+                                    <div className={css.box}>
+                                        <ins
+                                            className="adsbygoogle"
+                                            style={{ display: 'block' }}
+                                            data-ad-client="ca-pub-2424155820333209"
+                                            data-ad-slot="2195671586"
+                                            data-ad-format="auto"
+                                            data-full-width-responsive="true"
+                                        />
+                                        <script
+                                            dangerouslySetInnerHTML={{
+                                                __html: '(adsbygoogle = window.adsbygoogle || []).push({});',
+                                            }}
+                                        />
+                                    </div>
 
                                     {auth?.access_token ? <Gift style={{ padding: '8rem 4rem' }} /> : null}
 

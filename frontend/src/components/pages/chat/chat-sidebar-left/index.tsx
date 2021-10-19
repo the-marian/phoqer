@@ -7,7 +7,6 @@ import useMedia from '../../../../hooks/media.hook';
 import { IChats } from '../../../../interfaces';
 import mixin from '../../../../utils/theming/mixin';
 import { Theme } from '../../../../utils/theming/theme';
-import Gift from '../../../common/advertising/gift';
 import ChatEmpty from '../components/chat-empty';
 
 import ChatSidebarItem from './chat-sidebar-item';
@@ -47,6 +46,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
         fontSize: theme.rem(1.4),
         textAlign: 'center',
     },
+    box: {
+        margin: theme.rem(1, 0),
+    },
 }));
 
 interface IProps {
@@ -64,7 +66,23 @@ const ChatSidebarLeft = ({ chats }: IProps): ReactElement => {
             {chats?.length ? (
                 chats.map<ReactElement>((item, index) => (
                     <Fragment key={item.chat_id}>
-                        {index === 5 ? <Gift style={{ padding: '5rem 2rem' }} /> : null}
+                        {!(index % 4) && index > 3 && (
+                            <div className={css.box}>
+                                <ins
+                                    className="adsbygoogle"
+                                    style={{ display: 'block' }}
+                                    data-ad-client="ca-pub-2424155820333209"
+                                    data-ad-slot="7611310481"
+                                    data-ad-format="auto"
+                                    data-full-width-responsive="true"
+                                />
+                                <script
+                                    dangerouslySetInnerHTML={{
+                                        __html: '(adsbygoogle = window.adsbygoogle || []).push({});',
+                                    }}
+                                />
+                            </div>
+                        )}
                         <ChatSidebarItem chat={item} active={active === item.chat_id} />
                     </Fragment>
                 ))

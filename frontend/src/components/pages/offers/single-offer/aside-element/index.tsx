@@ -27,6 +27,10 @@ const useStyles = createUseStyles((theme: Theme) => ({
             position: 'static',
         }),
     },
+    box: {
+        marginTop: theme.rem(3),
+        maxHeight: theme.rem(25),
+    },
 }));
 
 const AsideElement = (): ReactElement => {
@@ -47,6 +51,22 @@ const AsideElement = (): ReactElement => {
                     registerDate={profile?.date_joined}
                 />
                 {offer && <Price offer={offer} withButton={offer.can_rent} />}
+
+                <div className={css.box}>
+                    <ins
+                        className="adsbygoogle"
+                        style={{ display: 'block' }}
+                        data-ad-client="ca-pub-2424155820333209"
+                        data-ad-slot="2195671586"
+                        data-ad-format="auto"
+                        data-full-width-responsive="true"
+                    />
+                    <script
+                        dangerouslySetInnerHTML={{
+                            __html: '(adsbygoogle = window.adsbygoogle || []).push({});',
+                        }}
+                    />
+                </div>
             </div>
         </aside>
     );

@@ -55,6 +55,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
             margin: '0 auto',
         }),
     },
+    cardInner: {
+        position: 'relative',
+    },
     loading: {
         marginTop: theme.rem(5),
     },
@@ -83,8 +86,27 @@ const OffersList = ({ loading, loadMoreLoading = false, data, showFavoriteBtn = 
                 <>
                     <OfferCardSwitcher />
                     <div className={config.offerCardSize === 'big' ? css.gridBig : css.gridSmall}>
-                        {data?.map(item => (
-                            <OfferCard key={item.id} offer={item} showFavoriteBtn={showFavoriteBtn} />
+                        {data?.map((item, index) => (
+                            <>
+                                <OfferCard key={item.id} offer={item} showFavoriteBtn={showFavoriteBtn} />
+                                {!(index % 6) && (
+                                    <div className={css.cardInner}>
+                                        <ins
+                                            className="adsbygoogle"
+                                            style={{ display: 'block' }}
+                                            data-ad-client="ca-pub-2424155820333209"
+                                            data-ad-slot="7611310481"
+                                            data-ad-format="auto"
+                                            data-full-width-responsive="true"
+                                        />
+                                        <script
+                                            dangerouslySetInnerHTML={{
+                                                __html: '(adsbygoogle = window.adsbygoogle || []).push({});',
+                                            }}
+                                        />
+                                    </div>
+                                )}
+                            </>
                         ))}
                     </div>
                 </>

@@ -138,6 +138,22 @@ const ProfileContent = (): ReactElement => {
                 </div>
             </div>
 
+            <div className={css.box}>
+                <ins
+                    className="adsbygoogle"
+                    style={{ display: 'block' }}
+                    data-ad-client="ca-pub-2424155820333209"
+                    data-ad-slot="2195671586"
+                    data-ad-format="auto"
+                    data-full-width-responsive="true"
+                />
+                <script
+                    dangerouslySetInnerHTML={{
+                        __html: '(adsbygoogle = window.adsbygoogle || []).push({});',
+                    }}
+                />
+            </div>
+
             <Banner className={css.banner} />
         </>
     );

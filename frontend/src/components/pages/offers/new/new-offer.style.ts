@@ -11,6 +11,7 @@ interface Template {
         flex: Styles;
         btn: Styles;
         primary: Styles;
+        box: Styles;
     };
     step: {
         form: Styles;
@@ -89,6 +90,9 @@ const newOfferTemplate = (theme: Theme): Template => ({
             ...theme.media(768).max({
                 marginLeft: '0',
             }),
+        },
+        box: {
+            margin: theme.rem(4, 0),
         },
     },
     step: {

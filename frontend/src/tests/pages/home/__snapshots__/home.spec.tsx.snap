@@ -341,24 +341,39 @@ exports[`Home component match snapshot 1`] = `
           </div>
         </div>
         <div
-          class="empty-0-2-75"
+          class="empty-0-2-76"
         >
           <img
             alt=""
-            class="img-0-2-76"
+            class="img-0-2-77"
             src="/icons/empty.png"
           />
           <p
-            class="emptyText-0-2-77"
+            class="emptyText-0-2-78"
           >
             You don't have any offers yet. Don't be shy, create the first one
           </p>
           <a
-            class="link-0-2-78"
+            class="link-0-2-79"
             href="/offers/new/1"
           >
             Make an offer
           </a>
+        </div>
+        <div
+          class="box-0-2-80"
+        >
+          <ins
+            class="adsbygoogle"
+            data-ad-client="ca-pub-2424155820333209"
+            data-ad-format="auto"
+            data-ad-slot="2195671586"
+            data-full-width-responsive="true"
+            style="display: block;"
+          />
+          <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+          </script>
         </div>
         <a
           class="btn-0-2-67"
@@ -368,11 +383,11 @@ exports[`Home component match snapshot 1`] = `
         </a>
       </div>
       <button
-        class="root-0-2-79 banner-0-2-1"
+        class="root-0-2-81 banner-0-2-1"
         type="button"
       >
         <div
-          class="root-0-2-85"
+          class="root-0-2-87"
           style="--blur: 0px;"
         >
           <span
@@ -386,22 +401,37 @@ exports[`Home component match snapshot 1`] = `
           />
         </div>
         <h2
-          class="title-0-2-80"
+          class="title-0-2-82"
         >
           # Share with others and earn
         </h2>
         <p
-          class="text-0-2-81"
+          class="text-0-2-83"
         >
           Place an advertisement on any category and get additional income right now.
         </p>
       </button>
     </div>
     <div
-      class="wrp-0-2-86"
+      class="box-0-2-89"
+    >
+      <ins
+        class="adsbygoogle"
+        data-ad-client="ca-pub-2424155820333209"
+        data-ad-format="auto"
+        data-ad-slot="2195671586"
+        data-full-width-responsive="true"
+        style="display: block;"
+      />
+      <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+    </div>
+    <div
+      class="wrp-0-2-88"
     >
       <div
-        class="slick-slider slider-0-2-87 slick-initialized"
+        class="slick-slider slider-0-2-90 slick-initialized"
         dir="ltr"
       >
         <button
@@ -435,7 +465,7 @@ exports[`Home component match snapshot 1`] = `
             >
               <div>
                 <picture
-                  class="img-0-2-88"
+                  class="img-0-2-91"
                   style="width: 100%; display: inline-block;"
                   tabindex="-1"
                 >
@@ -453,7 +483,7 @@ exports[`Home component match snapshot 1`] = `
                   />
                   <img
                     alt="phoqer"
-                    class="img-0-2-88"
+                    class="img-0-2-91"
                     src="/about/camera.jpeg"
                   />
                 </picture>
@@ -503,7 +533,7 @@ exports[`Home component match snapshot 1`] = `
             >
               <div>
                 <picture
-                  class="img-0-2-88"
+                  class="img-0-2-91"
                   style="width: 100%; display: inline-block;"
                   tabindex="-1"
                 >
@@ -521,7 +551,7 @@ exports[`Home component match snapshot 1`] = `
                   />
                   <img
                     alt="phoqer"
-                    class="img-0-2-88"
+                    class="img-0-2-91"
                     src="/about/camera.jpeg"
                   />
                 </picture>
@@ -574,25 +604,25 @@ exports[`Home component match snapshot 1`] = `
         </button>
       </div>
       <h2
-        class="title-0-2-89"
+        class="title-0-2-92"
       >
         phoqer
       </h2>
       <div
-        class="content-0-2-90"
+        class="content-0-2-93"
       >
         <p
-          class="text-0-2-91"
+          class="text-0-2-94"
         >
           You become what you surround yourself with. We fully agree with this phrase. The things we buy make a person. Sometimes one simple thing can make us truly happy.
         </p>
         <p
-          class="text-0-2-91"
+          class="text-0-2-94"
         >
           Therefore, we have collected a variety of products on our website, so that everyone can find what they want. Easy. Quickly. At a reasonable price and good quality.
         </p>
         <p
-          class="text-0-2-91"
+          class="text-0-2-94"
         >
           We wanted to create something better than an ordinary supermarket, where we walk around with a cart among the counters, hoping to find a specific thing. Online shopping saves us from many inconveniences. Here you do not have to stand in line at the checkout, and in the end find out that the payment is only in cash. Your child will not get lost somewhere in the sections with toys, and you will not have to tell the consultant that you wanted to "just look".
         </p>
@@ -600,7 +630,7 @@ exports[`Home component match snapshot 1`] = `
     </div>
   </main>
   <footer
-    class="footer-0-2-93"
+    class="footer-0-2-96"
   >
     <div
       class="container-0-2-8"
@@ -625,76 +655,76 @@ exports[`Home component match snapshot 1`] = `
         </small>
       </div>
       <div
-        class="wrp-0-2-94"
+        class="wrp-0-2-97"
       >
         <ul
-          class="list-0-2-95"
+          class="list-0-2-98"
         >
           <li
-            class="item-0-2-96"
+            class="item-0-2-99"
           >
             <a
-              class="link-0-2-97"
+              class="link-0-2-100"
               href="/static/help"
             >
               Help and Feedback
             </a>
           </li>
           <li
-            class="item-0-2-96"
+            class="item-0-2-99"
           >
             <a
-              class="link-0-2-97"
+              class="link-0-2-100"
               href="/static/business"
             >
               Advertising preferences
             </a>
           </li>
           <li
-            class="item-0-2-96"
+            class="item-0-2-99"
           >
             <a
-              class="link-0-2-97"
+              class="link-0-2-100"
               href="/static/rules"
             >
               Terms of service
             </a>
           </li>
           <li
-            class="item-0-2-96"
+            class="item-0-2-99"
           >
             <a
-              class="link-0-2-97"
+              class="link-0-2-100"
               href="/static/politic"
             >
               Privacy statement
             </a>
           </li>
           <li
-            class="item-0-2-96"
+            class="item-0-2-99"
           >
             <a
-              class="link-0-2-97"
+              class="link-0-2-100"
               href="/static/faq"
             >
               FAQ
             </a>
           </li>
           <li
-            class="item-0-2-96"
+            class="item-0-2-99"
           >
             <a
-              class="link-0-2-97"
+              class="link-0-2-100"
               href="/static/safety"
             >
               Safety rules
             </a>
           </li>
           <li
-            class="item-0-2-96"
+            class="item-0-2-99"
           >
             <a
-              class="link-0-2-97"
+              class="link-0-2-100"
               href="/static/map"
             >
               Site map
@@ -703,22 +733,22 @@ exports[`Home component match snapshot 1`] = `
         </ul>
         <div>
           <h3
-            class="title-0-2-100"
+            class="title-0-2-103"
           >
             Social networks:
           </h3>
           <ul
-            class="list-0-2-98"
+            class="list-0-2-101"
           >
             <li>
               <a
-                class="link-0-2-101"
+                class="link-0-2-104"
                 href="https://www.facebook.com/phoqer.inc"
                 rel="noopener noreferrer"
                 target="_blank"
               >
                 <svg
-                  class="svg-0-2-103"
+                  class="svg-0-2-106"
                   enable-background="new 0 0 24 24"
                   id="Bold"
                   viewBox="0 0 24 24"
@@ -732,13 +762,13 @@ exports[`Home component match snapshot 1`] = `
             </li>
             <li>
               <a
-                class="link-0-2-101"
+                class="link-0-2-104"
                 href="https://www.instagram.com/phoqer/"
                 rel="noopener noreferrer"
                 target="_blank"
               >
                 <svg
-                  class="svg-0-2-103"
+                  class="svg-0-2-106"
                   enable-background="new 0 0 24 24"
                   id="Bold"
                   viewBox="0 0 24 24"
@@ -760,13 +790,13 @@ exports[`Home component match snapshot 1`] = `
             </li>
             <li>
               <a
-                class="link-0-2-101"
+                class="link-0-2-104"
                 href="http://www.google.com/"
                 rel="noopener noreferrer"
                 target="_blank"
               >
                 <svg
-                  class="svg-0-2-103"
+                  class="svg-0-2-106"
                   viewBox="0 -47 512.00004 512"
                   xmlns="http://www.w3.org/2000/svg"
                 >
@@ -778,13 +808,13 @@ exports[`Home component match snapshot 1`] = `
             </li>
             <li>
               <a
-                class="link-0-2-101"
+                class="link-0-2-104"
                 href="https://t.me/phoqer"
                 rel="noopener noreferrer"
                 target="_blank"
               >
                 <svg
-                  class="svg-0-2-103"
+                  class="svg-0-2-106"
                   viewBox="0 -39 512.00011 512"
                   xmlns="http://www.w3.org/2000/svg"
                 >
