@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react';
+import React, { Fragment, ReactElement } from 'react';
 
 import { createUseStyles } from 'react-jss';
 
@@ -89,10 +89,10 @@ const OffersList = ({ loading, loadMoreLoading = false, data, showFavoriteBtn = 
                     <OfferCardSwitcher />
                     <div className={config.offerCardSize === 'big' ? css.gridBig : css.gridSmall}>
                         {data?.map((item, index) => (
-                            <>
-                                <OfferCard key={item.id} offer={item} showFavoriteBtn={showFavoriteBtn} />
+                            <Fragment key={item.id}>
+                                <OfferCard offer={item} showFavoriteBtn={showFavoriteBtn} />
                                 {!(index % 6) && <AdSense type="square" className={css.box} />}
-                            </>
+                            </Fragment>
                         ))}
                     </div>
                 </>
