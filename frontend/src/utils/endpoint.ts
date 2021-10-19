@@ -25,4 +25,9 @@ endpointsMap.test = endpointsMap.development;
 const endpoint =
     typeof window !== 'undefined' ? endpointsMap[process.env.NODE_ENV]().browser : endpointsMap[process.env.NODE_ENV]().ssr;
 
+// for debug
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+window.endpoint = endpoint;
+
 export default endpoint;
