@@ -28,6 +28,7 @@ const AuthDrawer = (): ReactElement | null => {
 
     const handleLogout = () => {
         dispatch({ type: types.LOGOUT_INIT });
+        window.location.reload();
     };
 
     return (

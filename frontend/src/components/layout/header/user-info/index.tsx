@@ -106,6 +106,7 @@ const UserInfo = (): ReactElement => {
 
     const handleLogout = () => {
         dispatch({ type: types.LOGOUT_INIT });
+        window.location.reload();
     };
 
     const handleClick = (): void => {

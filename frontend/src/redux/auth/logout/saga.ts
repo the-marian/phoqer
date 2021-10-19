@@ -6,7 +6,6 @@ import types from '../types';
 function* logoutUser() {
     yield put({ type: types.LOGOUT_END });
     delete axios.defaults.headers.common.Authorization;
-    window.location.reload();
 }
 
 export default function* logout(): Generator {

@@ -14,6 +14,7 @@ const interceptors = (dispatch: Dispatch): void => {
         error => {
             if (error?.response?.status === 401) {
                 dispatch({ type: types.LOGOUT_INIT });
+                if (process.browser) window.location.reload();
             }
 
             return Promise.reject(error);
