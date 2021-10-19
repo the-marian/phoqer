@@ -24,7 +24,6 @@ interface IProps {
 const AdSense = ({ className, type = 'horizontal' }: IProps): ReactElement => {
     const css = useStyles();
     const index = useAdsIndex(type);
-    console.log(index, type);
 
     return (
         <div className={clsx(css.root, className)}>

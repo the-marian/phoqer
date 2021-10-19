@@ -3,7 +3,7 @@
 exports[`About component matches snapshot 1`] = `
 <DocumentFragment>
   <div
-    class="box-0-2-2"
+    class="root-0-2-8 box-0-2-2"
   >
     <ins
       class="adsbygoogle"
@@ -13,9 +13,6 @@ exports[`About component matches snapshot 1`] = `
       data-full-width-responsive="true"
       style="display: block;"
     />
-    <script>
-      (adsbygoogle = window.adsbygoogle || []).push({});
-    </script>
   </div>
   <div
     class="wrp-0-2-1"

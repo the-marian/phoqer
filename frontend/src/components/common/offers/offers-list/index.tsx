@@ -91,7 +91,7 @@ const OffersList = ({ loading, loadMoreLoading = false, data, showFavoriteBtn = 
                         {data?.map((item, index) => (
                             <>
                                 <OfferCard key={item.id} offer={item} showFavoriteBtn={showFavoriteBtn} />
-                                {!(index % 6) && <AdSense type="horizontal" className={css.box} />}
+                                {!(index % 6) && <AdSense type="square" className={css.box} />}
                             </>
                         ))}
                     </div>
