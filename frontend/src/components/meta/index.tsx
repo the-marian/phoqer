@@ -110,7 +110,7 @@ const Meta = ({ title, description, keywords, icon, h1 = '' }: IProps): ReactEle
                 <meta name="msapplication-tap-highlight" content="yes" />
 
                 {/*Global site tag (gtag.js) - Google Analytics*/}
-                {process.env.NODE_ENV === 'production' && (
+                {process.env.NODE_ENV === 'production' && process.browser && (
                     <>
                         <script
                             async
