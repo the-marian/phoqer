@@ -371,6 +371,9 @@ exports[`Home component match snapshot 1`] = `
             data-full-width-responsive="true"
             style="display: block;"
           />
+          <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+          </script>
         </div>
         <a
           class="btn-0-2-67"
@@ -420,6 +423,9 @@ exports[`Home component match snapshot 1`] = `
         data-full-width-responsive="true"
         style="display: block;"
       />
+      <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
     </div>
     <div
       class="wrp-0-2-89"

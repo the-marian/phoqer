@@ -163,6 +163,9 @@ exports[`Favorite component match snapshot 1`] = `
           data-full-width-responsive="true"
           style="display: block;"
         />
+        <script>
+          (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
       </div>
     </div>
   </main>

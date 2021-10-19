@@ -752,6 +752,9 @@ exports[`Offers component match snapshot 1`] = `
           data-full-width-responsive="true"
           style="display: block;"
         />
+        <script>
+          (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
       </div>
       <div
         class="wrp-0-2-107 loading-0-2-99"
@@ -785,6 +788,9 @@ exports[`Offers component match snapshot 1`] = `
         data-full-width-responsive="true"
         style="display: block;"
       />
+      <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
     </div>
     <div
       class="wrp-0-2-122"

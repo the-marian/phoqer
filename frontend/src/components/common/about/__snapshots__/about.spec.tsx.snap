@@ -13,6 +13,9 @@ exports[`About component matches snapshot 1`] = `
       data-full-width-responsive="true"
       style="display: block;"
     />
+    <script>
+      (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
   </div>
   <div
     class="wrp-0-2-1"
