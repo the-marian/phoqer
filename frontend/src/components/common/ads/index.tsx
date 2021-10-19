@@ -26,25 +26,21 @@ const AdSense = ({ className, type = 'horizontal' }: IProps): ReactElement => {
     const index = useAdsIndex(type);
 
     return (
-        <>
-            {!process.browser && (
-                <div className={clsx(css.root, className)}>
-                    <ins
-                        className="adsbygoogle"
-                        style={{ display: 'block' }}
-                        data-ad-client="ca-pub-2424155820333209"
-                        data-ad-slot={adsMap[type][index]}
-                        data-ad-format="auto"
-                        data-full-width-responsive="true"
-                    />
-                    <script
-                        dangerouslySetInnerHTML={{
-                            __html: '(adsbygoogle = window.adsbygoogle || []).push({});',
-                        }}
-                    />
-                </div>
-            )}
-        </>
+        <div className={clsx(css.root, className)}>
+            <ins
+                className="adsbygoogle"
+                style={{ display: 'block' }}
+                data-ad-client="ca-pub-2424155820333209"
+                data-ad-slot={adsMap[type][index]}
+                data-ad-format="auto"
+                data-full-width-responsive="true"
+            />
+            <script
+                dangerouslySetInnerHTML={{
+                    __html: '(adsbygoogle = window.adsbygoogle || []).push({});',
+                }}
+            />
+        </div>
     );
 };
 
