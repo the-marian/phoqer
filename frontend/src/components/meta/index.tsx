@@ -108,6 +108,26 @@ const Meta = ({ title, description, keywords, icon, h1 = '' }: IProps): ReactEle
                 <meta name="mobile-web-app-capable" content="yes" />
                 <meta name="msapplication-TileColor" content="#32603F" />
                 <meta name="msapplication-tap-highlight" content="yes" />
+
+                {/*Global site tag (gtag.js) - Google Analytics*/}
+                {process.env.NODE_ENV === 'production' && !process.browser && (
+                    <>
+                        <script
+                            async
+                            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2424155820333209"
+                            crossOrigin="anonymous"
+                        />
+                        <script async src="https://www.googletagmanager.com/gtag/js?id=G-B57V56EVR8" />
+                        <script
+                            dangerouslySetInnerHTML={{
+                                __html: `window.dataLayer = window.dataLayer || [];
+                                    function gtag(){dataLayer.push(arguments);}
+                                    gtag('js', new Date());
+                                    gtag('config', 'G-B57V56EVR8');`,
+                            }}
+                        />
+                    </>
+                )}
             </Head>
             <h1 className={css.title}>{h1 ? h1 + '. ' + trans('site_desc') : trans('site_desc')}</h1>
         </>
