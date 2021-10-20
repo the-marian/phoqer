@@ -90,7 +90,7 @@ const OffersList = ({ loading, loadMoreLoading = false, data, showFavoriteBtn = 
                         {data?.map((item, index) => (
                             <Fragment key={item.id}>
                                 <OfferCard offer={item} showFavoriteBtn={showFavoriteBtn} />
-                                {!(index % 6) && <AdSense type="square" className={css.box} height={38} />}
+                                {!(index % 6) && showFavoriteBtn && <AdSense type="square" className={css.box} height={38} />}
                             </Fragment>
                         ))}
                     </div>
