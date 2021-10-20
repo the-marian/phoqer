@@ -750,7 +750,7 @@ exports[`Offers component match snapshot 1`] = `
           data-ad-format="auto"
           data-ad-slot="2195671586"
           data-full-width-responsive="true"
-          style="display: block;"
+          style="display: block; height: 40rem;"
         />
         <script>
           (adsbygoogle = window.adsbygoogle || []).push({});
