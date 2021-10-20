@@ -66,7 +66,8 @@ const useStyles = createUseStyles((theme: Theme) => ({
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        padding: theme.rem(8, 0),
+        margin: 0,
+        padding: theme.rem(8, 0, 0),
     },
     slider: {
         position: 'relative',
