@@ -6,7 +6,6 @@ import useConfig from '../../../../hooks/config.hook';
 import useMedia from '../../../../hooks/media.hook';
 import { IOfferCard } from '../../../../interfaces';
 import { Theme } from '../../../../utils/theming/theme';
-import AdSense from '../../ads';
 import OffersLoader from '../../loaders/skeletons/offers';
 import EmptyOffers from '../empty-offers';
 import OfferCardSwitcher from '../offer-card-switcher';
@@ -87,11 +86,8 @@ const OffersList = ({ loading, loadMoreLoading = false, data, showFavoriteBtn = 
                 <>
                     <OfferCardSwitcher />
                     <div className={config.offerCardSize === 'big' ? css.gridBig : css.gridSmall}>
-                        {data?.map((item, index) => (
-                            <Fragment key={item.id}>
-                                <OfferCard offer={item} showFavoriteBtn={showFavoriteBtn} />
-                                {!(index % 6) && showFavoriteBtn && <AdSense type="square" className={css.box} height={38} />}
-                            </Fragment>
+                        {data?.map(item => (
+                            <OfferCard key={item.id} offer={item} showFavoriteBtn={showFavoriteBtn} />
                         ))}
                     </div>
                 </>

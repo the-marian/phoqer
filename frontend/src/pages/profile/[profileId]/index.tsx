@@ -4,6 +4,7 @@ import { createUseStyles } from 'react-jss';
 import { useDispatch, useSelector } from 'react-redux';
 import { END } from 'redux-saga';
 
+import AdSense from '../../../components/common/ads';
 import ErrorComponent from '../../../components/common/error-template';
 import Pagination from '../../../components/common/load-more/pagination';
 import OffersList from '../../../components/common/offers/offers-list';
@@ -52,6 +53,12 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
     container: {
         marginTop: theme.rem(6),
+    },
+    box: {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        margin: theme.rem(4, 0),
     },
 }));
 
@@ -110,6 +117,8 @@ const PublicProfilePage = (): ReactElement => {
                             />
                             <Pagination loading={pagination} total={data.total} onClick={handleClick} onMore={handleMore} />
                         </div>
+
+                        <AdSense type="horizontal" className={css.box} />
                     </>
                 ) : (
                     <ErrorComponent title="404" text={trans('404_profile')} />

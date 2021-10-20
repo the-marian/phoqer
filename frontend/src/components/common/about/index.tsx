@@ -63,7 +63,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
         }),
     },
     box: {
-        margin: '0 auto',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
         padding: theme.rem(8, 0),
     },
     slider: {
