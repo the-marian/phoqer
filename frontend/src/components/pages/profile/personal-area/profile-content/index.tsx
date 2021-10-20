@@ -10,7 +10,6 @@ import useTrans from '../../../../../hooks/trans.hook';
 import { IPublicProfile, IState } from '../../../../../interfaces';
 import routes from '../../../../../utils/routes';
 import { Theme } from '../../../../../utils/theming/theme';
-import AdSense from '../../../../common/ads';
 import Banner from '../../../../common/advertising/banner';
 
 const useStyles = createUseStyles((theme: Theme) => ({
@@ -138,8 +137,6 @@ const ProfileContent = (): ReactElement => {
                     <p className={css.cellText}>{user?.birth_date || trans('no_information_available')}</p>
                 </div>
             </div>
-
-            <AdSense type="horizontal" className={css.box} />
 
             <Banner className={css.banner} />
         </>

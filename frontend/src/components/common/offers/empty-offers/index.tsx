@@ -40,7 +40,6 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
     box: {
         margin: theme.rem(4, 0),
-        maxHeight: theme.rem(40),
     },
 }));
 
@@ -62,7 +61,7 @@ const EmptyOffers = ({ text }: IProps): ReactElement => {
                     <a className={css.link}>{trans('make_offer')}</a>
                 </Link>
             </div>
-            <AdSense type="horizontal" className={css.box} />
+            <AdSense type="horizontal" className={css.box} height={40} />
         </>
     );
 };

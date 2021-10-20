@@ -58,7 +58,6 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
     box: {
         margin: 0,
-        maxHeight: theme.rem(38),
     },
     loading: {
         marginTop: theme.rem(5),
@@ -91,7 +90,7 @@ const OffersList = ({ loading, loadMoreLoading = false, data, showFavoriteBtn = 
                         {data?.map((item, index) => (
                             <Fragment key={item.id}>
                                 <OfferCard offer={item} showFavoriteBtn={showFavoriteBtn} />
-                                {!(index % 6) && <AdSense type="square" className={css.box} />}
+                                {!(index % 6) && <AdSense type="square" className={css.box} height={38} />}
                             </Fragment>
                         ))}
                     </div>

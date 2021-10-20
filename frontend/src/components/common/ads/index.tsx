@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react';
+import React, { CSSProperties, ReactElement } from 'react';
 
 import clsx from 'clsx';
 import { createUseStyles } from 'react-jss';
@@ -18,18 +18,26 @@ const useStyles = createUseStyles((theme: Theme) => ({
 
 interface IProps {
     className?: string;
+    height?: number;
+    width?: number;
     type?: AdType;
 }
 
-const AdSense = ({ className, type = 'horizontal' }: IProps): ReactElement => {
+const AdSense = ({ className, type = 'horizontal', height, width }: IProps): ReactElement => {
     const css = useStyles();
     const index = useAdsIndex(type);
+
+    const styles: CSSProperties = {
+        display: 'block',
+    };
+    if (height) styles.height = height + 'rem';
+    if (width) styles.width = width + 'rem';
 
     return (
         <div className={clsx(css.root, className)}>
             <ins
                 className="adsbygoogle"
-                style={{ display: 'block' }}
+                style={styles}
                 data-ad-client="ca-pub-2424155820333209"
                 data-ad-slot={adsMap[type][index]}
                 data-ad-format="auto"

@@ -30,7 +30,6 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
     box: {
         marginTop: theme.rem(3),
-        maxHeight: theme.rem(25),
     },
 }));
 
@@ -53,7 +52,7 @@ const AsideElement = (): ReactElement => {
                 />
                 {offer && <Price offer={offer} withButton={offer.can_rent} />}
 
-                <AdSense type="square" className={css.box} />
+                <AdSense type="square" className={css.box} height={25} />
             </div>
         </aside>
     );

@@ -7,7 +7,7 @@ import useMedia from '../../../../hooks/media.hook';
 import { IChats } from '../../../../interfaces';
 import mixin from '../../../../utils/theming/mixin';
 import { Theme } from '../../../../utils/theming/theme';
-import AdSense from '../../../common/ads';
+import Gift from '../../../common/advertising/gift';
 import ChatEmpty from '../components/chat-empty';
 
 import ChatSidebarItem from './chat-sidebar-item';
@@ -47,9 +47,6 @@ const useStyles = createUseStyles((theme: Theme) => ({
         fontSize: theme.rem(1.4),
         textAlign: 'center',
     },
-    box: {
-        margin: theme.rem(1, 0),
-    },
 }));
 
 interface IProps {
@@ -67,7 +64,7 @@ const ChatSidebarLeft = ({ chats }: IProps): ReactElement => {
             {chats?.length ? (
                 chats.map<ReactElement>((item, index) => (
                     <Fragment key={item.chat_id}>
-                        {!(index % 4) && index > 3 && <AdSense type="square" className={css.box} />}
+                        {index === 5 ? <Gift style={{ padding: '5rem 2rem' }} /> : null}
                         <ChatSidebarItem chat={item} active={active === item.chat_id} />
                     </Fragment>
                 ))

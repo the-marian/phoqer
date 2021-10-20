@@ -256,8 +256,6 @@ const SingleOfferPage = (): ReactElement | null => {
                                     {/*    numberOfMonths={media ? 2 : 1}*/}
                                     {/*/>*/}
 
-                                    <AdSense type="horizontal" className={css.box} />
-
                                     {auth?.access_token ? <Gift style={{ padding: '8rem 4rem' }} /> : null}
 
                                     <Comments />
@@ -265,6 +263,8 @@ const SingleOfferPage = (): ReactElement | null => {
 
                                 <AsideElement />
                             </div>
+
+                            <AdSense type="horizontal" className={css.box} />
 
                             <RelatedOffers />
                         </>
