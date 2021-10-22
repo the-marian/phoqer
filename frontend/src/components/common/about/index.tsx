@@ -6,7 +6,6 @@ import Slider from 'react-slick';
 import useTrans from '../../../hooks/trans.hook';
 import mixin from '../../../utils/theming/mixin';
 import { Theme } from '../../../utils/theming/theme';
-import AdSense from '../ads';
 
 interface ISlides {
     src: string;
@@ -61,13 +60,6 @@ const useStyles = createUseStyles((theme: Theme) => ({
         ...theme.media(500).max({
             padding: theme.rem(15, 0),
         }),
-    },
-    box: {
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        margin: 0,
-        padding: theme.rem(8, 0, 0),
     },
     slider: {
         position: 'relative',
@@ -179,39 +171,36 @@ const About = (): ReactElement => {
     const trans = useTrans();
 
     return (
-        <>
-            <AdSense type="horizontal" className={css.box} />
-            <div className={css.wrp}>
-                <Slider
-                    slidesToShow={1}
-                    slidesToScroll={1}
-                    initialSlide={0}
-                    swipeToSlide
-                    autoplaySpeed={3000}
-                    autoplay
-                    draggable
-                    infinite
-                    lazyLoad="progressive"
-                    className={css.slider}
-                >
-                    {slides.map(item => (
-                        <picture key={item.src} className={css.img}>
-                            <source media="(max-width: 640px)" srcSet={item.src640} />
-                            <source media="(max-width: 1280px)" srcSet={item.src1280} />
-                            <source media="(max-width: 1920px)" srcSet={item.src1920} />
-                            <img className={css.img} src={item.src} alt="phoqer" />
-                        </picture>
-                    ))}
-                </Slider>
+        <div className={css.wrp}>
+            <Slider
+                slidesToShow={1}
+                slidesToScroll={1}
+                initialSlide={0}
+                swipeToSlide
+                autoplaySpeed={3000}
+                autoplay
+                draggable
+                infinite
+                lazyLoad="progressive"
+                className={css.slider}
+            >
+                {slides.map(item => (
+                    <picture key={item.src} className={css.img}>
+                        <source media="(max-width: 640px)" srcSet={item.src640} />
+                        <source media="(max-width: 1280px)" srcSet={item.src1280} />
+                        <source media="(max-width: 1920px)" srcSet={item.src1920} />
+                        <img className={css.img} src={item.src} alt="phoqer" />
+                    </picture>
+                ))}
+            </Slider>
 
-                <h2 className={css.title}>phoqer</h2>
-                <div className={css.content}>
-                    <p className={css.text}>{trans('about_1')}</p>
-                    <p className={css.text}>{trans('about_2')}</p>
-                    <p className={css.text}>{trans('about_3')}</p>
-                </div>
+            <h2 className={css.title}>phoqer</h2>
+            <div className={css.content}>
+                <p className={css.text}>{trans('about_1')}</p>
+                <p className={css.text}>{trans('about_2')}</p>
+                <p className={css.text}>{trans('about_3')}</p>
             </div>
-        </>
+        </div>
     );
 };
 

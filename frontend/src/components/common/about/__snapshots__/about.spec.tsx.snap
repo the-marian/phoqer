@@ -3,25 +3,10 @@
 exports[`About component matches snapshot 1`] = `
 <DocumentFragment>
   <div
-    class="root-0-2-8 box-0-2-2"
-  >
-    <ins
-      class="adsbygoogle"
-      data-ad-client="ca-pub-2424155820333209"
-      data-ad-format="auto"
-      data-ad-slot="2195671586"
-      data-full-width-responsive="true"
-      style="display: block;"
-    />
-    <script>
-      (adsbygoogle = window.adsbygoogle || []).push({});
-    </script>
-  </div>
-  <div
     class="wrp-0-2-1"
   >
     <div
-      class="slick-slider slider-0-2-3 slick-initialized"
+      class="slick-slider slider-0-2-2 slick-initialized"
       dir="ltr"
     >
       <button
@@ -55,7 +40,7 @@ exports[`About component matches snapshot 1`] = `
           >
             <div>
               <picture
-                class="img-0-2-4"
+                class="img-0-2-3"
                 style="width: 100%; display: inline-block;"
                 tabindex="-1"
               >
@@ -73,7 +58,7 @@ exports[`About component matches snapshot 1`] = `
                 />
                 <img
                   alt="phoqer"
-                  class="img-0-2-4"
+                  class="img-0-2-3"
                   src="/about/camera.jpeg"
                 />
               </picture>
@@ -123,7 +108,7 @@ exports[`About component matches snapshot 1`] = `
           >
             <div>
               <picture
-                class="img-0-2-4"
+                class="img-0-2-3"
                 style="width: 100%; display: inline-block;"
                 tabindex="-1"
               >
@@ -141,7 +126,7 @@ exports[`About component matches snapshot 1`] = `
                 />
                 <img
                   alt="phoqer"
-                  class="img-0-2-4"
+                  class="img-0-2-3"
                   src="/about/camera.jpeg"
                 />
               </picture>
@@ -194,25 +179,25 @@ exports[`About component matches snapshot 1`] = `
       </button>
     </div>
     <h2
-      class="title-0-2-5"
+      class="title-0-2-4"
     >
       phoqer
     </h2>
     <div
-      class="content-0-2-6"
+      class="content-0-2-5"
     >
       <p
-        class="text-0-2-7"
+        class="text-0-2-6"
       >
         You become what you surround yourself with. We fully agree with this phrase. The things we buy make a person. Sometimes one simple thing can make us truly happy.
       </p>
       <p
-        class="text-0-2-7"
+        class="text-0-2-6"
       >
         Therefore, we have collected a variety of products on our website, so that everyone can find what they want. Easy. Quickly. At a reasonable price and good quality.
       </p>
       <p
-        class="text-0-2-7"
+        class="text-0-2-6"
       >
         We wanted to create something better than an ordinary supermarket, where we walk around with a cart among the counters, hoping to find a specific thing. Online shopping saves us from many inconveniences. Here you do not have to stand in line at the checkout, and in the end find out that the payment is only in cash. Your child will not get lost somewhere in the sections with toys, and you will not have to tell the consultant that you wanted to "just look".
       </p>

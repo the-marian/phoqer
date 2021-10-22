@@ -6,7 +6,6 @@ import { createUseStyles } from 'react-jss';
 import useTrans from '../../../../hooks/trans.hook';
 import routes from '../../../../utils/routes';
 import { Theme } from '../../../../utils/theming/theme';
-import AdSense from '../../ads';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     empty: {
@@ -38,9 +37,6 @@ const useStyles = createUseStyles((theme: Theme) => ({
             textDecoration: 'underline',
         }),
     },
-    box: {
-        margin: theme.rem(4, 0),
-    },
 }));
 
 interface IProps {
@@ -52,17 +48,14 @@ const EmptyOffers = ({ text }: IProps): ReactElement => {
     const trans = useTrans();
 
     return (
-        <>
-            <div className={css.empty}>
-                <img className={css.img} src="/icons/empty.png" alt="" />
-                <p className={css.emptyText}>{text || trans('no_offer')}</p>
+        <div className={css.empty}>
+            <img className={css.img} src="/icons/empty.png" alt="" />
+            <p className={css.emptyText}>{text || trans('no_offer')}</p>
 
-                <Link href={routes.offers.new(1)}>
-                    <a className={css.link}>{trans('make_offer')}</a>
-                </Link>
-            </div>
-            <AdSense type="horizontal" className={css.box} height={40} />
-        </>
+            <Link href={routes.offers.new(1)}>
+                <a className={css.link}>{trans('make_offer')}</a>
+            </Link>
+        </div>
     );
 };
 

@@ -5,7 +5,6 @@ import { useSelector } from 'react-redux';
 
 import { IOfferCard, IPublicProfile, IState } from '../../../../../interfaces';
 import { Theme } from '../../../../../utils/theming/theme';
-import AdSense from '../../../../common/ads';
 import ProfileCard from '../../../../common/profile-card';
 import Price from '../price';
 
@@ -28,9 +27,6 @@ const useStyles = createUseStyles((theme: Theme) => ({
             position: 'static',
         }),
     },
-    box: {
-        marginTop: theme.rem(3),
-    },
 }));
 
 const AsideElement = (): ReactElement => {
@@ -51,8 +47,6 @@ const AsideElement = (): ReactElement => {
                     registerDate={profile?.date_joined}
                 />
                 {offer && <Price offer={offer} withButton={offer.can_rent} />}
-
-                <AdSense type="square" className={css.box} height={25} />
             </div>
         </aside>
     );

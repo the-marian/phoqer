@@ -10,7 +10,6 @@ import useTrans from '../../../../../hooks/trans.hook';
 import types from '../../../../../redux/types';
 import routes from '../../../../../utils/routes';
 import { Theme } from '../../../../../utils/theming/theme';
-import AdSense from '../../../../common/ads';
 import newOfferTemplate from '../new-offer.style';
 
 const useStyles = createUseStyles((theme: Theme) => newOfferTemplate(theme).end);
@@ -58,8 +57,6 @@ const StepFive = (): ReactElement => {
                     {trans('publish')}
                 </button>
             </div>
-
-            <AdSense type="horizontal" className={css.box} />
         </div>
     );
 };
