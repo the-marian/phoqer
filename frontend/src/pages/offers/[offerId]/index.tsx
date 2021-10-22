@@ -1,12 +1,11 @@
 import React, { ReactElement, useEffect } from 'react';
 
-import { GetServerSideProps } from 'next';
 // import DayPicker from 'react-day-picker';
+import { GetServerSideProps } from 'next';
 import { createUseStyles } from 'react-jss';
 import { useDispatch, useSelector } from 'react-redux';
 import { END } from 'redux-saga';
 
-import AdSense from '../../../components/common/ads';
 import Gift from '../../../components/common/advertising/gift';
 import Breadcrumbs from '../../../components/common/breadcrumbs';
 import Comments from '../../../components/common/comments';
@@ -153,10 +152,6 @@ const useStyles = createUseStyles((theme: Theme) => ({
     other: {
         marginBottom: theme.rem(4),
     },
-    box: {
-        margin: theme.rem(4, 0),
-        maxHeight: theme.rem(40),
-    },
 }));
 
 const SingleOfferPage = (): ReactElement | null => {
@@ -263,8 +258,6 @@ const SingleOfferPage = (): ReactElement | null => {
 
                                 <AsideElement />
                             </div>
-
-                            <AdSense type="horizontal" className={css.box} />
 
                             <RelatedOffers />
                         </>
