@@ -17,7 +17,13 @@ jobs:
       - name: Checkout Phoqer
         uses: actions/checkout@v2
       - name: Install flake8 and plugins
-        run: pip install flake8==3.8.4 flake8-pytest-style==1.3.0 flake8-formatter-abspath==1.0.1
-      - name: Run flake8
-        run: flake8 --config=setup.cfg
+        run: |
+          pip install \
+          flake8==3.8.4 \
+          flake8-pytest-style==1.3.0 \
+          flake8-formatter-abspath==1.0.1 \
+          mypy==0.910 \
+          mypy-extensions==0.4.3
+      - name: Run lint.sh
+        run: ./lint.sh
         working-directory: ./backend
