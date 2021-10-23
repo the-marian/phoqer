@@ -5,7 +5,7 @@ from config import NOTIFICATION_SIZE, database
 
 async def get_notifications(
     user_id: int, offset: int = 0, limit: int = NOTIFICATION_SIZE
-) -> List[Mapping[str, Any]]:
+) -> List[Mapping]:
     query = """
     SELECT
         notifications.id,
