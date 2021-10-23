@@ -6,7 +6,7 @@ on:
       - "**/*.py"
 
 jobs:
-  flake8:
+  lint:
     runs-on: ubuntu-latest
     steps:
       - name: Setup Python
@@ -16,7 +16,7 @@ jobs:
           architecture: x64
       - name: Checkout Phoqer
         uses: actions/checkout@v2
-      - name: Install flake8 and plugins
+      - name: Install flake8, mypy and plugins
         run: |
           pip install \
           flake8==3.8.4 \
