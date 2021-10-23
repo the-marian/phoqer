@@ -1,11 +1,8 @@
-from config import database
-from config import NOTIFICATION_SIZE
+from config import NOTIFICATION_SIZE, database
 
 
 async def get_notifications(
-        user_id: int,
-        offset: int = 0,
-        limit: int = NOTIFICATION_SIZE
+    user_id: int, offset: int = 0, limit: int = NOTIFICATION_SIZE
 ):
     query = """
     SELECT

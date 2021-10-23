@@ -7,7 +7,7 @@ from fastapi.security import OAuth2PasswordBearer
 from jwt import InvalidSignatureError
 from pydantic import EmailStr
 
-from config import ALGORITHM, database
+from config import ALGORITHM, SECRET_KEY, database
 from users import crud
 
 optional_login = OAuth2PasswordBearer(tokenUrl="auth/login", auto_error=False)
@@ -22,7 +22,7 @@ class JWTPayload(TypedDict):
 
 def decode_jwt(token: str) -> JWTPayload:
     try:
-        return jwt.decode(token, config.SECRET_KEY, algorithms=[ALGORITHM])  # type: ignore
+        return jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])  # type: ignore
     except InvalidSignatureError:
         raise HTTPException(
             status_code=401,

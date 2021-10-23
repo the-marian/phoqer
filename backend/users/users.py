@@ -5,11 +5,7 @@ from fastapi.responses import RedirectResponse
 
 from users import crud
 from users.schemas import ShortUser, User, UserCreateRequest, UserPartialUpdate
-from users.utils import (
-    get_activation_jwt,
-    get_password_hash,
-    send_new_account_email,
-)
+from users.utils import get_activation_jwt, get_password_hash, send_new_account_email
 from utils import decode_jwt, get_current_user
 
 router = APIRouter(
