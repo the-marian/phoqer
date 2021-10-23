@@ -1,9 +1,4 @@
-import datetime
-
 import pytest
-from fastapi import status
-
-from users.crud import get_user
 
 # decorate all tests with @pytest.mark.asyncio
 pytestmark = pytest.mark.asyncio
@@ -109,7 +104,7 @@ pytestmark = pytest.mark.asyncio
 #         "last_name": "Zozulia",
 #         "profile_img": "https://example.com/dic_pic_2.jpeg",
 #     }
-#     response = await client.patch("/users/me", json=patch_data, headers=marian_auth_token)
+#   response = await client.patch("/users/me", json=patch_data, headers=marian_auth_token)
 #     assert response.status_code == 204
 #     db_response = await get_user(2)
 #     assert db_response.get("bio") == "new bio"

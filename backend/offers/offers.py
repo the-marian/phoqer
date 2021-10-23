@@ -1,6 +1,6 @@
 from datetime import date
 from math import ceil
-from typing import Dict, List, Optional
+from typing import Dict, List, Optional, Tuple, Callable
 
 from fastapi import APIRouter, Depends, HTTPException, Response
 
@@ -78,7 +78,7 @@ async def change_status(
     data: StatusBodyData,
     user_id: int = Depends(get_current_user),
 ) -> Response:
-    actions_for_status = {
+    actions_for_status: Dict[str, Tuple[Callable, Callable]] = {
         "ACTIVE": (active_status_validator, set_active_status),
         "REVIEW": (review_status_validator, set_review_status),
         "IN_RENT": (in_rent_status_validator, set_in_rent_status),

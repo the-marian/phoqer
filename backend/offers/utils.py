@@ -24,7 +24,7 @@ async def in_rent_status_validator(offer_id: str) -> None:
     return None
 
 
-async def set_active_status(offer_id, chat_id) -> None:
+async def set_active_status(offer_id: str, chat_id: int) -> None:
     await chat_is_done_update(chat_id)
     await crud.offer_set_status(offer_id=offer_id, status=Status.ACTIVE.value)
 
