@@ -19,18 +19,16 @@ jobs:
           architecture: x64
       - name: Checkout Phoqer
         uses: actions/checkout@v2
-      - name: Add environment variables to .env
-        run: |
-          echo POSTGRES_DB=phoqer_dev >> .env
-          echo POSTGRES_USER=phoqer >> .env
-          echo POSTGRES_PASSWORD=apple-b@nana-f1re >> .env
       - name: Log in to GitHub Packages
         run: echo ${{ secrets.GITHUB_TOKEN }} | docker login -u ${GITHUB_ACTOR} --password-stdin docker.pkg.github.com
       - name: Pull existing image for cache
-        run: |
-          docker pull ${{ secrets.BACKEND_IMAGE }} || true
+        run: docker pull ${{ secrets.BACKEND_IMAGE }} || true
       - name: Build images
-        run: docker-compose -f docker-compose.test-backend.yml up --build -d
+        run: |
+          docker-compose \
+          -f docker-compose.test-backend.yml \
+          --env BACKEND_IMAGE=${{ secrets.BACKEND_IMAGE }} \
+          up --build -d
       - name: Run lint
         run: docker-compose -f docker-compose.test-backend.yml exec backend ./lint.sh
       - name: Run tests
