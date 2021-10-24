@@ -29,35 +29,9 @@ jobs:
       - name: Pull existing image for cache
         run: |
           docker pull ${{ secrets.BACKEND_IMAGE }} || true
-      - name: Build image for lint and test
-        run: |
-          docker build \
-          --cache-from ${{ secrets.BACKEND_IMAGE }} \
-          --build-arg dependencies_path=requirements.dev.txt \
-          -t test_backend .
-      - name: Run db
-        run: |
-          docker network create db
-          docker run -d \
-          --network db \
-          -p 5432:5432 \
-          -v $(pwd)/postgres_data:/var/lib/postgresql/data/ \
-          --name pgsql \
-          --env-file=.env \
-          postgres:12.0-alpine
-      - name: Run lint.sh
-        run: |
-          docker run \
-          --rm \
-          --network db \
-          --env POSTGRES_HOST=db \
-          --env POSTGRES_PORT=5432 \
-          test_backend ./lint.sh
-      - name: Run pytest
-        run: |
-          docker run \
-          --rm \
-          --network db \
-          --env POSTGRES_HOST=db \
-          --env POSTGRES_PORT=5432 \
-          test_backend pytest -vv
+      - name: Build images
+        run: docker-compose -f docker-compose.test-backend.yml up --build -d
+      - name: Run lint
+        run: docker-compose -f docker-compose.test-backend.yml exec backend ./lint.sh
+      - name: Run tests
+        run: docker-compose -f docker-compose.test-backend.yml exec backend pytest -vv

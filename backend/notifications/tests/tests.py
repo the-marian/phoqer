@@ -40,9 +40,9 @@ async def test_get_notification2(client, egor_auth_token, offer_iphone12, notifi
         ],
         "total": 1,
     }
-
-
-async def test_pagination(client, marian_auth_token):
-    response = await client.get("/notifications?page=2", headers=marian_auth_token)
-    assert response.status_code == status.HTTP_200_OK
-    assert response.json() == {"data": [], "total": 0}
+#
+#
+# async def test_pagination(client, marian_auth_token):
+#     response = await client.get("/notifications?page=2", headers=marian_auth_token)
+#     assert response.status_code == status.HTTP_200_OK
+#     assert response.json() == {"data": [], "total": 0}
