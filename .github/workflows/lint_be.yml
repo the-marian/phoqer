@@ -37,13 +37,27 @@ jobs:
           -t test_backend .
       - name: Run db
         run: |
+          docker network create db
           docker run -d \
+          --network db \
           -p 5432:5432 \
           -v $(pwd)/postgres_data:/var/lib/postgresql/data/ \
           --name pgsql \
           --env-file=.env \
           postgres:12.0-alpine
       - name: Run lint.sh
-        run: docker run --rm --env POSTGRES_HOST=localhost --env POSTGRES_PORT=5432 test_backend ./lint.sh
+        run: |
+          docker run \
+          --rm \
+          --network db
+          --env POSTGRES_HOST=db \
+          --env POSTGRES_PORT=5432 \
+          test_backend ./lint.sh
       - name: Run pytest
-        run: docker run --rm --env POSTGRES_HOST=localhost --env POSTGRES_PORT=5432 test_backend pytest -vv
+        run: |
+          docker run \
+          --rm \
+          --network db
+          --env POSTGRES_HOST=db \
+          --env POSTGRES_PORT=5432 \
+          test_backend pytest -vv
