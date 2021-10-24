@@ -49,7 +49,7 @@ jobs:
         run: |
           docker run \
           --rm \
-          --network db
+          --network db \
           --env POSTGRES_HOST=db \
           --env POSTGRES_PORT=5432 \
           test_backend ./lint.sh
@@ -57,7 +57,7 @@ jobs:
         run: |
           docker run \
           --rm \
-          --network db
+          --network db \
           --env POSTGRES_HOST=db \
           --env POSTGRES_PORT=5432 \
           test_backend pytest -vv
