@@ -44,6 +44,6 @@ jobs:
           --env-file=.env \
           postgres:12.0-alpine
       - name: Run lint.sh
-        run: docker run --rm test_backend ./lint.sh
+        run: docker run --rm --env POSTGRES_HOST=localhost --env POSTGRES_PORT=5432 test_backend ./lint.sh
       - name: Run pytest
         run: docker run --rm --env POSTGRES_HOST=localhost --env POSTGRES_PORT=5432 test_backend pytest -vv
