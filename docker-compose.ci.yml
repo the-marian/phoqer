@@ -8,8 +8,6 @@ services:
       dockerfile: Dockerfile
       cache_from:
         - "${BACKEND_IMAGE}"
-      args:
-        dependencies_path: requirements.txt
     image: "${BACKEND_IMAGE}"
     command: uvicorn main:app --root-path /api/v2 --reload --workers 1 --host 0.0.0.0 --port 8001
     volumes:
