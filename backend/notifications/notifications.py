@@ -15,7 +15,7 @@ router = APIRouter(
 
 @router.get("", response_model=NotificationsListResponse)
 async def get_notification(
-    page: int = 1, user_id: int = Depends(get_current_user)
+    page: int = 1, user_id: int = Depends(get_current_user)  # get_current_user
 ) -> dict:
     offset = (page - 1) * NOTIFICATION_SIZE
     limit = NOTIFICATION_SIZE
@@ -27,4 +27,3 @@ async def get_notification(
             offset=offset,
         ),
     }
-# comment for commit
