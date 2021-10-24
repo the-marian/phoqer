@@ -30,6 +30,6 @@ jobs:
       - name: Build images
         run: docker-compose -f docker-compose.test-backend.yml --env-file .env up --build -d
       - name: Run lint
-        run: docker-compose -f docker-compose.test-backend.yml exec backend ./lint.sh
+        run: docker-compose -f docker-compose.test-backend.yml exec -T backend ./lint.sh
       - name: Run tests
-        run: docker-compose -f docker-compose.test-backend.yml exec backend pytest -vv
+        run: docker-compose -f docker-compose.test-backend.yml exec -T backend pytest -vv
