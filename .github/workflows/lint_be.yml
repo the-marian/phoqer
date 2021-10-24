@@ -35,8 +35,6 @@ jobs:
           --cache-from ${{ secrets.BACKEND_IMAGE }} \
           --build-arg dependencies_path=requirements.dev.txt \
           -t test_backend .
-      - name: Run lint.sh
-        run: docker run --rm test_backend ./lint.sh
       - name: Run db
         run: |
           docker run -d \
@@ -45,5 +43,7 @@ jobs:
           --name pgsql \
           --env-file=.env \
           postgres:12.0-alpine
+      - name: Run lint.sh
+        run: docker run --rm test_backend ./lint.sh
       - name: Run pytest
         run: docker run --rm -e POSTGRES_HOST=localhost -e POSTGRES_PORT=5432 test_backend pytest -vv
