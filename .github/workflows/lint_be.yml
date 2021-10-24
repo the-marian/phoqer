@@ -27,7 +27,7 @@ jobs:
         run: |
           docker-compose \
           -f docker-compose.test-backend.yml \
-          --env BACKEND_IMAGE=${{ secrets.BACKEND_IMAGE }} \
+          -e BACKEND_IMAGE=${{ secrets.BACKEND_IMAGE }} \
           up --build -d
       - name: Run lint
         run: docker-compose -f docker-compose.test-backend.yml exec backend ./lint.sh
