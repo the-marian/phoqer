@@ -1,4 +1,3 @@
-import pytest
 
 # decorate all tests with @pytest.mark.asyncio
 # pytestmark = pytest.mark.asyncio

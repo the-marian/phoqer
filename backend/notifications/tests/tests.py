@@ -40,6 +40,8 @@ async def test_get_notification2(client, egor_auth_token, offer_iphone12, notifi
         ],
         "total": 1,
     }
+
+
 #
 #
 # async def test_pagination(client, marian_auth_token):

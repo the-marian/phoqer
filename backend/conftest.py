@@ -8,7 +8,16 @@ import pytest
 from async_asgi_testclient import TestClient
 from databases import Database
 
-from config import BASE_DIR, PG_DB, TEST_DATABASE_URL, TEST_PG_DB, PG_PORT, PG_USER, PG_PASSWORD, PG_HOST
+from config import (
+    BASE_DIR,
+    PG_DB,
+    PG_HOST,
+    PG_PASSWORD,
+    PG_PORT,
+    PG_USER,
+    TEST_DATABASE_URL,
+    TEST_PG_DB,
+)
 from main import app
 
 

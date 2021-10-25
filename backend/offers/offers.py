@@ -1,6 +1,6 @@
 from datetime import date
 from math import ceil
-from typing import Dict, List, Optional, Tuple, Callable
+from typing import Callable, Dict, List, Optional, Tuple
 
 from fastapi import APIRouter, Depends, HTTPException, Response
 

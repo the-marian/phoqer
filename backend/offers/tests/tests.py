@@ -336,7 +336,7 @@
 #     db.execute(f"SELECT is_approved FROM chats WHERE chat_id='{chat_marian_egor}'")
 #     chat = db.fetchone()
 #     assert chat[0] is True
-#     db.execute(f"SELECT status, items_amount FROM offers_offer WHERE id = '{offer_ps4}'")
+#   db.execute(f"SELECT status, items_amount FROM offers_offer WHERE id = '{offer_ps4}'")
 #     offer = db.fetchone()
 #     assert offer[0] == "IN_RENT"
 #     assert offer[1] == 1
@@ -382,7 +382,7 @@
 #     )
 #     assert response.status_code == 204
 #     db.execute(
-#         f"SELECT status, items_amount FROM offers_offer WHERE id = '{offer_with_two_ps4}'"
+#      f"SELECT status, items_amount FROM offers_offer WHERE id = '{offer_with_two_ps4}'"
 #     )
 #     offer = db.fetchone()
 #     assert offer[0] == "ACTIVE"
