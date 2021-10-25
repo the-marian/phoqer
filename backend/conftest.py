@@ -8,7 +8,16 @@ import pytest
 from async_asgi_testclient import TestClient
 from databases import Database
 
-from config import BASE_DIR, PG_DB, TEST_DATABASE_URL, TEST_PG_DB
+from config import (
+    BASE_DIR,
+    PG_DB,
+    PG_HOST,
+    PG_PASSWORD,
+    PG_PORT,
+    PG_USER,
+    TEST_DATABASE_URL,
+    TEST_PG_DB,
+)
 from main import app
 
 
@@ -38,10 +47,10 @@ async def egor_auth_token(client, user_egor):
 def _create_test_db():
     conn = psycopg2.connect(
         database=PG_DB,
-        user="phoqer",
-        password="apple-b@nana-f1re",
-        host="localhost",
-        port="5432",
+        user=PG_USER,
+        password=PG_PASSWORD,
+        host=PG_HOST,
+        port=PG_PORT,
     )
     conn.autocommit = True
     try:
@@ -62,10 +71,10 @@ def _create_test_db():
 def _migrate(_create_test_db):
     conn = psycopg2.connect(
         database=TEST_PG_DB,
-        user="phoqer",
-        password="apple-b@nana-f1re",
-        host="localhost",
-        port="5432",
+        user=PG_USER,
+        password=PG_PASSWORD,
+        host=PG_HOST,
+        port=PG_PORT,
     )
     try:
         with conn:
@@ -497,8 +506,8 @@ async def notification2(db):
         "viewed": True,
     }
     await db.execute(query=query, values=values)
-    yield 1
-    delete_query = "DELETE FROM notifications WHERE id=1"
+    yield 2
+    delete_query = "DELETE FROM notifications WHERE id=2"
     await db.execute(query=delete_query)
 
 
