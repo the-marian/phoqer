@@ -124,7 +124,7 @@ async def create_chat(
 ) -> Dict[str, int]:
     if not (offer := await get_offer(offer_id)):
         raise HTTPException(
-            status_code=400,
+            status_code=404,
             detail=f"Offer with id: {offer_id} does not exist",
         )
     author_id = offer["author_id"]

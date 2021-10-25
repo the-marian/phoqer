@@ -1,7 +1,13 @@
+import pytest
 from fastapi import status
 from freezegun import freeze_time
+from httpx import AsyncClient
+
+from main import app
 
 from config import TECH_RENT_REQUEST
+
+pytestmark = pytest.mark.asyncio
 
 
 def test_get_chats_not_auth(client):
@@ -131,6 +137,23 @@ def test_get_messages_invalid_chat_id(client, marian_auth_token):
     response = client.get("chats/100000000", headers=marian_auth_token)
     assert response.status_code == status.HTTP_404_NOT_FOUND
     assert response.json() == {"detail": "Chat with id 100000000 does not exist"}
+
+
+async def test_invalid_offer_id(client, marian_auth_token):
+    post_data = {
+        "chat_id": 3,
+        "author_id": 1,
+        "client_id": 2,
+        "offer_id": "a30b8a1e-1c60-4bbc-ac3d-37df2d324022",
+        "creation_datetime": "2021-10-18T12:16:59+00:00",
+        "is_done": False
+    }
+    async with AsyncClient(app=app, base_url="http://test") as ac:
+        response = await ac.post("chats", json=post_data, headers=marian_auth_token)
+    assert response.status_code == status.HTTP_404_NOT_FOUND
+    assert response.json() == {
+        "detail": "Offer with id: a30b8a1e-1c60-4bbc-ac3d-37df2d324022 does not exist"
+    }
 
 
 def test_get_messages(client, marian_auth_token, _messages):
