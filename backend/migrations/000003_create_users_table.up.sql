@@ -1,4 +1,3 @@
-BEGIN;
 CREATE TABLE IF NOT EXISTS users_user (
     id SERIAL PRIMARY KEY,
     password character varying(128) NOT NULL,
@@ -38,4 +37,3 @@ CREATE TABLE IF NOT EXISTS users_communicationrating (
     author_id integer NOT NULL REFERENCES users_user(id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED,
     user_id integer NOT NULL REFERENCES users_user(id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED
 );
-COMMIT;

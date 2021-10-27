@@ -1,4 +1,3 @@
-BEGIN;
 CREATE TABLE IF NOT EXISTS offers_offer (
     city character varying(50) REFERENCES cities(slug) ON DELETE CASCADE,
     cover_image character varying(200),
@@ -36,4 +35,3 @@ CREATE TABLE IF NOT EXISTS offers_offerimages (
     url character varying(200) NOT NULL,
     offer_id uuid NOT NULL REFERENCES offers_offer(id) ON DELETE CASCADE REFERENCES offers_offer(id) DEFERRABLE INITIALLY DEFERRED
 );
-COMMIT;

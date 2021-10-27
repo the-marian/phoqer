@@ -1,4 +1,4 @@
-from backend.config import NOTIFICATION_SIZE, database
+from config import NOTIFICATION_SIZE, database
 
 
 async def get_notifications(

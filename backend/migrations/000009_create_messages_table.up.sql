@@ -1,4 +1,3 @@
-BEGIN;
 CREATE TABLE IF NOT EXISTS messages (
     id SERIAL PRIMARY KEY,
     text text,
@@ -12,4 +11,3 @@ CREATE TABLE IF NOT EXISTS messages_uploads (
     message_id integer REFERENCES messages(id) ON DELETE CASCADE,
     chat_id integer REFERENCES chats(chat_id) ON DELETE CASCADE
 );
-COMMIT;

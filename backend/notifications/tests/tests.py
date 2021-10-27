@@ -4,7 +4,7 @@ from fastapi import status
 pytestmark = pytest.mark.asyncio
 
 
-async def test_get_notification1(client, marian_auth_token, offer_ps4, notification1):
+async def test_get_notification1(client, marian_auth_token, notification1):
     response = await client.get("/notifications?page=1", headers=marian_auth_token)
     assert response.status_code == status.HTTP_200_OK
     assert response.json() == {
@@ -28,7 +28,7 @@ async def test_get_notification1(client, marian_auth_token, offer_ps4, notificat
     }
 
 
-async def test_get_notification2(client, egor_auth_token, offer_iphone12, notification2):
+async def test_get_notification2(client, egor_auth_token, notification2):
     response = await client.get("/notifications", headers=egor_auth_token)
     assert response.status_code == status.HTTP_200_OK
     assert response.json() == {
