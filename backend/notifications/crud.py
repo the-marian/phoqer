@@ -1,4 +1,4 @@
-from backend.config import NOTIFICATION_SIZE, database
+from config import NOTIFICATION_SIZE, database
 
 
 async def get_notifications(
@@ -33,7 +33,7 @@ async def get_notifications(
     return await database.fetch_all(query=query, values=values)
 
 
-async def count_notifications(user_id) -> int:
+async def count_notifications(user_id: int) -> int:
     query = """
     SELECT COUNT(*)
     FROM notifications
