@@ -46,9 +46,7 @@ async def get_current_user_or_none(
 
 
 async def get_current_user(
-    background_tasks: BackgroundTasks,
     token: str = Depends(oauth2_schema),
 ) -> int:
     user_id = decode_jwt(token)["user_id"]
-    background_tasks.add_task(crud.update_last_login, user_id)
     return user_id
