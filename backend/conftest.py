@@ -86,7 +86,6 @@ async def _migrate(_create_test_db):
         await conn.close()
 
 
-
 @pytest.fixture(scope="session")
 def event_loop():
     loop = asyncio.get_event_loop()
