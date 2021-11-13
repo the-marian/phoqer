@@ -14,6 +14,8 @@ const notificationsStyles = (theme: Theme): Styles => ({
         justifyContent: 'space-between',
 
         '& button': {
+            color: theme.palette.black[0],
+
             ...theme.hover({
                 color: theme.palette.red[0],
             }),

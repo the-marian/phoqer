@@ -19,6 +19,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
 }));
 
 const routesMap: { [key: string]: string } = {
+    'rented-offers': routes.rented_offers(),
     'my-offers': routes.my_offers(),
     chat: routes.chat(),
     notifications: routes.notifications,
