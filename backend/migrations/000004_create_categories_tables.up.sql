@@ -1,4 +1,3 @@
-BEGIN;
 CREATE TABLE IF NOT EXISTS categories_parentcategories (
     image character varying(200) NOT NULL,
     is_active boolean NOT NULL,
@@ -11,4 +10,3 @@ CREATE TABLE IF NOT EXISTS categories_childcategories (
     parent_id character varying(50) NOT NULL REFERENCES categories_parentcategories(slug) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED,
     icon_image text
 );
-COMMIT;

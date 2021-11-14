@@ -6,6 +6,7 @@ from config import NOTIFICATION_SIZE
 from notifications import crud
 from notifications.schemas import NotificationsListResponse
 from utils import get_current_user
+from typing import Dict
 
 router = APIRouter(
     prefix="/notifications",
@@ -15,8 +16,8 @@ router = APIRouter(
 
 @router.get("", response_model=NotificationsListResponse)
 async def get_notification(
-    page: int = 1, user_id: int = Depends(get_current_user)  # get_current_user
-) -> dict:
+    page: int = 1, user_id: int = Depends(get_current_user)
+) -> Dict:
     offset = (page - 1) * NOTIFICATION_SIZE
     limit = NOTIFICATION_SIZE
     return {

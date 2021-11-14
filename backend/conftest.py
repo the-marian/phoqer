@@ -3,7 +3,7 @@ import os
 import uuid
 from datetime import date, datetime
 
-import psycopg2
+import asyncpg
 import pytest
 from async_asgi_testclient import TestClient
 from databases import Database
@@ -44,54 +44,46 @@ async def egor_auth_token(client, user_egor):
 
 
 @pytest.fixture(scope="session")
-def _create_test_db():
-    conn = psycopg2.connect(
-        database=PG_DB,
+async def _create_test_db():
+    conn = await asyncpg.connect(
         user=PG_USER,
         password=PG_PASSWORD,
         host=PG_HOST,
         port=PG_PORT,
+        database=PG_DB
     )
-    conn.autocommit = True
     try:
-        with conn:
-            with conn.cursor() as curs:
-                curs = conn.cursor()
-                create_query = f"CREATE database {TEST_PG_DB};"
-                drop_query = f"DROP DATABASE IF EXISTS {TEST_PG_DB};"
-                curs.execute(drop_query)
-                curs.execute(create_query)
-                yield
+        create_query = f"CREATE database {TEST_PG_DB};"
+        drop_query = f"DROP DATABASE IF EXISTS {TEST_PG_DB};"
+        await conn.execute(drop_query)
+        await conn.execute(create_query)
     finally:
-        curs.execute(drop_query)
-        conn.close()
+        await conn.close()
 
 
 @pytest.fixture(scope="session")
-def _migrate(_create_test_db):
-    conn = psycopg2.connect(
-        database=TEST_PG_DB,
+async def _migrate(_create_test_db):
+    conn = await asyncpg.connect(
         user=PG_USER,
         password=PG_PASSWORD,
         host=PG_HOST,
         port=PG_PORT,
+        database=TEST_PG_DB
     )
     try:
-        with conn:
-            with conn.cursor() as curs:
-                migrations_dir = os.path.join(BASE_DIR, "migrations")
-                migration_files = os.listdir(migrations_dir)
-                migration_files.sort()
-                for migration_file_name in migration_files:
-                    if migration_file_name.split(".")[-2] == "up":
-                        migration_file_path = os.path.join(
-                            migrations_dir, migration_file_name
-                        )
-                        with open(migration_file_path) as file:
-                            query = file.read()
-                            curs.execute(query)
+        migrations_dir = os.path.join(BASE_DIR, "migrations")
+        migration_files = os.listdir(migrations_dir)
+        migration_files.sort()
+        for migration_file_name in migration_files:
+            if migration_file_name.split(".")[-2] == "up":
+                migration_file_path = os.path.join(
+                    migrations_dir, migration_file_name
+                )
+                with open(migration_file_path) as file:
+                    query = file.read()
+                    await conn.execute(query)
     finally:
-        conn.close()
+        await conn.close()
 
 
 @pytest.fixture(scope="session")
@@ -440,7 +432,7 @@ async def offer_ps4(
 
 
 @pytest.fixture
-async def notification1(db):
+async def notification1(db, offer_ps4):
     query = """
     INSERT INTO notifications (
         id,
@@ -476,7 +468,7 @@ async def notification1(db):
 
 
 @pytest.fixture
-async def notification2(db):
+async def notification2(db, offer_iphone12):
     query = """
     INSERT INTO notifications (
         id,

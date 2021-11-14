@@ -1,6 +1,5 @@
-from typing import List, Mapping
-
 from config import NOTIFICATION_SIZE, database
+from typing import Mapping, List
 
 
 async def get_notifications(
@@ -14,8 +13,14 @@ async def get_notifications(
         notifications.offer_id,
         notifications.pub_date,
         notifications.recipient_id,
-        notifications.viewed
+        notifications.viewed,
+        offers_offer.title,
+        users_user.first_name,
+        users_user.last_name,
+        users_user.profile_img
     FROM notifications
+    INNER JOIN offers_offer ON notifications.offer_id=offers_offer.id
+    INNER JOIN users_user ON notifications.recipient_id=users_user.id
     WHERE recipient_id=:user_id
     ORDER BY pub_date DESC
     LIMIT :limit
