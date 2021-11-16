@@ -1,7 +1,7 @@
 import { IPagination } from './general';
 
 export enum NotificationsType {
-    RENT_START = 'RENT_START',
+    RENT_REQUEST = 'RENT_REQUEST',
     RENT_END = 'RENT_END',
     RENT_CONFIRMED = 'RENT_CONFIRMED',
     RENT_CANCELLED = 'RENT_CANCELLED',
@@ -21,7 +21,7 @@ export interface INotificationBase {
 }
 
 export interface INotificationRentStart extends INotificationBase {
-    notification_type: NotificationsType.RENT_START;
+    notification_type: NotificationsType.RENT_REQUEST;
 }
 
 export type INotificationRentConfirmation = INotificationBase & {
