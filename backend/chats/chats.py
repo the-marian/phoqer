@@ -197,7 +197,7 @@ async def delete_comment(
         )
     await crud.delete_chat(chat_id)
     await create_notification(
-        notification_type=NotificationType.RENT_REQUEST_REJECTED,
+        notification_type=NotificationType.RENT_CANCELLED,
         recipient_id=chat["client_id"],
         offer_id=chat["offer_id"],
     )

@@ -7,11 +7,11 @@ from pydantic import BaseModel, HttpUrl
 
 
 class NotificationType(Enum):
-    RENT_START = "RENT_START"
+    NEW_COMMENT = 'NEW_COMMENT',
+    RENT_CANCELLED = 'RENT_CANCELLED',
+    RENT_CONFIRMED = 'RENT_CONFIRMED',
     RENT_END = "RENT_END"
     RENT_REQUEST = "RENT_REQUEST"
-    RETURN_ITEM_REQUEST = "RETURN_ITEM_REQUEST"
-    RENT_REQUEST_REJECTED = "RENT_REQUEST_REJECTED"
 
 
 class NotificationsList(BaseModel):

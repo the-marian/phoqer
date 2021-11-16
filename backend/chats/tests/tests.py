@@ -112,7 +112,7 @@ async def test_delete_chat_3(client, chat_marian_egor, marian_auth_token):
     # test side effects
     notification = await get_notification(notification_id=1)
     assert (
-        notification["notification_type"] == NotificationType.RENT_REQUEST_REJECTED.value
+        notification["notification_type"] == NotificationType.RENT_CANCELLED.value
     )
     assert notification["recipient_id"] == 2
 
