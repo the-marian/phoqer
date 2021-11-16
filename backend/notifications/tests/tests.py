@@ -49,3 +49,28 @@ async def test_get_notification2(client, egor_auth_token, notification2):
         ],
         "total": 1,
     }
+
+
+async def test_pagination(client, marian_auth_token):
+    response = await client.get("/notifications?page=2", headers=marian_auth_token)
+    assert response.status_code == status.HTTP_200_OK
+    assert response.json() == {"data": [], "total": 0}
+
+
+async def test_delete_notification_1(client):
+    """Case with no auth token in header"""
+    response = await client.delete("/notifications/1")
+    assert response.status_code == 401
+
+
+async def test_delete_notification_2(client, marian_auth_token):
+    """Delete notification that does not exist"""
+    response = await client.delete("/notifications/1", headers=marian_auth_token)
+    assert response.status_code == 404
+
+
+async def test_delete_notification_3(client, marian_auth_token, notification1):
+    response = await client.delete(
+        f"/notifications/{notification1}", headers=marian_auth_token
+    )
+    assert response.status_code == 204

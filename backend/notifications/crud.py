@@ -1,5 +1,6 @@
+from typing import List, Mapping, Optional
+
 from config import NOTIFICATION_SIZE, database
-from typing import Mapping, List
 
 
 async def get_notifications(
@@ -34,6 +35,22 @@ async def get_notifications(
     return await database.fetch_all(query=query, values=values)
 
 
+async def get_notification(user_id: int) -> Optional[Mapping]:
+    query = """
+    SELECT
+        id,
+        notification_type,
+        body,
+        offer_id,
+        pub_date,
+        recipient_id,
+        viewed
+    FROM notifications
+    WHERE recipient_id=:user_id
+    """
+    return await database.fetch_one(query=query, values={"user_id": user_id})
+
+
 async def count_notifications(user_id: int) -> int:
     query = """
     SELECT COUNT(*)
@@ -42,3 +59,8 @@ async def count_notifications(user_id: int) -> int:
     """
     count = await database.fetch_one(query=query, values={"user_id": user_id})
     return int(count["count"]) if count else 0
+
+
+async def delete_notification(notification_id: int) -> None:
+    query = "DELETE FROM notifications WHERE id=:id"
+    await database.execute(query=query, values={"id": notification_id})

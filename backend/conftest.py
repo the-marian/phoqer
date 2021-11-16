@@ -46,11 +46,7 @@ async def egor_auth_token(client, user_egor):
 @pytest.fixture(scope="session")
 async def _create_test_db():
     conn = await asyncpg.connect(
-        user=PG_USER,
-        password=PG_PASSWORD,
-        host=PG_HOST,
-        port=PG_PORT,
-        database=PG_DB
+        user=PG_USER, password=PG_PASSWORD, host=PG_HOST, port=PG_PORT, database=PG_DB
     )
     try:
         create_query = f"CREATE database {TEST_PG_DB};"
@@ -68,7 +64,7 @@ async def _migrate(_create_test_db):
         password=PG_PASSWORD,
         host=PG_HOST,
         port=PG_PORT,
-        database=TEST_PG_DB
+        database=TEST_PG_DB,
     )
     try:
         migrations_dir = os.path.join(BASE_DIR, "migrations")
@@ -76,9 +72,7 @@ async def _migrate(_create_test_db):
         migration_files.sort()
         for migration_file_name in migration_files:
             if migration_file_name.split(".")[-2] == "up":
-                migration_file_path = os.path.join(
-                    migrations_dir, migration_file_name
-                )
+                migration_file_path = os.path.join(migrations_dir, migration_file_name)
                 with open(migration_file_path) as file:
                     query = file.read()
                     await conn.execute(query)
