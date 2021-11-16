@@ -111,9 +111,7 @@ async def test_delete_chat_3(client, chat_marian_egor, marian_auth_token):
     assert response.status_code == 204
     # test side effects
     notification = await get_notification(notification_id=1)
-    assert (
-        notification["notification_type"] == NotificationType.RENT_CANCELLED.value
-    )
+    assert notification["notification_type"] == NotificationType.RENT_CANCELLED.value
     assert notification["recipient_id"] == 2
 
 
