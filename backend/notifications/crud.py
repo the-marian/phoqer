@@ -12,15 +12,14 @@ async def get_notifications(
     SELECT
         notifications.id,
         notifications.notification_type,
-        notifications.body,
         notifications.offer_id,
         notifications.pub_date,
         notifications.recipient_id,
         notifications.viewed,
-        offers_offer.title,
-        users_user.first_name,
-        users_user.last_name,
-        users_user.profile_img
+        offers_offer.title AS offer_title,
+        users_user.first_name AS recipient_first_name,
+        users_user.last_name AS recipient_last_name,
+        users_user.profile_img AS recipient_avatar
     FROM notifications
     INNER JOIN offers_offer ON notifications.offer_id=offers_offer.id
     INNER JOIN users_user ON notifications.recipient_id=users_user.id

@@ -515,7 +515,7 @@ async def notification1(db, offer_ps4):
     )"""
     values = {
         "id": 1,
-        "notification_type": "RENT_START",
+        "notification_type": "RENT_REQUEST",
         "body": "Start of the rent",
         "offer_id": uuid.UUID("a30b8a1e-1c60-4bbc-ac3d-37df2d224000"),
         "pub_date": datetime(2021, 10, 18, 12, 16, 59),

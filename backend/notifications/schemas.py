@@ -17,14 +17,13 @@ class NotificationType(Enum):
 class NotificationsList(BaseModel):
     id: int
     notification_type: NotificationType
-    title: str
-    body: str
+    offer_title: str
     offer_id: UUID
     pub_date: datetime
     recipient_id: int
-    first_name: str
-    last_name: str
-    profile_img: Optional[HttpUrl] = None
+    recipient_first_name: str
+    recipient_last_name: str
+    recipient_avatar: Optional[HttpUrl] = None
     viewed: bool
 
 
