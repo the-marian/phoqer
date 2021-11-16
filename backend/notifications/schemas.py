@@ -11,6 +11,7 @@ class NotificationType(Enum):
     RENT_END = "RENT_END"
     RENT_REQUEST = "RENT_REQUEST"
     RETURN_ITEM_REQUEST = "RETURN_ITEM_REQUEST"
+    RENT_REQUEST_REJECTED = "RENT_REQUEST_REJECTED"
 
 
 class NotificationsList(BaseModel):

@@ -36,6 +36,14 @@ async def marian_auth_token(client, user_marian):
 
 
 @pytest.fixture
+async def igor_auth_token(client, user_igor):
+    data = {"username": "igorrr.thlw5@gmail.com", "password": "apple-b@nana-f1re"}
+    r = await client.post("/auth/login", form=data)
+    auth_token = r.json()["access_token"]
+    return {"Authorization": f"Bearer {auth_token}"}
+
+
+@pytest.fixture
 async def egor_auth_token(client, user_egor):
     data = {"username": "fatamorganaa933@gmail.com", "password": "apple-b@nana-f1re"}
     r = await client.post("/auth/login", form=data)
@@ -258,6 +266,65 @@ async def user_marian(db, country_poland, city_warsaw):
 
 
 @pytest.fixture
+async def user_igor(db, country_ukraine, city_kiev):
+    query = """
+    INSERT INTO users_user (
+        id,
+        password,
+        last_login,
+        is_superuser,
+        first_name,
+        last_name,
+        is_staff,
+        is_active,
+        date_joined,
+        bio,
+        birth_date,
+        email,
+        profile_img,
+        country,
+        city)
+    VALUES (
+        :id,
+        :password,
+        :last_login,
+        :is_superuser,
+        :first_name,
+        :last_name,
+        :is_staff,
+        :is_active,
+        :date_joined,
+        :bio,
+        :birth_date,
+        :email,
+        :profile_img,
+        :country,
+        :city)"""
+    values = {
+        "id": 3,
+        "password": "$2b$12$6DVnORNuohV8olN5cNzqKufCRGGnUYiYZJkjAjPcAt8roFRGyo4/e",
+        "last_login": date(2021, 7, 7),
+        "is_superuser": False,
+        "first_name": "Igor",
+        "last_name": "Mikhailichenko",
+        "is_staff": False,
+        "is_active": True,
+        "date_joined": date(2019, 11, 9),
+        "bio": "I love fishing",
+        "birth_date": date(1995, 12, 9),
+        "email": "igorrr.thlw5@gmail.com",
+        "profile_img": "http://phoqer.com/mediafiles/"
+        "0f13df9c-772c-4216-b6e0-7894cdaaa2dd-2021-06-14_15.42.25.jpg",
+        "country": country_ukraine,
+        "city": city_kiev,
+    }
+    await db.execute(query=query, values=values)
+    yield 1
+    delete_query = "DELETE FROM users_user WHERE id=1"
+    await db.execute(query=delete_query)
+
+
+@pytest.fixture
 async def user_egor(db, country_ukraine, city_kiev):
     query = """
     INSERT INTO users_user (
@@ -306,8 +373,8 @@ async def user_egor(db, country_ukraine, city_kiev):
         "birth_date": date(1998, 3, 22),
         "email": "fatamorganaa933@gmail.com",
         "profile_img": None,
-        "country": "ukraine",
-        "city": "kiev",
+        "country": country_ukraine,
+        "city": city_kiev,
     }
     await db.execute(query=query, values=values)
     yield 2
@@ -651,57 +718,70 @@ async def offer_iphone12(
     await db.execute(query=delete_query)
 
 
-#
-#
-# @pytest.fixture
-# def chat_marian_egor(db, user_marian, user_egor, offer_ps4):
-#     query = """
-#     INSERT INTO chats (
-#         chat_id,
-#         author_id,
-#         client_id,
-#         offer_id,
-#         creation_datetime,
-#         is_done)
-#     VALUES (%s, %s, %s, %s, %s, %s)
-#     RETURNING offer_id
-#     """
-#     values = (
-#         "1",  # chat_id
-#         user_marian,  # author_id
-#         user_egor,  # client_id
-#         offer_ps4,  # offer_id
-#         "2021-06-21 07:52:21.609079+00",  # creation_datetime
-#         False,  # is_done
-#     )
-#     db.execute(query, values)
-#     return "1"
-#
-#
-# @pytest.fixture
-# def chat_egor_marian(db, user_marian, user_egor, offer_iphone12):
-#     query = """
-#     INSERT INTO chats (
-#         chat_id,
-#         author_id,
-#         client_id,
-#         offer_id,
-#         creation_datetime,
-#         is_done)
-#     VALUES (%s, %s, %s, %s, %s, %s)
-#     RETURNING offer_id
-#     """
-#     values = (
-#         "2",  # chat_id
-#         user_egor,  # author_id
-#         user_marian,  # client_id
-#         offer_iphone12,  # offer_id
-#         "2021-07-21 07:52:21.609079+00",  # creation_datetime
-#         False,  # is_done
-#     )
-#     db.execute(query, values)
-#     return "2"
-#
+@pytest.fixture
+async def chat_marian_egor(db, user_marian, user_egor, offer_ps4):
+    query = """
+    INSERT INTO chats (
+        chat_id,
+        author_id,
+        client_id,
+        offer_id,
+        creation_datetime,
+        is_done)
+    VALUES (
+        :chat_id,
+        :author_id,
+        :client_id,
+        :offer_id,
+        :creation_datetime,
+        :is_done)
+    """
+    values = {
+        "chat_id": 1,
+        "author_id": user_marian,
+        "client_id": user_egor,
+        "offer_id": offer_ps4,
+        "creation_datetime": date(2022, 1, 1),
+        "is_done": False,
+    }
+    await db.execute(query=query, values=values)
+    yield "1"
+    query = "DELETE FROM chats WHERE chat_id = 1"
+    await db.execute(query=query)
+
+
+@pytest.fixture
+async def chat_egor_marian(db, user_marian, user_egor, offer_iphone12):
+    query = """
+    INSERT INTO chats (
+        chat_id,
+        author_id,
+        client_id,
+        offer_id,
+        creation_datetime,
+        is_done)
+    VALUES (
+        :chat_id,
+        :author_id,
+        :client_id,
+        :offer_id,
+        :creation_datetime,
+        :is_done)
+    """
+    values = {
+        "chat_id": 2,
+        "author_id": user_egor,
+        "client_id": user_marian,
+        "offer_id": offer_iphone12,
+        "creation_datetime": date(2022, 1, 1),
+        "is_done": False,
+    }
+    await db.execute(query=query, values=values)
+    yield "2"
+    query = "DELETE FROM chats WHERE chat_id = 2"
+    await db.execute(query=query)
+
+
 #
 # @pytest.fixture
 # def _messages(db, chat_marian_egor):

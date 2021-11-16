@@ -1,95 +1,135 @@
-# from fastapi import status
-# from freezegun import freeze_time
-#
-# from config import TECH_RENT_REQUEST
-#
-#
-# def test_get_chats_not_auth(client):
-#     response = client.get("chats")
-#     assert response.status_code == status.HTTP_401_UNAUTHORIZED
-#     assert response.json() == {"detail": "Not authenticated"}
-#
-#
-# def test_get_chats_i_am_author(
-#     client, marian_auth_token, chat_marian_egor, chat_egor_marian
-# ):
-#     response = client.get("chats?i_am_author=true", headers=marian_auth_token)
-#     assert response.status_code == status.HTTP_200_OK
-#     assert response.json() == {
-#         "data": [
-#             {
-#                 "chat_id": 2,
-#                 "cover_image": "http://phoqer.com/mediafiles/"
-#                 "52cade24-63d6-4f04-bf8c-34489d0c67f1-2369.png",
-#                 "new_messages": 0,
-#                 "recipient_first_name": "Egor",
-#                 "recipient_id": 2,
-#                 "recipient_last_activity": "2020-07-07T11:35:14.330296+00:00",
-#                 "recipient_last_name": "Leletsky",
-#                 "title": "Iphone 12",
-#             }
-#         ],
-#         "total": 1,
-#     }
-#
-#
-# def test_get_chats_i_am_client(
-#     client, marian_auth_token, chat_marian_egor, chat_egor_marian
-# ):
-#     response = client.get("chats?i_am_client=true", headers=marian_auth_token)
-#     assert response.status_code == status.HTTP_200_OK
-#     assert response.json() == {
-#         "data": [
-#             {
-#                 "chat_id": 1,
-#                 "cover_image": "http://phoqer.com/mediafiles/"
-#                 "52cade24-63d6-4f04-bf8c-34489d0c67f1-2368.png",
-#                 "new_messages": 0,
-#                 "recipient_first_name": "Egor",
-#                 "recipient_id": 2,
-#                 "recipient_last_activity": "2020-07-07T11:35:14.330296+00:00",
-#                 "recipient_last_name": "Leletsky",
-#                 "title": "SONY PlayStation 4",
-#             }
-#         ],
-#         "total": 1,
-#     }
-#
-#
-# def test_get_chats_with_no_query_params(
-#     client, marian_auth_token, chat_marian_egor, chat_egor_marian
-# ):
-#     response = client.get("chats", headers=marian_auth_token)
-#     assert response.status_code == status.HTTP_200_OK
-#     assert response.json() == {
-#         "data": [
-#             {
-#                 "chat_id": 2,
-#                 "cover_image": "http://phoqer.com/mediafiles/"
-#                 "52cade24-63d6-4f04-bf8c-34489d0c67f1-2369.png",
-#                 "new_messages": 0,
-#                 "recipient_first_name": "Egor",
-#                 "recipient_id": 2,
-#                 "recipient_last_activity": "2020-07-07T11:35:14.330296+00:00",
-#                 "recipient_last_name": "Leletsky",
-#                 "title": "Iphone 12",
-#             },
-#             {
-#                 "chat_id": 1,
-#                 "cover_image": "http://phoqer.com/mediafiles/"
-#                 "52cade24-63d6-4f04-bf8c-34489d0c67f1-2368.png",
-#                 "new_messages": 0,
-#                 "recipient_first_name": "Egor",
-#                 "recipient_id": 2,
-#                 "recipient_last_activity": "2020-07-07T11:35:14.330296+00:00",
-#                 "recipient_last_name": "Leletsky",
-#                 "title": "SONY PlayStation 4",
-#             },
-#         ],
-#         "total": 1,
-#     }
-#
-#
+import pytest
+
+from notifications.crud import get_notification
+from notifications.schemas import NotificationType
+
+pytestmark = pytest.mark.asyncio
+
+
+async def test_get_chats_not_auth(client):
+    response = await client.get("/chats")
+    assert response.status_code == 401
+    assert response.json() == {"detail": "Not authenticated"}
+
+
+async def test_get_chats_i_am_author(
+    client, marian_auth_token, chat_marian_egor, chat_egor_marian
+):
+    response = await client.get("/chats?i_am_author=true", headers=marian_auth_token)
+    assert response.status_code == 200
+    assert response.json() == {
+        "data": [
+            {
+                "chat_id": 1,
+                "cover_image": "http://phoqer.com/mediafiles/"
+                "52cade24-63d6-4f04-bf8c-34489d0c67f1-2368.png",
+                "new_messages": 0,
+                "recipient_first_name": "Egor",
+                "recipient_id": 2,
+                "recipient_last_activity": "2020-07-07T00:00:00+00:00",
+                "recipient_last_name": "Leletsky",
+                "title": "SONY PlayStation 4",
+            }
+        ],
+        "total": 1,
+    }
+
+
+async def test_get_chats_i_am_user(
+    client, marian_auth_token, chat_marian_egor, chat_egor_marian
+):
+    response = await client.get("/chats?i_am_client=true", headers=marian_auth_token)
+    assert response.status_code == 200
+    assert response.json() == {
+        "data": [
+            {
+                "chat_id": 2,
+                "cover_image": "http://phoqer.com/mediafiles/"
+                "52cade24-63d6-4f04-bf8c-34489d0c67f1-2369.png",
+                "new_messages": 0,
+                "recipient_first_name": "Egor",
+                "recipient_id": 2,
+                "recipient_last_activity": "2020-07-07T00:00:00+00:00",
+                "recipient_last_name": "Leletsky",
+                "title": "Iphone 12",
+            }
+        ],
+        "total": 1,
+    }
+
+
+async def test_get_chats_with_no_query_params(
+    client, marian_auth_token, chat_marian_egor, chat_egor_marian
+):
+    response = await client.get("/chats", headers=marian_auth_token)
+    assert response.status_code == 200
+    assert response.json() == {
+        "data": [
+            {
+                "chat_id": 1,
+                "cover_image": "http://phoqer.com/mediafiles/"
+                "52cade24-63d6-4f04-bf8c-34489d0c67f1-2368.png",
+                "new_messages": 0,
+                "recipient_first_name": "Egor",
+                "recipient_id": 2,
+                "recipient_last_activity": "2020-07-07T00:00:00+00:00",
+                "recipient_last_name": "Leletsky",
+                "title": "SONY PlayStation 4",
+            },
+            {
+                "chat_id": 2,
+                "cover_image": "http://phoqer.com/mediafiles/"
+                "52cade24-63d6-4f04-bf8c-34489d0c67f1-2369.png",
+                "new_messages": 0,
+                "recipient_first_name": "Egor",
+                "recipient_id": 2,
+                "recipient_last_activity": "2020-07-07T00:00:00+00:00",
+                "recipient_last_name": "Leletsky",
+                "title": "Iphone 12",
+            },
+        ],
+        "total": 1,
+    }
+
+
+async def test_delete_chat_1(client):
+    """Case with no auth token in header"""
+    response = await client.delete("/chats/1")
+    assert response.status_code == 401
+
+
+async def test_delete_chat_2(client, marian_auth_token):
+    """Delete chat that does not exist"""
+    response = await client.delete("/chats/1", headers=marian_auth_token)
+    assert response.status_code == 404
+
+
+async def test_delete_chat_3(client, chat_marian_egor, marian_auth_token):
+    response = await client.delete(
+        f"/chats/{chat_marian_egor}", headers=marian_auth_token
+    )
+    assert response.status_code == 204
+    # test side effects
+    notification = await get_notification(notification_id=1)
+    assert (
+        notification["notification_type"] == NotificationType.RENT_REQUEST_REJECTED.value
+    )
+    assert notification["recipient_id"] == 2
+
+
+async def test_delete_chat_4(client, chat_egor_marian, marian_auth_token):
+    response = await client.delete(
+        f"/chats/{chat_egor_marian}", headers=marian_auth_token
+    )
+    assert response.status_code == 204
+
+
+async def test_delete_chat_5(client, chat_egor_marian, igor_auth_token):
+    """Delete chat that does not belongs to logged in user"""
+    response = await client.delete(f"/chats/{chat_egor_marian}", headers=igor_auth_token)
+    assert response.status_code == 403
+
+
 # def test_get_chats_search(client, marian_auth_token):
 #     response = client.get("chats?search=igor", headers=marian_auth_token)
 #     assert response.status_code == status.HTTP_200_OK

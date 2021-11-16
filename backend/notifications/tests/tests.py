@@ -74,3 +74,11 @@ async def test_delete_notification_3(client, marian_auth_token, notification1):
         f"/notifications/{notification1}", headers=marian_auth_token
     )
     assert response.status_code == 204
+
+
+async def test_delete_notification_4(client, marian_auth_token, notification2):
+    """Delete notification that does not belongs logged in user"""
+    response = await client.delete(
+        f"/notifications/{notification2}", headers=marian_auth_token
+    )
+    assert response.status_code == 403

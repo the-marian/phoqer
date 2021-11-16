@@ -1,6 +1,8 @@
+import datetime
 from typing import List, Mapping, Optional
 
 from config import NOTIFICATION_SIZE, database
+from notifications.schemas import NotificationType
 
 
 async def get_notifications(
@@ -35,7 +37,7 @@ async def get_notifications(
     return await database.fetch_all(query=query, values=values)
 
 
-async def get_notification(user_id: int) -> Optional[Mapping]:
+async def get_notification(notification_id: int) -> Optional[Mapping]:
     query = """
     SELECT
         id,
@@ -46,9 +48,11 @@ async def get_notification(user_id: int) -> Optional[Mapping]:
         recipient_id,
         viewed
     FROM notifications
-    WHERE recipient_id=:user_id
+    WHERE id=:notification_id
     """
-    return await database.fetch_one(query=query, values={"user_id": user_id})
+    return await database.fetch_one(
+        query=query, values={"notification_id": notification_id}
+    )
 
 
 async def count_notifications(user_id: int) -> int:
@@ -64,3 +68,36 @@ async def count_notifications(user_id: int) -> int:
 async def delete_notification(notification_id: int) -> None:
     query = "DELETE FROM notifications WHERE id=:id"
     await database.execute(query=query, values={"id": notification_id})
+
+
+async def create_notification(
+    notification_type: NotificationType,
+    recipient_id: int,
+    offer_id: Optional[str] = None,
+    body: str = "",
+) -> None:
+    query = """
+    INSERT INTO notifications (
+        notification_type,
+        body,
+        offer_id,
+        pub_date,
+        recipient_id,
+        viewed)
+    VALUES (
+        :notification_type,
+        :body,
+        :offer_id,
+        :pub_date,
+        :recipient_id,
+        :viewed)
+    """
+    values = {
+        "notification_type": notification_type.value,
+        "body": body,
+        "offer_id": offer_id,
+        "pub_date": datetime.datetime.now(),
+        "recipient_id": recipient_id,
+        "viewed": False,
+    }
+    await database.execute(query=query, values=values)
