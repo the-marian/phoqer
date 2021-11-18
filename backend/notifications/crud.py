@@ -17,12 +17,13 @@ async def get_notifications(
         notifications.recipient_id,
         notifications.viewed,
         offers_offer.title AS offer_title,
+        offers_offer.author_id AS author_id,
         users_user.first_name AS recipient_first_name,
         users_user.last_name AS recipient_last_name,
         users_user.profile_img AS recipient_avatar
     FROM notifications
     INNER JOIN offers_offer ON notifications.offer_id=offers_offer.id
-    INNER JOIN users_user ON notifications.recipient_id=users_user.id
+    INNER JOIN users_user ON author_id=users_user.id
     WHERE recipient_id=:user_id
     ORDER BY pub_date DESC
     LIMIT :limit
