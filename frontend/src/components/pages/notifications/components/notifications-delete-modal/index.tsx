@@ -60,6 +60,7 @@ const NotificationsDeleteModal = ({ payload }: IProps): ReactElement => {
 
     const handleDelete = useCallback((): void => {
         dispatch({ type: types.DELETE_NOTIFICATION_START, payload });
+        modal.close();
     }, [dispatch, payload]);
 
     useEffect(() => {
