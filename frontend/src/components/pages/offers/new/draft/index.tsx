@@ -1,6 +1,7 @@
 import React, { ReactElement } from 'react';
 
 import clsx from 'clsx';
+import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { createUseStyles } from 'react-jss';
@@ -9,8 +10,9 @@ import useTrans from '../../../../../hooks/trans.hook';
 import routes from '../../../../../utils/routes';
 import { Theme } from '../../../../../utils/theming/theme';
 import Advertising from '../../../../common/advertising/gift-modal';
-import ConfettiWrp from '../../../../common/confetti';
 import newOfferTemplate from '../new-offer.style';
+
+const ConfettiWrp = dynamic(() => import('../../../../common/confetti'), { ssr: false });
 
 const useStyles = createUseStyles((theme: Theme) => newOfferTemplate(theme).end);
 
