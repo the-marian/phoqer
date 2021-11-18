@@ -81,20 +81,26 @@ interface IProps {
 const ChatSidebarItem = ({ chat, active = false }: IProps): ReactElement => {
     const css = useStyles();
 
-    return (
-        <Link href={routes.chat(chat.chat_id)}>
-            <a className={clsx(css.wrp, active && css.active, chat.new_messages && css.unread)}>
-                <UserAvatar width={7} height={7} avatar={chat.cover_image || '/icons/no_img.png'} />
+    const renderChatInner = (): ReactElement => (
+        <>
+            <UserAvatar width={7} height={7} avatar={chat.cover_image || '/icons/no_img.png'} />
 
-                <div className={css.inner}>
-                    <h2 className={css.title}>{cutString(chat.title, 50)}</h2>
-                    <div className={css.flex}>
-                        <OnlineIndicator className={css.online} time={chat.recipient_last_activity} />
-                        <p>{`${chat.recipient_first_name} ${chat.recipient_last_name}`}</p>
-                    </div>
-                    {chat.new_messages ? <Badge className={css.number}>{chat.new_messages}</Badge> : null}
+            <div className={css.inner}>
+                <h2 className={css.title}>{cutString(chat.title, 50)}</h2>
+                <div className={css.flex}>
+                    <OnlineIndicator className={css.online} time={chat.recipient_last_activity} />
+                    <p>{`${chat.recipient_first_name} ${chat.recipient_last_name}`}</p>
                 </div>
-            </a>
+                {chat.new_messages ? <Badge className={css.number}>{chat.new_messages}</Badge> : null}
+            </div>
+        </>
+    );
+
+    return active ? (
+        <p className={clsx(css.wrp, css.active, chat.new_messages && css.unread)}>{renderChatInner()}</p>
+    ) : (
+        <Link href={routes.chat(chat.chat_id)}>
+            <a className={clsx(css.wrp, chat.new_messages && css.unread)}>{renderChatInner()}</a>
         </Link>
     );
 };

@@ -34,10 +34,6 @@ const LANGS: IDropList[] = [
         slug: 'ru',
     },
     {
-        name: 'PL',
-        slug: 'pl',
-    },
-    {
         name: 'UA',
         slug: 'ua',
     },

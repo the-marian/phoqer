@@ -2,6 +2,7 @@ import React, { ReactElement, useEffect } from 'react';
 
 // import DayPicker from 'react-day-picker';
 import { GetServerSideProps } from 'next';
+import { useRouter } from 'next/router';
 import { createUseStyles } from 'react-jss';
 import { useDispatch, useSelector } from 'react-redux';
 import { END } from 'redux-saga';
@@ -159,13 +160,14 @@ const SingleOfferPage = (): ReactElement | null => {
     const auth = useAuth();
     const trans = useTrans();
     const dispatch = useDispatch();
+    const { locale } = useRouter();
     const media = useMedia(768);
 
     const offer = useSelector<IState, IOfferCard | null>(state => state.offers.single);
 
     useEffect(() => {
         if (offer?.author_id) dispatch({ type: types.GET_PUBLIC_PROFILE_START, payload: offer.author_id });
-    }, [offer, dispatch]);
+    }, [offer, dispatch, locale]);
 
     const desc = offer?.description ? offer.description.replace(/\n/g, '<br>') : '';
     const other = offer?.extra_requirements ? offer.extra_requirements.replace(/\n/g, '<br>') : '';

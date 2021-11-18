@@ -7,8 +7,10 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { ChatType, IState } from '../../../../../interfaces';
 import types from '../../../../../redux/types';
+import routes from '../../../../../utils/routes';
 import mixin from '../../../../../utils/theming/mixin';
 import { Theme } from '../../../../../utils/theming/theme';
+import LinkArrow from '../../../../common/link-arrow';
 import SegmentedControl, { ISegmentedControlItem } from '../../../../common/segmented-control';
 
 const useStyles = createUseStyles((theme: Theme) => ({
@@ -55,6 +57,10 @@ const useStyles = createUseStyles((theme: Theme) => ({
             color: theme.palette.primary[0],
         }),
     },
+    back: {
+        marginBottom: theme.rem(1),
+        fontSize: theme.rem(1.3),
+    },
 }));
 
 const tabs: ISegmentedControlItem[] = [
@@ -80,6 +86,11 @@ const ChatSearch = (): ReactElement => {
 
     return (
         <>
+            <div className={css.back}>
+                <LinkArrow toLeft href={routes.profile.private}>
+                    Вернутся в личный кабинет
+                </LinkArrow>
+            </div>
             <SegmentedControl classNameWrp={css.control} active={activeTab} tabs={tabs} onClick={changeChatType} />
             <div className={css.root}>
                 <input type="text" placeholder="Search" className={css.input} />

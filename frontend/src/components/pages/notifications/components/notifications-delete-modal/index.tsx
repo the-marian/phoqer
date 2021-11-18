@@ -1,18 +1,14 @@
-import React, { ReactElement } from 'react';
+import React, { ReactElement, useCallback, useEffect } from 'react';
 
-import { useRouter } from 'next/router';
 import { createUseStyles } from 'react-jss';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
-import { IOfferCard, IState } from '../../../../../../interfaces';
-import types from '../../../../../../redux/types';
-import routes from '../../../../../../utils/routes';
-import mixin from '../../../../../../utils/theming/mixin';
-import { Theme } from '../../../../../../utils/theming/theme';
-import Button from '../../../../../common/button';
-import { modal } from '../../../../../common/modal';
-import StickyModal from '../../../../../common/modal/sticky-modal';
-import notifications from '../../../../../common/notifications';
+import types from '../../../../../redux/types';
+import mixin from '../../../../../utils/theming/mixin';
+import { Theme } from '../../../../../utils/theming/theme';
+import Button from '../../../../common/button';
+import { modal } from '../../../../common/modal';
+import StickyModal from '../../../../common/modal/sticky-modal';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     img: {
@@ -54,27 +50,33 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
 }));
 
-const DeleteOfferModal = (): ReactElement => {
+interface IProps {
+    payload: { id: number; page: number };
+}
+
+const NotificationsDeleteModal = ({ payload }: IProps): ReactElement => {
     const css = useStyles();
     const dispatch = useDispatch();
-    const history = useRouter();
 
-    const offer = useSelector<IState, IOfferCard | null>(state => state.offers.single);
+    const handleDelete = useCallback((): void => {
+        dispatch({ type: types.DELETE_NOTIFICATION_START, payload });
+    }, [dispatch, payload]);
 
-    const handleDelete = (): void => {
-        dispatch({
-            type: types.DELETE_OFFER_START,
-            offerId: offer?.id,
-            callback: () => notifications.info({ message: 'Your offer successfully deleted' }),
-        });
-        history.push(routes.my_offers('draft'));
-    };
+    useEffect(() => {
+        const handler = (event: KeyboardEvent): void => {
+            if (event.key === 'Enter') handleDelete();
+        };
+        window.addEventListener('keypress', handler);
+        return () => {
+            window.removeEventListener('keypress', handler);
+        };
+    }, [handleDelete]);
 
     return (
         <StickyModal>
             <>
                 <img className={css.img} src="/icons/faq.png" alt="" />
-                <h2 className={css.title}>Вы уверенны что хотите удалить это объвление?</h2>
+                <h2 className={css.title}>Вы уверенны что хотите удалить это уведомление?</h2>
                 <p className={css.text}>После этого действия вы больше не сможете востановить его</p>
                 <div className={css.flex}>
                     <Button className={css.cancel} onClick={modal.close}>
@@ -89,4 +91,4 @@ const DeleteOfferModal = (): ReactElement => {
     );
 };
 
-export default DeleteOfferModal;
+export default NotificationsDeleteModal;

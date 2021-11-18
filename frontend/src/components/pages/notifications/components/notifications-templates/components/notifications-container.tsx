@@ -4,12 +4,15 @@ import { faTrashAlt } from '@fortawesome/free-regular-svg-icons/faTrashAlt';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import clsx from 'clsx';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { createUseStyles } from 'react-jss';
 
 import { INotification } from '../../../../../../interfaces';
 import { formatTimestamp } from '../../../../../../utils/helpers';
 import routes from '../../../../../../utils/routes';
+import { modal } from '../../../../../common/modal';
 import UserAvatar from '../../../../../common/user-avatar';
+import NotificationsDeleteModal from '../../notifications-delete-modal';
 import notificationsStyles from '../styles';
 
 const useStyles = createUseStyles(notificationsStyles);
@@ -21,8 +24,15 @@ interface IProps {
 }
 const NotificationsContainer = ({ children, value, footer }: IProps): ReactElement => {
     const css = useStyles();
+    const router = useRouter();
+    const page = +String(router.query.page || 1);
+
+    const handleDelete = (): void => {
+        modal.open(<NotificationsDeleteModal payload={{ id: value.id, page }} />);
+    };
+
     return (
-        <div className={clsx(css.root, value.viewed && css.isNew)}>
+        <div className={clsx(css.root, !value.viewed && css.isNew)}>
             <div className={css.header}>
                 <Link href={routes.profile.public(value.recipient_id)}>
                     <a className={css.user}>
@@ -40,9 +50,12 @@ const NotificationsContainer = ({ children, value, footer }: IProps): ReactEleme
                         </div>
                     </a>
                 </Link>
-                <button type="button">
-                    <FontAwesomeIcon icon={faTrashAlt} />
-                </button>
+                <div className={css.inner}>
+                    <button type="button" onClick={handleDelete}>
+                        <FontAwesomeIcon icon={faTrashAlt} />
+                    </button>
+                    {!value.viewed && <div className={css.badge}>NEW</div>}
+                </div>
             </div>
             {children}
             {footer && <div className={css.footer}>{footer}</div>}
