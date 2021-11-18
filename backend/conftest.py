@@ -498,7 +498,6 @@ async def notification1(db, offer_ps4):
     INSERT INTO notifications (
         id,
         notification_type,
-        body,
         offer_id,
         pub_date,
         recipient_id,
@@ -507,7 +506,6 @@ async def notification1(db, offer_ps4):
     VALUES (
         :id,
         :notification_type,
-        :body,
         :offer_id,
         :pub_date,
         :recipient_id,
@@ -516,7 +514,6 @@ async def notification1(db, offer_ps4):
     values = {
         "id": 1,
         "notification_type": "RENT_REQUEST",
-        "body": "Start of the rent",
         "offer_id": uuid.UUID("a30b8a1e-1c60-4bbc-ac3d-37df2d224000"),
         "pub_date": datetime(2021, 10, 18, 12, 16, 59),
         "recipient_id": 1,
@@ -534,7 +531,6 @@ async def notification2(db, offer_iphone12):
     INSERT INTO notifications (
         id,
         notification_type,
-        body,
         offer_id,
         pub_date,
         recipient_id,
@@ -543,7 +539,6 @@ async def notification2(db, offer_iphone12):
     VALUES (
         :id,
         :notification_type,
-        :body,
         :offer_id,
         :pub_date,
         :recipient_id,
@@ -552,7 +547,6 @@ async def notification2(db, offer_iphone12):
     values = {
         "id": 2,
         "notification_type": "RENT_END",
-        "body": "End of the rent",
         "offer_id": uuid.UUID("a30b8a1e-1c60-4bbc-ac3d-37df2d224001"),
         "pub_date": datetime(2021, 10, 20, 10, 16, 00),
         "recipient_id": 2,

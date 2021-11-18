@@ -41,7 +41,6 @@ async def get_notification(notification_id: int) -> Optional[Mapping]:
     SELECT
         id,
         notification_type,
-        body,
         offer_id,
         pub_date,
         recipient_id,
@@ -73,19 +72,16 @@ async def create_notification(
     notification_type: NotificationType,
     recipient_id: int,
     offer_id: Optional[str] = None,
-    body: str = "",
 ) -> None:
     query = """
     INSERT INTO notifications (
         notification_type,
-        body,
         offer_id,
         pub_date,
         recipient_id,
         viewed)
     VALUES (
         :notification_type,
-        :body,
         :offer_id,
         :pub_date,
         :recipient_id,
@@ -93,7 +89,6 @@ async def create_notification(
     """
     values = {
         "notification_type": notification_type.value,
-        "body": body,
         "offer_id": offer_id,
         "pub_date": datetime.datetime.now(),
         "recipient_id": recipient_id,
