@@ -80,3 +80,16 @@ async def test_delete_notification_4(client, marian_auth_token, notification2):
         f"/notifications/{notification2}", headers=marian_auth_token
     )
     assert response.status_code == 403
+
+
+async def test_read_notification(client, marian_auth_token, notification1):
+    response = await client.get("/notifications?page=1", headers=marian_auth_token)
+    assert response.json()["data"][0]["viewed"] is False
+    response = await client.get("/notifications?page=1", headers=marian_auth_token)
+    assert response.json()["data"][0]["viewed"] is True
+
+
+async def test_read_notification_2(client, marian_auth_token):
+    """Case when there are no notifications"""
+    response = await client.get("/notifications?page=1", headers=marian_auth_token)
+    assert response.json()["data"] == []

@@ -96,3 +96,8 @@ async def create_notification(
         "viewed": False,
     }
     await database.execute(query=query, values=values)
+
+
+async def read_notifications(notification_ids: List[int]) -> None:
+    query = "UPDATE notifications SET viewed=TRUE WHERE id = any(:notification_ids)"
+    await database.execute(query=query, values={"notification_ids": notification_ids})

@@ -493,7 +493,7 @@ async def offer_ps4(
 
 
 @pytest.fixture
-async def notification1(db, offer_iphone12):
+async def notification1(db, user_marian, offer_iphone12):
     query = """
     INSERT INTO notifications (
         id,
