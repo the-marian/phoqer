@@ -128,6 +128,22 @@ async def test_delete_chat_5(client, chat_egor_marian, igor_auth_token):
     assert response.status_code == 403
 
 
+async def test_create_chat_when_offer_does_not_exist(client, marian_auth_token):
+    post_data = {
+        "chat_id": 3,
+        "author_id": 1,
+        "client_id": 2,
+        "offer_id": "a30b8a1e-1c60-4bbc-ac3d-37df2d324022",
+        "creation_datetime": "2021-10-18T12:16:59+00:00",
+        "is_done": False,
+    }
+    response = await client.post("/chats", json=post_data, headers=marian_auth_token)
+    assert response.status_code == 404
+    assert response.json() == {
+        "detail": "Offer with id: a30b8a1e-1c60-4bbc-ac3d-37df2d324022 does not exist"
+    }
+
+
 # def test_get_chats_search(client, marian_auth_token):
 #     response = client.get("chats?search=igor", headers=marian_auth_token)
 #     assert response.status_code == status.HTTP_200_OK
