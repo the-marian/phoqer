@@ -1,103 +1,35 @@
-name: Dev CI/CD
+name: Lint and Test BE
 
 on:
   push:
-    branches:
-      - master
-
-env:
-  BACKEND_IMAGE: ${{ secrets.BACKEND_IMAGE }}
-  FRONTEND_IMAGE: ${{ secrets.FRONTEND_IMAGE }}
-  NGINX_IMAGE: ${{ secrets.NGINX_IMAGE }}
+    paths:
+      - "**/*.py"
 
 jobs:
-
-  build:
-    name: Build Docker Images
+  backend_lint_and_test:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./backend
     steps:
-      - name: Checkout master
-        uses: actions/checkout@v2
+      - name: Setup Python
+        uses: actions/setup-python@v1
         with:
-          ref: master
+          python-version: 3.9
+          architecture: x64
+      - name: Checkout Phoqer
+        uses: actions/checkout@v2
       - name: Add environment variables to .env
         run: |
-          echo EMAIL_HOST_PASSWORD=${{ secrets.EMAIL_HOST_PASSWORD }} >> .env
-          echo EMAIL_HOST_USER=${{ secrets.EMAIL_HOST_USER }} >> .env
-          echo FERNET_SECRET_KEY=${{ secrets.FERNET_SECRET_KEY }} >> .env
-          echo NEXT_PUBLIC_HOST=${{ secrets.NEXT_PUBLIC_DEV_HOST }} >> .env
-          echo POSTGRES_DB=${{ secrets.POSTGRES_DB }} >> .env
-          echo POSTGRES_HOST=${{ secrets.POSTGRES_HOST }} >> .env
-          echo POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }} >> .env
-          echo POSTGRES_PORT=${{ secrets.POSTGRES_PORT }} >> .env
-          echo POSTGRES_USER=${{ secrets.POSTGRES_USER }} >> .env
-          echo SECRET_KEY=${{ secrets.SECRET_KEY }} >> .env
+          echo BACKEND_IMAGE=${{ secrets.BACKEND_IMAGE }} >> .env
       - name: Log in to GitHub Packages
-        run: echo ${GITHUB_TOKEN} | docker login -u ${GITHUB_ACTOR} --password-stdin docker.pkg.github.com
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: Pull images
+        run: echo ${{ secrets.GITHUB_TOKEN }} | docker login -u ${GITHUB_ACTOR} --password-stdin docker.pkg.github.com
+      - name: Pull existing image for cache
         run: |
-          docker pull ${{ env.BACKEND_IMAGE }} || true
-          docker pull ${{ env.FRONTEND_IMAGE }} || true
-          docker pull ${{ env.NGINX_IMAGE }} || true
+          docker pull ${{ secrets.BACKEND_IMAGE }} || true
       - name: Build images
-        run: |
-          docker-compose -f docker-compose.ci.yml --env-file .env build
-      - name: Push images
-        run: |
-          docker push ${{ env.BACKEND_IMAGE }}
-          docker push ${{ env.FRONTEND_IMAGE }}
-          docker push ${{ env.NGINX_IMAGE }}
-
-  deploy:
-    name: Deploy to Dev VPS
-    runs-on: ubuntu-latest
-    needs: build
-    if: github.ref == 'refs/heads/master'
-    steps:
-      - name: Checkout master
-        uses: actions/checkout@v2
-        with:
-          ref: master
-      - name: Add environment variables to .env
-        run: |
-          echo BACKEND_IMAGE=$(echo ${{ env.BACKEND_IMAGE }} | tr '[:upper:]' '[:lower:]') >> .env
-          echo EMAIL_HOST_PASSWORD=${{ secrets.EMAIL_HOST_PASSWORD }} >> .env
-          echo EMAIL_HOST_USER=${{ secrets.EMAIL_HOST_USER }} >> .env
-          echo FERNET_SECRET_KEY=${{ secrets.FERNET_SECRET_KEY }} >> .env
-          echo FRONTEND_IMAGE=$(echo ${{ env.FRONTEND_IMAGE }} | tr '[:upper:]' '[:lower:]') >> .env
-          echo NEXT_PUBLIC_HOST=${{ secrets.NEXT_PUBLIC_DEV_HOST }} >> .env
-          echo NGINX_IMAGE=$(echo ${{ env.NGINX_IMAGE }} | tr '[:upper:]' '[:lower:]') >> .env
-          echo PGADMIN_DEFAULT_EMAIL=${{ secrets.PGADMIN_DEFAULT_EMAIL }} >> .env
-          echo PGADMIN_DEFAULT_PASSWORD=${{ secrets.PGADMIN_DEFAULT_PASSWORD }} >> .env
-          echo PGADMIN_LISTEN_PORT=${{ secrets.PGADMIN_LISTEN_PORT }} >> .env
-          echo POSTGRES_DB=${{ secrets.POSTGRES_DB }} >> .env
-          echo POSTGRES_HOST=${{ secrets.POSTGRES_HOST }} >> .env
-          echo POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }} >> .env
-          echo POSTGRES_PORT=${{ secrets.POSTGRES_PORT }} >> .env
-          echo POSTGRES_USER=${{ secrets.POSTGRES_USER }} >> .env
-          echo SECRET_KEY=${{ secrets.SECRET_KEY }} >> .env
-      - name: Add the private SSH key to the ssh-agent
-        env:
-          SSH_AUTH_SOCK: /tmp/ssh_agent.sock
-        run: |
-          mkdir -p ~/.ssh
-          ssh-agent -a $SSH_AUTH_SOCK > /dev/null
-          ssh-keyscan github.com >> ~/.ssh/known_hosts
-          ssh-add - <<< "${{ secrets.PRIVATE_KEY }}"
-      - name: Build and deploy images on Vultr VPS
-        env:
-          SSH_AUTH_SOCK: /tmp/ssh_agent.sock
-        run: |
-          scp  -o StrictHostKeyChecking=no -r ./.env ./docker-compose.yml root@${{ secrets.VPS_DEV_IP_ADDRESS }}:/home
-          ssh -o StrictHostKeyChecking=no root@${{ secrets.VPS_DEV_IP_ADDRESS }} << 'ENDSSH'
-            cd /home
-            source .env
-            docker login docker.pkg.github.com -u ${{ secrets.USERNAME }} -p ${{ secrets.TOKEN }}
-            docker pull $BACKEND_IMAGE
-            docker pull $FRONTEND_IMAGE
-            docker pull $NGINX_IMAGE
-            docker-compose -f docker-compose.yml --env-file .env up -d
-            docker image prune -af
-          ENDSSH
+        run: docker-compose -f docker-compose.yml --env-file .env up --build -d
+      - name: Run lint
+        run: docker-compose -f docker-compose.yml exec -T backend ./lint.sh
+      - name: Run tests
+        run: docker-compose -f docker-compose.yml exec -T backend pytest -vv

@@ -24,7 +24,7 @@ const NotificationsItem = ({ value }: IProps): ReactElement => {
     const css = useStyles();
 
     const notificationsMap = {
-        [NotificationsType.RENT_START]: <RentStart value={value} />,
+        [NotificationsType.RENT_REQUEST]: <RentStart value={value} />,
         [NotificationsType.RENT_END]: <RentEnd value={value} />,
         [NotificationsType.RENT_CONFIRMED]: <RentConfirmed value={value} />,
         [NotificationsType.RENT_CANCELLED]: <RentCancelled value={value} />,

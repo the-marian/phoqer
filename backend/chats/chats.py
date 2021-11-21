@@ -3,7 +3,7 @@ from math import ceil
 from typing import Any, Dict, List, Mapping, Optional, Union
 
 from cryptography.fernet import Fernet
-from fastapi import APIRouter, Body, Depends, HTTPException, Query
+from fastapi import APIRouter, Body, Depends, HTTPException, Query, Response
 from fastapi.websockets import WebSocket, WebSocketDisconnect
 
 from chats import crud
@@ -15,6 +15,8 @@ from chats.schemas import (
     MessageType,
 )
 from config import CHAT_SIZE, FERNET_SECRET_KEY, MESSAGES_SIZE, TECH_RENT_REQUEST
+from notifications.crud import create_notification
+from notifications.schemas import NotificationType
 from offers.crud import get_offer
 from utils import decode_jwt, get_current_user
 
@@ -52,7 +54,7 @@ async def chat_endpoint(
 ) -> None:
     f = Fernet(FERNET_SECRET_KEY)
     user_id = decode_jwt(token)["user_id"]
-    if not (chat_data := await crud.is_chat_exist(chat_id=chat_id)):
+    if not (chat_data := await crud.get_chat(chat_id=chat_id)):
         raise Exception(f"Chat with id {chat_id} does not exist")
     client_id, author_id = chat_data["client_id"], chat_data["author_id"]
     if user_id not in (client_id, author_id):
@@ -150,7 +152,7 @@ async def get_messages(
     offset = (page - 1) * MESSAGES_SIZE
     limit = MESSAGES_SIZE
 
-    if not (chat := await crud.is_chat_exist(chat_id)):
+    if not (chat := await crud.get_chat(chat_id)):
         raise HTTPException(
             status_code=404,
             detail=f"Chat with id {chat_id} does not exist",
@@ -176,3 +178,27 @@ async def get_messages(
             for message in messages
         ],
     }
+
+
+@router.delete("/{chat_id}", status_code=204)
+async def delete_comment(
+    chat_id: int, user_id: int = Depends(get_current_user)
+) -> Response:
+    chat = await crud.get_chat(chat_id)
+    if not chat:
+        raise HTTPException(
+            status_code=404,
+            detail=f"Chat with id {chat_id} does not exist",
+        )
+    if user_id not in (chat.get("author_id"), chat.get("client_id")):
+        raise HTTPException(
+            status_code=403,
+            detail="The user does not have access to this chat",
+        )
+    await crud.delete_chat(chat_id)
+    await create_notification(
+        notification_type=NotificationType.RENT_CANCELLED,
+        recipient_id=chat["client_id"],
+        offer_id=chat["offer_id"],
+    )
+    return Response(status_code=204)

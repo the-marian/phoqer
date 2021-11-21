@@ -1,4 +1,4 @@
-import React, { ReactElement, useEffect } from 'react';
+import React, { ReactElement, useCallback, useEffect } from 'react';
 
 import { GetServerSidePropsContext } from 'next';
 import { useRouter } from 'next/router';
@@ -50,16 +50,12 @@ const offersTab = [
         text: 'all',
     },
     {
-        id: 'draft',
-        text: 'draft',
-    },
-    {
         id: 'active',
         text: 'active',
     },
     {
-        id: 'in-rent',
-        text: 'in_rent',
+        id: 'draft',
+        text: 'draft',
     },
     {
         id: 'archive',
@@ -83,18 +79,27 @@ const UserOffers = (): ReactElement => {
             type: types.MY_OFFERS_START,
             payload: { tab: offerStatus, params: { page: String(history.query.page || '1') } },
         });
-    }, [offerStatus, dispatch, history.query.page]);
+    }, [offerStatus, dispatch, history.query.page, history.locale]);
 
-    const handleClick = (page: number): void => {
-        dispatch({ type: types.MY_OFFERS_START, payload: { tab: offerStatus, params: { page } } });
-    };
-    const handleMore = (page: number): void => {
-        dispatch({ type: types.MY_OFFERS_PAGINATION_START, payload: { tab: offerStatus, params: { page } } });
-    };
+    const handleClick = useCallback(
+        (page: number): void => {
+            dispatch({ type: types.MY_OFFERS_START, payload: { tab: offerStatus, params: { page } } });
+        },
+        [dispatch, offerStatus],
+    );
+    const handleMore = useCallback(
+        (page: number): void => {
+            dispatch({ type: types.MY_OFFERS_PAGINATION_START, payload: { tab: offerStatus, params: { page } } });
+        },
+        [dispatch, offerStatus],
+    );
 
-    const handleTab = (value: string): void => {
-        history.push(routes.my_offers(value));
-    };
+    const handleTab = useCallback(
+        (value: string): void => {
+            history.push(routes.my_offers(value));
+        },
+        [history],
+    );
 
     return (
         <>

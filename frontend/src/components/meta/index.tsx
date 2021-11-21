@@ -117,13 +117,14 @@ const Meta = ({ title, description, keywords, icon, h1 = '' }: IProps): ReactEle
                             src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2424155820333209"
                             crossOrigin="anonymous"
                         />
-                        <script async src="https://www.googletagmanager.com/gtag/js?id=G-B57V56EVR8" />
+
+                        <script async src="https://www.googletagmanager.com/gtag/js?id=G-986YY28ZEC" />
                         <script
                             dangerouslySetInnerHTML={{
                                 __html: `window.dataLayer = window.dataLayer || [];
-                                    function gtag(){dataLayer.push(arguments);}
-                                    gtag('js', new Date());
-                                    gtag('config', 'G-B57V56EVR8');`,
+                                  function gtag(){dataLayer.push(arguments);}
+                                  gtag('js', new Date());
+                                  gtag('config', 'G-986YY28ZEC');`,
                             }}
                         />
                     </>

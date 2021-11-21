@@ -3,6 +3,7 @@ import React, { ReactElement, useEffect } from 'react';
 import { faPlus } from '@fortawesome/free-solid-svg-icons/faPlus';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { GetServerSideProps, GetServerSidePropsContext } from 'next';
+import { useRouter } from 'next/router';
 import { createUseStyles } from 'react-jss';
 import { useDispatch, useSelector } from 'react-redux';
 import { END } from 'redux-saga';
@@ -65,16 +66,17 @@ const SingleOfferPage = (): ReactElement | null => {
     const css = useStyles();
     const trans = useTrans();
     const dispatch = useDispatch();
+    const { locale } = useRouter();
     const offer = useSelector<IState, IOfferCard | null>(state => state.offers.single);
 
     useEffect(() => {
         if (offer?.country) dispatch({ type: types.SELECT_COUNTRY, payload: offer?.country });
         if (offer?.city) dispatch({ type: types.SELECT_CITY, payload: offer?.city });
-    }, [offer?.city, offer?.country, dispatch]);
+    }, [offer?.city, offer?.country, dispatch, locale]);
 
     useEffect(() => {
         if (offer?.author_id) dispatch({ type: types.GET_PUBLIC_PROFILE_START, payload: offer.author_id });
-    }, [offer?.author_id, dispatch]);
+    }, [offer?.author_id, dispatch, locale]);
 
     const handleModal = (): void => {
         modal.open(<PhotosUploadModal />);

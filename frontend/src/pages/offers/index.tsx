@@ -1,4 +1,4 @@
-import React, { ReactElement, useEffect, useRef } from 'react';
+import React, { ReactElement, useCallback, useEffect, useRef } from 'react';
 
 import { GetServerSideProps } from 'next';
 import { useRouter } from 'next/router';
@@ -46,19 +46,25 @@ const OffersPage = (): ReactElement => {
         }
     }, [data]);
 
-    const handleClick = (page: number): void => {
-        window.scrollTo({ top: (document?.getElementById('offers-list')?.offsetTop || 0) - 50, behavior: 'smooth' });
-        dispatch({ type: types.SEARCH_OFFERS_START, payload: { ...query, page } });
-    };
-    const handleMore = (page: number): void => {
-        const top =
-            (document?.getElementById('offers-list')?.offsetTop || 0) +
-            (document?.getElementById('offers-list')?.offsetHeight || 0) -
-            500;
-        dispatch({ type: types.SEARCH_OFFERS_PAGINATION_START, payload: { ...query, page } });
-        scroll.current = false;
-        window.scrollTo({ top, behavior: 'smooth' });
-    };
+    const handleClick = useCallback(
+        (page: number): void => {
+            window.scrollTo({ top: (document?.getElementById('offers-list')?.offsetTop || 0) - 50, behavior: 'smooth' });
+            dispatch({ type: types.SEARCH_OFFERS_START, payload: { ...query, page } });
+        },
+        [dispatch, query],
+    );
+    const handleMore = useCallback(
+        (page: number): void => {
+            const top =
+                (document?.getElementById('offers-list')?.offsetTop || 0) +
+                (document?.getElementById('offers-list')?.offsetHeight || 0) -
+                500;
+            dispatch({ type: types.SEARCH_OFFERS_PAGINATION_START, payload: { ...query, page } });
+            scroll.current = false;
+            window.scrollTo({ top, behavior: 'smooth' });
+        },
+        [dispatch, query],
+    );
 
     return (
         <>

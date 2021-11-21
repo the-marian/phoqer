@@ -1,14 +1,16 @@
 import React, { CSSProperties, ReactElement } from 'react';
 
+import dynamic from 'next/dynamic';
 import { createUseStyles } from 'react-jss';
 
 import useTrans from '../../../../hooks/trans.hook';
 import mixin from '../../../../utils/theming/mixin';
 import { Theme } from '../../../../utils/theming/theme';
 import AnimatedBackdrop from '../../animated-backdrop';
-import ConfettiWrp from '../../confetti';
 import { modal } from '../../modal';
 import Advertising from '../gift-modal';
+
+const ConfettiWrp = dynamic(() => import('../../confetti'), { ssr: false });
 
 const useStyles = createUseStyles((theme: Theme) => ({
     root: {

@@ -14,10 +14,27 @@ const notificationsStyles = (theme: Theme): Styles => ({
         justifyContent: 'space-between',
 
         '& button': {
+            color: theme.palette.black[0],
+
             ...theme.hover({
                 color: theme.palette.red[0],
             }),
         },
+    },
+    inner: {
+        display: 'flex',
+        alignItems: 'center',
+    },
+    badge: {
+        marginTop: theme.rem(0.3),
+        marginLeft: theme.rem(2),
+        padding: theme.rem(0.6, 0.6),
+        background: theme.palette.primary[0],
+        borderRadius: theme.radius,
+        color: theme.palette.trueWhite,
+        fontSize: theme.rem(1.2),
+        fontWeight: theme.text.weight[5],
+        lineHeight: 1,
     },
     isNew: {
         background: theme.palette.secondary[0],

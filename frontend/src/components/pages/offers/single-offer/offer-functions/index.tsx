@@ -5,13 +5,14 @@ import { faPen } from '@fortawesome/free-solid-svg-icons/faPen';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useRouter } from 'next/router';
 import { createUseStyles } from 'react-jss';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 import { IOfferCard, IPublicProfile, IState } from '../../../../../interfaces';
-import types from '../../../../../redux/types';
 import routes from '../../../../../utils/routes';
 import { Theme } from '../../../../../utils/theming/theme';
-import notifications from '../../../../common/notifications';
+import { modal } from '../../../../common/modal';
+
+import DeleteOfferModal from './delete-offer-modal';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     flex: {
@@ -35,19 +36,13 @@ const useStyles = createUseStyles((theme: Theme) => ({
 
 const OfferFunctions = (): ReactElement | null => {
     const css = useStyles();
-    const dispatch = useDispatch();
     const history = useRouter();
 
     const user = useSelector<IState, IPublicProfile | null>(state => state.user);
     const offer = useSelector<IState, IOfferCard | null>(state => state.offers.single);
 
     const deleteOffer = (): void => {
-        dispatch({
-            type: types.DELETE_OFFER_START,
-            offerId: offer?.id,
-            callback: () => notifications.info({ message: 'Your offer successfully deleted' }),
-        });
-        history.push(routes.my_offers('draft'));
+        modal.open(<DeleteOfferModal />);
     };
 
     const editOffer = (): void => {

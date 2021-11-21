@@ -1,5 +1,4 @@
 import { faCaretSquareLeft } from '@fortawesome/free-regular-svg-icons/faCaretSquareLeft';
-import { faCaretSquareRight } from '@fortawesome/free-regular-svg-icons/faCaretSquareRight';
 import { faChartBar } from '@fortawesome/free-regular-svg-icons/faChartBar';
 import { faCommentAlt } from '@fortawesome/free-regular-svg-icons/faCommentAlt';
 import { faEnvelope } from '@fortawesome/free-regular-svg-icons/faEnvelope';
@@ -15,12 +14,6 @@ const temp: ITabsNum = {
 };
 
 export const getBaseNavList = (count: ITabsNum = temp): ITabs[] => [
-    {
-        id: 'rented-offers',
-        text: 'rented_offers',
-        link: routes.rented_offers(),
-        icon: faCaretSquareRight,
-    },
     {
         id: 'my-offers',
         text: 'my_offers',

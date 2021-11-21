@@ -16,8 +16,8 @@ function* getUser() {
         if (status < 200 || status >= 300) throw new Error();
         yield put({ type: types.GET_USER_SUCCESS, payload: data });
     } catch (error) {
+        yield put({ type: types.LOGOUT_INIT });
         if (error?.response?.status === 401) return;
-        notificationsModal('error');
         yield put({ type: types.GET_USER_ERROR });
     }
 }

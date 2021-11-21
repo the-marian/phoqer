@@ -4,17 +4,15 @@ import { GetServerSidePropsContext } from 'next';
 import { createUseStyles } from 'react-jss';
 
 import AuthRedirect from '../../components/context/auth/auth-redirect';
+import Header from '../../components/layout/header';
 import Meta from '../../components/meta';
 import { width } from '../../components/pages/chat/chat.config';
-import ChatBackBtn from '../../components/pages/chat/components/chat-back-btn';
-import ChatTabs from '../../components/pages/chat/components/chat-tabs';
 import ChatWrp from '../../components/pages/chat/components/wrappers/chat-wrp';
 import { useChatListUpdate } from '../../hooks/chat.hook';
 import useMedia from '../../hooks/media.hook';
 import useTrans from '../../hooks/trans.hook';
 import { wrapper } from '../../redux/store';
 import { serverRedirect } from '../../utils/helpers';
-import routes from '../../utils/routes';
 import { Theme } from '../../utils/theming/theme';
 
 const useStyles = createUseStyles((theme: Theme) => ({
@@ -24,6 +22,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         alignItems: 'flex-start',
         justifyContent: 'flex-start',
         height: '100vh',
+        paddingTop: theme.rem(6),
         background: theme.palette.white,
 
         ...theme.media(1060).max({
@@ -35,6 +34,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
+        height: 'calc(100% - 2rem)',
         width: width.desktopLg.center,
         background: theme.palette.gray[0],
         borderRadius: theme.radius,
@@ -70,8 +70,8 @@ const Messages = (): ReactElement => {
             <AuthRedirect />
             <Meta title={'Мои сообщения'} h1={trans('user_profile_on_phoqer')} />
 
+            <Header />
             <main className={css.main}>
-                {media ? <ChatTabs /> : <ChatBackBtn href={routes.profile.private}>Back to profile</ChatBackBtn>}
                 <ChatWrp showConversation={media}>
                     <div className={css.chat}>
                         <div className={css.inner}>

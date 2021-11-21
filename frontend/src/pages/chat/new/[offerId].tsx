@@ -7,10 +7,9 @@ import { useDispatch } from 'react-redux';
 
 import Button from '../../../components/common/button';
 import AuthRedirect from '../../../components/context/auth/auth-redirect';
+import Header from '../../../components/layout/header';
 import Meta from '../../../components/meta';
 import Conversation from '../../../components/pages/chat/chat-conversation';
-import ChatBackBtn from '../../../components/pages/chat/components/chat-back-btn';
-import ChatTabs from '../../../components/pages/chat/components/chat-tabs';
 import NewChatWrp from '../../../components/pages/chat/components/wrappers/new-chat-wrp';
 import { useChatListUpdate } from '../../../hooks/chat.hook';
 import useMedia from '../../../hooks/media.hook';
@@ -29,6 +28,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         alignItems: 'flex-start',
         justifyContent: 'flex-start',
         height: '100vh',
+        paddingTop: theme.rem(6),
         background: theme.palette.white,
 
         ...theme.media(1060).max({
@@ -84,9 +84,8 @@ const NewChat = (): ReactElement => {
             <AuthRedirect />
             <Meta title={'Мои сообщения'} h1={trans('user_profile_on_phoqer')} />
 
+            <Header />
             <main className={css.main}>
-                {media ? <ChatTabs /> : <ChatBackBtn href={routes.profile.private}>Back to profile</ChatBackBtn>}
-
                 <NewChatWrp showSidebar={media}>
                     <Conversation>
                         <div className={css.center}>

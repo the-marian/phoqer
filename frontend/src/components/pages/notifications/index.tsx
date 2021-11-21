@@ -1,5 +1,6 @@
 import React, { ReactElement, useEffect } from 'react';
 
+import { useRouter } from 'next/router';
 import { createUseStyles } from 'react-jss';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -21,11 +22,12 @@ const useStyles = createUseStyles(() => ({
 const Notifications = (): ReactElement => {
     const css = useStyles();
     const dispatch = useDispatch();
+    const { locale } = useRouter();
     const { loading, data: notificationsData } = useSelector<IState, NotificationsState>(state => state.notifications);
 
     useEffect(() => {
         dispatch({ type: types.GET_NOTIFICATIONS_START, payload: 1 });
-    }, [dispatch]);
+    }, [dispatch, locale]);
 
     return (
         <NotificationsContainer>

@@ -7,12 +7,11 @@ import { useDispatch } from 'react-redux';
 
 import notifications from '../../../components/common/notifications';
 import AuthRedirect from '../../../components/context/auth/auth-redirect';
+import Header from '../../../components/layout/header';
 import Meta from '../../../components/meta';
 import Conversation from '../../../components/pages/chat/chat-conversation';
 import ChatMobileDrawer from '../../../components/pages/chat/chat-sidebar-right/chat-drawer';
 import ChatMobileDrawerButton from '../../../components/pages/chat/chat-sidebar-right/chat-drawer/chat-drawer-button';
-import ChatBackBtn from '../../../components/pages/chat/components/chat-back-btn';
-import ChatTabs from '../../../components/pages/chat/components/chat-tabs';
 import MessagesWrp from '../../../components/pages/chat/components/wrappers/messages-wrp';
 import useChat, { useChatListUpdate } from '../../../hooks/chat.hook';
 import useMedia from '../../../hooks/media.hook';
@@ -21,7 +20,6 @@ import { IMessages } from '../../../interfaces';
 import { wrapper } from '../../../redux/store';
 import types from '../../../redux/types';
 import { serverRedirect } from '../../../utils/helpers';
-import routes from '../../../utils/routes';
 import { Theme } from '../../../utils/theming/theme';
 
 const useStyles = createUseStyles((theme: Theme) => ({
@@ -32,6 +30,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         justifyContent: 'flex-start',
         padding: theme.rem(0, 0, 2),
         height: '100vh',
+        paddingTop: theme.rem(6),
         background: theme.palette.white,
 
         ...theme.media(1060).max({
@@ -96,8 +95,8 @@ const MessagesChat = (): ReactElement => {
             <ChatMobileDrawer />
             {!desktop && <ChatMobileDrawerButton />}
 
+            <Header />
             <main className={css.main}>
-                {media ? <ChatTabs /> : <ChatBackBtn href={routes.chat()}>Back to messages</ChatBackBtn>}
                 <MessagesWrp showSidebar={media}>
                     <Conversation onSubmit={handleSubmit} />
                 </MessagesWrp>

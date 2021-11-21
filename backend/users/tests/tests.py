@@ -1,7 +1,5 @@
-import pytest
-
 # decorate all tests with @pytest.mark.asyncio
-pytestmark = pytest.mark.asyncio
+# pytestmark = pytest.mark.asyncio
 #
 # def test_user_signup(client):
 #     post_data = {

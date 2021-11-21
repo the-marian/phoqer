@@ -3,12 +3,21 @@ import os
 import uuid
 from datetime import date, datetime
 
-import psycopg2
+import asyncpg
 import pytest
 from async_asgi_testclient import TestClient
 from databases import Database
 
-from config import BASE_DIR, PG_DB, TEST_DATABASE_URL, TEST_PG_DB
+from config import (
+    BASE_DIR,
+    PG_DB,
+    PG_HOST,
+    PG_PASSWORD,
+    PG_PORT,
+    PG_USER,
+    TEST_DATABASE_URL,
+    TEST_PG_DB,
+)
 from main import app
 
 
@@ -27,6 +36,14 @@ async def marian_auth_token(client, user_marian):
 
 
 @pytest.fixture
+async def igor_auth_token(client, user_igor):
+    data = {"username": "igorrr.thlw5@gmail.com", "password": "apple-b@nana-f1re"}
+    r = await client.post("/auth/login", form=data)
+    auth_token = r.json()["access_token"]
+    return {"Authorization": f"Bearer {auth_token}"}
+
+
+@pytest.fixture
 async def egor_auth_token(client, user_egor):
     data = {"username": "fatamorganaa933@gmail.com", "password": "apple-b@nana-f1re"}
     r = await client.post("/auth/login", form=data)
@@ -35,54 +52,40 @@ async def egor_auth_token(client, user_egor):
 
 
 @pytest.fixture(scope="session")
-def _create_test_db():
-    conn = psycopg2.connect(
-        database=PG_DB,
-        user="phoqer",
-        password="apple-b@nana-f1re",
-        host="localhost",
-        port="5432",
+async def _create_test_db():
+    conn = await asyncpg.connect(
+        user=PG_USER, password=PG_PASSWORD, host=PG_HOST, port=PG_PORT, database=PG_DB
     )
-    conn.autocommit = True
     try:
-        with conn:
-            with conn.cursor() as curs:
-                curs = conn.cursor()
-                create_query = f"CREATE database {TEST_PG_DB};"
-                drop_query = f"DROP DATABASE IF EXISTS {TEST_PG_DB};"
-                curs.execute(drop_query)
-                curs.execute(create_query)
-                yield
+        create_query = f"CREATE database {TEST_PG_DB};"
+        drop_query = f"DROP DATABASE IF EXISTS {TEST_PG_DB};"
+        await conn.execute(drop_query)
+        await conn.execute(create_query)
     finally:
-        curs.execute(drop_query)
-        conn.close()
+        await conn.close()
 
 
 @pytest.fixture(scope="session")
-def _migrate(_create_test_db):
-    conn = psycopg2.connect(
+async def _migrate(_create_test_db):
+    conn = await asyncpg.connect(
+        user=PG_USER,
+        password=PG_PASSWORD,
+        host=PG_HOST,
+        port=PG_PORT,
         database=TEST_PG_DB,
-        user="phoqer",
-        password="apple-b@nana-f1re",
-        host="localhost",
-        port="5432",
     )
     try:
-        with conn:
-            with conn.cursor() as curs:
-                migrations_dir = os.path.join(BASE_DIR, "migrations")
-                migration_files = os.listdir(migrations_dir)
-                migration_files.sort()
-                for migration_file_name in migration_files:
-                    if migration_file_name.split(".")[-2] == "up":
-                        migration_file_path = os.path.join(
-                            migrations_dir, migration_file_name
-                        )
-                        with open(migration_file_path) as file:
-                            query = file.read()
-                            curs.execute(query)
+        migrations_dir = os.path.join(BASE_DIR, "migrations")
+        migration_files = os.listdir(migrations_dir)
+        migration_files.sort()
+        for migration_file_name in migration_files:
+            if migration_file_name.split(".")[-2] == "up":
+                migration_file_path = os.path.join(migrations_dir, migration_file_name)
+                with open(migration_file_path) as file:
+                    query = file.read()
+                    await conn.execute(query)
     finally:
-        conn.close()
+        await conn.close()
 
 
 @pytest.fixture(scope="session")
@@ -263,6 +266,65 @@ async def user_marian(db, country_poland, city_warsaw):
 
 
 @pytest.fixture
+async def user_igor(db, country_ukraine, city_kiev):
+    query = """
+    INSERT INTO users_user (
+        id,
+        password,
+        last_login,
+        is_superuser,
+        first_name,
+        last_name,
+        is_staff,
+        is_active,
+        date_joined,
+        bio,
+        birth_date,
+        email,
+        profile_img,
+        country,
+        city)
+    VALUES (
+        :id,
+        :password,
+        :last_login,
+        :is_superuser,
+        :first_name,
+        :last_name,
+        :is_staff,
+        :is_active,
+        :date_joined,
+        :bio,
+        :birth_date,
+        :email,
+        :profile_img,
+        :country,
+        :city)"""
+    values = {
+        "id": 3,
+        "password": "$2b$12$6DVnORNuohV8olN5cNzqKufCRGGnUYiYZJkjAjPcAt8roFRGyo4/e",
+        "last_login": date(2021, 7, 7),
+        "is_superuser": False,
+        "first_name": "Igor",
+        "last_name": "Mikhailichenko",
+        "is_staff": False,
+        "is_active": True,
+        "date_joined": date(2019, 11, 9),
+        "bio": "I love fishing",
+        "birth_date": date(1995, 12, 9),
+        "email": "igorrr.thlw5@gmail.com",
+        "profile_img": "http://phoqer.com/mediafiles/"
+        "0f13df9c-772c-4216-b6e0-7894cdaaa2dd-2021-06-14_15.42.25.jpg",
+        "country": country_ukraine,
+        "city": city_kiev,
+    }
+    await db.execute(query=query, values=values)
+    yield 1
+    delete_query = "DELETE FROM users_user WHERE id=1"
+    await db.execute(query=delete_query)
+
+
+@pytest.fixture
 async def user_egor(db, country_ukraine, city_kiev):
     query = """
     INSERT INTO users_user (
@@ -311,8 +373,8 @@ async def user_egor(db, country_ukraine, city_kiev):
         "birth_date": date(1998, 3, 22),
         "email": "fatamorganaa933@gmail.com",
         "profile_img": None,
-        "country": "ukraine",
-        "city": "kiev",
+        "country": country_ukraine,
+        "city": city_kiev,
     }
     await db.execute(query=query, values=values)
     yield 2
@@ -431,12 +493,11 @@ async def offer_ps4(
 
 
 @pytest.fixture
-async def notification1(db):
+async def notification1(db, user_marian, offer_iphone12):
     query = """
     INSERT INTO notifications (
         id,
         notification_type,
-        body,
         offer_id,
         pub_date,
         recipient_id,
@@ -445,7 +506,6 @@ async def notification1(db):
     VALUES (
         :id,
         :notification_type,
-        :body,
         :offer_id,
         :pub_date,
         :recipient_id,
@@ -453,9 +513,8 @@ async def notification1(db):
     )"""
     values = {
         "id": 1,
-        "notification_type": "RENT_START",
-        "body": "Start of the rent",
-        "offer_id": uuid.UUID("a30b8a1e-1c60-4bbc-ac3d-37df2d224000"),
+        "notification_type": "RENT_REQUEST",
+        "offer_id": offer_iphone12,
         "pub_date": datetime(2021, 10, 18, 12, 16, 59),
         "recipient_id": 1,
         "viewed": False,
@@ -467,12 +526,11 @@ async def notification1(db):
 
 
 @pytest.fixture
-async def notification2(db):
+async def notification2(db, user_egor, offer_ps4):
     query = """
     INSERT INTO notifications (
         id,
         notification_type,
-        body,
         offer_id,
         pub_date,
         recipient_id,
@@ -481,7 +539,6 @@ async def notification2(db):
     VALUES (
         :id,
         :notification_type,
-        :body,
         :offer_id,
         :pub_date,
         :recipient_id,
@@ -490,15 +547,14 @@ async def notification2(db):
     values = {
         "id": 2,
         "notification_type": "RENT_END",
-        "body": "End of the rent",
-        "offer_id": uuid.UUID("a30b8a1e-1c60-4bbc-ac3d-37df2d224001"),
+        "offer_id": offer_ps4,
         "pub_date": datetime(2021, 10, 20, 10, 16, 00),
         "recipient_id": 2,
         "viewed": True,
     }
     await db.execute(query=query, values=values)
-    yield 1
-    delete_query = "DELETE FROM notifications WHERE id=1"
+    yield 2
+    delete_query = "DELETE FROM notifications WHERE id=2"
     await db.execute(query=delete_query)
 
 
@@ -656,57 +712,70 @@ async def offer_iphone12(
     await db.execute(query=delete_query)
 
 
-#
-#
-# @pytest.fixture
-# def chat_marian_egor(db, user_marian, user_egor, offer_ps4):
-#     query = """
-#     INSERT INTO chats (
-#         chat_id,
-#         author_id,
-#         client_id,
-#         offer_id,
-#         creation_datetime,
-#         is_done)
-#     VALUES (%s, %s, %s, %s, %s, %s)
-#     RETURNING offer_id
-#     """
-#     values = (
-#         "1",  # chat_id
-#         user_marian,  # author_id
-#         user_egor,  # client_id
-#         offer_ps4,  # offer_id
-#         "2021-06-21 07:52:21.609079+00",  # creation_datetime
-#         False,  # is_done
-#     )
-#     db.execute(query, values)
-#     return "1"
-#
-#
-# @pytest.fixture
-# def chat_egor_marian(db, user_marian, user_egor, offer_iphone12):
-#     query = """
-#     INSERT INTO chats (
-#         chat_id,
-#         author_id,
-#         client_id,
-#         offer_id,
-#         creation_datetime,
-#         is_done)
-#     VALUES (%s, %s, %s, %s, %s, %s)
-#     RETURNING offer_id
-#     """
-#     values = (
-#         "2",  # chat_id
-#         user_egor,  # author_id
-#         user_marian,  # client_id
-#         offer_iphone12,  # offer_id
-#         "2021-07-21 07:52:21.609079+00",  # creation_datetime
-#         False,  # is_done
-#     )
-#     db.execute(query, values)
-#     return "2"
-#
+@pytest.fixture
+async def chat_marian_egor(db, user_marian, user_egor, offer_ps4):
+    query = """
+    INSERT INTO chats (
+        chat_id,
+        author_id,
+        client_id,
+        offer_id,
+        creation_datetime,
+        is_done)
+    VALUES (
+        :chat_id,
+        :author_id,
+        :client_id,
+        :offer_id,
+        :creation_datetime,
+        :is_done)
+    """
+    values = {
+        "chat_id": 1,
+        "author_id": user_marian,
+        "client_id": user_egor,
+        "offer_id": offer_ps4,
+        "creation_datetime": date(2022, 1, 1),
+        "is_done": False,
+    }
+    await db.execute(query=query, values=values)
+    yield "1"
+    query = "DELETE FROM chats WHERE chat_id = 1"
+    await db.execute(query=query)
+
+
+@pytest.fixture
+async def chat_egor_marian(db, user_marian, user_egor, offer_iphone12):
+    query = """
+    INSERT INTO chats (
+        chat_id,
+        author_id,
+        client_id,
+        offer_id,
+        creation_datetime,
+        is_done)
+    VALUES (
+        :chat_id,
+        :author_id,
+        :client_id,
+        :offer_id,
+        :creation_datetime,
+        :is_done)
+    """
+    values = {
+        "chat_id": 2,
+        "author_id": user_egor,
+        "client_id": user_marian,
+        "offer_id": offer_iphone12,
+        "creation_datetime": date(2022, 1, 1),
+        "is_done": False,
+    }
+    await db.execute(query=query, values=values)
+    yield "2"
+    query = "DELETE FROM chats WHERE chat_id = 2"
+    await db.execute(query=query)
+
+
 #
 # @pytest.fixture
 # def _messages(db, chat_marian_egor):

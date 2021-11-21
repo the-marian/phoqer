@@ -1,4 +1,3 @@
-BEGIN;
 CREATE TABLE IF NOT EXISTS comments_comment (
     id SERIAL PRIMARY KEY,
     body text NOT NULL,
@@ -23,4 +22,3 @@ CREATE TABLE IF NOT EXISTS comments_commentimage (
     url character varying(200) NOT NULL,
     comment_id integer NOT NULL REFERENCES comments_comment(id) ON DELETE CASCADE REFERENCES comments_comment(id) DEFERRABLE INITIALLY DEFERRED
 );
-COMMIT;

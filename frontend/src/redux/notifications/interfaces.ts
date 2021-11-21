@@ -9,7 +9,12 @@ type Type =
     | typeof types.GET_NOTIFICATIONS_PAGINATION_SUCCESS
     | typeof types.GET_NOTIFICATIONS_PAGINATION_ERROR;
 
+export interface DeleteNotificationPayload {
+    id: number;
+    page: number;
+}
+
 export default interface IAction {
     type: Type;
-    payload: IState | NotificationsResponse | number;
+    payload: IState | DeleteNotificationPayload | NotificationsResponse | number;
 }

@@ -93,12 +93,15 @@ async def count_chats(
     return int(count["count"]) if count else 0
 
 
-async def is_chat_exist(chat_id: int) -> Optional[Mapping]:
+async def get_chat(chat_id: int) -> Optional[Mapping]:
     query = """
     SELECT
-        chats.chat_id,
-        chats.author_id,
-        chats.client_id
+        chat_id,
+        author_id,
+        client_id,
+        offer_id,
+        creation_datetime,
+        is_done
     FROM chats
     WHERE chats.chat_id = :chat_id
     """
@@ -299,3 +302,8 @@ async def chat_is_done_update(chat_id: int) -> None:
         "chat_id": chat_id,
     }
     await database.execute(query=query, values=values)
+
+
+async def delete_chat(chat_id: int) -> None:
+    query = "DELETE FROM chats WHERE chat_id=:chat_id"
+    await database.execute(query=query, values={"chat_id": chat_id})

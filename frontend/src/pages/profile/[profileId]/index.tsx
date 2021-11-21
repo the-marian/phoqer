@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react';
+import React, { ReactElement, useCallback } from 'react';
 
 import { createUseStyles } from 'react-jss';
 import { useDispatch, useSelector } from 'react-redux';
@@ -64,18 +64,24 @@ const PublicProfilePage = (): ReactElement => {
     const profile = useSelector<IState, IPublicProfile | null>(state => state.profiles.public);
     const { data, loading, pagination } = useSelector<IState, IOfferDynamic>(state => state.offers.my_offers);
 
-    const handleClick = (page: number): void => {
-        window.scrollTo({ top: (document?.getElementById('offers-list')?.offsetTop || 0) - 50, behavior: 'smooth' });
-        dispatch({ type: types.PUBLIC_OFFERS_START, payload: profile?.id, params: { page } });
-    };
-    const handleMore = (page: number): void => {
-        const top =
-            (document?.getElementById('offers-list')?.offsetTop || 0) +
-            (document?.getElementById('offers-list')?.offsetHeight || 0) -
-            500;
-        dispatch({ type: types.PUBLIC_OFFERS_PAGINATION_START, payload: profile?.id, params: { page } });
-        window.scrollTo({ top, behavior: 'smooth' });
-    };
+    const handleClick = useCallback(
+        (page: number): void => {
+            window.scrollTo({ top: (document?.getElementById('offers-list')?.offsetTop || 0) - 50, behavior: 'smooth' });
+            dispatch({ type: types.PUBLIC_OFFERS_START, payload: profile?.id, params: { page } });
+        },
+        [dispatch, profile?.id],
+    );
+    const handleMore = useCallback(
+        (page: number): void => {
+            const top =
+                (document?.getElementById('offers-list')?.offsetTop || 0) +
+                (document?.getElementById('offers-list')?.offsetHeight || 0) -
+                500;
+            dispatch({ type: types.PUBLIC_OFFERS_PAGINATION_START, payload: profile?.id, params: { page } });
+            window.scrollTo({ top, behavior: 'smooth' });
+        },
+        [dispatch, profile?.id],
+    );
 
     return (
         <PageLayout>
