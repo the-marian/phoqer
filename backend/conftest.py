@@ -8,6 +8,7 @@ import pytest
 from async_asgi_testclient import TestClient
 from databases import Database
 
+from chats.schemas import ChatStatus
 from config import (
     BASE_DIR,
     PG_DB,
@@ -716,27 +717,30 @@ async def offer_iphone12(
 async def chat_marian_egor(db, user_marian, user_egor, offer_ps4):
     query = """
     INSERT INTO chats (
-        chat_id,
         author_id,
+        chat_id,
         client_id,
-        offer_id,
         creation_datetime,
-        is_done)
+        is_done,
+        offer_id,
+        status)
     VALUES (
-        :chat_id,
         :author_id,
+        :chat_id,
         :client_id,
-        :offer_id,
         :creation_datetime,
-        :is_done)
+        :is_done,
+        :offer_id,
+        :status)
     """
     values = {
-        "chat_id": 1,
         "author_id": user_marian,
+        "chat_id": 1,
         "client_id": user_egor,
-        "offer_id": offer_ps4,
         "creation_datetime": date(2022, 1, 1),
         "is_done": False,
+        "offer_id": offer_ps4,
+        "status": ChatStatus.NEW.value,
     }
     await db.execute(query=query, values=values)
     yield "1"
@@ -748,27 +752,30 @@ async def chat_marian_egor(db, user_marian, user_egor, offer_ps4):
 async def chat_egor_marian(db, user_marian, user_egor, offer_iphone12):
     query = """
     INSERT INTO chats (
-        chat_id,
         author_id,
+        chat_id,
         client_id,
-        offer_id,
         creation_datetime,
-        is_done)
+        is_done,
+        offer_id,
+        status)
     VALUES (
-        :chat_id,
         :author_id,
+        :chat_id,
         :client_id,
-        :offer_id,
         :creation_datetime,
-        :is_done)
+        :is_done,
+        :offer_id,
+        :status)
     """
     values = {
-        "chat_id": 2,
         "author_id": user_egor,
+        "chat_id": 2,
         "client_id": user_marian,
-        "offer_id": offer_iphone12,
         "creation_datetime": date(2022, 1, 1),
         "is_done": False,
+        "offer_id": offer_iphone12,
+        "status": ChatStatus.NEW.value,
     }
     await db.execute(query=query, values=values)
     yield "2"

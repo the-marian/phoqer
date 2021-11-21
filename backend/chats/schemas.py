@@ -5,6 +5,12 @@ from typing import List, Optional
 from pydantic import BaseModel, HttpUrl
 
 
+class ChatStatus(Enum):
+    APPROVED = "APPROVED"
+    ARCHIVED = "ARCHIVED"
+    NEW = "NEW"
+
+
 class MessageType(Enum):
     MESSAGE = "MESSAGE"
     RENT_REQUEST = "RENT_REQUEST"
@@ -19,6 +25,7 @@ class ChatsListItem(BaseModel):
     recipient_id: int
     recipient_last_activity: datetime
     recipient_last_name: str
+    status: ChatStatus
     title: str
 
 

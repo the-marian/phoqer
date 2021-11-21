@@ -1,5 +1,9 @@
-import pytest
+import datetime
 
+import pytest
+from freezegun import freeze_time
+
+from chats import crud
 from notifications.crud import get_notification
 from notifications.schemas import NotificationType
 
@@ -21,6 +25,7 @@ async def test_get_chats_i_am_author(
         "data": [
             {
                 "chat_id": 1,
+                "status": "NEW",
                 "cover_image": "http://phoqer.com/mediafiles/"
                 "52cade24-63d6-4f04-bf8c-34489d0c67f1-2368.png",
                 "new_messages": 0,
@@ -44,6 +49,7 @@ async def test_get_chats_i_am_user(
         "data": [
             {
                 "chat_id": 2,
+                "status": "NEW",
                 "cover_image": "http://phoqer.com/mediafiles/"
                 "52cade24-63d6-4f04-bf8c-34489d0c67f1-2369.png",
                 "new_messages": 0,
@@ -67,6 +73,7 @@ async def test_get_chats_with_no_query_params(
         "data": [
             {
                 "chat_id": 1,
+                "status": "NEW",
                 "cover_image": "http://phoqer.com/mediafiles/"
                 "52cade24-63d6-4f04-bf8c-34489d0c67f1-2368.png",
                 "new_messages": 0,
@@ -78,6 +85,7 @@ async def test_get_chats_with_no_query_params(
             },
             {
                 "chat_id": 2,
+                "status": "NEW",
                 "cover_image": "http://phoqer.com/mediafiles/"
                 "52cade24-63d6-4f04-bf8c-34489d0c67f1-2369.png",
                 "new_messages": 0,
@@ -141,6 +149,30 @@ async def test_create_chat_when_offer_does_not_exist(client, marian_auth_token):
     assert response.status_code == 404
     assert response.json() == {
         "detail": "Offer with id: a30b8a1e-1c60-4bbc-ac3d-37df2d324022 does not exist"
+    }
+
+
+@freeze_time("2021-07-25 14:52:12")
+async def test_create_chat(client, marian_auth_token, offer_iphone12):
+    post_data = {
+        "offer_id": str(offer_iphone12),
+    }
+    response = await client.post("/chats", json=post_data, headers=marian_auth_token)
+    assert response.status_code == 201
+    created_chat_id = response.json()["id"]
+    # check data in db
+    assert created_chat_id == 1
+    chat_data = dict(await crud.get_chat(created_chat_id))
+    assert chat_data == {
+        "author_id": 2,
+        "chat_id": 1,
+        "client_id": 1,
+        "creation_datetime": datetime.datetime(
+            2021, 7, 25, 14, 52, 12, tzinfo=datetime.timezone.utc
+        ),
+        "is_done": False,
+        "offer_id": offer_iphone12,
+        "status": "NEW",
     }
 
 

@@ -3,6 +3,7 @@ from typing import Any, Dict, List, Mapping, Optional
 
 from pydantic import HttpUrl
 
+from chats.schemas import ChatStatus
 from config import CHAT_SIZE, MESSAGES_SIZE, database
 
 
@@ -19,6 +20,7 @@ async def get_chats(
     SELECT
         chats.chat_id,
         chats.creation_datetime,
+        chats.status,
         offers_offer.cover_image,
         offers_offer.title,
         (SELECT COUNT(*)
@@ -96,12 +98,13 @@ async def count_chats(
 async def get_chat(chat_id: int) -> Optional[Mapping]:
     query = """
     SELECT
-        chat_id,
         author_id,
+        chat_id,
         client_id,
-        offer_id,
         creation_datetime,
-        is_done
+        is_done,
+        offer_id,
+        status
     FROM chats
     WHERE chats.chat_id = :chat_id
     """
@@ -238,18 +241,22 @@ async def get_message(message_id: int) -> Optional[Mapping]:
     return await database.fetch_one(query=query, values=values)
 
 
-async def create_chat(offer_id: str, author_id: int, client_id: int) -> int:
+async def create_chat(
+    offer_id: str, author_id: int, client_id: int, status: ChatStatus = ChatStatus.NEW
+) -> int:
     query = """
     INSERT INTO chats (
         author_id,
         client_id,
         offer_id,
-        creation_datetime)
+        creation_datetime,
+        status)
     VALUES (
         :author_id,
         :client_id,
         :offer_id,
-        :current_timestamp)
+        :current_timestamp,
+        :status)
     RETURNING chat_id
     """
     values = {
@@ -257,25 +264,9 @@ async def create_chat(offer_id: str, author_id: int, client_id: int) -> int:
         "client_id": client_id,
         "offer_id": offer_id,
         "current_timestamp": datetime.datetime.now(),
+        "status": status.value,
     }
     return int(await database.execute(query=query, values=values))
-
-
-async def get_single_chat(chat_id: int) -> Optional[Mapping]:
-    query = """
-    SELECT
-        chat_id,
-        author_id,
-        client_id,
-        offer_id,
-        creation_datetime,
-        is_done,
-        is_approved
-    FROM chats
-    WHERE chat_id = :chat_id
-    """
-    values = {"chat_id": chat_id}
-    return await database.fetch_one(query=query, values=values)
 
 
 async def chat_is_approved_update(chat_id: int) -> None:

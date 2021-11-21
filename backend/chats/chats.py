@@ -140,6 +140,7 @@ async def create_chat(
         message_type=MessageType.RENT_REQUEST.value,
         user_id=author_id,
     )
+    # TODO create notification
     return {"id": chat_id}
 
 
