@@ -140,7 +140,11 @@ async def create_chat(
         message_type=MessageType.RENT_REQUEST.value,
         user_id=author_id,
     )
-    # TODO create notification
+    await create_notification(
+        notification_type=NotificationType.RENT_REQUEST,
+        recipient_id=author_id,
+        offer_id=offer_id,
+    )
     return {"id": chat_id}
 
 

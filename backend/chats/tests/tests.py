@@ -160,7 +160,7 @@ async def test_create_chat(client, marian_auth_token, offer_iphone12):
     response = await client.post("/chats", json=post_data, headers=marian_auth_token)
     assert response.status_code == 201
     created_chat_id = response.json()["id"]
-    # check data in db
+    # check chat data in db
     assert created_chat_id == 1
     chat_data = dict(await crud.get_chat(created_chat_id))
     assert chat_data == {
@@ -173,6 +173,18 @@ async def test_create_chat(client, marian_auth_token, offer_iphone12):
         "is_done": False,
         "offer_id": offer_iphone12,
         "status": "NEW",
+    }
+    # check whether notification was created
+    notification = dict(await get_notification(1))
+    assert notification == {
+        "id": 1,
+        "notification_type": "RENT_REQUEST",
+        "offer_id": offer_iphone12,
+        "pub_date": datetime.datetime(
+            2021, 7, 25, 14, 52, 12, tzinfo=datetime.timezone.utc
+        ),
+        "recipient_id": 2,
+        "viewed": False,
     }
 
 
