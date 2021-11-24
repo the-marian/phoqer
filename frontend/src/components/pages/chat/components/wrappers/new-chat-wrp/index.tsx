@@ -5,7 +5,7 @@ import { useRouter } from 'next/router';
 import { useDispatch, useSelector } from 'react-redux';
 
 import useMedia from '../../../../../../hooks/media.hook';
-import { IChats, IChatsList, IOfferCard, IPublicProfile, IState } from '../../../../../../interfaces';
+import { ChatStatus, IChats, IChatsList, IOfferCard, IPublicProfile, IState } from '../../../../../../interfaces';
 import types from '../../../../../../redux/types';
 import routes from '../../../../../../utils/routes';
 import ChatsLoaders from '../../../../../common/loaders/skeletons/chats';
@@ -48,6 +48,7 @@ const NewChatWrp = ({ children, showSidebar = false }: IProps): ReactElement => 
         chat_id: 0,
         title: 'loading...',
         recipient_id: 0,
+        status: ChatStatus.NEW,
         recipient_first_name: 'loading...',
         recipient_last_name: 'loading...',
         recipient_last_activity: 'loading...',
@@ -78,6 +79,7 @@ const NewChatWrp = ({ children, showSidebar = false }: IProps): ReactElement => 
             setNewChat({
                 chat_id: 0,
                 title: offer.title,
+                status: ChatStatus.NEW,
                 recipient_id: offer.author_id,
                 recipient_first_name: profile.first_name || '-',
                 recipient_last_name: profile.last_name || '-',

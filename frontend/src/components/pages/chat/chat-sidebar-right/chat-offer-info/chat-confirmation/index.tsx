@@ -10,23 +10,15 @@ import { Theme } from '../../../../../../utils/theming/theme';
 import Button from '../../../../../common/button';
 
 const useStyles = createUseStyles((theme: Theme) => ({
-    '@keyframes init': {
-        '0%': { transform: 'none' },
-        '40%': { transform: 'none' },
-        '50%': { transform: 'scale(0.98)' },
-        '70%': { transform: 'none' },
-        '80%': { transform: 'scale(0.94)' },
-        '100%': { transform: 'none' },
-    },
     root: {
         padding: theme.rem(2),
         borderRadius: theme.radius,
-        border: theme.border(0.1, theme.palette.gray[2]),
+        backgroundColor: theme.palette.gray[0],
         transition: theme.transitions[0],
-        animation: '$init 1s ease-in-out 0.8s',
+        boxShadow: theme.shadow[1],
 
         ...theme.hover({
-            backgroundColor: theme.palette.secondary[0],
+            boxShadow: theme.shadow[2],
         }),
     },
     flex: {

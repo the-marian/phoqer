@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react';
+import React, { ReactElement, useCallback, useState } from 'react';
 
 import { faTrashAlt } from '@fortawesome/free-regular-svg-icons/faTrashAlt';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -26,13 +26,20 @@ const NotificationsContainer = ({ children, value, footer }: IProps): ReactEleme
     const css = useStyles();
     const router = useRouter();
     const page = +String(router.query.page || 1);
+    const [isNew, setIsNew] = useState(!value.viewed);
 
     const handleDelete = (): void => {
         modal.open(<NotificationsDeleteModal payload={{ id: value.id, page }} />);
     };
 
+    const handleMouseEnter = useCallback((): void => {
+        if (isNew) {
+            setIsNew(false);
+        }
+    }, [isNew]);
+
     return (
-        <div className={clsx(css.root, !value.viewed && css.isNew)}>
+        <div className={clsx(css.root, isNew && css.isNew)} onMouseEnter={handleMouseEnter} onFocus={handleMouseEnter}>
             <div className={css.header}>
                 <Link href={routes.profile.public(value.recipient_id)}>
                     <a className={css.user}>

@@ -7,6 +7,7 @@ const notificationsStyles = (theme: Theme): Styles => ({
         padding: theme.rem(2),
         borderRadius: theme.radius,
         background: theme.palette.gray[0],
+        transition: theme.transitions[0],
     },
     header: {
         display: 'flex',
