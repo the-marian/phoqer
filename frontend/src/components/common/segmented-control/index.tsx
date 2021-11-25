@@ -14,6 +14,14 @@ const useStyles = createUseStyles((theme: Theme) => ({
     container: {
         maxWidth: '100%',
         marginBottom: theme.rem(4),
+        ...theme.media(768).max({
+            marginBottom: theme.rem(1),
+
+            '& p': {
+                boxShadow: theme.palette.shadowBorder,
+                background: theme.palette.white,
+            },
+        }),
     },
     list: {
         display: 'flex',
@@ -109,6 +117,7 @@ const SegmentedControl = ({ className, classNameWrp, active, tabs, onClick }: IP
         <DropDown
             height={4}
             minWidth={15}
+            className={css.container}
             data={tabs.map(item => ({ name: item.text, slug: item.id }))}
             onChange={onDropdownClick}
         />
