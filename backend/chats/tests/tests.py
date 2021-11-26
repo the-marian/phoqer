@@ -192,18 +192,21 @@ async def test_create_chat(client, marian_auth_token, offer_iphone12):
     }
     # check whether notification was created
     notification = [dict(n) for n in await get_notifications(chat_data["author_id"])][0]
-    assert notification["author_id"] == 2
-    assert notification["notification_type"] == "RENT_REQUEST"
-    assert notification["offer_id"] == offer_iphone12
-    assert notification["offer_title"] == "Iphone 12"
-    assert notification["pub_date"] == datetime.datetime(
-        2021, 7, 25, 14, 52, 12, tzinfo=datetime.timezone.utc
-    )
-    assert notification["recipient_avatar"] is None
-    assert notification["recipient_first_name"] == "Egor"
-    assert notification["recipient_id"] == 2
-    assert notification["recipient_last_name"] == "Leletsky"
-    assert notification["viewed"] is False
+    notification.pop("id")
+    assert notification == {
+        "author_id": 2,
+        "notification_type": "RENT_REQUEST",
+        "offer_id": offer_iphone12,
+        "offer_title": "Iphone 12",
+        "pub_date": datetime.datetime(
+            2021, 7, 25, 14, 52, 12, tzinfo=datetime.timezone.utc
+        ),
+        "recipient_avatar": None,
+        "recipient_first_name": "Egor",
+        "recipient_id": 2,
+        "recipient_last_name": "Leletsky",
+        "viewed": False,
+    }
 
 
 # def test_get_chats_search(client, marian_auth_token):
