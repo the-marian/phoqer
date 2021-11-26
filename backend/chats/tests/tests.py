@@ -4,7 +4,7 @@ import pytest
 from freezegun import freeze_time
 
 from chats import crud
-from notifications.crud import get_notification
+from notifications.crud import get_notification, get_notifications
 from notifications.schemas import NotificationType
 
 pytestmark = pytest.mark.asyncio
@@ -152,6 +152,22 @@ async def test_create_chat_when_offer_does_not_exist(client, marian_auth_token):
     }
 
 
+async def test_change_status(client, egor_auth_token, chat_egor_marian):
+    patch_data = {"status": "APPROVED"}
+    response = await client.patch(
+        f"/chats/{chat_egor_marian}", json=patch_data, headers=egor_auth_token
+    )
+    assert response.status_code == 204
+
+
+async def test_change_status_1(client, egor_auth_token, chat_egor_marian):
+    patch_data = {"status": "ARCHIVED"}
+    response = await client.patch(
+        f"/chats/{chat_egor_marian}", json=patch_data, headers=egor_auth_token
+    )
+    assert response.status_code == 403
+
+
 @freeze_time("2021-07-25 14:52:12")
 async def test_create_chat(client, marian_auth_token, offer_iphone12):
     post_data = {
@@ -175,17 +191,19 @@ async def test_create_chat(client, marian_auth_token, offer_iphone12):
         "status": "NEW",
     }
     # check whether notification was created
-    notification = dict(await get_notification(1))
-    assert notification == {
-        "id": 1,
-        "notification_type": "RENT_REQUEST",
-        "offer_id": offer_iphone12,
-        "pub_date": datetime.datetime(
-            2021, 7, 25, 14, 52, 12, tzinfo=datetime.timezone.utc
-        ),
-        "recipient_id": 2,
-        "viewed": False,
-    }
+    notification = [dict(n) for n in await get_notifications(chat_data["author_id"])][0]
+    assert notification["author_id"] == 2
+    assert notification["notification_type"] == "RENT_REQUEST"
+    assert notification["offer_id"] == offer_iphone12
+    assert notification["offer_title"] == "Iphone 12"
+    assert notification["pub_date"] == datetime.datetime(
+        2021, 7, 25, 14, 52, 12, tzinfo=datetime.timezone.utc
+    )
+    assert notification["recipient_avatar"] is None
+    assert notification["recipient_first_name"] == "Egor"
+    assert notification["recipient_id"] == 2
+    assert notification["recipient_last_name"] == "Leletsky"
+    assert notification["viewed"] is False
 
 
 # def test_get_chats_search(client, marian_auth_token):

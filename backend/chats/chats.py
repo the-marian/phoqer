@@ -9,6 +9,7 @@ from fastapi.websockets import WebSocket, WebSocketDisconnect
 from chats import crud
 from chats.schemas import (
     ChatsListResponse,
+    ChatStatus,
     CreateChatResponse,
     MessagesListItem,
     MessagesListResponse,
@@ -186,9 +187,7 @@ async def get_messages(
 
 
 @router.delete("/{chat_id}", status_code=204)
-async def delete_comment(
-    chat_id: int, user_id: int = Depends(get_current_user)
-) -> Response:
+async def delete_chat(chat_id: int, user_id: int = Depends(get_current_user)) -> Response:
     chat = await crud.get_chat(chat_id)
     if not chat:
         raise HTTPException(
@@ -207,3 +206,32 @@ async def delete_comment(
         offer_id=chat["offer_id"],
     )
     return Response(status_code=204)
+
+
+@router.patch("/{chat_id}", status_code=201)
+async def update_chat_status(
+    chat_id: int,
+    status: ChatStatus = Body(..., embed=True),
+    user_id: int = Depends(get_current_user),
+) -> Response:
+    chat_data = await crud.get_chat(chat_id)
+    if chat_data:
+        chat_status = ChatStatus(chat_data["status"])
+    else:
+        raise HTTPException(
+            status_code=404,
+            detail=f"Chat with id {chat_id} does not exist",
+        )
+    valid_statuses_for_status = {
+        ChatStatus.NEW: (ChatStatus.APPROVED,),
+        ChatStatus.APPROVED: (ChatStatus.ARCHIVED,),
+        ChatStatus.ARCHIVED: (),
+    }
+    if status in valid_statuses_for_status[chat_status]:
+        await crud.update_status(chat_id, status)
+        return Response(status_code=204)
+    else:
+        return Response(
+            status_code=403,
+            content=f"Allowed statuses {valid_statuses_for_status[status]}",
+        )

@@ -298,3 +298,12 @@ async def chat_is_done_update(chat_id: int) -> None:
 async def delete_chat(chat_id: int) -> None:
     query = "DELETE FROM chats WHERE chat_id=:chat_id"
     await database.execute(query=query, values={"chat_id": chat_id})
+
+
+async def update_status(chat_id: int, status: ChatStatus) -> None:
+    query = "UPDATE chats SET status=:status WHERE chat_id=:chat_id"
+    values = {
+        "chat_id": chat_id,
+        "status": status.value,
+    }
+    await database.execute(query=query, values=values)
