@@ -14,6 +14,7 @@ from chats.schemas import (
     MessagesListItem,
     MessagesListResponse,
     MessageType,
+    ShortChatInfo,
 )
 from config import CHAT_SIZE, FERNET_SECRET_KEY, MESSAGES_SIZE, TECH_RENT_REQUEST
 from notifications.crud import create_notification
@@ -149,7 +150,7 @@ async def create_chat(
     return {"id": chat_id}
 
 
-@router.get("/{chat_id}", response_model=MessagesListResponse)
+@router.get("/{chat_id}/messages", response_model=MessagesListResponse)
 async def get_messages(
     chat_id: int,
     page: int = 1,
@@ -184,6 +185,25 @@ async def get_messages(
             for message in messages
         ],
     }
+
+
+@router.get("/{chat_id}", response_model=ShortChatInfo)
+async def get_chat(
+    chat_id: int,
+    user_id: int = Depends(get_current_user),
+) -> Mapping:
+    chat = await crud.get_chat(chat_id)
+    if not chat:
+        raise HTTPException(
+            status_code=404,
+            detail=f"Chat with id {chat_id} does not exist",
+        )
+    elif user_id not in (chat.get("author_id"), chat.get("client_id")):
+        raise HTTPException(
+            status_code=403,
+            detail="The user does not have access to this chat",
+        )
+    return chat
 
 
 @router.delete("/{chat_id}", status_code=204)

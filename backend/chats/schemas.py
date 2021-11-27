@@ -29,6 +29,11 @@ class ChatsListItem(BaseModel):
     title: str
 
 
+class ShortChatInfo(BaseModel):
+    chat_id: int
+    status: ChatStatus
+
+
 class ChatsListResponse(BaseModel):
     total: int = 0
     data: List[ChatsListItem]

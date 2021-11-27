@@ -185,7 +185,7 @@ async def create_message(
     VALUES (
         :author_id,
         :chat_id,
-        current_timestamp,
+        :creation_datetime,
         :message_type,
         :text)
     RETURNING id
@@ -195,6 +195,7 @@ async def create_message(
         "chat_id": chat_id,
         "author_id": user_id,
         "message_type": message_type,
+        "creation_datetime": datetime.datetime.now(),
     }
     message_id = int(await database.execute(query=query, values=values))
     if access_urls:

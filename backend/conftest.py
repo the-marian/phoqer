@@ -8,7 +8,7 @@ import pytest
 from async_asgi_testclient import TestClient
 from databases import Database
 
-from chats.schemas import ChatStatus
+from chats.schemas import ChatStatus, MessageType
 from config import (
     BASE_DIR,
     PG_DB,
@@ -255,8 +255,7 @@ async def user_marian(db, country_poland, city_warsaw):
         "bio": "Made on Earth by humans... Currently hanging out in Warsaw",
         "birth_date": date(1997, 11, 6),
         "email": "marian.zozulia@gmail.com",
-        "profile_img": "http://phoqer.com/mediafiles/"
-        "0f13df9c-772c-4216-b6e0-7894cdaaa2dd-2021-06-14_15.42.25.jpg",
+        "profile_img": "http://phoqer.com/mediafiles/dicpic.jpg",
         "country": "poland",
         "city": "warsaw",
     }
@@ -743,7 +742,7 @@ async def chat_marian_egor(db, user_marian, user_egor, offer_ps4):
         "status": ChatStatus.NEW.value,
     }
     await db.execute(query=query, values=values)
-    yield "1"
+    yield 1
     query = "DELETE FROM chats WHERE chat_id = 1"
     await db.execute(query=query)
 
@@ -783,63 +782,64 @@ async def chat_egor_marian(db, user_marian, user_egor, offer_iphone12):
     await db.execute(query=query)
 
 
-#
-# @pytest.fixture
-# def _messages(db, chat_marian_egor):
-#     query = """
-#     INSERT INTO messages (
-#         author_id,
-#         chat_id,
-#         creation_datetime,
-#         id,
-#         is_red,
-#         message_type,
-#         text)
-#     VALUES
-#     """
-#     data = [
-#         (
-#             1,  # author_id
-#             chat_marian_egor,  # chat_id
-#             "2021-06-20 15:01:32.639425+00",  # creation_datetime
-#             1,  # id
-#             True,  # is_red
-#             MessageType.RENT_REQUEST.value,  # message_type
-#             "gAAAAABgz1xIJTxsDDfVoveXWFpFIl-Mk55Gp8iLX--cAZUE6na_F6jL"
-#             "bDy4pMnlQkxeskt0hKp1glOHxzoDaKlhD0pzpFdDWQ==",  # text
-#         )
-#     ]
-#     data.extend(
-#         [
-#             (
-#                 1,  # author_id
-#                 chat_marian_egor,  # chat_id
-#                 f"2021-06-20 15:{i}:32.639425+00",  # creation_datetime
-#                 i,  # id
-#                 True,  # is_red
-#                 MessageType.MESSAGE.value,  # message_type
-#                 "gAAAAABgz1xIJTxsDDfVoveXWFpFIl-Mk55Gp8iLX--cAZUE6na_F6jL"
-#                 "bDy4pMnlQkxeskt0hKp1glOHxzoDaKlhD0pzpFdDWQ==",  # text
-#             )
-#             for i in range(11, 51, 2)
-#         ]
-#     )
-#     data.extend(
-#         [
-#             (
-#                 2,  # author_id
-#                 chat_marian_egor,  # chat_id
-#                 f"2021-06-20 15:{i}:32.639425+00",  # creation_datetime
-#                 i,  # id
-#                 True,  # is_red
-#                 MessageType.MESSAGE.value,  # message_type
-#                 "gAAAAABgz1xIJTxsDDfVoveXWFpFIl-Mk55Gp8iLX--cAZUE6na_F6jL"
-#                 "bDy4pMnlQkxeskt0hKp1glOHxzoDaKlhD0pzpFdDWQ==",  # text
-#             )
-#             for i in range(10, 50, 2)
-#         ]
-#     )
-#     args_str = ",".join(
-#         db.mogrify("(%s, %s, %s, %s, %s, %s, %s)", x).decode("utf-8") for x in data
-#     )
-#     db.execute(query + args_str)
+@pytest.fixture
+async def _messages(db, chat_marian_egor):
+    query = """
+    INSERT INTO messages (
+        author_id,
+        chat_id,
+        creation_datetime,
+        is_red,
+        message_type,
+        text)
+    VALUES (
+        :author_id,
+        :chat_id,
+        :creation_datetime,
+        :is_red,
+        :message_type,
+        :text)
+    """
+    values = [
+        {
+            "author_id": 1,
+            "chat_id": chat_marian_egor,
+            "creation_datetime": datetime(2021, 6, 20, 15, 1, 32),
+            "is_red": True,  # is_red
+            "message_type": MessageType.RENT_REQUEST.value,
+            "text": "gAAAAABgz1xIJTxsDDfVoveXWFpFIl-Mk55Gp8iLX--cAZUE6na_F6jL"
+            "bDy4pMnlQkxeskt0hKp1glOHxzoDaKlhD0pzpFdDWQ==",
+        }
+    ]
+    values.extend(
+        [
+            {
+                "author_id": 1,
+                "chat_id": chat_marian_egor,
+                "creation_datetime": datetime(2021, 6, 20, 15, i, 32),
+                "is_red": True,
+                "message_type": MessageType.MESSAGE.value,
+                "text": "gAAAAABgz1xIJTxsDDfVoveXWFpFIl-Mk55Gp8iLX--cAZUE6na_F6jL"
+                "bDy4pMnlQkxeskt0hKp1glOHxzoDaKlhD0pzpFdDWQ==",
+            }
+            for i in range(11, 51, 2)
+        ]
+    )
+    values.extend(
+        [
+            {
+                "author_id": 2,
+                "chat_id": chat_marian_egor,
+                "creation_datetime": datetime(2021, 6, 20, 15, i, 32),
+                "is_red": True,
+                "message_type": MessageType.MESSAGE.value,
+                "text": "gAAAAABgz1xIJTxsDDfVoveXWFpFIl-Mk55Gp8iLX--cAZUE6na_F6jL"
+                "bDy4pMnlQkxeskt0hKp1glOHxzoDaKlhD0pzpFdDWQ==",
+            }
+            for i in range(10, 50, 2)
+        ]
+    )
+    await db.execute_many(query=query, values=values)
+    yield
+    query = f"DELETE FROM messages WHERE chat_id = {chat_marian_egor}"
+    await db.execute(query=query)
