@@ -782,15 +782,6 @@ async def chat_egor_marian(db, user_marian, user_egor, offer_iphone12):
     query = "DELETE FROM chats WHERE chat_id = 2"
     await db.execute(query=query)
 
-
-@pytest.fixture
-async def popular():
-    return {
-        "ua": ["Iphone", "PS5", "VR", "Каршеринг", "Квартира", "Гитара"],
-        "en": ["Iphone", "PS5", "VR", "Carrent", "Apartment", "Guitar"],
-        "pl": ["Telefon komorkowy", "PS5", "VR", "Samochody", "Apartament", "Gitara"]
-    }
-
 #
 # @pytest.fixture
 # def _messages(db, chat_marian_egor):
