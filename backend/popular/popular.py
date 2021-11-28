@@ -1,6 +1,7 @@
 import random
-from fastapi import APIRouter
 from typing import Dict
+
+from fastapi import APIRouter
 
 router = APIRouter(
     prefix="/popular",
@@ -16,5 +17,5 @@ async def get_popular() -> Dict:
     return {
         "ua": random.sample(ua, len(ua)),
         "en": random.sample(en, len(en)),
-        "pl": random.sample(pl, len(pl))
+        "pl": random.sample(pl, len(pl)),
     }
