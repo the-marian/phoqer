@@ -22,6 +22,7 @@ jobs:
       - name: Add environment variables to .env
         run: |
           echo BACKEND_IMAGE=${{ secrets.BACKEND_IMAGE }} >> .env
+          echo FERNET_SECRET_KEY=${{ secrets.FERNET_SECRET_KEY }} >> .env
       - name: Log in to GitHub Packages
         run: echo ${{ secrets.GITHUB_TOKEN }} | docker login -u ${GITHUB_ACTOR} --password-stdin docker.pkg.github.com
       - name: Pull existing image for cache
