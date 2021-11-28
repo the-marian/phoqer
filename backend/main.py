@@ -11,7 +11,7 @@ from locations import locations
 from login import login
 from notifications import notifications
 from offers import offers
-from popular import popular
+from popular_searches import popular
 from upload import upload
 from users import users
 
