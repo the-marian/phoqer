@@ -185,7 +185,7 @@ async def create_message(
     VALUES (
         :author_id,
         :chat_id,
-        current_timestamp,
+        :creation_datetime,
         :message_type,
         :text)
     RETURNING id
@@ -195,6 +195,7 @@ async def create_message(
         "chat_id": chat_id,
         "author_id": user_id,
         "message_type": message_type,
+        "creation_datetime": datetime.datetime.now(),
     }
     message_id = int(await database.execute(query=query, values=values))
     if access_urls:
@@ -242,7 +243,7 @@ async def get_message(message_id: int) -> Optional[Mapping]:
 
 
 async def create_chat(
-    offer_id: str, author_id: int, client_id: int, status: ChatStatus = ChatStatus.NEW
+    offer_id: str, author_id: int, user_id: int, status: ChatStatus = ChatStatus.NEW
 ) -> int:
     query = """
     INSERT INTO chats (
@@ -261,7 +262,7 @@ async def create_chat(
     """
     values = {
         "author_id": author_id,
-        "client_id": client_id,
+        "client_id": user_id,
         "offer_id": offer_id,
         "current_timestamp": datetime.datetime.now(),
         "status": status.value,
@@ -298,3 +299,12 @@ async def chat_is_done_update(chat_id: int) -> None:
 async def delete_chat(chat_id: int) -> None:
     query = "DELETE FROM chats WHERE chat_id=:chat_id"
     await database.execute(query=query, values={"chat_id": chat_id})
+
+
+async def update_status(chat_id: int, status: ChatStatus) -> None:
+    query = "UPDATE chats SET status=:status WHERE chat_id=:chat_id"
+    values = {
+        "chat_id": chat_id,
+        "status": status.value,
+    }
+    await database.execute(query=query, values=values)

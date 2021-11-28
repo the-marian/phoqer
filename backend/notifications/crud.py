@@ -17,13 +17,12 @@ async def get_notifications(
         notifications.recipient_id,
         notifications.viewed,
         offers_offer.title AS offer_title,
-        offers_offer.author_id AS author_id,
         users_user.first_name AS recipient_first_name,
         users_user.last_name AS recipient_last_name,
         users_user.profile_img AS recipient_avatar
     FROM notifications
     INNER JOIN offers_offer ON notifications.offer_id=offers_offer.id
-    INNER JOIN users_user ON author_id=users_user.id
+    INNER JOIN users_user ON notifications.initiator_id=users_user.id
     WHERE recipient_id=:user_id
     ORDER BY pub_date DESC
     LIMIT :limit
@@ -72,6 +71,7 @@ async def delete_notification(notification_id: int) -> None:
 async def create_notification(
     notification_type: NotificationType,
     recipient_id: int,
+    initiator_id: int,
     offer_id: Optional[str] = None,
 ) -> None:
     query = """
@@ -80,12 +80,14 @@ async def create_notification(
         offer_id,
         pub_date,
         recipient_id,
+        initiator_id,
         viewed)
     VALUES (
         :notification_type,
         :offer_id,
         :pub_date,
         :recipient_id,
+        :initiator_id,
         :viewed)
     """
     values = {
@@ -93,6 +95,7 @@ async def create_notification(
         "offer_id": offer_id,
         "pub_date": datetime.datetime.now(),
         "recipient_id": recipient_id,
+        "initiator_id": initiator_id,
         "viewed": False,
     }
     await database.execute(query=query, values=values)

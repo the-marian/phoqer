@@ -60,6 +60,15 @@ const useStyles = createUseStyles((theme: Theme) => ({
     back: {
         marginBottom: theme.rem(1),
         fontSize: theme.rem(1.3),
+
+        '& a': {
+            width: '100%',
+            background: theme.palette.gray[1],
+
+            ...theme.hover({
+                background: theme.palette.secondary[0],
+            }),
+        },
     },
 }));
 

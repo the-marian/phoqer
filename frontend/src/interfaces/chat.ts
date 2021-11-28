@@ -1,9 +1,16 @@
 import { IPagination } from './general';
 import { IOfferCard } from './offers';
 
+export enum ChatStatus {
+    APPROVED = 'APPROVED',
+    ARCHIVED = 'ARCHIVED',
+    NEW = 'NEW',
+}
+
 export interface IChats {
     chat_id: number;
     title: string;
+    status: ChatStatus;
     recipient_id: number;
     recipient_first_name: string;
     recipient_last_name: string;

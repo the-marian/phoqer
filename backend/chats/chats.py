@@ -9,10 +9,12 @@ from fastapi.websockets import WebSocket, WebSocketDisconnect
 from chats import crud
 from chats.schemas import (
     ChatsListResponse,
+    ChatStatus,
     CreateChatResponse,
     MessagesListItem,
     MessagesListResponse,
     MessageType,
+    ShortChatInfo,
 )
 from config import CHAT_SIZE, FERNET_SECRET_KEY, MESSAGES_SIZE, TECH_RENT_REQUEST
 from notifications.crud import create_notification
@@ -122,7 +124,7 @@ async def get_chats(
 
 @router.post("", status_code=201, response_model=CreateChatResponse)
 async def create_chat(
-    offer_id: str = Body(..., embed=True), client_id: int = Depends(get_current_user)
+    offer_id: str = Body(..., embed=True), user_id: int = Depends(get_current_user)
 ) -> Dict[str, int]:
     if not (offer := await get_offer(offer_id)):
         raise HTTPException(
@@ -131,7 +133,7 @@ async def create_chat(
         )
     author_id = offer["author_id"]
     chat_id = await crud.create_chat(
-        offer_id=offer_id, client_id=client_id, author_id=author_id
+        offer_id=offer_id, user_id=user_id, author_id=author_id
     )
     await crud.create_message(
         access_urls=[],
@@ -140,11 +142,16 @@ async def create_chat(
         message_type=MessageType.RENT_REQUEST.value,
         user_id=author_id,
     )
-    # TODO create notification
+    await create_notification(
+        notification_type=NotificationType.RENT_REQUEST,
+        recipient_id=author_id,
+        initiator_id=user_id,
+        offer_id=offer_id,
+    )
     return {"id": chat_id}
 
 
-@router.get("/{chat_id}", response_model=MessagesListResponse)
+@router.get("/{chat_id}/messages", response_model=MessagesListResponse)
 async def get_messages(
     chat_id: int,
     page: int = 1,
@@ -181,10 +188,27 @@ async def get_messages(
     }
 
 
+@router.get("/{chat_id}", response_model=ShortChatInfo)
+async def get_chat(
+    chat_id: int,
+    user_id: int = Depends(get_current_user),
+) -> Mapping:
+    chat = await crud.get_chat(chat_id)
+    if not chat:
+        raise HTTPException(
+            status_code=404,
+            detail=f"Chat with id {chat_id} does not exist",
+        )
+    elif user_id not in (chat.get("author_id"), chat.get("client_id")):
+        raise HTTPException(
+            status_code=403,
+            detail="The user does not have access to this chat",
+        )
+    return chat
+
+
 @router.delete("/{chat_id}", status_code=204)
-async def delete_comment(
-    chat_id: int, user_id: int = Depends(get_current_user)
-) -> Response:
+async def delete_chat(chat_id: int, user_id: int = Depends(get_current_user)) -> Response:
     chat = await crud.get_chat(chat_id)
     if not chat:
         raise HTTPException(
@@ -197,9 +221,40 @@ async def delete_comment(
             detail="The user does not have access to this chat",
         )
     await crud.delete_chat(chat_id)
-    await create_notification(
-        notification_type=NotificationType.RENT_CANCELLED,
-        recipient_id=chat["client_id"],
-        offer_id=chat["offer_id"],
-    )
+    if user_id == chat["author_id"]:
+        await create_notification(
+            notification_type=NotificationType.RENT_CANCELLED,
+            recipient_id=chat["client_id"],
+            initiator_id=chat["client_id"],
+            offer_id=chat["offer_id"],
+        )
     return Response(status_code=204)
+
+
+@router.patch("/{chat_id}", status_code=201)
+async def update_chat_status(
+    chat_id: int,
+    status: ChatStatus = Body(..., embed=True),
+    user_id: int = Depends(get_current_user),
+) -> Response:
+    chat_data = await crud.get_chat(chat_id)
+    if chat_data:
+        chat_status = ChatStatus(chat_data["status"])
+    else:
+        raise HTTPException(
+            status_code=404,
+            detail=f"Chat with id {chat_id} does not exist",
+        )
+    valid_statuses_for_status = {
+        ChatStatus.NEW: (ChatStatus.APPROVED,),
+        ChatStatus.APPROVED: (ChatStatus.ARCHIVED,),
+        ChatStatus.ARCHIVED: (),
+    }
+    if status in valid_statuses_for_status[chat_status]:
+        await crud.update_status(chat_id, status)
+        return Response(status_code=204)
+    else:
+        return Response(
+            status_code=403,
+            content=f"Allowed statuses {valid_statuses_for_status[status]}",
+        )
