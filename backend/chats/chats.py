@@ -124,7 +124,7 @@ async def get_chats(
 
 @router.post("", status_code=201, response_model=CreateChatResponse)
 async def create_chat(
-    offer_id: str = Body(..., embed=True), client_id: int = Depends(get_current_user)
+    offer_id: str = Body(..., embed=True), user_id: int = Depends(get_current_user)
 ) -> Dict[str, int]:
     if not (offer := await get_offer(offer_id)):
         raise HTTPException(
@@ -133,7 +133,7 @@ async def create_chat(
         )
     author_id = offer["author_id"]
     chat_id = await crud.create_chat(
-        offer_id=offer_id, client_id=client_id, author_id=author_id
+        offer_id=offer_id, user_id=user_id, author_id=author_id
     )
     await crud.create_message(
         access_urls=[],
@@ -145,6 +145,7 @@ async def create_chat(
     await create_notification(
         notification_type=NotificationType.RENT_REQUEST,
         recipient_id=author_id,
+        initiator_id=user_id,
         offer_id=offer_id,
     )
     return {"id": chat_id}
@@ -220,11 +221,13 @@ async def delete_chat(chat_id: int, user_id: int = Depends(get_current_user)) ->
             detail="The user does not have access to this chat",
         )
     await crud.delete_chat(chat_id)
-    await create_notification(
-        notification_type=NotificationType.RENT_CANCELLED,
-        recipient_id=chat["client_id"],
-        offer_id=chat["offer_id"],
-    )
+    if user_id == chat["author_id"]:
+        await create_notification(
+            notification_type=NotificationType.RENT_CANCELLED,
+            recipient_id=chat["client_id"],
+            initiator_id=chat["client_id"],
+            offer_id=chat["offer_id"],
+        )
     return Response(status_code=204)
 
 

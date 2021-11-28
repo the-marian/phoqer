@@ -243,7 +243,7 @@ async def get_message(message_id: int) -> Optional[Mapping]:
 
 
 async def create_chat(
-    offer_id: str, author_id: int, client_id: int, status: ChatStatus = ChatStatus.NEW
+    offer_id: str, author_id: int, user_id: int, status: ChatStatus = ChatStatus.NEW
 ) -> int:
     query = """
     INSERT INTO chats (
@@ -262,7 +262,7 @@ async def create_chat(
     """
     values = {
         "author_id": author_id,
-        "client_id": client_id,
+        "client_id": user_id,
         "offer_id": offer_id,
         "current_timestamp": datetime.datetime.now(),
         "status": status.value,

@@ -195,17 +195,16 @@ async def test_create_chat(client, marian_auth_token, offer_iphone12):
     notification = [dict(n) for n in await get_notifications(chat_data["author_id"])][0]
     notification.pop("id")
     assert notification == {
-        "author_id": 2,
         "notification_type": "RENT_REQUEST",
         "offer_id": offer_iphone12,
         "offer_title": "Iphone 12",
         "pub_date": datetime.datetime(
             2021, 7, 25, 14, 52, 12, tzinfo=datetime.timezone.utc
         ),
-        "recipient_avatar": None,
-        "recipient_first_name": "Egor",
+        "recipient_avatar": "http://phoqer.com/mediafiles/dicpic.jpg",
+        "recipient_first_name": "Marian",
         "recipient_id": 2,
-        "recipient_last_name": "Leletsky",
+        "recipient_last_name": "Zozulia",
         "viewed": False,
     }
     # check whether first message was created
@@ -741,7 +740,6 @@ async def test_get_messages_page_2(client, marian_auth_token, _messages):
             "last_name": "Zozulia",
             "message_type": "RENT_REQUEST",
             "profile_img": "http://phoqer.com/mediafiles/dicpic.jpg",
-
             "text": "test",
             "uploads": [],
             "user_id": 1,

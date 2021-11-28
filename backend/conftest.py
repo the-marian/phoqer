@@ -501,6 +501,7 @@ async def notification1(db, user_marian, offer_iphone12):
         offer_id,
         pub_date,
         recipient_id,
+        initiator_id,
         viewed
     )
     VALUES (
@@ -509,6 +510,7 @@ async def notification1(db, user_marian, offer_iphone12):
         :offer_id,
         :pub_date,
         :recipient_id,
+        :initiator_id,
         :viewed
     )"""
     values = {
@@ -517,6 +519,7 @@ async def notification1(db, user_marian, offer_iphone12):
         "offer_id": offer_iphone12,
         "pub_date": datetime(2021, 10, 18, 12, 16, 59),
         "recipient_id": 1,
+        "initiator_id": 2,
         "viewed": False,
     }
     await db.execute(query=query, values=values)
@@ -534,6 +537,7 @@ async def notification2(db, user_egor, offer_ps4):
         offer_id,
         pub_date,
         recipient_id,
+        initiator_id,
         viewed
     )
     VALUES (
@@ -542,6 +546,7 @@ async def notification2(db, user_egor, offer_ps4):
         :offer_id,
         :pub_date,
         :recipient_id,
+        :initiator_id,
         :viewed
     )"""
     values = {
@@ -550,6 +555,7 @@ async def notification2(db, user_egor, offer_ps4):
         "offer_id": offer_ps4,
         "pub_date": datetime(2021, 10, 20, 10, 16, 00),
         "recipient_id": 2,
+        "initiator_id": 1,
         "viewed": True,
     }
     await db.execute(query=query, values=values)
