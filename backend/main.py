@@ -11,6 +11,7 @@ from locations import locations
 from login import login
 from notifications import notifications
 from offers import offers
+from popular_searches import popular
 from upload import upload
 from users import users
 
@@ -32,6 +33,7 @@ app.include_router(favorite.router)
 app.include_router(login.router)
 app.include_router(locations.router)
 app.include_router(notifications.router)
+app.include_router(popular.router)
 app.include_router(users.router)
 app.include_router(upload.router)
 
