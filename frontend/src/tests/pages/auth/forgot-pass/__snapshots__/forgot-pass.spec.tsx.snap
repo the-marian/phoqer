@@ -76,7 +76,6 @@ exports[`ForgotPass component match snapshot 1`] = `
           >
             <div
               class="wrp-0-2-22 lang-0-2-21"
-              tabindex="-1"
             >
               <p
                 aria-hidden="true"
@@ -115,7 +114,7 @@ exports[`ForgotPass component match snapshot 1`] = `
     </div>
   </header>
   <main
-    class="main-0-2-38 padding-0-2-39"
+    class="main-0-2-34 padding-0-2-35"
   >
     <div
       class="container-0-2-10"
@@ -136,15 +135,15 @@ exports[`ForgotPass component match snapshot 1`] = `
             method="post"
           >
             <h2
-              class="title-0-2-40"
+              class="title-0-2-36"
             >
               Welcome!
             </h2>
             <div
-              class="wrp-0-2-41"
+              class="wrp-0-2-37"
             >
               <div
-                class="icon-0-2-43"
+                class="icon-0-2-39"
               >
                 <svg
                   aria-hidden="true"
@@ -163,14 +162,14 @@ exports[`ForgotPass component match snapshot 1`] = `
                 </svg>
               </div>
               <div
-                class="wrp-0-2-47"
+                class="wrp-0-2-43"
               >
                 <div
-                  class="inner-0-2-48"
+                  class="inner-0-2-44"
                 >
                   <input
                     autocomplete="email"
-                    class="input-0-2-49 input-0-2-42"
+                    class="input-0-2-45 input-0-2-38"
                     name="email"
                     placeholder=""
                     type="email"
@@ -180,7 +179,7 @@ exports[`ForgotPass component match snapshot 1`] = `
               </div>
             </div>
             <button
-              class="btn-0-2-58 btn-0-2-45"
+              class="btn-0-2-54 btn-0-2-41"
               type="submit"
             >
               <span>
@@ -188,18 +187,18 @@ exports[`ForgotPass component match snapshot 1`] = `
               </span>
             </button>
             <a
-              class="link-0-2-44"
+              class="link-0-2-40"
               href="/auth/login"
             >
               Login
             </a>
             <p
-              class="text-0-2-46"
+              class="text-0-2-42"
             >
               or
             </p>
             <a
-              class="link-0-2-44"
+              class="link-0-2-40"
               href="/auth/join"
             >
               Join Phoqer
@@ -210,7 +209,7 @@ exports[`ForgotPass component match snapshot 1`] = `
     </div>
   </main>
   <footer
-    class="footer-0-2-62"
+    class="footer-0-2-58"
   >
     <div
       class="container-0-2-10"
@@ -235,76 +234,76 @@ exports[`ForgotPass component match snapshot 1`] = `
         </small>
       </div>
       <div
-        class="wrp-0-2-63"
+        class="wrp-0-2-59"
       >
         <ul
-          class="list-0-2-64"
+          class="list-0-2-60"
         >
           <li
-            class="item-0-2-65"
+            class="item-0-2-61"
           >
             <a
-              class="link-0-2-66"
+              class="link-0-2-62"
               href="/static/help"
             >
               Help and Feedback
             </a>
           </li>
           <li
-            class="item-0-2-65"
+            class="item-0-2-61"
           >
             <a
-              class="link-0-2-66"
+              class="link-0-2-62"
               href="/static/business"
             >
               Advertising preferences
             </a>
           </li>
           <li
-            class="item-0-2-65"
+            class="item-0-2-61"
           >
             <a
-              class="link-0-2-66"
+              class="link-0-2-62"
               href="/static/rules"
             >
               Terms of service
             </a>
           </li>
           <li
-            class="item-0-2-65"
+            class="item-0-2-61"
           >
             <a
-              class="link-0-2-66"
+              class="link-0-2-62"
               href="/static/politic"
             >
               Privacy statement
             </a>
           </li>
           <li
-            class="item-0-2-65"
+            class="item-0-2-61"
           >
             <a
-              class="link-0-2-66"
+              class="link-0-2-62"
               href="/static/faq"
             >
               FAQ
             </a>
           </li>
           <li
-            class="item-0-2-65"
+            class="item-0-2-61"
           >
             <a
-              class="link-0-2-66"
+              class="link-0-2-62"
               href="/static/safety"
             >
               Safety rules
             </a>
           </li>
           <li
-            class="item-0-2-65"
+            class="item-0-2-61"
           >
             <a
-              class="link-0-2-66"
+              class="link-0-2-62"
               href="/static/map"
             >
               Site map
@@ -313,22 +312,22 @@ exports[`ForgotPass component match snapshot 1`] = `
         </ul>
         <div>
           <h3
-            class="title-0-2-69"
+            class="title-0-2-65"
           >
             Social networks:
           </h3>
           <ul
-            class="list-0-2-67"
+            class="list-0-2-63"
           >
             <li>
               <a
-                class="link-0-2-70"
+                class="link-0-2-66"
                 href="https://www.facebook.com/phoqer.inc"
                 rel="noopener noreferrer"
                 target="_blank"
               >
                 <svg
-                  class="svg-0-2-72"
+                  class="svg-0-2-68"
                   enable-background="new 0 0 24 24"
                   id="Bold"
                   viewBox="0 0 24 24"
@@ -342,13 +341,13 @@ exports[`ForgotPass component match snapshot 1`] = `
             </li>
             <li>
               <a
-                class="link-0-2-70"
+                class="link-0-2-66"
                 href="https://www.instagram.com/phoqer/"
                 rel="noopener noreferrer"
                 target="_blank"
               >
                 <svg
-                  class="svg-0-2-72"
+                  class="svg-0-2-68"
                   enable-background="new 0 0 24 24"
                   id="Bold"
                   viewBox="0 0 24 24"
@@ -370,13 +369,13 @@ exports[`ForgotPass component match snapshot 1`] = `
             </li>
             <li>
               <a
-                class="link-0-2-70"
+                class="link-0-2-66"
                 href="http://www.google.com/"
                 rel="noopener noreferrer"
                 target="_blank"
               >
                 <svg
-                  class="svg-0-2-72"
+                  class="svg-0-2-68"
                   viewBox="0 -47 512.00004 512"
                   xmlns="http://www.w3.org/2000/svg"
                 >
@@ -388,13 +387,13 @@ exports[`ForgotPass component match snapshot 1`] = `
             </li>
             <li>
               <a
-                class="link-0-2-70"
+                class="link-0-2-66"
                 href="https://t.me/phoqer"
                 rel="noopener noreferrer"
                 target="_blank"
               >
                 <svg
-                  class="svg-0-2-72"
+                  class="svg-0-2-68"
                   viewBox="0 -39 512.00011 512"
                   xmlns="http://www.w3.org/2000/svg"
                 >

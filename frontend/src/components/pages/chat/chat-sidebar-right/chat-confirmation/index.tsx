@@ -2,12 +2,12 @@ import React, { ReactElement } from 'react';
 
 import Link from 'next/link';
 import { createUseStyles } from 'react-jss';
+import { useSelector } from 'react-redux';
 
-import { IPublicProfile } from '../../../../../../interfaces';
-import routes from '../../../../../../utils/routes';
-import mixin from '../../../../../../utils/theming/mixin';
-import { Theme } from '../../../../../../utils/theming/theme';
-import Button from '../../../../../common/button';
+import { ChatStatus, IPublicProfile, IState } from '../../../../../interfaces';
+import routes from '../../../../../utils/routes';
+import { Theme } from '../../../../../utils/theming/theme';
+import ChatDeleteButton from '../chat-delete-button';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     root: {
@@ -16,10 +16,6 @@ const useStyles = createUseStyles((theme: Theme) => ({
         backgroundColor: theme.palette.gray[0],
         transition: theme.transitions[0],
         boxShadow: theme.shadow[1],
-
-        ...theme.hover({
-            boxShadow: theme.shadow[2],
-        }),
     },
     flex: {
         display: 'flex',
@@ -30,23 +26,18 @@ const useStyles = createUseStyles((theme: Theme) => ({
         width: theme.rem(6),
         marginBottom: theme.rem(3),
     },
-    approve: {
-        ...mixin(theme).btn,
-        marginRight: theme.rem(1),
-    },
-    cancel: {
-        ...mixin(theme).btn,
-        backgroundColor: theme.palette.gray[0],
-        color: theme.palette.black[0],
-    },
     title: {
-        fontSize: theme.rem(1.6),
+        fontSize: theme.rem(1.4),
         fontWeight: theme.text.weight[2],
         color: theme.palette.black[0],
+        '& strong': {
+            fontWeight: 'inherit',
+        },
     },
     link: {
         textTransform: 'capitalize',
         color: theme.palette.primary[0],
+        fontWeight: theme.text.weight[4],
 
         ...theme.hover({
             textDecoration: 'underline',
@@ -54,7 +45,6 @@ const useStyles = createUseStyles((theme: Theme) => ({
         ...theme.focus({
             textDecoration: 'underline',
         }),
-        fontWeight: theme.text.weight[3],
     },
 }));
 
@@ -65,9 +55,10 @@ interface IProps {
 
 const ChatConfirmation = ({ profile, offerTitle }: IProps): ReactElement => {
     const css = useStyles();
+    const chatStatus = useSelector<IState, ChatStatus>(state => state.chat.item.data?.status || ChatStatus.NEW);
 
-    return (
-        <div className={css.root}>
+    const contentMap = {
+        [ChatStatus.NEW]: (
             <h2 className={css.title}>
                 Пользователь{' '}
                 <Link href={routes.profile.public(profile?.id)}>
@@ -75,15 +66,28 @@ const ChatConfirmation = ({ profile, offerTitle }: IProps): ReactElement => {
                         {profile?.first_name} {profile?.last_name}
                     </a>
                 </Link>{' '}
-                желает арендовать у вас &quot;{offerTitle}&quot;.
+                желает арендовать у вас &quot;<strong>{offerTitle}</strong>&quot;.
             </h2>
+        ),
+        [ChatStatus.APPROVED]: (
+            <h2 className={css.title}>
+                Вы одобрили запрос пользователя{' '}
+                <Link href={routes.profile.public(profile?.id)}>
+                    <a className={css.link}>
+                        {profile?.first_name} {profile?.last_name}
+                    </a>
+                </Link>{' '}
+                на аренду &quot;<strong>{offerTitle}</strong>&quot;.
+            </h2>
+        ),
+        [ChatStatus.ARCHIVED]: <h2>Аренда этого объявления закончилась и чат находится в архиве.</h2>,
+    };
 
-            <div className={css.flex}>
-                <Button primary className={css.approve}>
-                    Одобрить запрос
-                </Button>
-                <Button className={css.cancel}>Отклонить</Button>
-            </div>
+    return (
+        <div className={css.root}>
+            {contentMap[chatStatus]}
+
+            <ChatDeleteButton className={css.flex} />
         </div>
     );
 };

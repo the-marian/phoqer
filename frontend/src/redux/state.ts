@@ -7,6 +7,7 @@ import commentsInit from './comments/init-state';
 import configInit from './config/init-state';
 import notificationsInit from './notifications/init-state';
 import offersInit from './offers/init-state';
+import popularSearchesInit from './popular-searches/init-state';
 import profilesInit from './profiles/init-state';
 import regionInit from './region/init-state';
 import userInit from './user/init-state';
@@ -22,6 +23,7 @@ const initState: IState = {
     offers: offersInit,
     chat: chatInit,
     notifications: notificationsInit,
+    popularSearches: popularSearchesInit,
 };
 
 export default initState;

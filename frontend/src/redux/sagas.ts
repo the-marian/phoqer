@@ -6,6 +6,7 @@ import chat from './chat/saga';
 import comments from './comments/saga';
 import notifications from './notifications/saga';
 import offers from './offers/saga';
+import popularSearches from './popular-searches/saga';
 import profiles from './profiles/saga';
 import region from './region/saga';
 import user from './user/saga';
@@ -21,5 +22,6 @@ export default function* rootSaga(): Generator {
         fork(region),
         fork(chat),
         fork(notifications),
+        fork(popularSearches),
     ]);
 }

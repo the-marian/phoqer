@@ -4,11 +4,14 @@ import { faChevronDown } from '@fortawesome/free-solid-svg-icons/faChevronDown';
 import { faChevronUp } from '@fortawesome/free-solid-svg-icons/faChevronUp';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { createUseStyles } from 'react-jss';
+import { useSelector } from 'react-redux';
 import { CSSTransition } from 'react-transition-group';
 
 import useConfig from '../../../../../hooks/config.hook';
 import useTrans from '../../../../../hooks/trans.hook';
+import { IState, PopularSearches } from '../../../../../interfaces';
 import routes from '../../../../../utils/routes';
 import { Theme } from '../../../../../utils/theming/theme';
 
@@ -90,19 +93,14 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
 }));
 
-const POPULAR: string[] = [
-    'Задний винт Владика',
-    'Заднее сальто Владика 3',
-    'Кто такой Влад Василенко?',
-    'Задний винт Владика скачать без смс и регистрации',
-    'Владислав! Бейби донт хьорт ми, донт хьорт ми, но мор!',
-    'Заднее сальто Владика 2',
-];
-
 const TopSearchQuery = (): ReactElement => {
     const css = useStyles();
     const trans = useTrans();
+    const { locale } = useRouter();
     const [config, setConfig] = useConfig();
+
+    const popularSearches = useSelector<IState, PopularSearches>(state => state.popularSearches);
+    const popularSearchesList = popularSearches[locale || 'ua'];
 
     const handleCloseSearch = () => {
         setConfig({ ...config, hideTopSearchQuery: !config.hideTopSearchQuery });
@@ -128,15 +126,19 @@ const TopSearchQuery = (): ReactElement => {
             </div>
             <hr className={css.hr} />
             <CSSTransition timeout={200} unmountOnExit in={!config.hideTopSearchQuery}>
-                <ul className={css.list}>
-                    {POPULAR.map(query => (
-                        <li key={query}>
-                            <Link href={routes.offers.single(`?search=${query}`)}>
-                                <a className={css.link}>{query}</a>
-                            </Link>
-                        </li>
-                    ))}
-                </ul>
+                <>
+                    {!!popularSearchesList?.length && (
+                        <ul className={css.list}>
+                            {popularSearchesList.map(query => (
+                                <li key={query}>
+                                    <Link href={routes.offers.single(`?search=${query}`)}>
+                                        <a className={css.link}>{query}</a>
+                                    </Link>
+                                </li>
+                            ))}
+                        </ul>
+                    )}
+                </>
             </CSSTransition>
         </div>
     );

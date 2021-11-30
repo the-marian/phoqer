@@ -77,7 +77,7 @@ const Price = ({ offer, withButton = false }: IProps): ReactElement => {
         }
 
         dispatch({ type: types.CHANGE_CHAT_TYPE, payload: 'i_am_client' });
-        history.push(routes.newMessage(offer?.id));
+        history.push(routes.chat.new(offer?.id));
     };
 
     return (

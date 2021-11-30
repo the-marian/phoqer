@@ -9,6 +9,10 @@ const chatInit: IStateChats = {
             data: [],
         },
     },
+    item: {
+        loading: true,
+        data: null,
+    },
     messages: {
         loading: true,
         data: {

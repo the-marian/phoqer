@@ -49,8 +49,14 @@ export interface IChatOfferInfo {
     data: IOfferCard | null;
 }
 
+export interface IChatItem {
+    loading: boolean;
+    data: { chat_id: number; status: ChatStatus } | null;
+}
+
 export interface IStateChats {
     chats: IChatsList;
+    item: IChatItem;
     messages: IMessagesList;
     info: IChatOfferInfo;
 }

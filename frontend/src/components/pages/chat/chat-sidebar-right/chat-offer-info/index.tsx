@@ -17,8 +17,9 @@ import ProfileCard from '../../../../common/profile-card';
 import Tooltip from '../../../../common/tooltip';
 import Price from '../../../offers/single-offer/price';
 import Requirements from '../../../offers/single-offer/requirements';
+import ChatConfirmation from '../chat-confirmation';
+import ChatDeleteButton from '../chat-delete-button';
 
-import ChatConfirmation from './chat-confirmation';
 import ChatUserInfoHOC from './chat-user-info-hoc';
 
 const useStyles = createUseStyles((theme: Theme) => ({
@@ -94,6 +95,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
             },
         },
     },
+    flex: {
+        marginBottom: theme.rem(2),
+    },
     img: {
         display: 'block',
         height: theme.rem(20),
@@ -150,16 +154,19 @@ const ChatOfferInfo = (): ReactElement | null => {
             ) : (
                 <ChatUserInfoHOC id={offer.author_id}>
                     {profile => (
-                        <ProfileCard
-                            column
-                            id={profile?.id}
-                            firstName={profile?.first_name}
-                            lastName={profile?.last_name}
-                            lastActivity={profile?.last_activity}
-                            avatar={profile?.profile_img}
-                            userLocation={profile?.city}
-                            registerDate={profile?.date_joined}
-                        />
+                        <>
+                            <ChatDeleteButton className={css.flex} />
+                            <ProfileCard
+                                column
+                                id={profile?.id}
+                                firstName={profile?.first_name}
+                                lastName={profile?.last_name}
+                                lastActivity={profile?.last_activity}
+                                avatar={profile?.profile_img}
+                                userLocation={profile?.city}
+                                registerDate={profile?.date_joined}
+                            />
+                        </>
                     )}
                 </ChatUserInfoHOC>
             )}

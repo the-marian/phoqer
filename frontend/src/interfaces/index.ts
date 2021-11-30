@@ -8,4 +8,5 @@ export * from './notifications';
 export * from './offers';
 export * from './public-profile';
 export * from './region';
+export * from './popular-searches';
 export * from './store';

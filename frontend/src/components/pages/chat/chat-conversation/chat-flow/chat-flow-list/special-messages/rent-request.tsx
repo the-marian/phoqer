@@ -8,8 +8,8 @@ import { IChatOfferInfo, IMessages, IPublicProfile, IState } from '../../../../.
 import routes from '../../../../../../../utils/routes';
 import mixin from '../../../../../../../utils/theming/mixin';
 import { Theme } from '../../../../../../../utils/theming/theme';
-import Button from '../../../../../../common/button';
 import UserAvatar from '../../../../../../common/user-avatar';
+import ChatDeleteButton from '../../../../chat-sidebar-right/chat-delete-button';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     root: {
@@ -54,7 +54,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
     cancel: {
         ...mixin(theme).btn,
-        backgroundColor: theme.palette.gray[0],
+        backgroundColor: theme.palette.white,
         color: theme.palette.black[0],
     },
     user: {
@@ -115,12 +115,8 @@ const RentRequest = ({ message }: IProps): ReactElement | null => {
                     </a>
                 </Link>
             )}
-            <div className={css.flex}>
-                <Button primary className={css.approve}>
-                    Одобрить запрос
-                </Button>
-                <Button className={css.cancel}>Отклонить</Button>
-            </div>
+
+            <ChatDeleteButton className={css.flex} />
         </>
     );
 

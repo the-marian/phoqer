@@ -76,7 +76,6 @@ exports[`Favorite component match snapshot 1`] = `
           >
             <div
               class="wrp-0-2-19 lang-0-2-18"
-              tabindex="-1"
             >
               <p
                 aria-hidden="true"
@@ -115,38 +114,38 @@ exports[`Favorite component match snapshot 1`] = `
     </div>
   </header>
   <main
-    class="main-0-2-35 padding-0-2-36"
+    class="main-0-2-31 padding-0-2-32"
   >
     <div
       class="container-0-2-7"
     >
       <div
-        class="wrp-0-2-37"
+        class="wrp-0-2-33"
       >
         <h2
-          class="title-0-2-38"
+          class="title-0-2-34"
         >
           Favorite offers
         </h2>
         <div
-          class="link-0-2-39"
+          class="link-0-2-35"
         />
       </div>
       <div
-        class="empty-0-2-44"
+        class="empty-0-2-40"
       >
         <img
           alt=""
-          class="img-0-2-45"
+          class="img-0-2-41"
           src="/icons/empty.png"
         />
         <p
-          class="emptyText-0-2-46"
+          class="emptyText-0-2-42"
         >
           You don't have any offers yet. Don't be shy, create the first one
         </p>
         <a
-          class="link-0-2-47"
+          class="link-0-2-43"
           href="/offers/new/1"
         >
           Make an offer
@@ -155,7 +154,7 @@ exports[`Favorite component match snapshot 1`] = `
     </div>
   </main>
   <footer
-    class="footer-0-2-49"
+    class="footer-0-2-45"
   >
     <div
       class="container-0-2-7"
@@ -180,76 +179,76 @@ exports[`Favorite component match snapshot 1`] = `
         </small>
       </div>
       <div
-        class="wrp-0-2-50"
+        class="wrp-0-2-46"
       >
         <ul
-          class="list-0-2-51"
+          class="list-0-2-47"
         >
           <li
-            class="item-0-2-52"
+            class="item-0-2-48"
           >
             <a
-              class="link-0-2-53"
+              class="link-0-2-49"
               href="/static/help"
             >
               Help and Feedback
             </a>
           </li>
           <li
-            class="item-0-2-52"
+            class="item-0-2-48"
           >
             <a
-              class="link-0-2-53"
+              class="link-0-2-49"
               href="/static/business"
             >
               Advertising preferences
             </a>
           </li>
           <li
-            class="item-0-2-52"
+            class="item-0-2-48"
           >
             <a
-              class="link-0-2-53"
+              class="link-0-2-49"
               href="/static/rules"
             >
               Terms of service
             </a>
           </li>
           <li
-            class="item-0-2-52"
+            class="item-0-2-48"
           >
             <a
-              class="link-0-2-53"
+              class="link-0-2-49"
               href="/static/politic"
             >
               Privacy statement
             </a>
           </li>
           <li
-            class="item-0-2-52"
+            class="item-0-2-48"
           >
             <a
-              class="link-0-2-53"
+              class="link-0-2-49"
               href="/static/faq"
             >
               FAQ
             </a>
           </li>
           <li
-            class="item-0-2-52"
+            class="item-0-2-48"
           >
             <a
-              class="link-0-2-53"
+              class="link-0-2-49"
               href="/static/safety"
             >
               Safety rules
             </a>
           </li>
           <li
-            class="item-0-2-52"
+            class="item-0-2-48"
           >
             <a
-              class="link-0-2-53"
+              class="link-0-2-49"
               href="/static/map"
             >
               Site map
@@ -258,22 +257,22 @@ exports[`Favorite component match snapshot 1`] = `
         </ul>
         <div>
           <h3
-            class="title-0-2-56"
+            class="title-0-2-52"
           >
             Social networks:
           </h3>
           <ul
-            class="list-0-2-54"
+            class="list-0-2-50"
           >
             <li>
               <a
-                class="link-0-2-57"
+                class="link-0-2-53"
                 href="https://www.facebook.com/phoqer.inc"
                 rel="noopener noreferrer"
                 target="_blank"
               >
                 <svg
-                  class="svg-0-2-59"
+                  class="svg-0-2-55"
                   enable-background="new 0 0 24 24"
                   id="Bold"
                   viewBox="0 0 24 24"
@@ -287,13 +286,13 @@ exports[`Favorite component match snapshot 1`] = `
             </li>
             <li>
               <a
-                class="link-0-2-57"
+                class="link-0-2-53"
                 href="https://www.instagram.com/phoqer/"
                 rel="noopener noreferrer"
                 target="_blank"
               >
                 <svg
-                  class="svg-0-2-59"
+                  class="svg-0-2-55"
                   enable-background="new 0 0 24 24"
                   id="Bold"
                   viewBox="0 0 24 24"
@@ -315,13 +314,13 @@ exports[`Favorite component match snapshot 1`] = `
             </li>
             <li>
               <a
-                class="link-0-2-57"
+                class="link-0-2-53"
                 href="http://www.google.com/"
                 rel="noopener noreferrer"
                 target="_blank"
               >
                 <svg
-                  class="svg-0-2-59"
+                  class="svg-0-2-55"
                   viewBox="0 -47 512.00004 512"
                   xmlns="http://www.w3.org/2000/svg"
                 >
@@ -333,13 +332,13 @@ exports[`Favorite component match snapshot 1`] = `
             </li>
             <li>
               <a
-                class="link-0-2-57"
+                class="link-0-2-53"
                 href="https://t.me/phoqer"
                 rel="noopener noreferrer"
                 target="_blank"
               >
                 <svg
-                  class="svg-0-2-59"
+                  class="svg-0-2-55"
                   viewBox="0 -39 512.00011 512"
                   xmlns="http://www.w3.org/2000/svg"
                 >

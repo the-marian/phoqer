@@ -95,6 +95,7 @@ export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps
     // CATEGORIES
     ctx?.store?.dispatch({ type: types.GET_CATEGORIES_START });
     // OFFERS
+    ctx?.store?.dispatch({ type: types.GET_POPULAR_SEARCHES_START });
     ctx?.store?.dispatch({ type: types.GET_POPULAR_OFFERS_START });
     ctx?.store?.dispatch({
         type: types.OFFERS_SEARCH_LOCAL_PARAMS,

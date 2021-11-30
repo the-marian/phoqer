@@ -1,4 +1,4 @@
-import React, { MouseEvent, ReactElement, useEffect, useState } from 'react';
+import React, { ReactElement, useEffect, useRef, useState } from 'react';
 
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons/faChevronDown';
@@ -104,18 +104,15 @@ const useStyles = createUseStyles((theme: Theme) => ({
         top: 'unset',
         bottom: '120%',
     },
-    iconImageText: {
-        marginLeft: theme.rem(1),
-    },
     box: {
         position: 'relative',
-        maxHeight: theme.rem(45),
+        maxHeight: theme.rem(55),
         padding: theme.rem(0.8, 0),
         background: theme.palette.white,
         borderRadius: theme.radius,
         overflowY: 'auto',
         ...theme.media(768).max({
-            maxHeight: theme.rem(35),
+            maxHeight: theme.rem(45),
         }),
     },
     '.capitalize': {
@@ -132,63 +129,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
             },
         },
     },
-    item: {
-        cursor: 'pointer',
-        borderBottom: theme.border(0.1, theme.palette.gray[1]),
-        '&:nth-last-of-type(1)': {
-            borderBottom: 'none',
-        },
-        '& > button': {
-            display: 'block',
-            width: '100%',
-            padding: theme.rem(2),
-            textAlign: 'left',
-            background: theme.palette.white,
-            color: theme.palette.black[0],
-            fontSize: theme.rem(1.4),
-            ...theme.hover({
-                background: theme.palette.primary[0],
-                color: theme.palette.trueWhite,
-            }),
-            ...theme.media(768).max({
-                padding: theme.rem(1.5, 1),
-                fontSize: theme.rem(1.6),
-                ...theme.hover({
-                    background: theme.palette.white,
-                    color: theme.palette.black[0],
-                }),
-            }),
-        },
-    },
-    itemEmpty: {
-        '& > button': {
-            background: theme.palette.white,
-        },
-    },
-    sub: {
-        '& > button': {
-            position: 'relative',
-            width: '100%',
-            padding: theme.rem(2, 2, 2, 4),
-            background: theme.palette.gray[0],
-            color: theme.palette.black[0],
-            fontSize: theme.rem(1.4),
-            textAlign: 'left',
 
-            ...theme.hover({
-                background: theme.palette.primary[0],
-                color: theme.palette.trueWhite,
-            }),
-            ...theme.media(768).max({
-                padding: theme.rem(1.5),
-                fontSize: theme.rem(1.6),
-                ...theme.hover({
-                    background: theme.palette.gray[0],
-                    color: theme.palette.black[0],
-                }),
-            }),
-        },
-    },
     white: {
         background: theme.palette.white,
         color: theme.palette.black[0],
@@ -231,8 +172,9 @@ const DropDown = ({
     closeOnScroll = false,
 }: Props): ReactElement => {
     const css = useStyles();
-    const media = useMedia(768);
     const trans = useTrans();
+    const media = useMedia(768);
+    const ref = useRef<HTMLDivElement>(null);
 
     const [top, setTop] = useState<boolean>(false);
     const [drop, setDrop] = useState<boolean>(false);
@@ -245,7 +187,7 @@ const DropDown = ({
         if (!defaultValue && placeholder) setSelected(placeholder);
     }, [defaultValue, placeholder]);
 
-    const handleClick = (event: MouseEvent<HTMLParagraphElement>): void => {
+    const handleClick = (event: React.MouseEvent<HTMLParagraphElement>): void => {
         event.stopPropagation();
         if (media) {
             setTop(document.body.clientHeight / event.currentTarget.getBoundingClientRect().top < 1.6);
@@ -253,17 +195,10 @@ const DropDown = ({
         } else {
             modal.open(
                 <StickyModal>
-                    <ValuesList data={data} onSelect={handleSelect} withSub={withSub} css={css} />
+                    <ValuesList data={data} onSelect={handleSelect} withSub={withSub} />
                 </StickyModal>,
             );
         }
-    };
-
-    const handleBlur = (): void => {
-        if (!media) return;
-        setTimeout(() => {
-            setDrop(false);
-        }, 300);
     };
 
     const handleSelect = (name: string, slug: string, type: 'main' | 'sub'): void => {
@@ -272,7 +207,7 @@ const DropDown = ({
         media ? setDrop(!drop) : modal.close();
     };
 
-    const handleReset = (event: MouseEvent<HTMLSpanElement>): void => {
+    const handleReset = (event: React.MouseEvent<HTMLSpanElement>): void => {
         event.stopPropagation();
         onChange(null);
         setSelected(placeholder || '');
@@ -289,8 +224,22 @@ const DropDown = ({
         }
     }, [drop, closeOnScroll]);
 
+    useEffect(() => {
+        if (drop && ref.current) {
+            const handler = (event: MouseEvent & { path?: Element[] }): void => {
+                if (!event.path?.includes(ref.current as Element)) {
+                    setDrop(false);
+                }
+            };
+            document.body.addEventListener('click', handler);
+            return () => {
+                document.body.removeEventListener('click', handler);
+            };
+        }
+    }, [drop]);
+
     return (
-        <div className={clsx(css.wrp, className)} tabIndex={-1} onBlur={handleBlur}>
+        <div ref={ref} className={clsx(css.wrp, className)}>
             <p
                 className={clsx(
                     css.inner,
@@ -331,7 +280,7 @@ const DropDown = ({
                     style={toLeft ? { right: 0, minWidth: minWidth + 'rem' } : { left: 0, minWidth: minWidth + 'rem' }}
                 >
                     <div className={clsx(css.box, 'box')}>
-                        <ValuesList data={data} onSelect={handleSelect} withSub={withSub} css={css} />
+                        <ValuesList data={data} onSelect={handleSelect} withSub={withSub} />
                     </div>
                 </div>
             </CSSTransition>

@@ -74,7 +74,7 @@ const NewChat = (): ReactElement => {
             payload: { offer_id: offerId },
             callback: (id: number) => {
                 setLoading(false);
-                history.push(routes.chat(id));
+                history.push(routes.chat.item(id));
             },
         });
     };

@@ -8,7 +8,7 @@ import { IOffers } from './offers';
 import { IPublicProfile, IStateProfile } from './public-profile';
 import { IRegion } from './region';
 
-import { IStateChats, IStateComments } from './index';
+import { IStateChats, IStateComments, PopularSearches } from './index';
 
 export interface IState {
     auth: IAuth;
@@ -21,6 +21,7 @@ export interface IState {
     profiles: IStateProfile;
     chat: IStateChats;
     notifications: NotificationsState;
+    popularSearches: PopularSearches;
 }
 
 export interface IStore extends Store<IState, AnyAction> {

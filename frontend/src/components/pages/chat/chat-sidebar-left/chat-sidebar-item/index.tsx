@@ -99,7 +99,7 @@ const ChatSidebarItem = ({ chat, active = false }: IProps): ReactElement => {
     return active ? (
         <p className={clsx(css.wrp, css.active, chat.new_messages && css.unread)}>{renderChatInner()}</p>
     ) : (
-        <Link href={routes.chat(chat.chat_id)}>
+        <Link href={routes.chat.item(chat.chat_id)}>
             <a className={clsx(css.wrp, chat.new_messages && css.unread)}>{renderChatInner()}</a>
         </Link>
     );

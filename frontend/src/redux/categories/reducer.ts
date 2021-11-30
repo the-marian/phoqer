@@ -6,7 +6,7 @@ import categoriesInit from './init-state';
 import IAction from './interfaces';
 import types from './types';
 
-const user = (state: ICategories[] = categoriesInit, { type, payload }: IAction): ICategories[] => {
+const categories = (state: ICategories[] = categoriesInit, { type, payload }: IAction): ICategories[] => {
     switch (type) {
         case HYDRATE:
             return (payload as IState).categories;
@@ -23,4 +23,4 @@ const user = (state: ICategories[] = categoriesInit, { type, payload }: IAction)
     }
 };
 
-export default user;
+export default categories;

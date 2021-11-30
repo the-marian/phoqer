@@ -84,7 +84,7 @@ const OfferCard = ({ offer, showFavoriteBtn = true }: IProps): ReactElement => {
     const handleOpenChat = (): void => {
         if (!isLogin()) return;
         dispatch({ type: types.CHANGE_CHAT_TYPE, payload: 'i_am_client' });
-        history.push(routes.newMessage(id));
+        history.push(routes.chat.new(id));
     };
 
     const USER_ACTIONS = {

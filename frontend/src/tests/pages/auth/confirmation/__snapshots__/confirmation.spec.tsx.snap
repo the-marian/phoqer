@@ -76,7 +76,6 @@ exports[`Confirmation component match snapshot 1`] = `
           >
             <div
               class="wrp-0-2-26 lang-0-2-25"
-              tabindex="-1"
             >
               <p
                 aria-hidden="true"

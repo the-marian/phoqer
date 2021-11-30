@@ -76,7 +76,6 @@ exports[`Offers component match snapshot 1`] = `
           >
             <div
               class="wrp-0-2-19 lang-0-2-18"
-              tabindex="-1"
             >
               <p
                 aria-hidden="true"
@@ -115,22 +114,22 @@ exports[`Offers component match snapshot 1`] = `
     </div>
   </header>
   <main
-    class="main-0-2-35 padding-0-2-36"
+    class="main-0-2-31 padding-0-2-32"
   >
     <div
-      class="root-0-2-37"
+      class="root-0-2-33"
       style="background-image: url();"
     >
       <div
-        class="container-0-2-7 container-0-2-38"
+        class="container-0-2-7 container-0-2-34"
       >
         <h2
-          class="title-0-2-39"
+          class="title-0-2-35"
         >
           Phoqer
         </h2>
         <p
-          class="subtitle-0-2-40"
+          class="subtitle-0-2-36"
         >
           Is an online advertising platform that brings people together to exchange goods and services
         </p>
@@ -139,16 +138,16 @@ exports[`Offers component match snapshot 1`] = `
           method="post"
         >
           <div
-            class="wrp-0-2-41"
+            class="wrp-0-2-37"
           >
             <div
-              class="form-0-2-42"
+              class="form-0-2-38"
             >
               <div
-                class="search-0-2-43"
+                class="search-0-2-39"
               >
                 <button
-                  class="icon-0-2-45"
+                  class="icon-0-2-41"
                   type="submit"
                 >
                   <svg
@@ -168,13 +167,13 @@ exports[`Offers component match snapshot 1`] = `
                   </svg>
                 </button>
                 <input
-                  class="input-0-2-44"
+                  class="input-0-2-40"
                   placeholder="What are you looking for?"
                   type="text"
                   value=""
                 />
                 <button
-                  class="reset-0-2-47 resetHidden-0-2-48"
+                  class="reset-0-2-43 resetHidden-0-2-44"
                   type="button"
                 >
                   <svg
@@ -194,17 +193,16 @@ exports[`Offers component match snapshot 1`] = `
                   </svg>
                 </button>
                 <div
-                  class="container-0-2-49"
+                  class="container-0-2-45"
                 >
                   <span
-                    class="line-0-2-52"
+                    class="line-0-2-48"
                   />
                   <div
-                    class="categories-0-2-51"
+                    class="categories-0-2-47"
                   >
                     <div
                       class="wrp-0-2-19"
-                      tabindex="-1"
                     >
                       <p
                         aria-hidden="true"
@@ -239,10 +237,10 @@ exports[`Offers component match snapshot 1`] = `
                     </div>
                   </div>
                   <span
-                    class="line-0-2-52"
+                    class="line-0-2-48"
                   />
                   <button
-                    class="input-0-2-53 region-0-2-50"
+                    class="input-0-2-49 region-0-2-46"
                     type="button"
                   >
                     <svg
@@ -261,7 +259,7 @@ exports[`Offers component match snapshot 1`] = `
                       />
                     </svg>
                     <span
-                      class="placeholder-0-2-54"
+                      class="placeholder-0-2-50"
                     >
                       Select your region...
                     </span>
@@ -277,18 +275,18 @@ exports[`Offers component match snapshot 1`] = `
       class="container-0-2-7"
     >
       <div
-        class="root-0-2-57"
+        class="root-0-2-53"
       >
         <div
-          class="wrp-0-2-58"
+          class="wrp-0-2-54"
         >
           <h2
-            class="title-0-2-59"
+            class="title-0-2-55"
           >
             Filters
           </h2>
           <button
-            class="close-0-2-60"
+            class="close-0-2-56"
             type="button"
           >
             <svg
@@ -312,40 +310,40 @@ exports[`Offers component match snapshot 1`] = `
           </button>
         </div>
         <hr
-          class="hr-0-2-65"
+          class="hr-0-2-61"
         />
         <div
-          class="form-0-2-61"
+          class="form-0-2-57"
         >
           <div
-            class="formInner-0-2-62"
+            class="formInner-0-2-58"
           >
             <div
-              class="root-0-2-66"
+              class="root-0-2-62"
             >
               <h4
-                class="title-0-2-69"
+                class="title-0-2-65"
               >
                 Price per hour / uah.
               </h4>
               <div
-                class="wrp-0-2-67"
+                class="wrp-0-2-63"
               >
                 <input
-                  class="input-0-2-68"
+                  class="input-0-2-64"
                   placeholder="min"
                   type="text"
                   value=""
                 />
                 <input
-                  class="input-0-2-68"
+                  class="input-0-2-64"
                   placeholder="max"
                   type="text"
                   value="200000"
                 />
               </div>
               <div
-                class="range-0-2-70"
+                class="range-0-2-66"
               >
                 <div
                   class="rc-slider"
@@ -387,20 +385,19 @@ exports[`Offers component match snapshot 1`] = `
               </div>
             </div>
             <div
-              class="root-0-2-71"
+              class="root-0-2-67"
             >
               <h4
-                class="title-0-2-72"
+                class="title-0-2-68"
               >
                 Rental period
               </h4>
               <div
                 class="wrp-0-2-19"
-                tabindex="-1"
               >
                 <p
                   aria-hidden="true"
-                  class="inner-0-2-20 white-0-2-34 placeholder-0-2-25"
+                  class="inner-0-2-20 white-0-2-30 placeholder-0-2-25"
                   style="height: 4rem;"
                 >
                   <span
@@ -431,20 +428,19 @@ exports[`Offers component match snapshot 1`] = `
               </div>
             </div>
             <div
-              class="root-0-2-71"
+              class="root-0-2-67"
             >
               <h4
-                class="title-0-2-72"
+                class="title-0-2-68"
               >
                 Sort
               </h4>
               <div
                 class="wrp-0-2-19"
-                tabindex="-1"
               >
                 <p
                   aria-hidden="true"
-                  class="inner-0-2-20 white-0-2-34 placeholder-0-2-25"
+                  class="inner-0-2-20 white-0-2-30 placeholder-0-2-25"
                   style="height: 4rem;"
                 >
                   <span
@@ -475,20 +471,19 @@ exports[`Offers component match snapshot 1`] = `
               </div>
             </div>
             <div
-              class="root-0-2-71"
+              class="root-0-2-67"
             >
               <h4
-                class="title-0-2-72"
+                class="title-0-2-68"
               >
                 Status
               </h4>
               <div
                 class="wrp-0-2-19"
-                tabindex="-1"
               >
                 <p
                   aria-hidden="true"
-                  class="inner-0-2-20 white-0-2-34 placeholder-0-2-25"
+                  class="inner-0-2-20 white-0-2-30 placeholder-0-2-25"
                   style="height: 4rem;"
                 >
                   <span
@@ -520,39 +515,39 @@ exports[`Offers component match snapshot 1`] = `
             </div>
           </div>
           <div
-            class="root-0-2-73"
+            class="root-0-2-69"
           >
             <button
-              class="btn-0-2-74"
+              class="btn-0-2-70"
               name="top"
               type="button"
             >
               <span
-                class="label-0-2-75"
+                class="label-0-2-71"
               />
               <span>
                 TOP offers only
               </span>
             </button>
             <button
-              class="btn-0-2-74"
+              class="btn-0-2-70"
               name="no_deposit"
               type="button"
             >
               <span
-                class="label-0-2-75"
+                class="label-0-2-71"
               />
               <span>
                 Without deposit
               </span>
             </button>
             <button
-              class="btn-0-2-74"
+              class="btn-0-2-70"
               name="is_deliverable"
               type="button"
             >
               <span
-                class="label-0-2-75"
+                class="label-0-2-71"
               />
               <span>
                 With delivery
@@ -560,10 +555,10 @@ exports[`Offers component match snapshot 1`] = `
             </button>
           </div>
           <div
-            class="btnWrp-0-2-63"
+            class="btnWrp-0-2-59"
           >
             <button
-              class="reset-0-2-64"
+              class="reset-0-2-60"
               type="button"
             >
               <svg
@@ -589,18 +584,18 @@ exports[`Offers component match snapshot 1`] = `
         </div>
       </div>
       <div
-        class="root-0-2-77"
+        class="root-0-2-73"
       >
         <div
-          class="wrp-0-2-78"
+          class="wrp-0-2-74"
         >
           <h2
-            class="title-0-2-79"
+            class="title-0-2-75"
           >
             Popular queries
           </h2>
           <button
-            class="close-0-2-80"
+            class="close-0-2-76"
             type="button"
           >
             <svg
@@ -624,77 +619,25 @@ exports[`Offers component match snapshot 1`] = `
           </button>
         </div>
         <hr
-          class="hr-0-2-81"
+          class="hr-0-2-77"
         />
-        <ul
-          class="list-0-2-82"
-        >
-          <li>
-            <a
-              class="link-0-2-83"
-              href="/offers?search=%D0%97%D0%B0%D0%B4%D0%BD%D0%B8%D0%B9%20%D0%B2%D0%B8%D0%BD%D1%82%20%D0%92%D0%BB%D0%B0%D0%B4%D0%B8%D0%BA%D0%B0"
-            >
-              Задний винт Владика
-            </a>
-          </li>
-          <li>
-            <a
-              class="link-0-2-83"
-              href="/offers?search=%D0%97%D0%B0%D0%B4%D0%BD%D0%B5%D0%B5%20%D1%81%D0%B0%D0%BB%D1%8C%D1%82%D0%BE%20%D0%92%D0%BB%D0%B0%D0%B4%D0%B8%D0%BA%D0%B0%203"
-            >
-              Заднее сальто Владика 3
-            </a>
-          </li>
-          <li>
-            <a
-              class="link-0-2-83"
-              href="/offers?search=%D0%9A%D1%82%D0%BE%20%D1%82%D0%B0%D0%BA%D0%BE%D0%B9%20%D0%92%D0%BB%D0%B0%D0%B4%20%D0%92%D0%B0%D1%81%D0%B8%D0%BB%D0%B5%D0%BD%D0%BA%D0%BE?"
-            >
-              Кто такой Влад Василенко?
-            </a>
-          </li>
-          <li>
-            <a
-              class="link-0-2-83"
-              href="/offers?search=%D0%97%D0%B0%D0%B4%D0%BD%D0%B8%D0%B9%20%D0%B2%D0%B8%D0%BD%D1%82%20%D0%92%D0%BB%D0%B0%D0%B4%D0%B8%D0%BA%D0%B0%20%D1%81%D0%BA%D0%B0%D1%87%D0%B0%D1%82%D1%8C%20%D0%B1%D0%B5%D0%B7%20%D1%81%D0%BC%D1%81%20%D0%B8%20%D1%80%D0%B5%D0%B3%D0%B8%D1%81%D1%82%D1%80%D0%B0%D1%86%D0%B8%D0%B8"
-            >
-              Задний винт Владика скачать без смс и регистрации
-            </a>
-          </li>
-          <li>
-            <a
-              class="link-0-2-83"
-              href="/offers?search=%D0%92%D0%BB%D0%B0%D0%B4%D0%B8%D1%81%D0%BB%D0%B0%D0%B2!%20%D0%91%D0%B5%D0%B9%D0%B1%D0%B8%20%D0%B4%D0%BE%D0%BD%D1%82%20%D1%85%D1%8C%D0%BE%D1%80%D1%82%20%D0%BC%D0%B8,%20%D0%B4%D0%BE%D0%BD%D1%82%20%D1%85%D1%8C%D0%BE%D1%80%D1%82%20%D0%BC%D0%B8,%20%D0%BD%D0%BE%20%D0%BC%D0%BE%D1%80!"
-            >
-              Владислав! Бейби донт хьорт ми, донт хьорт ми, но мор!
-            </a>
-          </li>
-          <li>
-            <a
-              class="link-0-2-83"
-              href="/offers?search=%D0%97%D0%B0%D0%B4%D0%BD%D0%B5%D0%B5%20%D1%81%D0%B0%D0%BB%D1%8C%D1%82%D0%BE%20%D0%92%D0%BB%D0%B0%D0%B4%D0%B8%D0%BA%D0%B0%202"
-            >
-              Заднее сальто Владика 2
-            </a>
-          </li>
-        </ul>
       </div>
     </div>
     <div
-      class="container-0-2-7 checkbox-0-2-89"
+      class="container-0-2-7 checkbox-0-2-85"
       id="products"
     >
       <h4
-        class="title-0-2-88"
+        class="title-0-2-84"
       >
         Show TOP offers
       </h4>
       <button
-        class="flex-0-2-90"
+        class="flex-0-2-86"
         type="button"
       >
         <div
-          class="wrp-0-2-91 open-0-2-92"
+          class="wrp-0-2-87 open-0-2-88"
         >
           <span>
             open
@@ -710,63 +653,63 @@ exports[`Offers component match snapshot 1`] = `
       id="offers-list"
     >
       <div
-        class="wrp-0-2-93"
+        class="wrp-0-2-89"
       >
         <h2
-          class="title-0-2-94"
+          class="title-0-2-90"
         >
           Searching results
         </h2>
         <div
-          class="link-0-2-95"
+          class="link-0-2-91"
         />
       </div>
       <div
-        class="empty-0-2-100"
+        class="empty-0-2-96"
       >
         <img
           alt=""
-          class="img-0-2-101"
+          class="img-0-2-97"
           src="/icons/empty.png"
         />
         <p
-          class="emptyText-0-2-102"
+          class="emptyText-0-2-98"
         >
           You don't have any offers yet. Don't be shy, create the first one
         </p>
         <a
-          class="link-0-2-103"
+          class="link-0-2-99"
           href="/offers/new/1"
         >
           Make an offer
         </a>
       </div>
       <div
-        class="wrp-0-2-105 loading-0-2-99"
+        class="wrp-0-2-101 loading-0-2-95"
       >
         <div
-          class="card-0-2-106"
+          class="card-0-2-102"
         >
           <div
-            class="img-0-2-108"
+            class="img-0-2-104"
           />
           <div
-            class="text-0-2-111"
+            class="text-0-2-107"
           />
           <div
-            class="text-0-2-111"
+            class="text-0-2-107"
           />
           <div
-            class="text-0-2-111 short-0-2-112"
+            class="text-0-2-107 short-0-2-108"
           />
         </div>
       </div>
     </div>
     <div
-      class="wrp-0-2-120"
+      class="wrp-0-2-116"
     >
       <div
-        class="slick-slider slider-0-2-121 slick-initialized"
+        class="slick-slider slider-0-2-117 slick-initialized"
         dir="ltr"
       >
         <button
@@ -800,7 +743,7 @@ exports[`Offers component match snapshot 1`] = `
             >
               <div>
                 <picture
-                  class="img-0-2-122"
+                  class="img-0-2-118"
                   style="width: 100%; display: inline-block;"
                   tabindex="-1"
                 >
@@ -818,7 +761,7 @@ exports[`Offers component match snapshot 1`] = `
                   />
                   <img
                     alt="phoqer"
-                    class="img-0-2-122"
+                    class="img-0-2-118"
                     src="/about/camera.jpeg"
                   />
                 </picture>
@@ -868,7 +811,7 @@ exports[`Offers component match snapshot 1`] = `
             >
               <div>
                 <picture
-                  class="img-0-2-122"
+                  class="img-0-2-118"
                   style="width: 100%; display: inline-block;"
                   tabindex="-1"
                 >
@@ -886,7 +829,7 @@ exports[`Offers component match snapshot 1`] = `
                   />
                   <img
                     alt="phoqer"
-                    class="img-0-2-122"
+                    class="img-0-2-118"
                     src="/about/camera.jpeg"
                   />
                 </picture>
@@ -939,25 +882,25 @@ exports[`Offers component match snapshot 1`] = `
         </button>
       </div>
       <h2
-        class="title-0-2-123"
+        class="title-0-2-119"
       >
         phoqer
       </h2>
       <div
-        class="content-0-2-124"
+        class="content-0-2-120"
       >
         <p
-          class="text-0-2-125"
+          class="text-0-2-121"
         >
           You become what you surround yourself with. We fully agree with this phrase. The things we buy make a person. Sometimes one simple thing can make us truly happy.
         </p>
         <p
-          class="text-0-2-125"
+          class="text-0-2-121"
         >
           Therefore, we have collected a variety of products on our website, so that everyone can find what they want. Easy. Quickly. At a reasonable price and good quality.
         </p>
         <p
-          class="text-0-2-125"
+          class="text-0-2-121"
         >
           We wanted to create something better than an ordinary supermarket, where we walk around with a cart among the counters, hoping to find a specific thing. Online shopping saves us from many inconveniences. Here you do not have to stand in line at the checkout, and in the end find out that the payment is only in cash. Your child will not get lost somewhere in the sections with toys, and you will not have to tell the consultant that you wanted to "just look".
         </p>
@@ -965,7 +908,7 @@ exports[`Offers component match snapshot 1`] = `
     </div>
   </main>
   <footer
-    class="footer-0-2-127"
+    class="footer-0-2-123"
   >
     <div
       class="container-0-2-7"
@@ -990,76 +933,76 @@ exports[`Offers component match snapshot 1`] = `
         </small>
       </div>
       <div
-        class="wrp-0-2-128"
+        class="wrp-0-2-124"
       >
         <ul
-          class="list-0-2-129"
+          class="list-0-2-125"
         >
           <li
-            class="item-0-2-130"
+            class="item-0-2-126"
           >
             <a
-              class="link-0-2-131"
+              class="link-0-2-127"
               href="/static/help"
             >
               Help and Feedback
             </a>
           </li>
           <li
-            class="item-0-2-130"
+            class="item-0-2-126"
           >
             <a
-              class="link-0-2-131"
+              class="link-0-2-127"
               href="/static/business"
             >
               Advertising preferences
             </a>
           </li>
           <li
-            class="item-0-2-130"
+            class="item-0-2-126"
           >
             <a
-              class="link-0-2-131"
+              class="link-0-2-127"
               href="/static/rules"
             >
               Terms of service
             </a>
           </li>
           <li
-            class="item-0-2-130"
+            class="item-0-2-126"
           >
             <a
-              class="link-0-2-131"
+              class="link-0-2-127"
               href="/static/politic"
             >
               Privacy statement
             </a>
           </li>
           <li
-            class="item-0-2-130"
+            class="item-0-2-126"
           >
             <a
-              class="link-0-2-131"
+              class="link-0-2-127"
               href="/static/faq"
             >
               FAQ
             </a>
           </li>
           <li
-            class="item-0-2-130"
+            class="item-0-2-126"
           >
             <a
-              class="link-0-2-131"
+              class="link-0-2-127"
               href="/static/safety"
             >
               Safety rules
             </a>
           </li>
           <li
-            class="item-0-2-130"
+            class="item-0-2-126"
           >
             <a
-              class="link-0-2-131"
+              class="link-0-2-127"
               href="/static/map"
             >
               Site map
@@ -1068,22 +1011,22 @@ exports[`Offers component match snapshot 1`] = `
         </ul>
         <div>
           <h3
-            class="title-0-2-134"
+            class="title-0-2-130"
           >
             Social networks:
           </h3>
           <ul
-            class="list-0-2-132"
+            class="list-0-2-128"
           >
             <li>
               <a
-                class="link-0-2-135"
+                class="link-0-2-131"
                 href="https://www.facebook.com/phoqer.inc"
                 rel="noopener noreferrer"
                 target="_blank"
               >
                 <svg
-                  class="svg-0-2-137"
+                  class="svg-0-2-133"
                   enable-background="new 0 0 24 24"
                   id="Bold"
                   viewBox="0 0 24 24"
@@ -1097,13 +1040,13 @@ exports[`Offers component match snapshot 1`] = `
             </li>
             <li>
               <a
-                class="link-0-2-135"
+                class="link-0-2-131"
                 href="https://www.instagram.com/phoqer/"
                 rel="noopener noreferrer"
                 target="_blank"
               >
                 <svg
-                  class="svg-0-2-137"
+                  class="svg-0-2-133"
                   enable-background="new 0 0 24 24"
                   id="Bold"
                   viewBox="0 0 24 24"
@@ -1125,13 +1068,13 @@ exports[`Offers component match snapshot 1`] = `
             </li>
             <li>
               <a
-                class="link-0-2-135"
+                class="link-0-2-131"
                 href="http://www.google.com/"
                 rel="noopener noreferrer"
                 target="_blank"
               >
                 <svg
-                  class="svg-0-2-137"
+                  class="svg-0-2-133"
                   viewBox="0 -47 512.00004 512"
                   xmlns="http://www.w3.org/2000/svg"
                 >
@@ -1143,13 +1086,13 @@ exports[`Offers component match snapshot 1`] = `
             </li>
             <li>
               <a
-                class="link-0-2-135"
+                class="link-0-2-131"
                 href="https://t.me/phoqer"
                 rel="noopener noreferrer"
                 target="_blank"
               >
                 <svg
-                  class="svg-0-2-137"
+                  class="svg-0-2-133"
                   viewBox="0 -39 512.00011 512"
                   xmlns="http://www.w3.org/2000/svg"
                 >

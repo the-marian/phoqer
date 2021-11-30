@@ -54,7 +54,10 @@ const MessagesChat = (): ReactElement => {
     useChatListUpdate();
 
     useEffect(() => {
-        if (chatId) dispatch({ type: types.GET_MESSAGES_START, payload: +chatId });
+        if (chatId) {
+            dispatch({ type: types.GET_MESSAGES_START, payload: +chatId });
+            dispatch({ type: types.GET_CHAT_ITEM_START, payload: +chatId });
+        }
     }, [dispatch, chatId]);
 
     useEffect(() => {

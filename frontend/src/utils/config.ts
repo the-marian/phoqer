@@ -1,6 +1,8 @@
 import { Themes } from '../interfaces';
 
-const ws = process.browser ? `ws://${window.location.host}/api/` : 'ws://phoqer.com/api/';
+const ws = process.browser
+    ? `ws://${window.location.host.includes('localhost') ? 'dev.phoqer.com' : window.location.host}/api/`
+    : 'ws://phoqer.com/api/';
 
 const config = {
     socketUrl: (version = 'v1'): string => ws + version,

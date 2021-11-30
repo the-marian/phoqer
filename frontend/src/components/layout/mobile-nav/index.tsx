@@ -128,7 +128,7 @@ const MobileNav = (): ReactElement | null => {
     return auth?.access_token && !media && user ? (
         <ul className={css.list}>
             <li className={css.item}>
-                <Link href={routes.chat()}>
+                <Link href={routes.chat.item()}>
                     <a className={css.button}>
                         <div className={css.icon}>
                             <FontAwesomeIcon icon={faEnvelope} />

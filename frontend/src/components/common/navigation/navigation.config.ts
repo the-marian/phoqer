@@ -23,7 +23,7 @@ export const getBaseNavList = (count: ITabsNum = temp): ITabs[] => [
     {
         id: 'chat',
         text: 'chat',
-        link: routes.chat(),
+        link: routes.chat.item(),
         icon: faEnvelope,
         count: count?.messages,
     },

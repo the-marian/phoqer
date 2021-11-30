@@ -5,6 +5,7 @@ import commentsTypes from './comments/types';
 import generalTypes from './config/types';
 import notificationsTypes from './notifications/types';
 import offersTypes from './offers/types';
+import popularSearchesTypes from './popular-searches/types';
 import profileTypes from './profiles/types';
 import regionTypes from './region/types';
 
@@ -18,6 +19,7 @@ const types = {
     ...profileTypes,
     ...regionTypes,
     ...notificationsTypes,
+    ...popularSearchesTypes,
 };
 
 export default types;

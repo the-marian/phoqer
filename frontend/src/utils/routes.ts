@@ -14,8 +14,12 @@ const routes = {
         private: '/profile/private',
     },
     my_offers: (status = 'all'): string => `/my-offers/${status}`,
-    chat: (chat: Primitive = ''): string => `/chat/${chat}`,
-    newMessage: (offerId: Primitive = ''): string => `/chat/new/${offerId}`,
+
+    chat: {
+        list: '/chat',
+        item: (chat: Primitive = ''): string => `/chat/${chat}`,
+        new: (offerId: Primitive = ''): string => `/chat/new/${offerId}`,
+    },
     settings: (status: Primitive = 'general'): string => `/settings/${status}`,
     notifications: '/notifications',
     referral: '/referral',

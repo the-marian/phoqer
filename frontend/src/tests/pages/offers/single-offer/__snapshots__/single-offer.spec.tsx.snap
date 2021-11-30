@@ -71,7 +71,6 @@ exports[`SingleOfferPage component default match snapshot 1`] = `
           >
             <div
               class="wrp-0-2-26 lang-0-2-25"
-              tabindex="-1"
             >
               <p
                 aria-hidden="true"
@@ -110,36 +109,36 @@ exports[`SingleOfferPage component default match snapshot 1`] = `
     </div>
   </header>
   <main
-    class="main-0-2-42 padding-0-2-43"
+    class="main-0-2-38 padding-0-2-39"
   >
     <div
       class="container-0-2-14"
     >
       <h1
-        class="title-0-2-50"
+        class="title-0-2-46"
       >
         PHOQER is an online platform that brings people together to share goods and services. PHOQER - here you will find what you are looking for! By clicking the Submit button, you will be able to place offers on any topic easily and quickly.
       </h1>
       <div
-        class="container-0-2-46"
+        class="container-0-2-42"
       >
         <img
           alt="no data"
-          class="img-0-2-44"
+          class="img-0-2-40"
           src="/no_data.gif"
         />
         <h2
-          class="title-0-2-47"
+          class="title-0-2-43"
         >
           404
         </h2>
         <p
-          class="text-0-2-48"
+          class="text-0-2-44"
         >
           This offer does not exist or has been deleted. You can always find a similar offer on Phoqer
         </p>
         <a
-          class="link-0-2-49"
+          class="link-0-2-45"
           href="/"
         >
           Go to Home page
@@ -148,7 +147,7 @@ exports[`SingleOfferPage component default match snapshot 1`] = `
     </div>
   </main>
   <footer
-    class="footer-0-2-52"
+    class="footer-0-2-48"
   >
     <div
       class="container-0-2-14"
@@ -173,76 +172,76 @@ exports[`SingleOfferPage component default match snapshot 1`] = `
         </small>
       </div>
       <div
-        class="wrp-0-2-53"
+        class="wrp-0-2-49"
       >
         <ul
-          class="list-0-2-54"
+          class="list-0-2-50"
         >
           <li
-            class="item-0-2-55"
+            class="item-0-2-51"
           >
             <a
-              class="link-0-2-56"
+              class="link-0-2-52"
               href="/static/help"
             >
               Help and Feedback
             </a>
           </li>
           <li
-            class="item-0-2-55"
+            class="item-0-2-51"
           >
             <a
-              class="link-0-2-56"
+              class="link-0-2-52"
               href="/static/business"
             >
               Advertising preferences
             </a>
           </li>
           <li
-            class="item-0-2-55"
+            class="item-0-2-51"
           >
             <a
-              class="link-0-2-56"
+              class="link-0-2-52"
               href="/static/rules"
             >
               Terms of service
             </a>
           </li>
           <li
-            class="item-0-2-55"
+            class="item-0-2-51"
           >
             <a
-              class="link-0-2-56"
+              class="link-0-2-52"
               href="/static/politic"
             >
               Privacy statement
             </a>
           </li>
           <li
-            class="item-0-2-55"
+            class="item-0-2-51"
           >
             <a
-              class="link-0-2-56"
+              class="link-0-2-52"
               href="/static/faq"
             >
               FAQ
             </a>
           </li>
           <li
-            class="item-0-2-55"
+            class="item-0-2-51"
           >
             <a
-              class="link-0-2-56"
+              class="link-0-2-52"
               href="/static/safety"
             >
               Safety rules
             </a>
           </li>
           <li
-            class="item-0-2-55"
+            class="item-0-2-51"
           >
             <a
-              class="link-0-2-56"
+              class="link-0-2-52"
               href="/static/map"
             >
               Site map
@@ -251,22 +250,22 @@ exports[`SingleOfferPage component default match snapshot 1`] = `
         </ul>
         <div>
           <h3
-            class="title-0-2-59"
+            class="title-0-2-55"
           >
             Social networks:
           </h3>
           <ul
-            class="list-0-2-57"
+            class="list-0-2-53"
           >
             <li>
               <a
-                class="link-0-2-60"
+                class="link-0-2-56"
                 href="https://www.facebook.com/phoqer.inc"
                 rel="noopener noreferrer"
                 target="_blank"
               >
                 <svg
-                  class="svg-0-2-62"
+                  class="svg-0-2-58"
                   enable-background="new 0 0 24 24"
                   id="Bold"
                   viewBox="0 0 24 24"
@@ -280,13 +279,13 @@ exports[`SingleOfferPage component default match snapshot 1`] = `
             </li>
             <li>
               <a
-                class="link-0-2-60"
+                class="link-0-2-56"
                 href="https://www.instagram.com/phoqer/"
                 rel="noopener noreferrer"
                 target="_blank"
               >
                 <svg
-                  class="svg-0-2-62"
+                  class="svg-0-2-58"
                   enable-background="new 0 0 24 24"
                   id="Bold"
                   viewBox="0 0 24 24"
@@ -308,13 +307,13 @@ exports[`SingleOfferPage component default match snapshot 1`] = `
             </li>
             <li>
               <a
-                class="link-0-2-60"
+                class="link-0-2-56"
                 href="http://www.google.com/"
                 rel="noopener noreferrer"
                 target="_blank"
               >
                 <svg
-                  class="svg-0-2-62"
+                  class="svg-0-2-58"
                   viewBox="0 -47 512.00004 512"
                   xmlns="http://www.w3.org/2000/svg"
                 >
@@ -326,13 +325,13 @@ exports[`SingleOfferPage component default match snapshot 1`] = `
             </li>
             <li>
               <a
-                class="link-0-2-60"
+                class="link-0-2-56"
                 href="https://t.me/phoqer"
                 rel="noopener noreferrer"
                 target="_blank"
               >
                 <svg
-                  class="svg-0-2-62"
+                  class="svg-0-2-58"
                   viewBox="0 -39 512.00011 512"
                   xmlns="http://www.w3.org/2000/svg"
                 >

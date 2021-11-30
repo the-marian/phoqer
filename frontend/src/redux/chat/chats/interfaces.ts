@@ -15,6 +15,6 @@ export interface INewChat {
 
 export default interface IAction {
     type: Type;
-    payload: IPagination<IChats> | INewChat | ChatType;
+    payload: IPagination<IChats> | INewChat | ChatType | number;
     callback?: (id: number) => void;
 }
