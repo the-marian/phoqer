@@ -179,7 +179,7 @@ const UserInfo = (): ReactElement => {
                         width={3.5}
                         height={3.5}
                         firstName={user?.first_name}
-                        lastName={user?.first_name}
+                        lastName={user?.last_name}
                         avatar={user?.profile_img}
                     />
                     <div className={css.textWrp}>
