@@ -15,6 +15,6 @@ async def test_get_popular_searches(client, monkeypatch):
     assert response.status_code == status.HTTP_200_OK
     assert response.json() == {
         "en": ["one", "two", "three"],
-        "pl": ["one", "two", "three"],
+        "ru": ["one", "two", "three"],
         "ua": ["one", "two", "three"],
     }
