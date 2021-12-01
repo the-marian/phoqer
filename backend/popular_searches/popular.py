@@ -11,11 +11,11 @@ router = APIRouter(
 
 @router.get("")
 async def get_popular_searches() -> Dict[str, List[str]]:
-    ua = ["Iphone", "PS5", "VR", "Каршеринг", "Квартира", "Гитара"]
-    en = ["Iphone", "PS5", "VR", "Carrent", "Apartment", "Guitar"]
-    pl = ["Telefon komorkowy", "PS5", "VR", "Samochody", "Apartament", "Gitara"]
+    ua = ["Iphone", "PS5", "VR", "Каршерінг", "Квартира", "Гітара", "Офіс", "AR", "Ігри"]
+    en = ["Iphone", "PS5", "VR", "Carrent", "Apartment", "Guitar", "AR", "Laptop", "Game"]
+    ru = ["Iphone", "PS5", "VR", "Каршеринг", "Квартира", "Гитара", "Офис", "AR", "Игры"]
     return {
         "ua": random.sample(ua, len(ua)),
         "en": random.sample(en, len(en)),
-        "pl": random.sample(pl, len(pl)),
+        "ru": random.sample(ru, len(ru)),
     }
