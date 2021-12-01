@@ -12,6 +12,7 @@ import Meta from '../../../components/meta';
 import Conversation from '../../../components/pages/chat/chat-conversation';
 import ChatMobileDrawer from '../../../components/pages/chat/chat-sidebar-right/chat-drawer';
 import ChatMobileDrawerButton from '../../../components/pages/chat/chat-sidebar-right/chat-drawer/chat-drawer-button';
+import ChatNavbar from '../../../components/pages/chat/components/chat-navbar';
 import MessagesWrp from '../../../components/pages/chat/components/wrappers/messages-wrp';
 import useChat, { useChatListUpdate } from '../../../hooks/chat.hook';
 import useMedia from '../../../hooks/media.hook';
@@ -43,7 +44,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
 const MessagesChat = (): ReactElement => {
     const css = useStyles();
     const trans = useTrans();
-    const desktop = useMedia(1500);
+    const desktop = useMedia(1300);
     const media = useMedia(1060);
     const history = useRouter();
     const chatId = +String(history.query.chat || '0');
@@ -99,6 +100,7 @@ const MessagesChat = (): ReactElement => {
             {!desktop && <ChatMobileDrawerButton />}
 
             <Header />
+            <ChatNavbar />
             <main className={css.main}>
                 <MessagesWrp showSidebar={media}>
                     <Conversation onSubmit={handleSubmit} />

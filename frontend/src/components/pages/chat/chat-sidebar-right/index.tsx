@@ -13,11 +13,17 @@ import ChatOfferInfo from './chat-offer-info';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     root: {
-        width: width.desktopLg.sidebar,
         height: '100%',
+        width: width.desktopLg.sidebar,
+        paddingLeft: theme.rem(0.5),
 
         ...theme.media(1500).max({
+            width: width.desktopMd.sidebar,
+        }),
+
+        ...theme.media(1300).max({
             width: '100%',
+            paddingLeft: '0',
             paddingTop: theme.rem(4),
         }),
     },

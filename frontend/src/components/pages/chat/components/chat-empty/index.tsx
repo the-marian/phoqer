@@ -25,7 +25,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
             margin: '0 auto',
         },
 
-        ...theme.media(1500).max({
+        ...theme.media(1300).max({
             width: width.desktopSm.center,
         }),
     },

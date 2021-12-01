@@ -17,6 +17,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
         width: width.desktopLg.center,
 
         ...theme.media(1500).max({
+            width: width.desktopMd.center,
+        }),
+        ...theme.media(1300).max({
             width: width.desktopSm.center,
         }),
         ...theme.media(1060).max({

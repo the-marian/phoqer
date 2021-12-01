@@ -16,7 +16,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         background: theme.palette.gray[0],
         borderRadius: theme.radius,
 
-        ...theme.media(1500).max({
+        ...theme.media(1300).max({
             width: width.desktopSm.center,
         }),
 

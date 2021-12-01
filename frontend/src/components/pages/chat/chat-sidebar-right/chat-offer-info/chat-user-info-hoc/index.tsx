@@ -10,7 +10,7 @@ import RectSkeleton from '../../../../../common/loaders/skeletons/rect';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     root: {
-        marginBottom: theme.rem(2),
+        marginBottom: theme.rem(1),
     },
     img: {
         height: theme.rem(30),

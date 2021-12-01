@@ -41,7 +41,7 @@ const NewChatWrp = ({ children, showSidebar = false }: IProps): ReactElement => 
     const css = useWrapperStyles();
     const dispatch = useDispatch();
     const history = useRouter();
-    const desktop = useMedia(1500);
+    const desktop = useMedia(1300);
     const offerId = String(history.query.offerId || '');
 
     const [newChat, setNewChat] = useState<IChats>({

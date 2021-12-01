@@ -84,7 +84,7 @@ const ChatDeleteButton = ({ className }: IProps): JSX.Element | null => {
             payload: chatId,
             status: ChatStatus.APPROVED,
             callback: () => {
-                notifications.info({ message: 'Вы успешно одобрили запрос на аренду' });
+                notifications.info({ message: 'Вы успешно активировали начало аренды' });
             },
         });
     };
@@ -124,10 +124,11 @@ const ChatDeleteButton = ({ className }: IProps): JSX.Element | null => {
             [ChatStatus.NEW]: (
                 <div className={clsx(css.flex, className)}>
                     <Button primary className={css.approve} onClick={approveChatModal}>
-                        Одобрить запрос
+                        Старт аренды
                     </Button>
                     <Button onClick={handleDeleteChatModal} className={css.cancel}>
-                        Отклонить
+                        <FontAwesomeIcon icon={faTrashAlt} />
+                        <span>Удалить чат</span>
                     </Button>
                 </div>
             ),
@@ -138,14 +139,7 @@ const ChatDeleteButton = ({ className }: IProps): JSX.Element | null => {
                     </Button>
                 </div>
             ),
-            [ChatStatus.ARCHIVED]: (
-                <div className={clsx(css.flex, className)}>
-                    <Button onClick={handleDeleteChatModal} className={css.approve}>
-                        <FontAwesomeIcon icon={faTrashAlt} />
-                        <span>Удалить этот чат</span>
-                    </Button>
-                </div>
-            ),
+            [ChatStatus.ARCHIVED]: null,
         },
         client: {
             [ChatStatus.NEW]: (
@@ -163,26 +157,26 @@ const ChatDeleteButton = ({ className }: IProps): JSX.Element | null => {
                 </>
             ),
             [ChatStatus.APPROVED]: (
-                <div className={clsx(css.flex, className)}>
+                <>
                     <h2 className={css.title}>
-                        Вам одобрили аренду этого объявления. Внимание! Только автор объвления может окончить аренду и поместить
-                        чат в архив
+                        Вам одобрили аренду этого объявления. Вы можете окончить аренду и поместить чат в архив
                     </h2>
-                </div>
+                    <div className={clsx(css.flex, className)}>
+                        <Button primary onClick={endRent} className={css.approve}>
+                            <span>Окончить аренду</span>
+                        </Button>
+                    </div>
+                </>
             ),
             [ChatStatus.ARCHIVED]: (
                 <>
                     <h2 className={css.title}>
-                        Аренда этого объявления закончилась и чат находится в архиве. Вы можете удалить этот чат или возобновить
-                        для повторной аренды
+                        Аренда этого объявления закончилась и чат находится в архиве. Вы можете возобновить этот чат для повторной
+                        аренды
                     </h2>
                     <div className={clsx(css.flex, className)}>
                         <Button primary onClick={repeatRent} className={css.approve}>
                             <span>Повторить аренду</span>
-                        </Button>
-                        <Button onClick={handleDeleteChatModal} className={css.cancel}>
-                            <FontAwesomeIcon icon={faTrashAlt} />
-                            <span>Удалить</span>
                         </Button>
                     </div>
                 </>

@@ -96,7 +96,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         },
     },
     flex: {
-        marginBottom: theme.rem(2),
+        marginBottom: theme.rem(1),
     },
     img: {
         display: 'block',

@@ -38,7 +38,7 @@ interface IProps {
 // MAIN COMPONENT
 const ChatWrp = ({ children, showConversation = false }: IProps): ReactElement => {
     const css = useWrapperStyles();
-    const desktop = useMedia(1500);
+    const desktop = useMedia(1300);
     const chats = useSelector<IState, IChatsList>(state => state.chat.chats);
 
     return (

@@ -5,13 +5,14 @@ import { createUseStyles } from 'react-jss';
 import { useSelector } from 'react-redux';
 
 import { ChatStatus, IPublicProfile, IState } from '../../../../../interfaces';
+import { cutString } from '../../../../../utils/helpers';
 import routes from '../../../../../utils/routes';
 import { Theme } from '../../../../../utils/theming/theme';
 import ChatDeleteButton from '../chat-delete-button';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     root: {
-        padding: theme.rem(2),
+        padding: theme.rem(1.5),
         borderRadius: theme.radius,
         backgroundColor: theme.palette.gray[0],
         transition: theme.transitions[0],
@@ -27,8 +28,8 @@ const useStyles = createUseStyles((theme: Theme) => ({
         marginBottom: theme.rem(3),
     },
     title: {
-        fontSize: theme.rem(1.4),
-        fontWeight: theme.text.weight[2],
+        fontSize: theme.rem(2),
+        fontWeight: theme.text.weight[5],
         color: theme.palette.black[0],
         '& strong': {
             fontWeight: 'inherit',
@@ -37,7 +38,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     link: {
         textTransform: 'capitalize',
         color: theme.palette.primary[0],
-        fontWeight: theme.text.weight[4],
+        fontWeight: 'inherit',
 
         ...theme.hover({
             textDecoration: 'underline',
@@ -66,7 +67,8 @@ const ChatConfirmation = ({ profile, offerTitle }: IProps): ReactElement => {
                         {profile?.first_name} {profile?.last_name}
                     </a>
                 </Link>{' '}
-                желает арендовать у вас &quot;<strong>{offerTitle}</strong>&quot;.
+                желает арендовать у вас &quot;<strong>{cutString(offerTitle, 50)}</strong>
+                &quot;.
             </h2>
         ),
         [ChatStatus.APPROVED]: (
@@ -77,10 +79,10 @@ const ChatConfirmation = ({ profile, offerTitle }: IProps): ReactElement => {
                         {profile?.first_name} {profile?.last_name}
                     </a>
                 </Link>{' '}
-                на аренду &quot;<strong>{offerTitle}</strong>&quot;.
+                на аренду &quot;<strong>{cutString(offerTitle, 50)}</strong>&quot;.
             </h2>
         ),
-        [ChatStatus.ARCHIVED]: <h2>Аренда этого объявления закончилась и чат находится в архиве.</h2>,
+        [ChatStatus.ARCHIVED]: <h2>Аренда этого объявления закончилась. Чат находится в архиве.</h2>,
     };
 
     return (

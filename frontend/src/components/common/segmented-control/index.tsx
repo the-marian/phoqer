@@ -40,6 +40,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     button: {
         width: '100%',
         padding: theme.rem(1, 0.5),
+        background: theme.palette.white,
         color: theme.palette.black[0],
         fontSize: theme.rem(1.2),
         ...mixin(theme).cutString,

@@ -39,7 +39,6 @@ function* createChat({ payload, callback }: IAction) {
         const { status, data }: AxiosResponse<INewChat> = yield call(services.createChat, payload as INewChat);
         if (status < 200 || status >= 300) throw new Error();
         yield put({ type: types.CREATE_CHAT_SUCCESS });
-        yield put({ type: types.GET_CHATS_START });
         if (callback) callback(data.id);
     } catch (error) {
         if (error?.response?.status === 401) return;

@@ -7,6 +7,7 @@ import AuthRedirect from '../../components/context/auth/auth-redirect';
 import Header from '../../components/layout/header';
 import Meta from '../../components/meta';
 import { width } from '../../components/pages/chat/chat.config';
+import ChatNavbar from '../../components/pages/chat/components/chat-navbar';
 import ChatWrp from '../../components/pages/chat/components/wrappers/chat-wrp';
 import { useChatListUpdate } from '../../hooks/chat.hook';
 import useMedia from '../../hooks/media.hook';
@@ -40,6 +41,10 @@ const useStyles = createUseStyles((theme: Theme) => ({
         borderRadius: theme.radius,
 
         ...theme.media(1500).max({
+            width: width.desktopMd.center,
+        }),
+
+        ...theme.media(1300).max({
             width: width.desktopSm.center,
         }),
     },
@@ -71,6 +76,7 @@ const Messages = (): ReactElement => {
             <Meta title={'Мои сообщения'} h1={trans('user_profile_on_phoqer')} />
 
             <Header />
+            <ChatNavbar />
             <main className={css.main}>
                 <ChatWrp showConversation={media}>
                     <div className={css.chat}>

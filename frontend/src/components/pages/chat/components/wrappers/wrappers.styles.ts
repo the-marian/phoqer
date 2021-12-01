@@ -16,6 +16,9 @@ const useWrapperStyles = createUseStyles((theme: Theme) => ({
 
         ...theme.media(1060).max({
             height: 'unset',
+            padding: theme.rem(3, 0, 1),
+        }),
+        ...theme.media(768).max({
             padding: theme.rem(0, 0, 1),
         }),
     },
@@ -30,6 +33,11 @@ const useWrapperStyles = createUseStyles((theme: Theme) => ({
         overflow: 'auto',
 
         ...theme.media(1500).max({
+            maxWidth: width.desktopMd.sidebar,
+            minWidth: width.desktopMd.sidebar,
+        }),
+
+        ...theme.media(1300).max({
             maxWidth: width.desktopSm.sidebar,
             minWidth: width.desktopSm.sidebar,
         }),

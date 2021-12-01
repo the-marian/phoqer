@@ -9,8 +9,8 @@ interface IProps {
 const ConfirmRentModal = ({ onSubmit }: IProps): JSX.Element => {
     return (
         <ConfirmModalTemplate
-            title="Вы уверенны, что хотите одобрить аренду?"
-            content="Начало аренды считается с момента, когда вы одобрили аренду"
+            title="Вы уверенны, что хотите начать аренду?"
+            content="Старт аренды считается с момента, когда вы одобрили аренду"
             onSubmit={onSubmit}
         />
     );

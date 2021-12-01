@@ -2,6 +2,7 @@ import React, { ReactElement } from 'react';
 
 import { createUseStyles } from 'react-jss';
 
+import useMedia from '../../../../../hooks/media.hook';
 import { Theme } from '../../../../../utils/theming/theme';
 import Navigation from '../../../../common/navigation';
 import { getBaseNavList } from '../../../../common/navigation/navigation.config';
@@ -37,11 +38,12 @@ const useStyles = createUseStyles((theme: Theme) => ({
 
 const ProfileAside = (): ReactElement => {
     const css = useStyles();
+    const media = useMedia(1060);
 
     return (
         <div className={css.sticky}>
             <ProfilePrivateCard />
-            <Navigation className={css.nav} tabs={getBaseNavList()} />
+            {media && <Navigation className={css.nav} tabs={getBaseNavList()} />}
         </div>
     );
 };
