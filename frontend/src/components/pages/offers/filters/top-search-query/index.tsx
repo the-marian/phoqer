@@ -57,7 +57,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
     list: {
         display: 'grid',
-        gridTemplateColumns: theme.fr(2),
+        gridTemplateColumns: theme.fr(3),
         gridGap: theme.rem(1.5, 6),
         maxHeight: theme.rem(100),
         marginTop: theme.rem(3),
@@ -78,11 +78,20 @@ const useStyles = createUseStyles((theme: Theme) => ({
             opacity: 0,
         },
 
+        '& li': {
+            width: '100%',
+        },
+
+        ...theme.media(850).max({
+            gridTemplateColumns: theme.fr(2),
+        }),
+
         ...theme.media(550).max({
             gridTemplateColumns: theme.fr(1),
         }),
     },
     link: {
+        width: '100%',
         fontSize: theme.rem(1.4),
         color: theme.palette.black[0],
 
