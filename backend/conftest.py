@@ -849,3 +849,20 @@ async def _messages(db, chat_marian_egor):
     yield
     query = f"DELETE FROM messages WHERE chat_id = {chat_marian_egor}"
     await db.execute(query=query)
+
+
+@pytest.fixture
+async def offer_ps4_is_favorite(db, offer_ps4, user_egor):
+    query = """
+    INSERT INTO offers_offer_favorite (
+        offer_id,
+        user_id)
+    VALUES (
+        :offer_id,
+        :user_id)
+    """
+    values = {"offer_id": offer_ps4, "user_id": user_egor}
+    await db.execute(query=query, values=values)
+    yield "True"
+    query = "DELETE FROM offers_offer_favorite WHERE user_id = 2"
+    await db.execute(query=query)

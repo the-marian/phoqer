@@ -1,285 +1,200 @@
-# import pytest
-# from fastapi import status
-# from httpx import AsyncClient
-#
-# from main import app
-# from offers.crud import get_offer
-#
-#
-# def test_get_offer(client, offer_ps4):
-#     response = client.get("offers/a30b8a1e-1c60-4bbc-ac3d-37df2d224000")
-#     assert response.status_code == status.HTTP_200_OK
-#     assert response.json() == {
-#         "author_id": 1,
-#         "can_rent": True,
-#         "category": "technics",
-#         "chat_id": None,
-#         "city": "warsaw",
-#         "country": "poland",
-#         "cover_image": "http://phoqer.com/mediafiles/"
-#         "52cade24-63d6-4f04-bf8c-34489d0c67f1-2368.png",
-#         "currency": "PLN",
-#         "deposit_val": 500,
-#         "description": "Konsola Sony PlayStation 4 Nowa!",
-#         "doc_needed": False,
-#         "extra_requirements": "Zdęcie dowodu osobistego",
-#         "first_name": "Marian",
-#         "id": "a30b8a1e-1c60-4bbc-ac3d-37df2d224000",
-#         "images": [],
-#         "is_deliverable": True,
-#         "is_favorite": False,
-#         "is_promoted": True,
-#         "items_amount": 1,
-#         "last_name": "Zozulia",
-#         "max_rent_period": 100,
-#         "min_rent_period": 3,
-#         "price": 100,
-#         "profile_img": "http://phoqer.com/mediafiles/"
-#         "0f13df9c-772c-4216-b6e0-7894cdaaa2dd-2021-06-14_15.42.25.jpg",
-#         "pub_date": "2021-05-21",
-#         "rental_period": "DAY",
-#         "status": "ACTIVE",
-#         "sub_category": "consoles",
-#         "title": "SONY PlayStation 4",
-#         "views": 1,
-#     }
-#
-#
-# def test_get_offer_via_chat(client, chat_marian_egor):
-#     response = client.get(f"offers/offers/{chat_marian_egor}/")
-#     assert response.status_code == status.HTTP_200_OK
-#     assert response.json() == {
-#         "author_id": 1,
-#         "can_rent": True,
-#         "category": "technics",
-#         "chat_id": None,
-#         "city": "warsaw",
-#         "country": "poland",
-#         "cover_image": "http://phoqer.com/mediafiles/"
-#         "52cade24-63d6-4f04-bf8c-34489d0c67f1-2368.png",
-#         "currency": "PLN",
-#         "deposit_val": 500,
-#         "description": "Konsola Sony PlayStation 4 Nowa!",
-#         "doc_needed": False,
-#         "extra_requirements": "Zdęcie dowodu osobistego",
-#         "first_name": "Marian",
-#         "id": "a30b8a1e-1c60-4bbc-ac3d-37df2d224000",
-#         "images": [],
-#         "is_deliverable": True,
-#         "is_favorite": False,
-#         "is_promoted": True,
-#         "items_amount": 1,
-#         "last_name": "Zozulia",
-#         "max_rent_period": 100,
-#         "min_rent_period": 3,
-#         "price": 100,
-#         "profile_img": "http://phoqer.com/mediafiles/"
-#         "0f13df9c-772c-4216-b6e0-7894cdaaa2dd-2021-06-14_15.42.25.jpg",
-#         "pub_date": "2021-05-21",
-#         "rental_period": "DAY",
-#         "status": "ACTIVE",
-#         "sub_category": "consoles",
-#         "title": "SONY PlayStation 4",
-#         "views": 1,
-#     }
-#
-#
-# def test_offer_via_chat_404(client, offer_ps4, chat_marian_egor):
-#     response = client.get("offers/offers/21/")
-#     assert response.status_code == status.HTTP_404_NOT_FOUND
-#
-#
-# def test_is_favorite_user_with_favorite(client, auth_token, offer_ps4):
-#     response = client.get(
-#         "offers/a30b8a1e-1c60-4bbc-ac3d-37df2d224000", headers=auth_token
-#     )
-#     assert response.status_code == status.HTTP_200_OK
-#     assert response.json()["is_favorite"] is True
-#
-#
-# def test_is_favorite_user_with_no_favorite(client, auth_token):
-#     response = client.get(
-#         "offers/7cea9f56-e211-467b-8515-aa88f4a4a5c3", headers=auth_token
-#     )
-#     assert response.status_code == status.HTTP_200_OK
-#     assert response.json()["is_favorite"] is False
-#
-#
-# @pytest.mark.asyncio
-# async def test_create_offer_draft(client, auth_token):
-#     post_data = {
-#         "category": "business",
-#         "city": "kyiv",
-#         "country": "poland",
-#         "cover_image": "https://example.com/iphone.jpeg",
-#         "currency": "UAH",
-#         "deposit_val": 666,
-#         "description": "New Phone",
-#         "doc_needed": True,
-#         "extra_requirements": "text exta req",
-#         "images": [
-#             "http://phoqer.com//mediafiles/image(1)_H802r7h.jpeg",
-#             "http://phoqer.com//mediafiles/image(2)_bGKHdms.jpeg",
-#             "http://phoqer.com//mediafiles/image(3)_PV4BY6L.jpeg",
-#             "http://phoqer.com//mediafiles/image(4)_SCiBiMz.jpeg",
-#             "http://phoqer.com//mediafiles/5_zDDUs4j.jpg",
-#             "http://phoqer.com//mediafiles/4_QsbenAd.jpg",
-#             "http://phoqer.com//mediafiles/3_5vqrqhm.jpg",
-#             "http://phoqer.com//mediafiles/2_5jbRqfd.jpg",
-#             "http://phoqer.com//mediafiles/1_RrQEWYc.jpg",
-#         ],
-#         "is_deliverable": True,
-#         "items_amount": 3,
-#         "max_rent_period": 10,
-#         "min_rent_period": 20,
-#         "price": 499,
-#         "sub_category": "sub_category",
-#         "title": "Iphone 12",
-#     }
-#     async with AsyncClient(app=app, base_url="http://test") as ac:
-#         response = await ac.post("offers", json=post_data, headers=auth_token)
-#
-#     db_response = await get_offer(response.json()["id"])
-#     assert db_response.get("price") == 499
-#     assert response.status_code == status.HTTP_201_CREATED
-#     assert "id" in response.json()
-#     assert type(response.json()["id"]) is str
-#
-#
-# def test_create_offer_not_authed(client):
-#     post_data = {}
-#     response = client.post(
-#         "offers",
-#         json=post_data,
-#     )
-#     assert response.status_code == status.HTTP_401_UNAUTHORIZED
-#
-#
-# def test_get_my_offers_not_authed(client, auth_token):
-#     response = client.get("offers/status/all")
-#     assert response.status_code == status.HTTP_401_UNAUTHORIZED
-#
-#
-# def test_get_my_offers(client, auth_token):
-#     response = client.get("offers/status/all", headers=auth_token)
-#     assert response.status_code == status.HTTP_200_OK
-#     assert response.json() == {
-#         "data": [
-#             {
-#                 "cover_image": "https://example.com/iphone.jpeg",
-#                 "currency": "UAH",
-#                 "description": "New Phone 17",
-#                 "functions": ["DO_ACTIVE", "ARCHIVE"],
-#                 "id": "6c2d804e-b916-4d1c-82ec-73508ebd2845",
-#                 "is_deliverable": True,
-#                 "is_promoted": False,
-#                 "price": None,
-#                 "pub_date": "2021-01-15",
-#                 "title": None,
-#                 "views": 0,
-#             },
-#             {
-#                 "cover_image": None,
-#                 "currency": None,
-#                 "description": None,
-#                 "functions": ["DO_ACTIVE", "ARCHIVE"],
-#                 "id": "0e5b47f0-ac19-4d67-83d8-3046a987bc86",
-#                 "is_deliverable": None,
-#                 "is_promoted": False,
-#                 "price": None,
-#                 "pub_date": "2021-01-15",
-#                 "title": None,
-#                 "views": 0,
-#             },
-#             {
-#                 "cover_image": None,
-#                 "currency": None,
-#                 "description": None,
-#                 "functions": ["DO_ACTIVE", "ARCHIVE"],
-#                 "id": "d9560917-3db3-44a0-89a7-9b5076df73cd",
-#                 "is_deliverable": None,
-#                 "is_promoted": False,
-#                 "price": None,
-#                 "pub_date": "2021-01-15",
-#                 "title": None,
-#                 "views": 0,
-#             },
-#             {
-#                 "cover_image": "http://phoqer.com//mediafiles/0_PrBB7kx.jpg",
-#                 "currency": None,
-#                 "description": "sfsdsdf",
-#                 "functions": ["DO_ACTIVE", "ARCHIVE"],
-#                 "id": "ffbaafb0-b94e-4b27-9699-c04e25f09190",
-#                 "is_deliverable": False,
-#                 "is_promoted": False,
-#                 "price": 4334,
-#                 "pub_date": "2021-01-21",
-#                 "title": "name",
-#                 "views": 0,
-#             },
-#         ],
-#         "total": 20,
-#     }
-#
-#
-# def test_get_public_profile_offers(client):
-#     response = client.get("offers/public/1")
-#     assert response.status_code == status.HTTP_200_OK
-#     assert response.json() == {
-#         "data": [
-#             {
-#                 "cover_image": "https://example.com/iphone.jpeg",
-#                 "currency": "UAH",
-#                 "description": "New Phone 17",
-#                 "id": "6c2d804e-b916-4d1c-82ec-73508ebd2845",
-#                 "is_deliverable": True,
-#                 "is_promoted": False,
-#                 "price": None,
-#                 "pub_date": "2021-01-15",
-#                 "title": None,
-#                 "views": 0,
-#             },
-#             {
-#                 "cover_image": None,
-#                 "currency": None,
-#                 "description": None,
-#                 "id": "0e5b47f0-ac19-4d67-83d8-3046a987bc86",
-#                 "is_deliverable": None,
-#                 "is_promoted": False,
-#                 "price": None,
-#                 "pub_date": "2021-01-15",
-#                 "title": None,
-#                 "views": 0,
-#             },
-#             {
-#                 "cover_image": None,
-#                 "currency": None,
-#                 "description": None,
-#                 "id": "d9560917-3db3-44a0-89a7-9b5076df73cd",
-#                 "is_deliverable": None,
-#                 "is_promoted": False,
-#                 "price": None,
-#                 "pub_date": "2021-01-15",
-#                 "title": None,
-#                 "views": 0,
-#             },
-#             {
-#                 "cover_image": "http://phoqer.com//mediafiles/0_PrBB7kx.jpg",
-#                 "currency": None,
-#                 "description": "sfsdsdf",
-#                 "id": "ffbaafb0-b94e-4b27-9699-c04e25f09190",
-#                 "is_deliverable": False,
-#                 "is_promoted": False,
-#                 "price": 4334,
-#                 "pub_date": "2021-01-21",
-#                 "title": "name",
-#                 "views": 0,
-#             },
-#         ],
-#         "total": 20,
-#     }
-#
-#
+import pytest
+
+from offers import crud
+
+pytestmark = pytest.mark.asyncio
+
+
+async def test_get_offer(client, offer_ps4):
+    response = await client.get("/offers/a30b8a1e-1c60-4bbc-ac3d-37df2d224000")
+    assert response.status_code == 200
+    assert response.json() == {
+        "author_id": 1,
+        "category": "technics",
+        "chat_id": None,
+        "city": "warsaw",
+        "country": "poland",
+        "cover_image": "http://phoqer.com/mediafiles/"
+        "52cade24-63d6-4f04-bf8c-34489d0c67f1-2368.png",
+        "currency": "PLN",
+        "deposit_val": 500,
+        "description": "Konsola Sony PlayStation 4 Nowa!",
+        "doc_needed": False,
+        "extra_requirements": "Zdęcie dowodu osobistego",
+        "first_name": "Marian",
+        "id": "a30b8a1e-1c60-4bbc-ac3d-37df2d224000",
+        "images": [],
+        "is_deliverable": True,
+        "is_favorite": False,
+        "is_promoted": True,
+        "items_amount": 1,
+        "last_name": "Zozulia",
+        "max_rent_period": 100,
+        "min_rent_period": 3,
+        "price": 100,
+        "profile_img": "http://phoqer.com/mediafiles/dicpic.jpg",
+        "pub_date": "2021-05-21",
+        "rental_period": "DAY",
+        "status": "ACTIVE",
+        "sub_category": "consoles",
+        "title": "SONY PlayStation 4",
+        "views": 1,
+    }
+
+
+async def test_get_offer_via_chat(client, chat_marian_egor):
+    response = await client.get(f"/offers/offers/{chat_marian_egor}")
+    assert response.status_code == 200
+    assert response.json() == {
+        "author_id": 1,
+        "category": "technics",
+        "chat_id": None,
+        "city": "warsaw",
+        "country": "poland",
+        "cover_image": "http://phoqer.com/mediafiles/"
+        "52cade24-63d6-4f04-bf8c-34489d0c67f1-2368.png",
+        "currency": "PLN",
+        "deposit_val": 500,
+        "description": "Konsola Sony PlayStation 4 Nowa!",
+        "doc_needed": False,
+        "extra_requirements": "Zdęcie dowodu osobistego",
+        "first_name": "Marian",
+        "id": "a30b8a1e-1c60-4bbc-ac3d-37df2d224000",
+        "images": [],
+        "is_deliverable": True,
+        "is_favorite": False,
+        "is_promoted": True,
+        "items_amount": 1,
+        "last_name": "Zozulia",
+        "max_rent_period": 100,
+        "min_rent_period": 3,
+        "price": 100,
+        "profile_img": "http://phoqer.com/mediafiles/dicpic.jpg",
+        "pub_date": "2021-05-21",
+        "rental_period": "DAY",
+        "status": "ACTIVE",
+        "sub_category": "consoles",
+        "title": "SONY PlayStation 4",
+        "views": 1,
+    }
+
+
+async def test_offer_via_chat_404(client):
+    response = await client.get("offers/offers/21/")
+    assert response.status_code == 404
+
+
+async def test_is_favorite_user_with_favorite(
+    client, egor_auth_token, offer_ps4, offer_ps4_is_favorite
+):
+    response = await client.get(
+        "/offers/a30b8a1e-1c60-4bbc-ac3d-37df2d224000", headers=egor_auth_token
+    )
+    assert response.status_code == 200
+    assert response.json()["is_favorite"] is True
+
+
+async def test_is_favorite_user_with_no_favorite(
+    client, offer_iphone12, marian_auth_token
+):
+    response = await client.get(
+        "/offers/a30b8a1e-1c60-4bbc-ac3d-37df2d224001", headers=marian_auth_token
+    )
+    assert response.status_code == 200
+    assert response.json()["is_favorite"] is False
+
+
+async def test_create_offer_draft(
+    client, marian_auth_token, city_kiev, sub_category_consoles
+):
+    post_data = {
+        "category": "technics",
+        "city": city_kiev,
+        "country": "poland",
+        "cover_image": "https://example.com/iphone.jpeg",
+        "currency": "UAH",
+        "deposit_val": 666,
+        "description": "New Phone",
+        "doc_needed": True,
+        "extra_requirements": "text exta req",
+        "images": [
+            "http://phoqer.com//mediafiles/image(1)_H802r7h.jpeg",
+            "http://phoqer.com//mediafiles/image(2)_bGKHdms.jpeg",
+        ],
+        "is_deliverable": True,
+        "items_amount": 3,
+        "max_rent_period": 10,
+        "min_rent_period": 20,
+        "price": 499,
+        "sub_category": sub_category_consoles,
+        "title": "Iphone 12",
+    }
+    response = await client.post("/offers", json=post_data, headers=marian_auth_token)
+    assert response.status_code == 201
+    db_response = response.json()["id"]
+    offer_data = dict(await crud.get_offer(db_response))
+    offer_data.pop("id")
+    offer_data.pop("pub_date")
+    assert offer_data == {
+        "author_id": 1,
+        "category": "technics",
+        "city": city_kiev,
+        "country": "poland",
+        "cover_image": "https://example.com/iphone.jpeg",
+        "currency": "UAH",
+        "deposit_val": 666,
+        "description": "New Phone",
+        "doc_needed": True,
+        "extra_requirements": "text exta req",
+        "first_name": "Marian",
+        "is_deliverable": True,
+        "items_amount": 3,
+        "last_name": "Zozulia",
+        "max_rent_period": 10,
+        "min_rent_period": 20,
+        "price": 499,
+        "profile_img": "http://phoqer.com/mediafiles/dicpic.jpg",
+        "promote_til_date": None,
+        "rental_period": "DAY",
+        "status": "DRAFT",
+        "sub_category": sub_category_consoles,
+        "title": "Iphone 12",
+        "views": 0,
+    }
+
+
+async def test_create_offer_not_authed(client):
+    post_data = {}
+    response = await client.post(
+        "/offers",
+        json=post_data,
+    )
+    assert response.status_code == 401
+
+
+async def test_get_my_offers_not_authed(client):
+    response = await client.get("/offers/status/all")
+    assert response.status_code == 401
+
+
+async def test_get_my_offers(client, marian_auth_token):
+    response = await client.get("/offers/status/all", headers=marian_auth_token)
+    assert response.status_code == 200
+    assert response.json() == {
+        "data": [],
+        "total": 0,
+    }
+
+
+async def test_get_public_profile_offers(client):
+    response = await client.get("/offers/public/1")
+    assert response.status_code == 200
+    assert response.json() == {
+        "data": [],
+        "total": 0,
+    }
+
+
 # def test_change_status(client, auth_token):
 #     data = {"status": "REVIEW"}
 #     response = client.patch(
@@ -402,85 +317,72 @@
 #     assert response.status_code == 204
 #     db_response = await get_offer("412498ef-4a3e-4ad3-9af0-e8dcc513c92a")
 #     assert db_response.get("country") == "ukraine"
+
+
+async def test_search(client, marian_auth_token, offer_ps4, offer_iphone12):
+    response = await client.get(
+        "/offers/search?rental_period=DAY", headers=marian_auth_token
+    )
+    assert response.status_code == 200
+    assert response.json() == {
+        "data": [
+            {
+                "cover_image": "http://phoqer.com/mediafiles/52cade24-63d6-4f04-bf8c-34489d0c67f1-2368.png",
+                "currency": "PLN",
+                "description": "Konsola Sony PlayStation 4 Nowa!",
+                "id": "a30b8a1e-1c60-4bbc-ac3d-37df2d224000",
+                "is_deliverable": True,
+                "is_favorite": False,
+                "is_promoted": True,
+                "price": 100,
+                "pub_date": "2021-05-21",
+                "rental_period": "DAY",
+                "title": "SONY PlayStation 4",
+                "views": 1,
+            },
+            {
+                "cover_image": "http://phoqer.com/mediafiles/52cade24-63d6-4f04-bf8c-34489d0c67f1-2369.png",
+                "currency": "PLN",
+                "description": "Nowy Iphone 12!",
+                "id": "a30b8a1e-1c60-4bbc-ac3d-37df2d224001",
+                "is_deliverable": True,
+                "is_favorite": False,
+                "is_promoted": True,
+                "price": 200,
+                "pub_date": "2021-05-21",
+                "rental_period": "DAY",
+                "title": "Iphone 12",
+                "views": 1101,
+            },
+        ],
+        "total": 1,
+    }
 #
 #
-# def test_search(client, marian_auth_token, offer_ps4, offer_iphone12):
-#     response = client.get("offers/search/?rental_period=DAY", headers=marian_auth_token)
-#     assert response.json() == {
-#         "author_id": 2,
-#         "category": "business",
-#         "city": "kyiv",
-#         "country": "poland",
-#         "cover_image": "https://example.com/iphone.jpeg",
-#         "currency": "UAH",
-#         "deposit_val": 666,
-#         "description": "New Phone",
-#         "doc_needed": True,
-#         "extra_requirements": "text exta req",
-#         "first_name": "Marian",
-#         "id": "00bbddd5-92bf-45e5-8d2c-8e23fb03da63",
-#         "images": [
-#             "http://phoqer.com//mediafiles/image(1)_H802r7h.jpeg",
-#             "http://phoqer.com//mediafiles/image(2)_bGKHdms.jpeg",
-#             "http://phoqer.com//mediafiles/image(3)_PV4BY6L.jpeg",
-#             "http://phoqer.com//mediafiles/image(4)_SCiBiMz.jpeg",
-#             "http://phoqer.com//mediafiles/5_zDDUs4j.jpg",
-#             "http://phoqer.com//mediafiles/4_QsbenAd.jpg",
-#             "http://phoqer.com//mediafiles/3_5vqrqhm.jpg",
-#             "http://phoqer.com//mediafiles/2_5jbRqfd.jpg",
-#             "http://phoqer.com//mediafiles/1_RrQEWYc.jpg",
-#         ],
-#         "is_deliverable": True,
-#         "is_favorite": False,
-#         "is_promoted": False,
-#         "items_amount": 1,
-#         "last_name": "Zozulia",
-#         "max_rent_period": 10,
-#         "min_rent_period": 20,
-#         "price": 499,
-#         "profile_img": None,
-#         "pub_date": "2021-05-23",
-#         "rental_period": None,
-#         "status": "DRAFT",
-#         "sub_category": "sub_category",
-#         "title": "Iphone 12",
-#         "views": 0,
-#     }
-#
-#
-# def test_delete_offer(client, auth_token):
-#     response = client.delete(
-#         "/offers/4f3b43f0-9eb1-463d-8eaa-69eb428f5639", headers=auth_token
+# async def test_delete_offer(client, marian_auth_token, offer_ps4):
+#     response = await client.delete(
+#         f"/offers/{offer_ps4}", headers=marian_auth_token
 #     )
 #     assert response.status_code == 204
-#
-#
-# def test_can_rent_get_popular_offers(client, offer_ps4):
-#     response = client.get("offers/popular/")
-#     assert response.status_code == status.HTTP_200_OK
-#     assert response.json() == [
-#         {
-#             "can_rent": True,
-#             "cover_image": "http://phoqer.com/mediafiles/"
-#             "52cade24-63d6-4f04-bf8c-34489d0c67f1-2368.png",
-#             "currency": "PLN",
-#             "description": "Konsola Sony PlayStation 4 Nowa!",
-#             "id": "a30b8a1e-1c60-4bbc-ac3d-37df2d224000",
-#             "is_deliverable": True,
-#             "is_favorite": False,
-#             "is_promoted": True,
-#             "price": 100,
-#             "pub_date": "2021-05-21",
-#             "rental_period": "DAY",
-#             "title": "SONY PlayStation 4",
-#             "views": 1,
-#         }
-#     ]
-#
-#
-# def test_cannot_rent(client, auth_token, offer_ps4):
-#     response = client.get(
-#         "offers/a30b8a1e-1c60-4bbc-ac3d-37df2d224000", headers=auth_token
-#     )
-#     assert response.status_code == status.HTTP_200_OK
-#     assert response.json()["can_rent"] is False
+
+
+async def test_can_rent_get_popular_offers(client, offer_ps4):
+    response = await client.get("/offers/popular")
+    assert response.status_code == 200
+    assert response.json() == [
+        {
+            "cover_image": "http://phoqer.com/mediafiles/"
+            "52cade24-63d6-4f04-bf8c-34489d0c67f1-2368.png",
+            "currency": "PLN",
+            "description": "Konsola Sony PlayStation 4 Nowa!",
+            "id": "a30b8a1e-1c60-4bbc-ac3d-37df2d224000",
+            "is_deliverable": True,
+            "is_favorite": False,
+            "is_promoted": True,
+            "price": 100,
+            "pub_date": "2021-05-21",
+            "rental_period": "DAY",
+            "title": "SONY PlayStation 4",
+            "views": 1,
+        }
+    ]
