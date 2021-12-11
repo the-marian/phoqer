@@ -327,7 +327,8 @@ async def test_search(client, marian_auth_token, offer_ps4, offer_iphone12):
     assert response.json() == {
         "data": [
             {
-                "cover_image": "http://phoqer.com/mediafiles/52cade24-63d6-4f04-bf8c-34489d0c67f1-2368.png",
+                "cover_image": "http://phoqer.com/mediafiles/"
+                "52cade24-63d6-4f04-bf8c-34489d0c67f1-2368.png",
                 "currency": "PLN",
                 "description": "Konsola Sony PlayStation 4 Nowa!",
                 "id": "a30b8a1e-1c60-4bbc-ac3d-37df2d224000",
@@ -341,7 +342,8 @@ async def test_search(client, marian_auth_token, offer_ps4, offer_iphone12):
                 "views": 1,
             },
             {
-                "cover_image": "http://phoqer.com/mediafiles/52cade24-63d6-4f04-bf8c-34489d0c67f1-2369.png",
+                "cover_image": "http://phoqer.com/mediafiles/"
+                "52cade24-63d6-4f04-bf8c-34489d0c67f1-2369.png",
                 "currency": "PLN",
                 "description": "Nowy Iphone 12!",
                 "id": "a30b8a1e-1c60-4bbc-ac3d-37df2d224001",
