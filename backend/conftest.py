@@ -864,5 +864,5 @@ async def offer_ps4_is_favorite(db, offer_ps4, user_egor):
     values = {"offer_id": offer_ps4, "user_id": user_egor}
     await db.execute(query=query, values=values)
     yield "True"
-    query = "DELETE FROM offers_offer_favorite WHERE user_id = 2"
+    query = f"DELETE FROM offers_offer_favorite WHERE user_id = {user_egor}"
     await db.execute(query=query)

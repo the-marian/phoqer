@@ -6,7 +6,7 @@ pytestmark = pytest.mark.asyncio
 
 
 async def test_get_offer(client, offer_ps4):
-    response = await client.get("/offers/a30b8a1e-1c60-4bbc-ac3d-37df2d224000")
+    response = await client.get(f"/offers/{offer_ps4}")
     assert response.status_code == 200
     assert response.json() == {
         "author_id": 1,
@@ -88,7 +88,7 @@ async def test_is_favorite_user_with_favorite(
     client, egor_auth_token, offer_ps4, offer_ps4_is_favorite
 ):
     response = await client.get(
-        "/offers/a30b8a1e-1c60-4bbc-ac3d-37df2d224000", headers=egor_auth_token
+        f"/offers/{offer_ps4}", headers=egor_auth_token
     )
     assert response.status_code == 200
     assert response.json()["is_favorite"] is True
@@ -98,7 +98,7 @@ async def test_is_favorite_user_with_no_favorite(
     client, offer_iphone12, marian_auth_token
 ):
     response = await client.get(
-        "/offers/a30b8a1e-1c60-4bbc-ac3d-37df2d224001", headers=marian_auth_token
+        f"/offers/{offer_iphone12}", headers=marian_auth_token
     )
     assert response.status_code == 200
     assert response.json()["is_favorite"] is False
@@ -131,8 +131,8 @@ async def test_create_offer_draft(
     }
     response = await client.post("/offers", json=post_data, headers=marian_auth_token)
     assert response.status_code == 201
-    db_response = response.json()["id"]
-    offer_data = dict(await crud.get_offer(db_response))
+    offer_id = response.json()["id"]
+    offer_data = dict(await crud.get_offer(offer_id))
     offer_data.pop("id")
     offer_data.pop("pub_date")
     assert offer_data == {
@@ -179,15 +179,6 @@ async def test_get_my_offers_not_authed(client):
 
 async def test_get_my_offers(client, marian_auth_token):
     response = await client.get("/offers/status/all", headers=marian_auth_token)
-    assert response.status_code == 200
-    assert response.json() == {
-        "data": [],
-        "total": 0,
-    }
-
-
-async def test_get_public_profile_offers(client):
-    response = await client.get("/offers/public/1")
     assert response.status_code == 200
     assert response.json() == {
         "data": [],
@@ -368,7 +359,7 @@ async def test_search(client, marian_auth_token, offer_ps4, offer_iphone12):
 #     assert response.status_code == 204
 
 
-async def test_can_rent_get_popular_offers(client, offer_ps4):
+async def test_get_popular_offers(client, offer_ps4):
     response = await client.get("/offers/popular")
     assert response.status_code == 200
     assert response.json() == [
