@@ -319,7 +319,7 @@ async def user_igor(db, country_ukraine, city_kiev):
         "city": city_kiev,
     }
     await db.execute(query=query, values=values)
-    yield 1
+    yield 3
     delete_query = "DELETE FROM users_user WHERE id=1"
     await db.execute(query=delete_query)
 
