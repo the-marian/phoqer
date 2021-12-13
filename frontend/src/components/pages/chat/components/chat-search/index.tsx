@@ -58,6 +58,8 @@ const useStyles = createUseStyles((theme: Theme) => ({
         }),
     },
     back: {
+        position: 'relative',
+        zIndex: 10,
         marginBottom: theme.rem(1),
         fontSize: theme.rem(1.3),
 

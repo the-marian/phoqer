@@ -1,21 +1,18 @@
 import React, { ReactElement } from 'react';
 
-import { GetServerSidePropsContext } from 'next';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import { createUseStyles } from 'react-jss';
 
-import LoginForm from '../../../components/common/auth-form/login-form';
+import LoginForm from '../../../components/common/auth/forms/login-form';
+import GetStaticProfile from '../../../components/common/auth/get-static-profile/get-static-profile';
 import { modal } from '../../../components/common/modal';
 import SmallModalWrp from '../../../components/common/modal/small-modal-wrp';
-import AuthRedirect from '../../../components/context/auth/auth-redirect';
 import Container from '../../../components/layout/container';
 import Header from '../../../components/layout/header';
 import Meta from '../../../components/meta';
 import useAuth from '../../../hooks/auth.hook';
 import useTrans from '../../../hooks/trans.hook';
-import { wrapper } from '../../../redux/store';
-import { serverRedirect } from '../../../utils/helpers';
 import routes from '../../../utils/routes';
 import mixin from '../../../utils/theming/mixin';
 import { Theme } from '../../../utils/theming/theme';
@@ -73,11 +70,11 @@ const useStyles = createUseStyles((theme: Theme) => ({
 
 const Confirmation = (): ReactElement => {
     const css = useStyles();
-    const auth = useAuth();
+    const { token } = useAuth();
     const trans = useTrans();
 
     const handleLogin = (): void => {
-        if (!auth?.access_token) {
+        if (!token?.access_token) {
             modal.open(
                 <SmallModalWrp>
                     <LoginForm />
@@ -88,8 +85,7 @@ const Confirmation = (): ReactElement => {
     };
 
     return (
-        <>
-            <AuthRedirect reverse />
+        <GetStaticProfile>
             <Meta title={'Спасибо за регистрацию!'} />
             <Header />
             <ConfettiWrp />
@@ -120,12 +116,8 @@ const Confirmation = (): ReactElement => {
                     </div>
                 </Container>
             </div>
-        </>
+        </GetStaticProfile>
     );
 };
-
-export const getServerSideProps = wrapper.getServerSideProps((ctx): void => {
-    serverRedirect(ctx as unknown as GetServerSidePropsContext, null, true);
-});
 
 export default Confirmation;

@@ -17,11 +17,12 @@ import Filters from '../../components/pages/offers/filters';
 import ActiveFilters from '../../components/pages/offers/filters/active-filters';
 import TopOffers from '../../components/pages/offers/top-offers';
 import useTrans from '../../hooks/trans.hook';
-import { ICategories, IOfferDynamic, IState, IStore } from '../../interfaces';
+import { IAuthResponse, ICategories, IOfferDynamic, IState, IStore } from '../../interfaces';
 import initState from '../../redux/state';
 import { wrapper } from '../../redux/store';
 import types from '../../redux/types';
-import { findCategory, findSubCategory } from '../../utils/helpers';
+import { findCategory, findSubCategory, parseCookie } from '../../utils/helpers';
+import api from '../../utils/interceptors';
 
 const OffersPage = (): ReactElement => {
     const { query } = useRouter();
@@ -45,6 +46,10 @@ const OffersPage = (): ReactElement => {
             scroll.current = true;
         }
     }, [data]);
+
+    useEffect(() => {
+        dispatch({ type: types.GET_CATEGORIES_START });
+    }, [dispatch]);
 
     const handleClick = useCallback(
         (page: number): void => {
@@ -92,8 +97,12 @@ const OffersPage = (): ReactElement => {
 };
 
 export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps(async (ctx): Promise<void> => {
-    // CATEGORIES
-    ctx?.store?.dispatch({ type: types.GET_CATEGORIES_START });
+    const auth = parseCookie<IAuthResponse>(ctx.req.headers?.cookie);
+    if (auth?.access_token) {
+        api.defaults.headers.common.Authorization = auth.access_token;
+        ctx?.store?.dispatch({ type: types.GET_USER_START });
+    }
+
     // OFFERS
     ctx?.store?.dispatch({ type: types.GET_POPULAR_SEARCHES_START });
     ctx?.store?.dispatch({ type: types.GET_POPULAR_OFFERS_START });
@@ -102,6 +111,7 @@ export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps
         payload: { ...initState.config.searchParams, ...ctx.query },
     });
     ctx?.store?.dispatch({ type: types.SEARCH_OFFERS_START, payload: ctx.query });
+
     // GENERAL
     ctx?.store?.dispatch(END);
     await (ctx.store as IStore)?.sagaTask?.toPromise();

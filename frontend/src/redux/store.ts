@@ -4,7 +4,6 @@ import createSagaMiddleware, { SagaMiddleware } from 'redux-saga';
 
 import { IState, IStore } from '../interfaces';
 
-import Persist from './middleware/persist.middleware';
 import rootReducer from './reducers';
 import rootSaga from './sagas';
 import initState from './state';
@@ -19,7 +18,7 @@ const bindMiddleware = (middleware: (SagaMiddleware | Middleware)[]) => {
 
 export const makeStore = (preloadedState = initState): Store => {
     const sagaMiddleware = createSagaMiddleware();
-    const store: IStore = createStore(rootReducer, preloadedState, bindMiddleware([sagaMiddleware, Persist]));
+    const store: IStore = createStore(rootReducer, preloadedState, bindMiddleware([sagaMiddleware]));
     store.sagaTask = sagaMiddleware.run(rootSaga);
     return store;
 };

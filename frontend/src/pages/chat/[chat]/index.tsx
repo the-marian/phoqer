@@ -1,12 +1,12 @@
 import React, { ReactElement, useEffect } from 'react';
 
-import { GetServerSidePropsContext } from 'next';
 import { useRouter } from 'next/router';
 import { createUseStyles } from 'react-jss';
 import { useDispatch } from 'react-redux';
 
+import AuthRedirect from '../../../components/common/auth/auth-redirect/auth-redirect';
+import GetStaticProfile from '../../../components/common/auth/get-static-profile/get-static-profile';
 import notifications from '../../../components/common/notifications';
-import AuthRedirect from '../../../components/context/auth/auth-redirect';
 import Header from '../../../components/layout/header';
 import Meta from '../../../components/meta';
 import Conversation from '../../../components/pages/chat/chat-conversation';
@@ -18,9 +18,7 @@ import useChat, { useChatListUpdate } from '../../../hooks/chat.hook';
 import useMedia from '../../../hooks/media.hook';
 import useTrans from '../../../hooks/trans.hook';
 import { IMessages } from '../../../interfaces';
-import { wrapper } from '../../../redux/store';
 import types from '../../../redux/types';
-import { serverRedirect } from '../../../utils/helpers';
 import { Theme } from '../../../utils/theming/theme';
 
 const useStyles = createUseStyles((theme: Theme) => ({
@@ -92,26 +90,23 @@ const MessagesChat = (): ReactElement => {
     };
 
     return (
-        <>
-            <AuthRedirect />
-            <Meta title={'Мои сообщения'} h1={trans('user_profile_on_phoqer')} />
+        <AuthRedirect>
+            <GetStaticProfile>
+                <Meta title={'Мои сообщения'} h1={trans('user_profile_on_phoqer')} />
 
-            <ChatMobileDrawer />
-            {!desktop && <ChatMobileDrawerButton />}
+                <ChatMobileDrawer />
+                {!desktop && <ChatMobileDrawerButton />}
 
-            <Header />
-            <ChatNavbar />
-            <main className={css.main}>
-                <MessagesWrp showSidebar={media}>
-                    <Conversation onSubmit={handleSubmit} />
-                </MessagesWrp>
-            </main>
-        </>
+                <Header />
+                <ChatNavbar />
+                <main className={css.main}>
+                    <MessagesWrp showSidebar={media}>
+                        <Conversation onSubmit={handleSubmit} />
+                    </MessagesWrp>
+                </main>
+            </GetStaticProfile>
+        </AuthRedirect>
     );
 };
-
-export const getServerSideProps = wrapper.getServerSideProps(async (ctx): Promise<void> => {
-    if (serverRedirect(ctx as unknown as GetServerSidePropsContext)) return;
-});
 
 export default MessagesChat;

@@ -1,12 +1,12 @@
 import React, { ReactElement, useEffect, useState } from 'react';
 
-import { GetServerSidePropsContext } from 'next';
 import { useRouter } from 'next/router';
 import { createUseStyles } from 'react-jss';
 import { useDispatch } from 'react-redux';
 
+import AuthRedirect from '../../../components/common/auth/auth-redirect/auth-redirect';
+import GetStaticProfile from '../../../components/common/auth/get-static-profile/get-static-profile';
 import Button from '../../../components/common/button';
-import AuthRedirect from '../../../components/context/auth/auth-redirect';
 import Header from '../../../components/layout/header';
 import Meta from '../../../components/meta';
 import Conversation from '../../../components/pages/chat/chat-conversation';
@@ -15,9 +15,7 @@ import NewChatWrp from '../../../components/pages/chat/components/wrappers/new-c
 import { useChatListUpdate } from '../../../hooks/chat.hook';
 import useMedia from '../../../hooks/media.hook';
 import useTrans from '../../../hooks/trans.hook';
-import { wrapper } from '../../../redux/store';
 import types from '../../../redux/types';
-import { serverRedirect } from '../../../utils/helpers';
 import routes from '../../../utils/routes';
 import mixin from '../../../utils/theming/mixin';
 import { Theme } from '../../../utils/theming/theme';
@@ -81,33 +79,30 @@ const NewChat = (): ReactElement => {
     };
 
     return (
-        <>
-            <AuthRedirect />
-            <Meta title={'Мои сообщения'} h1={trans('user_profile_on_phoqer')} />
+        <AuthRedirect>
+            <GetStaticProfile>
+                <Meta title={'Мои сообщения'} h1={trans('user_profile_on_phoqer')} />
 
-            <Header />
-            <ChatNavbar />
-            <main className={css.main}>
-                <NewChatWrp showSidebar={media}>
-                    <Conversation>
-                        <div className={css.center}>
-                            <p>
-                                Чтобы арендовать этот товар/услугу нажмите &quot;Ok&quot;. После этого вы откроете чат с автором
-                                объявления
-                            </p>
-                            <Button loading={loading} className={css.button} onClick={handleCreateChat}>
-                                Ok
-                            </Button>
-                        </div>
-                    </Conversation>
-                </NewChatWrp>
-            </main>
-        </>
+                <Header />
+                <ChatNavbar />
+                <main className={css.main}>
+                    <NewChatWrp showSidebar={media}>
+                        <Conversation>
+                            <div className={css.center}>
+                                <p>
+                                    Чтобы арендовать этот товар/услугу нажмите &quot;Ok&quot;. После этого вы откроете чат с
+                                    автором объявления
+                                </p>
+                                <Button loading={loading} className={css.button} onClick={handleCreateChat}>
+                                    Ok
+                                </Button>
+                            </div>
+                        </Conversation>
+                    </NewChatWrp>
+                </main>
+            </GetStaticProfile>
+        </AuthRedirect>
     );
 };
-
-export const getServerSideProps = wrapper.getServerSideProps(async (ctx): Promise<void> => {
-    if (serverRedirect(ctx as unknown as GetServerSidePropsContext)) return;
-});
 
 export default NewChat;

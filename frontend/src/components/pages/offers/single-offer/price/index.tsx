@@ -12,7 +12,7 @@ import { moneyFormat } from '../../../../../utils/helpers';
 import routes from '../../../../../utils/routes';
 import mixin from '../../../../../utils/theming/mixin';
 import { Theme } from '../../../../../utils/theming/theme';
-import LoginForm from '../../../../common/auth-form/login-form';
+import LoginForm from '../../../../common/auth/forms/login-form';
 import { modal } from '../../../../common/modal';
 import SmallModalWrp from '../../../../common/modal/small-modal-wrp';
 
@@ -61,13 +61,13 @@ interface IProps {
 
 const Price = ({ offer, withButton = false }: IProps): ReactElement => {
     const css = useStyles();
-    const auth = useAuth();
+    const { token } = useAuth();
     const trans = useTrans();
     const history = useRouter();
     const dispatch = useDispatch();
 
     const handleRent = (): void => {
-        if (!auth?.access_token) {
+        if (!token.access_token) {
             modal.open(
                 <SmallModalWrp>
                     <LoginForm />

@@ -20,7 +20,7 @@ import { IDropList, IDropValue, IOfferCard } from '../../../../interfaces';
 import types from '../../../../redux/types';
 import { cutString, moneyFormat } from '../../../../utils/helpers';
 import routes from '../../../../utils/routes';
-import LoginForm from '../../auth-form/login-form';
+import LoginForm from '../../auth/forms/login-form';
 import DropDown from '../../drop-down';
 import { modal } from '../../modal';
 import SmallModalWrp from '../../modal/small-modal-wrp';
@@ -42,9 +42,9 @@ interface IProps {
 }
 
 const OfferCard = ({ offer, showFavoriteBtn = true }: IProps): ReactElement => {
-    const auth = useAuth();
     const css = useStyles();
     const trans = useTrans();
+    const { token } = useAuth();
     const history = useRouter();
     const dispatch = useDispatch();
     const [config] = useConfig();
@@ -65,7 +65,7 @@ const OfferCard = ({ offer, showFavoriteBtn = true }: IProps): ReactElement => {
     } = offer;
 
     const isLogin = (): boolean => {
-        if (!auth?.access_token) {
+        if (!token.access_token) {
             modal.open(
                 <SmallModalWrp>
                     <LoginForm />

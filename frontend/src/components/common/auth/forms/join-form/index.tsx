@@ -4,15 +4,15 @@ import clsx from 'clsx';
 import { createUseStyles } from 'react-jss';
 import { useDispatch, useSelector } from 'react-redux';
 
-import useTrans from '../../../../hooks/trans.hook';
-import { ISignup, IState } from '../../../../interfaces';
-import types from '../../../../redux/types';
-import { isEmpty, mailRegex, passwordRegex } from '../../../../utils/helpers';
-import { Theme } from '../../../../utils/theming/theme';
-import Button from '../../button';
-import Input from '../../input';
-import Tooltip from '../../tooltip';
-import GoogleFacebook from '../google-facebook';
+import useTrans from '../../../../../hooks/trans.hook';
+import { ISignup, IState } from '../../../../../interfaces';
+import types from '../../../../../redux/types';
+import { isEmpty, mailRegex, passwordRegex } from '../../../../../utils/helpers';
+import { Theme } from '../../../../../utils/theming/theme';
+import Button from '../../../button';
+import Input from '../../../input';
+import Tooltip from '../../../tooltip';
+import GoogleFacebook from '../../google-facebook';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     title: {

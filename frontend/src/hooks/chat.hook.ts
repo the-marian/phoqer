@@ -12,8 +12,8 @@ let socket: WebSocket | null;
 let prevId: string | number;
 
 const useChat = (id: string | number): WebSocket | null => {
-    const auth = useAuth();
-    if (!auth) return null;
+    const { token } = useAuth();
+    if (!token.access_token) return null;
 
     if (socket && prevId === id) return socket;
     prevId = id;
@@ -23,11 +23,11 @@ const useChat = (id: string | number): WebSocket | null => {
         socket = null;
     }
 
-    socket = new WebSocket(`${config.socketUrl('v2')}/chat/${id}?token=${auth.access_token}`);
+    socket = new WebSocket(`${config.socketUrl('v2')}/chat/${id}?token=${token.access_token}`);
     socket.onclose = (ev): void => console.log(ev);
     socket.onerror = (): void => {
         socket?.close(1000, 'Close chat');
-        socket = new WebSocket(`${config.socketUrl('v2')}/chat/${id}?token=${auth.access_token}`);
+        socket = new WebSocket(`${config.socketUrl('v2')}/chat/${id}?token=${token.access_token}`);
     };
 
     return socket;

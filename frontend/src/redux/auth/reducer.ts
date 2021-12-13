@@ -12,22 +12,19 @@ const auth = (state: IAuth = authInit, { type, payload }: IAction): IAuth => {
             return (payload as IState).auth;
 
         case types.LOGIN_SUCCESS:
-            return { access_token: (payload as IAuth).access_token, loading: false };
-
-        case types.LOGOUT_END:
-            return authInit;
+            return { loading: false };
 
         case types.LOGIN_START:
         case types.SIGNUP_START:
         case types.GET_USER_START:
-            return { ...state, loading: true };
+            return { loading: true };
 
         case types.LOGIN_ERROR:
         case types.SIGNUP_SUCCESS:
         case types.SIGNUP_ERROR:
         case types.GET_USER_SUCCESS:
         case types.GET_USER_ERROR:
-            return { ...state, loading: false };
+            return { loading: false };
 
         default:
             return state;

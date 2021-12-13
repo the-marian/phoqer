@@ -17,7 +17,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         position: 'fixed',
         top: 0,
         left: 0,
-        zIndex: 21,
+        zIndex: 4,
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
@@ -26,6 +26,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         transition: theme.transitions[0],
     },
     open: {
+        zIndex: 21,
         transform: 'translateY(6rem)',
     },
     tabs: {

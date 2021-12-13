@@ -1,9 +1,9 @@
 import React, { ReactElement } from 'react';
 
-import { GetServerSidePropsContext } from 'next';
 import { createUseStyles } from 'react-jss';
 
-import AuthRedirect from '../../components/context/auth/auth-redirect';
+import AuthRedirect from '../../components/common/auth/auth-redirect/auth-redirect';
+import GetStaticProfile from '../../components/common/auth/get-static-profile/get-static-profile';
 import Header from '../../components/layout/header';
 import Meta from '../../components/meta';
 import { width } from '../../components/pages/chat/chat.config';
@@ -12,8 +12,6 @@ import ChatWrp from '../../components/pages/chat/components/wrappers/chat-wrp';
 import { useChatListUpdate } from '../../hooks/chat.hook';
 import useMedia from '../../hooks/media.hook';
 import useTrans from '../../hooks/trans.hook';
-import { wrapper } from '../../redux/store';
-import { serverRedirect } from '../../utils/helpers';
 import { Theme } from '../../utils/theming/theme';
 
 const useStyles = createUseStyles((theme: Theme) => ({
@@ -71,28 +69,24 @@ const Messages = (): ReactElement => {
     const media = useMedia(1060);
 
     return (
-        <>
-            <AuthRedirect />
-            <Meta title={'Мои сообщения'} h1={trans('user_profile_on_phoqer')} />
-
-            <Header />
-            <ChatNavbar />
-            <main className={css.main}>
-                <ChatWrp showConversation={media}>
-                    <div className={css.chat}>
-                        <div className={css.inner}>
-                            <img className={css.img} src="/icons/chat.png" alt="" />
-                            <p>Select the chat in side panel</p>
+        <AuthRedirect>
+            <GetStaticProfile>
+                <Meta title={'Мои сообщения'} h1={trans('user_profile_on_phoqer')} />
+                <Header />
+                <ChatNavbar />
+                <main className={css.main}>
+                    <ChatWrp showConversation={media}>
+                        <div className={css.chat}>
+                            <div className={css.inner}>
+                                <img className={css.img} src="/icons/chat.png" alt="" />
+                                <p>Select the chat in side panel</p>
+                            </div>
                         </div>
-                    </div>
-                </ChatWrp>
-            </main>
-        </>
+                    </ChatWrp>
+                </main>
+            </GetStaticProfile>
+        </AuthRedirect>
     );
 };
-
-export const getServerSideProps = wrapper.getServerSideProps(async (ctx): Promise<void> => {
-    if (serverRedirect(ctx as unknown as GetServerSidePropsContext)) return;
-});
 
 export default Messages;

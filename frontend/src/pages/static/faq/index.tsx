@@ -1,5 +1,6 @@
 import React, { ReactElement } from 'react';
 
+import GetStaticProfile from '../../../components/common/auth/get-static-profile/get-static-profile';
 import Breadcrumbs from '../../../components/common/breadcrumbs';
 import Construction from '../../../components/common/notifications/construction';
 import Container from '../../../components/layout/container';
@@ -9,7 +10,7 @@ import routes from '../../../utils/routes';
 
 const FAQ = (): ReactElement => {
     return (
-        <>
+        <GetStaticProfile>
             <Meta title="FAQ. Часто задаваемые вопросы" />
             <PageLayout>
                 <Container>
@@ -20,7 +21,7 @@ const FAQ = (): ReactElement => {
                     <Construction />
                 </Container>
             </PageLayout>
-        </>
+        </GetStaticProfile>
     );
 };
 

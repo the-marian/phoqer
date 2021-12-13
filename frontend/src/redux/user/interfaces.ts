@@ -13,9 +13,7 @@ type Type =
     | typeof types.UPDATE_USER_SUCCESS
     | typeof types.UPDATE_USER_AVATAR_START
     | typeof types.UPDATE_USER_AVATAR_ERROR
-    | typeof types.UPDATE_USER_AVATAR_SUCCESS
-    | typeof types.LOGOUT_INIT
-    | typeof types.LOGOUT_END;
+    | typeof types.UPDATE_USER_AVATAR_SUCCESS;
 
 export default interface IAction {
     type: Type;

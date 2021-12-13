@@ -150,7 +150,7 @@ const CLICK_TYPE = {
 };
 
 const SubComment = ({ id, comments }: { id: number; comments: IComment[] }): ReactElement => {
-    const auth = useAuth();
+    const { token } = useAuth();
     const css = useStyles();
     const history = useRouter();
     const dispatch = useDispatch();
@@ -173,7 +173,7 @@ const SubComment = ({ id, comments }: { id: number; comments: IComment[] }): Rea
             {comments?.map(item => (
                 <CommentsItem key={item.id} comment={item} inner />
             ))}
-            {auth?.access_token && (
+            {token.access_token && (
                 <div className={css.inner}>
                     <CommentsForm onSubmit={handleSubmit} />
                 </div>
@@ -191,7 +191,7 @@ interface IProps {
 
 const CommentsItem = ({ comment, extend = false, replies = false, inner = false }: IProps): ReactElement => {
     const css = useStyles();
-    const auth = useAuth();
+    const { token } = useAuth();
     const trans = useTrans();
     const history = useRouter();
     const dispatch = useDispatch();
@@ -258,13 +258,13 @@ const CommentsItem = ({ comment, extend = false, replies = false, inner = false 
             ) : null}
 
             <div className={css.flex}>
-                {auth?.access_token && (
+                {token.access_token && (
                     <button className={css.link} type="button" onClick={handleDelete}>
                         {trans('delete')}
                     </button>
                 )}
 
-                {replies && auth?.access_token && (
+                {replies && token.access_token && (
                     <button className={css.link} type="button" onClick={handleReply}>
                         {trans('reply')}
                     </button>

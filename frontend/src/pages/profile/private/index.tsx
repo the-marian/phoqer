@@ -1,10 +1,10 @@
 import React, { ReactElement } from 'react';
 
-import { GetServerSidePropsContext } from 'next';
 import { createUseStyles } from 'react-jss';
 
+import AuthRedirect from '../../../components/common/auth/auth-redirect/auth-redirect';
+import GetStaticProfile from '../../../components/common/auth/get-static-profile/get-static-profile';
 import Breadcrumbs from '../../../components/common/breadcrumbs';
-import AuthRedirect from '../../../components/context/auth/auth-redirect';
 import Container from '../../../components/layout/container';
 import PageLayout from '../../../components/layout/page-layout';
 import Meta from '../../../components/meta';
@@ -12,8 +12,6 @@ import ProfileAside from '../../../components/pages/profile/personal-area/aside'
 import ProfileContent from '../../../components/pages/profile/personal-area/profile-content';
 import useMedia from '../../../hooks/media.hook';
 import useTrans from '../../../hooks/trans.hook';
-import { wrapper } from '../../../redux/store';
-import { serverRedirect } from '../../../utils/helpers';
 import routes from '../../../utils/routes';
 import { Theme } from '../../../utils/theming/theme';
 
@@ -47,38 +45,35 @@ const Private = (): ReactElement => {
     const media = useMedia(1060);
 
     return (
-        <>
-            <AuthRedirect />
-            <Meta title={trans('personal_area')} h1={trans('user_profile_on_phoqer')} />
+        <AuthRedirect>
+            <GetStaticProfile>
+                <Meta title={trans('personal_area')} h1={trans('user_profile_on_phoqer')} />
 
-            <PageLayout>
-                <Container>
-                    <>
-                        {media ? (
-                            <Breadcrumbs
-                                className={css.breadcrumbs}
-                                end={trans('personal_area')}
-                                data={[{ label: trans('to_home_page'), link: routes.root }]}
-                            />
-                        ) : null}
+                <PageLayout>
+                    <Container>
+                        <>
+                            {media ? (
+                                <Breadcrumbs
+                                    className={css.breadcrumbs}
+                                    end={trans('personal_area')}
+                                    data={[{ label: trans('to_home_page'), link: routes.root }]}
+                                />
+                            ) : null}
 
-                        <div className={css.flex}>
-                            <aside className={css.aside}>
-                                <ProfileAside />
-                            </aside>
-                            <div className={css.content}>
-                                <ProfileContent />
+                            <div className={css.flex}>
+                                <aside className={css.aside}>
+                                    <ProfileAside />
+                                </aside>
+                                <div className={css.content}>
+                                    <ProfileContent />
+                                </div>
                             </div>
-                        </div>
-                    </>
-                </Container>
-            </PageLayout>
-        </>
+                        </>
+                    </Container>
+                </PageLayout>
+            </GetStaticProfile>
+        </AuthRedirect>
     );
 };
-
-export const getServerSideProps = wrapper.getServerSideProps(async (ctx): Promise<void> => {
-    if (serverRedirect(ctx as unknown as GetServerSidePropsContext)) return;
-});
 
 export default Private;

@@ -12,5 +12,8 @@ export interface ISignup {
 
 export interface IAuth {
     loading: boolean;
+}
+
+export interface IAuthResponse {
     access_token: string | null;
 }

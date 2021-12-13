@@ -1,5 +1,6 @@
 import '@testing-library/react';
 
+import { PHOQER_CONFIG } from '../../constant/cookie.constant';
 import { authCookies, catList, dropValue, siteCookies, siteCookiesReverse } from '../__mocks__/config.mock';
 import * as helpers from '../helpers';
 
@@ -109,14 +110,14 @@ describe('4. Work with cookies', () => {
             loading: false,
         });
 
-        expect(helpers.parseCookie(siteCookies, 'phoqer_config')).toStrictEqual({
+        expect(helpers.parseCookie(siteCookies, PHOQER_CONFIG)).toStrictEqual({
             hideSearchFilters: true,
             hideTopOffers: true,
             hideTopSearchQuery: true,
             warning: false,
         });
 
-        expect(helpers.parseCookie(siteCookiesReverse, 'phoqer_config')).toStrictEqual({
+        expect(helpers.parseCookie(siteCookiesReverse, PHOQER_CONFIG)).toStrictEqual({
             hideSearchFilters: true,
             hideTopOffers: true,
             hideTopSearchQuery: true,
@@ -162,20 +163,6 @@ describe('5. Site related helpers 5.2 Work with categories list', () => {
                     slug: 'test3.2',
                 },
             ],
-        });
-    });
-});
-
-describe('5. Site related helpers 5.3 SSR auth-form helpers', () => {
-    it('serverCookie', () => {
-        expect(helpers.serverCookie({ req: { headers: { cookie: 'phoqer_auth=null' } } })).toBe(null);
-        expect(helpers.serverCookie({ req: { headers: { cookie: authCookies } } })).toStrictEqual({
-            access_token: null,
-            loading: false,
-        });
-        expect(helpers.serverCookie({ req: { headers: { cookie: siteCookies } } })).toStrictEqual({
-            access_token: null,
-            loading: false,
         });
     });
 });

@@ -51,7 +51,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
 
 const Header = (): ReactElement => {
     const prev = useRef<number>(0);
-    const auth = useAuth();
+    const { token } = useAuth();
     const css = useStyles();
 
     const [shadow, setShadow] = useState<boolean>(false);
@@ -87,7 +87,7 @@ const Header = (): ReactElement => {
                     </div>
 
                     <div className={css.wrp}>
-                        {auth?.access_token ? <UserInfo /> : <NotAuth />}
+                        {token.access_token ? <UserInfo /> : <NotAuth />}
                         <Lang />
                     </div>
                 </div>

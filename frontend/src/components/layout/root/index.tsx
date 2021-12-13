@@ -10,7 +10,6 @@ import RouterProgress from '../../common/loaders/progress/router-progress';
 import ModalComponent from '../../common/modal';
 import notifications from '../../common/notifications';
 import ConstructionMessage from '../../common/notifications/messages/construction';
-import AuthInterceptor from '../../context/auth/auth-interceptor';
 import MainDrawer from '../main-drawer';
 import MobileNav from '../mobile-nav';
 
@@ -46,7 +45,6 @@ const Root = ({ children }: IProps): ReactElement => {
 
     return (
         <ThemeProvider theme={theme(siteTheme)}>
-            <AuthInterceptor />
             <RouterProgress />
             <ModalComponent />
             <MainDrawer />

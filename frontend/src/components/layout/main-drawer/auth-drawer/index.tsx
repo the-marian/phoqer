@@ -3,10 +3,10 @@ import React, { ReactElement } from 'react';
 import { faFlag } from '@fortawesome/free-regular-svg-icons/faFlag';
 import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons/faSignOutAlt';
 import { createUseStyles } from 'react-jss';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
+import useAuth from '../../../../hooks/auth.hook';
 import { IPublicProfile, IState } from '../../../../interfaces';
-import types from '../../../../redux/types';
 import routes from '../../../../utils/routes';
 import { Theme } from '../../../../utils/theming/theme';
 import Gift from '../../../common/advertising/gift';
@@ -23,11 +23,11 @@ const useStyles = createUseStyles((theme: Theme) => ({
 
 const AuthDrawer = (): ReactElement | null => {
     const css = useStyles();
-    const dispatch = useDispatch();
+    const { logout } = useAuth();
     const user = useSelector<IState, IPublicProfile | null>(state => state.user);
 
     const handleLogout = () => {
-        dispatch({ type: types.LOGOUT_INIT });
+        logout();
         window.location.reload();
     };
 

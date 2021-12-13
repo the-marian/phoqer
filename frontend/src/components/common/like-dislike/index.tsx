@@ -75,16 +75,16 @@ interface IProps {
 }
 
 const LikeDislike = ({ like, dislike, active, onClick }: IProps): ReactElement => {
-    const auth = useAuth();
+    const { token } = useAuth();
     const css = useStyles();
 
     const handleClick = (type: 'like' | 'dislike') => (): void => {
-        if (!auth?.access_token) return;
+        if (!token.access_token) return;
         if (onClick) onClick(type);
     };
 
     return (
-        <div className={clsx(css.action, (!auth?.access_token || !onClick) && css.none)}>
+        <div className={clsx(css.action, (!token.access_token || !onClick) && css.none)}>
             <button className={clsx(css.like, active === 'like' && css.active)} type="button" onClick={handleClick('like')}>
                 <FontAwesomeIcon icon={faThumbsUp} />
                 <span>{like}</span>

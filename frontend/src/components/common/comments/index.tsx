@@ -9,8 +9,8 @@ import useTrans from '../../../hooks/trans.hook';
 import { IState } from '../../../interfaces';
 import types from '../../../redux/types';
 import { Theme } from '../../../utils/theming/theme';
-import JoinForm from '../auth-form/join-form';
-import LoginForm from '../auth-form/login-form';
+import JoinForm from '../auth/forms/join-form';
+import LoginForm from '../auth/forms/login-form';
 import CommentsLoader from '../loaders/comments-loader';
 import { modal } from '../modal';
 import SmallModalWrp from '../modal/small-modal-wrp';
@@ -50,7 +50,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
 const Comments = (): ReactElement => {
     const css = useStyles();
     const history = useRouter();
-    const auth = useAuth();
+    const { token } = useAuth();
     const trans = useTrans();
     const dispatch = useDispatch();
 
@@ -86,7 +86,7 @@ const Comments = (): ReactElement => {
 
     return (
         <>
-            {auth?.access_token ? (
+            {token.access_token ? (
                 <div className={css.root}>
                     {loading && <CommentsLoader top={-1.5} />}
 

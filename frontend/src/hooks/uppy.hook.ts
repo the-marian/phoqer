@@ -8,7 +8,7 @@ import config from '../utils/config';
 import useAuth from './auth.hook';
 
 const useUppy = (): Uppy.Uppy<Uppy.StrictTypes> => {
-    const auth = useAuth();
+    const { token } = useAuth();
     const uppy = useMemo(
         () =>
             Uppy<Uppy.StrictTypes>({
@@ -30,14 +30,14 @@ const useUppy = (): Uppy.Uppy<Uppy.StrictTypes> => {
             endpoint: config.uploadsUrl(),
             fieldName: 'file',
             headers: {
-                Authorization: `Bearer ${auth?.access_token}`,
+                Authorization: token.access_token || '',
             },
         });
 
         return () => {
             uppy.close();
         };
-    }, [auth?.access_token, uppy]);
+    }, [token.access_token, uppy]);
 
     return uppy;
 };

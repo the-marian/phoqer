@@ -12,9 +12,11 @@ import PageLayout from '../components/layout/page-layout';
 import Meta from '../components/meta';
 import Categories from '../components/pages/home/categories';
 import useTrans from '../hooks/trans.hook';
-import { IStore } from '../interfaces';
+import { IAuthResponse, IStore } from '../interfaces';
 import { wrapper } from '../redux/store';
 import types from '../redux/types';
+import { parseCookie } from '../utils/helpers';
+import api from '../utils/interceptors';
 import { Theme } from '../utils/theming/theme';
 
 const useStyles = createUseStyles((theme: Theme) => ({
@@ -49,6 +51,12 @@ const Index = (): ReactElement => {
 };
 
 export const getServerSideProps = wrapper.getServerSideProps(async (ctx): Promise<void> => {
+    const auth = parseCookie<IAuthResponse>(ctx.req.headers?.cookie);
+    if (auth?.access_token) {
+        api.defaults.headers.common.Authorization = auth.access_token;
+        ctx?.store?.dispatch({ type: types.GET_USER_START });
+    }
+
     ctx.store.dispatch({ type: types.GET_CATEGORIES_START });
     ctx.store.dispatch({ type: types.GET_POPULAR_OFFERS_START });
     ctx.store.dispatch(END);

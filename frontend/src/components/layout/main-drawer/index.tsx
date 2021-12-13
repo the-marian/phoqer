@@ -36,7 +36,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
 
 const MainDrawer = (): ReactElement => {
     const css = useStyles();
-    const auth = useAuth();
+    const { token } = useAuth();
     const dispatch = useDispatch();
     const drawer = useSelector<IState, boolean>(state => state.config.drawer);
 
@@ -48,7 +48,7 @@ const MainDrawer = (): ReactElement => {
         <Drawer onToggle={handleToggle} open={drawer}>
             <Logo className={css.link} link />
 
-            <div className={css.content}>{auth?.access_token ? <AuthDrawer /> : <NotAuthDrawer />}</div>
+            <div className={css.content}>{token.access_token ? <AuthDrawer /> : <NotAuthDrawer />}</div>
             <Socials style={{ marginTop: '4rem' }} />
         </Drawer>
     );

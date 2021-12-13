@@ -1,4 +1,4 @@
-import { render } from '../../../../tests/tests.utils';
+import { render } from '../../../../../tests/tests.utils';
 
 import JoinForm from './index';
 

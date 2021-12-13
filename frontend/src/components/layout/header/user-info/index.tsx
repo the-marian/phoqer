@@ -9,13 +9,13 @@ import { faSun } from '@fortawesome/free-solid-svg-icons/faSun';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Link from 'next/link';
 import { createUseStyles } from 'react-jss';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
+import useAuth from '../../../../hooks/auth.hook';
 import useMedia from '../../../../hooks/media.hook';
 import useTheme from '../../../../hooks/theme.hook';
 import useTrans from '../../../../hooks/trans.hook';
 import { IPublicProfile, IState } from '../../../../interfaces';
-import types from '../../../../redux/types';
 import routes from '../../../../utils/routes';
 import mixin from '../../../../utils/theming/mixin';
 import { Theme } from '../../../../utils/theming/theme';
@@ -96,7 +96,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
 const UserInfo = (): ReactElement => {
     const css = useStyles();
     const trans = useTrans();
-    const dispatch = useDispatch();
+    const { logout } = useAuth();
     const tablet = useMedia(650);
     const desktop = useMedia(900);
     const [theme, setTheme] = useTheme();
@@ -105,7 +105,7 @@ const UserInfo = (): ReactElement => {
     const userName = user?.first_name + ' ' + user?.last_name;
 
     const handleLogout = () => {
-        dispatch({ type: types.LOGOUT_INIT });
+        logout();
         window.location.reload();
     };
 

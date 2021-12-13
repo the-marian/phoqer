@@ -15,7 +15,7 @@ import useTheme from '../../../../hooks/theme.hook';
 import routes from '../../../../utils/routes';
 import mixin from '../../../../utils/theming/mixin';
 import { Theme } from '../../../../utils/theming/theme';
-import LoginForm from '../../../common/auth-form/login-form';
+import LoginForm from '../../../common/auth/forms/login-form';
 import { modal } from '../../../common/modal';
 import SmallModalWrp from '../../../common/modal/small-modal-wrp';
 
@@ -41,11 +41,11 @@ const useStyles = createUseStyles((theme: Theme) => ({
 const ControlButtons = (): ReactElement => {
     const css = useStyles();
     const history = useRouter();
-    const auth = useAuth();
+    const { token } = useAuth();
     const [theme, setTheme] = useTheme();
 
     const linksRedirect = (route: string): void => {
-        if (!auth?.access_token) {
+        if (!token.access_token) {
             modal.open(
                 <SmallModalWrp>
                     <LoginForm />

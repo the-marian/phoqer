@@ -7,15 +7,15 @@ import Link from 'next/link';
 import { createUseStyles } from 'react-jss';
 import { useDispatch, useSelector } from 'react-redux';
 
-import useTrans from '../../../../hooks/trans.hook';
-import { ILogin, IState } from '../../../../interfaces';
-import types from '../../../../redux/types';
-import { isEmpty, mailRegex } from '../../../../utils/helpers';
-import routes from '../../../../utils/routes';
-import { Theme } from '../../../../utils/theming/theme';
-import Button from '../../button';
-import Input from '../../input';
-import GoogleFacebook from '../google-facebook';
+import useTrans from '../../../../../hooks/trans.hook';
+import { ILogin, IState } from '../../../../../interfaces';
+import types from '../../../../../redux/types';
+import { isEmpty, mailRegex } from '../../../../../utils/helpers';
+import routes from '../../../../../utils/routes';
+import { Theme } from '../../../../../utils/theming/theme';
+import Button from '../../../button';
+import Input from '../../../input';
+import GoogleFacebook from '../../google-facebook';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     title: {

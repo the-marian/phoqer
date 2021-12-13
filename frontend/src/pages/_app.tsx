@@ -2,31 +2,31 @@ import '../styles/index.css';
 
 import React, { ReactElement, useEffect } from 'react';
 
-import axios from 'axios';
 import App, { AppProps } from 'next/app';
 import { AppContextType } from 'next/dist/shared/lib/utils';
 import { Router } from 'next/router';
-import { useDispatch } from 'react-redux';
 
 import { modal } from '../components/common/modal';
-import RootProvider from '../components/context/root-provider';
+import AuthProvider from '../components/context/auth/auth';
+import ConfigProvider from '../components/context/config';
+import MediaProvider from '../components/context/media';
+import SiteTheme from '../components/context/theme';
 import Root from '../components/layout/root';
-import { IAuth, IConfig, Themes } from '../interfaces';
+import { PHOQER_CONFIG, PHOQER_THEME } from '../constant/cookie.constant';
+import { IAuthResponse, IConfig, Themes } from '../interfaces';
 import { wrapper } from '../redux/store';
+import appConfig from '../utils/config';
 import { parseCookie } from '../utils/helpers';
-import interceptors from '../utils/interceptors';
+import api from '../utils/interceptors';
 
 interface IProps {
     width: number;
-    auth: IAuth | null;
-    theme: Themes | null;
-    config: IConfig | null;
+    auth: IAuthResponse;
+    theme: Themes;
+    config: IConfig;
 }
 
 const PhoqerApp = ({ Component, pageProps, width, auth, theme, config }: AppProps & IProps): ReactElement => {
-    const dispatch = useDispatch();
-    interceptors(dispatch);
-
     useEffect(() => {
         const handleClear = () => {
             modal.close();
@@ -45,31 +45,33 @@ const PhoqerApp = ({ Component, pageProps, width, auth, theme, config }: AppProp
     }, []);
 
     return (
-        <RootProvider width={width} auth={auth} theme={theme} config={config}>
-            <Root>
-                <Component {...pageProps} />
-            </Root>
-        </RootProvider>
+        <AuthProvider initValue={auth}>
+            <ConfigProvider initValue={config}>
+                <MediaProvider initValue={width}>
+                    <SiteTheme initValue={theme}>
+                        <Root>
+                            <Component {...pageProps} />
+                        </Root>
+                    </SiteTheme>
+                </MediaProvider>
+            </ConfigProvider>
+        </AuthProvider>
     );
 };
 
 PhoqerApp.getInitialProps = async (appContext: AppContextType<Router>): Promise<IProps> => {
+    const props = await App.getInitialProps(appContext);
+    const headers = appContext?.ctx?.req?.headers;
+
     const toMatch =
         /mobile|iphone|ipod|android|blackberry|opera|mini|windows\sce|palm|smartphone|iemobile|ipad|android 3.0|xoom|sch-i800|playbook|tablet|kindle/i;
-    const isMobile = toMatch.test(appContext?.ctx?.req?.headers?.['user-agent'] || '');
+    const isMobile = toMatch.test(headers?.['user-agent'] || '');
 
-    // ui
-    const theme = parseCookie<Themes>(appContext?.ctx?.req?.headers?.cookie, 'phoqer_theme', true);
-    const props = await App.getInitialProps(appContext);
+    const theme = parseCookie<Themes>(headers?.cookie, PHOQER_THEME, true) || 'white';
+    const config = parseCookie<IConfig>(headers?.cookie, PHOQER_CONFIG) || appConfig.siteConfig;
+    const auth = parseCookie<IAuthResponse>(headers?.cookie) || { access_token: null };
+    api.defaults.headers.common.Authorization = auth?.access_token || null;
 
-    // auth-form
-    const auth = parseCookie<IAuth>(appContext?.ctx?.req?.headers?.cookie);
-    if (auth?.access_token) axios.defaults.headers.common.Authorization = `Bearer ${auth?.access_token}`;
-
-    // config
-    const config = parseCookie<IConfig>(appContext?.ctx?.req?.headers?.cookie, 'phoqer_config');
-
-    // end
     return { ...props, width: isMobile ? 500 : 1400, auth, theme, config };
 };
 

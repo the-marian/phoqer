@@ -4,6 +4,7 @@ window.matchMedia = jest.fn().mockImplementation(query => ({
     matches: false,
     media: query,
     onchange: null,
+    replace: jest.fn(),
     addListener: jest.fn(),
     removeListener: jest.fn(),
 }));
@@ -15,6 +16,7 @@ jest.mock('react-confetti', () => () => null);
 jest.mock('next/router', () => ({
     useRouter: jest.fn().mockImplementation(() => ({
         locale: 'en',
+        replace: jest.fn(),
     })),
     Router: {
         events: {

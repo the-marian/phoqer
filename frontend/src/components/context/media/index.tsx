@@ -1,14 +1,14 @@
-import React, { createContext, ReactElement, useEffect, useState } from 'react';
+import React, { createContext, ReactNode, useEffect, useState } from 'react';
 
 export const Media = createContext<[media: number, setMedia: ((v: number) => void) | null]>([768, null]);
 
 interface IProps {
-    width?: number;
-    children: JSX.Element | JSX.Element[] | ReactElement;
+    initValue: number;
+    children: ReactNode;
 }
 
-const MediaProvider = ({ children, width = 768 }: IProps): ReactElement => {
-    const [media, setMedia] = useState<number>(width);
+const MediaProvider = ({ children, initValue = 768 }: IProps): JSX.Element => {
+    const [media, setMedia] = useState<number>(initValue);
 
     useEffect(() => {
         if (process.browser) {

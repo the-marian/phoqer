@@ -7,9 +7,7 @@ type Type =
     | typeof types.LOGIN_SUCCESS
     | typeof types.GET_USER_START
     | typeof types.GET_USER_ERROR
-    | typeof types.GET_USER_SUCCESS
-    | typeof types.LOGOUT_INIT
-    | typeof types.LOGOUT_END;
+    | typeof types.GET_USER_SUCCESS;
 
 export default interface IAction {
     type: Type;

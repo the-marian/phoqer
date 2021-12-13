@@ -3,6 +3,7 @@ import React, { ReactElement } from 'react';
 import dynamic from 'next/dynamic';
 import { createUseStyles } from 'react-jss';
 
+import GetStaticProfile from '../../../../components/common/auth/get-static-profile/get-static-profile';
 import Breadcrumbs from '../../../../components/common/breadcrumbs';
 import Container from '../../../../components/layout/container';
 import PageLayout from '../../../../components/layout/page-layout';
@@ -31,7 +32,7 @@ const SecretPage = (): ReactElement => {
     const css = useStyles();
 
     return (
-        <>
+        <GetStaticProfile>
             <Meta title="НЕ ЛЕЗЬ, ОНА ТЕБЯ СОЖРЕТ!" />
             <PageLayout>
                 <ConfettiWrp />
@@ -69,7 +70,7 @@ const SecretPage = (): ReactElement => {
                     </div>
                 </Container>
             </PageLayout>
-        </>
+        </GetStaticProfile>
     );
 };
 

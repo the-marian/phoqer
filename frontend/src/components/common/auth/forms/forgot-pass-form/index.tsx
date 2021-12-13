@@ -5,13 +5,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Link from 'next/link';
 import { createUseStyles } from 'react-jss';
 
-import useTrans from '../../../../hooks/trans.hook';
-import { mailRegex } from '../../../../utils/helpers';
-import routes from '../../../../utils/routes';
-import mixin from '../../../../utils/theming/mixin';
-import { Theme } from '../../../../utils/theming/theme';
-import Button from '../../button';
-import Input from '../../input';
+import useTrans from '../../../../../hooks/trans.hook';
+import { mailRegex } from '../../../../../utils/helpers';
+import routes from '../../../../../utils/routes';
+import mixin from '../../../../../utils/theming/mixin';
+import { Theme } from '../../../../../utils/theming/theme';
+import Button from '../../../button';
+import Input from '../../../input';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     title: {

@@ -12,7 +12,7 @@ import useTrans from '../../../../../hooks/trans.hook';
 import { IOfferCard } from '../../../../../interfaces';
 import types from '../../../../../redux/types';
 import { Theme } from '../../../../../utils/theming/theme';
-import LoginForm from '../../../../common/auth-form/login-form';
+import LoginForm from '../../../../common/auth/forms/login-form';
 import { modal } from '../../../../common/modal';
 import SmallModalWrp from '../../../../common/modal/small-modal-wrp';
 
@@ -85,11 +85,11 @@ interface IProps {
 const OfferHead = ({ offer }: IProps): ReactElement => {
     const css = useStyles();
     const trans = useTrans();
-    const auth = useAuth();
+    const { token } = useAuth();
     const dispatch = useDispatch();
 
     const handleFavorite = (): void => {
-        if (!auth?.access_token) {
+        if (!token.access_token) {
             modal.open(
                 <SmallModalWrp>
                     <LoginForm />

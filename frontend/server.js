@@ -21,10 +21,6 @@ app.prepare()
                 console.log('Frontend server error', err);
                 throw err;
             }
-
-            process.on('SIGILL', signal => {
-                console.log('Frontend server error', signal);
-            });
             console.log('Front-end is run on port: ' + PORT + ', end host: ' + HOST);
         });
     })

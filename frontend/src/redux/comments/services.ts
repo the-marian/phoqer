@@ -1,7 +1,8 @@
-import axios, { AxiosResponse } from 'axios';
+import { AxiosResponse } from 'axios';
 
 import { IComment } from '../../interfaces';
 import endpoint from '../../utils/endpoint';
+import api from '../../utils/interceptors';
 
 interface ICommentBody {
     body: string;
@@ -11,11 +12,11 @@ interface ICommentBody {
 }
 
 const services = {
-    list: (id: string): Promise<AxiosResponse<IComment[]>> => axios.get(endpoint(`/comments/${id}`)),
-    create: (body: ICommentBody): Promise<AxiosResponse<void>> => axios.post(endpoint('/comments'), body),
-    delete: (id: number): Promise<AxiosResponse<void>> => axios.delete(endpoint(`/comments/${id}`)),
-    like: (id: number): Promise<AxiosResponse<void>> => axios.patch(endpoint(`/comments/${id}/like`)),
-    dislike: (id: number): Promise<AxiosResponse<void>> => axios.patch(endpoint(`/comments/${id}/dislike`)),
+    list: (id: string): Promise<AxiosResponse<IComment[]>> => api.get(endpoint(`/comments/${id}`)),
+    create: (body: ICommentBody): Promise<AxiosResponse<void>> => api.post(endpoint('/comments'), body),
+    delete: (id: number): Promise<AxiosResponse<void>> => api.delete(endpoint(`/comments/${id}`)),
+    like: (id: number): Promise<AxiosResponse<void>> => api.patch(endpoint(`/comments/${id}/like`)),
+    dislike: (id: number): Promise<AxiosResponse<void>> => api.patch(endpoint(`/comments/${id}/dislike`)),
 };
 
 export default services;

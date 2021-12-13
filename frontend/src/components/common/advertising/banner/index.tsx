@@ -10,7 +10,7 @@ import routes from '../../../../utils/routes';
 import mixin from '../../../../utils/theming/mixin';
 import { Theme } from '../../../../utils/theming/theme';
 import AnimatedBackdrop from '../../animated-backdrop';
-import LoginForm from '../../auth-form/login-form';
+import LoginForm from '../../auth/forms/login-form';
 import { modal } from '../../modal';
 import SmallModalWrp from '../../modal/small-modal-wrp';
 
@@ -54,12 +54,12 @@ interface IProps {
 
 const Banner = ({ className }: IProps): ReactElement => {
     const css = useStyles();
-    const auth = useAuth();
+    const { token } = useAuth();
     const trans = useTrans();
     const history = useRouter();
 
     const handleClick = (): void => {
-        if (auth?.access_token) {
+        if (token.access_token) {
             history.push(routes.offers.new(1));
         } else {
             modal.open(

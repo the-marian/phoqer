@@ -62,13 +62,13 @@ interface IProps {
 const ErrorComponent = ({ title, text }: IProps): ReactElement => {
     const css = useStyles();
     const trans = useTrans();
-    const auth = useAuth();
+    const { token } = useAuth();
 
     return (
         <>
             <Meta title={title} />
             <div className={css.container}>
-                <img className={clsx(css.img, auth?.access_token && css.imgAuth)} src="/no_data.gif" alt="no data" />
+                <img className={clsx(css.img, token.access_token && css.imgAuth)} src="/no_data.gif" alt="no data" />
                 <h2 className={css.title}>{title}</h2>
                 <p className={css.text}>{text}</p>
                 <Link href={routes.root}>

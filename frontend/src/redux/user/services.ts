@@ -1,14 +1,14 @@
-import axios, { AxiosResponse } from 'axios';
+import { AxiosResponse } from 'axios';
 
 import { IPublicProfile } from '../../interfaces';
 import endpoint from '../../utils/endpoint';
+import api from '../../utils/interceptors';
 
 const services = {
-    user: (): Promise<AxiosResponse<IPublicProfile>> => axios.get(endpoint('/users/me')),
-    userUpdate: (body: Partial<IPublicProfile>): Promise<AxiosResponse<IPublicProfile>> =>
-        axios.patch(endpoint('/users/me'), body),
+    user: (): Promise<AxiosResponse<IPublicProfile>> => api.get(endpoint('/users/me')),
+    userUpdate: (body: Partial<IPublicProfile>): Promise<AxiosResponse<IPublicProfile>> => api.patch(endpoint('/users/me'), body),
     uploads: (form: FormData): Promise<AxiosResponse<{ image_url: string }>> =>
-        axios.post(endpoint('/upload'), form, { headers: { 'content-type': 'multipart/form-data' } }),
+        api.post(endpoint('/upload'), form, { headers: { 'content-type': 'multipart/form-data' } }),
 };
 
 export default services;
