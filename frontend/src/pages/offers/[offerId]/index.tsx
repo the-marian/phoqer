@@ -32,7 +32,9 @@ const SingleOfferPage = (): ReactElement | null => {
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-    const { data } = await api.get<IOfferPagination>(endpoint('/offers/search'), { params: { page: 1, limit: 1000 } });
+    const { data } = await api.get<IOfferPagination>('http://dev.phoqer.com/api/v2/offers/search', {
+        params: { page: 1, limit: 1000 },
+    });
 
     return {
         paths: data.data.reduce((acc, item) => {
