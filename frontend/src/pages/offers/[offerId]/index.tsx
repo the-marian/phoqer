@@ -14,7 +14,6 @@ import SingleOfferContent from '../../../components/pages/offers/single-offer/si
 import { IOfferPagination, IStore } from '../../../interfaces';
 import { wrapper } from '../../../redux/store';
 import types from '../../../redux/types';
-import endpoint from '../../../utils/endpoint';
 import api from '../../../utils/interceptors';
 
 const SingleOfferPage = (): ReactElement | null => {
@@ -48,7 +47,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps = wrapper.getStaticProps(async ctx => {
     const offerId = ctx.params?.offerId;
 
-    ctx.store.dispatch({ type: types.GET_COMMENTS_START, payload: offerId });
     ctx.store.dispatch({ type: types.GET_SINGLE_OFFER_START, payload: offerId });
     ctx.store.dispatch(END);
 

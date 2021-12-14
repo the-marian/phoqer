@@ -166,6 +166,10 @@ const SingleOfferContent = (): JSX.Element => {
     }, [dispatch, offerId]);
 
     useEffect(() => {
+        dispatch({ type: types.GET_COMMENTS_START, payload: offerId });
+    }, [dispatch, offerId]);
+
+    useEffect(() => {
         if (offer?.author_id) dispatch({ type: types.GET_PUBLIC_PROFILE_START, payload: offer.author_id });
     }, [offer, dispatch, history.locale, offerId]);
 
