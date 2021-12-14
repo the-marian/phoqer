@@ -3,7 +3,6 @@ import { useEffect, useMemo } from 'react';
 import Uppy from '@uppy/core';
 import XHRUpload from '@uppy/xhr-upload';
 
-import config from '../utils/config';
 import endpoint from '../utils/endpoint';
 
 import useAuth from './auth.hook';

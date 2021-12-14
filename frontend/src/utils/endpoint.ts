@@ -1,5 +1,5 @@
 const endpointsMap = {
-    ssr: (path = ''): string => (process.env.NEXT_PUBLIC_API_SSR || '') + path,
+    ssr: (path = ''): string => (process.env.NEXT_PUBLIC_API_SSR || 'http://dev.phoqer.com/api/v2') + path,
     browser: (path = ''): string => (process.env.NEXT_PUBLIC_API_BROWSER || '') + path,
 };
 
