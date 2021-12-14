@@ -124,6 +124,10 @@ const ValueItem = memo(({ withSub, iconImage, sub, slug, name, onSelect, type = 
         onSelect(trans(name || slug), slug, type);
     };
 
+    const mainSelect = (): void => {
+        onSelect(trans(name || slug), slug, 'main');
+    };
+
     return (
         <li className={type === 'main' ? clsx(css.item, withSub && css.itemEmpty) : css.sub} key={slug}>
             <button type="button" onClick={handleClick}>
@@ -134,7 +138,7 @@ const ValueItem = memo(({ withSub, iconImage, sub, slug, name, onSelect, type = 
 
             {sub?.length ? (
                 <ul className={clsx(css.list, open && css.open)}>
-                    <ValueItem key={slug} name={trans(name || slug)} onSelect={onSelect} slug={slug} type="sub" />
+                    <ValueItem key={slug} name={trans(name || slug)} onSelect={mainSelect} slug={slug} type="sub" />
                     {sub?.map(({ name, slug, icon_image }) => (
                         <ValueItem
                             key={slug}
