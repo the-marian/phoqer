@@ -14,6 +14,7 @@ import SingleOfferContent from '../../../components/pages/offers/single-offer/si
 import { IOfferPagination, IStore } from '../../../interfaces';
 import { wrapper } from '../../../redux/store';
 import types from '../../../redux/types';
+import endpoint from '../../../utils/endpoint';
 import api from '../../../utils/interceptors';
 
 const SingleOfferPage = (): ReactElement | null => {
@@ -31,7 +32,7 @@ const SingleOfferPage = (): ReactElement | null => {
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-    const { data } = await api.get<IOfferPagination>('http://dev.phoqer.com/api/v2/offers/search', {
+    const { data } = await api.get<IOfferPagination>(endpoint('/offers/search'), {
         params: { page: 1, limit: 1000 },
     });
 

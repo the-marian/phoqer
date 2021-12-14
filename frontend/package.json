@@ -3,7 +3,7 @@
     "version": "1.0.0",
     "license": "MIT",
     "scripts": {
-        "build": "next build",
+        "build": "NODE_ENV=development next build",
         "postbuild": "next-sitemap",
         "dev": "NODE_ENV=development node server.js",
         "start": "NODE_ENV=production node server.js",
