@@ -1,8 +1,8 @@
 import { IConfig, Themes } from '../interfaces';
 
 const config = {
-    host: (lang = 'pl'): string => `${process.env.NEXT_PUBLIC_HOST || 'http://dev.phoqer.com'}/${lang}`,
-    img: process.env.NEXT_PUBLIC_HOST || 'http://dev.phoqer.com',
+    host: (lang = 'pl'): string => `${process.env.NEXT_PUBLIC_URL || 'http://dev.phoqer.com'}/${lang}`,
+    img: process.env.NEXT_PUBLIC_URL || 'http://dev.phoqer.com',
     socketUrl: process.env.NEXT_PUBLIC_WS || 'ws://dev.phoqer.com/api/v1',
     themes: ['white', 'black'] as Themes[],
     googleApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAP_API_KEY,
