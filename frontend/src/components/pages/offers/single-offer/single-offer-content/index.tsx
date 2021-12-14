@@ -157,7 +157,7 @@ const SingleOfferContent = (): JSX.Element => {
     const { token } = useAuth();
     const media = useMedia(768);
     const history = useRouter();
-    const offerId = +String(history.query?.offerId || 1);
+    const offerId = String(history.query?.offerId);
 
     const offer = useSelector<IState, IOfferCard | null>(state => state.offers.single);
 
