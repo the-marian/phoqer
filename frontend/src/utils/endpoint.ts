@@ -1,27 +1,8 @@
-const prefix = '/api/v2';
-
 const endpointsMap = {
-    development() {
-        return {
-            ssr: (path = ''): string => 'http://dev.phoqer.com' + prefix + path,
-            browser: (path = ''): string => 'http://dev.phoqer.com' + prefix + path,
-        };
-    },
-
-    production() {
-        return {
-            ssr: (path = ''): string => 'http://backend:8001' + path,
-            browser: (path = ''): string => prefix + path,
-        };
-    },
-
-    test() {
-        return this.development();
-    },
+    ssr: (path = ''): string => (process.env.NEXT_PUBLIC_API_SSR || '') + path,
+    browser: (path = ''): string => (process.env.NEXT_PUBLIC_API_BROWSER || '') + path,
 };
 
-endpointsMap.test = endpointsMap.development;
-
-const endpoint = process.browser ? endpointsMap[process.env.NODE_ENV]().browser : endpointsMap[process.env.NODE_ENV]().ssr;
+const endpoint = endpointsMap[process.browser ? 'browser' : 'ssr'];
 
 export default endpoint;

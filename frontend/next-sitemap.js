@@ -11,7 +11,7 @@ module.exports = {
             hreflang: 'ru',
         },
         {
-            href: 'http://phoqer.com/ua',
+            href: 'http://phoqer.com',
             hreflang: 'ua',
         },
     ],

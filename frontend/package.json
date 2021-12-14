@@ -3,7 +3,7 @@
     "version": "1.0.0",
     "license": "MIT",
     "scripts": {
-        "build": "NODE_ENV=development next build",
+        "build": "next build",
         "postbuild": "next-sitemap",
         "dev": "NODE_ENV=development node server.js",
         "start": "NODE_ENV=production node server.js",
@@ -13,7 +13,7 @@
         "lint": "yarn run prettier && yarn run eslint",
         "type-check": "tsc --pretty --noEmit",
         "husky": "cd .. && husky install frontend/.husky",
-        "test": "jest -u",
+        "test": "NODE_ENV=development jest -u",
         "test-all": "yarn lint && yarn type-check && jest"
     },
     "husky": {

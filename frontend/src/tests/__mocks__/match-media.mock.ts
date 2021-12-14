@@ -1,4 +1,11 @@
+import { loadEnvConfig } from '@next/env';
+
 import { IOfferCard } from '../../interfaces';
+
+export default async (): Promise<void> => {
+    const projectDir = process.cwd();
+    loadEnvConfig(projectDir);
+};
 
 window.matchMedia = jest.fn().mockImplementation(query => ({
     matches: false,

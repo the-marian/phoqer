@@ -4,6 +4,7 @@ import Uppy from '@uppy/core';
 import XHRUpload from '@uppy/xhr-upload';
 
 import config from '../utils/config';
+import endpoint from '../utils/endpoint';
 
 import useAuth from './auth.hook';
 
@@ -27,7 +28,7 @@ const useUppy = (): Uppy.Uppy<Uppy.StrictTypes> => {
 
     useEffect(() => {
         uppy.use(XHRUpload, {
-            endpoint: config.uploadsUrl(),
+            endpoint: endpoint('/uploads'),
             fieldName: 'file',
             headers: {
                 Authorization: token.access_token || '',
