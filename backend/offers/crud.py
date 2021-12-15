@@ -1,3 +1,4 @@
+import uuid
 from typing import Any, List, Mapping, Optional, Set
 from uuid import UUID
 
@@ -106,7 +107,7 @@ async def create_offer_draft(offer: OfferDraftRequest, author_id: int) -> str:
         :description,
         :doc_needed,
         :extra_requirements,
-        uuid_generate_v4(),
+        :uuid,
         :is_deliverable,
         :items_amount,
         :max_rent_period,
@@ -132,6 +133,7 @@ async def create_offer_draft(offer: OfferDraftRequest, author_id: int) -> str:
         "description": offer.description,
         "doc_needed": offer.doc_needed,
         "extra_requirements": offer.extra_requirements,
+        "uuid": uuid.uuid4(),
         "is_deliverable": offer.is_deliverable,
         "items_amount": offer.items_amount,
         "max_rent_period": offer.max_rent_period,

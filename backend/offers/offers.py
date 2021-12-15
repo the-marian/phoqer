@@ -52,11 +52,8 @@ async def get_offer_via_chat_id(
             detail=f"No record in DB for offer with id {offer_id['offer_id']}",
         )
     offer_images = await crud.get_offers_images(offer_id["offer_id"])
-    can_rent = False
     is_favorite = False
     is_promoted = False
-    if user_id != offer["author_id"]:
-        can_rent = True
     if promote_til_date := offer.get("promote_til_date"):
         is_promoted = date.today() < promote_til_date
     if user_id:
@@ -65,7 +62,6 @@ async def get_offer_via_chat_id(
         )
     return OfferDraftReply(
         **offer,
-        can_rent=can_rent,
         images=offer_images,
         is_promoted=is_promoted,
         is_favorite=is_favorite,
@@ -215,7 +211,6 @@ async def get_popular_offers(
     return [
         OffersListItem(
             **offer,
-            can_rent=True if user_id != offer["author_id"] else False,
             is_promoted=True,
             is_favorite=offer["id"] in user_favorite_popular_offers,
         )
@@ -269,7 +264,6 @@ async def search_offers(
     for offer in founded_offers:
         offer_schema = OffersListItem(
             **offer,
-            can_rent=True if user_id != offer["author_id"] else False,
             is_favorite=offer["id"] in user_favorite_offers_set,
         )
         if promote_til_date := offer.get("promote_til_date"):
@@ -309,18 +303,14 @@ async def get_offer(
         )
     chat_id = await crud.chat_id_via_offer_id(offer_id, user_id)
     offer_images = await crud.get_offers_images(offer_id)
-    can_rent = False
     is_favorite = False
     is_promoted = False
-    if user_id != offer["author_id"]:
-        can_rent = True
     if promote_til_date := offer.get("promote_til_date"):
         is_promoted = date.today() < promote_til_date
     if user_id:
         is_favorite = await crud.is_offer_in_favorite_of_user(offer_id, user_id)
     return OfferDraftReply(
         **offer,
-        can_rent=can_rent,
         chat_id=chat_id["chat_id"] if chat_id else None,
         images=offer_images,
         is_promoted=is_promoted,
