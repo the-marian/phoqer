@@ -85,9 +85,9 @@ jobs:
         env:
           SSH_AUTH_SOCK: /tmp/ssh_agent.sock
         run: |
-          scp  -o StrictHostKeyChecking=no -r ./.env ./docker-compose.yml root@${{ secrets.VPS_IP_ADDRESS }}:/home
-          ssh -o StrictHostKeyChecking=no root@${{ secrets.VPS_IP_ADDRESS }} << 'ENDSSH'
-            cd /home
+          scp -o StrictHostKeyChecking=no -r ./.env ./docker-compose.yml ec2-user@${{ secrets.VPS_IP_ADDRESS }}:/home/ec2-user
+          ssh -o StrictHostKeyChecking=no ec2-user@${{ secrets.VPS_IP_ADDRESS }} << 'ENDSSH'
+            cd /home/ec2-user
             source .env
             docker login docker.pkg.github.com -u ${{ secrets.USERNAME }} -p ${{ secrets.TOKEN }}
             docker pull $BACKEND_IMAGE
