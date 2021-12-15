@@ -91,7 +91,7 @@ jobs:
           SSH_AUTH_SOCK: /tmp/ssh_agent.sock
         run: |
           scp  -o StrictHostKeyChecking=no -r ./.env ./docker-compose.yml ec2-user@${{ secrets.VPS_DEV_IP_ADDRESS }}:/home
-          ssh -o StrictHostKeyChecking=no root@${{ secrets.VPS_DEV_IP_ADDRESS }} << 'ENDSSH'
+          ssh -o StrictHostKeyChecking=no ec2-user@${{ secrets.VPS_DEV_IP_ADDRESS }} << 'ENDSSH'
             cd /home
             source .env
             docker login docker.pkg.github.com -u ${{ secrets.USERNAME }} -p ${{ secrets.TOKEN }}
