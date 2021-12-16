@@ -1,6 +1,4 @@
-import { HYDRATE } from 'next-redux-wrapper';
-
-import { IState, NotificationsResponse, NotificationsState } from '../../interfaces';
+import { NotificationsResponse, NotificationsState } from '../../interfaces';
 import types from '../types';
 
 import notificationsInit from './init-state';
@@ -8,9 +6,6 @@ import IAction from './interfaces';
 
 const notifications = (state: NotificationsState = notificationsInit, { type, payload }: IAction): NotificationsState => {
     switch (type) {
-        case HYDRATE:
-            return (payload as IState).notifications;
-
         case types.GET_NOTIFICATIONS_START:
             return { ...state, loading: true };
 

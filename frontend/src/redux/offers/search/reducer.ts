@@ -8,8 +8,11 @@ import IAction from './interfaces';
 
 const search = (state: IOfferDynamic = offersInit.search, { type, payload }: IAction): IOfferDynamic => {
     switch (type) {
-        case HYDRATE:
-            return (payload as IState).offers.search;
+        case HYDRATE: {
+            const search = (payload as IState).offers.search;
+            if (search.data.data.length) return search;
+            return state;
+        }
 
         case types.SEARCH_OFFERS_PAGINATION_SUCCESS:
             return {

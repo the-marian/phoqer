@@ -95,7 +95,9 @@ const ChatUserModal = ({ message }: IProps): ReactElement => {
     const profile = useSelector<IState, IPublicProfile | null>(state => state.profiles.public);
 
     useEffect(() => {
-        dispatch({ type: types.GET_PUBLIC_PROFILE_START, payload: message.user_id });
+        if (+(message.user_id || 0)) {
+            dispatch({ type: types.GET_PUBLIC_PROFILE_START, payload: message.user_id });
+        }
     }, [dispatch, message?.user_id]);
 
     const openSlider = (images: string[]) => (): void => {

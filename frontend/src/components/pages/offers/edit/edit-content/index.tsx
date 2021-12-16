@@ -80,7 +80,7 @@ const SingleOfferContent = (): ReactElement | null => {
     }, [offer?.city, offer?.country, dispatch, history.locale]);
 
     useEffect(() => {
-        if (offer?.author_id) dispatch({ type: types.GET_PUBLIC_PROFILE_START, payload: offer.author_id });
+        if (+(offer?.author_id || 0)) dispatch({ type: types.GET_PUBLIC_PROFILE_START, payload: offer?.author_id });
     }, [offer?.author_id, dispatch, history.locale]);
 
     const handleModal = (): void => {

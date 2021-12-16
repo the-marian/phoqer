@@ -8,8 +8,11 @@ import IAction from './interfaces';
 
 const single = (state: IOfferCard | null = offersInit.single, { type, payload }: IAction): IOfferCard | null => {
     switch (type) {
-        case HYDRATE:
-            return (payload as IState).offers.single;
+        case HYDRATE: {
+            const single = (payload as IState).offers.single;
+            if (+(single?.id || 0)) return single;
+            return state;
+        }
 
         case types.GET_SINGLE_OFFER_SUCCESS:
             return payload as IOfferCard;

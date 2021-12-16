@@ -1,12 +1,14 @@
 import { IConfig, Themes } from '../interfaces';
 
+import env from './env';
+
 const config = {
-    host: (lang = 'pl'): string => `${process.env.NEXT_PUBLIC_URL || 'http://dev.phoqer.com'}/${lang}`,
-    img: process.env.NEXT_PUBLIC_URL || 'http://dev.phoqer.com',
-    socketUrl: process.env.NEXT_PUBLIC_WS || 'ws://dev.phoqer.com/api/v1',
+    host: (lang = 'pl'): string => `${env.NEXT_PUBLIC_URL}/${lang}`,
+    img: env.NEXT_PUBLIC_URL,
+    socketUrl: env.NEXT_PUBLIC_WS,
     themes: ['white', 'black'] as Themes[],
-    googleApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAP_API_KEY,
-    appSecretKey: process.env.NEXT_PUBLIC_SECRET_KEY,
+    googleApiKey: env.NEXT_PUBLIC_GOOGLE_MAP_API_KEY,
+    appSecretKey: env.NEXT_PUBLIC_SECRET_KEY,
     siteConfig: {
         warning: true,
         hideSearchFilters: false,

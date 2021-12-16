@@ -1,6 +1,4 @@
-import { HYDRATE } from 'next-redux-wrapper';
-
-import { IOfferCard, IOfferDynamic, IOfferPagination, IState } from '../../../interfaces';
+import { IOfferCard, IOfferDynamic, IOfferPagination } from '../../../interfaces';
 import offersInit from '../init-state';
 import types from '../types';
 
@@ -8,9 +6,6 @@ import IAction from './interfaces';
 
 const my_offers = (state: IOfferDynamic = offersInit.my_offers, { type, payload }: IAction): IOfferDynamic => {
     switch (type) {
-        case HYDRATE:
-            return (payload as IState).offers.my_offers;
-
         case types.MY_OFFERS_PAGINATION_SUCCESS:
         case types.PUBLIC_OFFERS_PAGINATION_SUCCESS:
             return {

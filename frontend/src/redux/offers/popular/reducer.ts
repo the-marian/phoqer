@@ -8,8 +8,11 @@ import IAction from './interfaces';
 
 const popular = (state: IOfferStatic = offersInit.popular, { type, payload }: IAction): IOfferStatic => {
     switch (type) {
-        case HYDRATE:
-            return (payload as IState).offers.popular;
+        case HYDRATE: {
+            const popular = (payload as IState).offers.popular;
+            if (popular.data.length) return popular;
+            return state;
+        }
 
         case types.GET_POPULAR_OFFERS_SUCCESS:
             return { data: payload as IOfferCard[], loading: false };

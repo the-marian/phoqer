@@ -170,7 +170,7 @@ const SingleOfferContent = (): JSX.Element => {
     }, [dispatch, offerId]);
 
     useEffect(() => {
-        if (offer?.author_id) dispatch({ type: types.GET_PUBLIC_PROFILE_START, payload: offer.author_id });
+        if (+(offer?.author_id || 0)) dispatch({ type: types.GET_PUBLIC_PROFILE_START, payload: offer?.author_id });
     }, [offer, dispatch, history.locale, offerId]);
 
     const desc = offer?.description ? offer.description.replace(/\n/g, '<br>') : '';

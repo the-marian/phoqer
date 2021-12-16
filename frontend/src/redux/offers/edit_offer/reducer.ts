@@ -1,16 +1,10 @@
-import { HYDRATE } from 'next-redux-wrapper';
-
-import { IState } from '../../../interfaces';
 import offersInit from '../init-state';
 import types from '../types';
 
 import IAction, { IValue } from './interfaces';
 
-const edit_offer = (state: IValue = offersInit.edit_offer, { type, payload }: IAction): IValue => {
+const edit_offer = (state: IValue = offersInit.edit_offer, { type }: IAction): IValue => {
     switch (type) {
-        case HYDRATE:
-            return (payload as IState).offers.edit_offer;
-
         case types.PATCH_OFFER_START:
         case types.PATCH_EDIT_OFFER_STATUS_START:
             return { loading: true };

@@ -30,7 +30,7 @@ const ChatUserInfoHOC = ({ id, children }: IProps): ReactElement => {
     const profile = useSelector<IState, IPublicProfile | null>(state => state.profiles.public);
 
     useEffect(() => {
-        if (id) {
+        if (+(id || 0)) {
             dispatch({ type: types.GET_PUBLIC_PROFILE_START, payload: id });
         }
     }, [dispatch, id]);

@@ -8,8 +8,11 @@ import IAction from './interfaces';
 
 const user = (state: IPublicProfile = userInit, { type, payload }: IAction): IPublicProfile => {
     switch (type) {
-        case HYDRATE:
-            return (payload as IState).user;
+        case HYDRATE: {
+            const user = (payload as IState).user;
+            if (user.id) return user;
+            return state;
+        }
 
         case types.GET_USER_SUCCESS:
             return payload as IPublicProfile;

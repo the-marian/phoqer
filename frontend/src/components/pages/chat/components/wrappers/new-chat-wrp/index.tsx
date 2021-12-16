@@ -70,7 +70,7 @@ const NewChatWrp = ({ children, showSidebar = false }: IProps): ReactElement => 
             history.replace(routes.root);
             notifications.info({ title: 'Внимание!', message: 'Вы не можете арендовать свое объявление' });
         } else {
-            if (offer) dispatch({ type: types.GET_PUBLIC_PROFILE_START, payload: offer.author_id });
+            if (+(offer?.author_id || 0)) dispatch({ type: types.GET_PUBLIC_PROFILE_START, payload: offer?.author_id });
         }
     }, [dispatch, history, offer, user]);
 
