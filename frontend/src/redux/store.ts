@@ -1,5 +1,5 @@
 import { createWrapper, MakeStore } from 'next-redux-wrapper';
-import { AnyAction, applyMiddleware, createStore, Middleware, Store } from 'redux';
+import { applyMiddleware, createStore, Middleware, Store } from 'redux';
 import createSagaMiddleware, { SagaMiddleware } from 'redux-saga';
 
 import { IState, IStore } from '../interfaces';
@@ -23,4 +23,7 @@ export const makeStore = (preloadedState = initState): Store => {
     return store;
 };
 
-export const wrapper = createWrapper(makeStore as MakeStore<IState, AnyAction>, { debug: false });
+// eslint-disable-next-line
+export type AppStore = Store<IState, any>;
+
+export const wrapper = createWrapper(makeStore as MakeStore<AppStore>, { debug: false });

@@ -5528,10 +5528,10 @@ next-pwa@^5.4.4:
     workbox-webpack-plugin "^6.4.2"
     workbox-window "^6.4.2"
 
-next-redux-wrapper@^6.0.2:
-  version "6.0.2"
-  resolved "https://registry.yarnpkg.com/next-redux-wrapper/-/next-redux-wrapper-6.0.2.tgz#b8dcd214e7b5cedd7a2a611ddb60422384d24374"
-  integrity sha512-I9CnIYhQwI/qEoNdc9VAPjIyuq4rFFhCTa4rKhoDHWEVHGB1DXZy8TAyGpwvWizESd8IoTI/OKlP6bFpCbXsOw==
+next-redux-wrapper@^7.0.5:
+  version "7.0.5"
+  resolved "https://registry.yarnpkg.com/next-redux-wrapper/-/next-redux-wrapper-7.0.5.tgz#109cd3fe02183b18fbd094924cfcbd21262039dc"
+  integrity sha512-UFXdAWG5i+GFT8+Hoqpx3GArkPh34fVWF9YoA2VSHlBzsrPtnRd7NWM6FNSYUennpommTpWJ09mu+r/1UxyIkg==
 
 next-sitemap@^1.6.102:
   version "1.6.102"

@@ -96,25 +96,27 @@ const OffersPage = (): ReactElement => {
     );
 };
 
-export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps(async (ctx): Promise<void> => {
+export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps(store => async ctx => {
     const auth = parseCookie<IAuthResponse>(ctx.req.headers?.cookie);
     if (auth?.access_token) {
         api.defaults.headers.common.Authorization = auth.access_token;
-        ctx?.store?.dispatch({ type: types.GET_USER_START });
+        store.dispatch({ type: types.GET_USER_START });
     }
 
     // OFFERS
-    ctx?.store?.dispatch({ type: types.GET_POPULAR_SEARCHES_START });
-    ctx?.store?.dispatch({ type: types.GET_POPULAR_OFFERS_START });
-    ctx?.store?.dispatch({
+    store.dispatch({ type: types.GET_POPULAR_SEARCHES_START });
+    store.dispatch({ type: types.GET_POPULAR_OFFERS_START });
+    store.dispatch({
         type: types.OFFERS_SEARCH_LOCAL_PARAMS,
         payload: { ...initState.config.searchParams, ...ctx.query },
     });
-    ctx?.store?.dispatch({ type: types.SEARCH_OFFERS_START, payload: ctx.query });
+    store.dispatch({ type: types.SEARCH_OFFERS_START, payload: ctx.query });
 
     // GENERAL
-    ctx?.store?.dispatch(END);
-    await (ctx.store as IStore)?.sagaTask?.toPromise();
+    store.dispatch(END);
+    await (store as IStore)?.sagaTask?.toPromise();
+
+    return { props: {} };
 });
 
 export default OffersPage;

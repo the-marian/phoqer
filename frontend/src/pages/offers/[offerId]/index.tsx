@@ -45,13 +45,15 @@ export const getStaticPaths: GetStaticPaths = async () => {
     };
 };
 
-export const getStaticProps: GetStaticProps = wrapper.getStaticProps(async ctx => {
+export const getStaticProps: GetStaticProps = wrapper.getStaticProps(store => async ctx => {
     const offerId = ctx.params?.offerId;
 
-    ctx.store.dispatch({ type: types.GET_SINGLE_OFFER_START, payload: offerId });
-    ctx.store.dispatch(END);
+    store.dispatch({ type: types.GET_SINGLE_OFFER_START, payload: offerId });
+    store.dispatch(END);
 
-    await (ctx.store as IStore)?.sagaTask?.toPromise();
+    await (store as IStore)?.sagaTask?.toPromise();
+
+    return { props: {} };
 });
 
 export default SingleOfferPage;

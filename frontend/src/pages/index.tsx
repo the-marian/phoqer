@@ -50,17 +50,19 @@ const Index = (): ReactElement => {
     );
 };
 
-export const getServerSideProps = wrapper.getServerSideProps(async (ctx): Promise<void> => {
+export const getServerSideProps = wrapper.getServerSideProps(store => async ctx => {
     const auth = parseCookie<IAuthResponse>(ctx.req.headers?.cookie);
     if (auth?.access_token) {
         api.defaults.headers.common.Authorization = auth.access_token;
-        ctx?.store?.dispatch({ type: types.GET_USER_START });
+        store.dispatch({ type: types.GET_USER_START });
     }
 
-    ctx.store.dispatch({ type: types.GET_CATEGORIES_START });
-    ctx.store.dispatch({ type: types.GET_POPULAR_OFFERS_START });
-    ctx.store.dispatch(END);
-    await (ctx.store as IStore)?.sagaTask?.toPromise();
+    store.dispatch({ type: types.GET_CATEGORIES_START });
+    store.dispatch({ type: types.GET_POPULAR_OFFERS_START });
+    store.dispatch(END);
+    await (store as IStore)?.sagaTask?.toPromise();
+
+    return { props: {} };
 });
 
 export default Index;

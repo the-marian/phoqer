@@ -42,13 +42,15 @@ export const getStaticPaths: GetStaticPaths = async () => {
     };
 };
 
-export const getStaticProps = wrapper.getStaticProps(async (ctx): Promise<void> => {
+export const getStaticProps = wrapper.getStaticProps(store => async ctx => {
     const profileId = ctx.params?.profileId;
     if (+(profileId || 0)) {
-        ctx.store.dispatch({ type: types.GET_PUBLIC_PROFILE_START, payload: profileId });
-        ctx.store.dispatch(END);
-        await (ctx.store as IStore).sagaTask?.toPromise();
+        store.dispatch({ type: types.GET_PUBLIC_PROFILE_START, payload: profileId });
+        store.dispatch(END);
+        await (store as IStore).sagaTask?.toPromise();
     }
+
+    return { props: {}, revalidate: 1 };
 });
 
 export default PublicProfilePage;
