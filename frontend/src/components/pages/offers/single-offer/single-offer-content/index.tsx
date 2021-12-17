@@ -262,7 +262,7 @@ const SingleOfferContent = ({ data }: IProps): JSX.Element => {
                             <Comments />
                         </div>
 
-                        <AsideElement />
+                        <AsideElement data={data} />
                     </div>
 
                     <RelatedOffers />

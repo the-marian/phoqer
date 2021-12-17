@@ -74,7 +74,7 @@ export const getStaticProps: GetStaticProps = wrapper.getStaticProps(store => as
     store.dispatch(END);
     await (store as IStore).sagaTask?.toPromise();
 
-    return { props: { data } };
+    return { props: { data }, revalidate: 60 };
 });
 
 export default SingleOfferPage;

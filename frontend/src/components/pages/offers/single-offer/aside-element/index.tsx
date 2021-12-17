@@ -29,10 +29,13 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
 }));
 
-const AsideElement = (): ReactElement => {
+interface IProps {
+    data: IOfferCard | null;
+}
+
+const AsideElement = ({ data }: IProps): ReactElement => {
     const css = useStyles();
     const profile = useSelector<IState, IPublicProfile | null>(state => state.profiles.public);
-    const offer = useSelector<IState, IOfferCard | null>(state => state.offers.single);
 
     return (
         <aside className={css.aside}>
@@ -46,7 +49,7 @@ const AsideElement = (): ReactElement => {
                     userLocation={profile?.city}
                     registerDate={profile?.date_joined}
                 />
-                {offer && <Price offer={offer} withButton={offer.can_rent} />}
+                {data && <Price offer={data} withButton={data.can_rent} />}
             </div>
         </aside>
     );
