@@ -8,12 +8,15 @@ services:
     volumes:
       - media_volume:/phoqer/FastAPI/mediafiles/
     env_file: .env
+    depends_on:
+      - db
 
   frontend:
     container_name: frontend
     image: "${FRONTEND_IMAGE}"
     command: yarn start
     env_file: .env
+    restart: unless-stopped
     depends_on:
       - backend
 
@@ -32,6 +35,8 @@ services:
     volumes:
       - pgadmin:/root/.pgadmin
     restart: unless-stopped
+    depends_on:
+      - db
 
   nginx:
     container_name: nginx
@@ -41,7 +46,6 @@ services:
     ports:
       - 80:80
     depends_on:
-      - backend
       - frontend
       - pgadmin
 
