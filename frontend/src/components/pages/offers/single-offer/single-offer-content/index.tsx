@@ -2,12 +2,12 @@ import React, { useEffect } from 'react';
 
 import { useRouter } from 'next/router';
 import { createUseStyles } from 'react-jss';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 import useAuth from '../../../../../hooks/auth.hook';
 import useMedia from '../../../../../hooks/media.hook';
 import useTrans from '../../../../../hooks/trans.hook';
-import { IOfferCard, IState } from '../../../../../interfaces';
+import { IOfferCard } from '../../../../../interfaces';
 import types from '../../../../../redux/types';
 import routes from '../../../../../utils/routes';
 import { Theme } from '../../../../../utils/theming/theme';
@@ -149,7 +149,11 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
 }));
 
-const SingleOfferContent = (): JSX.Element => {
+interface IProps {
+    data: IOfferCard | null;
+}
+
+const SingleOfferContent = ({ data }: IProps): JSX.Element => {
     const css = useStyles();
     const trans = useTrans();
     const dispatch = useDispatch();
@@ -158,8 +162,6 @@ const SingleOfferContent = (): JSX.Element => {
     const media = useMedia(768);
     const history = useRouter();
     const offerId = String(history.query?.offerId);
-
-    const offer = useSelector<IState, IOfferCard | null>(state => state.offers.single);
 
     useEffect(() => {
         dispatch({ type: types.GET_POPULAR_OFFERS_START });
@@ -170,51 +172,53 @@ const SingleOfferContent = (): JSX.Element => {
     }, [dispatch, offerId]);
 
     useEffect(() => {
-        if (+(offer?.author_id || 0)) dispatch({ type: types.GET_PUBLIC_PROFILE_START, payload: offer?.author_id });
-    }, [offer, dispatch, history.locale, offerId]);
+        if (+(data?.author_id || 0)) dispatch({ type: types.GET_PUBLIC_PROFILE_START, payload: data?.author_id });
+    }, [data, dispatch, history.locale, offerId]);
 
-    const desc = offer?.description ? offer.description.replace(/\n/g, '<br>') : '';
-    const other = offer?.extra_requirements ? offer.extra_requirements.replace(/\n/g, '<br>') : '';
+    const desc = data?.description ? data.description.replace(/\n/g, '<br>') : '';
+    const other = data?.extra_requirements ? data.extra_requirements.replace(/\n/g, '<br>') : '';
 
     const handleModal = (): void => {
         modal.open(
             <FullPageModal>
-                <img className={css.modal} draggable={false} src={offer?.cover_image || '/icons/no_img.png'} alt="" />
+                <img className={css.modal} draggable={false} src={data?.cover_image || '/icons/no_img.png'} alt="" />
             </FullPageModal>,
         );
     };
 
+    if (history.isFallback) return <p>Loading...</p>;
+
     return (
         <>
-            {offer ? (
+            {data ? (
                 <>
                     <Meta
-                        title={offer?.title}
-                        h1={offer?.title + offer?.description.slice(0, 60)}
-                        description={offer?.description.slice(0, 150)}
-                        icon={offer?.cover_image}
+                        title={data?.title}
+                        h1={data?.title + data?.description.slice(0, 60)}
+                        description={data?.description.slice(0, 150)}
+                        icon={data?.cover_image}
                     />
-                    {offer.images && offer.images.length > 1 ? (
-                        <OfferSlider images={offer?.images} />
+                    {data.images && data.images.length > 1 ? (
+                        <OfferSlider images={data?.images} />
                     ) : (
                         <img
                             className={css.banner}
-                            src={offer?.cover_image || '/icons/no_img.png'}
+                            src={data?.cover_image || '/icons/no_img.png'}
                             onClick={handleModal}
                             aria-hidden="true"
                             alt=""
                         />
                     )}
                     <Breadcrumbs
-                        end={offer?.title}
+                        end={data?.title}
                         data={[
                             { label: trans('to_home_page'), link: routes.root },
                             {
-                                label: trans(offer.category || offer.sub_category || 'search_for_things'),
+                                label: trans(data.category || data.sub_category || 'search_for_things'),
                                 link:
-                                    offer?.category || offer?.sub_category
+                                    data?.category || data?.sub_category
                                         ? routes.offers.single(
-                                              offer?.category ? `?category=${offer?.category}` : `?sub=${offer?.sub_category}`,
+                                              data?.category ? `?category=${data?.category}` : `?sub=${data?.sub_category}`,
                                           )
                                         : routes.offers.list,
                             },
@@ -225,15 +229,15 @@ const SingleOfferContent = (): JSX.Element => {
 
                     <div className={css.flex}>
                         <div className={css.main}>
-                            <h2 className={css.title}>{offer?.title}</h2>
-                            <OfferHead offer={offer} />
+                            <h2 className={css.title}>{data?.title}</h2>
+                            <OfferHead offer={data} />
 
-                            {!media && <Price offer={offer} withButton />}
+                            {!media && <Price offer={data} withButton />}
                             <h2 className={css.subtitle}>{trans('description')}</h2>
                             <p dangerouslySetInnerHTML={{ __html: desc }} />
 
                             <h2 className={css.subtitle}>{trans('requirements')}</h2>
-                            <Requirements offer={offer} />
+                            <Requirements offer={data} />
 
                             {other && (
                                 <>
@@ -242,7 +246,7 @@ const SingleOfferContent = (): JSX.Element => {
                                 </>
                             )}
 
-                            {offer.city && <GoogleMap city={offer.city} />}
+                            {data.city && <GoogleMap city={data.city} />}
 
                             {/*<h2 className={css.subtitle}>{trans('availability')}</h2>*/}
                             {/*<DayPicker*/}
