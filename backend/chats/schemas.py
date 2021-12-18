@@ -43,7 +43,7 @@ class MessagesListItem(BaseModel):
     creation_datetime: datetime
     first_name: str
     id: int
-    is_red: bool
+    is_read: bool
     last_name: str
     message_type: MessageType
     profile_img: Optional[str] = None

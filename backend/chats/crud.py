@@ -28,7 +28,7 @@ async def get_chats(
             WHERE
               messages.chat_id = chats.chat_id
               AND
-              messages.is_red = FALSE
+              messages.is_read = FALSE
               AND NOT
               messages.author_id = :user_id)
         AS new_messages,
@@ -120,7 +120,7 @@ async def get_messages(
     SELECT
         messages.creation_datetime,
         messages.id,
-        messages.is_red,
+        messages.is_read,
         messages.message_type,
         messages.text AS encrypted_text,
         users_user.id as user_id,
@@ -227,7 +227,7 @@ async def get_message(message_id: int) -> Optional[Mapping]:
     SELECT
         messages.creation_datetime,
         messages.id,
-        messages.is_red,
+        messages.is_read,
         messages.message_type,
         messages.text,
         users_user.id as user_id,
