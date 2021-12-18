@@ -10,7 +10,7 @@ pytestmark = pytest.mark.asyncio
 async def test_user_signup(client):
     post_data = {
         "password": "i_am_hungry",
-        "email": "marian.zozulia@gmail.com",
+        "email": "test@phoqer.com",
         "first_name": "Marian",
         "last_name": "Zozulia",
     }
