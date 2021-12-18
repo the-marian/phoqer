@@ -284,7 +284,7 @@ async def test_get_messages(client, marian_auth_token, _messages):
             {
                 "creation_datetime": "2021-06-20T15:49:32+00:00",
                 "first_name": "Marian",
-                "is_read": True,
+                "is_read": False,
                 "last_name": "Zozulia",
                 "message_type": "MESSAGE",
                 "profile_img": "http://phoqer.com/mediafiles/dicpic.jpg",
@@ -295,7 +295,7 @@ async def test_get_messages(client, marian_auth_token, _messages):
             {
                 "creation_datetime": "2021-06-20T15:48:32+00:00",
                 "first_name": "Egor",
-                "is_read": True,
+                "is_read": False,
                 "last_name": "Leletsky",
                 "message_type": "MESSAGE",
                 "profile_img": None,
@@ -306,7 +306,7 @@ async def test_get_messages(client, marian_auth_token, _messages):
             {
                 "creation_datetime": "2021-06-20T15:47:32+00:00",
                 "first_name": "Marian",
-                "is_read": True,
+                "is_read": False,
                 "last_name": "Zozulia",
                 "message_type": "MESSAGE",
                 "profile_img": "http://phoqer.com/mediafiles/dicpic.jpg",
@@ -317,7 +317,7 @@ async def test_get_messages(client, marian_auth_token, _messages):
             {
                 "creation_datetime": "2021-06-20T15:46:32+00:00",
                 "first_name": "Egor",
-                "is_read": True,
+                "is_read": False,
                 "last_name": "Leletsky",
                 "message_type": "MESSAGE",
                 "profile_img": None,
@@ -328,7 +328,7 @@ async def test_get_messages(client, marian_auth_token, _messages):
             {
                 "creation_datetime": "2021-06-20T15:45:32+00:00",
                 "first_name": "Marian",
-                "is_read": True,
+                "is_read": False,
                 "last_name": "Zozulia",
                 "message_type": "MESSAGE",
                 "profile_img": "http://phoqer.com/mediafiles/dicpic.jpg",
@@ -339,7 +339,7 @@ async def test_get_messages(client, marian_auth_token, _messages):
             {
                 "creation_datetime": "2021-06-20T15:44:32+00:00",
                 "first_name": "Egor",
-                "is_read": True,
+                "is_read": False,
                 "last_name": "Leletsky",
                 "message_type": "MESSAGE",
                 "profile_img": None,
@@ -350,7 +350,7 @@ async def test_get_messages(client, marian_auth_token, _messages):
             {
                 "creation_datetime": "2021-06-20T15:43:32+00:00",
                 "first_name": "Marian",
-                "is_read": True,
+                "is_read": False,
                 "last_name": "Zozulia",
                 "message_type": "MESSAGE",
                 "profile_img": "http://phoqer.com/mediafiles/dicpic.jpg",
@@ -361,7 +361,7 @@ async def test_get_messages(client, marian_auth_token, _messages):
             {
                 "creation_datetime": "2021-06-20T15:42:32+00:00",
                 "first_name": "Egor",
-                "is_read": True,
+                "is_read": False,
                 "last_name": "Leletsky",
                 "message_type": "MESSAGE",
                 "profile_img": None,
@@ -372,7 +372,7 @@ async def test_get_messages(client, marian_auth_token, _messages):
             {
                 "creation_datetime": "2021-06-20T15:41:32+00:00",
                 "first_name": "Marian",
-                "is_read": True,
+                "is_read": False,
                 "last_name": "Zozulia",
                 "message_type": "MESSAGE",
                 "profile_img": "http://phoqer.com/mediafiles/dicpic.jpg",
@@ -383,7 +383,7 @@ async def test_get_messages(client, marian_auth_token, _messages):
             {
                 "creation_datetime": "2021-06-20T15:40:32+00:00",
                 "first_name": "Egor",
-                "is_read": True,
+                "is_read": False,
                 "last_name": "Leletsky",
                 "message_type": "MESSAGE",
                 "profile_img": None,
@@ -394,7 +394,7 @@ async def test_get_messages(client, marian_auth_token, _messages):
             {
                 "creation_datetime": "2021-06-20T15:39:32+00:00",
                 "first_name": "Marian",
-                "is_read": True,
+                "is_read": False,
                 "last_name": "Zozulia",
                 "message_type": "MESSAGE",
                 "profile_img": "http://phoqer.com/mediafiles/dicpic.jpg",
@@ -405,7 +405,7 @@ async def test_get_messages(client, marian_auth_token, _messages):
             {
                 "creation_datetime": "2021-06-20T15:38:32+00:00",
                 "first_name": "Egor",
-                "is_read": True,
+                "is_read": False,
                 "last_name": "Leletsky",
                 "message_type": "MESSAGE",
                 "profile_img": None,
@@ -416,7 +416,7 @@ async def test_get_messages(client, marian_auth_token, _messages):
             {
                 "creation_datetime": "2021-06-20T15:37:32+00:00",
                 "first_name": "Marian",
-                "is_read": True,
+                "is_read": False,
                 "last_name": "Zozulia",
                 "message_type": "MESSAGE",
                 "profile_img": "http://phoqer.com/mediafiles/dicpic.jpg",
@@ -427,7 +427,7 @@ async def test_get_messages(client, marian_auth_token, _messages):
             {
                 "creation_datetime": "2021-06-20T15:36:32+00:00",
                 "first_name": "Egor",
-                "is_read": True,
+                "is_read": False,
                 "last_name": "Leletsky",
                 "message_type": "MESSAGE",
                 "profile_img": None,
@@ -438,7 +438,7 @@ async def test_get_messages(client, marian_auth_token, _messages):
             {
                 "creation_datetime": "2021-06-20T15:35:32+00:00",
                 "first_name": "Marian",
-                "is_read": True,
+                "is_read": False,
                 "last_name": "Zozulia",
                 "message_type": "MESSAGE",
                 "profile_img": "http://phoqer.com/mediafiles/dicpic.jpg",
@@ -449,7 +449,7 @@ async def test_get_messages(client, marian_auth_token, _messages):
             {
                 "creation_datetime": "2021-06-20T15:34:32+00:00",
                 "first_name": "Egor",
-                "is_read": True,
+                "is_read": False,
                 "last_name": "Leletsky",
                 "message_type": "MESSAGE",
                 "profile_img": None,
@@ -460,7 +460,7 @@ async def test_get_messages(client, marian_auth_token, _messages):
             {
                 "creation_datetime": "2021-06-20T15:33:32+00:00",
                 "first_name": "Marian",
-                "is_read": True,
+                "is_read": False,
                 "last_name": "Zozulia",
                 "message_type": "MESSAGE",
                 "profile_img": "http://phoqer.com/mediafiles/dicpic.jpg",
@@ -471,7 +471,7 @@ async def test_get_messages(client, marian_auth_token, _messages):
             {
                 "creation_datetime": "2021-06-20T15:32:32+00:00",
                 "first_name": "Egor",
-                "is_read": True,
+                "is_read": False,
                 "last_name": "Leletsky",
                 "message_type": "MESSAGE",
                 "profile_img": None,
@@ -482,7 +482,7 @@ async def test_get_messages(client, marian_auth_token, _messages):
             {
                 "creation_datetime": "2021-06-20T15:31:32+00:00",
                 "first_name": "Marian",
-                "is_read": True,
+                "is_read": False,
                 "last_name": "Zozulia",
                 "message_type": "MESSAGE",
                 "profile_img": "http://phoqer.com/mediafiles/dicpic.jpg",
@@ -493,7 +493,7 @@ async def test_get_messages(client, marian_auth_token, _messages):
             {
                 "creation_datetime": "2021-06-20T15:30:32+00:00",
                 "first_name": "Egor",
-                "is_read": True,
+                "is_read": False,
                 "last_name": "Leletsky",
                 "message_type": "MESSAGE",
                 "profile_img": None,
@@ -504,7 +504,7 @@ async def test_get_messages(client, marian_auth_token, _messages):
             {
                 "creation_datetime": "2021-06-20T15:29:32+00:00",
                 "first_name": "Marian",
-                "is_read": True,
+                "is_read": False,
                 "last_name": "Zozulia",
                 "message_type": "MESSAGE",
                 "profile_img": "http://phoqer.com/mediafiles/dicpic.jpg",
@@ -515,7 +515,7 @@ async def test_get_messages(client, marian_auth_token, _messages):
             {
                 "creation_datetime": "2021-06-20T15:28:32+00:00",
                 "first_name": "Egor",
-                "is_read": True,
+                "is_read": False,
                 "last_name": "Leletsky",
                 "message_type": "MESSAGE",
                 "profile_img": None,
@@ -526,7 +526,7 @@ async def test_get_messages(client, marian_auth_token, _messages):
             {
                 "creation_datetime": "2021-06-20T15:27:32+00:00",
                 "first_name": "Marian",
-                "is_read": True,
+                "is_read": False,
                 "last_name": "Zozulia",
                 "message_type": "MESSAGE",
                 "profile_img": "http://phoqer.com/mediafiles/dicpic.jpg",
@@ -537,7 +537,7 @@ async def test_get_messages(client, marian_auth_token, _messages):
             {
                 "creation_datetime": "2021-06-20T15:26:32+00:00",
                 "first_name": "Egor",
-                "is_read": True,
+                "is_read": False,
                 "last_name": "Leletsky",
                 "message_type": "MESSAGE",
                 "profile_img": None,
@@ -548,7 +548,7 @@ async def test_get_messages(client, marian_auth_token, _messages):
             {
                 "creation_datetime": "2021-06-20T15:25:32+00:00",
                 "first_name": "Marian",
-                "is_read": True,
+                "is_read": False,
                 "last_name": "Zozulia",
                 "message_type": "MESSAGE",
                 "profile_img": "http://phoqer.com/mediafiles/dicpic.jpg",
@@ -559,7 +559,7 @@ async def test_get_messages(client, marian_auth_token, _messages):
             {
                 "creation_datetime": "2021-06-20T15:24:32+00:00",
                 "first_name": "Egor",
-                "is_read": True,
+                "is_read": False,
                 "last_name": "Leletsky",
                 "message_type": "MESSAGE",
                 "profile_img": None,
@@ -570,7 +570,7 @@ async def test_get_messages(client, marian_auth_token, _messages):
             {
                 "creation_datetime": "2021-06-20T15:23:32+00:00",
                 "first_name": "Marian",
-                "is_read": True,
+                "is_read": False,
                 "last_name": "Zozulia",
                 "message_type": "MESSAGE",
                 "profile_img": "http://phoqer.com/mediafiles/dicpic.jpg",
@@ -581,7 +581,7 @@ async def test_get_messages(client, marian_auth_token, _messages):
             {
                 "creation_datetime": "2021-06-20T15:22:32+00:00",
                 "first_name": "Egor",
-                "is_read": True,
+                "is_read": False,
                 "last_name": "Leletsky",
                 "message_type": "MESSAGE",
                 "profile_img": None,
@@ -592,7 +592,7 @@ async def test_get_messages(client, marian_auth_token, _messages):
             {
                 "creation_datetime": "2021-06-20T15:21:32+00:00",
                 "first_name": "Marian",
-                "is_read": True,
+                "is_read": False,
                 "last_name": "Zozulia",
                 "message_type": "MESSAGE",
                 "profile_img": "http://phoqer.com/mediafiles/dicpic.jpg",
@@ -603,7 +603,7 @@ async def test_get_messages(client, marian_auth_token, _messages):
             {
                 "creation_datetime": "2021-06-20T15:20:32+00:00",
                 "first_name": "Egor",
-                "is_read": True,
+                "is_read": False,
                 "last_name": "Leletsky",
                 "message_type": "MESSAGE",
                 "profile_img": None,
@@ -626,7 +626,7 @@ async def test_get_messages_page_2(client, marian_auth_token, _messages):
         {
             "creation_datetime": "2021-06-20T15:19:32+00:00",
             "first_name": "Marian",
-            "is_read": True,
+            "is_read": False,
             "last_name": "Zozulia",
             "message_type": "MESSAGE",
             "profile_img": "http://phoqer.com/mediafiles/dicpic.jpg",
@@ -637,7 +637,7 @@ async def test_get_messages_page_2(client, marian_auth_token, _messages):
         {
             "creation_datetime": "2021-06-20T15:18:32+00:00",
             "first_name": "Egor",
-            "is_read": True,
+            "is_read": False,
             "last_name": "Leletsky",
             "message_type": "MESSAGE",
             "profile_img": None,
@@ -648,7 +648,7 @@ async def test_get_messages_page_2(client, marian_auth_token, _messages):
         {
             "creation_datetime": "2021-06-20T15:17:32+00:00",
             "first_name": "Marian",
-            "is_read": True,
+            "is_read": False,
             "last_name": "Zozulia",
             "message_type": "MESSAGE",
             "profile_img": "http://phoqer.com/mediafiles/dicpic.jpg",
@@ -659,7 +659,7 @@ async def test_get_messages_page_2(client, marian_auth_token, _messages):
         {
             "creation_datetime": "2021-06-20T15:16:32+00:00",
             "first_name": "Egor",
-            "is_read": True,
+            "is_read": False,
             "last_name": "Leletsky",
             "message_type": "MESSAGE",
             "profile_img": None,
@@ -670,7 +670,7 @@ async def test_get_messages_page_2(client, marian_auth_token, _messages):
         {
             "creation_datetime": "2021-06-20T15:15:32+00:00",
             "first_name": "Marian",
-            "is_read": True,
+            "is_read": False,
             "last_name": "Zozulia",
             "message_type": "MESSAGE",
             "profile_img": "http://phoqer.com/mediafiles/dicpic.jpg",
@@ -681,7 +681,7 @@ async def test_get_messages_page_2(client, marian_auth_token, _messages):
         {
             "creation_datetime": "2021-06-20T15:14:32+00:00",
             "first_name": "Egor",
-            "is_read": True,
+            "is_read": False,
             "last_name": "Leletsky",
             "message_type": "MESSAGE",
             "profile_img": None,
@@ -692,7 +692,7 @@ async def test_get_messages_page_2(client, marian_auth_token, _messages):
         {
             "creation_datetime": "2021-06-20T15:13:32+00:00",
             "first_name": "Marian",
-            "is_read": True,
+            "is_read": False,
             "last_name": "Zozulia",
             "message_type": "MESSAGE",
             "profile_img": "http://phoqer.com/mediafiles/dicpic.jpg",
@@ -703,7 +703,7 @@ async def test_get_messages_page_2(client, marian_auth_token, _messages):
         {
             "creation_datetime": "2021-06-20T15:12:32+00:00",
             "first_name": "Egor",
-            "is_read": True,
+            "is_read": False,
             "last_name": "Leletsky",
             "message_type": "MESSAGE",
             "profile_img": None,
@@ -714,7 +714,7 @@ async def test_get_messages_page_2(client, marian_auth_token, _messages):
         {
             "creation_datetime": "2021-06-20T15:11:32+00:00",
             "first_name": "Marian",
-            "is_read": True,
+            "is_read": False,
             "last_name": "Zozulia",
             "message_type": "MESSAGE",
             "profile_img": "http://phoqer.com/mediafiles/dicpic.jpg",
@@ -725,7 +725,7 @@ async def test_get_messages_page_2(client, marian_auth_token, _messages):
         {
             "creation_datetime": "2021-06-20T15:10:32+00:00",
             "first_name": "Egor",
-            "is_read": True,
+            "is_read": False,
             "last_name": "Leletsky",
             "message_type": "MESSAGE",
             "profile_img": None,
@@ -736,7 +736,7 @@ async def test_get_messages_page_2(client, marian_auth_token, _messages):
         {
             "creation_datetime": "2021-06-20T15:01:32+00:00",
             "first_name": "Marian",
-            "is_read": True,
+            "is_read": False,
             "last_name": "Zozulia",
             "message_type": "RENT_REQUEST",
             "profile_img": "http://phoqer.com/mediafiles/dicpic.jpg",
@@ -745,6 +745,14 @@ async def test_get_messages_page_2(client, marian_auth_token, _messages):
             "user_id": 1,
         },
     ]
+
+
+async def test_get_messages_is_read(client, marian_auth_token, _messages):
+    response = await client.get("/chats/1/messages", headers=marian_auth_token)
+    assert response.status_code == 200
+    assert response.json()["data"][0]["is_read"] is False
+    response = await client.get("/chats/1/messages", headers=marian_auth_token)
+    assert response.json()["data"][0]["is_read"] is True
 
 
 async def test_archived_chats_bad_query(client, marian_auth_token):

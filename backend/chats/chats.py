@@ -174,6 +174,12 @@ async def get_messages(
 
     uploads = await crud.get_chat_uploads(chat_id)
     messages = await crud.get_messages(chat_id, offset, limit)
+    unread_messages_ids = [
+        message["id"]
+        for message in messages
+        if message["is_read"] is False
+    ]
+    await crud.read_messages(unread_messages_ids)
     f = Fernet(FERNET_SECRET_KEY)
     return {
         "total": ceil(await crud.count_messages(chat_id) / MESSAGES_SIZE),

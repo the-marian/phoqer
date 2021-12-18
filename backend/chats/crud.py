@@ -308,3 +308,8 @@ async def update_status(chat_id: int, status: ChatStatus) -> None:
         "status": status.value,
     }
     await database.execute(query=query, values=values)
+
+
+async def read_messages(messages_ids: List[int]) -> None:
+    query = "UPDATE messages SET is_read=TRUE WHERE id = any(:messages_ids)"
+    await database.execute(query=query, values={"messages_ids": messages_ids})
