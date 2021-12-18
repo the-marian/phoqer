@@ -209,6 +209,8 @@ async def city_warsaw(db, country_poland):
 
 @pytest.fixture
 async def user_marian(db, country_poland, city_warsaw):
+    delete_query = "DELETE FROM users_user WHERE id=1"
+    await db.execute(query=delete_query)
     query = """
     INSERT INTO users_user (
         id,
@@ -267,6 +269,8 @@ async def user_marian(db, country_poland, city_warsaw):
 
 @pytest.fixture
 async def user_igor(db, country_ukraine, city_kiev):
+    delete_query = "DELETE FROM users_user WHERE id=3"
+    await db.execute(query=delete_query)
     query = """
     INSERT INTO users_user (
         id,
@@ -319,13 +323,15 @@ async def user_igor(db, country_ukraine, city_kiev):
         "city": city_kiev,
     }
     await db.execute(query=query, values=values)
-    yield 1
+    yield 3
     delete_query = "DELETE FROM users_user WHERE id=1"
     await db.execute(query=delete_query)
 
 
 @pytest.fixture
 async def user_egor(db, country_ukraine, city_kiev):
+    delete_query = "DELETE FROM users_user WHERE id=2"
+    await db.execute(query=delete_query)
     query = """
     INSERT INTO users_user (
         id,

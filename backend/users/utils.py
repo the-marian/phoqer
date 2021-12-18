@@ -1,11 +1,10 @@
 import logging
 import os.path
 from datetime import date, datetime, timedelta
-from typing import Any, Dict
 
-import emails
+import boto3
 import jwt
-from emails.template import JinjaTemplate
+from boto3 import Session
 from passlib.context import CryptContext
 
 import config
@@ -34,25 +33,35 @@ def get_activation_jwt(email: str) -> str:
     )
 
 
+def generete_html_from_template(template: str, context: dict[str, str]) -> str:
+    return template.format(**context)
+
+
+def get_ses_client() -> Session:
+    ses = boto3.client(
+        service_name="ses",
+        region_name=config.AWS_REGION_NAME,
+        aws_access_key_id=config.IAM_SES_USER_ACCESS_KEY,
+        aws_secret_access_key=config.IAM_SES_USER_SECRET_KEY,
+    )
+    return ses
+
+
 def send_email(
     email_to: str,
-    subject_template: str,
-    html_template: str,
-    environment: Dict[str, Any],
+    subject: str,
+    html_body: str,
 ) -> None:
-    message = emails.Message(
-        subject=JinjaTemplate(subject_template),
-        html=JinjaTemplate(html_template),
-        mail_from=(config.EMAILS_FROM_NAME, config.EMAILS_FROM_EMAIL),
+    ses = get_ses_client()
+    response = ses.send_email(
+        Source=config.EMAILS_FROM_EMAIL,
+        Destination={"ToAddresses": [email_to]},
+        Message={
+            "Subject": {"Data": subject},
+            "Body": {"Html": {"Data": html_body}},
+        },
+        ReturnPath=config.RETURN_PATH_EMAIL,
     )
-    smtp_options = {"host": config.SMTP_HOST, "port": config.SMTP_PORT}
-    if config.SMTP_TLS:
-        smtp_options["tls"] = True
-    if config.SMTP_USER:
-        smtp_options["user"] = config.SMTP_USER
-    if config.SMTP_PASSWORD:
-        smtp_options["password"] = config.SMTP_PASSWORD
-    response = message.send(to=email_to, render=environment, smtp=smtp_options)
     logging.info(f"send email result: {response}")
 
 
@@ -61,21 +70,21 @@ def send_new_account_email(
     username: str,
     activation_token: str,
 ) -> None:
+    with open(os.path.join(BASE_DIR, "users/email-templates/new_user.html")) as f:
+        template = f.read()
     subject = f"Phoqer - New account for user {username}"
-    with open(
-        os.path.join(BASE_DIR, "users/email-templates/build/new_account.html")
-    ) as f:
-        template_str = f.read()
     link = f"http://phoqer.com/api/v2/users/activation/{activation_token}"
-    send_email(
-        email_to=email_to,
-        subject_template=subject,
-        html_template=template_str,
-        environment={
-            "project_name": "Phoqer",
+    html_body = generete_html_from_template(
+        template,
+        context={
             "username": username,
-            "email": email_to,
             "link": link,
             "registration_date": date.today().strftime("%d-%m-%Y"),
         },
+    )
+
+    send_email(
+        email_to=email_to,
+        subject=subject,
+        html_body=html_body,
     )

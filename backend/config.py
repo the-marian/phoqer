@@ -35,13 +35,11 @@ EMAIL_RESET_TOKEN_EXPIRE_HOURS = 48
 SECRET_KEY: str = os.environ.get("SECRET_KEY", "please_change_me")
 FERNET_SECRET_KEY: str = os.environ.get("FERNET_SECRET_KEY", "please_change_me")
 
-SMTP_TLS = True
-SMTP_PORT = 465
-SMTP_HOST = os.environ.get("EMAIL_HOST", "smtp.hostinger.com")
-SMTP_USER = os.environ.get("EMAIL_HOST_USER")
-SMTP_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD")
+IAM_SES_USER_ACCESS_KEY = os.environ.get("IAM_SES_USER_ACCESS_KEY")
+IAM_SES_USER_SECRET_KEY = os.environ.get("IAM_SES_USER_SECRET_KEY")
 EMAILS_FROM_EMAIL = "noreply@phoqer.com"
-EMAILS_FROM_NAME = "Phoqer"
+RETURN_PATH_EMAIL = "lost@phoqer.com"
+AWS_REGION_NAME = "eu-central-1"
 
 MEDIA_URL = "mediafiles"
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
