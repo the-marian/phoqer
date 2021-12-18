@@ -32,6 +32,7 @@ async def test_user_already_exist(client, user_marian):
         "/users/signup",
         json=post_data,
     )
+
     assert response.status_code == 400
     assert response.json() == {
         "detail": "The user with this username already exists in the system"
