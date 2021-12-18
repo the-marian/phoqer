@@ -1,0 +1,1 @@
+ALTER TABLE messages RENAME COLUMN is_read TO is_red;

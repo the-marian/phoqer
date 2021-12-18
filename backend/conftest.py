@@ -795,14 +795,14 @@ async def _messages(db, chat_marian_egor):
         author_id,
         chat_id,
         creation_datetime,
-        is_red,
+        is_read,
         message_type,
         text)
     VALUES (
         :author_id,
         :chat_id,
         :creation_datetime,
-        :is_red,
+        :is_read,
         :message_type,
         :text)
     """
@@ -811,7 +811,7 @@ async def _messages(db, chat_marian_egor):
             "author_id": 1,
             "chat_id": chat_marian_egor,
             "creation_datetime": datetime(2021, 6, 20, 15, 1, 32),
-            "is_red": True,  # is_red
+            "is_read": True,
             "message_type": MessageType.RENT_REQUEST.value,
             "text": "gAAAAABgz1xIJTxsDDfVoveXWFpFIl-Mk55Gp8iLX--cAZUE6na_F6jL"
             "bDy4pMnlQkxeskt0hKp1glOHxzoDaKlhD0pzpFdDWQ==",
@@ -823,7 +823,7 @@ async def _messages(db, chat_marian_egor):
                 "author_id": 1,
                 "chat_id": chat_marian_egor,
                 "creation_datetime": datetime(2021, 6, 20, 15, i, 32),
-                "is_red": True,
+                "is_read": True,
                 "message_type": MessageType.MESSAGE.value,
                 "text": "gAAAAABgz1xIJTxsDDfVoveXWFpFIl-Mk55Gp8iLX--cAZUE6na_F6jL"
                 "bDy4pMnlQkxeskt0hKp1glOHxzoDaKlhD0pzpFdDWQ==",
@@ -837,7 +837,7 @@ async def _messages(db, chat_marian_egor):
                 "author_id": 2,
                 "chat_id": chat_marian_egor,
                 "creation_datetime": datetime(2021, 6, 20, 15, i, 32),
-                "is_red": True,
+                "is_read": True,
                 "message_type": MessageType.MESSAGE.value,
                 "text": "gAAAAABgz1xIJTxsDDfVoveXWFpFIl-Mk55Gp8iLX--cAZUE6na_F6jL"
                 "bDy4pMnlQkxeskt0hKp1glOHxzoDaKlhD0pzpFdDWQ==",
