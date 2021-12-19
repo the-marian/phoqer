@@ -87,9 +87,7 @@ async def test_offer_via_chat_404(client):
 async def test_is_favorite_user_with_favorite(
     client, egor_auth_token, offer_ps4, offer_ps4_is_favorite
 ):
-    response = await client.get(
-        f"/offers/{offer_ps4}", headers=egor_auth_token
-    )
+    response = await client.get(f"/offers/{offer_ps4}", headers=egor_auth_token)
     assert response.status_code == 200
     assert response.json()["is_favorite"] is True
 
@@ -97,9 +95,7 @@ async def test_is_favorite_user_with_favorite(
 async def test_is_favorite_user_with_no_favorite(
     client, offer_iphone12, marian_auth_token
 ):
-    response = await client.get(
-        f"/offers/{offer_iphone12}", headers=marian_auth_token
-    )
+    response = await client.get(f"/offers/{offer_iphone12}", headers=marian_auth_token)
     assert response.status_code == 200
     assert response.json()["is_favorite"] is False
 
@@ -350,6 +346,8 @@ async def test_search(client, marian_auth_token, offer_ps4, offer_iphone12):
         ],
         "total": 1,
     }
+
+
 #
 #
 # async def test_delete_offer(client, marian_auth_token, offer_ps4):

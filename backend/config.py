@@ -35,17 +35,20 @@ EMAIL_RESET_TOKEN_EXPIRE_HOURS = 48
 SECRET_KEY: str = os.environ.get("SECRET_KEY", "please_change_me")
 FERNET_SECRET_KEY: str = os.environ.get("FERNET_SECRET_KEY", "please_change_me")
 
-IAM_SES_USER_ACCESS_KEY = os.environ.get("IAM_SES_USER_ACCESS_KEY")
-IAM_SES_USER_SECRET_KEY = os.environ.get("IAM_SES_USER_SECRET_KEY")
 EMAILS_FROM_EMAIL = "noreply@phoqer.com"
 RETURN_PATH_EMAIL = "lost@phoqer.com"
-AWS_REGION_NAME = "eu-central-1"
 
 MEDIA_URL = "mediafiles"
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-MEDIA_ROOT = os.path.join(BASE_DIR, MEDIA_URL)
 
 TECH_RENT_REQUEST = (
     "gAAAAABg_XqcM-NDoS8mDdWYrdJ-7zr5zjezCcOMwqjRDl4Dr-"
     "s1bSUyE8_zF3SWjFHOlvbaRN0yD7hSpD1QCLW2-fNP6PLhhg=="
 )
+
+# AWS
+
+AWS_REGION_NAME = "eu-central-1"
+BUCKET_NAME = "phoqer-images"
+IAM_SES_USER_ACCESS_KEY = os.environ.get("IAM_SES_USER_ACCESS_KEY")
+IAM_SES_USER_SECRET_KEY = os.environ.get("IAM_SES_USER_SECRET_KEY")
