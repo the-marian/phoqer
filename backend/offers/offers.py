@@ -21,10 +21,14 @@ from offers.schemas import (
 )
 from offers.utils import (
     active_status_validator,
+    draft_status_validator,
     in_rent_status_validator,
+    inactive_status_validator,
     review_status_validator,
     set_active_status,
+    set_draft_status,
     set_in_rent_status,
+    set_inactive_status,
     set_review_status,
 )
 from utils import get_current_user, get_current_user_or_none
@@ -78,6 +82,8 @@ async def change_status(
         "ACTIVE": (active_status_validator, set_active_status),
         "REVIEW": (review_status_validator, set_review_status),
         "IN_RENT": (in_rent_status_validator, set_in_rent_status),
+        "DRAFT": (draft_status_validator, set_draft_status),
+        "INACTIVE": (inactive_status_validator, set_inactive_status),
     }
     if errors := await actions_for_status[data.status.value][0](offer_id):
         return Response(status_code=403, content=errors)
