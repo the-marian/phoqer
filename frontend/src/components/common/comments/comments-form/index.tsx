@@ -14,7 +14,6 @@ import useMedia from '../../../../hooks/media.hook';
 import useTheme from '../../../../hooks/theme.hook';
 import useTrans from '../../../../hooks/trans.hook';
 import useUppy from '../../../../hooks/uppy.hook';
-import config from '../../../../utils/config';
 import mixin from '../../../../utils/theming/mixin';
 import { Theme } from '../../../../utils/theming/theme';
 import notificationsModal from '../../modal/notifications-modal';
@@ -162,7 +161,7 @@ const CommentsForm = ({ onSubmit }: IProps): ReactElement => {
             if (res.failed.length > 0) throw new Error();
 
             const images: string[] = res?.successful?.map(
-                (item: UploadedUppyFile<unknown, { image_url?: string }>): string => config.img + item?.response?.body?.image_url,
+                (item: UploadedUppyFile<unknown, { image_url?: string }>): string => item?.response?.body?.image_url || '',
             );
 
             onSubmit(value, images);

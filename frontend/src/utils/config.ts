@@ -4,7 +4,6 @@ import env from './env';
 
 const config = {
     host: (lang = 'pl'): string => `${env.NEXT_PUBLIC_URL}/${lang}`,
-    img: env.NEXT_PUBLIC_URL,
     socketUrl: env.NEXT_PUBLIC_WS,
     themes: ['white', 'black'] as Themes[],
     googleApiKey: env.NEXT_PUBLIC_GOOGLE_MAP_API_KEY,

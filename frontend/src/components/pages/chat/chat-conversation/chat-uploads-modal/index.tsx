@@ -6,7 +6,6 @@ import { Dashboard } from '@uppy/react';
 import useMedia from '../../../../../hooks/media.hook';
 import useTheme from '../../../../../hooks/theme.hook';
 import useUppy from '../../../../../hooks/uppy.hook';
-import config from '../../../../../utils/config';
 import { modal } from '../../../../common/modal';
 import MidModalWrp from '../../../../common/modal/mid-modal-wrp';
 
@@ -28,7 +27,7 @@ const ChatUploadsModal = ({ onChange }: IProps): ReactElement => {
             if (!result?.successful?.length) return;
             onChange(
                 result?.successful?.map<string>(
-                    (value: UploadedUppyFile<unknown, { image_url?: string }>) => config.img + value?.response?.body?.image_url,
+                    (value: UploadedUppyFile<unknown, { image_url?: string }>) => value?.response?.body?.image_url || '',
                 ) || [],
             );
             modal.close();

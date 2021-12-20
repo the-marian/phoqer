@@ -11,7 +11,6 @@ import useTheme from '../../../../../hooks/theme.hook';
 import useTrans from '../../../../../hooks/trans.hook';
 import useUppy from '../../../../../hooks/uppy.hook';
 import types from '../../../../../redux/types';
-import config from '../../../../../utils/config';
 import routes from '../../../../../utils/routes';
 import { Theme } from '../../../../../utils/theming/theme';
 import notificationsModal from '../../../../common/modal/notifications-modal';
@@ -68,8 +67,7 @@ const StepThree = (): ReactElement => {
                 type: types.POST_OFFER_START,
                 payload:
                     res?.successful?.map<string>(
-                        (value: UploadedUppyFile<unknown, { image_url?: string }>) =>
-                            config.img + value?.response?.body?.image_url,
+                        (value: UploadedUppyFile<unknown, { image_url?: string }>) => value?.response?.body?.image_url || '',
                     ) || [],
                 callback(offerId?: string) {
                     history.push(

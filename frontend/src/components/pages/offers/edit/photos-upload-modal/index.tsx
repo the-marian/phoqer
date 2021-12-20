@@ -8,7 +8,6 @@ import useMedia from '../../../../../hooks/media.hook';
 import useTheme from '../../../../../hooks/theme.hook';
 import useUppy from '../../../../../hooks/uppy.hook';
 import types from '../../../../../redux/types';
-import config from '../../../../../utils/config';
 import { modal } from '../../../../common/modal';
 import MidModalWrp from '../../../../common/modal/mid-modal-wrp';
 
@@ -25,8 +24,7 @@ const PhotosUploadModal = (): ReactElement => {
                 type: types.ADD_SINGLE_OFFER_IMG,
                 payload:
                     result?.successful?.map<string>(
-                        (value: UploadedUppyFile<unknown, { image_url?: string }>) =>
-                            config.img + value?.response?.body?.image_url,
+                        (value: UploadedUppyFile<unknown, { image_url?: string }>) => value?.response?.body?.image_url || '',
                     ) || [],
             });
             modal.close();

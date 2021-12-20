@@ -4,7 +4,6 @@ import { all, call, put, takeLatest } from 'redux-saga/effects';
 import notificationsModal from '../../components/common/modal/notifications-modal';
 import notifications from '../../components/common/notifications';
 import { IPublicProfile } from '../../interfaces';
-import config from '../../utils/config';
 import types from '../types';
 
 import IAction from './interfaces';
@@ -48,7 +47,7 @@ function* updateAvatar({ payload, callback }: IAction) {
         yield put({
             type: types.UPDATE_USER_START,
             payload: {
-                profile_img: config.img + data.image_url,
+                profile_img: data.image_url,
             },
             callback,
         });
