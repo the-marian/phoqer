@@ -214,17 +214,45 @@ async def test_get_my_offers(client, marian_auth_token):
 #         },
 #     ]
 #
-#
-# def test_change_status_to_review(client, marian_auth_token, offer_ps4):
-#     data = {"status": "REVIEW"}
-#     response = client.patch(
-#         f"offers/status/{offer_ps4}",
-#         json=data,
-#         headers=marian_auth_token,
-#     )
-#     assert response.status_code == 204
-#
-#
+
+
+async def test_change_status(client, marian_auth_token, offer_ps4):
+    # initial offer status in this fixture is ACTIVE
+    data = {"status": "DRAFT"}
+    response = await client.patch(
+        f"/offers/status/{offer_ps4}",
+        json=data,
+        headers=marian_auth_token,
+    )
+    assert response.status_code == 204
+
+    data = {"status": "REVIEW"}
+    response = await client.patch(
+        f"/offers/status/{offer_ps4}",
+        json=data,
+        headers=marian_auth_token,
+    )
+    assert response.status_code == 204
+    offer = await crud.get_offer(offer_ps4)
+    assert offer["status"] == "ACTIVE"
+
+    data = {"status": "INACTIVE"}
+    response = await client.patch(
+        f"/offers/status/{offer_ps4}",
+        json=data,
+        headers=marian_auth_token,
+    )
+    assert response.status_code == 204
+
+    data = {"status": "ARCHIVED"}
+    response = await client.patch(
+        f"/offers/status/{offer_ps4}",
+        json=data,
+        headers=marian_auth_token,
+    )
+    assert response.status_code == 204
+
+
 # def test_change_status_to_in_rent(
 #     db, client, marian_auth_token, offer_ps4, chat_marian_egor
 # ):
