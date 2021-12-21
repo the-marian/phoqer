@@ -1,4 +1,4 @@
-import React, { MouseEvent, ReactElement, useEffect } from 'react';
+import React, { MouseEvent, ReactElement, useEffect, useRef } from 'react';
 
 import { createUseStyles } from 'react-jss';
 import { CSSTransition } from 'react-transition-group';
@@ -96,6 +96,7 @@ interface IProps {
 }
 const Root = ({ children, open, onToggle }: IProps) => {
     const css = useStyles();
+    const ref = useRef<HTMLDivElement>(null);
 
     const handleToggle = (event: MouseEvent<HTMLDivElement>): void => {
         if (event.target === event.currentTarget) onToggle(!open);
@@ -109,6 +110,7 @@ const Root = ({ children, open, onToggle }: IProps) => {
             }
         };
 
+        ref.current?.focus();
         // style
         document.body.style.top = `-${window.scrollY}px`;
         document.body.style.position = 'fixed';
@@ -127,7 +129,7 @@ const Root = ({ children, open, onToggle }: IProps) => {
     }, [onToggle]);
 
     return (
-        <div className={css.backdrop} onClick={handleToggle} aria-hidden="true" role="button">
+        <div ref={ref} tabIndex={0} className={css.backdrop} onClick={handleToggle} aria-hidden="true" role="button">
             {children}
         </div>
     );

@@ -88,14 +88,6 @@ textarea {
     resize: none;
 }
 
-input,
-select,
-textarea,
-button,
-a {
-    outline: none;
-}
-
 button {
     background: none;
     border: none;

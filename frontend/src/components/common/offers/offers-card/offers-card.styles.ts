@@ -111,7 +111,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         display: 'flex',
         alignItems: 'center',
         margin: 0,
-        color: theme.palette.gray[3],
+        color: theme.palette.gray[4],
         fontWeight: theme.text.weight[2],
         fontSize: theme.rem(1.2),
     },

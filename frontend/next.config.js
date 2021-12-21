@@ -1,6 +1,6 @@
 const withPWA = require('next-pwa');
 
-module.exports = withPWA({
+const config = {
     async redirects() {
         return [
             {
@@ -32,4 +32,6 @@ module.exports = withPWA({
     images: {
         domains: ['phoqer.com'],
     },
-});
+};
+
+module.exports = process.env.NODE_ENV === 'production' ? withPWA(config) : config;
