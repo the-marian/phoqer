@@ -34,6 +34,8 @@ jobs:
           echo SECRET_KEY=${{ secrets.SECRET_KEY }} >> .env
           echo IAM_SES_USER_ACCESS_KEY=${{ secrets.IAM_SES_USER_ACCESS_KEY }} >> .env
           echo IAM_SES_USER_SECRET_KEY=${{ secrets.IAM_SES_USER_SECRET_KEY }} >> .env
+          echo NEXT_PUBLIC_URL=http://dev.phoqer.com >> .env
+          echo NEXT_PUBLIC_WS=ws://dev.phoqer.com/api/v1 >> .env
       - name: Log in to GitHub Packages
         run: echo ${GITHUB_TOKEN} | docker login -u ${GITHUB_ACTOR} --password-stdin docker.pkg.github.com
         env:
