@@ -18,8 +18,8 @@ services:
     container_name: frontend
     build:
       args:
-        - NEXT_PUBLIC_URL=${NEXT_PUBLIC_URL}
-        - NEXT_PUBLIC_WS=${NEXT_PUBLIC_WS}
+        NEXT_PUBLIC_URL: ${NEXT_PUBLIC_URL}
+        NEXT_PUBLIC_WS: ${NEXT_PUBLIC_WS}
       context: ./frontend
       dockerfile: Dockerfile
       cache_from:
