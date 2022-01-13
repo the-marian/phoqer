@@ -28,7 +28,7 @@ const useUppy = (): Uppy.Uppy<Uppy.StrictTypes> => {
     useEffect(() => {
         uppy.use(XHRUpload, {
             fieldName: 'file',
-            endpoint: endpoint('/uploads'),
+            endpoint: endpoint('/upload'),
             headers: {
                 Authorization: token.access_token || '',
             },
