@@ -498,7 +498,7 @@ async def chat_id_via_offer_id(
     offer_id: str, user_id: Optional[int]
 ) -> Optional[Mapping]:
     query = (
-        "SELECT chat_id FROM chats " "WHERE offer_id = :offer_id AND author_id = :user_id"
+        "SELECT chat_id FROM chats WHERE offer_id = :offer_id AND client_id = :user_id"
     )
     return await database.fetch_one(
         query=query, values={"offer_id": offer_id, "user_id": user_id}

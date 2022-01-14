@@ -366,3 +366,12 @@ async def delete_offer(
         )
     await crud.delete_offer(offer_id)
     return Response(status_code=204)
+
+
+@router.get("/{offer_id}/chat")
+async def get_chat_for_offer(
+    offer_id: str,
+    user_id: int = Depends(get_current_user),
+) -> Optional[int]:
+    chat_id = await crud.chat_id_via_offer_id(offer_id, user_id)
+    return chat_id["chat_id"] if chat_id else None

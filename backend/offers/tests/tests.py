@@ -405,3 +405,9 @@ async def test_get_popular_offers(client, offer_ps4):
             "views": 1,
         }
     ]
+
+
+async def test_get_chat_by_offer(client, egor_auth_token, offer_ps4, chat_marian_egor):
+    response = await client.get(f"/offers/{offer_ps4}/chat", headers=egor_auth_token)
+    assert response.status_code == 200
+    assert response.json() == chat_marian_egor
