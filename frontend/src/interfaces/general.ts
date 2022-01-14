@@ -45,6 +45,7 @@ export interface ITabs {
     count?: number | string;
     blank?: boolean;
     onClick?: () => void;
+    sub?: ITabs[];
 }
 
 export interface ITabsNum {

@@ -11,12 +11,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import clsx from 'clsx';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import useAuth from '../../../../hooks/auth.hook';
 import useConfig from '../../../../hooks/config.hook';
 import useTrans from '../../../../hooks/trans.hook';
-import { IDropList, IDropValue, IOfferCard } from '../../../../interfaces';
+import { IDropList, IDropValue, IOfferCard, IPublicProfile, IState } from '../../../../interfaces';
 import types from '../../../../redux/types';
 import { cutString, moneyFormat } from '../../../../utils/helpers';
 import routes from '../../../../utils/routes';
@@ -49,9 +49,10 @@ const OfferCard = ({ offer, showFavoriteBtn = true }: IProps): ReactElement => {
     const dispatch = useDispatch();
     const [config] = useConfig();
 
+    const profile = useSelector<IState, IPublicProfile | null>(state => state.user);
+
     const {
         id,
-        can_rent,
         title,
         description,
         cover_image,
@@ -62,7 +63,9 @@ const OfferCard = ({ offer, showFavoriteBtn = true }: IProps): ReactElement => {
         pub_date,
         price,
         functions,
+        author_id,
     } = offer;
+    const canRent = author_id === profile?.id;
 
     const isLogin = (): boolean => {
         if (!token.access_token) {
@@ -180,7 +183,7 @@ const OfferCard = ({ offer, showFavoriteBtn = true }: IProps): ReactElement => {
                                     </div>
                                 </Tooltip>
                             )}
-                            {!can_rent && (
+                            {!canRent && (
                                 <Tooltip className={css.tooltip} content="Вы являетесь автором этого объявления">
                                     <div className={clsx(css.top, css.author, config.offerCardSize === 'small' && css.topSmall)}>
                                         <FontAwesomeIcon icon={faDotCircle} />
@@ -247,7 +250,7 @@ const OfferCard = ({ offer, showFavoriteBtn = true }: IProps): ReactElement => {
 
                 {showFavoriteBtn && config.offerCardSize === 'big' && (
                     <div className={css.actionBtn}>
-                        {can_rent ? (
+                        {canRent ? (
                             <>
                                 <button type="button" className={css.btn} onClick={handleOpenChat}>
                                     {trans('rent')}

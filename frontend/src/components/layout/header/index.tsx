@@ -4,7 +4,6 @@ import clsx from 'clsx';
 import { createUseStyles } from 'react-jss';
 
 import useAuth from '../../../hooks/auth.hook';
-import { throttle } from '../../../utils/helpers';
 import { Theme } from '../../../utils/theming/theme';
 import Logo from '../../common/logo';
 import Container from '../container';
@@ -58,21 +57,33 @@ const Header = (): ReactElement => {
     const [delta, setDelta] = useState<boolean>(false);
 
     useEffect(() => {
-        const handleScroll = throttle((): void => {
-            if (window.scrollY < 100 && !delta) {
-                setShadow(false);
-                setDelta(false);
-                prev.current = 0;
-                return;
-            }
+        let id: NodeJS.Timeout;
+        let timeout = true;
 
-            setShadow(true);
-            setDelta(prev.current < window.scrollY);
-            prev.current = window.scrollY;
-        }, 300);
+        const handleScroll = (): void => {
+            if (timeout) {
+                timeout = false;
+
+                id = setTimeout(() => {
+                    timeout = true;
+                    if (window.scrollY < 100 && !delta) {
+                        setShadow(false);
+                        setDelta(false);
+                        prev.current = 0;
+                        return;
+                    }
+
+                    setShadow(true);
+                    setDelta(prev.current < window.scrollY);
+                    prev.current = window.scrollY;
+                }, 300);
+            }
+        };
+
         window.addEventListener('scroll', handleScroll);
 
         return () => {
+            if (id) clearTimeout(id);
             window.removeEventListener('scroll', handleScroll);
         };
     }, [delta]);

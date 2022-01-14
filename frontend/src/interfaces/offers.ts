@@ -2,7 +2,6 @@ import { IDropValue, IPagination } from './general';
 
 export interface IOfferCard {
     id: string;
-    can_rent: boolean;
     category?: string | null;
     sub_category?: string | null;
     deposit_val?: number | null;

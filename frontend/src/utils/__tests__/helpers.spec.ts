@@ -82,25 +82,6 @@ describe('2. Value formatting - 2.3 String', () => {
     });
 });
 
-describe('3. From lodash', () => {
-    it('Throttle', () => {
-        const func = jest.fn();
-        const throttleFunc = helpers.throttle(func, 100);
-
-        expect(func).toHaveBeenCalledTimes(0);
-        for (let i = 0; i <= 10; i++) throttleFunc();
-
-        setTimeout(() => {
-            expect(func).toHaveBeenCalledTimes(1);
-            for (let i = 0; i <= 10; i++) throttleFunc();
-        }, 100);
-
-        setTimeout(() => {
-            expect(func).toHaveBeenCalledTimes(2);
-        }, 300);
-    });
-});
-
 describe('4. Work with cookies', () => {
     it('parseCookie', () => {
         expect(helpers.parseCookie('')).toStrictEqual(null);

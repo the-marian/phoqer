@@ -35,7 +35,6 @@ jest.mock('next/router', () => ({
 
 export const mockSingleOffer: IOfferCard = {
     id: 'test-id',
-    can_rent: true,
     category: 'sport',
     sub_category: null,
     deposit_val: 1000,

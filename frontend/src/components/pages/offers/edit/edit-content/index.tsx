@@ -62,7 +62,7 @@ const SingleOfferContent = (): ReactElement | null => {
     const dispatch = useDispatch();
 
     const history = useRouter();
-    const offerId = +String(history.query?.offerId || 1);
+    const offerId = history.query?.offerId;
 
     const offer = useSelector<IState, IOfferCard | null>(state => state.offers.single);
 

@@ -35,6 +35,8 @@ interface IProps {
 
 const AsideElement = ({ data }: IProps): ReactElement => {
     const css = useStyles();
+
+    const user = useSelector<IState, IPublicProfile | null>(state => state.user);
     const profile = useSelector<IState, IPublicProfile | null>(state => state.profiles.public);
 
     return (
@@ -49,7 +51,7 @@ const AsideElement = ({ data }: IProps): ReactElement => {
                     userLocation={profile?.city}
                     registerDate={profile?.date_joined}
                 />
-                {data && <Price offer={data} withButton={data.can_rent} />}
+                {data && <Price offer={data} withButton={profile?.id === user?.id} />}
             </div>
         </aside>
     );

@@ -30,7 +30,7 @@ const Meta = ({ title, description, keywords, icon, h1 = '' }: IProps): ReactEle
     const trans = useTrans();
     const history = useRouter();
 
-    const url = (lang = 'en'): string => config.host(lang);
+    const url = (lang = ''): string => config.host(lang);
 
     return (
         <>
