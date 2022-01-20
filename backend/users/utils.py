@@ -73,7 +73,7 @@ def send_new_account_email(
     with open(os.path.join(BASE_DIR, "users/email-templates/new_user.html")) as f:
         template = f.read()
     subject = f"Phoqer - New account for user {username}"
-    link = f"http://phoqer.com/api/v2/users/activation/{activation_token}"
+    link = f"https://phoqer.com/api/v2/users/activation/{activation_token}"
     html_body = generete_html_from_template(
         template,
         context={
