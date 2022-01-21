@@ -5,7 +5,7 @@ import { render } from '../../../tests.utils';
 describe('SingleOfferPage component', () => {
     describe('default', () => {
         it('match snapshot', () => {
-            const { asFragment } = render(<SingleOfferPage data={offersInit.single} />);
+            const { asFragment } = render(<SingleOfferPage data={offersInit.single.data} />);
             expect(asFragment()).toMatchSnapshot();
         });
     });

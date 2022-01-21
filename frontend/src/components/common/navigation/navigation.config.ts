@@ -30,13 +30,13 @@ export const getBaseNavList = (count: ITabsNum = temp): ITabs[] => [
             {
                 id: 'i_am_author',
                 text: 'i_am_author',
-                link: routes.chat.item(),
+                link: routes.chat.i_am_author,
                 count: count?.messages,
             },
             {
                 id: 'i_am_client',
                 text: 'i_am_client',
-                link: routes.chat.item(),
+                link: routes.chat.i_am_client,
                 count: count?.messages,
             },
         ],

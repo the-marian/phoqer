@@ -25,6 +25,8 @@ const routesMap: { [key: string]: string } = {
     referral: routes.referral,
     settings: routes.settings(),
     analytics: routes.analytics,
+    i_am_author: routes.chat.i_am_author,
+    i_am_client: routes.chat.i_am_author,
 };
 
 const ProfileTabs = ({ active }: IProps): ReactElement => {

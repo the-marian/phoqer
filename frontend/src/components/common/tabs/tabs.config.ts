@@ -4,6 +4,7 @@ export interface ITabsItem {
     id: string;
     text: string;
     count?: string | number;
+    sub?: ITabsItem[];
 }
 
 const temp: ITabsNum = {
@@ -20,6 +21,18 @@ export const userPrivateTabs = (count: ITabsNum = temp): ITabsItem[] => [
         id: 'chat',
         text: 'chat',
         count: count?.messages,
+        sub: [
+            {
+                id: 'i_am_author',
+                text: 'i_am_author',
+                count: count?.messages,
+            },
+            {
+                id: 'i_am_client',
+                text: 'i_am_client',
+                count: count?.messages,
+            },
+        ],
     },
     {
         id: 'notifications',

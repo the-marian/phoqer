@@ -105,7 +105,7 @@ const PhotosItem = ({ url, isActive = false }: { url: string; isActive?: boolean
 const PhotosList = (): ReactElement => {
     const css = useStyles();
     const trans = useTrans();
-    const offer = useSelector<IState, IOfferCard | null>(state => state.offers.single);
+    const offer = useSelector<IState, IOfferCard | null>(state => state.offers.single.data);
 
     return (
         <>

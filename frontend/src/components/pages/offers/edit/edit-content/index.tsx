@@ -54,6 +54,17 @@ const useStyles = createUseStyles((theme: Theme) => ({
             marginLeft: theme.rem(1),
         },
     },
+    loader: {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        height: theme.rem(50),
+
+        '& img': {
+            height: theme.rem(3),
+            width: theme.rem(3),
+        },
+    },
 }));
 
 const SingleOfferContent = (): ReactElement | null => {
@@ -64,7 +75,8 @@ const SingleOfferContent = (): ReactElement | null => {
     const history = useRouter();
     const offerId = history.query?.offerId;
 
-    const offer = useSelector<IState, IOfferCard | null>(state => state.offers.single);
+    const loading = useSelector<IState, boolean>(state => state.offers.single.loading);
+    const offer = useSelector<IState, IOfferCard | null>(state => state.offers.single.data);
 
     useEffect(() => {
         dispatch({ type: types.GET_CATEGORIES_START });
@@ -86,6 +98,16 @@ const SingleOfferContent = (): ReactElement | null => {
     const handleModal = (): void => {
         modal.open(<PhotosUploadModal />);
     };
+
+    if (loading)
+        return (
+            <>
+                <Meta />
+                <div className={css.loader}>
+                    <img src="/spinner.gif" alt="Loading" />
+                </div>
+            </>
+        );
 
     return (
         <>

@@ -39,7 +39,7 @@ const OfferFunctions = (): ReactElement | null => {
     const history = useRouter();
 
     const user = useSelector<IState, IPublicProfile | null>(state => state.user);
-    const offer = useSelector<IState, IOfferCard | null>(state => state.offers.single);
+    const offer = useSelector<IState, IOfferCard | null>(state => state.offers.single.data);
 
     const deleteOffer = (): void => {
         modal.open(<DeleteOfferModal />);

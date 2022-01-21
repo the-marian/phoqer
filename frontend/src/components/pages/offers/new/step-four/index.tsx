@@ -129,7 +129,7 @@ const StepFour = (): ReactElement => {
     const [imgIndex, setImgIndex] = useState<number>(0);
 
     const user = useSelector<IState, IPublicProfile>(state => state.user);
-    const offer = useSelector<IState, IOfferCard | null>(state => state.offers.single);
+    const offer = useSelector<IState, IOfferCard | null>(state => state.offers.single.data);
 
     useEffect(() => {
         if (offer) {

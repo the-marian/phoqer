@@ -72,7 +72,7 @@ const EditContentForm = (): ReactElement => {
 
     const region = useSelector<IState, IRegion>(state => state.region);
     const loading = useSelector<IState, boolean>(state => state.offers.edit_offer.loading);
-    const init = useSelector<IState, IOfferCard | null>(state => state.offers.single);
+    const init = useSelector<IState, IOfferCard | null>(state => state.offers.single.data);
     const [value, setValue] = useState<INewOffer>(newOfferAdapter(init));
     const [errors, setErrors] = useState<IError>({});
 

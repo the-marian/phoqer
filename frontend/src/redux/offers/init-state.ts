@@ -28,7 +28,7 @@ const offersInit: IOffers = {
         data: [],
         loading: true,
     },
-    single: null,
+    single: { loading: true, data: null },
     new_offer: {
         loading: false,
         // step 1

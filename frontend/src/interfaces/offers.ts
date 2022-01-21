@@ -42,7 +42,7 @@ export interface IOfferStatic {
 }
 
 export type IRentalPeriod = 'DAY' | 'HOUR' | 'MONTH';
-export type ICurrency = 'EUR' | 'PLN' | 'UAH' | 'USD' | null;
+export type ICurrency = 'EUR' | 'UAH' | 'USD' | null;
 
 export interface INewOffer {
     loading: boolean;
@@ -84,7 +84,7 @@ export interface IOffers {
     search: IOfferDynamic;
     my_offers: IOfferDynamic;
     favorite: IOfferStatic;
-    single: IOfferCard | null;
+    single: { loading: boolean; data: IOfferCard | null };
     new_offer: INewOffer;
     edit_offer: {
         loading: boolean;

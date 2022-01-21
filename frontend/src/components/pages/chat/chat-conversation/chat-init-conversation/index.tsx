@@ -68,7 +68,7 @@ const ChatInitConversation = ({ children }: IProps): ReactElement | null => {
     const history = useRouter();
     const offerId = String(history.query.offerId || '');
 
-    const offer = useSelector<IState, IOfferCard | null>(state => state.offers.single);
+    const offer = useSelector<IState, IOfferCard | null>(state => state.offers.single.data);
 
     useEffect(() => {
         if (offerId && !offer) dispatch({ type: types.GET_SINGLE_OFFER_START, payload: offerId });

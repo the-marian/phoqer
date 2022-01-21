@@ -17,6 +17,8 @@ const routes = {
 
     chat: {
         list: '/chat',
+        i_am_author: '/chat?i_am_author=true',
+        i_am_client: '/chat?i_am_client=true',
         item: (chat: Primitive = ''): string => `/chat/${chat}`,
         new: (offerId: Primitive = ''): string => `/chat/new/${offerId}`,
     },

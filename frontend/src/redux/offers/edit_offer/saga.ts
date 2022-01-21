@@ -32,7 +32,7 @@ function* updateOffer({ payload, images, offerId, callback }: IAction) {
     try {
         const region: IRegion = yield select<(state: IState) => IRegion>(state => state.region);
         const cover_image: string | undefined = yield select<(state: IState) => string | undefined>(
-            state => state.offers.single?.cover_image,
+            state => state.offers.single.data?.cover_image,
         );
         const body: IBody = adapter(
             {
@@ -61,7 +61,7 @@ function* publishOffer({ payload, images, offerId, callback }: IAction) {
     try {
         const region: IRegion = yield select<(state: IState) => IRegion>(state => state.region);
         const cover_image: string | undefined = yield select<(state: IState) => string | undefined>(
-            state => state.offers.single?.cover_image,
+            state => state.offers.single.data?.cover_image,
         );
         const body: IBody = adapter(
             {
@@ -93,7 +93,7 @@ function* publishOffer({ payload, images, offerId, callback }: IAction) {
 function* changeCoverImage({ payload, offerId, callback }: IAction) {
     try {
         const images: string[] | undefined = yield select<(state: IState) => string[] | undefined>(
-            state => state.offers.single?.images,
+            state => state.offers.single.data?.images,
         );
         const { status } = yield call(
             services.update,

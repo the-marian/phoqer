@@ -93,7 +93,7 @@ export const NavigationItem = ({ tab }: NavigationItemProp): ReactElement => {
     const trans = useTrans();
     const history = useRouter();
 
-    const [open, setOpen] = useState<boolean>(true);
+    const [open, setOpen] = useState<boolean>(false);
     const handleOpen = (): void => {
         setOpen(prev => !prev);
     };
@@ -114,7 +114,7 @@ export const NavigationItem = ({ tab }: NavigationItemProp): ReactElement => {
                     <button type="button" className={css.button} onClick={handleOpen}>
                         {tab.icon ? <FontAwesomeIcon icon={tab.icon} /> : null}
                         <span className={css.text}>{trans(tab.text)}</span>
-                        {tab?.count ? <Badge>{tab.count}</Badge> : null}
+                        {tab?.count && !open ? <Badge>{tab.count}</Badge> : null}
                         <FontAwesomeIcon icon={open ? faChevronUp : faChevronDown} />
                     </button>
 

@@ -1,5 +1,8 @@
-import React, { ReactElement } from 'react';
+import React, { ReactElement, useState } from 'react';
 
+import { faChevronDown } from '@fortawesome/free-solid-svg-icons/faChevronDown';
+import { faChevronUp } from '@fortawesome/free-solid-svg-icons/faChevronUp';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import clsx from 'clsx';
 import { createUseStyles } from 'react-jss';
 
@@ -14,6 +17,10 @@ const useStyles = createUseStyles((theme: Theme) => ({
         display: 'flex',
         flex: 1,
         borderBottom: theme.border(0.05, theme.palette.primary[0]),
+
+        '& > li': {
+            position: 'relative',
+        },
     },
     button: {
         display: 'flex',
@@ -66,6 +73,36 @@ const useStyles = createUseStyles((theme: Theme) => ({
         marginRight: theme.rem(1),
         fontSize: theme.rem(1.2),
     },
+    sub: {
+        position: 'absolute',
+        left: 0,
+        bottom: 0,
+        transform: 'translateY(calc(100% + 0.5rem))',
+        width: theme.rem(20),
+        padding: theme.rem(1, 0),
+        borderRadius: theme.radius,
+        boxShadow: theme.shadow[2],
+        background: theme.palette.white,
+        border: theme.border(0.1, theme.palette.gray[2]),
+        zIndex: 10,
+
+        '& button': {
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            width: '100%',
+            padding: theme.rem(2),
+            fontSize: theme.rem(1.2),
+            textAlign: 'left',
+
+            ...theme.hover({
+                background: theme.palette.gray[0],
+            }),
+        },
+    },
+    badge: {
+        marginLeft: theme.rem(0.5),
+    },
 }));
 
 interface TabsItemProps {
@@ -77,15 +114,39 @@ interface TabsItemProps {
 const TabsItem = ({ tab, active, onClick }: TabsItemProps) => {
     const css = useStyles();
     const trans = useTrans();
+    const [open, setOpen] = useState<boolean>(false);
 
-    const handleClick = (): void => onClick(tab.id);
+    const handleClick = (): void => {
+        if (!tab?.sub) {
+            onClick(tab.id);
+        }
+
+        setOpen(prev => !prev);
+    };
 
     return (
         <li>
             <button className={clsx(css.button, active === tab.id && css.active)} type="button" onClick={handleClick}>
                 <span className={css.text}>{trans(tab.text)}</span>
-                {tab.count && <Badge>{tab.count}</Badge>}
+                {tab?.sub && <FontAwesomeIcon icon={open ? faChevronUp : faChevronDown} />}
+                {tab.count && <Badge className={css.badge}>{tab.count}</Badge>}
             </button>
+
+            {tab?.sub && open && (
+                <ul className={css.sub}>
+                    {tab.sub.map(item => {
+                        const handleSubClick = (): void => onClick(item.id);
+                        return (
+                            <li key={item.id}>
+                                <button className={clsx(active === tab.id && css.active)} type="button" onClick={handleSubClick}>
+                                    {trans(item.text)}
+                                    {item.count && <Badge className={css.badge}>{item.count}</Badge>}
+                                </button>
+                            </li>
+                        );
+                    })}
+                </ul>
+            )}
         </li>
     );
 };

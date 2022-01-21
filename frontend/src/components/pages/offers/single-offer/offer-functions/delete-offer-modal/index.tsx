@@ -13,7 +13,7 @@ const DeleteOfferModal = (): ReactElement => {
     const dispatch = useDispatch();
     const history = useRouter();
 
-    const offer = useSelector<IState, IOfferCard | null>(state => state.offers.single);
+    const offer = useSelector<IState, IOfferCard | null>(state => state.offers.single.data);
 
     const handleDelete = (): void => {
         dispatch({

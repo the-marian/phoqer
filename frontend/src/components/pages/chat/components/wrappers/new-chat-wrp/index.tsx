@@ -58,7 +58,7 @@ const NewChatWrp = ({ children, showSidebar = false }: IProps): ReactElement => 
 
     const user = useSelector<IState, IPublicProfile | null>(state => state.user);
     const chats = useSelector<IState, IChatsList>(state => state.chat.chats);
-    const offer = useSelector<IState, IOfferCard | null>(state => state.offers.single);
+    const offer = useSelector<IState, IOfferCard | null>(state => state.offers.single.data);
     const profile = useSelector<IState, IPublicProfile | null>(state => state.profiles.public);
 
     useEffect(() => {
