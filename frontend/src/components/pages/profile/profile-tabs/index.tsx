@@ -3,6 +3,7 @@ import React, { ReactElement } from 'react';
 import { useRouter } from 'next/router';
 import { createUseStyles } from 'react-jss';
 
+import { ChatTypeEnum } from '../../../../interfaces';
 import routes from '../../../../utils/routes';
 import { Theme } from '../../../../utils/theming/theme';
 import Tabs from '../../../common/tabs';
@@ -25,8 +26,8 @@ const routesMap: { [key: string]: string } = {
     referral: routes.referral,
     settings: routes.settings(),
     analytics: routes.analytics,
-    i_am_author: routes.chat.i_am_author,
-    i_am_client: routes.chat.i_am_author,
+    i_am_author: routes.chat.list(ChatTypeEnum.AUTHOR),
+    i_am_client: routes.chat.list(ChatTypeEnum.CLIENT),
 };
 
 const ProfileTabs = ({ active }: IProps): ReactElement => {

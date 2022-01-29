@@ -5,7 +5,7 @@ import { faEnvelope } from '@fortawesome/free-regular-svg-icons/faEnvelope';
 import { faPlusSquare } from '@fortawesome/free-regular-svg-icons/faPlusSquare';
 import { faSlidersH } from '@fortawesome/free-solid-svg-icons/faSlidersH';
 
-import { ITabs, ITabsNum } from '../../../interfaces';
+import { ChatTypeEnum, ITabs, ITabsNum } from '../../../interfaces';
 import routes from '../../../utils/routes';
 
 const temp: ITabsNum = {
@@ -28,15 +28,15 @@ export const getBaseNavList = (count: ITabsNum = temp): ITabs[] => [
         count: count?.messages,
         sub: [
             {
-                id: 'i_am_author',
-                text: 'i_am_author',
-                link: routes.chat.i_am_author,
+                id: ChatTypeEnum.AUTHOR,
+                text: ChatTypeEnum.AUTHOR,
+                link: routes.chat.list(ChatTypeEnum.AUTHOR),
                 count: count?.messages,
             },
             {
-                id: 'i_am_client',
-                text: 'i_am_client',
-                link: routes.chat.i_am_client,
+                id: ChatTypeEnum.CLIENT,
+                text: ChatTypeEnum.CLIENT,
+                link: routes.chat.list(ChatTypeEnum.CLIENT),
                 count: count?.messages,
             },
         ],

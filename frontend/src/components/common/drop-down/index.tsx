@@ -174,7 +174,8 @@ const DropDown = ({
     const css = useStyles();
     const trans = useTrans();
     const media = useMedia(768);
-    const ref = useRef<HTMLDivElement>(null);
+    const buttonRef = useRef<HTMLButtonElement>(null);
+    const containerRef = useRef<HTMLDivElement>(null);
 
     const [top, setTop] = useState<boolean>(false);
     const [drop, setDrop] = useState<boolean>(false);
@@ -187,7 +188,7 @@ const DropDown = ({
         if (!defaultValue && placeholder) setSelected(placeholder);
     }, [defaultValue, placeholder]);
 
-    const handleClick = (event: React.MouseEvent<HTMLParagraphElement>): void => {
+    const handleClick = (event: React.MouseEvent<HTMLButtonElement>): void => {
         event.stopPropagation();
         if (media) {
             setTop(document.body.clientHeight / event.currentTarget.getBoundingClientRect().top < 1.6);
@@ -225,22 +226,26 @@ const DropDown = ({
     }, [drop, closeOnScroll]);
 
     useEffect(() => {
-        if (drop && ref.current) {
-            const handler = (event: MouseEvent & { path?: Element[] }): void => {
-                if (!event.path?.includes(ref.current as Element)) {
+        if (drop) {
+            const handler = (event: MouseEvent): void => {
+                const isOutsideClick = event.target === containerRef.current || event.target === buttonRef.current;
+
+                if (isOutsideClick) {
                     setDrop(false);
                 }
             };
-            document.body.addEventListener('click', handler);
+            document.addEventListener('click', handler);
             return () => {
-                document.body.removeEventListener('click', handler);
+                document.removeEventListener('click', handler);
             };
         }
     }, [drop]);
 
     return (
-        <div ref={ref} className={clsx(css.wrp, className)}>
-            <p
+        <div ref={containerRef} className={clsx(css.wrp, className)}>
+            <button
+                ref={buttonRef}
+                type="button"
                 className={clsx(
                     css.inner,
                     transparent && css.transparent,
@@ -249,7 +254,6 @@ const DropDown = ({
                 )}
                 style={{ height: height + 'rem' }}
                 onClick={handleClick}
-                aria-hidden={true}
             >
                 {icon ? (
                     <FontAwesomeIcon icon={icon} />
@@ -272,7 +276,7 @@ const DropDown = ({
                         )}
                     </>
                 )}
-            </p>
+            </button>
 
             <CSSTransition timeout={200} unmountOnExit in={drop && media}>
                 <div

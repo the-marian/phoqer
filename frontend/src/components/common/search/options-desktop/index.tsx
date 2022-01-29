@@ -18,7 +18,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
     region: {
         width: '50%',
-        height: theme.rem(5),
+        height: theme.rem(4.5),
         background: theme.palette.trueWhite,
         color: theme.palette.trueBlack,
         boxShadow: 'none',
@@ -75,7 +75,7 @@ const OptionsDesktop = ({ onChange }: IProps): ReactElement => {
                     data={categories}
                     placeholder={trans('select_category')}
                     onChange={onChange}
-                    height={6}
+                    height={4.5}
                     withSub
                     transparent
                 />

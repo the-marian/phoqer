@@ -16,7 +16,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import useAuth from '../../../../hooks/auth.hook';
 import useConfig from '../../../../hooks/config.hook';
 import useTrans from '../../../../hooks/trans.hook';
-import { IDropList, IDropValue, IOfferCard, IPublicProfile, IState } from '../../../../interfaces';
+import { ChatTypeEnum, IDropList, IDropValue, IOfferCard, IPublicProfile, IState } from '../../../../interfaces';
 import types from '../../../../redux/types';
 import { cutString, moneyFormat } from '../../../../utils/helpers';
 import routes from '../../../../utils/routes';
@@ -86,7 +86,7 @@ const OfferCard = ({ offer, showFavoriteBtn = true }: IProps): ReactElement => {
 
     const handleOpenChat = (): void => {
         if (!isLogin()) return;
-        dispatch({ type: types.CHANGE_CHAT_TYPE, payload: 'i_am_client' });
+        dispatch({ type: types.CHANGE_CHAT_TYPE, payload: ChatTypeEnum.CLIENT });
         history.push(routes.chat.new(id));
     };
 

@@ -1,4 +1,4 @@
-import { ITabsNum } from '../../../interfaces';
+import { ChatTypeEnum, ITabsNum } from '../../../interfaces';
 
 export interface ITabsItem {
     id: string;
@@ -23,13 +23,13 @@ export const userPrivateTabs = (count: ITabsNum = temp): ITabsItem[] => [
         count: count?.messages,
         sub: [
             {
-                id: 'i_am_author',
-                text: 'i_am_author',
+                id: ChatTypeEnum.AUTHOR,
+                text: ChatTypeEnum.AUTHOR,
                 count: count?.messages,
             },
             {
-                id: 'i_am_client',
-                text: 'i_am_client',
+                id: ChatTypeEnum.CLIENT,
+                text: ChatTypeEnum.CLIENT,
                 count: count?.messages,
             },
         ],

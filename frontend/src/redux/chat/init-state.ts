@@ -1,9 +1,9 @@
-import { IStateChats } from '../../interfaces';
+import { ChatTypeEnum, IStateChats } from '../../interfaces';
 
 const chatInit: IStateChats = {
     chats: {
         loading: true,
-        type: 'i_am_client',
+        type: ChatTypeEnum.CLIENT,
         data: {
             total: 0,
             data: [],

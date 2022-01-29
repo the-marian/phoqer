@@ -1,4 +1,4 @@
-import { ChatType, IChats, IPagination } from '../../../interfaces';
+import { ChatTypeEnum, IChats, IPagination } from '../../../interfaces';
 import types from '../types';
 
 type Type =
@@ -15,6 +15,6 @@ export interface INewChat {
 
 export default interface IAction {
     type: Type;
-    payload: IPagination<IChats> | INewChat | ChatType | number;
+    payload: IPagination<IChats> | INewChat | ChatTypeEnum | number;
     callback?: (id: number) => void;
 }

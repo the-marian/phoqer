@@ -77,10 +77,10 @@ exports[`Join component match snapshot 1`] = `
             <div
               class="wrp-0-2-22 lang-0-2-21"
             >
-              <p
-                aria-hidden="true"
+              <button
                 class="inner-0-2-23"
                 style="height: 3rem;"
+                type="button"
               >
                 <span
                   class="icon-0-2-26"
@@ -106,7 +106,7 @@ exports[`Join component match snapshot 1`] = `
                 >
                   EN
                 </span>
-              </p>
+              </button>
             </div>
           </div>
         </div>

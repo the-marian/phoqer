@@ -7,6 +7,11 @@ export enum ChatStatus {
     NEW = 'NEW',
 }
 
+export enum ChatTypeEnum {
+    CLIENT = 'i_am_client',
+    AUTHOR = 'i_am_author',
+}
+
 export interface IChats {
     chat_id: number;
     title: string;
@@ -19,11 +24,9 @@ export interface IChats {
     cover_image: string | null;
 }
 
-export type ChatType = 'i_am_client' | 'i_am_author';
-
 export interface IChatsList {
     loading: boolean;
-    type: ChatType;
+    type: ChatTypeEnum;
     data: IPagination<IChats>;
 }
 

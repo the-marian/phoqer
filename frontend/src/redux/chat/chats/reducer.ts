@@ -1,4 +1,4 @@
-import { ChatType, IChats, IChatsList, IPagination } from '../../../interfaces';
+import { ChatTypeEnum, IChats, IChatsList, IPagination } from '../../../interfaces';
 import chatInit from '../init-state';
 import types from '../types';
 
@@ -25,7 +25,7 @@ const chats = (state: IChatsList = chatInit.chats, { type, payload }: IAction): 
             return { ...state, loading: false };
 
         case types.CHANGE_CHAT_TYPE:
-            return { ...state, type: payload as ChatType };
+            return { ...state, type: payload as ChatTypeEnum };
 
         default:
             return state;

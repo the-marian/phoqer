@@ -7,7 +7,7 @@ import { useRouter } from 'next/router';
 import { createUseStyles } from 'react-jss';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { ChatStatus, IState } from '../../../../../interfaces';
+import { ChatStatus, ChatTypeEnum, IState } from '../../../../../interfaces';
 import types from '../../../../../redux/types';
 import routes from '../../../../../utils/routes';
 import mixin from '../../../../../utils/theming/mixin';
@@ -72,7 +72,7 @@ const ChatDeleteButton = ({ className }: IProps): JSX.Element | null => {
             type: types.DELETE_CHAT_START,
             payload: chatId,
             callback: () => {
-                history.push(routes.chat.list);
+                history.push(routes.chat.list(ChatTypeEnum.AUTHOR));
                 notifications.info({ message: 'Вы успешно удалили чат' });
             },
         });

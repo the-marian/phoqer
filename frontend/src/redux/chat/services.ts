@@ -1,13 +1,13 @@
 import { AxiosResponse } from 'axios';
 
-import { ChatStatus, ChatType, IChats, IMessages, IOfferCard, IPagination } from '../../interfaces';
+import { ChatStatus, ChatTypeEnum, IChats, IMessages, IOfferCard, IPagination } from '../../interfaces';
 import endpoint from '../../utils/endpoint';
 import api from '../../utils/interceptors';
 
 import { INewChat } from './chats/interfaces';
 
 const services = {
-    chats: (page = 1, type: ChatType = 'i_am_client'): Promise<AxiosResponse<IPagination<IChats>>> =>
+    chats: (page = 1, type: ChatTypeEnum = ChatTypeEnum.CLIENT): Promise<AxiosResponse<IPagination<IChats>>> =>
         api.get(endpoint(`/chats?${type}=true`), { params: { page } }),
     singleChat: (id: number): Promise<AxiosResponse<IChats>> => api.get(endpoint(`/chats/${id}`)),
     updateChat: (id: number, status: ChatStatus): Promise<AxiosResponse<void>> => api.patch(endpoint(`/chats/${id}`), { status }),

@@ -1,3 +1,5 @@
+import { ChatTypeEnum } from '../interfaces';
+
 type ID = string | number | null;
 type Primitive = string | number;
 
@@ -16,9 +18,7 @@ const routes = {
     my_offers: (status = 'all'): string => `/my-offers/${status}`,
 
     chat: {
-        list: '/chat',
-        i_am_author: '/chat?i_am_author=true',
-        i_am_client: '/chat?i_am_client=true',
+        list: (type: ChatTypeEnum): string => `/chat?type=${type}`,
         item: (chat: Primitive = ''): string => `/chat/${chat}`,
         new: (offerId: Primitive = ''): string => `/chat/new/${offerId}`,
     },

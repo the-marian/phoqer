@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { createUseStyles } from 'react-jss';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { ChatType, IState } from '../../../../../interfaces';
+import { ChatTypeEnum, IState } from '../../../../../interfaces';
 import types from '../../../../../redux/types';
 import routes from '../../../../../utils/routes';
 import mixin from '../../../../../utils/theming/mixin';
@@ -76,11 +76,11 @@ const useStyles = createUseStyles((theme: Theme) => ({
 
 const tabs: ISegmentedControlItem[] = [
     {
-        id: 'i_am_client',
+        id: ChatTypeEnum.CLIENT,
         text: 'Я арендаю',
     },
     {
-        id: 'i_am_author',
+        id: ChatTypeEnum.AUTHOR,
         text: 'Я сдаю в аренду',
     },
 ];
@@ -88,7 +88,7 @@ const tabs: ISegmentedControlItem[] = [
 const ChatSearch = (): ReactElement => {
     const css = useStyles();
     const dispatch = useDispatch();
-    const activeTab = useSelector<IState, ChatType>(state => state.chat.chats.type);
+    const activeTab = useSelector<IState, ChatTypeEnum>(state => state.chat.chats.type);
 
     const changeChatType = (value: string): void => {
         dispatch({ type: types.CHANGE_CHAT_TYPE, payload: value });

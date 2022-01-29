@@ -72,10 +72,10 @@ exports[`SingleOfferPage component default match snapshot 1`] = `
             <div
               class="wrp-0-2-18 lang-0-2-17"
             >
-              <p
-                aria-hidden="true"
+              <button
                 class="inner-0-2-19"
                 style="height: 3rem;"
+                type="button"
               >
                 <span
                   class="icon-0-2-22"
@@ -101,7 +101,7 @@ exports[`SingleOfferPage component default match snapshot 1`] = `
                 >
                   EN
                 </span>
-              </p>
+              </button>
             </div>
           </div>
         </div>

@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux';
 
 import useAuth from '../../../../../hooks/auth.hook';
 import useTrans from '../../../../../hooks/trans.hook';
-import { IOfferCard } from '../../../../../interfaces';
+import { ChatTypeEnum, IOfferCard } from '../../../../../interfaces';
 import types from '../../../../../redux/types';
 import { moneyFormat } from '../../../../../utils/helpers';
 import routes from '../../../../../utils/routes';
@@ -76,7 +76,7 @@ const Price = ({ offer, withButton = false }: IProps): ReactElement => {
             return;
         }
 
-        dispatch({ type: types.CHANGE_CHAT_TYPE, payload: 'i_am_client' });
+        dispatch({ type: types.CHANGE_CHAT_TYPE, payload: ChatTypeEnum.CLIENT });
         history.push(routes.chat.new(offer?.id));
     };
 

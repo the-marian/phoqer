@@ -39,6 +39,10 @@ const useStyles = createUseStyles((theme: Theme) => ({
                 fontSize: theme.rem(1.1),
             },
 
+            '& > *': {
+                pointerEvents: 'none',
+            },
+
             ...theme.hover({
                 background: theme.palette.primary[0],
                 color: theme.palette.trueWhite,
@@ -108,9 +112,10 @@ interface ValueItemProps {
     onSelect: (name: string, slug: string, type: 'main' | 'sub') => void;
     type?: 'main' | 'sub';
     sub?: IDropList[];
+    tabIndex?: number;
 }
 
-const ValueItem = memo(({ withSub, iconImage, sub, slug, name, onSelect, type = 'main' }: ValueItemProps) => {
+const ValueItem = memo(({ withSub, iconImage, sub, slug, name, onSelect, type = 'main', tabIndex = 0 }: ValueItemProps) => {
     const css = useStyles();
     const trans = useTrans();
 
@@ -130,7 +135,7 @@ const ValueItem = memo(({ withSub, iconImage, sub, slug, name, onSelect, type = 
 
     return (
         <li className={type === 'main' ? clsx(css.item, withSub && css.itemEmpty) : css.sub} key={slug}>
-            <button type="button" onClick={handleClick}>
+            <button type="button" onClick={handleClick} tabIndex={tabIndex}>
                 {iconImage && icons[iconImage] && <FontAwesomeIcon icon={icons[iconImage]} />}
                 <span className={clsx(css.iconImageText, iconImage && icons[iconImage])}>{trans(name || slug)}</span>
                 {sub?.length && <FontAwesomeIcon icon={open ? faChevronUp : faChevronDown} />}
@@ -138,15 +143,23 @@ const ValueItem = memo(({ withSub, iconImage, sub, slug, name, onSelect, type = 
 
             {sub?.length ? (
                 <ul className={clsx(css.list, open && css.open)}>
-                    <ValueItem key={slug} name={trans(name || slug)} onSelect={mainSelect} slug={slug} type="sub" />
+                    <ValueItem
+                        key={slug}
+                        type="sub"
+                        slug={slug}
+                        onSelect={mainSelect}
+                        tabIndex={open ? 1 : -1}
+                        name={trans(name || slug)}
+                    />
                     {sub?.map(({ name, slug, icon_image }) => (
                         <ValueItem
                             key={slug}
-                            name={trans(name || slug)}
-                            iconImage={icon_image}
-                            onSelect={onSelect}
                             slug={slug}
                             type="sub"
+                            onSelect={onSelect}
+                            iconImage={icon_image}
+                            name={trans(name || slug)}
+                            tabIndex={open ? 1 : -1}
                         />
                     ))}
                 </ul>
