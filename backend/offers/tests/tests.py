@@ -354,6 +354,7 @@ async def test_search(client, marian_auth_token, offer_ps4, offer_iphone12):
                 "pub_date": "2021-05-21",
                 "rental_period": "DAY",
                 "title": "SONY PlayStation 4",
+                "user_id": 1,
                 "views": 1,
             },
             {
@@ -369,6 +370,7 @@ async def test_search(client, marian_auth_token, offer_ps4, offer_iphone12):
                 "pub_date": "2021-05-21",
                 "rental_period": "DAY",
                 "title": "Iphone 12",
+                "user_id": 2,
                 "views": 1101,
             },
         ],
@@ -402,6 +404,7 @@ async def test_get_popular_offers(client, offer_ps4):
             "pub_date": "2021-05-21",
             "rental_period": "DAY",
             "title": "SONY PlayStation 4",
+            "user_id": 1,
             "views": 1,
         }
     ]
