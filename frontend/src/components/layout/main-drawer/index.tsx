@@ -31,7 +31,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
 
         ...theme.media(800).max({
             flexDirection: 'column',
-            overflowY: 'scroll',
+            overflowY: 'auto',
+            scrollBehavior: 'smooth',
+            '-webkit-overflow-scrolling': 'touch',
         }),
     },
     open: {
@@ -49,6 +51,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         }),
 
         ...theme.media(800).max({
+            height: 'max-content',
             width: '100%',
             padding: theme.rem(2, 0),
         }),
@@ -57,7 +60,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
         height: '100%',
         width: 'calc(100% - 40rem)',
         padding: theme.rem(2, 0),
-        overflowY: 'scroll',
+        overflowY: 'auto',
+        scrollBehavior: 'smooth',
+        '-webkit-overflow-scrolling': 'touch',
 
         ...theme.media(1200).max({
             width: 'calc(100% - 30rem)',
@@ -65,8 +70,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
         }),
 
         ...theme.media(800).max({
+            height: 'max-content',
             width: '100%',
-            padding: theme.rem(2, 0, 6),
+            padding: theme.rem(2, 0, 12),
             overflowY: 'unset',
         }),
     },

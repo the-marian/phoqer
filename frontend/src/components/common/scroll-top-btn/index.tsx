@@ -30,7 +30,6 @@ const useStyles = createUseStyles((theme: Theme) => ({
             bottom: theme.rem(2.5),
 
             ...theme.media(1060).max({
-                bottom: theme.rem(7.5),
                 right: theme.rem(1),
             }),
         },

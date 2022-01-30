@@ -11,12 +11,12 @@ import EmptyOffers from '../../common/offers/empty-offers';
 
 import NotificationsItem from './components/notifications-item';
 
-const useStyles = createUseStyles(() => ({
+const useStyles = createUseStyles({
     root: {
         display: 'flex',
         flexDirection: 'column',
     },
-}));
+});
 
 const Notifications = (): ReactElement => {
     const css = useStyles();

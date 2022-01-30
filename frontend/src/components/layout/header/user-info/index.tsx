@@ -4,6 +4,7 @@ import { faChevronDown } from '@fortawesome/free-solid-svg-icons/faChevronDown';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import clsx from 'clsx';
 import dynamic from 'next/dynamic';
+import Router from 'next/router';
 import { createUseStyles } from 'react-jss';
 import { useSelector } from 'react-redux';
 
@@ -110,10 +111,15 @@ const UserInfo = (): ReactElement => {
     };
 
     useEffect(() => {
-        return () => {
+        const handleStart = (): void => {
             document.body.style.position = '';
             document.body.style.top = '';
             window.scrollTo({ top: 0 });
+        };
+
+        Router.events.on('routeChangeStart', handleStart);
+        return () => {
+            Router.events.off('routeChangeStart', handleStart);
         };
     }, []);
 

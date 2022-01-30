@@ -20,7 +20,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
     sticky: {
         position: 'sticky',
-        top: theme.rem(14),
+        top: theme.rem(2),
         left: 0,
 
         ...theme.media(768).max({

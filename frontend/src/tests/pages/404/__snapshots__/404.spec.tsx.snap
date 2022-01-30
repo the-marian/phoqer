@@ -91,36 +91,36 @@ exports[`Home component match snapshot 1`] = `
     </div>
   </header>
   <main
-    class="main-0-2-26 padding-0-2-27"
+    class="main-0-2-26"
   >
     <div
       class="container-0-2-4"
     >
       <h1
-        class="title-0-2-34"
+        class="title-0-2-33"
       >
         PHOQER is an online platform that brings people together to share goods and services. PHOQER - here you will find what you are looking for! By clicking the Submit button, you will be able to place offers on any topic easily and quickly.
       </h1>
       <div
-        class="container-0-2-30"
+        class="container-0-2-29"
       >
         <img
           alt="no data"
-          class="img-0-2-28"
+          class="img-0-2-27"
           src="/no_data.gif"
         />
         <h2
-          class="title-0-2-31"
+          class="title-0-2-30"
         >
           404
         </h2>
         <p
-          class="text-0-2-32"
+          class="text-0-2-31"
         >
           This page does not exist or has been deleted.
         </p>
         <a
-          class="link-0-2-33"
+          class="link-0-2-32"
           href="/"
         >
           Go to Home page
@@ -129,7 +129,7 @@ exports[`Home component match snapshot 1`] = `
     </div>
   </main>
   <footer
-    class="footer-0-2-36"
+    class="footer-0-2-35"
   >
     <div
       class="container-0-2-4"
@@ -154,76 +154,76 @@ exports[`Home component match snapshot 1`] = `
         </small>
       </div>
       <div
-        class="wrp-0-2-37"
+        class="wrp-0-2-36"
       >
         <ul
-          class="list-0-2-38"
+          class="list-0-2-37"
         >
           <li
-            class="item-0-2-39"
+            class="item-0-2-38"
           >
             <a
-              class="link-0-2-40"
+              class="link-0-2-39"
               href="/static/help"
             >
               Help and Feedback
             </a>
           </li>
           <li
-            class="item-0-2-39"
+            class="item-0-2-38"
           >
             <a
-              class="link-0-2-40"
+              class="link-0-2-39"
               href="/static/business"
             >
               Advertising preferences
             </a>
           </li>
           <li
-            class="item-0-2-39"
+            class="item-0-2-38"
           >
             <a
-              class="link-0-2-40"
+              class="link-0-2-39"
               href="/static/rules"
             >
               Terms of service
             </a>
           </li>
           <li
-            class="item-0-2-39"
+            class="item-0-2-38"
           >
             <a
-              class="link-0-2-40"
+              class="link-0-2-39"
               href="/static/politic"
             >
               Privacy statement
             </a>
           </li>
           <li
-            class="item-0-2-39"
+            class="item-0-2-38"
           >
             <a
-              class="link-0-2-40"
+              class="link-0-2-39"
               href="/static/faq"
             >
               FAQ
             </a>
           </li>
           <li
-            class="item-0-2-39"
+            class="item-0-2-38"
           >
             <a
-              class="link-0-2-40"
+              class="link-0-2-39"
               href="/static/safety"
             >
               Safety rules
             </a>
           </li>
           <li
-            class="item-0-2-39"
+            class="item-0-2-38"
           >
             <a
-              class="link-0-2-40"
+              class="link-0-2-39"
               href="/static/map"
             >
               Site map
@@ -232,22 +232,22 @@ exports[`Home component match snapshot 1`] = `
         </ul>
         <div>
           <h3
-            class="title-0-2-43"
+            class="title-0-2-42"
           >
             Social networks:
           </h3>
           <ul
-            class="list-0-2-41"
+            class="list-0-2-40"
           >
             <li>
               <a
-                class="link-0-2-44"
+                class="link-0-2-43"
                 href="https://www.facebook.com/phoqer.inc"
                 rel="noopener noreferrer"
                 target="_blank"
               >
                 <svg
-                  class="svg-0-2-46"
+                  class="svg-0-2-45"
                   enable-background="new 0 0 24 24"
                   id="Bold"
                   viewBox="0 0 24 24"
@@ -261,13 +261,13 @@ exports[`Home component match snapshot 1`] = `
             </li>
             <li>
               <a
-                class="link-0-2-44"
+                class="link-0-2-43"
                 href="https://www.instagram.com/phoqer/"
                 rel="noopener noreferrer"
                 target="_blank"
               >
                 <svg
-                  class="svg-0-2-46"
+                  class="svg-0-2-45"
                   enable-background="new 0 0 24 24"
                   id="Bold"
                   viewBox="0 0 24 24"
@@ -289,13 +289,13 @@ exports[`Home component match snapshot 1`] = `
             </li>
             <li>
               <a
-                class="link-0-2-44"
+                class="link-0-2-43"
                 href="http://www.google.com/"
                 rel="noopener noreferrer"
                 target="_blank"
               >
                 <svg
-                  class="svg-0-2-46"
+                  class="svg-0-2-45"
                   viewBox="0 -47 512.00004 512"
                   xmlns="http://www.w3.org/2000/svg"
                 >
@@ -307,13 +307,13 @@ exports[`Home component match snapshot 1`] = `
             </li>
             <li>
               <a
-                class="link-0-2-44"
+                class="link-0-2-43"
                 href="https://t.me/phoqer"
                 rel="noopener noreferrer"
                 target="_blank"
               >
                 <svg
-                  class="svg-0-2-46"
+                  class="svg-0-2-45"
                   viewBox="0 -39 512.00011 512"
                   xmlns="http://www.w3.org/2000/svg"
                 >

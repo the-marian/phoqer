@@ -16,6 +16,11 @@ const useStyles = createUseStyles((theme: Theme) => ({
         '&:hover h3': {
             textDecoration: 'underline',
         },
+
+        ...theme.media(768).max({
+            background: theme.palette.gray[0],
+            borderRadius: theme.radius,
+        }),
     },
     tooltip: {
         minWidth: theme.rem(20),
@@ -87,9 +92,10 @@ const useStyles = createUseStyles((theme: Theme) => ({
         }),
     },
     titleSmall: {
-        margin: theme.rem(1, 0, 0),
+        margin: theme.rem(1),
         fontWeight: theme.text.weight[2],
-        ...mixin(theme).cutStringMultiLine(2, 1.4),
+
+        ...mixin(theme).cutStringMultiLine(2, 1.2),
     },
     desc: {
         margin: theme.rem(1, 0, 1.5),
@@ -180,10 +186,17 @@ const useStyles = createUseStyles((theme: Theme) => ({
         }),
     },
     priceSmall: {
-        ...theme.media(500).max({
-            flexDirection: 'column',
-            alignItems: 'flex-start',
-        }),
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        margin: theme.rem(0.3, 1),
+        fontSize: theme.rem(1.4),
+        color: theme.palette.primary[0],
+        fontWeight: theme.text.weight[4],
+
+        '& small': {
+            fontSize: theme.rem(1),
+        },
     },
     dropdown: {
         position: 'absolute',

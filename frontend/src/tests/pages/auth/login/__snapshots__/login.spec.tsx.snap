@@ -96,7 +96,7 @@ exports[`Login component match snapshot 1`] = `
     </div>
   </header>
   <main
-    class="main-0-2-30 padding-0-2-31"
+    class="main-0-2-30"
   >
     <div
       class="container-0-2-8"
@@ -117,21 +117,21 @@ exports[`Login component match snapshot 1`] = `
             method="post"
           >
             <h2
-              class="title-0-2-32"
+              class="title-0-2-31"
             >
               Welcome!
             </h2>
             <div
-              class="wrp-0-2-33"
+              class="wrp-0-2-32"
             >
               <div
-                class="wrp-0-2-41"
+                class="wrp-0-2-40"
               >
                 <div
-                  class="inner-0-2-42"
+                  class="inner-0-2-41"
                 >
                   <div
-                    class="icon-0-2-46 iconLeft-0-2-47"
+                    class="icon-0-2-45 iconLeft-0-2-46"
                   >
                     <svg
                       aria-hidden="true"
@@ -151,7 +151,7 @@ exports[`Login component match snapshot 1`] = `
                   </div>
                   <input
                     autocomplete="email"
-                    class="input-0-2-43 withIcon-0-2-49"
+                    class="input-0-2-42 withIcon-0-2-48"
                     name="username"
                     placeholder=""
                     type="email"
@@ -161,16 +161,16 @@ exports[`Login component match snapshot 1`] = `
               </div>
             </div>
             <div
-              class="wrp-0-2-33"
+              class="wrp-0-2-32"
             >
               <div
-                class="wrp-0-2-41"
+                class="wrp-0-2-40"
               >
                 <div
-                  class="inner-0-2-42"
+                  class="inner-0-2-41"
                 >
                   <div
-                    class="icon-0-2-46 iconLeft-0-2-47"
+                    class="icon-0-2-45 iconLeft-0-2-46"
                   >
                     <svg
                       aria-hidden="true"
@@ -190,14 +190,14 @@ exports[`Login component match snapshot 1`] = `
                   </div>
                   <input
                     autocomplete="current-password"
-                    class="input-0-2-43 withPassword-0-2-48 withIcon-0-2-49"
+                    class="input-0-2-42 withPassword-0-2-47 withIcon-0-2-48"
                     name="password"
                     placeholder=""
                     type="password"
                     value=""
                   />
                   <button
-                    class="icon-0-2-46"
+                    class="icon-0-2-45"
                     type="button"
                   >
                     <svg
@@ -220,19 +220,19 @@ exports[`Login component match snapshot 1`] = `
               </div>
             </div>
             <a
-              class="link-0-2-34"
+              class="link-0-2-33"
               href="/auth/forgot-pass"
             >
               Forgot your password?
             </a>
             <a
-              class="link-0-2-34"
+              class="link-0-2-33"
               href="/auth/join"
             >
               Join Phoqer
             </a>
             <button
-              class="btn-0-2-52 btn-0-2-35"
+              class="btn-0-2-51 btn-0-2-34"
               type="submit"
             >
               <span>
@@ -240,21 +240,21 @@ exports[`Login component match snapshot 1`] = `
               </span>
             </button>
             <p
-              class="text-0-2-37"
+              class="text-0-2-36"
             >
               or
               <br />
               login with
             </p>
             <div
-              class="socials-0-2-39"
+              class="socials-0-2-38"
             >
               <ul
-                class="list-0-2-55"
+                class="list-0-2-54"
               >
                 <li>
                   <button
-                    class="socials-0-2-56 facebook-0-2-57"
+                    class="socials-0-2-55 facebook-0-2-56"
                     type="button"
                   >
                     <svg
@@ -276,7 +276,7 @@ exports[`Login component match snapshot 1`] = `
                 </li>
                 <li>
                   <button
-                    class="socials-0-2-56 google-0-2-58"
+                    class="socials-0-2-55 google-0-2-57"
                     type="button"
                   >
                     <svg
@@ -321,7 +321,7 @@ exports[`Login component match snapshot 1`] = `
     </div>
   </main>
   <footer
-    class="footer-0-2-60"
+    class="footer-0-2-59"
   >
     <div
       class="container-0-2-8"
@@ -346,76 +346,76 @@ exports[`Login component match snapshot 1`] = `
         </small>
       </div>
       <div
-        class="wrp-0-2-61"
+        class="wrp-0-2-60"
       >
         <ul
-          class="list-0-2-62"
+          class="list-0-2-61"
         >
           <li
-            class="item-0-2-63"
+            class="item-0-2-62"
           >
             <a
-              class="link-0-2-64"
+              class="link-0-2-63"
               href="/static/help"
             >
               Help and Feedback
             </a>
           </li>
           <li
-            class="item-0-2-63"
+            class="item-0-2-62"
           >
             <a
-              class="link-0-2-64"
+              class="link-0-2-63"
               href="/static/business"
             >
               Advertising preferences
             </a>
           </li>
           <li
-            class="item-0-2-63"
+            class="item-0-2-62"
           >
             <a
-              class="link-0-2-64"
+              class="link-0-2-63"
               href="/static/rules"
             >
               Terms of service
             </a>
           </li>
           <li
-            class="item-0-2-63"
+            class="item-0-2-62"
           >
             <a
-              class="link-0-2-64"
+              class="link-0-2-63"
               href="/static/politic"
             >
               Privacy statement
             </a>
           </li>
           <li
-            class="item-0-2-63"
+            class="item-0-2-62"
           >
             <a
-              class="link-0-2-64"
+              class="link-0-2-63"
               href="/static/faq"
             >
               FAQ
             </a>
           </li>
           <li
-            class="item-0-2-63"
+            class="item-0-2-62"
           >
             <a
-              class="link-0-2-64"
+              class="link-0-2-63"
               href="/static/safety"
             >
               Safety rules
             </a>
           </li>
           <li
-            class="item-0-2-63"
+            class="item-0-2-62"
           >
             <a
-              class="link-0-2-64"
+              class="link-0-2-63"
               href="/static/map"
             >
               Site map
@@ -424,22 +424,22 @@ exports[`Login component match snapshot 1`] = `
         </ul>
         <div>
           <h3
-            class="title-0-2-67"
+            class="title-0-2-66"
           >
             Social networks:
           </h3>
           <ul
-            class="list-0-2-65"
+            class="list-0-2-64"
           >
             <li>
               <a
-                class="link-0-2-68"
+                class="link-0-2-67"
                 href="https://www.facebook.com/phoqer.inc"
                 rel="noopener noreferrer"
                 target="_blank"
               >
                 <svg
-                  class="svg-0-2-70"
+                  class="svg-0-2-69"
                   enable-background="new 0 0 24 24"
                   id="Bold"
                   viewBox="0 0 24 24"
@@ -453,13 +453,13 @@ exports[`Login component match snapshot 1`] = `
             </li>
             <li>
               <a
-                class="link-0-2-68"
+                class="link-0-2-67"
                 href="https://www.instagram.com/phoqer/"
                 rel="noopener noreferrer"
                 target="_blank"
               >
                 <svg
-                  class="svg-0-2-70"
+                  class="svg-0-2-69"
                   enable-background="new 0 0 24 24"
                   id="Bold"
                   viewBox="0 0 24 24"
@@ -481,13 +481,13 @@ exports[`Login component match snapshot 1`] = `
             </li>
             <li>
               <a
-                class="link-0-2-68"
+                class="link-0-2-67"
                 href="http://www.google.com/"
                 rel="noopener noreferrer"
                 target="_blank"
               >
                 <svg
-                  class="svg-0-2-70"
+                  class="svg-0-2-69"
                   viewBox="0 -47 512.00004 512"
                   xmlns="http://www.w3.org/2000/svg"
                 >
@@ -499,13 +499,13 @@ exports[`Login component match snapshot 1`] = `
             </li>
             <li>
               <a
-                class="link-0-2-68"
+                class="link-0-2-67"
                 href="https://t.me/phoqer"
                 rel="noopener noreferrer"
                 target="_blank"
               >
                 <svg
-                  class="svg-0-2-70"
+                  class="svg-0-2-69"
                   viewBox="0 -39 512.00011 512"
                   xmlns="http://www.w3.org/2000/svg"
                 >

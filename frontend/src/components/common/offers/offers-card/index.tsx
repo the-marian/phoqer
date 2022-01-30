@@ -1,6 +1,5 @@
 import React, { ReactElement } from 'react';
 
-import { faEye } from '@fortawesome/free-regular-svg-icons/faEye';
 import { faHeart } from '@fortawesome/free-regular-svg-icons/faHeart';
 import { faDotCircle } from '@fortawesome/free-solid-svg-icons/faDotCircle';
 import { faHeart as faSolidHeart } from '@fortawesome/free-solid-svg-icons/faHeart';
@@ -52,20 +51,7 @@ const OfferCard = ({ offer, showFavoriteBtn = true }: IProps): ReactElement => {
 
     const profile = useSelector<IState, IPublicProfile | null>(state => state.user);
 
-    const {
-        id,
-        title,
-        description,
-        cover_image,
-        is_promoted,
-        is_deliverable,
-        is_favorite,
-        views,
-        pub_date,
-        price,
-        functions,
-        author_id,
-    } = offer;
+    const { id, title, description, cover_image, is_promoted, is_deliverable, is_favorite, price, functions, author_id } = offer;
     const canRent = author_id === profile?.id;
 
     const isLogin = (): boolean => {
@@ -224,18 +210,6 @@ const OfferCard = ({ offer, showFavoriteBtn = true }: IProps): ReactElement => {
                     data={formatUserActions(functions, USER_ACTIONS)}
                 />
             ) : null}
-
-            {!media && (
-                <div className={css.info}>
-                    <p className={css.text}>
-                        <FontAwesomeIcon icon={faEye} />
-                        <span className={css.view}>{views}</span>
-                    </p>
-                    <p className={css.text}>
-                        {trans('date')}: {pub_date}
-                    </p>
-                </div>
-            )}
 
             <div className={css.action}>
                 <p className={clsx(css.price, !media && css.priceSmall)}>
