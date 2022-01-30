@@ -79,27 +79,25 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
     titleBig: {
         margin: theme.rem(1, 0, 0),
-        fontSize: theme.rem(1.5),
         fontWeight: theme.text.weight[3],
+        ...mixin(theme).cutStringMultiLine(2, 1.5),
 
         ...theme.media(500).max({
-            fontSize: theme.rem(1.6),
+            ...mixin(theme).cutStringMultiLine(2, 1.6),
         }),
     },
     titleSmall: {
         margin: theme.rem(1, 0, 0),
-        fontSize: theme.rem(1.4),
         fontWeight: theme.text.weight[2],
-        wordBreak: 'break-all',
+        ...mixin(theme).cutStringMultiLine(2, 1.4),
     },
     desc: {
-        margin: 0,
-        fontSize: theme.rem(1.2),
+        margin: theme.rem(1, 0, 1.5),
         fontWeight: theme.text.weight[2],
-        wordBreak: 'break-all',
+        ...mixin(theme).cutStringMultiLine(2, 1.2),
 
         ...theme.media(500).max({
-            fontSize: theme.rem(1.4),
+            ...mixin(theme).cutStringMultiLine(2, 1.4),
         }),
     },
     info: {
@@ -193,7 +191,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         left: theme.rem(0.5),
         width: theme.rem(10),
 
-        '& > p': {
+        '& > button': {
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
@@ -205,7 +203,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         },
     },
     dropdownSmall: {
-        '& > p': {
+        '& > button': {
             width: theme.rem(3),
             fontSize: theme.rem(1.4),
             borderRadius: theme.rem(0.7),

@@ -9,11 +9,11 @@ import useAuth from '../../../../hooks/auth.hook';
 import { IPublicProfile, IState } from '../../../../interfaces';
 import routes from '../../../../utils/routes';
 import { Theme } from '../../../../utils/theming/theme';
-import Gift from '../../../common/advertising/gift';
 import Navigation from '../../../common/navigation';
 import { getBaseNavList } from '../../../common/navigation/navigation.config';
 import ProfileCard from '../../../common/profile-card';
-import ControlButtons from '../control-buttons';
+
+import ControlButtons from './control-buttons';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     wrp: {
@@ -21,7 +21,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
 }));
 
-const AuthDrawer = (): ReactElement | null => {
+const LeftSide = (): ReactElement | null => {
     const css = useStyles();
     const { logout } = useAuth();
     const user = useSelector<IState, IPublicProfile | null>(state => state.user);
@@ -65,10 +65,8 @@ const AuthDrawer = (): ReactElement | null => {
                     ]}
                 />
             </div>
-
-            <Gift style={{ margin: '3rem 0' }} />
         </>
     );
 };
 
-export default AuthDrawer;
+export default LeftSide;

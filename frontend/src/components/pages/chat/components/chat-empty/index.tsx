@@ -12,7 +12,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
-        height: 'calc(100vh - 8rem)',
+        height: 'calc(100vh - 7rem)',
         width: width.desktopLg.center,
         padding: theme.rem(2),
         background: theme.palette.gray[0],

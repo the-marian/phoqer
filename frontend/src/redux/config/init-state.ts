@@ -1,7 +1,6 @@
 import { IStateConfig } from '../../interfaces';
 
 const configInit: IStateConfig = {
-    drawer: false,
     chatDrawer: false,
     searchParams: {
         search: null,

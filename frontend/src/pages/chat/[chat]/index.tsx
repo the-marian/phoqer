@@ -12,7 +12,6 @@ import Meta from '../../../components/meta';
 import Conversation from '../../../components/pages/chat/chat-conversation';
 import ChatMobileDrawer from '../../../components/pages/chat/chat-sidebar-right/chat-drawer';
 import ChatMobileDrawerButton from '../../../components/pages/chat/chat-sidebar-right/chat-drawer/chat-drawer-button';
-import ChatNavbar from '../../../components/pages/chat/components/chat-navbar';
 import MessagesWrp from '../../../components/pages/chat/components/wrappers/messages-wrp';
 import useChat, { useChatListUpdate } from '../../../hooks/chat.hook';
 import useMedia from '../../../hooks/media.hook';
@@ -27,14 +26,13 @@ const useStyles = createUseStyles((theme: Theme) => ({
         flexDirection: 'column',
         alignItems: 'flex-start',
         justifyContent: 'flex-start',
-        padding: theme.rem(0, 0, 2),
-        height: '100vh',
-        paddingTop: theme.rem(6),
+        padding: theme.rem(1, 0, 2),
+        height: 'calc(100vh - 6rem)',
         background: theme.palette.white,
 
         ...theme.media(1060).max({
             height: 'unset',
-            padding: theme.rem(6, 0, 8),
+            padding: theme.rem(1, 0, 8),
         }),
     },
 }));
@@ -98,7 +96,7 @@ const MessagesChat = (): ReactElement => {
                 {!desktop && <ChatMobileDrawerButton />}
 
                 <Header />
-                <ChatNavbar />
+
                 <main className={css.main}>
                     <MessagesWrp showSidebar={media}>
                         <Conversation onSubmit={handleSubmit} />

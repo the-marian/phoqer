@@ -9,6 +9,7 @@ import Container from '../../components/layout/container';
 import PageLayout from '../../components/layout/page-layout';
 import Meta from '../../components/meta';
 import Notifications from '../../components/pages/notifications';
+import NotificationsContainer from '../../components/pages/notifications/components/notifications-container';
 import MobileBackBtn from '../../components/pages/profile/mobile-back-btn';
 import ProfileHeader from '../../components/pages/profile/profile-header';
 import ProfileTabs from '../../components/pages/profile/profile-tabs';
@@ -66,7 +67,9 @@ const NotificationsPage = (): ReactElement => {
                             )}
 
                             <div className={css.root}>
-                                <Notifications />
+                                <NotificationsContainer>
+                                    <Notifications />
+                                </NotificationsContainer>
                             </div>
                         </>
                     </Container>

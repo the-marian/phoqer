@@ -23,6 +23,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         padding: theme.rem(2),
         borderRadius: theme.radius,
         background: theme.palette.secondary[0],
+        transition: theme.transitions[1],
 
         ...theme.media(450).max({
             flexDirection: 'column',

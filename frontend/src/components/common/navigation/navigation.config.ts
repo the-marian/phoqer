@@ -1,8 +1,6 @@
 import { faCaretSquareLeft } from '@fortawesome/free-regular-svg-icons/faCaretSquareLeft';
-import { faChartBar } from '@fortawesome/free-regular-svg-icons/faChartBar';
 import { faCommentAlt } from '@fortawesome/free-regular-svg-icons/faCommentAlt';
 import { faEnvelope } from '@fortawesome/free-regular-svg-icons/faEnvelope';
-import { faPlusSquare } from '@fortawesome/free-regular-svg-icons/faPlusSquare';
 import { faSlidersH } from '@fortawesome/free-solid-svg-icons/faSlidersH';
 
 import { ChatTypeEnum, ITabs, ITabsNum } from '../../../interfaces';
@@ -49,21 +47,9 @@ export const getBaseNavList = (count: ITabsNum = temp): ITabs[] => [
         count: count?.notifications,
     },
     {
-        id: 'referral',
-        text: 'invite_friends',
-        link: routes.referral,
-        icon: faPlusSquare,
-    },
-    {
         id: 'settings',
         text: 'settings',
         link: routes.settings(),
         icon: faSlidersH,
-    },
-    {
-        id: 'analytics',
-        text: 'analytics',
-        link: routes.analytics,
-        icon: faChartBar,
     },
 ];

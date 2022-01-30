@@ -9,7 +9,6 @@ import types from '../../../redux/types';
 import NotificationsSkeleton from '../../common/loaders/skeletons/notifications';
 import EmptyOffers from '../../common/offers/empty-offers';
 
-import NotificationsContainer from './components/notifications-container';
 import NotificationsItem from './components/notifications-item';
 
 const useStyles = createUseStyles(() => ({
@@ -30,7 +29,7 @@ const Notifications = (): ReactElement => {
     }, [dispatch, locale]);
 
     return (
-        <NotificationsContainer>
+        <>
             {loading ? (
                 <NotificationsSkeleton amount={4} />
             ) : notificationsData.data.length ? (
@@ -42,7 +41,7 @@ const Notifications = (): ReactElement => {
             ) : (
                 <EmptyOffers />
             )}
-        </NotificationsContainer>
+        </>
     );
 };
 

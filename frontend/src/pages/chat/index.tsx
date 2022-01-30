@@ -7,7 +7,6 @@ import GetStaticProfile from '../../components/common/auth/get-static-profile/ge
 import Header from '../../components/layout/header';
 import Meta from '../../components/meta';
 import { width } from '../../components/pages/chat/chat.config';
-import ChatNavbar from '../../components/pages/chat/components/chat-navbar';
 import ChatWrp from '../../components/pages/chat/components/wrappers/chat-wrp';
 import { useChatListUpdate } from '../../hooks/chat.hook';
 import useMedia from '../../hooks/media.hook';
@@ -20,13 +19,13 @@ const useStyles = createUseStyles((theme: Theme) => ({
         flexDirection: 'column',
         alignItems: 'flex-start',
         justifyContent: 'flex-start',
-        height: '100vh',
-        paddingTop: theme.rem(6),
+        height: 'calc(100vh - 6rem)',
+        paddingTop: theme.rem(1),
         background: theme.palette.white,
 
         ...theme.media(1060).max({
             height: 'auto',
-            padding: theme.rem(6, 0, 8),
+            padding: theme.rem(1, 0, 8),
         }),
     },
     chat: {
@@ -72,8 +71,9 @@ const Messages = (): ReactElement => {
         <AuthRedirect>
             <GetStaticProfile>
                 <Meta title={'Мои сообщения'} h1={trans('user_profile_on_phoqer')} />
+
                 <Header />
-                <ChatNavbar />
+
                 <main className={css.main}>
                     <ChatWrp showConversation={media}>
                         <div className={css.chat}>

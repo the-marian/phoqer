@@ -14,7 +14,7 @@ import { useRouter } from 'next/router';
 import { useDispatch, useSelector } from 'react-redux';
 
 import useAuth from '../../../../hooks/auth.hook';
-import useConfig from '../../../../hooks/config.hook';
+import useMedia from '../../../../hooks/media.hook';
 import useTrans from '../../../../hooks/trans.hook';
 import { ChatTypeEnum, IDropList, IDropValue, IOfferCard, IPublicProfile, IState } from '../../../../interfaces';
 import types from '../../../../redux/types';
@@ -43,11 +43,12 @@ interface IProps {
 
 const OfferCard = ({ offer, showFavoriteBtn = true }: IProps): ReactElement => {
     const css = useStyles();
+
     const trans = useTrans();
     const { token } = useAuth();
     const history = useRouter();
     const dispatch = useDispatch();
-    const [config] = useConfig();
+    const media = useMedia(768);
 
     const profile = useSelector<IState, IPublicProfile | null>(state => state.user);
 
@@ -169,39 +170,33 @@ const OfferCard = ({ offer, showFavoriteBtn = true }: IProps): ReactElement => {
                         <div className={css.topWrp}>
                             {is_promoted && (
                                 <Tooltip className={css.tooltip} content="Это объявление находится в топе">
-                                    <div className={clsx(css.top, config.offerCardSize === 'small' && css.topSmall)}>
+                                    <div className={clsx(css.top, !media && css.topSmall)}>
                                         <FontAwesomeIcon icon={faStar} />
                                     </div>
                                 </Tooltip>
                             )}
                             {is_deliverable && (
                                 <Tooltip className={css.tooltip} content="Автор предоставляет доставку товара">
-                                    <div
-                                        className={clsx(css.top, css.delivery, config.offerCardSize === 'small' && css.topSmall)}
-                                    >
+                                    <div className={clsx(css.top, css.delivery, !media && css.topSmall)}>
                                         <FontAwesomeIcon icon={faTruck} />
                                     </div>
                                 </Tooltip>
                             )}
                             {!canRent && (
                                 <Tooltip className={css.tooltip} content="Вы являетесь автором этого объявления">
-                                    <div className={clsx(css.top, css.author, config.offerCardSize === 'small' && css.topSmall)}>
+                                    <div className={clsx(css.top, css.author, !media && css.topSmall)}>
                                         <FontAwesomeIcon icon={faDotCircle} />
                                     </div>
                                 </Tooltip>
                             )}
                         </div>
-                        <img
-                            className={config.offerCardSize === 'big' ? css.imgBig : css.imgSmall}
-                            src={cover_image || '/icons/no_img.png'}
-                            alt={title}
-                        />
+                        <img className={media ? css.imgBig : css.imgSmall} src={cover_image || '/icons/no_img.png'} alt={title} />
                     </div>
 
-                    {config.offerCardSize === 'big' ? (
+                    {media ? (
                         <>
-                            <h3 className={css.titleBig}>{cutString(title, 30)}</h3>
-                            <p className={css.desc}>{cutString(description, 70)}</p>
+                            <h3 className={css.titleBig}>{title}</h3>
+                            <p className={css.desc}>{description}</p>
                         </>
                     ) : (
                         <Tooltip
@@ -213,7 +208,7 @@ const OfferCard = ({ offer, showFavoriteBtn = true }: IProps): ReactElement => {
                             }
                             showInMobile
                         >
-                            <h3 className={css.titleSmall}>{cutString(title, 45)}</h3>
+                            <h3 className={css.titleSmall}>{title}</h3>
                         </Tooltip>
                     )}
                 </a>
@@ -223,14 +218,14 @@ const OfferCard = ({ offer, showFavoriteBtn = true }: IProps): ReactElement => {
                 <DropDown
                     icon={faSlidersH}
                     minWidth={30}
-                    height={config.offerCardSize === 'small' ? 3 : 4}
-                    className={clsx(css.dropdown, config.offerCardSize === 'small' && css.dropdownSmall)}
+                    height={media ? 4 : 3}
+                    className={clsx(css.dropdown, !media && css.dropdownSmall)}
                     onChange={handleSettings}
                     data={formatUserActions(functions, USER_ACTIONS)}
                 />
             ) : null}
 
-            {config.offerCardSize === 'big' && (
+            {!media && (
                 <div className={css.info}>
                     <p className={css.text}>
                         <FontAwesomeIcon icon={faEye} />
@@ -243,12 +238,12 @@ const OfferCard = ({ offer, showFavoriteBtn = true }: IProps): ReactElement => {
             )}
 
             <div className={css.action}>
-                <p className={clsx(css.price, config.offerCardSize === 'small' && css.priceSmall)}>
+                <p className={clsx(css.price, !media && css.priceSmall)}>
                     <span>{moneyFormat(price)}</span>
                     <small>{`${trans('uah')} / ${trans('day')}`}</small>
                 </p>
 
-                {showFavoriteBtn && config.offerCardSize === 'big' && (
+                {showFavoriteBtn && media && (
                     <div className={css.actionBtn}>
                         {canRent ? (
                             <>

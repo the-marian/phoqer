@@ -55,14 +55,11 @@ export interface ITabsNum {
 
 export type Themes = 'white' | 'black';
 
-export type IOfferCardSize = 'small' | 'big';
-
 export interface IConfig {
     warning: boolean;
     hideSearchFilters: boolean;
     hideTopSearchQuery: boolean;
     hideTopOffers: boolean;
-    offerCardSize: IOfferCardSize;
 }
 
 export interface Params {

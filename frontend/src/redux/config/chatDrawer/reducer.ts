@@ -9,7 +9,7 @@ import IAction from './interfaces';
 const chatDrawer = (state = configInit.chatDrawer, { type, payload }: IAction): boolean => {
     switch (type) {
         case HYDRATE:
-            return (payload as IState).config.drawer;
+            return (payload as IState).config.chatDrawer;
 
         case types.TOGGLE_CHAT_DRAWER:
             return payload === undefined ? !state : (payload as boolean);

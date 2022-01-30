@@ -7,7 +7,6 @@ import config from '../utils/config';
 
 import useAuth from './auth.hook';
 
-// singleton
 let socket: WebSocket | null;
 let prevId: string | number;
 

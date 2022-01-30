@@ -1,14 +1,12 @@
-import React, { Fragment, ReactElement } from 'react';
+import React, { ReactElement } from 'react';
 
 import { createUseStyles } from 'react-jss';
 
-import useConfig from '../../../../hooks/config.hook';
 import useMedia from '../../../../hooks/media.hook';
 import { IOfferCard } from '../../../../interfaces';
 import { Theme } from '../../../../utils/theming/theme';
 import OffersLoader from '../../loaders/skeletons/offers';
 import EmptyOffers from '../empty-offers';
-import OfferCardSwitcher from '../offer-card-switcher';
 import OfferCard from '../offers-card';
 
 const useStyles = createUseStyles((theme: Theme) => ({
@@ -72,20 +70,15 @@ interface IProps {
 
 const OffersList = ({ loading, loadMoreLoading = false, data, showFavoriteBtn = true }: IProps): ReactElement => {
     const css = useStyles();
-    const media = useMedia(1400);
-    const [config] = useConfig();
+    const offerCardBig = useMedia(768);
 
     return loading ? (
-        <>
-            <OffersLoader amount={media ? (config.offerCardSize === 'big' ? 4 : 7) : 2} />
-            {media && <OffersLoader className={css.loading} amount={media ? 4 : 1} />}
-        </>
+        <OffersLoader amount={offerCardBig ? 4 : 7} />
     ) : (
         <>
             {data?.length ? (
                 <>
-                    <OfferCardSwitcher />
-                    <div className={config.offerCardSize === 'big' ? css.gridBig : css.gridSmall}>
+                    <div className={offerCardBig ? css.gridBig : css.gridSmall}>
                         {data?.map(item => (
                             <OfferCard key={item.id} offer={item} showFavoriteBtn={showFavoriteBtn} />
                         ))}
@@ -94,7 +87,7 @@ const OffersList = ({ loading, loadMoreLoading = false, data, showFavoriteBtn = 
             ) : (
                 <EmptyOffers />
             )}
-            {loadMoreLoading ? <OffersLoader className={css.loading} amount={media ? 4 : 1} /> : null}
+            {loadMoreLoading ? <OffersLoader className={css.loading} amount={offerCardBig ? 1 : 4} /> : null}
         </>
     );
 };

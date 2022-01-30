@@ -3,7 +3,7 @@ import React, { ReactElement } from 'react';
 import clsx from 'clsx';
 import { createUseStyles } from 'react-jss';
 
-import useConfig from '../../../../../hooks/config.hook';
+import useMedia from '../../../../../hooks/media.hook';
 import { Theme } from '../../../../../utils/theming/theme';
 import TextSkeleton from '../text';
 
@@ -69,8 +69,7 @@ interface IProps {
 
 const OffersLoader = React.forwardRef<HTMLDivElement | null, IProps>(({ amount = 1, className }, ref): ReactElement => {
     const css = useStyles();
-    const [config] = useConfig();
-    const isSmallCard = config.offerCardSize === 'small';
+    const isSmallCard = useMedia(768);
 
     return (
         <div ref={ref} className={clsx(css.wrp, className)}>

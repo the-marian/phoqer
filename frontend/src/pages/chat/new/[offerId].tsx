@@ -10,7 +10,6 @@ import Button from '../../../components/common/button';
 import Header from '../../../components/layout/header';
 import Meta from '../../../components/meta';
 import Conversation from '../../../components/pages/chat/chat-conversation';
-import ChatNavbar from '../../../components/pages/chat/components/chat-navbar';
 import NewChatWrp from '../../../components/pages/chat/components/wrappers/new-chat-wrp';
 import { useChatListUpdate } from '../../../hooks/chat.hook';
 import useMedia from '../../../hooks/media.hook';
@@ -26,13 +25,13 @@ const useStyles = createUseStyles((theme: Theme) => ({
         flexDirection: 'column',
         alignItems: 'flex-start',
         justifyContent: 'flex-start',
-        height: '100vh',
-        paddingTop: theme.rem(6),
+        height: 'calc(100vh - 6rem)',
+        paddingTop: theme.rem(1),
         background: theme.palette.white,
 
         ...theme.media(1060).max({
             height: 'auto',
-            padding: theme.rem(6, 0, 8),
+            padding: theme.rem(1, 0, 8),
         }),
     },
     center: {
@@ -84,7 +83,7 @@ const NewChat = (): ReactElement => {
                 <Meta title={'Мои сообщения'} h1={trans('user_profile_on_phoqer')} />
 
                 <Header />
-                <ChatNavbar />
+
                 <main className={css.main}>
                     <NewChatWrp showSidebar={media}>
                         <Conversation>

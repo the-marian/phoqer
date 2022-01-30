@@ -27,7 +27,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         display: 'flex',
         flexDirection: 'column-reverse',
         minHeight: '78vh',
-        padding: theme.rem(15, 0),
+        padding: theme.rem(10, 0, 25),
         backgroundColor: theme.palette.gray[1],
         // parallax
         backgroundAttachment: 'fixed',
@@ -155,6 +155,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
     mobile: {
         width: theme.rem(30),
+        marginBottom: theme.rem(2),
 
         ...theme.media(1100).max({
             display: 'flex',
@@ -278,6 +279,12 @@ const Search = ({ shallow = false }: IProps): ReactElement => {
                 <form action="#" method="post" onSubmit={handleSubmit}>
                     <div className={css.wrp}>
                         <div className={css.form}>
+                            {!desktop && (
+                                <div className={css.mobile}>
+                                    <OptionsMobile onChange={handleChange} />
+                                </div>
+                            )}
+
                             <div className={css.search}>
                                 {desktop && (
                                     <button type="submit" className={css.icon}>
@@ -306,12 +313,6 @@ const Search = ({ shallow = false }: IProps): ReactElement => {
                                 {desktop && <OptionsDesktop onChange={handleChange} />}
                             </div>
                         </div>
-
-                        {!desktop && (
-                            <div className={css.mobile}>
-                                <OptionsMobile onChange={handleChange} />
-                            </div>
-                        )}
                     </div>
                 </form>
             </Container>

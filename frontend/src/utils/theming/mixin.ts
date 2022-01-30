@@ -7,6 +7,7 @@ interface Mixin {
     outline: Styles;
     btn: Styles;
     cutString: Styles;
+    cutStringMultiLine: (linesToShow: number, fontSize?: number, lineHeight?: number) => Styles;
 }
 
 const mixin = (theme: Theme): Mixin => ({
@@ -70,6 +71,17 @@ const mixin = (theme: Theme): Mixin => ({
         overflow: 'hidden',
         textOverflow: 'ellipsis',
     },
+    cutStringMultiLine: (linesToShow, fontSize = 1.4, lineHeight = 1.4) => ({
+        // display: 'block',
+        display: '-webkit-box',
+        fontSize: fontSize + 'rem',
+        lineHeight: String(lineHeight),
+        height: linesToShow * fontSize * lineHeight + 'rem',
+        ['-webkit-line-clamp']: String(linesToShow),
+        ['-webkit-box-orient']: 'vertical',
+        textOverflow: 'ellipsis',
+        overflow: 'hidden',
+    }),
 });
 
 export default mixin;

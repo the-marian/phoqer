@@ -69,7 +69,7 @@ const ChatSidebarLeft = ({ chats }: IProps): ReactElement => {
                     </Fragment>
                 ))
             ) : (
-                <ChatEmpty small height={media ? 'calc(100vh - 18rem)' : 40} aside />
+                <ChatEmpty small height={media ? 'calc(100vh - 26rem)' : 40} aside />
             )}
             <div className={css.end}>
                 <h5>Phoqer</h5>

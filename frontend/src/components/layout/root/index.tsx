@@ -10,8 +10,6 @@ import RouterProgress from '../../common/loaders/progress/router-progress';
 import ModalComponent from '../../common/modal';
 import notifications from '../../common/notifications';
 import ConstructionMessage from '../../common/notifications/messages/construction';
-import MainDrawer from '../main-drawer';
-import MobileNav from '../mobile-nav';
 
 interface IProps {
     children: JSX.Element | JSX.Element[];
@@ -47,8 +45,6 @@ const Root = ({ children }: IProps): ReactElement => {
         <ThemeProvider theme={theme(siteTheme)}>
             <RouterProgress />
             <ModalComponent />
-            <MainDrawer />
-            <MobileNav />
             <ReactNotification />
             {children}
         </ThemeProvider>

@@ -15,7 +15,6 @@ import Gift from '../../../../common/advertising/gift';
 import Breadcrumbs from '../../../../common/breadcrumbs';
 import Comments from '../../../../common/comments';
 import ErrorComponent from '../../../../common/error-template';
-import GoogleMap from '../../../../common/google-map';
 import { modal } from '../../../../common/modal';
 import FullPageModal from '../../../../common/modal/full-page-modal';
 import Meta from '../../../../meta';
@@ -28,7 +27,6 @@ import Requirements from '../requirements';
 import OfferSlider from '../slider';
 
 const useStyles = createUseStyles((theme: Theme) => ({
-    // top translate
     banner: {
         display: 'block',
         height: theme.rem(60),
@@ -48,7 +46,6 @@ const useStyles = createUseStyles((theme: Theme) => ({
         objectFit: 'contain',
     },
 
-    // main
     flex: {
         display: 'flex',
         marginTop: theme.rem(6),
@@ -245,17 +242,6 @@ const SingleOfferContent = ({ data }: IProps): JSX.Element => {
                                     <p className={css.other} dangerouslySetInnerHTML={{ __html: other }} />
                                 </>
                             )}
-
-                            {data.city && <GoogleMap city={data.city} />}
-
-                            {/*<h2 className={css.subtitle}>{trans('availability')}</h2>*/}
-                            {/*<DayPicker*/}
-                            {/*    className={css.calendar}*/}
-                            {/*    fromMonth={new Date()}*/}
-                            {/*    pagedNavigation*/}
-                            {/*    fixedWeeks*/}
-                            {/*    numberOfMonths={media ? 2 : 1}*/}
-                            {/*/>*/}
 
                             {token?.access_token ? <Gift style={{ padding: '8rem 4rem' }} /> : null}
 

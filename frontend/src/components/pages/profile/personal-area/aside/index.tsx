@@ -11,7 +11,7 @@ import ProfilePrivateCard from '../../profile-card';
 const useStyles = createUseStyles((theme: Theme) => ({
     sticky: {
         position: 'sticky',
-        top: theme.rem(8),
+        top: theme.rem(14),
         left: 0,
 
         ...theme.media(1060).max({

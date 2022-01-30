@@ -23,9 +23,7 @@ const routesMap: { [key: string]: string } = {
     'my-offers': routes.my_offers(),
     chat: routes.chat.item(),
     notifications: routes.notifications,
-    referral: routes.referral,
     settings: routes.settings(),
-    analytics: routes.analytics,
     i_am_author: routes.chat.list(ChatTypeEnum.AUTHOR),
     i_am_client: routes.chat.list(ChatTypeEnum.CLIENT),
 };

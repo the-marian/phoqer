@@ -6,13 +6,10 @@ exports[`Offers component matches snapshot, with className 1`] = `
     class="wrp-0-2-20 test"
   >
     <div
-      class="card-0-2-21"
+      class="card-0-2-21 cardSmall-0-2-22"
     >
       <div
-        class="img-0-2-23"
-      />
-      <div
-        class="text-0-2-26"
+        class="img-0-2-23 imgSmall-0-2-24"
       />
       <div
         class="text-0-2-26"
@@ -22,13 +19,10 @@ exports[`Offers component matches snapshot, with className 1`] = `
       />
     </div>
     <div
-      class="card-0-2-21"
+      class="card-0-2-21 cardSmall-0-2-22"
     >
       <div
-        class="img-0-2-23"
-      />
-      <div
-        class="text-0-2-26"
+        class="img-0-2-23 imgSmall-0-2-24"
       />
       <div
         class="text-0-2-26"
@@ -38,13 +32,10 @@ exports[`Offers component matches snapshot, with className 1`] = `
       />
     </div>
     <div
-      class="card-0-2-21"
+      class="card-0-2-21 cardSmall-0-2-22"
     >
       <div
-        class="img-0-2-23"
-      />
-      <div
-        class="text-0-2-26"
+        class="img-0-2-23 imgSmall-0-2-24"
       />
       <div
         class="text-0-2-26"
@@ -54,13 +45,10 @@ exports[`Offers component matches snapshot, with className 1`] = `
       />
     </div>
     <div
-      class="card-0-2-21"
+      class="card-0-2-21 cardSmall-0-2-22"
     >
       <div
-        class="img-0-2-23"
-      />
-      <div
-        class="text-0-2-26"
+        class="img-0-2-23 imgSmall-0-2-24"
       />
       <div
         class="text-0-2-26"
@@ -70,13 +58,10 @@ exports[`Offers component matches snapshot, with className 1`] = `
       />
     </div>
     <div
-      class="card-0-2-21"
+      class="card-0-2-21 cardSmall-0-2-22"
     >
       <div
-        class="img-0-2-23"
-      />
-      <div
-        class="text-0-2-26"
+        class="img-0-2-23 imgSmall-0-2-24"
       />
       <div
         class="text-0-2-26"
@@ -95,13 +80,10 @@ exports[`Offers component matches snapshot, with props 1`] = `
     class="wrp-0-2-11"
   >
     <div
-      class="card-0-2-12"
+      class="card-0-2-12 cardSmall-0-2-13"
     >
       <div
-        class="img-0-2-14"
-      />
-      <div
-        class="text-0-2-17"
+        class="img-0-2-14 imgSmall-0-2-15"
       />
       <div
         class="text-0-2-17"
@@ -111,13 +93,10 @@ exports[`Offers component matches snapshot, with props 1`] = `
       />
     </div>
     <div
-      class="card-0-2-12"
+      class="card-0-2-12 cardSmall-0-2-13"
     >
       <div
-        class="img-0-2-14"
-      />
-      <div
-        class="text-0-2-17"
+        class="img-0-2-14 imgSmall-0-2-15"
       />
       <div
         class="text-0-2-17"
@@ -127,13 +106,10 @@ exports[`Offers component matches snapshot, with props 1`] = `
       />
     </div>
     <div
-      class="card-0-2-12"
+      class="card-0-2-12 cardSmall-0-2-13"
     >
       <div
-        class="img-0-2-14"
-      />
-      <div
-        class="text-0-2-17"
+        class="img-0-2-14 imgSmall-0-2-15"
       />
       <div
         class="text-0-2-17"
@@ -143,13 +119,10 @@ exports[`Offers component matches snapshot, with props 1`] = `
       />
     </div>
     <div
-      class="card-0-2-12"
+      class="card-0-2-12 cardSmall-0-2-13"
     >
       <div
-        class="img-0-2-14"
-      />
-      <div
-        class="text-0-2-17"
+        class="img-0-2-14 imgSmall-0-2-15"
       />
       <div
         class="text-0-2-17"
@@ -159,13 +132,10 @@ exports[`Offers component matches snapshot, with props 1`] = `
       />
     </div>
     <div
-      class="card-0-2-12"
+      class="card-0-2-12 cardSmall-0-2-13"
     >
       <div
-        class="img-0-2-14"
-      />
-      <div
-        class="text-0-2-17"
+        class="img-0-2-14 imgSmall-0-2-15"
       />
       <div
         class="text-0-2-17"
@@ -184,13 +154,10 @@ exports[`Offers component matches snapshot, without props 1`] = `
     class="wrp-0-2-2"
   >
     <div
-      class="card-0-2-3"
+      class="card-0-2-3 cardSmall-0-2-4"
     >
       <div
-        class="img-0-2-5"
-      />
-      <div
-        class="text-0-2-8"
+        class="img-0-2-5 imgSmall-0-2-6"
       />
       <div
         class="text-0-2-8"

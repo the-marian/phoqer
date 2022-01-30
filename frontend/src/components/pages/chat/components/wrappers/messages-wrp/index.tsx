@@ -36,6 +36,7 @@ interface IProps {
 const MessagesWrp = ({ children, showSidebar = false }: IProps): ReactElement => {
     const css = useWrapperStyles();
     const desktop = useMedia(1300);
+
     const chats = useSelector<IState, IChatsList>(state => state.chat.chats);
     const messages = useSelector<IState, IMessagesList>(state => state.chat.messages);
 

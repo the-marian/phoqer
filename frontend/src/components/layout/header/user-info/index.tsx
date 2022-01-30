@@ -1,31 +1,19 @@
-import React, { ReactElement } from 'react';
+import React, { ReactElement, useEffect, useRef, useState } from 'react';
 
-import { faFlag } from '@fortawesome/free-regular-svg-icons/faFlag';
-import { faHeart } from '@fortawesome/free-solid-svg-icons/faHeart';
-import { faMoon } from '@fortawesome/free-solid-svg-icons/faMoon';
-import { faPlus } from '@fortawesome/free-solid-svg-icons/faPlus';
-import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons/faSignOutAlt';
-import { faSun } from '@fortawesome/free-solid-svg-icons/faSun';
+import { faChevronDown } from '@fortawesome/free-solid-svg-icons/faChevronDown';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import Link from 'next/link';
+import clsx from 'clsx';
+import dynamic from 'next/dynamic';
 import { createUseStyles } from 'react-jss';
 import { useSelector } from 'react-redux';
 
-import useAuth from '../../../../hooks/auth.hook';
-import useMedia from '../../../../hooks/media.hook';
-import useTheme from '../../../../hooks/theme.hook';
-import useTrans from '../../../../hooks/trans.hook';
 import { IPublicProfile, IState } from '../../../../interfaces';
-import routes from '../../../../utils/routes';
 import mixin from '../../../../utils/theming/mixin';
 import { Theme } from '../../../../utils/theming/theme';
 import Badge from '../../../common/badge';
-import { modal } from '../../../common/modal';
-import StickyModal from '../../../common/modal/sticky-modal';
-import Navigation from '../../../common/navigation';
-import { getBaseNavList } from '../../../common/navigation/navigation.config';
-import Tooltip from '../../../common/tooltip';
 import UserAvatar from '../../../common/user-avatar';
+
+const MainDrawer = dynamic(() => import('../../main-drawer'), { ssr: false });
 
 const useStyles = createUseStyles((theme: Theme) => ({
     flex: {
@@ -44,7 +32,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
             marginLeft: theme.rem(0.4),
         }),
     },
-    link: {
+    user: {
         position: 'relative',
         display: 'flex',
         alignItems: 'center',
@@ -62,6 +50,12 @@ const useStyles = createUseStyles((theme: Theme) => ({
                 color: theme.palette.primary[0],
             },
         }),
+    },
+    badge: {
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        zIndex: 10,
     },
     textWrp: {
         display: 'flex',
@@ -85,110 +79,61 @@ const useStyles = createUseStyles((theme: Theme) => ({
         color: theme.palette.gray[2],
         ...mixin(theme).cutString,
     },
-    number: {
-        marginRight: theme.rem(0.5),
+    icon: {
+        marginLeft: theme.rem(0.5),
+        transition: theme.transitions[0],
     },
-    tooltip: {
-        minWidth: theme.rem(10),
+    open: {
+        transform: 'rotate(180deg)',
     },
 }));
 
 const UserInfo = (): ReactElement => {
     const css = useStyles();
-    const trans = useTrans();
-    const { logout } = useAuth();
-    const tablet = useMedia(650);
-    const desktop = useMedia(900);
-    const [theme, setTheme] = useTheme();
+
+    const scrollRef = useRef<number>(0);
+    const [open, setOpen] = useState(false);
+
+    const handleToggle = (): void => {
+        if (!open) {
+            scrollRef.current = window.scrollY;
+            document.body.style.position = 'fixed';
+            document.body.style.top = `-${window.scrollY}px`;
+        } else {
+            document.body.style.position = '';
+            document.body.style.top = '';
+            window.scrollTo({ top: scrollRef.current });
+            scrollRef.current = 0;
+        }
+
+        setOpen(prev => !prev);
+    };
+
+    useEffect(() => {
+        return () => {
+            document.body.style.position = '';
+            document.body.style.top = '';
+            window.scrollTo({ top: 0 });
+        };
+    }, []);
 
     const user = useSelector<IState, IPublicProfile | null>(state => state.user);
-    const userName = user?.first_name + ' ' + user?.last_name;
-
-    const handleLogout = () => {
-        logout();
-        window.location.reload();
-    };
-
-    const handleClick = (): void => {
-        modal.open(
-            <StickyModal>
-                <Navigation
-                    tabs={[
-                        {
-                            id: 'personal-area',
-                            text: 'personal_area',
-                            link: routes.profile.private,
-                            icon: faFlag,
-                        },
-                        ...getBaseNavList(),
-                        {
-                            id: 'logout',
-                            text: 'logout',
-                            onClick: handleLogout,
-                            icon: faSignOutAlt,
-                        },
-                    ]}
-                />
-            </StickyModal>,
-        );
-    };
-
-    const toggleTheme = (): void => {
-        setTheme(theme === 'white' ? 'black' : 'white');
-    };
 
     return (
-        <ul className={css.flex}>
-            {tablet && (
-                <li className={css.item}>
-                    <Tooltip className={css.tooltip} content={trans('Change theme')}>
-                        <button type="button" className={css.link} onClick={toggleTheme}>
-                            {theme === 'white' ? <FontAwesomeIcon icon={faSun} /> : <FontAwesomeIcon icon={faMoon} />}
-                        </button>
-                    </Tooltip>
-                </li>
-            )}
-
-            {desktop && (
-                <>
-                    <li className={css.item}>
-                        <Tooltip className={css.tooltip} content={trans('create_offer')}>
-                            <Link href={routes.offers.new(1)}>
-                                <a className={css.link}>
-                                    <FontAwesomeIcon icon={faPlus} />
-                                </a>
-                            </Link>
-                        </Tooltip>
-                    </li>
-                    <li className={css.item}>
-                        <Tooltip className={css.tooltip} content={trans('favorites')}>
-                            <Link href={routes.favorite}>
-                                <a className={css.link}>
-                                    <FontAwesomeIcon icon={faHeart} />
-                                </a>
-                            </Link>
-                        </Tooltip>
-                    </li>
-                </>
-            )}
-
-            <li className={css.item}>
-                <button type="button" className={css.link} onClick={handleClick}>
-                    <Badge className={css.number}>14</Badge>
-                    <UserAvatar
-                        width={3.5}
-                        height={3.5}
-                        firstName={user?.first_name}
-                        lastName={user?.last_name}
-                        avatar={user?.profile_img}
-                    />
-                    <div className={css.textWrp}>
-                        <span className={css.text}>{userName}</span>
-                        <span className={css.small}>{user?.email || 'no email'}</span>
-                    </div>
-                </button>
-            </li>
-        </ul>
+        <>
+            <button type="button" className={css.user} onClick={handleToggle}>
+                <Badge className={css.badge}>14</Badge>
+                <UserAvatar
+                    width={3.5}
+                    height={3.5}
+                    firstName={user?.first_name}
+                    lastName={user?.last_name}
+                    avatar={user?.profile_img}
+                />
+                <FontAwesomeIcon className={clsx(css.icon, open && css.open)} icon={faChevronDown} />
+            </button>
+            <MainDrawer open={open} onToggle={handleToggle} />
+        </>
     );
 };
 

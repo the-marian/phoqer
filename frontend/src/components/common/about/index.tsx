@@ -4,7 +4,6 @@ import { createUseStyles } from 'react-jss';
 import Slider from 'react-slick';
 
 import useTrans from '../../../hooks/trans.hook';
-import mixin from '../../../utils/theming/mixin';
 import { Theme } from '../../../utils/theming/theme';
 
 interface ISlides {
@@ -88,35 +87,44 @@ const useStyles = createUseStyles((theme: Theme) => ({
             top: '50%',
             zIndex: 5,
             transform: 'translateY(-50%)',
-            opacity: 1,
-            ...mixin(theme).btn,
+            opacity: 0.4,
             padding: theme.rem(1, 2.4),
+            height: '100%',
+            width: '20%',
             fontSize: 0,
-            background: theme.palette.white,
+            transition: theme.transitions[0],
+
+            '&:hover': {
+                opacity: 1,
+            },
 
             '&::before': {
                 content: '""',
                 position: 'absolute',
                 top: '50%',
-                transform: 'translate(-50%, -50%) rotate(45deg)',
+                transform: 'translateY(-50%) rotate(45deg)',
                 height: theme.rem(1),
                 width: theme.rem(1),
             },
         },
 
         '& .slick-next': {
-            right: theme.rem(1),
+            right: 0,
+            background: `linear-gradient(to left, ${theme.palette.white}, rgb(255,255,255,0) 80%)`,
+
             '&::before': {
-                left: '45%',
+                right: theme.rem(2),
                 borderTop: theme.border(0.2, theme.palette.black[0]),
                 borderRight: theme.border(0.2, theme.palette.black[0]),
             },
         },
 
         '& .slick-prev': {
-            left: theme.rem(1),
+            left: 0,
+            background: `linear-gradient(to right, ${theme.palette.white}, rgb(255,255,255,0) 80%)`,
+
             '&::before': {
-                left: '55%',
+                left: theme.rem(2),
                 borderLeft: theme.border(0.2, theme.palette.black[0]),
                 borderBottom: theme.border(0.2, theme.palette.black[0]),
             },

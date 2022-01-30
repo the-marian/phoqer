@@ -40,15 +40,7 @@ export const userPrivateTabs = (count: ITabsNum = temp): ITabsItem[] => [
         count: count?.notifications,
     },
     {
-        id: 'referral',
-        text: 'invite_friends',
-    },
-    {
         id: 'settings',
         text: 'settings',
-    },
-    {
-        id: 'analytics',
-        text: 'analytics',
     },
 ];

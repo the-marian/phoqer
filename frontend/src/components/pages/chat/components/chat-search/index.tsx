@@ -3,24 +3,11 @@ import React, { ReactElement } from 'react';
 import { faSearch } from '@fortawesome/free-solid-svg-icons/faSearch';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { createUseStyles } from 'react-jss';
-import { useDispatch, useSelector } from 'react-redux';
 
-import { ChatTypeEnum, IState } from '../../../../../interfaces';
-import types from '../../../../../redux/types';
-import routes from '../../../../../utils/routes';
 import mixin from '../../../../../utils/theming/mixin';
 import { Theme } from '../../../../../utils/theming/theme';
-import LinkArrow from '../../../../common/link-arrow';
-import SegmentedControl, { ISegmentedControlItem } from '../../../../common/segmented-control';
 
 const useStyles = createUseStyles((theme: Theme) => ({
-    control: {
-        marginBottom: theme.rem(1),
-
-        '& ul': {
-            width: '100%',
-        },
-    },
     root: {
         position: 'relative',
         marginBottom: theme.rem(1),
@@ -57,59 +44,18 @@ const useStyles = createUseStyles((theme: Theme) => ({
             color: theme.palette.primary[0],
         }),
     },
-    back: {
-        position: 'relative',
-        zIndex: 10,
-        marginBottom: theme.rem(1),
-        fontSize: theme.rem(1.3),
-
-        '& a': {
-            width: '100%',
-            background: theme.palette.gray[1],
-
-            ...theme.hover({
-                background: theme.palette.secondary[0],
-            }),
-        },
-    },
 }));
-
-const tabs: ISegmentedControlItem[] = [
-    {
-        id: ChatTypeEnum.CLIENT,
-        text: 'Я арендаю',
-    },
-    {
-        id: ChatTypeEnum.AUTHOR,
-        text: 'Я сдаю в аренду',
-    },
-];
 
 const ChatSearch = (): ReactElement => {
     const css = useStyles();
-    const dispatch = useDispatch();
-    const activeTab = useSelector<IState, ChatTypeEnum>(state => state.chat.chats.type);
-
-    const changeChatType = (value: string): void => {
-        dispatch({ type: types.CHANGE_CHAT_TYPE, payload: value });
-        dispatch({ type: types.GET_CHATS_START });
-    };
 
     return (
-        <>
-            <div className={css.back}>
-                <LinkArrow toLeft href={routes.profile.private}>
-                    Вернутся в личный кабинет
-                </LinkArrow>
-            </div>
-            <SegmentedControl classNameWrp={css.control} active={activeTab} tabs={tabs} onClick={changeChatType} />
-            <div className={css.root}>
-                <input type="text" placeholder="Search" className={css.input} />
-                <button type="button" className={css.search}>
-                    <FontAwesomeIcon icon={faSearch} />
-                </button>
-            </div>
-        </>
+        <div className={css.root}>
+            <input type="text" placeholder="Search" className={css.input} />
+            <button type="button" className={css.search}>
+                <FontAwesomeIcon icon={faSearch} />
+            </button>
+        </div>
     );
 };
 

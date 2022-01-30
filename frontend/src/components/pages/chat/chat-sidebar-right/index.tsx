@@ -28,7 +28,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         }),
     },
     banner: {
-        height: 'calc(100vh - 8rem)',
+        height: 'calc(100vh - 7rem)',
         padding: theme.rem(18, 4),
     },
 }));

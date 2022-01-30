@@ -8,34 +8,18 @@ import { ICategories, IDropValue, ISearch, IState } from '../../../../interfaces
 import { findCategory, findSubCategory, formatCatList } from '../../../../utils/helpers';
 import { Theme } from '../../../../utils/theming/theme';
 import DropDown from '../../drop-down';
-import Region from '../../region';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     container: {
         display: 'flex',
         alignItems: 'center',
-        width: theme.rem(50),
-    },
-    region: {
-        width: '50%',
-        height: theme.rem(4.5),
-        background: theme.palette.trueWhite,
-        color: theme.palette.trueBlack,
-        boxShadow: 'none',
-        ...theme.hover({
-            color: theme.palette.primary[0],
-            border: theme.border(0.2, 'transparent'),
-        }),
-        ...theme.focus({
-            color: theme.palette.primary[0],
-            border: theme.border(0.2, 'transparent'),
-        }),
+        width: theme.rem(35),
     },
     categories: {
         display: 'flex',
         alignItems: 'center',
-        width: '50%',
-        '& p': {
+        width: '100%',
+        '& > div > button': {
             color: theme.palette.trueBlack,
         },
     },
@@ -78,10 +62,9 @@ const OptionsDesktop = ({ onChange }: IProps): ReactElement => {
                     height={4.5}
                     withSub
                     transparent
+                    toLeft
                 />
             </div>
-            <span className={css.line} />
-            <Region className={css.region} />
         </div>
     );
 };
