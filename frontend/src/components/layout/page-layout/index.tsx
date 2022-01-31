@@ -7,13 +7,14 @@ import Main from '../tag-main';
 
 interface IProps {
     children: JSX.Element | JSX.Element[];
+    className?: string;
 }
 
-const PageLayout = ({ children }: IProps): ReactElement => {
+const PageLayout = ({ children, className }: IProps): ReactElement => {
     return (
         <>
             <Header />
-            <Main>{children}</Main>
+            <Main className={className}>{children}</Main>
             <ScrollTop />
             <Footer />
         </>

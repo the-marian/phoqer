@@ -20,6 +20,9 @@ import api from '../utils/interceptors';
 import { Theme } from '../utils/theming/theme';
 
 const useStyles = createUseStyles((theme: Theme) => ({
+    main: {
+        paddingTop: 0,
+    },
     banner: {
         margin: theme.rem(8, 0, 0),
         padding: theme.rem(20, 12),
@@ -37,7 +40,7 @@ const Index = (): ReactElement => {
     return (
         <>
             <Meta title={trans('home_page')} />
-            <PageLayout>
+            <PageLayout className={css.main}>
                 <Search />
                 <Container>
                     <Categories />
