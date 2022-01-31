@@ -47,8 +47,11 @@ TECH_RENT_REQUEST = (
 )
 
 # AWS
-
 AWS_REGION_NAME = "eu-central-1"
 BUCKET_NAME = "phoqer-images"
 IAM_SES_USER_ACCESS_KEY = os.environ.get("IAM_SES_USER_ACCESS_KEY")
 IAM_SES_USER_SECRET_KEY = os.environ.get("IAM_SES_USER_SECRET_KEY")
+
+# GCP
+GOOGLE_CLIENT_ID = os.environ.get("GOOGLE_CLIENT_ID")
+GOOGLE_CLIENT_SECRET = os.environ.get("GOOGLE_CLIENT_SECRET")

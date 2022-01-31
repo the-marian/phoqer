@@ -1,0 +1,1 @@
+ALTER TABLE users_user ADD COLUMN account_type character varying(10) NOT NULL DEFAULT 'INTERNAL';

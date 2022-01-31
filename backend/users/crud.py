@@ -1,7 +1,7 @@
 import datetime
-from typing import Mapping
+from typing import Mapping, Optional
 
-from pydantic import EmailStr
+from pydantic import EmailStr, HttpUrl
 
 from config import database
 from users.schemas import UserCreateRequest, UserPartialUpdate
@@ -12,7 +12,21 @@ async def user_exist(email: EmailStr) -> bool:
     return bool(await database.fetch_one(query=query, values={"email": email}))
 
 
-async def create_user(user_data: UserCreateRequest, hashed_password: str) -> None:
+async def create_user(
+    email: str,
+    first_name: str,
+    last_name: str,
+    hashed_password: str,
+    bio: str = "",
+    birth_date: Optional[str] = None,
+    city: Optional[str] = None,
+    country: Optional[str] = None,
+    is_active: bool = False,
+    is_staff: bool = False,
+    is_superuser: bool = False,
+    profile_img: Optional[str] = None,
+    account_type: str = "INTERNAL",
+) -> None:
     query = """
     INSERT INTO users_user (
         password,
@@ -46,18 +60,19 @@ async def create_user(user_data: UserCreateRequest, hashed_password: str) -> Non
         :profile_img)
     """
     values = {
-        "bio": "",
-        "birth_date": None,
-        "city": None,
-        "country": None,
-        "email": user_data.email,
-        "first_name": user_data.first_name,
-        "is_active": False,
-        "is_staff": False,
-        "is_superuser": False,
-        "last_name": user_data.last_name,
+        "bio": bio,
+        "birth_date": birth_date,
+        "city": city,
+        "country": country,
+        "email": email,
+        "first_name": first_name,
+        "is_active": is_active,
+        "is_staff": is_staff,
+        "is_superuser": is_superuser,
+        "last_name": last_name,
         "password": hashed_password,
-        "profile_img": None,
+        "profile_img": profile_img,
+        "account_type": account_type,
     }
     await database.execute(query=query, values=values)
 
