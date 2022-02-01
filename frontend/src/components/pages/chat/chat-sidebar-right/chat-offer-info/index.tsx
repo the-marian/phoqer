@@ -171,22 +171,24 @@ const ChatOfferInfo = (): ReactElement | null => {
                 </ChatUserInfoHOC>
             )}
 
-            <Slider
-                slidesToShow={1}
-                slidesToScroll={1}
-                initialSlide={0}
-                swipeToSlide
-                autoplaySpeed={3000}
-                autoplay
-                draggable
-                infinite
-                lazyLoad="progressive"
-                className={css.slider}
-            >
-                {offer.images?.map(item => (
-                    <img key={item} className={css.img} src={item} alt="phoqer" />
-                ))}
-            </Slider>
+            {!!offer.images?.length && (
+                <Slider
+                    slidesToShow={1}
+                    slidesToScroll={1}
+                    initialSlide={0}
+                    swipeToSlide
+                    autoplaySpeed={3000}
+                    autoplay
+                    draggable
+                    infinite
+                    lazyLoad="progressive"
+                    className={css.slider}
+                >
+                    {offer.images?.map(item => (
+                        <img key={item} className={css.img} src={item} alt="phoqer" />
+                    ))}
+                </Slider>
+            )}
 
             <Link href={routes.offers.single(offer.id)}>
                 <a className={css.link}>

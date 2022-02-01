@@ -51,7 +51,7 @@ const AsideElement = ({ data }: IProps): ReactElement => {
                     userLocation={profile?.city}
                     registerDate={profile?.date_joined}
                 />
-                {data && <Price offer={data} withButton={profile?.id === user?.id} />}
+                {data && <Price offer={data} withButton={profile?.id !== user?.id} />}
             </div>
         </aside>
     );

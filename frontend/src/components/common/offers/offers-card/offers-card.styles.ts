@@ -223,6 +223,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         },
     },
     cantRent: {
+        width: '100%',
         padding: theme.rem(1),
         borderRadius: theme.radius,
         background: theme.palette.secondary[0],

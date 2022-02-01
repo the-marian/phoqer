@@ -7,9 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import useMedia from '../../../../../../hooks/media.hook';
 import { ChatStatus, IChats, IChatsList, IOfferCard, IPublicProfile, IState } from '../../../../../../interfaces';
 import types from '../../../../../../redux/types';
-import routes from '../../../../../../utils/routes';
 import ChatsLoaders from '../../../../../common/loaders/skeletons/chats';
-import notifications from '../../../../../common/notifications';
 import ChatSidebarLeft from '../../../chat-sidebar-left';
 import ChatSidebarRight from '../../../chat-sidebar-right';
 import ChatLoading from '../../chat-loading';
@@ -56,7 +54,6 @@ const NewChatWrp = ({ children, showSidebar = false }: IProps): ReactElement => 
         cover_image: null,
     });
 
-    const user = useSelector<IState, IPublicProfile | null>(state => state.user);
     const chats = useSelector<IState, IChatsList>(state => state.chat.chats);
     const offer = useSelector<IState, IOfferCard | null>(state => state.offers.single.data);
     const profile = useSelector<IState, IPublicProfile | null>(state => state.profiles.public);
@@ -66,13 +63,8 @@ const NewChatWrp = ({ children, showSidebar = false }: IProps): ReactElement => 
     }, [dispatch, offerId]);
 
     useEffect(() => {
-        if (user?.id === offer?.author_id) {
-            history.replace(routes.root);
-            notifications.info({ title: 'Внимание!', message: 'Вы не можете арендовать свое объявление' });
-        } else {
-            if (+(offer?.author_id || 0)) dispatch({ type: types.GET_PUBLIC_PROFILE_START, payload: offer?.author_id });
-        }
-    }, [dispatch, history, offer, user]);
+        if (+(offer?.author_id || 0)) dispatch({ type: types.GET_PUBLIC_PROFILE_START, payload: offer?.author_id });
+    }, [dispatch, offer?.author_id]);
 
     useEffect(() => {
         if (offer && profile) {

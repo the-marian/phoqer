@@ -109,8 +109,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
         maxHeight: theme.rem(55),
         padding: theme.rem(0.8, 0),
         background: theme.palette.white,
-        borderRadius: theme.radius,
+        borderRadius: theme.rem(0.5),
         overflowY: 'auto',
+
         ...theme.media(768).max({
             maxHeight: theme.rem(45),
         }),
@@ -174,7 +175,7 @@ const DropDown = ({
     const css = useStyles();
     const trans = useTrans();
     const media = useMedia(768);
-    const buttonRef = useRef<HTMLButtonElement>(null);
+
     const containerRef = useRef<HTMLDivElement>(null);
 
     const [top, setTop] = useState<boolean>(false);
@@ -228,15 +229,15 @@ const DropDown = ({
     useEffect(() => {
         if (drop) {
             const handler = (event: MouseEvent): void => {
-                const isOutsideClick = event.target === containerRef.current || event.target === buttonRef.current;
+                const isOutsideClick = containerRef.current && containerRef.current.contains(event.target as HTMLElement);
 
-                if (isOutsideClick) {
+                if (!isOutsideClick) {
                     setDrop(false);
                 }
             };
-            document.addEventListener('click', handler);
+            document.body.addEventListener('click', handler);
             return () => {
-                document.removeEventListener('click', handler);
+                document.body.removeEventListener('click', handler);
             };
         }
     }, [drop]);
@@ -244,7 +245,6 @@ const DropDown = ({
     return (
         <div ref={containerRef} className={clsx(css.wrp, className)}>
             <button
-                ref={buttonRef}
                 type="button"
                 className={clsx(
                     css.inner,

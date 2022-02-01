@@ -10,7 +10,7 @@ import DropDown from '../../../common/drop-down';
 const useStyles = createUseStyles((theme: Theme) => ({
     wrp: {
         borderRadius: theme.radius,
-        margin: theme.rem(0, 2),
+        marginRight: theme.rem(2),
     },
     lang: {
         '& > button': {

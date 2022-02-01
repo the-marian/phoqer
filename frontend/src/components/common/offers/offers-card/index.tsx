@@ -51,8 +51,8 @@ const OfferCard = ({ offer, showFavoriteBtn = true }: IProps): ReactElement => {
 
     const profile = useSelector<IState, IPublicProfile | null>(state => state.user);
 
-    const { id, title, description, cover_image, is_promoted, is_deliverable, is_favorite, price, functions, author_id } = offer;
-    const canRent = author_id === profile?.id;
+    const { id, title, description, cover_image, is_promoted, is_deliverable, is_favorite, price, functions, user_id } = offer;
+    const canRent = user_id !== profile?.id;
 
     const isLogin = (): boolean => {
         if (!token.access_token) {

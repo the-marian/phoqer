@@ -88,6 +88,9 @@ const notificationsStyles = (theme: Theme): Styles => ({
         display: 'flex',
         margin: theme.rem(1, 0, 0, 1),
     },
+    delete: {
+        fontSize: theme.rem(1.6),
+    },
     btn: {
         marginRight: theme.rem(2),
         fontSize: theme.rem(1.3),

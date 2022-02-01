@@ -1,20 +1,15 @@
-import React, { ReactElement, useEffect, useRef, useState } from 'react';
+import React, { ReactElement } from 'react';
 
-import { faChevronDown } from '@fortawesome/free-solid-svg-icons/faChevronDown';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import clsx from 'clsx';
-import dynamic from 'next/dynamic';
-import Router from 'next/router';
+import Link from 'next/link';
 import { createUseStyles } from 'react-jss';
 import { useSelector } from 'react-redux';
 
 import { IPublicProfile, IState } from '../../../../interfaces';
+import routes from '../../../../utils/routes';
 import mixin from '../../../../utils/theming/mixin';
 import { Theme } from '../../../../utils/theming/theme';
 import Badge from '../../../common/badge';
 import UserAvatar from '../../../common/user-avatar';
-
-const MainDrawer = dynamic(() => import('../../main-drawer'), { ssr: false });
 
 const useStyles = createUseStyles((theme: Theme) => ({
     flex: {
@@ -80,54 +75,16 @@ const useStyles = createUseStyles((theme: Theme) => ({
         color: theme.palette.gray[2],
         ...mixin(theme).cutString,
     },
-    icon: {
-        marginLeft: theme.rem(0.5),
-        transition: theme.transitions[0],
-    },
-    open: {
-        transform: 'rotate(180deg)',
-    },
 }));
 
 const UserInfo = (): ReactElement => {
     const css = useStyles();
 
-    const scrollRef = useRef<number>(0);
-    const [open, setOpen] = useState(false);
-
-    const handleToggle = (): void => {
-        if (!open) {
-            scrollRef.current = window.scrollY;
-            document.body.style.position = 'fixed';
-            document.body.style.top = `-${window.scrollY}px`;
-        } else {
-            document.body.style.position = '';
-            document.body.style.top = '';
-            window.scrollTo({ top: scrollRef.current });
-            scrollRef.current = 0;
-        }
-
-        setOpen(prev => !prev);
-    };
-
-    useEffect(() => {
-        const handleStart = (): void => {
-            document.body.style.position = '';
-            document.body.style.top = '';
-            window.scrollTo({ top: 0 });
-        };
-
-        Router.events.on('routeChangeStart', handleStart);
-        return () => {
-            Router.events.off('routeChangeStart', handleStart);
-        };
-    }, []);
-
     const user = useSelector<IState, IPublicProfile | null>(state => state.user);
 
     return (
-        <>
-            <button type="button" className={css.user} onClick={handleToggle}>
+        <Link href={routes.profile.private}>
+            <a className={css.user}>
                 <Badge className={css.badge}>14</Badge>
                 <UserAvatar
                     width={3.5}
@@ -136,10 +93,8 @@ const UserInfo = (): ReactElement => {
                     lastName={user?.last_name}
                     avatar={user?.profile_img}
                 />
-                <FontAwesomeIcon className={clsx(css.icon, open && css.open)} icon={faChevronDown} />
-            </button>
-            <MainDrawer open={open} onToggle={handleToggle} />
-        </>
+            </a>
+        </Link>
     );
 };
 

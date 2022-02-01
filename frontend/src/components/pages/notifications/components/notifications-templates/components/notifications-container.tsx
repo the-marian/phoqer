@@ -58,7 +58,7 @@ const NotificationsContainer = ({ children, value, footer }: IProps): ReactEleme
                     </a>
                 </Link>
                 <div className={css.inner}>
-                    <button type="button" onClick={handleDelete}>
+                    <button className={css.delete} type="button" onClick={handleDelete}>
                         <FontAwesomeIcon icon={faTrashAlt} />
                     </button>
                     {!value.viewed && <div className={css.badge}>NEW</div>}

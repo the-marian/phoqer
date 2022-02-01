@@ -68,7 +68,8 @@ const ChatFlow = ({ children }: IProps): ReactElement => {
                         <ChatLoadMore messages={messages} />
                     </>
                 ) : null}
-                <ChatInitConversation>{children || <ChatEmpty />}</ChatInitConversation>
+
+                <ChatInitConversation>{messages.data.data.length || children ? children : <ChatEmpty />}</ChatInitConversation>
             </div>
         </div>
     );

@@ -2,6 +2,7 @@ import React, { ReactElement, useCallback, useEffect, useRef } from 'react';
 
 import { GetServerSideProps } from 'next';
 import { useRouter } from 'next/router';
+import { createUseStyles } from 'react-jss';
 import { useDispatch, useSelector } from 'react-redux';
 import { END } from 'redux-saga';
 
@@ -24,11 +25,20 @@ import types from '../../redux/types';
 import { findCategory, findSubCategory, parseCookie } from '../../utils/helpers';
 import api from '../../utils/interceptors';
 
+const useStyles = createUseStyles({
+    main: {
+        paddingTop: 0,
+    },
+});
+
 const OffersPage = (): ReactElement => {
-    const { query } = useRouter();
-    const scroll = useRef(true);
+    const css = useStyles();
     const trans = useTrans();
     const dispatch = useDispatch();
+
+    const scroll = useRef(true);
+
+    const { query } = useRouter();
     const category = String(query?.category || '');
 
     const { data, loading, pagination } = useSelector<IState, IOfferDynamic>(state => state.offers.search);
@@ -74,7 +84,7 @@ const OffersPage = (): ReactElement => {
     return (
         <>
             <Meta title={trans('search_offers')} h1={trans('search_offers')} icon={icon} />
-            <PageLayout>
+            <PageLayout className={css.main}>
                 <Search shallow />
 
                 <Container>

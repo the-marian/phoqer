@@ -25,6 +25,7 @@ export interface IOfferCard {
     country: string | null;
     currency: string | null;
     author_id: number;
+    user_id: number;
     status: string;
 }
 

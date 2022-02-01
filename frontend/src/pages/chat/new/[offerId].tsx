@@ -53,10 +53,11 @@ const useStyles = createUseStyles((theme: Theme) => ({
 const NewChat = (): ReactElement => {
     const css = useStyles();
     const trans = useTrans();
+    const dispatch = useDispatch();
     const media = useMedia(1060);
+
     const history = useRouter();
     const offerId = String(history.query.offerId || '');
-    const dispatch = useDispatch();
 
     const [loading, setLoading] = useState<boolean>(false);
 

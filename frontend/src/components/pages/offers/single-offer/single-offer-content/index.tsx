@@ -169,7 +169,7 @@ const SingleOfferContent = ({ data }: IProps): JSX.Element => {
     }, [dispatch, offerId]);
 
     useEffect(() => {
-        if (+(data?.author_id || 0)) dispatch({ type: types.GET_PUBLIC_PROFILE_START, payload: data?.author_id });
+        if (data?.author_id) dispatch({ type: types.GET_PUBLIC_PROFILE_START, payload: data?.author_id });
     }, [data, dispatch, history.locale, offerId]);
 
     const desc = data?.description ? data.description.replace(/\n/g, '<br>') : '';
