@@ -14,8 +14,6 @@ from offers.schemas import (
     OfferDraftRequest,
     OffersListItem,
     OffersListResponse,
-    PublicOffersListItem,
-    PublicOffersListResponse,
     RentalPeriod,
     StatusBodyData,
 )
@@ -153,7 +151,7 @@ async def get_offers_for_tab(
 
 
 # offers list for public profile page (only active offers)
-@router.get("/public/{user_id}", response_model=PublicOffersListResponse)
+@router.get("/public/{user_id}", response_model=OffersListResponse)
 async def get_public_profile_offers(
     user_id: int,
     auth_user_id: Optional[int] = Depends(get_current_user_or_none),
@@ -177,7 +175,7 @@ async def get_public_profile_offers(
         )
     return {
         "data": [
-            PublicOffersListItem(
+            OffersListItem(
                 **offer,
                 is_favorite=offer["id"] in user_favorite_offers,
                 is_promoted=True

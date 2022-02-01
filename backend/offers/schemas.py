@@ -78,6 +78,7 @@ class OffersListItem(BaseModel):
     is_promoted: bool = False
     price: int
     pub_date: date
+    user_id: int
     rental_period: RentalPeriod
     title: str
     views: int
@@ -88,6 +89,7 @@ class OffersListResponse(BaseModel):
     data: List[OffersListItem]
 
 
+# used for offers in status DRAFT, so every field is optional
 class MyOffersListItem(BaseModel):
     cover_image: Optional[HttpUrl] = None
     currency: Optional[Currency] = None
@@ -100,32 +102,13 @@ class MyOffersListItem(BaseModel):
     pub_date: Optional[date] = None
     rental_period: RentalPeriod = RentalPeriod.DAY
     title: Optional[str] = None
+    user_id: int
     views: Optional[int] = None
 
 
 class MyOffersListResponse(BaseModel):
     total: int = 0
     data: List[MyOffersListItem]
-
-
-class PublicOffersListItem(BaseModel):
-    cover_image: Optional[HttpUrl] = None
-    currency: Optional[Currency] = None
-    description: Optional[str] = None
-    id: UUID
-    is_deliverable: Optional[bool] = None
-    is_promoted: bool = False
-    is_favorite: bool = False
-    price: Optional[int] = None
-    pub_date: Optional[date] = None
-    rental_period: RentalPeriod = RentalPeriod.DAY
-    title: Optional[str] = None
-    views: Optional[int] = None
-
-
-class PublicOffersListResponse(BaseModel):
-    total: int = 0
-    data: List[PublicOffersListItem]
 
 
 class ValidOffer(BaseModel):
