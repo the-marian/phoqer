@@ -3,6 +3,7 @@ from typing import Mapping
 from fastapi import APIRouter, Depends, HTTPException, Response, status
 from fastapi.responses import RedirectResponse
 
+from config import ENVIRONMENT_URL
 from users import crud
 from users.schemas import ShortUser, User, UserCreateRequest, UserPartialUpdate
 from users.utils import get_activation_jwt, get_password_hash, send_new_account_email
@@ -25,7 +26,9 @@ async def create_user_open(user: UserCreateRequest) -> Response:
             detail="The user with this username already exists in the system",
         )
     await crud.create_user(
-        user_data=user,
+        email=user.email,
+        first_name=user.first_name,
+        last_name=user.last_name,
         hashed_password=get_password_hash(user.password),
     )
     activation_token = get_activation_jwt(user.email)
@@ -49,7 +52,7 @@ async def activate_user(jwt: str) -> RedirectResponse:
             detail="Invalid JWT",
         )
     await crud.activate_user(user_email)
-    return RedirectResponse(f"http://phoqer.com/auth/confirmation?userId={user_email}")
+    return RedirectResponse(f"{ENVIRONMENT_URL}/auth/confirmation?userId={user_email}")
 
 
 @router.get("/me", response_model=User)
@@ -57,7 +60,7 @@ async def logged_in_user_details(user_id: int = Depends(get_current_user)) -> Ma
     """
     Get logged in user details
     """
-    return await crud.get_user(user_id)
+    return await crud.get_user_by_id(user_id)
 
 
 @router.get("/short/{user_id}", response_model=ShortUser)
@@ -73,7 +76,7 @@ async def get_user_details(user_id: int) -> Mapping:
     """
     Get user details by user_id
     """
-    return await crud.get_user(user_id)
+    return await crud.get_user_by_id(user_id)
 
 
 @router.patch("/me", status_code=204)
@@ -81,7 +84,7 @@ async def update_user(
     update_user_data: UserPartialUpdate,
     author_id: int = Depends(get_current_user),
 ) -> Response:
-    stored_user_data = await crud.get_user(author_id)
+    stored_user_data = await crud.get_user_by_id(author_id)
     await crud.partial_update_user(
         user_id=author_id,
         update_user_data=update_user_data,

@@ -5,6 +5,8 @@ import databases
 
 ALGORITHM = "HS256"
 
+ENVIRONMENT_URL = os.environ.get("ENVIRONMENT_URL", "http://localhost:8000")
+
 PG_DB = os.environ.get("POSTGRES_DB", "phoqer_dev")
 TEST_PG_DB = os.environ.get("TEST_POSTGRES_DB", "test_phoqer_dev")
 PG_HOST = os.environ.get("POSTGRES_HOST", "localhost")

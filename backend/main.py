@@ -1,12 +1,12 @@
 import uvicorn
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-
 from starlette.middleware.sessions import SessionMiddleware
+
 from categories import categories
 from chats import chats
 from comments import comments
-from config import NEXT_PUBLIC_HOST, database, SECRET_KEY
+from config import NEXT_PUBLIC_HOST, SECRET_KEY, database
 from favorite import favorite
 from locations import locations
 from login import login
