@@ -466,8 +466,7 @@ async def offer_ps4(
         :rental_period)"""
     values = {
         "city": "warsaw",
-        "cover_image": "http://phoqer.com/mediafiles/"
-        "52cade24-63d6-4f04-bf8c-34489d0c67f1-2368.png",
+        "cover_image": "http://phoqer.com/mediafiles/dicpic.png",
         "currency": "PLN",
         "deposit_val": 500,
         "description": "Konsola Sony PlayStation 4 Nowa!",
@@ -609,8 +608,7 @@ async def notification2(db, user_egor, offer_ps4):
 #     RETURNING id"""
 #     values = (
 #         "warsaw",  # city
-#         "http://phoqer.com/mediafiles/"
-#         "52cade24-63d6-4f04-bf8c-34489d0c67f1-2368.png",  # cover_image
+#         "http://phoqer.com/mediafiles/dicpic.png",  # cover_image
 #         "PLN",  # currency
 #         "500",  # deposit_val
 #         "Konsola Sony PlayStation 4 Nowa!",  # description

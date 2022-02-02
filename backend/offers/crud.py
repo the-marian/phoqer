@@ -388,7 +388,7 @@ async def get_popular_offers() -> List[Mapping]:
         title,
         views
     FROM offers_offer
-    WHERE promote_til_date >= current_date 
+    WHERE promote_til_date >= current_date
     ORDER BY random()
     LIMIT 8
     """

@@ -27,8 +27,7 @@ async def test_get_chats_i_am_author(
             {
                 "chat_id": 1,
                 "status": "NEW",
-                "cover_image": "http://phoqer.com/mediafiles/"
-                "52cade24-63d6-4f04-bf8c-34489d0c67f1-2368.png",
+                "cover_image": "http://phoqer.com/mediafiles/dicpic.png",
                 "new_messages": 0,
                 "recipient_first_name": "Egor",
                 "recipient_id": 2,
@@ -75,8 +74,7 @@ async def test_get_chats_with_no_query_params(
             {
                 "chat_id": 1,
                 "status": "NEW",
-                "cover_image": "http://phoqer.com/mediafiles/"
-                "52cade24-63d6-4f04-bf8c-34489d0c67f1-2368.png",
+                "cover_image": "http://phoqer.com/mediafiles/dicpic.png",
                 "new_messages": 0,
                 "recipient_first_name": "Egor",
                 "recipient_id": 2,
@@ -776,8 +774,7 @@ async def test_archived_chats(client, marian_auth_token, chat_marian_egor):
         "data": [
             {
                 "chat_id": 1,
-                "cover_image": "http://phoqer.com/mediafiles/"
-                "52cade24-63d6-4f04-bf8c-34489d0c67f1-2368.png",
+                "cover_image": "http://phoqer.com/mediafiles/dicpic.png",
                 "new_messages": 0,
                 "recipient_first_name": "Egor",
                 "recipient_id": 2,

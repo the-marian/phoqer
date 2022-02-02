@@ -14,8 +14,7 @@ async def test_get_offer(client, offer_ps4):
         "chat_id": None,
         "city": "warsaw",
         "country": "poland",
-        "cover_image": "http://phoqer.com/mediafiles/"
-        "52cade24-63d6-4f04-bf8c-34489d0c67f1-2368.png",
+        "cover_image": "http://phoqer.com/mediafiles/dicpic.png",
         "currency": "PLN",
         "deposit_val": 500,
         "description": "Konsola Sony PlayStation 4 Nowa!",
@@ -51,8 +50,7 @@ async def test_get_offer_via_chat(client, chat_marian_egor):
         "chat_id": None,
         "city": "warsaw",
         "country": "poland",
-        "cover_image": "http://phoqer.com/mediafiles/"
-        "52cade24-63d6-4f04-bf8c-34489d0c67f1-2368.png",
+        "cover_image": "http://phoqer.com/mediafiles/dicpic.png",
         "currency": "PLN",
         "deposit_val": 500,
         "description": "Konsola Sony PlayStation 4 Nowa!",
@@ -242,8 +240,7 @@ async def test_search(client, marian_auth_token, offer_ps4, offer_iphone12):
     assert response.json() == {
         "data": [
             {
-                "cover_image": "http://phoqer.com/mediafiles/"
-                "52cade24-63d6-4f04-bf8c-34489d0c67f1-2368.png",
+                "cover_image": "http://phoqer.com/mediafiles/dicpic.png",
                 "currency": "PLN",
                 "description": "Konsola Sony PlayStation 4 Nowa!",
                 "id": "a30b8a1e-1c60-4bbc-ac3d-37df2d224000",
@@ -292,8 +289,7 @@ async def test_get_popular_offers(client, offer_ps4):
     assert response.status_code == 200
     assert response.json() == [
         {
-            "cover_image": "http://phoqer.com/mediafiles/"
-            "52cade24-63d6-4f04-bf8c-34489d0c67f1-2368.png",
+            "cover_image": "http://phoqer.com/mediafiles/dicpic.png",
             "currency": "PLN",
             "description": "Konsola Sony PlayStation 4 Nowa!",
             "id": "a30b8a1e-1c60-4bbc-ac3d-37df2d224000",
@@ -317,13 +313,13 @@ async def test_get_chat_by_offer(client, egor_auth_token, offer_ps4, chat_marian
 
 
 async def test_get_my_offers_by_status_all(client, marian_auth_token, offer_ps4):
-    response = await client.get(f"/offers/status/all", headers=marian_auth_token)
+    response = await client.get("/offers/status/all", headers=marian_auth_token)
     assert response.status_code == 200
     assert response.json() == {
         "total": 1,
         "data": [
             {
-                "cover_image": "http://phoqer.com/mediafiles/52cade24-63d6-4f04-bf8c-34489d0c67f1-2368.png",
+                "cover_image": "http://phoqer.com/mediafiles/dicpic.png",
                 "currency": "PLN",
                 "description": "Konsola Sony PlayStation 4 Nowa!",
                 "functions": ["ARCHIVE", "PROMOTE", "EDIT"],
