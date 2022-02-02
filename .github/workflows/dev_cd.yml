@@ -84,6 +84,9 @@ jobs:
           echo SECRET_KEY=${{ secrets.SECRET_KEY }} >> .env
           echo IAM_SES_USER_ACCESS_KEY=${{ secrets.IAM_SES_USER_ACCESS_KEY }} >> .env
           echo IAM_SES_USER_SECRET_KEY=${{ secrets.IAM_SES_USER_SECRET_KEY }} >> .env
+          echo GOOGLE_CLIENT_ID=${{ secrets.GOOGLE_CLIENT_ID }} >> .env
+          echo GOOGLE_CLIENT_SECRET=${{ secrets.GOOGLE_CLIENT_SECRET }} >> .env
+          echo ENVIRONMENT_URL=https://dev.phoqer.com >> .env
       - name: Add the private SSH key to the ssh-agent
         env:
           SSH_AUTH_SOCK: /tmp/ssh_agent.sock

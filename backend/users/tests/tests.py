@@ -2,7 +2,7 @@ import datetime
 
 import pytest
 
-from users.crud import get_user
+from users.crud import get_user_by_id
 
 pytestmark = pytest.mark.asyncio
 
@@ -117,7 +117,7 @@ async def test_partial_update_user(client, igor_auth_token, city_warsaw, user_ig
     }
     response = await client.patch("/users/me", json=patch_data, headers=igor_auth_token)
     assert response.status_code == 204
-    db_response = dict(await get_user(user_igor))
+    db_response = dict(await get_user_by_id(user_igor))
     db_response.pop("id")
     assert db_response == {
         "bio": "new bio",

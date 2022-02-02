@@ -1,0 +1,1 @@
+alter table users_user alter column password set not null;

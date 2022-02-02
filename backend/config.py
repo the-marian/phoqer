@@ -5,6 +5,8 @@ import databases
 
 ALGORITHM = "HS256"
 
+ENVIRONMENT_URL = os.environ.get("ENVIRONMENT_URL", "http://localhost:8000")
+
 PG_DB = os.environ.get("POSTGRES_DB", "phoqer_dev")
 TEST_PG_DB = os.environ.get("TEST_POSTGRES_DB", "test_phoqer_dev")
 PG_HOST = os.environ.get("POSTGRES_HOST", "localhost")
@@ -47,8 +49,11 @@ TECH_RENT_REQUEST = (
 )
 
 # AWS
-
 AWS_REGION_NAME = "eu-central-1"
 BUCKET_NAME = "phoqer-images"
 IAM_SES_USER_ACCESS_KEY = os.environ.get("IAM_SES_USER_ACCESS_KEY")
 IAM_SES_USER_SECRET_KEY = os.environ.get("IAM_SES_USER_SECRET_KEY")
+
+# GCP
+GOOGLE_CLIENT_ID = os.environ.get("GOOGLE_CLIENT_ID")
+GOOGLE_CLIENT_SECRET = os.environ.get("GOOGLE_CLIENT_SECRET")

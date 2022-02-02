@@ -1,10 +1,10 @@
 import datetime
-from typing import Mapping
+from typing import Mapping, Optional
 
 from pydantic import EmailStr
 
 from config import database
-from users.schemas import UserCreateRequest, UserPartialUpdate
+from users.schemas import UserPartialUpdate
 
 
 async def user_exist(email: EmailStr) -> bool:
@@ -12,7 +12,21 @@ async def user_exist(email: EmailStr) -> bool:
     return bool(await database.fetch_one(query=query, values={"email": email}))
 
 
-async def create_user(user_data: UserCreateRequest, hashed_password: str) -> None:
+async def create_user(
+    email: str,
+    first_name: str,
+    last_name: str,
+    hashed_password: Optional[str] = None,
+    bio: str = "",
+    birth_date: Optional[str] = None,
+    city: Optional[str] = None,
+    country: Optional[str] = None,
+    is_active: bool = False,
+    is_staff: bool = False,
+    is_superuser: bool = False,
+    profile_img: Optional[str] = None,
+    account_type: str = "INTERNAL",
+) -> None:
     query = """
     INSERT INTO users_user (
         password,
@@ -28,7 +42,8 @@ async def create_user(user_data: UserCreateRequest, hashed_password: str) -> Non
         bio,
         birth_date,
         email,
-        profile_img)
+        profile_img,
+        account_type)
     VALUES (
         :password,
         current_date,
@@ -43,21 +58,23 @@ async def create_user(user_data: UserCreateRequest, hashed_password: str) -> Non
         :bio,
         :birth_date,
         :email,
-        :profile_img)
+        :profile_img,
+        :account_type)
     """
     values = {
-        "bio": "",
-        "birth_date": None,
-        "city": None,
-        "country": None,
-        "email": user_data.email,
-        "first_name": user_data.first_name,
-        "is_active": False,
-        "is_staff": False,
-        "is_superuser": False,
-        "last_name": user_data.last_name,
+        "bio": bio,
+        "birth_date": birth_date,
+        "city": city,
+        "country": country,
+        "email": email,
+        "first_name": first_name,
+        "is_active": is_active,
+        "is_staff": is_staff,
+        "is_superuser": is_superuser,
+        "last_name": last_name,
         "password": hashed_password,
-        "profile_img": None,
+        "profile_img": profile_img,
+        "account_type": account_type,
     }
     await database.execute(query=query, values=values)
 
@@ -67,7 +84,7 @@ async def activate_user(email: EmailStr) -> None:
     await database.execute(query=query, values={"email": email})
 
 
-async def get_user(user_id: int) -> Mapping:
+async def get_user_by_id(user_id: int) -> Mapping:
     query = """
     SELECT
         bio,
@@ -85,6 +102,34 @@ async def get_user(user_id: int) -> Mapping:
     WHERE id = :id
     """
     return await database.fetch_one(query=query, values={"id": user_id}) or {}
+
+
+async def get_user_by_email(email: str) -> Mapping:
+    query = """
+    SELECT
+        account_type,
+        bio,
+        birth_date,
+        city,
+        country,
+        date_joined,
+        email,
+        first_name,
+        id,
+        is_active,
+        is_staff,
+        is_superuser,
+        last_login,
+        last_name,
+        password,
+        profile_img
+    FROM users_user
+    WHERE email = :email
+    """
+    user = await database.fetch_one(query=query, values={"email": email})
+    if not user:
+        return {}
+    return user
 
 
 async def get_short_user(user_id: int) -> Mapping:
@@ -143,3 +188,8 @@ async def update_last_login(user_id: int) -> None:
         query=query,
         values={"user_id": user_id, "current_timestamp": datetime.datetime.now()},
     )
+
+
+async def delete_user(email: str) -> None:
+    query = "DELETE FROM users_user WHERE email=:email"
+    await database.execute(query=query, values={"email": email})
