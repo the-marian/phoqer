@@ -417,6 +417,7 @@ async def get_offers_by_statuses(
 ) -> List[Mapping]:
     query = """
     SELECT
+        author_id AS user_id,
         cover_image,
         currency,
         description,

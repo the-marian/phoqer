@@ -182,40 +182,6 @@ async def test_get_my_offers(client, marian_auth_token):
     }
 
 
-# def test_change_status(client, auth_token):
-#     data = {"status": "REVIEW"}
-#     response = client.patch(
-#         "offers/status/a9795a7d-67ac-4e63-bdd2-cecc1ce8a5df",
-#         json=data,
-#         headers=auth_token,
-#     )
-#     assert response.status_code == status.HTTP_500_INTERNAL_SERVER_ERROR
-#     assert response.json() == [
-#         {
-#             "loc": ["cover_image"],
-#             "msg": "none is not an allowed value",
-#             "type": "type_error.none.not_allowed",
-#         },
-#         {
-#             "loc": ["currency"],
-#             "msg": "none is not an allowed value",
-#             "type": "type_error.none.not_allowed",
-#         },
-#         {
-#             "loc": ["deposit_val"],
-#             "msg": "none is not an allowed value",
-#             "type": "type_error.none.not_allowed",
-#         },
-#         {"loc": ["category"], "msg": "field required", "type": "value_error.missing"},
-#         {
-#             "loc": ["sub_category"],
-#             "msg": "field required",
-#             "type": "value_error.missing",
-#         },
-#     ]
-#
-
-
 async def test_change_status(client, marian_auth_token, offer_ps4):
     # initial offer status in this fixture is ACTIVE
     data = {"status": "DRAFT"}
@@ -253,72 +219,6 @@ async def test_change_status(client, marian_auth_token, offer_ps4):
     assert response.status_code == 204
 
 
-# def test_change_status_to_in_rent(
-#     db, client, marian_auth_token, offer_ps4, chat_marian_egor
-# ):
-#     data = {"status": "IN_RENT", "chat_id": chat_marian_egor}
-#     response = client.patch(
-#         f"offers/status/{offer_ps4}",
-#         json=data,
-#         headers=marian_auth_token,
-#     )
-#     assert response.status_code == 204
-#     db.execute(f"SELECT is_approved FROM chats WHERE chat_id='{chat_marian_egor}'")
-#     chat = db.fetchone()
-#     assert chat[0] is True
-#   db.execute(f"SELECT status, items_amount FROM offers_offer WHERE id = '{offer_ps4}'")
-#     offer = db.fetchone()
-#     assert offer[0] == "IN_RENT"
-#     assert offer[1] == 1
-#
-#
-# def test_status_from_in_rent_to_active(
-#     db, client, marian_auth_token, offer_ps4, chat_marian_egor
-# ):
-#     data = {"status": "IN_RENT", "chat_id": chat_marian_egor}
-#     response = client.patch(
-#         f"offers/status/{offer_ps4}",
-#         json=data,
-#         headers=marian_auth_token,
-#     )
-#     assert response.status_code == 204
-#     db.execute(f"SELECT is_done FROM chats WHERE chat_id='{chat_marian_egor}'")
-#     chat = db.fetchone()
-#     assert chat[0] is False
-#     # test starts from here
-#     data = {"status": "ACTIVE", "chat_id": chat_marian_egor}
-#     response = client.patch(
-#         f"offers/status/{offer_ps4}",
-#         json=data,
-#         headers=marian_auth_token,
-#     )
-#     assert response.status_code == 204
-#     db.execute(f"SELECT status FROM offers_offer WHERE id = '{offer_ps4}'")
-#     offer = db.fetchone()
-#     assert offer[0] == "ACTIVE"
-#     db.execute(f"SELECT is_done FROM chats WHERE chat_id='{chat_marian_egor}'")
-#     chat = db.fetchone()
-#     assert chat[0] is True
-#
-#
-# def test_change_status_to_in_rent_items_amount_eq_2(
-#     db, client, marian_auth_token, offer_with_two_ps4
-# ):
-#     data = {"status": "IN_RENT"}
-#     response = client.patch(
-#         f"offers/status/{offer_with_two_ps4}",
-#         json=data,
-#         headers=marian_auth_token,
-#     )
-#     assert response.status_code == 204
-#     db.execute(
-#      f"SELECT status, items_amount FROM offers_offer WHERE id = '{offer_with_two_ps4}'"
-#     )
-#     offer = db.fetchone()
-#     assert offer[0] == "ACTIVE"
-#     assert offer[1] == 1
-#
-#
 # @pytest.mark.asyncio
 # async def test_update_offer_country(client, auth_token):
 #     post_data = {"country": "ukraine"}
@@ -414,3 +314,28 @@ async def test_get_chat_by_offer(client, egor_auth_token, offer_ps4, chat_marian
     response = await client.get(f"/offers/{offer_ps4}/chat", headers=egor_auth_token)
     assert response.status_code == 200
     assert response.json() == chat_marian_egor
+
+
+async def test_get_my_offers_by_status_all(client, marian_auth_token, offer_ps4):
+    response = await client.get(f"/offers/status/all", headers=marian_auth_token)
+    assert response.status_code == 200
+    assert response.json() == {
+        "total": 1,
+        "data": [
+            {
+                "cover_image": "http://phoqer.com/mediafiles/52cade24-63d6-4f04-bf8c-34489d0c67f1-2368.png",
+                "currency": "PLN",
+                "description": "Konsola Sony PlayStation 4 Nowa!",
+                "functions": ["ARCHIVE", "PROMOTE", "EDIT"],
+                "id": "a30b8a1e-1c60-4bbc-ac3d-37df2d224000",
+                "is_deliverable": True,
+                "is_promoted": True,
+                "price": 100,
+                "pub_date": "2021-05-21",
+                "rental_period": "DAY",
+                "title": "SONY PlayStation 4",
+                "user_id": 1,
+                "views": 1,
+            }
+        ],
+    }
