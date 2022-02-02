@@ -1,6 +1,6 @@
 CREATE TABLE IF NOT EXISTS users_user (
     id SERIAL PRIMARY KEY,
-    password character varying(128),
+    password character varying(128) NOT NULL,
     last_login timestamp with time zone,
     is_superuser boolean NOT NULL,
     first_name character varying(150) NOT NULL,
