@@ -4,12 +4,12 @@ services:
   backend:
     container_name: backend
     image: "${BACKEND_IMAGE}"
-    command: uvicorn main:app --root-path /api/v2 --reload --workers 1 --host 0.0.0.0 --port 8001
-    volumes:
-      - media_volume:/phoqer/FastAPI/mediafiles/
+    command: uvicorn main:app --root-path /api/v2 --reload --workers 1 --host 0.0.0.0 --port 8000
     env_file: .env
     depends_on:
       - db
+    ports:
+      - "8000"
 
   frontend:
     container_name: frontend
@@ -19,6 +19,8 @@ services:
     restart: unless-stopped
     depends_on:
       - backend
+    ports:
+      - "4000"
 
   db:
     container_name: db
@@ -37,19 +39,9 @@ services:
     restart: unless-stopped
     depends_on:
       - db
-
-  nginx:
-    container_name: nginx
-    image: "${NGINX_IMAGE}"
-    volumes:
-      - media_volume:/phoqer/FastAPI/mediafiles/
     ports:
-      - 80:80
-    depends_on:
-      - frontend
-      - pgadmin
+      - "5050"
 
 volumes:
   postgres_data:
-  media_volume:
   pgadmin:

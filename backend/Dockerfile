@@ -2,6 +2,7 @@ FROM python:3.9-buster
 WORKDIR /usr/src/app
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
+EXPOSE 8000
 RUN apt-get update \
   && apt-get -y install netcat \
   && apt-get clean
