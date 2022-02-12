@@ -23,7 +23,7 @@ const useChat = (id: string | number): WebSocket | null => {
     }
 
     const connect = (): WebSocket => {
-        return new WebSocket(`${config.socketUrl}/chat/${id}?token=${token.access_token}`);
+        return new WebSocket(`${config.socketUrl}/chat/${id}?token=${token.access_token?.replace('Bearer ', '')}`);
     };
 
     socket = connect();
@@ -32,8 +32,6 @@ const useChat = (id: string | number): WebSocket | null => {
         socket?.close(1000, 'Close chat');
         socket = connect();
     };
-
-    connect();
 
     return socket;
 };

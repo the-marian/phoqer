@@ -10,7 +10,6 @@ import { createUseStyles } from 'react-jss';
 import useAuth from '../../../hooks/auth.hook';
 import { Theme } from '../../../utils/theming/theme';
 import Logo from '../../common/logo';
-import Tooltip from '../../common/tooltip';
 import Container from '../container';
 
 import Lang from './lang';
@@ -87,9 +86,6 @@ const useStyles = createUseStyles((theme: Theme) => ({
     backdrop: {
         height: theme.rem(5),
     },
-    tooltip: {
-        minWidth: theme.rem(15),
-    },
 }));
 
 const Header = (): ReactElement => {
@@ -138,11 +134,9 @@ const Header = (): ReactElement => {
                         </div>
 
                         {!!token.access_token && (
-                            <Tooltip className={css.tooltip} content="Site menu">
-                                <button className={clsx(css.button, open && css.open)} type="button" onClick={handleToggle}>
-                                    <FontAwesomeIcon icon={faAngleDoubleDown} />
-                                </button>
-                            </Tooltip>
+                            <button className={clsx(css.button, open && css.open)} type="button" onClick={handleToggle}>
+                                <FontAwesomeIcon icon={faAngleDoubleDown} />
+                            </button>
                         )}
 
                         <div className={css.wrp}>

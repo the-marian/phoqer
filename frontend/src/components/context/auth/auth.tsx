@@ -3,9 +3,9 @@ import React, { createContext, ReactNode, useCallback, useEffect, useState } fro
 import Cookies from 'js-cookie';
 import { useDispatch } from 'react-redux';
 
+import api from '../../../api';
 import { PHOQER_AUTH } from '../../../constant/cookie.constant';
 import { IAuthResponse } from '../../../interfaces';
-import api from '../../../utils/interceptors';
 
 const authInitialValue: IAuthResponse = { access_token: null };
 export type AuthHook = { token: IAuthResponse; setToken: (value: IAuthResponse) => void; logout: () => void };

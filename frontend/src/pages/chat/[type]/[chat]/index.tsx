@@ -4,21 +4,21 @@ import { useRouter } from 'next/router';
 import { createUseStyles } from 'react-jss';
 import { useDispatch } from 'react-redux';
 
-import AuthRedirect from '../../../components/common/auth/auth-redirect/auth-redirect';
-import GetStaticProfile from '../../../components/common/auth/get-static-profile/get-static-profile';
-import notifications from '../../../components/common/notifications';
-import Header from '../../../components/layout/header';
-import Meta from '../../../components/meta';
-import Conversation from '../../../components/pages/chat/chat-conversation';
-import ChatMobileDrawer from '../../../components/pages/chat/chat-sidebar-right/chat-drawer';
-import ChatMobileDrawerButton from '../../../components/pages/chat/chat-sidebar-right/chat-drawer/chat-drawer-button';
-import MessagesWrp from '../../../components/pages/chat/components/wrappers/messages-wrp';
-import useChat, { useChatListUpdate } from '../../../hooks/chat.hook';
-import useMedia from '../../../hooks/media.hook';
-import useTrans from '../../../hooks/trans.hook';
-import { IMessages } from '../../../interfaces';
-import types from '../../../redux/types';
-import { Theme } from '../../../utils/theming/theme';
+import AuthRedirect from '../../../../components/common/auth/auth-redirect/auth-redirect';
+import GetStaticProfile from '../../../../components/common/auth/get-static-profile/get-static-profile';
+import notifications from '../../../../components/common/notifications';
+import Header from '../../../../components/layout/header';
+import Meta from '../../../../components/meta';
+import Conversation from '../../../../components/pages/chat/chat-conversation';
+import ChatMobileDrawer from '../../../../components/pages/chat/chat-sidebar-right/chat-drawer';
+import ChatMobileDrawerButton from '../../../../components/pages/chat/chat-sidebar-right/chat-drawer/chat-drawer-button';
+import MessagesWrp from '../../../../components/pages/chat/components/wrappers/messages-wrp';
+import useChat, { useChatListUpdate } from '../../../../hooks/chat.hook';
+import useMedia from '../../../../hooks/media.hook';
+import useTrans from '../../../../hooks/trans.hook';
+import { IMessages } from '../../../../interfaces';
+import types from '../../../../redux/types';
+import { Theme } from '../../../../utils/theming/theme';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     main: {
@@ -42,6 +42,7 @@ const MessagesChat = (): ReactElement => {
     const trans = useTrans();
     const desktop = useMedia(1300);
     const media = useMedia(1060);
+
     const history = useRouter();
     const chatId = +String(history.query.chat || '0');
     const chat = useChat(chatId);
@@ -60,6 +61,7 @@ const MessagesChat = (): ReactElement => {
     useEffect(() => {
         if (chat && !chat.onmessage) {
             chat.onmessage = (message: MessageEvent): void => {
+                console.log(message);
                 try {
                     const payload: IMessages = JSON.parse(message.data);
                     dispatch({ type: types.RECEIVE_MESSAGE, payload });

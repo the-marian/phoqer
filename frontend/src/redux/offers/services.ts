@@ -1,8 +1,8 @@
 import { AxiosResponse } from 'axios';
 
+import api from '../../api';
 import { IOfferCard, IOfferDynamic, IOfferPagination, Params } from '../../interfaces';
 import endpoint from '../../utils/endpoint';
-import api from '../../utils/interceptors';
 
 import { IBody } from './new_offer/interfaces';
 

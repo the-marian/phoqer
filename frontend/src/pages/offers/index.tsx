@@ -6,6 +6,7 @@ import { createUseStyles } from 'react-jss';
 import { useDispatch, useSelector } from 'react-redux';
 import { END } from 'redux-saga';
 
+import api from '../../api';
 import About from '../../components/common/about';
 import Pagination from '../../components/common/load-more/pagination';
 import OffersList from '../../components/common/offers/offers-list';
@@ -23,7 +24,6 @@ import initState from '../../redux/state';
 import { wrapper } from '../../redux/store';
 import types from '../../redux/types';
 import { findCategory, findSubCategory, parseCookie } from '../../utils/helpers';
-import api from '../../utils/interceptors';
 
 const useStyles = createUseStyles({
     main: {

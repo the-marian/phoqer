@@ -6,6 +6,7 @@ import App, { AppProps } from 'next/app';
 import { AppContextType } from 'next/dist/shared/lib/utils';
 import { Router } from 'next/router';
 
+import api from '../api';
 import { modal } from '../components/common/modal';
 import AuthProvider from '../components/context/auth/auth';
 import ConfigProvider from '../components/context/config';
@@ -17,7 +18,6 @@ import { IAuthResponse, IConfig, Themes } from '../interfaces';
 import { wrapper } from '../redux/store';
 import appConfig from '../utils/config';
 import { parseCookie } from '../utils/helpers';
-import api from '../utils/interceptors';
 
 interface IProps {
     width: number;

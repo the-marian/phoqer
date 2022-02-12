@@ -21,7 +21,7 @@ interface IProps {
 
 const routesMap: { [key: string]: string } = {
     'my-offers': routes.my_offers(),
-    chat: routes.chat.item(),
+    chat: routes.chat.list(),
     notifications: routes.notifications,
     settings: routes.settings(),
     i_am_author: routes.chat.list(ChatTypeEnum.AUTHOR),

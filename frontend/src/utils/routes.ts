@@ -18,9 +18,9 @@ const routes = {
     my_offers: (status = 'all'): string => `/my-offers/${status}`,
 
     chat: {
-        list: (type: ChatTypeEnum): string => `/chat?type=${type}`,
-        item: (chat: Primitive = ''): string => `/chat/${chat}`,
-        new: (offerId: Primitive = ''): string => `/chat/new/${offerId}`,
+        list: (type: ChatTypeEnum = ChatTypeEnum.CLIENT): string => `/chat/${type}`,
+        item: (chat: Primitive, type: ChatTypeEnum = ChatTypeEnum.CLIENT): string => `/chat/${type}/${chat}`,
+        new: (offerId: Primitive): string => `/chat/new/${offerId}`,
     },
     settings: (status: Primitive = 'general'): string => `/settings/${status}`,
     notifications: '/notifications',

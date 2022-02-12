@@ -6,6 +6,7 @@ import { END } from 'redux-saga';
 
 import { ParsedUrlQuery } from 'querystring';
 
+import api from '../../../api';
 import locales from '../../../assets/translations';
 import GetStaticProfile from '../../../components/common/auth/get-static-profile/get-static-profile';
 import Container from '../../../components/layout/container';
@@ -16,7 +17,6 @@ import services from '../../../redux/offers/services';
 import { wrapper } from '../../../redux/store';
 import types from '../../../redux/types';
 import endpoint from '../../../utils/endpoint';
-import api from '../../../utils/interceptors';
 
 interface IProps {
     data: IOfferCard | null;

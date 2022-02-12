@@ -3,6 +3,7 @@ import React, { ReactElement } from 'react';
 import { createUseStyles } from 'react-jss';
 import { END } from 'redux-saga';
 
+import api from '../api';
 import About from '../components/common/about';
 import Banner from '../components/common/advertising/banner';
 import TopPopular from '../components/common/offers/popular-offers';
@@ -16,7 +17,6 @@ import { IAuthResponse, IStore } from '../interfaces';
 import { wrapper } from '../redux/store';
 import types from '../redux/types';
 import { parseCookie } from '../utils/helpers';
-import api from '../utils/interceptors';
 import { Theme } from '../utils/theming/theme';
 
 const useStyles = createUseStyles((theme: Theme) => ({

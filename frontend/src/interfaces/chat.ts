@@ -8,8 +8,8 @@ export enum ChatStatus {
 }
 
 export enum ChatTypeEnum {
-    CLIENT = 'i_am_client',
-    AUTHOR = 'i_am_author',
+    CLIENT = 'client',
+    AUTHOR = 'author',
 }
 
 export interface IChats {

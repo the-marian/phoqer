@@ -1,8 +1,8 @@
 import { AxiosResponse } from 'axios';
 
+import api from '../../api';
 import { IComment } from '../../interfaces';
 import endpoint from '../../utils/endpoint';
-import api from '../../utils/interceptors';
 
 interface ICommentBody {
     body: string;

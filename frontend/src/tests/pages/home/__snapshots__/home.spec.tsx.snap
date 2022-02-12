@@ -14,7 +14,7 @@ exports[`Home component match snapshot 1`] = `
     class="header-0-2-4"
   >
     <div
-      class="container-0-2-11"
+      class="container-0-2-10"
     >
       <div
         class="flex-0-2-5"
@@ -23,11 +23,11 @@ exports[`Home component match snapshot 1`] = `
           class="wrp-0-2-6"
         >
           <a
-            class="logo-0-2-12"
+            class="logo-0-2-11"
             href="/"
           >
             <svg
-              class="img-0-2-15"
+              class="img-0-2-14"
               fill="none"
               viewBox="0 0 148 39"
               xmlns="http://www.w3.org/2000/svg"
@@ -37,7 +37,7 @@ exports[`Home component match snapshot 1`] = `
               />
             </svg>
             <small
-              class="label-0-2-13"
+              class="label-0-2-12"
             >
               alpha
             </small>
@@ -47,18 +47,18 @@ exports[`Home component match snapshot 1`] = `
           class="wrp-0-2-6"
         >
           <div
-            class="wrp-0-2-16"
+            class="wrp-0-2-15"
           >
             <p
-              class="text-0-2-17"
+              class="text-0-2-16"
             >
               EN
             </p>
             <div
-              class="wrp-0-2-19 lang-0-2-18"
+              class="wrp-0-2-18 lang-0-2-17"
             >
               <button
-                class="inner-0-2-20"
+                class="inner-0-2-19"
                 style="height: 3.8rem;"
                 type="button"
               >
@@ -82,13 +82,13 @@ exports[`Home component match snapshot 1`] = `
           </div>
           <div>
             <button
-              class="btn-0-2-31"
+              class="btn-0-2-30"
               type="button"
             >
               Login
             </button>
             <button
-              class="btn-0-2-31"
+              class="btn-0-2-30"
               type="button"
             >
               Join Phoqer
@@ -99,22 +99,22 @@ exports[`Home component match snapshot 1`] = `
     </div>
   </header>
   <main
-    class="main-0-2-34 main-0-2-1"
+    class="main-0-2-33 main-0-2-1"
   >
     <div
-      class="root-0-2-35"
+      class="root-0-2-34"
       style="background-image: url();"
     >
       <div
-        class="container-0-2-11 container-0-2-36"
+        class="container-0-2-10 container-0-2-35"
       >
         <h2
-          class="title-0-2-37"
+          class="title-0-2-36"
         >
           Phoqer
         </h2>
         <p
-          class="subtitle-0-2-38"
+          class="subtitle-0-2-37"
         >
           Is an online advertising platform that brings people together to exchange goods and services
         </p>
@@ -123,16 +123,16 @@ exports[`Home component match snapshot 1`] = `
           method="post"
         >
           <div
-            class="wrp-0-2-39"
+            class="wrp-0-2-38"
           >
             <div
-              class="form-0-2-40"
+              class="form-0-2-39"
             >
               <div
-                class="search-0-2-41"
+                class="search-0-2-40"
               >
                 <button
-                  class="icon-0-2-43"
+                  class="icon-0-2-42"
                   type="submit"
                 >
                   <svg
@@ -152,13 +152,13 @@ exports[`Home component match snapshot 1`] = `
                   </svg>
                 </button>
                 <input
-                  class="input-0-2-42"
+                  class="input-0-2-41"
                   placeholder="What are you looking for?"
                   type="text"
                   value=""
                 />
                 <button
-                  class="reset-0-2-45 resetHidden-0-2-46"
+                  class="reset-0-2-44 resetHidden-0-2-45"
                   type="button"
                 >
                   <svg
@@ -178,24 +178,24 @@ exports[`Home component match snapshot 1`] = `
                   </svg>
                 </button>
                 <div
-                  class="container-0-2-47"
+                  class="container-0-2-46"
                 >
                   <span
-                    class="line-0-2-49"
+                    class="line-0-2-48"
                   />
                   <div
-                    class="categories-0-2-48"
+                    class="categories-0-2-47"
                   >
                     <div
-                      class="wrp-0-2-19"
+                      class="wrp-0-2-18"
                     >
                       <button
-                        class="inner-0-2-20 transparent-0-2-22 placeholder-0-2-25"
+                        class="inner-0-2-19 transparent-0-2-21 placeholder-0-2-24"
                         style="height: 4.5rem;"
                         type="button"
                       >
                         <span
-                          class="icon-0-2-23"
+                          class="icon-0-2-22"
                         >
                           <svg
                             aria-hidden="true"
@@ -214,7 +214,7 @@ exports[`Home component match snapshot 1`] = `
                           </svg>
                         </span>
                         <span
-                          class="text-0-2-21"
+                          class="text-0-2-20"
                         >
                           Select category
                         </span>
@@ -229,52 +229,52 @@ exports[`Home component match snapshot 1`] = `
       </div>
     </div>
     <div
-      class="container-0-2-11"
+      class="container-0-2-10"
     >
       <div
-        class="root-0-2-50"
+        class="root-0-2-49"
       >
         <div
-          class="wrp-0-2-55"
+          class="wrp-0-2-54"
         >
           <h2
-            class="title-0-2-56"
+            class="title-0-2-55"
           >
             Rent here and now
           </h2>
           <div
-            class="link-0-2-57"
+            class="link-0-2-56"
           />
         </div>
         <div
-          class="wrp-0-2-51"
+          class="wrp-0-2-50"
         />
       </div>
       <div
-        class="root-0-2-58"
+        class="root-0-2-57"
       >
         <div
-          class="wrp-0-2-55"
+          class="wrp-0-2-54"
         >
           <h2
-            class="title-0-2-56"
+            class="title-0-2-55"
           >
             Popular offers
           </h2>
           <div
-            class="link-0-2-57"
+            class="link-0-2-56"
           >
             <a
-              class="link-0-2-60"
+              class="link-0-2-59"
               href="/offers?top=true"
             >
               <span
-                class="text-0-2-61"
+                class="text-0-2-60"
               >
                 See all
               </span>
               <span
-                class="icon-0-2-62"
+                class="icon-0-2-61"
               >
                 <svg
                   aria-hidden="true"
@@ -296,38 +296,38 @@ exports[`Home component match snapshot 1`] = `
           </div>
         </div>
         <div
-          class="empty-0-2-68"
+          class="empty-0-2-67"
         >
           <img
             alt=""
-            class="img-0-2-69"
+            class="img-0-2-68"
             src="/icons/empty.png"
           />
           <p
-            class="emptyText-0-2-70"
+            class="emptyText-0-2-69"
           >
             You don't have any offers yet. Don't be shy, create the first one
           </p>
           <a
-            class="link-0-2-71"
+            class="link-0-2-70"
             href="/offers/new/1"
           >
             Make an offer
           </a>
         </div>
         <a
-          class="btn-0-2-59"
+          class="btn-0-2-58"
           href="/offers"
         >
           See all
         </a>
       </div>
       <button
-        class="root-0-2-72 banner-0-2-2"
+        class="root-0-2-71 banner-0-2-2"
         type="button"
       >
         <div
-          class="root-0-2-78"
+          class="root-0-2-77"
           style="--blur: 0px;"
         >
           <span
@@ -341,22 +341,22 @@ exports[`Home component match snapshot 1`] = `
           />
         </div>
         <h2
-          class="title-0-2-73"
+          class="title-0-2-72"
         >
           # Share with others and earn
         </h2>
         <p
-          class="text-0-2-74"
+          class="text-0-2-73"
         >
           Place an advertisement on any category and get additional income right now.
         </p>
       </button>
     </div>
     <div
-      class="wrp-0-2-79"
+      class="wrp-0-2-78"
     >
       <div
-        class="slick-slider slider-0-2-80 slick-initialized"
+        class="slick-slider slider-0-2-79 slick-initialized"
         dir="ltr"
       >
         <button
@@ -390,7 +390,7 @@ exports[`Home component match snapshot 1`] = `
             >
               <div>
                 <picture
-                  class="img-0-2-81"
+                  class="img-0-2-80"
                   style="width: 100%; display: inline-block;"
                   tabindex="-1"
                 >
@@ -408,7 +408,7 @@ exports[`Home component match snapshot 1`] = `
                   />
                   <img
                     alt="phoqer"
-                    class="img-0-2-81"
+                    class="img-0-2-80"
                     src="/about/camera.jpeg"
                   />
                 </picture>
@@ -458,7 +458,7 @@ exports[`Home component match snapshot 1`] = `
             >
               <div>
                 <picture
-                  class="img-0-2-81"
+                  class="img-0-2-80"
                   style="width: 100%; display: inline-block;"
                   tabindex="-1"
                 >
@@ -476,7 +476,7 @@ exports[`Home component match snapshot 1`] = `
                   />
                   <img
                     alt="phoqer"
-                    class="img-0-2-81"
+                    class="img-0-2-80"
                     src="/about/camera.jpeg"
                   />
                 </picture>
@@ -529,25 +529,25 @@ exports[`Home component match snapshot 1`] = `
         </button>
       </div>
       <h2
-        class="title-0-2-82"
+        class="title-0-2-81"
       >
         phoqer
       </h2>
       <div
-        class="content-0-2-83"
+        class="content-0-2-82"
       >
         <p
-          class="text-0-2-84"
+          class="text-0-2-83"
         >
           You become what you surround yourself with. We fully agree with this phrase. The things we buy make a person. Sometimes one simple thing can make us truly happy.
         </p>
         <p
-          class="text-0-2-84"
+          class="text-0-2-83"
         >
           Therefore, we have collected a variety of products on our website, so that everyone can find what they want. Easy. Quickly. At a reasonable price and good quality.
         </p>
         <p
-          class="text-0-2-84"
+          class="text-0-2-83"
         >
           We wanted to create something better than an ordinary supermarket, where we walk around with a cart among the counters, hoping to find a specific thing. Online shopping saves us from many inconveniences. Here you do not have to stand in line at the checkout, and in the end find out that the payment is only in cash. Your child will not get lost somewhere in the sections with toys, and you will not have to tell the consultant that you wanted to "just look".
         </p>
@@ -555,16 +555,16 @@ exports[`Home component match snapshot 1`] = `
     </div>
   </main>
   <footer
-    class="footer-0-2-86"
+    class="footer-0-2-85"
   >
     <div
-      class="container-0-2-11"
+      class="container-0-2-10"
     >
       <div
-        class="logo-0-2-12"
+        class="logo-0-2-11"
       >
         <svg
-          class="img-0-2-15"
+          class="img-0-2-14"
           fill="none"
           viewBox="0 0 148 39"
           xmlns="http://www.w3.org/2000/svg"
@@ -574,82 +574,82 @@ exports[`Home component match snapshot 1`] = `
           />
         </svg>
         <small
-          class="label-0-2-13"
+          class="label-0-2-12"
         >
           alpha
         </small>
       </div>
       <div
-        class="wrp-0-2-87"
+        class="wrp-0-2-86"
       >
         <ul
-          class="list-0-2-88"
+          class="list-0-2-87"
         >
           <li
-            class="item-0-2-89"
+            class="item-0-2-88"
           >
             <a
-              class="link-0-2-90"
+              class="link-0-2-89"
               href="/static/help"
             >
               Help and Feedback
             </a>
           </li>
           <li
-            class="item-0-2-89"
+            class="item-0-2-88"
           >
             <a
-              class="link-0-2-90"
+              class="link-0-2-89"
               href="/static/business"
             >
               Advertising preferences
             </a>
           </li>
           <li
-            class="item-0-2-89"
+            class="item-0-2-88"
           >
             <a
-              class="link-0-2-90"
+              class="link-0-2-89"
               href="/static/rules"
             >
               Terms of service
             </a>
           </li>
           <li
-            class="item-0-2-89"
+            class="item-0-2-88"
           >
             <a
-              class="link-0-2-90"
+              class="link-0-2-89"
               href="/static/politic"
             >
               Privacy statement
             </a>
           </li>
           <li
-            class="item-0-2-89"
+            class="item-0-2-88"
           >
             <a
-              class="link-0-2-90"
+              class="link-0-2-89"
               href="/static/faq"
             >
               FAQ
             </a>
           </li>
           <li
-            class="item-0-2-89"
+            class="item-0-2-88"
           >
             <a
-              class="link-0-2-90"
+              class="link-0-2-89"
               href="/static/safety"
             >
               Safety rules
             </a>
           </li>
           <li
-            class="item-0-2-89"
+            class="item-0-2-88"
           >
             <a
-              class="link-0-2-90"
+              class="link-0-2-89"
               href="/static/map"
             >
               Site map
@@ -658,22 +658,22 @@ exports[`Home component match snapshot 1`] = `
         </ul>
         <div>
           <h3
-            class="title-0-2-93"
+            class="title-0-2-92"
           >
             Social networks:
           </h3>
           <ul
-            class="list-0-2-91"
+            class="list-0-2-90"
           >
             <li>
               <a
-                class="link-0-2-94"
+                class="link-0-2-93"
                 href="https://www.facebook.com/phoqer.inc"
                 rel="noopener noreferrer"
                 target="_blank"
               >
                 <svg
-                  class="svg-0-2-96"
+                  class="svg-0-2-95"
                   enable-background="new 0 0 24 24"
                   id="Bold"
                   viewBox="0 0 24 24"
@@ -687,13 +687,13 @@ exports[`Home component match snapshot 1`] = `
             </li>
             <li>
               <a
-                class="link-0-2-94"
+                class="link-0-2-93"
                 href="https://www.instagram.com/phoqer/"
                 rel="noopener noreferrer"
                 target="_blank"
               >
                 <svg
-                  class="svg-0-2-96"
+                  class="svg-0-2-95"
                   enable-background="new 0 0 24 24"
                   id="Bold"
                   viewBox="0 0 24 24"
@@ -715,13 +715,13 @@ exports[`Home component match snapshot 1`] = `
             </li>
             <li>
               <a
-                class="link-0-2-94"
+                class="link-0-2-93"
                 href="http://www.google.com/"
                 rel="noopener noreferrer"
                 target="_blank"
               >
                 <svg
-                  class="svg-0-2-96"
+                  class="svg-0-2-95"
                   viewBox="0 -47 512.00004 512"
                   xmlns="http://www.w3.org/2000/svg"
                 >
@@ -733,13 +733,13 @@ exports[`Home component match snapshot 1`] = `
             </li>
             <li>
               <a
-                class="link-0-2-94"
+                class="link-0-2-93"
                 href="https://t.me/phoqer"
                 rel="noopener noreferrer"
                 target="_blank"
               >
                 <svg
-                  class="svg-0-2-96"
+                  class="svg-0-2-95"
                   viewBox="0 -39 512.00011 512"
                   xmlns="http://www.w3.org/2000/svg"
                 >

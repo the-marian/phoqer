@@ -2,16 +2,16 @@ import React, { ReactElement } from 'react';
 
 import { createUseStyles } from 'react-jss';
 
-import AuthRedirect from '../../components/common/auth/auth-redirect/auth-redirect';
-import GetStaticProfile from '../../components/common/auth/get-static-profile/get-static-profile';
-import Header from '../../components/layout/header';
-import Meta from '../../components/meta';
-import { width } from '../../components/pages/chat/chat.config';
-import ChatWrp from '../../components/pages/chat/components/wrappers/chat-wrp';
-import { useChatListUpdate } from '../../hooks/chat.hook';
-import useMedia from '../../hooks/media.hook';
-import useTrans from '../../hooks/trans.hook';
-import { Theme } from '../../utils/theming/theme';
+import AuthRedirect from '../../../components/common/auth/auth-redirect/auth-redirect';
+import GetStaticProfile from '../../../components/common/auth/get-static-profile/get-static-profile';
+import Header from '../../../components/layout/header';
+import Meta from '../../../components/meta';
+import { width } from '../../../components/pages/chat/chat.config';
+import ChatWrp from '../../../components/pages/chat/components/wrappers/chat-wrp';
+import { useChatListUpdate } from '../../../hooks/chat.hook';
+import useMedia from '../../../hooks/media.hook';
+import useTrans from '../../../hooks/trans.hook';
+import { Theme } from '../../../utils/theming/theme';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     main: {

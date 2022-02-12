@@ -9,7 +9,7 @@ exports[`SingleOfferPage component default match snapshot 1`] = `
     class="header-0-2-1"
   >
     <div
-      class="container-0-2-8"
+      class="container-0-2-7"
     >
       <div
         class="flex-0-2-2"
@@ -18,11 +18,11 @@ exports[`SingleOfferPage component default match snapshot 1`] = `
           class="wrp-0-2-3"
         >
           <a
-            class="logo-0-2-9"
+            class="logo-0-2-8"
             href="/"
           >
             <svg
-              class="img-0-2-12"
+              class="img-0-2-11"
               fill="none"
               viewBox="0 0 148 39"
               xmlns="http://www.w3.org/2000/svg"
@@ -32,7 +32,7 @@ exports[`SingleOfferPage component default match snapshot 1`] = `
               />
             </svg>
             <small
-              class="label-0-2-10"
+              class="label-0-2-9"
             >
               alpha
             </small>
@@ -42,18 +42,18 @@ exports[`SingleOfferPage component default match snapshot 1`] = `
           class="wrp-0-2-3"
         >
           <div
-            class="wrp-0-2-13"
+            class="wrp-0-2-12"
           >
             <p
-              class="text-0-2-14"
+              class="text-0-2-13"
             >
               EN
             </p>
             <div
-              class="wrp-0-2-16 lang-0-2-15"
+              class="wrp-0-2-15 lang-0-2-14"
             >
               <button
-                class="inner-0-2-17"
+                class="inner-0-2-16"
                 style="height: 3.8rem;"
                 type="button"
               >
@@ -77,13 +77,13 @@ exports[`SingleOfferPage component default match snapshot 1`] = `
           </div>
           <div>
             <button
-              class="btn-0-2-28"
+              class="btn-0-2-27"
               type="button"
             >
               Login
             </button>
             <button
-              class="btn-0-2-28"
+              class="btn-0-2-27"
               type="button"
             >
               Join Phoqer
@@ -94,36 +94,36 @@ exports[`SingleOfferPage component default match snapshot 1`] = `
     </div>
   </header>
   <main
-    class="main-0-2-31"
+    class="main-0-2-30"
   >
     <div
-      class="container-0-2-8"
+      class="container-0-2-7"
     >
       <h1
-        class="title-0-2-46"
+        class="title-0-2-45"
       >
         PHOQER is an online platform that brings people together to share goods and services. PHOQER - here you will find what you are looking for! By clicking the Submit button, you will be able to place offers on any topic easily and quickly.
       </h1>
       <div
-        class="container-0-2-42"
+        class="container-0-2-41"
       >
         <img
           alt="no data"
-          class="img-0-2-40"
+          class="img-0-2-39"
           src="/no_data.gif"
         />
         <h2
-          class="title-0-2-43"
+          class="title-0-2-42"
         >
           404
         </h2>
         <p
-          class="text-0-2-44"
+          class="text-0-2-43"
         >
           This offer does not exist or has been deleted. You can always find a similar offer on Phoqer
         </p>
         <a
-          class="link-0-2-45"
+          class="link-0-2-44"
           href="/"
         >
           Go to Home page
@@ -132,16 +132,16 @@ exports[`SingleOfferPage component default match snapshot 1`] = `
     </div>
   </main>
   <footer
-    class="footer-0-2-48"
+    class="footer-0-2-47"
   >
     <div
-      class="container-0-2-8"
+      class="container-0-2-7"
     >
       <div
-        class="logo-0-2-9"
+        class="logo-0-2-8"
       >
         <svg
-          class="img-0-2-12"
+          class="img-0-2-11"
           fill="none"
           viewBox="0 0 148 39"
           xmlns="http://www.w3.org/2000/svg"
@@ -151,82 +151,82 @@ exports[`SingleOfferPage component default match snapshot 1`] = `
           />
         </svg>
         <small
-          class="label-0-2-10"
+          class="label-0-2-9"
         >
           alpha
         </small>
       </div>
       <div
-        class="wrp-0-2-49"
+        class="wrp-0-2-48"
       >
         <ul
-          class="list-0-2-50"
+          class="list-0-2-49"
         >
           <li
-            class="item-0-2-51"
+            class="item-0-2-50"
           >
             <a
-              class="link-0-2-52"
+              class="link-0-2-51"
               href="/static/help"
             >
               Help and Feedback
             </a>
           </li>
           <li
-            class="item-0-2-51"
+            class="item-0-2-50"
           >
             <a
-              class="link-0-2-52"
+              class="link-0-2-51"
               href="/static/business"
             >
               Advertising preferences
             </a>
           </li>
           <li
-            class="item-0-2-51"
+            class="item-0-2-50"
           >
             <a
-              class="link-0-2-52"
+              class="link-0-2-51"
               href="/static/rules"
             >
               Terms of service
             </a>
           </li>
           <li
-            class="item-0-2-51"
+            class="item-0-2-50"
           >
             <a
-              class="link-0-2-52"
+              class="link-0-2-51"
               href="/static/politic"
             >
               Privacy statement
             </a>
           </li>
           <li
-            class="item-0-2-51"
+            class="item-0-2-50"
           >
             <a
-              class="link-0-2-52"
+              class="link-0-2-51"
               href="/static/faq"
             >
               FAQ
             </a>
           </li>
           <li
-            class="item-0-2-51"
+            class="item-0-2-50"
           >
             <a
-              class="link-0-2-52"
+              class="link-0-2-51"
               href="/static/safety"
             >
               Safety rules
             </a>
           </li>
           <li
-            class="item-0-2-51"
+            class="item-0-2-50"
           >
             <a
-              class="link-0-2-52"
+              class="link-0-2-51"
               href="/static/map"
             >
               Site map
@@ -235,22 +235,22 @@ exports[`SingleOfferPage component default match snapshot 1`] = `
         </ul>
         <div>
           <h3
-            class="title-0-2-55"
+            class="title-0-2-54"
           >
             Social networks:
           </h3>
           <ul
-            class="list-0-2-53"
+            class="list-0-2-52"
           >
             <li>
               <a
-                class="link-0-2-56"
+                class="link-0-2-55"
                 href="https://www.facebook.com/phoqer.inc"
                 rel="noopener noreferrer"
                 target="_blank"
               >
                 <svg
-                  class="svg-0-2-58"
+                  class="svg-0-2-57"
                   enable-background="new 0 0 24 24"
                   id="Bold"
                   viewBox="0 0 24 24"
@@ -264,13 +264,13 @@ exports[`SingleOfferPage component default match snapshot 1`] = `
             </li>
             <li>
               <a
-                class="link-0-2-56"
+                class="link-0-2-55"
                 href="https://www.instagram.com/phoqer/"
                 rel="noopener noreferrer"
                 target="_blank"
               >
                 <svg
-                  class="svg-0-2-58"
+                  class="svg-0-2-57"
                   enable-background="new 0 0 24 24"
                   id="Bold"
                   viewBox="0 0 24 24"
@@ -292,13 +292,13 @@ exports[`SingleOfferPage component default match snapshot 1`] = `
             </li>
             <li>
               <a
-                class="link-0-2-56"
+                class="link-0-2-55"
                 href="http://www.google.com/"
                 rel="noopener noreferrer"
                 target="_blank"
               >
                 <svg
-                  class="svg-0-2-58"
+                  class="svg-0-2-57"
                   viewBox="0 -47 512.00004 512"
                   xmlns="http://www.w3.org/2000/svg"
                 >
@@ -310,13 +310,13 @@ exports[`SingleOfferPage component default match snapshot 1`] = `
             </li>
             <li>
               <a
-                class="link-0-2-56"
+                class="link-0-2-55"
                 href="https://t.me/phoqer"
                 rel="noopener noreferrer"
                 target="_blank"
               >
                 <svg
-                  class="svg-0-2-58"
+                  class="svg-0-2-57"
                   viewBox="0 -39 512.00011 512"
                   xmlns="http://www.w3.org/2000/svg"
                 >

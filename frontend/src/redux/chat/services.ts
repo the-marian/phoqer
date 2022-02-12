@@ -1,8 +1,8 @@
 import { AxiosResponse } from 'axios';
 
+import api from '../../api';
 import { ChatStatus, ChatTypeEnum, IChats, IMessages, IOfferCard, IPagination } from '../../interfaces';
 import endpoint from '../../utils/endpoint';
-import api from '../../utils/interceptors';
 
 import { INewChat } from './chats/interfaces';
 
