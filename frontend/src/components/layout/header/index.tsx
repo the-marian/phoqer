@@ -1,6 +1,6 @@
 import React, { ReactElement, useEffect, useRef, useState } from 'react';
 
-import { faChevronDown } from '@fortawesome/free-solid-svg-icons/faChevronDown';
+import { faAngleDoubleDown } from '@fortawesome/free-solid-svg-icons/faAngleDoubleDown';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import clsx from 'clsx';
 import dynamic from 'next/dynamic';
@@ -10,6 +10,7 @@ import { createUseStyles } from 'react-jss';
 import useAuth from '../../../hooks/auth.hook';
 import { Theme } from '../../../utils/theming/theme';
 import Logo from '../../common/logo';
+import Tooltip from '../../common/tooltip';
 import Container from '../container';
 
 import Lang from './lang';
@@ -20,7 +21,9 @@ const MainDrawer = dynamic(() => import('../main-drawer'), { ssr: false });
 
 const useStyles = createUseStyles((theme: Theme) => ({
     header: {
-        position: 'relative',
+        position: 'fixed',
+        top: 0,
+        left: 0,
         zIndex: 10000,
         width: '100%',
         transition: theme.transitions[0],
@@ -51,21 +54,41 @@ const useStyles = createUseStyles((theme: Theme) => ({
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        height: theme.rem(3.4),
-        width: theme.rem(3.4),
-        border: theme.border(0.1, theme.palette.primary[0]),
-        borderRadius: '50%',
+        height: theme.rem(3.8),
+        width: theme.rem(10),
+        fontSize: theme.rem(1.4),
+        borderRadius: theme.radius,
+        background: theme.palette.gray[1],
+        border: theme.border(0.1, theme.palette.gray[1]),
         transition: theme.transitions[0],
+        color: theme.palette.primary[0],
+
+        ...theme.media(768).max({
+            width: theme.rem(6),
+        }),
+
+        '& > svg': {
+            transition: theme.transitions[0],
+        },
 
         ...theme.hover({
-            background: theme.palette.primary[0],
-            color: theme.palette.trueWhite,
+            border: theme.border(0.2, theme.palette.primary[0]),
         }),
     },
     open: {
         background: theme.palette.primary[0],
         color: theme.palette.trueWhite,
-        transform: 'rotate(180deg)',
+
+        '& > svg': {
+            transition: theme.transitions[0],
+            transform: 'rotate(180deg)',
+        },
+    },
+    backdrop: {
+        height: theme.rem(5),
+    },
+    tooltip: {
+        minWidth: theme.rem(15),
     },
 }));
 
@@ -106,6 +129,7 @@ const Header = (): ReactElement => {
 
     return (
         <>
+            <div className={css.backdrop} />
             <header className={css.header}>
                 <Container>
                     <div className={css.flex}>
@@ -114,9 +138,11 @@ const Header = (): ReactElement => {
                         </div>
 
                         {!!token.access_token && (
-                            <button className={clsx(css.button, open && css.open)} type="button" onClick={handleToggle}>
-                                <FontAwesomeIcon icon={faChevronDown} />
-                            </button>
+                            <Tooltip className={css.tooltip} content="Site menu">
+                                <button className={clsx(css.button, open && css.open)} type="button" onClick={handleToggle}>
+                                    <FontAwesomeIcon icon={faAngleDoubleDown} />
+                                </button>
+                            </Tooltip>
                         )}
 
                         <div className={css.wrp}>
