@@ -1,9 +1,10 @@
-import React, { ReactElement, useRef, useState } from 'react';
+import React, { ReactElement, useEffect, useRef, useState } from 'react';
 
 import { faAngleDoubleDown } from '@fortawesome/free-solid-svg-icons/faAngleDoubleDown';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import clsx from 'clsx';
 import dynamic from 'next/dynamic';
+import { Router } from 'next/router';
 import { createUseStyles } from 'react-jss';
 
 import useAuth from '../../../hooks/auth.hook';
@@ -112,6 +113,19 @@ const Header = (): ReactElement => {
 
         setOpen(prev => !prev);
     };
+
+    useEffect(() => {
+        const handleStart = (): void => {
+            document.body.style.position = '';
+            document.body.style.top = '';
+            window.scrollTo({ top: 0 });
+        };
+
+        Router.events.on('routeChangeStart', handleStart);
+        return () => {
+            Router.events.off('routeChangeStart', handleStart);
+        };
+    }, []);
 
     return (
         <>
