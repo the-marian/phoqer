@@ -8,7 +8,7 @@ const useWrapperStyles = createUseStyles((theme: Theme) => ({
         display: 'flex',
         justifyContent: 'space-between',
         width: '100%',
-        height: 'calc(100vh - 6rem)',
+        height: 'calc(100vh - 12rem)',
         flexGrow: 2,
         padding: theme.rem(0, 2),
         fontSize: theme.rem(1.6),
@@ -28,7 +28,7 @@ const useWrapperStyles = createUseStyles((theme: Theme) => ({
     aside: {
         maxWidth: width.desktopLg.sidebar,
         minWidth: width.desktopLg.sidebar,
-        height: 'calc(100vh - 7rem)',
+        height: 'calc(100vh - 12rem)',
         paddingRight: theme.rem(0.5),
         overflow: 'auto',
 

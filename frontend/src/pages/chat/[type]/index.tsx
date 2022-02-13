@@ -7,6 +7,7 @@ import GetStaticProfile from '../../../components/common/auth/get-static-profile
 import Header from '../../../components/layout/header';
 import Meta from '../../../components/meta';
 import { width } from '../../../components/pages/chat/chat.config';
+import { ChatHeader } from '../../../components/pages/chat/components/chat-header';
 import ChatWrp from '../../../components/pages/chat/components/wrappers/chat-wrp';
 import { useChatListUpdate } from '../../../hooks/chat.hook';
 import useMedia from '../../../hooks/media.hook';
@@ -19,7 +20,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         flexDirection: 'column',
         alignItems: 'flex-start',
         justifyContent: 'flex-start',
-        height: 'calc(100vh - 6rem)',
+        height: 'calc(100vh - 12rem)',
         paddingTop: theme.rem(1),
         background: theme.palette.white,
 
@@ -32,7 +33,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        height: 'calc(100% - 2rem)',
+        height: '100%',
         width: width.desktopLg.center,
         background: theme.palette.gray[0],
         borderRadius: theme.radius,
@@ -73,6 +74,7 @@ const Messages = (): ReactElement => {
                 <Meta title={'Мои сообщения'} h1={trans('user_profile_on_phoqer')} />
 
                 <Header />
+                <ChatHeader />
 
                 <main className={css.main}>
                     <ChatWrp showConversation={media}>

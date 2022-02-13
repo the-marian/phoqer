@@ -18,7 +18,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
     text: {
         marginRight: theme.rem(1),
-        fontSize: theme.rem(1.4),
+        fontSize: theme.rem(1.2),
         color: theme.palette.black[0],
 
         ...theme.media(768).max({

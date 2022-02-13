@@ -12,6 +12,7 @@ import Meta from '../../../../components/meta';
 import Conversation from '../../../../components/pages/chat/chat-conversation';
 import ChatMobileDrawer from '../../../../components/pages/chat/chat-sidebar-right/chat-drawer';
 import ChatMobileDrawerButton from '../../../../components/pages/chat/chat-sidebar-right/chat-drawer/chat-drawer-button';
+import { ChatHeader } from '../../../../components/pages/chat/components/chat-header';
 import MessagesWrp from '../../../../components/pages/chat/components/wrappers/messages-wrp';
 import useChat, { useChatListUpdate } from '../../../../hooks/chat.hook';
 import useMedia from '../../../../hooks/media.hook';
@@ -27,7 +28,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         alignItems: 'flex-start',
         justifyContent: 'flex-start',
         padding: theme.rem(1, 0, 2),
-        height: 'calc(100vh - 6rem)',
+        height: 'calc(100vh - 12rem)',
         background: theme.palette.white,
 
         ...theme.media(1060).max({
@@ -98,6 +99,7 @@ const MessagesChat = (): ReactElement => {
                 {!desktop && <ChatMobileDrawerButton />}
 
                 <Header />
+                <ChatHeader />
 
                 <main className={css.main}>
                     <MessagesWrp showSidebar={media}>

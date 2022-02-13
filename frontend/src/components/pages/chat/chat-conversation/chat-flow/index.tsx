@@ -30,7 +30,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         display: 'flex',
         flexDirection: 'column-reverse',
         justifyContent: 'flex-start',
-        minHeight: 'calc(100vh - 14rem)',
+        minHeight: 'calc(100vh - 12rem)',
         padding: theme.rem(4, 1, 1),
 
         ...theme.media(1060).max({
