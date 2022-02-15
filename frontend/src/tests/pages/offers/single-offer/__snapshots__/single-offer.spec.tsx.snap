@@ -7,12 +7,14 @@ exports[`SingleOfferPage component default match snapshot 1`] = `
   />
   <header
     class="header-0-2-1"
+    tabindex="0"
   >
     <div
       class="container-0-2-7"
     >
       <div
         class="flex-0-2-2"
+        tabindex="0"
       >
         <div
           class="wrp-0-2-3"
@@ -54,7 +56,7 @@ exports[`SingleOfferPage component default match snapshot 1`] = `
             >
               <button
                 class="inner-0-2-16"
-                style="height: 3.8rem;"
+                style="height: 3.5rem;"
                 type="button"
               >
                 <svg
@@ -75,15 +77,17 @@ exports[`SingleOfferPage component default match snapshot 1`] = `
               </button>
             </div>
           </div>
-          <div>
+          <div
+            class="root-0-2-27"
+          >
             <button
-              class="btn-0-2-27"
+              class="btn-0-2-28"
               type="button"
             >
               Login
             </button>
             <button
-              class="btn-0-2-27"
+              class="btn-0-2-28"
               type="button"
             >
               Join Phoqer
@@ -94,36 +98,36 @@ exports[`SingleOfferPage component default match snapshot 1`] = `
     </div>
   </header>
   <main
-    class="main-0-2-30"
+    class="main-0-2-29"
   >
     <div
       class="container-0-2-7"
     >
       <h1
-        class="title-0-2-45"
+        class="title-0-2-44"
       >
         PHOQER is an online platform that brings people together to share goods and services. PHOQER - here you will find what you are looking for! By clicking the Submit button, you will be able to place offers on any topic easily and quickly.
       </h1>
       <div
-        class="container-0-2-41"
+        class="container-0-2-40"
       >
         <img
           alt="no data"
-          class="img-0-2-39"
+          class="img-0-2-38"
           src="/no_data.gif"
         />
         <h2
-          class="title-0-2-42"
+          class="title-0-2-41"
         >
           404
         </h2>
         <p
-          class="text-0-2-43"
+          class="text-0-2-42"
         >
           This offer does not exist or has been deleted. You can always find a similar offer on Phoqer
         </p>
         <a
-          class="link-0-2-44"
+          class="link-0-2-43"
           href="/"
         >
           Go to Home page
@@ -132,7 +136,7 @@ exports[`SingleOfferPage component default match snapshot 1`] = `
     </div>
   </main>
   <footer
-    class="footer-0-2-47"
+    class="footer-0-2-46"
   >
     <div
       class="container-0-2-7"
@@ -157,76 +161,76 @@ exports[`SingleOfferPage component default match snapshot 1`] = `
         </small>
       </div>
       <div
-        class="wrp-0-2-48"
+        class="wrp-0-2-47"
       >
         <ul
-          class="list-0-2-49"
+          class="list-0-2-48"
         >
           <li
-            class="item-0-2-50"
+            class="item-0-2-49"
           >
             <a
-              class="link-0-2-51"
+              class="link-0-2-50"
               href="/static/help"
             >
               Help and Feedback
             </a>
           </li>
           <li
-            class="item-0-2-50"
+            class="item-0-2-49"
           >
             <a
-              class="link-0-2-51"
+              class="link-0-2-50"
               href="/static/business"
             >
               Advertising preferences
             </a>
           </li>
           <li
-            class="item-0-2-50"
+            class="item-0-2-49"
           >
             <a
-              class="link-0-2-51"
+              class="link-0-2-50"
               href="/static/rules"
             >
               Terms of service
             </a>
           </li>
           <li
-            class="item-0-2-50"
+            class="item-0-2-49"
           >
             <a
-              class="link-0-2-51"
+              class="link-0-2-50"
               href="/static/politic"
             >
               Privacy statement
             </a>
           </li>
           <li
-            class="item-0-2-50"
+            class="item-0-2-49"
           >
             <a
-              class="link-0-2-51"
+              class="link-0-2-50"
               href="/static/faq"
             >
               FAQ
             </a>
           </li>
           <li
-            class="item-0-2-50"
+            class="item-0-2-49"
           >
             <a
-              class="link-0-2-51"
+              class="link-0-2-50"
               href="/static/safety"
             >
               Safety rules
             </a>
           </li>
           <li
-            class="item-0-2-50"
+            class="item-0-2-49"
           >
             <a
-              class="link-0-2-51"
+              class="link-0-2-50"
               href="/static/map"
             >
               Site map
@@ -235,22 +239,22 @@ exports[`SingleOfferPage component default match snapshot 1`] = `
         </ul>
         <div>
           <h3
-            class="title-0-2-54"
+            class="title-0-2-53"
           >
             Social networks:
           </h3>
           <ul
-            class="list-0-2-52"
+            class="list-0-2-51"
           >
             <li>
               <a
-                class="link-0-2-55"
+                class="link-0-2-54"
                 href="https://www.facebook.com/phoqer.inc"
                 rel="noopener noreferrer"
                 target="_blank"
               >
                 <svg
-                  class="svg-0-2-57"
+                  class="svg-0-2-56"
                   enable-background="new 0 0 24 24"
                   id="Bold"
                   viewBox="0 0 24 24"
@@ -264,13 +268,13 @@ exports[`SingleOfferPage component default match snapshot 1`] = `
             </li>
             <li>
               <a
-                class="link-0-2-55"
+                class="link-0-2-54"
                 href="https://www.instagram.com/phoqer/"
                 rel="noopener noreferrer"
                 target="_blank"
               >
                 <svg
-                  class="svg-0-2-57"
+                  class="svg-0-2-56"
                   enable-background="new 0 0 24 24"
                   id="Bold"
                   viewBox="0 0 24 24"
@@ -292,13 +296,13 @@ exports[`SingleOfferPage component default match snapshot 1`] = `
             </li>
             <li>
               <a
-                class="link-0-2-55"
+                class="link-0-2-54"
                 href="http://www.google.com/"
                 rel="noopener noreferrer"
                 target="_blank"
               >
                 <svg
-                  class="svg-0-2-57"
+                  class="svg-0-2-56"
                   viewBox="0 -47 512.00004 512"
                   xmlns="http://www.w3.org/2000/svg"
                 >
@@ -310,13 +314,13 @@ exports[`SingleOfferPage component default match snapshot 1`] = `
             </li>
             <li>
               <a
-                class="link-0-2-55"
+                class="link-0-2-54"
                 href="https://t.me/phoqer"
                 rel="noopener noreferrer"
                 target="_blank"
               >
                 <svg
-                  class="svg-0-2-57"
+                  class="svg-0-2-56"
                   viewBox="0 -39 512.00011 512"
                   xmlns="http://www.w3.org/2000/svg"
                 >

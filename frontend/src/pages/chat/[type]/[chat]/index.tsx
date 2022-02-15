@@ -41,8 +41,8 @@ const useStyles = createUseStyles((theme: Theme) => ({
 const MessagesChat = (): ReactElement => {
     const css = useStyles();
     const trans = useTrans();
-    const desktop = useMedia(1300);
     const media = useMedia(1060);
+    const desktop = useMedia(1300);
 
     const history = useRouter();
     const chatId = +String(history.query.chat || '0');
@@ -62,16 +62,21 @@ const MessagesChat = (): ReactElement => {
     useEffect(() => {
         if (chat && !chat.onmessage) {
             chat.onmessage = (message: MessageEvent): void => {
-                console.log(message);
                 try {
                     const payload: IMessages = JSON.parse(message.data);
                     dispatch({ type: types.RECEIVE_MESSAGE, payload });
+
+                    const container = document.getElementById('chat-scroll');
+
+                    media
+                        ? container?.scrollTo({ top: (container?.children?.[0] as HTMLDivElement)?.offsetHeight || 0 })
+                        : window.scrollTo({ top: container?.offsetHeight || 0 });
                 } catch (error) {
                     notifications.warning({ message: 'error' });
                 }
             };
         }
-    }, [dispatch, chat]);
+    }, [dispatch, chat, media]);
 
     useEffect(() => {
         dispatch({ type: types.GET_CHAT_OFFER_INFO_START, payload: chatId });

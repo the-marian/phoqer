@@ -12,12 +12,14 @@ exports[`ForgotPass component match snapshot 1`] = `
   />
   <header
     class="header-0-2-5"
+    tabindex="0"
   >
     <div
       class="container-0-2-11"
     >
       <div
         class="flex-0-2-6"
+        tabindex="0"
       >
         <div
           class="wrp-0-2-7"
@@ -59,7 +61,7 @@ exports[`ForgotPass component match snapshot 1`] = `
             >
               <button
                 class="inner-0-2-20"
-                style="height: 3.8rem;"
+                style="height: 3.5rem;"
                 type="button"
               >
                 <svg
@@ -80,15 +82,17 @@ exports[`ForgotPass component match snapshot 1`] = `
               </button>
             </div>
           </div>
-          <div>
+          <div
+            class="root-0-2-31"
+          >
             <button
-              class="btn-0-2-31"
+              class="btn-0-2-32"
               type="button"
             >
               Login
             </button>
             <button
-              class="btn-0-2-31"
+              class="btn-0-2-32"
               type="button"
             >
               Join Phoqer
@@ -99,7 +103,7 @@ exports[`ForgotPass component match snapshot 1`] = `
     </div>
   </header>
   <main
-    class="main-0-2-34"
+    class="main-0-2-33"
   >
     <div
       class="container-0-2-11"
@@ -120,15 +124,15 @@ exports[`ForgotPass component match snapshot 1`] = `
             method="post"
           >
             <h2
-              class="title-0-2-35"
+              class="title-0-2-34"
             >
               Welcome!
             </h2>
             <div
-              class="wrp-0-2-36"
+              class="wrp-0-2-35"
             >
               <div
-                class="icon-0-2-38"
+                class="icon-0-2-37"
               >
                 <svg
                   aria-hidden="true"
@@ -147,14 +151,14 @@ exports[`ForgotPass component match snapshot 1`] = `
                 </svg>
               </div>
               <div
-                class="wrp-0-2-42"
+                class="wrp-0-2-41"
               >
                 <div
-                  class="inner-0-2-43"
+                  class="inner-0-2-42"
                 >
                   <input
                     autocomplete="email"
-                    class="input-0-2-44 input-0-2-37"
+                    class="input-0-2-43 input-0-2-36"
                     name="email"
                     placeholder=""
                     type="email"
@@ -164,7 +168,7 @@ exports[`ForgotPass component match snapshot 1`] = `
               </div>
             </div>
             <button
-              class="btn-0-2-53 btn-0-2-40"
+              class="btn-0-2-52 btn-0-2-39"
               type="submit"
             >
               <span>
@@ -172,18 +176,18 @@ exports[`ForgotPass component match snapshot 1`] = `
               </span>
             </button>
             <a
-              class="link-0-2-39"
+              class="link-0-2-38"
               href="/auth/login"
             >
               Login
             </a>
             <p
-              class="text-0-2-41"
+              class="text-0-2-40"
             >
               or
             </p>
             <a
-              class="link-0-2-39"
+              class="link-0-2-38"
               href="/auth/join"
             >
               Join Phoqer
@@ -194,7 +198,7 @@ exports[`ForgotPass component match snapshot 1`] = `
     </div>
   </main>
   <footer
-    class="footer-0-2-57"
+    class="footer-0-2-56"
   >
     <div
       class="container-0-2-11"
@@ -219,76 +223,76 @@ exports[`ForgotPass component match snapshot 1`] = `
         </small>
       </div>
       <div
-        class="wrp-0-2-58"
+        class="wrp-0-2-57"
       >
         <ul
-          class="list-0-2-59"
+          class="list-0-2-58"
         >
           <li
-            class="item-0-2-60"
+            class="item-0-2-59"
           >
             <a
-              class="link-0-2-61"
+              class="link-0-2-60"
               href="/static/help"
             >
               Help and Feedback
             </a>
           </li>
           <li
-            class="item-0-2-60"
+            class="item-0-2-59"
           >
             <a
-              class="link-0-2-61"
+              class="link-0-2-60"
               href="/static/business"
             >
               Advertising preferences
             </a>
           </li>
           <li
-            class="item-0-2-60"
+            class="item-0-2-59"
           >
             <a
-              class="link-0-2-61"
+              class="link-0-2-60"
               href="/static/rules"
             >
               Terms of service
             </a>
           </li>
           <li
-            class="item-0-2-60"
+            class="item-0-2-59"
           >
             <a
-              class="link-0-2-61"
+              class="link-0-2-60"
               href="/static/politic"
             >
               Privacy statement
             </a>
           </li>
           <li
-            class="item-0-2-60"
+            class="item-0-2-59"
           >
             <a
-              class="link-0-2-61"
+              class="link-0-2-60"
               href="/static/faq"
             >
               FAQ
             </a>
           </li>
           <li
-            class="item-0-2-60"
+            class="item-0-2-59"
           >
             <a
-              class="link-0-2-61"
+              class="link-0-2-60"
               href="/static/safety"
             >
               Safety rules
             </a>
           </li>
           <li
-            class="item-0-2-60"
+            class="item-0-2-59"
           >
             <a
-              class="link-0-2-61"
+              class="link-0-2-60"
               href="/static/map"
             >
               Site map
@@ -297,22 +301,22 @@ exports[`ForgotPass component match snapshot 1`] = `
         </ul>
         <div>
           <h3
-            class="title-0-2-64"
+            class="title-0-2-63"
           >
             Social networks:
           </h3>
           <ul
-            class="list-0-2-62"
+            class="list-0-2-61"
           >
             <li>
               <a
-                class="link-0-2-65"
+                class="link-0-2-64"
                 href="https://www.facebook.com/phoqer.inc"
                 rel="noopener noreferrer"
                 target="_blank"
               >
                 <svg
-                  class="svg-0-2-67"
+                  class="svg-0-2-66"
                   enable-background="new 0 0 24 24"
                   id="Bold"
                   viewBox="0 0 24 24"
@@ -326,13 +330,13 @@ exports[`ForgotPass component match snapshot 1`] = `
             </li>
             <li>
               <a
-                class="link-0-2-65"
+                class="link-0-2-64"
                 href="https://www.instagram.com/phoqer/"
                 rel="noopener noreferrer"
                 target="_blank"
               >
                 <svg
-                  class="svg-0-2-67"
+                  class="svg-0-2-66"
                   enable-background="new 0 0 24 24"
                   id="Bold"
                   viewBox="0 0 24 24"
@@ -354,13 +358,13 @@ exports[`ForgotPass component match snapshot 1`] = `
             </li>
             <li>
               <a
-                class="link-0-2-65"
+                class="link-0-2-64"
                 href="http://www.google.com/"
                 rel="noopener noreferrer"
                 target="_blank"
               >
                 <svg
-                  class="svg-0-2-67"
+                  class="svg-0-2-66"
                   viewBox="0 -47 512.00004 512"
                   xmlns="http://www.w3.org/2000/svg"
                 >
@@ -372,13 +376,13 @@ exports[`ForgotPass component match snapshot 1`] = `
             </li>
             <li>
               <a
-                class="link-0-2-65"
+                class="link-0-2-64"
                 href="https://t.me/phoqer"
                 rel="noopener noreferrer"
                 target="_blank"
               >
                 <svg
-                  class="svg-0-2-67"
+                  class="svg-0-2-66"
                   viewBox="0 -39 512.00011 512"
                   xmlns="http://www.w3.org/2000/svg"
                 >

@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 
+import { useRouter } from 'next/router';
 import { useDispatch } from 'react-redux';
 
 import types from '../redux/types';
@@ -39,15 +40,18 @@ const useChat = (id: string | number): WebSocket | null => {
 export const useChatListUpdate = (): void => {
     const dispatch = useDispatch();
 
+    const history = useRouter();
+    const type = String(history.query.type || '');
+
     useEffect(() => {
-        dispatch({ type: types.GET_CHATS_START });
+        dispatch({ type: types.GET_CHATS_START, payload: type });
         dispatch({ type: types.RESET_CHAT_SIDEBAR });
 
         const id = setInterval(() => {
-            dispatch({ type: types.REFRESH_CHATS_START });
+            dispatch({ type: types.REFRESH_CHATS_START, payload: type });
         }, 10000);
         return () => clearInterval(id);
-    }, [dispatch]);
+    }, [dispatch, type]);
 };
 
 export default useChat;

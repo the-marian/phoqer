@@ -1,4 +1,6 @@
-import { ChatTypeEnum, IChats, IChatsList, IPagination } from '../../../interfaces';
+import { HYDRATE } from 'next-redux-wrapper';
+
+import { IChats, IChatsList, IPagination, IState } from '../../../interfaces';
 import chatInit from '../init-state';
 import types from '../types';
 
@@ -6,6 +8,9 @@ import IAction from './interfaces';
 
 const chats = (state: IChatsList = chatInit.chats, { type, payload }: IAction): IChatsList => {
     switch (type) {
+        case HYDRATE:
+            return (payload as IState).chat.chats;
+
         case types.GET_CHATS_START:
             return { ...state, loading: true };
 
@@ -23,9 +28,6 @@ const chats = (state: IChatsList = chatInit.chats, { type, payload }: IAction): 
         case types.GET_CHATS_ERROR:
         case types.REFRESH_CHATS_ERROR:
             return { ...state, loading: false };
-
-        case types.CHANGE_CHAT_TYPE:
-            return { ...state, type: payload as ChatTypeEnum };
 
         default:
             return state;

@@ -11,6 +11,10 @@ import { modal } from '../../../common/modal';
 import SmallModalWrp from '../../../common/modal/small-modal-wrp';
 
 const useStyles = createUseStyles((theme: Theme) => ({
+    root: {
+        display: 'flex',
+        alignItems: 'center',
+    },
     btn: {
         paddingRight: theme.rem(2),
         fontWeight: theme.text.weight[3],
@@ -20,15 +24,6 @@ const useStyles = createUseStyles((theme: Theme) => ({
         ...theme.hover({
             color: theme.palette.primary[0],
         }),
-    },
-    menuWrp: {
-        position: 'relative',
-    },
-    menu: {
-        position: 'relative',
-        zIndex: 101,
-        padding: theme.rem(0, 1),
-        fontSize: theme.rem(2),
     },
 }));
 
@@ -53,7 +48,7 @@ const NotAuth = (): ReactElement | null => {
     };
 
     return (
-        <div>
+        <div className={css.root}>
             <button className={css.btn} type="button" onClick={handleLoginModal}>
                 {trans('login')}
             </button>

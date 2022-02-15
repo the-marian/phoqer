@@ -6,11 +6,8 @@ import { useSelector } from 'react-redux';
 
 import useTrans from '../../../../hooks/trans.hook';
 import { IPublicProfile, IState } from '../../../../interfaces';
-import { cutString } from '../../../../utils/helpers';
 import { Theme } from '../../../../utils/theming/theme';
 import LikeDislike from '../../../common/like-dislike';
-import { modal } from '../../../common/modal';
-import StickyModal from '../../../common/modal/sticky-modal';
 import Tooltip from '../../../common/tooltip';
 
 const useStyles = createUseStyles((theme: Theme) => ({
@@ -90,15 +87,6 @@ const useStyles = createUseStyles((theme: Theme) => ({
         fontSize: theme.rem(2),
         fontWeight: theme.text.weight[3],
     },
-    link: {
-        display: 'inline',
-        color: theme.palette.primary[0],
-        marginLeft: theme.rem(1),
-        fontWeight: theme.text.weight[3],
-    },
-    modal: {
-        fontSize: theme.rem(1.5),
-    },
     tooltip: {
         minWidth: theme.rem(25),
     },
@@ -108,14 +96,6 @@ const ProfileInfo = (): ReactElement => {
     const css = useStyles();
     const trans = useTrans();
     const profile = useSelector<IState, IPublicProfile | null>(state => state.profiles.public);
-
-    const handleReadMore = (): void => {
-        modal.open(
-            <StickyModal>
-                <p className={css.modal} dangerouslySetInnerHTML={{ __html: profile?.bio?.replace(/\n/, '<br>') || '' }} />
-            </StickyModal>,
-        );
-    };
 
     return (
         <div className={css.info}>
@@ -146,20 +126,7 @@ const ProfileInfo = (): ReactElement => {
 
             <div className={css.bio}>
                 <h5 className={css.title}>{trans('about_author')}</h5>
-                <p>
-                    {profile?.bio ? (
-                        <>
-                            {cutString(profile.bio, 400)}
-                            {profile.bio.length > 400 && (
-                                <button type="button" onClick={handleReadMore} className={css.link}>
-                                    {trans('read_more')}
-                                </button>
-                            )}
-                        </>
-                    ) : (
-                        trans('no_information_available')
-                    )}
-                </p>
+                {profile?.bio ? <div dangerouslySetInnerHTML={{ __html: profile.bio }} /> : trans('no_information_available')}
             </div>
         </div>
     );

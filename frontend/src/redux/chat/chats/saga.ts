@@ -1,17 +1,16 @@
 import { AxiosResponse } from 'axios';
-import { all, call, put, select, takeLatest } from 'redux-saga/effects';
+import { all, call, put, takeLatest } from 'redux-saga/effects';
 
 import notifications from '../../../components/common/notifications';
-import { ChatTypeEnum, IState } from '../../../interfaces';
+import { ChatTypeEnum } from '../../../interfaces';
 import services from '../services';
 import types from '../types';
 
 import IAction, { INewChat } from './interfaces';
 
-function* getChats() {
+function* getChats({ payload }: IAction) {
     try {
-        const type: ChatTypeEnum = yield select<(state: IState) => ChatTypeEnum>(state => state.chat.chats.type);
-        const { status, data } = yield call(services.chats, 1, type);
+        const { status, data } = yield call(services.chats, 1, payload as ChatTypeEnum);
         if (status < 200 || status >= 300) throw new Error();
         yield put({ type: types.GET_CHATS_SUCCESS, payload: data });
     } catch (error) {
@@ -21,10 +20,9 @@ function* getChats() {
     }
 }
 
-function* refreshChats() {
+function* refreshChats({ payload }: IAction) {
     try {
-        const type: ChatTypeEnum = yield select<(state: IState) => ChatTypeEnum>(state => state.chat.chats.type);
-        const { status, data } = yield call(services.chats, 1, type);
+        const { status, data } = yield call(services.chats, 1, payload as ChatTypeEnum);
         if (status < 200 || status >= 300) throw new Error();
         yield put({ type: types.REFRESH_CHATS_SUCCESS, payload: data });
     } catch (error) {

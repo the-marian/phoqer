@@ -12,12 +12,14 @@ exports[`Join component match snapshot 1`] = `
   />
   <header
     class="header-0-2-5"
+    tabindex="0"
   >
     <div
       class="container-0-2-11"
     >
       <div
         class="flex-0-2-6"
+        tabindex="0"
       >
         <div
           class="wrp-0-2-7"
@@ -59,7 +61,7 @@ exports[`Join component match snapshot 1`] = `
             >
               <button
                 class="inner-0-2-20"
-                style="height: 3.8rem;"
+                style="height: 3.5rem;"
                 type="button"
               >
                 <svg
@@ -80,15 +82,17 @@ exports[`Join component match snapshot 1`] = `
               </button>
             </div>
           </div>
-          <div>
+          <div
+            class="root-0-2-31"
+          >
             <button
-              class="btn-0-2-31"
+              class="btn-0-2-32"
               type="button"
             >
               Login
             </button>
             <button
-              class="btn-0-2-31"
+              class="btn-0-2-32"
               type="button"
             >
               Join Phoqer
@@ -99,7 +103,7 @@ exports[`Join component match snapshot 1`] = `
     </div>
   </header>
   <main
-    class="main-0-2-34"
+    class="main-0-2-33"
   >
     <div
       class="container-0-2-11"
@@ -120,27 +124,27 @@ exports[`Join component match snapshot 1`] = `
             method="post"
           >
             <h2
-              class="title-0-2-35"
+              class="title-0-2-34"
             >
               Welcome!
             </h2>
             <label
-              class="wrp-0-2-36"
+              class="wrp-0-2-35"
             >
               <p
-                class="label-0-2-38"
+                class="label-0-2-37"
               >
                 First name
               </p>
               <div
-                class="wrp-0-2-47"
+                class="wrp-0-2-46"
               >
                 <div
-                  class="inner-0-2-48"
+                  class="inner-0-2-47"
                 >
                   <input
                     autocomplete="given-name"
-                    class="input-0-2-49"
+                    class="input-0-2-48"
                     name="first_name"
                     placeholder="First name"
                     type="text"
@@ -150,22 +154,22 @@ exports[`Join component match snapshot 1`] = `
               </div>
             </label>
             <label
-              class="wrp-0-2-36"
+              class="wrp-0-2-35"
             >
               <p
-                class="label-0-2-38"
+                class="label-0-2-37"
               >
                 Last name
               </p>
               <div
-                class="wrp-0-2-47"
+                class="wrp-0-2-46"
               >
                 <div
-                  class="inner-0-2-48"
+                  class="inner-0-2-47"
                 >
                   <input
                     autocomplete="family-name"
-                    class="input-0-2-49"
+                    class="input-0-2-48"
                     name="last_name"
                     placeholder="Last name"
                     type="text"
@@ -175,22 +179,22 @@ exports[`Join component match snapshot 1`] = `
               </div>
             </label>
             <label
-              class="wrp-0-2-36"
+              class="wrp-0-2-35"
             >
               <p
-                class="label-0-2-38"
+                class="label-0-2-37"
               >
                 Email
               </p>
               <div
-                class="wrp-0-2-47"
+                class="wrp-0-2-46"
               >
                 <div
-                  class="inner-0-2-48"
+                  class="inner-0-2-47"
                 >
                   <input
                     autocomplete="email"
-                    class="input-0-2-49"
+                    class="input-0-2-48"
                     name="email"
                     placeholder="Email"
                     type="email"
@@ -200,63 +204,63 @@ exports[`Join component match snapshot 1`] = `
               </div>
             </label>
             <label
-              class="wrp-0-2-36"
+              class="wrp-0-2-35"
             >
               <p
-                class="label-0-2-38"
+                class="label-0-2-37"
               >
                 Password
               </p>
               <div
-                class="inner-0-2-37"
+                class="inner-0-2-36"
               >
                 <div
-                  class="wrp-0-2-56"
+                  class="wrp-0-2-55"
                 >
                   <div
-                    class="tooltip-0-2-57 bottom_right-0-2-61 tooltip"
+                    class="tooltip-0-2-56 bottom_right-0-2-60 tooltip"
                   >
                     <ul
-                      class="list-0-2-44"
+                      class="list-0-2-43"
                     >
                       <li
-                        class="red-0-2-45"
+                        class="red-0-2-44"
                       >
                         Minimum 8 characters
                       </li>
                       <li
-                        class="red-0-2-45"
+                        class="red-0-2-44"
                       >
                         Numbers and letters
                       </li>
                       <li
-                        class="red-0-2-45"
+                        class="red-0-2-44"
                       >
                         Uppercase
                       </li>
                       <li
-                        class="red-0-2-45"
+                        class="red-0-2-44"
                       >
                         Special characters
                       </li>
                     </ul>
                   </div>
                   <div
-                    class="wrp-0-2-47"
+                    class="wrp-0-2-46"
                   >
                     <div
-                      class="inner-0-2-48"
+                      class="inner-0-2-47"
                     >
                       <input
                         autocomplete="current-password"
-                        class="input-0-2-49 withPassword-0-2-54"
+                        class="input-0-2-48 withPassword-0-2-53"
                         name="password"
                         placeholder="Password"
                         type="password"
                         value=""
                       />
                       <button
-                        class="icon-0-2-52"
+                        class="icon-0-2-51"
                         type="button"
                       >
                         <svg
@@ -281,7 +285,7 @@ exports[`Join component match snapshot 1`] = `
               </div>
             </label>
             <button
-              class="btn-0-2-64 btn-0-2-41"
+              class="btn-0-2-63 btn-0-2-40"
               type="submit"
             >
               <span>
@@ -289,18 +293,18 @@ exports[`Join component match snapshot 1`] = `
               </span>
             </button>
             <p
-              class="text-0-2-42"
+              class="text-0-2-41"
             >
               or
               <br />
               login with
             </p>
             <ul
-              class="list-0-2-67"
+              class="list-0-2-66"
             >
               <li>
                 <button
-                  class="socials-0-2-68 facebook-0-2-69"
+                  class="socials-0-2-67 facebook-0-2-68"
                   type="button"
                 >
                   <svg
@@ -322,7 +326,7 @@ exports[`Join component match snapshot 1`] = `
               </li>
               <li>
                 <button
-                  class="socials-0-2-68 google-0-2-70"
+                  class="socials-0-2-67 google-0-2-69"
                   type="button"
                 >
                   <svg
@@ -366,7 +370,7 @@ exports[`Join component match snapshot 1`] = `
     </div>
   </main>
   <footer
-    class="footer-0-2-72"
+    class="footer-0-2-71"
   >
     <div
       class="container-0-2-11"
@@ -391,76 +395,76 @@ exports[`Join component match snapshot 1`] = `
         </small>
       </div>
       <div
-        class="wrp-0-2-73"
+        class="wrp-0-2-72"
       >
         <ul
-          class="list-0-2-74"
+          class="list-0-2-73"
         >
           <li
-            class="item-0-2-75"
+            class="item-0-2-74"
           >
             <a
-              class="link-0-2-76"
+              class="link-0-2-75"
               href="/static/help"
             >
               Help and Feedback
             </a>
           </li>
           <li
-            class="item-0-2-75"
+            class="item-0-2-74"
           >
             <a
-              class="link-0-2-76"
+              class="link-0-2-75"
               href="/static/business"
             >
               Advertising preferences
             </a>
           </li>
           <li
-            class="item-0-2-75"
+            class="item-0-2-74"
           >
             <a
-              class="link-0-2-76"
+              class="link-0-2-75"
               href="/static/rules"
             >
               Terms of service
             </a>
           </li>
           <li
-            class="item-0-2-75"
+            class="item-0-2-74"
           >
             <a
-              class="link-0-2-76"
+              class="link-0-2-75"
               href="/static/politic"
             >
               Privacy statement
             </a>
           </li>
           <li
-            class="item-0-2-75"
+            class="item-0-2-74"
           >
             <a
-              class="link-0-2-76"
+              class="link-0-2-75"
               href="/static/faq"
             >
               FAQ
             </a>
           </li>
           <li
-            class="item-0-2-75"
+            class="item-0-2-74"
           >
             <a
-              class="link-0-2-76"
+              class="link-0-2-75"
               href="/static/safety"
             >
               Safety rules
             </a>
           </li>
           <li
-            class="item-0-2-75"
+            class="item-0-2-74"
           >
             <a
-              class="link-0-2-76"
+              class="link-0-2-75"
               href="/static/map"
             >
               Site map
@@ -469,22 +473,22 @@ exports[`Join component match snapshot 1`] = `
         </ul>
         <div>
           <h3
-            class="title-0-2-79"
+            class="title-0-2-78"
           >
             Social networks:
           </h3>
           <ul
-            class="list-0-2-77"
+            class="list-0-2-76"
           >
             <li>
               <a
-                class="link-0-2-80"
+                class="link-0-2-79"
                 href="https://www.facebook.com/phoqer.inc"
                 rel="noopener noreferrer"
                 target="_blank"
               >
                 <svg
-                  class="svg-0-2-82"
+                  class="svg-0-2-81"
                   enable-background="new 0 0 24 24"
                   id="Bold"
                   viewBox="0 0 24 24"
@@ -498,13 +502,13 @@ exports[`Join component match snapshot 1`] = `
             </li>
             <li>
               <a
-                class="link-0-2-80"
+                class="link-0-2-79"
                 href="https://www.instagram.com/phoqer/"
                 rel="noopener noreferrer"
                 target="_blank"
               >
                 <svg
-                  class="svg-0-2-82"
+                  class="svg-0-2-81"
                   enable-background="new 0 0 24 24"
                   id="Bold"
                   viewBox="0 0 24 24"
@@ -526,13 +530,13 @@ exports[`Join component match snapshot 1`] = `
             </li>
             <li>
               <a
-                class="link-0-2-80"
+                class="link-0-2-79"
                 href="http://www.google.com/"
                 rel="noopener noreferrer"
                 target="_blank"
               >
                 <svg
-                  class="svg-0-2-82"
+                  class="svg-0-2-81"
                   viewBox="0 -47 512.00004 512"
                   xmlns="http://www.w3.org/2000/svg"
                 >
@@ -544,13 +548,13 @@ exports[`Join component match snapshot 1`] = `
             </li>
             <li>
               <a
-                class="link-0-2-80"
+                class="link-0-2-79"
                 href="https://t.me/phoqer"
                 rel="noopener noreferrer"
                 target="_blank"
               >
                 <svg
-                  class="svg-0-2-82"
+                  class="svg-0-2-81"
                   viewBox="0 -39 512.00011 512"
                   xmlns="http://www.w3.org/2000/svg"
                 >

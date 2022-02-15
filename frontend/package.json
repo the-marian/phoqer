@@ -14,7 +14,7 @@
         "type-check": "tsc --pretty --noEmit",
         "husky": "cd .. && husky install frontend/.husky",
         "test": "NODE_ENV=development jest -u",
-        "test-all": "yarn lint && yarn type-check && jest"
+        "test-all": "yarn lint && yarn type-check && jest -u"
     },
     "husky": {
         "hooks": {

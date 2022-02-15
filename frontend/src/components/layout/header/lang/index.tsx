@@ -14,7 +14,11 @@ const useStyles = createUseStyles((theme: Theme) => ({
         alignItems: 'center',
         justifyContent: 'center',
         borderRadius: theme.radius,
-        marginRight: theme.rem(1),
+        marginRight: theme.rem(2),
+
+        ...theme.media(768).max({
+            marginRight: theme.rem(0.5),
+        }),
     },
     text: {
         marginRight: theme.rem(1),
@@ -26,10 +30,19 @@ const useStyles = createUseStyles((theme: Theme) => ({
         }),
     },
     lang: {
+        '& button': {
+            textAlign: 'right',
+        },
+
         '& > button': {
             background: theme.palette.gray[1],
             fontSize: theme.rem(2),
             color: theme.palette.primary[0],
+
+            ...theme.media(768).max({
+                background: 'none',
+                color: theme.palette.gray[3],
+            }),
         },
     },
 }));
@@ -63,7 +76,7 @@ const Lang = (): ReactElement => {
                 icon={faGlobeAmericas}
                 className={css.lang}
                 minWidth={15}
-                height={3.8}
+                height={3.5}
                 defaultValue={{ name: history.locale?.toUpperCase() || 'EN', slug: history?.locale || 'en', type: 'main' }}
                 data={LANGS}
                 onChange={handleChange}

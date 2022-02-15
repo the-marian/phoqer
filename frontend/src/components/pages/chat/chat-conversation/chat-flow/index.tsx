@@ -2,12 +2,12 @@ import React, { ReactElement, useEffect, useRef } from 'react';
 
 import { createUseStyles } from 'react-jss';
 import { useSelector } from 'react-redux';
+import { CSSTransition } from 'react-transition-group';
 
 import useMedia from '../../../../../hooks/media.hook';
 import { IMessagesList, IPublicProfile, IState } from '../../../../../interfaces';
 import { Theme } from '../../../../../utils/theming/theme';
 import ChatEmpty from '../../components/chat-empty';
-import ChatInitConversation from '../chat-init-conversation';
 
 import ChatFlowList from './chat-flow-list';
 import ChatLoadMore from './chat-load-more';
@@ -21,6 +21,16 @@ const useStyles = createUseStyles((theme: Theme) => ({
         borderRadius: theme.radius,
         background: theme.palette.gray[0],
         overflow: 'auto',
+        transition: theme.transitions[1],
+
+        '&.appear, &.exit': {
+            transform: 'translateY(2rem)',
+            opacity: 0,
+        },
+        '&.appear-done': {
+            transform: 'translateY(0)',
+            opacity: 1,
+        },
 
         ...theme.media(1060).max({
             borderRadius: '0',
@@ -39,11 +49,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
 }));
 
-interface IProps {
-    children?: ReactElement;
-}
-
-const ChatFlow = ({ children }: IProps): ReactElement => {
+const ChatFlow = (): ReactElement => {
     const css = useStyles();
     const media = useMedia(1060);
     const ref = useRef<HTMLDivElement | null>(null);
@@ -53,25 +59,29 @@ const ChatFlow = ({ children }: IProps): ReactElement => {
 
     useEffect(() => {
         if (ref.current) {
-            media
-                ? ref.current?.scrollTo({ top: (ref.current?.children?.[0] as HTMLDivElement)?.offsetHeight || 0 })
-                : window.scrollTo({ top: ref.current?.offsetHeight || 0 });
+            setTimeout(() => {
+                media
+                    ? ref.current?.scrollTo({ top: (ref.current?.children?.[0] as HTMLDivElement)?.offsetHeight || 0 })
+                    : window.scrollTo({ top: ref.current?.offsetHeight || 0 });
+            }, 100);
         }
     }, [media, ref]);
 
     return (
-        <div ref={ref} className={css.root}>
-            <div className={css.inner}>
-                {messages.data.data.length ? (
-                    <>
-                        <ChatFlowList user={user} messages={messages} />
-                        <ChatLoadMore messages={messages} />
-                    </>
-                ) : null}
-
-                <ChatInitConversation>{messages.data.data.length || children ? children : <ChatEmpty />}</ChatInitConversation>
+        <CSSTransition timeout={300} in appear exit>
+            <div id="chat-scroll" ref={ref} className={css.root}>
+                <div className={css.inner}>
+                    {messages.data.data.length ? (
+                        <>
+                            <ChatFlowList user={user} messages={messages} />
+                            <ChatLoadMore messages={messages} />
+                        </>
+                    ) : (
+                        <ChatEmpty />
+                    )}
+                </div>
             </div>
-        </div>
+        </CSSTransition>
     );
 };
 

@@ -38,6 +38,9 @@ const useStyles = createUseStyles((theme: Theme) => ({
         }),
     },
     favorite: {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
         margin: theme.rem(0, 2),
         padding: theme.rem(1.5, 2),
         color: theme.palette.primary[0],
@@ -53,12 +56,10 @@ const useStyles = createUseStyles((theme: Theme) => ({
         }),
 
         '& svg': {
-            height: theme.rem(1.4),
-            width: theme.rem(1.4),
+            fontSize: theme.rem(1.4),
 
             ...theme.media(768).max({
-                height: theme.rem(1.8),
-                width: theme.rem(1.8),
+                fontSize: theme.rem(1.6),
             }),
         },
     },

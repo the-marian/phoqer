@@ -2,9 +2,10 @@ import React, { ReactElement } from 'react';
 
 import clsx from 'clsx';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { createUseStyles } from 'react-jss';
 
-import { IChats } from '../../../../../interfaces';
+import { ChatTypeEnum, IChats } from '../../../../../interfaces';
 import { cutString } from '../../../../../utils/helpers';
 import routes from '../../../../../utils/routes';
 import mixin from '../../../../../utils/theming/mixin';
@@ -81,6 +82,9 @@ interface IProps {
 const ChatSidebarItem = ({ chat, active = false }: IProps): ReactElement => {
     const css = useStyles();
 
+    const history = useRouter();
+    const type = String(history.query.type || ChatTypeEnum.CLIENT) as ChatTypeEnum;
+
     const renderChatInner = (): ReactElement => (
         <>
             <UserAvatar width={7} height={7} avatar={chat.cover_image || '/icons/no_img.png'} />
@@ -99,7 +103,7 @@ const ChatSidebarItem = ({ chat, active = false }: IProps): ReactElement => {
     return active ? (
         <div className={clsx(css.wrp, css.active, chat.new_messages && css.unread)}>{renderChatInner()}</div>
     ) : (
-        <Link href={routes.chat.item(chat.chat_id)}>
+        <Link href={routes.chat.item(chat.chat_id, type)}>
             <a className={clsx(css.wrp, chat.new_messages && css.unread)}>{renderChatInner()}</a>
         </Link>
     );

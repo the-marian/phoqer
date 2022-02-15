@@ -1,4 +1,4 @@
-import React, { ReactElement, useEffect, useRef, useState } from 'react';
+import React, { ReactElement, MouseEvent, useEffect, useRef, useState } from 'react';
 
 import { faAngleDoubleDown } from '@fortawesome/free-solid-svg-icons/faAngleDoubleDown';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -27,6 +27,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         width: '100%',
         transition: theme.transitions[0],
         background: theme.palette.gray[0],
+        cursor: 'pointer',
 
         ...theme.media(768).max({
             background: theme.palette.white,
@@ -42,42 +43,60 @@ const useStyles = createUseStyles((theme: Theme) => ({
     wrp: {
         display: 'flex',
         alignItems: 'center',
-        width: '38%',
+        maxWidth: theme.rem(17),
 
         '&:nth-last-of-type(1)': {
             justifyContent: 'flex-end',
             marginRight: theme.rem(-1),
         },
     },
-    button: {
+    down: {
+        position: 'relative',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
         height: theme.rem(3.8),
-        width: theme.rem(10),
+        width: '100%',
         fontSize: theme.rem(1.4),
         borderRadius: theme.radius,
-        background: theme.palette.gray[1],
-        border: theme.border(0.1, theme.palette.gray[1]),
         transition: theme.transitions[0],
         color: theme.palette.primary[0],
 
-        ...theme.media(768).max({
-            width: theme.rem(6),
+        ...theme.hover({
+            '&::after': {
+                height: theme.rem(3.5),
+                width: theme.rem(3.5),
+            },
+
+            '& > svg': {
+                fontSize: theme.rem(1),
+                color: theme.palette.trueWhite,
+            },
         }),
 
-        '& > svg': {
+        '&::after': {
+            content: '""',
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            zIndex: 1,
+            height: 0,
+            width: 0,
+            borderRadius: '50%',
+            background: theme.palette.primary[0],
             transition: theme.transitions[0],
         },
 
-        ...theme.hover({
-            border: theme.border(0.2, theme.palette.primary[0]),
-        }),
+        '& > svg': {
+            position: 'relative',
+            zIndex: 2,
+            fontSize: theme.rem(1.4),
+            color: theme.palette.black[0],
+            transition: theme.transitions[0],
+        },
     },
     open: {
-        background: theme.palette.primary[0],
-        color: theme.palette.trueWhite,
-
         '& > svg': {
             transition: theme.transitions[0],
             transform: 'rotate(180deg)',
@@ -110,6 +129,12 @@ const Header = (): ReactElement => {
         setOpen(prev => !prev);
     };
 
+    const handleClick = (event: MouseEvent<HTMLHeadingElement>): void => {
+        if (event.target === event.currentTarget) {
+            handleToggle();
+        }
+    };
+
     useEffect(() => {
         const handleStart = (): void => {
             document.body.style.position = '';
@@ -126,15 +151,15 @@ const Header = (): ReactElement => {
     return (
         <>
             <div className={css.backdrop} />
-            <header className={css.header}>
+            <header className={css.header} onClick={handleClick} tabIndex={0}>
                 <Container>
-                    <div className={css.flex}>
+                    <div className={css.flex} onClick={handleClick} tabIndex={0}>
                         <div className={css.wrp}>
                             <Logo link />
                         </div>
 
                         {!!token.access_token && (
-                            <button className={clsx(css.button, open && css.open)} type="button" onClick={handleToggle}>
+                            <button type="button" onClick={handleToggle} className={clsx(css.down, open && css.open)}>
                                 <FontAwesomeIcon icon={faAngleDoubleDown} />
                             </button>
                         )}

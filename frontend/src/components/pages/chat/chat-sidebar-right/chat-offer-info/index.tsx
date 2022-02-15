@@ -7,6 +7,7 @@ import { useRouter } from 'next/router';
 import { createUseStyles } from 'react-jss';
 import { useSelector } from 'react-redux';
 import Slider from 'react-slick';
+import { CSSTransition } from 'react-transition-group';
 
 import { IChatOfferInfo, IChatsList, IPublicProfile, IState } from '../../../../../interfaces';
 import { cutString } from '../../../../../utils/helpers';
@@ -26,6 +27,16 @@ const useStyles = createUseStyles((theme: Theme) => ({
     root: {
         paddingBottom: theme.rem(8),
         fontSize: theme.rem(1.2),
+        transition: theme.transitions[1],
+
+        '&.appear, &.exit': {
+            transform: 'translateY(2rem)',
+            opacity: 0,
+        },
+        '&.appear-done': {
+            transform: 'translateY(0)',
+            opacity: 1,
+        },
     },
     banner: {
         height: theme.rem(20),
@@ -146,67 +157,69 @@ const ChatOfferInfo = (): ReactElement | null => {
     const offer = offerInfo?.data;
 
     return offer ? (
-        <div className={css.root}>
-            {offer.author_id === user?.id ? (
-                <ChatUserInfoHOC id={currentChat?.recipient_id}>
-                    {profile => <ChatConfirmation offerTitle={offer?.title} profile={profile} />}
-                </ChatUserInfoHOC>
-            ) : (
-                <ChatUserInfoHOC id={offer.author_id}>
-                    {profile => (
-                        <>
-                            <ChatDeleteButton className={css.flex} />
-                            <ProfileCard
-                                column
-                                id={profile?.id}
-                                firstName={profile?.first_name}
-                                lastName={profile?.last_name}
-                                lastActivity={profile?.last_activity}
-                                avatar={profile?.profile_img}
-                                userLocation={profile?.city}
-                                registerDate={profile?.date_joined}
-                            />
-                        </>
-                    )}
-                </ChatUserInfoHOC>
-            )}
+        <CSSTransition timeout={300} in appear exit>
+            <div className={css.root}>
+                {offer.author_id === user?.id ? (
+                    <ChatUserInfoHOC id={currentChat?.recipient_id}>
+                        {profile => <ChatConfirmation offerTitle={offer?.title} profile={profile} />}
+                    </ChatUserInfoHOC>
+                ) : (
+                    <ChatUserInfoHOC id={offer.author_id}>
+                        {profile => (
+                            <>
+                                <ChatDeleteButton className={css.flex} />
+                                <ProfileCard
+                                    column
+                                    id={profile?.id}
+                                    firstName={profile?.first_name}
+                                    lastName={profile?.last_name}
+                                    lastActivity={profile?.last_activity}
+                                    avatar={profile?.profile_img}
+                                    userLocation={profile?.city}
+                                    registerDate={profile?.date_joined}
+                                />
+                            </>
+                        )}
+                    </ChatUserInfoHOC>
+                )}
 
-            {!!offer.images?.length && (
-                <Slider
-                    slidesToShow={1}
-                    slidesToScroll={1}
-                    initialSlide={0}
-                    swipeToSlide
-                    autoplaySpeed={3000}
-                    autoplay
-                    draggable
-                    infinite
-                    lazyLoad="progressive"
-                    className={css.slider}
-                >
-                    {offer.images?.map(item => (
-                        <img key={item} className={css.img} src={item} alt="phoqer" />
-                    ))}
-                </Slider>
-            )}
+                {!!offer.images?.length && (
+                    <Slider
+                        slidesToShow={1}
+                        slidesToScroll={1}
+                        initialSlide={0}
+                        swipeToSlide
+                        autoplaySpeed={3000}
+                        autoplay
+                        draggable
+                        infinite
+                        lazyLoad="progressive"
+                        className={css.slider}
+                    >
+                        {offer.images?.map(item => (
+                            <img key={item} className={css.img} src={item} alt="phoqer" />
+                        ))}
+                    </Slider>
+                )}
 
-            <Link href={routes.offers.single(offer.id)}>
-                <a className={css.link}>
-                    <Tooltip content="Просмотреть объявление">
-                        <h2 className={css.title}>{offer.title}</h2>
-                        <p className={css.text}>{cutString(offer.description, 100)}</p>
-                    </Tooltip>
-                </a>
-            </Link>
+                <Link href={routes.offers.single(offer.id)}>
+                    <a className={css.link}>
+                        <Tooltip content="Просмотреть объявление">
+                            <h2 className={css.title}>{offer.title}</h2>
+                            <p className={css.text}>{cutString(offer.description, 100)}</p>
+                        </Tooltip>
+                    </a>
+                </Link>
 
-            <p className={css.eye}>
-                <FontAwesomeIcon icon={faEye} />
-                <span>{(offer?.views || 0) + 1}</span>
-            </p>
+                <p className={css.eye}>
+                    <FontAwesomeIcon icon={faEye} />
+                    <span>{(offer?.views || 0) + 1}</span>
+                </p>
 
-            <Requirements offer={offer} />
-            <Price offer={offer} />
-        </div>
+                <Requirements offer={offer} />
+                <Price offer={offer} />
+            </div>
+        </CSSTransition>
     ) : null;
 };
 export default ChatOfferInfo;

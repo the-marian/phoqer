@@ -12,12 +12,14 @@ exports[`Confirmation component match snapshot 1`] = `
   />
   <header
     class="header-0-2-9"
+    tabindex="0"
   >
     <div
       class="container-0-2-15"
     >
       <div
         class="flex-0-2-10"
+        tabindex="0"
       >
         <div
           class="wrp-0-2-11"
@@ -59,7 +61,7 @@ exports[`Confirmation component match snapshot 1`] = `
             >
               <button
                 class="inner-0-2-24"
-                style="height: 3.8rem;"
+                style="height: 3.5rem;"
                 type="button"
               >
                 <svg
@@ -80,15 +82,17 @@ exports[`Confirmation component match snapshot 1`] = `
               </button>
             </div>
           </div>
-          <div>
+          <div
+            class="root-0-2-35"
+          >
             <button
-              class="btn-0-2-35"
+              class="btn-0-2-36"
               type="button"
             >
               Login
             </button>
             <button
-              class="btn-0-2-35"
+              class="btn-0-2-36"
               type="button"
             >
               Join Phoqer

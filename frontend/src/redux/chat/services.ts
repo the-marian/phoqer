@@ -7,8 +7,8 @@ import endpoint from '../../utils/endpoint';
 import { INewChat } from './chats/interfaces';
 
 const services = {
-    chats: (page = 1, type: ChatTypeEnum = ChatTypeEnum.CLIENT): Promise<AxiosResponse<IPagination<IChats>>> =>
-        api.get(endpoint(`/chats?${type}=true`), { params: { page } }),
+    chats: (page = 1, type = ChatTypeEnum.CLIENT): Promise<AxiosResponse<IPagination<IChats>>> =>
+        api.get(endpoint(`/chats?${type === ChatTypeEnum.CLIENT ? 'i_am_client' : 'i_am_author'}=true`), { params: { page } }),
     singleChat: (id: number): Promise<AxiosResponse<IChats>> => api.get(endpoint(`/chats/${id}`)),
     updateChat: (id: number, status: ChatStatus): Promise<AxiosResponse<void>> => api.patch(endpoint(`/chats/${id}`), { status }),
     createChat: (body: INewChat): Promise<AxiosResponse<INewChat>> => api.post(endpoint('/chats'), body),

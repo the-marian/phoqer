@@ -15,10 +15,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import useAuth from '../../../../hooks/auth.hook';
 import useMedia from '../../../../hooks/media.hook';
 import useTrans from '../../../../hooks/trans.hook';
-import { ChatTypeEnum, IDropList, IDropValue, IOfferCard, IPublicProfile, IState } from '../../../../interfaces';
+import { IDropList, IDropValue, IOfferCard, IPublicProfile, IState } from '../../../../interfaces';
 import types from '../../../../redux/types';
 import { cutString, moneyFormat } from '../../../../utils/helpers';
 import routes from '../../../../utils/routes';
+import NewChatModal from '../../../pages/chat/components/new-chat-modal';
 import LoginForm from '../../auth/forms/login-form';
 import DropDown from '../../drop-down';
 import { modal } from '../../modal';
@@ -73,8 +74,7 @@ const OfferCard = ({ offer, showFavoriteBtn = true }: IProps): ReactElement => {
 
     const handleOpenChat = (): void => {
         if (!isLogin()) return;
-        dispatch({ type: types.CHANGE_CHAT_TYPE, payload: ChatTypeEnum.CLIENT });
-        history.push(routes.chat.new(id));
+        modal.open(<NewChatModal offer={offer} />);
     };
 
     const USER_ACTIONS = {
