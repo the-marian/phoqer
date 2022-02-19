@@ -17,6 +17,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         alignItems: 'center',
         justifyContent: 'center',
         flexDirection: 'column',
+        color: theme.palette.black[0],
     },
     img: {
         display: 'flex',

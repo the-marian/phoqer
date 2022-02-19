@@ -27,12 +27,14 @@ const useStyles = createUseStyles((theme: Theme) => ({
         width: '100%',
         transition: theme.transitions[0],
         background: theme.palette.gray[0],
-        cursor: 'pointer',
 
         ...theme.media(768).max({
             background: theme.palette.white,
             padding: theme.rem(0.3, 0),
         }),
+    },
+    cursor: {
+        cursor: 'pointer',
     },
     flex: {
         position: 'relative',
@@ -115,6 +117,8 @@ const Header = (): ReactElement => {
     const [open, setOpen] = useState(false);
 
     const handleToggle = (): void => {
+        if (!token.access_token) return;
+
         if (!open) {
             scrollRef.current = window.scrollY;
             document.body.style.position = 'fixed';
@@ -151,7 +155,7 @@ const Header = (): ReactElement => {
     return (
         <>
             <div className={css.backdrop} />
-            <header className={css.header} onClick={handleClick} tabIndex={0}>
+            <header className={clsx(css.header, token.access_token && css.cursor)} onClick={handleClick} tabIndex={0}>
                 <Container>
                     <div className={css.flex} onClick={handleClick} tabIndex={0}>
                         <div className={css.wrp}>
@@ -171,7 +175,7 @@ const Header = (): ReactElement => {
                     </div>
                 </Container>
             </header>
-            <MainDrawer open={open} onToggle={handleToggle} />
+            {open && <MainDrawer onToggle={handleToggle} />}
         </>
     );
 };

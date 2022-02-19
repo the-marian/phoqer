@@ -177,8 +177,13 @@ const OfferCard = ({ offer, showFavoriteBtn = true }: IProps): ReactElement => {
                             )}
                         </div>
                         <img className={media ? css.imgBig : css.imgSmall} src={cover_image || '/icons/no_img.png'} alt={title} />
+
+                        <p className={css.price}>
+                            {moneyFormat(price)} {trans('uah')}
+                        </p>
                     </div>
 
+                    <p className={css.period}>Цена за: {trans('day')}</p>
                     {media ? (
                         <>
                             <h3 className={css.titleBig}>{title}</h3>
@@ -211,36 +216,25 @@ const OfferCard = ({ offer, showFavoriteBtn = true }: IProps): ReactElement => {
                 />
             ) : null}
 
-            <div className={css.action}>
-                <p className={clsx(css.price, !media && css.priceSmall)}>
-                    <span>{moneyFormat(price)}</span>
-                    <small>{`${trans('uah')} / ${trans('day')}`}</small>
-                </p>
+            {showFavoriteBtn && media && (
+                <div className={css.actionBtn}>
+                    {canRent ? (
+                        <>
+                            <button type="button" className={css.btn} onClick={handleOpenChat}>
+                                {trans('rent')}
+                            </button>
 
-                {showFavoriteBtn && media && (
-                    <div className={css.actionBtn}>
-                        {canRent ? (
-                            <>
-                                <button type="button" className={css.btn} onClick={handleOpenChat}>
-                                    {trans('rent')}
+                            <Tooltip className={css.tooltip} content="Добавить в избранное">
+                                <button type="button" className={clsx(css.favorite)} onClick={handleFavorite}>
+                                    {is_favorite ? <FontAwesomeIcon icon={faSolidHeart} /> : <FontAwesomeIcon icon={faHeart} />}
                                 </button>
-
-                                <Tooltip className={css.tooltip} content="Добавить в избранное">
-                                    <button type="button" className={clsx(css.favorite)} onClick={handleFavorite}>
-                                        {is_favorite ? (
-                                            <FontAwesomeIcon icon={faSolidHeart} />
-                                        ) : (
-                                            <FontAwesomeIcon icon={faHeart} />
-                                        )}
-                                    </button>
-                                </Tooltip>
-                            </>
-                        ) : (
-                            <p className={css.cantRent}>Вы не можете арендовать это объявление</p>
-                        )}
-                    </div>
-                )}
-            </div>
+                            </Tooltip>
+                        </>
+                    ) : (
+                        <p className={css.cantRent}>Вы не можете арендовать это объявление</p>
+                    )}
+                </div>
+            )}
         </div>
     );
 };

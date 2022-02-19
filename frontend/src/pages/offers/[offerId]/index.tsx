@@ -12,6 +12,7 @@ import GetStaticProfile from '../../../components/common/auth/get-static-profile
 import Container from '../../../components/layout/container';
 import PageLayout from '../../../components/layout/page-layout';
 import SingleOfferContent from '../../../components/pages/offers/single-offer/single-offer-content';
+import { useRecentOffers } from '../../../hooks/recent-offers.hook';
 import { IOfferCard, IOfferPagination, IStore } from '../../../interfaces';
 import services from '../../../redux/offers/services';
 import { wrapper } from '../../../redux/store';
@@ -24,10 +25,14 @@ interface IProps {
 
 const SingleOfferPage = ({ data }: IProps): JSX.Element => {
     const dispatch = useDispatch();
+    const storage = useRecentOffers();
 
     useEffect(() => {
-        dispatch({ type: types.GET_POPULAR_OFFERS_SUCCESS, payload: data });
-    }, [dispatch, data]);
+        if (data) {
+            dispatch({ type: types.GET_POPULAR_OFFERS_SUCCESS, payload: data });
+            storage.set(data);
+        }
+    }, [dispatch, data, storage]);
 
     return (
         <GetStaticProfile>

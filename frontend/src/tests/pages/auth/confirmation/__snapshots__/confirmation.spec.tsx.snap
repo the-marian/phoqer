@@ -8,28 +8,28 @@ exports[`Confirmation component match snapshot 1`] = `
     PHOQER is an online platform that brings people together to share goods and services. PHOQER - here you will find what you are looking for! By clicking the Submit button, you will be able to place offers on any topic easily and quickly.
   </h1>
   <div
-    class="backdrop-0-2-14"
+    class="backdrop-0-2-15"
   />
   <header
     class="header-0-2-9"
     tabindex="0"
   >
     <div
-      class="container-0-2-15"
+      class="container-0-2-16"
     >
       <div
-        class="flex-0-2-10"
+        class="flex-0-2-11"
         tabindex="0"
       >
         <div
-          class="wrp-0-2-11"
+          class="wrp-0-2-12"
         >
           <a
-            class="logo-0-2-16"
+            class="logo-0-2-17"
             href="/"
           >
             <svg
-              class="img-0-2-19"
+              class="img-0-2-20"
               fill="none"
               viewBox="0 0 148 39"
               xmlns="http://www.w3.org/2000/svg"
@@ -39,28 +39,28 @@ exports[`Confirmation component match snapshot 1`] = `
               />
             </svg>
             <small
-              class="label-0-2-17"
+              class="label-0-2-18"
             >
               alpha
             </small>
           </a>
         </div>
         <div
-          class="wrp-0-2-11"
+          class="wrp-0-2-12"
         >
           <div
-            class="wrp-0-2-20"
+            class="wrp-0-2-21"
           >
             <p
-              class="text-0-2-21"
+              class="text-0-2-22"
             >
               EN
             </p>
             <div
-              class="wrp-0-2-23 lang-0-2-22"
+              class="wrp-0-2-24 lang-0-2-23"
             >
               <button
-                class="inner-0-2-24"
+                class="inner-0-2-25"
                 style="height: 3.5rem;"
                 type="button"
               >
@@ -83,16 +83,16 @@ exports[`Confirmation component match snapshot 1`] = `
             </div>
           </div>
           <div
-            class="root-0-2-35"
+            class="root-0-2-36"
           >
             <button
-              class="btn-0-2-36"
+              class="btn-0-2-37"
               type="button"
             >
               Login
             </button>
             <button
-              class="btn-0-2-36"
+              class="btn-0-2-37"
               type="button"
             >
               Join Phoqer
@@ -106,7 +106,7 @@ exports[`Confirmation component match snapshot 1`] = `
     class="root-0-2-1"
   >
     <div
-      class="container-0-2-15"
+      class="container-0-2-16"
     >
       <div
         class="flex-0-2-2"

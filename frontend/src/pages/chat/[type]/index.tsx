@@ -26,7 +26,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
 
         ...theme.media(1060).max({
             height: 'auto',
-            padding: theme.rem(1, 0, 8),
+            padding: theme.rem(1, 0, 4),
         }),
     },
     chat: {

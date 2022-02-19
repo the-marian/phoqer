@@ -1,6 +1,7 @@
 import React, { ReactElement, useCallback, useEffect, useRef } from 'react';
 
 import { GetServerSideProps } from 'next';
+import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
 import { createUseStyles } from 'react-jss';
 import { useDispatch, useSelector } from 'react-redux';
@@ -24,6 +25,8 @@ import initState from '../../redux/state';
 import { wrapper } from '../../redux/store';
 import types from '../../redux/types';
 import { findCategory, findSubCategory, parseCookie } from '../../utils/helpers';
+
+const RecentOffers = dynamic(() => import('../../components/common/offers/recent-offers'), { ssr: false });
 
 const useStyles = createUseStyles({
     main: {
@@ -99,6 +102,8 @@ const OffersPage = (): ReactElement => {
                     <OffersList loading={pagination} loadMoreLoading={loading} data={data?.data} />
                     <Pagination loading={pagination} total={data.total} onClick={handleClick} onMore={handleMore} />
                 </Container>
+
+                <RecentOffers />
 
                 <About />
             </PageLayout>

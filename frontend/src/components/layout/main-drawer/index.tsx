@@ -1,8 +1,8 @@
 import React, { ReactElement, useEffect } from 'react';
 
-import clsx from 'clsx';
 import ReactDOM from 'react-dom';
 import { createUseStyles } from 'react-jss';
+import { CSSTransition } from 'react-transition-group';
 
 import { Theme } from '../../../utils/theming/theme';
 import Gift from '../../common/advertising/gift';
@@ -17,13 +17,18 @@ const useStyles = createUseStyles((theme: Theme) => ({
         top: 0,
         left: 0,
         zIndex: 1000,
-        transform: 'translateY(-5rem)',
         width: '100%',
         height: 0,
+        transform: 'translateY(-5rem)',
         paddingTop: theme.rem(5),
         background: theme.palette.white,
         overflow: 'hidden',
         transition: theme.transitions[0],
+
+        '&.enter-done': {
+            height: '100vh',
+            transform: 'translateY(0)',
+        },
     },
     flex: {
         display: 'flex',
@@ -35,10 +40,6 @@ const useStyles = createUseStyles((theme: Theme) => ({
             scrollBehavior: 'smooth',
             '-webkit-overflow-scrolling': 'touch',
         }),
-    },
-    open: {
-        height: '100vh',
-        transform: 'translateY(0)',
     },
     left: {
         height: '100%',
@@ -95,39 +96,38 @@ const useStyles = createUseStyles((theme: Theme) => ({
 }));
 
 interface IProps {
-    open: boolean;
     onToggle: () => void;
 }
 
-const MainDrawer = ({ open, onToggle }: IProps): ReactElement => {
+const MainDrawer = ({ onToggle }: IProps): ReactElement => {
     const css = useStyles();
 
     useEffect(() => {
-        if (open) {
-            const handler = (event: KeyboardEvent): void => {
-                if (event.key === 'Escape') onToggle();
-            };
-            window.addEventListener('keydown', handler);
-            return () => {
-                window.removeEventListener('keydown', handler);
-            };
-        }
-    }, [onToggle, open]);
+        const handler = (event: KeyboardEvent): void => {
+            if (event.key === 'Escape') onToggle();
+        };
+        window.addEventListener('keydown', handler);
+        return () => {
+            window.removeEventListener('keydown', handler);
+        };
+    }, [onToggle]);
 
     return ReactDOM.createPortal(
-        <div className={clsx(css.root, open && css.open)}>
-            <h3 className={css.title}>Phoqer site menu</h3>
-            <Container className={css.flex}>
-                <div className={css.left}>
-                    <LeftSide />
-                </div>
-                <div className={css.right}>
-                    <Gift style={{ marginBottom: '2rem' }} />
-                    <h2 className={css.subtitle}>Мои уведомления</h2>
-                    <Notifications />
-                </div>
-            </Container>
-        </div>,
+        <CSSTransition timeout={300} in appear>
+            <div className={css.root}>
+                <h3 className={css.title}>Phoqer site menu</h3>
+                <Container className={css.flex}>
+                    <div className={css.left}>
+                        <LeftSide />
+                    </div>
+                    <div className={css.right}>
+                        <Gift style={{ marginBottom: '2rem' }} />
+                        <h2 className={css.subtitle}>Мои уведомления</h2>
+                        <Notifications />
+                    </div>
+                </Container>
+            </div>
+        </CSSTransition>,
         document.body,
     );
 };

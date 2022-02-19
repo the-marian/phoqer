@@ -3,28 +3,28 @@
 exports[`Home component match snapshot 1`] = `
 <DocumentFragment>
   <div
-    class="backdrop-0-2-6"
+    class="backdrop-0-2-7"
   />
   <header
     class="header-0-2-1"
     tabindex="0"
   >
     <div
-      class="container-0-2-7"
+      class="container-0-2-8"
     >
       <div
-        class="flex-0-2-2"
+        class="flex-0-2-3"
         tabindex="0"
       >
         <div
-          class="wrp-0-2-3"
+          class="wrp-0-2-4"
         >
           <a
-            class="logo-0-2-8"
+            class="logo-0-2-9"
             href="/"
           >
             <svg
-              class="img-0-2-11"
+              class="img-0-2-12"
               fill="none"
               viewBox="0 0 148 39"
               xmlns="http://www.w3.org/2000/svg"
@@ -34,28 +34,28 @@ exports[`Home component match snapshot 1`] = `
               />
             </svg>
             <small
-              class="label-0-2-9"
+              class="label-0-2-10"
             >
               alpha
             </small>
           </a>
         </div>
         <div
-          class="wrp-0-2-3"
+          class="wrp-0-2-4"
         >
           <div
-            class="wrp-0-2-12"
+            class="wrp-0-2-13"
           >
             <p
-              class="text-0-2-13"
+              class="text-0-2-14"
             >
               EN
             </p>
             <div
-              class="wrp-0-2-15 lang-0-2-14"
+              class="wrp-0-2-16 lang-0-2-15"
             >
               <button
-                class="inner-0-2-16"
+                class="inner-0-2-17"
                 style="height: 3.5rem;"
                 type="button"
               >
@@ -78,16 +78,16 @@ exports[`Home component match snapshot 1`] = `
             </div>
           </div>
           <div
-            class="root-0-2-27"
+            class="root-0-2-28"
           >
             <button
-              class="btn-0-2-28"
+              class="btn-0-2-29"
               type="button"
             >
               Login
             </button>
             <button
-              class="btn-0-2-28"
+              class="btn-0-2-29"
               type="button"
             >
               Join Phoqer
@@ -98,36 +98,36 @@ exports[`Home component match snapshot 1`] = `
     </div>
   </header>
   <main
-    class="main-0-2-29"
+    class="main-0-2-30"
   >
     <div
-      class="container-0-2-7"
+      class="container-0-2-8"
     >
       <h1
-        class="title-0-2-36"
+        class="title-0-2-37"
       >
         PHOQER is an online platform that brings people together to share goods and services. PHOQER - here you will find what you are looking for! By clicking the Submit button, you will be able to place offers on any topic easily and quickly.
       </h1>
       <div
-        class="container-0-2-32"
+        class="container-0-2-33"
       >
         <img
           alt="no data"
-          class="img-0-2-30"
+          class="img-0-2-31"
           src="/no_data.gif"
         />
         <h2
-          class="title-0-2-33"
+          class="title-0-2-34"
         >
           404
         </h2>
         <p
-          class="text-0-2-34"
+          class="text-0-2-35"
         >
           This page does not exist or has been deleted.
         </p>
         <a
-          class="link-0-2-35"
+          class="link-0-2-36"
           href="/"
         >
           Go to Home page
@@ -136,16 +136,16 @@ exports[`Home component match snapshot 1`] = `
     </div>
   </main>
   <footer
-    class="footer-0-2-38"
+    class="footer-0-2-39"
   >
     <div
-      class="container-0-2-7"
+      class="container-0-2-8"
     >
       <div
-        class="logo-0-2-8"
+        class="logo-0-2-9"
       >
         <svg
-          class="img-0-2-11"
+          class="img-0-2-12"
           fill="none"
           viewBox="0 0 148 39"
           xmlns="http://www.w3.org/2000/svg"
@@ -155,82 +155,82 @@ exports[`Home component match snapshot 1`] = `
           />
         </svg>
         <small
-          class="label-0-2-9"
+          class="label-0-2-10"
         >
           alpha
         </small>
       </div>
       <div
-        class="wrp-0-2-39"
+        class="wrp-0-2-40"
       >
         <ul
-          class="list-0-2-40"
+          class="list-0-2-41"
         >
           <li
-            class="item-0-2-41"
+            class="item-0-2-42"
           >
             <a
-              class="link-0-2-42"
+              class="link-0-2-43"
               href="/static/help"
             >
               Help and Feedback
             </a>
           </li>
           <li
-            class="item-0-2-41"
+            class="item-0-2-42"
           >
             <a
-              class="link-0-2-42"
+              class="link-0-2-43"
               href="/static/business"
             >
               Advertising preferences
             </a>
           </li>
           <li
-            class="item-0-2-41"
+            class="item-0-2-42"
           >
             <a
-              class="link-0-2-42"
+              class="link-0-2-43"
               href="/static/rules"
             >
               Terms of service
             </a>
           </li>
           <li
-            class="item-0-2-41"
+            class="item-0-2-42"
           >
             <a
-              class="link-0-2-42"
+              class="link-0-2-43"
               href="/static/politic"
             >
               Privacy statement
             </a>
           </li>
           <li
-            class="item-0-2-41"
+            class="item-0-2-42"
           >
             <a
-              class="link-0-2-42"
+              class="link-0-2-43"
               href="/static/faq"
             >
               FAQ
             </a>
           </li>
           <li
-            class="item-0-2-41"
+            class="item-0-2-42"
           >
             <a
-              class="link-0-2-42"
+              class="link-0-2-43"
               href="/static/safety"
             >
               Safety rules
             </a>
           </li>
           <li
-            class="item-0-2-41"
+            class="item-0-2-42"
           >
             <a
-              class="link-0-2-42"
+              class="link-0-2-43"
               href="/static/map"
             >
               Site map
@@ -239,22 +239,22 @@ exports[`Home component match snapshot 1`] = `
         </ul>
         <div>
           <h3
-            class="title-0-2-45"
+            class="title-0-2-46"
           >
             Social networks:
           </h3>
           <ul
-            class="list-0-2-43"
+            class="list-0-2-44"
           >
             <li>
               <a
-                class="link-0-2-46"
+                class="link-0-2-47"
                 href="https://www.facebook.com/phoqer.inc"
                 rel="noopener noreferrer"
                 target="_blank"
               >
                 <svg
-                  class="svg-0-2-48"
+                  class="svg-0-2-49"
                   enable-background="new 0 0 24 24"
                   id="Bold"
                   viewBox="0 0 24 24"
@@ -268,13 +268,13 @@ exports[`Home component match snapshot 1`] = `
             </li>
             <li>
               <a
-                class="link-0-2-46"
+                class="link-0-2-47"
                 href="https://www.instagram.com/phoqer/"
                 rel="noopener noreferrer"
                 target="_blank"
               >
                 <svg
-                  class="svg-0-2-48"
+                  class="svg-0-2-49"
                   enable-background="new 0 0 24 24"
                   id="Bold"
                   viewBox="0 0 24 24"
@@ -296,13 +296,13 @@ exports[`Home component match snapshot 1`] = `
             </li>
             <li>
               <a
-                class="link-0-2-46"
+                class="link-0-2-47"
                 href="http://www.google.com/"
                 rel="noopener noreferrer"
                 target="_blank"
               >
                 <svg
-                  class="svg-0-2-48"
+                  class="svg-0-2-49"
                   viewBox="0 -47 512.00004 512"
                   xmlns="http://www.w3.org/2000/svg"
                 >
@@ -314,13 +314,13 @@ exports[`Home component match snapshot 1`] = `
             </li>
             <li>
               <a
-                class="link-0-2-46"
+                class="link-0-2-47"
                 href="https://t.me/phoqer"
                 rel="noopener noreferrer"
                 target="_blank"
               >
                 <svg
-                  class="svg-0-2-48"
+                  class="svg-0-2-49"
                   viewBox="0 -39 512.00011 512"
                   xmlns="http://www.w3.org/2000/svg"
                 >

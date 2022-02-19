@@ -92,8 +92,8 @@ const useStyles = createUseStyles((theme: Theme) => ({
         }),
     },
     titleSmall: {
-        margin: theme.rem(1),
-        fontWeight: theme.text.weight[2],
+        margin: theme.rem(0, 1, 1),
+        fontWeight: theme.text.weight[4],
 
         ...mixin(theme).cutStringMultiLine(2, 1.2),
     },
@@ -121,10 +121,6 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
     view: {
         paddingLeft: theme.rem(1),
-    },
-    action: {
-        display: 'flex',
-        flexDirection: 'column',
     },
     actionBtn: {
         display: 'flex',
@@ -161,43 +157,6 @@ const useStyles = createUseStyles((theme: Theme) => ({
             fontSize: theme.rem(2),
         }),
     },
-    price: {
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        margin: theme.rem(0, 0, 1, 0),
-        fontSize: theme.rem(1.4),
-        fontWeight: theme.text.weight[3],
-        color: theme.palette.black[0],
-        textTransform: 'lowercase',
-
-        '& small': {
-            fontWeight: theme.text.weight[2],
-            fontSize: theme.rem(1.2),
-            color: theme.palette.primary[4],
-        },
-
-        ...theme.media(500).max({
-            fontSize: theme.rem(1.8),
-
-            '& small': {
-                fontSize: theme.rem(1.4),
-            },
-        }),
-    },
-    priceSmall: {
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        margin: theme.rem(0.3, 1),
-        fontSize: theme.rem(1.4),
-        color: theme.palette.primary[0],
-        fontWeight: theme.text.weight[4],
-
-        '& small': {
-            fontSize: theme.rem(1),
-        },
-    },
     dropdown: {
         position: 'absolute',
         top: theme.rem(0.5),
@@ -230,6 +189,26 @@ const useStyles = createUseStyles((theme: Theme) => ({
         fontSize: theme.rem(1.2),
         color: theme.palette.primary[0],
         fontWeight: theme.text.weight[3],
+    },
+    price: {
+        position: 'absolute',
+        bottom: theme.rem(1),
+        left: theme.rem(1),
+        background: theme.palette.black[0],
+        color: theme.palette.white,
+        padding: theme.rem(0.2, 1),
+        borderRadius: theme.radius,
+        fontSize: theme.rem(1.2),
+    },
+    period: {
+        margin: theme.rem(1, 0, 0.5),
+        fontSize: theme.rem(1.2),
+        fontWeight: theme.text.weight[2],
+        color: theme.palette.gray[4],
+
+        ...theme.media(768).max({
+            margin: theme.rem(1, 1, 0.5),
+        }),
     },
 }));
 

@@ -8,28 +8,28 @@ exports[`ForgotPass component match snapshot 1`] = `
     Reset password. PHOQER is an online platform that brings people together to share goods and services. PHOQER - here you will find what you are looking for! By clicking the Submit button, you will be able to place offers on any topic easily and quickly.
   </h1>
   <div
-    class="backdrop-0-2-10"
+    class="backdrop-0-2-11"
   />
   <header
     class="header-0-2-5"
     tabindex="0"
   >
     <div
-      class="container-0-2-11"
+      class="container-0-2-12"
     >
       <div
-        class="flex-0-2-6"
+        class="flex-0-2-7"
         tabindex="0"
       >
         <div
-          class="wrp-0-2-7"
+          class="wrp-0-2-8"
         >
           <a
-            class="logo-0-2-12"
+            class="logo-0-2-13"
             href="/"
           >
             <svg
-              class="img-0-2-15"
+              class="img-0-2-16"
               fill="none"
               viewBox="0 0 148 39"
               xmlns="http://www.w3.org/2000/svg"
@@ -39,28 +39,28 @@ exports[`ForgotPass component match snapshot 1`] = `
               />
             </svg>
             <small
-              class="label-0-2-13"
+              class="label-0-2-14"
             >
               alpha
             </small>
           </a>
         </div>
         <div
-          class="wrp-0-2-7"
+          class="wrp-0-2-8"
         >
           <div
-            class="wrp-0-2-16"
+            class="wrp-0-2-17"
           >
             <p
-              class="text-0-2-17"
+              class="text-0-2-18"
             >
               EN
             </p>
             <div
-              class="wrp-0-2-19 lang-0-2-18"
+              class="wrp-0-2-20 lang-0-2-19"
             >
               <button
-                class="inner-0-2-20"
+                class="inner-0-2-21"
                 style="height: 3.5rem;"
                 type="button"
               >
@@ -83,16 +83,16 @@ exports[`ForgotPass component match snapshot 1`] = `
             </div>
           </div>
           <div
-            class="root-0-2-31"
+            class="root-0-2-32"
           >
             <button
-              class="btn-0-2-32"
+              class="btn-0-2-33"
               type="button"
             >
               Login
             </button>
             <button
-              class="btn-0-2-32"
+              class="btn-0-2-33"
               type="button"
             >
               Join Phoqer
@@ -103,10 +103,10 @@ exports[`ForgotPass component match snapshot 1`] = `
     </div>
   </header>
   <main
-    class="main-0-2-33"
+    class="main-0-2-34"
   >
     <div
-      class="container-0-2-11"
+      class="container-0-2-12"
     >
       <div
         class="root-0-2-2"
@@ -124,15 +124,15 @@ exports[`ForgotPass component match snapshot 1`] = `
             method="post"
           >
             <h2
-              class="title-0-2-34"
+              class="title-0-2-35"
             >
               Welcome!
             </h2>
             <div
-              class="wrp-0-2-35"
+              class="wrp-0-2-36"
             >
               <div
-                class="icon-0-2-37"
+                class="icon-0-2-38"
               >
                 <svg
                   aria-hidden="true"
@@ -151,14 +151,14 @@ exports[`ForgotPass component match snapshot 1`] = `
                 </svg>
               </div>
               <div
-                class="wrp-0-2-41"
+                class="wrp-0-2-42"
               >
                 <div
-                  class="inner-0-2-42"
+                  class="inner-0-2-43"
                 >
                   <input
                     autocomplete="email"
-                    class="input-0-2-43 input-0-2-36"
+                    class="input-0-2-44 input-0-2-37"
                     name="email"
                     placeholder=""
                     type="email"
@@ -168,7 +168,7 @@ exports[`ForgotPass component match snapshot 1`] = `
               </div>
             </div>
             <button
-              class="btn-0-2-52 btn-0-2-39"
+              class="btn-0-2-53 btn-0-2-40"
               type="submit"
             >
               <span>
@@ -176,18 +176,18 @@ exports[`ForgotPass component match snapshot 1`] = `
               </span>
             </button>
             <a
-              class="link-0-2-38"
+              class="link-0-2-39"
               href="/auth/login"
             >
               Login
             </a>
             <p
-              class="text-0-2-40"
+              class="text-0-2-41"
             >
               or
             </p>
             <a
-              class="link-0-2-38"
+              class="link-0-2-39"
               href="/auth/join"
             >
               Join Phoqer
@@ -198,16 +198,16 @@ exports[`ForgotPass component match snapshot 1`] = `
     </div>
   </main>
   <footer
-    class="footer-0-2-56"
+    class="footer-0-2-57"
   >
     <div
-      class="container-0-2-11"
+      class="container-0-2-12"
     >
       <div
-        class="logo-0-2-12"
+        class="logo-0-2-13"
       >
         <svg
-          class="img-0-2-15"
+          class="img-0-2-16"
           fill="none"
           viewBox="0 0 148 39"
           xmlns="http://www.w3.org/2000/svg"
@@ -217,82 +217,82 @@ exports[`ForgotPass component match snapshot 1`] = `
           />
         </svg>
         <small
-          class="label-0-2-13"
+          class="label-0-2-14"
         >
           alpha
         </small>
       </div>
       <div
-        class="wrp-0-2-57"
+        class="wrp-0-2-58"
       >
         <ul
-          class="list-0-2-58"
+          class="list-0-2-59"
         >
           <li
-            class="item-0-2-59"
+            class="item-0-2-60"
           >
             <a
-              class="link-0-2-60"
+              class="link-0-2-61"
               href="/static/help"
             >
               Help and Feedback
             </a>
           </li>
           <li
-            class="item-0-2-59"
+            class="item-0-2-60"
           >
             <a
-              class="link-0-2-60"
+              class="link-0-2-61"
               href="/static/business"
             >
               Advertising preferences
             </a>
           </li>
           <li
-            class="item-0-2-59"
+            class="item-0-2-60"
           >
             <a
-              class="link-0-2-60"
+              class="link-0-2-61"
               href="/static/rules"
             >
               Terms of service
             </a>
           </li>
           <li
-            class="item-0-2-59"
+            class="item-0-2-60"
           >
             <a
-              class="link-0-2-60"
+              class="link-0-2-61"
               href="/static/politic"
             >
               Privacy statement
             </a>
           </li>
           <li
-            class="item-0-2-59"
+            class="item-0-2-60"
           >
             <a
-              class="link-0-2-60"
+              class="link-0-2-61"
               href="/static/faq"
             >
               FAQ
             </a>
           </li>
           <li
-            class="item-0-2-59"
+            class="item-0-2-60"
           >
             <a
-              class="link-0-2-60"
+              class="link-0-2-61"
               href="/static/safety"
             >
               Safety rules
             </a>
           </li>
           <li
-            class="item-0-2-59"
+            class="item-0-2-60"
           >
             <a
-              class="link-0-2-60"
+              class="link-0-2-61"
               href="/static/map"
             >
               Site map
@@ -301,22 +301,22 @@ exports[`ForgotPass component match snapshot 1`] = `
         </ul>
         <div>
           <h3
-            class="title-0-2-63"
+            class="title-0-2-64"
           >
             Social networks:
           </h3>
           <ul
-            class="list-0-2-61"
+            class="list-0-2-62"
           >
             <li>
               <a
-                class="link-0-2-64"
+                class="link-0-2-65"
                 href="https://www.facebook.com/phoqer.inc"
                 rel="noopener noreferrer"
                 target="_blank"
               >
                 <svg
-                  class="svg-0-2-66"
+                  class="svg-0-2-67"
                   enable-background="new 0 0 24 24"
                   id="Bold"
                   viewBox="0 0 24 24"
@@ -330,13 +330,13 @@ exports[`ForgotPass component match snapshot 1`] = `
             </li>
             <li>
               <a
-                class="link-0-2-64"
+                class="link-0-2-65"
                 href="https://www.instagram.com/phoqer/"
                 rel="noopener noreferrer"
                 target="_blank"
               >
                 <svg
-                  class="svg-0-2-66"
+                  class="svg-0-2-67"
                   enable-background="new 0 0 24 24"
                   id="Bold"
                   viewBox="0 0 24 24"
@@ -358,13 +358,13 @@ exports[`ForgotPass component match snapshot 1`] = `
             </li>
             <li>
               <a
-                class="link-0-2-64"
+                class="link-0-2-65"
                 href="http://www.google.com/"
                 rel="noopener noreferrer"
                 target="_blank"
               >
                 <svg
-                  class="svg-0-2-66"
+                  class="svg-0-2-67"
                   viewBox="0 -47 512.00004 512"
                   xmlns="http://www.w3.org/2000/svg"
                 >
@@ -376,13 +376,13 @@ exports[`ForgotPass component match snapshot 1`] = `
             </li>
             <li>
               <a
-                class="link-0-2-64"
+                class="link-0-2-65"
                 href="https://t.me/phoqer"
                 rel="noopener noreferrer"
                 target="_blank"
               >
                 <svg
-                  class="svg-0-2-66"
+                  class="svg-0-2-67"
                   viewBox="0 -39 512.00011 512"
                   xmlns="http://www.w3.org/2000/svg"
                 >

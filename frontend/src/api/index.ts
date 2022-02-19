@@ -4,12 +4,18 @@ import * as AxiosLogger from 'axios-logger';
 const api = axios.create({});
 
 api.interceptors.request.use(
-    req => AxiosLogger.requestLogger(req, { data: false }),
+    req => {
+        if (process.browser) return req;
+        return AxiosLogger.requestLogger(req, { data: false });
+    },
     error => Promise.reject(error),
 );
 
 api.interceptors.response.use(
-    res => AxiosLogger.responseLogger(res, { data: false }),
+    res => {
+        if (process.browser) return res;
+        return AxiosLogger.responseLogger(res, { data: false });
+    },
     error => Promise.reject(error),
 );
 

@@ -24,8 +24,8 @@ const routesMap: { [key: string]: string } = {
     chat: routes.chat.list(),
     notifications: routes.notifications,
     settings: routes.settings(),
-    i_am_author: routes.chat.list(ChatTypeEnum.AUTHOR),
-    i_am_client: routes.chat.list(ChatTypeEnum.CLIENT),
+    [ChatTypeEnum.AUTHOR]: routes.chat.list(ChatTypeEnum.AUTHOR),
+    [ChatTypeEnum.CLIENT]: routes.chat.list(ChatTypeEnum.CLIENT),
 };
 
 const ProfileTabs = ({ active }: IProps): ReactElement => {

@@ -11,7 +11,6 @@ import Header from '../../../../components/layout/header';
 import Meta from '../../../../components/meta';
 import Conversation from '../../../../components/pages/chat/chat-conversation';
 import ChatMobileDrawer from '../../../../components/pages/chat/chat-sidebar-right/chat-drawer';
-import ChatMobileDrawerButton from '../../../../components/pages/chat/chat-sidebar-right/chat-drawer/chat-drawer-button';
 import { ChatHeader } from '../../../../components/pages/chat/components/chat-header';
 import MessagesWrp from '../../../../components/pages/chat/components/wrappers/messages-wrp';
 import useChat, { useChatListUpdate } from '../../../../hooks/chat.hook';
@@ -33,7 +32,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
 
         ...theme.media(1060).max({
             height: 'unset',
-            padding: theme.rem(1, 0, 8),
+            padding: theme.rem(1, 0, 4),
         }),
     },
 }));
@@ -42,7 +41,6 @@ const MessagesChat = (): ReactElement => {
     const css = useStyles();
     const trans = useTrans();
     const media = useMedia(1060);
-    const desktop = useMedia(1300);
 
     const history = useRouter();
     const chatId = +String(history.query.chat || '0');
@@ -101,7 +99,6 @@ const MessagesChat = (): ReactElement => {
                 <Meta title={'Мои сообщения'} h1={trans('user_profile_on_phoqer')} />
 
                 <ChatMobileDrawer />
-                {!desktop && <ChatMobileDrawerButton />}
 
                 <Header />
                 <ChatHeader />

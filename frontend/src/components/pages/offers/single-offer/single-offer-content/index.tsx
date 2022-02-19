@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 
+import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
 import { createUseStyles } from 'react-jss';
 import { useDispatch } from 'react-redux';
@@ -25,6 +26,8 @@ import Price from '../price';
 import RelatedOffers from '../related-offers';
 import Requirements from '../requirements';
 import OfferSlider from '../slider';
+
+const RecentOffers = dynamic(() => import('../../../../common/offers/recent-offers'), { ssr: false });
 
 const useStyles = createUseStyles((theme: Theme) => ({
     banner: {
@@ -250,6 +253,8 @@ const SingleOfferContent = ({ data }: IProps): JSX.Element => {
 
                         <AsideElement data={data} />
                     </div>
+
+                    <RecentOffers />
 
                     <RelatedOffers />
                 </>

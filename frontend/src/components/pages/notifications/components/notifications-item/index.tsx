@@ -13,6 +13,7 @@ import RentStart from '../notifications-templates/rent-start';
 const useStyles = createUseStyles((theme: Theme) => ({
     root: {
         marginBottom: theme.rem(2),
+        color: theme.palette.black[0],
     },
 }));
 

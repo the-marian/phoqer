@@ -1,5 +1,6 @@
 import React, { ReactElement } from 'react';
 
+import dynamic from 'next/dynamic';
 import { createUseStyles } from 'react-jss';
 import { END } from 'redux-saga';
 
@@ -18,6 +19,8 @@ import { wrapper } from '../redux/store';
 import types from '../redux/types';
 import { parseCookie } from '../utils/helpers';
 import { Theme } from '../utils/theming/theme';
+
+const RecentOffers = dynamic(() => import('../components/common/offers/recent-offers'), { ssr: false });
 
 const useStyles = createUseStyles((theme: Theme) => ({
     main: {
@@ -45,6 +48,7 @@ const Index = (): ReactElement => {
                 <Container>
                     <Categories />
                     <TopPopular />
+                    <RecentOffers />
                     <Banner className={css.banner} />
                 </Container>
                 <About />
