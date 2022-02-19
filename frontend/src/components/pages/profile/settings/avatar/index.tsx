@@ -23,7 +23,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     },
     sticky: {
         position: 'sticky',
-        top: theme.rem(2),
+        top: theme.rem(8),
         left: 0,
     },
     avatar: {

@@ -19,6 +19,13 @@ const useStyles = createUseStyles((theme: Theme) => ({
     wrp: {
         margin: theme.rem(2, 0, 1),
     },
+    profile: {
+        background: theme.palette.white,
+
+        '& .btn': {
+            background: theme.palette.secondary[0],
+        },
+    },
 }));
 
 const LeftSide = (): ReactElement | null => {
@@ -36,6 +43,7 @@ const LeftSide = (): ReactElement | null => {
             <ProfileCard
                 column
                 id={user?.id}
+                className={css.profile}
                 firstName={user?.first_name}
                 lastName={user?.last_name}
                 avatar={user?.profile_img}

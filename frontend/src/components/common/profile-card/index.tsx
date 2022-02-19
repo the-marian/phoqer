@@ -144,7 +144,7 @@ const ProfileCard = ({
 
                 {isAuthor && (
                     <Link href={routes.profile.private}>
-                        <a className={css.btn}>
+                        <a className={clsx(css.btn, 'btn')}>
                             <FontAwesomeIcon icon={faUser} />
                             <span>{trans('personal_area')}</span>
                         </a>

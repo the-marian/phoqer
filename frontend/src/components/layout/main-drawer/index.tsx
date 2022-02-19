@@ -21,7 +21,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         height: 0,
         transform: 'translateY(-5rem)',
         paddingTop: theme.rem(5),
-        background: theme.palette.white,
+        background: theme.palette.gray[1],
         overflow: 'hidden',
         transition: theme.transitions[0],
 

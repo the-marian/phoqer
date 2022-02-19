@@ -10,14 +10,14 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { createUseStyles } from 'react-jss';
 
-import useAuth from '../../../../hooks/auth.hook';
-import useTheme from '../../../../hooks/theme.hook';
-import routes from '../../../../utils/routes';
-import mixin from '../../../../utils/theming/mixin';
-import { Theme } from '../../../../utils/theming/theme';
-import LoginForm from '../../../common/auth/forms/login-form';
-import { modal } from '../../../common/modal';
-import SmallModalWrp from '../../../common/modal/small-modal-wrp';
+import useAuth from '../../../../../hooks/auth.hook';
+import useTheme from '../../../../../hooks/theme.hook';
+import routes from '../../../../../utils/routes';
+import mixin from '../../../../../utils/theming/mixin';
+import { Theme } from '../../../../../utils/theming/theme';
+import LoginForm from '../../../../common/auth/forms/login-form';
+import { modal } from '../../../../common/modal';
+import SmallModalWrp from '../../../../common/modal/small-modal-wrp';
 
 const useStyles = createUseStyles((theme: Theme) => ({
     buttons: {
@@ -31,7 +31,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
         width: '22%',
         padding: 0,
         boxShadow: 'none',
-        background: theme.palette.secondary[0],
+        background: theme.palette.white,
         color: theme.palette.black[0],
         transitions: theme.transitions[0],
         ...mixin(theme).outline,
