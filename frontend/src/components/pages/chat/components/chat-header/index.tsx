@@ -63,6 +63,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     title: {
         fontSize: theme.rem(2),
         fontWeight: theme.text.weight[4],
+        color: theme.palette.black[0],
     },
     link: {
         ...mixin(theme).btn,
