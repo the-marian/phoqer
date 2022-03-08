@@ -133,3 +133,8 @@ async def test_partial_update_user(client, igor_auth_token, city_warsaw, user_ig
         "last_name": "Zozulia",
         "profile_img": "https://example.com/dic_pic_2.jpeg",
     }
+
+
+async def test_delete_user(client, marian_auth_token, user_marian):
+    response = await client.delete("/users/me", headers=marian_auth_token)
+    assert response.status_code == 204
