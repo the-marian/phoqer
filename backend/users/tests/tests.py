@@ -2,6 +2,7 @@ import datetime
 
 import pytest
 
+from config import database
 from users.crud import get_user_by_id
 
 pytestmark = pytest.mark.asyncio
@@ -138,3 +139,17 @@ async def test_partial_update_user(client, igor_auth_token, city_warsaw, user_ig
 async def test_delete_user(client, marian_auth_token, user_marian):
     response = await client.delete("/users/me", headers=marian_auth_token)
     assert response.status_code == 204
+
+
+async def test_check_user_offers(client, marian_auth_token, user_marian):
+    response = await client.delete("/users/me", headers=marian_auth_token)
+    assert response.status_code == 204
+    query = f"SELECT * FROM offers_offer WHERE author_id = :{user_marian}"
+    assert await database.fetch_all(query=query) == []
+
+
+async def test_check_user_comments(client, marian_auth_token, user_marian):
+    response = await client.delete("/users/me", headers=marian_auth_token)
+    assert response.status_code == 204
+    query = f"SELECT * FROM comments_comment WHERE author_id = :{user_marian}"
+    assert await database.fetch_all(query=query) == []
