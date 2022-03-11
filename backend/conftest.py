@@ -870,3 +870,30 @@ async def offer_ps4_is_favorite(db, offer_ps4, user_egor):
     yield "True"
     query = f"DELETE FROM offers_offer_favorite WHERE user_id = {user_egor}"
     await db.execute(query=query)
+
+
+@pytest.fixture
+async def comment_marian(db, offer_ps4, user_marian):
+    query = """
+    INSERT INTO comments_comment (
+        body,
+        pub_date,
+        author_id,
+        offer_id)
+    VALUES (
+        :body,
+        :pub_date,
+        :author_id,
+        :offer_id)
+    """
+    values = {
+        "author_id": user_marian,
+        "offer_id": offer_ps4,
+        "body": "chis sdhsdohjvb fniuwef nfoinfoifn "
+                "nflksfnpq[bvcvndfhghhfinvbo ibfibwfkb jbihohni fbiwbfibwifb",
+        "pub_date": date(2022, 1, 1),
+    }
+    await db.execute(query=query, values=values)
+    yield 1
+    query = f"DELETE FROM comments_comment WHERE author_id={user_marian}"
+    await db.execute(query=query)
