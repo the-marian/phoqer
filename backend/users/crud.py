@@ -197,7 +197,7 @@ async def delete_user_offers(author_id: int) -> None:
 
 async def delete_comment_replies(author_id: int) -> None:
     query = """
-    DELETE FROM comments_comment WHERE replies_id IN (
+    DELETE FROM comments_comment WHERE id IN (
         SELECT replies_id
         FROM comments_comment
         WHERE replies_id =
