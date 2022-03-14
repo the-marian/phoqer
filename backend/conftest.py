@@ -895,5 +895,5 @@ async def comment_marian(db, offer_ps4, user_marian):
     }
     await db.execute(query=query, values=values)
     yield 1
-    query = f"DELETE FROM comments_comment WHERE author_id={user_marian}"
-    await db.execute(query=query)
+    query = f"DELETE FROM comments_comment WHERE author_id = :author_id"
+    await db.execute(query=query, values={"author_id": user_marian})

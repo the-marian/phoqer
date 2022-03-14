@@ -217,7 +217,7 @@ async def delete_user_comments(author_id: int) -> None:
 @database.transaction()
 async def delete_user(user_id: int, author_id: int) -> None:
     await delete_comment_replies(author_id)
-    await delete_user_offers(author_id)
     await delete_user_comments(author_id)
+    await delete_user_offers(author_id)
     query = "DELETE FROM users_user WHERE id = :user_id"
     await database.execute(query=query, values={"user_id": user_id})
