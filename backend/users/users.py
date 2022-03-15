@@ -91,3 +91,9 @@ async def update_user(
         stored_user_data=stored_user_data,
     )
     return Response(status_code=204)
+
+
+@router.delete("/me", status_code=204)
+async def delete_user(user_id: int = Depends(get_current_user)) -> Response:
+    await crud.delete_user(user_id, author_id=user_id)
+    return Response(status_code=204)

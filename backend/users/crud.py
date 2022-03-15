@@ -190,6 +190,34 @@ async def update_last_login(user_id: int) -> None:
     )
 
 
-async def delete_user(email: str) -> None:
-    query = "DELETE FROM users_user WHERE email=:email"
-    await database.execute(query=query, values={"email": email})
+async def delete_user_offers(author_id: int) -> None:
+    query = "DELETE FROM offers_offer WHERE author_id = :user_id"
+    await database.execute(query=query, values={"user_id": author_id})
+
+
+async def delete_comment_replies(author_id: int) -> None:
+    query = """
+    DELETE FROM comments_comment WHERE id IN (
+        SELECT replies_id
+        FROM comments_comment
+        WHERE replies_id =
+            (SELECT 
+                id 
+            FROM comments_comment
+            WHERE author_id = :user_id))
+    """
+    await database.fetch_all(query=query, values={"user_id": author_id})
+
+
+async def delete_user_comments(author_id: int) -> None:
+    query = "DELETE FROM comments_comment WHERE author_id = :user_id"
+    await database.execute(query=query, values={"user_id": author_id})
+
+
+@database.transaction()
+async def delete_user(user_id: int, author_id: int) -> None:
+    await delete_comment_replies(author_id)
+    await delete_user_comments(author_id)
+    await delete_user_offers(author_id)
+    query = "DELETE FROM users_user WHERE id = :user_id"
+    await database.execute(query=query, values={"user_id": user_id})
