@@ -1,0 +1,62 @@
+#!/usr/bin/env node
+
+require('dotenv').config();
+const fs = require('fs').promises;
+const path = require('path');
+
+const fileName = 'env.config.ts';
+const src = path.join(__dirname, '..', 'src');
+
+const warning =
+    '// This file automatically generated. All content will be rewritten after build.\n// Use .env file to update content here\n\n';
+
+
+console.log('Generating env.config.ts file ...');
+
+const run = async () => {
+    try {
+        let content = warning;
+
+        let interface = 'export interface EnvConfig {\n';
+        let obj = 'export const env: EnvConfig = {\n';
+
+
+        Object.keys(process.env).forEach(key => {
+            if (key.includes('PHOQER_')) {
+                const isString = isNaN(+process.env[key]);
+                if (isString) {
+                    interface += `    ${key}: string;\n`;
+                    obj += `    ${key}: '${process.env[key]}',\n`;
+                } else {
+                    interface += `    ${key}: number;\n`;
+                    obj += `    ${key}: ${process.env[key]},\n`;
+                }
+
+                console.log(key, '=', process.env[key]);
+            }
+        });
+
+        content += interface;
+        content += '}\n\n';
+
+        content += obj;
+        content += '};\n';
+
+        try {
+            await fs.access(path.join(src, 'config'));
+            await fs.unlink(path.join(src, 'config', fileName));
+        } catch {
+            console.log('Created new file in src/config/env.config.ts');
+        }
+
+        await fs.writeFile(path.join(src, 'config', fileName), content);
+    } catch (e) {
+        console.error('Something went wrong');
+        console.log(e);
+        process.exit(1);
+    }
+};
+
+run().then(() => {
+    console.log('env.config.ts file updated');
+});

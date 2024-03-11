@@ -1,0 +1,27 @@
+.root {
+    width: 100%;
+    height: max-content;
+    margin-top: 2rem;
+
+    @media only screen and (min-width: 768px) {
+        margin-top: 4rem;
+    }
+
+    @media only screen and (min-width: 1500px) {
+        width: 50%;
+        padding-left: 8rem;
+        margin-top: 0;
+    }
+
+    .tabs {
+        margin: 0 -0.6rem;
+    }
+
+    .content {
+        margin: 0;
+
+        @media only screen and (min-width: 768px) {
+            margin: 2rem 0;
+        }
+    }
+}

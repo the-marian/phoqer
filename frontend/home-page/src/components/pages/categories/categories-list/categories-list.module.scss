@@ -1,0 +1,30 @@
+@import 'phoqer-shared/dist/styles/section.module';
+
+.root {
+    background: var(--gray-150);
+    margin: 0;
+    padding: 2rem 0;
+    transition: 0.6s ease-in-out;
+}
+
+.isIntersecting {
+    margin-top: 2rem;
+}
+
+.grid {
+    --grid-border-color: var(--black);
+    --grid-border-type: dashed;
+
+    > * {
+        padding: 2rem;
+
+        &:focus,
+        &:hover {
+            background: var(--white);
+        }
+
+        &:active {
+            background: var(--secondary-blue-500);
+        }
+    }
+}

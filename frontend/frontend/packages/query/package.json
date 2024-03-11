@@ -1,0 +1,22 @@
+{
+    "name": "query",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.ts",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "@tanstack/query-core": "^4.35.3",
+        "@tanstack/react-query": "^4.35.3",
+        "axios": "^1.5.1",
+        "qs": "^6.11.2",
+        "common": "*"
+    },
+    "devDependencies": {
+        "@types/qs": "^6.9.8"
+    }
+}

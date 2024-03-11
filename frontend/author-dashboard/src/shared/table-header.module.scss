@@ -1,0 +1,41 @@
+.header {
+    margin: 2rem 0;
+
+    @media only screen and (min-width: 768px) {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    @media screen and (min-width: 2400px) {
+        width: 220rem;
+        margin: 2rem calc((100% - 220rem) / 2);
+    }
+
+    .inner {
+        display: flex;
+        align-items: center;
+
+        &:nth-of-type(2) {
+            margin-top: 2rem;
+        }
+
+        @media only screen and (min-width: 768px) {
+            &:nth-of-type(2) {
+                margin-top: 0;
+            }
+        }
+    }
+}
+
+.root > * {
+    margin: 2rem 0;
+
+    @media screen and (min-width: 2400px) {
+        margin: 2rem calc((100% - 220rem) / 2);
+    }
+}
+
+.mr2 {
+    margin-right: 2rem;
+}

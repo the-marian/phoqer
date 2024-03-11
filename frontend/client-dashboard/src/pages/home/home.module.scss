@@ -1,0 +1,134 @@
+.root {
+    --sidebar-width: 90%;
+
+    display: flex;
+    justify-content: space-between;
+    padding-top: 4rem;
+
+    @media only screen and (min-width: 768px) {
+        --sidebar-width: 27rem;
+    }
+
+    @media only screen and (min-width: 1200px) {
+        padding-top: 0;
+    }
+}
+
+.backdrop {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 9;
+    background: rgba(0, 0, 0, 0.4);
+
+    @media only screen and (min-width: 1200px) {
+        display: none;
+    }
+}
+
+.menu {
+    position: fixed;
+    top: var(--header-height);
+    left: 0;
+    z-index: 8;
+    width: 100%;
+    padding: 1rem;
+    background: var(--white);
+    border-top: 0.1rem solid var(--gray-4);
+    border-bottom: 0.1rem solid var(--gray-4);
+
+    @media only screen and (min-width: 540px) {
+        padding: 1rem 4rem;
+    }
+
+    @media only screen and (min-width: 1200px) {
+        display: none;
+    }
+}
+
+.btn {
+    color: var(--primary-1);
+
+    &:active,
+    &:focus,
+    &:hover {
+        color: var(--primary-1);
+    }
+
+    svg {
+        margin-right: 1rem !important;
+    }
+}
+
+:global(.black) .btn {
+    color: var(--true-white);
+
+    &:active,
+    &:focus,
+    &:hover {
+        color: var(--true-white);
+    }
+}
+
+.aside {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    padding: 2rem;
+    width: var(--sidebar-width);
+    z-index: 10;
+    background: var(--body);
+    height: var(--100vh, 100vh);
+    box-shadow: var(--box-shadow-2);
+    transition: 0.2s ease-in-out;
+    border-right: 0.1rem solid var(--gray-4);
+
+    @media only screen and (min-width: 1200px) {
+        position: static;
+        left: 0;
+        border-right: none;
+    }
+
+    &.open {
+        left: 0;
+    }
+
+    @media only screen and (min-width: 1200px) {
+        position: relative;
+        padding: 0;
+        height: auto;
+        box-shadow: none;
+    }
+
+    .header {
+        display: flex;
+        justify-content: flex-end;
+        margin: 0 -2rem 2rem;
+        padding: calc(var(--header-height) - 1rem) 2rem 1rem;
+        border-bottom: 0.1rem solid var(--gray-4);
+
+        @media only screen and (min-width: 1200px) {
+            display: none;
+        }
+    }
+}
+
+.sticky {
+    position: sticky;
+    top: 10rem;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: calc(var(--100vh, 100vh) - var(--header-height) * 2 - 4rem);
+}
+
+.content {
+    width: 100%;
+
+    @media only screen and (min-width: 1200px) {
+        width: calc(100% - var(--sidebar-width) - 4rem);
+    }
+}

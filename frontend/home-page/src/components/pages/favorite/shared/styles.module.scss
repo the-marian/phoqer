@@ -1,0 +1,26 @@
+.root {
+    padding-top: calc(var(--header-height));
+    padding-bottom: 10rem;
+
+    @media only screen and (min-width: 1200px) {
+        min-width: 100vw;
+        width: max-content;
+    }
+}
+
+.title {
+    margin-left: 2rem;
+}
+
+.switch {
+    display: none;
+
+    @media only screen and (min-width: 768px) {
+        display: flex;
+        justify-content: flex-end;
+
+        > label {
+            width: max-content;
+        }
+    }
+}

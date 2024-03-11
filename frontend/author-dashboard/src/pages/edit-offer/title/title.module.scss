@@ -1,0 +1,7 @@
+@import '../shared/shared.module';
+
+.titleInput input {
+    font-size: 2rem;
+    font-weight: 600;
+    font-family: var(--font-title);
+}

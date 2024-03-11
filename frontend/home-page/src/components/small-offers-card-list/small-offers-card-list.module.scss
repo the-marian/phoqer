@@ -1,0 +1,16 @@
+.grid {
+    --grid-border-color: var(--black);
+    --grid-border-type: dashed;
+
+    > * {
+        padding: 2rem;
+
+        &:focus,
+        &:hover {
+            background: var(--gray-150);
+        }
+        &:active {
+            background: var(--secondary-blue-500);
+        }
+    }
+}

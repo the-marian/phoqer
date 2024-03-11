@@ -1,0 +1,45 @@
+.backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 101;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    background: rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+
+    &:global(.enter) {
+        opacity: 0;
+
+        :global(#modal-container) {
+            opacity: 0;
+            transform: translateY(2rem);
+        }
+    }
+
+    &:global(.enter-done) {
+        opacity: 1;
+        transition: 0.1s ease-in-out;
+
+        :global(#modal-container) {
+            opacity: 1;
+            transform: translateY(0);
+            transition: 0.2s ease-in-out 0.1s;
+        }
+    }
+
+    &:global(.exit) {
+        opacity: 0;
+        transition: 0.1s ease-in-out 0.2s;
+
+        :global(#modal-container) {
+            opacity: 0;
+            transform: translateY(2rem);
+            transition: 0.2s ease-in-out;
+        }
+    }
+}

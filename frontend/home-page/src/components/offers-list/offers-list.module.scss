@@ -1,0 +1,39 @@
+.loading {
+    pointer-events: none;
+}
+
+.imageContainer {
+    width: 8rem;
+    height: 6rem;
+
+    .image {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+        border-radius: 0.4rem;
+    }
+}
+
+.content {
+    width: calc(100% - 10rem);
+
+    .category {
+        color: var(--gray-500);
+    }
+
+    .priceContainer {
+        display: flex;
+        align-items: center;
+    }
+
+    .salePrice {
+        color: var(--primary-green-500);
+    }
+
+    .sale {
+        margin-left: 2rem;
+        padding: 0.4rem 1rem;
+        background: var(--secondary-blue-500);
+        border-radius: 0.4rem;
+    }
+}

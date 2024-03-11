@@ -1,0 +1,89 @@
+@import '../shared/shared.module';
+
+.root {
+    width: 100%;
+
+    @media only screen and (min-width: 1100px) {
+        max-width: 65rem;
+    }
+
+    :global(.ql-bubble .ql-tooltip) {
+        z-index: 10;
+    }
+}
+
+.inputError {
+    border-color: var(--red);
+}
+
+.root .inner .input {
+    width: 100%;
+    margin: 0 -1rem;
+    font-size: 1.6rem;
+    color: var(--black);
+
+    p {
+        line-height: 1.6;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        font-weight: 600;
+        line-height: 1.4;
+    }
+
+    h1 {
+        font-size: 4rem;
+        line-height: 1.2;
+    }
+
+    h2 {
+        font-size: 2rem;
+    }
+
+    h3,
+    h4,
+    h5,
+    h6 {
+        font-size: 1.6rem;
+    }
+
+    strong,
+    b {
+        font-weight: 600;
+    }
+}
+
+.info {
+    display: none;
+    align-items: center;
+    margin-bottom: 2rem;
+    color: var(--gray-7);
+    cursor: default;
+
+    @media only screen and (min-width: 768px) {
+        display: inline-flex;
+    }
+
+    svg {
+        margin-right: 0.8rem;
+    }
+
+    &:hover {
+        color: var(--primary-1);
+    }
+}
+
+.tooltip {
+    padding: 0.7rem;
+    max-width: 45rem;
+}
+
+.img {
+    width: 38rem;
+    object-fit: contain;
+}

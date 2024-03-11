@@ -1,0 +1,20 @@
+@import '../common/styles.module';
+
+.flex {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.reset {
+    margin-left: 2rem;
+}
+
+.text {
+    margin-bottom: 2rem;
+    font-size: 1.4rem;
+
+    &:nth-of-type(2) {
+        margin-top: 4rem;
+    }
+}

@@ -1,0 +1,13 @@
+.container {
+    &:global(.appear) {
+        opacity: 0;
+        margin: 0;
+        transform: translateY(5rem);
+    }
+
+    &:global(.appear-done) {
+        opacity: 1;
+        transform: unset;
+        transition: 0.3s ease-in-out;
+    }
+}

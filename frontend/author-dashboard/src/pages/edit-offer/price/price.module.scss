@@ -1,0 +1,13 @@
+@import '../shared/shared.module';
+
+.priceInput input {
+    font-size: 2rem;
+    font-family: var(--font-title);
+    font-weight: 600;
+    color: var(--success);
+    line-height: 1;
+}
+
+.inner {
+    margin-bottom: 3rem;
+}

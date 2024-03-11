@@ -1,0 +1,33 @@
+@import '../../new-offer/description/description.module';
+@import '../shared/shared.module';
+
+.root {
+    .inner .input {
+        margin: 0;
+        border-radius: 0.8rem;
+
+        :global(.ql-editor) {
+            padding: 1.2rem 1rem;
+            border-radius: 0.8rem;
+            border: 0.1rem solid var(--gray-5);
+            transition: 0.2s ease-in-out;
+
+            @media only screen and (min-width: 650px) {
+                border: 0.1rem solid transparent;
+            }
+
+            &:hover {
+                border: 0.1rem solid var(--gray-8);
+            }
+
+            &:focus {
+                box-shadow: var(--outline);
+            }
+        }
+    }
+
+    .inputError .input :global(.ql-editor) {
+        border-color: var(--red) !important;
+        box-shadow: none !important;
+    }
+}

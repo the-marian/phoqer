@@ -1,0 +1,38 @@
+.btn {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: calc(100% - 0.6rem);
+    margin: 0.3rem 0.3rem 2.5rem;
+    padding: 1rem 1rem 1rem 2.5rem;
+    border-radius: 2.5rem;
+    background: var(--primary-1);
+    color: var(--true-white);
+
+    &:hover .icon,
+    &:active .icon {
+        background: var(--primary-1-hover);
+    }
+
+    p {
+        line-height: 1;
+        margin-bottom: 0.2rem;
+    }
+
+    b {
+        font-family: var(--font-title);
+        font-weight: 600;
+    }
+}
+
+.icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 3rem;
+    width: 3rem;
+    margin-left: 1rem;
+    border-radius: 50%;
+    background: var(--primary-1-active);
+    color: var(--true-white);
+}

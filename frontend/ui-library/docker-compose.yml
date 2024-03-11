@@ -1,0 +1,8 @@
+version: '3.9'
+
+services:
+  storybook:
+    container_name: storybook
+    build: ./
+    ports:
+      - "6006:6006"

@@ -1,8 +1,0 @@
-const generalTypes = {
-    // TOGGLE_CHAT_DRAWER
-    TOGGLE_CHAT_DRAWER: 'TOGGLE_CHAT_DRAWER',
-    // OFFERS_SEARCH_LOCAL_PARAMS
-    OFFERS_SEARCH_LOCAL_PARAMS: 'OFFERS_SEARCH_LOCAL_PARAMS',
-};
-
-export default generalTypes;

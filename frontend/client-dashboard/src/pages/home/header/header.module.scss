@@ -1,0 +1,19 @@
+.title {
+    font-size: 4rem;
+    line-height: 1;
+    font-weight: 500;
+    font-family: var(--font-title);
+}
+
+.text {
+    margin-top: 2rem;
+    font-size: 1.6rem;
+    color: var(--gray-7);
+    font-family: var(--font-text);
+}
+
+.flex {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}

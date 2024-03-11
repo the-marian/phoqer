@@ -1,0 +1,8 @@
+.mid {
+    max-width: 80rem;
+    width: 100%;
+
+    :global(#modal-scroll) {
+        max-height: 60vh;
+    }
+}

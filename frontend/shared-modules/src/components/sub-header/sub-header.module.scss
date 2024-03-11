@@ -1,0 +1,27 @@
+.container {
+    position: fixed;
+    top: var(--header-height);
+    left: 0;
+    z-index: var(--sub-header-z-index, 15);
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding-top: 0.8rem;
+    padding-bottom: 0.8rem;
+    background: var(--body);
+    border-bottom: 0.1rem solid var(--gray-300);
+    font-size: 1.4rem;
+
+    .icon {
+        margin-bottom: 0.2rem;
+        margin-right: 0.2rem;
+    }
+
+    > * {
+        margin-right: 1rem;
+
+        &:nth-last-child(1) {
+            margin-right: 0;
+        }
+    }
+}

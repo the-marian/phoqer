@@ -1,0 +1,73 @@
+.root {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+
+    @media only screen and (min-width: 768px) {
+        padding-top: 5rem;
+        padding-bottom: 5rem;
+    }
+}
+
+.title {
+    max-width: 60rem;
+    margin: 0 0 2rem;
+}
+
+.mb {
+    margin-bottom: 2rem;
+
+    @media only screen and (min-width: 768px) {
+        margin-bottom: 4rem;
+    }
+}
+
+.inner {
+    max-width: 60rem;
+    width: 100%;
+
+    .text {
+        color: var(--gray-6);
+    }
+
+    .label {
+        display: block;
+    }
+
+    .labelText {
+        margin-bottom: 1rem;
+    }
+}
+
+.actions,
+.flex {
+    display: flex;
+    align-items: center;
+}
+
+.flex {
+    > * {
+        margin-right: 2rem;
+    }
+}
+
+.actions {
+    margin-left: 4rem;
+}
+
+.actionsBtn {
+    margin-right: 1rem;
+    padding: 0.5rem 0.8rem;
+}
+
+.error {
+    display: flex;
+    align-items: center;
+    margin-top: 0.4rem;
+    color: var(--red);
+
+    svg {
+        margin-top: 0.1rem;
+        margin-right: 0.5rem;
+        font-size: 1.5rem;
+    }
+}

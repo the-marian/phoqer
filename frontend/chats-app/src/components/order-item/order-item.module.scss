@@ -1,0 +1,127 @@
+@import 'phoqer/dist/styles/scss/mixin';
+@import 'phoqer-shared/dist/styles/description.module';
+
+.root {
+    --offer-image-width: 6rem;
+
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    border-radius: 1.2rem;
+    border: 0.1rem solid transparent;
+    box-shadow: var(--box-shadow-2);
+
+    &:hover,
+    &:focus {
+        border-color: var(--gray-7);
+    }
+
+    .button {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        padding: 0.5rem;
+        text-align: left;
+        transition: 0.3s ease-in-out;
+    }
+}
+
+.active {
+    border-color: var(--primary-1);
+
+    &:hover,
+    &:focus {
+        border-color: var(--primary-1);
+    }
+
+    .icon {
+        transform: rotate(90deg);
+    }
+
+    .button {
+        padding: 1rem;
+        border-radius: 1rem;
+        background: var(--secondary-1);
+    }
+
+    .sale {
+        background: var(--white);
+    }
+}
+
+.image {
+    width: var(--offer-image-width);
+    height: var(--offer-image-width);
+    border-radius: 50%;
+}
+
+.content {
+    width: calc(100% - var(--offer-image-width) - 6rem);
+    padding-left: 1rem;
+}
+
+.title {
+    @include cut-string;
+}
+
+.date,
+.gray {
+    color: var(--gray-6);
+}
+
+.icon {
+    margin-left: 4rem;
+    font-size: 2rem;
+    transition: 0.2s ease-in-out;
+}
+
+.mt {
+    margin-top: 1rem;
+}
+
+.price {
+    color: var(--success);
+}
+
+.sale {
+    background: var(--gray-3);
+    margin-left: 1.5rem;
+    padding: 0.1rem 0.8rem;
+    border-radius: 0.5rem;
+}
+
+.footer {
+    margin-top: 2rem;
+    flex-direction: column;
+    align-items: flex-start;
+
+    @media screen and (min-width: 1700px) {
+        flex-direction: row;
+        align-items: center;
+    }
+}
+
+.date {
+    margin-top: 0.8rem;
+
+    @media screen and (min-width: 1700px) {
+        margin: 0;
+    }
+}
+
+.info {
+    flex-wrap: wrap;
+    margin-top: 2rem;
+
+    > * {
+        margin-right: 4rem;
+    }
+}
+
+.overflow {
+    max-height: 35rem;
+}
+
+.description {
+    font-size: 1.4rem;
+}

@@ -1,0 +1,19 @@
+@import 'src/styles/helpers.scss';
+
+.image {
+    width: 8rem;
+    height: 6rem;
+
+    img {
+        object-fit: cover;
+        border-radius: 0.4rem;
+    }
+}
+
+.inner {
+    width: calc(100% - 10rem);
+
+    p {
+        margin-top: 0.5rem;
+    }
+}

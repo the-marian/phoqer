@@ -1,0 +1,95 @@
+@import 'mixin';
+
+.text {
+    font-family: var(--font-text);
+    letter-spacing: 1.1px;
+    color: var(--black);
+}
+
+$weight: 300 400 500;
+$font-style: normal, italic;
+$size: (
+    xs: 1.2rem,
+    sm: 1.5rem,
+    md: 2rem,
+    lg: 2.6rem,
+    xl: 3rem,
+);
+
+@each $key, $value in $size {
+    .text-size-#{$key} {
+        font-size: $value;
+    }
+}
+
+@each $item in $weight {
+    .text-weight-#{$item} {
+        font-weight: $item;
+    }
+}
+
+@each $item in $font-style {
+    .font-style-#{$item} {
+        font-style: $item;
+    }
+}
+
+@include media-sm {
+    @each $key, $value in $size {
+        .text-size-sm-#{$key} {
+            font-size: $value;
+        }
+    }
+
+    @each $item in $weight {
+        .text-weight-sm-#{$item} {
+            font-weight: $item;
+        }
+    }
+
+    @each $item in $font-style {
+        .font-style-sm-#{$item} {
+            font-style: $item;
+        }
+    }
+}
+
+@include media-md {
+    @each $key, $value in $size {
+        .text-size-md-#{$key} {
+            font-size: $value;
+        }
+    }
+
+    @each $item in $weight {
+        .text-weight-md-#{$item} {
+            font-weight: $item;
+        }
+    }
+
+    @each $item in $font-style {
+        .font-style-md-#{$item} {
+            font-style: $item;
+        }
+    }
+}
+
+@include media-lg {
+    @each $key, $value in $size {
+        .text-size-lg-#{$key} {
+            font-size: $value;
+        }
+    }
+
+    @each $item in $weight {
+        .text-weight-lg-#{$item} {
+            font-weight: $item;
+        }
+    }
+
+    @each $item in $font-style {
+        .font-style-lg-#{$item} {
+            font-style: $item;
+        }
+    }
+}

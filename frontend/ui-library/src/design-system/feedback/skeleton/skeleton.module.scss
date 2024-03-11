@@ -1,0 +1,41 @@
+@keyframes skeleton {
+    0% {
+        background-position: 0 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+}
+
+.light {
+    background: linear-gradient(45deg, var(--gray-150) 30%, var(--gray-50) 50%, var(--gray-150) 70%);
+}
+
+.dark {
+    background: linear-gradient(45deg, var(--gray-400) 30%, var(--gray-200) 50%, var(--gray-400) 70%);
+}
+
+.blue {
+    background: linear-gradient(
+        45deg,
+        var(--secondary-blue-500) 30%,
+        var(--secondary-blue-400) 50%,
+        var(--secondary-blue-500) 70%
+    );
+}
+
+.red {
+    background: linear-gradient(45deg, var(--secondary-red-500) 30%, var(--secondary-red-400) 50%, var(--secondary-red-500) 70%);
+}
+
+.green {
+    background: linear-gradient(45deg, var(--secondary-green-500) 30%, var(--gray-50) 50%, var(--secondary-green-500) 70%);
+}
+
+.skeleton {
+    width: 100%;
+    height: 1rem;
+    border-radius: 0.4rem;
+    background-size: 400% 400%;
+    animation: skeleton 2s linear infinite;
+}

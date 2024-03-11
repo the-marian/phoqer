@@ -1,0 +1,15 @@
+@import 'phoqer-shared/dist/styles/section.module';
+
+.list {
+    flex-wrap: wrap;
+    margin-left: -1.1rem;
+}
+
+.item {
+    margin-right: 0.1rem;
+}
+
+.link {
+    display: block;
+    margin: 1.2rem 1.4rem;
+}

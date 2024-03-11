@@ -1,0 +1,58 @@
+.root {
+    display: flex;
+    flex-direction: column;
+    margin: 2rem 0;
+
+    @media only screen and (min-width: 768px) {
+        align-items: center;
+        flex-direction: row;
+        margin: 4rem 0;
+    }
+}
+
+.image {
+    height: 14rem;
+    width: 14rem;
+    border-radius: 1rem;
+    margin-bottom: 2rem;
+
+    @media only screen and (min-width: 768px) {
+        height: 24rem;
+        width: 20rem;
+        margin-bottom: 0;
+        margin-right: 4rem;
+    }
+}
+
+.title {
+    display: flex;
+    align-items: center;
+    font-size: 1.8rem;
+    font-family: var(--font-title);
+
+    @media only screen and (min-width: 768px) {
+        margin-bottom: 2rem;
+    }
+
+    .btn {
+        margin-top: 0.1rem;
+        margin-left: 1rem;
+    }
+}
+
+.table {
+    width: 100%;
+    font-size: 1.4rem;
+
+    @media only screen and (min-width: 768px) {
+        width: auto;
+    }
+
+    tr td:nth-of-type(1) {
+        color: var(--gray-6);
+    }
+
+    td {
+        padding: 1rem 4rem 1rem 0;
+    }
+}

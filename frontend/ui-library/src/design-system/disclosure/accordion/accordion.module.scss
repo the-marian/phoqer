@@ -1,0 +1,117 @@
+.root {
+    width: 100%;
+    border-bottom: 0.1rem solid var(--gray-200);
+    color: var(--black);
+
+    .head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        padding: 1.5rem;
+        color: var(--gray-800);
+        text-align: left;
+
+        @media only screen and (min-width: 768px) {
+            padding: 2.5rem 3rem;
+        }
+
+        &:focus,
+        &:hover {
+            color: var(--primary-blue-500);
+            background: var(--gray-100);
+        }
+
+        &:active {
+            color: var(--primary-blue-600);
+            background: var(--secondary-blue-400);
+        }
+
+        .icon {
+            font-size: 2rem;
+            transition: 0.1s ease-in-out;
+        }
+
+        .openIcon {
+            transform: rotate(90deg);
+        }
+    }
+
+    .content {
+        height: 0;
+        opacity: 0;
+        font-size: 1.4rem;
+        overflow: hidden;
+        transition: 0.2s ease-in-out;
+
+        .inner {
+            padding: 1rem;
+            line-height: 1.8;
+
+            @media only screen and (min-width: 768px) {
+                padding: 3rem;
+            }
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            margin-bottom: 3rem;
+            font-size: 1.4rem;
+            font-weight: 400;
+        }
+
+        h5 {
+            font-size: 1.4rem;
+        }
+
+        h4 {
+            font-size: 1.8rem;
+        }
+
+        h3 {
+            font-size: 2rem;
+        }
+
+        h2 {
+            font-size: 2.2rem;
+        }
+
+        h1 {
+            font-size: 2.4rem;
+        }
+
+        p {
+            margin-bottom: 2rem;
+        }
+
+        a {
+            color: var(--primary-blue-500);
+            text-decoration: underline;
+        }
+
+        ul li {
+            position: relative;
+            padding-left: 2rem;
+
+            &::before {
+                content: '';
+                position: absolute;
+                top: 50%;
+                left: 0;
+                transform: translateY(-50%);
+                height: 0.5rem;
+                width: 0.5rem;
+                background: var(--primary-blue-500);
+            }
+        }
+    }
+
+    .contentOpen {
+        height: auto;
+        opacity: 1;
+    }
+}

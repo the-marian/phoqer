@@ -1,0 +1,32 @@
+@keyframes loading {
+    0% {
+        transform: none;
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.loading {
+    animation: loading 0.5s ease-in-out;
+}
+
+.btn {
+    .text {
+        font-size: 0;
+    }
+
+    svg {
+        margin-left: 0 !important;
+    }
+
+    @media only screen and (min-width: 768px) {
+        .text {
+            font-size: 1.4rem;
+        }
+
+        svg {
+            margin-left: 1rem !important;
+        }
+    }
+}

@@ -1,0 +1,125 @@
+.button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    border-radius: 50%;
+    color: var(--black);
+    cursor: pointer;
+
+    &:focus,
+    &:hover {
+        background: var(--secondary-blue-400);
+        color: var(--primary-blue-500);
+    }
+
+    &:active {
+        background: var(--secondary-blue-500);
+    }
+
+    &.sm {
+        height: 3.2rem;
+        width: 3.2rem;
+        font-size: 1.6rem;
+
+        &.loading {
+            font-size: 1.2rem;
+        }
+    }
+
+    &.md {
+        height: 4.2rem;
+        width: 4.2rem;
+        font-size: 2rem;
+
+        &.loading {
+            font-size: 1.6rem;
+        }
+    }
+
+    &.lg {
+        height: 5.6rem;
+        width: 5.6rem;
+        font-size: 2.5rem;
+
+        &.loading {
+            font-size: 2rem;
+        }
+    }
+
+    &.filled {
+        background: var(--secondary-blue-400);
+        color: var(--primary-blue-500);
+
+        &:focus,
+        &:hover {
+            background: var(--secondary-blue-500);
+        }
+
+        &:active {
+            background: var(--secondary-blue-600);
+        }
+
+        &.disabled {
+            background: var(--gray-100);
+        }
+    }
+
+    &.rect {
+        border-radius: 0.5rem;
+
+        &.sm {
+            height: 3.2rem;
+            width: 2.4rem;
+        }
+        &.md {
+            height: 4.2rem;
+            width: 3.2rem;
+        }
+        &.lg {
+            height: 5.6rem;
+            width: 4rem;
+        }
+    }
+
+    &.disabled {
+        opacity: 0.7;
+        cursor: no-drop;
+        background: var(--gray-100);
+        color: var(--black);
+    }
+
+    .children,
+    .spinner {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .children {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    &.loading {
+        cursor: auto;
+
+        &::before {
+            display: none;
+        }
+
+        .children {
+            opacity: 0;
+        }
+    }
+}
+
+:global(.black) .button {
+    &.filled,
+    &:focus,
+    &:hover {
+        color: var(--black);
+    }
+}

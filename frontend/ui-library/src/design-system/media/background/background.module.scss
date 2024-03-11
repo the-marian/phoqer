@@ -1,0 +1,124 @@
+@keyframes one {
+    0% {
+        top: 50%;
+        left: 25%;
+    }
+    35% {
+        top: 35%;
+        left: 32%;
+        transform: translate(-50%, -50%) scale(1.4);
+    }
+    75% {
+        top: 90%;
+        left: 20%;
+        transform: translate(-50%, -50%) scale(0.8);
+    }
+    100% {
+        top: 50%;
+        left: 25%;
+    }
+}
+
+@keyframes two {
+    0% {
+        top: 80%;
+        left: 85%;
+    }
+    75% {
+        top: 65%;
+        left: 80%;
+        transform: translate(-50%, -50%) scale(1.4);
+    }
+    35% {
+        top: 76%;
+        left: 72%;
+        transform: translate(-50%, -50%) scale(0.8);
+    }
+    100% {
+        top: 80%;
+        left: 85%;
+    }
+}
+
+@keyframes three {
+    0% {
+        top: 40%;
+        left: 55%;
+    }
+    75% {
+        top: 20%;
+        left: 80%;
+        transform: translate(-50%, -50%) scale(1.4);
+    }
+    35% {
+        top: 36%;
+        left: 62%;
+        transform: translate(-50%, -50%) scale(0.8);
+    }
+    100% {
+        top: 40%;
+        left: 55%;
+    }
+}
+
+.root {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 0;
+    overflow: hidden;
+    border-radius: var(--bg-radius, 1rem);
+    box-shadow: var(--box-shadow-1);
+
+    &.border:hover {
+        border: 0.1rem solid var(--gray-600);
+    }
+
+    &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        border-radius: var(--bg-radius, 1rem);
+        box-shadow: inset 0 0.1rem 0.1rem 0 rgba(255, 255, 255, 0.5);
+        background-color: rgba(240, 240, 240, 0.4);
+        backdrop-filter: blur(var(--bg-blur, 3rem));
+    }
+
+    @supports ((-webkit-backdrop-filter: none) or (backdrop-filter: none)) {
+        &::after {
+            -webkit-backdrop-filter: blur(var(--bg-blur, 3rem));
+            backdrop-filter: blur(var(--bg-blur, 3rem));
+        }
+    }
+
+    span {
+        position: absolute;
+        transform: translate(-50%, -50%);
+        border-radius: 100%;
+        opacity: 0.3;
+    }
+
+    span:nth-of-type(1) {
+        background: var(--primary-green-500);
+        animation: one 8s ease-in-out infinite;
+    }
+
+    span:nth-of-type(2) {
+        background: var(--primary-blue-500);
+        animation: two 6s ease-in-out infinite;
+    }
+
+    span:nth-of-type(3) {
+        background: var(--primary-yellow-400);
+        animation: three 12s ease-in-out infinite;
+    }
+}
+
+:global(.black) .root::after {
+    background-color: rgba(50, 50, 50, 0.4);
+}

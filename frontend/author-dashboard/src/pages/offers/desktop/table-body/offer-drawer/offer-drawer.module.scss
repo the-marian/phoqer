@@ -1,0 +1,28 @@
+.drawer {
+    --drawer-width: 40rem;
+}
+
+.loader {
+    position: relative;
+    min-height: 49rem;
+}
+
+.list {
+    margin-top: 2rem;
+}
+
+.inner {
+    padding: 2rem;
+}
+
+.delete {
+    color: var(--red);
+
+    &:focus {
+        color: var(--red);
+    }
+
+    &:active {
+        color: var(--primary-1);
+    }
+}

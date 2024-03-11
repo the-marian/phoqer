@@ -1,0 +1,22 @@
+.table {
+    width: 100%;
+    margin-top: 2rem;
+    border-collapse: collapse;
+
+    tr {
+        border-bottom: 0.1rem solid var(--gray-3);
+
+        > td:nth-of-type(1) {
+            position: relative;
+            width: 15rem;
+            color: var(--gray-8);
+        }
+    }
+
+    td {
+        margin: 0.5rem 0;
+        padding: 1.2rem 1rem;
+        vertical-align: top;
+        font-size: 1.4rem;
+    }
+}

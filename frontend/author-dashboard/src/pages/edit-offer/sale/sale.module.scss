@@ -1,0 +1,17 @@
+@import '../shared/shared.module';
+
+.sale {
+    margin-top: 1rem;
+}
+
+.percentage input {
+    font-family: var(--font-title);
+    font-size: 2rem;
+    font-weight: 600;
+    line-height: 1;
+}
+
+.textarea textarea {
+    margin-top: 2rem;
+    font-size: 1.6rem;
+}

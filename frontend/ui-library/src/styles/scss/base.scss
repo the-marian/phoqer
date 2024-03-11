@@ -1,0 +1,150 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 10px;
+    font-weight: 400;
+    line-height: 1.5;
+    letter-spacing: 0.6px;
+}
+
+body {
+    width: 100%;
+    min-height: var(--100vh, 100vh);
+    scroll-behavior: smooth;
+    text-rendering: optimizeSpeed;
+    font-size: inherit;
+    background: var(--body);
+}
+
+ul,
+ol {
+    list-style: none;
+}
+
+a:not([class]) {
+    text-decoration-skip-ink: auto;
+}
+
+picture {
+    display: block;
+}
+
+img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+}
+
+input,
+button,
+textarea,
+select {
+    font: inherit;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+input:hover,
+input:focus,
+input[type='text'],
+button:hover,
+button:focus,
+button[type='text'],
+textarea:hover,
+textarea:focus,
+textarea[type='text'],
+select:hover,
+select:focus,
+select[type='text'] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+audio,
+canvas,
+iframe,
+img,
+svg,
+video,
+textarea {
+    vertical-align: middle;
+}
+
+textarea {
+    resize: none;
+}
+
+button {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: inherit;
+}
+
+svg {
+    height: 1em;
+    width: 1em;
+    color: inherit;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+input[type='number'] {
+    -moz-appearance: textfield;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 0.8rem;
+    height: 0.8rem;
+    border-radius: 0.5rem;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: var(--body);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: var(--gray-400);
+    border-top: 0.2rem solid var(--body);
+    border-right: 0.2rem solid var(--body);
+    border-bottom: 0.2rem solid var(--body);
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: var(--gray-500);
+}

@@ -1,0 +1,20 @@
+[
+    {
+        "title": "Categories",
+        "description": "List of all categories. Browse all available categories and find what you are looking for.",
+        "image": "https://images.unsplash.com/photo-1659114245023-26543e9a75c8?ixlib=rb-1.2.1&w=1920&q=80&fm=jpg&crop=entropy&cs=tinysrgb",
+        "url": "/categories"
+    },
+    {
+        "title": "My account",
+        "description": "Your account information. Here you can view all information about your account and make some changes if necessary",
+        "image": "https://images.unsplash.com/photo-1659114245023-26543e9a75c8?ixlib=rb-1.2.1&w=1920&q=80&fm=jpg&crop=entropy&cs=tinysrgb",
+        "url": "/client"
+    },
+    {
+        "title": "My orders",
+        "description": "Rent requests that you've sent",
+        "image": "https://images.unsplash.com/photo-1659114245023-26543e9a75c8?ixlib=rb-1.2.1&w=1920&q=80&fm=jpg&crop=entropy&cs=tinysrgb",
+        "url": "/client"
+    }
+]

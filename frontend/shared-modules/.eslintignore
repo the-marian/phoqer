@@ -1,0 +1,6 @@
+node_modules
+.next
+public
+translations
+__snapshots__
+setupTests.js

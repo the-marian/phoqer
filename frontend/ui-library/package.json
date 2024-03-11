@@ -1,0 +1,116 @@
+{
+    "name": "phoqer",
+    "version": "3.0.40",
+    "main": "dist/cjs/index.js",
+    "module": "dist/esm/index.js",
+    "types": "dist/index.d.ts",
+    "es2015": "dist/esm/index.js",
+    "es2017": "dist/esm/index.js",
+    "files": [
+        "dist/"
+    ],
+    "dependencies": {
+        "classnames": "^2.3.2",
+        "dayjs": "^1.11.9",
+        "lodash-es": "^4.17.21",
+        "query-string": "^7.1.3",
+        "react-confetti": "^6.1.0",
+        "react-custom-scrollbars-2": "^4.5.0",
+        "react-textarea-autosize": "^8.5.1",
+        "react-transition-group": "^4.4.5"
+    },
+    "scripts": {
+        "dev": "storybook dev -p 6006 --quiet",
+        "build": "rm -rf ./dist && rollup -c",
+        "build-storybook": "storybook build --quiet",
+        "colors": "./scripts/colors.sh",
+        "icons": "./scripts/icons.sh",
+        "release": "./scripts/publish.sh"
+    },
+    "browserslist": {
+        "production": [
+            ">0.2%",
+            "not dead",
+            "not op_mini all"
+        ],
+        "development": [
+            "last 1 chrome version",
+            "last 1 firefox version",
+            "last 1 safari version"
+        ]
+    },
+    "peerDependencies": {
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0"
+    },
+    "devDependencies": {
+        "@babel/core": "^7.22.5",
+        "@babel/preset-env": "^7.22.5",
+        "@babel/preset-react": "^7.22.5",
+        "@babel/preset-typescript": "^7.22.5",
+        "@rollup/plugin-commonjs": "^25.0.2",
+        "@rollup/plugin-json": "^6.0.0",
+        "@rollup/plugin-node-resolve": "^15.1.0",
+        "@rollup/plugin-terser": "^0.4.3",
+        "@rollup/plugin-typescript": "^11.1.2",
+        "@storybook/addon-actions": "^7.0.24",
+        "@storybook/addon-essentials": "^7.0.24",
+        "@storybook/addon-interactions": "^7.0.24",
+        "@storybook/addon-links": "^7.0.24",
+        "@storybook/addon-mdx-gfm": "^7.0.24",
+        "@storybook/preset-scss": "^1.0.3",
+        "@storybook/react": "^7.0.24",
+        "@storybook/react-webpack5": "^7.0.24",
+        "@storybook/testing-library": "^0.0.13",
+        "@types/jest": "^27.5.2",
+        "@types/lodash-es": "^4.17.7",
+        "@types/node": "^16.18.38",
+        "@types/react": "^18.2.14",
+        "@types/react-custom-scrollbars": "^4.0.10",
+        "@types/react-dom": "^18.2.6",
+        "@types/react-transition-group": "^4.4.6",
+        "@typescript-eslint/eslint-plugin": "^5.60.1",
+        "@typescript-eslint/parser": "^5.60.1",
+        "autoprefixer": "^10.4.14",
+        "babel-jest": "^27.5.1",
+        "babel-loader": "^8.3.0",
+        "babel-plugin-transform-dynamic-import": "^2.1.0",
+        "css-loader": "^5.2.7",
+        "eslint": "^8.44.0",
+        "eslint-config-prettier": "^8.8.0",
+        "eslint-plugin-import": "^2.27.5",
+        "eslint-plugin-jest": "^26.9.0",
+        "eslint-plugin-jsx-a11y": "^6.7.1",
+        "eslint-plugin-prettier": "^4.2.1",
+        "eslint-plugin-react": "^7.32.2",
+        "eslint-plugin-react-hooks": "^4.6.0",
+        "nanoid": "^3.3.6",
+        "postcss": "^8.4.24",
+        "postcss-preset-env": "^8.5.1",
+        "prettier": "^2.8.8",
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0",
+        "rollup": "^3.26.0",
+        "rollup-plugin-copy": "^3.4.0",
+        "rollup-plugin-dts": "^5.3.0",
+        "rollup-plugin-peer-deps-external": "^2.2.4",
+        "rollup-plugin-postcss": "^4.0.2",
+        "rollup-plugin-svg": "^2.0.0",
+        "sass": "^1.63.6",
+        "sass-loader": "^12.6.0",
+        "storybook": "^7.0.24",
+        "style-loader": "^2.0.0",
+        "typescript": "^5.1.6",
+        "webpack": "^5.88.1"
+    },
+    "description": "UI kit package",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/phoqer/ui-library"
+    },
+    "author": "Ihor Mykhailychenko",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/phoqer/ui-library"
+    }
+}

@@ -1,0 +1,11 @@
+@import '../common/styles.module';
+
+.dropdown {
+    --dropdown-button-width: 100%;
+
+    position: relative;
+
+    p {
+        text-align: left;
+    }
+}

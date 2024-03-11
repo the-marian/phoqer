@@ -1,0 +1,20 @@
+.root {
+    display: flex;
+    align-items: center;
+    margin-bottom: 2rem;
+    margin-left: -0.5rem;
+
+    .chat {
+        margin-left: 2rem;
+    }
+
+    .skeleton {
+        height: 3rem;
+        width: 5rem;
+        margin: 0 2rem;
+
+        @media only screen and (min-width: 540px) {
+            width: 16rem;
+        }
+    }
+}

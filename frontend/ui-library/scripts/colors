@@ -1,0 +1,122 @@
+#!/usr/bin/env node
+
+const fs = require("fs");
+const path = require("path");
+const {EOL} = require('os');
+
+const STYLES = path.join('src', 'styles', 'css', 'theme.scss');
+const STORYBOOK = path.join('src', 'design-system', 'foundation', 'colors', 'colors.stories.tsx');
+
+
+try {
+    fs.unlinkSync(STORYBOOK);
+} catch (e) {
+    console.log('No colors.stories.tsx file')
+}
+
+console.log("Generating color palette for storybook")
+
+
+fs.appendFileSync(STORYBOOK, `import { Grid, GridItem } from 'src/design-system/layout';
+import { Wrapper } from 'src/storybook/utils/wrapper';
+import { copyToClipboard } from 'src/utils/copy';
+
+export default {
+    title: 'Foundation/Colors',
+};
+
+const data = [`)
+const file = fs.readFileSync(STYLES, {encoding: 'utf-8'});
+
+const data = {}
+file.split(EOL).forEach(line => {
+    if (line.includes('--')) {
+        const [value, color] = line.replace(/ /ig, '').split(':');
+        const name = value.slice(2).split('-').map(item => item[0].toUpperCase() + item.slice(1)).join(' ')
+
+        data[value] = `\n    { color: '${color}', value: ' ${value}', name: '${name}' },`
+    }
+})
+
+Object.values(data).forEach(item => {
+    process.stdout.write('#');
+    fs.appendFileSync(STORYBOOK, item)
+})
+
+fs.appendFileSync(STORYBOOK, `\n];
+
+const styles = \`<style>
+.grid-item {
+    padding: 1.7rem;
+}
+.color {
+    height: 20rem;
+    width: 100%;
+    margin-bottom: 2rem;
+    border: 1px solid var(--black);
+}
+.color:hover {
+    opacity: 0.8;
+}
+.color:active {
+    opacity: 0.6;
+}
+p {
+    font-size: 1.5rem;
+}
+.mid {
+    margin: 1rem 0;
+}
+</style>\`;
+
+export const Colors = () => (
+    <Wrapper title="Colors" styles={styles}>
+        <Grid as="ul" size={{ base: 1, sm: 2, md: 3, lg: 5 }}>
+            {data.map(({ color, value, name }) => (
+                <GridItem as="li" key={color + name}>
+                    <button type="button" className="color" style={{ background: \`var(\${value})\` }} />
+                    <p className="color-name" data-color={value}>
+                        {name}
+                    </p>
+                    <p className="mid">{value}</p>
+                    <p>{color}</p>
+                </GridItem>
+            ))}
+        </Grid>
+
+        <div className="end" />
+    </Wrapper>
+);
+
+Colors.play = async ({ canvasElement }: Record<'canvasElement', HTMLCanvasElement>) => {
+    const list = canvasElement.querySelector('.grid');
+    if (!list) return;
+
+    const copyText = (element: HTMLDivElement): void => {
+        if (!element) return;
+
+        const colorName = element.innerText;
+        copyToClipboard(element.dataset.color ?? '')
+            .then(() => {
+                element.innerText = 'copied!';
+            })
+            .catch(() => {
+                element.innerText = 'error!';
+            })
+            .finally(() => {
+                setTimeout(() => {
+                    element.innerText = colorName;
+                }, 400);
+            });
+    };
+
+    list.addEventListener('click', (event: Event): void => {
+        const target = event.target as HTMLDivElement;
+        if (target.classList.contains('color')) {
+            copyText(target.nextElementSibling as HTMLDivElement);
+        }
+    });
+};
+`)
+
+console.log("\n\nDone!")

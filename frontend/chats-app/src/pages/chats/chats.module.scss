@@ -1,0 +1,7 @@
+.container {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    height: var(--chat-height);
+    max-height: var(--chat-height);
+}

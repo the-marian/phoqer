@@ -1,0 +1,60 @@
+.root {
+    padding-top: 2rem;
+}
+
+.title {
+    display: none;
+    margin-left: 2rem;
+    font-family: var(--font-title);
+    font-size: 1.6rem;
+
+    @media only screen and (min-width: 768px) {
+        display: block;
+    }
+}
+
+.flex {
+    width: 100%;
+    margin-bottom: 10rem;
+
+    @media only screen and (min-width: 1100px) {
+        display: flex;
+        align-items: flex-start;
+        justify-content: flex-start;
+    }
+
+    .cell {
+        width: 100%;
+        margin-bottom: 4rem;
+
+        @media only screen and (min-width: 1100px) {
+            width: 50%;
+            padding-right: 2%;
+            margin-bottom: 0;
+        }
+
+        @media only screen and (min-width: 1600px) {
+            width: 35%;
+            max-width: 75rem;
+        }
+    }
+}
+
+.submit {
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 2rem;
+    padding: 1.2rem 4rem !important;
+    border-radius: 3rem !important;
+    width: max-content !important;
+
+    @media screen and (min-width: 1100px) {
+        bottom: 5rem;
+        padding: 1.4rem 6rem !important;
+    }
+}
+
+.loader {
+    height: 80vh;
+}

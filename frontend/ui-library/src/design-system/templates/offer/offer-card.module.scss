@@ -1,0 +1,54 @@
+@import 'src/styles/scss/mixin';
+
+.root {
+    position: relative;
+    display: block;
+    height: 100%;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    overflow: hidden;
+
+    .img {
+        height: var(--offer-card-height, 18rem);
+        width: 100%;
+        border-radius: 0.6rem;
+        border: 0.1rem solid var(--gray-400);
+    }
+
+    .discount {
+        position: absolute;
+        top: 2rem;
+        left: 2rem;
+        padding: 0.3rem 0.6rem;
+        border-radius: 0.4rem;
+        color: var(--primary-green-500);
+        background: var(--white-true);
+    }
+
+    .container {
+        width: 100%;
+        margin-top: 1rem;
+
+        .title {
+            width: 100%;
+            color: var(--black);
+            @include cut-string();
+        }
+
+        .category {
+            margin: 0.5rem 0;
+            color: var(--gray-500);
+        }
+
+        .price {
+            color: var(--black);
+            line-height: 1.4;
+        }
+
+        .sale {
+            color: var(--primary-green-500);
+        }
+
+
+    }
+}

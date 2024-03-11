@@ -1,0 +1,67 @@
+.indicator {
+    display: none;
+
+    @media only screen and (min-width: 956px) {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        margin: 1rem 0;
+        font-size: 1.2rem;
+        color: var(--gray-7);
+        transition: 0.3s ease-in-out;
+        cursor: default;
+        white-space: nowrap;
+    }
+
+    > p {
+        padding-left: 8rem;
+    }
+
+    &::before {
+        content: '';
+        z-index: 0;
+        display: block;
+        height: 1.5rem;
+        width: 1.5rem;
+        margin-right: -7rem;
+        border-radius: 50%;
+        background: var(--gray-4);
+        transition: 0.3s ease-in-out;
+    }
+
+    &.isFocused {
+        color: var(--gray-9);
+
+        &::before {
+            background: var(--primary-1);
+        }
+    }
+}
+
+.tooltip {
+    ul {
+        min-width: 20rem;
+    }
+
+    li {
+        padding: 1rem 0;
+        text-align: left;
+    }
+
+    code {
+        margin-right: 0.4rem;
+        margin-bottom: 0.4rem;
+        padding: 0.2rem 0.4rem;
+        background: var(--white);
+        color: var(--black);
+        font-size: 1rem;
+        white-space: nowrap;
+        border-radius: 0.2rem;
+    }
+
+    p {
+        width: 100%;
+        margin-top: 1rem;
+        text-align: left;
+    }
+}

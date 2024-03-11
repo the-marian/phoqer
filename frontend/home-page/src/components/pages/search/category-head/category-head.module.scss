@@ -1,0 +1,21 @@
+.category {
+    position: relative;
+    margin: 0 0 3rem;
+    padding: 3rem;
+    color: var(--black);
+    min-height: 15rem;
+    border-radius: 1rem;
+
+    .inner {
+        position: relative;
+        max-width: 40rem;
+        z-index: 10;
+    }
+
+    .box {
+        min-height: 14rem;
+        padding: 3rem;
+        border-radius: 1rem;
+        background: var(--body);
+    }
+}

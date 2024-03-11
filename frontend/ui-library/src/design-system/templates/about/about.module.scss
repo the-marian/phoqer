@@ -1,0 +1,30 @@
+.root {
+    margin: 2rem 0;
+    color: var(--black);
+
+    @media only screen and (min-width: 540px) {
+        margin: 4rem 0;
+    }
+
+    @media only screen and (min-width: 768px) {
+        margin: 8rem 0;
+    }
+
+    @media only screen and (min-width: 956px) {
+        margin: 14rem 0;
+    }
+}
+
+.title {
+    margin: 2rem 0 0.5rem;
+}
+
+.description {
+    max-width: 40rem;
+}
+
+.img {
+    height: 60vh;
+    width: 100%;
+    border-radius: 1rem;
+}

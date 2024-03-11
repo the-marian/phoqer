@@ -1,0 +1,20 @@
+.list {
+    display: inline-flex;
+    align-items: center;
+    height: 3.3rem;
+
+    li {
+        border: 0.1rem solid var(--gray-500);
+        border-right: none;
+        color: var(--black);
+    }
+
+    li:nth-of-type(1) {
+        border-radius: 0.4rem 0 0 0.4rem;
+    }
+
+    li:nth-last-of-type(1) {
+        border-radius: 0 0.4rem 0.4rem 0;
+        border-right: 0.1rem solid var(--gray-500);
+    }
+}

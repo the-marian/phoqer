@@ -1,1 +1,0 @@
-ALTER TABLE messages ADD COLUMN message_type character varying(30);

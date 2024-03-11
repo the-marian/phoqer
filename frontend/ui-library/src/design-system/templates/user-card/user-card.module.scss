@@ -1,0 +1,28 @@
+.root {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+
+    .avatar {
+        min-height: 4.5rem;
+        max-height: 4.5rem;
+        min-width: 4.5rem;
+        max-width: 4.5rem;
+    }
+
+    &:hover .userName {
+        color: var(--primary-blue-500);
+    }
+
+    .userName {
+        color: var(--black);
+    }
+
+    .date {
+        color: var(--gray-500);
+    }
+
+    .userData {
+        margin-left: 1.5rem;
+    }
+}

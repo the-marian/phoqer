@@ -1,0 +1,15 @@
+.modal :global(#large-modal) {
+    padding: 0;
+}
+
+.inner {
+    height: calc(var(--100vh, 100vh) - 7rem);
+}
+
+.root {
+    min-height: calc(var(--100vh) - var(--header-height) - var(--footer-height));
+
+    > * {
+        max-width: 25rem !important;
+    }
+}

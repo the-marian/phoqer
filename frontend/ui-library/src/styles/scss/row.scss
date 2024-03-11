@@ -1,0 +1,70 @@
+@import 'mixin';
+
+$sizes: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12;
+
+.row {
+    display: flex;
+    flex-flow: row wrap;
+    overflow: hidden;
+    margin: calc(var(--rowSpacing, 0) * -1) calc(var(--columnSpacing, 0) * -1);
+
+    @include media-sm {
+        margin: calc(var(--rowSpacing-sm, var(--rowSpacing)) * -1) calc(var(--columnSpacing-sm, var(--rowSpacing)) * -1);
+    }
+
+    @include media-md {
+        margin: calc(var(--rowSpacing-md, var(--rowSpacing)) * -1) calc(var(--columnSpacing-md, var(--rowSpacing)) * -1);
+    }
+
+    @include media-lg {
+        margin: calc(var(--rowSpacing-lg, var(--rowSpacing)) * -1) calc(var(--columnSpacing-lg, var(--rowSpacing)) * -1);
+    }
+}
+
+.cell {
+    flex-grow: 0;
+    flex-basis: auto;
+    padding: var(--columnSpacing, 0) var(--rowSpacing, 0);
+
+    @include media-sm {
+        padding: var(--columnSpacing-sm, var(--rowSpacing)) var(--rowSpacing-sm, var(--rowSpacing));
+    }
+
+    @include media-md {
+        padding: var(--columnSpacing-md, var(--rowSpacing)) var(--rowSpacing-md, var(--rowSpacing));
+    }
+
+    @include media-lg {
+        padding: var(--columnSpacing-lg, var(--rowSpacing)) var(--rowSpacing-lg, var(--rowSpacing));
+    }
+}
+
+@each $size in $sizes {
+    .cell-#{$size} {
+        width: calc(100% * #{$size} / 12);
+    }
+}
+
+@include media-sm {
+    @each $size in $sizes {
+        .cell-sm-#{$size} {
+            width: calc(100% * #{$size} / 12);
+        }
+    }
+}
+
+@include media-md {
+    @each $size in $sizes {
+        .cell-md-#{$size} {
+            width: calc(100% * #{$size} / 12);
+        }
+    }
+}
+
+@include media-lg {
+    @each $size in $sizes {
+        .cell-lg-#{$size} {
+            width: calc(100% * #{$size} / 12);
+        }
+    }
+}

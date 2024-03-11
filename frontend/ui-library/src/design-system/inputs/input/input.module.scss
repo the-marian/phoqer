@@ -1,0 +1,181 @@
+.root {
+    --input-inner-padding: var(--input-padding, 5rem);
+
+    display: block;
+    position: relative;
+    width: 100%;
+
+    .input {
+        display: block;
+        width: 100%;
+        padding: 0 1.4rem;
+        font-size: inherit;
+        border-radius: 0.5rem;
+        border: 0.1rem solid var(--gray-300);
+        background: var(--body);
+        color: var(--black);
+        font-family: var(--font-text);
+        outline: none;
+
+        &:hover {
+            border: 0.1rem solid var(--primary-blue-500);
+            box-shadow: 0 0 0 0.1rem var(--primary-blue-500);
+        }
+
+        &:focus {
+            border: 0.1rem solid var(--primary-blue-500);
+            box-shadow: 0 0 0 0.2rem var(--primary-blue-500);
+        }
+
+        &::placeholder {
+            color: var(--gray-300);
+        }
+    }
+
+    .errorIcon,
+    .rightIcon,
+    .leftIcon {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: inherit;
+        color: var(--black);
+    }
+
+    .rightIcon,
+    .leftIcon {
+        pointer-events: none;
+    }
+
+    .leftIcon {
+        left: calc(var(--input-inner-padding) * 0.3);
+    }
+
+    .errorIcon,
+    .rightIcon {
+        right: calc(var(--input-inner-padding) * 0.3);
+    }
+
+    .errorIcon {
+        color: var(--red);
+    }
+
+    .spinner {
+        top: 48%;
+        font-size: inherit;
+        color: var(--black);
+    }
+
+    .password {
+        position: absolute;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 0.4rem;
+        font-size: inherit;
+        color: inherit;
+
+        &:hover {
+            background: var(--gray-100);
+        }
+
+        &:active {
+            background: var(--secondary-blue-400);
+        }
+    }
+
+    &.left .input {
+        padding-left: var(--input-inner-padding);
+    }
+
+    &.right .input,
+    &.error .input {
+        padding-right: var(--input-inner-padding);
+    }
+}
+
+.sm {
+    --input-inner-padding: var(--input-padding, 4rem);
+    font-size: 1.6rem;
+
+    .input {
+        height: 3.2rem;
+        padding: 0 1.4rem;
+    }
+
+    .password {
+        top: 0.4rem;
+        right: 0.4rem;
+        height: calc(100% - 0.8rem);
+        width: 4rem;
+    }
+}
+
+.md {
+    --input-inner-padding: var(--input-padding, 4.5rem);
+    font-size: 1.8rem;
+
+    .input {
+        height: 4.2rem;
+        padding: 0 1.8rem;
+    }
+
+    .password {
+        top: 0.5rem;
+        right: 0.5rem;
+        height: calc(100% - 1rem);
+        width: 5rem;
+    }
+}
+
+.lg {
+    --input-inner-padding: var(--input-padding, 6rem);
+    font-size: 2.4rem;
+
+    .input {
+        height: 5.6rem;
+        padding: 0 2.2rem;
+    }
+
+    .password {
+        top: 0.6rem;
+        right: 0.6rem;
+        height: calc(100% - 1.2rem);
+        width: 6rem;
+    }
+}
+
+.error svg.errorIcon {
+    color: var(--primary-red-500);
+}
+
+.filled {
+    .input {
+        background-color: var(--gray-150);
+        border-color: var(--gray-150);
+
+        &:hover {
+            background-color: var(--gray-100);
+            border-color: var(--gray-100);
+        }
+    }
+}
+
+.disabled {
+    opacity: 0.5;
+
+    .input,
+    .input:focus,
+    .input:hover {
+        border: 0.1rem solid var(--gray-200);
+        background-color: var(--gray-100);
+        box-shadow: none;
+    }
+
+    * {
+        cursor: not-allowed;
+    }
+}

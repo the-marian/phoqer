@@ -1,0 +1,31 @@
+.root {
+    margin: 4rem 0 3rem;
+}
+
+.wrp {
+    padding: 2rem;
+    height: calc(100% - 10rem);
+}
+
+.upload {
+    height: calc(100% - 5rem);
+    margin-bottom: 2rem;
+}
+
+.flex {
+    display: flex;
+    align-items: center;
+
+    > * {
+        margin-right: 2rem;
+    }
+}
+
+.drawer {
+    --drawer-width: 70rem;
+}
+
+.label {
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+}

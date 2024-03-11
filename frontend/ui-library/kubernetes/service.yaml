@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: ui-library
+spec:
+  selector:
+    app: ui-library
+  ports:
+  - name: http
+    protocol: TCP
+    port: 80
+    targetPort: 6006
+  type: NodePort

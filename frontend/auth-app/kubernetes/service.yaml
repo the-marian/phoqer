@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: auth-app
+spec:
+  selector:
+    app: auth-app
+  ports:
+  - name: http
+    protocol: TCP
+    port: 80
+    targetPort: 4003
+  type: NodePort
+

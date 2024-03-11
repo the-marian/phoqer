@@ -1,0 +1,41 @@
+.root {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 1rem;
+    margin-bottom: 1rem;
+    padding: 0.1rem;
+    border-radius: 0.6rem;
+    color: var(--black);
+    border: 0.1rem solid var(--gray-400);
+
+    &.isNew {
+        position: relative;
+        color: var(--gray-600);
+        border-color: var(--gray-200);
+
+        &::before {
+            content: '';
+            position: absolute;
+            top: -0.8rem;
+            left: -0.6rem;
+            height: 2rem;
+            width: 2rem;
+            border-radius: 50%;
+            border: 0.5rem solid var(--body);
+            background: var(--primary-red-500);
+        }
+    }
+
+    &:hover {
+        border-color: var(--gray-800);
+    }
+
+    .children {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-left: 1rem;
+        margin-right: 0.6rem;
+    }
+}

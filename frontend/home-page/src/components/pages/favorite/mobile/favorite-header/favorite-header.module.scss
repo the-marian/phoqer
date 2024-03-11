@@ -1,0 +1,11 @@
+@import 'src/components/pages/favorite/shared/table-header.module';
+
+.my {
+    margin: 2rem 0;
+}
+
+@media screen and (min-width: 540px) {
+    .status {
+        padding: 0 3rem;
+    }
+}

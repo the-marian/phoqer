@@ -1,0 +1,36 @@
+.orders {
+    position: fixed;
+    top: var(--chat-header);
+    right: 0;
+    z-index: 10001;
+    width: 0;
+    max-width: 50rem;
+    visibility: hidden;
+    background: var(--white);
+    transition: 0.2s ease-in-out;
+
+    @media only screen and (min-width: 1200px) {
+        position: static;
+        top: unset;
+        right: unset;
+    }
+
+    &.open {
+        width: var(--chat-sidebar-width);
+        visibility: visible;
+    }
+
+    .scroll {
+        height: var(--chat-height) !important;
+    }
+
+    .inner {
+        border-left: 0.1rem solid var(--gray-4);
+    }
+
+    .content {
+        min-height: var(--chat-height-header);
+        height: max-content;
+        padding: 2rem;
+    }
+}

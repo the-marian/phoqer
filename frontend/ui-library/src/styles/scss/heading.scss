@@ -1,0 +1,69 @@
+@import 'mixin';
+
+.heading {
+    font-family: var(--font-title);
+    color: var(--black);
+}
+
+$weight: 500 600 700;
+$size: (
+    xs: 1.3rem,
+    sm: 1.6rem,
+    md: 2.2rem,
+    lg: 2.8rem,
+    xl: 3.2rem,
+);
+
+@each $key, $value in $size {
+    .heading-size-#{$key} {
+        font-size: $value;
+    }
+}
+
+@each $item in $weight {
+    .heading-weight-#{$item} {
+        font-weight: $item;
+    }
+}
+
+@include media-sm {
+    @each $key, $value in $size {
+        .heading-size-sm-#{$key} {
+            font-size: $value;
+        }
+    }
+
+    @each $item in $weight {
+        .heading-weight-sm-#{$item} {
+            font-weight: $item;
+        }
+    }
+}
+
+@include media-md {
+    @each $key, $value in $size {
+        .heading-size-md-#{$key} {
+            font-size: $value;
+        }
+    }
+
+    @each $item in $weight {
+        .heading-weight-md-#{$item} {
+            font-weight: $item;
+        }
+    }
+}
+
+@include media-lg {
+    @each $key, $value in $size {
+        .heading-size-lg-#{$key} {
+            font-size: $value;
+        }
+    }
+
+    @each $item in $weight {
+        .heading-weight-lg-#{$item} {
+            font-weight: $item;
+        }
+    }
+}

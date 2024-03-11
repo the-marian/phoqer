@@ -1,0 +1,27 @@
+.root {
+    --chat-sidebar-width: 100%;
+    --chat-header: 7rem;
+    --chat-height: calc(var(--100vh, 100vh) - var(--chat-header));
+    --chat-height-header: calc(var(--100vh, 100vh) - var(--chat-header) * 2);
+
+    @media only screen and (min-width: 1200px) {
+        --chat-sidebar-width: 35rem;
+    }
+
+    @media only screen and (min-width: 1500px) {
+        --chat-sidebar-width: 40rem;
+    }
+
+    @media only screen and (min-width: 1700px) {
+        --chat-sidebar-width: 50rem;
+    }
+
+    width: 100%;
+    height: var(--chat-height);
+    font-size: 1.4rem;
+
+    .header {
+        height: 7rem;
+        background: var(--secondary-1);
+    }
+}

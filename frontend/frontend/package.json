@@ -1,0 +1,44 @@
+{
+    "name": "frontend",
+    "private": true,
+    "scripts": {
+        "build": "dotenv -- turbo run build --filter core",
+        "dev": "dotenv -- turbo run dev --filter core",
+        "start": "dotenv -- npm -C ./apps/core run start",
+        "eslint": "eslint -c .eslintrc --fix ./",
+        "prettier": "prettier --write \"./**/*.{ts,tsx,css,json}\" -c .prettierrc",
+        "lint": "npm run prettier && npm run eslint"
+    },
+    "packageManager": "npm@9.6.7",
+    "workspaces": [
+        "apps/*",
+        "packages/*"
+    ],
+    "dependencies": {
+        "@chakra-ui/react": "^2.8.1",
+        "@chakra-ui/styled-system": "^2.9.1",
+        "@chakra-ui/theme": "^3.3.0",
+        "@emotion/react": "^11.11.1",
+        "@emotion/styled": "^11.11.0",
+        "framer-motion": "^10.16.4",
+        "lodash-es": "^4.17.21",
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0",
+        "react-hook-form": "^7.47.0",
+        "react-icons": "^4.11.0",
+        "react-textarea-autosize": "^8.5.3"
+    },
+    "devDependencies": {
+        "@types/lodash-es": "^4.17.9",
+        "@types/node": "^17.0.12",
+        "@types/react": "^18.0.22",
+        "@types/react-dom": "^18.0.7",
+        "dotenv-cli": "^7.3.0",
+        "eslint": "^8.48.0",
+        "eslint-config-custom": "*",
+        "prettier": "^3.0.3",
+        "tsconfig": "*",
+        "turbo": "^1.10.16",
+        "typescript": "^5.0.2"
+    }
+}

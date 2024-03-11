@@ -1,0 +1,144 @@
+@import 'mixin';
+
+$direction: row, row-reverse, column, column-reverse;
+$align: stretch, flex-start, flex-end, center;
+$justify: flex-start, flex-end, center, space-around, space-between, space-evenly, stretch;
+$wrap: wrap, nowrap, wrap-reverse;
+
+$media: sm, md, lg, xl;
+
+.flex {
+    display: flex;
+}
+
+// ----------------------------------------------------------------
+// $direction
+// ----------------------------------------------------------------
+@each $item in $direction {
+    .direction-#{$item} {
+        flex-direction: $item;
+    }
+}
+
+@include media-sm {
+    @each $item in $direction {
+        .direction-sm-#{$item} {
+            flex-direction: $item;
+        }
+    }
+}
+
+@include media-md {
+    @each $item in $direction {
+        .direction-md-#{$item} {
+            flex-direction: $item;
+        }
+    }
+}
+
+@include media-lg {
+    @each $item in $direction {
+        .direction-lg-#{$item} {
+            flex-direction: $item;
+        }
+    }
+}
+
+// ----------------------------------------------------------------
+// $align
+// ----------------------------------------------------------------
+@each $item in $align {
+    .align-#{$item} {
+        align-items: $item;
+    }
+}
+
+@include media-sm {
+    @each $item in $align {
+        .align-sm-#{$item} {
+            align-items: $item;
+        }
+    }
+}
+
+@include media-md {
+    @each $item in $align {
+        .align-md-#{$item} {
+            align-items: $item;
+        }
+    }
+}
+
+@include media-lg {
+    @each $item in $align {
+        .align-lg-#{$item} {
+            align-items: $item;
+        }
+    }
+}
+
+// ----------------------------------------------------------------
+// $justify
+// ----------------------------------------------------------------
+@each $item in $justify {
+    .justify-#{$item} {
+        justify-content: $item;
+    }
+}
+
+@include media-sm {
+    @each $item in $justify {
+        .justify-sm-#{$item} {
+            justify-content: $item;
+        }
+    }
+}
+
+@include media-md {
+    @each $item in $justify {
+        .justify-md-#{$item} {
+            justify-content: $item;
+        }
+    }
+}
+
+@include media-lg {
+    @each $item in $justify {
+        .justify-lg-#{$item} {
+            justify-content: $item;
+        }
+    }
+}
+
+// ----------------------------------------------------------------
+// $wrap
+// ----------------------------------------------------------------
+@each $item in $wrap {
+    .wrap-#{$item} {
+        flex-wrap: $item;
+    }
+}
+
+@include media-sm {
+    @each $item in $wrap {
+        .wrap-sm-#{$item} {
+            flex-wrap: $item;
+        }
+    }
+}
+
+@include media-md {
+    @each $item in $wrap {
+        .wrap-md-#{$item} {
+            flex-wrap: $item;
+        }
+    }
+}
+
+@include media-lg {
+    @each $item in $wrap {
+        .wrap-lg-#{$item} {
+            flex-wrap: $item;
+        }
+    }
+}

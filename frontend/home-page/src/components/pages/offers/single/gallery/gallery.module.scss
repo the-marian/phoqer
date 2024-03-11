@@ -1,0 +1,160 @@
+.root {
+    --gallery-radius: 0.8rem;
+
+    width: 100%;
+    height: max-content;
+
+    @media only screen and (min-width: 1500px) {
+        position: sticky;
+        left: 0;
+        top: calc(var(--header-height) + 2rem);
+        width: 50%;
+    }
+}
+
+.carousel {
+    padding: 0;
+    user-select: none;
+    margin-bottom: 2rem;
+
+    .image {
+        height: 100%;
+        width: 100%;
+        border-radius: var(--gallery-radius, 0.8rem);
+
+        svg {
+            color: var(--black);
+        }
+
+        img {
+            object-fit: contain;
+            background: var(--white);
+        }
+    }
+
+    :global {
+        .carousel-slider {
+            position: relative;
+            height: 30rem;
+            border-radius: var(--gallery-radius, 0.8rem);
+            border: 0.1rem solid var(--gray-200);
+
+            &:hover {
+                border: 0.1rem solid var(--gray-500);
+            }
+
+            @media only screen and (min-width: 350px) {
+                height: 40rem;
+            }
+
+            @media only screen and (min-width: 768px) {
+                height: 60rem;
+            }
+
+            .slide,
+            .slider,
+            .slider-wrapper {
+                height: 100%;
+            }
+
+            .slide {
+                cursor: zoom-in;
+            }
+
+            .control-arrow {
+                top: unset !important;
+                bottom: 1rem !important;
+                margin: 0;
+                padding: 0;
+                width: 5rem;
+                height: 5rem;
+                background: var(--white);
+                border: 0.1rem solid var(--gray-200);
+                transition: 0.3s ease-in-out;
+                border-radius: var(--gallery-radius, 0.8rem);
+
+                &.control-disabled {
+                    display: none !important;
+                }
+
+                &.control-prev {
+                    left: 1rem !important;
+                }
+
+                &.control-next {
+                    right: 1rem !important;
+                }
+
+                &.control-prev,
+                &.control-next {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    opacity: 1;
+                    background: var(--white);
+                    border: 0.1rem solid var(--gray-300);
+                }
+
+                &.control-prev::before,
+                &.control-next::before {
+                    display: block;
+                    border-top: 0.4rem solid transparent;
+                    border-bottom: 0.4rem solid transparent;
+                }
+
+                &.control-prev::before {
+                    border-right: 0.4rem solid var(--black);
+                }
+                &.control-next::before {
+                    border-left: 0.4rem solid var(--black);
+                }
+
+                &.control-prev:hover,
+                &.control-next:hover,
+                &.control-prev:focus,
+                &.control-next:focus {
+                    background: var(--white);
+                    border: 0.1rem solid var(--gray-600);
+                }
+
+                &.control-prev:active,
+                &.control-next:active {
+                    border: 0.1rem solid var(--primary-blue-500);
+                }
+            }
+
+            .carousel-status {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin: 0.8rem;
+                padding: 0.5rem 1.5rem;
+                min-height: 3.5rem;
+                color: var(--white);
+                background: var(--black);
+                font-family: var(--font-title);
+                border-radius: var(--gallery-radius, 0.8rem);
+                font-size: 1.2rem;
+                text-shadow: none;
+            }
+        }
+    }
+}
+
+.singleImage {
+    height: 30rem;
+    margin-bottom: 2rem;
+    object-fit: contain;
+    border-radius: var(--gallery-radius, 0.8rem);
+    border: 0.1rem solid var(--gray-200);
+    cursor: zoom-in;
+
+    @media only screen and (min-width: 350px) {
+        height: 40rem;
+    }
+
+    @media only screen and (min-width: 768px) {
+        height: 60rem;
+        margin-bottom: 4rem;
+    }
+}

@@ -1,0 +1,30 @@
+.empty {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    padding: 4rem;
+    text-align: center;
+    font-size: 1.6rem;
+    border-radius: 0.8rem;
+    transition: 0.3s ease-in-out;
+    color: var(--primary-blue-500);
+
+    &:hover {
+        background: var(--secondary-blue-400);
+        box-shadow: 0 0 0 0.2rem var(--primary-blue-500);
+    }
+
+    p,
+    em {
+        max-width: 40rem;
+    }
+
+    em {
+        font-style: normal;
+        font-family: var(--font-text);
+        color: var(--gray-500);
+    }
+}

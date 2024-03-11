@@ -1,0 +1,65 @@
+.root {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 5rem 0.5rem;
+    background: var(--gray-50);
+
+    .icon {
+        height: 20rem;
+        width: 20rem;
+    }
+
+    .children {
+        max-width: 28rem;
+        margin-top: 3rem;
+        text-align: center;
+        font-size: 1.6rem;
+        font-family: var(--font-text);
+        color: var(--black);
+        font-weight: 400;
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            margin-bottom: 1rem;
+            font-size: 2rem;
+            font-family: var(--font-title);
+            font-weight: 700;
+            color: var(--black);
+        }
+
+        :global(.footer) {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 2rem;
+
+            > * {
+                margin: 0.5rem;
+            }
+        }
+    }
+}
+
+.primary {
+    fill: var(--primary-blue-500);
+}
+
+.white {
+    fill: var(--body);
+}
+
+.background {
+    fill: var(--secondary-blue-500);
+}
+
+:global(.black) {
+    .white {
+        fill: var(--gray-700);
+    }
+}

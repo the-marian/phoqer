@@ -1,0 +1,18 @@
+.root {
+    padding: 0 0 6rem;
+}
+
+.title {
+    margin-left: 2rem;
+    margin-bottom: 0.3rem;
+    font-family: var(--font-title);
+    font-size: 1.6rem;
+}
+
+.switch {
+    display: none;
+
+    @media only screen and (min-width: 768px) {
+        display: block;
+    }
+}

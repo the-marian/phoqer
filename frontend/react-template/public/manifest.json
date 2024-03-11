@@ -1,0 +1,45 @@
+{
+  "short_name": "Phoqer",
+  "name": "Phoqer App",
+  "icons": [
+    {
+      "src": "http://phoqer.com/meta/ico/16.ico",
+      "sizes": "16x16",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "http://phoqer.com/meta/ico/24.ico",
+      "sizes": "24x24",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "http://phoqer.com/meta/ico/32.ico",
+      "sizes": "32x32",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "http://phoqer.com/meta/ico/74.ico",
+      "sizes": "74x74",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "http://phoqer.com/meta/png/192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "http://phoqer.com/meta/png/384.png",
+      "type": "image/png",
+      "sizes": "384x384"
+    },
+    {
+      "src": "http://phoqer.com/meta/png/512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#0565f6"
+}

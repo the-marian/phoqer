@@ -1,0 +1,31 @@
+.heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    color: var(--black);
+}
+
+.icon {
+    font-size: 2rem;
+    transition: 0.2s ease-in-out;
+}
+
+.isOpen {
+    transform: rotate(180deg);
+}
+
+.group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+
+    > * {
+        margin-bottom: 2rem;
+
+        &:nth-last-child(1) {
+            margin-bottom: 0;
+        }
+    }
+}

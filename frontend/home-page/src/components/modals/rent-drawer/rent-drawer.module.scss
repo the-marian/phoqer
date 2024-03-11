@@ -1,0 +1,43 @@
+.group {
+    width: 100%;
+
+    .btn {
+        width: 48%;
+    }
+}
+
+.description {
+    margin-bottom: 2rem;
+}
+
+.drawer {
+    --drawer-width: 50rem;
+    display: flex;
+    flex-direction: column;
+
+    .scroll {
+        height: calc(var(--100vh, 100vh) - 15rem);
+    }
+
+    .form {
+        padding: 2rem;
+
+        > * {
+            margin-bottom: 2rem;
+        }
+    }
+
+    .footer {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        min-height: 7rem;
+        padding: 0 2rem;
+        border-top: 0.1rem solid var(--gray-200);
+
+        .btn {
+            padding: 1.1rem;
+            width: 100%;
+        }
+    }
+}

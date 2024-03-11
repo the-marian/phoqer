@@ -1,0 +1,96 @@
+.withLabel,
+.checkbox {
+    display: flex;
+    align-items: center;
+    width: max-content;
+    cursor: pointer;
+    user-select: none;
+
+    .input {
+        position: relative;
+        display: block;
+        height: var(--checkbox-rect);
+        width: var(--checkbox-rect);
+        cursor: pointer;
+
+        &::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 2;
+            display: block;
+            width: 100%;
+            height: 100%;
+            background: var(--body);
+            transition: 0.1s ease-in-out;
+        }
+
+        &::after {
+            content: '';
+            position: absolute;
+            top: 16%;
+            left: 33%;
+            z-index: 2;
+            height: 50%;
+            width: 36%;
+            transform: rotate(45deg) scale(0);
+            border-right: calc(var(--checkbox-rect) / 10) solid var(--body);
+            border-bottom: calc(var(--checkbox-rect) / 10) solid var(--body);
+            transition: 0.3s ease-in-out;
+        }
+
+        &:checked {
+            &::before {
+                border: calc(var(--checkbox-rect) / 2) solid var(--black);
+            }
+
+            &::after {
+                transform: rotate(45deg) scale(1);
+            }
+        }
+    }
+
+    &.disabled {
+        opacity: 0.5;
+    }
+}
+
+.sm {
+    --checkbox-rect: 1.7rem;
+
+    &.withLabel .input {
+        margin-right: 1.2rem;
+    }
+
+    .input::before {
+        border-radius: 0.2rem;
+        border: 0.2rem solid var(--black);
+    }
+}
+
+.md {
+    --checkbox-rect: 2.8rem;
+
+    &.withLabel .input {
+        margin-right: 1.5rem;
+    }
+
+    .input::before {
+        border-radius: 0.3rem;
+        border: 0.3rem solid var(--black);
+    }
+}
+
+.lg {
+    --checkbox-rect: 3.7rem;
+
+    &.withLabel .input {
+        margin-right: 2rem;
+    }
+
+    .input::before {
+        border-radius: 0.4rem;
+        border: 0.4rem solid var(--black);
+    }
+}

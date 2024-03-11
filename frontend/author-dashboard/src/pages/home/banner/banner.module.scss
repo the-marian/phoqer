@@ -1,0 +1,16 @@
+.root {
+    position: relative;
+    width: 100%;
+    height: 40rem;
+    margin-top: 2rem;
+
+    @media only screen and (min-width: 1300px) {
+        margin-top: 0;
+        width: calc(100% - 52rem);
+    }
+
+    @media only screen and (min-width: 1600px) {
+        width: calc(100% - 82rem);
+        height: 100%;
+    }
+}

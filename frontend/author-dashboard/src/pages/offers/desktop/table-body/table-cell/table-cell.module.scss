@@ -1,0 +1,25 @@
+.link {
+    color: var(--primary-1);
+
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+.user > * {
+    display: flex;
+    align-items: center;
+
+    .avatar {
+        height: 3rem;
+        width: 3rem;
+        margin-right: 1rem;
+    }
+
+    .link {
+        width: calc(100% - 4rem);
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+}

@@ -1,0 +1,32 @@
+.item {
+    margin-bottom: 4rem;
+}
+
+.user {
+    display: block;
+    width: max-content;
+}
+
+.images {
+    flex-wrap: wrap;
+    margin-top: 2rem;
+
+    .image {
+        height: 100%;
+        width: 100%;
+    }
+
+    .button {
+        width: 20rem;
+        height: 16rem;
+        margin-right: 1rem;
+        margin-bottom: 1rem;
+        border-radius: 0.8rem;
+        overflow: hidden;
+
+        &:focus,
+        &:hover {
+            box-shadow: 0 0 0 0.2rem var(--primary-blue-500);
+        }
+    }
+}

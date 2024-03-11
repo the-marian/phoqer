@@ -1,0 +1,21 @@
+@import 'phoqer/dist/styles/scss/mixin';
+@import 'src/components/category-item/category-item.module';
+
+.skeleton {
+    @include skeleton;
+
+    &.title {
+        height: 1.2rem;
+        margin-bottom: 1.5rem;
+    }
+
+    &.description {
+        height: 0.6rem;
+        margin-bottom: 0.8rem;
+
+        &:nth-last-of-type(1) {
+            width: 60%;
+            margin-bottom: 0;
+        }
+    }
+}

@@ -1,0 +1,28 @@
+@import 'src/styles/scss/mixin';
+
+.root {
+    color: var(--black);
+
+    .img {
+        height: 18rem;
+        width: 100%;
+        object-fit: cover;
+        border-radius: 0.6rem;
+        transition: 0.1s ease-in-out;
+    }
+
+    .title {
+        margin: 1rem 0;
+    }
+
+    .description {
+        @include block-ellipsis(1.4, 1.4, 2);
+    }
+
+    &:focus,
+    &:hover {
+        .title {
+            text-decoration: underline;
+        }
+    }
+}

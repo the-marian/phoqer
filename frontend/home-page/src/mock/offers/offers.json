@@ -1,0 +1,25 @@
+{
+    "data": [
+        {
+            "id": "10",
+            "title": "Ford focus 3, 2015 года. Семейная",
+            "price": 1500,
+            "description": "Ford Focus 3, 2015 года <br> Поддержаний автомобиль в хорошем состоянии !<br> Собственное авто, пригонял для себя! <br> Повреждение были минимальные.<br> Основные ++++ после пригона -это целая безопасность!!<br><br> Дополнительно установил защиту двигателя, противотуманки.<br> Масло в моторе меняю вовремя.<br> Заменил масло в коробке.<br> Автомобиль не привередлив в обслуживании.<br> Расход реальный по трассе:<br> 6 литров(110-120км/час)<br> По городу-10-11 литров.<br>  Пробег 130тыс..<br> Мультимедиа достойная, есть камера заднего вида, кондиционер, помощь при подъёме  и другое.<br> Хранение в подземном паркинге!<br><br> По всем интересующим вопросам звоните-с удовольствием отвечу!<br> Переоформление в мреэ",
+            "images": [
+                "https://images.unsplash.com/photo-1582467029543-8d5b719a1236?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1287&q=80",
+                "https://images.unsplash.com/photo-1558787503-311fdac114af?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1293&q=80"
+            ],
+            "author": {
+                "id": "2",
+                "firstName": "Vladislav",
+                "lastName": "Mukhin",
+                "avatar": "https://images.unsplash.com/photo-1567549361708-ff4ae2ec864c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2940&q=80"
+            },
+            "category": {
+                "slug": "transport",
+                "title": "Transport"
+            },
+            "reviews": 0
+        }
+    ]
+}

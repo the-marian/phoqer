@@ -1,0 +1,53 @@
+$mobile: 576px;
+$tablet: 768px;
+$desktop: 1200px;
+
+@mixin skeleton {
+    @keyframes skeleton {
+        0% {
+            background-position: 0 50%;
+        }
+        50% {
+            background-position: 100% 50%;
+        }
+    }
+
+    background: linear-gradient(90deg, var(--gray-100), var(--gray-300), var(--gray-50));
+    background-size: 400% 400%;
+    animation: skeleton 2s ease infinite;
+}
+
+@mixin cut-string {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+@mixin block-ellipsis($font-size, $line-height, $lines-to-show) {
+    display: block;
+    font-size: $font-size + rem;
+    line-height: $line-height;
+    height: ($font-size * $line-height * $lines-to-show) + rem;
+    -webkit-line-clamp: $lines-to-show;
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+@mixin media-sm {
+    @media (min-width: $mobile) {
+        @content;
+    }
+}
+
+@mixin media-md {
+    @media (min-width: $tablet) {
+        @content;
+    }
+}
+
+@mixin media-lg {
+    @media (min-width: $desktop) {
+        @content;
+    }
+}

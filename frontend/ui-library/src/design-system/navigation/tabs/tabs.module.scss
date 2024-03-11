@@ -1,0 +1,121 @@
+.wrp {
+    width: 100%;
+    overflow-x: auto;
+    height: 6.2rem;
+}
+
+.list {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+    width: max-content;
+}
+
+.li small {
+    margin-left: 0.6rem;
+    font-size: 1.4rem;
+    color: var(--gray-500);
+}
+
+.li > * {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 1.5rem 0;
+    margin: 0 2rem;
+    font-size: 1.4rem;
+    color: var(--black);
+
+    &:hover {
+        color: var(--primary-blue-400);
+
+        &::after {
+            background: transparent;
+        }
+    }
+
+    &::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 0.2rem;
+        border-radius: 5rem;
+        background: none;
+        transition: 0.3s ease-in-out;
+    }
+
+    svg {
+        font-size: 2rem;
+    }
+
+    span {
+        margin-left: 1rem;
+    }
+}
+
+.li.isActive > * {
+    pointer-events: none;
+    color: var(--white);
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0.75rem;
+        left: -1rem;
+        height: 3.5rem;
+        width: calc(100% + 2rem);
+        background: var(--black);
+        border-radius: 0.5rem;
+        z-index: -1;
+    }
+
+    &::after {
+        background: var(--black);
+    }
+}
+
+.li.isLoading > *,
+.li.isDisabled > * {
+    cursor: no-drop;
+    color: var(--gray-400);
+
+    &::before {
+        background: var(--gray-200);
+    }
+
+    &:hover {
+        color: var(--gray-400);
+
+        &::after {
+            background: transparent;
+        }
+    }
+}
+.li.isLoading.isActive > *,
+.li.isDisabled.isActive > * {
+    &::after {
+        background: var(--gray-400);
+    }
+}
+
+.li {
+    position: relative;
+
+    .spinner {
+        position: absolute;
+        left: -1.4rem;
+        top: 50%;
+        transform: translateY(-50%);
+        color: var(--black);
+
+        svg {
+            font-size: 1rem;
+        }
+
+        &:hover {
+            color: var(--black);
+        }
+    }
+}

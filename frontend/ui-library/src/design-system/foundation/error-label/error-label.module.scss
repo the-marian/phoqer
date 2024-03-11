@@ -1,0 +1,24 @@
+.label {
+    display: block;
+    margin-top: 0.6rem;
+    margin-left: 0.5rem;
+    line-height: 1.3;
+    color: var(--primary-red-500);
+}
+
+.filled {
+    margin-top: 1rem;
+    padding-left: 1rem;
+
+    .label {
+        display: inline;
+        margin: 0;
+        line-height: 2;
+        padding: 0.4rem 0;
+        box-shadow: 1rem 0 0 var(--secondary-red-400), -1rem 0 0 var(--secondary-red-400);
+        background-color: var(--secondary-red-400);
+        box-decoration-break: clone;
+        -webkit-box-decoration-break: clone;
+        border-radius: 0.4rem;
+    }
+}

@@ -1,0 +1,13 @@
+.root {
+    position: relative;
+    margin-right: 2em;
+
+    .btn {
+        .img {
+            width: 2rem;
+            height: 2rem;
+            border-radius: 50%;
+            border: 0.1rem solid var(--black);
+        }
+    }
+}

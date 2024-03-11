@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{phoqer.app_name}}
+  labels: 
+    app: {{phoqer.app_name}}
+    tier: frontend
+spec:
+  replicas: 1 
+  selector:
+    matchLabels:
+      app: {{phoqer.app_name}}
+  template:
+    metadata:
+      labels:
+        app: {{phoqer.app_name}}
+    spec:
+      containers:
+      - name: {{phoqer.app_name}}
+        image: ghcr.io/phoqer/{{phoqer.app_name}}:latest
+        ports: 
+        - containerPort: {{phoqer.port}}
+      imagePullSecrets:
+       - name: ghcr-secret

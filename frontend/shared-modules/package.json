@@ -1,0 +1,92 @@
+{
+    "name": "phoqer-shared",
+    "version": "2.0.11",
+    "main": "dist/cjs/index.js",
+    "module": "dist/esm/index.js",
+    "types": "dist/index.d.ts",
+    "es2015": "dist/esm/index.js",
+    "es2017": "dist/esm/index.js",
+    "homepage": ".",
+    "files": [
+        "dist/"
+    ],
+    "dependencies": {
+        "axios": "^1.4.0",
+        "classnames": "^2.3.2",
+        "lodash-es": "^4.17.21",
+        "react-dropzone": "^14.2.3"
+    },
+    "peerDependencies": {
+        "phoqer": "^3.0.24",
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0"
+    },
+    "overrides": {
+        "typescript": "^5.1.6"
+    },
+    "devDependencies": {
+        "@babel/core": "^7.22.5",
+        "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+        "@rollup/plugin-commonjs": "^25.0.2",
+        "@rollup/plugin-json": "^6.0.0",
+        "@rollup/plugin-node-resolve": "^15.1.0",
+        "@rollup/plugin-terser": "^0.4.3",
+        "@rollup/plugin-typescript": "^11.1.2",
+        "@types/lodash-es": "^4.17.7",
+        "@types/node": "^20.3.3",
+        "@types/react": "^18.2.14",
+        "@types/react-dom": "^18.2.6",
+        "@types/react-transition-group": "^4.4.6",
+        "@typescript-eslint/eslint-plugin": "^5.60.1",
+        "@typescript-eslint/parser": "^5.60.1",
+        "autoprefixer": "^10.4.14",
+        "babel-jest": "^29.5.0",
+        "babel-loader": "^9.1.2",
+        "eslint": "^8.44.0",
+        "eslint-config-prettier": "^8.8.0",
+        "eslint-import-resolver-typescript": "^3.5.5",
+        "eslint-plugin-import": "^2.27.5",
+        "eslint-plugin-jest": "^27.2.2",
+        "eslint-plugin-prettier": "^4.2.1",
+        "eslint-plugin-react-hooks": "^4.6.0",
+        "postcss": "^8.4.24",
+        "postcss-preset-env": "^8.5.1",
+        "prettier": "^2.8.8",
+        "react-scripts": "^5.0.1",
+        "rollup": "^3.26.0",
+        "rollup-plugin-copy": "^3.4.0",
+        "rollup-plugin-dts": "^5.3.0",
+        "rollup-plugin-peer-deps-external": "^2.2.4",
+        "rollup-plugin-postcss": "^4.0.2",
+        "rollup-plugin-svg": "^2.0.0",
+        "sass": "^1.63.6",
+        "webpack": "^5.88.1"
+    },
+    "scripts": {
+        "dev": "react-scripts start",
+        "build": "rm -rf ./dist && rollup -c",
+        "build:react": "react-scripts build",
+        "build-watch": "rollup -c -w",
+        "prettier": "prettier",
+        "eslint": "eslint",
+        "tsc": "tsc",
+        "release": "./scripts/publish.sh"
+    },
+    "author": "Ihor Mykhailychenko",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/phoqer/shared-modules"
+    },
+    "browserslist": {
+        "production": [
+            ">0.2%",
+            "not dead",
+            "not op_mini all"
+        ],
+        "development": [
+            "last 1 chrome version",
+            "last 1 firefox version",
+            "last 1 safari version"
+        ]
+    }
+}

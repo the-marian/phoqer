@@ -1,0 +1,15 @@
+.root {
+    position: relative;
+
+    > * {
+        position: sticky;
+        top: 0;
+        left: 1rem;
+        width: calc(100vw - 2rem);
+
+        @media only screen and (min-width: 540px) {
+            left: 4rem;
+            width: calc(100vw - 8rem);
+        }
+    }
+}

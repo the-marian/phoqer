@@ -1,0 +1,89 @@
+.switch {
+    position: relative;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    font-size: 1.4rem;
+    width: 100%;
+
+    &.disabled {
+        pointer-events: none;
+        opacity: 0.5;
+    }
+
+    .label {
+        padding-left: 2rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: block;
+        width: calc(100% - var(--switch-width));
+    }
+
+    .mark {
+        position: absolute;
+        top: 50%;
+        left: calc(var(--switch-offset) / 2);
+        height: calc(var(--switch-height) - var(--switch-offset));
+        width: calc(var(--switch-height) - var(--switch-offset));
+        transform: translateY(-50%);
+        border-radius: 50%;
+        background: var(--white-true);
+        transition: 0.1s ease-in-out;
+        border: 0.1rem solid transparent;
+        box-shadow: rgba(0, 0, 0, 0.2) 0 2px 1px -1px, rgba(0, 0, 0, 0.14) 0 1px 1px 0, rgba(0, 0, 0, 0.12) 0 1px 3px 0;
+    }
+
+    .input {
+        display: block;
+        width: var(--switch-width);
+        height: var(--switch-height);
+        border-radius: 5rem;
+        background: var(--gray-200);
+        cursor: pointer;
+        transition: 0.1s ease-in-out;
+        box-shadow: inset 0 0 0 0.1rem var(--gray-300);
+
+        &:checked {
+            background: var(--primary-blue-500);
+            border-color: var(--white-true);
+            box-shadow: none;
+
+            ~ .mark {
+                transform: translate(var(--switch-translate), -50%);
+            }
+        }
+    }
+
+    &:hover {
+        .input {
+            background: var(--gray-150);
+
+            &:checked {
+                background: var(--primary-blue-500);
+                box-shadow: none;
+            }
+        }
+    }
+}
+
+.sm {
+    --switch-width: 4rem;
+    --switch-height: 2.4rem;
+    --switch-translate: 1.6rem;
+    --switch-offset: 0.3rem;
+}
+
+.md {
+    --switch-width: 5.6rem;
+    --switch-height: 3rem;
+    --switch-translate: 2.6rem;
+    --switch-offset: 0.4rem;
+}
+
+.lg {
+    --switch-width: 7rem;
+    --switch-height: 3.8rem;
+    --switch-translate: 3.2rem;
+    --switch-offset: 0.5rem;
+}

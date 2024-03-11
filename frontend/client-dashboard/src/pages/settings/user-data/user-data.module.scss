@@ -1,0 +1,42 @@
+@import '../common/styles.module';
+
+@media only screen and (min-width: 768px) {
+    .flex {
+        display: flex;
+    }
+}
+
+.avatarWrp {
+    margin-top: 1.5rem;
+    margin-right: 5rem;
+    margin-bottom: 2rem;
+
+    @media only screen and (min-width: 768px) {
+        margin-bottom: 0;
+    }
+}
+
+.avatar {
+    height: 24rem;
+    width: 22rem;
+    border-radius: 1rem;
+
+    @media only screen and (min-width: 768px) {
+        width: 20rem;
+    }
+}
+
+.avatarBtn {
+    display: flex;
+    justify-content: space-between;
+    width: 22rem;
+    margin-top: 2rem;
+
+    @media only screen and (min-width: 768px) {
+        width: 20rem;
+    }
+}
+
+.reset {
+    margin-left: 2rem;
+}

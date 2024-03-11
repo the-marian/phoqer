@@ -1,0 +1,17 @@
+.actions {
+    flex-wrap: wrap;
+
+    > * {
+        margin-right: 2rem;
+        margin-bottom: 1rem;
+    }
+}
+
+.overflow {
+    max-height: 35rem;
+    margin-top: 2rem;
+}
+
+.description {
+    font-size: 1.4rem;
+}

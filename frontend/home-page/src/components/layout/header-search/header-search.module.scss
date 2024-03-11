@@ -1,0 +1,138 @@
+.root {
+    position: relative;
+    width: auto;
+
+    @media only screen and (min-width: 768px) {
+        width: 25rem;
+    }
+
+    @media only screen and (min-width: 1300px) {
+        width: 30rem;
+    }
+
+    .dropdown {
+        --dropdown-width: calc(100vw - 2rem);
+
+        position: fixed;
+        top: 5.5rem;
+        left: 1rem !important;
+        z-index: 101;
+
+        @media only screen and (min-width: 540px) {
+            --dropdown-width: calc(100vw - 8rem);
+
+            left: 4rem !important;
+        }
+
+        @media only screen and (min-width: 768px) {
+            --dropdown-width: 56rem;
+
+            position: absolute;
+            left: 0 !important;
+        }
+    }
+}
+
+.backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(5px);
+    opacity: 0;
+    visibility: hidden;
+    z-index: -100;
+    transition: 0.3s ease-in-out;
+
+    &.isOpen {
+        opacity: 1;
+        visibility: visible;
+        z-index: 99;
+    }
+}
+
+.form {
+    position: relative;
+    z-index: 101;
+    display: block;
+    width: 100%;
+    transition: 0.1s ease-in-out;
+
+    @media only screen and (max-width: 767px) {
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 3.8rem;
+
+        &.isOpen {
+            left: -9.2rem;
+            width: calc(100vw - 2rem);
+
+            &.isAuthorPage {
+                left: -15rem;
+            }
+
+            @media only screen and (min-width: 540px) {
+                width: calc(100vw - 8rem);
+            }
+        }
+    }
+
+    .input {
+        --input-padding-right: 2.5rem;
+
+        position: relative;
+        z-index: 101;
+
+        @media only screen and (min-width: 768px) {
+            --input-padding-right: 3rem;
+        }
+
+        input {
+            padding-right: var(--input-padding-right);
+        }
+    }
+
+    .clear {
+        position: absolute;
+        top: 50%;
+        right: 0;
+        transform: translateY(-50%);
+        background: transparent;
+        height: 3rem;
+        z-index: 101;
+
+        &:hover,
+        &:focus,
+        &:active {
+            background: transparent;
+            box-shadow: none;
+        }
+    }
+}
+
+.scroll {
+    position: relative;
+    height: calc(var(--100vh, 100vh) - 30rem);
+    min-height: 22rem;
+
+    @media only screen and (min-height: 500px) {
+        height: 40rem;
+    }
+
+    @media only screen and (min-height: 600px) {
+        height: 50rem;
+    }
+
+    .inner {
+        height: 100%;
+    }
+}
+
+.footer {
+    padding: 1.5rem 0 0;
+    color: var(--primary-blue-500);
+}

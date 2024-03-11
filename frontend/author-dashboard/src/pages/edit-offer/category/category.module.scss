@@ -1,0 +1,50 @@
+.dropdown {
+    position: relative;
+    padding: 0;
+    margin-bottom: 4rem;
+    width: 100%;
+
+    @media only screen and (min-width: 650px) {
+        margin-bottom: 0;
+        width: auto;
+    }
+
+    &:hover {
+        text-decoration: none;
+    }
+
+    .category {
+        display: block;
+        color: var(--primary-1);
+
+        .editIcon {
+            margin-left: 0;
+            margin-right: 1rem;
+            margin-top: 0.2rem;
+        }
+    }
+
+    .scroll {
+        max-height: 40rem;
+    }
+}
+
+.icon {
+    transition: 0.2s ease-in-out;
+}
+
+.open {
+    transform: rotate(180deg);
+}
+
+.label {
+    margin-bottom: 1rem;
+}
+
+.inner {
+    top: 4rem;
+
+    @media only screen and (min-width: 650px) {
+        top: 5.5rem;
+    }
+}

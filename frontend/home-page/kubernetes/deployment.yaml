@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: home-page
+  labels: 
+    app: home-page
+    tier: frontend
+spec:
+  replicas: 1 
+  selector:
+    matchLabels:
+      app: home-page
+  template:
+    metadata:
+      labels:
+        app: home-page
+    spec:
+      containers:
+      - name: home-page
+        image: ghcr.io/phoqer/home-page:latest
+        env:
+        - name: PHOQER_HOST
+          value: https://phoqer.com
+        - name: PHOQER_BE_HOST
+          value: https://api.phoqer.com
+        ports: 
+        - containerPort: 3000
+      imagePullSecrets:
+       - name: ghcr-secret

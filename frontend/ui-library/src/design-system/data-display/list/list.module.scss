@@ -1,0 +1,63 @@
+@import 'src/styles/scss/mixin';
+
+.li {
+    display: flex;
+    align-items: center;
+    padding: 3rem;
+    font-size: 1.4rem;
+    font-weight: 400;
+    width: 100%;
+    text-align: left;
+    color: var(--gray-700);
+    background: var(--body);
+    cursor: pointer;
+    transition: 0.1s ease-in-out;
+    border-bottom: 0.1rem solid var(--gray-200);
+
+    &:focus,
+    &:hover {
+        background: var(--gray-100);
+    }
+
+    &:active {
+        background: var(--gray-50);
+        color: var(--primary-blue-500);
+    }
+
+    .children {
+        flex-grow: 2;
+        margin-right: 3rem;
+        @include cut-string();
+    }
+
+    .icon {
+        margin-right: 3rem;
+        margin-bottom: 0.1rem;
+    }
+
+    svg {
+        font-size: 2.5rem;
+        min-width: 1em;
+        color: var(--primary-blue-500);
+    }
+}
+
+.active,
+.active:focus,
+.active:active,
+.active:hover {
+    background: var(--gray-150);
+    color: var(--primary-blue-500);
+}
+
+:global(.black) .li {
+    &:hover,
+    &:active {
+        color: var(--true-white);
+    }
+
+    .active,
+    .active:hover {
+        color: var(--true-white);
+    }
+}

@@ -1,0 +1,45 @@
+.rating {
+    display: flex;
+    align-items: center;
+
+    p {
+        width: 3.2rem;
+        margin-top: 0.2rem;
+        margin-left: 0.5em;
+        color: var(--gray-500);
+        text-align: center;
+    }
+}
+
+.star {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem;
+    font-size: 2rem;
+
+    * {
+        color: var(--primary-yellow-600);
+    }
+
+    &:hover,
+    &:focus,
+    &:active {
+        * {
+            color: var(--primary-yellow-600);
+        }
+    }
+}
+
+.disabled {
+    * {
+        color: var(--gray-500);
+    }
+
+    &:hover,
+    &:focus,
+    &:active {
+        * {
+            color: var(--gray-500);
+        }
+    }
+}

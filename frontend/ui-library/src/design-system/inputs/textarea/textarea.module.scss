@@ -1,0 +1,61 @@
+@import 'src/design-system/inputs/input/input.module.scss';
+
+.root {
+    /* Hide scrollbar for IE, Edge and Firefox */
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+
+    ::-webkit-scrollbar {
+        display: none;
+    }
+
+    ::-webkit-scrollbar-track {
+        display: none;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        display: none;
+    }
+
+    .input {
+        height: unset;
+    }
+
+    .errorIcon,
+    .rightIcon,
+    .leftIcon {
+        top: 1.5rem;
+        right: 1.5rem;
+        transform: none;
+    }
+
+    .length {
+        position: absolute;
+        bottom: 0.5rem;
+        right: 1rem;
+        font-size: 1.2rem;
+        color: var(--gray-500);
+    }
+}
+
+.sm {
+    .input {
+        padding: 1rem 1.4rem;
+    }
+}
+
+.md {
+    .input {
+        padding: 1rem 1.4rem;
+    }
+}
+
+.lg {
+    .input {
+        padding: 1rem 1.4rem;
+    }
+}
+
+.maxLength .input {
+    padding-bottom: 3rem;
+}

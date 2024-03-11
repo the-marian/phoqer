@@ -1,0 +1,38 @@
+.modal :global(#modal-inner) {
+    padding: 1rem 0;
+}
+
+.list {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 1rem;
+
+    .category {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        text-align: left;
+        border-radius: 0.4rem;
+        line-height: 1.2;
+    }
+
+    .image {
+        height: 5.5rem;
+        width: 6.5rem;
+        border-radius: 0.2rem;
+        margin-right: 1rem;
+    }
+
+    .content {
+        width: calc(100% - 8rem);
+    }
+
+    .title {
+        margin-bottom: 0.5rem;
+        font-family: var(--font-title);
+    }
+
+    .description {
+        font-size: 1.2rem;
+    }
+}

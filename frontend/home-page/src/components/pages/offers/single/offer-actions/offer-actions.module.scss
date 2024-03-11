@@ -1,0 +1,72 @@
+.flex {
+    display: flex;
+    flex-direction: column-reverse;
+
+    @media only screen and (min-width: 640px) {
+        justify-content: space-between;
+        align-items: center;
+        flex-direction: row;
+    }
+
+    .price {
+        margin: 1rem 0;
+
+        @media only screen and (min-width: 640px) {
+            margin: 0;
+        }
+
+        span {
+            margin-left: 2rem;
+            color: var(--gray-400);
+            font-size: 2rem;
+        }
+    }
+
+    .separator {
+        position: relative;
+        height: 1.5rem;
+        width: 2rem;
+
+        &::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0.1rem;
+            height: 100%;
+            background: var(--gray-400);
+        }
+    }
+
+    .ml2 {
+        margin-right: 2rem;
+
+        @media only screen and (min-width: 640px) {
+            margin-right: unset;
+            margin-left: 2rem;
+        }
+    }
+
+    .buttons {
+        display: flex;
+        align-items: center;
+        flex-direction: row-reverse;
+        justify-content: flex-end;
+
+        @media only screen and (min-width: 640px) {
+            flex-direction: row;
+        }
+    }
+}
+
+.percentage {
+    color: var(--primary-green-500);
+}
+
+.description {
+    display: flex;
+    align-items: center;
+    color: var(--gray-400);
+    border-radius: 0.5rem;
+}

@@ -1,0 +1,77 @@
+#!/usr/bin/env node
+
+require('dotenv').config();
+const fs = require('fs').promises;
+const path = require('path');
+
+const fileName = 'env.config.ts';
+
+const root = path.join(__dirname, '..');
+const src = path.join(root, 'src');
+const config = path.join(src, 'config');
+
+const warning =
+    '// This file automatically generated. All content will be rewritten after build.\n// Use .env file to update content here\n\n';
+
+
+console.log('Generating env.config.ts file ...');
+
+const run = async () => {
+    try {
+        let content = warning;
+
+        let envFile = ""
+        let obj = 'export const env: EnvConfig = {\n';
+        let interface = 'export interface EnvConfig {\n';
+
+
+        Object.keys(process.env).forEach(key => {
+            if (key.includes('PHOQER_')) {
+                const isString = isNaN(+process.env[key]);
+                if (isString) {
+                    interface += `    ${key}: string;\n`;
+                    obj += `    ${key}: '${process.env[key]}',\n`;
+                } else {
+                    interface += `    ${key}: number;\n`;
+                    obj += `    ${key}: ${process.env[key]},\n`;
+                }
+
+                envFile += `${key}=${process.env[key]}\n`;
+                console.log(`${key}=${process.env[key]}`);
+            }
+        });
+
+        content += interface;
+        content += '}\n\n';
+
+        content += obj;
+        content += '};\n';
+
+        try {
+            await fs.access(config);
+            await fs.unlink(path.join(config, fileName));
+
+            if (process.env.NODE_ENV === 'production') {
+                await fs.access(root);
+                await fs.unlink(path.join(root, '.env'));
+            }
+        } catch {
+            console.log('Created new file in src/config/env.config.ts');
+        }
+
+        await fs.writeFile(path.join(config, fileName), content);
+
+        if (process.env.NODE_ENV === 'production') {
+            console.log('Generate .env file');
+            await fs.writeFile(path.join(root, '.env'), envFile)
+        }
+    } catch (e) {
+        console.error('Something went wrong');
+        console.log(e);
+        process.exit(1);
+    }
+};
+
+run().then(() => {
+    console.log('env.config.ts file updated');
+});

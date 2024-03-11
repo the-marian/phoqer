@@ -1,1 +1,0 @@
-alter table users_user alter column password drop not null;

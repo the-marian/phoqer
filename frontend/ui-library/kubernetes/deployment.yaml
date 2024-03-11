@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ui-library
+  labels: 
+    app: ui-library
+    tier: frontend
+spec:
+  replicas: 1 
+  selector:
+    matchLabels:
+      app: ui-library
+  template:
+    metadata:
+      labels:
+        app: ui-library
+    spec:
+      containers:
+      - name: ui-library
+        image: ghcr.io/phoqer/ui-library:latest
+        ports: 
+        - containerPort: 6006
+      imagePullSecrets:
+       - name: ghcr-secret

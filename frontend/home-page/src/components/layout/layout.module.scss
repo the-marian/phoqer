@@ -1,0 +1,13 @@
+.main {
+    padding-top: var(--header-height);
+    min-height: calc(var(--100vh) - var(--footer-height));
+}
+
+a.mr1 {
+    display: none;
+
+    @media only screen and (min-width: 956px) {
+        display: block;
+        margin-right: 1rem;
+    }
+}

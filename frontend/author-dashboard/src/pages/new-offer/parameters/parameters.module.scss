@@ -1,0 +1,45 @@
+@import '../shared/shared.module';
+
+.categoryBtn {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    text-align: left;
+    border-radius: 1rem;
+    border: 0.1rem dashed var(--gray-6);
+    transition: 0.2s ease-in-out;
+
+    &:hover {
+        border: 0.1rem solid var(--primary-1);
+
+        .icon {
+            box-shadow: var(--outline);
+        }
+    }
+
+    &:active {
+        border-color: transparent;
+        box-shadow: var(--outline);
+    }
+
+    .icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 9.5rem;
+        min-width: 10rem;
+        border-radius: 1rem 0 0 1rem;
+        transition: 0.2s ease-in-out;
+
+        svg {
+            font-size: 2rem;
+        }
+    }
+
+    .category {
+        width: 100%;
+        padding: 2rem;
+        font-size: 1.4rem;
+        border-left: 0.1rem dashed var(--gray-6);
+    }
+}

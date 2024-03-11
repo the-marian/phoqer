@@ -1,0 +1,80 @@
+@import 'src/styles/scss/mixin';
+
+.root {
+    --image-width: 12rem;
+
+    margin-bottom: 2rem;
+
+    .button {
+        width: 100%;
+        border-radius: 1rem;
+        border: 0.1rem solid var(--gray-200);
+        text-align: left;
+        transition: 0.2s ease-in-out;
+
+        &:hover {
+            border-color: var(--gray-400);
+        }
+
+        &:active {
+            border-color: var(--primary-blue-500);
+        }
+    }
+
+    .inner {
+        padding: 0.7rem;
+        transition: 0.2s ease-in-out;
+    }
+
+    .image {
+        aspect-ratio: 1/0.85;
+        min-width: var(--image-width);
+        max-width: var(--image-width);
+        border-radius: 0.6rem;
+    }
+
+    .content {
+        width: calc(100% - var(--image-width) - 6rem);
+
+        .title {
+            width: 100%;
+            @include cut-string;
+        }
+
+        .status {
+            margin-right: 1rem;
+        }
+
+        .category {
+            margin: 0.6rem 0;
+            color: var(--gray-400);
+        }
+
+        .price {
+            color: var(--primary-green-400);
+        }
+    }
+
+    .marker {
+        width: 3rem;
+        font-size: 2rem;
+        transition: 0.2s ease-in-out;
+        color: var(--black);
+    }
+
+    &.active {
+        .button {
+            padding: 0.4rem;
+        }
+
+        .inner {
+            padding: 0.8rem;
+            border-radius: 0.6rem;
+            background: var(--gray-100);
+        }
+
+        .marker {
+            transform: rotate(90deg);
+        }
+    }
+}

@@ -1,0 +1,21 @@
+@import '../shared/shared.module';
+
+.grid {
+    @media only screen and (min-width: 400px) {
+        display: flex;
+        flex-wrap: wrap;
+        margin-left: -1rem;
+        margin-right: -1rem;
+    }
+}
+
+.card {
+    height: 25rem;
+    width: 100%;
+    margin-bottom: 1rem;
+
+    @media only screen and (min-width: 400px) {
+        width: calc((100% / 2) - 2rem);
+        margin: 1rem;
+    }
+}

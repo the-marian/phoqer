@@ -1,0 +1,64 @@
+@keyframes tick {
+    0% {
+        transform: none;
+    }
+    80% {
+        transform: scale(0.5);
+    }
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.status {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.4rem 0.8rem;
+    width: max-content;
+    font-size: 1.4rem;
+    border-radius: 1rem;
+    cursor: auto;
+    background: var(--gray-2);
+
+    span {
+        margin: 0 0.5rem;
+    }
+}
+
+.done {
+    background: var(--secondary-2);
+    color: var(--primary-2);
+}
+
+.rejected {
+    color: var(--red);
+}
+
+.accepted {
+    background: var(--secondary-1);
+    color: var(--primary-1);
+}
+
+.progress {
+    color: var(--success);
+    background: var(--success-2);
+}
+
+:global(.animate) {
+    .progress svg {
+        animation: rotate 3s linear infinite;
+    }
+}
+
+:global(.black) {
+    .status {
+        color: var(--true-white);
+    }
+}

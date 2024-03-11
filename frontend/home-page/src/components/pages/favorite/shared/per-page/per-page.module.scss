@@ -1,0 +1,25 @@
+.root {
+    --dropdown-width: 12rem;
+
+    position: relative;
+
+    @media only screen and (min-width: 450px) {
+        margin-right: 2rem;
+    }
+}
+
+.icon {
+    transition: 0.2s ease-in-out;
+}
+
+.open {
+    transform: rotate(180deg);
+}
+
+.btn {
+    > div {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+    }
+}

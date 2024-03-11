@@ -1,0 +1,81 @@
+{
+    "name": "phoqer-author-dashboard",
+    "version": "0.0.66",
+    "private": true,
+    "dependencies": {
+        "axios": "^1.1.3",
+        "classnames": "^2.3.1",
+        "formik": "^2.2.9",
+        "i18next-browser-languagedetector": "^6.1.4",
+        "i18next-http-backend": "^1.4.0",
+        "lodash-es": "^4.17.21",
+        "nanoid": "^3.3.4",
+        "phoqer": "^2.0.67",
+        "phoqer-shared": "^1.0.52",
+        "quill": "^1.3.7",
+        "react": "^18.2.0",
+        "react-beautiful-dnd": "^13.1.0",
+        "react-dom": "^18.2.0",
+        "react-i18next": "^11.16.9",
+        "react-responsive-carousel": "^3.2.23",
+        "react-router-dom": "^6.3.0",
+        "react-transition-group": "^4.4.2",
+        "yup": "^0.32.11"
+    },
+    "devDependencies": {
+        "@testing-library/jest-dom": "^5.14.1",
+        "@testing-library/react": "^13.0.0",
+        "@testing-library/user-event": "^13.2.1",
+        "@types/jest": "^27.0.1",
+        "@types/lodash-es": "^4.17.6",
+        "@types/node": "^18.11.18",
+        "@types/quill": "^2.0.9",
+        "@types/react": "^18.0.27",
+        "@types/react-beautiful-dnd": "^13.1.2",
+        "@types/react-dom": "^18.0.10",
+        "@types/react-transition-group": "^4.4.4",
+        "@typescript-eslint/eslint-plugin": "^5.16.0",
+        "@typescript-eslint/parser": "^5.27.0",
+        "babel-jest": "^27.5.1",
+        "dotenv": "^16.0.1",
+        "eslint": "^8.11.0",
+        "eslint-config-prettier": "^8.5.0",
+        "eslint-import-resolver-typescript": "^2.7.1",
+        "eslint-plugin-import": "^2.26.0",
+        "eslint-plugin-jest": "^26.1.2",
+        "eslint-plugin-jsx-a11y": "^6.5.1",
+        "eslint-plugin-prettier": "^4.0.0",
+        "eslint-plugin-react": "^7.30.0",
+        "eslint-plugin-react-hooks": "^4.3.0",
+        "i18next-parser": "^6.6.0",
+        "postcss": "^8.4.13",
+        "prettier": "^2.6.0",
+        "react-app-rewired": "^2.2.1",
+        "react-scripts": "^5.0.1",
+        "sass": "^1.49.9",
+        "typescript": "^4.9.4",
+        "webpack": "^5.73.0"
+    },
+    "scripts": {
+        "dev": "./scripts/env-vars && react-app-rewired start",
+        "build": "./scripts/env-vars && react-app-rewired build",
+        "test": "./scripts/env-vars && react-scripts test",
+        "prettier": "prettier -c .prettierrc -w",
+        "eslint": "eslint -c .eslintrc --fix ./src/",
+        "tsc": "tsc --pretty --noEmit",
+        "lint": "npm run prettier && npm run eslint",
+        "release": "./scripts/publish.sh"
+    },
+    "browserslist": {
+        "production": [
+            ">0.2%",
+            "not dead",
+            "not op_mini all"
+        ],
+        "development": [
+            "last 1 chrome version",
+            "last 1 firefox version",
+            "last 1 safari version"
+        ]
+    }
+}

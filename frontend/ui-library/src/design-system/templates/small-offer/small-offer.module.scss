@@ -1,0 +1,57 @@
+@import 'src/styles/scss/mixin';
+
+.root {
+    --small-offer-image: 5rem;
+
+    position: relative;
+    width: 100%;
+    padding-top: 0.2rem;
+    cursor: pointer;
+
+    &:hover .title,
+    &:focus .title {
+        color: var(--primary-blue-500);
+    }
+
+    &:hover .title {
+        text-decoration: underline;
+    }
+
+    &:active .title {
+        color: var(--primary-blue-600);
+        text-decoration: underline;
+    }
+
+    .image {
+        height: var(--small-offer-image);
+        width: var(--small-offer-image);
+        border-radius: 50%;
+    }
+
+    .inner {
+        flex: 1;
+        max-width: calc(100% - var(--small-offer-image) - 1rem);
+    }
+
+    &.withSale .inner {
+        max-width: calc(100% - var(--small-offer-image) - 7rem);
+    }
+
+    .title {
+        width: 100%;
+        margin-bottom: 0.5rem;
+        @include cut-string();
+    }
+
+    .sale {
+        padding: 0.2rem 1rem;
+        background: var(--secondary-blue-500);
+        border-radius: 1rem;
+    }
+
+    .price {
+        width: 100%;
+        color: var(--primary-green-500);
+        @include cut-string();
+    }
+}

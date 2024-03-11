@@ -1,0 +1,52 @@
+[
+    {
+        "id": "20",
+        "title": "iPhone 12 Pro 128 GB",
+        "images": ["https://ireland.apollo.olxcdn.com/v1/files/fjew3fnht9fp3-UA/image;s=1000x700"],
+        "authorId": 1,
+        "price": 10,
+        "category": { "title": "Phones" },
+        "startDate": 1661700565693
+    },
+    {
+        "id": "21",
+        "title": "iPhone 12 Pro 128 GB",
+        "images": ["https://ireland.apollo.olxcdn.com/v1/files/fjew3fnht9fp3-UA/image;s=1000x700"],
+        "authorId": 1,
+        "price": 9922350,
+        "category": { "title": "Phones" },
+        "startDate": 1661700565693
+    },
+    {
+        "id": "22",
+        "title": "iPhone 12 Pro Max Graphite 256 GB",
+        "images": ["https://ireland.apollo.olxcdn.com/v1/files/36kfl7kxm6f9-UA/image;s=1000x700"],
+        "authorId": 3,
+        "price": 750,
+        "sale": { "percentage": 5 },
+        "category": { "title": "Phones" },
+        "startDate": 1661700565693
+    },
+    {
+        "id": "23",
+        "title": "iPhone 12 Pro Max Graphite 256 GB",
+        "images": ["https://ireland.apollo.olxcdn.com/v1/files/36kfl7kxm6f9-UA/image;s=1000x700"],
+        "authorId": 3,
+        "price": 750,
+        "category": {
+            "title": "Phones"
+        },
+        "status": "accepted"
+    },
+    {
+        "id": "24",
+        "title": "iPhone 12 Pro Max Graphite 256 GB",
+        "images": ["https://ireland.apollo.olxcdn.com/v1/files/36kfl7kxm6f9-UA/image;s=1000x700"],
+        "authorId": 3,
+        "price": 750,
+        "category": {
+            "title": "Phones"
+        },
+        "status": "pending"
+    }
+]

@@ -1,0 +1,56 @@
+.scroll {
+    height: calc(100% - 5.5rem);
+    padding: 2rem;
+    overflow-y: auto;
+    background: var(--gray-100);
+}
+
+.section {
+    --dropdown-width: 25rem;
+
+    position: relative;
+}
+
+.head {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 2rem;
+
+    .icon {
+        margin-right: 1.5rem !important;
+    }
+}
+
+.btn {
+    padding: 0.5rem 1rem;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    font-size: 1.8rem;
+
+    .done {
+        color: var(--primary-green-500);
+    }
+}
+
+.error {
+    color: var(--primary-red-500);
+}
+
+.ml2 {
+    margin-left: 2rem;
+}
+
+.tablet {
+    @media screen and (max-width: 768px) {
+        display: none;
+        visibility: hidden;
+    }
+}
+
+.mobile {
+    @media screen and (min-width: 768px) {
+        display: none;
+        visibility: hidden;
+    }
+}

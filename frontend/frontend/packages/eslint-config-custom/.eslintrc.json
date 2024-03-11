@@ -1,0 +1,96 @@
+{
+    "parser": "@typescript-eslint/parser",
+    "plugins": ["import", "@typescript-eslint", "eslint-plugin-jest", "react-hooks"],
+    "parserOptions": {
+        "ecmaVersion": 2020,
+        "sourceType": "module",
+        "ecmaFeatures": {
+            "jsx": true
+        }
+    },
+    "settings": {
+        "react": {
+            "version": "detect"
+        }
+    },
+    "env": {
+        "jest/globals": true,
+        "node": true
+    },
+    "extends": [
+        "eslint:recommended",
+        "prettier",
+        "plugin:prettier/recommended",
+        "plugin:@typescript-eslint/eslint-recommended",
+        "plugin:@typescript-eslint/recommended",
+        "plugin:react/recommended",
+        "plugin:jsx-a11y/recommended",
+        "plugin:@typescript-eslint/recommended",
+        "plugin:import/typescript"
+    ],
+    "ignorePatterns": [],
+    "rules": {
+        "prettier/prettier": [
+            "error",
+            {},
+            {
+                "usePrettierrc": true
+            }
+        ],
+        "import/first": "error",
+        "import/order": [
+            "error",
+            {
+                "alphabetize": { "order": "asc", "caseInsensitive": false },
+                "groups": ["external", "builtin", "parent", "sibling", "index"],
+                "pathGroups": [
+                    {
+                        "pattern": "react",
+                        "group": "external",
+                        "position": "before"
+                    },
+                    {
+                        "pattern": "@app",
+                        "group": "builtin",
+                        "position": "before"
+                    },
+                    {
+                        "pattern": "phoqer*",
+                        "group": "builtin",
+                        "position": "before"
+                    }
+                ],
+                "pathGroupsExcludedImportTypes": ["builtin"],
+                "newlines-between": "always"
+            }
+        ],
+        "import/extensions": "error",
+        "import/newline-after-import": "error",
+        "react/no-unknown-property": "off",
+        "import/no-duplicates": "error",
+        "import/no-mutable-exports": "error",
+        "jsx-a11y/no-noninteractive-tabindex": "off",
+        "jsx-a11y/no-static-element-interactions": "off",
+        "react/react-in-jsx-scope": "off",
+        "react/prop-types": "off",
+        "jsx-a11y/no-autofocus": "off",
+        "react-hooks/rules-of-hooks": "error",
+        "@typescript-eslint/no-var-requires": "off",
+        "@typescript-eslint/no-non-null-assertion": "off",
+        "@typescript-eslint/explicit-function-return-type": "off",
+        "jsx-a11y/label-has-associated-control": "off",
+        "jsx-a11y/no-noninteractive-element-interactions": "off",
+        "@next/next/no-img-element": "off",
+        "@next/next/no-page-custom-font": "off",
+        "jsx-a11y/click-events-have-key-events": "off",
+        "jsx-a11y/anchor-has-content": "off",
+        "jsx-a11y/anchor-is-valid": [
+            "error",
+            {
+                "components": ["Link"],
+                "specialLink": ["hrefLeft", "hrefRight"],
+                "aspects": ["invalidHref", "preferButton"]
+            }
+        ]
+    }
+}

@@ -1,0 +1,26 @@
+.root {
+    width: 100%;
+    padding: 0 1rem;
+
+    @media screen and (min-width: 540px) {
+        padding: 0 4rem;
+    }
+}
+
+.lg {
+    @media screen and (min-width: 2400px) {
+        padding: 0 calc((100% - 220rem) / 2);
+    }
+}
+
+.md {
+    @media screen and (min-width: 1500px) {
+        padding: 0 calc((100% - 140rem) / 2);
+    }
+}
+
+.sm {
+    @media screen and (min-width: 700px) {
+        padding: 0 calc((100% - 60rem) / 2);
+    }
+}

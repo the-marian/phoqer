@@ -1,0 +1,63 @@
+@import 'mixin';
+
+$sizes: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12;
+
+.grid {
+    --grid-border-color: transparent;
+    --grid-border-type: dashed;
+
+    display: flex;
+    flex-wrap: wrap;
+    width: auto;
+
+    border-left: 0.1rem var(--grid-border-type) var(--grid-border-color);
+}
+
+.grid-item {
+    flex-grow: 0;
+    flex-basis: auto;
+    border-right: 0.1rem var(--grid-border-type) var(--grid-border-color);
+    border-bottom: 0.1rem var(--grid-border-type) var(--grid-border-color);
+}
+
+@each $size in $sizes {
+    .grid-#{$size} .grid-item {
+        width: calc(100% / #{$size});
+        &:nth-of-type(-n + #{$size}) {
+            border-top: 0.1rem var(--grid-border-type) var(--grid-border-color);
+        }
+    }
+}
+
+@include media-sm {
+    @each $size in $sizes {
+        .grid-sm-#{$size} .grid-item {
+            width: calc(100% / #{$size});
+            &:nth-of-type(-n + #{$size}) {
+                border-top: 0.1rem var(--grid-border-type) var(--grid-border-color);
+            }
+        }
+    }
+}
+
+@include media-md {
+    @each $size in $sizes {
+        .grid-md-#{$size} .grid-item {
+            width: calc(100% / #{$size});
+            &:nth-of-type(-n + #{$size}) {
+                border-top: 0.1rem var(--grid-border-type) var(--grid-border-color);
+            }
+        }
+    }
+}
+
+@include media-lg {
+    @each $size in $sizes {
+        .grid-lg-#{$size} .grid-item {
+            width: calc(100% / #{$size});
+            &:nth-of-type(-n + #{$size}) {
+                border-top: 0.1rem var(--grid-border-type) var(--grid-border-color);
+            }
+        }
+    }
+}

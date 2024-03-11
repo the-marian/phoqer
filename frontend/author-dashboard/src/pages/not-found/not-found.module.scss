@@ -1,0 +1,4 @@
+.empty {
+    height: var(--100vh, 100vh);
+    margin-top: calc(var(--header-height) * 2 * -1);
+}

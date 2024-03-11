@@ -1,0 +1,30 @@
+@import 'phoqer/dist/styles/scss/mixin';
+
+.category {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-align: left;
+    line-height: 1.2;
+}
+
+.image {
+    height: 5.5rem;
+    width: 6.5rem;
+    border-radius: 0.2rem;
+    margin-right: 1rem;
+}
+
+.content {
+    width: calc(100% - 8rem);
+}
+
+.title {
+    margin-bottom: 0.5rem;
+}
+
+.description {
+    color: var(--gray-6);
+
+    @include block-ellipsis(1.2, 1.2, 2);
+}

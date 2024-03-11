@@ -1,0 +1,94 @@
+@import 'phoqer/dist/styles/scss/mixin';
+
+.loading,
+.item {
+    display: flex;
+    margin-bottom: 1.5rem;
+    padding: 3rem 2rem;
+    border-radius: 0.8rem;
+    cursor: pointer;
+    box-shadow: var(--box-shadow-2);
+    border: 0.1rem solid var(--gray-4);
+    transition: box-shadow 0.2s ease-in-out;
+
+    &:focus,
+    &:hover {
+        border-color: var(--gray-7);
+    }
+
+    @media only screen and (min-width: 768px) {
+        &:active {
+            background: var(--secondary-1);
+            box-shadow: var(--outline);
+        }
+
+        &.active {
+            border: 0.1rem solid var(--primary-1);
+            background: var(--secondary-1);
+        }
+    }
+
+    .avatar {
+        min-width: 4.5rem;
+        margin-top: 0.4rem;
+    }
+
+    .content {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding-left: 1rem;
+        width: 100%;
+
+        @media only screen and (min-width: 1200px) {
+            width: calc(var(--chat-sidebar-width) - 12rem);
+        }
+    }
+
+    .head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 0.8rem;
+
+        .name {
+            width: calc(100% - 5rem);
+            @include cut-string;
+        }
+
+        small {
+            width: 7rem;
+            margin-left: auto;
+            text-align: right;
+            color: var(--gray-6);
+        }
+    }
+
+    .text {
+        @include block-ellipsis(1.4rem, 1.4, 2);
+    }
+
+    .mt {
+        margin-top: 1.5rem;
+    }
+
+    .w75 {
+        width: 75%;
+        margin-top: 1rem;
+    }
+}
+
+.loading {
+    margin-bottom: 2rem;
+    pointer-events: none;
+
+    &:focus,
+    &:hover {
+        background: none;
+    }
+
+    &:active {
+        background: none;
+        box-shadow: none;
+    }
+}

@@ -1,0 +1,18 @@
+a.mr1 {
+    margin: 0;
+
+    @media only screen and (min-width: 540px) {
+        margin-right: 1rem;
+    }
+}
+
+div.skeleton {
+    height: 3rem;
+    width: 8rem;
+}
+
+.icon {
+    margin-right: 2rem;
+    margin-bottom: 0.2rem;
+    font-size: 1.8rem;
+}

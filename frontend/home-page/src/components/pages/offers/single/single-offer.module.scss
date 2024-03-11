@@ -1,0 +1,24 @@
+.flex {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 3rem 0;
+
+    @media only screen and (min-width: 1500px) {
+        flex-direction: row;
+        align-items: flex-start;
+    }
+}
+
+.root .title {
+    width: 100%;
+    max-width: 100rem;
+    margin: 1rem auto 2rem;
+    font-size: 3rem !important;
+
+    @media only screen and (min-width: 1300px) {
+        max-width: unset;
+        font-size: 5rem !important;
+    }
+}

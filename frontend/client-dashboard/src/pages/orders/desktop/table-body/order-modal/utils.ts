@@ -1,0 +1,15 @@
+export const cellMap = [
+    { key: 'title', title: 'Title' },
+    { key: 'status', title: 'Status' },
+    { key: 'date', title: 'Created' },
+    { key: 'expired', title: 'Expired' },
+    { key: 'price', title: 'Price' },
+    { key: 'category', title: 'Category' },
+    { key: 'country', title: 'Country' },
+    { key: 'city', title: 'City' },
+    { key: 'zip', title: 'ZIP' },
+    { key: 'address', title: 'Address' },
+    { key: 'comment', title: 'Comment' },
+    { key: 'sale', title: 'Sale' },
+    { key: 'sale_description', title: 'Sale Description' },
+];

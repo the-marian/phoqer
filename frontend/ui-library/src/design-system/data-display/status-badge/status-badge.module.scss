@@ -1,0 +1,152 @@
+@import 'src/styles/scss/mixin';
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.status {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: auto;
+    background: var(--gray-100);
+}
+
+:global(.type-icon) {
+    height: 2.8rem;
+    width: 2.8rem;
+    font-size: 1.6rem;
+    border-radius: 50%;
+
+    span {
+        display: none;
+    }
+}
+
+:global(.type-text) {
+    width: max-content;
+    height: unset;
+    padding: 0.4rem 0.8rem;
+    font-size: 1.4rem;
+    border-radius: 1rem;
+
+    span {
+        display: block;
+        margin: 0 1rem;
+    }
+}
+
+@include media-sm {
+    :global(.type-sm-text) {
+        width: max-content;
+        height: unset;
+        padding: 0.4rem 0.8rem;
+        font-size: 1.4rem;
+        border-radius: 1rem;
+
+        span {
+            display: block;
+            margin: 0 1rem;
+        }
+    }
+
+    :global(.type-sm-icon) {
+        height: 3.5rem;
+        width: 3.5rem;
+        font-size: 2rem;
+        border-radius: 50%;
+
+        span {
+            display: none;
+        }
+    }
+}
+
+@include media-md {
+    :global(.type-md-text) {
+        width: max-content;
+        height: unset;
+        padding: 0.4rem 0.8rem;
+        font-size: 1.4rem;
+        border-radius: 1rem;
+
+        span {
+            display: block;
+            margin: 0 1rem;
+        }
+    }
+
+    :global(.type-md-icon) {
+        height: 3.5rem;
+        width: 3.5rem;
+        font-size: 2rem;
+        border-radius: 50%;
+
+        span {
+            display: none;
+        }
+    }
+}
+
+@include media-lg {
+    :global(.type-lg-text) {
+        width: max-content;
+        height: unset;
+        padding: 0.4rem 0.8rem;
+        font-size: 1.4rem;
+        border-radius: 1rem;
+
+        span {
+            display: block;
+            margin: 0 1rem;
+        }
+    }
+
+    :global(.type-lg-icon) {
+        height: 3.5rem;
+        width: 3.5rem;
+        font-size: 2rem;
+        border-radius: 50%;
+
+        span {
+            display: none;
+        }
+    }
+}
+
+.done {
+    color: var(--primary-green-600);
+    background: var(--secondary-green-500);
+}
+
+.rejected {
+    background: var(--secondary-red-400);
+    color: var(--primary-red-500);
+}
+
+.accepted {
+    background: var(--secondary-blue-500);
+    color: var(--primary-blue-500);
+}
+
+.progress {
+    color: var(--primary-yellow-500);
+    background: var(--secondary-yellow-400);
+}
+
+:global(.animate) {
+    .progress svg {
+        animation: rotate 3s linear infinite;
+    }
+}
+
+:global(.black) {
+    .status {
+        color: var(--white-true);
+    }
+}

@@ -1,0 +1,62 @@
+@import 'src/styles/scss/mixin';
+
+.wrp {
+    position: relative;
+}
+
+.dropdown {
+    position: absolute;
+    top: calc(100% + 0.8rem);
+    z-index: 3;
+    padding: var(--dropdown-padding, 0.5rem);
+    width: var(--dropdown-width);
+    border-radius: 0.6rem;
+    background: var(--body);
+    box-shadow: 0.2rem 0.2rem 0.5rem var(--gray-400);
+    border: 0.1rem solid var(--gray-200);
+    transition: 0.2s ease-in-out;
+    opacity: 0;
+    transform: scale(0.2);
+    user-select: none;
+
+    &.left {
+        left: 0;
+        transform-origin: 0 0;
+    }
+
+    &.right {
+        right: 0;
+        transform-origin: 100% 0;
+    }
+
+    &:global(.enter-done) {
+        opacity: 1;
+        transform: scale(1);
+        user-select: unset;
+    }
+
+    &:global(.exit) {
+        opacity: 0;
+        transform: scale(0.4);
+    }
+}
+
+.open {
+    transform: rotate(180deg);
+}
+
+.sm {
+    --dropdown-width: 28rem;
+}
+.md {
+    --dropdown-width: 32rem;
+}
+.lg {
+    --dropdown-width: 40rem;
+}
+
+:global(.black) {
+    .dropdown {
+        box-shadow: 0.2rem 0.2rem 0.5rem var(--gray-50);
+    }
+}

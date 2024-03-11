@@ -1,0 +1,8 @@
+.mr2 {
+    display: none;
+
+    @media only screen and (min-width: 1300px) {
+        display: block;
+        margin-right: 2rem;
+    }
+}
